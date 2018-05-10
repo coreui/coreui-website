@@ -34,8 +34,15 @@
       a.src = g;
       m.parentNode.insertBefore(a, m)
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-9510961-27', 'auto');
+    ga('create', 'UA-49801694-4', 'auto', {'allowLinker': true});
+    ga('require', 'linker');
+    ga('linker:autoLink', ['gumroad.com','coreui.io']);
     ga('send', 'pageview');
+
+    ga('create', 'UA-118965717-1', 'auto', {'name': 'sharedTracker', 'allowLinker': true});
+    ga('sharedTracker.require', 'linker');
+    ga('sharedTracker.linker:autoLink', ['gumroad.com','coreui.io']);
+    ga('sharedTracker.send', 'pageview');
   </script>
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
