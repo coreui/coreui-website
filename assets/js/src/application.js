@@ -15,7 +15,58 @@
 (function ($) {
   'use strict'
 
+  // Get Cookie
+  function getCookie(cname) {
+    var name = cname + '=';
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return '';
+  }
+
+  // Set Cookie
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = 'expires='+ d.toUTCString();
+    document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+  }
+
+  function checkIfEu(url) {
+    var eu = ['AL', 'AD', 'AT', 'AZ', 'BY', 'BE', 'BA', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'GE', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'KZ', 'XK', 'LV', 'LI', 'LT', 'LU', 'MK', 'MT', 'MD', 'MC', 'ME', 'NL', 'NO', 'PL', 'PT', 'RO', 'RU', 'SM', 'RS', 'SK', 'SI', 'ES', 'SE', 'CH', 'TR', 'UA', 'GB', 'VA']
+
+    $.getJSON('https://pro.ip-api.com/json/?key=EEKS6bLi6D91G1p', function(data) {
+      var countryCode = data.countryCode;
+      if (eu.indexOf(countryCode) > 0 && getCookie('cookiesAccepted') != 'true') {
+        var cookiesStatementContainer = document.createElement('div');
+        cookiesStatementContainer.setAttribute('class', 'fixed-bottom p-3');
+        cookiesStatementContainer.setAttribute('id', 'cookies-statement');
+
+        var cookiesStatement = document.createElement('div');
+        cookiesStatement.innerHTML = 'By continuing to use the site, you agree to the use of cookies. <a href="' + url + '">Learn More</a><button type="button" id="accept-cookies" class="btn btn-sm btn-outline-success ml-3">Accept</button>';
+        cookiesStatement.setAttribute('class', 'alert alert-primary mb-2 text-center d-inline');
+
+        cookiesStatementContainer.appendChild(cookiesStatement);
+        document.body.appendChild(cookiesStatementContainer);
+      }
+    });
+  }
+
   $(function () {
+    checkIfEu('https://coreui.io/about/legal/cookies/');
+
+    $('body').on('click', 'button#accept-cookies', function() {
+      setCookie('cookiesAccepted', true, 365);
+      $('#cookies-statement').hide();
+    })
 
     // Tooltip and popover demos
     $('.tooltip-demo').tooltip({
