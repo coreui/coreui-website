@@ -1,0 +1,1418 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Bootstrap pagination component consists of button-like styled links, that are arranged side by side in a horizontal list. Learn how to create nice looking pagination to navigate through pages easily.">
+<meta name="author" content="Łukasz Holeczek">
+<meta name="generator" content="Jekyll v3.8.0">
+
+<title>Bootstrap pagination - Examples &amp; Tutorials. Learn how to use Bootstrap pagination · CoreUI</title>
+
+<!-- Documentation extras -->
+<!-- 
+<link href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" rel="stylesheet">
+ -->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="https://coreui.io/docs/assets/css/coreui-docs.min.css" rel="stylesheet">
+<link href="https://coreui.io/docs/assets/css/coreui-icons.css" rel="stylesheet">
+
+
+
+<!-- Favicons -->
+<link rel="icon" href="https://coreui.io/docs/favicon.ico">
+<meta name="msapplication-config" content="https://coreui.io/docs/assets/img/favicons/browserconfig.xml">
+<link rel="apple-touch-icon" sizes="57x57" href="https://coreui.io/docs/assets/img/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://coreui.io/docs/assets/img/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://coreui.io/docs/assets/img/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://coreui.io/docs/assets/img/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://coreui.io/docs/assets/img/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://coreui.io/docs/assets/img/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://coreui.io/docs/assets/img/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://coreui.io/docs/assets/img/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://coreui.io/docs/assets/img/favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="https://coreui.io/docs/assets/img/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coreui.io/docs/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://coreui.io/docs/assets/img/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coreui.io/docs/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="https://coreui.io/docs/assets/img/favicons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="https://coreui.io/docs/assets/img/favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@core_ui">
+<meta name="twitter:creator" content="@core_ui">
+<meta name="twitter:title" content="Bootstrap pagination">
+<meta name="twitter:description" content="Bootstrap pagination component consists of button-like styled links, that are arranged side by side in a horizontal list. Learn how to create nice looking pagination to navigate through pages easily.">
+<meta name="twitter:image" content="https://coreui.io/docs/assets/brand/coreui-social-logo.png">
+
+<!-- Facebook -->
+<meta property="og:url" content="https://coreui.io/docs/components/pagination/">
+<meta property="og:title" content="Bootstrap pagination">
+<meta property="og:description" content="Bootstrap pagination component consists of button-like styled links, that are arranged side by side in a horizontal list. Learn how to create nice looking pagination to navigate through pages easily.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://coreui.io/docs/assets/brand/coreui-social.png">
+<meta property="og:image:secure_url" content="https://coreui.io/docs/assets/brand/coreui-social.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-9510961-27', 'auto', {'allowLinker': true});
+  ga('require', 'linker');
+  ga('linker:autoLink', ['gumroad.com','genesisui.com']);
+  ga('send', 'pageview');
+
+  ga('create', 'UA-118965717-1', 'auto', {'name': 'sharedTracker', 'allowLinker': true});
+  ga('sharedTracker.require', 'linker');
+  ga('sharedTracker.linker:autoLink', ['gumroad.com','genesisui.com']);
+  ga('sharedTracker.send', 'pageview');
+</script>
+
+    <style>
+      .app-body {
+        overflow-x: initial;
+      }
+    </style>
+  </head>
+  <body class="app header-fixed sidebar-md-show sidebar-fixed">
+    <!-- <a id="skippy" class="sr-only sr-only-focusable" href="#content">
+  <div class="container">
+    <span class="skiplink-text">Skip to main content</span>
+  </div>
+</a>
+ -->
+
+    <header class="app-header navbar">
+  <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="https://coreui.io">
+    <img src="https://coreui.io/docs/assets/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
+  </a>
+  <ul class="nav navbar-nav mr-auto">
+    <li class="nav-item px-3">
+      <a class="nav-link" href="https://coreui.io/">CoreUI Website</a>
+    </li>
+    <li class="nav-item px-3">
+      <a class="nav-link" href="https://coreui.io/icons/">CoreUI Icons</a>
+    </li>
+    <li class="nav-item px-3">
+      <a class="btn btn-warning" href="https://coreui.io/pro/">Go Pro</a>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav">
+    <li class="nav-item px-3">
+      <a class="btn btn-warning" href="https://coreui.io/support/">Support CoreUI Development</a>
+    </li>
+  </ul>
+</header>
+
+
+    <div class="app-body">
+      <div class="sidebar">
+        
+<nav class="sidebar-nav">
+  <ul class="nav">
+
+    
+    
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Getting started
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/getting-started/ui-kit/">
+              UI Kit
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/getting-started/introduction/">
+              Introduction
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/getting-started/browsers-devices/">
+              Browsers & devices
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/getting-started/javascript/">
+              JavaScript
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/getting-started/build-tools/">
+              Build tools
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/getting-started/webpack/">
+              Webpack
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/getting-started/accessibility/">
+              Accessibility
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Layout
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/layout/overview/">
+              Overview
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/layout/grid/">
+              Grid
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/layout/media-object/">
+              Media object
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/layout/utilities-for-layout/">
+              Utilities for layout
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Content
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/content/reboot/">
+              Reboot
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/content/typography/">
+              Typography
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/content/code/">
+              Code
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/content/images/">
+              Images
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/content/tables/">
+              Tables
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/content/figures/">
+              Figures
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  active">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Components
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/alerts/">
+              Alerts
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/aside-menu/">
+              Aside menu
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/badge/">
+              Badge
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/breadcrumb/">
+              Breadcrumb
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/buttons/">
+              Buttons
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/button-group/">
+              Button group
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/callout/">
+              Callout
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/cards/">
+              Cards
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/carousel/">
+              Carousel
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/collapse/">
+              Collapse
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/dropdowns/">
+              Dropdowns
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/forms/">
+              Forms
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/input-group/">
+              Input group
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/jumbotron/">
+              Jumbotron
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/list-group/">
+              List group
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/loading-buttons/">
+              Loading buttons
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/masked-input/">
+              Masked input
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/modal/">
+              Modal
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/navs/">
+              Navs
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/navbar/">
+              Navbar
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item active docs-sidenav-active">
+            <a class="nav-link" href="https://coreui.io/docs/components/pagination/">
+              Pagination
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/popovers/">
+              Popovers
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/progress/">
+              Progress
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/scrollspy/">
+              Scrollspy
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/sidebar/">
+              Sidebar
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/sliders/">
+              Sliders
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/spinners/">
+              Spinners
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/switches/">
+              Switches
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/components/tooltips/">
+              Tooltips
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  ">
+      <a class="nav-link " href="https://coreui.io/docs/icons/">
+        Icons
+      </a>
+      <ul class="nav-dropdown-items">
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Utilities
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/borders/">
+              Borders
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/clearfix/">
+              Clearfix
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/close-icon/">
+              Close icon
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/colors/">
+              Colors
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/display/">
+              Display
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/embed/">
+              Embed
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/flex/">
+              Flex
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/float/">
+              Float
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/image-replacement/">
+              Image replacement
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/position/">
+              Position
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/screenreaders/">
+              Screenreaders
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/sizing/">
+              Sizing
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/spacing/">
+              Spacing
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/text/">
+              Text
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/vertical-align/">
+              Vertical align
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/utilities/visibility/">
+              Visibility
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  ">
+      <a class="nav-link " href="https://coreui.io/docs/migration/">
+        Migration
+      </a>
+      <ul class="nav-dropdown-items">
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Admin Templates
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/admin-templates/angular-admin/">
+              Angular Admin
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/admin-templates/bootstrap-admin/">
+              Bootstrap Admin
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/admin-templates/react-admin/">
+              React Admin
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/admin-templates/vue-admin/">
+              Vue Admin
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+    <li class="nav-item mt-auto">
+      <a class="nav-link nav-link-success" href="https://coreui.io" target="_top">
+        <i class="nav-icon cui-cloud-download"></i> Download CoreUI</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link nav-link-danger" href="https://coreui.io/pro/" target="_top">
+        <i class="nav-icon cui-layers"></i> Try CoreUI
+        <strong>PRO</strong>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+      </div>
+      <main class="main">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            
+            
+            
+            
+
+            
+
+            
+              
+
+              
+                <li class="breadcrumb-item "><a href="https://coreui.io/docs/docs/">Docs</a></li>
+              
+            
+              
+
+              
+                <li class="breadcrumb-item active">Pagination</li>
+              
+            
+          </ol>
+        </nav>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12  col-xl-9 ">
+              <div class="card">
+                <div class="card-body">
+                  <h1 class="docs-title" id="content">Bootstrap pagination</h1>
+                  <p class="docs-lead">Bootstrap pagination component consists of button-like styled links, that are arranged side by side in a horizontal list. Learn how to create nice looking pagination to navigate through pages easily.</p>
+                  <h2 id="overview">Overview</h2>
+
+<p>Bootstrap pagination is created with a list of HTML elements so screen readers can announce the number of possible links. Using a wrapping <code class="highlighter-rouge">&lt;nav&gt;</code> element to recognize it as a navigation section to screen readers and different assistive technologies.</p>
+
+<p>Besides, as pages have more than one such navigation section, it’s advisable to implement a descriptive <code class="highlighter-rouge">aria-label</code> for the <code class="highlighter-rouge">&lt;nav&gt;</code> to show its purpose.</p>
+
+<div class="docs-example">
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+</div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;nav</span> <span class="na">aria-label=</span><span class="s">"Page navigation example"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"pagination"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span></code></pre></div>
+
+<h2 id="icons">Icons</h2>
+
+<p>Looking to use an icon in place of text for pagination links? Be certain to provide proper screen reader assistance with <code class="highlighter-rouge">aria</code> attributes and the <code class="highlighter-rouge">.sr-only</code> utility.</p>
+
+<div class="docs-example">
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;nav</span> <span class="na">aria-label=</span><span class="s">"Page navigation example"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"pagination"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">aria-label=</span><span class="s">"Previous"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;</span><span class="ni">&amp;laquo;</span><span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">aria-label=</span><span class="s">"Next"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">aria-hidden=</span><span class="s">"true"</span><span class="nt">&gt;</span><span class="ni">&amp;raquo;</span><span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span></code></pre></div>
+
+<h2 id="disabled-and-active-states">Disabled and active states</h2>
+
+<p>Pagination links are customizable for different circumstances. Use <code class="highlighter-rouge">.disabled</code> for links that appear un-clickable and <code class="highlighter-rouge">.active</code> to indicate the current page.</p>
+
+<p>While the <code class="highlighter-rouge">.disabled</code> class uses <code class="highlighter-rouge">pointer-events: none</code> to <em>try</em> to disable the link functionality of <code class="highlighter-rouge">&lt;a&gt;</code>s, that CSS feature is not yet standardized. As such, you should regularly add <code class="highlighter-rouge">tabindex="-1"</code> on disabled links and use JavaScript to disable their functionality entirely.</p>
+
+<div class="docs-example">
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+</div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;nav</span> <span class="na">aria-label=</span><span class="s">"..."</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"pagination"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item disabled"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">tabindex=</span><span class="s">"-1"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item active"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>2 <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>(current)<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span></code></pre></div>
+
+<p>You can optionally swap out active or disabled anchors for <code class="highlighter-rouge">&lt;span&gt;</code>, or drop the anchor in the fact of the prev/next arrows, to remove click functionality and block keyboard focus while retaining intended styles.</p>
+
+<div class="docs-example">
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <span class="page-link">Previous</span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <span class="page-link">
+        2
+        <span class="sr-only">(current)</span>
+      </span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+</div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;nav</span> <span class="na">aria-label=</span><span class="s">"..."</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"pagination"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item disabled"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"page-link"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item active"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"page-link"</span><span class="nt">&gt;</span>
+        2
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>(current)<span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span></code></pre></div>
+
+<h2 id="sizing">Sizing</h2>
+
+<p>Fancy larger or smaller pagination? Add <code class="highlighter-rouge">.pagination-lg</code> or <code class="highlighter-rouge">.pagination-sm</code> for additional sizes.</p>
+
+<div class="docs-example">
+<nav aria-label="...">
+  <ul class="pagination pagination-lg">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">1</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+  </ul>
+</nav>
+</div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;nav</span> <span class="na">aria-label=</span><span class="s">"..."</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"pagination pagination-lg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item disabled"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">tabindex=</span><span class="s">"-1"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span></code></pre></div>
+
+<div class="docs-example">
+<nav aria-label="...">
+  <ul class="pagination pagination-sm">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">1</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+  </ul>
+</nav>
+</div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;nav</span> <span class="na">aria-label=</span><span class="s">"..."</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"pagination pagination-sm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item disabled"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">tabindex=</span><span class="s">"-1"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span></code></pre></div>
+
+<h2 id="alignment">Alignment</h2>
+
+<p>Change the alignment of pagination components with <a href="https://coreui.io/docs/docs/utilities/flex/">flexbox utilities</a>.</p>
+
+<div class="docs-example">
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+</div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;nav</span> <span class="na">aria-label=</span><span class="s">"Page navigation example"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"pagination justify-content-center"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item disabled"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">tabindex=</span><span class="s">"-1"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span></code></pre></div>
+
+<div class="docs-example">
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+</div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;nav</span> <span class="na">aria-label=</span><span class="s">"Page navigation example"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"pagination justify-content-end"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item disabled"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">tabindex=</span><span class="s">"-1"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span></code></pre></div>
+
+
+                </div>
+              </div>
+            </div>
+            
+              <div class="d-none d-xl-block col-xl-3 toc">
+                <div class="card">
+                  <div class="card-body">
+                    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#overview">Overview</a></li>
+<li class="toc-entry toc-h2"><a href="#icons">Icons</a></li>
+<li class="toc-entry toc-h2"><a href="#disabled-and-active-states">Disabled and active states</a></li>
+<li class="toc-entry toc-h2"><a href="#sizing">Sizing</a></li>
+<li class="toc-entry toc-h2"><a href="#alignment">Alignment</a></li>
+</ul>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="app-footer">
+  <div>
+    <a href="https://coreui.io">CoreUI</a>
+    <span>&copy; 2018 creativeLabs.</span>
+  </div>
+  <div class="ml-auto">
+    <span>Powered by</span>
+    <a href="https://coreui.io">CoreUI</a>
+  </div>
+</footer>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<!-- <script>window.jQuery || document.write('<script src="https://coreui.io/docs/assets/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
+
+<script src="https://coreui.io/docs/assets/js/vendor/popper.min.js"></script><script src="https://coreui.io/docs/dist/js/bootstrap.js"></script><!--<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>-->
+
+<script src="https://coreui.io/docs/assets/js/perfect-scrollbar.min.js"></script>
+<script src="https://coreui.io/docs/assets/js/coreui.min.js"></script>
+<script src="https://coreui.io/docs/assets/js/docs.min.js"></script>
+
+
+<script>
+$(document).ready(function(){
+  $("#search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#icons-list .icon").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+  </body>
+</html>
