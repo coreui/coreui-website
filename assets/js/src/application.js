@@ -14,6 +14,26 @@
 
 (function ($) {
   'use strict'
+  // Promotions
+
+  $.getJSON('https://pro.ip-api.com/json/?key=EEKS6bLi6D91G1p', function(data) {
+    var countryCode = data.countryCode;
+
+    if (countryCode == 'IN') {
+      $('#price-standard').html('<span class="currency"><span class="text-muted"><del>$49</del></span> <span class="text-danger">$</span></span><span class="text-danger">29</span>');
+
+      $('#buy-standard').attr('href', 'https://gum.co/coreui-pro-s/india?wanted=true');
+    }
+
+    if (countryCode == 'BR') {
+      $('#price-standard').html('<span class="currency"><span class="text-muted"><del>$49</del></span> <span class="text-danger">$</span></span><span class="text-danger">29</span>');
+
+      $('#buy-standard').attr('href', 'https://gum.co/coreui-pro-s/brazil?wanted=true');
+    }
+
+  });
+
+  // https://gum.co/coreui-pro-s?wanted=true
 
   // Get Cookie
   function getCookie(cname) {
