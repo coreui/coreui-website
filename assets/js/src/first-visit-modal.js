@@ -3,7 +3,11 @@
 $(document).ready(function() {
   $.getJSON('https://pro.ip-api.com/json/?key=EEKS6bLi6D91G1p', function(data) {
     var countryCode = data.countryCode;
-    if (countryCode != 'IN' || countryCode != 'BR') {
+    if (countryCode == 'IN') {
+      //
+    } else if (countryCode == 'BR') {
+      //
+    } else {
       $(document).mousemove(function(e) {
         if(e.pageY <= 5) {
           if ( localStorage.getItem('bought') == 1 ) {
