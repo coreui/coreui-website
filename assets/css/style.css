@@ -9725,6 +9725,18 @@ a.text-vue:hover, a.text-vue:focus {
   background-color: rgba(0, 0, 0, 0.35);
 }
 
+.customers img {
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+  opacity: .5;
+}
+
+.customers img:hover {
+  -webkit-filter: grayscale(0%);
+          filter: grayscale(0%);
+  opacity: 1;
+}
+
 .masthead {
   position: relative;
   padding: 3rem 15px;
@@ -9783,9 +9795,15 @@ a.text-vue:hover, a.text-vue:focus {
   background-color: transparent;
 }
 
+.table-pricing div[class^='col-md'],
+.table-pricing div[class*=' col-md'] {
+  padding: 0 5px;
+}
+
 .pricing {
-  padding: 1rem 0;
-  text-align: center;
+  position: relative;
+  padding: 1rem;
+  font-size: 14px;
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
 }
@@ -9794,34 +9812,82 @@ a.text-vue:hover, a.text-vue:focus {
   border: 1px solid #007bff;
 }
 
+.pricing-most-popular {
+  position: absolute;
+  top: -26px;
+  left: -1px;
+  width: calc(100% + 2px);
+  padding: 0.25rem 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #007bff;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
 .pricing-title {
-  padding: 1.5rem;
-  font-size: 32px;
+  font-size: 15px;
+  font-weight: 700;
   color: #343a40;
 }
 
 .pricing-price {
-  display: inline-block;
-  font-size: 64px;
+  font-size: 28px;
   color: #007bff;
 }
 
 .pricing-price .currency {
   color: #6c757d;
+  font-size: 18px;
+}
+
+.pricing-price .period {
+  color: #6c757d;
+  font-size: 14px;
 }
 
 .pricing-desc {
   padding: 2rem;
 }
 
-.button-container {
-  position: relative;
-  width: 100%;
-  height: auto;
-  padding: 42px 0 45px 0;
+.pricing-row {
+  font-size: 13px;
+}
+
+.pricing-row.versions {
+  min-height: 264px;
+  padding: 1rem;
+  margin: 1rem -1rem;
+}
+
+.pricing-row.versions .d-block {
+  margin: -8px 0 5px 0;
+}
+
+.pricing-row.versions ul {
   margin: 0;
+  padding: 0;
+}
+
+.pricing-row.versions ul.dashed {
+  list-style-type: none;
+}
+
+.pricing-row.versions ul.dashed > li {
+  position: relative;
+}
+
+.pricing-row.versions ul.dashed > li:before {
+  position: absolute;
+  left: -10px;
+  content: "-";
+}
+
+.button-container {
+  padding: 2rem 0 0 0;
   text-align: center;
-  background: none;
 }
 
 .pricing-time {
@@ -9839,7 +9905,6 @@ a.text-vue:hover, a.text-vue:focus {
 
 .pricing-option,
 .pricing-desc {
-  font-size: 16px;
   line-height: 1.5;
   color: #666;
   text-align: center;
@@ -9865,13 +9930,6 @@ a.text-vue:hover, a.text-vue:focus {
   margin-right: 10px;
   font-size: 11px;
   color: #007bff;
-}
-
-.currency {
-  position: relative;
-  top: -20px;
-  margin-right: 5px;
-  font-size: 34px;
 }
 
 .billing-time {
