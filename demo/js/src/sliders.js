@@ -2,7 +2,7 @@ import $ from 'jquery'
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Pro Boostrap Admin Template (2.0.0): sliders.js
+ * CoreUI Pro Boostrap Admin Template (2.0.1): sliders.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */

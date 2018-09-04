@@ -3,7 +3,7 @@ import $ from 'jquery'
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Pro Boostrap Admin Template (2.0.0): advanced-forms.js
+ * CoreUI Pro Boostrap Admin Template (2.0.1): advanced-forms.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */

@@ -3,7 +3,7 @@ import $ from 'jquery'
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Pro Boostrap Admin Template (2.0.0): toastr.js
+ * CoreUI Pro Boostrap Admin Template (2.0.1): toastr.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */

@@ -2,7 +2,7 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Pro Boostrap Admin Template (2.0.0): markdown-editor.js
+ * CoreUI Pro Boostrap Admin Template (2.0.1): markdown-editor.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */
