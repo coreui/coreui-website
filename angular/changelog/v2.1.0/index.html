@@ -6,7 +6,7 @@
 
 <title>
   
-    Changelog &middot; CoreUI
+    v2.1.0 &middot; CoreUI
   
 </title>
 
@@ -15,15 +15,15 @@
 <meta name="twitter:creator" content="@coreui_ui">
 
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Changelog">
-<meta name="twitter:description" content="CoreUI Library and CoreUI Admin Templase are in active development. New updates will be included bug fixing, new functionality, plugins version control and code improvement. Feel free to contact us if you have any suggestions or requests. All notable changes to this project will be documented here.">
+<meta name="twitter:title" content="v2.1.0">
+<meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://coreui.io/assets/brand/coreui-social-logo.png">
 
 <!-- Facebook -->
 
-<meta property="og:url" content="https://coreui.io/changelog/">
-<meta property="og:title" content="Changelog">
-<meta property="og:description" content="CoreUI Library and CoreUI Admin Templase are in active development. New updates will be included bug fixing, new functionality, plugins version control and code improvement. Feel free to contact us if you have any suggestions or requests. All notable changes to this project will be documented here.">
+<meta property="og:url" content="https://coreui.io/angular/changelog/v2.1.0/">
+<meta property="og:title" content="v2.1.0">
+<meta property="og:description" content="">
 <meta property="og:type" content="website">
 
 <meta property="og:image" content="http://coreui.io/assets/brand/coreui-social.png">
@@ -214,337 +214,41 @@
 
     <main id="content" role="main">
       <div class="container my-5">
-        <h1>Changelog</h1>
-        <p class="bd-lead mb-5">CoreUI Library and CoreUI Admin Templase are in active development. New updates will be included bug fixing, new functionality, plugins version control and code improvement. Feel free to contact us if you have any suggestions or requests. All notable changes to this project will be documented here.</p>
+        <h1>v2.1.0</h1>
+        <p class="bd-lead mb-5"></p>
       </div>
       <div class="container">
-        <h2 class="mb-4">Updates</h2>
-        
-          
-        
-          
-        
-          
-          <div class="post ">
-            <a href="/changelog/v2.1.10/"><h3>v2.1.10</h3></a>
-            <div class="text-muted">Released: November 28, 2018</div>
-            <p>
-              <ul>
-  <li>fix: update <code class="highlighter-rouge">nodemon</code> to <code class="highlighter-rouge">1.18.7</code> (vulnerability removed)</li>
-  <li>fix: update <code class="highlighter-rouge">npm-run-all</code> to <code class="highlighter-rouge">^4.1.5</code> (vulnerability removed)</li>
-  <li>fix(cards): smooth collapse card - thanks @MartijnBastiaansen #378</li>
-  <li>fix(header): migrate <code class="highlighter-rouge">.divider</code> to <code class="highlighter-rouge">.dropdown-divider</code> - thanks @vanam #406</li>
-  <li>chore: build/change-version cleanup</li>
-  <li>docs(readme): fix broken hyperlinks to 6 versions</li>
-  <li>refactor(modals): buttons margin</li>
-  <li>feat(switches): add disabled switch example</li>
-  <li>fix(switches): missing an ending semicolon</li>
-  <li>fix(switches): add missing <code class="highlighter-rouge">&lt;tr&gt;</code></li>
-  <li>fix(pug): cross-platform use <code class="highlighter-rouge">path.sep</code> instead of <code class="highlighter-rouge">/</code> - thanks @vasilevich</li>
-  <li>refactor: brand buttons</li>
-  <li>refactor: basic forms add autocomplete</li>
-  <li>refactor: invoice buttons add <code class="highlighter-rouge">d-print-none</code></li>
-  <li>update: <code class="highlighter-rouge">@coreui/coreui-pro</code> to <code class="highlighter-rouge">^2.1.3</code></li>
-</ul>
-
-
-            </p>
-            <a href="/changelog/v2.1.10/" class="btn btn-outline-primary">Full list of changes in this release</a>
-          </div>
-          <hr class="my-4">
-          
-        
-          
-          <div class="post ">
-            <a href="/changelog/v2.1.9/"><h3>v2.1.9</h3></a>
-            <div class="text-muted">Released: November 27, 2018</div>
-            <p>
-              <ul>
-  <li>fix: devDependencies security issues (event-stream, flatmap-stream)</li>
-  <li>chore: dependencies update
+        <ul>
+  <li>feat: sidebar nav-link  <code class="highlighter-rouge">attributes</code> - optional JS object with valid JS API naming:
     <ul>
-      <li>update <code class="highlighter-rouge">npm-run-all</code> to <code class="highlighter-rouge">^4.1.5</code></li>
-      <li>reinstall <code class="highlighter-rouge">nodemon</code>
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm uninstall nodemon
-npm <span class="nb">install</span> <span class="nt">--save-dev</span> nodemon
+      <li>valid attributes: <code class="highlighter-rouge">rel</code>, <code class="highlighter-rouge">target</code>, <code class="highlighter-rouge">hidden</code>, <code class="highlighter-rouge">disabled</code>, etc…</li>
+      <li>item example (<code class="highlighter-rouge">_nav.ts</code>):
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+{
+name: 'Try CoreUI PRO',
+url: 'https://coreui.io/pro/react/',
+icon: 'cui-layers icons',
+variant: 'danger',
+attributes: { target: '_blank', rel: "noopener" },
+},
+...
 </code></pre></div>        </div>
       </li>
     </ul>
   </li>
-  <li>update: <code class="highlighter-rouge">@coreui/coreui</code> to <code class="highlighter-rouge">^2.1.2</code></li>
+  <li>update: <code class="highlighter-rouge">@coreui/angular</code> to <code class="highlighter-rouge">2.1.0</code></li>
+  <li>update: <code class="highlighter-rouge">@coreui/coreui-pro</code> to <code class="highlighter-rouge">^2.1.3</code></li>
+  <li>update: <code class="highlighter-rouge">ngx-bootstrap</code> to <code class="highlighter-rouge">^3.1.2</code></li>
+  <li>update: <code class="highlighter-rouge">@angular/cli</code> to <code class="highlighter-rouge">^6.2.8</code>
+<!--more--></li>
+  <li>update: <code class="highlighter-rouge">@types/jasmine</code> to <code class="highlighter-rouge">^2.8.12</code></li>
+  <li>update: <code class="highlighter-rouge">@types/jasminewd2</code> to <code class="highlighter-rouge">^2.0.6</code></li>
+  <li>update: <code class="highlighter-rouge">@types/node</code> to <code class="highlighter-rouge">^10.12.11</code></li>
+  <li>update: <code class="highlighter-rouge">jasmine-core</code> to <code class="highlighter-rouge">^3.3.0</code></li>
+  <li>update: <code class="highlighter-rouge">karma</code> to <code class="highlighter-rouge">^3.1.3</code></li>
+  <li>update: <code class="highlighter-rouge">karma-jasmine-html-reporter</code> to <code class="highlighter-rouge">^1.4.0</code></li>
 </ul>
 
-
-            </p>
-            <a href="/changelog/v2.1.9/" class="btn btn-outline-primary">Full list of changes in this release</a>
-          </div>
-          <hr class="my-4">
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-          <div class="post ">
-            <a href="/changelog/v2.1.8/"><h3>v2.1.8</h3></a>
-            <div class="text-muted">Released: November 05, 2018</div>
-            <p>
-              <ul>
-  <li>feat(switches): add disabled switch example</li>
-  <li>fix(switches): missing an ending semicolon</li>
-  <li>fix(switches): add missing <code class="highlighter-rouge">&lt;tr&gt;</code></li>
-  <li>update: <code class="highlighter-rouge">@coreui/coreui</code> to <code class="highlighter-rouge">2.0.26</code></li>
-</ul>
-
-
-            </p>
-            <a href="/changelog/v2.1.8/" class="btn btn-outline-primary">Full list of changes in this release</a>
-          </div>
-          <hr class="my-4">
-          
-        
-          
-          <div class="post ">
-            <a href="/changelog/v2.1.7/"><h3>v2.1.7</h3></a>
-            <div class="text-muted">Released: October 25, 2018</div>
-            <p>
-              <ul>
-  <li>fix(pug): crossplatform use <code class="highlighter-rouge">path.sep</code> instead of <code class="highlighter-rouge">/</code> - thanks @vasilevich</li>
-  <li>update: <code class="highlighter-rouge">@coreui/coreui</code> to <code class="highlighter-rouge">2.0.21</code>
-    <ul>
-      <li>feat(sidebar): mobile clickout behaviour</li>
-      <li>fix(layout): sidebar on mobile issue <a href="https://github.com/coreui/coreui-angular/issues/23">#23</a></li>
-      <li>fix: sidebar, sidebar-minimizer <code class="highlighter-rouge">rtl</code> ie issues, tweaks</li>
-      <li>refactor(sidebar.js): ps minor cleanup</li>
-    </ul>
-  </li>
-</ul>
-
-
-            </p>
-            <a href="/changelog/v2.1.7/" class="btn btn-outline-primary">Full list of changes in this release</a>
-          </div>
-          <hr class="my-4">
-          
-        
-          
-        
-          
-        
-          
-          <div class="post ">
-            <a href="/changelog/v2.1.6/"><h3>v2.1.6</h3></a>
-            <div class="text-muted">Released: October 16, 2018</div>
-            <p>
-              <ul>
-  <li>fix(cards): smooth collapse card - thanks @MartijnBastiaansen #378</li>
-  <li>fix(header): migrate <code class="highlighter-rouge">.divider</code> to <code class="highlighter-rouge">.dropdown-divider</code> - thanks @vanam #406</li>
-  <li>chore: build/change-version cleanup</li>
-  <li>docs(readme): fix broken hyperlinks to 6 versions</li>
-  <li>update: <code class="highlighter-rouge">@coreui/coreui</code> to <code class="highlighter-rouge">2.0.19</code>
-    <ul>
-      <li>fix: <code class="highlighter-rouge">transparent</code> is not a valid rgb color ie issue</li>
-      <li>fix(card): rtl for card-header icon margins</li>
-      <li>fix(sidebar): rtl for sidebar-minimizer icon</li>
-      <li>fix(breadcrumb): rtl padding</li>
-      <li>fix(card): rtl float for card-header-actions</li>
-      <li>fix(sidebar): rtl ps scrollbar issue temp fix/refactor</li>
-      <li>feat(sidebar) badge margins for nav-dropdown-toggle</li>
-      <li>fix(scss): add missing light-blue color variable</li>
-    </ul>
-  </li>
-</ul>
-
-
-            </p>
-            <a href="/changelog/v2.1.6/" class="btn btn-outline-primary">Full list of changes in this release</a>
-          </div>
-          <hr class="my-4">
-          
-        
-          
-        
-          
-          <div class="post ">
-            <a href="/changelog/v2.1.5/"><h3>v2.1.5</h3></a>
-            <div class="text-muted">Released: October 01, 2018</div>
-            <p>
-              <ul>
-  <li>Update: <code class="highlighter-rouge">@coreui/coreui-pro</code> to <code class="highlighter-rouge">2.0.12</code> fixes some IE11 and <code class="highlighter-rouge">rtl</code> issues</li>
-</ul>
-
-
-            </p>
-            <a href="/changelog/v2.1.5/" class="btn btn-outline-primary">Full list of changes in this release</a>
-          </div>
-          <hr class="my-4">
-          
-        
-          
-          <div class="post ">
-            <a href="/changelog/v2.1.4/"><h3>v2.1.4</h3></a>
-            <div class="text-muted">Released: September 28, 2018</div>
-            <p>
-              <ul>
-  <li>Feat(switches): add missing <code class="highlighter-rouge">disabled</code> switch example</li>
-  <li>Update: <code class="highlighter-rouge">@coreui/coreui-pro</code> to <code class="highlighter-rouge">2.0.11</code> fixes some IE11 and <code class="highlighter-rouge">rtl</code> issues</li>
-</ul>
-
-
-            </p>
-            <a href="/changelog/v2.1.4/" class="btn btn-outline-primary">Full list of changes in this release</a>
-          </div>
-          <hr class="my-4">
-          
-        
-          
-          <div class="post ">
-            <a href="/changelog/v2.1.3/"><h3>v2.1.3</h3></a>
-            <div class="text-muted">Released: September 25, 2018</div>
-            <p>
-              <ul>
-  <li>Feat(basic-forms): add missing <code class="highlighter-rouge">date-input</code></li>
-  <li>Update: <code class="highlighter-rouge">@coreui/coreui-pro</code> to <code class="highlighter-rouge">2.0.9</code></li>
-</ul>
-
-
-            </p>
-            <a href="/changelog/v2.1.3/" class="btn btn-outline-primary">Full list of changes in this release</a>
-          </div>
-          <hr class="my-4">
-          
-        
-          
-          <div class="post ">
-            <a href="/changelog/v2.1.2/"><h3>v2.1.2</h3></a>
-            <div class="text-muted">Released: September 05, 2018</div>
-            <p>
-              <ul>
-  <li>Update: <code class="highlighter-rouge">@coreui/coreui-pro</code> to <code class="highlighter-rouge">^2.0.7</code></li>
-  <li>Update: <code class="highlighter-rouge">bootstrap</code> to <code class="highlighter-rouge">^4.1.3</code></li>
-</ul>
-
-
-            </p>
-            <a href="/changelog/v2.1.2/" class="btn btn-outline-primary">Full list of changes in this release</a>
-          </div>
-          <hr class="my-4">
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-          <div class="post ">
-            <a href="/changelog/v2.1.1/"><h3>v2.1.1</h3></a>
-            <div class="text-muted">Released: August 13, 2018</div>
-            <p>
-              <ul>
-  <li><strong>Feat: Add pug support</strong></li>
-  <li>Update: @coreui/coreui-icons to 0.3.0</li>
-  <li>Update: @coreui/coreui to 2.0.3</li>
-</ul>
-
-
-            </p>
-            <a href="/changelog/v2.1.1/" class="btn btn-outline-primary">Full list of changes in this release</a>
-          </div>
-          <hr class="my-4">
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-          <div class="post ">
-            <a href="/changelog/v2.0.0/"><h3>v2.0.0</h3></a>
-            <div class="text-muted">Released: May 09, 2018</div>
-            <p>
-              <ul>
-  <li><strong>Feat: Initial 2.x.x release</strong></li>
-</ul>
-
-            </p>
-            <a href="/changelog/v2.0.0/" class="btn btn-outline-primary">Full list of changes in this release</a>
-          </div>
-          <hr class="my-4">
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
       </div>
     </main>
     <footer class="footer">
