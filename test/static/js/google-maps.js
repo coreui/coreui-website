@@ -2,7 +2,7 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Pro Boostrap Admin Template (2.1.10): google-maps.js
+ * CoreUI Pro Boostrap Admin Template (2.1.12): google-maps.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */

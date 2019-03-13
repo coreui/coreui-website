@@ -2,7 +2,7 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Pro Boostrap Admin Template (2.0.1): text-editor.js
+ * CoreUI Pro Boostrap Admin Template (2.1.12): text-editor.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */

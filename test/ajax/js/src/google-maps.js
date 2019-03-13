@@ -1,7 +1,7 @@
 /* global google */
 /**
  * --------------------------------------------------------------------------
- * CoreUI Pro Boostrap Admin Template (2.0.1): google-maps.js
+ * CoreUI Pro Boostrap Admin Template (2.1.12): google-maps.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */

@@ -2,7 +2,7 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Pro Boostrap Admin Template (2.0.1): advanced-forms.js
+ * CoreUI Pro Boostrap Admin Template (2.1.12): advanced-forms.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */
@@ -31,6 +31,16 @@ $('input[name="daterange"]').daterangepicker({
     'Last 30 Days': [moment().subtract(29, 'days'), moment()],
     'This Month': [moment().startOf('month'), moment().endOf('month')],
     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+  }
+});
+$('input[name="singledatepicker"]').daterangepicker({
+  opens: 'right',
+  drops: 'up',
+  singleDatePicker: true,
+  showDropdowns: true,
+  locale: {
+    format: 'DD.MM.YYYY',
+    firstDay: 1
   }
 });
 //# sourceMappingURL=advanced-forms.js.map

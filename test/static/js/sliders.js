@@ -1,6 +1,6 @@
 /**
  * --------------------------------------------------------------------------
- * CoreUI Pro Boostrap Admin Template (2.1.10): sliders.js
+ * CoreUI Pro Boostrap Admin Template (2.1.12): sliders.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */
