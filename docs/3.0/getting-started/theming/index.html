@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link href="https://fonts.googleapis.com/css?family=Barlow|Cousine|Lato&display=swap" rel="stylesheet">
+    <meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css?family=Barlow|Cousine|Lato&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://coreui.io/docs/scss/main.min.0b8088687f704d974020673694a16e3bfc9e6018ceac6eb87480f6b4223638df.css">
 <link rel="stylesheet" href="/docs/3.0/assets/css/coreui-icons-linear.css">
@@ -375,8 +376,8 @@ Migration</a>
   
   <span class="cd-ml-auto cd-text-muted"><small>Last updated: January 1, 0001</small></span>
 </div>
-              <h1>Theming Bootstrap</h1>
-              <p>Customize Bootstrap 4 with our new built-in Sass variables for global style preferences for easy theming and component changes.</p>
+              <h1>Theming CoreUI</h1>
+              <p>Customize CoreUI with our new built-in Sass variables for global style preferences for easy theming and component changes.</p>
               <p>On this page</p>
               <nav id="TableOfContents">
 <ul>
@@ -424,9 +425,7 @@ Migration</a>
 
 <h2 id="introduction">Introduction</h2>
 
-<p>In Bootstrap 3, theming was largely driven by variable overrides in LESS, custom CSS, and a separate theme stylesheet that we included in our <code>dist</code> files. With some effort, one could completely redesign the look of Bootstrap 3 without touching the core files. Bootstrap 4 provides a familiar, but slightly different approach.</p>
-
-<p>Now, theming is accomplished by Sass variables, Sass maps, and custom CSS. There&rsquo;s no more dedicated theme stylesheet; instead, you can enable the built-in theme to add gradients, shadows, and more.</p>
+<p>Theming in CoreUI is accomplished by Sass variables, Sass maps, and custom CSS. There&rsquo;s no more dedicated theme stylesheet; instead, you can enable the built-in theme to add gradients, shadows, and more.</p>
 
 <h2 id="sass">Sass</h2>
 
@@ -434,73 +433,73 @@ Migration</a>
 
 <h3 id="file-structure">File structure</h3>
 
-<p>Whenever possible, avoid modifying Bootstrap&rsquo;s core files. For Sass, that means creating your own stylesheet that imports Bootstrap so you can modify and extend it. Assuming you&rsquo;re using a package manager like npm, you&rsquo;ll have a file structure that looks like this:</p>
+<p>Whenever possible, avoid modifying CoreUI&rsquo;s core files. For Sass, that means creating your own stylesheet that imports CoreUI so you can modify and extend it. Assuming you&rsquo;re using a package manager like npm, you&rsquo;ll have a file structure that looks like this:</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">your-project/
 ├── scss
 │   └── custom.scss
 └── node_modules/
-    └── bootstrap
+    └── coreui
         ├── js
         └── scss</code></pre></div>
 
-<p>If you&rsquo;ve downloaded our source files and aren&rsquo;t using a package manager, you&rsquo;ll want to manually setup something similar to that structure, keeping Bootstrap&rsquo;s source files separate from your own.</p>
+<p>If you&rsquo;ve downloaded our source files and aren&rsquo;t using a package manager, you&rsquo;ll want to manually setup something similar to that structure, keeping CoreUI&rsquo;s source files separate from your own.</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">your-project/
 ├── scss
 │   └── custom.scss
-└── bootstrap/
+└── coreui/
     ├── js
     └── scss</code></pre></div>
 
 <h3 id="importing">Importing</h3>
 
-<p>In your <code>custom.scss</code>, you&rsquo;ll import Bootstrap&rsquo;s source Sass files. You have two options: include all of Bootstrap, or pick the parts you need. We encourage the latter, though be aware there are some requirements and dependencies across our components. You also will need to include some JavaScript for our plugins.</p>
+<p>In your <code>custom.scss</code>, you&rsquo;ll import CoreUI&rsquo;s source Sass files. You have two options: include all of CoreUI, or pick the parts you need. We encourage the latter, though be aware there are some requirements and dependencies across our components. You also will need to include some JavaScript for our plugins.</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">// Custom.scss
-</span><span class="c1">// Option A: Include all of Bootstrap
+</span><span class="c1">// Option A: Include all of CoreUI
 </span><span class="c1"></span>
-<span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/bootstrap&#34;</span><span class="p">;</span></code></pre></div>
+<span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/coreui&#34;</span><span class="p">;</span></code></pre></div>
 
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">// Custom.scss
-</span><span class="c1">// Option B: Include parts of Bootstrap
+</span><span class="c1">// Option B: Include parts of CoreUI
 </span><span class="c1"></span>
 <span class="c1">// Required
-</span><span class="c1"></span><span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/functions&#34;</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/variables&#34;</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/mixins&#34;</span><span class="p">;</span>
+</span><span class="c1"></span><span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/functions&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/variables&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/mixins&#34;</span><span class="p">;</span>
 
 <span class="c1">// Optional
-</span><span class="c1"></span><span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/reboot&#34;</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/type&#34;</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/images&#34;</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/code&#34;</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/grid&#34;</span><span class="p">;</span></code></pre></div>
+</span><span class="c1"></span><span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/reboot&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/type&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/images&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/code&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/grid&#34;</span><span class="p">;</span></code></pre></div>
 
-<p>With that setup in place, you can begin to modify any of the Sass variables and maps in your <code>custom.scss</code>. You can also start to add parts of Bootstrap under the <code>// Optional</code> section as needed. We suggest using the full import stack from our <code>bootstrap.scss</code> file as your starting point.</p>
+<p>With that setup in place, you can begin to modify any of the Sass variables and maps in your <code>custom.scss</code>. You can also start to add parts of CoreUI under the <code>// Optional</code> section as needed. We suggest using the full import stack from our <code>coreui.scss</code> file as your starting point.</p>
 
 <h3 id="variable-defaults">Variable defaults</h3>
 
-<p>Every Sass variable in Bootstrap 4 includes the <code>!default</code> flag allowing you to override the variable&rsquo;s default value in your own Sass without modifying Bootstrap&rsquo;s source code. Copy and paste variables as needed, modify their values, and remove the <code>!default</code> flag. If a variable has already been assigned, then it won&rsquo;t be re-assigned by the default values in Bootstrap.</p>
+<p>Every Sass variable in CoreUI includes the <code>!default</code> flag allowing you to override the variable&rsquo;s default value in your own Sass without modifying CoreUI&rsquo;s source code. Copy and paste variables as needed, modify their values, and remove the <code>!default</code> flag. If a variable has already been assigned, then it won&rsquo;t be re-assigned by the default values in CoreUI.</p>
 
-<p>You will find the complete list of Bootstrap&rsquo;s variables in <code>scss/_variables.scss</code>. Some variables are set to <code>null</code>, these variables don&rsquo;t output the property unless they are overridden in your configuration.</p>
+<p>You will find the complete list of CoreUI&rsquo;s variables in <code>scss/_variables.scss</code>. Some variables are set to <code>null</code>, these variables don&rsquo;t output the property unless they are overridden in your configuration.</p>
 
-<p>Variable overrides within the same Sass file can come before or after the default variables. However, when overriding across Sass files, your overrides must come before you import Bootstrap&rsquo;s Sass files.</p>
+<p>Variable overrides within the same Sass file can come before or after the default variables. However, when overriding across Sass files, your overrides must come before you import CoreUI&rsquo;s Sass files.</p>
 
-<p>Here&rsquo;s an example that changes the <code>background-color</code> and <code>color</code> for the <code>&lt;body&gt;</code> when importing and compiling Bootstrap via npm:</p>
+<p>Here&rsquo;s an example that changes the <code>background-color</code> and <code>color</code> for the <code>&lt;body&gt;</code> when importing and compiling CoreUI via npm:</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">// Your variable overrides
 </span><span class="c1"></span><span class="nv">$body-bg</span><span class="o">:</span> <span class="mh">#000</span><span class="p">;</span>
 <span class="nv">$body-color</span><span class="o">:</span> <span class="mh">#111</span><span class="p">;</span>
 
-<span class="c1">// Bootstrap and its default variables
-</span><span class="c1"></span><span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/bootstrap&#34;</span><span class="p">;</span></code></pre></div>
+<span class="c1">// CoreUI and its default variables
+</span><span class="c1"></span><span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/coreui&#34;</span><span class="p">;</span></code></pre></div>
 
-<p>Repeat as necessary for any variable in Bootstrap, including the global options below.</p>
+<p>Repeat as necessary for any variable in CoreUI, including the global options below.</p>
 
 <h3 id="maps-and-loops">Maps and loops</h3>
 
-<p>Bootstrap 4 includes a handful of Sass maps, key value pairs that make it easier to generate families of related CSS. We use Sass maps for our colors, grid breakpoints, and more. Just like Sass variables, all Sass maps include the <code>!default</code> flag and can be overridden and extended.</p>
+<p>CoreUI includes a handful of Sass maps, key value pairs that make it easier to generate families of related CSS. We use Sass maps for our colors, grid breakpoints, and more. Just like Sass variables, all Sass maps include the <code>!default</code> flag and can be overridden and extended.</p>
 
 <p>Some of our Sass maps are merged into empty ones by default. This is done to allow easy expansion of a given Sass map, but comes at the cost of making <em>removing</em> items from a map slightly more difficult.</p>
 
@@ -526,27 +525,27 @@ Migration</a>
 <p>To remove colors from <code>$theme-colors</code>, or any other map, use <code>map-remove</code>. Be aware you must insert it between our requirements and options:</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">// Required
-</span><span class="c1"></span><span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/functions&#34;</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/variables&#34;</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/mixins&#34;</span><span class="p">;</span>
+</span><span class="c1"></span><span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/functions&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/variables&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/mixins&#34;</span><span class="p">;</span>
 
 <span class="nv">$theme-colors</span><span class="o">:</span> <span class="nf">map-remove</span><span class="p">(</span><span class="nv">$theme-colors</span><span class="o">,</span> <span class="s2">&#34;info&#34;</span><span class="o">,</span> <span class="s2">&#34;light&#34;</span><span class="o">,</span> <span class="s2">&#34;dark&#34;</span><span class="p">);</span>
 
 <span class="c1">// Optional
-</span><span class="c1"></span><span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/root&#34;</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/reboot&#34;</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/type&#34;</span><span class="p">;</span>
+</span><span class="c1"></span><span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/root&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/reboot&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/type&#34;</span><span class="p">;</span>
 <span class="nc">...</span></code></pre></div>
 
 <h4 id="required-keys">Required keys</h4>
 
-<p>Bootstrap assumes the presence of some specific keys within Sass maps as we used and extend these ourselves. As you customize the included maps, you may encounter errors where a specific Sass map&rsquo;s key is being used.</p>
+<p>CoreUI assumes the presence of some specific keys within Sass maps as we used and extend these ourselves. As you customize the included maps, you may encounter errors where a specific Sass map&rsquo;s key is being used.</p>
 
 <p>For example, we use the <code>primary</code>, <code>success</code>, and <code>danger</code> keys from <code>$theme-colors</code> for links, buttons, and form states. Replacing the values of these keys should present no issues, but removing them may cause Sass compilation issues. In these instances, you&rsquo;ll need to modify the Sass code that makes use of those values.</p>
 
 <h3 id="functions">Functions</h3>
 
-<p>Bootstrap utilizes several Sass functions, but only a subset are applicable to general theming. We&rsquo;ve included three functions for getting values from the color maps:</p>
+<p>CoreUI utilizes several Sass functions, but only a subset are applicable to general theming. We&rsquo;ve included three functions for getting values from the color maps:</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@function</span> <span class="nt">color</span><span class="o">(</span><span class="err">$</span><span class="nt">key</span><span class="nd">:</span> <span class="s2">&#34;blue&#34;</span><span class="o">)</span> <span class="p">{</span>
   <span class="k">@return</span> <span class="nt">map-get</span><span class="o">(</span><span class="err">$</span><span class="nt">colors</span><span class="o">,</span> <span class="err">$</span><span class="nt">key</span><span class="o">);</span>
@@ -587,7 +586,7 @@ Migration</a>
 
 <h3 id="color-contrast">Color contrast</h3>
 
-<p>One additional function we include in Bootstrap is the color contrast function, <code>color-yiq</code>. It utilizes the <a href="https://en.wikipedia.org/wiki/YIQ">YIQ color space</a> to automatically return a light (<code>#fff</code>) or dark (<code>#111</code>) contrast color based on the specified base color. This function is especially useful for mixins or loops where you&rsquo;re generating multiple classes.</p>
+<p>One additional function we include in CoreUI is the color contrast function, <code>color-yiq</code>. It utilizes the <a href="https://en.wikipedia.org/wiki/YIQ">YIQ color space</a> to automatically return a light (<code>#fff</code>) or dark (<code>#111</code>) contrast color based on the specified base color. This function is especially useful for mixins or loops where you&rsquo;re generating multiple classes.</p>
 
 <p>For example, to generate color swatches from our <code>$theme-colors</code> map:</p>
 
@@ -611,9 +610,9 @@ Migration</a>
 
 <h2 id="sass-options">Sass options</h2>
 
-<p>Customize Bootstrap 4 with our built-in custom variables file and easily toggle global CSS preferences with new <code>$enable-*</code> Sass variables. Override a variable&rsquo;s value and recompile with <code>npm run test</code> as needed.</p>
+<p>Customize CoreUI with our built-in custom variables file and easily toggle global CSS preferences with new <code>$enable-*</code> Sass variables. Override a variable&rsquo;s value and recompile with <code>npm run test</code> as needed.</p>
 
-<p>You can find and customize these variables for key global options in Bootstrap&rsquo;s <code>scss/_variables.scss</code> file.</p>
+<p>You can find and customize these variables for key global options in CoreUI&rsquo;s <code>scss/_variables.scss</code> file.</p>
 
 <table>
 <thead>
@@ -713,11 +712,11 @@ Migration</a>
 
 <h2 id="color">Color</h2>
 
-<p>Many of Bootstrap&rsquo;s various components and utilities are built through a series of colors defined in a Sass map. This map can be looped over in Sass to quickly generate a series of rulesets.</p>
+<p>Many of CoreUI&rsquo;s various components and utilities are built through a series of colors defined in a Sass map. This map can be looped over in Sass to quickly generate a series of rulesets.</p>
 
 <h3 id="all-colors">All colors</h3>
 
-<p>All colors available in Bootstrap 4, are available as Sass variables and a Sass map in <code>scss/_variables.scss</code> file. This will be expanded upon in subsequent minor releases to add additional shades, much like the <a href="#grays">grayscale palette</a> we already include.</p>
+<p>All colors available in CoreUI, are available as Sass variables and a Sass map in <code>scss/_variables.scss</code> file. This will be expanded upon in subsequent minor releases to add additional shades, much like the <a href="#grays">grayscale palette</a> we already include.</p>
 
 <div class="c-row">
   
@@ -780,7 +779,7 @@ In the future, we&rsquo;ll aim to provide Sass maps and variables for shades of 
 
 <h3 id="theme-colors">Theme colors</h3>
 
-<p>We use a subset of all colors to create a smaller color palette for generating color schemes, also available as Sass variables and a Sass map in Bootstraps&rsquo;s <code>scss/_variables.scss</code> file.</p>
+<p>We use a subset of all colors to create a smaller color palette for generating color schemes, also available as Sass variables and a Sass map in CoreUIs&rsquo;s <code>scss/_variables.scss</code> file.</p>
 
 <div class="c-row">
   
@@ -846,7 +845,7 @@ In the future, we&rsquo;ll aim to provide Sass maps and variables for shades of 
   </div>
 </div>
 
-<p>Within <code>scss/_variables.scss</code>, you&rsquo;ll find Bootstrap&rsquo;s color variables and Sass map. Here&rsquo;s an example of the <code>$colors</code> Sass map:</p>
+<p>Within <code>scss/_variables.scss</code>, you&rsquo;ll find CoreUI&rsquo;s color variables and Sass map. Here&rsquo;s an example of the <code>$colors</code> Sass map:</p>
 
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$colors</span><span class="o">:</span> <span class="p">(</span>
   <span class="s2">&#34;blue&#34;</span><span class="o">:</span> <span class="nv">$blue</span><span class="o">,</span>
@@ -868,11 +867,11 @@ In the future, we&rsquo;ll aim to provide Sass maps and variables for shades of 
 
 <h2 id="components">Components</h2>
 
-<p>Many of Bootstrap&rsquo;s components and utilities are built with <code>@each</code> loops that iterate over a Sass map. This is especially helpful for generating variants of a component by our <code>$theme-colors</code> and creating responsive variants for each breakpoint. As you customize these Sass maps and recompile, you&rsquo;ll automatically see your changes reflected in these loops.</p>
+<p>Many of CoreUI&rsquo;s components and utilities are built with <code>@each</code> loops that iterate over a Sass map. This is especially helpful for generating variants of a component by our <code>$theme-colors</code> and creating responsive variants for each breakpoint. As you customize these Sass maps and recompile, you&rsquo;ll automatically see your changes reflected in these loops.</p>
 
 <h3 id="modifiers">Modifiers</h3>
 
-<p>Many of Bootstrap&rsquo;s components are built with a base-modifier class approach. This means the bulk of the styling is contained to a base class (e.g., <code>.c-btn</code>) while style variations are confined to modifier classes (e.g., <code>.c-btn-danger</code>). These modifier classes are built from the <code>$theme-colors</code> map to make customizing the number and name of our modifier classes.</p>
+<p>Many of CoreUI&rsquo;s components are built with a base-modifier class approach. This means the bulk of the styling is contained to a base class (e.g., <code>.c-btn</code>) while style variations are confined to modifier classes (e.g., <code>.c-btn-danger</code>). These modifier classes are built from the <code>$theme-colors</code> map to make customizing the number and name of our modifier classes.</p>
 
 <p>Here are two examples of how we loop over the <code>$theme-colors</code> map to generate modifiers to the <code>.alert</code> component and all our <code>.c-bg-*</code> background utilities.</p>
 
@@ -906,7 +905,7 @@ In the future, we&rsquo;ll aim to provide Sass maps and variables for shades of 
 
 <h2 id="css-variables">CSS variables</h2>
 
-<p>Bootstrap 4 includes around two dozen <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables">CSS custom properties (variables)</a> in its compiled CSS. These provide easy access to commonly used values like our theme colors, breakpoints, and primary font stacks when working in your browser&rsquo;s Inspector, a code sandbox, or general prototyping.</p>
+<p>CoreUI includes around two dozen <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables">CSS custom properties (variables)</a> in its compiled CSS. These provide easy access to commonly used values like our theme colors, breakpoints, and primary font stacks when working in your browser&rsquo;s Inspector, a code sandbox, or general prototyping.</p>
 
 <h3 id="available-variables">Available variables</h3>
 
