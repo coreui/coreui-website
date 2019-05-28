@@ -144,7 +144,7 @@ Content</a>
         <li class="cd-nav-item ">
           <a class="cd-nav-link" href="/docs/3.0/content/typography/">Typography</a>
         </li>
-        <li class="cd-nav-item ">
+        <li class="cd-nav-item  active">
           <a class="cd-nav-link" href="/docs/3.0/content/code/">Code</a>
         </li>
         <li class="cd-nav-item ">
@@ -363,31 +363,99 @@ Migration</a>
    
     
     
-      <a href='/docs/3.0/docs' class="cd-breadcrumb-item">Docs</a>
+      <a href='/docs/3.0/content' class="cd-breadcrumb-item">Content</a>
     
     
    
     
     
-    <span class="cd-breadcrumb-item active">3.0</span>
+    <span class="cd-breadcrumb-item active">Code</span>
     
     
   
   <span class="cd-ml-auto cd-text-muted"><small>Last updated: January 1, 0001</small></span>
 </div>
-              <h1>Index</h1>
-              <p></p>
+              <h1>Code</h1>
+              <p>Documentation and examples for displaying inline and multiline blocks of code with Bootstrap.</p>
               <p>On this page</p>
-              
+              <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#inline-code">Inline code</a></li>
+<li><a href="#code-blocks">Code blocks</a></li>
+<li><a href="#variables">Variables</a></li>
+<li><a href="#user-input">User input</a></li>
+<li><a href="#sample-output">Sample output</a></li>
+</ul></li>
+</ul>
+</nav>
               <div class="cd-content">
-                <p>aaaaaa</p>
+                
+
+<h2 id="inline-code">Inline code</h2>
+
+<p>Wrap inline snippets of code with <code>&lt;code&gt;</code>. Be sure to escape HTML angle brackets.</p>
+
+<div class="cd-example">
+For example, <code>&lt;section&gt;</code> should be wrapped as inline.
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">For example, <span class="p">&lt;</span><span class="nt">code</span><span class="p">&gt;</span><span class="ni">&amp;lt;</span>section<span class="ni">&amp;gt;</span><span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;</span> should be wrapped as inline.</code></pre></div>
+
+<h2 id="code-blocks">Code blocks</h2>
+
+<p>Use <code>&lt;pre&gt;</code>s for multiple lines of code. Once again, be sure to escape any angle brackets in the code for proper rendering. You may optionally add the <code>.pre-scrollable</code> class, which will set a max-height of 340px and provide a y-axis scrollbar.</p>
+
+<div class="cd-example">
+<pre><code>&lt;p&gt;Sample text here...&lt;/p&gt;
+&lt;p&gt;And another line of sample text here...&lt;/p&gt;
+</code></pre>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span><span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>Sample text here...<span class="ni">&amp;lt;</span>/p<span class="ni">&amp;gt;</span>
+<span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>And another line of sample text here...<span class="ni">&amp;lt;</span>/p<span class="ni">&amp;gt;</span>
+<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span></code></pre></div>
+
+<h2 id="variables">Variables</h2>
+
+<p>For indicating variables use the <code>&lt;var&gt;</code> tag.</p>
+
+<div class="cd-example">
+<var>y</var> = <var>m</var><var>x</var> + <var>b</var>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">var</span><span class="p">&gt;</span>y<span class="p">&lt;/</span><span class="nt">var</span><span class="p">&gt;</span> = <span class="p">&lt;</span><span class="nt">var</span><span class="p">&gt;</span>m<span class="p">&lt;/</span><span class="nt">var</span><span class="p">&gt;&lt;</span><span class="nt">var</span><span class="p">&gt;</span>x<span class="p">&lt;/</span><span class="nt">var</span><span class="p">&gt;</span> + <span class="p">&lt;</span><span class="nt">var</span><span class="p">&gt;</span>b<span class="p">&lt;/</span><span class="nt">var</span><span class="p">&gt;</span></code></pre></div>
+
+<h2 id="user-input">User input</h2>
+
+<p>Use the <code>&lt;kbd&gt;</code> to indicate input that is typically entered via keyboard.</p>
+
+<div class="cd-example">
+To switch directories, type <kbd>cd</kbd> followed by the name of the directory.<br>
+To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">To switch directories, type <span class="p">&lt;</span><span class="nt">kbd</span><span class="p">&gt;</span>cd<span class="p">&lt;/</span><span class="nt">kbd</span><span class="p">&gt;</span> followed by the name of the directory.<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+To edit settings, press <span class="p">&lt;</span><span class="nt">kbd</span><span class="p">&gt;&lt;</span><span class="nt">kbd</span><span class="p">&gt;</span>ctrl<span class="p">&lt;/</span><span class="nt">kbd</span><span class="p">&gt;</span> + <span class="p">&lt;</span><span class="nt">kbd</span><span class="p">&gt;</span>,<span class="p">&lt;/</span><span class="nt">kbd</span><span class="p">&gt;&lt;/</span><span class="nt">kbd</span><span class="p">&gt;</span></code></pre></div>
+
+<h2 id="sample-output">Sample output</h2>
+
+<p>For indicating sample output from a program use the <code>&lt;samp&gt;</code> tag.</p>
+
+<div class="cd-example">
+<samp>This text is meant to be treated as sample output from a computer program.</samp>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">samp</span><span class="p">&gt;</span>This text is meant to be treated as sample output from a computer program.<span class="p">&lt;/</span><span class="nt">samp</span><span class="p">&gt;</span></code></pre></div>
 
               </div>
             </div>
             
             <div class="cd-col-4">
               <nav class="d-none d-xl-block col-xl-2 cd-toc" aria-label="Secondary navigation">
-                
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#inline-code">Inline code</a></li>
+<li><a href="#code-blocks">Code blocks</a></li>
+<li><a href="#variables">Variables</a></li>
+<li><a href="#user-input">User input</a></li>
+<li><a href="#sample-output">Sample output</a></li>
+</ul></li>
+</ul>
+</nav>
               </nav>
             </div>
             

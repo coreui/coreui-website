@@ -89,7 +89,7 @@ Getting started</a>
         <li class="cd-nav-item ">
           <a class="cd-nav-link" href="/docs/3.0/getting-started/theming/">Theming</a>
         </li>
-        <li class="cd-nav-item ">
+        <li class="cd-nav-item  active">
           <a class="cd-nav-link" href="/docs/3.0/getting-started/build-tools/">Build tools</a>
         </li>
         <li class="cd-nav-item ">
@@ -363,31 +363,120 @@ Migration</a>
    
     
     
-      <a href='/docs/3.0/docs' class="cd-breadcrumb-item">Docs</a>
+      <a href='/docs/3.0/getting-started' class="cd-breadcrumb-item">Getting started</a>
     
     
    
     
     
-    <span class="cd-breadcrumb-item active">3.0</span>
+    <span class="cd-breadcrumb-item active">Build tools</span>
     
     
   
   <span class="cd-ml-auto cd-text-muted"><small>Last updated: January 1, 0001</small></span>
 </div>
-              <h1>Index</h1>
-              <p></p>
+              <h1>Build tools</h1>
+              <p>Learn how to use Bootstrap&#39;s included npm scripts to build our documentation, compile source code, run tests, and more.</p>
               <p>On this page</p>
-              
+              <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#tooling-setup">Tooling setup</a></li>
+<li><a href="#using-npm-scripts">Using npm scripts</a></li>
+<li><a href="#autoprefixer">Autoprefixer</a></li>
+<li><a href="#local-documentation">Local documentation</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul></li>
+</ul>
+</nav>
               <div class="cd-content">
-                <p>aaaaaa</p>
+                
+
+<h2 id="tooling-setup">Tooling setup</h2>
+
+<p>Bootstrap uses <a href="https://docs.npmjs.com/misc/scripts">npm scripts</a> for its build system. Our <a href="https://github.com/coreui/coreui/blob/v3.0.0-alpha.7/package.json">package.json</a> includes convenient methods for working with the framework, including compiling code, running tests, and more.</p>
+
+<p>To use our build system and run our documentation locally, you&rsquo;ll need a copy of Bootstrap&rsquo;s source files and Node. Follow these steps and you should be ready to rock:</p>
+
+<ol>
+<li><a href="https://nodejs.org/en/download/">Download and install Node.js</a>, which we use to manage our dependencies.</li>
+<li>Navigate to the root <code>/bootstrap</code> directory and run <code>npm install</code> to install our local dependencies listed in <a href="https://github.com/coreui/coreui/blob/v3.0.0-alpha.7/package.json">package.json</a>.</li>
+</ol>
+
+<p>When completed, you&rsquo;ll be able to run the various commands provided from the command line.</p>
+
+<h2 id="using-npm-scripts">Using npm scripts</h2>
+
+<p>Our <a href="https://github.com/coreui/coreui/blob/v3.0.0-alpha.7/package.json">package.json</a> includes the following commands and tasks:</p>
+
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>npm run dist</code></td>
+<td><code>npm run dist</code> creates the <code>/dist/</code> directory with compiled files. <strong>Uses <a href="https://sass-lang.com/">Sass</a>, <a href="https://github.com/postcss/autoprefixer">Autoprefixer</a>, and <a href="https://github.com/terser-js/terser">terser</a>.</strong></td>
+</tr>
+
+<tr>
+<td><code>npm test</code></td>
+<td>Same as <code>npm run dist</code> plus it runs tests locally</td>
+</tr>
+
+<tr>
+<td><code>npm run docs</code></td>
+<td>Builds and lints CSS and JavaScript for docs. You can then run the documentation locally via <code>npm run docs-serve</code>.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Run <code>npm run</code> to see all the npm scripts.</p>
+
+<h2 id="autoprefixer">Autoprefixer</h2>
+
+<p>Bootstrap uses <a href="https://github.com/postcss/autoprefixer">Autoprefixer</a> (included in our build process) to automatically add vendor prefixes to some CSS properties at build time. Doing so saves us time and code by allowing us to write key parts of our CSS a single time while eliminating the need for vendor mixins like those found in v3.</p>
+
+<p>We maintain the list of browsers supported through Autoprefixer in a separate file within our GitHub repository. See <a href="https://github.com/coreui/coreui/blob/v3.0.0-alpha.7/.browserslistrc">.browserslistrc</a> for details.</p>
+
+<h2 id="local-documentation">Local documentation</h2>
+
+<p>Running our documentation locally requires the use of Hugo, which gets installed via the <a href="https://www.npmjs.com/package/hugo-bin">hugo-bin</a> npm package. Hugo is a blazingly fast and quite extensible static site generator that provides us: basic includes, Markdown-based files, templates, and more. Here&rsquo;s how to get it started:</p>
+
+<ol>
+<li>Run through the <a href="#tooling-setup">tooling setup</a> above to install all dependencies.</li>
+<li>From the root <code>/bootstrap</code> directory, run <code>npm run docs-serve</code> in the command line.</li>
+<li>Open <code>http://localhost:9001/</code> in your browser, and voilà.</li>
+</ol>
+
+<p>Learn more about using Hugo by reading its <a href="https://gohugo.io/documentation/">documentation</a>.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>Should you encounter problems with installing dependencies, uninstall all previous dependency versions (global and local). Then, rerun <code>npm install</code>.</p>
 
               </div>
             </div>
             
             <div class="cd-col-4">
               <nav class="d-none d-xl-block col-xl-2 cd-toc" aria-label="Secondary navigation">
-                
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#tooling-setup">Tooling setup</a></li>
+<li><a href="#using-npm-scripts">Using npm scripts</a></li>
+<li><a href="#autoprefixer">Autoprefixer</a></li>
+<li><a href="#local-documentation">Local documentation</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul></li>
+</ul>
+</nav>
               </nav>
             </div>
             

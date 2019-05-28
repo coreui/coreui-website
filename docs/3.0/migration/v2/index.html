@@ -341,7 +341,7 @@ Icons</a>
 </svg>
 Migration</a>
       <ul class="cd-nav-dropdown-items cd-mb-0">
-        <li class="cd-nav-item ">
+        <li class="cd-nav-item  active">
           <a class="cd-nav-link" href="/docs/3.0/migration/v2/">v2</a>
         </li>
         <li class="cd-nav-item ">
@@ -363,31 +363,131 @@ Migration</a>
    
     
     
-      <a href='/docs/3.0/docs' class="cd-breadcrumb-item">Docs</a>
+      <a href='/docs/3.0/migration' class="cd-breadcrumb-item">Migration</a>
     
     
    
     
     
-    <span class="cd-breadcrumb-item active">3.0</span>
+    <span class="cd-breadcrumb-item active">V2</span>
     
     
   
   <span class="cd-ml-auto cd-text-muted"><small>Last updated: January 1, 0001</small></span>
 </div>
-              <h1>Index</h1>
-              <p></p>
+              <h1>Migrating to v2.0.0</h1>
+              <p>CoreUI 2.0.0 is a major rewrite of the entire project. The most notable changes are summarized below, followed by more specific changes to relevant components.</p>
               <p>On this page</p>
-              
+              <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#summary">Summary</a>
+<ul>
+<li><a href="#global-changes-for-admin-templates">Global changes for Admin Templates</a></li>
+<li><a href="#global-changes">Global changes</a></li>
+</ul></li>
+<li><a href="#by-component">By component</a>
+<ul>
+<li><a href="#header">Header</a></li>
+<li><a href="#sidebar">Sidebar</a></li>
+<li><a href="#social-box">Social box</a></li>
+<li><a href="#social-buttons">Social buttons</a></li>
+<li><a href="#switches">Switches</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
               <div class="cd-content">
-                <p>aaaaaa</p>
+                
+
+<h2 id="summary">Summary</h2>
+
+<p>Here are the big ticket items you&rsquo;ll want to be aware of when moving from v1.x.x to v2.0.0.</p>
+
+<h3 id="global-changes-for-admin-templates">Global changes for Admin Templates</h3>
+
+<ul>
+<li>We decided to moved all SCSS and JavaScript files to separate repository <a href="https://github.com/coreui/coreui">@coreui/coreui</a>. Our templates now require latest stable version of <a href="https://www.npmjs.com/package/@coreui/coreui">@coreui/coreui</a> to work properly.</li>
+<li>Our admin templates are not available via npm anymore. You can clone a repository from GitHub or download from our website.</li>
+</ul>
+
+<h3 id="global-changes">Global changes</h3>
+
+<ul>
+<li><code>$enable-rounded</code> is enabled by default.</li>
+<li>Build system overhauled to use a series of npm scripts instead of Gulp. See <code>package.json</code> for all scripts, or our project readme for local development needs.</li>
+<li>Dropped Bower support as the package manager has been deprecated for alternatives (e.g., Yarn or npm). <a href="https://github.com/bower/bower/issues/2298">See bower/bower#2298</a> for details.</li>
+</ul>
+
+<h2 id="by-component">By component</h2>
+
+<p>This list highlights key changes by component between v1.x.x and v2.0.0.</p>
+
+<h3 id="header">Header</h3>
+
+<ul>
+<li><code>.mobile-sidebar-toggler</code> has been deprecated. Use our new <a href="{{ site.baseurl }}/docs/components/sidebar/#sidebar-toggler">sidebar toggler plugin</a></li>
+<li><code>.sidebar-toggler</code> now requires additional data attributes <code>data-toggle=&quot;sidebar{-sm|-md|-lg|-xl}-show&quot;</code>. Read more about sidebar toggler plugin]({{ site.baseurl }}/docs/components/sidebar/#sidebar-toggler)</li>
+<li><code>.aside-menu-toggler</code> now requires additional data attributes <code>data-toggle=&quot;aside-menu{-sm|-md|-lg|-xl}-show&quot;</code>. Read more about aside menu toggler plugin]({{ site.baseurl }}/docs/components/aside-menu/#aside-menu-toggler)</li>
+</ul>
+
+<h3 id="sidebar">Sidebar</h3>
+
+<ul>
+<li>Icons now require <code>.nav-icon</code> class.</li>
+<li><code>.divider</code> has been deprecated. Instead, use <code>.nav-divider</code>.</li>
+</ul>
+
+<h3 id="social-box">Social box</h3>
+
+<ul>
+<li><code>.social-box</code> is now <code>.brand-card</code> and now requires that its children element have the new <code>.brand-card-header</code> and <code>.brand-card-body</code> classes.</li>
+<li><code>.brand-card-header</code> requires a background declaration of some kind ex. <code>.bg-facebook</code> or <code>.bg-reddit</code></li>
+</ul>
+
+<h3 id="social-buttons">Social buttons</h3>
+
+<ul>
+<li>Buttons now require <code>.btn-brand</code> class.</li>
+</ul>
+
+<h3 id="switches">Switches</h3>
+
+<ul>
+<li>Dropped <code>.switch-default</code> class for simplicity&rsquo;s sake. Use <code>.switch</code> classes instead now.</li>
+<li><code>.switch-xs</code> has been deprecated.</li>
+<li><code>.switch-label</code> is now <code>.switch-slider</code>.</li>
+<li>We&rsquo;ve changed <code>.switch-*-outline</code> to <code>.switch-outline-*</code>.</li>
+<li>We&rsquo;ve dropped <code>.switch-icon</code> and <code>.switch-text</code> for one class <code>.switch-label</code>.</li>
+<li>Data attributes <code>data-on=&quot;On&quot;</code> and <code>data-off=&quot;Off&quot;</code> have been dropped. Instead, use <code>data-checked=&quot;On&quot;</code> and <code>data-unchecked=&quot;Off&quot;</code>.</li>
+</ul>
 
               </div>
             </div>
             
             <div class="cd-col-4">
               <nav class="d-none d-xl-block col-xl-2 cd-toc" aria-label="Secondary navigation">
-                
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#summary">Summary</a>
+<ul>
+<li><a href="#global-changes-for-admin-templates">Global changes for Admin Templates</a></li>
+<li><a href="#global-changes">Global changes</a></li>
+</ul></li>
+<li><a href="#by-component">By component</a>
+<ul>
+<li><a href="#header">Header</a></li>
+<li><a href="#sidebar">Sidebar</a></li>
+<li><a href="#social-box">Social box</a></li>
+<li><a href="#social-buttons">Social buttons</a></li>
+<li><a href="#switches">Switches</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
               </nav>
             </div>
             

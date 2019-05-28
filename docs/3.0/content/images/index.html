@@ -147,7 +147,7 @@ Content</a>
         <li class="cd-nav-item ">
           <a class="cd-nav-link" href="/docs/3.0/content/code/">Code</a>
         </li>
-        <li class="cd-nav-item ">
+        <li class="cd-nav-item  active">
           <a class="cd-nav-link" href="/docs/3.0/content/images/">Images</a>
         </li>
         <li class="cd-nav-item ">
@@ -363,31 +363,114 @@ Migration</a>
    
     
     
-      <a href='/docs/3.0/docs' class="cd-breadcrumb-item">Docs</a>
+      <a href='/docs/3.0/content' class="cd-breadcrumb-item">Content</a>
     
     
    
     
     
-    <span class="cd-breadcrumb-item active">3.0</span>
+    <span class="cd-breadcrumb-item active">Images</span>
     
     
   
   <span class="cd-ml-auto cd-text-muted"><small>Last updated: January 1, 0001</small></span>
 </div>
-              <h1>Index</h1>
-              <p></p>
+              <h1>Images</h1>
+              <p>Documentation and examples for opting images into responsive behavior (so they never become larger than their parent elements) and add lightweight styles to them—all via classes.</p>
               <p>On this page</p>
-              
+              <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#responsive-images">Responsive images</a></li>
+<li><a href="#image-thumbnails">Image thumbnails</a></li>
+<li><a href="#aligning-images">Aligning images</a></li>
+<li><a href="#picture">Picture</a></li>
+</ul></li>
+</ul>
+</nav>
               <div class="cd-content">
-                <p>aaaaaa</p>
+                
+
+<h2 id="responsive-images">Responsive images</h2>
+
+<p>Images in Bootstrap are made responsive with <code>.c-img-fluid</code>. <code>max-width: 100%;</code> and <code>height: auto;</code> are applied to the image so that it scales with the parent element.</p>
+
+<div class="cd-example">
+  <svg class="bd-placeholder-img bd-placeholder-img-lg c-img-fluid" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Responsive image" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Responsive image</text></svg>
+
+</div>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-img-fluid&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;Responsive image&#34;</span><span class="p">&gt;</span></code></pre></div>
+
+<h2 id="image-thumbnails">Image thumbnails</h2>
+
+<p>In addition to our <a href="/docs/3.0/utilities/borders/">border-radius utilities</a>, you can use <code>.c-img-thumbnail</code> to give an image a rounded 1px border appearance.</p>
+
+<div class="cd-example cd-example-images">
+  <svg class="bd-placeholder-img c-img-thumbnail" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-label="A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera: 200x200" preserveAspectRatio="xMidYMid slice" role="img"><title>A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">200x200</text></svg>
+
+</div>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-img-thumbnail&#34;</span><span class="p">&gt;</span></code></pre></div>
+
+<h2 id="aligning-images">Aligning images</h2>
+
+<p>Align images with the <a href="/docs/3.0/utilities/float/">helper float classes</a> or <a href="/docs/3.0/utilities/text/#text-alignment">text alignment classes</a>. <code>block</code>-level images can be centered using <a href="/docs/3.0/utilities/spacing/#horizontal-centering">the <code>.c-mx-auto</code> margin utility class</a>.</p>
+
+<div class="cd-example cd-example-images">
+  <svg class="bd-placeholder-img c-rounded c-float-left" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: 200x200" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">200x200</text></svg>
+
+  <svg class="bd-placeholder-img c-rounded c-float-right" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: 200x200" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">200x200</text></svg>
+
+</div>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-rounded c-float-left&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-rounded c-float-right&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span></code></pre></div>
+
+<div class="cd-example cd-example-images">
+  <svg class="bd-placeholder-img c-rounded c-mx-auto c-d-block" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: 200x200" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">200x200</text></svg>
+
+</div>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-rounded c-mx-auto c-d-block&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span></code></pre></div>
+
+<div class="cd-example cd-example-images">
+  <div class="c-text-center">
+    <svg class="bd-placeholder-img c-rounded" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: 200x200" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">200x200</text></svg>
+
+  </div>
+</div>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-text-center&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-rounded&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+
+<h2 id="picture">Picture</h2>
+
+<p>If you are using the <code>&lt;picture&gt;</code> element to specify multiple <code>&lt;source&gt;</code> elements for a specific <code>&lt;img&gt;</code>, make sure to add the <code>.img-*</code> classes to the <code>&lt;img&gt;</code> and not to the <code>&lt;picture&gt;</code> tag.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">​<span class="p">&lt;</span><span class="nt">picture</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">source</span> <span class="na">srcset</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;image/svg+xml&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-img-fluid c-img-thumbnail&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">picture</span><span class="p">&gt;</span></code></pre></div>
 
               </div>
             </div>
             
             <div class="cd-col-4">
               <nav class="d-none d-xl-block col-xl-2 cd-toc" aria-label="Secondary navigation">
-                
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#responsive-images">Responsive images</a></li>
+<li><a href="#image-thumbnails">Image thumbnails</a></li>
+<li><a href="#aligning-images">Aligning images</a></li>
+<li><a href="#picture">Picture</a></li>
+</ul></li>
+</ul>
+</nav>
               </nav>
             </div>
             

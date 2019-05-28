@@ -92,7 +92,7 @@ Getting started</a>
         <li class="cd-nav-item ">
           <a class="cd-nav-link" href="/docs/3.0/getting-started/build-tools/">Build tools</a>
         </li>
-        <li class="cd-nav-item ">
+        <li class="cd-nav-item  active">
           <a class="cd-nav-link" href="/docs/3.0/getting-started/webpack/">Webpack</a>
         </li>
         <li class="cd-nav-item ">
@@ -363,31 +363,135 @@ Migration</a>
    
     
     
-      <a href='/docs/3.0/docs' class="cd-breadcrumb-item">Docs</a>
+      <a href='/docs/3.0/getting-started' class="cd-breadcrumb-item">Getting started</a>
     
     
    
     
     
-    <span class="cd-breadcrumb-item active">3.0</span>
+    <span class="cd-breadcrumb-item active">Webpack</span>
     
     
   
   <span class="cd-ml-auto cd-text-muted"><small>Last updated: January 1, 0001</small></span>
 </div>
-              <h1>Index</h1>
-              <p></p>
+              <h1>Webpack and bundlers</h1>
+              <p>Learn how to include Bootstrap in your project using Webpack or other bundlers.</p>
               <p>On this page</p>
-              
+              <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#installing-bootstrap">Installing Bootstrap</a></li>
+<li><a href="#importing-javascript">Importing JavaScript</a></li>
+<li><a href="#importing-styles">Importing Styles</a>
+<ul>
+<li><a href="#importing-precompiled-sass">Importing Precompiled Sass</a></li>
+<li><a href="#importing-compiled-css">Importing Compiled CSS</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
               <div class="cd-content">
-                <p>aaaaaa</p>
+                
+
+<h2 id="installing-bootstrap">Installing Bootstrap</h2>
+
+<p><a href="/docs/3.0/getting-started/download/#npm">Install bootstrap</a> as a Node.js module using npm.</p>
+
+<h2 id="importing-javascript">Importing JavaScript</h2>
+
+<p>Import <a href="/docs/3.0/getting-started/javascript/">Bootstrap&rsquo;s JavaScript</a> by adding this line to your app&rsquo;s entry point (usually <code>index.js</code> or <code>app.js</code>):</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// You can specify which plugins you need
+</span><span class="c1"></span><span class="k">import</span> <span class="p">{</span> <span class="nx">Tooltip</span><span class="p">,</span> <span class="nx">Toast</span><span class="p">,</span> <span class="nx">Popover</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;bootstrap&#39;</span><span class="p">;</span>
+</code></pre></div>
+
+<p>Alternatively, if you only need just a few of our plugins, you may <strong>import plugins individually</strong> as needed:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">import</span> <span class="nx">Alert</span> <span class="nx">from</span> <span class="s1">&#39;bootstrap/js/dist/alert&#39;</span><span class="p">;</span>
+<span class="p">...</span>
+</code></pre></div>
+
+<p>Bootstrap dependends on <a href="https://popper.js.org/">Popper</a>, which is speicified in the <code>peerDependencies</code> property.
+This means that you will have to make sure to add both of them to your <code>package.json</code> using <code>npm install popper.js</code>.</p>
+
+<h2 id="importing-styles">Importing Styles</h2>
+
+<h3 id="importing-precompiled-sass">Importing Precompiled Sass</h3>
+
+<p>To enjoy the full potential of Bootstrap and customize it to your needs, use the source files as a part of your project&rsquo;s bundling process.</p>
+
+<p>First, create your own <code>_custom.scss</code> and use it to override the <a href="/docs/3.0/getting-started/theming/">built-in custom variables</a>. Then, use your main Sass file to import your custom variables, followed by Bootstrap:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@import</span> <span class="s2">&#34;custom&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;~bootstrap/scss/bootstrap&#34;</span><span class="p">;</span></code></pre></div>
+
+<p>For Bootstrap to compile, make sure you install and use the required loaders: <a href="https://github.com/webpack-contrib/sass-loader">sass-loader</a>, <a href="https://github.com/postcss/postcss-loader">postcss-loader</a> with <a href="https://github.com/postcss/autoprefixer#webpack">Autoprefixer</a>. With minimal setup, your webpack config should include this rule or similar:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="p">...</span>
+<span class="p">{</span>
+  <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.(scss)$/</span><span class="p">,</span>
+  <span class="nx">use</span><span class="o">:</span> <span class="p">[{</span>
+    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;style-loader&#39;</span><span class="p">,</span> <span class="c1">// inject CSS to page
+</span><span class="c1"></span>  <span class="p">},</span> <span class="p">{</span>
+    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;css-loader&#39;</span><span class="p">,</span> <span class="c1">// translates CSS into CommonJS modules
+</span><span class="c1"></span>  <span class="p">},</span> <span class="p">{</span>
+    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;postcss-loader&#39;</span><span class="p">,</span> <span class="c1">// Run postcss actions
+</span><span class="c1"></span>    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">plugins</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="c1">// postcss plugins, can be exported to postcss.config.js
+</span><span class="c1"></span>        <span class="k">return</span> <span class="p">[</span>
+          <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;autoprefixer&#39;</span><span class="p">)</span>
+        <span class="p">];</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="p">{</span>
+    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;sass-loader&#39;</span> <span class="c1">// compiles Sass to CSS
+</span><span class="c1"></span>  <span class="p">}]</span>
+<span class="p">},</span>
+<span class="p">...</span>
+</code></pre></div>
+
+<h3 id="importing-compiled-css">Importing Compiled CSS</h3>
+
+<p>Alternatively, you may use Bootstrap&rsquo;s ready-to-use CSS by simply adding this line to your project&rsquo;s entry point:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">import</span> <span class="s1">&#39;bootstrap/dist/css/bootstrap.min.css&#39;</span><span class="p">;</span>
+</code></pre></div>
+
+<p>In this case you may use your existing rule for <code>css</code> without any special modifications to webpack config, except you don&rsquo;t need <code>sass-loader</code> just <a href="https://github.com/webpack-contrib/style-loader">style-loader</a> and <a href="https://github.com/webpack-contrib/css-loader">css-loader</a>.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="p">...</span>
+<span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span>
+      <span class="nx">use</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;style-loader&#39;</span><span class="p">,</span> <span class="s1">&#39;css-loader&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="p">...</span>
+</code></pre></div>
 
               </div>
             </div>
             
             <div class="cd-col-4">
               <nav class="d-none d-xl-block col-xl-2 cd-toc" aria-label="Secondary navigation">
-                
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#installing-bootstrap">Installing Bootstrap</a></li>
+<li><a href="#importing-javascript">Importing JavaScript</a></li>
+<li><a href="#importing-styles">Importing Styles</a>
+<ul>
+<li><a href="#importing-precompiled-sass">Importing Precompiled Sass</a></li>
+<li><a href="#importing-compiled-css">Importing Compiled CSS</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
               </nav>
             </div>
             

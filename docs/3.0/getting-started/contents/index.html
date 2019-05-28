@@ -77,7 +77,7 @@ Getting started</a>
         <li class="cd-nav-item ">
           <a class="cd-nav-link" href="/docs/3.0/getting-started/download/">Download</a>
         </li>
-        <li class="cd-nav-item ">
+        <li class="cd-nav-item  active">
           <a class="cd-nav-link" href="/docs/3.0/getting-started/contents/">Contents</a>
         </li>
         <li class="cd-nav-item ">
@@ -363,31 +363,149 @@ Migration</a>
    
     
     
-      <a href='/docs/3.0/docs' class="cd-breadcrumb-item">Docs</a>
+      <a href='/docs/3.0/getting-started' class="cd-breadcrumb-item">Getting started</a>
     
     
    
     
     
-    <span class="cd-breadcrumb-item active">3.0</span>
+    <span class="cd-breadcrumb-item active">Contents</span>
     
     
   
   <span class="cd-ml-auto cd-text-muted"><small>Last updated: January 1, 0001</small></span>
 </div>
-              <h1>Index</h1>
-              <p></p>
+              <h1>Contents</h1>
+              <p>Discover what&#39;s included in CoreUI, including our precompiled and source code flavors.</p>
               <p>On this page</p>
-              
+              <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#precompiled-coreui">Precompiled CoreUI</a></li>
+<li><a href="#css-files">CSS files</a></li>
+<li><a href="#js-files">JS files</a></li>
+<li><a href="#coreui-source-code">CoreUI source code</a></li>
+</ul></li>
+</ul>
+</nav>
               <div class="cd-content">
-                <p>aaaaaa</p>
+                
+
+<h2 id="precompiled-coreui">Precompiled CoreUI</h2>
+
+<p>Once downloaded, unzip the compressed folder and you&rsquo;ll see something like this:</p>
+
+<!-- NOTE: This info is intentionally duplicated in the README. Copy any changes made here over to the README too, but be sure to keep in mind to add the `dist` folder. -->
+
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">coreui/
+├── css/
+│   ├── coreui.css
+│   ├── coreui.css.map
+│   ├── coreui.min.css
+│   └── coreui.min.css.map
+└── js/
+    ├── coreui.bundle.js
+    ├── coreui.bundle.js.map
+    ├── coreui.bundle.min.js
+    ├── coreui.bundle.min.js.map
+    ├── coreui.esm.js
+    ├── coreui.esm.js.map
+    ├── coreui.esm.min.js
+    ├── coreui.esm.min.js.map
+    ├── coreui.js
+    ├── coreui.js.map
+    ├── coreui.min.js
+    └── coreui.min.js.map</code></pre></div>
+
+<p>This is the most basic form of CoreUI: precompiled files for quick drop-in usage in nearly any web project. We provide compiled CSS and JS (<code>coreui.*</code>), as well as compiled and minified CSS and JS (<code>coreui.min.*</code>). <a href="https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps">source maps</a> (<code>coreui.*.map</code>) are available for use with certain browsers&rsquo; developer tools. Bundled JS files (<code>coreui.bundle.js</code> and minified <code>coreui.bundle.min.js</code>) include <a href="https://popper.js.org/">Popper</a>.</p>
+
+<h2 id="css-files">CSS files</h2>
+
+<p>CoreUI includes a handful of options for including some or all of our compiled CSS.</p>
+
+<table class="c-table c-table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">CSS files</th>
+      <th scope="col">Layout</th>
+      <th scope="col">Content</th>
+      <th scope="col">Components</th>
+      <th scope="col">Utilities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">
+        <div><code class="c-font-weight-normal c-text-nowrap">coreui.css</code></div>
+        <div><code class="c-font-weight-normal c-text-nowrap">coreui.min.css</code></div>
+      </th>
+      <td class="c-text-success">Included</td>
+      <td class="c-text-success">Included</td>
+      <td class="c-text-success">Included</td>
+      <td class="c-text-success">Included</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="js-files">JS files</h2>
+
+<p>Similarly, we have options for including some or all of our compiled JavaScript.</p>
+
+<table class="c-table c-table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">JS files</th>
+      <th scope="col">Popper</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">
+        <div><code class="c-font-weight-normal c-text-nowrap">coreui.bundle.js</code></div>
+        <div><code class="c-font-weight-normal c-text-nowrap">coreui.bundle.min.js</code></div>
+      </th>
+      <td class="c-text-success">Included</td>
+    </tr>
+    <tr>
+      <th scope="row">
+        <div><code class="c-font-weight-normal c-text-nowrap">coreui.js</code></div>
+        <div><code class="c-font-weight-normal c-text-nowrap">coreui.min.js</code></div>
+      </th>
+      <td class="c-bg-light c-text-muted">Not included</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="coreui-source-code">CoreUI source code</h2>
+
+<p>The CoreUI source code download includes the precompiled CSS and JavaScript assets, along with source Sass, JavaScript, and documentation. More specifically, it includes the following and more:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">coreui/
+├── dist/
+│   ├── css/
+│   └── js/
+├── js/
+└── scss/</code></pre></div>
+
+<p>The <code>scss/</code> and <code>js/</code> are the source code for our CSS and JavaScript. The <code>dist/</code> folder includes everything listed in the precompiled download section above. The <code>site/docs/</code> folder includes the source code for our documentation, and <code>examples/</code> of CoreUI usage. Beyond that, any other included file provides support for packages, license information, and development.</p>
 
               </div>
             </div>
             
             <div class="cd-col-4">
               <nav class="d-none d-xl-block col-xl-2 cd-toc" aria-label="Secondary navigation">
-                
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#precompiled-coreui">Precompiled CoreUI</a></li>
+<li><a href="#css-files">CSS files</a></li>
+<li><a href="#js-files">JS files</a></li>
+<li><a href="#coreui-source-code">CoreUI source code</a></li>
+</ul></li>
+</ul>
+</nav>
               </nav>
             </div>
             

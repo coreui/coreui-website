@@ -74,7 +74,7 @@ Getting started</a>
         <li class="cd-nav-item ">
           <a class="cd-nav-link" href="/docs/3.0/getting-started/introduction/">Introduction</a>
         </li>
-        <li class="cd-nav-item ">
+        <li class="cd-nav-item  active">
           <a class="cd-nav-link" href="/docs/3.0/getting-started/download/">Download</a>
         </li>
         <li class="cd-nav-item ">
@@ -363,31 +363,150 @@ Migration</a>
    
     
     
-      <a href='/docs/3.0/docs' class="cd-breadcrumb-item">Docs</a>
+      <a href='/docs/3.0/getting-started' class="cd-breadcrumb-item">Getting started</a>
     
     
    
     
     
-    <span class="cd-breadcrumb-item active">3.0</span>
+    <span class="cd-breadcrumb-item active">Download</span>
     
     
   
   <span class="cd-ml-auto cd-text-muted"><small>Last updated: January 1, 0001</small></span>
 </div>
-              <h1>Index</h1>
-              <p></p>
+              <h1>Download</h1>
+              <p>Download CoreUI to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, RubyGems, and more.</p>
               <p>On this page</p>
-              
+              <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#compiled-css-and-js">Compiled CSS and JS</a></li>
+<li><a href="#source-files">Source files</a></li>
+<li><a href="#coreui-cdn">CoreUI CDN</a></li>
+<li><a href="#package-managers">Package managers</a>
+<ul>
+<li><a href="#npm">npm</a></li>
+<li><a href="#yarn">yarn</a></li>
+<li><a href="#rubygems">RubyGems</a></li>
+<li><a href="#composer">Composer</a></li>
+<li><a href="#nuget">NuGet</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
               <div class="cd-content">
-                <p>aaaaaa</p>
+                
+
+<h2 id="compiled-css-and-js">Compiled CSS and JS</h2>
+
+<p>Download ready-to-use compiled code for <strong>CoreUI v3.0.0-alpha.7</strong> to easily drop into your project, which includes:</p>
+
+<ul>
+<li>Compiled and minified CSS bundles (see <a href="/docs/3.0/getting-started/contents/#css-files">CSS files comparison</a>)</li>
+<li>Compiled and minified JavaScript plugins</li>
+</ul>
+
+<p>This doesn&rsquo;t include documentation, source files, or any optional JavaScript dependencies like Popper.js.</p>
+
+<p><a href="https://github.com/twbs/bootstrap/releases/download/v4.3.1/bootstrap-4.3.1-dist.zip" class="c-btn btn-bd-primary" onclick="ga('send', 'event', 'Getting started', 'Download', 'Download CoreUI');">Download</a></p>
+
+<h2 id="source-files">Source files</h2>
+
+<p>Compile CoreUI with your own asset pipeline by downloading our source Sass, JavaScript, and documentation files. This option requires some additional tooling:</p>
+
+<ul>
+<li>Sass compiler (Libsass or Ruby Sass is supported) for compiling your CSS.</li>
+<li><a href="https://github.com/postcss/autoprefixer">Autoprefixer</a> for CSS vendor prefixing</li>
+</ul>
+
+<p>Should you require <a href="/docs/3.0/getting-started/build-tools/#tooling-setup">build tools</a>, they are included for developing CoreUI and its docs, but they&rsquo;re likely unsuitable for your own purposes.</p>
+
+<p><a href="https://github.com/twbs/bootstrap/archive/v4.3.1.zip" class="c-btn btn-bd-primary" onclick="ga('send', 'event', 'Getting started', 'Download', 'Download source');">Download source</a></p>
+
+<h2 id="coreui-cdn">CoreUI CDN</h2>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui@3.0.0-alpha.7/dist/css/coreui.min.css&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-ggOyR0iXCbMQv3Xipma34MD&amp;#43;dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui@3.0.0-alpha.7/dist/js/coreui.min.js&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM&amp;#43;B07jRM&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
+
+<p>If you&rsquo;re using our compiled JavaScript, don&rsquo;t forget to include Popper.js, via a CDN preferably, before our JS.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9&amp;#43;4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
+
+<h2 id="package-managers">Package managers</h2>
+
+<p>Pull in CoreUI&rsquo;s <strong>source files</strong> into nearly any project with some of the most popular package managers. No matter the package manager, CoreUI will <strong>require a Sass compiler and <a href="https://github.com/postcss/autoprefixer">Autoprefixer</a></strong> for a setup that matches our official compiled versions.</p>
+
+<h3 id="npm">npm</h3>
+
+<p>Install CoreUI in your Node.js powered apps with <a href="https://www.npmjs.com/package/@coreui/coreui">the npm package</a>:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">npm install @coreui/coreui</code></pre></div>
+
+<p><code>const coreui = require('coreui')</code> or <code>import coreui from 'coreui'</code> will load all of CoreUI&rsquo;s plugins onto a <code>coreui</code> object.
+The <code>coreui</code> module itself exports all of our plugins. You can manually load CoreUI&rsquo;s plugins individually by loading the <code>/js/dist/*.js</code> files under the package&rsquo;s top-level directory.</p>
+
+<p>CoreUI&rsquo;s <code>package.json</code> contains some additional metadata under the following keys:</p>
+
+<ul>
+<li><code>sass</code> - path to CoreUI&rsquo;s main <a href="https://sass-lang.com/">Sass</a> source file</li>
+<li><code>style</code> - path to CoreUI&rsquo;s non-minified CSS that&rsquo;s been precompiled using the default settings (no customization)</li>
+</ul>
+
+<h3 id="yarn">yarn</h3>
+
+<p>Install CoreUI in your Node.js powered apps with <a href="https://yarnpkg.com/en/package/yarn">the yarn package</a>:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">yarn add @coreui/coreui</code></pre></div>
+
+<h3 id="rubygems">RubyGems</h3>
+
+<p>Install CoreUI in your Ruby apps using <a href="https://bundler.io/">Bundler</a> (<strong>recommended</strong>) and <a href="https://rubygems.org/">RubyGems</a> by adding the following line to your <a href="https://bundler.io/gemfile.html"><code>Gemfile</code></a>:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s1">&#39;coreui&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.0.0-alpha.7&#39;</span></code></pre></div>
+
+<p>Alternatively, if you&rsquo;re not using Bundler, you can install the gem by running this command:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">gem install coreui -v <span class="m">3</span>.0.0-alpha.7</code></pre></div>
+
+<h3 id="composer">Composer</h3>
+
+<p>You can also install and manage CoreUI&rsquo;s Sass and JavaScript using <a href="https://getcomposer.org/">Composer</a>:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">composer require twbs/coreui:3.0.0-alpha.7</code></pre></div>
+
+<h3 id="nuget">NuGet</h3>
+
+<p>If you develop in .NET, you can also install and manage CoreUI&rsquo;s <a href="https://www.nuget.org/packages/coreui/">CSS</a> or <a href="https://www.nuget.org/packages/coreui.sass/">Sass</a> and JavaScript using <a href="https://www.nuget.org/">NuGet</a>:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Install-Package</span> <span class="n">coreui</span></code></pre></div>
+
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">Install-Package</span> <span class="n">coreui</span><span class="p">.</span><span class="n">sass</span></code></pre></div>
 
               </div>
             </div>
             
             <div class="cd-col-4">
               <nav class="d-none d-xl-block col-xl-2 cd-toc" aria-label="Secondary navigation">
-                
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#compiled-css-and-js">Compiled CSS and JS</a></li>
+<li><a href="#source-files">Source files</a></li>
+<li><a href="#coreui-cdn">CoreUI CDN</a></li>
+<li><a href="#package-managers">Package managers</a>
+<ul>
+<li><a href="#npm">npm</a></li>
+<li><a href="#yarn">yarn</a></li>
+<li><a href="#rubygems">RubyGems</a></li>
+<li><a href="#composer">Composer</a></li>
+<li><a href="#nuget">NuGet</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
               </nav>
             </div>
             

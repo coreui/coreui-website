@@ -276,7 +276,7 @@ Utilities</a>
         <li class="cd-nav-item ">
           <a class="cd-nav-link" href="/docs/3.0/utilities/colors/">Colors</a>
         </li>
-        <li class="cd-nav-item ">
+        <li class="cd-nav-item  active">
           <a class="cd-nav-link" href="/docs/3.0/utilities/display/">Display</a>
         </li>
         <li class="cd-nav-item ">
@@ -363,31 +363,211 @@ Migration</a>
    
     
     
-      <a href='/docs/3.0/docs' class="cd-breadcrumb-item">Docs</a>
+      <a href='/docs/3.0/utilities' class="cd-breadcrumb-item">Utilities</a>
     
     
    
     
     
-    <span class="cd-breadcrumb-item active">3.0</span>
+    <span class="cd-breadcrumb-item active">Display</span>
     
     
   
   <span class="cd-ml-auto cd-text-muted"><small>Last updated: January 1, 0001</small></span>
 </div>
-              <h1>Index</h1>
-              <p></p>
+              <h1>Display property</h1>
+              <p>Quickly and responsively toggle the display value of components and more with our display utilities. Includes support for some of the more common values, as well as some extras for controlling display when printing.</p>
               <p>On this page</p>
-              
+              <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#how-it-works">How it works</a></li>
+<li><a href="#notation">Notation</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#hiding-elements">Hiding elements</a></li>
+<li><a href="#display-in-print">Display in print</a></li>
+</ul></li>
+</ul>
+</nav>
               <div class="cd-content">
-                <p>aaaaaa</p>
+                
+
+<h2 id="how-it-works">How it works</h2>
+
+<p>Change the value of the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display"><code>display</code> property</a> with our responsive display utility classes. We purposely support only a subset of all possible values for <code>display</code>. Classes can be combined for various effects as you need.</p>
+
+<h2 id="notation">Notation</h2>
+
+<p>Display utility classes that apply to all <a href="/docs/3.0/layout/overview/#responsive-breakpoints">breakpoints</a>, from <code>xs</code> to <code>xl</code>, have no breakpoint abbreviation in them. This is because those classes are applied from <code>min-width: 0;</code> and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation.</p>
+
+<p>As such, the classes are named using the format:</p>
+
+<ul>
+<li><code>.c-d-{value}</code> for <code>xs</code></li>
+<li><code>.c-d-{breakpoint}-{value}</code> for <code>sm</code>, <code>md</code>, <code>lg</code>, and <code>xl</code>.</li>
+</ul>
+
+<p>Where <em>value</em> is one of:</p>
+
+<ul>
+<li><code>none</code></li>
+<li><code>inline</code></li>
+<li><code>inline-block</code></li>
+<li><code>block</code></li>
+<li><code>table</code></li>
+<li><code>table-cell</code></li>
+<li><code>table-row</code></li>
+<li><code>flex</code></li>
+<li><code>inline-flex</code></li>
+</ul>
+
+<p>The display values can be altered by changing the <code>$displays</code> variable and recompiling the SCSS.</p>
+
+<p>The media queries effect screen widths with the given breakpoint <em>or larger</em>. For example, <code>.c-d-lg-none</code> sets <code>display: none;</code> on both <code>lg</code> and <code>xl</code> screens.</p>
+
+<h2 id="examples">Examples</h2>
+
+<div class="cd-example">
+<div class="c-d-inline c-p-2 c-bg-primary c-text-white">d-inline</div>
+<div class="c-d-inline c-p-2 c-bg-dark c-text-white">d-inline</div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-d-inline c-p-2 c-bg-primary c-text-white&#34;</span><span class="p">&gt;</span>d-inline<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-d-inline c-p-2 c-bg-dark c-text-white&#34;</span><span class="p">&gt;</span>d-inline<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+
+<div class="cd-example">
+<span class="c-d-block c-p-2 c-bg-primary c-text-white">d-block</span>
+<span class="c-d-block c-p-2 c-bg-dark c-text-white">d-block</span>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-d-block c-p-2 c-bg-primary c-text-white&#34;</span><span class="p">&gt;</span>d-block<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-d-block c-p-2 c-bg-dark c-text-white&#34;</span><span class="p">&gt;</span>d-block<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span></code></pre></div>
+
+<h2 id="hiding-elements">Hiding elements</h2>
+
+<p>For faster mobile-friendly development, use responsive display classes for showing and hiding elements by device. Avoid creating entirely different versions of the same site, instead hide elements responsively for each screen size.</p>
+
+<p>To hide elements simply use the <code>.c-d-none</code> class or one of the <code>.c-d-{sm,md,lg,xl}-none</code> classes for any responsive screen variation.</p>
+
+<p>To show an element only on a given interval of screen sizes you can combine one <code>.c-d-*-none</code> class with a <code>.c-d-*-*</code> class, for example <code>.c-d-none .c-d-md-block .c-d-xl-none</code> will hide the element for all screen sizes except on medium and large devices.</p>
+
+<table>
+<thead>
+<tr>
+<th>Screen Size</th>
+<th>Class</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Hidden on all</td>
+<td><code>.c-d-none</code></td>
+</tr>
+
+<tr>
+<td>Hidden only on xs</td>
+<td><code>.c-d-none .c-d-sm-block</code></td>
+</tr>
+
+<tr>
+<td>Hidden only on sm</td>
+<td><code>.c-d-sm-none .c-d-md-block</code></td>
+</tr>
+
+<tr>
+<td>Hidden only on md</td>
+<td><code>.c-d-md-none .c-d-lg-block</code></td>
+</tr>
+
+<tr>
+<td>Hidden only on lg</td>
+<td><code>.c-d-lg-none .c-d-xl-block</code></td>
+</tr>
+
+<tr>
+<td>Hidden only on xl</td>
+<td><code>.c-d-xl-none</code></td>
+</tr>
+
+<tr>
+<td>Visible on all</td>
+<td><code>.c-d-block</code></td>
+</tr>
+
+<tr>
+<td>Visible only on xs</td>
+<td><code>.c-d-block .c-d-sm-none</code></td>
+</tr>
+
+<tr>
+<td>Visible only on sm</td>
+<td><code>.c-d-none .c-d-sm-block .c-d-md-none</code></td>
+</tr>
+
+<tr>
+<td>Visible only on md</td>
+<td><code>.c-d-none .c-d-md-block .c-d-lg-none</code></td>
+</tr>
+
+<tr>
+<td>Visible only on lg</td>
+<td><code>.c-d-none .c-d-lg-block .c-d-xl-none</code></td>
+</tr>
+
+<tr>
+<td>Visible only on xl</td>
+<td><code>.c-d-none .c-d-xl-block</code></td>
+</tr>
+</tbody>
+</table>
+
+<div class="cd-example">
+<div class="c-d-lg-none">hide on screens wider than lg</div>
+<div class="c-d-none c-d-lg-block">hide on screens smaller than lg</div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-d-lg-none&#34;</span><span class="p">&gt;</span>hide on screens wider than lg<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-d-none c-d-lg-block&#34;</span><span class="p">&gt;</span>hide on screens smaller than lg<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+
+<h2 id="display-in-print">Display in print</h2>
+
+<p>Change the <code>display</code> value of elements when printing with our print display utility classes. Includes support for the same <code>display</code> values as our responsive <code>.c-d-*</code> utilities.</p>
+
+<ul>
+<li><code>.c-d-print-none</code></li>
+<li><code>.c-d-print-inline</code></li>
+<li><code>.c-d-print-inline-block</code></li>
+<li><code>.c-d-print-block</code></li>
+<li><code>.c-d-print-table</code></li>
+<li><code>.c-d-print-table-row</code></li>
+<li><code>.c-d-print-table-cell</code></li>
+<li><code>.c-d-print-flex</code></li>
+<li><code>.c-d-print-inline-flex</code></li>
+</ul>
+
+<p>The print and display classes can be combined.</p>
+
+<div class="cd-example">
+<div class="c-d-print-none">Screen Only (Hide on print only)</div>
+<div class="c-d-none c-d-print-block">Print Only (Hide on screen only)</div>
+<div class="c-d-none c-d-lg-block c-d-print-block">Hide up to large on screen, but always show on print</div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-d-print-none&#34;</span><span class="p">&gt;</span>Screen Only (Hide on print only)<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-d-none c-d-print-block&#34;</span><span class="p">&gt;</span>Print Only (Hide on screen only)<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-d-none c-d-lg-block c-d-print-block&#34;</span><span class="p">&gt;</span>Hide up to large on screen, but always show on print<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 
               </div>
             </div>
             
             <div class="cd-col-4">
               <nav class="d-none d-xl-block col-xl-2 cd-toc" aria-label="Secondary navigation">
-                
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#how-it-works">How it works</a></li>
+<li><a href="#notation">Notation</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#hiding-elements">Hiding elements</a></li>
+<li><a href="#display-in-print">Display in print</a></li>
+</ul></li>
+</ul>
+</nav>
               </nav>
             </div>
             

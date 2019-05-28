@@ -306,7 +306,7 @@ Utilities</a>
         <li class="cd-nav-item ">
           <a class="cd-nav-link" href="/docs/3.0/utilities/sizing/">Sizing</a>
         </li>
-        <li class="cd-nav-item ">
+        <li class="cd-nav-item  active">
           <a class="cd-nav-link" href="/docs/3.0/utilities/spacing/">Spacing</a>
         </li>
         <li class="cd-nav-item ">
@@ -363,31 +363,157 @@ Migration</a>
    
     
     
-      <a href='/docs/3.0/docs' class="cd-breadcrumb-item">Docs</a>
+      <a href='/docs/3.0/utilities' class="cd-breadcrumb-item">Utilities</a>
     
     
    
     
     
-    <span class="cd-breadcrumb-item active">3.0</span>
+    <span class="cd-breadcrumb-item active">Spacing</span>
     
     
   
   <span class="cd-ml-auto cd-text-muted"><small>Last updated: January 1, 0001</small></span>
 </div>
-              <h1>Index</h1>
-              <p></p>
+              <h1>Spacing</h1>
+              <p>Bootstrap includes a wide range of shorthand responsive margin and padding utility classes to modify an element&#39;s appearance.</p>
               <p>On this page</p>
-              
+              <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#how-it-works">How it works</a></li>
+<li><a href="#notation">Notation</a></li>
+<li><a href="#examples">Examples</a>
+<ul>
+<li><a href="#horizontal-centering">Horizontal centering</a></li>
+<li><a href="#negative-margin">Negative margin</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
               <div class="cd-content">
-                <p>aaaaaa</p>
+                
+
+<h2 id="how-it-works">How it works</h2>
+
+<p>Assign responsive-friendly <code>margin</code> or <code>padding</code> values to an element or a subset of its sides with shorthand classes. Includes support for individual properties, all properties, and vertical and horizontal properties. Classes are built from a default Sass map ranging from <code>.25rem</code> to <code>3rem</code>.</p>
+
+<h2 id="notation">Notation</h2>
+
+<p>Spacing utilities that apply to all breakpoints, from <code>xs</code> to <code>xl</code>, have no breakpoint abbreviation in them. This is because those classes are applied from <code>min-width: 0</code> and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation.</p>
+
+<p>The classes are named using the format <code>c-{property}{sides}-{size}</code> for <code>xs</code> and <code>c-{property}{sides}-{breakpoint}-{size}</code> for <code>sm</code>, <code>md</code>, <code>lg</code>, and <code>xl</code>.</p>
+
+<p>Where <em>property</em> is one of:</p>
+
+<ul>
+<li><code>m</code> - for classes that set <code>margin</code></li>
+<li><code>p</code> - for classes that set <code>padding</code></li>
+</ul>
+
+<p>Where <em>sides</em> is one of:</p>
+
+<ul>
+<li><code>t</code> - for classes that set <code>margin-top</code> or <code>padding-top</code></li>
+<li><code>b</code> - for classes that set <code>margin-bottom</code> or <code>padding-bottom</code></li>
+<li><code>l</code> - for classes that set <code>margin-left</code> or <code>padding-left</code></li>
+<li><code>r</code> - for classes that set <code>margin-right</code> or <code>padding-right</code></li>
+<li><code>x</code> - for classes that set both <code>*-left</code> and <code>*-right</code></li>
+<li><code>y</code> - for classes that set both <code>*-top</code> and <code>*-bottom</code></li>
+<li>blank - for classes that set a <code>margin</code> or <code>padding</code> on all 4 sides of the element</li>
+</ul>
+
+<p>Where <em>size</em> is one of:</p>
+
+<ul>
+<li><code>0</code> - for classes that eliminate the <code>margin</code> or <code>padding</code> by setting it to <code>0</code></li>
+<li><code>1</code> - (by default) for classes that set the <code>margin</code> or <code>padding</code> to <code>$spacer * .25</code></li>
+<li><code>2</code> - (by default) for classes that set the <code>margin</code> or <code>padding</code> to <code>$spacer * .5</code></li>
+<li><code>3</code> - (by default) for classes that set the <code>margin</code> or <code>padding</code> to <code>$spacer</code></li>
+<li><code>4</code> - (by default) for classes that set the <code>margin</code> or <code>padding</code> to <code>$spacer * 1.5</code></li>
+<li><code>5</code> - (by default) for classes that set the <code>margin</code> or <code>padding</code> to <code>$spacer * 3</code></li>
+<li><code>auto</code> - for classes that set the <code>margin</code> to auto</li>
+</ul>
+
+<p>(You can add more sizes by adding entries to the <code>$spacers</code> Sass map variable.)</p>
+
+<h2 id="examples">Examples</h2>
+
+<p>Here are some representative examples of these classes:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nc">.c-mt-0</span> <span class="p">{</span>
+  <span class="nt">margin-top</span><span class="nd">:</span> <span class="nt">0</span> <span class="o">!</span><span class="nt">important</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-ml-1</span> <span class="p">{</span>
+  <span class="nt">margin-left</span><span class="nd">:</span> <span class="o">(</span><span class="err">$</span><span class="nt">spacer</span> <span class="o">*</span> <span class="nc">.25</span><span class="o">)</span> <span class="o">!</span><span class="nt">important</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-px-2</span> <span class="p">{</span>
+  <span class="nt">padding-left</span><span class="nd">:</span> <span class="o">(</span><span class="err">$</span><span class="nt">spacer</span> <span class="o">*</span> <span class="nc">.5</span><span class="o">)</span> <span class="o">!</span><span class="nt">important</span><span class="o">;</span>
+  <span class="nt">padding-right</span><span class="nd">:</span> <span class="o">(</span><span class="err">$</span><span class="nt">spacer</span> <span class="o">*</span> <span class="nc">.5</span><span class="o">)</span> <span class="o">!</span><span class="nt">important</span><span class="o">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-p-3</span> <span class="p">{</span>
+  <span class="nt">padding</span><span class="nd">:</span> <span class="err">$</span><span class="nt">spacer</span> <span class="o">!</span><span class="nt">important</span><span class="o">;</span>
+<span class="p">}</span></code></pre></div>
+
+<h3 id="horizontal-centering">Horizontal centering</h3>
+
+<p>Additionally, Bootstrap also includes an <code>.c-mx-auto</code> class for horizontally centering fixed-width block level content—that is, content that has <code>display: block</code> and a <code>width</code> set—by setting the horizontal margins to <code>auto</code>.</p>
+
+<div class="cd-example">
+  <div class="c-mx-auto" style="width: 200px; background-color: rgba(86,61,124,.15);">
+    Centered element
+  </div>
+</div>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-mx-auto&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 200px;&#34;</span><span class="p">&gt;</span>
+  Centered element
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+
+<h3 id="negative-margin">Negative margin</h3>
+
+<p>In CSS, <code>margin</code> properties can utilize negative values (<code>padding</code> cannot). As of 4.2, we&rsquo;ve added negative margin utilities for every non-zero integer size listed above (e.g., <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>). These utilities are ideal for customizing grid column gutters across breakpoints.</p>
+
+<p>The syntax is nearly the same as the default, positive margin utilities, but with the addition of <code>n</code> before the requested size. Here&rsquo;s an example class that&rsquo;s the opposite of <code>.c-mt-1</code>:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nc">.c-mt-n1</span> <span class="p">{</span>
+  <span class="nt">margin-top</span><span class="nd">:</span> <span class="nt">-0</span><span class="nc">.25rem</span> <span class="o">!</span><span class="nt">important</span><span class="o">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Here&rsquo;s an example of customizing the Bootstrap grid at the medium (<code>md</code>) breakpoint and above. We&rsquo;ve increased the <code>.c-col</code> padding with <code>.c-px-md-5</code> and then counteracted that with <code>.c-mx-md-n5</code> on the parent <code>.c-row</code>.</p>
+
+<div class="cd-example">
+<div class="c-row c-mx-md-n5">
+  <div class="c-col c-px-md-5"><div class="c-p-3 c-border c-bg-light">Custom column padding</div></div>
+  <div class="c-col c-px-md-5"><div class="c-p-3 c-border c-bg-light">Custom column padding</div></div>
+</div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-row c-mx-md-n5&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-col c-px-md-5&#34;</span><span class="p">&gt;&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-p-3 c-border c-bg-light&#34;</span><span class="p">&gt;</span>Custom column padding<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-col c-px-md-5&#34;</span><span class="p">&gt;&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;c-p-3 c-border c-bg-light&#34;</span><span class="p">&gt;</span>Custom column padding<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 
               </div>
             </div>
             
             <div class="cd-col-4">
               <nav class="d-none d-xl-block col-xl-2 cd-toc" aria-label="Secondary navigation">
-                
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#how-it-works">How it works</a></li>
+<li><a href="#notation">Notation</a></li>
+<li><a href="#examples">Examples</a>
+<ul>
+<li><a href="#horizontal-centering">Horizontal centering</a></li>
+<li><a href="#negative-margin">Negative margin</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
               </nav>
             </div>
             

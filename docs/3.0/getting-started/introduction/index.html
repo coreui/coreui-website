@@ -71,7 +71,7 @@ Home</a>
 </svg>
 Getting started</a>
       <ul class="cd-nav-dropdown-items cd-mb-0">
-        <li class="cd-nav-item ">
+        <li class="cd-nav-item  active">
           <a class="cd-nav-link" href="/docs/3.0/getting-started/introduction/">Introduction</a>
         </li>
         <li class="cd-nav-item ">
@@ -363,31 +363,191 @@ Migration</a>
    
     
     
-      <a href='/docs/3.0/docs' class="cd-breadcrumb-item">Docs</a>
+      <a href='/docs/3.0/getting-started' class="cd-breadcrumb-item">Getting started</a>
     
     
    
     
     
-    <span class="cd-breadcrumb-item active">3.0</span>
+    <span class="cd-breadcrumb-item active">Introduction</span>
     
     
   
   <span class="cd-ml-auto cd-text-muted"><small>Last updated: January 1, 0001</small></span>
 </div>
-              <h1>Index</h1>
-              <p></p>
+              <h1>Introduction</h1>
+              <p>CoreUI is the fastest way to build a modern dashboard for any platforms, browser or device. A complete Dashboard UI Kit that allows you to quickly build eye-catching, high-quality, high-performance responsive applications.</p>
               <p>On this page</p>
-              
+              <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#quick-start">Quick start</a>
+<ul>
+<li><a href="#css">CSS</a></li>
+<li><a href="#js">JS</a></li>
+</ul></li>
+<li><a href="#starter-template">Starter template</a></li>
+<li><a href="#important-globals">Important globals</a>
+<ul>
+<li><a href="#html5-doctype">HTML5 doctype</a></li>
+<li><a href="#responsive-meta-tag">Responsive meta tag</a></li>
+<li><a href="#box-sizing">Box-sizing</a></li>
+<li><a href="#reboot">Reboot</a></li>
+</ul></li>
+<li><a href="#community">Community</a></li>
+</ul></li>
+</ul>
+</nav>
               <div class="cd-content">
-                <p>aaaaaa</p>
+                
+
+<h2 id="quick-start">Quick start</h2>
+
+<p>Looking to quickly add CoreUI to your project? Use our CDN. Using a package manager or need to download the source files? <a href="/docs/3.0/getting-started/download/">Head to the downloads page</a>.</p>
+
+<h3 id="css">CSS</h3>
+
+<p>Copy-paste the stylesheet <code>&lt;link&gt;</code> into your <code>&lt;head&gt;</code> before all other stylesheets to load our CSS.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui@3.0.0-alpha.7/dist/css/coreui.min.css&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-ggOyR0iXCbMQv3Xipma34MD&amp;#43;dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span></code></pre></div>
+
+<h3 id="js">JS</h3>
+
+<p>Many of our components require the use of JavaScript to function. Specifically, they require our own JavaScript plugins and <a href="https://popper.js.org/">Popper.js</a>. Place the following <code>&lt;script&gt;</code>s near the end of your pages, right before the closing <code>&lt;/body&gt;</code> tag, to enable them. Popper.js must come first, and then our JavaScript plugins.</p>
+
+<p>Multiple of our components need the use of JavaScript to function. Especially, they need <a href="https://popper.js.org/">Popper.js</a>, and our own JavaScript plugins. Put the following <code>&lt;script&gt;</code>s near the end of your pages, right before the closing <code>&lt;/body&gt;</code> tag, to enable them. jQuery must come first, then Popper.js, then CoreUI and then our JavaScript plugins.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9&amp;#43;4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui@3.0.0-alpha.7/dist/js/coreui.min.js&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM&amp;#43;B07jRM&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
+
+<p>If you use <code>&lt;script type=&quot;module&quot;&gt;</code>, please refer to our <a href="/docs/3.0/getting-started/javascript/#using-coreui-as-a-module">using CoreUI as a module</a> section.</p>
+
+<p>Curious which components explicitly require our JavaScript and Popper.js? Click the show components link below. If you&rsquo;re at all unsure about the general page structure, keep reading for an example page template.</p>
+
+<p>Our <code>coreui.bundle.js</code> and <code>coreui.bundle.min.js</code> include <a href="https://popper.js.org/">Popper</a>. For more information about what&rsquo;s included in CoreUI, please see our <a href="/docs/3.0/getting-started/contents/#precompiled-bootstrap">contents</a> section.</p>
+
+<details>
+  <summary class="text-primary mb-3">Show components requiring JavaScript</summary>
+  <ul>
+    <li>Alerts for dismissing</li>
+    <li>Buttons for toggling states and checkbox/radio functionality</li>
+    <li>Carousel for all slide behaviors, controls, and indicators</li>
+    <li>Collapse for toggling visibility of content</li>
+    <li>Dropdowns for displaying and positioning (also requires <a href="https://popper.js.org/">Popper.js</a>)</li>
+    <li>Modals for displaying, positioning, and scroll behavior</li>
+    <li>Navbar for extending our Collapse plugin to implement responsive behavior</li>
+    <li>Tooltips and popovers for displaying and positioning (also requires <a href="https://popper.js.org/">Popper.js</a>)</li>
+    <li>Scrollspy for scroll behavior and navigation updates</li>
+  </ul>
+</details>
+
+
+
+<h2 id="starter-template">Starter template</h2>
+
+<p>Be sure to have your pages set up with the latest design and development standards. That means using an HTML5 doctype and including a viewport meta tag for proper responsive behaviors. Put it all together and your pages should look like this:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="c">&lt;!-- Required meta tags --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1&#34;</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- CoreUI CSS --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui@3.0.0-alpha.7/dist/css/coreui.min.css&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-ggOyR0iXCbMQv3Xipma34MD&amp;#43;dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Optional JavaScript --&gt;</span>
+    <span class="c">&lt;!-- Popper.js first, then CoreUI JS --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9&amp;#43;4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui@3.0.0-alpha.7/dist/js/coreui.min.js&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM&amp;#43;B07jRM&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></div>
+
+<p>That&rsquo;s all you need for overall page requirements. Visit the <a href="/docs/3.0/layout/overview/">Layout docs</a> or <a href="">our official examples</a> to start laying out your site&rsquo;s content and components.</p>
+
+<h2 id="important-globals">Important globals</h2>
+
+<p>CoreUI employs a handful of important global styles and settings that you&rsquo;ll need to be aware of when using it, all of which are almost exclusively geared towards the <em>normalization</em> of cross browser styles. Let&rsquo;s dive in.</p>
+
+<h3 id="html5-doctype">HTML5 doctype</h3>
+
+<p>CoreUI requires the use of the HTML5 doctype. Without it, you&rsquo;ll see some funky incomplete styling, but including it shouldn&rsquo;t cause any considerable hiccups.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+  ...
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></div>
+
+<h3 id="responsive-meta-tag">Responsive meta tag</h3>
+
+<p>CoreUI is developed <em>mobile first</em>, a strategy in which we optimize code for mobile devices first and then scale up components as necessary using CSS media queries. To ensure proper rendering and touch zooming for all devices, <strong>add the responsive viewport meta tag</strong> to your <code>&lt;head&gt;</code>.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1&#34;</span><span class="p">&gt;</span></code></pre></div>
+
+<p>You can see an example of this in action in the <a href="#starter-template">starter template</a>.</p>
+
+<h3 id="box-sizing">Box-sizing</h3>
+
+<p>For more straightforward sizing in CSS, we switch the global <code>box-sizing</code> value from <code>content-box</code> to <code>border-box</code>. This ensures <code>padding</code> does not affect the final computed width of an element, but it can cause problems with some third party software like Google Maps and Google Custom Search Engine.</p>
+
+<p>On the rare occasion you need to override it, use something like the following:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">selector-for-some-widget</span> <span class="p">{</span>
+  <span class="k">box-sizing</span><span class="p">:</span> <span class="kc">content-box</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>With the above snippet, nested elements—including generated content via <code>::before</code> and <code>::after</code>—will all inherit the specified <code>box-sizing</code> for that <code>.selector-for-some-widget</code>.</p>
+
+<p>Learn more about <a href="https://css-tricks.com/box-sizing/">box model and sizing at CSS Tricks</a>.</p>
+
+<h3 id="reboot">Reboot</h3>
+
+<p>For improved cross-browser rendering, we use <a href="/docs/3.0/content/reboot/">Reboot</a> to correct inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.</p>
+
+<h2 id="community">Community</h2>
+
+<p>Stay up to date on the development of CoreUI and reach out to the community with these helpful resources.</p>
+
+<ul>
+<li>Follow <a href="https://twitter.com/core_ui">@coreui on Twitter</a>.</li>
+<li>Implementation help may be found at Stack Overflow (tagged <a href="https://stackoverflow.com/questions/tagged/bootstrap-4"><code>coreui</code></a>).</li>
+</ul>
+
+<p>You can also follow <a href="https://twitter.com/core_ui">@coreui on Twitter</a> for the latest gossip and awesome music videos.</p>
 
               </div>
             </div>
             
             <div class="cd-col-4">
               <nav class="d-none d-xl-block col-xl-2 cd-toc" aria-label="Secondary navigation">
-                
+                <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#quick-start">Quick start</a>
+<ul>
+<li><a href="#css">CSS</a></li>
+<li><a href="#js">JS</a></li>
+</ul></li>
+<li><a href="#starter-template">Starter template</a></li>
+<li><a href="#important-globals">Important globals</a>
+<ul>
+<li><a href="#html5-doctype">HTML5 doctype</a></li>
+<li><a href="#responsive-meta-tag">Responsive meta tag</a></li>
+<li><a href="#box-sizing">Box-sizing</a></li>
+<li><a href="#reboot">Reboot</a></li>
+</ul></li>
+<li><a href="#community">Community</a></li>
+</ul></li>
+</ul>
+</nav>
               </nav>
             </div>
             
