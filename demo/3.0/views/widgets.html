@@ -1,877 +1,920 @@
-<html><head><script src="vendors/chart.js/js/Chart.min.js"></script>
-<script src="vendors/@coreui/coreui-plugin-chartjs-custom-tooltips/js/custom-tooltips.min.js"></script>
-<script src="js/widgets.js"></script>
+<html>
+  <head>
+    <link href="vendors/@coreui/coreui-chartjs/css/coreui-chartjs.css" rel="stylesheet">
+    <script src="vendors/chart.js/js/Chart.min.js"></script>
+    <script src="vendors/@coreui/coreui-chartjs/js/coreui-chartjs.js"></script>
+    <script src="js/widgets.js"></script>
 
 
-</head><body><div class="c-fade-in">
-  <div class="c-row">
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card c-text-white c-bg-primary">
-        <div class="c-card-body c-pb-0">
-          <div class="c-btn-group c-float-right">
-            <button class="c-btn c-btn-transparent c-dropdown-toggle c-p-0" type="button" data-toggle="c-dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-settings"></i></button>
-            <div class="c-dropdown-menu c-dropdown-menu-right"><a class="c-dropdown-item" href="#">Action</a><a class="c-dropdown-item" href="#">Another action</a><a class="c-dropdown-item" href="#">Something else here</a></div>
-          </div>
-          <div class="c-text-value-lg">9.823</div>
-          <div>Members online</div>
-        </div>
-        <div class="c-chart-wrapper c-mt-3 c-mx-3" style="height:70px;">
-          <canvas class="chart" id="card-chart1" height="70"></canvas>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card c-text-white c-bg-info">
-        <div class="c-card-body c-pb-0">
-          <button class="c-btn c-btn-transparent c-p-0 c-float-right" type="button"><i class="icon-location-pin"></i></button>
-          <div class="c-text-value-lg">9.823</div>
-          <div>Members online</div>
-        </div>
-        <div class="c-chart-wrapper c-mt-3 c-mx-3" style="height:70px;">
-          <canvas class="chart" id="card-chart2" height="70"></canvas>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card c-text-white c-bg-warning">
-        <div class="c-card-body c-pb-0">
-          <div class="c-btn-group c-float-right">
-            <button class="c-btn c-btn-transparent c-dropdown-toggle c-p-0" type="button" data-toggle="c-dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-settings"></i></button>
-            <div class="c-dropdown-menu c-dropdown-menu-right"><a class="c-dropdown-item" href="#">Action</a><a class="c-dropdown-item" href="#">Another action</a><a class="c-dropdown-item" href="#">Something else here</a></div>
-          </div>
-          <div class="c-text-value-lg">9.823</div>
-          <div>Members online</div>
-        </div>
-        <div class="c-chart-wrapper c-mt-3" style="height:70px;">
-          <canvas class="chart" id="card-chart3" height="70"></canvas>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card c-text-white c-bg-danger">
-        <div class="c-card-body c-pb-0">
-          <div class="c-btn-group c-float-right">
-            <button class="c-btn c-btn-transparent c-dropdown-toggle c-p-0" type="button" data-toggle="c-dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-settings"></i></button>
-            <div class="c-dropdown-menu c-dropdown-menu-right"><a class="c-dropdown-item" href="#">Action</a><a class="c-dropdown-item" href="#">Another action</a><a class="c-dropdown-item" href="#">Something else here</a></div>
-          </div>
-          <div class="c-text-value-lg">9.823</div>
-          <div>Members online</div>
-        </div>
-        <div class="c-chart-wrapper c-mt-3 c-mx-3" style="height:70px;">
-          <canvas class="chart" id="card-chart4" height="70"></canvas>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-  </div>
-  <!-- /.c-row-->
-  <div class="c-row">
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body">
-          <div class="c-text-value-lg">89.9%</div>
-          <div>Lorem ipsum...</div>
-          <div class="c-progress c-progress-xs c-my-2">
-            <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div><small class="c-text-muted">Lorem ipsum dolor sit amet enim.</small>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body">
-          <div class="c-text-value-lg">12.124</div>
-          <div>Lorem ipsum...</div>
-          <div class="c-progress c-progress-xs c-my-2">
-            <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div><small class="c-text-muted">Lorem ipsum dolor sit amet enim.</small>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body">
-          <div class="c-text-value-lg">$98.111,00</div>
-          <div>Lorem ipsum...</div>
-          <div class="c-progress c-progress-xs c-my-2">
-            <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div><small class="c-text-muted">Lorem ipsum dolor sit amet enim.</small>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body">
-          <div class="c-text-value-lg">2 TB</div>
-          <div>Lorem ipsum...</div>
-          <div class="c-progress c-progress-xs c-my-2">
-            <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div><small class="c-text-muted">Lorem ipsum dolor sit amet enim.</small>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-  </div>
-  <!-- /.c-row-->
-  <div class="c-row">
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card c-text-white c-bg-primary">
-        <div class="c-card-body">
-          <div class="c-text-value-lg">89.9%</div>
-          <div>Lorem ipsum...</div>
-          <div class="c-progress c-progress-white c-progress-xs c-my-2">
-            <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div><small class="c-text-muted">Lorem ipsum dolor sit amet enim.</small>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card c-text-white c-bg-warning">
-        <div class="c-card-body">
-          <div class="c-text-value-lg">12.124</div>
-          <div>Lorem ipsum...</div>
-          <div class="c-progress c-progress-white c-progress-xs c-my-2">
-            <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div><small class="c-text-muted">Lorem ipsum dolor sit amet enim.</small>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card c-text-white c-bg-danger">
-        <div class="c-card-body">
-          <div class="c-text-value-lg">$98.111,00</div>
-          <div>Lorem ipsum...</div>
-          <div class="c-progress c-progress-white c-progress-xs c-my-2">
-            <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div><small class="c-text-muted">Lorem ipsum dolor sit amet enim.</small>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card c-text-white c-bg-info">
-        <div class="c-card-body">
-          <div class="c-text-value-lg">2 TB</div>
-          <div>Lorem ipsum...</div>
-          <div class="c-progress c-progress-white c-progress-xs c-my-2">
-            <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div><small class="c-text-muted">Lorem ipsum dolor sit amet enim.</small>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-  </div>
-  <!-- /.c-row-->
-  <div class="c-row">
-    <div class="c-col-md-2 c-col-sm-4">
-      <div class="c-card">
-        <div class="c-card-body c-text-center">
-          <div class="c-text-muted c-small c-text-uppercase c-font-weight-bold">Title</div>
-          <div class="c-text-value-xl c-py-3">1,123</div>
-          <div class="c-chart-wrapper c-mx-auto" style="height:40px;width:80px">
-            <canvas class="chart chart-bar" id="sparkline-chart-1" height="40" width="80"></canvas>
+  </head>
+  <body>
+    <div class="c-fade-in">
+      <div class="c-row">
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card c-text-white c-bg-primary">
+            <div class="c-card-body c-pb-0">
+              <div class="c-btn-group c-float-right">
+                <button class="c-btn c-btn-transparent c-dropdown-toggle c-p-0" type="button" data-toggle="c-dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-settings"></i></button>
+                <div class="c-dropdown-menu c-dropdown-menu-right"><a class="c-dropdown-item" href="#">Action</a><a class="c-dropdown-item" href="#">Another action</a><a class="c-dropdown-item" href="#">Something else here</a></div>
+              </div>
+              <div class="c-text-value-lg">9.823</div>
+              <div>Widget title</div>
+            </div>
+            <div class="c-chart-wrapper c-mt-3 c-mx-3" style="height:70px;">
+              <canvas class="chart" id="card-chart1" height="70"></canvas>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-md-2 c-col-sm-4">
-      <div class="c-card">
-        <div class="c-card-body c-text-center">
-          <div class="c-text-muted c-small c-text-uppercase c-font-weight-bold">Title</div>
-          <div class="c-text-value-xl c-py-3">1,123</div>
-          <div class="c-chart-wrapper c-mx-auto" style="height:40px;width:80px">
-            <canvas class="chart chart-bar" id="sparkline-chart-2" height="40" width="80"></canvas>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card c-text-white c-bg-info">
+            <div class="c-card-body c-pb-0">
+              <button class="c-btn c-btn-transparent c-p-0 c-float-right" type="button"><i class="icon-location-pin"></i></button>
+              <div class="c-text-value-lg">9.823</div>
+              <div>Widget title</div>
+            </div>
+            <div class="c-chart-wrapper c-mt-3 c-mx-3" style="height:70px;">
+              <canvas class="chart" id="card-chart2" height="70"></canvas>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-md-2 c-col-sm-4">
-      <div class="c-card">
-        <div class="c-card-body c-text-center">
-          <div class="c-text-muted c-small c-text-uppercase c-font-weight-bold">Title</div>
-          <div class="c-text-value-xl c-py-3">1,123</div>
-          <div class="c-chart-wrapper c-mx-auto" style="height:40px;width:80px">
-            <canvas class="chart chart-bar" id="sparkline-chart-3" height="40" width="80"></canvas>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card c-text-white c-bg-warning">
+            <div class="c-card-body c-pb-0">
+              <div class="c-btn-group c-float-right">
+                <button class="c-btn c-btn-transparent c-dropdown-toggle c-p-0" type="button" data-toggle="c-dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-settings"></i></button>
+                <div class="c-dropdown-menu c-dropdown-menu-right"><a class="c-dropdown-item" href="#">Action</a><a class="c-dropdown-item" href="#">Another action</a><a class="c-dropdown-item" href="#">Something else here</a></div>
+              </div>
+              <div class="c-text-value-lg">9.823</div>
+              <div>Widget title</div>
+            </div>
+            <div class="c-chart-wrapper c-mt-3" style="height:70px;">
+              <canvas class="chart" id="card-chart3" height="70"></canvas>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-md-2 c-col-sm-4">
-      <div class="c-card">
-        <div class="c-card-body c-text-center">
-          <div class="c-text-muted c-small c-text-uppercase c-font-weight-bold">Title</div>
-          <div class="c-text-value-xl c-py-3">1,123</div>
-          <div class="c-chart-wrapper c-mx-auto" style="height:40px;width:80px">
-            <canvas class="chart chart-line" id="sparkline-chart-4" height="40" width="100"></canvas>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card c-text-white c-bg-danger">
+            <div class="c-card-body c-pb-0">
+              <div class="c-btn-group c-float-right">
+                <button class="c-btn c-btn-transparent c-dropdown-toggle c-p-0" type="button" data-toggle="c-dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-settings"></i></button>
+                <div class="c-dropdown-menu c-dropdown-menu-right"><a class="c-dropdown-item" href="#">Action</a><a class="c-dropdown-item" href="#">Another action</a><a class="c-dropdown-item" href="#">Something else here</a></div>
+              </div>
+              <div class="c-text-value-lg">9.823</div>
+              <div>Widget title</div>
+            </div>
+            <div class="c-chart-wrapper c-mt-3 c-mx-3" style="height:70px;">
+              <canvas class="chart" id="card-chart4" height="70"></canvas>
+            </div>
           </div>
         </div>
+        <!-- /.c-col-->
       </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-md-2 c-col-sm-4">
-      <div class="c-card">
-        <div class="c-card-body c-text-center">
-          <div class="c-text-muted c-small c-text-uppercase c-font-weight-bold">Title</div>
-          <div class="c-text-value-xl c-py-3">1,123</div>
-          <div class="c-chart-wrapper c-mx-auto" style="height:40px;width:80px">
-            <canvas class="chart chart-line" id="sparkline-chart-5" height="40" width="100"></canvas>
+      <!-- /.c-row-->
+      <div class="c-row">
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body">
+              <div class="c-text-value-lg">89.9%</div>
+              <div>Widget title</div>
+              <div class="c-progress c-progress-xs c-my-2">
+                <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div><small class="c-text-muted">Widget helper text</small>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-md-2 c-col-sm-4">
-      <div class="c-card">
-        <div class="c-card-body c-text-center">
-          <div class="c-text-muted c-small c-text-uppercase c-font-weight-bold">Title</div>
-          <div class="c-text-value-xl c-py-3">1,123</div>
-          <div class="c-chart-wrapper c-mx-auto" style="height:40px;width:80px">
-            <canvas class="chart chart-line" id="sparkline-chart-6" height="40" width="100"></canvas>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body">
+              <div class="c-text-value-lg">12.124</div>
+              <div>Widget title</div>
+              <div class="c-progress c-progress-xs c-my-2">
+                <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div><small class="c-text-muted">Widget helper text</small>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-  </div>
-  <!-- /.c-row-->
-  <div class="c-row">
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
-          <div class="c-bg-primary c-p-3 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>settings</title>
-<path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
-<path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-primary">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body">
+              <div class="c-text-value-lg">$98.111,00</div>
+              <div>Widget title</div>
+              <div class="c-progress c-progress-xs c-my-2">
+                <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div><small class="c-text-muted">Widget helper text</small>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
-          <div class="c-bg-info c-p-3 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>laptop</title>
-<path d="M9 46h46c1.656-0.002 2.998-1.344 3-3v-30c-0.002-1.656-1.344-2.998-3-3h-46c-1.656 0.002-2.998 1.344-3 3v30c0.002 1.656 1.344 2.998 3 3h0zM10 14h44v28h-44z"></path>
-<path d="M2 50h60v4h-60v-4z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-info">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body">
+              <div class="c-text-value-lg">2 TB</div>
+              <div>Widget title</div>
+              <div class="c-progress c-progress-xs c-my-2">
+                <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div><small class="c-text-muted">Widget helper text</small>
+            </div>
           </div>
         </div>
+        <!-- /.c-col-->
       </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
-          <div class="c-bg-warning c-p-3 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>moon</title>
-<path d="M33.535 62c-8.447 0-16.372-3.274-22.317-9.218s-9.218-13.87-9.218-22.317c0-0.002 0-0.004 0-0.007 0-12.212 6.943-22.803 17.096-28.041l0.177-0.083c0.404-0.21 0.881-0.333 1.388-0.333 1.687 0 3.055 1.368 3.055 3.055 0 0.321-0.049 0.63-0.141 0.92l0.006-0.022c-0.781 2.433-1.231 5.233-1.231 8.137 0 7.609 3.089 14.497 8.081 19.478l0 0.001c4.955 4.991 11.82 8.081 19.406 8.081 0.017 0 0.034 0 0.051-0h-0.003c0.006 0 0.014 0 0.021 0 2.905 0 5.705-0.45 8.333-1.284l-0.195 0.053c0.269-0.086 0.578-0.135 0.898-0.135 1.687 0 3.055 1.368 3.055 3.055 0 0.506-0.123 0.984-0.341 1.405l0.008-0.017c-5.321 10.33-15.911 17.273-28.124 17.273-0.002 0-0.005 0-0.007 0h0zM19.164 6.973c-7.946 4.894-13.164 13.547-13.164 23.418 0 0.026 0 0.052 0 0.078v-0.004c0 15.183 12.352 27.535 27.535 27.535 0.022 0 0.048 0 0.074 0 9.871 0 18.524-5.218 23.35-13.046l0.068-0.118c-2.142 0.517-4.6 0.814-7.128 0.814-0.005 0-0.009 0-0.014 0h0.001c-0.018 0-0.039 0-0.060 0-8.687 0-16.549-3.537-22.222-9.25l-0.002-0.002c-5.716-5.706-9.253-13.594-9.253-22.308 0-2.524 0.297-4.979 0.857-7.332l-0.043 0.214z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-warning">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+      <!-- /.c-row-->
+      <div class="c-row">
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card c-text-white c-bg-primary">
+            <div class="c-card-body">
+              <div class="c-text-value-lg">89.9%</div>
+              <div>Widget title</div>
+              <div class="c-progress c-progress-white c-progress-xs c-my-2">
+                <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div><small class="c-text-muted">Widget helper text</small>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
-          <div class="c-bg-danger c-p-3 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>bell</title>
-<path d="M56.284 43.571l-5.459-10.078v-10.493c0-10.477-8.523-19-19-19s-19 8.523-19 19v10.493l-5.459 10.078c-0.228 0.413-0.362 0.905-0.362 1.429 0 1.657 1.343 3 3 3h10.867c-0.030 0.33-0.046 0.663-0.046 1 0 6.075 4.925 11 11 11s11-4.925 11-11v0c0-0.337-0.016-0.67-0.046-1h10.867c0 0 0 0 0 0 1.657 0 3-1.343 3-3 0-0.524-0.134-1.016-0.37-1.444l0.008 0.016zM38.825 49c0 0.002 0 0.004 0 0.006 0 3.866-3.134 7-7 7s-7-3.134-7-7c0-0.355 0.026-0.703 0.077-1.044l-0.005 0.038h13.855c0.046 0.3 0.072 0.647 0.073 1v0zM11.683 44l5.142-9.493v-11.507c0-8.284 6.716-15 15-15s15 6.716 15 15v0 11.507l5.142 9.493z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-danger">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card c-text-white c-bg-warning">
+            <div class="c-card-body">
+              <div class="c-text-value-lg">12.124</div>
+              <div>Widget title</div>
+              <div class="c-progress c-progress-white c-progress-xs c-my-2">
+                <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div><small class="c-text-muted">Widget helper text</small>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
-          <div class="c-bg-primary c-p-3 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>settings</title>
-<path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
-<path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-primary">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card c-text-white c-bg-danger">
+            <div class="c-card-body">
+              <div class="c-text-value-lg">$98.111,00</div>
+              <div>Widget title</div>
+              <div class="c-progress c-progress-white c-progress-xs c-my-2">
+                <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div><small class="c-text-muted">Widget helper text</small>
+            </div>
           </div>
         </div>
-        <div class="c-card-footer c-px-3 c-py-2"><a class="c-btn-block c-text-muted c-d-flex c-justify-content-between c-align-items-center" href="#"><span class="c-small c-font-weight-bold">View More</span><i class="fa fa-angle-right"></i></a></div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
-          <div class="c-bg-info c-p-3 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>laptop</title>
-<path d="M9 46h46c1.656-0.002 2.998-1.344 3-3v-30c-0.002-1.656-1.344-2.998-3-3h-46c-1.656 0.002-2.998 1.344-3 3v30c0.002 1.656 1.344 2.998 3 3h0zM10 14h44v28h-44z"></path>
-<path d="M2 50h60v4h-60v-4z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-info">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card c-text-white c-bg-info">
+            <div class="c-card-body">
+              <div class="c-text-value-lg">2 TB</div>
+              <div>Widget title</div>
+              <div class="c-progress c-progress-white c-progress-xs c-my-2">
+                <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div><small class="c-text-muted">Widget helper text</small>
+            </div>
           </div>
         </div>
-        <div class="c-card-footer c-px-3 c-py-2"><a class="c-btn-block c-text-muted c-d-flex c-justify-content-between c-align-items-center" href="#"><span class="c-small c-font-weight-bold">View More</span><i class="fa fa-angle-right"></i></a></div>
+        <!-- /.c-col-->
       </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
-          <div class="c-bg-warning c-p-3 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>moon</title>
-<path d="M33.535 62c-8.447 0-16.372-3.274-22.317-9.218s-9.218-13.87-9.218-22.317c0-0.002 0-0.004 0-0.007 0-12.212 6.943-22.803 17.096-28.041l0.177-0.083c0.404-0.21 0.881-0.333 1.388-0.333 1.687 0 3.055 1.368 3.055 3.055 0 0.321-0.049 0.63-0.141 0.92l0.006-0.022c-0.781 2.433-1.231 5.233-1.231 8.137 0 7.609 3.089 14.497 8.081 19.478l0 0.001c4.955 4.991 11.82 8.081 19.406 8.081 0.017 0 0.034 0 0.051-0h-0.003c0.006 0 0.014 0 0.021 0 2.905 0 5.705-0.45 8.333-1.284l-0.195 0.053c0.269-0.086 0.578-0.135 0.898-0.135 1.687 0 3.055 1.368 3.055 3.055 0 0.506-0.123 0.984-0.341 1.405l0.008-0.017c-5.321 10.33-15.911 17.273-28.124 17.273-0.002 0-0.005 0-0.007 0h0zM19.164 6.973c-7.946 4.894-13.164 13.547-13.164 23.418 0 0.026 0 0.052 0 0.078v-0.004c0 15.183 12.352 27.535 27.535 27.535 0.022 0 0.048 0 0.074 0 9.871 0 18.524-5.218 23.35-13.046l0.068-0.118c-2.142 0.517-4.6 0.814-7.128 0.814-0.005 0-0.009 0-0.014 0h0.001c-0.018 0-0.039 0-0.060 0-8.687 0-16.549-3.537-22.222-9.25l-0.002-0.002c-5.716-5.706-9.253-13.594-9.253-22.308 0-2.524 0.297-4.979 0.857-7.332l-0.043 0.214z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-warning">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+      <!-- /.c-row-->
+      <div class="c-row">
+        <div class="c-col-md-2 c-col-sm-4">
+          <div class="c-card">
+            <div class="c-card-body c-text-center">
+              <div class="c-text-muted c-small c-text-uppercase c-font-weight-bold">Title</div>
+              <div class="c-text-value-xl c-py-3">1,123</div>
+              <div class="c-chart-wrapper c-mx-auto" style="height:40px;width:80px">
+                <canvas class="chart chart-bar" id="sparkline-chart-1" height="40" width="80"></canvas>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="c-card-footer c-px-3 c-py-2"><a class="c-btn-block c-text-muted c-d-flex c-justify-content-between c-align-items-center" href="#"><span class="c-small c-font-weight-bold">View More</span><i class="fa fa-angle-right"></i></a></div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
-          <div class="c-bg-danger c-p-3 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>bell</title>
-<path d="M56.284 43.571l-5.459-10.078v-10.493c0-10.477-8.523-19-19-19s-19 8.523-19 19v10.493l-5.459 10.078c-0.228 0.413-0.362 0.905-0.362 1.429 0 1.657 1.343 3 3 3h10.867c-0.030 0.33-0.046 0.663-0.046 1 0 6.075 4.925 11 11 11s11-4.925 11-11v0c0-0.337-0.016-0.67-0.046-1h10.867c0 0 0 0 0 0 1.657 0 3-1.343 3-3 0-0.524-0.134-1.016-0.37-1.444l0.008 0.016zM38.825 49c0 0.002 0 0.004 0 0.006 0 3.866-3.134 7-7 7s-7-3.134-7-7c0-0.355 0.026-0.703 0.077-1.044l-0.005 0.038h13.855c0.046 0.3 0.072 0.647 0.073 1v0zM11.683 44l5.142-9.493v-11.507c0-8.284 6.716-15 15-15s15 6.716 15 15v0 11.507l5.142 9.493z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-danger">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-md-2 c-col-sm-4">
+          <div class="c-card">
+            <div class="c-card-body c-text-center">
+              <div class="c-text-muted c-small c-text-uppercase c-font-weight-bold">Title</div>
+              <div class="c-text-value-xl c-py-3">1,123</div>
+              <div class="c-chart-wrapper c-mx-auto" style="height:40px;width:80px">
+                <canvas class="chart chart-bar" id="sparkline-chart-2" height="40" width="80"></canvas>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="c-card-footer c-px-3 c-py-2"><a class="c-btn-block c-text-muted c-d-flex c-justify-content-between c-align-items-center" href="#"><span class="c-small c-font-weight-bold">View More</span><i class="fa fa-angle-right"></i></a></div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-  </div>
-  <!-- /.c-row-->
-  <div class="c-row">
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
-          <div class="c-bg-primary c-p-4 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>settings</title>
-<path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
-<path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-primary">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-md-2 c-col-sm-4">
+          <div class="c-card">
+            <div class="c-card-body c-text-center">
+              <div class="c-text-muted c-small c-text-uppercase c-font-weight-bold">Title</div>
+              <div class="c-text-value-xl c-py-3">1,123</div>
+              <div class="c-chart-wrapper c-mx-auto" style="height:40px;width:80px">
+                <canvas class="chart chart-bar" id="sparkline-chart-3" height="40" width="80"></canvas>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
-          <div class="c-bg-info c-p-4 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>laptop</title>
-<path d="M9 46h46c1.656-0.002 2.998-1.344 3-3v-30c-0.002-1.656-1.344-2.998-3-3h-46c-1.656 0.002-2.998 1.344-3 3v30c0.002 1.656 1.344 2.998 3 3h0zM10 14h44v28h-44z"></path>
-<path d="M2 50h60v4h-60v-4z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-info">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-md-2 c-col-sm-4">
+          <div class="c-card">
+            <div class="c-card-body c-text-center">
+              <div class="c-text-muted c-small c-text-uppercase c-font-weight-bold">Title</div>
+              <div class="c-text-value-xl c-py-3">1,123</div>
+              <div class="c-chart-wrapper c-mx-auto" style="height:40px;width:80px">
+                <canvas class="chart chart-line" id="sparkline-chart-4" height="40" width="100"></canvas>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
-          <div class="c-bg-warning c-p-4 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>moon</title>
-<path d="M33.535 62c-8.447 0-16.372-3.274-22.317-9.218s-9.218-13.87-9.218-22.317c0-0.002 0-0.004 0-0.007 0-12.212 6.943-22.803 17.096-28.041l0.177-0.083c0.404-0.21 0.881-0.333 1.388-0.333 1.687 0 3.055 1.368 3.055 3.055 0 0.321-0.049 0.63-0.141 0.92l0.006-0.022c-0.781 2.433-1.231 5.233-1.231 8.137 0 7.609 3.089 14.497 8.081 19.478l0 0.001c4.955 4.991 11.82 8.081 19.406 8.081 0.017 0 0.034 0 0.051-0h-0.003c0.006 0 0.014 0 0.021 0 2.905 0 5.705-0.45 8.333-1.284l-0.195 0.053c0.269-0.086 0.578-0.135 0.898-0.135 1.687 0 3.055 1.368 3.055 3.055 0 0.506-0.123 0.984-0.341 1.405l0.008-0.017c-5.321 10.33-15.911 17.273-28.124 17.273-0.002 0-0.005 0-0.007 0h0zM19.164 6.973c-7.946 4.894-13.164 13.547-13.164 23.418 0 0.026 0 0.052 0 0.078v-0.004c0 15.183 12.352 27.535 27.535 27.535 0.022 0 0.048 0 0.074 0 9.871 0 18.524-5.218 23.35-13.046l0.068-0.118c-2.142 0.517-4.6 0.814-7.128 0.814-0.005 0-0.009 0-0.014 0h0.001c-0.018 0-0.039 0-0.060 0-8.687 0-16.549-3.537-22.222-9.25l-0.002-0.002c-5.716-5.706-9.253-13.594-9.253-22.308 0-2.524 0.297-4.979 0.857-7.332l-0.043 0.214z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-warning">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-md-2 c-col-sm-4">
+          <div class="c-card">
+            <div class="c-card-body c-text-center">
+              <div class="c-text-muted c-small c-text-uppercase c-font-weight-bold">Title</div>
+              <div class="c-text-value-xl c-py-3">1,123</div>
+              <div class="c-chart-wrapper c-mx-auto" style="height:40px;width:80px">
+                <canvas class="chart chart-line" id="sparkline-chart-5" height="40" width="100"></canvas>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
-          <div class="c-bg-danger c-p-4 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>bell</title>
-<path d="M56.284 43.571l-5.459-10.078v-10.493c0-10.477-8.523-19-19-19s-19 8.523-19 19v10.493l-5.459 10.078c-0.228 0.413-0.362 0.905-0.362 1.429 0 1.657 1.343 3 3 3h10.867c-0.030 0.33-0.046 0.663-0.046 1 0 6.075 4.925 11 11 11s11-4.925 11-11v0c0-0.337-0.016-0.67-0.046-1h10.867c0 0 0 0 0 0 1.657 0 3-1.343 3-3 0-0.524-0.134-1.016-0.37-1.444l0.008 0.016zM38.825 49c0 0.002 0 0.004 0 0.006 0 3.866-3.134 7-7 7s-7-3.134-7-7c0-0.355 0.026-0.703 0.077-1.044l-0.005 0.038h13.855c0.046 0.3 0.072 0.647 0.073 1v0zM11.683 44l5.142-9.493v-11.507c0-8.284 6.716-15 15-15s15 6.716 15 15v0 11.507l5.142 9.493z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-danger">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-md-2 c-col-sm-4">
+          <div class="c-card">
+            <div class="c-card-body c-text-center">
+              <div class="c-text-muted c-small c-text-uppercase c-font-weight-bold">Title</div>
+              <div class="c-text-value-xl c-py-3">1,123</div>
+              <div class="c-chart-wrapper c-mx-auto" style="height:40px;width:80px">
+                <canvas class="chart chart-line" id="sparkline-chart-6" height="40" width="100"></canvas>
+              </div>
+            </div>
           </div>
         </div>
+        <!-- /.c-col-->
       </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
-          <div class="c-bg-primary c-py-4 c-px-5 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>settings</title>
-<path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
-<path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-primary">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+      <!-- /.c-row-->
+      <div class="c-row">
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
+              <div class="c-bg-primary c-p-3 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>settings</title>
+                  <path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
+                  <path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-primary">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
-          <div class="c-bg-info c-py-4 c-px-5 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>laptop</title>
-<path d="M9 46h46c1.656-0.002 2.998-1.344 3-3v-30c-0.002-1.656-1.344-2.998-3-3h-46c-1.656 0.002-2.998 1.344-3 3v30c0.002 1.656 1.344 2.998 3 3h0zM10 14h44v28h-44z"></path>
-<path d="M2 50h60v4h-60v-4z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-info">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
+              <div class="c-bg-info c-p-3 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>laptop</title>
+                  <path d="M9 46h46c1.656-0.002 2.998-1.344 3-3v-30c-0.002-1.656-1.344-2.998-3-3h-46c-1.656 0.002-2.998 1.344-3 3v30c0.002 1.656 1.344 2.998 3 3h0zM10 14h44v28h-44z"></path>
+                  <path d="M2 50h60v4h-60v-4z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-info">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
-          <div class="c-bg-warning c-py-4 c-px-5 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>moon</title>
-<path d="M33.535 62c-8.447 0-16.372-3.274-22.317-9.218s-9.218-13.87-9.218-22.317c0-0.002 0-0.004 0-0.007 0-12.212 6.943-22.803 17.096-28.041l0.177-0.083c0.404-0.21 0.881-0.333 1.388-0.333 1.687 0 3.055 1.368 3.055 3.055 0 0.321-0.049 0.63-0.141 0.92l0.006-0.022c-0.781 2.433-1.231 5.233-1.231 8.137 0 7.609 3.089 14.497 8.081 19.478l0 0.001c4.955 4.991 11.82 8.081 19.406 8.081 0.017 0 0.034 0 0.051-0h-0.003c0.006 0 0.014 0 0.021 0 2.905 0 5.705-0.45 8.333-1.284l-0.195 0.053c0.269-0.086 0.578-0.135 0.898-0.135 1.687 0 3.055 1.368 3.055 3.055 0 0.506-0.123 0.984-0.341 1.405l0.008-0.017c-5.321 10.33-15.911 17.273-28.124 17.273-0.002 0-0.005 0-0.007 0h0zM19.164 6.973c-7.946 4.894-13.164 13.547-13.164 23.418 0 0.026 0 0.052 0 0.078v-0.004c0 15.183 12.352 27.535 27.535 27.535 0.022 0 0.048 0 0.074 0 9.871 0 18.524-5.218 23.35-13.046l0.068-0.118c-2.142 0.517-4.6 0.814-7.128 0.814-0.005 0-0.009 0-0.014 0h0.001c-0.018 0-0.039 0-0.060 0-8.687 0-16.549-3.537-22.222-9.25l-0.002-0.002c-5.716-5.706-9.253-13.594-9.253-22.308 0-2.524 0.297-4.979 0.857-7.332l-0.043 0.214z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-warning">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
+              <div class="c-bg-warning c-p-3 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>moon</title>
+                  <path d="M33.535 62c-8.447 0-16.372-3.274-22.317-9.218s-9.218-13.87-9.218-22.317c0-0.002 0-0.004 0-0.007 0-12.212 6.943-22.803 17.096-28.041l0.177-0.083c0.404-0.21 0.881-0.333 1.388-0.333 1.687 0 3.055 1.368 3.055 3.055 0 0.321-0.049 0.63-0.141 0.92l0.006-0.022c-0.781 2.433-1.231 5.233-1.231 8.137 0 7.609 3.089 14.497 8.081 19.478l0 0.001c4.955 4.991 11.82 8.081 19.406 8.081 0.017 0 0.034 0 0.051-0h-0.003c0.006 0 0.014 0 0.021 0 2.905 0 5.705-0.45 8.333-1.284l-0.195 0.053c0.269-0.086 0.578-0.135 0.898-0.135 1.687 0 3.055 1.368 3.055 3.055 0 0.506-0.123 0.984-0.341 1.405l0.008-0.017c-5.321 10.33-15.911 17.273-28.124 17.273-0.002 0-0.005 0-0.007 0h0zM19.164 6.973c-7.946 4.894-13.164 13.547-13.164 23.418 0 0.026 0 0.052 0 0.078v-0.004c0 15.183 12.352 27.535 27.535 27.535 0.022 0 0.048 0 0.074 0 9.871 0 18.524-5.218 23.35-13.046l0.068-0.118c-2.142 0.517-4.6 0.814-7.128 0.814-0.005 0-0.009 0-0.014 0h0.001c-0.018 0-0.039 0-0.060 0-8.687 0-16.549-3.537-22.222-9.25l-0.002-0.002c-5.716-5.706-9.253-13.594-9.253-22.308 0-2.524 0.297-4.979 0.857-7.332l-0.043 0.214z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-warning">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-6 c-col-lg-3">
-      <div class="c-card">
-        <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
-          <div class="c-bg-danger c-py-4 c-px-5 c-mr-3"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
-<title>bell</title>
-<path d="M56.284 43.571l-5.459-10.078v-10.493c0-10.477-8.523-19-19-19s-19 8.523-19 19v10.493l-5.459 10.078c-0.228 0.413-0.362 0.905-0.362 1.429 0 1.657 1.343 3 3 3h10.867c-0.030 0.33-0.046 0.663-0.046 1 0 6.075 4.925 11 11 11s11-4.925 11-11v0c0-0.337-0.016-0.67-0.046-1h10.867c0 0 0 0 0 0 1.657 0 3-1.343 3-3 0-0.524-0.134-1.016-0.37-1.444l0.008 0.016zM38.825 49c0 0.002 0 0.004 0 0.006 0 3.866-3.134 7-7 7s-7-3.134-7-7c0-0.355 0.026-0.703 0.077-1.044l-0.005 0.038h13.855c0.046 0.3 0.072 0.647 0.073 1v0zM11.683 44l5.142-9.493v-11.507c0-8.284 6.716-15 15-15s15 6.716 15 15v0 11.507l5.142 9.493z"></path>
-</svg></div>
-          <div>
-            <div class="c-text-value c-text-danger">$1.999,50</div>
-            <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Income</div>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
+              <div class="c-bg-danger c-p-3 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>bell</title>
+                  <path d="M56.284 43.571l-5.459-10.078v-10.493c0-10.477-8.523-19-19-19s-19 8.523-19 19v10.493l-5.459 10.078c-0.228 0.413-0.362 0.905-0.362 1.429 0 1.657 1.343 3 3 3h10.867c-0.030 0.33-0.046 0.663-0.046 1 0 6.075 4.925 11 11 11s11-4.925 11-11v0c0-0.337-0.016-0.67-0.046-1h10.867c0 0 0 0 0 0 1.657 0 3-1.343 3-3 0-0.524-0.134-1.016-0.37-1.444l0.008 0.016zM38.825 49c0 0.002 0 0.004 0 0.006 0 3.866-3.134 7-7 7s-7-3.134-7-7c0-0.355 0.026-0.703 0.077-1.044l-0.005 0.038h13.855c0.046 0.3 0.072 0.647 0.073 1v0zM11.683 44l5.142-9.493v-11.507c0-8.284 6.716-15 15-15s15 6.716 15 15v0 11.507l5.142 9.493z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-danger">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-  </div>
-  <!-- /.c-row-->
-  <div class="c-row">
-    <div class="c-col-sm-6 c-col-lg-4">
-      <div class="c-card">
-        <div class="c-card-header c-bg-facebook c-content-center"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 64 64" class="c-icon c-text-white c-my-4">
-<title>social-facebook</title>
-<path d="M38 62h-14v-25h-9v-14h9v-6c0-9.112 5.888-15 15-15 3.078 0 5.992 0.574 7.557 0.883 0.31 0.061 0.604 0.119 0.736 0.139l1.707 0.253v12.726h-8c-2.057 0-2.603 0.338-2.721 0.441-0.104 0.091-0.279 0.415-0.279 1.559v5h10.21l-1.4 14h-8.81zM28 58h6v-25h9.19l0.6-6h-9.79v-9c0-1.456 0.187-3.292 1.644-4.568 1.131-0.991 2.783-1.432 5.356-1.432h4v-5.345c-1.508-0.286-3.745-0.655-6-0.655-6.888 0-11 4.112-11 11v10h-9v6h9z"></path>
-</svg>
-          <div class="c-chart-wrapper">
-            <canvas id="social-box-chart-1" height="90"></canvas>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
+              <div class="c-bg-primary c-p-3 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>settings</title>
+                  <path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
+                  <path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-primary">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
+            <div class="c-card-footer c-px-3 c-py-2"><a class="c-btn-block c-text-muted c-d-flex c-justify-content-between c-align-items-center" href="#"><span class="c-small c-font-weight-bold">View More</span><i class="fa fa-angle-right"></i></a></div>
           </div>
         </div>
-        <div class="c-card-body c-row c-text-center">
-          <div class="c-col">
-            <div class="c-text-value-xl">89k</div>
-            <div class="c-text-uppercase c-text-muted c-small">friends</div>
-          </div>
-          <div class="c-vr"></div>
-          <div class="c-col">
-            <div class="c-text-value-xl">459</div>
-            <div class="c-text-uppercase c-text-muted c-small">feeds</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-4">
-      <div class="c-card">
-        <div class="c-card-header c-bg-twitter c-content-center"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 64 64" class="c-icon c-text-white c-my-4">
-<title>social-twitter</title>
-<path d="M56.375 12h-4.784c-0.97-0.828-2.072-1.548-3.259-2.118l-0.091-0.039c-1.758-0.854-3.824-1.353-6.006-1.353h-0c-0.001 0-0.002 0-0.003 0-7.515 0-13.712 5.643-14.585 12.923l-0.007 0.070c-5.797-1.357-11.254-5.275-14.15-10.439l-3.42-6.099-3.524 6.040c-1.121 1.922-1.847 3.73-2.426 6.045-3.017 12.067 0.381 19.876 3.762 24.303 1.345 1.747 2.879 3.255 4.595 4.531l0.062 0.044c-0.855 0.198-1.838 0.313-2.847 0.314h-0.001c-0.249 0-0.502-0.008-0.75-0.022l-6.815-0.405v7.474l1.927 1.168c0.298 0.181 7.427 4.424 18.487 4.424 5.281 0 10.236-1.055 14.729-3.136 4.271-2.009 7.883-4.748 10.823-8.092l0.031-0.036c5.616-6.369 8.836-14.809 8.836-23.156 0-0.106 0.004-0.273 0.009-0.459l5.776-11.98zM53 23s-0.041 0.976-0.041 1.439c0 14.134-10.758 30.42-30.42 30.42-10.071 0-16.414-3.844-16.414-3.844v-0.976l2.578 0.153q0.496 0.029 0.988 0.029c4.61 0 8.855-1.908 12.286-4.597-4.7-0.099-18.977-7.624-13.977-27.624 0.452-1.892 1.14-3.56 2.046-5.083l-0.046 0.083c4.238 7.557 13 13 22 13-0.166-0.794-0.457-1.991-0.457-2.819 0-0.001 0-0.003 0-0.005 0-5.902 4.785-10.687 10.687-10.687 0.002 0 0.003 0 0.005 0h-0c3.078 0 5.813 1.425 7.766 3.51h6.375z"></path>
-</svg>
-          <div class="c-chart-wrapper">
-            <canvas id="social-box-chart-2" height="90"></canvas>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
+              <div class="c-bg-info c-p-3 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>laptop</title>
+                  <path d="M9 46h46c1.656-0.002 2.998-1.344 3-3v-30c-0.002-1.656-1.344-2.998-3-3h-46c-1.656 0.002-2.998 1.344-3 3v30c0.002 1.656 1.344 2.998 3 3h0zM10 14h44v28h-44z"></path>
+                  <path d="M2 50h60v4h-60v-4z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-info">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
+            <div class="c-card-footer c-px-3 c-py-2"><a class="c-btn-block c-text-muted c-d-flex c-justify-content-between c-align-items-center" href="#"><span class="c-small c-font-weight-bold">View More</span><i class="fa fa-angle-right"></i></a></div>
           </div>
         </div>
-        <div class="c-card-body c-row c-text-center">
-          <div class="c-col">
-            <div class="c-text-value-xl">973k</div>
-            <div class="c-text-uppercase c-text-muted c-small">followers</div>
-          </div>
-          <div class="c-vr"></div>
-          <div class="c-col">
-            <div class="c-text-value-xl">1.792</div>
-            <div class="c-text-uppercase c-text-muted c-small">tweets</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-4">
-      <div class="c-card">
-        <div class="c-card-header c-bg-linkedin c-content-center"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 64 64" class="c-icon c-text-white c-my-4">
-<title>social-linkedin</title>
-<path d="M14.806 26.138h7.416v23.862h-7.416v-23.862z"></path>
-<path d="M18.516 14.277c-0 0-0.001 0-0.002 0-2.375 0-4.3 1.925-4.3 4.3s1.925 4.3 4.3 4.3c2.375 0 4.3-1.925 4.3-4.3 0-0 0-0.001 0-0.001v0c-0.001-2.373-1.924-4.297-4.298-4.298h-0z"></path>
-<path d="M41.104 25.545c-3.608 0-6.027 1.978-7.017 3.854h-0.099v-3.261h-7.113v23.862h7.41v-11.804c0-3.112 0.593-6.126 4.451-6.126 3.803 0 3.854 3.559 3.854 6.326v11.604h7.411v-13.089c0-6.424-1.386-11.366-8.896-11.366z"></path>
-<path d="M53.3 3h-42.61c-4.241 0-7.691 3.411-7.691 7.603v42.79c0 4.195 3.45 7.607 7.691 7.607h42.61c4.247 0 7.701-3.413 7.701-7.607v-42.79c0-4.192-3.455-7.603-7.701-7.603zM57.001 53.393c0 1.991-1.661 3.607-3.701 3.607h-42.61c-2.036 0-3.691-1.616-3.691-3.607v-42.79c0-1.989 1.654-3.603 3.691-3.603h42.61c2.040 0 3.701 1.614 3.701 3.603z"></path>
-</svg>
-          <div class="c-chart-wrapper">
-            <canvas id="social-box-chart-3" height="90"></canvas>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
+              <div class="c-bg-warning c-p-3 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>moon</title>
+                  <path d="M33.535 62c-8.447 0-16.372-3.274-22.317-9.218s-9.218-13.87-9.218-22.317c0-0.002 0-0.004 0-0.007 0-12.212 6.943-22.803 17.096-28.041l0.177-0.083c0.404-0.21 0.881-0.333 1.388-0.333 1.687 0 3.055 1.368 3.055 3.055 0 0.321-0.049 0.63-0.141 0.92l0.006-0.022c-0.781 2.433-1.231 5.233-1.231 8.137 0 7.609 3.089 14.497 8.081 19.478l0 0.001c4.955 4.991 11.82 8.081 19.406 8.081 0.017 0 0.034 0 0.051-0h-0.003c0.006 0 0.014 0 0.021 0 2.905 0 5.705-0.45 8.333-1.284l-0.195 0.053c0.269-0.086 0.578-0.135 0.898-0.135 1.687 0 3.055 1.368 3.055 3.055 0 0.506-0.123 0.984-0.341 1.405l0.008-0.017c-5.321 10.33-15.911 17.273-28.124 17.273-0.002 0-0.005 0-0.007 0h0zM19.164 6.973c-7.946 4.894-13.164 13.547-13.164 23.418 0 0.026 0 0.052 0 0.078v-0.004c0 15.183 12.352 27.535 27.535 27.535 0.022 0 0.048 0 0.074 0 9.871 0 18.524-5.218 23.35-13.046l0.068-0.118c-2.142 0.517-4.6 0.814-7.128 0.814-0.005 0-0.009 0-0.014 0h0.001c-0.018 0-0.039 0-0.060 0-8.687 0-16.549-3.537-22.222-9.25l-0.002-0.002c-5.716-5.706-9.253-13.594-9.253-22.308 0-2.524 0.297-4.979 0.857-7.332l-0.043 0.214z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-warning">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
+            <div class="c-card-footer c-px-3 c-py-2"><a class="c-btn-block c-text-muted c-d-flex c-justify-content-between c-align-items-center" href="#"><span class="c-small c-font-weight-bold">View More</span><i class="fa fa-angle-right"></i></a></div>
           </div>
         </div>
-        <div class="c-card-body c-row c-text-center">
-          <div class="c-col">
-            <div class="c-text-value-xl">500+</div>
-            <div class="c-text-uppercase c-text-muted c-small">contacts</div>
-          </div>
-          <div class="c-vr"></div>
-          <div class="c-col">
-            <div class="c-text-value-xl">292</div>
-            <div class="c-text-uppercase c-text-muted c-small">feeds</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-  </div>
-  <!-- /.c-row-->
-  <div class="c-card-group c-mb-4">
-    <div class="c-card">
-      <div class="c-card-body">
-        <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>people</title>
-<path d="M57.818 39.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c0-0.010 0-0.021 0-0.032 0-7.176-5.817-12.992-12.992-12.992-3.415 0-6.523 1.318-8.842 3.473l0.008-0.007 2.718 2.934c1.599-1.482 3.748-2.391 6.109-2.391 4.97 0 8.999 4.029 8.999 8.999 0 0.006 0 0.013 0 0.019v-0.001 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.865 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001 6.688h-9v4h13v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.16-7.729l-0.035-0.021z"></path>
-<path d="M39.818 43.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c-0.005-7.183-5.824-13.005-13.005-13.017h-0.001c-7.165 0-12.993 5.839-12.993 13.017v9c-0 0.014-0 0.030-0 0.046 0 1.665 0.417 3.232 1.153 4.603l-0.026-0.052 3.114 5.708-7.996 5.232c-2.541 1.677-4.194 4.519-4.194 7.747 0 0.006 0 0.011 0 0.017v-0.001l-0.062 10.7h42.012v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.159-7.729l-0.035-0.021zM40.012 58h-33.988l0.039-6.688c0-0.005 0-0.012 0-0.018 0-1.837 0.94-3.454 2.365-4.397l0.020-0.012 11.085-7.254-4.881-8.949c-0.402-0.773-0.639-1.689-0.639-2.659 0-0.008 0-0.016 0-0.024v0.001-9c0-4.971 4.029-9 9-9s9 4.029 9 9v0 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.864 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001z"></path>
-</svg></div>
-        <div class="c-text-value-lg">87.500</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Visitors</small>
-        <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
-          <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
-    </div>
-    <div class="c-card">
-      <div class="c-card-body">
-        <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>user-follow</title>
-<path d="M26 2c-7.728 0.009-13.991 6.272-14 13.999v9.961c0.001 1.756 0.454 3.405 1.247 4.84l-0.026-0.052 3.432 6.292-9.103 5.917c-2.755 1.803-4.55 4.875-4.55 8.366 0 0.007 0 0.013 0 0.020v-0.001 10.658h36v-4h-32v-6.659c0-0.003 0-0.007 0-0.011 0-2.095 1.077-3.938 2.707-5.005l0.023-0.014 12.208-7.935-5.205-9.543c-0.46-0.83-0.732-1.82-0.733-2.873v-9.96c0-5.523 4.477-10 10-10s10 4.477 10 10v0 9.96c-0.001 1.053-0.272 2.043-0.748 2.904l0.016-0.031-5.205 9.543 8.938 5.809v-4.771l-3.653-2.374 3.432-6.292c0.767-1.383 1.22-3.033 1.221-4.788v-9.96c-0.009-7.728-6.272-13.991-13.999-14h-0.001z"></path>
-<path d="M53 50v-8h-4v8h-8v4h8v8h4v-8h8v-4h-8z"></path>
-</svg></div>
-        <div class="c-text-value-lg">385</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">New Clients</small>
-        <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
-          <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
-    </div>
-    <div class="c-card">
-      <div class="c-card-body">
-        <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>basket-loaded</title>
-<path d="M15 38h4v16h-4v-16z"></path>
-<path d="M25 38h4v16h-4v-16z"></path>
-<path d="M35 38h4v16h-4v-16z"></path>
-<path d="M45 38h4v16h-4v-16z"></path>
-<path d="M59.21 21l-9.952-19h-4.515l9.952 19h-45.389l9.952-19h-4.515l-9.952 19h-2.79v13.934l5.357 27.066h49.283l5.36-26.802v-14.198zM58 34.802l-4.64 23.198h-42.717l-4.643-23.459v-0.541h52zM58 30h-52v-5h52z"></path>
-<path d="M21.414 17l3.432-3.718c1.869-2.021 4.535-3.282 7.495-3.282 3.115 0 5.904 1.396 7.775 3.597l0.012 0.015 2.867 3.389h5.24l-5.054-5.972c-2.621-3.084-6.504-5.028-10.84-5.028-4.121 0-7.832 1.755-10.426 4.559l-0.009 0.009-5.937 6.431z"></path>
-</svg></div>
-        <div class="c-text-value-lg">1238</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Products sold</small>
-        <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
-          <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
-    </div>
-    <div class="c-card">
-      <div class="c-card-body">
-        <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>chart-pie</title>
-<path d="M13.17 49.79c-4.425-4.43-7.161-10.547-7.161-17.303 0-13.523 10.963-24.486 24.486-24.486 4.585 0 8.875 1.26 12.543 3.452l-0.112-0.062 2.907-2.907c-4.341-2.816-9.65-4.49-15.35-4.49-15.732 0-28.484 12.753-28.484 28.484 0 7.865 3.188 14.986 8.341 20.14l-0-0c5.157 5.154 12.281 8.342 20.148 8.342 5.674 0 10.961-1.658 15.403-4.516l-0.113 0.068-2.914-2.914c-9.378 5.498-21.659 4.229-29.696-3.808z"></path>
-<path d="M58.614 44.134c1.466-3.443 2.319-7.449 2.319-11.654s-0.852-8.21-2.394-11.853l0.075 0.2c-0.111-0.267-0.226-0.531-0.343-0.794-1.595-3.522-3.699-6.531-6.257-9.085l-1.415-1.415-22.948 22.948 22.948 22.948 1.414-1.414c2.516-2.513 4.593-5.465 6.104-8.732l0.078-0.187c0.144-0.317 0.285-0.637 0.419-0.96zM50.545 15.244c3.97 4.6 6.389 10.635 6.389 17.236s-2.418 12.637-6.417 17.27l0.029-0.034-17.236-17.236z"></path>
-</svg></div>
-        <div class="c-text-value-lg">28%</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Returning Visitors</small>
-        <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
-          <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
-    </div>
-    <div class="c-card">
-      <div class="c-card-body">
-        <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>speedometer</title>
-<path d="M53.213 17.787c-5.429-5.429-12.929-8.787-21.213-8.787-16.569 0-30 13.431-30 30 0 0 0 0 0 0v0 11h18v-4h-14v-7c0-14.336 11.664-26 26-26s26 11.664 26 26v7h-14v4h18v-11c0-0.024 0-0.053 0-0.081 0-8.259-3.359-15.733-8.786-21.13l-0.001-0.001z"></path>
-<path d="M10 33h4v4h-4v-4z"></path>
-<path d="M30 16h4v4h-4v-4z"></path>
-<path d="M17 21h4v4h-4v-4z"></path>
-<path d="M50 33h4v4h-4v-4z"></path>
-<path d="M37.153 41.887l8.65-18.022-3.606-1.731-8.648 18.017c-0.471-0.098-1.012-0.154-1.566-0.154-4.428 0-8.017 3.59-8.017 8.017s3.59 8.017 8.017 8.017c4.428 0 8.017-3.59 8.017-8.017 0-2.452-1.101-4.648-2.836-6.118l-0.012-0.010zM32 52c-2.209 0-4-1.791-4-4s1.791-4 4-4c2.209 0 4 1.791 4 4v0c-0.003 2.208-1.792 3.997-4 4h-0z"></path>
-</svg></div>
-        <div class="c-text-value-lg">5:34:11</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Avg. Time</small>
-        <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
-          <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="c-row">
-    <div class="c-col-sm-6 c-col-md-2">
-      <div class="c-card">
-        <div class="c-card-body">
-          <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>people</title>
-<path d="M57.818 39.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c0-0.010 0-0.021 0-0.032 0-7.176-5.817-12.992-12.992-12.992-3.415 0-6.523 1.318-8.842 3.473l0.008-0.007 2.718 2.934c1.599-1.482 3.748-2.391 6.109-2.391 4.97 0 8.999 4.029 8.999 8.999 0 0.006 0 0.013 0 0.019v-0.001 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.865 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001 6.688h-9v4h13v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.16-7.729l-0.035-0.021z"></path>
-<path d="M39.818 43.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c-0.005-7.183-5.824-13.005-13.005-13.017h-0.001c-7.165 0-12.993 5.839-12.993 13.017v9c-0 0.014-0 0.030-0 0.046 0 1.665 0.417 3.232 1.153 4.603l-0.026-0.052 3.114 5.708-7.996 5.232c-2.541 1.677-4.194 4.519-4.194 7.747 0 0.006 0 0.011 0 0.017v-0.001l-0.062 10.7h42.012v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.159-7.729l-0.035-0.021zM40.012 58h-33.988l0.039-6.688c0-0.005 0-0.012 0-0.018 0-1.837 0.94-3.454 2.365-4.397l0.020-0.012 11.085-7.254-4.881-8.949c-0.402-0.773-0.639-1.689-0.639-2.659 0-0.008 0-0.016 0-0.024v0.001-9c0-4.971 4.029-9 9-9s9 4.029 9 9v0 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.864 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001z"></path>
-</svg></div>
-          <div class="c-text-value-lg">87.500</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Visitors</small>
-          <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
-            <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-3 c-d-flex c-align-items-center">
+              <div class="c-bg-danger c-p-3 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>bell</title>
+                  <path d="M56.284 43.571l-5.459-10.078v-10.493c0-10.477-8.523-19-19-19s-19 8.523-19 19v10.493l-5.459 10.078c-0.228 0.413-0.362 0.905-0.362 1.429 0 1.657 1.343 3 3 3h10.867c-0.030 0.33-0.046 0.663-0.046 1 0 6.075 4.925 11 11 11s11-4.925 11-11v0c0-0.337-0.016-0.67-0.046-1h10.867c0 0 0 0 0 0 1.657 0 3-1.343 3-3 0-0.524-0.134-1.016-0.37-1.444l0.008 0.016zM38.825 49c0 0.002 0 0.004 0 0.006 0 3.866-3.134 7-7 7s-7-3.134-7-7c0-0.355 0.026-0.703 0.077-1.044l-0.005 0.038h13.855c0.046 0.3 0.072 0.647 0.073 1v0zM11.683 44l5.142-9.493v-11.507c0-8.284 6.716-15 15-15s15 6.716 15 15v0 11.507l5.142 9.493z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-danger">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
+            <div class="c-card-footer c-px-3 c-py-2"><a class="c-btn-block c-text-muted c-d-flex c-justify-content-between c-align-items-center" href="#"><span class="c-small c-font-weight-bold">View More</span><i class="fa fa-angle-right"></i></a></div>
           </div>
         </div>
+        <!-- /.c-col-->
       </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-md-2">
-      <div class="c-card">
-        <div class="c-card-body">
-          <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>user-follow</title>
-<path d="M26 2c-7.728 0.009-13.991 6.272-14 13.999v9.961c0.001 1.756 0.454 3.405 1.247 4.84l-0.026-0.052 3.432 6.292-9.103 5.917c-2.755 1.803-4.55 4.875-4.55 8.366 0 0.007 0 0.013 0 0.020v-0.001 10.658h36v-4h-32v-6.659c0-0.003 0-0.007 0-0.011 0-2.095 1.077-3.938 2.707-5.005l0.023-0.014 12.208-7.935-5.205-9.543c-0.46-0.83-0.732-1.82-0.733-2.873v-9.96c0-5.523 4.477-10 10-10s10 4.477 10 10v0 9.96c-0.001 1.053-0.272 2.043-0.748 2.904l0.016-0.031-5.205 9.543 8.938 5.809v-4.771l-3.653-2.374 3.432-6.292c0.767-1.383 1.22-3.033 1.221-4.788v-9.96c-0.009-7.728-6.272-13.991-13.999-14h-0.001z"></path>
-<path d="M53 50v-8h-4v8h-8v4h8v8h4v-8h8v-4h-8z"></path>
-</svg></div>
-          <div class="c-text-value-lg">385</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">New Clients</small>
-          <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
-            <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      <!-- /.c-row-->
+      <div class="c-row">
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
+              <div class="c-bg-primary c-p-4 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>settings</title>
+                  <path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
+                  <path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-primary">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
+              <div class="c-bg-info c-p-4 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>laptop</title>
+                  <path d="M9 46h46c1.656-0.002 2.998-1.344 3-3v-30c-0.002-1.656-1.344-2.998-3-3h-46c-1.656 0.002-2.998 1.344-3 3v30c0.002 1.656 1.344 2.998 3 3h0zM10 14h44v28h-44z"></path>
+                  <path d="M2 50h60v4h-60v-4z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-info">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
+              <div class="c-bg-warning c-p-4 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>moon</title>
+                  <path d="M33.535 62c-8.447 0-16.372-3.274-22.317-9.218s-9.218-13.87-9.218-22.317c0-0.002 0-0.004 0-0.007 0-12.212 6.943-22.803 17.096-28.041l0.177-0.083c0.404-0.21 0.881-0.333 1.388-0.333 1.687 0 3.055 1.368 3.055 3.055 0 0.321-0.049 0.63-0.141 0.92l0.006-0.022c-0.781 2.433-1.231 5.233-1.231 8.137 0 7.609 3.089 14.497 8.081 19.478l0 0.001c4.955 4.991 11.82 8.081 19.406 8.081 0.017 0 0.034 0 0.051-0h-0.003c0.006 0 0.014 0 0.021 0 2.905 0 5.705-0.45 8.333-1.284l-0.195 0.053c0.269-0.086 0.578-0.135 0.898-0.135 1.687 0 3.055 1.368 3.055 3.055 0 0.506-0.123 0.984-0.341 1.405l0.008-0.017c-5.321 10.33-15.911 17.273-28.124 17.273-0.002 0-0.005 0-0.007 0h0zM19.164 6.973c-7.946 4.894-13.164 13.547-13.164 23.418 0 0.026 0 0.052 0 0.078v-0.004c0 15.183 12.352 27.535 27.535 27.535 0.022 0 0.048 0 0.074 0 9.871 0 18.524-5.218 23.35-13.046l0.068-0.118c-2.142 0.517-4.6 0.814-7.128 0.814-0.005 0-0.009 0-0.014 0h0.001c-0.018 0-0.039 0-0.060 0-8.687 0-16.549-3.537-22.222-9.25l-0.002-0.002c-5.716-5.706-9.253-13.594-9.253-22.308 0-2.524 0.297-4.979 0.857-7.332l-0.043 0.214z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-warning">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
+              <div class="c-bg-danger c-p-4 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>bell</title>
+                  <path d="M56.284 43.571l-5.459-10.078v-10.493c0-10.477-8.523-19-19-19s-19 8.523-19 19v10.493l-5.459 10.078c-0.228 0.413-0.362 0.905-0.362 1.429 0 1.657 1.343 3 3 3h10.867c-0.030 0.33-0.046 0.663-0.046 1 0 6.075 4.925 11 11 11s11-4.925 11-11v0c0-0.337-0.016-0.67-0.046-1h10.867c0 0 0 0 0 0 1.657 0 3-1.343 3-3 0-0.524-0.134-1.016-0.37-1.444l0.008 0.016zM38.825 49c0 0.002 0 0.004 0 0.006 0 3.866-3.134 7-7 7s-7-3.134-7-7c0-0.355 0.026-0.703 0.077-1.044l-0.005 0.038h13.855c0.046 0.3 0.072 0.647 0.073 1v0zM11.683 44l5.142-9.493v-11.507c0-8.284 6.716-15 15-15s15 6.716 15 15v0 11.507l5.142 9.493z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-danger">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
+              <div class="c-bg-primary c-py-4 c-px-5 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>settings</title>
+                  <path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
+                  <path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-primary">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
+              <div class="c-bg-info c-py-4 c-px-5 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>laptop</title>
+                  <path d="M9 46h46c1.656-0.002 2.998-1.344 3-3v-30c-0.002-1.656-1.344-2.998-3-3h-46c-1.656 0.002-2.998 1.344-3 3v30c0.002 1.656 1.344 2.998 3 3h0zM10 14h44v28h-44z"></path>
+                  <path d="M2 50h60v4h-60v-4z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-info">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
+              <div class="c-bg-warning c-py-4 c-px-5 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>moon</title>
+                  <path d="M33.535 62c-8.447 0-16.372-3.274-22.317-9.218s-9.218-13.87-9.218-22.317c0-0.002 0-0.004 0-0.007 0-12.212 6.943-22.803 17.096-28.041l0.177-0.083c0.404-0.21 0.881-0.333 1.388-0.333 1.687 0 3.055 1.368 3.055 3.055 0 0.321-0.049 0.63-0.141 0.92l0.006-0.022c-0.781 2.433-1.231 5.233-1.231 8.137 0 7.609 3.089 14.497 8.081 19.478l0 0.001c4.955 4.991 11.82 8.081 19.406 8.081 0.017 0 0.034 0 0.051-0h-0.003c0.006 0 0.014 0 0.021 0 2.905 0 5.705-0.45 8.333-1.284l-0.195 0.053c0.269-0.086 0.578-0.135 0.898-0.135 1.687 0 3.055 1.368 3.055 3.055 0 0.506-0.123 0.984-0.341 1.405l0.008-0.017c-5.321 10.33-15.911 17.273-28.124 17.273-0.002 0-0.005 0-0.007 0h0zM19.164 6.973c-7.946 4.894-13.164 13.547-13.164 23.418 0 0.026 0 0.052 0 0.078v-0.004c0 15.183 12.352 27.535 27.535 27.535 0.022 0 0.048 0 0.074 0 9.871 0 18.524-5.218 23.35-13.046l0.068-0.118c-2.142 0.517-4.6 0.814-7.128 0.814-0.005 0-0.009 0-0.014 0h0.001c-0.018 0-0.039 0-0.060 0-8.687 0-16.549-3.537-22.222-9.25l-0.002-0.002c-5.716-5.706-9.253-13.594-9.253-22.308 0-2.524 0.297-4.979 0.857-7.332l-0.043 0.214z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-warning">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-6 c-col-lg-3">
+          <div class="c-card">
+            <div class="c-card-body c-p-0 c-d-flex c-align-items-center">
+              <div class="c-bg-danger c-py-4 c-px-5 c-mr-3">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64" class="c-icon">
+                  <title>bell</title>
+                  <path d="M56.284 43.571l-5.459-10.078v-10.493c0-10.477-8.523-19-19-19s-19 8.523-19 19v10.493l-5.459 10.078c-0.228 0.413-0.362 0.905-0.362 1.429 0 1.657 1.343 3 3 3h10.867c-0.030 0.33-0.046 0.663-0.046 1 0 6.075 4.925 11 11 11s11-4.925 11-11v0c0-0.337-0.016-0.67-0.046-1h10.867c0 0 0 0 0 0 1.657 0 3-1.343 3-3 0-0.524-0.134-1.016-0.37-1.444l0.008 0.016zM38.825 49c0 0.002 0 0.004 0 0.006 0 3.866-3.134 7-7 7s-7-3.134-7-7c0-0.355 0.026-0.703 0.077-1.044l-0.005 0.038h13.855c0.046 0.3 0.072 0.647 0.073 1v0zM11.683 44l5.142-9.493v-11.507c0-8.284 6.716-15 15-15s15 6.716 15 15v0 11.507l5.142 9.493z"></path>
+                </svg></div>
+              <div>
+                <div class="c-text-value c-text-danger">$1.999,50</div>
+                <div class="c-text-muted c-text-uppercase c-font-weight-bold c-small">Widget title</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+      </div>
+      <!-- /.c-row-->
+      <div class="c-row">
+        <div class="c-col-sm-6 c-col-lg-4">
+          <div class="c-card">
+            <div class="c-card-header c-bg-facebook c-content-center">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 64 64" class="c-icon c-text-white c-my-4">
+                <title>social-facebook</title>
+                <path d="M38 62h-14v-25h-9v-14h9v-6c0-9.112 5.888-15 15-15 3.078 0 5.992 0.574 7.557 0.883 0.31 0.061 0.604 0.119 0.736 0.139l1.707 0.253v12.726h-8c-2.057 0-2.603 0.338-2.721 0.441-0.104 0.091-0.279 0.415-0.279 1.559v5h10.21l-1.4 14h-8.81zM28 58h6v-25h9.19l0.6-6h-9.79v-9c0-1.456 0.187-3.292 1.644-4.568 1.131-0.991 2.783-1.432 5.356-1.432h4v-5.345c-1.508-0.286-3.745-0.655-6-0.655-6.888 0-11 4.112-11 11v10h-9v6h9z"></path>
+              </svg>
+              <div class="c-chart-wrapper">
+                <canvas id="social-box-chart-1" height="90"></canvas>
+              </div>
+            </div>
+            <div class="c-card-body c-row c-text-center">
+              <div class="c-col">
+                <div class="c-text-value-xl">89k</div>
+                <div class="c-text-uppercase c-text-muted c-small">friends</div>
+              </div>
+              <div class="c-vr"></div>
+              <div class="c-col">
+                <div class="c-text-value-xl">459</div>
+                <div class="c-text-uppercase c-text-muted c-small">feeds</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-4">
+          <div class="c-card">
+            <div class="c-card-header c-bg-twitter c-content-center">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 64 64" class="c-icon c-text-white c-my-4">
+                <title>social-twitter</title>
+                <path d="M56.375 12h-4.784c-0.97-0.828-2.072-1.548-3.259-2.118l-0.091-0.039c-1.758-0.854-3.824-1.353-6.006-1.353h-0c-0.001 0-0.002 0-0.003 0-7.515 0-13.712 5.643-14.585 12.923l-0.007 0.070c-5.797-1.357-11.254-5.275-14.15-10.439l-3.42-6.099-3.524 6.040c-1.121 1.922-1.847 3.73-2.426 6.045-3.017 12.067 0.381 19.876 3.762 24.303 1.345 1.747 2.879 3.255 4.595 4.531l0.062 0.044c-0.855 0.198-1.838 0.313-2.847 0.314h-0.001c-0.249 0-0.502-0.008-0.75-0.022l-6.815-0.405v7.474l1.927 1.168c0.298 0.181 7.427 4.424 18.487 4.424 5.281 0 10.236-1.055 14.729-3.136 4.271-2.009 7.883-4.748 10.823-8.092l0.031-0.036c5.616-6.369 8.836-14.809 8.836-23.156 0-0.106 0.004-0.273 0.009-0.459l5.776-11.98zM53 23s-0.041 0.976-0.041 1.439c0 14.134-10.758 30.42-30.42 30.42-10.071 0-16.414-3.844-16.414-3.844v-0.976l2.578 0.153q0.496 0.029 0.988 0.029c4.61 0 8.855-1.908 12.286-4.597-4.7-0.099-18.977-7.624-13.977-27.624 0.452-1.892 1.14-3.56 2.046-5.083l-0.046 0.083c4.238 7.557 13 13 22 13-0.166-0.794-0.457-1.991-0.457-2.819 0-0.001 0-0.003 0-0.005 0-5.902 4.785-10.687 10.687-10.687 0.002 0 0.003 0 0.005 0h-0c3.078 0 5.813 1.425 7.766 3.51h6.375z"></path>
+              </svg>
+              <div class="c-chart-wrapper">
+                <canvas id="social-box-chart-2" height="90"></canvas>
+              </div>
+            </div>
+            <div class="c-card-body c-row c-text-center">
+              <div class="c-col">
+                <div class="c-text-value-xl">973k</div>
+                <div class="c-text-uppercase c-text-muted c-small">followers</div>
+              </div>
+              <div class="c-vr"></div>
+              <div class="c-col">
+                <div class="c-text-value-xl">1.792</div>
+                <div class="c-text-uppercase c-text-muted c-small">tweets</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-4">
+          <div class="c-card">
+            <div class="c-card-header c-bg-linkedin c-content-center">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 64 64" class="c-icon c-text-white c-my-4">
+                <title>social-linkedin</title>
+                <path d="M14.806 26.138h7.416v23.862h-7.416v-23.862z"></path>
+                <path d="M18.516 14.277c-0 0-0.001 0-0.002 0-2.375 0-4.3 1.925-4.3 4.3s1.925 4.3 4.3 4.3c2.375 0 4.3-1.925 4.3-4.3 0-0 0-0.001 0-0.001v0c-0.001-2.373-1.924-4.297-4.298-4.298h-0z"></path>
+                <path d="M41.104 25.545c-3.608 0-6.027 1.978-7.017 3.854h-0.099v-3.261h-7.113v23.862h7.41v-11.804c0-3.112 0.593-6.126 4.451-6.126 3.803 0 3.854 3.559 3.854 6.326v11.604h7.411v-13.089c0-6.424-1.386-11.366-8.896-11.366z"></path>
+                <path d="M53.3 3h-42.61c-4.241 0-7.691 3.411-7.691 7.603v42.79c0 4.195 3.45 7.607 7.691 7.607h42.61c4.247 0 7.701-3.413 7.701-7.607v-42.79c0-4.192-3.455-7.603-7.701-7.603zM57.001 53.393c0 1.991-1.661 3.607-3.701 3.607h-42.61c-2.036 0-3.691-1.616-3.691-3.607v-42.79c0-1.989 1.654-3.603 3.691-3.603h42.61c2.040 0 3.701 1.614 3.701 3.603z"></path>
+              </svg>
+              <div class="c-chart-wrapper">
+                <canvas id="social-box-chart-3" height="90"></canvas>
+              </div>
+            </div>
+            <div class="c-card-body c-row c-text-center">
+              <div class="c-col">
+                <div class="c-text-value-xl">500+</div>
+                <div class="c-text-uppercase c-text-muted c-small">contacts</div>
+              </div>
+              <div class="c-vr"></div>
+              <div class="c-col">
+                <div class="c-text-value-xl">292</div>
+                <div class="c-text-uppercase c-text-muted c-small">feeds</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+      </div>
+      <!-- /.c-row-->
+      <div class="c-card-group c-mb-4">
+        <div class="c-card">
+          <div class="c-card-body">
+            <div class="c-h1 c-text-muted c-text-right c-mb-4">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                <title>people</title>
+                <path d="M57.818 39.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c0-0.010 0-0.021 0-0.032 0-7.176-5.817-12.992-12.992-12.992-3.415 0-6.523 1.318-8.842 3.473l0.008-0.007 2.718 2.934c1.599-1.482 3.748-2.391 6.109-2.391 4.97 0 8.999 4.029 8.999 8.999 0 0.006 0 0.013 0 0.019v-0.001 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.865 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001 6.688h-9v4h13v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.16-7.729l-0.035-0.021z"></path>
+                <path d="M39.818 43.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c-0.005-7.183-5.824-13.005-13.005-13.017h-0.001c-7.165 0-12.993 5.839-12.993 13.017v9c-0 0.014-0 0.030-0 0.046 0 1.665 0.417 3.232 1.153 4.603l-0.026-0.052 3.114 5.708-7.996 5.232c-2.541 1.677-4.194 4.519-4.194 7.747 0 0.006 0 0.011 0 0.017v-0.001l-0.062 10.7h42.012v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.159-7.729l-0.035-0.021zM40.012 58h-33.988l0.039-6.688c0-0.005 0-0.012 0-0.018 0-1.837 0.94-3.454 2.365-4.397l0.020-0.012 11.085-7.254-4.881-8.949c-0.402-0.773-0.639-1.689-0.639-2.659 0-0.008 0-0.016 0-0.024v0.001-9c0-4.971 4.029-9 9-9s9 4.029 9 9v0 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.864 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001z"></path>
+              </svg></div>
+            <div class="c-text-value-lg">87.500</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Visitors</small>
+            <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
+              <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-card-body">
+            <div class="c-h1 c-text-muted c-text-right c-mb-4">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                <title>user-follow</title>
+                <path d="M26 2c-7.728 0.009-13.991 6.272-14 13.999v9.961c0.001 1.756 0.454 3.405 1.247 4.84l-0.026-0.052 3.432 6.292-9.103 5.917c-2.755 1.803-4.55 4.875-4.55 8.366 0 0.007 0 0.013 0 0.020v-0.001 10.658h36v-4h-32v-6.659c0-0.003 0-0.007 0-0.011 0-2.095 1.077-3.938 2.707-5.005l0.023-0.014 12.208-7.935-5.205-9.543c-0.46-0.83-0.732-1.82-0.733-2.873v-9.96c0-5.523 4.477-10 10-10s10 4.477 10 10v0 9.96c-0.001 1.053-0.272 2.043-0.748 2.904l0.016-0.031-5.205 9.543 8.938 5.809v-4.771l-3.653-2.374 3.432-6.292c0.767-1.383 1.22-3.033 1.221-4.788v-9.96c-0.009-7.728-6.272-13.991-13.999-14h-0.001z"></path>
+                <path d="M53 50v-8h-4v8h-8v4h8v8h4v-8h8v-4h-8z"></path>
+              </svg></div>
+            <div class="c-text-value-lg">385</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">New Clients</small>
+            <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
+              <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-card-body">
+            <div class="c-h1 c-text-muted c-text-right c-mb-4">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                <title>basket-loaded</title>
+                <path d="M15 38h4v16h-4v-16z"></path>
+                <path d="M25 38h4v16h-4v-16z"></path>
+                <path d="M35 38h4v16h-4v-16z"></path>
+                <path d="M45 38h4v16h-4v-16z"></path>
+                <path d="M59.21 21l-9.952-19h-4.515l9.952 19h-45.389l9.952-19h-4.515l-9.952 19h-2.79v13.934l5.357 27.066h49.283l5.36-26.802v-14.198zM58 34.802l-4.64 23.198h-42.717l-4.643-23.459v-0.541h52zM58 30h-52v-5h52z"></path>
+                <path d="M21.414 17l3.432-3.718c1.869-2.021 4.535-3.282 7.495-3.282 3.115 0 5.904 1.396 7.775 3.597l0.012 0.015 2.867 3.389h5.24l-5.054-5.972c-2.621-3.084-6.504-5.028-10.84-5.028-4.121 0-7.832 1.755-10.426 4.559l-0.009 0.009-5.937 6.431z"></path>
+              </svg></div>
+            <div class="c-text-value-lg">1238</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Products sold</small>
+            <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
+              <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-card-body">
+            <div class="c-h1 c-text-muted c-text-right c-mb-4">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                <title>chart-pie</title>
+                <path d="M13.17 49.79c-4.425-4.43-7.161-10.547-7.161-17.303 0-13.523 10.963-24.486 24.486-24.486 4.585 0 8.875 1.26 12.543 3.452l-0.112-0.062 2.907-2.907c-4.341-2.816-9.65-4.49-15.35-4.49-15.732 0-28.484 12.753-28.484 28.484 0 7.865 3.188 14.986 8.341 20.14l-0-0c5.157 5.154 12.281 8.342 20.148 8.342 5.674 0 10.961-1.658 15.403-4.516l-0.113 0.068-2.914-2.914c-9.378 5.498-21.659 4.229-29.696-3.808z"></path>
+                <path d="M58.614 44.134c1.466-3.443 2.319-7.449 2.319-11.654s-0.852-8.21-2.394-11.853l0.075 0.2c-0.111-0.267-0.226-0.531-0.343-0.794-1.595-3.522-3.699-6.531-6.257-9.085l-1.415-1.415-22.948 22.948 22.948 22.948 1.414-1.414c2.516-2.513 4.593-5.465 6.104-8.732l0.078-0.187c0.144-0.317 0.285-0.637 0.419-0.96zM50.545 15.244c3.97 4.6 6.389 10.635 6.389 17.236s-2.418 12.637-6.417 17.27l0.029-0.034-17.236-17.236z"></path>
+              </svg></div>
+            <div class="c-text-value-lg">28%</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Returning Visitors</small>
+            <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
+              <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+        <div class="c-card">
+          <div class="c-card-body">
+            <div class="c-h1 c-text-muted c-text-right c-mb-4">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                <title>speedometer</title>
+                <path d="M53.213 17.787c-5.429-5.429-12.929-8.787-21.213-8.787-16.569 0-30 13.431-30 30 0 0 0 0 0 0v0 11h18v-4h-14v-7c0-14.336 11.664-26 26-26s26 11.664 26 26v7h-14v4h18v-11c0-0.024 0-0.053 0-0.081 0-8.259-3.359-15.733-8.786-21.13l-0.001-0.001z"></path>
+                <path d="M10 33h4v4h-4v-4z"></path>
+                <path d="M30 16h4v4h-4v-4z"></path>
+                <path d="M17 21h4v4h-4v-4z"></path>
+                <path d="M50 33h4v4h-4v-4z"></path>
+                <path d="M37.153 41.887l8.65-18.022-3.606-1.731-8.648 18.017c-0.471-0.098-1.012-0.154-1.566-0.154-4.428 0-8.017 3.59-8.017 8.017s3.59 8.017 8.017 8.017c4.428 0 8.017-3.59 8.017-8.017 0-2.452-1.101-4.648-2.836-6.118l-0.012-0.010zM32 52c-2.209 0-4-1.791-4-4s1.791-4 4-4c2.209 0 4 1.791 4 4v0c-0.003 2.208-1.792 3.997-4 4h-0z"></path>
+              </svg></div>
+            <div class="c-text-value-lg">5:34:11</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Avg. Time</small>
+            <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
+              <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-md-2">
-      <div class="c-card">
-        <div class="c-card-body">
-          <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>basket-loaded</title>
-<path d="M15 38h4v16h-4v-16z"></path>
-<path d="M25 38h4v16h-4v-16z"></path>
-<path d="M35 38h4v16h-4v-16z"></path>
-<path d="M45 38h4v16h-4v-16z"></path>
-<path d="M59.21 21l-9.952-19h-4.515l9.952 19h-45.389l9.952-19h-4.515l-9.952 19h-2.79v13.934l5.357 27.066h49.283l5.36-26.802v-14.198zM58 34.802l-4.64 23.198h-42.717l-4.643-23.459v-0.541h52zM58 30h-52v-5h52z"></path>
-<path d="M21.414 17l3.432-3.718c1.869-2.021 4.535-3.282 7.495-3.282 3.115 0 5.904 1.396 7.775 3.597l0.012 0.015 2.867 3.389h5.24l-5.054-5.972c-2.621-3.084-6.504-5.028-10.84-5.028-4.121 0-7.832 1.755-10.426 4.559l-0.009 0.009-5.937 6.431z"></path>
-</svg></div>
-          <div class="c-text-value-lg">1238</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Products sold</small>
-          <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
-            <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="c-row">
+        <div class="c-col-sm-6 c-col-md-2">
+          <div class="c-card">
+            <div class="c-card-body">
+              <div class="c-h1 c-text-muted c-text-right c-mb-4">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                  <title>people</title>
+                  <path d="M57.818 39.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c0-0.010 0-0.021 0-0.032 0-7.176-5.817-12.992-12.992-12.992-3.415 0-6.523 1.318-8.842 3.473l0.008-0.007 2.718 2.934c1.599-1.482 3.748-2.391 6.109-2.391 4.97 0 8.999 4.029 8.999 8.999 0 0.006 0 0.013 0 0.019v-0.001 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.865 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001 6.688h-9v4h13v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.16-7.729l-0.035-0.021z"></path>
+                  <path d="M39.818 43.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c-0.005-7.183-5.824-13.005-13.005-13.017h-0.001c-7.165 0-12.993 5.839-12.993 13.017v9c-0 0.014-0 0.030-0 0.046 0 1.665 0.417 3.232 1.153 4.603l-0.026-0.052 3.114 5.708-7.996 5.232c-2.541 1.677-4.194 4.519-4.194 7.747 0 0.006 0 0.011 0 0.017v-0.001l-0.062 10.7h42.012v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.159-7.729l-0.035-0.021zM40.012 58h-33.988l0.039-6.688c0-0.005 0-0.012 0-0.018 0-1.837 0.94-3.454 2.365-4.397l0.020-0.012 11.085-7.254-4.881-8.949c-0.402-0.773-0.639-1.689-0.639-2.659 0-0.008 0-0.016 0-0.024v0.001-9c0-4.971 4.029-9 9-9s9 4.029 9 9v0 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.864 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001z"></path>
+                </svg></div>
+              <div class="c-text-value-lg">87.500</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Visitors</small>
+              <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
+                <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-md-2">
-      <div class="c-card">
-        <div class="c-card-body">
-          <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>chart-pie</title>
-<path d="M13.17 49.79c-4.425-4.43-7.161-10.547-7.161-17.303 0-13.523 10.963-24.486 24.486-24.486 4.585 0 8.875 1.26 12.543 3.452l-0.112-0.062 2.907-2.907c-4.341-2.816-9.65-4.49-15.35-4.49-15.732 0-28.484 12.753-28.484 28.484 0 7.865 3.188 14.986 8.341 20.14l-0-0c5.157 5.154 12.281 8.342 20.148 8.342 5.674 0 10.961-1.658 15.403-4.516l-0.113 0.068-2.914-2.914c-9.378 5.498-21.659 4.229-29.696-3.808z"></path>
-<path d="M58.614 44.134c1.466-3.443 2.319-7.449 2.319-11.654s-0.852-8.21-2.394-11.853l0.075 0.2c-0.111-0.267-0.226-0.531-0.343-0.794-1.595-3.522-3.699-6.531-6.257-9.085l-1.415-1.415-22.948 22.948 22.948 22.948 1.414-1.414c2.516-2.513 4.593-5.465 6.104-8.732l0.078-0.187c0.144-0.317 0.285-0.637 0.419-0.96zM50.545 15.244c3.97 4.6 6.389 10.635 6.389 17.236s-2.418 12.637-6.417 17.27l0.029-0.034-17.236-17.236z"></path>
-</svg></div>
-          <div class="c-text-value-lg">28%</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Returning Visitors</small>
-          <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
-            <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-md-2">
+          <div class="c-card">
+            <div class="c-card-body">
+              <div class="c-h1 c-text-muted c-text-right c-mb-4">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                  <title>user-follow</title>
+                  <path d="M26 2c-7.728 0.009-13.991 6.272-14 13.999v9.961c0.001 1.756 0.454 3.405 1.247 4.84l-0.026-0.052 3.432 6.292-9.103 5.917c-2.755 1.803-4.55 4.875-4.55 8.366 0 0.007 0 0.013 0 0.020v-0.001 10.658h36v-4h-32v-6.659c0-0.003 0-0.007 0-0.011 0-2.095 1.077-3.938 2.707-5.005l0.023-0.014 12.208-7.935-5.205-9.543c-0.46-0.83-0.732-1.82-0.733-2.873v-9.96c0-5.523 4.477-10 10-10s10 4.477 10 10v0 9.96c-0.001 1.053-0.272 2.043-0.748 2.904l0.016-0.031-5.205 9.543 8.938 5.809v-4.771l-3.653-2.374 3.432-6.292c0.767-1.383 1.22-3.033 1.221-4.788v-9.96c-0.009-7.728-6.272-13.991-13.999-14h-0.001z"></path>
+                  <path d="M53 50v-8h-4v8h-8v4h8v8h4v-8h8v-4h-8z"></path>
+                </svg></div>
+              <div class="c-text-value-lg">385</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">New Clients</small>
+              <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
+                <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-md-2">
-      <div class="c-card">
-        <div class="c-card-body">
-          <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>speedometer</title>
-<path d="M53.213 17.787c-5.429-5.429-12.929-8.787-21.213-8.787-16.569 0-30 13.431-30 30 0 0 0 0 0 0v0 11h18v-4h-14v-7c0-14.336 11.664-26 26-26s26 11.664 26 26v7h-14v4h18v-11c0-0.024 0-0.053 0-0.081 0-8.259-3.359-15.733-8.786-21.13l-0.001-0.001z"></path>
-<path d="M10 33h4v4h-4v-4z"></path>
-<path d="M30 16h4v4h-4v-4z"></path>
-<path d="M17 21h4v4h-4v-4z"></path>
-<path d="M50 33h4v4h-4v-4z"></path>
-<path d="M37.153 41.887l8.65-18.022-3.606-1.731-8.648 18.017c-0.471-0.098-1.012-0.154-1.566-0.154-4.428 0-8.017 3.59-8.017 8.017s3.59 8.017 8.017 8.017c4.428 0 8.017-3.59 8.017-8.017 0-2.452-1.101-4.648-2.836-6.118l-0.012-0.010zM32 52c-2.209 0-4-1.791-4-4s1.791-4 4-4c2.209 0 4 1.791 4 4v0c-0.003 2.208-1.792 3.997-4 4h-0z"></path>
-</svg></div>
-          <div class="c-text-value-lg">5:34:11</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Avg. Time</small>
-          <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
-            <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-md-2">
+          <div class="c-card">
+            <div class="c-card-body">
+              <div class="c-h1 c-text-muted c-text-right c-mb-4">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                  <title>basket-loaded</title>
+                  <path d="M15 38h4v16h-4v-16z"></path>
+                  <path d="M25 38h4v16h-4v-16z"></path>
+                  <path d="M35 38h4v16h-4v-16z"></path>
+                  <path d="M45 38h4v16h-4v-16z"></path>
+                  <path d="M59.21 21l-9.952-19h-4.515l9.952 19h-45.389l9.952-19h-4.515l-9.952 19h-2.79v13.934l5.357 27.066h49.283l5.36-26.802v-14.198zM58 34.802l-4.64 23.198h-42.717l-4.643-23.459v-0.541h52zM58 30h-52v-5h52z"></path>
+                  <path d="M21.414 17l3.432-3.718c1.869-2.021 4.535-3.282 7.495-3.282 3.115 0 5.904 1.396 7.775 3.597l0.012 0.015 2.867 3.389h5.24l-5.054-5.972c-2.621-3.084-6.504-5.028-10.84-5.028-4.121 0-7.832 1.755-10.426 4.559l-0.009 0.009-5.937 6.431z"></path>
+                </svg></div>
+              <div class="c-text-value-lg">1238</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Products sold</small>
+              <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
+                <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-md-2">
-      <div class="c-card">
-        <div class="c-card-body">
-          <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>speech</title>
-<path d="M18 30h4v4h-4v-4z"></path>
-<path d="M30 30h4v4h-4v-4z"></path>
-<path d="M42 30h4v4h-4v-4z"></path>
-<path d="M58 4h-52c-2.208 0.003-3.997 1.792-4 4v36c0.003 2.208 1.792 3.997 4 4h8v14h3.828l14-14h26.172c2.208-0.003 3.997-1.792 4-4v-36c-0.003-2.208-1.792-3.997-4-4h-0zM58 44h-27.828l-12.172 12.172v-12.172h-12v-36h52z"></path>
-</svg></div>
-          <div class="c-text-value-lg">972</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Comments</small>
-          <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
-            <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-md-2">
+          <div class="c-card">
+            <div class="c-card-body">
+              <div class="c-h1 c-text-muted c-text-right c-mb-4">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                  <title>chart-pie</title>
+                  <path d="M13.17 49.79c-4.425-4.43-7.161-10.547-7.161-17.303 0-13.523 10.963-24.486 24.486-24.486 4.585 0 8.875 1.26 12.543 3.452l-0.112-0.062 2.907-2.907c-4.341-2.816-9.65-4.49-15.35-4.49-15.732 0-28.484 12.753-28.484 28.484 0 7.865 3.188 14.986 8.341 20.14l-0-0c5.157 5.154 12.281 8.342 20.148 8.342 5.674 0 10.961-1.658 15.403-4.516l-0.113 0.068-2.914-2.914c-9.378 5.498-21.659 4.229-29.696-3.808z"></path>
+                  <path d="M58.614 44.134c1.466-3.443 2.319-7.449 2.319-11.654s-0.852-8.21-2.394-11.853l0.075 0.2c-0.111-0.267-0.226-0.531-0.343-0.794-1.595-3.522-3.699-6.531-6.257-9.085l-1.415-1.415-22.948 22.948 22.948 22.948 1.414-1.414c2.516-2.513 4.593-5.465 6.104-8.732l0.078-0.187c0.144-0.317 0.285-0.637 0.419-0.96zM50.545 15.244c3.97 4.6 6.389 10.635 6.389 17.236s-2.418 12.637-6.417 17.27l0.029-0.034-17.236-17.236z"></path>
+                </svg></div>
+              <div class="c-text-value-lg">28%</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Returning Visitors</small>
+              <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
+                <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-  </div>
-  <!-- /.c-row-->
-  <div class="c-row">
-    <div class="c-col-sm-6 c-col-md-2">
-      <div class="c-card c-text-white c-bg-info">
-        <div class="c-card-body">
-          <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>people</title>
-<path d="M57.818 39.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c0-0.010 0-0.021 0-0.032 0-7.176-5.817-12.992-12.992-12.992-3.415 0-6.523 1.318-8.842 3.473l0.008-0.007 2.718 2.934c1.599-1.482 3.748-2.391 6.109-2.391 4.97 0 8.999 4.029 8.999 8.999 0 0.006 0 0.013 0 0.019v-0.001 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.865 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001 6.688h-9v4h13v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.16-7.729l-0.035-0.021z"></path>
-<path d="M39.818 43.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c-0.005-7.183-5.824-13.005-13.005-13.017h-0.001c-7.165 0-12.993 5.839-12.993 13.017v9c-0 0.014-0 0.030-0 0.046 0 1.665 0.417 3.232 1.153 4.603l-0.026-0.052 3.114 5.708-7.996 5.232c-2.541 1.677-4.194 4.519-4.194 7.747 0 0.006 0 0.011 0 0.017v-0.001l-0.062 10.7h42.012v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.159-7.729l-0.035-0.021zM40.012 58h-33.988l0.039-6.688c0-0.005 0-0.012 0-0.018 0-1.837 0.94-3.454 2.365-4.397l0.020-0.012 11.085-7.254-4.881-8.949c-0.402-0.773-0.639-1.689-0.639-2.659 0-0.008 0-0.016 0-0.024v0.001-9c0-4.971 4.029-9 9-9s9 4.029 9 9v0 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.864 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001z"></path>
-</svg></div>
-          <div class="c-text-value-lg">87.500</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Visitors</small>
-          <div class="c-progress c-progress-white c-progress-xs c-mt-3">
-            <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-md-2">
+          <div class="c-card">
+            <div class="c-card-body">
+              <div class="c-h1 c-text-muted c-text-right c-mb-4">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                  <title>speedometer</title>
+                  <path d="M53.213 17.787c-5.429-5.429-12.929-8.787-21.213-8.787-16.569 0-30 13.431-30 30 0 0 0 0 0 0v0 11h18v-4h-14v-7c0-14.336 11.664-26 26-26s26 11.664 26 26v7h-14v4h18v-11c0-0.024 0-0.053 0-0.081 0-8.259-3.359-15.733-8.786-21.13l-0.001-0.001z"></path>
+                  <path d="M10 33h4v4h-4v-4z"></path>
+                  <path d="M30 16h4v4h-4v-4z"></path>
+                  <path d="M17 21h4v4h-4v-4z"></path>
+                  <path d="M50 33h4v4h-4v-4z"></path>
+                  <path d="M37.153 41.887l8.65-18.022-3.606-1.731-8.648 18.017c-0.471-0.098-1.012-0.154-1.566-0.154-4.428 0-8.017 3.59-8.017 8.017s3.59 8.017 8.017 8.017c4.428 0 8.017-3.59 8.017-8.017 0-2.452-1.101-4.648-2.836-6.118l-0.012-0.010zM32 52c-2.209 0-4-1.791-4-4s1.791-4 4-4c2.209 0 4 1.791 4 4v0c-0.003 2.208-1.792 3.997-4 4h-0z"></path>
+                </svg></div>
+              <div class="c-text-value-lg">5:34:11</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Avg. Time</small>
+              <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
+                <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-md-2">
-      <div class="c-card c-text-white c-bg-success">
-        <div class="c-card-body">
-          <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>user-follow</title>
-<path d="M26 2c-7.728 0.009-13.991 6.272-14 13.999v9.961c0.001 1.756 0.454 3.405 1.247 4.84l-0.026-0.052 3.432 6.292-9.103 5.917c-2.755 1.803-4.55 4.875-4.55 8.366 0 0.007 0 0.013 0 0.020v-0.001 10.658h36v-4h-32v-6.659c0-0.003 0-0.007 0-0.011 0-2.095 1.077-3.938 2.707-5.005l0.023-0.014 12.208-7.935-5.205-9.543c-0.46-0.83-0.732-1.82-0.733-2.873v-9.96c0-5.523 4.477-10 10-10s10 4.477 10 10v0 9.96c-0.001 1.053-0.272 2.043-0.748 2.904l0.016-0.031-5.205 9.543 8.938 5.809v-4.771l-3.653-2.374 3.432-6.292c0.767-1.383 1.22-3.033 1.221-4.788v-9.96c-0.009-7.728-6.272-13.991-13.999-14h-0.001z"></path>
-<path d="M53 50v-8h-4v8h-8v4h8v8h4v-8h8v-4h-8z"></path>
-</svg></div>
-          <div class="c-text-value-lg">385</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">New Clients</small>
-          <div class="c-progress c-progress-white c-progress-xs c-mt-3">
-            <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-md-2">
+          <div class="c-card">
+            <div class="c-card-body">
+              <div class="c-h1 c-text-muted c-text-right c-mb-4">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                  <title>speech</title>
+                  <path d="M18 30h4v4h-4v-4z"></path>
+                  <path d="M30 30h4v4h-4v-4z"></path>
+                  <path d="M42 30h4v4h-4v-4z"></path>
+                  <path d="M58 4h-52c-2.208 0.003-3.997 1.792-4 4v36c0.003 2.208 1.792 3.997 4 4h8v14h3.828l14-14h26.172c2.208-0.003 3.997-1.792 4-4v-36c-0.003-2.208-1.792-3.997-4-4h-0zM58 44h-27.828l-12.172 12.172v-12.172h-12v-36h52z"></path>
+                </svg></div>
+              <div class="c-text-value-lg">972</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Comments</small>
+              <div class="c-progress c-progress-xs c-mt-3 c-mb-0">
+                <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
           </div>
         </div>
+        <!-- /.c-col-->
       </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-md-2">
-      <div class="c-card c-text-white c-bg-warning">
-        <div class="c-card-body">
-          <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>basket-loaded</title>
-<path d="M15 38h4v16h-4v-16z"></path>
-<path d="M25 38h4v16h-4v-16z"></path>
-<path d="M35 38h4v16h-4v-16z"></path>
-<path d="M45 38h4v16h-4v-16z"></path>
-<path d="M59.21 21l-9.952-19h-4.515l9.952 19h-45.389l9.952-19h-4.515l-9.952 19h-2.79v13.934l5.357 27.066h49.283l5.36-26.802v-14.198zM58 34.802l-4.64 23.198h-42.717l-4.643-23.459v-0.541h52zM58 30h-52v-5h52z"></path>
-<path d="M21.414 17l3.432-3.718c1.869-2.021 4.535-3.282 7.495-3.282 3.115 0 5.904 1.396 7.775 3.597l0.012 0.015 2.867 3.389h5.24l-5.054-5.972c-2.621-3.084-6.504-5.028-10.84-5.028-4.121 0-7.832 1.755-10.426 4.559l-0.009 0.009-5.937 6.431z"></path>
-</svg></div>
-          <div class="c-text-value-lg">1238</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Products sold</small>
-          <div class="c-progress c-progress-white c-progress-xs c-mt-3">
-            <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      <!-- /.c-row-->
+      <div class="c-row">
+        <div class="c-col-sm-6 c-col-md-2">
+          <div class="c-card c-text-white c-bg-info">
+            <div class="c-card-body">
+              <div class="c-h1 c-text-muted c-text-right c-mb-4">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                  <title>people</title>
+                  <path d="M57.818 39.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c0-0.010 0-0.021 0-0.032 0-7.176-5.817-12.992-12.992-12.992-3.415 0-6.523 1.318-8.842 3.473l0.008-0.007 2.718 2.934c1.599-1.482 3.748-2.391 6.109-2.391 4.97 0 8.999 4.029 8.999 8.999 0 0.006 0 0.013 0 0.019v-0.001 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.865 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001 6.688h-9v4h13v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.16-7.729l-0.035-0.021z"></path>
+                  <path d="M39.818 43.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c-0.005-7.183-5.824-13.005-13.005-13.017h-0.001c-7.165 0-12.993 5.839-12.993 13.017v9c-0 0.014-0 0.030-0 0.046 0 1.665 0.417 3.232 1.153 4.603l-0.026-0.052 3.114 5.708-7.996 5.232c-2.541 1.677-4.194 4.519-4.194 7.747 0 0.006 0 0.011 0 0.017v-0.001l-0.062 10.7h42.012v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.159-7.729l-0.035-0.021zM40.012 58h-33.988l0.039-6.688c0-0.005 0-0.012 0-0.018 0-1.837 0.94-3.454 2.365-4.397l0.020-0.012 11.085-7.254-4.881-8.949c-0.402-0.773-0.639-1.689-0.639-2.659 0-0.008 0-0.016 0-0.024v0.001-9c0-4.971 4.029-9 9-9s9 4.029 9 9v0 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.864 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001z"></path>
+                </svg></div>
+              <div class="c-text-value-lg">87.500</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Visitors</small>
+              <div class="c-progress c-progress-white c-progress-xs c-mt-3">
+                <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-md-2">
-      <div class="c-card c-text-white c-bg-primary">
-        <div class="c-card-body">
-          <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>chart-pie</title>
-<path d="M13.17 49.79c-4.425-4.43-7.161-10.547-7.161-17.303 0-13.523 10.963-24.486 24.486-24.486 4.585 0 8.875 1.26 12.543 3.452l-0.112-0.062 2.907-2.907c-4.341-2.816-9.65-4.49-15.35-4.49-15.732 0-28.484 12.753-28.484 28.484 0 7.865 3.188 14.986 8.341 20.14l-0-0c5.157 5.154 12.281 8.342 20.148 8.342 5.674 0 10.961-1.658 15.403-4.516l-0.113 0.068-2.914-2.914c-9.378 5.498-21.659 4.229-29.696-3.808z"></path>
-<path d="M58.614 44.134c1.466-3.443 2.319-7.449 2.319-11.654s-0.852-8.21-2.394-11.853l0.075 0.2c-0.111-0.267-0.226-0.531-0.343-0.794-1.595-3.522-3.699-6.531-6.257-9.085l-1.415-1.415-22.948 22.948 22.948 22.948 1.414-1.414c2.516-2.513 4.593-5.465 6.104-8.732l0.078-0.187c0.144-0.317 0.285-0.637 0.419-0.96zM50.545 15.244c3.97 4.6 6.389 10.635 6.389 17.236s-2.418 12.637-6.417 17.27l0.029-0.034-17.236-17.236z"></path>
-</svg></div>
-          <div class="c-text-value-lg">28%</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Returning Visitors</small>
-          <div class="c-progress c-progress-white c-progress-xs c-mt-3">
-            <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-md-2">
+          <div class="c-card c-text-white c-bg-success">
+            <div class="c-card-body">
+              <div class="c-h1 c-text-muted c-text-right c-mb-4">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                  <title>user-follow</title>
+                  <path d="M26 2c-7.728 0.009-13.991 6.272-14 13.999v9.961c0.001 1.756 0.454 3.405 1.247 4.84l-0.026-0.052 3.432 6.292-9.103 5.917c-2.755 1.803-4.55 4.875-4.55 8.366 0 0.007 0 0.013 0 0.020v-0.001 10.658h36v-4h-32v-6.659c0-0.003 0-0.007 0-0.011 0-2.095 1.077-3.938 2.707-5.005l0.023-0.014 12.208-7.935-5.205-9.543c-0.46-0.83-0.732-1.82-0.733-2.873v-9.96c0-5.523 4.477-10 10-10s10 4.477 10 10v0 9.96c-0.001 1.053-0.272 2.043-0.748 2.904l0.016-0.031-5.205 9.543 8.938 5.809v-4.771l-3.653-2.374 3.432-6.292c0.767-1.383 1.22-3.033 1.221-4.788v-9.96c-0.009-7.728-6.272-13.991-13.999-14h-0.001z"></path>
+                  <path d="M53 50v-8h-4v8h-8v4h8v8h4v-8h8v-4h-8z"></path>
+                </svg></div>
+              <div class="c-text-value-lg">385</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">New Clients</small>
+              <div class="c-progress c-progress-white c-progress-xs c-mt-3">
+                <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-md-2">
-      <div class="c-card c-text-white c-bg-danger">
-        <div class="c-card-body">
-          <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>speedometer</title>
-<path d="M53.213 17.787c-5.429-5.429-12.929-8.787-21.213-8.787-16.569 0-30 13.431-30 30 0 0 0 0 0 0v0 11h18v-4h-14v-7c0-14.336 11.664-26 26-26s26 11.664 26 26v7h-14v4h18v-11c0-0.024 0-0.053 0-0.081 0-8.259-3.359-15.733-8.786-21.13l-0.001-0.001z"></path>
-<path d="M10 33h4v4h-4v-4z"></path>
-<path d="M30 16h4v4h-4v-4z"></path>
-<path d="M17 21h4v4h-4v-4z"></path>
-<path d="M50 33h4v4h-4v-4z"></path>
-<path d="M37.153 41.887l8.65-18.022-3.606-1.731-8.648 18.017c-0.471-0.098-1.012-0.154-1.566-0.154-4.428 0-8.017 3.59-8.017 8.017s3.59 8.017 8.017 8.017c4.428 0 8.017-3.59 8.017-8.017 0-2.452-1.101-4.648-2.836-6.118l-0.012-0.010zM32 52c-2.209 0-4-1.791-4-4s1.791-4 4-4c2.209 0 4 1.791 4 4v0c-0.003 2.208-1.792 3.997-4 4h-0z"></path>
-</svg></div>
-          <div class="c-text-value-lg">5:34:11</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Avg. Time</small>
-          <div class="c-progress c-progress-white c-progress-xs c-mt-3">
-            <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-md-2">
+          <div class="c-card c-text-white c-bg-warning">
+            <div class="c-card-body">
+              <div class="c-h1 c-text-muted c-text-right c-mb-4">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                  <title>basket-loaded</title>
+                  <path d="M15 38h4v16h-4v-16z"></path>
+                  <path d="M25 38h4v16h-4v-16z"></path>
+                  <path d="M35 38h4v16h-4v-16z"></path>
+                  <path d="M45 38h4v16h-4v-16z"></path>
+                  <path d="M59.21 21l-9.952-19h-4.515l9.952 19h-45.389l9.952-19h-4.515l-9.952 19h-2.79v13.934l5.357 27.066h49.283l5.36-26.802v-14.198zM58 34.802l-4.64 23.198h-42.717l-4.643-23.459v-0.541h52zM58 30h-52v-5h52z"></path>
+                  <path d="M21.414 17l3.432-3.718c1.869-2.021 4.535-3.282 7.495-3.282 3.115 0 5.904 1.396 7.775 3.597l0.012 0.015 2.867 3.389h5.24l-5.054-5.972c-2.621-3.084-6.504-5.028-10.84-5.028-4.121 0-7.832 1.755-10.426 4.559l-0.009 0.009-5.937 6.431z"></path>
+                </svg></div>
+              <div class="c-text-value-lg">1238</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Products sold</small>
+              <div class="c-progress c-progress-white c-progress-xs c-mt-3">
+                <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-md-2">
-      <div class="c-card c-text-white c-bg-info">
-        <div class="c-card-body">
-          <div class="c-h1 c-text-muted c-text-right c-mb-4"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
-<title>speech</title>
-<path d="M18 30h4v4h-4v-4z"></path>
-<path d="M30 30h4v4h-4v-4z"></path>
-<path d="M42 30h4v4h-4v-4z"></path>
-<path d="M58 4h-52c-2.208 0.003-3.997 1.792-4 4v36c0.003 2.208 1.792 3.997 4 4h8v14h3.828l14-14h26.172c2.208-0.003 3.997-1.792 4-4v-36c-0.003-2.208-1.792-3.997-4-4h-0zM58 44h-27.828l-12.172 12.172v-12.172h-12v-36h52z"></path>
-</svg></div>
-          <div class="c-text-value-lg">972</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Comments</small>
-          <div class="c-progress c-progress-white c-progress-xs c-mt-3">
-            <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-md-2">
+          <div class="c-card c-text-white c-bg-primary">
+            <div class="c-card-body">
+              <div class="c-h1 c-text-muted c-text-right c-mb-4">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                  <title>chart-pie</title>
+                  <path d="M13.17 49.79c-4.425-4.43-7.161-10.547-7.161-17.303 0-13.523 10.963-24.486 24.486-24.486 4.585 0 8.875 1.26 12.543 3.452l-0.112-0.062 2.907-2.907c-4.341-2.816-9.65-4.49-15.35-4.49-15.732 0-28.484 12.753-28.484 28.484 0 7.865 3.188 14.986 8.341 20.14l-0-0c5.157 5.154 12.281 8.342 20.148 8.342 5.674 0 10.961-1.658 15.403-4.516l-0.113 0.068-2.914-2.914c-9.378 5.498-21.659 4.229-29.696-3.808z"></path>
+                  <path d="M58.614 44.134c1.466-3.443 2.319-7.449 2.319-11.654s-0.852-8.21-2.394-11.853l0.075 0.2c-0.111-0.267-0.226-0.531-0.343-0.794-1.595-3.522-3.699-6.531-6.257-9.085l-1.415-1.415-22.948 22.948 22.948 22.948 1.414-1.414c2.516-2.513 4.593-5.465 6.104-8.732l0.078-0.187c0.144-0.317 0.285-0.637 0.419-0.96zM50.545 15.244c3.97 4.6 6.389 10.635 6.389 17.236s-2.418 12.637-6.417 17.27l0.029-0.034-17.236-17.236z"></path>
+                </svg></div>
+              <div class="c-text-value-lg">28%</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Returning Visitors</small>
+              <div class="c-progress c-progress-white c-progress-xs c-mt-3">
+                <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
           </div>
         </div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-md-2">
+          <div class="c-card c-text-white c-bg-danger">
+            <div class="c-card-body">
+              <div class="c-h1 c-text-muted c-text-right c-mb-4">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                  <title>speedometer</title>
+                  <path d="M53.213 17.787c-5.429-5.429-12.929-8.787-21.213-8.787-16.569 0-30 13.431-30 30 0 0 0 0 0 0v0 11h18v-4h-14v-7c0-14.336 11.664-26 26-26s26 11.664 26 26v7h-14v4h18v-11c0-0.024 0-0.053 0-0.081 0-8.259-3.359-15.733-8.786-21.13l-0.001-0.001z"></path>
+                  <path d="M10 33h4v4h-4v-4z"></path>
+                  <path d="M30 16h4v4h-4v-4z"></path>
+                  <path d="M17 21h4v4h-4v-4z"></path>
+                  <path d="M50 33h4v4h-4v-4z"></path>
+                  <path d="M37.153 41.887l8.65-18.022-3.606-1.731-8.648 18.017c-0.471-0.098-1.012-0.154-1.566-0.154-4.428 0-8.017 3.59-8.017 8.017s3.59 8.017 8.017 8.017c4.428 0 8.017-3.59 8.017-8.017 0-2.452-1.101-4.648-2.836-6.118l-0.012-0.010zM32 52c-2.209 0-4-1.791-4-4s1.791-4 4-4c2.209 0 4 1.791 4 4v0c-0.003 2.208-1.792 3.997-4 4h-0z"></path>
+                </svg></div>
+              <div class="c-text-value-lg">5:34:11</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Avg. Time</small>
+              <div class="c-progress c-progress-white c-progress-xs c-mt-3">
+                <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-md-2">
+          <div class="c-card c-text-white c-bg-info">
+            <div class="c-card-body">
+              <div class="c-h1 c-text-muted c-text-right c-mb-4">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 64 64" class="c-icon">
+                  <title>speech</title>
+                  <path d="M18 30h4v4h-4v-4z"></path>
+                  <path d="M30 30h4v4h-4v-4z"></path>
+                  <path d="M42 30h4v4h-4v-4z"></path>
+                  <path d="M58 4h-52c-2.208 0.003-3.997 1.792-4 4v36c0.003 2.208 1.792 3.997 4 4h8v14h3.828l14-14h26.172c2.208-0.003 3.997-1.792 4-4v-36c-0.003-2.208-1.792-3.997-4-4h-0zM58 44h-27.828l-12.172 12.172v-12.172h-12v-36h52z"></path>
+                </svg></div>
+              <div class="c-text-value-lg">972</div><small class="c-text-muted c-text-uppercase c-font-weight-bold">Comments</small>
+              <div class="c-progress c-progress-white c-progress-xs c-mt-3">
+                <div class="c-progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
       </div>
+      <!-- /.c-row-->
     </div>
-    <!-- /.c-col-->
-  </div>
-  <!-- /.c-row-->
-</div></body></html>
+  </body>
+</html>

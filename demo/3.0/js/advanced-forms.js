@@ -2,7 +2,7 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Pro Boostrap Admin Template (2.1.12): advanced-forms.js
+ * CoreUI Pro Boostrap Admin Template (3.0.0-alpha.0): advanced-forms.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */
@@ -15,10 +15,10 @@ $('#ssn').mask('999-99-9999');
 $('#eyescript').mask('~9.99 ~9.99 999');
 $('#ccn').mask('9999 9999 9999 9999');
 $('#select2-1, #select2-2, #select2-4').select2({
-  theme: 'bootstrap'
+  theme: 'coreui'
 });
 $('#select2-3').select2({
-  theme: 'bootstrap',
+  theme: 'coreui',
   placeholder: 'Your Favorite Football Team',
   allowClear: true
 });
@@ -31,7 +31,10 @@ $('input[name="daterange"]').daterangepicker({
     'Last 30 Days': [moment().subtract(29, 'days'), moment()],
     'This Month': [moment().startOf('month'), moment().endOf('month')],
     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-  }
+  },
+  buttonClasses: 'c-btn c-btn-sm c-mx-1',
+  applyButtonClasses: 'c-btn-primary',
+  cancelClass: 'c-btn-secondary'
 });
 $('input[name="singledatepicker"]').daterangepicker({
   opens: 'right',

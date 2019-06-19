@@ -1,4 +1,4 @@
-/* global Chart, CustomTooltips, getStyle */
+/* global Chart, coreui, getStyle */
 
 /**
  * --------------------------------------------------------------------------
@@ -13,7 +13,21 @@ Chart.defaults.global.pointHitDetectionRadius = 1;
 Chart.defaults.global.tooltips.enabled = false;
 Chart.defaults.global.tooltips.mode = 'index';
 Chart.defaults.global.tooltips.position = 'nearest';
-Chart.defaults.global.tooltips.custom = CustomTooltips; // eslint-disable-next-line no-unused-vars
+Chart.defaults.global.tooltips.custom = coreui.ChartJS.CustomTooltips;
+document.body.addEventListener('classtoggle', function (event) {
+  if (event.detail.className === 'c-dark-theme') {
+    if (document.body.classList.contains('c-dark-theme')) {
+      cardChart1.data.datasets[0].pointBackgroundColor = getStyle('--primary-dark-theme');
+      cardChart2.data.datasets[0].pointBackgroundColor = getStyle('--info-dark-theme');
+    } else {
+      cardChart1.data.datasets[0].pointBackgroundColor = getStyle('--primary');
+      cardChart2.data.datasets[0].pointBackgroundColor = getStyle('--info');
+    }
+
+    cardChart1.update();
+    cardChart2.update();
+  }
+}); // eslint-disable-next-line no-unused-vars
 
 var cardChart1 = new Chart(document.getElementById('card-chart1'), {
   type: 'line',

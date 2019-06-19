@@ -1,602 +1,653 @@
-<!-- Plugins and scripts required by this view--><html><head><script src="vendors/chart.js/js/Chart.min.js"></script>
-<script src="vendors/@coreui/coreui-plugin-chartjs-custom-tooltips/js/custom-tooltips.min.js"></script>
-<script src="js/main.js"></script>
+<html>
+  <head>
+    <link href="vendors/@coreui/coreui-chartjs/css/coreui-chartjs.css" rel="stylesheet">
+    <!-- Plugins and scripts required by this view-->
+    <script src="vendors/chart.js/js/Chart.min.js"></script>
+    <script src="vendors/@coreui/coreui-chartjs/js/coreui-chartjs.js"></script>
+    <script src="js/main.js"></script>
 
 
-</head><body><div class="c-fade-in">
-  <div class="c-row">
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card c-text-white c-bg-primary">
-        <div class="c-card-body c-pb-0">
-          <div class="c-btn-group c-float-right">
-            <button class="c-btn c-btn-transparent c-dropdown-toggle c-p-0" type="button" data-toggle="c-dropdown" aria-haspopup="true" aria-expanded="false"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 64 64" class="c-icon">
-<title>settings</title>
-<path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
-<path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
-</svg></button>
-            <div class="c-dropdown-menu c-dropdown-menu-right"><a class="c-dropdown-item" href="#">Action</a><a class="c-dropdown-item" href="#">Another action</a><a class="c-dropdown-item" href="#">Something else here</a></div>
-          </div>
-          <div class="c-text-value-lg">9.823</div>
-          <div>Members online</div>
-        </div>
-        <div class="c-chart-wrapper c-mt-3 c-mx-3" style="height:70px;">
-          <canvas class="chart" id="card-chart1" height="70"></canvas>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card c-text-white c-bg-info">
-        <div class="c-card-body c-pb-0">
-          <button class="c-btn c-btn-transparent c-p-0 c-float-right" type="button"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 64 64" class="c-icon">
-<title>location-pin</title>
-<path d="M31.741 15.949c-4.418 0-8 3.582-8 8s3.582 8 8 8c4.418 0 8-3.582 8-8v0c-0.005-4.416-3.584-7.995-8-8h-0zM31.741 27.949c-2.209 0-4-1.791-4-4s1.791-4 4-4c2.209 0 4 1.791 4 4v0c-0.003 2.208-1.792 3.997-4 4h-0z"></path>
-<path d="M53.363 21.68c-1.182-10.996-10.411-19.483-21.623-19.483-12.007 0-21.74 9.733-21.74 21.74 0 4.413 1.315 8.519 3.575 11.948l-0.051-0.082 15.114 23.202c0.671 1.019 1.809 1.681 3.102 1.681s2.431-0.663 3.094-1.668l0.009-0.014 15.114-23.202c2.208-3.353 3.522-7.464 3.522-11.883 0-0.789-0.042-1.569-0.124-2.336l0.008 0.096zM46.605 33.62l-14.864 22.819-14.865-22.819c-4.55-6.985-3.574-16.333 2.32-22.227 3.21-3.21 7.645-5.196 12.544-5.196s9.334 1.986 12.544 5.196v0c5.895 5.895 6.87 15.242 2.32 22.227z"></path>
-</svg></button>
-          <div class="c-text-value-lg">9.823</div>
-          <div>Members online</div>
-        </div>
-        <div class="c-chart-wrapper c-mt-3 c-mx-3" style="height:70px;">
-          <canvas class="chart" id="card-chart2" height="70"></canvas>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card c-text-white c-bg-warning">
-        <div class="c-card-body c-pb-0">
-          <div class="c-btn-group c-float-right">
-            <button class="c-btn c-btn-transparent c-dropdown-toggle c-p-0" type="button" data-toggle="c-dropdown" aria-haspopup="true" aria-expanded="false"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 64 64" class="c-icon">
-<title>settings</title>
-<path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
-<path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
-</svg></button>
-            <div class="c-dropdown-menu c-dropdown-menu-right"><a class="c-dropdown-item" href="#">Action</a><a class="c-dropdown-item" href="#">Another action</a><a class="c-dropdown-item" href="#">Something else here</a></div>
-          </div>
-          <div class="c-text-value-lg">9.823</div>
-          <div>Members online</div>
-        </div>
-        <div class="c-chart-wrapper c-mt-3" style="height:70px;">
-          <canvas class="chart" id="card-chart3" height="70"></canvas>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-3">
-      <div class="c-card c-text-white c-bg-danger">
-        <div class="c-card-body c-pb-0">
-          <div class="c-btn-group c-float-right">
-            <button class="c-btn c-btn-transparent c-dropdown-toggle c-p-0" type="button" data-toggle="c-dropdown" aria-haspopup="true" aria-expanded="false"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 64 64" class="c-icon">
-<title>settings</title>
-<path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
-<path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
-</svg></button>
-            <div class="c-dropdown-menu c-dropdown-menu-right"><a class="c-dropdown-item" href="#">Action</a><a class="c-dropdown-item" href="#">Another action</a><a class="c-dropdown-item" href="#">Something else here</a></div>
-          </div>
-          <div class="c-text-value-lg">9.823</div>
-          <div>Members online</div>
-        </div>
-        <div class="c-chart-wrapper c-mt-3 c-mx-3" style="height:70px;">
-          <canvas class="chart" id="card-chart4" height="70"></canvas>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-  </div>
-  <!-- /.c-row-->
-  <div class="c-card">
-    <div class="c-card-body">
+  </head>
+  <body>
+    <div class="c-fade-in">
       <div class="c-row">
-        <div class="c-col-sm-5">
-          <h4 class="c-card-title c-mb-0">Traffic</h4>
-          <div class="c-small c-text-muted">November 2017</div>
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card c-text-white c-bg-primary">
+            <div class="c-card-body c-pb-0">
+              <div class="c-btn-group c-float-right">
+                <button class="c-btn c-btn-transparent c-dropdown-toggle c-p-0" type="button" data-toggle="c-dropdown" aria-haspopup="true" aria-expanded="false">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 64 64" class="c-icon">
+                    <title>settings</title>
+                    <path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
+                    <path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
+                  </svg></button>
+                <div class="c-dropdown-menu c-dropdown-menu-right"><a class="c-dropdown-item" href="#">Action</a><a class="c-dropdown-item" href="#">Another action</a><a class="c-dropdown-item" href="#">Something else here</a></div>
+              </div>
+              <div class="c-text-value-lg">9.823</div>
+              <div>Members online</div>
+            </div>
+            <div class="c-chart-wrapper c-mt-3 c-mx-3" style="height:70px;">
+              <canvas class="chart" id="card-chart1" height="70"></canvas>
+            </div>
+          </div>
         </div>
         <!-- /.c-col-->
-        <div class="c-col-sm-7 c-d-none c-d-md-block">
-          <button class="c-btn c-btn-primary c-float-right" type="button"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 64 64" class="c-icon">
-<title>cloud-download</title>
-<path d="M34 54.196v-28.196h-4v28.196l-6.485-6.485-2.828 2.828 11.314 11.314 11.314-11.314-2.828-2.828-6.485 6.485z"></path>
-<path d="M50 20c0-9.925-8.075-18-18-18s-18 8.075-18 18c-6.627 0-12 5.373-12 12s5.373 12 12 12v0h10v-4h-10c-4.418 0-8-3.582-8-8s3.582-8 8-8v0h4v-4c0-7.732 6.268-14 14-14s14 6.268 14 14v0 4h4c4.418 0 8 3.582 8 8s-3.582 8-8 8v0h-10v4h10c6.627 0 12-5.373 12-12s-5.373-12-12-12v0z"></path>
-</svg></button>
-          <div class="c-btn-group c-btn-group-toggle c-float-right c-mr-3" data-toggle="buttons">
-            <label class="c-btn c-btn-outline-secondary">
-              <input id="option1" type="radio" name="options" autocomplete="off"> Day
-            </label>
-            <label class="c-btn c-btn-outline-secondary c-active">
-              <input id="option2" type="radio" name="options" autocomplete="off" checked=""> Month
-            </label>
-            <label class="c-btn c-btn-outline-secondary">
-              <input id="option3" type="radio" name="options" autocomplete="off"> Year
-            </label>
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card c-text-white c-bg-info">
+            <div class="c-card-body c-pb-0">
+              <button class="c-btn c-btn-transparent c-p-0 c-float-right" type="button">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 64 64" class="c-icon">
+                  <title>location-pin</title>
+                  <path d="M31.741 15.949c-4.418 0-8 3.582-8 8s3.582 8 8 8c4.418 0 8-3.582 8-8v0c-0.005-4.416-3.584-7.995-8-8h-0zM31.741 27.949c-2.209 0-4-1.791-4-4s1.791-4 4-4c2.209 0 4 1.791 4 4v0c-0.003 2.208-1.792 3.997-4 4h-0z"></path>
+                  <path d="M53.363 21.68c-1.182-10.996-10.411-19.483-21.623-19.483-12.007 0-21.74 9.733-21.74 21.74 0 4.413 1.315 8.519 3.575 11.948l-0.051-0.082 15.114 23.202c0.671 1.019 1.809 1.681 3.102 1.681s2.431-0.663 3.094-1.668l0.009-0.014 15.114-23.202c2.208-3.353 3.522-7.464 3.522-11.883 0-0.789-0.042-1.569-0.124-2.336l0.008 0.096zM46.605 33.62l-14.864 22.819-14.865-22.819c-4.55-6.985-3.574-16.333 2.32-22.227 3.21-3.21 7.645-5.196 12.544-5.196s9.334 1.986 12.544 5.196v0c5.895 5.895 6.87 15.242 2.32 22.227z"></path>
+                </svg></button>
+              <div class="c-text-value-lg">9.823</div>
+              <div>Members online</div>
+            </div>
+            <div class="c-chart-wrapper c-mt-3 c-mx-3" style="height:70px;">
+              <canvas class="chart" id="card-chart2" height="70"></canvas>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card c-text-white c-bg-warning">
+            <div class="c-card-body c-pb-0">
+              <div class="c-btn-group c-float-right">
+                <button class="c-btn c-btn-transparent c-dropdown-toggle c-p-0" type="button" data-toggle="c-dropdown" aria-haspopup="true" aria-expanded="false">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 64 64" class="c-icon">
+                    <title>settings</title>
+                    <path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
+                    <path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
+                  </svg></button>
+                <div class="c-dropdown-menu c-dropdown-menu-right"><a class="c-dropdown-item" href="#">Action</a><a class="c-dropdown-item" href="#">Another action</a><a class="c-dropdown-item" href="#">Something else here</a></div>
+              </div>
+              <div class="c-text-value-lg">9.823</div>
+              <div>Members online</div>
+            </div>
+            <div class="c-chart-wrapper c-mt-3" style="height:70px;">
+              <canvas class="chart" id="card-chart3" height="70"></canvas>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-3">
+          <div class="c-card c-text-white c-bg-danger">
+            <div class="c-card-body c-pb-0">
+              <div class="c-btn-group c-float-right">
+                <button class="c-btn c-btn-transparent c-dropdown-toggle c-p-0" type="button" data-toggle="c-dropdown" aria-haspopup="true" aria-expanded="false">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 64 64" class="c-icon">
+                    <title>settings</title>
+                    <path d="M30.644 21c-6.075 0-11 4.925-11 11s4.925 11 11 11c6.075 0 11-4.925 11-11v0c-0.007-6.072-4.928-10.993-10.999-11h-0.001zM30.644 39c-3.866 0-7-3.134-7-7s3.134-7 7-7c3.866 0 7 3.134 7 7v0c-0.005 3.864-3.136 6.995-7 7h-0z"></path>
+                    <path d="M58.087 40.29l-3.971-3.269c0.336-1.509 0.528-3.242 0.528-5.021s-0.192-3.512-0.557-5.18l0.029 0.16 3.971-3.269c0.559-0.461 0.913-1.153 0.913-1.928 0-0.461-0.125-0.893-0.343-1.263l0.006 0.012-4.077-7.060c-0.438-0.754-1.242-1.252-2.162-1.252-0.316 0-0.619 0.059-0.898 0.166l0.017-0.006-4.82 1.806c-2.423-2.195-5.323-3.913-8.523-4.975l-0.169-0.049-0.845-5.071c-0.201-1.192-1.225-2.089-2.459-2.089-0.002 0-0.005 0-0.007 0h-8.152c-0.002 0-0.004 0-0.007 0-1.234 0-2.258 0.897-2.457 2.074l-0.002 0.015-0.845 5.072c-3.369 1.111-6.27 2.829-8.713 5.042l0.020-0.018-4.821-1.806c-0.261-0.102-0.564-0.161-0.88-0.161-0.92 0-1.723 0.498-2.155 1.24l-0.006 0.012-4.077 7.061c-0.212 0.359-0.337 0.791-0.337 1.252 0 0.775 0.354 1.468 0.909 1.925l0.004 0.003 3.971 3.269c-0.336 1.509-0.528 3.242-0.528 5.021s0.192 3.512 0.557 5.18l-0.029-0.16-3.971 3.269c-0.559 0.461-0.913 1.153-0.913 1.928 0 0.461 0.125 0.893 0.343 1.263l-0.006-0.012 4.077 7.060c0.438 0.754 1.242 1.252 2.162 1.252 0.316 0 0.619-0.059 0.898-0.166l-0.017 0.006 4.82-1.806c2.423 2.195 5.323 3.913 8.523 4.975l0.169 0.049 0.845 5.071c0.201 1.192 1.225 2.089 2.459 2.089 0.002 0 0.005 0 0.007 0h8.152c0.002 0 0.004 0 0.007 0 1.234 0 2.258-0.897 2.457-2.074l0.002-0.015 0.845-5.072c3.369-1.111 6.27-2.829 8.713-5.042l-0.020 0.018 4.821 1.806c0.261 0.102 0.564 0.161 0.88 0.161 0.92 0 1.723-0.498 2.155-1.24l0.006-0.012 4.077-7.061c0.212-0.359 0.337-0.791 0.337-1.252 0-0.775-0.354-1.468-0.909-1.925l-0.004-0.003zM51.758 47.43l-6.014-2.253-0.911 0.917c-2.436 2.455-5.503 4.281-8.938 5.214l-0.14 0.032-1.251 0.33-1.055 6.33h-5.611l-1.055-6.33-1.25-0.33c-3.575-0.966-6.642-2.791-9.077-5.245l-0.001-0.001-0.911-0.917-6.014 2.253-2.806-4.86 4.954-4.078-0.338-1.246c-0.442-1.573-0.696-3.38-0.696-5.246s0.254-3.672 0.73-5.387l-0.033 0.141 0.338-1.247-4.954-4.078 2.806-4.86 6.014 2.253 0.911-0.917c2.436-2.455 5.503-4.281 8.938-5.214l0.14-0.032 1.25-0.329 1.055-6.33h5.611l1.055 6.33 1.251 0.329c3.575 0.966 6.642 2.791 9.077 5.245l0.001 0.001 0.911 0.917 6.014-2.253 2.806 4.86-4.954 4.078 0.338 1.247c0.442 1.573 0.696 3.38 0.696 5.246s-0.254 3.672-0.73 5.387l0.033-0.141-0.338 1.246 4.954 4.078z"></path>
+                  </svg></button>
+                <div class="c-dropdown-menu c-dropdown-menu-right"><a class="c-dropdown-item" href="#">Action</a><a class="c-dropdown-item" href="#">Another action</a><a class="c-dropdown-item" href="#">Something else here</a></div>
+              </div>
+              <div class="c-text-value-lg">9.823</div>
+              <div>Members online</div>
+            </div>
+            <div class="c-chart-wrapper c-mt-3 c-mx-3" style="height:70px;">
+              <canvas class="chart" id="card-chart4" height="70"></canvas>
+            </div>
           </div>
         </div>
         <!-- /.c-col-->
       </div>
       <!-- /.c-row-->
-      <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
-        <canvas class="chart" id="main-chart" height="300"></canvas>
-      </div>
-    </div>
-    <div class="c-card-footer">
-      <div class="c-row c-text-center">
-        <div class="c-col-sm-12 c-col-md c-mb-sm-2 c-mb-0">
-          <div class="c-text-muted">Visits</div><strong>29.703 Users (40%)</strong>
-          <div class="c-progress c-progress-xs c-mt-2">
-            <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-        <div class="c-col-sm-12 c-col-md c-mb-sm-2 c-mb-0">
-          <div class="c-text-muted">Unique</div><strong>24.093 Users (20%)</strong>
-          <div class="c-progress c-progress-xs c-mt-2">
-            <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-        <div class="c-col-sm-12 c-col-md c-mb-sm-2 c-mb-0">
-          <div class="c-text-muted">Pageviews</div><strong>78.706 Views (60%)</strong>
-          <div class="c-progress c-progress-xs c-mt-2">
-            <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-        <div class="c-col-sm-12 c-col-md c-mb-sm-2 c-mb-0">
-          <div class="c-text-muted">New Users</div><strong>22.123 Users (80%)</strong>
-          <div class="c-progress c-progress-xs c-mt-2">
-            <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-        <div class="c-col-sm-12 c-col-md c-mb-sm-2 c-mb-0">
-          <div class="c-text-muted">Bounce Rate</div><strong>40.15%</strong>
-          <div class="c-progress c-progress-xs c-mt-2">
-            <div class="c-progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- /.c-card-->
-  <div class="c-row">
-    <div class="c-col-sm-6 c-col-lg-4">
       <div class="c-card">
-        <div class="c-card-header c-bg-facebook c-content-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="48" width="48" class="c-icon c-text-white c-my-4"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
-          <div class="c-chart-wrapper">
-            <canvas id="social-box-chart-1" height="90"></canvas>
-          </div>
-        </div>
-        <div class="c-card-body c-row c-text-center">
-          <div class="c-col">
-            <div class="c-text-value-xl">89k</div>
-            <div class="c-text-uppercase c-text-muted c-small">friends</div>
-          </div>
-          <div class="c-vr"></div>
-          <div class="c-col">
-            <div class="c-text-value-xl">459</div>
-            <div class="c-text-uppercase c-text-muted c-small">feeds</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-4">
-      <div class="c-card">
-        <div class="c-card-header c-bg-twitter c-content-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="56" width="56" class="c-icon c-text-white c-my-4"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
-          <div class="c-chart-wrapper">
-            <canvas id="social-box-chart-2" height="90"></canvas>
-          </div>
-        </div>
-        <div class="c-card-body c-row c-text-center">
-          <div class="c-col">
-            <div class="c-text-value-xl">973k</div>
-            <div class="c-text-uppercase c-text-muted c-small">followers</div>
-          </div>
-          <div class="c-vr"></div>
-          <div class="c-col">
-            <div class="c-text-value-xl">1.792</div>
-            <div class="c-text-uppercase c-text-muted c-small">tweets</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-    <div class="c-col-sm-6 c-col-lg-4">
-      <div class="c-card">
-        <div class="c-card-header c-bg-linkedin c-content-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="56" width="56" class="c-icon c-text-white c-my-4"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg>
-          <div class="c-chart-wrapper">
-            <canvas id="social-box-chart-3" height="90"></canvas>
-          </div>
-        </div>
-        <div class="c-card-body c-row c-text-center">
-          <div class="c-col">
-            <div class="c-text-value-xl">500+</div>
-            <div class="c-text-uppercase c-text-muted c-small">contacts</div>
-          </div>
-          <div class="c-vr"></div>
-          <div class="c-col">
-            <div class="c-text-value-xl">292</div>
-            <div class="c-text-uppercase c-text-muted c-small">feeds</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.c-col-->
-  </div>
-  <!-- /.c-row-->
-  <div class="c-row">
-    <div class="c-col-md-12">
-      <div class="c-card">
-        <div class="c-card-header">Traffic &amp; Sales</div>
         <div class="c-card-body">
           <div class="c-row">
-            <div class="c-col-sm-6">
-              <div class="c-row">
-                <div class="c-col-sm-6">
-                  <div class="c-callout c-callout-info"><small class="c-text-muted">New Clients</small><br><strong class="c-h4">9,123</strong>
-                    <div class="c-chart-wrapper">
-                      <canvas id="sparkline-chart-1" width="100" height="30"></canvas>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.c-col-->
-                <div class="c-col-sm-6">
-                  <div class="c-callout c-callout-danger"><small class="c-text-muted">Recuring Clients</small><br><strong class="c-h4">22,643</strong>
-                    <div class="c-chart-wrapper">
-                      <canvas id="sparkline-chart-2" width="100" height="30"></canvas>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.c-col-->
-              </div>
-              <!-- /.c-row-->
-              <hr class="c-mt-0">
-              <div class="c-progress-group c-mb-4">
-                <div class="c-progress-group-prepend"><span class="c-progress-group-text">Monday</span></div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-progress-group c-mb-4">
-                <div class="c-progress-group-prepend"><span class="c-progress-group-text">Tuesday</span></div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 94%" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-progress-group c-mb-4">
-                <div class="c-progress-group-prepend"><span class="c-progress-group-text">Wednesday</span></div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 12%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-progress-group c-mb-4">
-                <div class="c-progress-group-prepend"><span class="c-progress-group-text">Thursday</span></div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 91%" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-progress-group c-mb-4">
-                <div class="c-progress-group-prepend"><span class="c-progress-group-text">Friday</span></div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 73%" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-progress-group c-mb-4">
-                <div class="c-progress-group-prepend"><span class="c-progress-group-text">Saturday</span></div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 53%" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-progress-group c-mb-4">
-                <div class="c-progress-group-prepend"><span class="c-progress-group-text">Sunday</span></div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 9%" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 69%" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
+            <div class="c-col-sm-5">
+              <h4 class="c-card-title c-mb-0">Traffic</h4>
+              <div class="c-small c-text-muted">November 2017</div>
             </div>
             <!-- /.c-col-->
-            <div class="c-col-sm-6">
-              <div class="c-row">
-                <div class="c-col-sm-6">
-                  <div class="c-callout c-callout-warning"><small class="c-text-muted">Pageviews</small><br><strong class="c-h4">78,623</strong>
-                    <div class="c-chart-wrapper">
-                      <canvas id="sparkline-chart-3" width="100" height="30"></canvas>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.c-col-->
-                <div class="c-col-sm-6">
-                  <div class="c-callout c-callout-success"><small class="c-text-muted">Organic</small><br><strong class="c-h4">49,123</strong>
-                    <div class="c-chart-wrapper">
-                      <canvas id="sparkline-chart-4" width="100" height="30"></canvas>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.c-col-->
-              </div>
-              <!-- /.c-row-->
-              <hr class="c-mt-0">
-              <div class="c-progress-group">
-                <div class="c-progress-group-header"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 64 64" class="c-icon c-progress-group-icon">
-<title>user</title>
-<path d="M51.45 42.957l-9.103-5.917 3.432-6.292c0.767-1.383 1.22-3.033 1.221-4.788v-9.96c0-7.732-6.268-14-14-14s-14 6.268-14 14v0 9.96c0.001 1.756 0.454 3.405 1.247 4.84l-0.026-0.052 3.432 6.292-9.103 5.917c-2.755 1.803-4.55 4.875-4.55 8.366 0 0.007 0 0.013 0 0.020v-0.001 10.658h46v-10.659c0-0.006 0-0.012 0-0.019 0-3.491-1.795-6.563-4.512-8.342l-0.038-0.023zM52 58h-38v-6.659c0-0.003 0-0.007 0-0.011 0-2.095 1.077-3.938 2.707-5.005l0.023-0.014 12.208-7.935-5.205-9.543c-0.46-0.83-0.732-1.82-0.733-2.873v-9.96c0-5.523 4.477-10 10-10s10 4.477 10 10v0 9.96c-0.001 1.053-0.272 2.043-0.748 2.904l0.016-0.031-5.205 9.543 12.208 7.935c1.653 1.082 2.73 2.925 2.73 5.019 0 0.004 0 0.008 0 0.012v-0.001z"></path>
-</svg>
-                  <div>Male</div>
-                  <div class="c-ml-auto c-font-weight-bold">43%</div>
-                </div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-progress-group c-mb-5">
-                <div class="c-progress-group-header"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 64 64" class="c-icon c-progress-group-icon">
-<title>user-female</title>
-<path d="M50.45 42.957l-9.103-5.917 1.658-3.040h2.928c0 0 0 0 0 0 3.314 0 6-2.686 6-6 0-0.854-0.178-1.667-0.5-2.402l0.015 0.039-6.251-14.315c-1.985-5.478-7.142-9.321-13.198-9.321s-11.213 3.843-13.167 9.224l-0.031 0.097-6.251 14.315c-0.307 0.697-0.485 1.509-0.485 2.363 0 3.314 2.686 6 6 6 0 0 0 0 0 0h2.928l1.658 3.040-9.103 5.917c-2.755 1.803-4.55 4.875-4.55 8.366 0 0.007 0 0.013 0 0.020v-0.001 10.658h46v-10.659c0-0.006 0-0.012 0-0.019 0-3.491-1.795-6.563-4.512-8.342l-0.038-0.023zM51 58h-38v-6.659c0-0.003 0-0.007 0-0.011 0-2.095 1.077-3.938 2.707-5.005l0.023-0.014 12.208-7.935-4.569-8.376h-5.303c-1.105-0-2-0.895-2-2 0-0.283 0.059-0.552 0.165-0.797l-0.005 0.013 6.272-14.362 0.056-0.143c1.403-3.941 5.101-6.711 9.446-6.711s8.044 2.771 9.425 6.642l0.022 0.070 0.025 0.072 6.302 14.432c0.101 0.231 0.16 0.501 0.16 0.784 0 1.105-0.895 2-2 2h-5.303l-4.569 8.376 12.208 7.935c1.653 1.082 2.73 2.925 2.73 5.019 0 0.004 0 0.008 0 0.012v-0.001z"></path>
-</svg>
-                  <div>Female</div>
-                  <div class="c-ml-auto c-font-weight-bold">37%</div>
-                </div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-progress-group">
-                <div class="c-progress-group-header c-align-items-end"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 64 64" class="c-icon c-progress-group-icon">
-<title>globe</title>
-<path d="M32 2c-16.569 0-30 13.431-30 30s13.431 30 30 30 30-13.431 30-30-13.431-30-30-30zM57.94 30.25h-11.965c-0.188-7.050-1.467-13.645-3.652-18.732-0.694-1.634-1.464-3.032-2.354-4.341l0.056 0.087c9.901 3.21 17.198 12.197 17.915 22.986zM32 58c-2.322 0-4.744-2.541-6.648-6.972-1.941-4.519-3.099-10.412-3.315-16.778h19.925c-0.216 6.366-1.374 12.259-3.315 16.778-1.903 4.431-4.326 6.972-6.648 6.972zM22.026 30.25c0.183-6.51 1.347-12.545 3.326-17.153 1.903-4.431 4.326-6.972 6.648-6.972s4.744 2.541 6.648 6.972c1.979 4.608 3.144 10.643 3.326 17.153zM23.975 7.264c-0.834 1.222-1.604 2.621-2.236 4.092l-0.062 0.163c-2.185 5.087-3.464 11.681-3.652 18.732h-11.965c0.717-10.789 8.014-19.776 17.915-22.986zM6.098 34.25h11.937c0.222 6.909 1.496 13.36 3.642 18.357 0.671 1.576 1.403 2.921 2.247 4.186l-0.058-0.092c-9.692-3.19-16.865-11.924-17.768-22.45zM40.134 56.7c0.785-1.173 1.518-2.518 2.126-3.929l0.063-0.164c2.146-4.996 3.419-11.447 3.642-18.357h11.937c-0.903 10.526-8.076 19.26-17.768 22.45z"></path>
-</svg>
-                  <div>Organic Search</div>
-                  <div class="c-ml-auto c-font-weight-bold c-mr-2">191.235</div>
-                  <div class="c-text-muted c-small">(56%)</div>
-                </div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-progress-group">
-                <div class="c-progress-group-header c-align-items-end"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 64 64" class="c-icon c-progress-group-icon">
-<title>social-facebook</title>
-<path d="M38 62h-14v-25h-9v-14h9v-6c0-9.112 5.888-15 15-15 3.078 0 5.992 0.574 7.557 0.883 0.31 0.061 0.604 0.119 0.736 0.139l1.707 0.253v12.726h-8c-2.057 0-2.603 0.338-2.721 0.441-0.104 0.091-0.279 0.415-0.279 1.559v5h10.21l-1.4 14h-8.81zM28 58h6v-25h9.19l0.6-6h-9.79v-9c0-1.456 0.187-3.292 1.644-4.568 1.131-0.991 2.783-1.432 5.356-1.432h4v-5.345c-1.508-0.286-3.745-0.655-6-0.655-6.888 0-11 4.112-11 11v10h-9v6h9z"></path>
-</svg>
-                  <div>Facebook</div>
-                  <div class="c-ml-auto c-font-weight-bold c-mr-2">51.223</div>
-                  <div class="c-text-muted c-small">(15%)</div>
-                </div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-progress-group">
-                <div class="c-progress-group-header c-align-items-end"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 64 64" class="c-icon c-progress-group-icon">
-<title>social-twitter</title>
-<path d="M56.375 12h-4.784c-0.97-0.828-2.072-1.548-3.259-2.118l-0.091-0.039c-1.758-0.854-3.824-1.353-6.006-1.353h-0c-0.001 0-0.002 0-0.003 0-7.515 0-13.712 5.643-14.585 12.923l-0.007 0.070c-5.797-1.357-11.254-5.275-14.15-10.439l-3.42-6.099-3.524 6.040c-1.121 1.922-1.847 3.73-2.426 6.045-3.017 12.067 0.381 19.876 3.762 24.303 1.345 1.747 2.879 3.255 4.595 4.531l0.062 0.044c-0.855 0.198-1.838 0.313-2.847 0.314h-0.001c-0.249 0-0.502-0.008-0.75-0.022l-6.815-0.405v7.474l1.927 1.168c0.298 0.181 7.427 4.424 18.487 4.424 5.281 0 10.236-1.055 14.729-3.136 4.271-2.009 7.883-4.748 10.823-8.092l0.031-0.036c5.616-6.369 8.836-14.809 8.836-23.156 0-0.106 0.004-0.273 0.009-0.459l5.776-11.98zM53 23s-0.041 0.976-0.041 1.439c0 14.134-10.758 30.42-30.42 30.42-10.071 0-16.414-3.844-16.414-3.844v-0.976l2.578 0.153q0.496 0.029 0.988 0.029c4.61 0 8.855-1.908 12.286-4.597-4.7-0.099-18.977-7.624-13.977-27.624 0.452-1.892 1.14-3.56 2.046-5.083l-0.046 0.083c4.238 7.557 13 13 22 13-0.166-0.794-0.457-1.991-0.457-2.819 0-0.001 0-0.003 0-0.005 0-5.902 4.785-10.687 10.687-10.687 0.002 0 0.003 0 0.005 0h-0c3.078 0 5.813 1.425 7.766 3.51h6.375z"></path>
-</svg>
-                  <div>Twitter</div>
-                  <div class="c-ml-auto c-font-weight-bold c-mr-2">37.564</div>
-                  <div class="c-text-muted c-small">(11%)</div>
-                </div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 11%" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-progress-group">
-                <div class="c-progress-group-header c-align-items-end"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 64 64" class="c-icon c-progress-group-icon">
-<title>social-linkedin</title>
-<path d="M14.806 26.138h7.416v23.862h-7.416v-23.862z"></path>
-<path d="M18.516 14.277c-0 0-0.001 0-0.002 0-2.375 0-4.3 1.925-4.3 4.3s1.925 4.3 4.3 4.3c2.375 0 4.3-1.925 4.3-4.3 0-0 0-0.001 0-0.001v0c-0.001-2.373-1.924-4.297-4.298-4.298h-0z"></path>
-<path d="M41.104 25.545c-3.608 0-6.027 1.978-7.017 3.854h-0.099v-3.261h-7.113v23.862h7.41v-11.804c0-3.112 0.593-6.126 4.451-6.126 3.803 0 3.854 3.559 3.854 6.326v11.604h7.411v-13.089c0-6.424-1.386-11.366-8.896-11.366z"></path>
-<path d="M53.3 3h-42.61c-4.241 0-7.691 3.411-7.691 7.603v42.79c0 4.195 3.45 7.607 7.691 7.607h42.61c4.247 0 7.701-3.413 7.701-7.607v-42.79c0-4.192-3.455-7.603-7.701-7.603zM57.001 53.393c0 1.991-1.661 3.607-3.701 3.607h-42.61c-2.036 0-3.691-1.616-3.691-3.607v-42.79c0-1.989 1.654-3.603 3.691-3.603h42.61c2.040 0 3.701 1.614 3.701 3.603z"></path>
-</svg>
-                  <div>LinkedIn</div>
-                  <div class="c-ml-auto c-font-weight-bold c-mr-2">27.319</div>
-                  <div class="c-text-muted c-small">(8%)</div>
-                </div>
-                <div class="c-progress-group-bars">
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
+            <div class="c-col-sm-7 c-d-none c-d-md-block">
+              <button class="c-btn c-btn-primary c-float-right" type="button">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 64 64" class="c-btn-icon">
+                  <title>cloud-download</title>
+                  <path d="M34 54.196v-28.196h-4v28.196l-6.485-6.485-2.828 2.828 11.314 11.314 11.314-11.314-2.828-2.828-6.485 6.485z"></path>
+                  <path d="M50 20c0-9.925-8.075-18-18-18s-18 8.075-18 18c-6.627 0-12 5.373-12 12s5.373 12 12 12v0h10v-4h-10c-4.418 0-8-3.582-8-8s3.582-8 8-8v0h4v-4c0-7.732 6.268-14 14-14s14 6.268 14 14v0 4h4c4.418 0 8 3.582 8 8s-3.582 8-8 8v0h-10v4h10c6.627 0 12-5.373 12-12s-5.373-12-12-12v0z"></path>
+                </svg></button>
+              <div class="c-btn-group c-btn-group-toggle c-float-right c-mr-3" data-toggle="buttons">
+                <label class="c-btn c-btn-outline-secondary">
+                  <input id="option1" type="radio" name="options" autocomplete="off"> Day
+                </label>
+                <label class="c-btn c-btn-outline-secondary c-active">
+                  <input id="option2" type="radio" name="options" autocomplete="off" checked=""> Month
+                </label>
+                <label class="c-btn c-btn-outline-secondary">
+                  <input id="option3" type="radio" name="options" autocomplete="off"> Year
+                </label>
               </div>
             </div>
             <!-- /.c-col-->
           </div>
-          <!-- /.c-row--><br>
-          <table class="c-table c-table-responsive-sm c-table-hover c-table-outline c-mb-0">
-            <thead class="c-thead-light">
-              <tr>
-                <th class="c-text-center"><i class="icon-people"></i></th>
-                <th>User</th>
-                <th class="c-text-center">Country</th>
-                <th>Usage</th>
-                <th class="c-text-center">Payment Method</th>
-                <th>Activity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="c-text-center">
-                  <div class="c-avatar"><img class="c-img-avatar" src="assets/img/avatars/1.jpg" alt="admin@bootstrapmaster.com"><span class="c-avatar-status c-badge-success"></span></div>
-                </td>
-                <td>
-                  <div>Yiorgos Avraamu</div>
-                  <div class="c-small c-text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
-                </td>
-                <td class="c-text-center"><i class="flag-icon flag-icon-us c-h4 c-mb-0" id="us" title="us"></i></td>
-                <td>
-                  <div class="c-clearfix">
-                    <div class="c-float-left"><strong>50%</strong></div>
-                    <div class="c-float-right"><small class="c-text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-                <td class="c-text-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="28" class="c-icon"><path d="M482.9 410.3c0 6.8-4.6 11.7-11.2 11.7-6.8 0-11.2-5.2-11.2-11.7 0-6.5 4.4-11.7 11.2-11.7 6.6 0 11.2 5.2 11.2 11.7zm-310.8-11.7c-7.1 0-11.2 5.2-11.2 11.7 0 6.5 4.1 11.7 11.2 11.7 6.5 0 10.9-4.9 10.9-11.7-.1-6.5-4.4-11.7-10.9-11.7zm117.5-.3c-5.4 0-8.7 3.5-9.5 8.7h19.1c-.9-5.7-4.4-8.7-9.6-8.7zm107.8.3c-6.8 0-10.9 5.2-10.9 11.7 0 6.5 4.1 11.7 10.9 11.7 6.8 0 11.2-4.9 11.2-11.7 0-6.5-4.4-11.7-11.2-11.7zm105.9 26.1c0 .3.3.5.3 1.1 0 .3-.3.5-.3 1.1-.3.3-.3.5-.5.8-.3.3-.5.5-1.1.5-.3.3-.5.3-1.1.3-.3 0-.5 0-1.1-.3-.3 0-.5-.3-.8-.5-.3-.3-.5-.5-.5-.8-.3-.5-.3-.8-.3-1.1 0-.5 0-.8.3-1.1 0-.5.3-.8.5-1.1.3-.3.5-.3.8-.5.5-.3.8-.3 1.1-.3.5 0 .8 0 1.1.3.5.3.8.3 1.1.5s.2.6.5 1.1zm-2.2 1.4c.5 0 .5-.3.8-.3.3-.3.3-.5.3-.8 0-.3 0-.5-.3-.8-.3 0-.5-.3-1.1-.3h-1.6v3.5h.8V426h.3l1.1 1.4h.8l-1.1-1.3zM576 81v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V81c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM64 220.6c0 76.5 62.1 138.5 138.5 138.5 27.2 0 53.9-8.2 76.5-23.1-72.9-59.3-72.4-171.2 0-230.5-22.6-15-49.3-23.1-76.5-23.1-76.4-.1-138.5 62-138.5 138.2zm224 108.8c70.5-55 70.2-162.2 0-217.5-70.2 55.3-70.5 162.6 0 217.5zm-142.3 76.3c0-8.7-5.7-14.4-14.7-14.7-4.6 0-9.5 1.4-12.8 6.5-2.4-4.1-6.5-6.5-12.2-6.5-3.8 0-7.6 1.4-10.6 5.4V392h-8.2v36.7h8.2c0-18.9-2.5-30.2 9-30.2 10.2 0 8.2 10.2 8.2 30.2h7.9c0-18.3-2.5-30.2 9-30.2 10.2 0 8.2 10 8.2 30.2h8.2v-23zm44.9-13.7h-7.9v4.4c-2.7-3.3-6.5-5.4-11.7-5.4-10.3 0-18.2 8.2-18.2 19.3 0 11.2 7.9 19.3 18.2 19.3 5.2 0 9-1.9 11.7-5.4v4.6h7.9V392zm40.5 25.6c0-15-22.9-8.2-22.9-15.2 0-5.7 11.9-4.8 18.5-1.1l3.3-6.5c-9.4-6.1-30.2-6-30.2 8.2 0 14.3 22.9 8.3 22.9 15 0 6.3-13.5 5.8-20.7.8l-3.5 6.3c11.2 7.6 32.6 6 32.6-7.5zm35.4 9.3l-2.2-6.8c-3.8 2.1-12.2 4.4-12.2-4.1v-16.6h13.1V392h-13.1v-11.2h-8.2V392h-7.6v7.3h7.6V416c0 17.6 17.3 14.4 22.6 10.9zm13.3-13.4h27.5c0-16.2-7.4-22.6-17.4-22.6-10.6 0-18.2 7.9-18.2 19.3 0 20.5 22.6 23.9 33.8 14.2l-3.8-6c-7.8 6.4-19.6 5.8-21.9-4.9zm59.1-21.5c-4.6-2-11.6-1.8-15.2 4.4V392h-8.2v36.7h8.2V408c0-11.6 9.5-10.1 12.8-8.4l2.4-7.6zm10.6 18.3c0-11.4 11.6-15.1 20.7-8.4l3.8-6.5c-11.6-9.1-32.7-4.1-32.7 15 0 19.8 22.4 23.8 32.7 15l-3.8-6.5c-9.2 6.5-20.7 2.6-20.7-8.6zm66.7-18.3H408v4.4c-8.3-11-29.9-4.8-29.9 13.9 0 19.2 22.4 24.7 29.9 13.9v4.6h8.2V392zm33.7 0c-2.4-1.2-11-2.9-15.2 4.4V392h-7.9v36.7h7.9V408c0-11 9-10.3 12.8-8.4l2.4-7.6zm40.3-14.9h-7.9v19.3c-8.2-10.9-29.9-5.1-29.9 13.9 0 19.4 22.5 24.6 29.9 13.9v4.6h7.9v-51.7zm7.6-75.1v4.6h.8V302h1.9v-.8h-4.6v.8h1.9zm6.6 123.8c0-.5 0-1.1-.3-1.6-.3-.3-.5-.8-.8-1.1-.3-.3-.8-.5-1.1-.8-.5 0-1.1-.3-1.6-.3-.3 0-.8.3-1.4.3-.5.3-.8.5-1.1.8-.5.3-.8.8-.8 1.1-.3.5-.3 1.1-.3 1.6 0 .3 0 .8.3 1.4 0 .3.3.8.8 1.1.3.3.5.5 1.1.8.5.3 1.1.3 1.4.3.5 0 1.1 0 1.6-.3.3-.3.8-.5 1.1-.8.3-.3.5-.8.8-1.1.3-.6.3-1.1.3-1.4zm3.2-124.7h-1.4l-1.6 3.5-1.6-3.5h-1.4v5.4h.8v-4.1l1.6 3.5h1.1l1.4-3.5v4.1h1.1v-5.4zm4.4-80.5c0-76.2-62.1-138.3-138.5-138.3-27.2 0-53.9 8.2-76.5 23.1 72.1 59.3 73.2 171.5 0 230.5 22.6 15 49.5 23.1 76.5 23.1 76.4.1 138.5-61.9 138.5-138.4z"></path></svg></td>
-                <td>
-                  <div class="c-small c-text-muted">Last login</div><strong>10 sec ago</strong>
-                </td>
-              </tr>
-              <tr>
-                <td class="c-text-center">
-                  <div class="c-avatar"><img class="c-img-avatar" src="assets/img/avatars/2.jpg" alt="admin@bootstrapmaster.com"><span class="c-avatar-status c-badge-danger"></span></div>
-                </td>
-                <td>
-                  <div>Avram Tarasios</div>
-                  <div class="c-small c-text-muted"><span>Recurring</span> | Registered: Jan 1, 2015</div>
-                </td>
-                <td class="c-text-center"><i class="flag-icon flag-icon-br c-h4 c-mb-0" id="br" title="br"></i></td>
-                <td>
-                  <div class="c-clearfix">
-                    <div class="c-float-left"><strong>10%</strong></div>
-                    <div class="c-float-right"><small class="c-text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-                <td class="c-text-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="28" class="c-icon"><path d="M470.1 231.3s7.6 37.2 9.3 45H446c3.3-8.9 16-43.5 16-43.5-.2.3 3.3-9.1 5.3-14.9l2.8 13.4zM576 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM152.5 331.2L215.7 176h-42.5l-39.3 106-4.3-21.5-14-71.4c-2.3-9.9-9.4-12.7-18.2-13.1H32.7l-.7 3.1c15.8 4 29.9 9.8 42.2 17.1l35.8 135h42.5zm94.4.2L272.1 176h-40.2l-25.1 155.4h40.1zm139.9-50.8c.2-17.7-10.6-31.2-33.7-42.3-14.1-7.1-22.7-11.9-22.7-19.2.2-6.6 7.3-13.4 23.1-13.4 13.1-.3 22.7 2.8 29.9 5.9l3.6 1.7 5.5-33.6c-7.9-3.1-20.5-6.6-36-6.6-39.7 0-67.6 21.2-67.8 51.4-.3 22.3 20 34.7 35.2 42.2 15.5 7.6 20.8 12.6 20.8 19.3-.2 10.4-12.6 15.2-24.1 15.2-16 0-24.6-2.5-37.7-8.3l-5.3-2.5-5.6 34.9c9.4 4.3 26.8 8.1 44.8 8.3 42.2.1 69.7-20.8 70-53zM528 331.4L495.6 176h-31.1c-9.6 0-16.9 2.8-21 12.9l-59.7 142.5H426s6.9-19.2 8.4-23.3H486c1.2 5.5 4.8 23.3 4.8 23.3H528z"></path></svg></td>
-                <td>
-                  <div class="c-small c-text-muted">Last login</div><strong>5 minutes ago</strong>
-                </td>
-              </tr>
-              <tr>
-                <td class="c-text-center">
-                  <div class="c-avatar"><img class="c-img-avatar" src="assets/img/avatars/3.jpg" alt="admin@bootstrapmaster.com"><span class="c-avatar-status c-badge-warning"></span></div>
-                </td>
-                <td>
-                  <div>Quintin Ed</div>
-                  <div class="c-small c-text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
-                </td>
-                <td class="c-text-center"><i class="flag-icon flag-icon-in c-h4 c-mb-0" id="in" title="in"></i></td>
-                <td>
-                  <div class="c-clearfix">
-                    <div class="c-float-left"><strong>74%</strong></div>
-                    <div class="c-float-right"><small class="c-text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 74%" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-                <td class="c-text-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="28" class="c-icon"><path d="M492.4 220.8c-8.9 0-18.7 6.7-18.7 22.7h36.7c0-16-9.3-22.7-18-22.7zM375 223.4c-8.2 0-13.3 2.9-17 7l.2 52.8c3.5 3.7 8.5 6.7 16.8 6.7 13.1 0 21.9-14.3 21.9-33.4 0-18.6-9-33.2-21.9-33.1zM528 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM122.2 281.1c0 25.6-20.3 40.1-49.9 40.3-12.2 0-25.6-2.4-38.8-8.1v-33.9c12 6.4 27.1 11.3 38.9 11.3 7.9 0 13.6-2.1 13.6-8.7 0-17-54-10.6-54-49.9 0-25.2 19.2-40.2 48-40.2 11.8 0 23.5 1.8 35.3 6.5v33.4c-10.8-5.8-24.5-9.1-35.3-9.1-7.5 0-12.1 2.2-12.1 7.7 0 16 54.3 8.4 54.3 50.7zm68.8-56.6h-27V275c0 20.9 22.5 14.4 27 12.6v28.9c-4.7 2.6-13.3 4.7-24.9 4.7-21.1 0-36.9-15.5-36.9-36.5l.2-113.9 34.7-7.4v30.8H191zm74 2.4c-4.5-1.5-18.7-3.6-27.1 7.4v84.4h-35.5V194.2h30.7l2.2 10.5c8.3-15.3 24.9-12.2 29.6-10.5h.1zm44.1 91.8h-35.7V194.2h35.7zm0-142.9l-35.7 7.6v-28.9l35.7-7.6zm74.1 145.5c-12.4 0-20-5.3-25.1-9l-.1 40.2-35.5 7.5V194.2h31.3l1.8 8.8c4.9-4.5 13.9-11.1 27.8-11.1 24.9 0 48.4 22.5 48.4 63.8 0 45.1-23.2 65.5-48.6 65.6zm160.4-51.5h-69.5c1.6 16.6 13.8 21.5 27.6 21.5 14.1 0 25.2-3 34.9-7.9V312c-9.7 5.3-22.4 9.2-39.4 9.2-34.6 0-58.8-21.7-58.8-64.5 0-36.2 20.5-64.9 54.3-64.9 33.7 0 51.3 28.7 51.3 65.1 0 3.5-.3 10.9-.4 12.9z"></path></svg></td>
-                <td>
-                  <div class="c-small c-text-muted">Last login</div><strong>1 hour ago</strong>
-                </td>
-              </tr>
-              <tr>
-                <td class="c-text-center">
-                  <div class="c-avatar"><img class="c-img-avatar" src="assets/img/avatars/4.jpg" alt="admin@bootstrapmaster.com"><span class="c-avatar-status c-badge-secondary"></span></div>
-                </td>
-                <td>
-                  <div>Enéas Kwadwo</div>
-                  <div class="c-small c-text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
-                </td>
-                <td class="c-text-center"><i class="flag-icon flag-icon-fr c-h4 c-mb-0" id="fr" title="fr"></i></td>
-                <td>
-                  <div class="c-clearfix">
-                    <div class="c-float-left"><strong>98%</strong></div>
-                    <div class="c-float-right"><small class="c-text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 98%" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-                <td class="c-text-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="28" class="c-icon"><path d="M186.3 258.2c0 12.2-9.7 21.5-22 21.5-9.2 0-16-5.2-16-15 0-12.2 9.5-22 21.7-22 9.3 0 16.3 5.7 16.3 15.5zM80.5 209.7h-4.7c-1.5 0-3 1-3.2 2.7l-4.3 26.7 8.2-.3c11 0 19.5-1.5 21.5-14.2 2.3-13.4-6.2-14.9-17.5-14.9zm284 0H360c-1.8 0-3 1-3.2 2.7l-4.2 26.7 8-.3c13 0 22-3 22-18-.1-10.6-9.6-11.1-18.1-11.1zM576 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM128.3 215.4c0-21-16.2-28-34.7-28h-40c-2.5 0-5 2-5.2 4.7L32 294.2c-.3 2 1.2 4 3.2 4h19c2.7 0 5.2-2.9 5.5-5.7l4.5-26.6c1-7.2 13.2-4.7 18-4.7 28.6 0 46.1-17 46.1-45.8zm84.2 8.8h-19c-3.8 0-4 5.5-4.2 8.2-5.8-8.5-14.2-10-23.7-10-24.5 0-43.2 21.5-43.2 45.2 0 19.5 12.2 32.2 31.7 32.2 9 0 20.2-4.9 26.5-11.9-.5 1.5-1 4.7-1 6.2 0 2.3 1 4 3.2 4H200c2.7 0 5-2.9 5.5-5.7l10.2-64.3c.3-1.9-1.2-3.9-3.2-3.9zm40.5 97.9l63.7-92.6c.5-.5.5-1 .5-1.7 0-1.7-1.5-3.5-3.2-3.5h-19.2c-1.7 0-3.5 1-4.5 2.5l-26.5 39-11-37.5c-.8-2.2-3-4-5.5-4h-18.7c-1.7 0-3.2 1.8-3.2 3.5 0 1.2 19.5 56.8 21.2 62.1-2.7 3.8-20.5 28.6-20.5 31.6 0 1.8 1.5 3.2 3.2 3.2h19.2c1.8-.1 3.5-1.1 4.5-2.6zm159.3-106.7c0-21-16.2-28-34.7-28h-39.7c-2.7 0-5.2 2-5.5 4.7l-16.2 102c-.2 2 1.3 4 3.2 4h20.5c2 0 3.5-1.5 4-3.2l4.5-29c1-7.2 13.2-4.7 18-4.7 28.4 0 45.9-17 45.9-45.8zm84.2 8.8h-19c-3.8 0-4 5.5-4.3 8.2-5.5-8.5-14-10-23.7-10-24.5 0-43.2 21.5-43.2 45.2 0 19.5 12.2 32.2 31.7 32.2 9.3 0 20.5-4.9 26.5-11.9-.3 1.5-1 4.7-1 6.2 0 2.3 1 4 3.2 4H484c2.7 0 5-2.9 5.5-5.7l10.2-64.3c.3-1.9-1.2-3.9-3.2-3.9zm47.5-33.3c0-2-1.5-3.5-3.2-3.5h-18.5c-1.5 0-3 1.2-3.2 2.7l-16.2 104-.3.5c0 1.8 1.5 3.5 3.5 3.5h16.5c2.5 0 5-2.9 5.2-5.7L544 191.2v-.3zm-90 51.8c-12.2 0-21.7 9.7-21.7 22 0 9.7 7 15 16.2 15 12 0 21.7-9.2 21.7-21.5.1-9.8-6.9-15.5-16.2-15.5z"></path></svg></td>
-                <td>
-                  <div class="c-small c-text-muted">Last login</div><strong>Last month</strong>
-                </td>
-              </tr>
-              <tr>
-                <td class="c-text-center">
-                  <div class="c-avatar"><img class="c-img-avatar" src="assets/img/avatars/5.jpg" alt="admin@bootstrapmaster.com"><span class="c-avatar-status c-badge-success"></span></div>
-                </td>
-                <td>
-                  <div>Agapetus Tadeáš</div>
-                  <div class="c-small c-text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
-                </td>
-                <td class="c-text-center"><i class="flag-icon flag-icon-es c-h4 c-mb-0" id="es" title="es"></i></td>
-                <td>
-                  <div class="c-clearfix">
-                    <div class="c-float-left"><strong>22%</strong></div>
-                    <div class="c-float-right"><small class="c-text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-                <td class="c-text-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="28" class="c-icon"><path d="M302.2 218.4c0 17.2-10.5 27.1-29 27.1h-24.3v-54.2h24.4c18.4 0 28.9 9.8 28.9 27.1zm47.5 62.6c0 8.3 7.2 13.7 18.5 13.7 14.4 0 25.2-9.1 25.2-21.9v-7.7l-23.5 1.5c-13.3.9-20.2 5.8-20.2 14.4zM576 79v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM127.8 197.2c8.4.7 16.8-4.2 22.1-10.4 5.2-6.4 8.6-15 7.7-23.7-7.4.3-16.6 4.9-21.9 11.3-4.8 5.5-8.9 14.4-7.9 22.8zm60.6 74.5c-.2-.2-19.6-7.6-19.8-30-.2-18.7 15.3-27.7 16-28.2-8.8-13-22.4-14.4-27.1-14.7-12.2-.7-22.6 6.9-28.4 6.9-5.9 0-14.7-6.6-24.3-6.4-12.5.2-24.2 7.3-30.5 18.6-13.1 22.6-3.4 56 9.3 74.4 6.2 9.1 13.7 19.1 23.5 18.7 9.3-.4 13-6 24.2-6 11.3 0 14.5 6 24.3 5.9 10.2-.2 16.5-9.1 22.8-18.2 6.9-10.4 9.8-20.4 10-21zm135.4-53.4c0-26.6-18.5-44.8-44.9-44.8h-51.2v136.4h21.2v-46.6h29.3c26.8 0 45.6-18.4 45.6-45zm90 23.7c0-19.7-15.8-32.4-40-32.4-22.5 0-39.1 12.9-39.7 30.5h19.1c1.6-8.4 9.4-13.9 20-13.9 13 0 20.2 6 20.2 17.2v7.5l-26.4 1.6c-24.6 1.5-37.9 11.6-37.9 29.1 0 17.7 13.7 29.4 33.4 29.4 13.3 0 25.6-6.7 31.2-17.4h.4V310h19.6v-68zM516 210.9h-21.5l-24.9 80.6h-.4l-24.9-80.6H422l35.9 99.3-1.9 6c-3.2 10.2-8.5 14.2-17.9 14.2-1.7 0-4.9-.2-6.2-.3v16.4c1.2.4 6.5.5 8.1.5 20.7 0 30.4-7.9 38.9-31.8L516 210.9z"></path></svg></td>
-                <td>
-                  <div class="c-small c-text-muted">Last login</div><strong>Last week</strong>
-                </td>
-              </tr>
-              <tr>
-                <td class="c-text-center">
-                  <div class="c-avatar"><img class="c-img-avatar" src="assets/img/avatars/6.jpg" alt="admin@bootstrapmaster.com"><span class="c-avatar-status c-badge-danger"></span></div>
-                </td>
-                <td>
-                  <div>Friderik Dávid</div>
-                  <div class="c-small c-text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
-                </td>
-                <td class="c-text-center"><i class="flag-icon flag-icon-pl c-h4 c-mb-0" id="pl" title="pl"></i></td>
-                <td>
-                  <div class="c-clearfix">
-                    <div class="c-float-left"><strong>43%</strong></div>
-                    <div class="c-float-right"><small class="c-text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
-                  </div>
-                  <div class="c-progress c-progress-xs">
-                    <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-                <td class="c-text-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="28" class="c-icon"><path d="M325.1 167.8c0-16.4-14.1-18.4-27.4-18.4l-39.1-.3v69.3H275v-25.1h18c18.4 0 14.5 10.3 14.8 25.1h16.6v-13.5c0-9.2-1.5-15.1-11-18.4 7.4-3 11.8-10.7 11.7-18.7zm-29.4 11.3H275v-15.3h21c5.1 0 10.7 1 10.7 7.4 0 6.6-5.3 7.9-11 7.9zM279 268.6h-52.7l-21 22.8-20.5-22.8h-66.5l-.1 69.3h65.4l21.3-23 20.4 23h32.2l.1-23.3c18.9 0 49.3 4.6 49.3-23.3 0-17.3-12.3-22.7-27.9-22.7zm-103.8 54.7h-40.6v-13.8h36.3v-14.1h-36.3v-12.5h41.7l17.9 20.2zm65.8 8.2l-25.3-28.1L241 276zm37.8-31h-21.2v-17.6h21.5c5.6 0 10.2 2.3 10.2 8.4 0 6.4-4.6 9.2-10.5 9.2zm-31.6-136.7v-14.6h-55.5v69.3h55.5v-14.3h-38.9v-13.8h37.8v-14.1h-37.8v-12.5zM576 255.4h-.2zm-194.6 31.9c0-16.4-14.1-18.7-27.1-18.7h-39.4l-.1 69.3h16.6l.1-25.3h17.6c11 0 14.8 2 14.8 13.8l-.1 11.5h16.6l.1-13.8c0-8.9-1.8-15.1-11-18.4 7.7-3.1 11.8-10.8 11.9-18.4zm-29.2 11.2h-20.7v-15.6h21c5.1 0 10.7 1 10.7 7.4 0 6.9-5.4 8.2-11 8.2zm-172.8-80v-69.3h-27.6l-19.7 47-21.7-47H83.3v65.7l-28.1-65.7H30.7L1 218.5h17.9l6.4-15.3h34.5l6.4 15.3H100v-54.2l24 54.2h14.6l24-54.2v54.2zM31.2 188.8l11.2-27.6 11.5 27.6zm477.4 158.9v-4.5c-10.8 5.6-3.9 4.5-156.7 4.5 0-25.2.1-23.9 0-25.2-1.7-.1-3.2-.1-9.4-.1 0 17.9-.1 6.8-.1 25.3h-39.6c0-12.1.1-15.3.1-29.2-10 6-22.8 6.4-34.3 6.2 0 14.7-.1 8.3-.1 23h-48.9c-5.1-5.7-2.7-3.1-15.4-17.4-3.2 3.5-12.8 13.9-16.1 17.4h-82v-92.3h83.1c5 5.6 2.8 3.1 15.5 17.2 3.2-3.5 12.2-13.4 15.7-17.2h58c9.8 0 18 1.9 24.3 5.6v-5.6c54.3 0 64.3-1.4 75.7 5.1v-5.1h78.2v5.2c11.4-6.9 19.6-5.2 64.9-5.2v5c10.3-5.9 16.6-5.2 54.3-5V80c0-26.5-21.5-48-48-48h-480c-26.5 0-48 21.5-48 48v109.8c9.4-21.9 19.7-46 23.1-53.9h39.7c4.3 10.1 1.6 3.7 9 21.1v-21.1h46c2.9 6.2 11.1 24 13.9 30 5.8-13.6 10.1-23.9 12.6-30h103c0-.1 11.5 0 11.6 0 43.7.2 53.6-.8 64.4 5.3v-5.3H363v9.3c7.6-6.1 17.9-9.3 30.7-9.3h27.6c0 .5 1.9.3 2.3.3H456c4.2 9.8 2.6 6 8.8 20.6v-20.6h43.3c4.9 8-1-1.8 11.2 18.4v-18.4h39.9v92h-41.6c-5.4-9-1.4-2.2-13.2-21.9v21.9h-52.8c-6.4-14.8-.1-.3-6.6-15.3h-19c-4.2 10-2.2 5.2-6.4 15.3h-26.8c-12.3 0-22.3-3-29.7-8.9v8.9h-66.5c-.3-13.9-.1-24.8-.1-24.8-1.8-.3-3.4-.2-9.8-.2v25.1H151.2v-11.4c-2.5 5.6-2.7 5.9-5.1 11.4h-29.5c-4-8.9-2.9-6.4-5.1-11.4v11.4H58.6c-4.2-10.1-2.2-5.3-6.4-15.3H33c-4.2 10-2.2 5.2-6.4 15.3H0V432c0 26.5 21.5 48 48 48h480.1c26.5 0 48-21.5 48-48v-90.4c-12.7 8.3-32.7 6.1-67.5 6.1zm36.3-64.5H575v-14.6h-32.9c-12.8 0-23.8 6.6-23.8 20.7 0 33 42.7 12.8 42.7 27.4 0 5.1-4.3 6.4-8.4 6.4h-32l-.1 14.8h32c8.4 0 17.6-1.8 22.5-8.9v-25.8c-10.5-13.8-39.3-1.3-39.3-13.5 0-5.8 4.6-6.5 9.2-6.5zm-57 39.8h-32.2l-.1 14.8h32.2c14.8 0 26.2-5.6 26.2-22 0-33.2-42.9-11.2-42.9-26.3 0-5.6 4.9-6.4 9.2-6.4h30.4v-14.6h-33.2c-12.8 0-23.5 6.6-23.5 20.7 0 33 42.7 12.5 42.7 27.4-.1 5.4-4.7 6.4-8.8 6.4zm-42.2-40.1v-14.3h-55.2l-.1 69.3h55.2l.1-14.3-38.6-.3v-13.8H445v-14.1h-37.8v-12.5zm-56.3-108.1c-.3.2-1.4 2.2-1.4 7.6 0 6 .9 7.7 1.1 7.9.2.1 1.1.5 3.4.5l7.3-16.9c-1.1 0-2.1-.1-3.1-.1-5.6 0-7 .7-7.3 1zm20.4-10.5h-.1zm-16.2-15.2c-23.5 0-34 12-34 35.3 0 22.2 10.2 34 33 34h19.2l6.4-15.3h34.3l6.6 15.3h33.7v-51.9l31.2 51.9h23.6v-69h-16.9v48.1l-29.1-48.1h-25.3v65.4l-27.9-65.4h-24.8l-23.5 54.5h-7.4c-13.3 0-16.1-8.1-16.1-19.9 0-23.8 15.7-20 33.1-19.7v-15.2zm42.1 12.1l11.2 27.6h-22.8zm-101.1-12v69.3h16.9v-69.3z"></path></svg></td>
-                <td>
-                  <div class="c-small c-text-muted">Last login</div><strong>Yesterday</strong>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <!-- /.c-row-->
+          <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
+            <canvas class="chart" id="main-chart" height="300"></canvas>
+          </div>
+        </div>
+        <div class="c-card-footer">
+          <div class="c-row c-text-center">
+            <div class="c-col-sm-12 c-col-md c-mb-sm-2 c-mb-0">
+              <div class="c-text-muted">Visits</div><strong>29.703 Users (40%)</strong>
+              <div class="c-progress c-progress-xs c-mt-2">
+                <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="c-col-sm-12 c-col-md c-mb-sm-2 c-mb-0">
+              <div class="c-text-muted">Unique</div><strong>24.093 Users (20%)</strong>
+              <div class="c-progress c-progress-xs c-mt-2">
+                <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="c-col-sm-12 c-col-md c-mb-sm-2 c-mb-0">
+              <div class="c-text-muted">Pageviews</div><strong>78.706 Views (60%)</strong>
+              <div class="c-progress c-progress-xs c-mt-2">
+                <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="c-col-sm-12 c-col-md c-mb-sm-2 c-mb-0">
+              <div class="c-text-muted">New Users</div><strong>22.123 Users (80%)</strong>
+              <div class="c-progress c-progress-xs c-mt-2">
+                <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="c-col-sm-12 c-col-md c-mb-sm-2 c-mb-0">
+              <div class="c-text-muted">Bounce Rate</div><strong>40.15%</strong>
+              <div class="c-progress c-progress-xs c-mt-2">
+                <div class="c-progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <!-- /.c-card-->
+      <div class="c-row">
+        <div class="c-col-sm-6 c-col-lg-4">
+          <div class="c-card">
+            <div class="c-card-header c-bg-facebook c-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="56" width="56" class="c-icon c-text-white c-my-4">
+                <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
+              </svg>
+              <div class="c-chart-wrapper">
+                <canvas id="social-box-chart-1" height="90"></canvas>
+              </div>
+            </div>
+            <div class="c-card-body c-row c-text-center">
+              <div class="c-col">
+                <div class="c-text-value-xl">89k</div>
+                <div class="c-text-uppercase c-text-muted c-small">friends</div>
+              </div>
+              <div class="c-vr"></div>
+              <div class="c-col">
+                <div class="c-text-value-xl">459</div>
+                <div class="c-text-uppercase c-text-muted c-small">feeds</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-4">
+          <div class="c-card">
+            <div class="c-card-header c-bg-twitter c-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="56" width="56" class="c-icon c-text-white c-my-4">
+                <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+              </svg>
+              <div class="c-chart-wrapper">
+                <canvas id="social-box-chart-2" height="90"></canvas>
+              </div>
+            </div>
+            <div class="c-card-body c-row c-text-center">
+              <div class="c-col">
+                <div class="c-text-value-xl">973k</div>
+                <div class="c-text-uppercase c-text-muted c-small">followers</div>
+              </div>
+              <div class="c-vr"></div>
+              <div class="c-col">
+                <div class="c-text-value-xl">1.792</div>
+                <div class="c-text-uppercase c-text-muted c-small">tweets</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+        <div class="c-col-sm-6 c-col-lg-4">
+          <div class="c-card">
+            <div class="c-card-header c-bg-linkedin c-content-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="56" width="56" class="c-icon c-text-white c-my-4">
+                <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path>
+              </svg>
+              <div class="c-chart-wrapper">
+                <canvas id="social-box-chart-3" height="90"></canvas>
+              </div>
+            </div>
+            <div class="c-card-body c-row c-text-center">
+              <div class="c-col">
+                <div class="c-text-value-xl">500+</div>
+                <div class="c-text-uppercase c-text-muted c-small">contacts</div>
+              </div>
+              <div class="c-vr"></div>
+              <div class="c-col">
+                <div class="c-text-value-xl">292</div>
+                <div class="c-text-uppercase c-text-muted c-small">feeds</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+      </div>
+      <!-- /.c-row-->
+      <div class="c-row">
+        <div class="c-col-md-12">
+          <div class="c-card">
+            <div class="c-card-header">Traffic &amp; Sales</div>
+            <div class="c-card-body">
+              <div class="c-row">
+                <div class="c-col-sm-6">
+                  <div class="c-row">
+                    <div class="c-col-sm-6">
+                      <div class="c-callout c-callout-info"><small class="c-text-muted">New Clients</small><br><strong class="c-h4">9,123</strong>
+                        <div class="c-chart-wrapper">
+                          <canvas id="sparkline-chart-1" width="100" height="30"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.c-col-->
+                    <div class="c-col-sm-6">
+                      <div class="c-callout c-callout-danger"><small class="c-text-muted">Recuring Clients</small><br><strong class="c-h4">22,643</strong>
+                        <div class="c-chart-wrapper">
+                          <canvas id="sparkline-chart-2" width="100" height="30"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.c-col-->
+                  </div>
+                  <!-- /.c-row-->
+                  <hr class="c-mt-0">
+                  <div class="c-progress-group c-mb-4">
+                    <div class="c-progress-group-prepend"><span class="c-progress-group-text">Monday</span></div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="c-progress-group c-mb-4">
+                    <div class="c-progress-group-prepend"><span class="c-progress-group-text">Tuesday</span></div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 94%" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="c-progress-group c-mb-4">
+                    <div class="c-progress-group-prepend"><span class="c-progress-group-text">Wednesday</span></div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 12%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="c-progress-group c-mb-4">
+                    <div class="c-progress-group-prepend"><span class="c-progress-group-text">Thursday</span></div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 91%" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="c-progress-group c-mb-4">
+                    <div class="c-progress-group-prepend"><span class="c-progress-group-text">Friday</span></div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 73%" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="c-progress-group c-mb-4">
+                    <div class="c-progress-group-prepend"><span class="c-progress-group-text">Saturday</span></div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 53%" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="c-progress-group c-mb-4">
+                    <div class="c-progress-group-prepend"><span class="c-progress-group-text">Sunday</span></div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 9%" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 69%" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.c-col-->
+                <div class="c-col-sm-6">
+                  <div class="c-row">
+                    <div class="c-col-sm-6">
+                      <div class="c-callout c-callout-warning"><small class="c-text-muted">Pageviews</small><br><strong class="c-h4">78,623</strong>
+                        <div class="c-chart-wrapper">
+                          <canvas id="sparkline-chart-3" width="100" height="30"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.c-col-->
+                    <div class="c-col-sm-6">
+                      <div class="c-callout c-callout-success"><small class="c-text-muted">Organic</small><br><strong class="c-h4">49,123</strong>
+                        <div class="c-chart-wrapper">
+                          <canvas id="sparkline-chart-4" width="100" height="30"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.c-col-->
+                  </div>
+                  <!-- /.c-row-->
+                  <hr class="c-mt-0">
+                  <div class="c-progress-group">
+                    <div class="c-progress-group-header">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 64 64" class="c-icon c-progress-group-icon">
+                        <title>user</title>
+                        <path d="M51.45 42.957l-9.103-5.917 3.432-6.292c0.767-1.383 1.22-3.033 1.221-4.788v-9.96c0-7.732-6.268-14-14-14s-14 6.268-14 14v0 9.96c0.001 1.756 0.454 3.405 1.247 4.84l-0.026-0.052 3.432 6.292-9.103 5.917c-2.755 1.803-4.55 4.875-4.55 8.366 0 0.007 0 0.013 0 0.020v-0.001 10.658h46v-10.659c0-0.006 0-0.012 0-0.019 0-3.491-1.795-6.563-4.512-8.342l-0.038-0.023zM52 58h-38v-6.659c0-0.003 0-0.007 0-0.011 0-2.095 1.077-3.938 2.707-5.005l0.023-0.014 12.208-7.935-5.205-9.543c-0.46-0.83-0.732-1.82-0.733-2.873v-9.96c0-5.523 4.477-10 10-10s10 4.477 10 10v0 9.96c-0.001 1.053-0.272 2.043-0.748 2.904l0.016-0.031-5.205 9.543 12.208 7.935c1.653 1.082 2.73 2.925 2.73 5.019 0 0.004 0 0.008 0 0.012v-0.001z"></path>
+                      </svg>
+                      <div>Male</div>
+                      <div class="c-ml-auto c-font-weight-bold">43%</div>
+                    </div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="c-progress-group c-mb-5">
+                    <div class="c-progress-group-header">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 64 64" class="c-icon c-progress-group-icon">
+                        <title>user-female</title>
+                        <path d="M50.45 42.957l-9.103-5.917 1.658-3.040h2.928c0 0 0 0 0 0 3.314 0 6-2.686 6-6 0-0.854-0.178-1.667-0.5-2.402l0.015 0.039-6.251-14.315c-1.985-5.478-7.142-9.321-13.198-9.321s-11.213 3.843-13.167 9.224l-0.031 0.097-6.251 14.315c-0.307 0.697-0.485 1.509-0.485 2.363 0 3.314 2.686 6 6 6 0 0 0 0 0 0h2.928l1.658 3.040-9.103 5.917c-2.755 1.803-4.55 4.875-4.55 8.366 0 0.007 0 0.013 0 0.020v-0.001 10.658h46v-10.659c0-0.006 0-0.012 0-0.019 0-3.491-1.795-6.563-4.512-8.342l-0.038-0.023zM51 58h-38v-6.659c0-0.003 0-0.007 0-0.011 0-2.095 1.077-3.938 2.707-5.005l0.023-0.014 12.208-7.935-4.569-8.376h-5.303c-1.105-0-2-0.895-2-2 0-0.283 0.059-0.552 0.165-0.797l-0.005 0.013 6.272-14.362 0.056-0.143c1.403-3.941 5.101-6.711 9.446-6.711s8.044 2.771 9.425 6.642l0.022 0.070 0.025 0.072 6.302 14.432c0.101 0.231 0.16 0.501 0.16 0.784 0 1.105-0.895 2-2 2h-5.303l-4.569 8.376 12.208 7.935c1.653 1.082 2.73 2.925 2.73 5.019 0 0.004 0 0.008 0 0.012v-0.001z"></path>
+                      </svg>
+                      <div>Female</div>
+                      <div class="c-ml-auto c-font-weight-bold">37%</div>
+                    </div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="c-progress-group">
+                    <div class="c-progress-group-header c-align-items-end">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 64 64" class="c-icon c-progress-group-icon">
+                        <title>globe</title>
+                        <path d="M32 2c-16.569 0-30 13.431-30 30s13.431 30 30 30 30-13.431 30-30-13.431-30-30-30zM57.94 30.25h-11.965c-0.188-7.050-1.467-13.645-3.652-18.732-0.694-1.634-1.464-3.032-2.354-4.341l0.056 0.087c9.901 3.21 17.198 12.197 17.915 22.986zM32 58c-2.322 0-4.744-2.541-6.648-6.972-1.941-4.519-3.099-10.412-3.315-16.778h19.925c-0.216 6.366-1.374 12.259-3.315 16.778-1.903 4.431-4.326 6.972-6.648 6.972zM22.026 30.25c0.183-6.51 1.347-12.545 3.326-17.153 1.903-4.431 4.326-6.972 6.648-6.972s4.744 2.541 6.648 6.972c1.979 4.608 3.144 10.643 3.326 17.153zM23.975 7.264c-0.834 1.222-1.604 2.621-2.236 4.092l-0.062 0.163c-2.185 5.087-3.464 11.681-3.652 18.732h-11.965c0.717-10.789 8.014-19.776 17.915-22.986zM6.098 34.25h11.937c0.222 6.909 1.496 13.36 3.642 18.357 0.671 1.576 1.403 2.921 2.247 4.186l-0.058-0.092c-9.692-3.19-16.865-11.924-17.768-22.45zM40.134 56.7c0.785-1.173 1.518-2.518 2.126-3.929l0.063-0.164c2.146-4.996 3.419-11.447 3.642-18.357h11.937c-0.903 10.526-8.076 19.26-17.768 22.45z"></path>
+                      </svg>
+                      <div>Organic Search</div>
+                      <div class="c-ml-auto c-font-weight-bold c-mr-2">191.235</div>
+                      <div class="c-text-muted c-small">(56%)</div>
+                    </div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 56%" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="c-progress-group">
+                    <div class="c-progress-group-header c-align-items-end">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 64 64" class="c-icon c-progress-group-icon">
+                        <title>social-facebook</title>
+                        <path d="M38 62h-14v-25h-9v-14h9v-6c0-9.112 5.888-15 15-15 3.078 0 5.992 0.574 7.557 0.883 0.31 0.061 0.604 0.119 0.736 0.139l1.707 0.253v12.726h-8c-2.057 0-2.603 0.338-2.721 0.441-0.104 0.091-0.279 0.415-0.279 1.559v5h10.21l-1.4 14h-8.81zM28 58h6v-25h9.19l0.6-6h-9.79v-9c0-1.456 0.187-3.292 1.644-4.568 1.131-0.991 2.783-1.432 5.356-1.432h4v-5.345c-1.508-0.286-3.745-0.655-6-0.655-6.888 0-11 4.112-11 11v10h-9v6h9z"></path>
+                      </svg>
+                      <div>Facebook</div>
+                      <div class="c-ml-auto c-font-weight-bold c-mr-2">51.223</div>
+                      <div class="c-text-muted c-small">(15%)</div>
+                    </div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="c-progress-group">
+                    <div class="c-progress-group-header c-align-items-end">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 64 64" class="c-icon c-progress-group-icon">
+                        <title>social-twitter</title>
+                        <path d="M56.375 12h-4.784c-0.97-0.828-2.072-1.548-3.259-2.118l-0.091-0.039c-1.758-0.854-3.824-1.353-6.006-1.353h-0c-0.001 0-0.002 0-0.003 0-7.515 0-13.712 5.643-14.585 12.923l-0.007 0.070c-5.797-1.357-11.254-5.275-14.15-10.439l-3.42-6.099-3.524 6.040c-1.121 1.922-1.847 3.73-2.426 6.045-3.017 12.067 0.381 19.876 3.762 24.303 1.345 1.747 2.879 3.255 4.595 4.531l0.062 0.044c-0.855 0.198-1.838 0.313-2.847 0.314h-0.001c-0.249 0-0.502-0.008-0.75-0.022l-6.815-0.405v7.474l1.927 1.168c0.298 0.181 7.427 4.424 18.487 4.424 5.281 0 10.236-1.055 14.729-3.136 4.271-2.009 7.883-4.748 10.823-8.092l0.031-0.036c5.616-6.369 8.836-14.809 8.836-23.156 0-0.106 0.004-0.273 0.009-0.459l5.776-11.98zM53 23s-0.041 0.976-0.041 1.439c0 14.134-10.758 30.42-30.42 30.42-10.071 0-16.414-3.844-16.414-3.844v-0.976l2.578 0.153q0.496 0.029 0.988 0.029c4.61 0 8.855-1.908 12.286-4.597-4.7-0.099-18.977-7.624-13.977-27.624 0.452-1.892 1.14-3.56 2.046-5.083l-0.046 0.083c4.238 7.557 13 13 22 13-0.166-0.794-0.457-1.991-0.457-2.819 0-0.001 0-0.003 0-0.005 0-5.902 4.785-10.687 10.687-10.687 0.002 0 0.003 0 0.005 0h-0c3.078 0 5.813 1.425 7.766 3.51h6.375z"></path>
+                      </svg>
+                      <div>Twitter</div>
+                      <div class="c-ml-auto c-font-weight-bold c-mr-2">37.564</div>
+                      <div class="c-text-muted c-small">(11%)</div>
+                    </div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 11%" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="c-progress-group">
+                    <div class="c-progress-group-header c-align-items-end">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 64 64" class="c-icon c-progress-group-icon">
+                        <title>social-linkedin</title>
+                        <path d="M14.806 26.138h7.416v23.862h-7.416v-23.862z"></path>
+                        <path d="M18.516 14.277c-0 0-0.001 0-0.002 0-2.375 0-4.3 1.925-4.3 4.3s1.925 4.3 4.3 4.3c2.375 0 4.3-1.925 4.3-4.3 0-0 0-0.001 0-0.001v0c-0.001-2.373-1.924-4.297-4.298-4.298h-0z"></path>
+                        <path d="M41.104 25.545c-3.608 0-6.027 1.978-7.017 3.854h-0.099v-3.261h-7.113v23.862h7.41v-11.804c0-3.112 0.593-6.126 4.451-6.126 3.803 0 3.854 3.559 3.854 6.326v11.604h7.411v-13.089c0-6.424-1.386-11.366-8.896-11.366z"></path>
+                        <path d="M53.3 3h-42.61c-4.241 0-7.691 3.411-7.691 7.603v42.79c0 4.195 3.45 7.607 7.691 7.607h42.61c4.247 0 7.701-3.413 7.701-7.607v-42.79c0-4.192-3.455-7.603-7.701-7.603zM57.001 53.393c0 1.991-1.661 3.607-3.701 3.607h-42.61c-2.036 0-3.691-1.616-3.691-3.607v-42.79c0-1.989 1.654-3.603 3.691-3.603h42.61c2.040 0 3.701 1.614 3.701 3.603z"></path>
+                      </svg>
+                      <div>LinkedIn</div>
+                      <div class="c-ml-auto c-font-weight-bold c-mr-2">27.319</div>
+                      <div class="c-text-muted c-small">(8%)</div>
+                    </div>
+                    <div class="c-progress-group-bars">
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.c-col-->
+              </div>
+              <!-- /.c-row--><br>
+              <table class="c-table c-table-responsive-sm c-table-hover c-table-outline c-mb-0">
+                <thead class="c-thead-light">
+                  <tr>
+                    <th class="c-text-center">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 64 64" class="c-icon">
+                        <title>people</title>
+                        <path d="M57.818 39.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c0-0.010 0-0.021 0-0.032 0-7.176-5.817-12.992-12.992-12.992-3.415 0-6.523 1.318-8.842 3.473l0.008-0.007 2.718 2.934c1.599-1.482 3.748-2.391 6.109-2.391 4.97 0 8.999 4.029 8.999 8.999 0 0.006 0 0.013 0 0.019v-0.001 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.865 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001 6.688h-9v4h13v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.16-7.729l-0.035-0.021z"></path>
+                        <path d="M39.818 43.537l-8.043-5.263 3.097-5.677c0.716-1.332 1.138-2.915 1.14-4.596v-9.001c-0.005-7.183-5.824-13.005-13.005-13.017h-0.001c-7.165 0-12.993 5.839-12.993 13.017v9c-0 0.014-0 0.030-0 0.046 0 1.665 0.417 3.232 1.153 4.603l-0.026-0.052 3.114 5.708-7.996 5.232c-2.541 1.677-4.194 4.519-4.194 7.747 0 0.006 0 0.011 0 0.017v-0.001l-0.062 10.7h42.012v-10.688c0-0.007 0-0.016 0-0.025 0-3.229-1.653-6.072-4.159-7.729l-0.035-0.021zM40.012 58h-33.988l0.039-6.688c0-0.005 0-0.012 0-0.018 0-1.837 0.94-3.454 2.365-4.397l0.020-0.012 11.085-7.254-4.881-8.949c-0.402-0.773-0.639-1.689-0.639-2.659 0-0.008 0-0.016 0-0.024v0.001-9c0-4.971 4.029-9 9-9s9 4.029 9 9v0 9c-0 0.98-0.241 1.903-0.667 2.714l0.015-0.032-4.864 8.918 11.132 7.284c1.444 0.956 2.384 2.573 2.384 4.41 0 0.006 0 0.013-0 0.019v-0.001z"></path>
+                      </svg></th>
+                    <th>User</th>
+                    <th class="c-text-center">Country</th>
+                    <th>Usage</th>
+                    <th class="c-text-center">Payment Method</th>
+                    <th>Activity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="c-text-center">
+                      <div class="c-avatar"><img class="c-img-avatar" src="assets/img/avatars/1.jpg" alt="admin@bootstrapmaster.com"><span class="c-avatar-status c-badge-success"></span></div>
+                    </td>
+                    <td>
+                      <div>Yiorgos Avraamu</div>
+                      <div class="c-small c-text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
+                    </td>
+                    <td class="c-text-center"><i class="flag-icon flag-icon-us c-h4 c-mb-0" id="us" title="us"></i></td>
+                    <td>
+                      <div class="c-clearfix">
+                        <div class="c-float-left"><strong>50%</strong></div>
+                        <div class="c-float-right"><small class="c-text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </td>
+                    <td class="c-text-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="28" class="c-icon">
+                        <path d="M482.9 410.3c0 6.8-4.6 11.7-11.2 11.7-6.8 0-11.2-5.2-11.2-11.7 0-6.5 4.4-11.7 11.2-11.7 6.6 0 11.2 5.2 11.2 11.7zm-310.8-11.7c-7.1 0-11.2 5.2-11.2 11.7 0 6.5 4.1 11.7 11.2 11.7 6.5 0 10.9-4.9 10.9-11.7-.1-6.5-4.4-11.7-10.9-11.7zm117.5-.3c-5.4 0-8.7 3.5-9.5 8.7h19.1c-.9-5.7-4.4-8.7-9.6-8.7zm107.8.3c-6.8 0-10.9 5.2-10.9 11.7 0 6.5 4.1 11.7 10.9 11.7 6.8 0 11.2-4.9 11.2-11.7 0-6.5-4.4-11.7-11.2-11.7zm105.9 26.1c0 .3.3.5.3 1.1 0 .3-.3.5-.3 1.1-.3.3-.3.5-.5.8-.3.3-.5.5-1.1.5-.3.3-.5.3-1.1.3-.3 0-.5 0-1.1-.3-.3 0-.5-.3-.8-.5-.3-.3-.5-.5-.5-.8-.3-.5-.3-.8-.3-1.1 0-.5 0-.8.3-1.1 0-.5.3-.8.5-1.1.3-.3.5-.3.8-.5.5-.3.8-.3 1.1-.3.5 0 .8 0 1.1.3.5.3.8.3 1.1.5s.2.6.5 1.1zm-2.2 1.4c.5 0 .5-.3.8-.3.3-.3.3-.5.3-.8 0-.3 0-.5-.3-.8-.3 0-.5-.3-1.1-.3h-1.6v3.5h.8V426h.3l1.1 1.4h.8l-1.1-1.3zM576 81v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V81c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM64 220.6c0 76.5 62.1 138.5 138.5 138.5 27.2 0 53.9-8.2 76.5-23.1-72.9-59.3-72.4-171.2 0-230.5-22.6-15-49.3-23.1-76.5-23.1-76.4-.1-138.5 62-138.5 138.2zm224 108.8c70.5-55 70.2-162.2 0-217.5-70.2 55.3-70.5 162.6 0 217.5zm-142.3 76.3c0-8.7-5.7-14.4-14.7-14.7-4.6 0-9.5 1.4-12.8 6.5-2.4-4.1-6.5-6.5-12.2-6.5-3.8 0-7.6 1.4-10.6 5.4V392h-8.2v36.7h8.2c0-18.9-2.5-30.2 9-30.2 10.2 0 8.2 10.2 8.2 30.2h7.9c0-18.3-2.5-30.2 9-30.2 10.2 0 8.2 10 8.2 30.2h8.2v-23zm44.9-13.7h-7.9v4.4c-2.7-3.3-6.5-5.4-11.7-5.4-10.3 0-18.2 8.2-18.2 19.3 0 11.2 7.9 19.3 18.2 19.3 5.2 0 9-1.9 11.7-5.4v4.6h7.9V392zm40.5 25.6c0-15-22.9-8.2-22.9-15.2 0-5.7 11.9-4.8 18.5-1.1l3.3-6.5c-9.4-6.1-30.2-6-30.2 8.2 0 14.3 22.9 8.3 22.9 15 0 6.3-13.5 5.8-20.7.8l-3.5 6.3c11.2 7.6 32.6 6 32.6-7.5zm35.4 9.3l-2.2-6.8c-3.8 2.1-12.2 4.4-12.2-4.1v-16.6h13.1V392h-13.1v-11.2h-8.2V392h-7.6v7.3h7.6V416c0 17.6 17.3 14.4 22.6 10.9zm13.3-13.4h27.5c0-16.2-7.4-22.6-17.4-22.6-10.6 0-18.2 7.9-18.2 19.3 0 20.5 22.6 23.9 33.8 14.2l-3.8-6c-7.8 6.4-19.6 5.8-21.9-4.9zm59.1-21.5c-4.6-2-11.6-1.8-15.2 4.4V392h-8.2v36.7h8.2V408c0-11.6 9.5-10.1 12.8-8.4l2.4-7.6zm10.6 18.3c0-11.4 11.6-15.1 20.7-8.4l3.8-6.5c-11.6-9.1-32.7-4.1-32.7 15 0 19.8 22.4 23.8 32.7 15l-3.8-6.5c-9.2 6.5-20.7 2.6-20.7-8.6zm66.7-18.3H408v4.4c-8.3-11-29.9-4.8-29.9 13.9 0 19.2 22.4 24.7 29.9 13.9v4.6h8.2V392zm33.7 0c-2.4-1.2-11-2.9-15.2 4.4V392h-7.9v36.7h7.9V408c0-11 9-10.3 12.8-8.4l2.4-7.6zm40.3-14.9h-7.9v19.3c-8.2-10.9-29.9-5.1-29.9 13.9 0 19.4 22.5 24.6 29.9 13.9v4.6h7.9v-51.7zm7.6-75.1v4.6h.8V302h1.9v-.8h-4.6v.8h1.9zm6.6 123.8c0-.5 0-1.1-.3-1.6-.3-.3-.5-.8-.8-1.1-.3-.3-.8-.5-1.1-.8-.5 0-1.1-.3-1.6-.3-.3 0-.8.3-1.4.3-.5.3-.8.5-1.1.8-.5.3-.8.8-.8 1.1-.3.5-.3 1.1-.3 1.6 0 .3 0 .8.3 1.4 0 .3.3.8.8 1.1.3.3.5.5 1.1.8.5.3 1.1.3 1.4.3.5 0 1.1 0 1.6-.3.3-.3.8-.5 1.1-.8.3-.3.5-.8.8-1.1.3-.6.3-1.1.3-1.4zm3.2-124.7h-1.4l-1.6 3.5-1.6-3.5h-1.4v5.4h.8v-4.1l1.6 3.5h1.1l1.4-3.5v4.1h1.1v-5.4zm4.4-80.5c0-76.2-62.1-138.3-138.5-138.3-27.2 0-53.9 8.2-76.5 23.1 72.1 59.3 73.2 171.5 0 230.5 22.6 15 49.5 23.1 76.5 23.1 76.4.1 138.5-61.9 138.5-138.4z"></path>
+                      </svg></td>
+                    <td>
+                      <div class="c-small c-text-muted">Last login</div><strong>10 sec ago</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="c-text-center">
+                      <div class="c-avatar"><img class="c-img-avatar" src="assets/img/avatars/2.jpg" alt="admin@bootstrapmaster.com"><span class="c-avatar-status c-badge-danger"></span></div>
+                    </td>
+                    <td>
+                      <div>Avram Tarasios</div>
+                      <div class="c-small c-text-muted"><span>Recurring</span> | Registered: Jan 1, 2015</div>
+                    </td>
+                    <td class="c-text-center"><i class="flag-icon flag-icon-br c-h4 c-mb-0" id="br" title="br"></i></td>
+                    <td>
+                      <div class="c-clearfix">
+                        <div class="c-float-left"><strong>10%</strong></div>
+                        <div class="c-float-right"><small class="c-text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </td>
+                    <td class="c-text-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="28" class="c-icon">
+                        <path d="M470.1 231.3s7.6 37.2 9.3 45H446c3.3-8.9 16-43.5 16-43.5-.2.3 3.3-9.1 5.3-14.9l2.8 13.4zM576 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM152.5 331.2L215.7 176h-42.5l-39.3 106-4.3-21.5-14-71.4c-2.3-9.9-9.4-12.7-18.2-13.1H32.7l-.7 3.1c15.8 4 29.9 9.8 42.2 17.1l35.8 135h42.5zm94.4.2L272.1 176h-40.2l-25.1 155.4h40.1zm139.9-50.8c.2-17.7-10.6-31.2-33.7-42.3-14.1-7.1-22.7-11.9-22.7-19.2.2-6.6 7.3-13.4 23.1-13.4 13.1-.3 22.7 2.8 29.9 5.9l3.6 1.7 5.5-33.6c-7.9-3.1-20.5-6.6-36-6.6-39.7 0-67.6 21.2-67.8 51.4-.3 22.3 20 34.7 35.2 42.2 15.5 7.6 20.8 12.6 20.8 19.3-.2 10.4-12.6 15.2-24.1 15.2-16 0-24.6-2.5-37.7-8.3l-5.3-2.5-5.6 34.9c9.4 4.3 26.8 8.1 44.8 8.3 42.2.1 69.7-20.8 70-53zM528 331.4L495.6 176h-31.1c-9.6 0-16.9 2.8-21 12.9l-59.7 142.5H426s6.9-19.2 8.4-23.3H486c1.2 5.5 4.8 23.3 4.8 23.3H528z"></path>
+                      </svg></td>
+                    <td>
+                      <div class="c-small c-text-muted">Last login</div><strong>5 minutes ago</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="c-text-center">
+                      <div class="c-avatar"><img class="c-img-avatar" src="assets/img/avatars/3.jpg" alt="admin@bootstrapmaster.com"><span class="c-avatar-status c-badge-warning"></span></div>
+                    </td>
+                    <td>
+                      <div>Quintin Ed</div>
+                      <div class="c-small c-text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
+                    </td>
+                    <td class="c-text-center"><i class="flag-icon flag-icon-in c-h4 c-mb-0" id="in" title="in"></i></td>
+                    <td>
+                      <div class="c-clearfix">
+                        <div class="c-float-left"><strong>74%</strong></div>
+                        <div class="c-float-right"><small class="c-text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-warning" role="progressbar" style="width: 74%" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </td>
+                    <td class="c-text-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="28" class="c-icon">
+                        <path d="M492.4 220.8c-8.9 0-18.7 6.7-18.7 22.7h36.7c0-16-9.3-22.7-18-22.7zM375 223.4c-8.2 0-13.3 2.9-17 7l.2 52.8c3.5 3.7 8.5 6.7 16.8 6.7 13.1 0 21.9-14.3 21.9-33.4 0-18.6-9-33.2-21.9-33.1zM528 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h480c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM122.2 281.1c0 25.6-20.3 40.1-49.9 40.3-12.2 0-25.6-2.4-38.8-8.1v-33.9c12 6.4 27.1 11.3 38.9 11.3 7.9 0 13.6-2.1 13.6-8.7 0-17-54-10.6-54-49.9 0-25.2 19.2-40.2 48-40.2 11.8 0 23.5 1.8 35.3 6.5v33.4c-10.8-5.8-24.5-9.1-35.3-9.1-7.5 0-12.1 2.2-12.1 7.7 0 16 54.3 8.4 54.3 50.7zm68.8-56.6h-27V275c0 20.9 22.5 14.4 27 12.6v28.9c-4.7 2.6-13.3 4.7-24.9 4.7-21.1 0-36.9-15.5-36.9-36.5l.2-113.9 34.7-7.4v30.8H191zm74 2.4c-4.5-1.5-18.7-3.6-27.1 7.4v84.4h-35.5V194.2h30.7l2.2 10.5c8.3-15.3 24.9-12.2 29.6-10.5h.1zm44.1 91.8h-35.7V194.2h35.7zm0-142.9l-35.7 7.6v-28.9l35.7-7.6zm74.1 145.5c-12.4 0-20-5.3-25.1-9l-.1 40.2-35.5 7.5V194.2h31.3l1.8 8.8c4.9-4.5 13.9-11.1 27.8-11.1 24.9 0 48.4 22.5 48.4 63.8 0 45.1-23.2 65.5-48.6 65.6zm160.4-51.5h-69.5c1.6 16.6 13.8 21.5 27.6 21.5 14.1 0 25.2-3 34.9-7.9V312c-9.7 5.3-22.4 9.2-39.4 9.2-34.6 0-58.8-21.7-58.8-64.5 0-36.2 20.5-64.9 54.3-64.9 33.7 0 51.3 28.7 51.3 65.1 0 3.5-.3 10.9-.4 12.9z"></path>
+                      </svg></td>
+                    <td>
+                      <div class="c-small c-text-muted">Last login</div><strong>1 hour ago</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="c-text-center">
+                      <div class="c-avatar"><img class="c-img-avatar" src="assets/img/avatars/4.jpg" alt="admin@bootstrapmaster.com"><span class="c-avatar-status c-badge-secondary"></span></div>
+                    </td>
+                    <td>
+                      <div>Enéas Kwadwo</div>
+                      <div class="c-small c-text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
+                    </td>
+                    <td class="c-text-center"><i class="flag-icon flag-icon-fr c-h4 c-mb-0" id="fr" title="fr"></i></td>
+                    <td>
+                      <div class="c-clearfix">
+                        <div class="c-float-left"><strong>98%</strong></div>
+                        <div class="c-float-right"><small class="c-text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-danger" role="progressbar" style="width: 98%" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </td>
+                    <td class="c-text-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="28" class="c-icon">
+                        <path d="M186.3 258.2c0 12.2-9.7 21.5-22 21.5-9.2 0-16-5.2-16-15 0-12.2 9.5-22 21.7-22 9.3 0 16.3 5.7 16.3 15.5zM80.5 209.7h-4.7c-1.5 0-3 1-3.2 2.7l-4.3 26.7 8.2-.3c11 0 19.5-1.5 21.5-14.2 2.3-13.4-6.2-14.9-17.5-14.9zm284 0H360c-1.8 0-3 1-3.2 2.7l-4.2 26.7 8-.3c13 0 22-3 22-18-.1-10.6-9.6-11.1-18.1-11.1zM576 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM128.3 215.4c0-21-16.2-28-34.7-28h-40c-2.5 0-5 2-5.2 4.7L32 294.2c-.3 2 1.2 4 3.2 4h19c2.7 0 5.2-2.9 5.5-5.7l4.5-26.6c1-7.2 13.2-4.7 18-4.7 28.6 0 46.1-17 46.1-45.8zm84.2 8.8h-19c-3.8 0-4 5.5-4.2 8.2-5.8-8.5-14.2-10-23.7-10-24.5 0-43.2 21.5-43.2 45.2 0 19.5 12.2 32.2 31.7 32.2 9 0 20.2-4.9 26.5-11.9-.5 1.5-1 4.7-1 6.2 0 2.3 1 4 3.2 4H200c2.7 0 5-2.9 5.5-5.7l10.2-64.3c.3-1.9-1.2-3.9-3.2-3.9zm40.5 97.9l63.7-92.6c.5-.5.5-1 .5-1.7 0-1.7-1.5-3.5-3.2-3.5h-19.2c-1.7 0-3.5 1-4.5 2.5l-26.5 39-11-37.5c-.8-2.2-3-4-5.5-4h-18.7c-1.7 0-3.2 1.8-3.2 3.5 0 1.2 19.5 56.8 21.2 62.1-2.7 3.8-20.5 28.6-20.5 31.6 0 1.8 1.5 3.2 3.2 3.2h19.2c1.8-.1 3.5-1.1 4.5-2.6zm159.3-106.7c0-21-16.2-28-34.7-28h-39.7c-2.7 0-5.2 2-5.5 4.7l-16.2 102c-.2 2 1.3 4 3.2 4h20.5c2 0 3.5-1.5 4-3.2l4.5-29c1-7.2 13.2-4.7 18-4.7 28.4 0 45.9-17 45.9-45.8zm84.2 8.8h-19c-3.8 0-4 5.5-4.3 8.2-5.5-8.5-14-10-23.7-10-24.5 0-43.2 21.5-43.2 45.2 0 19.5 12.2 32.2 31.7 32.2 9.3 0 20.5-4.9 26.5-11.9-.3 1.5-1 4.7-1 6.2 0 2.3 1 4 3.2 4H484c2.7 0 5-2.9 5.5-5.7l10.2-64.3c.3-1.9-1.2-3.9-3.2-3.9zm47.5-33.3c0-2-1.5-3.5-3.2-3.5h-18.5c-1.5 0-3 1.2-3.2 2.7l-16.2 104-.3.5c0 1.8 1.5 3.5 3.5 3.5h16.5c2.5 0 5-2.9 5.2-5.7L544 191.2v-.3zm-90 51.8c-12.2 0-21.7 9.7-21.7 22 0 9.7 7 15 16.2 15 12 0 21.7-9.2 21.7-21.5.1-9.8-6.9-15.5-16.2-15.5z"></path>
+                      </svg></td>
+                    <td>
+                      <div class="c-small c-text-muted">Last login</div><strong>Last month</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="c-text-center">
+                      <div class="c-avatar"><img class="c-img-avatar" src="assets/img/avatars/5.jpg" alt="admin@bootstrapmaster.com"><span class="c-avatar-status c-badge-success"></span></div>
+                    </td>
+                    <td>
+                      <div>Agapetus Tadeáš</div>
+                      <div class="c-small c-text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
+                    </td>
+                    <td class="c-text-center"><i class="flag-icon flag-icon-es c-h4 c-mb-0" id="es" title="es"></i></td>
+                    <td>
+                      <div class="c-clearfix">
+                        <div class="c-float-left"><strong>22%</strong></div>
+                        <div class="c-float-right"><small class="c-text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-info" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </td>
+                    <td class="c-text-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="28" class="c-icon">
+                        <path d="M302.2 218.4c0 17.2-10.5 27.1-29 27.1h-24.3v-54.2h24.4c18.4 0 28.9 9.8 28.9 27.1zm47.5 62.6c0 8.3 7.2 13.7 18.5 13.7 14.4 0 25.2-9.1 25.2-21.9v-7.7l-23.5 1.5c-13.3.9-20.2 5.8-20.2 14.4zM576 79v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM127.8 197.2c8.4.7 16.8-4.2 22.1-10.4 5.2-6.4 8.6-15 7.7-23.7-7.4.3-16.6 4.9-21.9 11.3-4.8 5.5-8.9 14.4-7.9 22.8zm60.6 74.5c-.2-.2-19.6-7.6-19.8-30-.2-18.7 15.3-27.7 16-28.2-8.8-13-22.4-14.4-27.1-14.7-12.2-.7-22.6 6.9-28.4 6.9-5.9 0-14.7-6.6-24.3-6.4-12.5.2-24.2 7.3-30.5 18.6-13.1 22.6-3.4 56 9.3 74.4 6.2 9.1 13.7 19.1 23.5 18.7 9.3-.4 13-6 24.2-6 11.3 0 14.5 6 24.3 5.9 10.2-.2 16.5-9.1 22.8-18.2 6.9-10.4 9.8-20.4 10-21zm135.4-53.4c0-26.6-18.5-44.8-44.9-44.8h-51.2v136.4h21.2v-46.6h29.3c26.8 0 45.6-18.4 45.6-45zm90 23.7c0-19.7-15.8-32.4-40-32.4-22.5 0-39.1 12.9-39.7 30.5h19.1c1.6-8.4 9.4-13.9 20-13.9 13 0 20.2 6 20.2 17.2v7.5l-26.4 1.6c-24.6 1.5-37.9 11.6-37.9 29.1 0 17.7 13.7 29.4 33.4 29.4 13.3 0 25.6-6.7 31.2-17.4h.4V310h19.6v-68zM516 210.9h-21.5l-24.9 80.6h-.4l-24.9-80.6H422l35.9 99.3-1.9 6c-3.2 10.2-8.5 14.2-17.9 14.2-1.7 0-4.9-.2-6.2-.3v16.4c1.2.4 6.5.5 8.1.5 20.7 0 30.4-7.9 38.9-31.8L516 210.9z"></path>
+                      </svg></td>
+                    <td>
+                      <div class="c-small c-text-muted">Last login</div><strong>Last week</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="c-text-center">
+                      <div class="c-avatar"><img class="c-img-avatar" src="assets/img/avatars/6.jpg" alt="admin@bootstrapmaster.com"><span class="c-avatar-status c-badge-danger"></span></div>
+                    </td>
+                    <td>
+                      <div>Friderik Dávid</div>
+                      <div class="c-small c-text-muted"><span>New</span> | Registered: Jan 1, 2015</div>
+                    </td>
+                    <td class="c-text-center"><i class="flag-icon flag-icon-pl c-h4 c-mb-0" id="pl" title="pl"></i></td>
+                    <td>
+                      <div class="c-clearfix">
+                        <div class="c-float-left"><strong>43%</strong></div>
+                        <div class="c-float-right"><small class="c-text-muted">Jun 11, 2015 - Jul 10, 2015</small></div>
+                      </div>
+                      <div class="c-progress c-progress-xs">
+                        <div class="c-progress-bar c-bg-success" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </td>
+                    <td class="c-text-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" height="28" class="c-icon">
+                        <path d="M325.1 167.8c0-16.4-14.1-18.4-27.4-18.4l-39.1-.3v69.3H275v-25.1h18c18.4 0 14.5 10.3 14.8 25.1h16.6v-13.5c0-9.2-1.5-15.1-11-18.4 7.4-3 11.8-10.7 11.7-18.7zm-29.4 11.3H275v-15.3h21c5.1 0 10.7 1 10.7 7.4 0 6.6-5.3 7.9-11 7.9zM279 268.6h-52.7l-21 22.8-20.5-22.8h-66.5l-.1 69.3h65.4l21.3-23 20.4 23h32.2l.1-23.3c18.9 0 49.3 4.6 49.3-23.3 0-17.3-12.3-22.7-27.9-22.7zm-103.8 54.7h-40.6v-13.8h36.3v-14.1h-36.3v-12.5h41.7l17.9 20.2zm65.8 8.2l-25.3-28.1L241 276zm37.8-31h-21.2v-17.6h21.5c5.6 0 10.2 2.3 10.2 8.4 0 6.4-4.6 9.2-10.5 9.2zm-31.6-136.7v-14.6h-55.5v69.3h55.5v-14.3h-38.9v-13.8h37.8v-14.1h-37.8v-12.5zM576 255.4h-.2zm-194.6 31.9c0-16.4-14.1-18.7-27.1-18.7h-39.4l-.1 69.3h16.6l.1-25.3h17.6c11 0 14.8 2 14.8 13.8l-.1 11.5h16.6l.1-13.8c0-8.9-1.8-15.1-11-18.4 7.7-3.1 11.8-10.8 11.9-18.4zm-29.2 11.2h-20.7v-15.6h21c5.1 0 10.7 1 10.7 7.4 0 6.9-5.4 8.2-11 8.2zm-172.8-80v-69.3h-27.6l-19.7 47-21.7-47H83.3v65.7l-28.1-65.7H30.7L1 218.5h17.9l6.4-15.3h34.5l6.4 15.3H100v-54.2l24 54.2h14.6l24-54.2v54.2zM31.2 188.8l11.2-27.6 11.5 27.6zm477.4 158.9v-4.5c-10.8 5.6-3.9 4.5-156.7 4.5 0-25.2.1-23.9 0-25.2-1.7-.1-3.2-.1-9.4-.1 0 17.9-.1 6.8-.1 25.3h-39.6c0-12.1.1-15.3.1-29.2-10 6-22.8 6.4-34.3 6.2 0 14.7-.1 8.3-.1 23h-48.9c-5.1-5.7-2.7-3.1-15.4-17.4-3.2 3.5-12.8 13.9-16.1 17.4h-82v-92.3h83.1c5 5.6 2.8 3.1 15.5 17.2 3.2-3.5 12.2-13.4 15.7-17.2h58c9.8 0 18 1.9 24.3 5.6v-5.6c54.3 0 64.3-1.4 75.7 5.1v-5.1h78.2v5.2c11.4-6.9 19.6-5.2 64.9-5.2v5c10.3-5.9 16.6-5.2 54.3-5V80c0-26.5-21.5-48-48-48h-480c-26.5 0-48 21.5-48 48v109.8c9.4-21.9 19.7-46 23.1-53.9h39.7c4.3 10.1 1.6 3.7 9 21.1v-21.1h46c2.9 6.2 11.1 24 13.9 30 5.8-13.6 10.1-23.9 12.6-30h103c0-.1 11.5 0 11.6 0 43.7.2 53.6-.8 64.4 5.3v-5.3H363v9.3c7.6-6.1 17.9-9.3 30.7-9.3h27.6c0 .5 1.9.3 2.3.3H456c4.2 9.8 2.6 6 8.8 20.6v-20.6h43.3c4.9 8-1-1.8 11.2 18.4v-18.4h39.9v92h-41.6c-5.4-9-1.4-2.2-13.2-21.9v21.9h-52.8c-6.4-14.8-.1-.3-6.6-15.3h-19c-4.2 10-2.2 5.2-6.4 15.3h-26.8c-12.3 0-22.3-3-29.7-8.9v8.9h-66.5c-.3-13.9-.1-24.8-.1-24.8-1.8-.3-3.4-.2-9.8-.2v25.1H151.2v-11.4c-2.5 5.6-2.7 5.9-5.1 11.4h-29.5c-4-8.9-2.9-6.4-5.1-11.4v11.4H58.6c-4.2-10.1-2.2-5.3-6.4-15.3H33c-4.2 10-2.2 5.2-6.4 15.3H0V432c0 26.5 21.5 48 48 48h480.1c26.5 0 48-21.5 48-48v-90.4c-12.7 8.3-32.7 6.1-67.5 6.1zm36.3-64.5H575v-14.6h-32.9c-12.8 0-23.8 6.6-23.8 20.7 0 33 42.7 12.8 42.7 27.4 0 5.1-4.3 6.4-8.4 6.4h-32l-.1 14.8h32c8.4 0 17.6-1.8 22.5-8.9v-25.8c-10.5-13.8-39.3-1.3-39.3-13.5 0-5.8 4.6-6.5 9.2-6.5zm-57 39.8h-32.2l-.1 14.8h32.2c14.8 0 26.2-5.6 26.2-22 0-33.2-42.9-11.2-42.9-26.3 0-5.6 4.9-6.4 9.2-6.4h30.4v-14.6h-33.2c-12.8 0-23.5 6.6-23.5 20.7 0 33 42.7 12.5 42.7 27.4-.1 5.4-4.7 6.4-8.8 6.4zm-42.2-40.1v-14.3h-55.2l-.1 69.3h55.2l.1-14.3-38.6-.3v-13.8H445v-14.1h-37.8v-12.5zm-56.3-108.1c-.3.2-1.4 2.2-1.4 7.6 0 6 .9 7.7 1.1 7.9.2.1 1.1.5 3.4.5l7.3-16.9c-1.1 0-2.1-.1-3.1-.1-5.6 0-7 .7-7.3 1zm20.4-10.5h-.1zm-16.2-15.2c-23.5 0-34 12-34 35.3 0 22.2 10.2 34 33 34h19.2l6.4-15.3h34.3l6.6 15.3h33.7v-51.9l31.2 51.9h23.6v-69h-16.9v48.1l-29.1-48.1h-25.3v65.4l-27.9-65.4h-24.8l-23.5 54.5h-7.4c-13.3 0-16.1-8.1-16.1-19.9 0-23.8 15.7-20 33.1-19.7v-15.2zm42.1 12.1l11.2 27.6h-22.8zm-101.1-12v69.3h16.9v-69.3z"></path>
+                      </svg></td>
+                    <td>
+                      <div class="c-small c-text-muted">Last login</div><strong>Yesterday</strong>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- /.c-col-->
+      </div>
+      <!-- /.c-row-->
     </div>
-    <!-- /.c-col-->
-  </div>
-  <!-- /.c-row-->
-</div></body></html>
+  </body>
+</html>

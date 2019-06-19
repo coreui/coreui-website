@@ -2,17 +2,17 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Pro Boostrap Admin Template (2.1.12): loading-buttons.js
+ * CoreUI Pro Boostrap Admin Template (3.0.0-alpha.0): loading-buttons.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */
 
 /* eslint-disable no-magic-numbers */
-Ladda.bind('.btn-ladda', {
+Ladda.bind('.c-btn-ladda', {
   timeout: 2000
 }); // Bind progress buttons and simulate loading progress
 
-Ladda.bind('.btn-ladda-progress', {
+Ladda.bind('.c-btn-ladda-progress', {
   callback: function callback(instance) {
     var progress = 0;
     var interval = setInterval(function () {

@@ -46,9 +46,9 @@ var DataTable = $.fn.dataTable;
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		"<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
-		"<'row'<'col-sm-12'tr>>" +
-		"<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+		"<'c-row'<'c-col-sm-12 c-col-md-6'l><'c-col-sm-12 c-col-md-6'f>>" +
+		"<'c-row'<'c-col-sm-12'tr>>" +
+		"<'c-row'<'c-col-sm-12 c-col-md-5'i><'c-col-sm-12 c-col-md-7'p>>",
 	renderer: 'bootstrap'
 } );
 
@@ -56,10 +56,10 @@ $.extend( true, DataTable.defaults, {
 /* Default class modification */
 $.extend( DataTable.ext.classes, {
 	sWrapper:      "dataTables_wrapper dt-bootstrap4",
-	sFilterInput:  "form-control form-control-sm",
-	sLengthSelect: "custom-select custom-select-sm form-control form-control-sm",
-	sProcessing:   "dataTables_processing card",
-	sPageButton:   "paginate_button page-item"
+	sFilterInput:  "c-form-control c-form-control-sm",
+	sLengthSelect: "c-custom-select c-custom-select-sm c-form-control c-form-control-sm",
+	sProcessing:   "dataTables_processing c-card",
+	sPageButton:   "paginate_button c-page-item"
 } );
 
 
@@ -140,7 +140,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 								'aria-label': aria[ button ],
 								'data-dt-idx': counter,
 								'tabindex': settings.iTabIndex,
-								'class': 'page-link'
+								'class': 'c-page-link'
 							} )
 							.html( btnDisplay )
 						)
@@ -170,7 +170,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
 	catch (e) {}
 
 	attach(
-		$(host).empty().html('<ul class="pagination"/>').children('ul'),
+		$(host).empty().html('<ul class="c-pagination c-justify-content-end"/>').children('ul'),
 		buttons
 	);
 
