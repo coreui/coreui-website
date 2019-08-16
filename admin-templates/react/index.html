@@ -1,555 +1,859 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<title>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A perfect starting point for all React.js based applications. React is a JavaScript library for building user interfaces. React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable, simpler to understand, and easier to debug.">
+  <meta name="author" content="">
+  <meta name="generator" content="Hugo 0.55.1"><title> · CoreUI</title><link rel="canonical" href="http://coreui.io/admin-templates/react/">
   
-    React Templates &middot; CoreUI
-  
-</title>
-
-<!-- Twitter -->
-<meta name="twitter:site" content="@coreui_ui">
-<meta name="twitter:creator" content="@coreui_ui">
-
+  <link rel="stylesheet" href="http://coreui.io/scss/colors/react.min.a042234475117c12de6b711a1518d5eb3ebe9b675ea6b4b7a826ce2eed386520.css">
+<link rel="stylesheet" href="http://coreui.io/scss/style.min.2c2707affa623dc81292ae0ba4c19f442743d07184f3b63dd05f434dc34db2e8.css">
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/images/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+<link rel="manifest" href="/images/favicons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/images/favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+  <!-- Twitter -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React Templates">
+<meta name="twitter:site" content="@core_ui">
+<meta name="twitter:creator" content="@core_ui">
+<meta name="twitter:title" content=" · CoreUI">
 <meta name="twitter:description" content="A perfect starting point for all React.js based applications. React is a JavaScript library for building user interfaces. React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable, simpler to understand, and easier to debug.">
-<meta name="twitter:image" content="https://coreui.io/assets/brand/coreui-social-logo.png">
+<meta name="twitter:image" content="http://coreui.io/images/ogimages/react_1200_600.jpg">
 
 <!-- Facebook -->
-
-<meta property="og:url" content="https://coreui.io/admin-templates/react/">
-<meta property="og:title" content="React Templates">
+<meta property="og:url" content="http://coreui.io/admin-templates/react/">
+<meta property="og:title" content=" · CoreUI">
 <meta property="og:description" content="A perfect starting point for all React.js based applications. React is a JavaScript library for building user interfaces. React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable, simpler to understand, and easier to debug.">
 <meta property="og:type" content="website">
-
-<meta property="og:image" content="http://coreui.io/assets/brand/coreui-social.png">
-<meta property="og:image:secure_url" content="https://coreui.io/assets/brand/coreui-social.png">
-<meta property="og:image:type" content="image/png">
+<meta property="og:image" content="http://coreui.io/images/ogimages/react_1200_630.jpg">
+<meta property="og:image:secure_url" content="http://coreui.io/images/ogimages/react_1200_630.jpg">
+<meta property="og:image:type" content="image/jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
-<!-- Meta -->
-
-<meta name="description" content="Free Boostrap Admin Template.">
-
-<meta name="author" content="Łukasz Holeczek, Andrzej Kopański">
-
-
-<!-- Bootstrap core CSS -->
-<link href="/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="/assets/css/style.min.css?v=1.0.2" rel="stylesheet">
-<link href="/assets/css/coreui-icons-linear.css?v=0.4.0" rel="stylesheet">
-<link href="/assets/css/coreui-icons-solid.css?v=0.4.0" rel="stylesheet">
-
-<!-- Favicons -->
-<link rel="apple-touch-icon" href="/apple-icon.png">
-<link rel="icon" href="/favicon.ico">
-
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-118965717-1', 'auto', {'allowLinker': true});
-  ga('require', 'linker');
-  ga('linker:autoLink', ['gumroad.com','genesisui.com']);
-  ga('send', 'pageview');
-
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-118965717-1');
 </script>
-
-  </head>
-  <body>
-    <a id="skippy" class="sr-only sr-only-focusable" href="#content">
-      <div class="container">
-        <span class="skiplink-text">Skip to main content</span>
-      </div>
-    </a>
-
-    <!-- <a href="https://sketchstrap.io" class="sketchstrap" target="_blank">
-  🎉 <strong>Early access!</strong> SketchStrap Bootstrap Customizer. The easiest way to customize your Bootstrap.
-</a> -->
-<div class="bg-danger d-block text-center text-white p-3" style="background-color: #4776e6;background-image: linear-gradient(to right, #4776e6, #8e54e9);">
-  💪💪💪 Please help us on Github. Give us a star ⭐️ 🙏🙏 ➡
-  <span onclick="ga('send', 'event', 'Give us a star', 'Click', 'Top banner');" style="position:absolute;margin-left:10px;margin-top:-4px;">
-    <!-- Place this tag where you want the button to render. -->
-    <a class="github-button" href="https://github.com/coreui/coreui-free-bootstrap-admin-template" data-size="large" aria-label="Star coreui/coreui-free-bootstrap-admin-template on GitHub" target="_blank">Star</a>
-  </span>
-</div>
-<!-- <a href="/icons/" class="bg-danger d-block text-center text-white py-3">
-  🎉 <strong>Early access!</strong> CoreUI Icons. Delightful, beautifully crafted symbols for common actions and items.
-</a> -->
-<header class="navbar navbar-expand-lg navbar-dark" style="background-color:#61dafb">
-  <a class="navbar-brand mr-0 mr-md-5" href="/" aria-label="Bootstrap">
-    
-      <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg  class="d-block align-middle" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  width="97"  height="28" viewBox="0 0 711 205.5" style="enable-background:new 0 0 711 205.5;" xml:space="preserve">
-<style type="text/css">
-	.st0{display:none;}
-	.st1{display:inline;fill:#ED1F24;stroke:#000000;stroke-miterlimit:10;}
-	.st2{fill:#FFFFFF;}
-	.st3{opacity:4.000000e-02;stroke:#FFFFFF;stroke-miterlimit:10;}
-	.st4{opacity:8.000000e-02;stroke:#FFFFFF;stroke-miterlimit:10;}
-	.st5{opacity:0;stroke:#FFFFFF;stroke-miterlimit:10;}
-	.st6{opacity:8.000000e-02;}
-	.st7{fill:none;}
-</style>
-<g id="Warstwa_2" class="st0">
-	<rect x="-137.2" y="-140.2" class="st1" width="1081.7" height="575.9"/>
-</g>
-<g id="Warstwa_1">
-	<path class="st2" d="M89.1,3L2.5,53v100l86.6,50l86.6-50V53L89.1,3z M89.1,136.3l28.9-16.7l28.9,16.7l-57.7,33.3l-57.7-33.3V69.7
-		l57.7-33.3l57.7,33.3L118,86.3L89.1,69.7L60.2,86.3v33.3L89.1,136.3z"/>
-	<polygon class="st3" points="2.5,53 89.1,103 89.1,3 	"/>
-	<polygon class="st3" points="2.5,153 89.1,203 89.1,103 	"/>
-	<polygon class="st4" points="89.1,103 175.7,153 175.7,53 	"/>
-	<polygon class="st5" points="89.1,103 2.5,53 2.5,153 	"/>
-	<polygon class="st4" points="175.7,153 89.1,103 89.1,203 	"/>
-	<polygon class="st4" points="175.7,53 89.1,3 89.1,103 	"/>
-	<g>
-		<path class="st2" d="M293,130.3c1,0,1.8,0.4,2.6,1.1l7.2,7.8c-4,4.9-8.8,8.7-14.6,11.3c-5.8,2.6-12.7,3.9-20.8,3.9
-			c-7.2,0-13.8-1.2-19.5-3.7c-5.8-2.5-10.7-5.9-14.8-10.3c-4.1-4.4-7.2-9.7-9.4-15.8c-2.2-6.1-3.3-12.8-3.3-20
-			c0-7.3,1.2-14.1,3.6-20.1c2.4-6.1,5.8-11.4,10.3-15.8c4.4-4.4,9.7-7.8,15.8-10.3c6.1-2.5,12.9-3.7,20.4-3.7c7.2,0,13.6,1.2,19,3.5
-			c5.4,2.3,10.1,5.4,13.9,9.2l-6.1,8.4c-0.4,0.5-0.8,1-1.4,1.4c-0.6,0.4-1.3,0.6-2.3,0.6c-1,0-2.1-0.4-3.2-1.2s-2.5-1.7-4.1-2.6
-			c-1.7-0.9-3.8-1.8-6.3-2.6c-2.5-0.8-5.8-1.2-9.7-1.2c-4.6,0-8.8,0.8-12.7,2.4c-3.8,1.6-7.2,3.9-9.9,6.9s-4.9,6.6-6.5,10.8
-			c-1.6,4.3-2.3,9-2.3,14.3c0,5.5,0.8,10.4,2.3,14.6c1.6,4.3,3.7,7.9,6.3,10.8c2.7,2.9,5.8,5.2,9.4,6.7c3.6,1.6,7.5,2.3,11.6,2.3
-			c2.5,0,4.7-0.1,6.7-0.4c2-0.3,3.8-0.7,5.5-1.3c1.7-0.6,3.3-1.3,4.8-2.3c1.5-0.9,3-2.1,4.5-3.4c0.4-0.4,0.9-0.7,1.4-1
-			C291.8,130.4,292.4,130.3,293,130.3z"/>
-		<path class="st2" d="M410,104.5c0,7.2-1.2,13.8-3.6,19.9c-2.4,6.1-5.7,11.4-10.1,15.8c-4.3,4.5-9.5,7.9-15.6,10.4
-			c-6.1,2.5-12.8,3.7-20.2,3.7c-7.4,0-14.1-1.2-20.2-3.7c-6.1-2.5-11.3-6-15.7-10.4c-4.3-4.5-7.7-9.7-10.1-15.8
-			c-2.4-6.1-3.6-12.7-3.6-19.9c0-7.2,1.2-13.8,3.6-19.9c2.4-6.1,5.7-11.4,10.1-15.8c4.3-4.5,9.6-7.9,15.7-10.4
-			c6.1-2.5,12.8-3.7,20.2-3.7c7.4,0,14.1,1.3,20.2,3.8c6.1,2.5,11.3,6,15.6,10.4c4.3,4.4,7.7,9.7,10.1,15.8
-			C408.8,90.7,410,97.3,410,104.5z M391.4,104.5c0-5.4-0.7-10.2-2.1-14.4c-1.4-4.3-3.5-7.9-6.1-10.8c-2.7-3-5.9-5.2-9.7-6.8
-			c-3.8-1.6-8.1-2.4-12.9-2.4c-4.8,0-9.1,0.8-12.9,2.4c-3.8,1.6-7.1,3.8-9.8,6.8c-2.7,3-4.7,6.6-6.2,10.8c-1.4,4.3-2.2,9.1-2.2,14.4
-			c0,5.4,0.7,10.2,2.2,14.4c1.4,4.3,3.5,7.9,6.2,10.8c2.7,2.9,5.9,5.2,9.8,6.8c3.8,1.6,8.1,2.4,12.9,2.4c4.8,0,9.1-0.8,12.9-2.4
-			c3.8-1.6,7-3.8,9.7-6.8c2.7-2.9,4.7-6.5,6.1-10.8C390.7,114.7,391.4,109.9,391.4,104.5z"/>
-		<path class="st2" d="M443.1,115.2v38.1h-18.2V55.7h29.8c6.7,0,12.4,0.7,17.1,2.1c4.7,1.4,8.6,3.3,11.7,5.8c3,2.5,5.3,5.4,6.7,8.9
-			c1.4,3.4,2.1,7.2,2.1,11.4c0,3.3-0.5,6.4-1.5,9.3c-1,2.9-2.4,5.6-4.2,8c-1.8,2.4-4.1,4.5-6.8,6.3c-2.7,1.8-5.7,3.2-9.1,4.3
-			c2.3,1.3,4.3,3.2,5.9,5.6l24.4,36h-16.3c-1.6,0-2.9-0.3-4-0.9c-1.1-0.6-2-1.5-2.8-2.7l-20.5-31.3c-0.8-1.2-1.6-2-2.5-2.5
-			c-0.9-0.5-2.3-0.7-4.1-0.7H443.1z M443.1,102.1h11.3c3.4,0,6.4-0.4,8.9-1.3c2.5-0.9,4.6-2,6.3-3.5c1.6-1.5,2.9-3.3,3.7-5.4
-			c0.8-2.1,1.2-4.3,1.2-6.8c0-4.9-1.6-8.8-4.9-11.4c-3.3-2.7-8.2-4-15-4h-11.6V102.1z"/>
-		<path class="st2" d="M574.3,55.7v14.4H531v27.1h34.1v14H531v27.6h43.3v14.5h-61.6V55.7H574.3z"/>
-		<path class="st2" d="M629.3,138.7c3.5,0,6.6-0.6,9.4-1.8c2.8-1.2,5.1-2.8,7-4.9c1.9-2.1,3.4-4.7,4.4-7.7c1-3,1.5-6.4,1.5-10.1
-			V55.7h18.2v58.5c0,5.8-0.9,11.2-2.8,16.1c-1.9,4.9-4.6,9.2-8.1,12.8c-3.5,3.6-7.8,6.4-12.8,8.4s-10.6,3-16.9,3s-11.9-1-16.9-3
-			s-9.2-4.8-12.7-8.4c-3.5-3.6-6.2-7.8-8-12.8c-1.9-4.9-2.8-10.3-2.8-16.1V55.7H607v58.4c0,3.7,0.5,7.1,1.5,10.1
-			c1,3,2.5,5.6,4.4,7.7c1.9,2.1,4.2,3.8,7,5C622.7,138.1,625.8,138.7,629.3,138.7z"/>
-		<path class="st2" d="M708.7,153.3h-18.2V55.7h18.2V153.3z"/>
-		<path class="st6" d="M629.3,138.7c3.5,0,6.6-0.6,9.4-1.8c2.8-1.2,5.1-2.8,7-4.9c1.9-2.1,3.4-4.7,4.4-7.7c1-3,1.5-6.4,1.5-10.1
-			V55.7h18.2v58.5c0,5.8-0.9,11.2-2.8,16.1c-1.9,4.9-4.6,9.2-8.1,12.8c-3.5,3.6-7.8,6.4-12.8,8.4s-10.6,3-16.9,3s-11.9-1-16.9-3
-			s-9.2-4.8-12.7-8.4c-3.5-3.6-6.2-7.8-8-12.8c-1.9-4.9-2.8-10.3-2.8-16.1V55.7H607v58.4c0,3.7,0.5,7.1,1.5,10.1
-			c1,3,2.5,5.6,4.4,7.7c1.9,2.1,4.2,3.8,7,5C622.7,138.1,625.8,138.7,629.3,138.7z"/>
-		<path class="st6" d="M708.7,153.3h-18.2V55.7h18.2V153.3z"/>
-	</g>
-	<rect x="-137.2" y="-140.2" class="st7" width="1035.1" height="510.1"/>
-</g>
+</head><body class="c-color-scheme-react" id="c-templates"><svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="70" class="cui-logo c-d-none" viewBox="0 0 312 115">
+  <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
+        <g id="coreui-base" fill="currentColor" fill-rule="nonzero">
+            <g id="Group">
+                <path d="M96,24.1244 L57,1.6077 C53.2871871,-0.535893539 48.7128129,-0.535893539 45,1.6077 L6,24.1243 C2.29226017,26.2730089 0.00693260339,30.2313486 0,34.5167 L0,79.55 C0.0068453397,83.8353487 2.29220098,87.7936989 6,89.9423 L45,112.459 C48.7128129,114.602594 53.2871871,114.602594 57,112.459 L96,89.9423 C99.707799,87.7936989 101.993155,83.8353487 102,79.55 L102,34.5167 C101.993093,30.2313678 99.707754,26.273046 96,24.1244 Z M94,79.55 C94,80.9790618 93.2376038,82.2995691 92,83.0141 L53,105.5308 C51.7623957,106.245331 50.2376043,106.245331 49,105.5308 L10,83.0141 C8.76239619,82.2995691 8,80.9790618 8,79.55 L8,34.5167 C8,33.0876382 8.76239619,31.7671309 10,31.0526 L49,8.5359 C50.2376043,7.82136882 51.7623957,7.82136882 53,8.5359 L92,31.0526 C93.2376038,31.7671309 94,33.0876382 94,34.5167 L94,79.55 Z" id="Shape"></path>
+                <path d="M74.0216,70.0713 L71.1556,70.0713 C70.4827679,70.0712861 69.8208069,70.2410241 69.231,70.5648 L51.95,80.05 L32,68.5315 L32,45.554 L51.95,34.0354 L69.2394,43.4904 C69.8278903,43.8122245 70.4878603,43.9808965 71.1586,43.9809 L74.0218,43.9809 C75.1263695,43.9809 76.0218,43.0854695 76.0218,41.9809 L76.0218,39.2691 C76.0218,38.5380907 75.6230914,37.8652844 74.9818,37.5144 L55.793,27.0188 C53.3404536,25.684951 50.3714915,25.7190213 47.9502,27.1088 L28,38.6262 C25.5283249,40.0590349 24.0048565,42.6979488 24,45.5549 L24,68.5309 C24,71.3890593 25.5247614,74.0301204 28,75.4592 L47.95,86.9778 C50.3719859,88.3663725 53.3408028,88.399644 55.7933,87.0657 L74.9833,76.5345 C75.6233016,76.1832775 76.0210885,75.5112406 76.0211,74.7812 L76.0211,72.0712 C76.0210448,70.9668648 75.1259352,70.0715761 74.0216,70.0713 Z" id="Path"></path>
+            </g>
+            <g id="Group" transform="translate(117.000000, 33.000000)">
+                <path d="M51.7447,0.4285 C43.4644161,0.437648027 36.754124,7.14771643 36.7447,15.428 L36.7447,32.7054 C36.7447,40.9896712 43.4604288,47.7054 51.7447,47.7054 C60.0289712,47.7054 66.7447,40.9896712 66.7447,32.7054 L66.7447,15.428 C66.735276,7.14771643 60.0249839,0.437648027 51.7447,0.4285 L51.7447,0.4285 Z M58.7447,32.7054 C58.7447,36.5713932 55.6106932,39.7054 51.7447,39.7054 C47.8787068,39.7054 44.7447,36.5713932 44.7447,32.7054 L44.7447,15.428 C44.7447,11.5620068 47.8787068,8.428 51.7447,8.428 C55.6106932,8.428 58.7447,11.5620068 58.7447,15.428 L58.7447,32.7054 Z" id="Shape"></path>
+                <path d="M15.0788,8.4878 C16.9286881,8.24481332 18.799121,8.74931526 20.2759097,9.88958885 C21.7526984,11.0298624 22.7139842,12.7118169 22.9469,14.563 C23.0096446,15.0584416 23.4318031,15.4294333 23.9312,15.428 L29.9617,15.428 C30.2433078,15.4256279 30.5111615,15.3058932 30.700737,15.0976392 C30.8903124,14.8893852 30.9844237,14.6114912 30.9604,14.3309 C30.3547728,6.2061693 23.38159,0.0460556878 15.2442,0.4472 C7.16132117,0.999887718 0.913134758,7.76221317 1,15.8635 L1,32.27 C0.913131523,40.3712508 7.16126073,47.1335618 15.2441,47.6863 C23.3813933,48.08722 30.3543741,41.9271229 30.96,33.8025 C30.9840545,33.5219017 30.8899539,33.2439902 30.7003719,33.035729 C30.5107899,32.8274679 30.2429178,32.7077421 29.9613,32.7054 L23.9308,32.7054 C23.4314031,32.7039667 23.0092446,33.0749584 22.9465,33.5704 C22.7137048,35.4216544 21.7524848,37.1037177 20.2757044,38.2440932 C18.7989241,39.3844687 16.9284489,39.8890513 15.0785,39.6461 C11.5427997,39.1044016 8.94840923,36.0377838 9,32.4612 L9,15.6724 C8.94840694,12.0957688 11.543004,9.02918626 15.0788,8.4878 L15.0788,8.4878 Z" id="Path"></path>
+                <path d="M97.9222,27.9944 C102.287745,26.0370903 105.09962,21.7015444 105.1064,16.9173 L105.1064,13.2161 C105.1064,6.50617166 99.6669283,1.0667 92.957,1.0667 L76,1.0667 C75.4477153,1.0667 75,1.51441525 75,2.0667 L75,46.0667 C75,46.6189847 75.4477153,47.0667 76,47.0667 L82,47.0667 C82.5522847,47.0667 83,46.6189847 83,46.0667 L83,29.0667 L89.6215,29.0667 L97.5369,46.4805 C97.6991143,46.8373746 98.0548886,47.0667 98.4469,47.0667 L105.038,47.0667 C105.377933,47.0667 105.694523,46.8937728 105.878505,46.6079325 C106.062488,46.3220923 106.088664,45.9623638 105.948,45.6529 L97.9222,27.9944 Z M97.1064,16.9173 C97.1039754,19.2077501 95.2479498,21.0639994 92.9575,21.0667 L83.1064,21.0667 L83.1064,9.0667 L92.9575,9.0667 C95.2479498,9.06940063 97.1039754,10.9256499 97.1064,13.2161 L97.1064,16.9173 Z" id="Shape"></path>
+                <path d="M140,1.0667 L114,1.0667 C113.447715,1.0667 113,1.51441525 113,2.0667 L113,46.0667 C113,46.6189847 113.447715,47.0667 114,47.0667 L140,47.0667 C140.552285,47.0667 141,46.6189847 141,46.0667 L141,40.0667 C141,39.5144153 140.552285,39.0667 140,39.0667 L121,39.0667 L121,27.0667 L134,27.0667 C134.552285,27.0667 135,26.6189847 135,26.0667 L135,20.0667 C135,19.5144153 134.552285,19.0667 134,19.0667 L121,19.0667 L121,9.0667 L140,9.0667 C140.552285,9.0667 141,8.61898475 141,8.0667 L141,2.0667 C141,1.51441525 140.552285,1.0667 140,1.0667 Z" id="Path"></path>
+                <path d="M178,1.0667 L172,1.0667 C171.447715,1.0667 171,1.51441525 171,2.0667 L171,24.7142 C171.111775,27.2875721 169.802567,29.7147754 167.590728,31.0348154 C165.378889,32.3548553 162.621111,32.3548553 160.409272,31.0348154 C158.197433,29.7147754 156.888225,27.2875721 157,24.7142 L157,2.0667 C157,1.51441525 156.552285,1.0667 156,1.0667 L150,1.0667 C149.447715,1.0667 149,1.51441525 149,2.0667 L149,24.7142 C148.889565,30.1458781 151.72415,35.2128902 156.410578,37.96111 C161.097007,40.7093297 166.902993,40.7093297 171.589422,37.96111 C176.27585,35.2128902 179.110435,30.1458781 179,24.7142 L179,2.0667 C179,1.51441525 178.552285,1.0667 178,1.0667 Z" id="Path"></path>
+                <rect id="Rectangle" x="187" y="1.0667" width="8" height="38" rx="1"></rect>
+            </g>
+        </g>
+    </g>
 </svg>
-
-    
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link " href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Documentation</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/blog/">Blog</a>
-      </li>
+<div class="c-container-big">
+  <nav class="c-header c-header-transparent c-px-lg-5">
+    <a href="/" class="c-header-brand" aria-label="CoreUI">
+      <svg height="70" viewbox="0 0 312 115">
+        <use class="c-coreui-base" xlink:href="#Page-1"/>
+      </svg>
       
-      <li class="nav-item">
-        <a class="nav-link" href="/icons/">Icons <span class="badge badge-warning">new</span></a>
+      <div class="c-header-brand-framework">
+        Templates
+      </div>
+      
+      
+    </a>
+    <ul class="c-header-nav">
+      <li class="c-nav-item">
+        <a href="/" class="c-nav-link c-active">
+          Home
+        </a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle mr-md-2" href="#" id="versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <li class="c-nav-item">
+        <a href="/docs/" class="c-nav-link">
+          Documentation
+        </a>
+      </li>
+      <li class="c-nav-item">
+        <a href="/blog/" class="c-nav-link">
+          Blog
+        </a>
+      </li>
+      <li class="c-nav-item c-dropdown">
+        <a class="c-nav-link" data-toggle="c-dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
           Products
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="versions">
-          <a class="dropdown-item" href="/">CoreUI</a>
-          <a class="dropdown-item" href="/angular">CoreUI for Angular</a>
-          <!-- <a class="dropdown-item" href="/angularjs">CoreUI for AngularJS</a> -->
-          <a class="dropdown-item" href="/react">CoreUI for React.js</a>
-          <a class="dropdown-item" href="/vue">CoreUI for Vue.js</a>
-          <hr>
-          <a class="dropdown-item" href="/pro/">CoreUI <strong>Pro</strong></a>
-          <a class="dropdown-item" href="/pro/angular">CoreUI <strong>Pro</strong> for Angular</a>
-          <!-- <a class="dropdown-item" href="/pro/angularjs">CoreUI <strong>Pro</strong> for AngularJS</a> -->
-          <a class="dropdown-item" href="/pro/react">CoreUI <strong>Pro</strong> for React.js</a>
-          <a class="dropdown-item" href="/pro/vue">CoreUI <strong>Pro</strong> for Vue.js</a>
-          <hr>
-          <a class="dropdown-item" href="/icons/">CoreUI Icons</a>
-          <hr>
-          <a class="dropdown-item" href="/admin-templates/angular/">Angular Admin Templates</a>
-          <a class="dropdown-item" href="/admin-templates/bootstrap/">Bootstrap Admin Templates</a>
-          <a class="dropdown-item" href="/admin-templates/react/">React.js Admin Templates</a>
-          <a class="dropdown-item" href="/admin-templates/vue/">Vue.js Admin Templates</a>
+        <div class="c-dropdown-menu">
+          <a class="c-dropdown-item" href="/">
+          <a class="c-dropdown-item" href="/angular/">CoreUI for &nbsp;<span class="c-text-angular">Angular</span></a>
+          <a class="c-dropdown-item" href="/bootstrap/">CoreUI for &nbsp;<span class="c-text-bootstrap">Bootstrap</span></a>
+          <a class="c-dropdown-item" href="/react/">CoreUI for &nbsp;<span class="c-text-react">React.js</span></a>
+          <a class="c-dropdown-item" href="/vue/">CoreUI for &nbsp;<span class="c-text-vue">Vue.js</span></a>
+          <div class="c-dropdown-divider"></div>
+          <a class="c-dropdown-item" href="/pro/">CoreUI &nbsp;<span class="c-badge-pro c-badge-pro-coreui"></span></a>
+          <a class="c-dropdown-item" href="/pro/angular/">CoreUI &nbsp;<span class="c-badge-pro c-badge-pro-angular"></span>&nbsp; for &nbsp;<span class="c-text-angular">Angular</span></a>
+          <a class="c-dropdown-item" href="/pro/bootstrap/">CoreUI &nbsp;<span class="c-badge-pro c-badge-pro-bootstrap"></span>&nbsp; for &nbsp;<span class="c-text-bootstrap">Bootstrap</span></a>
+          <a class="c-dropdown-item" href="/pro/react/">CoreUI &nbsp;<span class="c-badge-pro c-badge-pro-react"></span>&nbsp; for &nbsp;<span class="c-text-react">React.js</span></a>
+          <a class="c-dropdown-item" href="/pro/vue/">CoreUI &nbsp;<span class="c-badge-pro c-badge-pro-vue"></span>&nbsp; for &nbsp;<span class="c-text-vue">Vue.js</span></a>
+          <div class="c-dropdown-divider"></div>
+          <a class="c-dropdown-item" href="/icons/">CoreUI &nbsp;<strong>Icons</strong></a>
+          <a class="c-dropdown-item" href="/icons/pro/">CoreUI &nbsp;<strong>Icons</strong> &nbsp;<span class="c-badge-pro c-badge-pro-icons"></span></a>
+          <div class="c-dropdown-divider"></div>
+          <a class="c-dropdown-item" href="/admin-templates/angular/">Angular Admin Templates</a>
+          <a class="c-dropdown-item" href="/admin-templates/bootstrap/">Bootstrap Admin Templates</a>
+          <a class="c-dropdown-item" href="/admin-templates/react/">React.js Admin Templates</a>
+          <a class="c-dropdown-item" href="/admin-templates/vue/">Vue.js Admin Templates</a>
+          <a class="c-dropdown-item" href="/bundle/">Big Bundle - Discount</a>
         </div>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle mr-md-2" href="#" id="versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Admin Templates
+      <li class="c-nav-item">
+        <a href="/support/" class="c-nav-link">
+          Support
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="versions">
-          <a class="dropdown-item" href="/admin-templates/angular/">Angular Admin Templates</a>
-          <a class="dropdown-item" href="/admin-templates/bootstrap/">Bootstrap Admin Templates</a>
-          <a class="dropdown-item" href="/admin-templates/react/">React.js Admin Templates</a>
-          <a class="dropdown-item" href="/admin-templates/vue/">Vue.js Admin Templates</a>
-        </div>
       </li>
-    </ul>
-    <ul class="navbar-nav ml-md-auto">
-      <li class="nav-item mr-3">
-        <a class="nav-link" href="/support/">Support</a>
-      </li>
-      
-      <!-- <li class="nav-item">
-        <a class="btn btn-outline-warning" href="http://holeczek.pl" onclick="ga('send', 'event', 'About me', 'Click', 'Navbar');">About me</a>
-      </li> -->
-      <li class="nav-item">
-        <a class="btn btn-outline-warning" href="/about/services/" onclick="ga('send', 'event', 'Hire us', 'Click', 'Navbar');">Hire us</a>
-      </li>
-    </ul>
-  </div>
-</header>
-
-
-    <main class="masthead text-white pb-0" id="content" role="main" style="background-color:#61dafb;overflow:hidden">
-      <div class="container">
-        <div class="row">
-          <div class="col-6 mx-auto col-md-6 order-md-2">
-            <img src="/assets/img/all-templates.png" alt="React Templates" style="position:absolute;bottom:0">
+      <li class="c-nav-item">
+        <a href="/hire-us/" class="c-nav-link c-signalize">
+          Hire Us
+        </a>
+      </li><li class="c-nav-item">
+        <a href="/pro/react/" class="c-nav-btn c-btn-go-pro c-btn-react">Go Pro</a>
+      </li></ul>
+    <button class="c-header-toggler c-class-toggler" type="button" data-target=".c-mobile-nav" data-class="c-show"></button>
+    <div class="c-mobile-nav">
+      <button type="button" class="c-close-button c-class-toggler" data-target=".c-mobile-nav" data-class="c-show"></button>
+      <div class="c-nav-elements">
+        <div class="c-row">
+          <div class="c-col-6">
+            <a class="c-nav-link" href="/">
+              <svg height="25" viewbox="0 0 312 115">
+                <use class="c-coreui-base" xlink:href="#Page-1"/>
+              </svg>
+            </a>
+            <a class="c-nav-link" href="/angular/">
+              <svg height="25" viewbox="0 0 312 115">
+                <use class="c-coreui-base" xlink:href="#Page-1"/>
+              </svg>
+              <span class="c-text-angular">Angular</span>
+            </a>
+            <a class="c-nav-link" href="/bootstrap/">
+              <svg height="25" viewbox="0 0 312 115">
+                <use class="c-coreui-base" xlink:href="#Page-1"/>
+              </svg>
+              <span class="c-text-bootstrap">Bootstrap</span>
+            </a>
+            <a class="c-nav-link" href="/react/">
+              <svg height="25" viewbox="0 0 312 115">
+                <use class="c-coreui-base" xlink:href="#Page-1"/>
+              </svg>
+              <span class="c-text-react">React.js</span>
+            </a>
+            <a class="c-nav-link" href="/vue/">
+              <svg height="25" viewbox="0 0 312 115">
+                <use class="c-coreui-base" xlink:href="#Page-1"/>
+              </svg>
+              <span class="c-text-vue">Vue.js</span>
+            </a>
           </div>
-          <div class="col-md-6 order-md-1 text-center text-md-left">
-            <h1 class="mb-3 text-sm-nowrap">React Templates</h1>
-            <h2 class="mb-3 text-sm-nowrap">CoreUI Pro based react admin templates</h2>
-            <p class="lead pb-5">
-              A perfect starting point for all React.js based applications. React is a JavaScript library for building user interfaces. React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable, simpler to understand, and easier to debug.
-            </p>
+          <div class="c-col-6">
+            <a class="c-nav-link" href="/pro/angular/">
+              <svg height="25" viewbox="0 0 312 115">
+                <use class="c-coreui-base" xlink:href="#Page-1"/>
+              </svg>
+              <span class="c-badge-pro c-badge-pro-coreui"></span>
+            </a>
+            <a class="c-nav-link" href="/pro/">
+              <svg height="25" viewbox="0 0 312 115">
+                <use class="c-coreui-base" xlink:href="#Page-1"/>
+              </svg>
+              <span class="c-text-angular">Angular</span>
+              <span class="c-badge-pro c-badge-pro-angular"></span>
+            </a>
+            <a class="c-nav-link" href="/pro/bootstrap/">
+              <svg height="25" viewbox="0 0 312 115">
+                <use class="c-coreui-base" xlink:href="#Page-1"/>
+              </svg>
+              <span class="c-text-bootstrap">Bootstrap</span>
+              <span class="c-badge-pro c-badge-pro-bootstrap"></span>
+            </a>
+            <a class="c-nav-link" href="/pro/react">
+              <svg height="25" viewbox="0 0 312 115">
+                <use class="c-coreui-base" xlink:href="#Page-1"/>
+              </svg>
+              <span class="c-text-react">React.js</span>
+              <span class="c-badge-pro c-badge-pro-react"></span>
+            </a>
+            <a class="c-nav-link" href="/pro/vue">
+              <svg height="25" viewbox="0 0 312 115">
+                <use class="c-coreui-base" xlink:href="#Page-1"/>
+              </svg>
+              <span class="c-text-vue">Vue.js</span>
+              <span class="c-badge-pro c-badge-pro-vue"></span>
+            </a>
           </div>
         </div>
-      </div>
-    </main>
-    <section class="py-5 bg-light">
-      <div class="container">
-        <div class="text-center">
-           supports most popular frameworks. Learn more about dedicated versions for:
+        <hr>
+        <div class="c-row">
+          <div class="c-col-6">
+            <a class="c-nav-link" href="/icons/">
+              <svg height="25" viewbox="0 0 312 115">
+                <use class="c-coreui-base" xlink:href="#Page-1"/>
+              </svg>
+              <span class="c-text-icons">Icons</span>
+            </a>
+          </div>
+          <div class="c-col-6">
+            <a class="c-nav-link" href="/icons/pro/">
+              <svg height="25" viewbox="0 0 312 115">
+                <use class="c-coreui-base" xlink:href="#Page-1"/>
+              </svg>
+              <span class="c-text-icons-pro">Icons</span>
+              <span class="c-badge-pro c-badge-pro-icons"></span>
+            </a>
+          </div>
         </div>
-        <div class="text-center mt-3">
-          <a href="/admin-templates/bootstrap/" class="btn btn-lg btn-outline-bootstrap" style="width: 200px">Bootstrap 4</a>
-          <a href="/admin-templates/angular/" class="btn btn-lg btn-outline-angular" style="width: 200px">Angular 2+</a>
-          <a href="/admin-templates/react/" class="btn btn-lg btn-outline-react" style="width: 200px">React.js</a>
-          <a href="/admin-templates/vue/" class="btn btn-lg btn-outline-vue" style="width: 200px">Vue.js</a>
+        <div class="c-row">
+          <div class="c-col-6">
+            <a class="c-nav-link" href="/admin-templates/angular/">Angular Admin Templates</a>
+            <a class="c-nav-link" href="/admin-templates/bootstrap/">Bootstrap Admin Templates</a>
+            <a class="c-nav-link" href="/admin-templates/react/">React.js Admin Templates</a>
+            <a class="c-nav-link" href="/admin-templates/vue/">Vue.js Admin Templates</a>
+          </div>
+          <div class="c-col-6">
+            <a class="c-nav-link" href="/docs/">Documentation</a>
+            <a href="/support/" class="c-nav-link">Support</a>
+            <a href="/hire-us/" class="c-nav-link">About Us</a>
+            <a href="/hire-us/" class="c-nav-link">Hire Us</a>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <main id="content" role="main">
-      <div class="container my-5">
-        <div class="row">
-          
-          <div class="col-12 col-md-6">
-            <div class="card mb-3">
-  <div class="card-body pt-5">
-    <a href="./root" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Thumbnail');">
-      <img class="img-fluid" src="/assets/img/responsive-root.png" alt="React.js Admin Template">
-      <h3 class="h5 mt-3">Root React.js Admin Template</h3>
-    </a>
-  </div>
-  <div class="card-body pt-0">
-    <a href="./root#buy" class="btn btn-lg btn-success" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Green button');">Buy Now - $79</a>
-    <a href="./root" class="btn btn-lg btn-outline-secondary" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Learn more');">Learn More</a>
-  </div>
-</div>
-
+        <div class="c-row">
+          <div class="c-col-12">
+            <a class="c-nav-link" href="/bundle/">Big Bundle - Discount</a>
           </div>
-          
-          <div class="col-12 col-md-6">
-            <div class="card mb-3">
-  <div class="card-body pt-5">
-    <a href="./prime" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Thumbnail');">
-      <img class="img-fluid" src="/assets/img/responsive-prime.png" alt="React.js Admin Template">
-      <h3 class="h5 mt-3">Prime React.js Admin Template</h3>
-    </a>
-  </div>
-  <div class="card-body pt-0">
-    <a href="./prime#buy" class="btn btn-lg btn-success" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Green button');">Buy Now - $79</a>
-    <a href="./prime" class="btn btn-lg btn-outline-secondary" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Learn more');">Learn More</a>
-  </div>
-</div>
-
-          </div>
-          
-          <div class="col-12 col-md-6">
-            <div class="card mb-3">
-  <div class="card-body pt-5">
-    <a href="./alba" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Thumbnail');">
-      <img class="img-fluid" src="/assets/img/responsive-alba.png" alt="React.js Admin Template">
-      <h3 class="h5 mt-3">Alba React.js Admin Template</h3>
-    </a>
-  </div>
-  <div class="card-body pt-0">
-    <a href="./alba#buy" class="btn btn-lg btn-success" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Green button');">Buy Now - $79</a>
-    <a href="./alba" class="btn btn-lg btn-outline-secondary" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Learn more');">Learn More</a>
-  </div>
-</div>
-
-          </div>
-          
-          <div class="col-12 col-md-6">
-            <div class="card mb-3">
-  <div class="card-body pt-5">
-    <a href="./leaf" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Thumbnail');">
-      <img class="img-fluid" src="/assets/img/responsive-leaf.png" alt="React.js Admin Template">
-      <h3 class="h5 mt-3">Leaf React.js Admin Template</h3>
-    </a>
-  </div>
-  <div class="card-body pt-0">
-    <a href="./leaf#buy" class="btn btn-lg btn-success" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Green button');">Buy Now - $79</a>
-    <a href="./leaf" class="btn btn-lg btn-outline-secondary" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Learn more');">Learn More</a>
-  </div>
-</div>
-
-          </div>
-          
-          <div class="col-12 col-md-6">
-            <div class="card mb-3">
-  <div class="card-body pt-5">
-    <a href="./clever" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Thumbnail');">
-      <img class="img-fluid" src="/assets/img/responsive-clever.png" alt="React.js Admin Template">
-      <h3 class="h5 mt-3">Clever React.js Admin Template</h3>
-    </a>
-  </div>
-  <div class="card-body pt-0">
-    <a href="./clever#buy" class="btn btn-lg btn-success" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Green button');">Buy Now - $79</a>
-    <a href="./clever" class="btn btn-lg btn-outline-secondary" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Learn more');">Learn More</a>
-  </div>
-</div>
-
-          </div>
-          
-          <div class="col-12 col-md-6">
-            <div class="card mb-3">
-  <div class="card-body pt-5">
-    <a href="./genius" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Thumbnail');">
-      <img class="img-fluid" src="/assets/img/responsive-genius.png" alt="React.js Admin Template">
-      <h3 class="h5 mt-3">Genius React.js Admin Template</h3>
-    </a>
-  </div>
-  <div class="card-body pt-0">
-    <a href="./genius#buy" class="btn btn-lg btn-success" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Green button');">Buy Now - $79</a>
-    <a href="./genius" class="btn btn-lg btn-outline-secondary" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Learn more');">Learn More</a>
-  </div>
-</div>
-
-          </div>
-          
-          <div class="col-12 col-md-6">
-            <div class="card mb-3">
-  <div class="card-body pt-5">
-    <a href="./real" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Thumbnail');">
-      <img class="img-fluid" src="/assets/img/responsive-real.png" alt="React.js Admin Template">
-      <h3 class="h5 mt-3">Real React.js Admin Template</h3>
-    </a>
-  </div>
-  <div class="card-body pt-0">
-    <a href="./real#buy" class="btn btn-lg btn-success" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Green button');">Buy Now - $79</a>
-    <a href="./real" class="btn btn-lg btn-outline-secondary" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Learn more');">Learn More</a>
-  </div>
-</div>
-
-          </div>
-          
-          <div class="col-12 col-md-6">
-            <div class="card mb-3">
-  <div class="card-body pt-5">
-    <a href="./simpliq" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Thumbnail');">
-      <img class="img-fluid" src="/assets/img/responsive-simpliq.png" alt="React.js Admin Template">
-      <h3 class="h5 mt-3">SimpliQ React.js Admin Template</h3>
-    </a>
-  </div>
-  <div class="card-body pt-0">
-    <a href="./simpliq#buy" class="btn btn-lg btn-success" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Green button');">Buy Now - $79</a>
-    <a href="./simpliq" class="btn btn-lg btn-outline-secondary" onclick="ga('send', 'event', 'Buy Template', 'Click', 'Learn more');">Learn More</a>
-  </div>
-</div>
-
-          </div>
-          
         </div>
-      </div>
-        
-    </main>
-
-    <footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <img src="/assets/img/coreui-sygnet-white.png" class="img-fluid">
-      </div>
-      <div class="col-md-3">
-        <h5>Quick links</h5>
-        <ul class="list-unstyled">
-          <li><a href="/docs/getting-started/introduction/">Documentation</a></li>
-          <li><a href="/angular/">Angular 2+ Version</a></li>
-          <li><a href="/react/">React.js Version</a></li>
-          <li><a href="/vue/">Vue.js Version</a></li>
-        </ul>
-        <h5>Changelog</h5>
-        <ul class="list-unstyled">
-          <li><a href="/changelog/">AJAX &amp; Static Versions</a></li>
-          <li><a href="/angular/changelog">Angular 2+ Version</a></li>
-          <li><a href="/react/changelog">React.js Version</a></li>
-          <li><a href="/vue/changelog">Vue.js Version</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3">
-        <h5>Github</h5>
-        <ul class="list-unstyled">
-          <li><a href="" target="_blank">CoreUI</a></li>
-          <li><a href="" target="_blank">CoreUI for Angular</a></li>
-          <li><a href="" target="_blank">CoreUI for React.js</a></li>
-          <li><a href="" target="_blank">CoreUI for Vue.js</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3">
-        <h5>About Us</h5>
-        <ul class="list-unstyled">
-          <li><a href="/about/">About Us</a></li>
-          <li><a href="/about/services/">Services</a></li>
-          <li><a href="/about/legal/cookies/">Cookie Policy</a></li>
-          <li><a href="/about/legal/privacy/">Privacy Policy</a></li>
-        </ul>
-        <h5>Our projects</h5>
-        <ul class="list-unstyled">
-          <li><a href="https://sketchstrap.io" target="_blank">SketchStrap</a></li>
-        </ul>
       </div>
     </div>
-  </div>
-  <div class="copyright text-center">
-    <div class="container p-3 text-muted">
-      © 2018 creativeLabs. Designed and built by <a href="https://twitter.com/lukaszholeczek">@lukaszholeczek</a> and CoreUI Team.
-    </div>
-  </div>
-</footer>
-<div id="promo" class="modal fade" tabindex="-1" role="dialog" style="z-index:10000">
-  <div class="modal-dialog modal-lg" role="document" style="min-width:1100px;">
-    <div class="modal-content">
-      <div class="modal-body border-bottom">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="text-center modal-title">
-          <h2>Buy CoreUI Standard License now and save 59%</h2>
-          <h3 class="text-danger">This is one-time offer!</h3>
-        </div>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-7">
-            <div class="row">
-              <div class="col-md-12 col-md-offset-0">
-                <img src="/assets/img/default-layout.jpg" class="img-fluid" alt="CoreUI Pro Bootstrap Admin Template">
+  </nav>
+</div><div class="c-container">
+      <h1>React.js Templates</h1>
+      <div class="c-section-description">A perfect starting point for all React.js based applications. React is a JavaScript library for building user interfaces. React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable, simpler to understand, and easier to debug.</div>
+      <div class="c-templates-list"><div class="c-template">
+            <div class="c-row">
+              <div class="c-col-md-6">
+                <div class="c-template-details">
+                  <h2>Root <span>React.js Admin Template</span></h2>
+                  <div class="c-frameworks">
+                    <div class="c-f-16">
+                      Check dedicated version for framework:
+                    </div>
+                    <div class="c-text-center">
+                      <div class="c-row">
+                        <div class="c-col-3">
+                          <a href="/admin-templates/bootstrap/root/" class="c-no-decoration" aria-label="CoreUI for Bootstrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bb-a{fill:none;}.bb-b{fill:url(#bb-a);}.bb-c{opacity:0.5;}.bb-d{clip-path:url(#bb-d);}.bb-e{fill:#53057c;}.bb-f{filter:url(#bb-b);}</style><linearGradient id="bb-a" x1="0.981" y1="1" x2="0.238" y2="0.114" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#910ac3"/><stop offset="1" stop-color="#c884e1"/></linearGradient><filter id="bb-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bb-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bb-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bb-d"><path class="bb-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bb-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bb-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bb-c" transform="translate(26 13.934)"><g class="bb-d"><g transform="translate(-4.7 22.907)"><path class="bb-e" d="M121.318,52.5a6.628,6.628,0,0,1,2.115,4.917v83.006a6.624,6.624,0,0,1-2.115,4.917,7.038,7.038,0,0,1-5.088,2.058H33.681a7.033,7.033,0,0,1-5.088-2.058,6.618,6.618,0,0,1-2.115-4.917V57.416A6.621,6.621,0,0,1,28.593,52.5a7.033,7.033,0,0,1,5.088-2.058H116.23A7.038,7.038,0,0,1,121.318,52.5ZM85.931,130.475a19.128,19.128,0,0,0,19.208-19.093,18.948,18.948,0,0,0-2.458-9.49,18.369,18.369,0,0,0-6.689-6.861,18.365,18.365,0,0,0,2.687-5.144,19.241,19.241,0,0,0-4.631-19.608,18.432,18.432,0,0,0-13.606-5.66H48.43v65.856Zm2.744-46.648a8.2,8.2,0,0,1-8.232,8.232H59.407V75.595H80.443a8.2,8.2,0,0,1,8.232,8.232Zm-2.744,19.322a7.937,7.937,0,0,1,5.831,2.4,7.806,7.806,0,0,1,2.4,5.717,8.2,8.2,0,0,1-8.232,8.232H59.407v-16.35Z" transform="translate(-26.478 -50.441)"/></g></g></g></g></svg>
+                            <div class="c-text-bootstrap c-f-20">
+                              Bootstrap
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/angular/root/" class="c-no-decoration" aria-label="CoreUI for Angular">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.ba-a{fill:none;}.ba-b{fill:url(#ba-a);}.ba-c{opacity:0.5;}.ba-d{clip-path:url(#ba-d);}.ba-e{fill:#b50d31;}.ba-f{filter:url(#ba-b);}</style><linearGradient id="ba-a" x1="1" y1="1" x2="0.087" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#cf2f4c"/><stop offset="1" stop-color="#e797a5"/></linearGradient><filter id="ba-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="ba-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="ba-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="ba-d"><path class="ba-a" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-343 -13.934)"/></clipPath></defs><g transform="translate(-331 -3.934)"><g class="ba-f" transform="matrix(1, 0, 0, 1, 331, 3.93)"><path class="ba-b" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-331 -3.93)"/></g><g class="ba-c" transform="translate(343 13.934)"><g class="ba-d"><g transform="translate(-10.944 37.622)"><path class="ba-e" d="M402.987,155.075h17.906l-8.65-23.207Z" transform="translate(-354.404 -95.492)"/><path class="ba-e" d="M436.792,93.917,383.887,74.148a4.017,4.017,0,0,0-2.812,0L328.169,93.917a4.017,4.017,0,0,0-2.586,4.217l7.586,66.709a4.018,4.018,0,0,0,2.089,3.085l45.318,24.38a4.017,4.017,0,0,0,3.807,0l45.319-24.38a4.02,4.02,0,0,0,2.089-3.085l7.587-66.709A4.017,4.017,0,0,0,436.792,93.917ZM402.529,161.6l-5.99-16.071H369.334L362.924,161.6H349.948l26.439-66.292h14.3L415.393,161.6Z" transform="translate(-325.558 -73.894)"/></g></g></g></g></svg>
+                            <div class="c-text-angular c-f-20">
+                              Angular 8
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/react/root/" class="c-no-decoration c-current-framework " aria-label="CoreUI for React">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.br-a{fill:none;}.br-b{fill:url(#br-a);}.br-c{opacity:0.5;}.br-d{clip-path:url(#br-d);}.br-e{fill:#007fbf;}.br-f{filter:url(#br-b);}</style><linearGradient id="br-a" x1="0.269" y1="0.195" x2="0.902" y2="1.03" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#00a1ff"/><stop offset="1" stop-color="#80d0ff"/></linearGradient><filter id="br-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="br-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="br-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="br-d"><path class="br-a" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-643 -13.934)"/></clipPath></defs><g transform="translate(-631 -3.934)"><g class="br-f" transform="matrix(1, 0, 0, 1, 631, 3.93)"><path class="br-b" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-631 -3.93)"/></g><g class="br-c" transform="translate(643 13.934)"><g class="br-d"><g transform="translate(16.446 41.096)"><path class="br-e" d="M776.688,115.06c-.924-.363-1.88-.714-2.857-1.054q.291-1.519.516-3c2.175-14.467-.912-24.908-8.692-29.4a16.592,16.592,0,0,0-8.41-2.174c-7.009,0-15.184,3.9-23.738,11.293-8.553-7.4-16.729-11.293-23.738-11.293a16.591,16.591,0,0,0-8.41,2.174c-7.78,4.493-10.867,14.933-8.692,29.4.147.981.326,1.985.52,3q-1.463.508-2.861,1.055c-13.616,5.35-21.115,13.244-21.115,22.227s7.5,16.878,21.115,22.227q1.387.545,2.857,1.055-.291,1.519-.516,3c-2.175,14.467.912,24.908,8.692,29.4a16.585,16.585,0,0,0,8.41,2.175c7.009,0,15.184-3.9,23.738-11.293,8.554,7.4,16.729,11.293,23.738,11.293a16.586,16.586,0,0,0,8.41-2.175c7.78-4.492,10.867-14.933,8.692-29.4-.148-.981-.322-1.986-.516-3q1.462-.508,2.857-1.053c13.616-5.35,21.115-13.244,21.115-22.227S790.3,120.41,776.688,115.06Zm-19.443-27.4a8.47,8.47,0,0,1,4.3,1.072c4.58,2.645,6.282,10.317,4.668,21.048a89.428,89.428,0,0,1-4.707,17.542q-1.255-2.36-2.6-4.7a135.349,135.349,0,0,0-19.393-26.2C746.212,90.754,752.447,87.661,757.245,87.661Zm.052,49.628c-1.655,3.508-3.5,7.038-5.525,10.543-2.014,3.489-4.154,6.868-6.365,10.058-3.868.321-7.849.487-11.9.487-4.018,0-8.008-.166-11.9-.49-2.214-3.194-4.349-6.566-6.364-10.054s-3.862-7.021-5.525-10.547c1.655-3.507,3.5-7.037,5.525-10.542,2.013-3.486,4.154-6.866,6.365-10.057,3.867-.321,7.849-.487,11.9-.487,4.02,0,8.01.166,11.9.49,2.206,3.182,4.334,6.544,6.361,10.054C753.778,130.219,755.632,133.761,757.3,137.289ZM705.474,88.733a8.47,8.47,0,0,1,4.3-1.072c5.3,0,12.348,3.771,19.853,10.619a97.649,97.649,0,0,1,9.258,9.783q-2.674-.092-5.373-.095a136.168,136.168,0,0,0-32.389,3.693c-.114-.634-.22-1.262-.312-1.88C699.192,99.05,700.894,91.378,705.474,88.733ZM695.12,152.525q-.911-.328-1.785-.67c-10.1-3.969-15.895-9.278-15.895-14.568s5.793-10.6,15.895-14.568a89.442,89.442,0,0,1,17.545-4.694q-1.415,2.265-2.765,4.6A136.121,136.121,0,0,0,695.12,152.525Zm14.65,34.389a8.47,8.47,0,0,1-4.3-1.072c-4.58-2.645-6.282-10.317-4.668-21.048a89.482,89.482,0,0,1,4.707-17.543q1.256,2.361,2.6,4.7c2.507,4.343,5.2,8.523,7.991,12.426a122.238,122.238,0,0,0,11.4,13.779C720.8,183.821,714.567,186.914,709.769,186.914Zm51.771-1.072a8.473,8.473,0,0,1-4.3,1.072c-5.3,0-12.348-3.771-19.852-10.619a97.437,97.437,0,0,1-9.26-9.783q2.675.092,5.375.095a136.163,136.163,0,0,0,32.388-3.693c.114.634.22,1.264.313,1.88C767.822,175.526,766.121,183.2,761.54,185.842Zm12.139-33.987a89.441,89.441,0,0,1-17.545,4.694q1.414-2.265,2.765-4.6a136.137,136.137,0,0,0,13-29.9c.607.218,1.205.44,1.785.668,10.1,3.969,15.895,9.278,15.895,14.568S783.78,147.887,773.679,151.855Z" transform="translate(-669.211 -79.431)"/><path class="br-e" d="M765.232,154.323A10.866,10.866,0,1,0,776.1,165.189,10.878,10.878,0,0,0,765.232,154.323Z" transform="translate(-700.935 -107.332)"/></g></g></g></g></svg>
+                            <div class="c-text-react c-f-20">
+                              React.js
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/vue/root/" class="c-no-decoration" aria-label="CoreUI for Vue">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bv-a{fill:none;}.bv-b{fill:url(#bv-a);}.bv-c{opacity:0.5;}.bv-d{clip-path:url(#bv-d);}.bv-e{fill:#0ca378;}.bv-f{filter:url(#bv-b);}</style><linearGradient id="bv-a" x1="0.852" y1="1.012" x2="0.278" y2="0.177" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#8ddec9"/><stop offset="1" stop-color="#1bbd93"/></linearGradient><filter id="bv-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bv-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bv-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bv-d"><path class="bv-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bv-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bv-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bv-c" transform="translate(26 13.934)"><g class="bv-d"><path class="bv-e" d="M168.8,60.945h17.65l-50.165,92.9h-9.289l-52.023-92.9H92.623l39.132,74.2Zm-37.275,55.971L102.144,60.945H117.7l13.934,26.011,11.5-26.011h16.373Z" transform="translate(-44.244 -31.448)"/></g></g></g></svg>
+                            <div class="c-text-vue c-f-20">
+                              Vue.js
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-f-16 c-description">
+                      <p>Our Root React.js Admin Template Admin Template is the fastest way to build modern admin site or dashboard for any browser or device.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="c-col-md-6 c-px-md-0">
+                <div class="c-laptop-mockup">
+                  <div class="c-laptop-mockup-screenshot">
+                    <img src="/images/templates/root1280.jpg" alt="Root React.js Admin Template">
+                  </div>
+                </div>
+                <div class="c-buttons">
+                  <a href="./root/#c-pricing" class="c-hexagon-btn  c-heaxagon-btn-cta-yellow "><div class="c-hexagon-body-left-arrow"></div>
+  <div class="c-hexagon-body-right-arrow"></div>
+  <div class="c-hexagon-body">Buy Now</div>
+  </a>
+                  <a href="./root" class="c-btn c-btn-white">Learn More</a>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-5">
-            <ul class="list-unstyled">
-              <li class="mb-3">✅ Save thousands of dollars for UI and UX designing.</li>
-              <li class="mb-3">✅ Well documented and great support.</li>
-              <li class="mb-3">✅ Constantly developed and maintained.</li>
-              <li class="mb-3">✅ Free access to future updates.</li>
-              <li class="mb-3">✅ Include 6 Versions: <strong>Angular 6, React.js, Vue.js, AJAX, Static, AngularJS</strong></li>
-              <li class="mb-4">✅ Default and <strong>dark layout</strong></li>
+          </div><div class="c-template">
+            <div class="c-row">
+              <div class="c-col-md-6">
+                <div class="c-template-details">
+                  <h2>Prime <span>React.js Admin Template</span></h2>
+                  <div class="c-frameworks">
+                    <div class="c-f-16">
+                      Check dedicated version for framework:
+                    </div>
+                    <div class="c-text-center">
+                      <div class="c-row">
+                        <div class="c-col-3">
+                          <a href="/admin-templates/bootstrap/prime/" class="c-no-decoration" aria-label="CoreUI for Bootstrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bb-a{fill:none;}.bb-b{fill:url(#bb-a);}.bb-c{opacity:0.5;}.bb-d{clip-path:url(#bb-d);}.bb-e{fill:#53057c;}.bb-f{filter:url(#bb-b);}</style><linearGradient id="bb-a" x1="0.981" y1="1" x2="0.238" y2="0.114" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#910ac3"/><stop offset="1" stop-color="#c884e1"/></linearGradient><filter id="bb-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bb-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bb-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bb-d"><path class="bb-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bb-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bb-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bb-c" transform="translate(26 13.934)"><g class="bb-d"><g transform="translate(-4.7 22.907)"><path class="bb-e" d="M121.318,52.5a6.628,6.628,0,0,1,2.115,4.917v83.006a6.624,6.624,0,0,1-2.115,4.917,7.038,7.038,0,0,1-5.088,2.058H33.681a7.033,7.033,0,0,1-5.088-2.058,6.618,6.618,0,0,1-2.115-4.917V57.416A6.621,6.621,0,0,1,28.593,52.5a7.033,7.033,0,0,1,5.088-2.058H116.23A7.038,7.038,0,0,1,121.318,52.5ZM85.931,130.475a19.128,19.128,0,0,0,19.208-19.093,18.948,18.948,0,0,0-2.458-9.49,18.369,18.369,0,0,0-6.689-6.861,18.365,18.365,0,0,0,2.687-5.144,19.241,19.241,0,0,0-4.631-19.608,18.432,18.432,0,0,0-13.606-5.66H48.43v65.856Zm2.744-46.648a8.2,8.2,0,0,1-8.232,8.232H59.407V75.595H80.443a8.2,8.2,0,0,1,8.232,8.232Zm-2.744,19.322a7.937,7.937,0,0,1,5.831,2.4,7.806,7.806,0,0,1,2.4,5.717,8.2,8.2,0,0,1-8.232,8.232H59.407v-16.35Z" transform="translate(-26.478 -50.441)"/></g></g></g></g></svg>
+                            <div class="c-text-bootstrap c-f-20">
+                              Bootstrap
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/angular/prime/" class="c-no-decoration" aria-label="CoreUI for Angular">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.ba-a{fill:none;}.ba-b{fill:url(#ba-a);}.ba-c{opacity:0.5;}.ba-d{clip-path:url(#ba-d);}.ba-e{fill:#b50d31;}.ba-f{filter:url(#ba-b);}</style><linearGradient id="ba-a" x1="1" y1="1" x2="0.087" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#cf2f4c"/><stop offset="1" stop-color="#e797a5"/></linearGradient><filter id="ba-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="ba-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="ba-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="ba-d"><path class="ba-a" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-343 -13.934)"/></clipPath></defs><g transform="translate(-331 -3.934)"><g class="ba-f" transform="matrix(1, 0, 0, 1, 331, 3.93)"><path class="ba-b" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-331 -3.93)"/></g><g class="ba-c" transform="translate(343 13.934)"><g class="ba-d"><g transform="translate(-10.944 37.622)"><path class="ba-e" d="M402.987,155.075h17.906l-8.65-23.207Z" transform="translate(-354.404 -95.492)"/><path class="ba-e" d="M436.792,93.917,383.887,74.148a4.017,4.017,0,0,0-2.812,0L328.169,93.917a4.017,4.017,0,0,0-2.586,4.217l7.586,66.709a4.018,4.018,0,0,0,2.089,3.085l45.318,24.38a4.017,4.017,0,0,0,3.807,0l45.319-24.38a4.02,4.02,0,0,0,2.089-3.085l7.587-66.709A4.017,4.017,0,0,0,436.792,93.917ZM402.529,161.6l-5.99-16.071H369.334L362.924,161.6H349.948l26.439-66.292h14.3L415.393,161.6Z" transform="translate(-325.558 -73.894)"/></g></g></g></g></svg>
+                            <div class="c-text-angular c-f-20">
+                              Angular 8
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/react/prime/" class="c-no-decoration c-current-framework " aria-label="CoreUI for React">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.br-a{fill:none;}.br-b{fill:url(#br-a);}.br-c{opacity:0.5;}.br-d{clip-path:url(#br-d);}.br-e{fill:#007fbf;}.br-f{filter:url(#br-b);}</style><linearGradient id="br-a" x1="0.269" y1="0.195" x2="0.902" y2="1.03" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#00a1ff"/><stop offset="1" stop-color="#80d0ff"/></linearGradient><filter id="br-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="br-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="br-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="br-d"><path class="br-a" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-643 -13.934)"/></clipPath></defs><g transform="translate(-631 -3.934)"><g class="br-f" transform="matrix(1, 0, 0, 1, 631, 3.93)"><path class="br-b" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-631 -3.93)"/></g><g class="br-c" transform="translate(643 13.934)"><g class="br-d"><g transform="translate(16.446 41.096)"><path class="br-e" d="M776.688,115.06c-.924-.363-1.88-.714-2.857-1.054q.291-1.519.516-3c2.175-14.467-.912-24.908-8.692-29.4a16.592,16.592,0,0,0-8.41-2.174c-7.009,0-15.184,3.9-23.738,11.293-8.553-7.4-16.729-11.293-23.738-11.293a16.591,16.591,0,0,0-8.41,2.174c-7.78,4.493-10.867,14.933-8.692,29.4.147.981.326,1.985.52,3q-1.463.508-2.861,1.055c-13.616,5.35-21.115,13.244-21.115,22.227s7.5,16.878,21.115,22.227q1.387.545,2.857,1.055-.291,1.519-.516,3c-2.175,14.467.912,24.908,8.692,29.4a16.585,16.585,0,0,0,8.41,2.175c7.009,0,15.184-3.9,23.738-11.293,8.554,7.4,16.729,11.293,23.738,11.293a16.586,16.586,0,0,0,8.41-2.175c7.78-4.492,10.867-14.933,8.692-29.4-.148-.981-.322-1.986-.516-3q1.462-.508,2.857-1.053c13.616-5.35,21.115-13.244,21.115-22.227S790.3,120.41,776.688,115.06Zm-19.443-27.4a8.47,8.47,0,0,1,4.3,1.072c4.58,2.645,6.282,10.317,4.668,21.048a89.428,89.428,0,0,1-4.707,17.542q-1.255-2.36-2.6-4.7a135.349,135.349,0,0,0-19.393-26.2C746.212,90.754,752.447,87.661,757.245,87.661Zm.052,49.628c-1.655,3.508-3.5,7.038-5.525,10.543-2.014,3.489-4.154,6.868-6.365,10.058-3.868.321-7.849.487-11.9.487-4.018,0-8.008-.166-11.9-.49-2.214-3.194-4.349-6.566-6.364-10.054s-3.862-7.021-5.525-10.547c1.655-3.507,3.5-7.037,5.525-10.542,2.013-3.486,4.154-6.866,6.365-10.057,3.867-.321,7.849-.487,11.9-.487,4.02,0,8.01.166,11.9.49,2.206,3.182,4.334,6.544,6.361,10.054C753.778,130.219,755.632,133.761,757.3,137.289ZM705.474,88.733a8.47,8.47,0,0,1,4.3-1.072c5.3,0,12.348,3.771,19.853,10.619a97.649,97.649,0,0,1,9.258,9.783q-2.674-.092-5.373-.095a136.168,136.168,0,0,0-32.389,3.693c-.114-.634-.22-1.262-.312-1.88C699.192,99.05,700.894,91.378,705.474,88.733ZM695.12,152.525q-.911-.328-1.785-.67c-10.1-3.969-15.895-9.278-15.895-14.568s5.793-10.6,15.895-14.568a89.442,89.442,0,0,1,17.545-4.694q-1.415,2.265-2.765,4.6A136.121,136.121,0,0,0,695.12,152.525Zm14.65,34.389a8.47,8.47,0,0,1-4.3-1.072c-4.58-2.645-6.282-10.317-4.668-21.048a89.482,89.482,0,0,1,4.707-17.543q1.256,2.361,2.6,4.7c2.507,4.343,5.2,8.523,7.991,12.426a122.238,122.238,0,0,0,11.4,13.779C720.8,183.821,714.567,186.914,709.769,186.914Zm51.771-1.072a8.473,8.473,0,0,1-4.3,1.072c-5.3,0-12.348-3.771-19.852-10.619a97.437,97.437,0,0,1-9.26-9.783q2.675.092,5.375.095a136.163,136.163,0,0,0,32.388-3.693c.114.634.22,1.264.313,1.88C767.822,175.526,766.121,183.2,761.54,185.842Zm12.139-33.987a89.441,89.441,0,0,1-17.545,4.694q1.414-2.265,2.765-4.6a136.137,136.137,0,0,0,13-29.9c.607.218,1.205.44,1.785.668,10.1,3.969,15.895,9.278,15.895,14.568S783.78,147.887,773.679,151.855Z" transform="translate(-669.211 -79.431)"/><path class="br-e" d="M765.232,154.323A10.866,10.866,0,1,0,776.1,165.189,10.878,10.878,0,0,0,765.232,154.323Z" transform="translate(-700.935 -107.332)"/></g></g></g></g></svg>
+                            <div class="c-text-react c-f-20">
+                              React.js
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/vue/prime/" class="c-no-decoration" aria-label="CoreUI for Vue">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bv-a{fill:none;}.bv-b{fill:url(#bv-a);}.bv-c{opacity:0.5;}.bv-d{clip-path:url(#bv-d);}.bv-e{fill:#0ca378;}.bv-f{filter:url(#bv-b);}</style><linearGradient id="bv-a" x1="0.852" y1="1.012" x2="0.278" y2="0.177" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#8ddec9"/><stop offset="1" stop-color="#1bbd93"/></linearGradient><filter id="bv-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bv-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bv-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bv-d"><path class="bv-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bv-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bv-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bv-c" transform="translate(26 13.934)"><g class="bv-d"><path class="bv-e" d="M168.8,60.945h17.65l-50.165,92.9h-9.289l-52.023-92.9H92.623l39.132,74.2Zm-37.275,55.971L102.144,60.945H117.7l13.934,26.011,11.5-26.011h16.373Z" transform="translate(-44.244 -31.448)"/></g></g></g></svg>
+                            <div class="c-text-vue c-f-20">
+                              Vue.js
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-f-16 c-description">
+                      <p>Our Prime React.js Admin Template Admin Template is the fastest way to build modern admin site or dashboard for any browser or device.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="c-col-md-6 c-px-md-0">
+                <div class="c-laptop-mockup">
+                  <div class="c-laptop-mockup-screenshot">
+                    <img src="/images/templates/prime1280.jpg" alt="Prime React.js Admin Template">
+                  </div>
+                </div>
+                <div class="c-buttons">
+                  <a href="./prime/#c-pricing" class="c-hexagon-btn  c-heaxagon-btn-cta-yellow "><div class="c-hexagon-body-left-arrow"></div>
+  <div class="c-hexagon-body-right-arrow"></div>
+  <div class="c-hexagon-body">Buy Now</div>
+  </a>
+                  <a href="./prime" class="c-btn c-btn-white">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div><div class="c-template">
+            <div class="c-row">
+              <div class="c-col-md-6">
+                <div class="c-template-details">
+                  <h2>Alba <span>React.js Admin Template</span></h2>
+                  <div class="c-frameworks">
+                    <div class="c-f-16">
+                      Check dedicated version for framework:
+                    </div>
+                    <div class="c-text-center">
+                      <div class="c-row">
+                        <div class="c-col-3">
+                          <a href="/admin-templates/bootstrap/alba/" class="c-no-decoration" aria-label="CoreUI for Bootstrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bb-a{fill:none;}.bb-b{fill:url(#bb-a);}.bb-c{opacity:0.5;}.bb-d{clip-path:url(#bb-d);}.bb-e{fill:#53057c;}.bb-f{filter:url(#bb-b);}</style><linearGradient id="bb-a" x1="0.981" y1="1" x2="0.238" y2="0.114" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#910ac3"/><stop offset="1" stop-color="#c884e1"/></linearGradient><filter id="bb-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bb-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bb-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bb-d"><path class="bb-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bb-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bb-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bb-c" transform="translate(26 13.934)"><g class="bb-d"><g transform="translate(-4.7 22.907)"><path class="bb-e" d="M121.318,52.5a6.628,6.628,0,0,1,2.115,4.917v83.006a6.624,6.624,0,0,1-2.115,4.917,7.038,7.038,0,0,1-5.088,2.058H33.681a7.033,7.033,0,0,1-5.088-2.058,6.618,6.618,0,0,1-2.115-4.917V57.416A6.621,6.621,0,0,1,28.593,52.5a7.033,7.033,0,0,1,5.088-2.058H116.23A7.038,7.038,0,0,1,121.318,52.5ZM85.931,130.475a19.128,19.128,0,0,0,19.208-19.093,18.948,18.948,0,0,0-2.458-9.49,18.369,18.369,0,0,0-6.689-6.861,18.365,18.365,0,0,0,2.687-5.144,19.241,19.241,0,0,0-4.631-19.608,18.432,18.432,0,0,0-13.606-5.66H48.43v65.856Zm2.744-46.648a8.2,8.2,0,0,1-8.232,8.232H59.407V75.595H80.443a8.2,8.2,0,0,1,8.232,8.232Zm-2.744,19.322a7.937,7.937,0,0,1,5.831,2.4,7.806,7.806,0,0,1,2.4,5.717,8.2,8.2,0,0,1-8.232,8.232H59.407v-16.35Z" transform="translate(-26.478 -50.441)"/></g></g></g></g></svg>
+                            <div class="c-text-bootstrap c-f-20">
+                              Bootstrap
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/angular/alba/" class="c-no-decoration" aria-label="CoreUI for Angular">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.ba-a{fill:none;}.ba-b{fill:url(#ba-a);}.ba-c{opacity:0.5;}.ba-d{clip-path:url(#ba-d);}.ba-e{fill:#b50d31;}.ba-f{filter:url(#ba-b);}</style><linearGradient id="ba-a" x1="1" y1="1" x2="0.087" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#cf2f4c"/><stop offset="1" stop-color="#e797a5"/></linearGradient><filter id="ba-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="ba-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="ba-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="ba-d"><path class="ba-a" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-343 -13.934)"/></clipPath></defs><g transform="translate(-331 -3.934)"><g class="ba-f" transform="matrix(1, 0, 0, 1, 331, 3.93)"><path class="ba-b" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-331 -3.93)"/></g><g class="ba-c" transform="translate(343 13.934)"><g class="ba-d"><g transform="translate(-10.944 37.622)"><path class="ba-e" d="M402.987,155.075h17.906l-8.65-23.207Z" transform="translate(-354.404 -95.492)"/><path class="ba-e" d="M436.792,93.917,383.887,74.148a4.017,4.017,0,0,0-2.812,0L328.169,93.917a4.017,4.017,0,0,0-2.586,4.217l7.586,66.709a4.018,4.018,0,0,0,2.089,3.085l45.318,24.38a4.017,4.017,0,0,0,3.807,0l45.319-24.38a4.02,4.02,0,0,0,2.089-3.085l7.587-66.709A4.017,4.017,0,0,0,436.792,93.917ZM402.529,161.6l-5.99-16.071H369.334L362.924,161.6H349.948l26.439-66.292h14.3L415.393,161.6Z" transform="translate(-325.558 -73.894)"/></g></g></g></g></svg>
+                            <div class="c-text-angular c-f-20">
+                              Angular 8
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/react/alba/" class="c-no-decoration c-current-framework " aria-label="CoreUI for React">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.br-a{fill:none;}.br-b{fill:url(#br-a);}.br-c{opacity:0.5;}.br-d{clip-path:url(#br-d);}.br-e{fill:#007fbf;}.br-f{filter:url(#br-b);}</style><linearGradient id="br-a" x1="0.269" y1="0.195" x2="0.902" y2="1.03" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#00a1ff"/><stop offset="1" stop-color="#80d0ff"/></linearGradient><filter id="br-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="br-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="br-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="br-d"><path class="br-a" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-643 -13.934)"/></clipPath></defs><g transform="translate(-631 -3.934)"><g class="br-f" transform="matrix(1, 0, 0, 1, 631, 3.93)"><path class="br-b" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-631 -3.93)"/></g><g class="br-c" transform="translate(643 13.934)"><g class="br-d"><g transform="translate(16.446 41.096)"><path class="br-e" d="M776.688,115.06c-.924-.363-1.88-.714-2.857-1.054q.291-1.519.516-3c2.175-14.467-.912-24.908-8.692-29.4a16.592,16.592,0,0,0-8.41-2.174c-7.009,0-15.184,3.9-23.738,11.293-8.553-7.4-16.729-11.293-23.738-11.293a16.591,16.591,0,0,0-8.41,2.174c-7.78,4.493-10.867,14.933-8.692,29.4.147.981.326,1.985.52,3q-1.463.508-2.861,1.055c-13.616,5.35-21.115,13.244-21.115,22.227s7.5,16.878,21.115,22.227q1.387.545,2.857,1.055-.291,1.519-.516,3c-2.175,14.467.912,24.908,8.692,29.4a16.585,16.585,0,0,0,8.41,2.175c7.009,0,15.184-3.9,23.738-11.293,8.554,7.4,16.729,11.293,23.738,11.293a16.586,16.586,0,0,0,8.41-2.175c7.78-4.492,10.867-14.933,8.692-29.4-.148-.981-.322-1.986-.516-3q1.462-.508,2.857-1.053c13.616-5.35,21.115-13.244,21.115-22.227S790.3,120.41,776.688,115.06Zm-19.443-27.4a8.47,8.47,0,0,1,4.3,1.072c4.58,2.645,6.282,10.317,4.668,21.048a89.428,89.428,0,0,1-4.707,17.542q-1.255-2.36-2.6-4.7a135.349,135.349,0,0,0-19.393-26.2C746.212,90.754,752.447,87.661,757.245,87.661Zm.052,49.628c-1.655,3.508-3.5,7.038-5.525,10.543-2.014,3.489-4.154,6.868-6.365,10.058-3.868.321-7.849.487-11.9.487-4.018,0-8.008-.166-11.9-.49-2.214-3.194-4.349-6.566-6.364-10.054s-3.862-7.021-5.525-10.547c1.655-3.507,3.5-7.037,5.525-10.542,2.013-3.486,4.154-6.866,6.365-10.057,3.867-.321,7.849-.487,11.9-.487,4.02,0,8.01.166,11.9.49,2.206,3.182,4.334,6.544,6.361,10.054C753.778,130.219,755.632,133.761,757.3,137.289ZM705.474,88.733a8.47,8.47,0,0,1,4.3-1.072c5.3,0,12.348,3.771,19.853,10.619a97.649,97.649,0,0,1,9.258,9.783q-2.674-.092-5.373-.095a136.168,136.168,0,0,0-32.389,3.693c-.114-.634-.22-1.262-.312-1.88C699.192,99.05,700.894,91.378,705.474,88.733ZM695.12,152.525q-.911-.328-1.785-.67c-10.1-3.969-15.895-9.278-15.895-14.568s5.793-10.6,15.895-14.568a89.442,89.442,0,0,1,17.545-4.694q-1.415,2.265-2.765,4.6A136.121,136.121,0,0,0,695.12,152.525Zm14.65,34.389a8.47,8.47,0,0,1-4.3-1.072c-4.58-2.645-6.282-10.317-4.668-21.048a89.482,89.482,0,0,1,4.707-17.543q1.256,2.361,2.6,4.7c2.507,4.343,5.2,8.523,7.991,12.426a122.238,122.238,0,0,0,11.4,13.779C720.8,183.821,714.567,186.914,709.769,186.914Zm51.771-1.072a8.473,8.473,0,0,1-4.3,1.072c-5.3,0-12.348-3.771-19.852-10.619a97.437,97.437,0,0,1-9.26-9.783q2.675.092,5.375.095a136.163,136.163,0,0,0,32.388-3.693c.114.634.22,1.264.313,1.88C767.822,175.526,766.121,183.2,761.54,185.842Zm12.139-33.987a89.441,89.441,0,0,1-17.545,4.694q1.414-2.265,2.765-4.6a136.137,136.137,0,0,0,13-29.9c.607.218,1.205.44,1.785.668,10.1,3.969,15.895,9.278,15.895,14.568S783.78,147.887,773.679,151.855Z" transform="translate(-669.211 -79.431)"/><path class="br-e" d="M765.232,154.323A10.866,10.866,0,1,0,776.1,165.189,10.878,10.878,0,0,0,765.232,154.323Z" transform="translate(-700.935 -107.332)"/></g></g></g></g></svg>
+                            <div class="c-text-react c-f-20">
+                              React.js
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/vue/alba/" class="c-no-decoration" aria-label="CoreUI for Vue">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bv-a{fill:none;}.bv-b{fill:url(#bv-a);}.bv-c{opacity:0.5;}.bv-d{clip-path:url(#bv-d);}.bv-e{fill:#0ca378;}.bv-f{filter:url(#bv-b);}</style><linearGradient id="bv-a" x1="0.852" y1="1.012" x2="0.278" y2="0.177" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#8ddec9"/><stop offset="1" stop-color="#1bbd93"/></linearGradient><filter id="bv-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bv-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bv-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bv-d"><path class="bv-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bv-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bv-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bv-c" transform="translate(26 13.934)"><g class="bv-d"><path class="bv-e" d="M168.8,60.945h17.65l-50.165,92.9h-9.289l-52.023-92.9H92.623l39.132,74.2Zm-37.275,55.971L102.144,60.945H117.7l13.934,26.011,11.5-26.011h16.373Z" transform="translate(-44.244 -31.448)"/></g></g></g></svg>
+                            <div class="c-text-vue c-f-20">
+                              Vue.js
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-f-16 c-description">
+                      <p>Our Alba React.js Admin Template Admin Template is the fastest way to build modern admin site or dashboard for any browser or device.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="c-col-md-6 c-px-md-0">
+                <div class="c-laptop-mockup">
+                  <div class="c-laptop-mockup-screenshot">
+                    <img src="/images/templates/alba1280.jpg" alt="Alba React.js Admin Template">
+                  </div>
+                </div>
+                <div class="c-buttons">
+                  <a href="./alba/#c-pricing" class="c-hexagon-btn  c-heaxagon-btn-cta-yellow "><div class="c-hexagon-body-left-arrow"></div>
+  <div class="c-hexagon-body-right-arrow"></div>
+  <div class="c-hexagon-body">Buy Now</div>
+  </a>
+                  <a href="./alba" class="c-btn c-btn-white">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div><div class="c-template">
+            <div class="c-row">
+              <div class="c-col-md-6">
+                <div class="c-template-details">
+                  <h2>Leaf <span>React.js Admin Template</span></h2>
+                  <div class="c-frameworks">
+                    <div class="c-f-16">
+                      Check dedicated version for framework:
+                    </div>
+                    <div class="c-text-center">
+                      <div class="c-row">
+                        <div class="c-col-3">
+                          <a href="/admin-templates/bootstrap/leaf/" class="c-no-decoration" aria-label="CoreUI for Bootstrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bb-a{fill:none;}.bb-b{fill:url(#bb-a);}.bb-c{opacity:0.5;}.bb-d{clip-path:url(#bb-d);}.bb-e{fill:#53057c;}.bb-f{filter:url(#bb-b);}</style><linearGradient id="bb-a" x1="0.981" y1="1" x2="0.238" y2="0.114" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#910ac3"/><stop offset="1" stop-color="#c884e1"/></linearGradient><filter id="bb-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bb-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bb-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bb-d"><path class="bb-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bb-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bb-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bb-c" transform="translate(26 13.934)"><g class="bb-d"><g transform="translate(-4.7 22.907)"><path class="bb-e" d="M121.318,52.5a6.628,6.628,0,0,1,2.115,4.917v83.006a6.624,6.624,0,0,1-2.115,4.917,7.038,7.038,0,0,1-5.088,2.058H33.681a7.033,7.033,0,0,1-5.088-2.058,6.618,6.618,0,0,1-2.115-4.917V57.416A6.621,6.621,0,0,1,28.593,52.5a7.033,7.033,0,0,1,5.088-2.058H116.23A7.038,7.038,0,0,1,121.318,52.5ZM85.931,130.475a19.128,19.128,0,0,0,19.208-19.093,18.948,18.948,0,0,0-2.458-9.49,18.369,18.369,0,0,0-6.689-6.861,18.365,18.365,0,0,0,2.687-5.144,19.241,19.241,0,0,0-4.631-19.608,18.432,18.432,0,0,0-13.606-5.66H48.43v65.856Zm2.744-46.648a8.2,8.2,0,0,1-8.232,8.232H59.407V75.595H80.443a8.2,8.2,0,0,1,8.232,8.232Zm-2.744,19.322a7.937,7.937,0,0,1,5.831,2.4,7.806,7.806,0,0,1,2.4,5.717,8.2,8.2,0,0,1-8.232,8.232H59.407v-16.35Z" transform="translate(-26.478 -50.441)"/></g></g></g></g></svg>
+                            <div class="c-text-bootstrap c-f-20">
+                              Bootstrap
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/angular/leaf/" class="c-no-decoration" aria-label="CoreUI for Angular">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.ba-a{fill:none;}.ba-b{fill:url(#ba-a);}.ba-c{opacity:0.5;}.ba-d{clip-path:url(#ba-d);}.ba-e{fill:#b50d31;}.ba-f{filter:url(#ba-b);}</style><linearGradient id="ba-a" x1="1" y1="1" x2="0.087" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#cf2f4c"/><stop offset="1" stop-color="#e797a5"/></linearGradient><filter id="ba-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="ba-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="ba-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="ba-d"><path class="ba-a" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-343 -13.934)"/></clipPath></defs><g transform="translate(-331 -3.934)"><g class="ba-f" transform="matrix(1, 0, 0, 1, 331, 3.93)"><path class="ba-b" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-331 -3.93)"/></g><g class="ba-c" transform="translate(343 13.934)"><g class="ba-d"><g transform="translate(-10.944 37.622)"><path class="ba-e" d="M402.987,155.075h17.906l-8.65-23.207Z" transform="translate(-354.404 -95.492)"/><path class="ba-e" d="M436.792,93.917,383.887,74.148a4.017,4.017,0,0,0-2.812,0L328.169,93.917a4.017,4.017,0,0,0-2.586,4.217l7.586,66.709a4.018,4.018,0,0,0,2.089,3.085l45.318,24.38a4.017,4.017,0,0,0,3.807,0l45.319-24.38a4.02,4.02,0,0,0,2.089-3.085l7.587-66.709A4.017,4.017,0,0,0,436.792,93.917ZM402.529,161.6l-5.99-16.071H369.334L362.924,161.6H349.948l26.439-66.292h14.3L415.393,161.6Z" transform="translate(-325.558 -73.894)"/></g></g></g></g></svg>
+                            <div class="c-text-angular c-f-20">
+                              Angular 8
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/react/leaf/" class="c-no-decoration c-current-framework " aria-label="CoreUI for React">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.br-a{fill:none;}.br-b{fill:url(#br-a);}.br-c{opacity:0.5;}.br-d{clip-path:url(#br-d);}.br-e{fill:#007fbf;}.br-f{filter:url(#br-b);}</style><linearGradient id="br-a" x1="0.269" y1="0.195" x2="0.902" y2="1.03" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#00a1ff"/><stop offset="1" stop-color="#80d0ff"/></linearGradient><filter id="br-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="br-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="br-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="br-d"><path class="br-a" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-643 -13.934)"/></clipPath></defs><g transform="translate(-631 -3.934)"><g class="br-f" transform="matrix(1, 0, 0, 1, 631, 3.93)"><path class="br-b" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-631 -3.93)"/></g><g class="br-c" transform="translate(643 13.934)"><g class="br-d"><g transform="translate(16.446 41.096)"><path class="br-e" d="M776.688,115.06c-.924-.363-1.88-.714-2.857-1.054q.291-1.519.516-3c2.175-14.467-.912-24.908-8.692-29.4a16.592,16.592,0,0,0-8.41-2.174c-7.009,0-15.184,3.9-23.738,11.293-8.553-7.4-16.729-11.293-23.738-11.293a16.591,16.591,0,0,0-8.41,2.174c-7.78,4.493-10.867,14.933-8.692,29.4.147.981.326,1.985.52,3q-1.463.508-2.861,1.055c-13.616,5.35-21.115,13.244-21.115,22.227s7.5,16.878,21.115,22.227q1.387.545,2.857,1.055-.291,1.519-.516,3c-2.175,14.467.912,24.908,8.692,29.4a16.585,16.585,0,0,0,8.41,2.175c7.009,0,15.184-3.9,23.738-11.293,8.554,7.4,16.729,11.293,23.738,11.293a16.586,16.586,0,0,0,8.41-2.175c7.78-4.492,10.867-14.933,8.692-29.4-.148-.981-.322-1.986-.516-3q1.462-.508,2.857-1.053c13.616-5.35,21.115-13.244,21.115-22.227S790.3,120.41,776.688,115.06Zm-19.443-27.4a8.47,8.47,0,0,1,4.3,1.072c4.58,2.645,6.282,10.317,4.668,21.048a89.428,89.428,0,0,1-4.707,17.542q-1.255-2.36-2.6-4.7a135.349,135.349,0,0,0-19.393-26.2C746.212,90.754,752.447,87.661,757.245,87.661Zm.052,49.628c-1.655,3.508-3.5,7.038-5.525,10.543-2.014,3.489-4.154,6.868-6.365,10.058-3.868.321-7.849.487-11.9.487-4.018,0-8.008-.166-11.9-.49-2.214-3.194-4.349-6.566-6.364-10.054s-3.862-7.021-5.525-10.547c1.655-3.507,3.5-7.037,5.525-10.542,2.013-3.486,4.154-6.866,6.365-10.057,3.867-.321,7.849-.487,11.9-.487,4.02,0,8.01.166,11.9.49,2.206,3.182,4.334,6.544,6.361,10.054C753.778,130.219,755.632,133.761,757.3,137.289ZM705.474,88.733a8.47,8.47,0,0,1,4.3-1.072c5.3,0,12.348,3.771,19.853,10.619a97.649,97.649,0,0,1,9.258,9.783q-2.674-.092-5.373-.095a136.168,136.168,0,0,0-32.389,3.693c-.114-.634-.22-1.262-.312-1.88C699.192,99.05,700.894,91.378,705.474,88.733ZM695.12,152.525q-.911-.328-1.785-.67c-10.1-3.969-15.895-9.278-15.895-14.568s5.793-10.6,15.895-14.568a89.442,89.442,0,0,1,17.545-4.694q-1.415,2.265-2.765,4.6A136.121,136.121,0,0,0,695.12,152.525Zm14.65,34.389a8.47,8.47,0,0,1-4.3-1.072c-4.58-2.645-6.282-10.317-4.668-21.048a89.482,89.482,0,0,1,4.707-17.543q1.256,2.361,2.6,4.7c2.507,4.343,5.2,8.523,7.991,12.426a122.238,122.238,0,0,0,11.4,13.779C720.8,183.821,714.567,186.914,709.769,186.914Zm51.771-1.072a8.473,8.473,0,0,1-4.3,1.072c-5.3,0-12.348-3.771-19.852-10.619a97.437,97.437,0,0,1-9.26-9.783q2.675.092,5.375.095a136.163,136.163,0,0,0,32.388-3.693c.114.634.22,1.264.313,1.88C767.822,175.526,766.121,183.2,761.54,185.842Zm12.139-33.987a89.441,89.441,0,0,1-17.545,4.694q1.414-2.265,2.765-4.6a136.137,136.137,0,0,0,13-29.9c.607.218,1.205.44,1.785.668,10.1,3.969,15.895,9.278,15.895,14.568S783.78,147.887,773.679,151.855Z" transform="translate(-669.211 -79.431)"/><path class="br-e" d="M765.232,154.323A10.866,10.866,0,1,0,776.1,165.189,10.878,10.878,0,0,0,765.232,154.323Z" transform="translate(-700.935 -107.332)"/></g></g></g></g></svg>
+                            <div class="c-text-react c-f-20">
+                              React.js
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/vue/leaf/" class="c-no-decoration" aria-label="CoreUI for Vue">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bv-a{fill:none;}.bv-b{fill:url(#bv-a);}.bv-c{opacity:0.5;}.bv-d{clip-path:url(#bv-d);}.bv-e{fill:#0ca378;}.bv-f{filter:url(#bv-b);}</style><linearGradient id="bv-a" x1="0.852" y1="1.012" x2="0.278" y2="0.177" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#8ddec9"/><stop offset="1" stop-color="#1bbd93"/></linearGradient><filter id="bv-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bv-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bv-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bv-d"><path class="bv-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bv-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bv-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bv-c" transform="translate(26 13.934)"><g class="bv-d"><path class="bv-e" d="M168.8,60.945h17.65l-50.165,92.9h-9.289l-52.023-92.9H92.623l39.132,74.2Zm-37.275,55.971L102.144,60.945H117.7l13.934,26.011,11.5-26.011h16.373Z" transform="translate(-44.244 -31.448)"/></g></g></g></svg>
+                            <div class="c-text-vue c-f-20">
+                              Vue.js
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-f-16 c-description">
+                      <p>Our Leaf React.js Admin Template Admin Template is the fastest way to build modern admin site or dashboard for any browser or device.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="c-col-md-6 c-px-md-0">
+                <div class="c-laptop-mockup">
+                  <div class="c-laptop-mockup-screenshot">
+                    <img src="/images/templates/leaf1280.jpg" alt="Leaf React.js Admin Template">
+                  </div>
+                </div>
+                <div class="c-buttons">
+                  <a href="./leaf/#c-pricing" class="c-hexagon-btn  c-heaxagon-btn-cta-yellow "><div class="c-hexagon-body-left-arrow"></div>
+  <div class="c-hexagon-body-right-arrow"></div>
+  <div class="c-hexagon-body">Buy Now</div>
+  </a>
+                  <a href="./leaf" class="c-btn c-btn-white">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div><div class="c-template">
+            <div class="c-row">
+              <div class="c-col-md-6">
+                <div class="c-template-details">
+                  <h2>Clever <span>React.js Admin Template</span></h2>
+                  <div class="c-frameworks">
+                    <div class="c-f-16">
+                      Check dedicated version for framework:
+                    </div>
+                    <div class="c-text-center">
+                      <div class="c-row">
+                        <div class="c-col-3">
+                          <a href="/admin-templates/bootstrap/clever/" class="c-no-decoration" aria-label="CoreUI for Bootstrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bb-a{fill:none;}.bb-b{fill:url(#bb-a);}.bb-c{opacity:0.5;}.bb-d{clip-path:url(#bb-d);}.bb-e{fill:#53057c;}.bb-f{filter:url(#bb-b);}</style><linearGradient id="bb-a" x1="0.981" y1="1" x2="0.238" y2="0.114" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#910ac3"/><stop offset="1" stop-color="#c884e1"/></linearGradient><filter id="bb-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bb-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bb-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bb-d"><path class="bb-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bb-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bb-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bb-c" transform="translate(26 13.934)"><g class="bb-d"><g transform="translate(-4.7 22.907)"><path class="bb-e" d="M121.318,52.5a6.628,6.628,0,0,1,2.115,4.917v83.006a6.624,6.624,0,0,1-2.115,4.917,7.038,7.038,0,0,1-5.088,2.058H33.681a7.033,7.033,0,0,1-5.088-2.058,6.618,6.618,0,0,1-2.115-4.917V57.416A6.621,6.621,0,0,1,28.593,52.5a7.033,7.033,0,0,1,5.088-2.058H116.23A7.038,7.038,0,0,1,121.318,52.5ZM85.931,130.475a19.128,19.128,0,0,0,19.208-19.093,18.948,18.948,0,0,0-2.458-9.49,18.369,18.369,0,0,0-6.689-6.861,18.365,18.365,0,0,0,2.687-5.144,19.241,19.241,0,0,0-4.631-19.608,18.432,18.432,0,0,0-13.606-5.66H48.43v65.856Zm2.744-46.648a8.2,8.2,0,0,1-8.232,8.232H59.407V75.595H80.443a8.2,8.2,0,0,1,8.232,8.232Zm-2.744,19.322a7.937,7.937,0,0,1,5.831,2.4,7.806,7.806,0,0,1,2.4,5.717,8.2,8.2,0,0,1-8.232,8.232H59.407v-16.35Z" transform="translate(-26.478 -50.441)"/></g></g></g></g></svg>
+                            <div class="c-text-bootstrap c-f-20">
+                              Bootstrap
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/angular/clever/" class="c-no-decoration" aria-label="CoreUI for Angular">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.ba-a{fill:none;}.ba-b{fill:url(#ba-a);}.ba-c{opacity:0.5;}.ba-d{clip-path:url(#ba-d);}.ba-e{fill:#b50d31;}.ba-f{filter:url(#ba-b);}</style><linearGradient id="ba-a" x1="1" y1="1" x2="0.087" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#cf2f4c"/><stop offset="1" stop-color="#e797a5"/></linearGradient><filter id="ba-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="ba-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="ba-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="ba-d"><path class="ba-a" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-343 -13.934)"/></clipPath></defs><g transform="translate(-331 -3.934)"><g class="ba-f" transform="matrix(1, 0, 0, 1, 331, 3.93)"><path class="ba-b" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-331 -3.93)"/></g><g class="ba-c" transform="translate(343 13.934)"><g class="ba-d"><g transform="translate(-10.944 37.622)"><path class="ba-e" d="M402.987,155.075h17.906l-8.65-23.207Z" transform="translate(-354.404 -95.492)"/><path class="ba-e" d="M436.792,93.917,383.887,74.148a4.017,4.017,0,0,0-2.812,0L328.169,93.917a4.017,4.017,0,0,0-2.586,4.217l7.586,66.709a4.018,4.018,0,0,0,2.089,3.085l45.318,24.38a4.017,4.017,0,0,0,3.807,0l45.319-24.38a4.02,4.02,0,0,0,2.089-3.085l7.587-66.709A4.017,4.017,0,0,0,436.792,93.917ZM402.529,161.6l-5.99-16.071H369.334L362.924,161.6H349.948l26.439-66.292h14.3L415.393,161.6Z" transform="translate(-325.558 -73.894)"/></g></g></g></g></svg>
+                            <div class="c-text-angular c-f-20">
+                              Angular 8
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/react/clever/" class="c-no-decoration c-current-framework " aria-label="CoreUI for React">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.br-a{fill:none;}.br-b{fill:url(#br-a);}.br-c{opacity:0.5;}.br-d{clip-path:url(#br-d);}.br-e{fill:#007fbf;}.br-f{filter:url(#br-b);}</style><linearGradient id="br-a" x1="0.269" y1="0.195" x2="0.902" y2="1.03" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#00a1ff"/><stop offset="1" stop-color="#80d0ff"/></linearGradient><filter id="br-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="br-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="br-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="br-d"><path class="br-a" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-643 -13.934)"/></clipPath></defs><g transform="translate(-631 -3.934)"><g class="br-f" transform="matrix(1, 0, 0, 1, 631, 3.93)"><path class="br-b" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-631 -3.93)"/></g><g class="br-c" transform="translate(643 13.934)"><g class="br-d"><g transform="translate(16.446 41.096)"><path class="br-e" d="M776.688,115.06c-.924-.363-1.88-.714-2.857-1.054q.291-1.519.516-3c2.175-14.467-.912-24.908-8.692-29.4a16.592,16.592,0,0,0-8.41-2.174c-7.009,0-15.184,3.9-23.738,11.293-8.553-7.4-16.729-11.293-23.738-11.293a16.591,16.591,0,0,0-8.41,2.174c-7.78,4.493-10.867,14.933-8.692,29.4.147.981.326,1.985.52,3q-1.463.508-2.861,1.055c-13.616,5.35-21.115,13.244-21.115,22.227s7.5,16.878,21.115,22.227q1.387.545,2.857,1.055-.291,1.519-.516,3c-2.175,14.467.912,24.908,8.692,29.4a16.585,16.585,0,0,0,8.41,2.175c7.009,0,15.184-3.9,23.738-11.293,8.554,7.4,16.729,11.293,23.738,11.293a16.586,16.586,0,0,0,8.41-2.175c7.78-4.492,10.867-14.933,8.692-29.4-.148-.981-.322-1.986-.516-3q1.462-.508,2.857-1.053c13.616-5.35,21.115-13.244,21.115-22.227S790.3,120.41,776.688,115.06Zm-19.443-27.4a8.47,8.47,0,0,1,4.3,1.072c4.58,2.645,6.282,10.317,4.668,21.048a89.428,89.428,0,0,1-4.707,17.542q-1.255-2.36-2.6-4.7a135.349,135.349,0,0,0-19.393-26.2C746.212,90.754,752.447,87.661,757.245,87.661Zm.052,49.628c-1.655,3.508-3.5,7.038-5.525,10.543-2.014,3.489-4.154,6.868-6.365,10.058-3.868.321-7.849.487-11.9.487-4.018,0-8.008-.166-11.9-.49-2.214-3.194-4.349-6.566-6.364-10.054s-3.862-7.021-5.525-10.547c1.655-3.507,3.5-7.037,5.525-10.542,2.013-3.486,4.154-6.866,6.365-10.057,3.867-.321,7.849-.487,11.9-.487,4.02,0,8.01.166,11.9.49,2.206,3.182,4.334,6.544,6.361,10.054C753.778,130.219,755.632,133.761,757.3,137.289ZM705.474,88.733a8.47,8.47,0,0,1,4.3-1.072c5.3,0,12.348,3.771,19.853,10.619a97.649,97.649,0,0,1,9.258,9.783q-2.674-.092-5.373-.095a136.168,136.168,0,0,0-32.389,3.693c-.114-.634-.22-1.262-.312-1.88C699.192,99.05,700.894,91.378,705.474,88.733ZM695.12,152.525q-.911-.328-1.785-.67c-10.1-3.969-15.895-9.278-15.895-14.568s5.793-10.6,15.895-14.568a89.442,89.442,0,0,1,17.545-4.694q-1.415,2.265-2.765,4.6A136.121,136.121,0,0,0,695.12,152.525Zm14.65,34.389a8.47,8.47,0,0,1-4.3-1.072c-4.58-2.645-6.282-10.317-4.668-21.048a89.482,89.482,0,0,1,4.707-17.543q1.256,2.361,2.6,4.7c2.507,4.343,5.2,8.523,7.991,12.426a122.238,122.238,0,0,0,11.4,13.779C720.8,183.821,714.567,186.914,709.769,186.914Zm51.771-1.072a8.473,8.473,0,0,1-4.3,1.072c-5.3,0-12.348-3.771-19.852-10.619a97.437,97.437,0,0,1-9.26-9.783q2.675.092,5.375.095a136.163,136.163,0,0,0,32.388-3.693c.114.634.22,1.264.313,1.88C767.822,175.526,766.121,183.2,761.54,185.842Zm12.139-33.987a89.441,89.441,0,0,1-17.545,4.694q1.414-2.265,2.765-4.6a136.137,136.137,0,0,0,13-29.9c.607.218,1.205.44,1.785.668,10.1,3.969,15.895,9.278,15.895,14.568S783.78,147.887,773.679,151.855Z" transform="translate(-669.211 -79.431)"/><path class="br-e" d="M765.232,154.323A10.866,10.866,0,1,0,776.1,165.189,10.878,10.878,0,0,0,765.232,154.323Z" transform="translate(-700.935 -107.332)"/></g></g></g></g></svg>
+                            <div class="c-text-react c-f-20">
+                              React.js
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/vue/clever/" class="c-no-decoration" aria-label="CoreUI for Vue">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bv-a{fill:none;}.bv-b{fill:url(#bv-a);}.bv-c{opacity:0.5;}.bv-d{clip-path:url(#bv-d);}.bv-e{fill:#0ca378;}.bv-f{filter:url(#bv-b);}</style><linearGradient id="bv-a" x1="0.852" y1="1.012" x2="0.278" y2="0.177" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#8ddec9"/><stop offset="1" stop-color="#1bbd93"/></linearGradient><filter id="bv-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bv-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bv-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bv-d"><path class="bv-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bv-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bv-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bv-c" transform="translate(26 13.934)"><g class="bv-d"><path class="bv-e" d="M168.8,60.945h17.65l-50.165,92.9h-9.289l-52.023-92.9H92.623l39.132,74.2Zm-37.275,55.971L102.144,60.945H117.7l13.934,26.011,11.5-26.011h16.373Z" transform="translate(-44.244 -31.448)"/></g></g></g></svg>
+                            <div class="c-text-vue c-f-20">
+                              Vue.js
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-f-16 c-description">
+                      <p>Our Clever React.js Admin Template Admin Template is the fastest way to build modern admin site or dashboard for any browser or device.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="c-col-md-6 c-px-md-0">
+                <div class="c-laptop-mockup">
+                  <div class="c-laptop-mockup-screenshot">
+                    <img src="/images/templates/clever1280.jpg" alt="Clever React.js Admin Template">
+                  </div>
+                </div>
+                <div class="c-buttons">
+                  <a href="./clever/#c-pricing" class="c-hexagon-btn  c-heaxagon-btn-cta-yellow "><div class="c-hexagon-body-left-arrow"></div>
+  <div class="c-hexagon-body-right-arrow"></div>
+  <div class="c-hexagon-body">Buy Now</div>
+  </a>
+                  <a href="./clever" class="c-btn c-btn-white">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div><div class="c-template">
+            <div class="c-row">
+              <div class="c-col-md-6">
+                <div class="c-template-details">
+                  <h2>Genius <span>React.js Admin Template</span></h2>
+                  <div class="c-frameworks">
+                    <div class="c-f-16">
+                      Check dedicated version for framework:
+                    </div>
+                    <div class="c-text-center">
+                      <div class="c-row">
+                        <div class="c-col-3">
+                          <a href="/admin-templates/bootstrap/genius/" class="c-no-decoration" aria-label="CoreUI for Bootstrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bb-a{fill:none;}.bb-b{fill:url(#bb-a);}.bb-c{opacity:0.5;}.bb-d{clip-path:url(#bb-d);}.bb-e{fill:#53057c;}.bb-f{filter:url(#bb-b);}</style><linearGradient id="bb-a" x1="0.981" y1="1" x2="0.238" y2="0.114" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#910ac3"/><stop offset="1" stop-color="#c884e1"/></linearGradient><filter id="bb-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bb-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bb-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bb-d"><path class="bb-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bb-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bb-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bb-c" transform="translate(26 13.934)"><g class="bb-d"><g transform="translate(-4.7 22.907)"><path class="bb-e" d="M121.318,52.5a6.628,6.628,0,0,1,2.115,4.917v83.006a6.624,6.624,0,0,1-2.115,4.917,7.038,7.038,0,0,1-5.088,2.058H33.681a7.033,7.033,0,0,1-5.088-2.058,6.618,6.618,0,0,1-2.115-4.917V57.416A6.621,6.621,0,0,1,28.593,52.5a7.033,7.033,0,0,1,5.088-2.058H116.23A7.038,7.038,0,0,1,121.318,52.5ZM85.931,130.475a19.128,19.128,0,0,0,19.208-19.093,18.948,18.948,0,0,0-2.458-9.49,18.369,18.369,0,0,0-6.689-6.861,18.365,18.365,0,0,0,2.687-5.144,19.241,19.241,0,0,0-4.631-19.608,18.432,18.432,0,0,0-13.606-5.66H48.43v65.856Zm2.744-46.648a8.2,8.2,0,0,1-8.232,8.232H59.407V75.595H80.443a8.2,8.2,0,0,1,8.232,8.232Zm-2.744,19.322a7.937,7.937,0,0,1,5.831,2.4,7.806,7.806,0,0,1,2.4,5.717,8.2,8.2,0,0,1-8.232,8.232H59.407v-16.35Z" transform="translate(-26.478 -50.441)"/></g></g></g></g></svg>
+                            <div class="c-text-bootstrap c-f-20">
+                              Bootstrap
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/angular/genius/" class="c-no-decoration" aria-label="CoreUI for Angular">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.ba-a{fill:none;}.ba-b{fill:url(#ba-a);}.ba-c{opacity:0.5;}.ba-d{clip-path:url(#ba-d);}.ba-e{fill:#b50d31;}.ba-f{filter:url(#ba-b);}</style><linearGradient id="ba-a" x1="1" y1="1" x2="0.087" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#cf2f4c"/><stop offset="1" stop-color="#e797a5"/></linearGradient><filter id="ba-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="ba-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="ba-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="ba-d"><path class="ba-a" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-343 -13.934)"/></clipPath></defs><g transform="translate(-331 -3.934)"><g class="ba-f" transform="matrix(1, 0, 0, 1, 331, 3.93)"><path class="ba-b" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-331 -3.93)"/></g><g class="ba-c" transform="translate(343 13.934)"><g class="ba-d"><g transform="translate(-10.944 37.622)"><path class="ba-e" d="M402.987,155.075h17.906l-8.65-23.207Z" transform="translate(-354.404 -95.492)"/><path class="ba-e" d="M436.792,93.917,383.887,74.148a4.017,4.017,0,0,0-2.812,0L328.169,93.917a4.017,4.017,0,0,0-2.586,4.217l7.586,66.709a4.018,4.018,0,0,0,2.089,3.085l45.318,24.38a4.017,4.017,0,0,0,3.807,0l45.319-24.38a4.02,4.02,0,0,0,2.089-3.085l7.587-66.709A4.017,4.017,0,0,0,436.792,93.917ZM402.529,161.6l-5.99-16.071H369.334L362.924,161.6H349.948l26.439-66.292h14.3L415.393,161.6Z" transform="translate(-325.558 -73.894)"/></g></g></g></g></svg>
+                            <div class="c-text-angular c-f-20">
+                              Angular 8
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/react/genius/" class="c-no-decoration c-current-framework " aria-label="CoreUI for React">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.br-a{fill:none;}.br-b{fill:url(#br-a);}.br-c{opacity:0.5;}.br-d{clip-path:url(#br-d);}.br-e{fill:#007fbf;}.br-f{filter:url(#br-b);}</style><linearGradient id="br-a" x1="0.269" y1="0.195" x2="0.902" y2="1.03" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#00a1ff"/><stop offset="1" stop-color="#80d0ff"/></linearGradient><filter id="br-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="br-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="br-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="br-d"><path class="br-a" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-643 -13.934)"/></clipPath></defs><g transform="translate(-631 -3.934)"><g class="br-f" transform="matrix(1, 0, 0, 1, 631, 3.93)"><path class="br-b" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-631 -3.93)"/></g><g class="br-c" transform="translate(643 13.934)"><g class="br-d"><g transform="translate(16.446 41.096)"><path class="br-e" d="M776.688,115.06c-.924-.363-1.88-.714-2.857-1.054q.291-1.519.516-3c2.175-14.467-.912-24.908-8.692-29.4a16.592,16.592,0,0,0-8.41-2.174c-7.009,0-15.184,3.9-23.738,11.293-8.553-7.4-16.729-11.293-23.738-11.293a16.591,16.591,0,0,0-8.41,2.174c-7.78,4.493-10.867,14.933-8.692,29.4.147.981.326,1.985.52,3q-1.463.508-2.861,1.055c-13.616,5.35-21.115,13.244-21.115,22.227s7.5,16.878,21.115,22.227q1.387.545,2.857,1.055-.291,1.519-.516,3c-2.175,14.467.912,24.908,8.692,29.4a16.585,16.585,0,0,0,8.41,2.175c7.009,0,15.184-3.9,23.738-11.293,8.554,7.4,16.729,11.293,23.738,11.293a16.586,16.586,0,0,0,8.41-2.175c7.78-4.492,10.867-14.933,8.692-29.4-.148-.981-.322-1.986-.516-3q1.462-.508,2.857-1.053c13.616-5.35,21.115-13.244,21.115-22.227S790.3,120.41,776.688,115.06Zm-19.443-27.4a8.47,8.47,0,0,1,4.3,1.072c4.58,2.645,6.282,10.317,4.668,21.048a89.428,89.428,0,0,1-4.707,17.542q-1.255-2.36-2.6-4.7a135.349,135.349,0,0,0-19.393-26.2C746.212,90.754,752.447,87.661,757.245,87.661Zm.052,49.628c-1.655,3.508-3.5,7.038-5.525,10.543-2.014,3.489-4.154,6.868-6.365,10.058-3.868.321-7.849.487-11.9.487-4.018,0-8.008-.166-11.9-.49-2.214-3.194-4.349-6.566-6.364-10.054s-3.862-7.021-5.525-10.547c1.655-3.507,3.5-7.037,5.525-10.542,2.013-3.486,4.154-6.866,6.365-10.057,3.867-.321,7.849-.487,11.9-.487,4.02,0,8.01.166,11.9.49,2.206,3.182,4.334,6.544,6.361,10.054C753.778,130.219,755.632,133.761,757.3,137.289ZM705.474,88.733a8.47,8.47,0,0,1,4.3-1.072c5.3,0,12.348,3.771,19.853,10.619a97.649,97.649,0,0,1,9.258,9.783q-2.674-.092-5.373-.095a136.168,136.168,0,0,0-32.389,3.693c-.114-.634-.22-1.262-.312-1.88C699.192,99.05,700.894,91.378,705.474,88.733ZM695.12,152.525q-.911-.328-1.785-.67c-10.1-3.969-15.895-9.278-15.895-14.568s5.793-10.6,15.895-14.568a89.442,89.442,0,0,1,17.545-4.694q-1.415,2.265-2.765,4.6A136.121,136.121,0,0,0,695.12,152.525Zm14.65,34.389a8.47,8.47,0,0,1-4.3-1.072c-4.58-2.645-6.282-10.317-4.668-21.048a89.482,89.482,0,0,1,4.707-17.543q1.256,2.361,2.6,4.7c2.507,4.343,5.2,8.523,7.991,12.426a122.238,122.238,0,0,0,11.4,13.779C720.8,183.821,714.567,186.914,709.769,186.914Zm51.771-1.072a8.473,8.473,0,0,1-4.3,1.072c-5.3,0-12.348-3.771-19.852-10.619a97.437,97.437,0,0,1-9.26-9.783q2.675.092,5.375.095a136.163,136.163,0,0,0,32.388-3.693c.114.634.22,1.264.313,1.88C767.822,175.526,766.121,183.2,761.54,185.842Zm12.139-33.987a89.441,89.441,0,0,1-17.545,4.694q1.414-2.265,2.765-4.6a136.137,136.137,0,0,0,13-29.9c.607.218,1.205.44,1.785.668,10.1,3.969,15.895,9.278,15.895,14.568S783.78,147.887,773.679,151.855Z" transform="translate(-669.211 -79.431)"/><path class="br-e" d="M765.232,154.323A10.866,10.866,0,1,0,776.1,165.189,10.878,10.878,0,0,0,765.232,154.323Z" transform="translate(-700.935 -107.332)"/></g></g></g></g></svg>
+                            <div class="c-text-react c-f-20">
+                              React.js
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/vue/genius/" class="c-no-decoration" aria-label="CoreUI for Vue">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bv-a{fill:none;}.bv-b{fill:url(#bv-a);}.bv-c{opacity:0.5;}.bv-d{clip-path:url(#bv-d);}.bv-e{fill:#0ca378;}.bv-f{filter:url(#bv-b);}</style><linearGradient id="bv-a" x1="0.852" y1="1.012" x2="0.278" y2="0.177" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#8ddec9"/><stop offset="1" stop-color="#1bbd93"/></linearGradient><filter id="bv-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bv-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bv-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bv-d"><path class="bv-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bv-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bv-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bv-c" transform="translate(26 13.934)"><g class="bv-d"><path class="bv-e" d="M168.8,60.945h17.65l-50.165,92.9h-9.289l-52.023-92.9H92.623l39.132,74.2Zm-37.275,55.971L102.144,60.945H117.7l13.934,26.011,11.5-26.011h16.373Z" transform="translate(-44.244 -31.448)"/></g></g></g></svg>
+                            <div class="c-text-vue c-f-20">
+                              Vue.js
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-f-16 c-description">
+                      <p>Our Genius React.js Admin Template Admin Template is the fastest way to build modern admin site or dashboard for any browser or device.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="c-col-md-6 c-px-md-0">
+                <div class="c-laptop-mockup">
+                  <div class="c-laptop-mockup-screenshot">
+                    <img src="/images/templates/genius1280.jpg" alt="Genius React.js Admin Template">
+                  </div>
+                </div>
+                <div class="c-buttons">
+                  <a href="./genius/#c-pricing" class="c-hexagon-btn  c-heaxagon-btn-cta-yellow "><div class="c-hexagon-body-left-arrow"></div>
+  <div class="c-hexagon-body-right-arrow"></div>
+  <div class="c-hexagon-body">Buy Now</div>
+  </a>
+                  <a href="./genius" class="c-btn c-btn-white">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div><div class="c-template">
+            <div class="c-row">
+              <div class="c-col-md-6">
+                <div class="c-template-details">
+                  <h2>Real <span>React.js Admin Template</span></h2>
+                  <div class="c-frameworks">
+                    <div class="c-f-16">
+                      Check dedicated version for framework:
+                    </div>
+                    <div class="c-text-center">
+                      <div class="c-row">
+                        <div class="c-col-3">
+                          <a href="/admin-templates/bootstrap/real/" class="c-no-decoration" aria-label="CoreUI for Bootstrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bb-a{fill:none;}.bb-b{fill:url(#bb-a);}.bb-c{opacity:0.5;}.bb-d{clip-path:url(#bb-d);}.bb-e{fill:#53057c;}.bb-f{filter:url(#bb-b);}</style><linearGradient id="bb-a" x1="0.981" y1="1" x2="0.238" y2="0.114" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#910ac3"/><stop offset="1" stop-color="#c884e1"/></linearGradient><filter id="bb-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bb-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bb-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bb-d"><path class="bb-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bb-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bb-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bb-c" transform="translate(26 13.934)"><g class="bb-d"><g transform="translate(-4.7 22.907)"><path class="bb-e" d="M121.318,52.5a6.628,6.628,0,0,1,2.115,4.917v83.006a6.624,6.624,0,0,1-2.115,4.917,7.038,7.038,0,0,1-5.088,2.058H33.681a7.033,7.033,0,0,1-5.088-2.058,6.618,6.618,0,0,1-2.115-4.917V57.416A6.621,6.621,0,0,1,28.593,52.5a7.033,7.033,0,0,1,5.088-2.058H116.23A7.038,7.038,0,0,1,121.318,52.5ZM85.931,130.475a19.128,19.128,0,0,0,19.208-19.093,18.948,18.948,0,0,0-2.458-9.49,18.369,18.369,0,0,0-6.689-6.861,18.365,18.365,0,0,0,2.687-5.144,19.241,19.241,0,0,0-4.631-19.608,18.432,18.432,0,0,0-13.606-5.66H48.43v65.856Zm2.744-46.648a8.2,8.2,0,0,1-8.232,8.232H59.407V75.595H80.443a8.2,8.2,0,0,1,8.232,8.232Zm-2.744,19.322a7.937,7.937,0,0,1,5.831,2.4,7.806,7.806,0,0,1,2.4,5.717,8.2,8.2,0,0,1-8.232,8.232H59.407v-16.35Z" transform="translate(-26.478 -50.441)"/></g></g></g></g></svg>
+                            <div class="c-text-bootstrap c-f-20">
+                              Bootstrap
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/angular/real/" class="c-no-decoration" aria-label="CoreUI for Angular">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.ba-a{fill:none;}.ba-b{fill:url(#ba-a);}.ba-c{opacity:0.5;}.ba-d{clip-path:url(#ba-d);}.ba-e{fill:#b50d31;}.ba-f{filter:url(#ba-b);}</style><linearGradient id="ba-a" x1="1" y1="1" x2="0.087" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#cf2f4c"/><stop offset="1" stop-color="#e797a5"/></linearGradient><filter id="ba-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="ba-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="ba-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="ba-d"><path class="ba-a" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-343 -13.934)"/></clipPath></defs><g transform="translate(-331 -3.934)"><g class="ba-f" transform="matrix(1, 0, 0, 1, 331, 3.93)"><path class="ba-b" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-331 -3.93)"/></g><g class="ba-c" transform="translate(343 13.934)"><g class="ba-d"><g transform="translate(-10.944 37.622)"><path class="ba-e" d="M402.987,155.075h17.906l-8.65-23.207Z" transform="translate(-354.404 -95.492)"/><path class="ba-e" d="M436.792,93.917,383.887,74.148a4.017,4.017,0,0,0-2.812,0L328.169,93.917a4.017,4.017,0,0,0-2.586,4.217l7.586,66.709a4.018,4.018,0,0,0,2.089,3.085l45.318,24.38a4.017,4.017,0,0,0,3.807,0l45.319-24.38a4.02,4.02,0,0,0,2.089-3.085l7.587-66.709A4.017,4.017,0,0,0,436.792,93.917ZM402.529,161.6l-5.99-16.071H369.334L362.924,161.6H349.948l26.439-66.292h14.3L415.393,161.6Z" transform="translate(-325.558 -73.894)"/></g></g></g></g></svg>
+                            <div class="c-text-angular c-f-20">
+                              Angular 8
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/react/real/" class="c-no-decoration c-current-framework " aria-label="CoreUI for React">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.br-a{fill:none;}.br-b{fill:url(#br-a);}.br-c{opacity:0.5;}.br-d{clip-path:url(#br-d);}.br-e{fill:#007fbf;}.br-f{filter:url(#br-b);}</style><linearGradient id="br-a" x1="0.269" y1="0.195" x2="0.902" y2="1.03" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#00a1ff"/><stop offset="1" stop-color="#80d0ff"/></linearGradient><filter id="br-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="br-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="br-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="br-d"><path class="br-a" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-643 -13.934)"/></clipPath></defs><g transform="translate(-631 -3.934)"><g class="br-f" transform="matrix(1, 0, 0, 1, 631, 3.93)"><path class="br-b" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-631 -3.93)"/></g><g class="br-c" transform="translate(643 13.934)"><g class="br-d"><g transform="translate(16.446 41.096)"><path class="br-e" d="M776.688,115.06c-.924-.363-1.88-.714-2.857-1.054q.291-1.519.516-3c2.175-14.467-.912-24.908-8.692-29.4a16.592,16.592,0,0,0-8.41-2.174c-7.009,0-15.184,3.9-23.738,11.293-8.553-7.4-16.729-11.293-23.738-11.293a16.591,16.591,0,0,0-8.41,2.174c-7.78,4.493-10.867,14.933-8.692,29.4.147.981.326,1.985.52,3q-1.463.508-2.861,1.055c-13.616,5.35-21.115,13.244-21.115,22.227s7.5,16.878,21.115,22.227q1.387.545,2.857,1.055-.291,1.519-.516,3c-2.175,14.467.912,24.908,8.692,29.4a16.585,16.585,0,0,0,8.41,2.175c7.009,0,15.184-3.9,23.738-11.293,8.554,7.4,16.729,11.293,23.738,11.293a16.586,16.586,0,0,0,8.41-2.175c7.78-4.492,10.867-14.933,8.692-29.4-.148-.981-.322-1.986-.516-3q1.462-.508,2.857-1.053c13.616-5.35,21.115-13.244,21.115-22.227S790.3,120.41,776.688,115.06Zm-19.443-27.4a8.47,8.47,0,0,1,4.3,1.072c4.58,2.645,6.282,10.317,4.668,21.048a89.428,89.428,0,0,1-4.707,17.542q-1.255-2.36-2.6-4.7a135.349,135.349,0,0,0-19.393-26.2C746.212,90.754,752.447,87.661,757.245,87.661Zm.052,49.628c-1.655,3.508-3.5,7.038-5.525,10.543-2.014,3.489-4.154,6.868-6.365,10.058-3.868.321-7.849.487-11.9.487-4.018,0-8.008-.166-11.9-.49-2.214-3.194-4.349-6.566-6.364-10.054s-3.862-7.021-5.525-10.547c1.655-3.507,3.5-7.037,5.525-10.542,2.013-3.486,4.154-6.866,6.365-10.057,3.867-.321,7.849-.487,11.9-.487,4.02,0,8.01.166,11.9.49,2.206,3.182,4.334,6.544,6.361,10.054C753.778,130.219,755.632,133.761,757.3,137.289ZM705.474,88.733a8.47,8.47,0,0,1,4.3-1.072c5.3,0,12.348,3.771,19.853,10.619a97.649,97.649,0,0,1,9.258,9.783q-2.674-.092-5.373-.095a136.168,136.168,0,0,0-32.389,3.693c-.114-.634-.22-1.262-.312-1.88C699.192,99.05,700.894,91.378,705.474,88.733ZM695.12,152.525q-.911-.328-1.785-.67c-10.1-3.969-15.895-9.278-15.895-14.568s5.793-10.6,15.895-14.568a89.442,89.442,0,0,1,17.545-4.694q-1.415,2.265-2.765,4.6A136.121,136.121,0,0,0,695.12,152.525Zm14.65,34.389a8.47,8.47,0,0,1-4.3-1.072c-4.58-2.645-6.282-10.317-4.668-21.048a89.482,89.482,0,0,1,4.707-17.543q1.256,2.361,2.6,4.7c2.507,4.343,5.2,8.523,7.991,12.426a122.238,122.238,0,0,0,11.4,13.779C720.8,183.821,714.567,186.914,709.769,186.914Zm51.771-1.072a8.473,8.473,0,0,1-4.3,1.072c-5.3,0-12.348-3.771-19.852-10.619a97.437,97.437,0,0,1-9.26-9.783q2.675.092,5.375.095a136.163,136.163,0,0,0,32.388-3.693c.114.634.22,1.264.313,1.88C767.822,175.526,766.121,183.2,761.54,185.842Zm12.139-33.987a89.441,89.441,0,0,1-17.545,4.694q1.414-2.265,2.765-4.6a136.137,136.137,0,0,0,13-29.9c.607.218,1.205.44,1.785.668,10.1,3.969,15.895,9.278,15.895,14.568S783.78,147.887,773.679,151.855Z" transform="translate(-669.211 -79.431)"/><path class="br-e" d="M765.232,154.323A10.866,10.866,0,1,0,776.1,165.189,10.878,10.878,0,0,0,765.232,154.323Z" transform="translate(-700.935 -107.332)"/></g></g></g></g></svg>
+                            <div class="c-text-react c-f-20">
+                              React.js
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/vue/real/" class="c-no-decoration" aria-label="CoreUI for Vue">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bv-a{fill:none;}.bv-b{fill:url(#bv-a);}.bv-c{opacity:0.5;}.bv-d{clip-path:url(#bv-d);}.bv-e{fill:#0ca378;}.bv-f{filter:url(#bv-b);}</style><linearGradient id="bv-a" x1="0.852" y1="1.012" x2="0.278" y2="0.177" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#8ddec9"/><stop offset="1" stop-color="#1bbd93"/></linearGradient><filter id="bv-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bv-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bv-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bv-d"><path class="bv-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bv-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bv-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bv-c" transform="translate(26 13.934)"><g class="bv-d"><path class="bv-e" d="M168.8,60.945h17.65l-50.165,92.9h-9.289l-52.023-92.9H92.623l39.132,74.2Zm-37.275,55.971L102.144,60.945H117.7l13.934,26.011,11.5-26.011h16.373Z" transform="translate(-44.244 -31.448)"/></g></g></g></svg>
+                            <div class="c-text-vue c-f-20">
+                              Vue.js
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-f-16 c-description">
+                      <p>Our Real React.js Admin Template Admin Template is the fastest way to build modern admin site or dashboard for any browser or device.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="c-col-md-6 c-px-md-0">
+                <div class="c-laptop-mockup">
+                  <div class="c-laptop-mockup-screenshot">
+                    <img src="/images/templates/real1280.jpg" alt="Real React.js Admin Template">
+                  </div>
+                </div>
+                <div class="c-buttons">
+                  <a href="./real/#c-pricing" class="c-hexagon-btn  c-heaxagon-btn-cta-yellow "><div class="c-hexagon-body-left-arrow"></div>
+  <div class="c-hexagon-body-right-arrow"></div>
+  <div class="c-hexagon-body">Buy Now</div>
+  </a>
+                  <a href="./real" class="c-btn c-btn-white">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div><div class="c-template">
+            <div class="c-row">
+              <div class="c-col-md-6">
+                <div class="c-template-details">
+                  <h2>SimpliQ <span>React.js Admin Template</span></h2>
+                  <div class="c-frameworks">
+                    <div class="c-f-16">
+                      Check dedicated version for framework:
+                    </div>
+                    <div class="c-text-center">
+                      <div class="c-row">
+                        <div class="c-col-3">
+                          <a href="/admin-templates/bootstrap/simpliq/" class="c-no-decoration" aria-label="CoreUI for Bootstrap">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bb-a{fill:none;}.bb-b{fill:url(#bb-a);}.bb-c{opacity:0.5;}.bb-d{clip-path:url(#bb-d);}.bb-e{fill:#53057c;}.bb-f{filter:url(#bb-b);}</style><linearGradient id="bb-a" x1="0.981" y1="1" x2="0.238" y2="0.114" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#910ac3"/><stop offset="1" stop-color="#c884e1"/></linearGradient><filter id="bb-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bb-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bb-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bb-d"><path class="bb-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bb-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bb-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bb-c" transform="translate(26 13.934)"><g class="bb-d"><g transform="translate(-4.7 22.907)"><path class="bb-e" d="M121.318,52.5a6.628,6.628,0,0,1,2.115,4.917v83.006a6.624,6.624,0,0,1-2.115,4.917,7.038,7.038,0,0,1-5.088,2.058H33.681a7.033,7.033,0,0,1-5.088-2.058,6.618,6.618,0,0,1-2.115-4.917V57.416A6.621,6.621,0,0,1,28.593,52.5a7.033,7.033,0,0,1,5.088-2.058H116.23A7.038,7.038,0,0,1,121.318,52.5ZM85.931,130.475a19.128,19.128,0,0,0,19.208-19.093,18.948,18.948,0,0,0-2.458-9.49,18.369,18.369,0,0,0-6.689-6.861,18.365,18.365,0,0,0,2.687-5.144,19.241,19.241,0,0,0-4.631-19.608,18.432,18.432,0,0,0-13.606-5.66H48.43v65.856Zm2.744-46.648a8.2,8.2,0,0,1-8.232,8.232H59.407V75.595H80.443a8.2,8.2,0,0,1,8.232,8.232Zm-2.744,19.322a7.937,7.937,0,0,1,5.831,2.4,7.806,7.806,0,0,1,2.4,5.717,8.2,8.2,0,0,1-8.232,8.232H59.407v-16.35Z" transform="translate(-26.478 -50.441)"/></g></g></g></g></svg>
+                            <div class="c-text-bootstrap c-f-20">
+                              Bootstrap
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/angular/simpliq/" class="c-no-decoration" aria-label="CoreUI for Angular">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.ba-a{fill:none;}.ba-b{fill:url(#ba-a);}.ba-c{opacity:0.5;}.ba-d{clip-path:url(#ba-d);}.ba-e{fill:#b50d31;}.ba-f{filter:url(#ba-b);}</style><linearGradient id="ba-a" x1="1" y1="1" x2="0.087" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#cf2f4c"/><stop offset="1" stop-color="#e797a5"/></linearGradient><filter id="ba-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="ba-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="ba-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="ba-d"><path class="ba-a" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-343 -13.934)"/></clipPath></defs><g transform="translate(-331 -3.934)"><g class="ba-f" transform="matrix(1, 0, 0, 1, 331, 3.93)"><path class="ba-b" d="M463.47,44.208,414.529,15.951a15.061,15.061,0,0,0-15.059,0L350.53,44.208A15.1,15.1,0,0,0,343,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L463.47,126.8A15.1,15.1,0,0,0,471,113.761V57.249A15.1,15.1,0,0,0,463.47,44.208Z" transform="translate(-331 -3.93)"/></g><g class="ba-c" transform="translate(343 13.934)"><g class="ba-d"><g transform="translate(-10.944 37.622)"><path class="ba-e" d="M402.987,155.075h17.906l-8.65-23.207Z" transform="translate(-354.404 -95.492)"/><path class="ba-e" d="M436.792,93.917,383.887,74.148a4.017,4.017,0,0,0-2.812,0L328.169,93.917a4.017,4.017,0,0,0-2.586,4.217l7.586,66.709a4.018,4.018,0,0,0,2.089,3.085l45.318,24.38a4.017,4.017,0,0,0,3.807,0l45.319-24.38a4.02,4.02,0,0,0,2.089-3.085l7.587-66.709A4.017,4.017,0,0,0,436.792,93.917ZM402.529,161.6l-5.99-16.071H369.334L362.924,161.6H349.948l26.439-66.292h14.3L415.393,161.6Z" transform="translate(-325.558 -73.894)"/></g></g></g></g></svg>
+                            <div class="c-text-angular c-f-20">
+                              Angular 8
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/react/simpliq/" class="c-no-decoration c-current-framework " aria-label="CoreUI for React">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.br-a{fill:none;}.br-b{fill:url(#br-a);}.br-c{opacity:0.5;}.br-d{clip-path:url(#br-d);}.br-e{fill:#007fbf;}.br-f{filter:url(#br-b);}</style><linearGradient id="br-a" x1="0.269" y1="0.195" x2="0.902" y2="1.03" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#00a1ff"/><stop offset="1" stop-color="#80d0ff"/></linearGradient><filter id="br-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="br-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="br-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="br-d"><path class="br-a" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-643 -13.934)"/></clipPath></defs><g transform="translate(-631 -3.934)"><g class="br-f" transform="matrix(1, 0, 0, 1, 631, 3.93)"><path class="br-b" d="M763.47,44.208,714.529,15.951a15.061,15.061,0,0,0-15.059,0L650.53,44.208A15.1,15.1,0,0,0,643,57.249v56.512a15.1,15.1,0,0,0,7.53,13.042l48.94,28.256a15.061,15.061,0,0,0,15.059,0L763.47,126.8A15.1,15.1,0,0,0,771,113.761V57.249A15.1,15.1,0,0,0,763.47,44.208Z" transform="translate(-631 -3.93)"/></g><g class="br-c" transform="translate(643 13.934)"><g class="br-d"><g transform="translate(16.446 41.096)"><path class="br-e" d="M776.688,115.06c-.924-.363-1.88-.714-2.857-1.054q.291-1.519.516-3c2.175-14.467-.912-24.908-8.692-29.4a16.592,16.592,0,0,0-8.41-2.174c-7.009,0-15.184,3.9-23.738,11.293-8.553-7.4-16.729-11.293-23.738-11.293a16.591,16.591,0,0,0-8.41,2.174c-7.78,4.493-10.867,14.933-8.692,29.4.147.981.326,1.985.52,3q-1.463.508-2.861,1.055c-13.616,5.35-21.115,13.244-21.115,22.227s7.5,16.878,21.115,22.227q1.387.545,2.857,1.055-.291,1.519-.516,3c-2.175,14.467.912,24.908,8.692,29.4a16.585,16.585,0,0,0,8.41,2.175c7.009,0,15.184-3.9,23.738-11.293,8.554,7.4,16.729,11.293,23.738,11.293a16.586,16.586,0,0,0,8.41-2.175c7.78-4.492,10.867-14.933,8.692-29.4-.148-.981-.322-1.986-.516-3q1.462-.508,2.857-1.053c13.616-5.35,21.115-13.244,21.115-22.227S790.3,120.41,776.688,115.06Zm-19.443-27.4a8.47,8.47,0,0,1,4.3,1.072c4.58,2.645,6.282,10.317,4.668,21.048a89.428,89.428,0,0,1-4.707,17.542q-1.255-2.36-2.6-4.7a135.349,135.349,0,0,0-19.393-26.2C746.212,90.754,752.447,87.661,757.245,87.661Zm.052,49.628c-1.655,3.508-3.5,7.038-5.525,10.543-2.014,3.489-4.154,6.868-6.365,10.058-3.868.321-7.849.487-11.9.487-4.018,0-8.008-.166-11.9-.49-2.214-3.194-4.349-6.566-6.364-10.054s-3.862-7.021-5.525-10.547c1.655-3.507,3.5-7.037,5.525-10.542,2.013-3.486,4.154-6.866,6.365-10.057,3.867-.321,7.849-.487,11.9-.487,4.02,0,8.01.166,11.9.49,2.206,3.182,4.334,6.544,6.361,10.054C753.778,130.219,755.632,133.761,757.3,137.289ZM705.474,88.733a8.47,8.47,0,0,1,4.3-1.072c5.3,0,12.348,3.771,19.853,10.619a97.649,97.649,0,0,1,9.258,9.783q-2.674-.092-5.373-.095a136.168,136.168,0,0,0-32.389,3.693c-.114-.634-.22-1.262-.312-1.88C699.192,99.05,700.894,91.378,705.474,88.733ZM695.12,152.525q-.911-.328-1.785-.67c-10.1-3.969-15.895-9.278-15.895-14.568s5.793-10.6,15.895-14.568a89.442,89.442,0,0,1,17.545-4.694q-1.415,2.265-2.765,4.6A136.121,136.121,0,0,0,695.12,152.525Zm14.65,34.389a8.47,8.47,0,0,1-4.3-1.072c-4.58-2.645-6.282-10.317-4.668-21.048a89.482,89.482,0,0,1,4.707-17.543q1.256,2.361,2.6,4.7c2.507,4.343,5.2,8.523,7.991,12.426a122.238,122.238,0,0,0,11.4,13.779C720.8,183.821,714.567,186.914,709.769,186.914Zm51.771-1.072a8.473,8.473,0,0,1-4.3,1.072c-5.3,0-12.348-3.771-19.852-10.619a97.437,97.437,0,0,1-9.26-9.783q2.675.092,5.375.095a136.163,136.163,0,0,0,32.388-3.693c.114.634.22,1.264.313,1.88C767.822,175.526,766.121,183.2,761.54,185.842Zm12.139-33.987a89.441,89.441,0,0,1-17.545,4.694q1.414-2.265,2.765-4.6a136.137,136.137,0,0,0,13-29.9c.607.218,1.205.44,1.785.668,10.1,3.969,15.895,9.278,15.895,14.568S783.78,147.887,773.679,151.855Z" transform="translate(-669.211 -79.431)"/><path class="br-e" d="M765.232,154.323A10.866,10.866,0,1,0,776.1,165.189,10.878,10.878,0,0,0,765.232,154.323Z" transform="translate(-700.935 -107.332)"/></g></g></g></g></svg>
+                            <div class="c-text-react c-f-20">
+                              React.js
+                            </div>
+                          </a>
+                        </div>
+                        <div class="c-col-3">
+                          <a href="/admin-templates/vue/simpliq/" class="c-no-decoration" aria-label="CoreUI for Vue">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="152" height="167.142" viewBox="0 0 152 167.142"><defs><style>.bv-a{fill:none;}.bv-b{fill:url(#bv-a);}.bv-c{opacity:0.5;}.bv-d{clip-path:url(#bv-d);}.bv-e{fill:#0ca378;}.bv-f{filter:url(#bv-b);}</style><linearGradient id="bv-a" x1="0.852" y1="1.012" x2="0.278" y2="0.177" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#8ddec9"/><stop offset="1" stop-color="#1bbd93"/></linearGradient><filter id="bv-b" x="0" y="0" width="152" height="167.142" filterUnits="userSpaceOnUse"><feOffset dy="2" input="SourceAlpha"/><feGaussianBlur stdDeviation="4" result="bv-c"/><feFlood flood-color="#3c4b64" flood-opacity="0.349"/><feComposite operator="in" in2="bv-c"/><feComposite in="SourceGraphic"/></filter><clipPath id="bv-d"><path class="bv-a" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-26 -13.934)"/></clipPath></defs><g transform="translate(-14 -3.934)"><g class="bv-f" transform="matrix(1, 0, 0, 1, 14, 3.93)"><path class="bv-b" d="M146.47,44.208,97.529,15.951a15.061,15.061,0,0,0-15.059,0L33.53,44.208A15.1,15.1,0,0,0,26,57.249v56.512A15.1,15.1,0,0,0,33.53,126.8l48.94,28.256a15.061,15.061,0,0,0,15.059,0L146.47,126.8A15.1,15.1,0,0,0,154,113.761V57.249A15.1,15.1,0,0,0,146.47,44.208Z" transform="translate(-14 -3.93)"/></g><g class="bv-c" transform="translate(26 13.934)"><g class="bv-d"><path class="bv-e" d="M168.8,60.945h17.65l-50.165,92.9h-9.289l-52.023-92.9H92.623l39.132,74.2Zm-37.275,55.971L102.144,60.945H117.7l13.934,26.011,11.5-26.011h16.373Z" transform="translate(-44.244 -31.448)"/></g></g></g></svg>
+                            <div class="c-text-vue c-f-20">
+                              Vue.js
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-f-16 c-description">
+                      <p>Our SimpliQ React.js Admin Template Admin Template is the fastest way to build modern admin site or dashboard for any browser or device.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="c-col-md-6 c-px-md-0">
+                <div class="c-laptop-mockup">
+                  <div class="c-laptop-mockup-screenshot">
+                    <img src="/images/templates/simpliq1280.jpg" alt="SimpliQ React.js Admin Template">
+                  </div>
+                </div>
+                <div class="c-buttons">
+                  <a href="./simpliq/#c-pricing" class="c-hexagon-btn  c-heaxagon-btn-cta-yellow "><div class="c-hexagon-body-left-arrow"></div>
+  <div class="c-hexagon-body-right-arrow"></div>
+  <div class="c-hexagon-body">Buy Now</div>
+  </a>
+                  <a href="./simpliq" class="c-btn c-btn-white">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div></div>
+    </div><footer id="c-footer">
+  <div class="c-container">
+    <div class="c-row">
+      <div class="c-col c-d-sm-down-none">
+<svg width="102px" height="116px" viewBox="0 0 102 116" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="signet" fill="#3C4B64" fill-rule="nonzero">
+            <path d="M96,25.091 L57,2.5743 C53.2871871,0.430706461 48.7128129,0.430706461 45,2.5743 L6,25.091 C2.292246,27.239646 0.00690676667,31.1979678 7.10542736e-15,35.4833 L7.10542736e-15,80.5167 C0.00688629146,84.8020377 2.29223099,88.760369 6,90.909 L45,113.4256 C48.7127742,115.569338 53.2872258,115.569338 57,113.4256 L96,90.909 C99.707769,88.760369 101.993114,84.8020377 102,80.5167 L102,35.4833 C101.993093,31.1979678 99.707754,27.239646 96,25.091 Z M94,80.5167 C94,81.9457261 93.2375729,83.266187 92,83.9807 L53,106.4974 C51.7623957,107.211931 50.2376043,107.211931 49,106.4974 L10,83.9807 C8.76242713,83.266187 8,81.9457261 8,80.5167 L8,35.4833 C8,34.0542382 8.76239619,32.7337309 10,32.0192 L49,9.5025 C50.2376043,8.78796882 51.7623957,8.78796882 53,9.5025 L92,32.0192 C93.2376038,32.7337309 94,34.0542382 94,35.4833 L94,80.5167 Z" id="Shape"></path>
+            <path d="M74.0216,71.0379 L71.1556,71.0379 C70.4827717,71.0379163 69.8208181,71.2076524 69.231,71.5314 L51.95,81.0167 L32,69.4981 L32,46.5206 L51.95,35.002 L69.2394,44.457 C69.8278903,44.7788245 70.4878603,44.9474965 71.1586,44.9475 L74.0218,44.9475 C75.1263695,44.9475 76.0218,44.0520695 76.0218,42.9475 L76.0218,40.2357 C76.0218,39.5046907 75.6230914,38.8318844 74.9818,38.481 L55.793,27.9854 C53.3404536,26.651551 50.3714915,26.6856213 47.9502,28.0754 L28,39.5929 C25.5282949,41.025705 24.0048155,43.6646378 24,46.5216 L24,69.4976 C24,72.3557593 25.5247614,74.9968204 28,76.4259 L47.95,87.9444 C50.3719491,89.3331078 53.3408366,89.3663802 55.7933,88.0323 L74.9833,77.5012 C75.623333,77.1499602 76.021125,76.4778764 76.0211,75.7478 L76.0211,73.0378 C76.0210448,71.9334648 75.1259352,71.0381761 74.0216,71.0379 L74.0216,71.0379 Z" id="Path"></path>
+        </g>
+    </g>
+</svg></div>
+      <div class="c-col-md-8">
+        <div class="c-row">
+          <div class="c-col-md-4">
+            <h5>Quick links</h5>
+            <ul class="c-list-unstyled">
+              <li><a href="/docs/getting-started/introduction/">Documentation</a></li>
+              <li><a href="/angular/">Angular 2+ Version</a></li>
+              <li><a href="/react/">React.js Version</a></li>
+              <li><a href="/vue/">Vue.js Version</a></li>
             </ul>
-            <a href="https://gum.co/coreui-pro-s/first-time/?wanted=true" class="btn btn-lg btn-block btn-danger single-init"> Buy now <del>$196</del> $79</a>
-
-            <div class="text-center">
-              <small>
-                <br/><span class="text-success2"><i class="fa fa-lock"></i> SECURE PAYMENTS</span><br/>
-                <img src="/assets/img/payment-methods.png" alt="PayPal Secure Payments" style="height:14px"/><br/><br/>
-              </small>
-            </div>
+            <h5>Changelog</h5>
+            <ul class="c-list-unstyled">
+              <li><a href="/changelog/">AJAX &amp; Static Versions</a></li>
+              <li><a href="/angular/changelog/">Angular 2+ Version</a></li>
+              <li><a href="/react/changelog/">React.js Version</a></li>
+              <li><a href="/vue/changelog/">Vue.js Version</a></li>
+            </ul>
+          </div>
+          <div class="c-col-md-4">
+            <h5>Github</h5>
+            <ul class="c-list-unstyled">
+              <li><a href="https://github.com/coreui/coreui.git" target="_blank">CoreUI</a></li>
+              <li><a href="https://github.com/coreui/coreui-angular.git" target="_blank">CoreUI for <span class="c-text-angular">Angular</span></a></li>
+              <li><a href="https://github.com/coreui/coreui.git" target="_blank">CoreUI for <span class="c-text-bootstrap">Bootstrap</span></a></li>
+              <li><a href="https://github.com/coreui/coreui-react.git" target="_blank">CoreUI for <span class="c-text-react">React.js</span></a></li>
+              <li><a href="https://github.com/coreui/coreui-vue.git" target="_blank">CoreUI for <span class="c-text-vue">Vue.js</span></a></li>
+            </ul>
+            <ul class="c-list-unstyled">
+              <li><a href="https://github.com/coreui/coreui-free-angular-admin-template.git" target="_blank">CoreUI <span class="c-text-angular">Angular</span> Admin Template</a></li>
+              <li><a href="https://github.com/coreui/coreui-free-bootstrap-admin-template.git" target="_blank">CoreUI <span class="c-text-bootstrap">Bootstrap</span> Admin Template</a></li>
+              <li><a href="https://github.com/coreui/coreui-free-react-admin-template.git" target="_blank">CoreUI <span class="c-text-react">React.js</span> Admin Template</a></li>
+              <li><a href="https://github.com/coreui/coreui-free-vue-admin-template.git" target="_blank">CoreUI <span class="c-text-vue">Vue.js</span> Admin Template</a></li>
+            </ul>
+          </div>
+          <div class="c-col-md-4">
+            <h5>Bootstrap native components</h5>
+            <ul class="c-list-unstyled">
+              <li><a href="/angular-bootstrap/">Bootstrap for Angular</a></li>
+              <li><a href="/react-bootstrap/">Bootstrap for React.js</a></li>
+              <li><a href="/vue-bootstrap/">Bootstrap for Vue.js</a></li>
+            </ul>
+            <h5>About Us</h5>
+            <ul class="c-list-unstyled">
+              <li><a href="/about/hire-us/">Hire Us</a></li>
+              <li><a href="/about/hire-us/">Services</a></li>
+              <li><a href="/about/legal/cookies/">Cookie Policy</a></li>
+              <li><a href="/about/legal/privacy/">Privacy Policy</a></li>
+            </ul>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
+    </div>
+  </div>
+</footer><script type="text/javascript" src="http://coreui.io/js/scripts.js"></script>
+<script type="text/javascript" src="https://gumroad.com/js/gumroad.js"></script>
+<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a0592292bb39f0012e27c9f&product=unknown" async="async"></script>
 
-        <div class="text-center">
-          <div class="text-uppercase mb-3 row">
-            <div class="col-md-9 mx-auto">
-              <strong>You’re in good company. <span class="text-muted">CoreUI powers thousands of apps at some of the smartest companies around the world.</span></strong>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <img class="img-fluid" src="/assets/img/clients/nvidia600.png" alt="Nvidia">
-            </div>
-            <div class="col">
-              <img class="img-fluid" src="/assets/img/clients/ea600.png" alt="EA">
-            </div>
-            <div class="col">
-              <img class="img-fluid" src="/assets/img/clients/dhl600.png" alt="DHL">
-            </div>
-            <div class="col">
-              <img class="img-fluid" src="/assets/img/clients/olx600.png" alt="OLX">
-            </div>
-            <div class="col">
-              <img class="img-fluid" src="/assets/img/clients/citi600.png" alt="Citi">
-            </div>
-            <div class="col">
-              <img class="img-fluid" src="/assets/img/clients/paypal600.png" alt="PayPal">
-            </div>
-            <div class="col">
-              <img class="img-fluid" src="/assets/img/clients/virgin-media600.png" alt="Virgin">
-            </div>
-            <div class="col">
-              <img class="img-fluid" src="/assets/img/clients/plus500600.png" alt="Plus500">
-            </div>
-            <div class="col">
-              <img class="img-fluid" src="/assets/img/clients/cisco600.png" alt="Cisco">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-<script src="/assets/js/vendor/popper.min.js"></script>
-<script src="/assets/js/vendor/bootstrap.min.js"></script>
-<script src="/assets/js/src/application.js"></script>
-<script src="/assets/js/src/analytics.js"></script>
-<script src="/assets/js/src/first-visit-modal.js"></script>
-
-<script src="/assets/js/docs.min.js"></script>
-
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="/assets/js/ie-emulation-modes-warning.js"></script>
-
-
-<!-- Place this tag in your head or just before your close body tag. -->
-<script type="text/javascript" src="https://buttons.github.io/buttons.js"></script>
-
-<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5a0592292bb39f0012e27c9f&product=unknown' async='async'></script>
-
-<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
-<script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) {  L.start({"baseUrl":"mc.us12.list-manage.com","uuid":"272317181a81e4571a8dc53e0","lid":"7a9caf510c"}) })</script>
-
-
-
-  </body>
+</body>
 </html>

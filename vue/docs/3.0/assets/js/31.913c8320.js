@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[31],{450:function(t,n,e){"use strict";e.r(n);var r=e(0),a=Object(r.a)({},function(){var t=this.$createElement;return(this._self._c||t)("Api",{attrs:{props:[["variant","'primary'","String","Defines the color variant."]],slots:[["default","undefined","Set content of callout."]]}})},[],!1,null,null,null);n.default=a.exports}}]);
