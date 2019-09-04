@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[51],{479:function(e,t,o){"use strict";o.r(t);var n=o(0),s=Object(n.a)({},function(){var e=this.$createElement;return(this._self._c||e)("Api",{attrs:{props:[["fixed","false","Boolean","Sets footer position to fixed."]],slots:[["default","undefined","Content of the footer."]]}})},[],!1,null,null,null);t.default=s.exports}}]);
