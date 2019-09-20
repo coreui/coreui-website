@@ -17,6 +17,7 @@ Chart.defaults.global.tooltips.mode = 'index';
 Chart.defaults.global.tooltips.position = 'nearest';
 Chart.defaults.global.tooltips.custom = coreui.ChartJS.CustomTooltips;
 Chart.defaults.global.defaultFontColor = '#646470';
+Chart.defaults.global.responsiveAnimationDuration = 1;
 document.body.addEventListener('classtoggle', function (event) {
   if (event.detail.className === 'c-dark-theme') {
     if (document.body.classList.contains('c-dark-theme')) {
@@ -281,9 +282,9 @@ var brandBoxChartOptions = {
       hoverRadius: 4,
       hoverBorderWidth: 3
     }
-  } // eslint-disable-next-line no-unused-vars
+  }
+}; // eslint-disable-next-line no-unused-vars
 
-};
 var brandBoxChart1 = new Chart(document.getElementById('social-box-chart-1'), {
   type: 'line',
   data: {

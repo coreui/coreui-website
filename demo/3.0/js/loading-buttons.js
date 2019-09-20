@@ -8,11 +8,11 @@
  */
 
 /* eslint-disable no-magic-numbers */
-Ladda.bind('.c-btn-ladda', {
+Ladda.bind('.btn-ladda', {
   timeout: 2000
 }); // Bind progress buttons and simulate loading progress
 
-Ladda.bind('.c-btn-ladda-progress', {
+Ladda.bind('.btn-ladda-progress', {
   callback: function callback(instance) {
     var progress = 0;
     var interval = setInterval(function () {

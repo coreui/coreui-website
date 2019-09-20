@@ -6,15 +6,15 @@
  */
 
 /* eslint-disable no-magic-numbers */
-var element = '[class*=c-col]';
-var handle = '.c-card-header';
-var connect = '[class*=c-col]';
+var element = '[class*=col]';
+var handle = '.card-header';
+var connect = '[class*=col]';
 $(element).sortable({
   handle: handle,
   connectWith: connect,
   tolerance: 'pointer',
   forcePlaceholderSize: true,
   opacity: 0.8,
-  placeholder: 'c-card-placeholder'
+  placeholder: 'card-placeholder'
 }).disableSelection();
 //# sourceMappingURL=draggable-cards.js.map

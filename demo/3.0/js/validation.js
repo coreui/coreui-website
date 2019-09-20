@@ -58,7 +58,7 @@ $('#signupForm').validate({
   },
   errorElement: 'em',
   errorPlacement: function errorPlacement(error, element) {
-    error.addClass('c-invalid-feedback');
+    error.addClass('invalid-feedback');
 
     if (element.prop('type') === 'checkbox') {
       error.insertAfter(element.parent('label'));
@@ -68,11 +68,11 @@ $('#signupForm').validate({
   },
   // eslint-disable-next-line object-shorthand
   highlight: function highlight(element) {
-    $(element).addClass('c-is-invalid').removeClass('c-is-valid');
+    $(element).addClass('is-invalid').removeClass('is-valid');
   },
   // eslint-disable-next-line object-shorthand
   unhighlight: function unhighlight(element) {
-    $(element).addClass('c-is-valid').removeClass('c-is-invalid');
+    $(element).addClass('is-valid').removeClass('is-invalid');
   }
 });
 //# sourceMappingURL=validation.js.map

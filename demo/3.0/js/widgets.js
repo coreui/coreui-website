@@ -398,9 +398,9 @@ var brandBoxChartOptions = {
       hoverRadius: 4,
       hoverBorderWidth: 3
     }
-  } // eslint-disable-next-line no-unused-vars
+  }
+}; // eslint-disable-next-line no-unused-vars
 
-};
 var brandBoxChart1 = new Chart(document.getElementById('social-box-chart-1'), {
   type: 'line',
   data: {

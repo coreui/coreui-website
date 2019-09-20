@@ -32,9 +32,9 @@ $('input[name="daterange"]').daterangepicker({
     'This Month': [moment().startOf('month'), moment().endOf('month')],
     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
   },
-  buttonClasses: 'c-btn c-btn-sm c-mx-1',
-  applyButtonClasses: 'c-btn-primary',
-  cancelClass: 'c-btn-secondary'
+  buttonClasses: 'btn btn-sm mx-1',
+  applyButtonClasses: 'btn-primary',
+  cancelClass: 'btn-secondary'
 });
 $('input[name="singledatepicker"]').daterangepicker({
   opens: 'right',
