@@ -33,11 +33,7 @@ document.body.appendChild(cookiesStatementContainer)}}).catch(err=>{throw err})}
 window.onload=function(){checkIfEu('/about/legal/cookies/')};'use strict'
 const addVat=(rate,country)=>{Array.from(document.querySelectorAll('.c-product-current-price')).forEach(el=>{const price=parseInt(el.innerHTML.replace('$','').replace(/\s/g,''))
 const vat=Math.round(price*(rate/100)*100)/100;const total=Math.round((price+vat)*100)/100;const span=document.createElement('span')
-if(price==0){el.parentNode.querySelector('.c-product-price-type').innerHTML=('<br>')}else{el.parentNode.querySelector('.c-product-price-type').innerHTML=(`+ VAT / ${el.parentNode.querySelector('.c-product-price-type').innerHTML}`)}
-const div=document.createElement('div')
-div.classList.add('c-transaction-summary')
-if(price==0){div.insertAdjacentHTML('afterbegin','<br><br>')}else{div.insertAdjacentHTML('afterbegin',`Your card will be charged <span class="c-text-primary"><strong>$${total}</strong></span> including <strong>$${vat}</strong> in <span class="c-text-uppercase c-text-primary">${country}</span>. <strong>You won't be charged VAT if you provide a valid business VAT ID</strong>`)}
-el.parentNode.parentNode.parentNode.insertBefore(div,el.parentNode.parentNode.parentNode.querySelector('.c-transaction-buy'));})}
+if(price==0){el.parentNode.querySelector('.c-product-price-type').innerHTML=('<br>')}else{el.parentNode.querySelector('.c-product-price-type').innerHTML=(`+ VAT / ${el.parentNode.querySelector('.c-product-price-type').innerHTML}`)}})}
 fetch('https://pro.ip-api.com/json/?key=EEKS6bLi6D91G1p').then(res=>res.json()).then(data=>{const code=data.countryCode
 fetch('/data/rates.json').then(res=>res.json()).then(data=>{if(data.rates[code]){const rate=data.rates[code].standard_rate
 const country=data.rates[code].country
