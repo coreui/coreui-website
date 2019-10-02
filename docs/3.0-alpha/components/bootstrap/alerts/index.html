@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bootstrap alerts give contextual feedback information for common user operations. Component is delivered with a bunch of usable and adjustable alert messages.">
+    <meta name="author" content="">
+    <meta name="generator" content="Hugo 0.58.3">
+    <title>Bootstrap alerts · CoreUI for Bootstrap 4</title>
+    <link rel="canonical" href="http://coreui.io/docs/3.0-alpha/components/bootstrap/alerts/">
+
+    
+    
+    <link rel="stylesheet" href="http://coreui.io/scss/docs.min.7d6595faa835b6c353957de3bb2c2b65ec953dd026954463f8d644c07224a92c.css">
+    
+    
+    <link rel="stylesheet" href="http://coreui.io/scss/coreui-pro.min.bfc090eb2b395dffd04c2a98e7b271b5dc13cb40b316d4c9966b0eaf49492b3e.css">
+    
+    
+    <link rel="stylesheet" href="http://coreui.io/css/ci-linear.min.ef1520c8312ab72e967b590ef45ffab4ace607709247b97923b27f1fb61f5d96.css">
+    
+    <link rel="stylesheet" href="http://coreui.io/css/ci-solid.min.322cab68ad436cdf1b5c13991e9e8de21f86289bdac0219dd3a05be4c5bd57ef.css">
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-118965717-1', { 'optimize_id': 'GTM-5W4F5PF'});
+</script>
+  </head>
+  <body>
+    <div class="cd-app c-app">
+      <div class="cd-sidebar">
+  <button type="button" class="cd-close-button cd-class-toggler" data-target=".cd-sidebar" data-class="cd-show"></button>
+  <div class="cd-sidebar-brand">
+    <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  class="cui-logo cd-sidebar-brand-logo" viewBox="0 0 312 115">
+  <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
+        <g id="coreui-base" fill="currentColor" fill-rule="nonzero">
+            <g id="Group">
+                <path d="M96,24.1244 L57,1.6077 C53.2871871,-0.535893539 48.7128129,-0.535893539 45,1.6077 L6,24.1243 C2.29226017,26.2730089 0.00693260339,30.2313486 0,34.5167 L0,79.55 C0.0068453397,83.8353487 2.29220098,87.7936989 6,89.9423 L45,112.459 C48.7128129,114.602594 53.2871871,114.602594 57,112.459 L96,89.9423 C99.707799,87.7936989 101.993155,83.8353487 102,79.55 L102,34.5167 C101.993093,30.2313678 99.707754,26.273046 96,24.1244 Z M94,79.55 C94,80.9790618 93.2376038,82.2995691 92,83.0141 L53,105.5308 C51.7623957,106.245331 50.2376043,106.245331 49,105.5308 L10,83.0141 C8.76239619,82.2995691 8,80.9790618 8,79.55 L8,34.5167 C8,33.0876382 8.76239619,31.7671309 10,31.0526 L49,8.5359 C50.2376043,7.82136882 51.7623957,7.82136882 53,8.5359 L92,31.0526 C93.2376038,31.7671309 94,33.0876382 94,34.5167 L94,79.55 Z" id="Shape"></path>
+                <path d="M74.0216,70.0713 L71.1556,70.0713 C70.4827679,70.0712861 69.8208069,70.2410241 69.231,70.5648 L51.95,80.05 L32,68.5315 L32,45.554 L51.95,34.0354 L69.2394,43.4904 C69.8278903,43.8122245 70.4878603,43.9808965 71.1586,43.9809 L74.0218,43.9809 C75.1263695,43.9809 76.0218,43.0854695 76.0218,41.9809 L76.0218,39.2691 C76.0218,38.5380907 75.6230914,37.8652844 74.9818,37.5144 L55.793,27.0188 C53.3404536,25.684951 50.3714915,25.7190213 47.9502,27.1088 L28,38.6262 C25.5283249,40.0590349 24.0048565,42.6979488 24,45.5549 L24,68.5309 C24,71.3890593 25.5247614,74.0301204 28,75.4592 L47.95,86.9778 C50.3719859,88.3663725 53.3408028,88.399644 55.7933,87.0657 L74.9833,76.5345 C75.6233016,76.1832775 76.0210885,75.5112406 76.0211,74.7812 L76.0211,72.0712 C76.0210448,70.9668648 75.1259352,70.0715761 74.0216,70.0713 Z" id="Path"></path>
+            </g>
+            <g id="Group" transform="translate(117.000000, 33.000000)">
+                <path d="M51.7447,0.4285 C43.4644161,0.437648027 36.754124,7.14771643 36.7447,15.428 L36.7447,32.7054 C36.7447,40.9896712 43.4604288,47.7054 51.7447,47.7054 C60.0289712,47.7054 66.7447,40.9896712 66.7447,32.7054 L66.7447,15.428 C66.735276,7.14771643 60.0249839,0.437648027 51.7447,0.4285 L51.7447,0.4285 Z M58.7447,32.7054 C58.7447,36.5713932 55.6106932,39.7054 51.7447,39.7054 C47.8787068,39.7054 44.7447,36.5713932 44.7447,32.7054 L44.7447,15.428 C44.7447,11.5620068 47.8787068,8.428 51.7447,8.428 C55.6106932,8.428 58.7447,11.5620068 58.7447,15.428 L58.7447,32.7054 Z" id="Shape"></path>
+                <path d="M15.0788,8.4878 C16.9286881,8.24481332 18.799121,8.74931526 20.2759097,9.88958885 C21.7526984,11.0298624 22.7139842,12.7118169 22.9469,14.563 C23.0096446,15.0584416 23.4318031,15.4294333 23.9312,15.428 L29.9617,15.428 C30.2433078,15.4256279 30.5111615,15.3058932 30.700737,15.0976392 C30.8903124,14.8893852 30.9844237,14.6114912 30.9604,14.3309 C30.3547728,6.2061693 23.38159,0.0460556878 15.2442,0.4472 C7.16132117,0.999887718 0.913134758,7.76221317 1,15.8635 L1,32.27 C0.913131523,40.3712508 7.16126073,47.1335618 15.2441,47.6863 C23.3813933,48.08722 30.3543741,41.9271229 30.96,33.8025 C30.9840545,33.5219017 30.8899539,33.2439902 30.7003719,33.035729 C30.5107899,32.8274679 30.2429178,32.7077421 29.9613,32.7054 L23.9308,32.7054 C23.4314031,32.7039667 23.0092446,33.0749584 22.9465,33.5704 C22.7137048,35.4216544 21.7524848,37.1037177 20.2757044,38.2440932 C18.7989241,39.3844687 16.9284489,39.8890513 15.0785,39.6461 C11.5427997,39.1044016 8.94840923,36.0377838 9,32.4612 L9,15.6724 C8.94840694,12.0957688 11.543004,9.02918626 15.0788,8.4878 L15.0788,8.4878 Z" id="Path"></path>
+                <path d="M97.9222,27.9944 C102.287745,26.0370903 105.09962,21.7015444 105.1064,16.9173 L105.1064,13.2161 C105.1064,6.50617166 99.6669283,1.0667 92.957,1.0667 L76,1.0667 C75.4477153,1.0667 75,1.51441525 75,2.0667 L75,46.0667 C75,46.6189847 75.4477153,47.0667 76,47.0667 L82,47.0667 C82.5522847,47.0667 83,46.6189847 83,46.0667 L83,29.0667 L89.6215,29.0667 L97.5369,46.4805 C97.6991143,46.8373746 98.0548886,47.0667 98.4469,47.0667 L105.038,47.0667 C105.377933,47.0667 105.694523,46.8937728 105.878505,46.6079325 C106.062488,46.3220923 106.088664,45.9623638 105.948,45.6529 L97.9222,27.9944 Z M97.1064,16.9173 C97.1039754,19.2077501 95.2479498,21.0639994 92.9575,21.0667 L83.1064,21.0667 L83.1064,9.0667 L92.9575,9.0667 C95.2479498,9.06940063 97.1039754,10.9256499 97.1064,13.2161 L97.1064,16.9173 Z" id="Shape"></path>
+                <path d="M140,1.0667 L114,1.0667 C113.447715,1.0667 113,1.51441525 113,2.0667 L113,46.0667 C113,46.6189847 113.447715,47.0667 114,47.0667 L140,47.0667 C140.552285,47.0667 141,46.6189847 141,46.0667 L141,40.0667 C141,39.5144153 140.552285,39.0667 140,39.0667 L121,39.0667 L121,27.0667 L134,27.0667 C134.552285,27.0667 135,26.6189847 135,26.0667 L135,20.0667 C135,19.5144153 134.552285,19.0667 134,19.0667 L121,19.0667 L121,9.0667 L140,9.0667 C140.552285,9.0667 141,8.61898475 141,8.0667 L141,2.0667 C141,1.51441525 140.552285,1.0667 140,1.0667 Z" id="Path"></path>
+                <path d="M178,1.0667 L172,1.0667 C171.447715,1.0667 171,1.51441525 171,2.0667 L171,24.7142 C171.111775,27.2875721 169.802567,29.7147754 167.590728,31.0348154 C165.378889,32.3548553 162.621111,32.3548553 160.409272,31.0348154 C158.197433,29.7147754 156.888225,27.2875721 157,24.7142 L157,2.0667 C157,1.51441525 156.552285,1.0667 156,1.0667 L150,1.0667 C149.447715,1.0667 149,1.51441525 149,2.0667 L149,24.7142 C148.889565,30.1458781 151.72415,35.2128902 156.410578,37.96111 C161.097007,40.7093297 166.902993,40.7093297 171.589422,37.96111 C176.27585,35.2128902 179.110435,30.1458781 179,24.7142 L179,2.0667 C179,1.51441525 178.552285,1.0667 178,1.0667 Z" id="Path"></path>
+                <rect id="Rectangle" x="187" y="1.0667" width="8" height="38" rx="1"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
+  </div>
+  <nav class="cd-sidebar-nav" aria-label="Main navigation">
+    
+    <div class="cd-nav-item">
+      <a class="cd-nav-link" href="/docs/3.0-alpha/home/">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="cd-nav-icon" width="64" height="64" viewBox="0 0 64 64">
+<title>home</title>
+<path d="M58.708 27.056l-24.824-22.838c-0.754-0.696-1.766-1.122-2.878-1.122-1.174 0-2.237 0.476-3.006 1.245l-24.002 24.002v33.657h22v-21h12v21h22v-33.755zM56 58h-14v-17c0-2.209-1.791-4-4-4v0h-12c-2.209 0-4 1.791-4 4v0 17h-14v-28l22.83-22.83c0.045-0.045 0.108-0.073 0.177-0.073 0.065 0 0.125 0.025 0.169 0.066l-0-0 24.824 22.838z"></path>
+</svg>
+Home</a>
+    </div>
+    
+    <div class="cd-nav-item cd-nav-dropdown">
+      <a class="cd-nav-link cd-nav-dropdown-toggle" href="/docs/3.0-alpha/getting-started/introduction/">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="cd-nav-icon" width="64" height="64" viewBox="0 0 64 64">
+<title>energy</title>
+<path d="M40 26v-24h-4.012l-27.941 38h16.953v22h3.975l28.125-36zM15.953 36l20.047-27.264v21.264h12.9l-19.9 25.471v-19.471z"></path>
+</svg>
+Getting started</a>
+      <ul class="cd-nav-dropdown-items"><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/getting-started/introduction/">
+            <span class="cd-nav-icon"></span>Introduction</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/getting-started/download/">
+            <span class="cd-nav-icon"></span>Download</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/getting-started/contents/">
+            <span class="cd-nav-icon"></span>Contents</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/getting-started/browsers-devices/">
+            <span class="cd-nav-icon"></span>Browsers &amp; devices</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/getting-started/javascript/">
+            <span class="cd-nav-icon"></span>JavaScript</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/getting-started/theming/">
+            <span class="cd-nav-icon"></span>Theming</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/getting-started/build-tools/">
+            <span class="cd-nav-icon"></span>Build tools</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/getting-started/webpack/">
+            <span class="cd-nav-icon"></span>Webpack</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/getting-started/accessibility/">
+            <span class="cd-nav-icon"></span>Accessibility</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="cd-nav-item cd-nav-dropdown">
+      <a class="cd-nav-link cd-nav-dropdown-toggle" href="/docs/3.0-alpha/layout/overview/">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="cd-nav-icon" width="64" height="64" viewBox="0 0 64 64">
+<title>view-quilt</title>
+<path d="M2 8v48h60v-48zM58 30h-34v-18h34zM24 34h15v18h-15zM6 12h14v40h-14zM43 52v-18h15v18z"></path>
+</svg>
+Layout</a>
+      <ul class="cd-nav-dropdown-items"><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/layout/overview/">
+            <span class="cd-nav-icon"></span>Overview</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/layout/grid/">
+            <span class="cd-nav-icon"></span>Grid</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/layout/utilities-for-layout/">
+            <span class="cd-nav-icon"></span>Utilities for layout</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="cd-nav-item cd-nav-dropdown">
+      <a class="cd-nav-link cd-nav-dropdown-toggle" href="/docs/3.0-alpha/content/reboot/">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="cd-nav-icon" width="64" height="64" viewBox="0 0 64 64">
+<title>line-style</title>
+<path d="M2 2v13h60v-13zM58 11h-52v-5h52z"></path>
+<path d="M30 18h-28v12h28zM26 26h-20v-4h20z"></path>
+<path d="M34 30h28v-12h-28zM38 22h20v4h-20z"></path>
+<path d="M19 34h-17v11h17zM15 41h-9v-3h9z"></path>
+<path d="M24 45h16v-11h-16zM28 38h8v3h-8z"></path>
+<path d="M45 45h17v-11h-17zM49 38h9v3h-9z"></path>
+<path d="M8.59 48.82c0 0-0 0-0 0-3.64 0-6.59 2.95-6.59 6.59s2.95 6.59 6.59 6.59c3.64 0 6.59-2.95 6.59-6.59 0 0 0-0 0-0v0c-0.004-3.638-2.952-6.586-6.59-6.59h-0zM8.59 58c0 0-0 0-0 0-1.431 0-2.59-1.16-2.59-2.59s1.16-2.59 2.59-2.59c1.431 0 2.59 1.16 2.59 2.59v0c-0.002 1.43-1.16 2.588-2.59 2.59h-0z"></path>
+<path d="M24.197 48.82c0 0-0 0-0 0-3.64 0-6.59 2.95-6.59 6.59s2.95 6.59 6.59 6.59c3.64 0 6.59-2.95 6.59-6.59 0 0 0-0 0-0v0c-0.004-3.638-2.952-6.586-6.59-6.59h-0zM24.197 58c0 0-0 0-0 0-1.43 0-2.59-1.16-2.59-2.59s1.16-2.59 2.59-2.59c1.43 0 2.59 1.16 2.59 2.59v0c-0.002 1.43-1.16 2.588-2.59 2.59h-0z"></path>
+<path d="M39.803 48.82c-3.64 0-6.59 2.95-6.59 6.59s2.95 6.59 6.59 6.59c3.64 0 6.59-2.95 6.59-6.59 0 0 0-0 0-0v0c-0.004-3.638-2.952-6.586-6.59-6.59h-0zM39.803 58c-1.431-0-2.59-1.16-2.59-2.59s1.16-2.59 2.59-2.59c1.431 0 2.59 1.16 2.59 2.59v0c-0.002 1.43-1.16 2.589-2.59 2.59h-0z"></path>
+<path d="M55.41 48.82c-3.64 0-6.59 2.95-6.59 6.59s2.95 6.59 6.59 6.59c3.64 0 6.59-2.95 6.59-6.59 0 0 0-0 0-0v0c-0.004-3.638-2.952-6.586-6.59-6.59h-0zM55.41 58c-1.431-0-2.59-1.16-2.59-2.59s1.16-2.59 2.59-2.59c1.431 0 2.59 1.16 2.59 2.59v0c-0.002 1.43-1.16 2.589-2.59 2.59h-0z"></path>
+</svg>
+Content</a>
+      <ul class="cd-nav-dropdown-items"><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/content/reboot/">
+            <span class="cd-nav-icon"></span>Reboot</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/content/typography/">
+            <span class="cd-nav-icon"></span>Typography</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/content/code/">
+            <span class="cd-nav-icon"></span>Code</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/content/images/">
+            <span class="cd-nav-icon"></span>Images</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/content/tables/">
+            <span class="cd-nav-icon"></span>Tables</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/content/figures/">
+            <span class="cd-nav-icon"></span>Figures</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="cd-nav-item cd-nav-dropdown">
+      <a class="cd-nav-link cd-nav-dropdown-toggle" href="/docs/3.0-alpha/components/alerts/">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="cd-nav-icon" width="64" height="64" viewBox="0 0 64 64">
+<title>d</title>
+<path d="M55.46 16.17l-21.419-12.366c-0.574-0.336-1.264-0.534-2-0.534s-1.426 0.198-2.019 0.545l0.019-0.010-21.419 12.366c-1.202 0.706-1.998 1.992-2 3.464v24.733c0.002 1.472 0.798 2.758 1.981 3.454l0.019 0.010 21.419 12.366c0.574 0.336 1.264 0.534 2 0.534s1.426-0.198 2.019-0.544l-0.019 0.010 21.419-12.366c1.202-0.706 1.997-1.992 2-3.464v-24.733c-0.002-1.472-0.798-2.758-1.981-3.454l-0.019-0.010zM53.46 19.634v22.172l-19.419-10.976v-22.408zM10.623 19.634l19.419-11.211v22.401l-19.419 10.976zM32.042 56.732l-19.644-11.342 19.638-11.1 19.644 11.103z"></path>
+</svg>
+Components</a>
+      <ul class="cd-nav-dropdown-items"><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/alerts/">
+            <span class="cd-nav-icon"></span>Alerts</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/badge/">
+            <span class="cd-nav-icon"></span>Badge</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/breadcrumb/">
+            <span class="cd-nav-icon"></span>Breadcrumb</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/buttons/">
+            <span class="cd-nav-icon"></span>Buttons</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/button-group/">
+            <span class="cd-nav-icon"></span>Button group</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/callout/">
+            <span class="cd-nav-icon"></span>Callout</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/card/">
+            <span class="cd-nav-icon"></span>Card</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/carousel/">
+            <span class="cd-nav-icon"></span>Carousel</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/collapse/">
+            <span class="cd-nav-icon"></span>Collapse</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/dropdowns/">
+            <span class="cd-nav-icon"></span>Dropdowns</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/footer/">
+            <span class="cd-nav-icon"></span>Footer</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/forms/">
+            <span class="cd-nav-icon"></span>Forms</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/header/">
+            <span class="cd-nav-icon"></span>Header</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/input-group/">
+            <span class="cd-nav-icon"></span>Input group</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/jumbotron/">
+            <span class="cd-nav-icon"></span>Jumbotron</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/list-group/">
+            <span class="cd-nav-icon"></span>List group</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/media-object/">
+            <span class="cd-nav-icon"></span>Media object</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/modal/">
+            <span class="cd-nav-icon"></span>Modal</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/navs/">
+            <span class="cd-nav-icon"></span>Navs</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/navbar/">
+            <span class="cd-nav-icon"></span>Navbar</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/pagination/">
+            <span class="cd-nav-icon"></span>Pagination</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/popovers/">
+            <span class="cd-nav-icon"></span>Popovers</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/progress/">
+            <span class="cd-nav-icon"></span>Progress</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/scrollspy/">
+            <span class="cd-nav-icon"></span>Scrollspy</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/sidebar/">
+            <span class="cd-nav-icon"></span>Sidebar</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/spinners/">
+            <span class="cd-nav-icon"></span>Spinners</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/switches/">
+            <span class="cd-nav-icon"></span>Switches</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/toasts/">
+            <span class="cd-nav-icon"></span>Toasts</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/components/bootstrap/tooltips/">
+            <span class="cd-nav-icon"></span>Tooltips</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="cd-nav-item cd-nav-dropdown">
+      <a class="cd-nav-link cd-nav-dropdown-toggle" href="/docs/3.0-alpha/utilities/borders/">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="cd-nav-icon" width="64" height="64" viewBox="0 0 64 64">
+<title>color-fill</title>
+<path d="M59 47h-54c-1.656 0.002-2.998 1.344-3 3v9c0.002 1.656 1.344 2.998 3 3h54c1.656-0.002 2.998-1.344 3-3v-9c-0.002-1.656-1.344-2.998-3-3h-0zM58 58h-52v-7h52z"></path>
+<path d="M5.626 29.936c-0.124 0.466-0.196 1.002-0.196 1.554 0 2.913 1.985 5.363 4.677 6.070l0.044 0.010 19.813 5.066c0.467 0.125 1.003 0.196 1.557 0.196 2.913 0 5.362-1.986 6.067-4.678l0.010-0.044 6.62-25.892-31.972-8.174-1.501 5.872-7.249-1.854-0.991 3.875 7.249 1.854zM30.955 38.76v0l-19.813-5.066c-0.992-0.261-1.711-1.149-1.711-2.206 0-0.2 0.026-0.393 0.074-0.578l-0.004 0.016 0.498-1.949v0.023h25.798l-2.076 8.119c-0.261 0.992-1.149 1.711-2.206 1.711-0.2 0-0.393-0.026-0.578-0.074l0.016 0.004zM39.352 15.103l-2.53 9.897h-25.804l4.114-16.090z"></path>
+<path d="M52.5 44c4.687 0 8.5-4.037 8.5-9 0-2.023-1.168-4.814-3.57-8.535-1.661-2.572-3.299-4.628-3.368-4.714l-1.562-1.955-1.563 1.955c-0.069 0.086-1.707 2.142-3.368 4.714-2.402 3.72-3.57 6.512-3.57 8.535 0 4.963 3.813 9 8.5 9zM52.5 26.32c2.207 3.080 4.5 6.928 4.5 8.68 0 2.757-2.019 5-4.5 5s-4.5-2.243-4.5-5c0-1.752 2.293-5.601 4.5-8.68z"></path>
+</svg>
+Utilities</a>
+      <ul class="cd-nav-dropdown-items"><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/borders/">
+            <span class="cd-nav-icon"></span>Borders</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/clearfix/">
+            <span class="cd-nav-icon"></span>Clearfix</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/close-icon/">
+            <span class="cd-nav-icon"></span>Close icon</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/colors/">
+            <span class="cd-nav-icon"></span>Colors</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/display/">
+            <span class="cd-nav-icon"></span>Display</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/embed/">
+            <span class="cd-nav-icon"></span>Embed</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/flex/">
+            <span class="cd-nav-icon"></span>Flex</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/float/">
+            <span class="cd-nav-icon"></span>Float</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/overflow/">
+            <span class="cd-nav-icon"></span>Overflow</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/position/">
+            <span class="cd-nav-icon"></span>Position</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/screen-readers/">
+            <span class="cd-nav-icon"></span>Screen readers</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/shadows/">
+            <span class="cd-nav-icon"></span>Shadows</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/sidebar/">
+            <span class="cd-nav-icon"></span>Sidebar</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/sizing/">
+            <span class="cd-nav-icon"></span>Sizing</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/spacing/">
+            <span class="cd-nav-icon"></span>Spacing</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/stretched-link/">
+            <span class="cd-nav-icon"></span>Stretched link</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/text/">
+            <span class="cd-nav-icon"></span>Text</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/vertical-align/">
+            <span class="cd-nav-icon"></span>Vertical align</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/utilities/visibility/">
+            <span class="cd-nav-icon"></span>Visibility</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="cd-nav-item cd-nav-dropdown">
+      <a class="cd-nav-link cd-nav-dropdown-toggle" href="/docs/3.0-alpha/icons/introduction/">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="cd-nav-icon"  width="64" height="64" class="ci" viewBox="0 0 64 64">  <title>contrast</title>
+<path d="M32 2c-16.569 0-30 13.431-30 30s13.431 30 30 30 30-13.431 30-30-13.431-30-30-30zM6 32q0-1.239 0.115-2.459l23.135 12.951v6.666l-22.889-12.813c-0.23-1.304-0.361-2.805-0.361-4.337 0-0.003 0-0.005 0-0.008v0zM8.788 20.274l20.462 11.468v6.167l-22.398-12.538c0.364-1.376 0.77-2.537 1.254-3.657l-0.064 0.167q0.346-0.819 0.746-1.607zM29.25 6.144v10.049l-11.206-6.137c3.191-2.063 6.998-3.46 11.092-3.902l0.114-0.010zM14.565 12.712l14.685 8.042v6.403l-18.386-10.304c0.868-1.2 1.771-2.257 2.751-3.237l0-0q0.465-0.465 0.95-0.904zM13.615 50.385c-2.315-2.309-4.196-5.052-5.509-8.097l-0.065-0.168c-0.045-0.107-0.088-0.216-0.132-0.323l21.34 11.947v4.114c-6.153-0.663-11.569-3.393-15.634-7.471l-0.001-0.001zM50.385 50.385c-4.412 4.425-10.414 7.263-17.076 7.583l-0.059 0.002v-51.94c13.816 0.673 24.763 12.039 24.763 25.961 0 7.185-2.916 13.689-7.628 18.393l-0 0z"></path>
+</svg>
+Icons</a>
+      <ul class="cd-nav-dropdown-items"><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/icons/introduction/">
+            <span class="cd-nav-icon"></span>Introduction</a>
+        </li><li class="cd-nav-item ">
+          <a class="cd-nav-link " href="/docs/3.0-alpha/icons/icons-list/">
+            <span class="cd-nav-icon"></span>Icons list</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+      <div class="cd-header">
+  <a href="/" class="cd-header-brand">
+    
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+<title>core-logo</title>
+<path d="M55.824 14.578l-20.647-11.921c-0.911-0.535-2.007-0.851-3.177-0.851s-2.265 0.316-3.206 0.867l0.030-0.016-20.647 11.921c-1.91 1.121-3.173 3.164-3.176 5.501v23.842c0.004 2.338 1.267 4.38 3.147 5.486l0.030 0.016 20.647 11.921c0.911 0.535 2.007 0.851 3.177 0.851s2.265-0.316 3.206-0.867l-0.030 0.016 20.647-11.921c1.91-1.121 3.173-3.164 3.176-5.501v-23.842c-0.004-2.338-1.267-4.38-3.147-5.486l-0.030-0.016zM54.765 43.921c0 0 0 0 0 0 0 0.78-0.421 1.461-1.049 1.828l-0.010 0.005-20.647 11.921c-0.304 0.178-0.669 0.284-1.059 0.284s-0.755-0.105-1.069-0.289l0.010 0.005-20.647-11.921c-0.637-0.373-1.059-1.054-1.059-1.834v0-23.841c0-0.78 0.421-1.461 1.049-1.829l0.010-0.005 20.647-11.921c0.304-0.178 0.669-0.284 1.059-0.284s0.755 0.105 1.069 0.289l-0.010-0.005 20.647 11.921c0.637 0.373 1.059 1.054 1.059 1.834 0 0 0 0 0 0v0z"></path>
+<path d="M44.188 38.903h-1.517c-0.374 0-0.725 0.097-1.030 0.267l0.011-0.005-9.149 5.022-10.562-6.098v-12.165l10.562-6.098 9.153 5.006c0.293 0.163 0.643 0.26 1.016 0.26h1.516c0.585 0 1.059-0.474 1.059-1.059v-1.436c0 0 0 0 0 0 0-0.398-0.22-0.745-0.545-0.926l-0.005-0.003-10.158-5.556c-0.587-0.326-1.288-0.517-2.033-0.517-0.78 0-1.51 0.21-2.139 0.576l0.020-0.011-10.562 6.098c-1.273 0.748-2.115 2.109-2.117 3.668v12.164c0 1.559 0.843 2.922 2.098 3.657l0.020 0.011 10.562 6.098c0.608 0.355 1.338 0.564 2.118 0.564 0.746 0 1.447-0.192 2.056-0.529l-0.022 0.011 10.16-5.575c0.33-0.184 0.549-0.53 0.549-0.928v0-1.435c-0-0.585-0.474-1.059-1.059-1.059 0 0-0 0-0 0v0z"></path>
+</svg>
+
+  </a>
+  <ul class="cd-header-nav">
+    <li class="cd-nav-item cd-d-sm-down-none">
+      <a href="/" class="cd-nav-link cd-active">
+        CoreUI Homepage
+      </a>
+    </li>
+    <li class="cd-nav-item cd-d-sm-down-none">
+      <a href="/support/" class="cd-nav-link">
+        Support
+      </a>
+    </li>
+    <li class="cd-nav-item">
+      <a href="/hire-us/" class="cd-nav-link cd-signalize">
+        Hire Us
+      </a>
+    </li>
+    <li class="cd-nav-item">
+      <a href="https://coreui.io/pro/" class="cd-btn-go-pro cd-btn-coreui">Go Pro</a>
+    </li>
+    <button class="cd-header-toggler cd-class-toggler" type="button" data-target=".cd-sidebar" data-class="cd-show"></button>
+  </ul> 
+</div>
+      <div class="cd-body">
+        <div class="cd-content">
+          
+<nav class="cd-breadcrumb" aria-label="breadcrumb">
+  <a href="/3.0-alpha/" class="cd-breadcrumb-item">Home</a></li>
+  
+   
+    
+    
+      <a href='/docs/3.0-alpha/bootstrap' class="cd-breadcrumb-item">Bootstrap</a>
+    
+    
+   
+    
+    
+    <span class="cd-breadcrumb-item active">Alerts</span>
+    
+    
+  
+  <span class="cd-breadcrumb-date">Last updated: January 1, 0001</span>
+</nav>
+          <h1>Bootstrap alerts</h1>
+          <p>Bootstrap alerts give contextual feedback information for common user operations. Component is delivered with a bunch of usable and adjustable alert messages.</p>
+          
+          <strong>On this page: </strong>
+          <br><br>
+          <nav class="cd-on-this-page" aria-label="Secondary navigation">
+            <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#examples">Examples</a>
+<ul>
+<li><a href="#link-color">Link color</a></li>
+<li><a href="#additional-content">Additional content</a></li>
+<li><a href="#dismissing">Dismissing</a></li>
+</ul></li>
+<li><a href="#javascript-behavior">JavaScript behavior</a>
+<ul>
+<li><a href="#without-jquery">Without jQuery</a>
+<ul>
+<li><a href="#triggers">Triggers</a></li>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#events">Events</a></li>
+</ul></li>
+<li><a href="#with-jquery">With jQuery</a>
+<ul>
+<li><a href="#triggers-1">Triggers</a></li>
+<li><a href="#methods-1">Methods</a></li>
+<li><a href="#events-1">Events</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+          </nav>
+          <br><br>
+          
+          
+
+<h2 id="examples">Examples</h2>
+
+<p>Bootstrap alerts are prepared for any length of the message. For proper styling,
+use one of required contextual classes: <code>.alert-primary</code>,
+  <code>.alert-secondary</code>,
+  <code>.alert-success</code>,
+  <code>.alert-danger</code>,
+  <code>.alert-warning</code>,
+  <code>.alert-info</code>,
+  <code>.alert-light</code>,
+  <code>.alert-dark</code>. For inline dismissal, use the <a href="#dismissing">alerts JavaScript plugin</a>.</p>
+
+<p>Alerts are available for any length of text, as well as an optional dismiss button. For proper styling, use one of the eight <strong>required</strong> contextual classes (e.g., <code>.alert-success</code>). For inline dismissal, use the <a href="#dismissing">alerts JavaScript plugin</a>.</p>
+
+<div class="cd-example">
+
+<div class="alert alert-primary" role="alert">
+  A simple primary alert—check it out!
+</div>
+<div class="alert alert-secondary" role="alert">
+  A simple secondary alert—check it out!
+</div>
+<div class="alert alert-success" role="alert">
+  A simple success alert—check it out!
+</div>
+<div class="alert alert-danger" role="alert">
+  A simple danger alert—check it out!
+</div>
+<div class="alert alert-warning" role="alert">
+  A simple warning alert—check it out!
+</div>
+<div class="alert alert-info" role="alert">
+  A simple info alert—check it out!
+</div>
+<div class="alert alert-light" role="alert">
+  A simple light alert—check it out!
+</div>
+<div class="alert alert-dark" role="alert">
+  A simple dark alert—check it out!
+</div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-primary&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple primary alert—check it out!
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-secondary&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple secondary alert—check it out!
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-success&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple success alert—check it out!
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-danger&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple danger alert—check it out!
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-warning&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple warning alert—check it out!
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-info&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple info alert—check it out!
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-light&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple light alert—check it out!
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-dark&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple dark alert—check it out!
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+
+<div class="bd-callout bd-callout-info">
+<h5 id="conveying-meaning-to-assistive-technologies">Conveying meaning to assistive technologies</h5>
+
+<p>Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the <code>.sr-only</code> class.
+</div>
+
+
+<h3 id="link-color">Link color</h3>
+
+<p>Use the <code>.alert-link</code> utility class to immediately give matching colored links inside any alert.</p>
+
+<div class="cd-example">
+
+<div class="alert alert-primary" role="alert">
+  A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
+<div class="alert alert-secondary" role="alert">
+  A simple secondary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
+<div class="alert alert-success" role="alert">
+  A simple success alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
+<div class="alert alert-danger" role="alert">
+  A simple danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
+<div class="alert alert-warning" role="alert">
+  A simple warning alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
+<div class="alert alert-info" role="alert">
+  A simple info alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
+<div class="alert alert-light" role="alert">
+  A simple light alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
+<div class="alert alert-dark" role="alert">
+  A simple dark alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+</div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-primary&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple primary alert with <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert-link&#34;</span><span class="p">&gt;</span>an example link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. Give it a click if you like.
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-secondary&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple secondary alert with <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert-link&#34;</span><span class="p">&gt;</span>an example link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. Give it a click if you like.
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-success&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple success alert with <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert-link&#34;</span><span class="p">&gt;</span>an example link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. Give it a click if you like.
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-danger&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple danger alert with <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert-link&#34;</span><span class="p">&gt;</span>an example link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. Give it a click if you like.
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-warning&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple warning alert with <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert-link&#34;</span><span class="p">&gt;</span>an example link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. Give it a click if you like.
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-info&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple info alert with <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert-link&#34;</span><span class="p">&gt;</span>an example link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. Give it a click if you like.
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-light&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple light alert with <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert-link&#34;</span><span class="p">&gt;</span>an example link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. Give it a click if you like.
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-dark&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  A simple dark alert with <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert-link&#34;</span><span class="p">&gt;</span>an example link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>. Give it a click if you like.
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+
+<h3 id="additional-content">Additional content</h3>
+
+<p>Alerts can also incorporate additional HTML elements like headings, paragraphs, and dividers.</p>
+
+<div class="cd-example">
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Well done!</h4>
+  <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+  <hr>
+  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+</div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-success&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h4</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert-heading&#34;</span><span class="p">&gt;</span>Well done!<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;mb-0&#34;</span><span class="p">&gt;</span>Whenever you need to, be sure to use margin utilities to keep things nice and tidy.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+
+<h3 id="dismissing">Dismissing</h3>
+
+<p>Using the JavaScript plugin, it&rsquo;s possible to remove any alert. Here&rsquo;s how you can do it:</p>
+
+<ul>
+<li>Be sure you&rsquo;ve loaded the bootstrap alert plugin, or the compiled Bootstrap JavaScript.</li>
+<li>If you&rsquo;re building our JavaScript from source, it <a href="/docs/3.0-alpha/getting-started/javascript/#util">requires <code>util.js</code></a>. The compiled version includes this.</li>
+<li>Add a dismiss button and the <code>.alert-dismissible</code> class, which adds extra padding to the right of the alert and positions the <code>.close</code> button.</li>
+<li>On the dismiss button, add the <code>data-dismiss=&quot;alert&quot;</code> attribute, which triggers the JavaScript functionality. Be sure to use the <code>&lt;button&gt;</code> element with it for proper behavior across all devices.</li>
+<li>To animate alerts when dismissing them, be sure to add the <code>.fade</code> and <code>.show</code> classes.</li>
+</ul>
+
+<p>You can see this in action with a live demo:</p>
+
+<div class="cd-example">
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;alert alert-warning alert-dismissible fade show&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Holy guacamole!<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> You should check in on some of those fields below.
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;close&#34;</span> <span class="na">data-dismiss</span><span class="o">=</span><span class="s">&#34;alert&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Close&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&#34;true&#34;</span><span class="p">&gt;</span><span class="ni">&amp;times;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+
+<h2 id="javascript-behavior">JavaScript behavior</h2>
+
+<h3 id="without-jquery">Without jQuery</h3>
+
+<h4 id="triggers">Triggers</h4>
+
+<p>Enable dismissal of an alert via JavaScript:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">alertList</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.alert&#39;</span><span class="p">)</span>
+<span class="nx">alertList</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">alert</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Alert</span><span class="p">(</span><span class="nx">alert</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>
+
+<p>Or with <code>data</code> attributes on a button <strong>within the alert</strong>, as demonstrated above:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;close&#34;</span> <span class="na">data-dismiss</span><span class="o">=</span><span class="s">&#34;alert&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Close&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&#34;true&#34;</span><span class="p">&gt;</span><span class="ni">&amp;times;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></code></pre></div>
+
+<p>Note that closing an alert will remove it from the DOM.</p>
+
+<h4 id="methods">Methods</h4>
+
+<p>You can create an alert instance with the alert constructor, for example:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myAlert</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myAlert&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">bsAlert</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Alert</span><span class="p">(</span><span class="nx">myAlert</span><span class="p">)</span>
+</code></pre></div>
+
+<p>This makes an alert listen for click events on descendant elements which have the <code>data-dismiss=&quot;alert&quot;</code> attribute. (Not necessary when using the data-api&rsquo;s auto-initialization.)</p>
+
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>close</code></td>
+<td>Closes an alert by removing it from the DOM. If the <code>.fade</code> and <code>.show</code> classes are present on the element, the alert will fade out before it is removed.</td>
+</tr>
+
+<tr>
+<td><code>dispose</code></td>
+<td>Destroys an element&rsquo;s alert.</td>
+</tr>
+
+<tr>
+<td><code>_getInstance</code></td>
+<td><em>Static</em> method which allows you to get the alert instance associated to a DOM element, you can use it like this: <code>coreui.Alert._getInstance(alert)</code></td>
+</tr>
+</tbody>
+</table>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">alertNode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.alert&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">alert</span> <span class="o">=</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Alert</span><span class="p">.</span><span class="nx">_getInstance</span><span class="p">(</span><span class="nx">alertNode</span><span class="p">)</span>
+<span class="nx">alert</span><span class="p">.</span><span class="nx">close</span><span class="p">()</span>
+</code></pre></div>
+
+<h4 id="events">Events</h4>
+
+<p>Bootstrap&rsquo;s alert plugin exposes a few events for hooking into alert functionality.</p>
+
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>close.coreui.alert</code></td>
+<td>This event fires immediately when the <code>close</code> instance method is called.</td>
+</tr>
+
+<tr>
+<td><code>closed.coreui.alert</code></td>
+<td>This event is fired when the alert has been closed (will wait for CSS transitions to complete).</td>
+</tr>
+</tbody>
+</table>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myAlert</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myAlert&#39;</span><span class="p">)</span>
+<span class="nx">myAlert</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;closed.coreui.alert&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// do something…
+</span><span class="c1"></span><span class="p">})</span>
+</code></pre></div>
+
+<h3 id="with-jquery">With jQuery</h3>
+
+<h4 id="triggers-1">Triggers</h4>
+
+<p>Enable dismissal of an alert via JavaScript:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.alert&#39;</span><span class="p">).</span><span class="nx">alert</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Or with <code>data</code> attributes on a button <strong>within the alert</strong>, as demonstrated above:</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;close&#34;</span> <span class="na">data-dismiss</span><span class="o">=</span><span class="s">&#34;alert&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Close&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&#34;true&#34;</span><span class="p">&gt;</span><span class="ni">&amp;times;</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></code></pre></div>
+
+<p>Please note that closing a Bootstrap alert will remove it from the DOM.</p>
+
+<h4 id="methods-1">Methods</h4>
+
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>$().alert()</code></td>
+<td>Makes an alert listen for click events on descendant elements which have the <code>data-dismiss=&quot;alert&quot;</code> attribute. (Not necessary when using the data-api&rsquo;s auto-initialization.)</td>
+</tr>
+
+<tr>
+<td><code>$().alert('close')</code></td>
+<td>Closes an alert by removing it from the DOM. If the <code>.fade</code> and <code>.show</code> classes are present on the element, the alert will fade out before it is removed.</td>
+</tr>
+
+<tr>
+<td><code>$().alert('dispose')</code></td>
+<td>Destroys an element&rsquo;s alert.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;.alert&#34;</span><span class="p">).</span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="events-1">Events</h4>
+
+<p>Bootstrap&rsquo;s alert plugin exposes a few events for hooking into alert functionality.</p>
+
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>close.coreui.alert</code></td>
+<td>This event fires immediately when the <code>close</code> instance method is called.</td>
+</tr>
+
+<tr>
+<td><code>closed.coreui.alert</code></td>
+<td>This event is fired when the alert has been closed (will wait for CSS transitions to complete).</td>
+</tr>
+</tbody>
+</table>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myAlert&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;closed.coreui.alert&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// do something…
+</span><span class="c1"></span><span class="p">})</span>
+</code></pre></div>
+
+        </div>
+        
+        <nav class="cd-toc" aria-label="Secondary navigation">
+          <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#examples">Examples</a>
+<ul>
+<li><a href="#link-color">Link color</a></li>
+<li><a href="#additional-content">Additional content</a></li>
+<li><a href="#dismissing">Dismissing</a></li>
+</ul></li>
+<li><a href="#javascript-behavior">JavaScript behavior</a>
+<ul>
+<li><a href="#without-jquery">Without jQuery</a>
+<ul>
+<li><a href="#triggers">Triggers</a></li>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#events">Events</a></li>
+</ul></li>
+<li><a href="#with-jquery">With jQuery</a>
+<ul>
+<li><a href="#triggers-1">Triggers</a></li>
+<li><a href="#methods-1">Methods</a></li>
+<li><a href="#events-1">Events</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+        </nav>
+        
+      </div>
+      <div class="cd-footer">
+  <strong>CoreUI</strong>&nbsp;© 2019 creativeLabs.
+  
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+<title>core-logo</title>
+<path d="M55.824 14.578l-20.647-11.921c-0.911-0.535-2.007-0.851-3.177-0.851s-2.265 0.316-3.206 0.867l0.030-0.016-20.647 11.921c-1.91 1.121-3.173 3.164-3.176 5.501v23.842c0.004 2.338 1.267 4.38 3.147 5.486l0.030 0.016 20.647 11.921c0.911 0.535 2.007 0.851 3.177 0.851s2.265-0.316 3.206-0.867l-0.030 0.016 20.647-11.921c1.91-1.121 3.173-3.164 3.176-5.501v-23.842c-0.004-2.338-1.267-4.38-3.147-5.486l-0.030-0.016zM54.765 43.921c0 0 0 0 0 0 0 0.78-0.421 1.461-1.049 1.828l-0.010 0.005-20.647 11.921c-0.304 0.178-0.669 0.284-1.059 0.284s-0.755-0.105-1.069-0.289l0.010 0.005-20.647-11.921c-0.637-0.373-1.059-1.054-1.059-1.834v0-23.841c0-0.78 0.421-1.461 1.049-1.829l0.010-0.005 20.647-11.921c0.304-0.178 0.669-0.284 1.059-0.284s0.755 0.105 1.069 0.289l-0.010-0.005 20.647 11.921c0.637 0.373 1.059 1.054 1.059 1.834 0 0 0 0 0 0v0z"></path>
+<path d="M44.188 38.903h-1.517c-0.374 0-0.725 0.097-1.030 0.267l0.011-0.005-9.149 5.022-10.562-6.098v-12.165l10.562-6.098 9.153 5.006c0.293 0.163 0.643 0.26 1.016 0.26h1.516c0.585 0 1.059-0.474 1.059-1.059v-1.436c0 0 0 0 0 0 0-0.398-0.22-0.745-0.545-0.926l-0.005-0.003-10.158-5.556c-0.587-0.326-1.288-0.517-2.033-0.517-0.78 0-1.51 0.21-2.139 0.576l0.020-0.011-10.562 6.098c-1.273 0.748-2.115 2.109-2.117 3.668v12.164c0 1.559 0.843 2.922 2.098 3.657l0.020 0.011 10.562 6.098c0.608 0.355 1.338 0.564 2.118 0.564 0.746 0 1.447-0.192 2.056-0.529l-0.022 0.011 10.16-5.575c0.33-0.184 0.549-0.53 0.549-0.928v0-1.435c-0-0.585-0.474-1.059-1.059-1.059 0 0-0 0-0 0v0z"></path>
+</svg>
+
+</div>
+    </div>
+    <script type="text/javascript" src="http://coreui.io/js/coreui-docs.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
