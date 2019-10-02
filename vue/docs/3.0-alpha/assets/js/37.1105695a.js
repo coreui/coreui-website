@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[37],{540:function(e,t,n){"use strict";n.r(t);var o=n(0),s=Object(o.a)({},function(){var e=this.$createElement;return(this._self._c||e)("Api",{attrs:{props:[["fixed","false","Boolean","Sets header position to fixed."]],slots:[["default","undefined","Content of the header."]]}})},[],!1,null,null,null);t.default=s.exports}}]);
