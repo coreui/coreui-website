@@ -173,28 +173,10 @@
     }
   }
 
-  var Delayed = function() {
-    this.id = null;
-    this.f = null;
-    this.time = 0;
-    this.handler = bind(this.onTimeout, this);
-  };
-  Delayed.prototype.onTimeout = function (self) {
-    self.id = 0;
-    if (self.time <= +new Date) {
-      self.f();
-    } else {
-      setTimeout(self.handler, self.time - +new Date);
-    }
-  };
+  var Delayed = function() {this.id = null;};
   Delayed.prototype.set = function (ms, f) {
-    this.f = f;
-    var time = +new Date + ms;
-    if (!this.id || time < this.time) {
-      clearTimeout(this.id);
-      this.id = setTimeout(this.handler, ms);
-      this.time = time;
-    }
+    clearTimeout(this.id);
+    this.id = setTimeout(f, ms);
   };
 
   function indexOf(array, elt) {
@@ -9677,7 +9659,7 @@
         textarea.style.display = "";
         if (textarea.form) {
           off(textarea.form, "submit", save);
-          if (!options.leaveSubmitMethodAlone && typeof textarea.form.submit == "function")
+          if (typeof textarea.form.submit == "function")
             { textarea.form.submit = realSubmit; }
         }
       };
@@ -9776,7 +9758,7 @@
 
   addLegacyProps(CodeMirror);
 
-  CodeMirror.version = "5.49.2";
+  CodeMirror.version = "5.48.4";
 
   return CodeMirror;
 

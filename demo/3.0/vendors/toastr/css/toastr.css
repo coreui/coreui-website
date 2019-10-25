@@ -1,14 +1,3 @@
-:root {
-  --primary-dark-theme: #4638c2;
-  --secondary-dark-theme: #4c4f54;
-  --success-dark-theme: #45a164;
-  --info-dark-theme: #4799eb;
-  --warning-dark-theme: #e1a82d;
-  --danger-dark-theme: #d16767;
-  --light-dark-theme: #20202a;
-  --dark-dark-theme: #181924;
-}
-
 .toast-title {
   font-weight: bold;
 }
@@ -122,7 +111,7 @@ button.toast-close-button {
   position: relative;
   overflow: hidden;
   margin: 0 0 6px;
-  padding: 15px;
+  padding: 15px 15px 15px 50px;
   width: 300px;
   border-radius: 0.25rem;
   background-position: 15px center;
@@ -142,6 +131,31 @@ button.toast-close-button {
 
 #toast-container .toast {
   background-image: none !important;
+}
+
+#toast-container .toast:before {
+  position: relative;
+  font-family: simple-line-icons;
+  font-size: 24px;
+  line-height: 18px;
+  float: left;
+  margin: 13px 0 0 -35px;
+}
+
+#toast-container .toast-warning:before {
+  content: "\e01c";
+}
+
+#toast-container .toast-error:before {
+  content: "\e082";
+}
+
+#toast-container .toast-info:before {
+  content: "\e08b";
+}
+
+#toast-container .toast-success:before {
+  content: "\e080";
 }
 
 #toast-container.toast-top-center > div,
