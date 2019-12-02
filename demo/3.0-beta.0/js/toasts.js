@@ -1,4 +1,3 @@
-import $ from 'jquery';
 /**
 * --------------------------------------------------------------------------
 * CoreUI Pro Boostrap Admin Template (3.0.0-beta.0): toasts.js
@@ -7,7 +6,6 @@ import $ from 'jquery';
 */
 
 /* eslint-disable no-magic-numbers */
-
 $('.toast').toast('show');
 $('#toast-1').on('hidden.coreui.toast', function () {
   setTimeout(function () {

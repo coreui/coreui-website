@@ -1,4 +1,3 @@
-import $ from 'jquery';
 /**
  * --------------------------------------------------------------------------
  * CoreUI Pro Boostrap Admin Template (3.0.0-beta.0): draggable-cards.js
@@ -7,7 +6,6 @@ import $ from 'jquery';
  */
 
 /* eslint-disable no-magic-numbers */
-
 var element = '[class*=col]';
 var handle = '.card-header';
 var connect = '[class*=col]';

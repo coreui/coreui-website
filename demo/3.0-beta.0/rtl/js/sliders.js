@@ -1,4 +1,3 @@
-import $ from 'jquery';
 /**
  * --------------------------------------------------------------------------
  * CoreUI Pro Boostrap Admin Template (3.0.0-beta.0): sliders.js
@@ -7,7 +6,6 @@ import $ from 'jquery';
  */
 
 /* eslint-disable no-magic-numbers, camelcase */
-
 $('#range_01').ionRangeSlider();
 $('#range_02').ionRangeSlider({
   min: 100,

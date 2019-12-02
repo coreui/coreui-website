@@ -1,5 +1,5 @@
 /* global moment */
-import $ from 'jquery';
+
 /**
  * --------------------------------------------------------------------------
  * CoreUI Pro Boostrap Admin Template (3.0.0-beta.0): advanced-forms.js
@@ -8,7 +8,6 @@ import $ from 'jquery';
  */
 
 /* eslint-disable no-magic-numbers */
-
 $('#date').mask('99/99/9999');
 $('#phone').mask('(999) 999-9999');
 $('#tin').mask('99-9999999');
