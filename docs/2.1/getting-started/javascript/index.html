@@ -1,0 +1,1292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Bring Bootstrap to life with our optional JavaScript plugins built on jQuery. Learn about each plugin, our data and programmatic API options, and more.">
+<meta name="author" content="Łukasz Holeczek">
+<meta name="generator" content="Jekyll v3.8.0">
+
+<title>JavaScript - Examples &amp; Tutorials. Learn how to use JavaScript · CoreUI</title>
+
+<!-- Documentation extras -->
+<!-- 
+<link href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" rel="stylesheet">
+ -->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="https://coreui.io/docs/assets/css/coreui-docs.min.css" rel="stylesheet">
+<link href="https://coreui.io/docs/assets/css/coreui-icons.css" rel="stylesheet">
+
+
+
+<!-- Favicons -->
+<link rel="icon" href="https://coreui.io/docs/favicon.ico">
+<meta name="msapplication-config" content="https://coreui.io/docs/assets/img/favicons/browserconfig.xml">
+<link rel="apple-touch-icon" sizes="57x57" href="https://coreui.io/docs/assets/img/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://coreui.io/docs/assets/img/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://coreui.io/docs/assets/img/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://coreui.io/docs/assets/img/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://coreui.io/docs/assets/img/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://coreui.io/docs/assets/img/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://coreui.io/docs/assets/img/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://coreui.io/docs/assets/img/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://coreui.io/docs/assets/img/favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="https://coreui.io/docs/assets/img/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coreui.io/docs/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://coreui.io/docs/assets/img/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coreui.io/docs/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="https://coreui.io/docs/assets/img/favicons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="https://coreui.io/docs/assets/img/favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@core_ui">
+<meta name="twitter:creator" content="@core_ui">
+<meta name="twitter:title" content="JavaScript">
+<meta name="twitter:description" content="Bring Bootstrap to life with our optional JavaScript plugins built on jQuery. Learn about each plugin, our data and programmatic API options, and more.">
+<meta name="twitter:image" content="https://coreui.io/docs/assets/brand/coreui-social-logo.png">
+
+<!-- Facebook -->
+<meta property="og:url" content="https://coreui.io/docs/getting-started/javascript/">
+<meta property="og:title" content="JavaScript">
+<meta property="og:description" content="Bring Bootstrap to life with our optional JavaScript plugins built on jQuery. Learn about each plugin, our data and programmatic API options, and more.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://coreui.io/docs/assets/brand/coreui-social.png">
+<meta property="og:image:secure_url" content="https://coreui.io/docs/assets/brand/coreui-social.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-9510961-27', 'auto', {'allowLinker': true});
+  ga('require', 'linker');
+  ga('linker:autoLink', ['gumroad.com','genesisui.com']);
+  ga('send', 'pageview');
+
+  ga('create', 'UA-118965717-1', 'auto', {'name': 'sharedTracker', 'allowLinker': true});
+  ga('sharedTracker.require', 'linker');
+  ga('sharedTracker.linker:autoLink', ['gumroad.com','genesisui.com']);
+  ga('sharedTracker.send', 'pageview');
+</script>
+<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5b3f65e507712f0011378729&product=unknown"></script>
+
+    <style>
+      .app-body {
+        overflow-x: initial;
+      }
+    </style>
+  </head>
+  <body class="app header-fixed sidebar-md-show sidebar-fixed">
+    <!-- <a id="skippy" class="sr-only sr-only-focusable" href="#content">
+  <div class="container">
+    <span class="skiplink-text">Skip to main content</span>
+  </div>
+</a>
+ -->
+
+    <header class="app-header navbar">
+  <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="https://coreui.io">
+    <img src="https://coreui.io/docs/assets/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
+  </a>
+  <ul class="nav navbar-nav mr-auto d-md-down-none">
+    <li class="nav-item px-3">
+      <a class="nav-link" href="https://coreui.io/">CoreUI Website</a>
+    </li>
+    <li class="nav-item px-3">
+      <a class="nav-link" href="https://coreui.io/icons/">CoreUI Icons</a>
+    </li>
+    <li class="nav-item px-3">
+      <a class="btn btn-danger" href="https://coreui.io/#sneak-peek">Try CoreUI PRO 3.0.0-alpha</a>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav d-md-down-none">
+    <li class="nav-item px-3">
+      <a class="btn btn btn-outline-warning" href="https://coreui.io/support/">Contact &amp; Support</a>
+    </li>
+  </ul>
+</header>
+
+
+    <div class="app-body">
+      <div class="sidebar">
+        
+<nav class="sidebar-nav">
+  <ul class="nav">
+
+    
+    
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  active">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Getting started
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/getting-started/ui-kit/">
+              UI Kit
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/getting-started/introduction/">
+              Introduction
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/getting-started/browsers-devices/">
+              Browsers & devices
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item active docs-sidenav-active">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/getting-started/javascript/">
+              JavaScript
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/getting-started/build-tools/">
+              Build tools
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/getting-started/webpack/">
+              Webpack
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/getting-started/accessibility/">
+              Accessibility
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Layout
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/layout/overview/">
+              Overview
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/layout/grid/">
+              Grid
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/layout/media-object/">
+              Media object
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/layout/utilities-for-layout/">
+              Utilities for layout
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Content
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/content/reboot/">
+              Reboot
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/content/typography/">
+              Typography
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/content/code/">
+              Code
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/content/images/">
+              Images
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/content/tables/">
+              Tables
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/content/figures/">
+              Figures
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Components
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/alerts/">
+              Alerts
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/aside-menu/">
+              Aside menu
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/badge/">
+              Badge
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/breadcrumb/">
+              Breadcrumb
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/buttons/">
+              Buttons
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/button-group/">
+              Button group
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/callout/">
+              Callout
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/cards/">
+              Cards
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/carousel/">
+              Carousel
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/collapse/">
+              Collapse
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/dropdowns/">
+              Dropdowns
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/forms/">
+              Forms
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/footer/">
+              Footer
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/input-group/">
+              Input group
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/jumbotron/">
+              Jumbotron
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/list-group/">
+              List group
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/loading-buttons/">
+              Loading buttons
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/masked-input/">
+              Masked input
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/modal/">
+              Modal
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/navs/">
+              Navs
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/navbar/">
+              Navbar
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/pagination/">
+              Pagination
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/popovers/">
+              Popovers
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/progress/">
+              Progress
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/scrollspy/">
+              Scrollspy
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/sidebar/">
+              Sidebar
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/sliders/">
+              Sliders
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/spinners/">
+              Spinners
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/switches/">
+              Switches
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/components/tooltips/">
+              Tooltips
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  ">
+      <a class="nav-link " href="https://coreui.io/docs/icons/">
+        Icons
+      </a>
+      <ul class="nav-dropdown-items">
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Utilities
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/borders/">
+              Borders
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/clearfix/">
+              Clearfix
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/close-icon/">
+              Close icon
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/colors/">
+              Colors
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/display/">
+              Display
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/embed/">
+              Embed
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/flex/">
+              Flex
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/float/">
+              Float
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/image-replacement/">
+              Image replacement
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/position/">
+              Position
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/screenreaders/">
+              Screenreaders
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/sizing/">
+              Sizing
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/spacing/">
+              Spacing
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/text/">
+              Text
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/vertical-align/">
+              Vertical align
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/utilities/visibility/">
+              Visibility
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  ">
+      <a class="nav-link " href="https://coreui.io/docs/2.1/migration/">
+        Migration
+      </a>
+      <ul class="nav-dropdown-items">
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Admin Templates
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/admin-templates/angular-admin/">
+              Angular Admin
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/admin-templates/bootstrap-admin/">
+              Bootstrap Admin
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/admin-templates/react-admin/">
+              React Admin
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/docs/2.1/admin-templates/vue-admin/">
+              Vue Admin
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+    <li class="nav-item mt-auto">
+      <a class="nav-link nav-link-success" href="https://coreui.io" target="_top">
+        <i class="nav-icon cui-cloud-download"></i> Download CoreUI</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link nav-link-danger" href="https://coreui.io/pro/" target="_top">
+        <i class="nav-icon cui-layers"></i> Try CoreUI
+        <strong>PRO</strong>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+      </div>
+      <main class="main">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            
+            
+            
+            
+
+            
+
+            
+              
+
+              
+                <li class="breadcrumb-item "><a href="https://coreui.io/docs/">Docs</a></li>
+              
+            
+              
+
+              
+                <li class="breadcrumb-item active">JavaScript</li>
+              
+            
+          </ol>
+        </nav>
+        <div class="container-fluid">
+          <a href="/#sneak-peek" class="bg-indigo alert d-block text-center text-white py-3" onclick="ga('send', 'event', 'Go Pro', 'Click', 'Alert under page header');" style="background-color:#6610f2!important;">
+            <strong>Sneak Peek!</strong> CoreUI 3 is coming! Please try the latest version - <strong>CoreUI PRO 3.0.0-alpha.</strong>.
+            <span class="btn btn-sm btn-outline-light ml-3">Try CoreUI PRO 3.0.0-alpha</span>
+          </a>
+          <div class="row">
+            <div class="col-12  col-xl-9 ">
+              <div class="card">
+                <div class="card-body">
+                  <h1 class="docs-title" id="content">JavaScript</h1>
+                  <p class="docs-lead">Bring Bootstrap to life with our optional JavaScript plugins built on jQuery. Learn about each plugin, our data and programmatic API options, and more.</p>
+                  <div class="sharethis-inline-share-buttons my-3"></div>
+                  <h2 id="individual-or-compiled">Individual or compiled</h2>
+
+<p>Plugins can be included individually (using Bootstrap’s individual <code class="highlighter-rouge">*.js</code> files), or all at once using <code class="highlighter-rouge">bootstrap.js</code> or the minified <code class="highlighter-rouge">bootstrap.min.js</code> (don’t include both).</p>
+
+<h2 id="dependencies">Dependencies</h2>
+
+<p>Some plugins and CSS components depend on other plugins. If you include plugins individually, make sure to check for these dependencies in the docs. Also note that <strong>all plugins depend on jQuery</strong> (this means jQuery must be included <strong>before</strong> the plugin files). <a href="https://github.com/twbs/bootstrap/blob/v2.0.1/package.json">Consult our <code class="highlighter-rouge">package.json</code></a> to see which versions of jQuery are supported.</p>
+
+<p>Our dropdowns, popovers and tooltips also depend on <a href="https://popper.js.org/">Popper.js</a>.</p>
+
+<h2 id="data-attributes">Data attributes</h2>
+
+<p>Nearly all Bootstrap plugins can be enabled and configured through HTML alone with data attributes (our preferred way of using JavaScript functionality). Be sure to <strong>only use one set of data attributes on a single element</strong> (e.g., you cannot trigger a tooltip and modal from the same button.)</p>
+
+<p>However, in some situations it may be desirable to disable this functionality. To disable the data attribute API, unbind all events on the document namespaced with <code class="highlighter-rouge">data-api</code> like so:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">off</span><span class="p">(</span><span class="s1">'.data-api'</span><span class="p">)</span></code></pre></figure>
+
+<p>Alternatively, to target a specific plugin, just include the plugin’s name as a namespace along with the data-api namespace like this:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">off</span><span class="p">(</span><span class="s1">'.alert.data-api'</span><span class="p">)</span></code></pre></figure>
+
+<div class="docs-callout docs-callout-warning">
+<h5 id="escaping-selectors">Escaping selectors</h5>
+<p>If you use special selectors, for example: <code class="highlighter-rouge">collapse:Example</code>, be sure to escape them, because they’ll be passed through jQuery.</p>
+</div>
+
+<h2 id="events">Events</h2>
+
+<p>Bootstrap provides custom events for most plugins’ unique actions. Generally, these come in an infinitive and past participle form - where the infinitive (ex. <code class="highlighter-rouge">show</code>) is triggered at the start of an event, and its past participle form (ex. <code class="highlighter-rouge">shown</code>) is triggered on the completion of an action.</p>
+
+<p>All infinitive events provide <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault"><code class="highlighter-rouge">preventDefault()</code></a> functionality. This provides the ability to stop the execution of an action before it starts. Returning false from an event handler will also automatically call <code class="highlighter-rouge">preventDefault()</code>.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">'#myModal'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'show.bs.modal'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">)</span> <span class="k">return</span> <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span> <span class="c1">// stops modal from being shown</span>
+<span class="p">})</span></code></pre></figure>
+
+<h2 id="programmatic-api">Programmatic API</h2>
+
+<p>We also believe you should be able to use all Bootstrap plugins purely through the JavaScript API. All public APIs are single, chainable methods, and return the collection acted upon.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">'.btn.danger'</span><span class="p">).</span><span class="nx">button</span><span class="p">(</span><span class="s1">'toggle'</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">'fat'</span><span class="p">)</span></code></pre></figure>
+
+<p>All methods should accept an optional options object, a string which targets a particular method, or nothing (which initiates a plugin with default behavior):</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">'#myModal'</span><span class="p">).</span><span class="nx">modal</span><span class="p">()</span>                      <span class="c1">// initialized with defaults</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#myModal'</span><span class="p">).</span><span class="nx">modal</span><span class="p">({</span> <span class="na">keyboard</span><span class="p">:</span> <span class="kc">false</span> <span class="p">})</span>   <span class="c1">// initialized with no keyboard</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#myModal'</span><span class="p">).</span><span class="nx">modal</span><span class="p">(</span><span class="s1">'show'</span><span class="p">)</span>                <span class="c1">// initializes and invokes show immediately</span></code></pre></figure>
+
+<p>Each plugin also exposes its raw constructor on a <code class="highlighter-rouge">Constructor</code> property: <code class="highlighter-rouge">$.fn.popover.Constructor</code>. If you’d like to get a particular plugin instance, retrieve it directly from an element: <code class="highlighter-rouge">$('[rel="popover"]').data('popover')</code>.</p>
+
+<h3 id="asynchronous-functions-and-transitions">Asynchronous functions and transitions</h3>
+
+<p>All programmatic API methods are <strong>asynchronous</strong> and returns to the caller once the transition is started but <strong>before it ends</strong>.</p>
+
+<p>In order to execute an action once the transition is complete, you can listen to the corresponding event.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">'#myCollapse'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'shown.bs.collapse'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Action to execute once the collapsible area is expanded</span>
+<span class="p">})</span></code></pre></figure>
+
+<p>In addition a method call on a <strong>transitioning component will be ignored</strong>.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">'#myCarousel'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'slid.bs.carousel'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'#myCarousel'</span><span class="p">).</span><span class="nx">carousel</span><span class="p">(</span><span class="s1">'2'</span><span class="p">)</span> <span class="c1">// Will slide to the slide 2 as soon as the transition to slide 1 is finished</span>
+<span class="p">})</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#myCarousel'</span><span class="p">).</span><span class="nx">carousel</span><span class="p">(</span><span class="s1">'1'</span><span class="p">)</span> <span class="c1">// Will start sliding to the slide 1 and returns to the caller</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#myCarousel'</span><span class="p">).</span><span class="nx">carousel</span><span class="p">(</span><span class="s1">'2'</span><span class="p">)</span> <span class="c1">// !! Will be ignored, as the transition to the slide 1 is not finished !!</span></code></pre></figure>
+
+<h3 id="default-settings">Default settings</h3>
+
+<p>You can change the default settings for a plugin by modifying the plugin’s <code class="highlighter-rouge">Constructor.Default</code> object:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">modal</span><span class="p">.</span><span class="nx">Constructor</span><span class="p">.</span><span class="nx">Default</span><span class="p">.</span><span class="nx">keyboard</span> <span class="o">=</span> <span class="kc">false</span> <span class="c1">// changes default for the modal plugin's `keyboard` option to false</span></code></pre></figure>
+
+<h2 id="no-conflict">No conflict</h2>
+
+<p>Sometimes it is necessary to use Bootstrap plugins with other UI frameworks. In these circumstances, namespace collisions can occasionally occur. If this happens, you may call <code class="highlighter-rouge">.noConflict</code> on the plugin you wish to revert the value of.</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">bootstrapButton</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">button</span><span class="p">.</span><span class="nx">noConflict</span><span class="p">()</span> <span class="c1">// return $.fn.button to previously assigned value</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">bootstrapBtn</span> <span class="o">=</span> <span class="nx">bootstrapButton</span>            <span class="c1">// give $().bootstrapBtn the Bootstrap functionality</span></code></pre></figure>
+
+<h2 id="version-numbers">Version numbers</h2>
+
+<p>The version of each of Bootstrap’s jQuery plugins can be accessed via the <code class="highlighter-rouge">VERSION</code> property of the plugin’s constructor. For example, for the tooltip plugin:</p>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">tooltip</span><span class="p">.</span><span class="nx">Constructor</span><span class="p">.</span><span class="nx">VERSION</span> <span class="c1">// =&gt; "2.0.1"</span></code></pre></figure>
+
+<h2 id="no-special-fallbacks-when-javascript-is-disabled">No special fallbacks when JavaScript is disabled</h2>
+
+<p>Bootstrap’s plugins don’t fall back particularly gracefully when JavaScript is disabled. If you care about the user experience in this case, use <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/noscript"><code class="highlighter-rouge">&lt;noscript&gt;</code></a> to explain the situation (and how to re-enable JavaScript) to your users, and/or add your own custom fallbacks.</p>
+
+<div class="docs-callout docs-callout-warning">
+<h5 id="third-party-libraries">Third-party libraries</h5>
+
+<p><strong>Bootstrap does not officially support third-party JavaScript libraries</strong> like Prototype or jQuery UI. Despite <code class="highlighter-rouge">.noConflict</code> and namespaced events, there may be compatibility problems that you need to fix on your own.</p>
+</div>
+
+<h2 id="util">Util</h2>
+
+<p>All Bootstrap’s JavaScript files depend on <code class="highlighter-rouge">util.js</code> and it has to be included alongside the other JavaScript files. If you’re using the compiled (or minified) <code class="highlighter-rouge">bootstrap.js</code>, there is no need to include this—it’s already there.</p>
+
+<p><code class="highlighter-rouge">util.js</code> includes utility functions and a basic helper for <code class="highlighter-rouge">transitionEnd</code> events as well as a CSS transition emulator. It’s used by the other plugins to check for CSS transition support and to catch hanging transitions.</p>
+
+                </div>
+              </div>
+            </div>
+            
+              <div class="d-none d-xl-block col-xl-3 toc">
+                <div class="card">
+                  <div class="card-body">
+                    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#individual-or-compiled">Individual or compiled</a></li>
+<li class="toc-entry toc-h2"><a href="#dependencies">Dependencies</a></li>
+<li class="toc-entry toc-h2"><a href="#data-attributes">Data attributes</a></li>
+<li class="toc-entry toc-h2"><a href="#events">Events</a></li>
+<li class="toc-entry toc-h2"><a href="#programmatic-api">Programmatic API</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#asynchronous-functions-and-transitions">Asynchronous functions and transitions</a></li>
+<li class="toc-entry toc-h3"><a href="#default-settings">Default settings</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#no-conflict">No conflict</a></li>
+<li class="toc-entry toc-h2"><a href="#version-numbers">Version numbers</a></li>
+<li class="toc-entry toc-h2"><a href="#no-special-fallbacks-when-javascript-is-disabled">No special fallbacks when JavaScript is disabled</a></li>
+<li class="toc-entry toc-h2"><a href="#util">Util</a></li>
+</ul>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="app-footer">
+  <div>
+    <a href="https://coreui.io">CoreUI</a>
+    <span>&copy; 2018 creativeLabs.</span>
+  </div>
+  <div class="ml-auto">
+    <span>Powered by</span>
+    <a href="https://coreui.io">CoreUI</a>
+  </div>
+</footer>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<!-- <script>window.jQuery || document.write('<script src="https://coreui.io/docs/assets/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
+
+<script src="https://coreui.io/docs/assets/js/vendor/popper.min.js"></script><script src="https://coreui.io/docs/dist/js/bootstrap.js"></script><!--<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>-->
+
+<script src="https://coreui.io/docs/assets/js/perfect-scrollbar.min.js"></script>
+<script src="https://coreui.io/docs/assets/js/coreui.min.js"></script>
+<script src="https://coreui.io/docs/assets/js/docs.min.js"></script>
+
+
+<script>
+$(document).ready(function(){
+  $("#search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#icons-list .icon").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
+<script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) {  L.start({"baseUrl":"mc.us12.list-manage.com","uuid":"272317181a81e4571a8dc53e0","lid":"7a9caf510c"}) })</script>
+
+  </body>
+</html>
