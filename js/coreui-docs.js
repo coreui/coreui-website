@@ -58,13 +58,13 @@ window.onload=function(){checkIfEu('/about/legal/cookies/')};
 function makeArray(list){return[].slice.call(list)}
 function getNextSibling(elem,selector){var sibling=elem.nextElementSibling;while(sibling){if(sibling.matches(selector))return sibling;sibling=sibling.nextElementSibling}}
 makeArray(document.getElementsByTagName('table')).forEach(function(el){var wrapper=document.createElement('div');wrapper.classList.add('cd-table-responsive');el.classList.add('cd-table','cd-table-bordered','cd-table-striped');el.parentNode.insertBefore(wrapper,el);wrapper.appendChild(el);});makeArray(document.querySelectorAll('.pro-component')).forEach(function(el){var header=el.nextElementSibling
-header.classList.add('c-float-left')
+header.classList.add('float-left')
 var clearfix=document.createElement('div')
-clearfix.classList.add('c-clearfix','c-mb-3')
+clearfix.classList.add('clearfix','c-mb-3')
 header.parentNode.insertBefore(clearfix,header.nextSibling);var link=document.createElement('a')
 link.href='https://coreui.io/pro'
 link.innerHTML='CoreUI Pro Component'
-link.classList.add('c-btn','c-btn-outline-warning','c-ml-3','c-mt-3')
+link.classList.add('btn','btn-outline-warning','ml-3')
 header.parentNode.insertBefore(link,header.nextSibling);})
 makeArray(document.querySelectorAll('.tooltip-demo')).forEach(function(tooltip){new coreui.Tooltip(tooltip,{selector:'[data-toggle="tooltip"]'})})
 makeArray(document.querySelectorAll('[data-toggle="popover"]')).forEach(function(popover){new coreui.Popover(popover)})
