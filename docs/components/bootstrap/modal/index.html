@@ -420,7 +420,7 @@ Integrations</a>
     
     
   
-  <span class="cd-breadcrumb-date">Last updated: January 1, 0001</span>
+  <span class="cd-breadcrumb-date">Last updated: January 6, 2020</span>
 </nav>
           <h1>Bootstrap modal</h1>
           <p>Bootstrap Modals offer a lightweight, multi-purpose JavaScript popup to add dialogs to yours. Learn how to customize Bootstrap Modals easily. Multiple examples and tutorial.</p>
@@ -495,16 +495,22 @@ Integrations</a>
 
 <p>Bootstrap modals are lightweight and multi-purpose popups. Modals are split into three primary sections: header, body, and footer. Each has its role and so should be used accordingly.</p>
 
-<p>// TODO: zduplikowany
-- Modals are built with HTML, CSS, and JavaScript. They&rsquo;re positioned over everything else in the document and remove scroll from the <code>&lt;body&gt;</code> so that modal content scrolls instead.
-- Clicking on the modal &ldquo;backdrop&rdquo; will automatically close the modal.
-- Bootstrap only supports one modal window at a time. Nested modals aren&rsquo;t supported as we believe them to be poor user experiences.
-- Modals use <code>position: fixed</code>, which can sometimes be a bit particular about its rendering. Whenever possible, place your modal HTML in a top-level position to avoid potential interference from other elements. You&rsquo;ll likely run into issues when nesting a <code>.modal</code> within another fixed element.
-- Once again, due to <code>position: fixed</code>, there are some caveats with using modals on mobile devices. <a href="/docs/getting-started/browsers-devices/#modals-and-dropdowns-on-mobile">See our browser support docs</a> for details.
-- Due to how HTML5 defines its semantics, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-autofocus">the <code>autofocus</code> HTML attribute</a> has no effect in Bootstrap modals. To achieve the same effect, use some custom JavaScript:</p>
+<!-- // TODO: zduplikowany -->
 
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myModal&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;shown.coreui.modal&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#myInput&#39;</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">)</span>
+<ul>
+<li>Modals are built with HTML, CSS, and JavaScript. They&rsquo;re positioned over everything else in the document and remove scroll from the <code>&lt;body&gt;</code> so that modal content scrolls instead.</li>
+<li>Clicking on the modal &ldquo;backdrop&rdquo; will automatically close the modal.</li>
+<li>Bootstrap only supports one modal window at a time. Nested modals aren&rsquo;t supported as we believe them to be poor user experiences.</li>
+<li>Modals use <code>position: fixed</code>, which can sometimes be a bit particular about its rendering. Whenever possible, place your modal HTML in a top-level position to avoid potential interference from other elements. You&rsquo;ll likely run into issues when nesting a <code>.modal</code> within another fixed element.</li>
+<li>Once again, due to <code>position: fixed</code>, there are some caveats with using modals on mobile devices. <a href="/docs/getting-started/browsers-devices/#modals-and-dropdowns-on-mobile">See our browser support docs</a> for details.</li>
+<li>Due to how HTML5 defines its semantics, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-autofocus">the <code>autofocus</code> HTML attribute</a> has no effect in Bootstrap modals. To achieve the same effect, use some custom JavaScript:</li>
+</ul>
+
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myModal</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myModal&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">myInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myInput&#39;</span><span class="p">)</span>
+
+<span class="nx">myModal</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;shown.bs.modal&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">myInput</span><span class="p">.</span><span class="nx">focus</span><span class="p">()</span>
 <span class="p">})</span>
 </code></pre></div>
 
@@ -1517,11 +1523,96 @@ The animation effect of this component is dependent on the <code>prefers-reduced
     <script type="text/javascript" src="https://coreui.io/js/coreui-docs.js"></script>
 
 
+<script type="text/javascript" src="https://gumroad.com/js/gumroad.js"></script>
 
 
 
 
 
 
+
+
+    <div id="ftm" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-body border-bottom">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="text-center modal-title">
+          <h2>Buy CoreUI Standard License now and save 75%</h2>
+          <h3 class="text-danger">This is one-time offer!</h3>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-12 col-md-offset-0">
+                <img src="/images/mockups/mockup_3_light.png" class="img-fluid" alt="CoreUI Pro Bootstrap Admin Template">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <ul class="list-unstyled">
+              <li class="mb-3">✅ Save thousands of dollars for UI and UX designing.</li>
+              <li class="mb-3">✅ Well documented and great support.</li>
+              <li class="mb-3">✅ Constantly developed and maintained.</li>
+              <li class="mb-3">✅ Free access to future updates.</li>
+              <li class="mb-3">✅ Include 5 versions: <strong>Angular, React.js, Vue.js, Bootstrap</strong></li>
+              <li class="mb-3">✅ Include <strong>Sketch files</strong></li>
+              <li class="mb-4">✅ Default and <strong>dark layout</strong></li>
+            </ul>
+            <a href="https://gum.co/coreui-pro-s/first-time/?wanted=true" class="btn btn-lg btn-block btn-danger single-init"> Buy now <del>$316</del> $79</a>
+            <div class="text-center">
+              <small>
+                <br/><span class="text-success"><i class="cil-lock-locked"></i> SECURE PAYMENTS</span><br/>
+                <img src="/images/payment-methods.png" alt="PayPal Secure Payments" style="height:14px"/><br/><br/>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="text-center">
+          <div class="text-uppercase mb-3 row">
+            <div class="col-md-9 mx-auto">
+              <strong>You’re in good company. <span class="text-muted">CoreUI powers thousands of apps at some of the smartest companies around the world.</span></strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <img class="img-fluid" src="/images/clients/nvidia600.png" alt="Nvidia">
+            </div>
+            <div class="col">
+              <img class="img-fluid" src="/images/clients/ea600.png" alt="EA">
+            </div>
+            <div class="col">
+              <img class="img-fluid" src="/images/clients/dhl600.png" alt="DHL">
+            </div>
+            <div class="col">
+              <img class="img-fluid" src="/images/clients/olx600.png" alt="OLX">
+            </div>
+            <div class="col">
+              <img class="img-fluid" src="/images/clients/citi600.png" alt="Citi">
+            </div>
+            <div class="col">
+              <img class="img-fluid" src="/images/clients/paypal600.png" alt="PayPal">
+            </div>
+            <div class="col">
+              <img class="img-fluid" src="/images/clients/virgin-media600.png" alt="Virgin">
+            </div>
+            <div class="col">
+              <img class="img-fluid" src="/images/clients/plus500600.png" alt="Plus500">
+            </div>
+            <div class="col">
+              <img class="img-fluid" src="/images/clients/cisco600.png" alt="Cisco">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   </body>
 </html>
