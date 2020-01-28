@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[70],{593:function(t,e,n){"use strict";n.r(e);var s=n(0),a=Object(s.a)({},(function(){var t=this.$createElement;return(this._self._c||t)("Api",{attrs:{slots:[["default","undefined","Content of the sidebar nav."]]}})}),[],!1,null,null,null);e.default=a.exports}}]);
