@@ -34,6 +34,19 @@ cookiesStatementContainer.appendChild(cookiesStatement)
 document.body.appendChild(cookiesStatementContainer)}}).catch(err=>{throw err})}
 window.onload=function(){checkIfEu('/about/legal/cookies/')};
 ;
+document.addEventListener('click',function(event){if(event.target.matches('#switch-to-billed-mohtly')){event.target.classList.add('c-active')
+document.getElementById('switch-to-billed-yearly').classList.remove('c-active')
+const matchesYearly=document.getElementsByClassName('price-yearly')
+for(var i=0;i<matchesYearly.length;i++){matchesYearly[i].style.display='none'}
+const matchesMonthly=document.getElementsByClassName('price-monthly')
+for(var i=0;i<matchesMonthly.length;i++){matchesMonthly[i].style.display='initial'}}
+if(event.target.matches('#switch-to-billed-yearly')){event.target.classList.add('c-active')
+document.getElementById('switch-to-billed-mohtly').classList.remove('c-active')
+const matchesYearly=document.getElementsByClassName('price-yearly')
+for(var i=0;i<matchesYearly.length;i++){matchesYearly[i].style.display='initial'}
+const matchesMonthly=document.getElementsByClassName('price-monthly')
+for(var i=0;i<matchesMonthly.length;i++){matchesMonthly[i].style.display='none'}}},false)
+;
 'use strict'
 const addVat=(rate,country)=>{Array.from(document.querySelectorAll('.c-product-current-price')).forEach(el=>{const price=parseInt(el.innerHTML.replace('$','').replace(/\s/g,''))
 const vat=Math.round(price*(rate/100)*100)/100;const total=Math.round((price+vat)*100)/100;const span=document.createElement('span')
