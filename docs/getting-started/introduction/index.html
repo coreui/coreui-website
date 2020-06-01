@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="https://coreui.io/scss/docs.min.0d3c73ed0a8b57dc8347f29d9f0ae89cbf00b4584cad51eb2fae9274100ab3ae.css">
     
     
-    <link rel="stylesheet" href="https://coreui.io/scss/coreui-pro.min.cfc9da1700f8f140f6e37f81ad966bbc3c65df9e9373037508de713f1189df89.css">
+    <link rel="stylesheet" href="https://coreui.io/scss/coreui-pro.min.62161f2d1fe4008ba8902ca5b0c11919a52a9b98afcc1bc8d314353d10620371.css">
     
     
-    <link rel="stylesheet" href="https://coreui.io/css/all.min.155c49f47473b30b937e9d69cf43fae6577485bbaf3378b29422f678afe4dc5d.css">
+    <link rel="stylesheet" href="https://coreui.io/css/all.min.5fd217fb213b82cc07e1b7047a5c316f1b6a71ade5c36bbf0bd34c69c00c9192.css">
 
     
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-1"></script>
@@ -25,8 +25,26 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'UA-118965717-1', { 'optimize_id': 'GTM-5W4F5PF'});
+  gtag('config', 'UA-118965717-1');
 </script>
+
+
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1703285596584772');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1703285596584772&ev=PageView&noscript=1"
+/></noscript>
+
   </head>
   <body>
     <div class="cd-app c-app">
@@ -402,12 +420,12 @@ Integrations</a>
         <div class="cd-content">
           
 <nav class="cd-breadcrumb" aria-label="breadcrumb">
-  <a href="/3.0-beta/" class="cd-breadcrumb-item">Home</a></li>
+  <a href="/3.2/" class="cd-breadcrumb-item">Home</a></li>
   
    
     
     
-      <a href='/docs/3.0-beta/getting-started' class="cd-breadcrumb-item">Getting started</a>
+      <a href='/docs/3.2/getting-started' class="cd-breadcrumb-item">Getting started</a>
     
     
    
@@ -496,20 +514,24 @@ $ npm run build
 
 <p>Copy and paste the stylesheet <code>&lt;link&gt;</code> into your <code>&lt;head&gt;</code> before all other stylesheets to load our CSS.</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui@3.0.0-rc.0/dist/css/coreui.min.css&#34;</span><span class="p">&gt;</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css&#34;</span><span class="p">&gt;</span></code></pre></div>
 
 <h4 id="js">JS</h4>
 
 <p>Several of our components need the use of JavaScript to function. Specifically, they need our JavaScript plugins and <a href="https://popper.js.org/">Popper.js</a>. Put the following <code>&lt;script&gt;</code>s near the end of your pages, right before the closing <code>&lt;/body&gt;</code> tag, to let them work. Popper.js need come first, and later our JavaScript plugins.</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9&amp;#43;4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui@3.0.0-rc.0/dist/js/coreui.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@popperjs/core@2&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
+
+<p>You can also use bundled JS files.</p>
+
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui/dist/js/coreui.bundle.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
 
 <p>If you use <code>&lt;script type=&quot;module&quot;&gt;</code>, please refer to our <a href="/docs/getting-started/javascript/#using-coreui-as-a-module">using CoreUI as a module</a> section.</p>
 
 <p>Curious about which components explicitly require our JavaScript and Popper.js? Click the show components link below. If you&rsquo;re at all unsure about the general page structure, keep reading for an example page template.</p>
 
-<p>Our <code>coreui.bundle.js</code> and <code>coreui.bundle.min.js</code> include <a href="https://popper.js.org/">Popper</a>. For more information about what&rsquo;s included in CoreUI, please see our <a href="/docs/getting-started/contents/#precompiled-bootstrap">contents</a> section.</p>
+<p>Our <code>coreui.bundle.js</code> and <code>coreui.bundle.min.js</code> include <a href="https://popper.js.org/">Popper</a>. For more information about what&rsquo;s included in CoreUI, please see our <a href="/docs/getting-started/contents/#precompiled-coreui">contents</a> section.</p>
 
 <details>
   <summary class="text-primary mb-3">Show components requiring JavaScript</summary>
@@ -542,7 +564,7 @@ $ npm run build
  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1&#34;</span><span class="p">&gt;</span>
 
  <span class="c">&lt;!-- CoreUI CSS --&gt;</span>
- <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui@3.0.0-rc.0/dist/css/coreui.min.css&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
 
  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>CoreUI<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -551,8 +573,8 @@ $ npm run build
 
  <span class="c">&lt;!-- Optional JavaScript --&gt;</span>
  <span class="c">&lt;!-- Popper.js first, then CoreUI JS --&gt;</span>
- <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9&amp;#43;4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
- <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui@3.0.0-rc.0/dist/js/coreui.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@popperjs/core@2&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></div>
 
