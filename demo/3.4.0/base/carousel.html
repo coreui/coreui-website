@@ -19,7 +19,7 @@
     <!-- Main styles for this application-->
     <link href="css/style.css" rel="stylesheet">
   </head>
-  <body class="c-app">
+  <body class="c-app c-no-layout-transition">
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
       <div class="c-sidebar-brand d-md-down-none">
         <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
@@ -106,6 +106,7 @@
             </svg> Forms</a>
           <ul class="c-sidebar-nav-dropdown-items">
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="forms/basic-forms.html"> Basic Forms</a></li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="forms/select.html"> Select<span class="badge badge-danger">PRO</span><span class="badge badge-success">NEW</span></a></li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="forms/advanced-forms.html"> Advanced<span class="badge badge-danger">PRO</span></a></li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="forms/validation.html"> Validation<span class="badge badge-danger">PRO</span></a></li>
           </ul>
@@ -744,6 +745,13 @@
     <!--[if IE]><!-->
     <script src="vendors/@coreui/icons/js/svgxuse.min.js"></script>
     <!--<![endif]-->
+    <script>
+      document.addEventListener("DOMContentLoaded", function(event) {
+        setTimeout(function() {
+          document.body.classList.remove('c-no-layout-transition')
+        }, 2000);
+      });
+    </script>
 
   </body>
 </html>
