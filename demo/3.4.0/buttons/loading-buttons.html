@@ -18,8 +18,13 @@
     <title>CoreUI Pro Bootstrap Admin Template</title>
     <!-- Main styles for this application-->
     <link href="css/style.css" rel="stylesheet">
-    <link href="vendors/ladda/css/ladda-themeless.min.css" rel="stylesheet">
-  </head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-118965717-1');
+</script></head>
   <body class="c-app c-no-layout-transition">
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
       <div class="c-sidebar-brand d-md-down-none">
@@ -75,7 +80,7 @@
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="buttons/brand-buttons.html"> Brand Buttons</a></li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="buttons/button-group.html"> Buttons Group</a></li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="buttons/dropdowns.html"> Dropdowns</a></li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="buttons/loading-buttons.html"> Loading Buttons<span class="badge badge-danger">PRO</span></a></li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="buttons/loading-buttons.html"> Loading Buttons<span class="badge badge-danger">PRO</span><span class="badge badge-success">NEW</span></a></li>
           </ul>
         </li>
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="charts.html">
@@ -107,7 +112,7 @@
             </svg> Forms</a>
           <ul class="c-sidebar-nav-dropdown-items">
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="forms/basic-forms.html"> Basic Forms</a></li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="forms/select.html"> Select<span class="badge badge-danger">PRO</span><span class="badge badge-success">NEW</span></a></li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="forms/multi-select.html"> Multi Select<span class="badge badge-danger">PRO</span><span class="badge badge-success">NEW</span></a></li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="forms/advanced-forms.html"> Advanced<span class="badge badge-danger">PRO</span></a></li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="forms/validation.html"> Validation<span class="badge badge-danger">PRO</span></a></li>
           </ul>
@@ -150,6 +155,10 @@
                 <svg class="c-sidebar-nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor-move"></use>
                 </svg> Draggable<span class="badge badge-danger">PRO</span></a></li>
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="plugins/ladda-buttons.html">
+                <svg class="c-sidebar-nav-icon">
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor-move"></use>
+                </svg> Ladda Buttons<span class="badge badge-danger">PRO</span></a></li>
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="plugins/spinners.html">
                 <svg class="c-sidebar-nav-icon">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-sync"></use>
@@ -652,87 +661,117 @@
           <div class="container-fluid">
             <div class="fade-in">
               <div class="card">
-                <div class="card-header"> Loading buttons - Ladda<a class="badge badge-danger" href="https://coreui.io/pro/">CoreUI Pro Component</a>
-                  <div class="card-header-actions"><a class="card-header-action" href="https://github.com/hakimel/Ladda" target="_blank"><small class="text-muted">docs</small></a></div>
+                <div class="card-header"> Loading buttons<a class="badge badge-danger" href="https://coreui.io/pro/">CoreUI Pro Component</a>
+                  <div class="card-header-actions"></div>
                 </div>
                 <div class="card-body">
-                  <p>A UI concept which merges loading indicators into the action that invoked them. Primarily intended for use with forms where it gives users immediate feedback upon submit rather than leaving them wondering while the browser does its thing.</p>
-                  <div class="row text-center">
-                    <div class="col-md-3 py-4">
-                      <h6>expand-left</h6>
-                      <button class="btn btn-success btn-ladda" data-style="expand-left">Submit</button>
+                  <h6>Loading Buttons with spinner</h6>
+                  <div class="row">
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-primary c-loading-button" data-coreui="loading-button" data-timeout="3000">Submit</button>
                     </div>
-                    <div class="col-md-3 py-4">
-                      <h6>expand-right</h6>
-                      <button class="btn btn-success btn-ladda" data-style="expand-right">Submit</button>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-secondary c-loading-button" data-coreui="loading-button" data-timeout="3000">Submit</button>
                     </div>
-                    <div class="col-md-3 py-4">
-                      <h6>expand-up</h6>
-                      <button class="btn btn-success btn-ladda" data-style="expand-up">Submit</button>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-success c-loading-button" data-coreui="loading-button" data-timeout="3000">Submit</button>
                     </div>
-                    <div class="col-md-3 py-4">
-                      <h6>expand-down</h6>
-                      <button class="btn btn-success btn-ladda" data-style="expand-down">Submit</button>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-info c-loading-button" data-coreui="loading-button" data-timeout="3000">Submit</button>
                     </div>
-                    <div class="col-md-3 py-4">
-                      <h6>contract</h6>
-                      <button class="btn btn-danger btn-ladda" data-style="contract">Submit</button>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-danger c-loading-button" data-coreui="loading-button" data-timeout="3000">Submit</button>
                     </div>
-                    <div class="col-md-3 py-4">
-                      <h6>contract-overlay</h6>
-                      <button class="btn btn-danger btn-ladda" data-style="contract-overlay" style="z-index: 10;">Submit</button>
-                    </div>
-                    <div class="col-md-3 py-4">
-                      <h6>zoom-in</h6>
-                      <button class="btn btn-danger btn-ladda" data-style="zoom-in">Submit</button>
-                    </div>
-                    <div class="col-md-3 py-4">
-                      <h6>zoom-out</h6>
-                      <button class="btn btn-danger btn-ladda" data-style="zoom-out">Submit</button>
-                    </div>
-                    <div class="col-md-3 py-4">
-                      <h6>slide-left</h6>
-                      <button class="btn btn-info btn-ladda" data-style="slide-left">Submit</button>
-                    </div>
-                    <div class="col-md-3 py-4">
-                      <h6>slide-right</h6>
-                      <button class="btn btn-info btn-ladda" data-style="slide-right">Submit</button>
-                    </div>
-                    <div class="col-md-3 py-4">
-                      <h6>slide-up</h6>
-                      <button class="btn btn-info btn-ladda" data-style="slide-up">Submit</button>
-                    </div>
-                    <div class="col-md-3 py-4">
-                      <h6>slide-down</h6>
-                      <button class="btn btn-info btn-ladda" data-style="slide-down">Submit</button>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-warning c-loading-button" data-coreui="loading-button" data-timeout="3000">Submit</button>
                     </div>
                   </div>
-                  <hr class="my-4">
-                  <h4 class="text-center">Built-in progress bar</h4>
-                  <div class="row text-center">
-                    <div class="col-md-3 py-4 offset-md-3">
-                      <h6>expand-right</h6>
-                      <button class="btn btn-warning btn-ladda-progress" data-style="expand-right">Submit</button>
+                  <hr>
+                  <h6>Loading Buttons with spinner</h6>
+                  <div class="row">
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-primary c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner-type="grow">Submit</button>
                     </div>
-                    <div class="col-md-3 py-4">
-                      <h6>contract</h6>
-                      <button class="btn btn-warning btn-ladda-progress" data-style="contract">Submit</button>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-secondary c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner-type="grow">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-success c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner-type="grow">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-info c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner-type="grow">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-danger c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner-type="grow">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-warning c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner-type="grow">Submit</button>
                     </div>
                   </div>
-                  <hr class="my-4">
-                  <h4 class="text-center">Sizes</h4>
-                  <div class="row text-center">
-                    <div class="col-md-4 py-4">
-                      <h6>Small</h6>
-                      <button class="btn btn-sm btn-primary btn-ladda" data-style="expand-right">Submit</button>
+                  <hr>
+                  <h6>Loading Buttons with spinner and progress</h6>
+                  <div class="row">
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-primary c-loading-button" data-coreui="loading-button" data-timeout="3000" data-progress="true">Submit</button>
                     </div>
-                    <div class="col-md-4 py-4">
-                      <h6>Normall</h6>
-                      <button class="btn btn-primary btn-ladda" data-style="expand-right">Submit</button>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-secondary c-loading-button" data-coreui="loading-button" data-timeout="3000" data-progress="true">Submit</button>
                     </div>
-                    <div class="col-md-4 py-4">
-                      <h6>Large</h6>
-                      <button class="btn btn-lg btn-primary btn-ladda" data-style="expand-right">Submit</button>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-success c-loading-button" data-coreui="loading-button" data-timeout="3000" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-info c-loading-button" data-coreui="loading-button" data-timeout="3000" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-danger c-loading-button" data-coreui="loading-button" data-timeout="3000" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-warning c-loading-button" data-coreui="loading-button" data-timeout="3000" data-progress="true">Submit</button>
+                    </div>
+                  </div>
+                  <hr>
+                  <h6>Loading Buttons with spinner and progress</h6>
+                  <div class="row">
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-primary c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner-type="grow" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-secondary c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner-type="grow" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-success c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner-type="grow" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-info c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner-type="grow" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-danger c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner-type="grow" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-warning c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner-type="grow" data-progress="true">Submit</button>
+                    </div>
+                  </div>
+                  <hr>
+                  <h6>Loading Buttons without spinner</h6>
+                  <div class="row">
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-primary c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner="false" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-secondary c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner="false" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-success c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner="false" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-info c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner="false" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-danger c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner="false" data-progress="true">Submit</button>
+                    </div>
+                    <div class="col-md-2 py-4 text-center">
+                      <button class="btn btn-warning c-loading-button" data-coreui="loading-button" data-timeout="3000" data-spinner="false" data-progress="true">Submit</button>
                     </div>
                   </div>
                 </div>
@@ -752,8 +791,6 @@
     <script src="vendors/@coreui/icons/js/svgxuse.min.js"></script>
     <!--<![endif]-->
     <!-- Plugins and scripts required by this view-->
-    <script src="vendors/ladda/js/spin.min.js"></script>
-    <script src="vendors/ladda/js/ladda.min.js"></script>
     <script src="js/loading-buttons.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function(event) {
