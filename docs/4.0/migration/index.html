@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Track and review changes to the CoreUI for Bootstrap source files, documentation, and components to help you migrate from v3 to v4.">
+<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="generator" content="Hugo 0.79.0">
+
+<meta name="docsearch:language" content="en">
+<meta name="docsearch:version" content="4.0">
+
+<title>Migrating to v4 · CoreUI v4.0</title>
+
+<link rel="canonical" href="https://coreui.io/docs/4.0/migration/">
+
+
+
+<!-- Bootstrap core CSS -->
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-/F25cQgfEJPI8yo3LHTPmd1+KyQUPArNFgX31S1wPPF6qfKKofYRZ6moN+Ise6N7" crossorigin="anonymous">
+
+<link href="/docs/docs/4.0/assets/css/docs.css" rel="stylesheet">
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/4.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/4.0/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/4.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#7952b3">
+
+<link rel="apple-touch-icon" sizes="57x57" href="/docs/4.0/assets/img/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/docs/4.0/assets/img/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/docs/4.0/assets/img/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/docs/4.0/assets/img/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/docs/4.0/assets/img/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/docs/4.0/assets/img/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/docs/4.0/assets/img/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/docs/4.0/assets/img/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/docs/4.0/assets/img/favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/docs/4.0/assets/img/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/docs/4.0/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/docs/4.0/assets/img/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/docs/4.0/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/docs/4.0/assets/img/favicons/manifest.json">
+<meta name="msapplication-TileColor" content="#321fdb">
+<meta name="msapplication-TileImage" content="/docs/4.0/assets/img/favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#321fdb">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@core_ui">
+<meta name="twitter:creator" content="@core_ui">
+<meta name="twitter:title" content="Migrating to v4">
+<meta name="twitter:description" content="Track and review changes to the CoreUI for Bootstrap source files, documentation, and components to help you migrate from v3 to v4.">
+<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+
+<!-- Facebook -->
+<meta property="og:url" content="https://coreui.io/docs/4.0/migration/">
+<meta property="og:title" content="Migrating to v4">
+<meta property="og:description" content="Track and review changes to the CoreUI for Bootstrap source files, documentation, and components to help you migrate from v3 to v4.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="500">
+
+
+
+  </head>
+  <body class="d-flex">
+    
+    <div class="sidebar sidebar-lg sidebar-sticky sidebar-lg-show border-end ps-xl-4 docs-sidebar" id="sidebar">
+  <div class="sidebar-brand justify-content-start ps-3">
+    <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
+  <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
+        <g id="coreui-base" fill="currentColor" fill-rule="nonzero">
+            <g id="Group">
+                <path d="M96,24.1244 L57,1.6077 C53.2871871,-0.535893539 48.7128129,-0.535893539 45,1.6077 L6,24.1243 C2.29226017,26.2730089 0.00693260339,30.2313486 0,34.5167 L0,79.55 C0.0068453397,83.8353487 2.29220098,87.7936989 6,89.9423 L45,112.459 C48.7128129,114.602594 53.2871871,114.602594 57,112.459 L96,89.9423 C99.707799,87.7936989 101.993155,83.8353487 102,79.55 L102,34.5167 C101.993093,30.2313678 99.707754,26.273046 96,24.1244 Z M94,79.55 C94,80.9790618 93.2376038,82.2995691 92,83.0141 L53,105.5308 C51.7623957,106.245331 50.2376043,106.245331 49,105.5308 L10,83.0141 C8.76239619,82.2995691 8,80.9790618 8,79.55 L8,34.5167 C8,33.0876382 8.76239619,31.7671309 10,31.0526 L49,8.5359 C50.2376043,7.82136882 51.7623957,7.82136882 53,8.5359 L92,31.0526 C93.2376038,31.7671309 94,33.0876382 94,34.5167 L94,79.55 Z" id="Shape"></path>
+                <path d="M74.0216,70.0713 L71.1556,70.0713 C70.4827679,70.0712861 69.8208069,70.2410241 69.231,70.5648 L51.95,80.05 L32,68.5315 L32,45.554 L51.95,34.0354 L69.2394,43.4904 C69.8278903,43.8122245 70.4878603,43.9808965 71.1586,43.9809 L74.0218,43.9809 C75.1263695,43.9809 76.0218,43.0854695 76.0218,41.9809 L76.0218,39.2691 C76.0218,38.5380907 75.6230914,37.8652844 74.9818,37.5144 L55.793,27.0188 C53.3404536,25.684951 50.3714915,25.7190213 47.9502,27.1088 L28,38.6262 C25.5283249,40.0590349 24.0048565,42.6979488 24,45.5549 L24,68.5309 C24,71.3890593 25.5247614,74.0301204 28,75.4592 L47.95,86.9778 C50.3719859,88.3663725 53.3408028,88.399644 55.7933,87.0657 L74.9833,76.5345 C75.6233016,76.1832775 76.0210885,75.5112406 76.0211,74.7812 L76.0211,72.0712 C76.0210448,70.9668648 75.1259352,70.0715761 74.0216,70.0713 Z" id="Path"></path>
+            </g>
+            <g id="Group" transform="translate(117.000000, 33.000000)">
+                <path d="M51.7447,0.4285 C43.4644161,0.437648027 36.754124,7.14771643 36.7447,15.428 L36.7447,32.7054 C36.7447,40.9896712 43.4604288,47.7054 51.7447,47.7054 C60.0289712,47.7054 66.7447,40.9896712 66.7447,32.7054 L66.7447,15.428 C66.735276,7.14771643 60.0249839,0.437648027 51.7447,0.4285 L51.7447,0.4285 Z M58.7447,32.7054 C58.7447,36.5713932 55.6106932,39.7054 51.7447,39.7054 C47.8787068,39.7054 44.7447,36.5713932 44.7447,32.7054 L44.7447,15.428 C44.7447,11.5620068 47.8787068,8.428 51.7447,8.428 C55.6106932,8.428 58.7447,11.5620068 58.7447,15.428 L58.7447,32.7054 Z" id="Shape"></path>
+                <path d="M15.0788,8.4878 C16.9286881,8.24481332 18.799121,8.74931526 20.2759097,9.88958885 C21.7526984,11.0298624 22.7139842,12.7118169 22.9469,14.563 C23.0096446,15.0584416 23.4318031,15.4294333 23.9312,15.428 L29.9617,15.428 C30.2433078,15.4256279 30.5111615,15.3058932 30.700737,15.0976392 C30.8903124,14.8893852 30.9844237,14.6114912 30.9604,14.3309 C30.3547728,6.2061693 23.38159,0.0460556878 15.2442,0.4472 C7.16132117,0.999887718 0.913134758,7.76221317 1,15.8635 L1,32.27 C0.913131523,40.3712508 7.16126073,47.1335618 15.2441,47.6863 C23.3813933,48.08722 30.3543741,41.9271229 30.96,33.8025 C30.9840545,33.5219017 30.8899539,33.2439902 30.7003719,33.035729 C30.5107899,32.8274679 30.2429178,32.7077421 29.9613,32.7054 L23.9308,32.7054 C23.4314031,32.7039667 23.0092446,33.0749584 22.9465,33.5704 C22.7137048,35.4216544 21.7524848,37.1037177 20.2757044,38.2440932 C18.7989241,39.3844687 16.9284489,39.8890513 15.0785,39.6461 C11.5427997,39.1044016 8.94840923,36.0377838 9,32.4612 L9,15.6724 C8.94840694,12.0957688 11.543004,9.02918626 15.0788,8.4878 L15.0788,8.4878 Z" id="Path"></path>
+                <path d="M97.9222,27.9944 C102.287745,26.0370903 105.09962,21.7015444 105.1064,16.9173 L105.1064,13.2161 C105.1064,6.50617166 99.6669283,1.0667 92.957,1.0667 L76,1.0667 C75.4477153,1.0667 75,1.51441525 75,2.0667 L75,46.0667 C75,46.6189847 75.4477153,47.0667 76,47.0667 L82,47.0667 C82.5522847,47.0667 83,46.6189847 83,46.0667 L83,29.0667 L89.6215,29.0667 L97.5369,46.4805 C97.6991143,46.8373746 98.0548886,47.0667 98.4469,47.0667 L105.038,47.0667 C105.377933,47.0667 105.694523,46.8937728 105.878505,46.6079325 C106.062488,46.3220923 106.088664,45.9623638 105.948,45.6529 L97.9222,27.9944 Z M97.1064,16.9173 C97.1039754,19.2077501 95.2479498,21.0639994 92.9575,21.0667 L83.1064,21.0667 L83.1064,9.0667 L92.9575,9.0667 C95.2479498,9.06940063 97.1039754,10.9256499 97.1064,13.2161 L97.1064,16.9173 Z" id="Shape"></path>
+                <path d="M140,1.0667 L114,1.0667 C113.447715,1.0667 113,1.51441525 113,2.0667 L113,46.0667 C113,46.6189847 113.447715,47.0667 114,47.0667 L140,47.0667 C140.552285,47.0667 141,46.6189847 141,46.0667 L141,40.0667 C141,39.5144153 140.552285,39.0667 140,39.0667 L121,39.0667 L121,27.0667 L134,27.0667 C134.552285,27.0667 135,26.6189847 135,26.0667 L135,20.0667 C135,19.5144153 134.552285,19.0667 134,19.0667 L121,19.0667 L121,9.0667 L140,9.0667 C140.552285,9.0667 141,8.61898475 141,8.0667 L141,2.0667 C141,1.51441525 140.552285,1.0667 140,1.0667 Z" id="Path"></path>
+                <path d="M178,1.0667 L172,1.0667 C171.447715,1.0667 171,1.51441525 171,2.0667 L171,24.7142 C171.111775,27.2875721 169.802567,29.7147754 167.590728,31.0348154 C165.378889,32.3548553 162.621111,32.3548553 160.409272,31.0348154 C158.197433,29.7147754 156.888225,27.2875721 157,24.7142 L157,2.0667 C157,1.51441525 156.552285,1.0667 156,1.0667 L150,1.0667 C149.447715,1.0667 149,1.51441525 149,2.0667 L149,24.7142 C148.889565,30.1458781 151.72415,35.2128902 156.410578,37.96111 C161.097007,40.7093297 166.902993,40.7093297 171.589422,37.96111 C176.27585,35.2128902 179.110435,30.1458781 179,24.7142 L179,2.0667 C179,1.51441525 178.552285,1.0667 178,1.0667 Z" id="Path"></path>
+                <rect id="Rectangle" x="187" y="1.0667" width="8" height="38" rx="1"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
+  </div><ul class="sidebar-nav" data-coreui="navigation">
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="nav-icon text-primary" width="64" height="64" viewBox="0 0 64 64">
+<title>energy</title>
+<path d="M40 26v-24h-4.012l-27.941 38h16.953v22h3.975l28.125-36zM15.953 36l20.047-27.264v21.264h12.9l-19.9 25.471v-19.471z"></path>
+</svg>
+
+          Getting started
+        </a>
+        <ul class="nav-group-items sidebar-nav-sm">
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/introduction/" class="nav-link">Introduction</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/download/" class="nav-link">Download</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/contents/" class="nav-link">Contents</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/browsers-devices/" class="nav-link">Browsers &amp; devices</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/javascript/" class="nav-link">JavaScript</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/build-tools/" class="nav-link">Build tools</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/webpack/" class="nav-link">Webpack</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/accessibility/" class="nav-link">Accessibility</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/rfs/" class="nav-link">RFS</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/rtl/" class="nav-link">RTL</a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M425.514,82.055C380.778,39.458,320.673,16,256.271,16,196.248,16,136.415,36.073,92.115,71.071,43.032,109.85,16,164.161,16,224c0,60.1,15.531,98.87,48.876,122.019,28,19.438,68.412,27.731,135.124,27.731h29.75A26.28,26.28,0,0,1,256,400v47.984a32,32,0,0,0,32,32h.032l90.755-.088a32.094,32.094,0,0,0,19.686-6.8c9.725-7.622,34.727-29.4,56.8-66.9C482.3,360.262,496,307.037,496,248,496,184.268,470.968,125.334,425.514,82.055Zm2.173,307.915c-19.3,32.792-40.663,51.447-48.932,57.926L288,447.984V400a58.316,58.316,0,0,0-58.25-58.25H200c-59.69,0-94.644-6.585-116.876-22.019C58.833,302.869,48,273.344,48,224,48,113.833,153.9,48,256.271,48,372.755,48,464,135.851,464,248,464,301.253,451.782,349.019,427.687,389.97Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M128,144a56,56,0,1,0,56,56A56.064,56.064,0,0,0,128,144Zm0,80a24,24,0,1,1,24-24A24.027,24.027,0,0,1,128,224Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M240,72a56,56,0,1,0,56,56A56.064,56.064,0,0,0,240,72Zm0,80a24,24,0,1,1,24-24A24.027,24.027,0,0,1,240,152Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M360,128a56,56,0,1,0,56,56A56.064,56.064,0,0,0,360,128Zm0,80a24,24,0,1,1,24-24A24.027,24.027,0,0,1,360,208Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M376,264a56,56,0,1,0,56,56A56.064,56.064,0,0,0,376,264Zm0,80a24,24,0,1,1,24-24A24.027,24.027,0,0,1,376,344Z" class="ci-primary"/>
+</svg>
+
+          Customize
+        </a>
+        <ul class="nav-group-items sidebar-nav-sm">
+            <li class="nav-item">
+              <a href="/docs/4.0/customize/overview/" class="nav-link">Overview</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/customize/sass/" class="nav-link">Sass</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/customize/options/" class="nav-link">Options</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/customize/color/" class="nav-link">Color</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/customize/components/" class="nav-link">Components</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/customize/css-variables/" class="nav-link">CSS variables</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/customize/optimize/" class="nav-link">Optimize</a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"  class="nav-icon text-primary" >
+  <path fill="var(--ci-primary-color, currentColor)" d="M16,64V448H496V64ZM464,240H192V96H464ZM192,272H312V416H192ZM48,96H160V416H48ZM344,416V272H464V416Z" class="ci-primary"/>
+</svg>
+
+          Layout
+        </a>
+        <ul class="nav-group-items sidebar-nav-sm">
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/breakpoints/" class="nav-link">Breakpoints</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/containers/" class="nav-link">Containers</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/grid/" class="nav-link">Grid</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/columns/" class="nav-link">Columns</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/gutters/" class="nav-link">Gutters</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/utilities/" class="nav-link">Utilities</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/z-index/" class="nav-link">Z-index</a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M136,24H16V144H136Zm-32,88H48V56h56Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M136,200H16V320H136Zm-32,88H48V232h56Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M136,376H16V496H136Zm-32,88H48V408h56Z" class="ci-primary"/>
+  <rect width="320" height="32" x="176" y="23.998" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="256" height="32" x="176" y="111.998" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="320" height="32" x="176" y="199.998" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="256" height="32" x="176" y="287.998" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="256" height="32" x="176" y="463.998" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="320" height="32" x="176" y="375.998" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+</svg>
+
+          Content
+        </a>
+        <ul class="nav-group-items sidebar-nav-sm">
+            <li class="nav-item">
+              <a href="/docs/4.0/content/reboot/" class="nav-link">Reboot</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/content/typography/" class="nav-link">Typography</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/content/images/" class="nav-link">Images</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/content/tables/" class="nav-link">Tables</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/content/figures/" class="nav-link">Figures</a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M23.686,456.521a24.841,24.841,0,0,0,6,25.708l.087.087a24.841,24.841,0,0,0,17.612,7.342,25.179,25.179,0,0,0,8.1-1.344h0a646.28,646.28,0,0,0,248.04-154.207L469.981,167.646A88.832,88.832,0,1,0,344.354,42.019l-9.534,9.534L314.029,30.762a50.4,50.4,0,0,0-71.274,0L108.687,164.83l22.626,22.627L265.382,53.389a18.4,18.4,0,0,1,26.019,0L312.193,74.18l-134.3,134.3A646.28,646.28,0,0,0,23.686,456.521Zm343.3-391.875a56.832,56.832,0,1,1,80.373,80.373l-89.493,89.493-80.372-80.373ZM254.862,176.766l80.372,80.372L280.892,311.48A614.383,614.383,0,0,1,58.779,453.221,614.383,614.383,0,0,1,200.52,231.108Z" class="ci-primary"/>
+</svg>
+
+          Forms
+        </a>
+        <ul class="nav-group-items sidebar-nav-sm">
+            <li class="nav-item">
+              <a href="/docs/4.0/forms/overview/" class="nav-link">Overview</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/forms/form-control/" class="nav-link">Form control</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/forms/select/" class="nav-link">Select</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/forms/checks-radios/" class="nav-link">Checks &amp; radios</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/forms/range/" class="nav-link">Range</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/forms/input-group/" class="nav-link">Input group</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/forms/floating-labels/" class="nav-link">Floating labels</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/forms/layout/" class="nav-link">Layout</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/forms/validation/" class="nav-link">Validation</a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="nav-icon text-primary" width="64" height="64" viewBox="0 0 64 64">
+<title>energy</title>
+<path d="M40 26v-24h-4.012l-27.941 38h16.953v22h3.975l28.125-36zM15.953 36l20.047-27.264v21.264h12.9l-19.9 25.471v-19.471z"></path>
+</svg>
+
+          Components
+        </a>
+        <ul class="nav-group-items sidebar-nav-sm">
+            <li class="nav-item">
+              <a href="/docs/4.0/components/accordion/" class="nav-link">Accordion</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/alerts/" class="nav-link">Alerts</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/avatar/" class="nav-link">Avatar</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/badge/" class="nav-link">Badge</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/breadcrumb/" class="nav-link">Breadcrumb</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/buttons/" class="nav-link">Buttons</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/button-group/" class="nav-link">Button group</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/card/" class="nav-link">Card</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/carousel/" class="nav-link">Carousel</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/close-button/" class="nav-link">Close button</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/collapse/" class="nav-link">Collapse</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/dropdowns/" class="nav-link">Dropdowns</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/footer/" class="nav-link">Footer</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/header/" class="nav-link">Header</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/list-group/" class="nav-link">List group</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/modal/" class="nav-link">Modal</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/navs-tabs/" class="nav-link">Navs &amp; tabs</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/navbar/" class="nav-link">Navbar</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/pagination/" class="nav-link">Pagination</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/popovers/" class="nav-link">Popovers</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/progress/" class="nav-link">Progress</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/scrollspy/" class="nav-link">Scrollspy</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/sidebar/" class="nav-link">Sidebar</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/spinners/" class="nav-link">Spinners</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/toasts/" class="nav-link">Toasts</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/tooltips/" class="nav-link">Tooltips</a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M93.976,276.6,38.211,332.367a32,32,0,0,0,0,45.255l96.167,96.168a32.038,32.038,0,0,0,45.254,0L235.4,418.024l-22.616-22.616L157.02,451.175a.094.094,0,0,1-.015-.013L60.839,355,116.6,299.23Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M473.789,134.378,377.622,38.21a32.037,32.037,0,0,0-45.254,0L276.6,93.976,299.23,116.6,355,60.838l96.166,96.167L395.4,212.772,418.024,235.4l55.765-55.764a32,32,0,0,0,0-45.255Z" class="ci-primary"/>
+  <rect width="21.941" height="21.941" x="245.515" y="196.544" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 256.485 207.514)"/>
+  <rect width="21.941" height="21.941" x="245.515" y="293.515" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 256.487 304.486)"/>
+  <rect width="21.941" height="21.941" x="294" y="245.029" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 304.969 256)"/>
+  <rect width="21.941" height="21.941" x="197.029" y="245.029" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 208 256)"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M321.3,462.705a47.988,47.988,0,0,0,67.641-.23l73.539-73.539a48,48,0,0,0,0-67.882l-7.764-7.765-240-240L190.946,49.525a48,48,0,0,0-67.882,0l-73.54,73.539h0a48,48,0,0,0,0,67.882l31.764,31.765L321.054,462.475C321.133,462.553,321.216,462.626,321.3,462.705ZM72.152,168.319a16,16,0,0,1,0-22.628l73.539-73.539a16,16,0,0,1,22.628,0l65.054,65.054-96.167,96.167ZM159.833,256,256,159.833,352.171,256l-96.162,96.172Zm214.961,22.627,65.054,65.054a16,16,0,0,1,0,22.628l-73.539,73.539a16,16,0,0,1-22.628,0l-65.054-65.054Z" class="ci-primary"/>
+</svg>
+
+          Helpers
+        </a>
+        <ul class="nav-group-items sidebar-nav-sm">
+            <li class="nav-item">
+              <a href="/docs/4.0/helpers/clearfix/" class="nav-link">Clearfix</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/helpers/colored-links/" class="nav-link">Colored links</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/helpers/ratio/" class="nav-link">Ratio</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/helpers/position/" class="nav-link">Position</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/helpers/visually-hidden/" class="nav-link">Visually hidden</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/helpers/stretched-link/" class="nav-link">Stretched link</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/helpers/text-truncation/" class="nav-link">Text truncation</a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M40,496H472a24.028,24.028,0,0,0,24-24V400a24.028,24.028,0,0,0-24-24H40a24.028,24.028,0,0,0-24,24v72A24.028,24.028,0,0,0,40,496Zm8-88H464v56H48Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M45.01,239.489a50.2,50.2,0,0,0,36.2,61.07l158.5,40.524h0a50.174,50.174,0,0,0,61.07-36.2L353.742,97.745,97.969,32.352,85.959,79.326l-58-14.827-7.926,31,58,14.828ZM121.045,71.281l193.767,49.54L294.568,200H88.135ZM286.387,232,269.78,296.956a18.221,18.221,0,0,1-22.141,13.125h0l-158.5-40.525a18.22,18.22,0,0,1-13.124-22.14L80,231.82V232Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M420,352c37.5,0,68-32.3,68-72,0-16.181-9.341-38.514-28.559-68.277-13.285-20.576-26.39-37.021-26.941-37.711L420,158.37l-12.5,15.642c-.551.69-13.656,17.135-26.941,37.711C361.341,241.486,352,263.819,352,280,352,319.7,382.505,352,420,352Zm0-141.441C437.658,235.2,456,265.985,456,280c0,22.056-16.149,40-36,40s-36-17.944-36-40C384,265.985,402.343,235.2,420,210.559Z" class="ci-primary"/>
+</svg>
+
+          Utilities
+        </a>
+        <ul class="nav-group-items sidebar-nav-sm">
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/api/" class="nav-link">API</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/borders/" class="nav-link">Borders</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/colors/" class="nav-link">Colors</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/display/" class="nav-link">Display</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/flex/" class="nav-link">Flex</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/float/" class="nav-link">Float</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/interactions/" class="nav-link">Interactions</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/overflow/" class="nav-link">Overflow</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/position/" class="nav-link">Position</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/shadows/" class="nav-link">Shadows</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/sizing/" class="nav-link">Sizing</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/spacing/" class="nav-link">Spacing</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/text/" class="nav-link">Text</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/vertical-align/" class="nav-link">Vertical align</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/utilities/visibility/" class="nav-link">Visibility</a>
+            </li>
+        </ul>
+      </li>
+    <li class="nav-item">
+      <a href="https://icons.coreui.io/" class="nav-link" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M487.97,155.853a24.035,24.035,0,0,0-7-18.166L376.126,32.842a24,24,0,0,0-35.546,1.772L250.644,144.536,120.507,171.05a27.1,27.1,0,0,0-20.025,17.026L17.883,405.84a27.268,27.268,0,0,0,6.205,28.917l53.271,53.271a27.263,27.263,0,0,0,28.915,6.207L324.134,411.6a27.144,27.144,0,0,0,16.95-19.655l28.1-128.7L479.2,173.232A24.041,24.041,0,0,0,487.97,155.853Zm-177.6,226.741L97.807,463.222,84.665,450.079l99.36-99.36a56.061,56.061,0,1,0-22.268-22.986l-99.72,99.72L48.894,414.31,129.47,201.881l124.717-25.41,83.052,83.051ZM187.42,301.9a24,24,0,1,1,24,24A24,24,0,0,1,187.42,301.9Zm168.391-69.065L280.973,158,359.749,61.72l92.343,92.343Z" class="ci-primary"/>
+</svg>
+
+        Icons
+        <span class="ms-3"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-xs text-secondary" viewBox="0 0 512 512">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="400 464 48 464 48 104 240 104 240 72 16 72 16 496 432 496 432 272 400 272 400 464" class="ci-primary"/>
+  <polygon fill="var(--ci-primary-color, currentColor)" points="304 16 304 48 441.373 48 188.687 300.687 211.313 323.313 464 70.627 464 208 496 208 496 16 304 16" class="ci-primary"/>
+</svg>
+</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs/4.0/migration/" class="nav-link">
+        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M464,256.25C464,370.8,370.8,464,256.25,464S48.5,370.8,48.5,256.25,141.7,48.5,256.25,48.5a208,208,0,0,1,149.963,64H328.5v32h128V16.5h-32V85.478A239.717,239.717,0,1,0,496,256.25Z" class="ci-primary"/>
+  <polygon fill="var(--ci-primary-color, currentColor)" points="272.5 112.451 240.5 112.549 241.017 282.756 353.301 334.53 366.699 305.47 272.954 262.244 272.5 112.451" class="ci-primary"/>
+</svg>
+
+        Migration
+      </a>
+    </li>
+  </ul>
+</div>
+
+    <div class="wrapper flex-grow-1" data-coreui-reliant="sidebar">
+      <header class="header header-sticky mb-5">
+  <div class="container-fluid">
+    <button class="header-toggler d-lg-none" type="button" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+</svg>
+
+    </button>
+
+    
+
+    <ul class="header-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="https://community.coreui.io/" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"  class="icon icon-xl">
+  <path fill="var(--ci-primary-color, currentColor)" d="M16.135 0c8.75 0 15.865 7.313 15.865 15.995s-7.104 15.99-15.865 15.99l-16.135 0.016v-16.281c0-8.677 7.375-15.719 16.135-15.719zM16.292 6.083c-3.458-0.005-6.661 1.802-8.448 4.76-1.776 2.943-1.849 6.609-0.198 9.625l-1.781 5.677 6.396-1.432c3.656 1.635 7.953 0.901 10.844-1.854 2.896-2.734 3.818-6.969 2.318-10.661-1.51-3.703-5.12-6.12-9.12-6.115z"/>
+</svg>
+
+        </a>
+      </li>
+        <a class="nav-link" href="https://github.com/coreui" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" class="icon icon-xl" >
+  <path fill="var(--ci-primary-color, currentColor)" d="M16 0.396c-8.839 0-16 7.167-16 16 0 7.073 4.584 13.068 10.937 15.183 0.803 0.151 1.093-0.344 1.093-0.772 0-0.38-0.009-1.385-0.015-2.719-4.453 0.964-5.391-2.151-5.391-2.151-0.729-1.844-1.781-2.339-1.781-2.339-1.448-0.989 0.115-0.968 0.115-0.968 1.604 0.109 2.448 1.645 2.448 1.645 1.427 2.448 3.744 1.74 4.661 1.328 0.14-1.031 0.557-1.74 1.011-2.135-3.552-0.401-7.287-1.776-7.287-7.907 0-1.751 0.62-3.177 1.645-4.297-0.177-0.401-0.719-2.031 0.141-4.235 0 0 1.339-0.427 4.4 1.641 1.281-0.355 2.641-0.532 4-0.541 1.36 0.009 2.719 0.187 4 0.541 3.043-2.068 4.381-1.641 4.381-1.641 0.859 2.204 0.317 3.833 0.161 4.235 1.015 1.12 1.635 2.547 1.635 4.297 0 6.145-3.74 7.5-7.296 7.891 0.556 0.479 1.077 1.464 1.077 2.959 0 2.14-0.020 3.864-0.020 4.385 0 0.416 0.28 0.916 1.104 0.755 6.4-2.093 10.979-8.093 10.979-15.156 0-8.833-7.161-16-16-16z"/>
+</svg>
+
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://twitter.com/core_ui" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" class="icon icon-xl" >
+  <path fill="var(--ci-primary-color, currentColor)" d="M31.937 6.093c-1.177 0.516-2.437 0.871-3.765 1.032 1.355-0.813 2.391-2.099 2.885-3.631-1.271 0.74-2.677 1.276-4.172 1.579-1.192-1.276-2.896-2.079-4.787-2.079-3.625 0-6.563 2.937-6.563 6.557 0 0.521 0.063 1.021 0.172 1.495-5.453-0.255-10.287-2.875-13.52-6.833-0.568 0.964-0.891 2.084-0.891 3.303 0 2.281 1.161 4.281 2.916 5.457-1.073-0.031-2.083-0.328-2.968-0.817v0.079c0 3.181 2.26 5.833 5.26 6.437-0.547 0.145-1.131 0.229-1.724 0.229-0.421 0-0.823-0.041-1.224-0.115 0.844 2.604 3.26 4.5 6.14 4.557-2.239 1.755-5.077 2.801-8.135 2.801-0.521 0-1.041-0.025-1.563-0.088 2.917 1.86 6.36 2.948 10.079 2.948 12.067 0 18.661-9.995 18.661-18.651 0-0.276 0-0.557-0.021-0.839 1.287-0.917 2.401-2.079 3.281-3.396z"/>
+</svg>
+
+        </a>
+      </li>
+    </ul>
+
+    <a class="btn btn-outline-primary d-lg-inline-block my-2 my-md-0 ms-md-3" href="/docs/4.0/getting-started/download/">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2" viewBox="0 0 512 512">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="272 434.744 272 209.176 240 209.176 240 434.744 188.118 382.862 165.49 405.489 256 496 346.51 405.489 323.882 382.862 272 434.744" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M400,161.176c0-79.4-64.6-144-144-144s-144,64.6-144,144a96,96,0,0,0,0,192h80v-32H112a64,64,0,0,1,0-128h32v-32a112,112,0,0,1,224,0v32h32a64,64,0,0,1,0,128H320v32h80a96,96,0,0,0,0-192Z" class="ci-primary"/>
+</svg>
+
+      Download
+    </a>
+    <a class="btn btn-primary d-lg-inline-block my-2 my-md-0 ms-md-3" href="/pro/">
+      Get CoreUI PRO
+    </a>
+  </nav>
+</header>
+
+      
+<div class="container-lg my-md-4 flex-grow-1">
+  <main class="bd-main order-1">
+    <div class="bd-intro ps-lg-4">
+      
+<nav class="breadcrumb small mb-5" aria-label="breadcrumb">
+  
+  
+  
+    
+    
+    
+      <a href='/docs' class="breadcrumb-item">Docs</a>
+    
+    
+  
+    
+    
+    
+    <span class="breadcrumb-item active">Migration</span>
+    
+    
+  
+  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 11, 2021</span>
+</nav>
+
+      <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
+        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/migration.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+        <h1 class="bd-title" id="content">Migrating to v4</h1>
+      </div>
+      <p class="bd-lead">Track and review changes to the CoreUI for Bootstrap source files, documentation, and components to help you migrate from v3 to v4.</p>
+      <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+
+
+<div data-ea-publisher="coreui-io" data-ea-type="image"></div>
+
+    </div>
+
+    
+      <div class="bd-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
+        <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#v400-alpha0">v4.0.0-alpha.0</a>
+      <ul>
+        <li><a href="#browser-support">Browser support</a></li>
+        <li><a href="#accessibility">Accessibility</a></li>
+        <li><a href="#color-system">Color system</a></li>
+        <li><a href="#components">Components</a>
+          <ul>
+            <li><a href="#disabled-states">Disabled states</a></li>
+            <li><a href="#alerts">Alerts</a></li>
+            <li><a href="#avatar">Avatar</a></li>
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#badges">Badges</a></li>
+            <li><a href="#breadcrumbs">Breadcrumbs</a></li>
+            <li><a href="#buttons-1">Buttons</a></li>
+            <li><a href="#cards">Cards</a></li>
+            <li><a href="#carousel">Carousel</a></li>
+            <li><a href="#close-button">Close button</a></li>
+            <li><a href="#collapse">Collapse</a></li>
+            <li><a href="#dropdowns">Dropdowns</a></li>
+            <li><a href="#jumbotron">Jumbotron</a></li>
+            <li><a href="#navbars">Navbars</a></li>
+            <li><a href="#navs">Navs</a></li>
+            <li><a href="#pagination">Pagination</a></li>
+            <li><a href="#popovers">Popovers</a></li>
+            <li><a href="#toasts">Toasts</a></li>
+            <li><a href="#tooltips">Tooltips</a></li>
+          </ul>
+        </li>
+        <li><a href="#content">Content</a></li>
+        <li><a href="#forms">Forms</a></li>
+        <li><a href="#javascript">JavaScript</a></li>
+        <li><a href="#grid-and-layout">Grid and layout</a></li>
+        <li><a href="#helpers">Helpers</a></li>
+        <li><a href="#misc">Misc</a></li>
+        <li><a href="#sass">Sass</a></li>
+        <li><a href="#typography">Typography</a></li>
+        <li><a href="#utilities">Utilities</a></li>
+        <li><a href="#reboot">Reboot</a></li>
+        <li><a href="#rtl">RTL</a>
+          <ul>
+            <li><a href="#sass-1">Sass</a>
+              <ul>
+                <li><a href="#components-1">Components</a></li>
+                <li><a href="#utilities-1">Utilities</a></li>
+                <li><a href="#mixins">Mixins</a></li>
+                <li><a href="#variables">Variables</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    
+
+    <div class="bd-content ps-lg-4">
+      
+
+      <h2 id="v400-alpha0">v4.0.0-alpha.0</h2>
+<h3 id="browser-support">Browser support</h3>
+<p>See the browser and devices page for details on what is currently supported in CoreUI 4 for Bootstrap. Since v3, here&rsquo;s what&rsquo;s changed to our browser support:</p>
+<ul>
+<li>Dropped support for Internet Explorer 10 and 11</li>
+<li>Dropped support for Microsoft Edge &lt; 16</li>
+<li>Dropped support for Microsoft Edge Legacy.</li>
+<li>Dropped support for Firefox &lt; 60</li>
+<li>Dropped support for Safari &lt; 10</li>
+<li>Dropped support for iOS Safari &lt; 10</li>
+<li>Dropped support for Chrome &lt; 60</li>
+<li>Dropped support for Android &lt; 6</li>
+</ul>
+<h3 id="accessibility">Accessibility</h3>
+<ul>
+<li>Unlike the old <code>.sr-only-focusable</code>, which only worked in combination with <code>.sr-only</code>, <code>.sr-only-focusable</code> can be used as a standalone class without <code>.sr-only</code>.</li>
+</ul>
+<h3 id="color-system">Color system</h3>
+<p>We&rsquo;ve updated the color system that powers CoreUI for Bootstrap to improve color contrast and provide a much more extensive set of colors.</p>
+<ul>
+<li>Updated blue and pink base colors (<code>-500</code>) to ensure WCAG 2.1 AA contrast.</li>
+<li>Added new tints and shades for every color, providing nine separate colors for each base color, as new Sass variables.</li>
+<li>To support our color system, we&rsquo;ve added new custom <code>tint-color()</code> and <code>shade-color()</code> functions to mix our colors appropriately.</li>
+<li>Bumped color contrast ratio from 3:1 to 4.5:1.</li>
+<li>Set <code>$black</code> as color contrast color instead of <code>$gray-900</code>.</li>
+<li>Improved <code>$green</code> (and its theme alias <code>$success</code>) color to reach a new minimum color contrast (moving from <code>#28a745</code> to <code>#198754</code>).</li>
+<li>Improved <code>$cyan</code> (and its theme alias <code>$info</code>) color to be more vibrant (moving from <code>#17a2b8</code> to <code>#0dcaf0</code>).</li>
+</ul>
+<h3 id="components">Components</h3>
+<ul>
+<li>Unified <code>padding</code> values for alerts, breadcrumbs, cards, dropdowns, list groups, modals, popovers, and tooltips to be based on our <code>$spacer</code> variable.</li>
+</ul>
+<h4 id="disabled-states">Disabled states</h4>
+<ul>
+<li>Disabled states of the buttons, close button, pagination link &amp; form range now have <code>pointer-events: none</code> added. This simplifies our codebase and makes it easier to override active states in CSS.</li>
+</ul>
+<h4 id="alerts">Alerts</h4>
+<ul>
+<li>Removed auto-darkening of <code>&lt;hr&gt;</code> elements in <code>.alert-*</code> class variants. <code>&lt;hr&gt;</code>s use <code>rgba()</code> for their color, so these should naturally blend anyway.</li>
+</ul>
+<h4 id="avatar">Avatar</h4>
+<ul>
+<li><a href="/docs/4.0/components/buttons/#pill-buttons">Dropped <code>.avatar-rounded</code> in favor of CSS border utility classes.</a> Instead of applying <code>.avatar-rounded</code> use <code>.rounded</code> utility class.</li>
+<li><a href="/docs/4.0/components/buttons/#pill-buttons">Dropped <code>.avatar-square</code> in favor of CSS border utility classes.</a> Instead of applying <code>.avatar-square</code> use <code>.rounded-0</code> utility class.</li>
+</ul>
+<h4 id="buttons">Buttons</h4>
+<ul>
+<li><a href="/docs/4.0/components/buttons/#pill-buttons">Dropped <code>.btn-pill</code> in favor of CSS border utility classes.</a> Instead of applying <code>.btn-pill</code> use <code>.rounded-pill</code> utility class.</li>
+<li><a href="/docs/4.0/components/buttons/#pill-buttons">Dropped <code>.btn-square</code> in favor of CSS border utility classes.</a> Instead of applying <code>.btn-square</code> use <code>.rounded-0</code> utility class.</li>
+</ul>
+<h4 id="badges">Badges</h4>
+<p>Badges were overhauled to better differentiate themselves from buttons and to better utilize utility classes.</p>
+<ul>
+<li>Increased default padding for badges from <code>.25em</code>/<code>.5em</code> to <code>.35em</code>/<code>.65em</code>.</li>
+<li>Removed and replaced <code>.badge</code> modifier classes with background utility classes (e.g., use <code>.bg-primary</code> instead of <code>.badge-primary</code>)</li>
+<li>Removed <code>.badge-pill</code> for the <code>.rounded-pill</code> utility class</li>
+<li>Removed badge&rsquo;s hover and focus styles for <code>a.badge</code> and <code>button.badge</code>.</li>
+</ul>
+<h4 id="breadcrumbs">Breadcrumbs</h4>
+<ul>
+<li>Simplified the default appearance of breadcrumbs by removing <code>padding</code>, <code>background-color</code>, and <code>border-radius</code>.</li>
+<li>Added new CSS custom property <code>--coreui-breadcrumb-divider</code> for easy customization without needing to recompile CSS.</li>
+</ul>
+<h4 id="buttons-1">Buttons</h4>
+<ul>
+<li>Disabled states of buttons are easier to customize thanks to additional arguments in the <code>button-variant()</code> mixin.</li>
+<li>Updated buttons to ensure increased contrast on hover and active states.</li>
+<li>The checkbox/radio toggle is removed from the button plugin in favor of a CSS only solution, which is documented in the <a href="/docs/4.0/forms/checks-radios/#toggle-buttons">form checks and radios</a> docs. The <code>.btn-check</code> class can be added to inputs, any label with <code>.btn</code> and modifier class can be used to theme the labels.</li>
+<li><a href="/docs/4.0/components/buttons/#block-buttons">Dropped <code>.btn-block</code> in favor of CSS grid utility classes.</a> Instead of applying <code>.btn-block</code> to individual buttons, a group of buttons now get wrapped in a parent <code>.d-grid</code> class and can use <code>.gap-*</code> utilities for spacing. For individual &ldquo;block buttons&rdquo;, add <code>.w-100</code>.</li>
+</ul>
+<h4 id="cards">Cards</h4>
+<ul>
+<li>Removed the card columns in favor of a Masonry grid</li>
+<li>Removed card decks in favor of the grid which adds more flexibility over responsive behavior.</li>
+</ul>
+<h4 id="carousel">Carousel</h4>
+<ul>
+<li>Replaced chevron icons for carousel controls with new SVGs from <a href="https://icons.coreui.io/">Bootstrap Icons</a>.</li>
+<li>Added new <a href="/docs/4.0/components/carousel/#dark-variant"><code>.carousel-dark</code> variant</a> for dark text, controls, and indicators (great for lighter backgrounds).</li>
+</ul>
+<h4 id="close-button">Close button</h4>
+<ul>
+<li>Renamed <code>.close</code> to <code>.btn-close</code> for a less generic name.</li>
+<li>Close buttons now use a <code>background-image</code> (embedded SVG) instead of a <code>&amp;times;</code> in the HTML, allowing for easier customization without the need to touch your markup.</li>
+<li>Added new variables to better control the customization.</li>
+<li>Added new <code>.btn-close-white</code> variant that uses <code>filter: invert(1)</code> to enable higher contrast dismiss icons against darker backgrounds.</li>
+</ul>
+<h4 id="collapse">Collapse</h4>
+<ul>
+<li>Removed scroll anchoring for accordions.</li>
+</ul>
+<h4 id="dropdowns">Dropdowns</h4>
+<ul>
+<li>Added new <code>.dropdown-menu-dark</code> variant and associated variables for on-demand dark dropdowns.</li>
+<li>Added new variable for <code>$dropdown-padding-x</code>.</li>
+<li>Darkened the dropdown divider for improved contrast.</li>
+</ul>
+<h4 id="jumbotron">Jumbotron</h4>
+<ul>
+<li>The jumbotron component is removed in favor of utility classes like <code>.bg-light</code> for the background color and <code>.p-*</code> classes to control padding.</li>
+</ul>
+<h4 id="navbars">Navbars</h4>
+<ul>
+<li>All navbars now require a container within. This drastically simplifies spacing requirements and removes the need for extensive CSS overrides we added for responsive containers in v4.</li>
+</ul>
+<h4 id="navs">Navs</h4>
+<ul>
+<li>Added new <code>null</code> variables for <code>font-size</code>, <code>font-weight</code>, <code>color</code>, and <code>:hover</code> <code>color</code> to the <code>.nav-link</code> class.</li>
+</ul>
+<h4 id="pagination">Pagination</h4>
+<ul>
+<li>Pagination links now have customizable <code>margin-left</code> that are dynamically rounded on all corners when separated from one another.</li>
+<li>Added <code>transition</code>s to pagination links.</li>
+</ul>
+<h4 id="popovers">Popovers</h4>
+<ul>
+<li>Renamed <code>.arrow</code> to <code>.popover-arrow</code></li>
+<li>Renamed <code>whiteList</code> option to <code>allowList</code>.</li>
+</ul>
+<h4 id="toasts">Toasts</h4>
+<ul>
+<li>Toasts can now be <a href="/docs/4.0/components/toasts/#placement">positioned</a> in a <code>.toast-container</code> with the help of <a href="/docs/4.0/utilities/position/">positioning utilities</a>.</li>
+<li>Made default toast duration 5 seconds.</li>
+<li>Clear <code>timeout</code> before showing toasts.</li>
+<li>Removed <code>overflow: hidden</code> from toasts and replaced with proper <code>border-radius</code>s with <code>calc()</code> functions.</li>
+<li>Updated docs to include additional examples for how to customize and theme toasts.</li>
+</ul>
+<h4 id="tooltips">Tooltips</h4>
+<ul>
+<li>Renamed <code>.arrow</code> to <code>.tooltip-arrow</code></li>
+<li>Renamed <code>whiteList</code> option to <code>allowList</code>.</li>
+</ul>
+<h3 id="content">Content</h3>
+<p>Changes to Reboot, typography, tables, and more.</p>
+<ul>
+<li><a href="/docs/4.0/getting-started/rfs/">RFS</a> enabled for automated font size rescaling.</li>
+<li>Reset default horizontal <code>padding-left</code> on <code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code> elements from browser default <code>40px</code> to <code>2rem</code>.</li>
+<li>Simplified table styles (no more odd top border) and tightened cell padding.</li>
+<li>Nested tables do not inherit styles anymore.</li>
+<li><code>.thead-light</code> and <code>.thead-dark</code> are dropped in favor of the <code>.table-*</code> variant classes which can be used for all table elements (<code>thead</code>, <code>tbody</code>, <code>tfoot</code>, <code>tr</code>, <code>th</code> and <code>td</code>).</li>
+<li>The <code>table-row-variant()</code> mixin is renamed to <code>table-variant()</code> and accepts only 2 parameters: <code>$color</code> (colon name) and <code>$value</code> (color code). The border color and accent colors are automatically calculated based on the table factor variables.</li>
+<li>Split table cell padding variables into <code>-y</code> and <code>-x</code>.</li>
+<li>Dropped <code>.pre-scrollable</code> class.</li>
+<li><code>.text-*</code> utilities do not add hover and focus states to links anymore. <code>.link-*</code> helper classes can be used instead.</li>
+<li>Drop <code>.text-justify</code> class.</li>
+</ul>
+<h3 id="forms">Forms</h3>
+<ul>
+<li>Rearranged form documentation under its own top-level section.
+<ul>
+<li>Split out old Forms page into several subpages</li>
+<li>Moved input groups docs under the new Forms section</li>
+</ul>
+</li>
+<li>Rearranged source Sass files under <code>scss/forms/</code>, including moving over input group styles.</li>
+<li>Combined native and custom checkboxes and radios into a single <code>.form-check</code> class.
+<ul>
+<li>New checks support sizing via <code>em</code>/<code>font-size</code> or explicit modifier classes now.</li>
+<li>New checks now appear larger by default for improved usability.</li>
+<li>Dropped <code>.custom-control</code> and associated classes.</li>
+<li>Renamed most <code>$custom-control</code> variables to <code>$form-control</code> ones.</li>
+</ul>
+</li>
+<li>Combined native and custom selects into <code>.form-select</code>.
+<ul>
+<li>Dropped <code>.custom-select</code> and associated classes.</li>
+<li>Renamed most <code>$custom-select</code> variables to <code>$form-select</code> ones.</li>
+</ul>
+</li>
+<li>Updated file input component with the same overall design, but improved HTML.
+<ul>
+<li>Refactored <code>.form-file</code> markup to resolve some visual bugs while allowing translation and button text changes via HTML instead of CSS.</li>
+<li>Dropped native <code>.form-control-file</code> and <code>.form-control-range</code> components entirely.</li>
+<li>Renamed <code>.custom-file</code> to <code>.form-file</code> (including variables).</li>
+<li>Added support for <code>:focus</code> and <code>:disabled</code> styles.</li>
+</ul>
+</li>
+<li>Renamed <code>.custom-range</code> to <code>.form-range</code> (including variables).</li>
+<li>Dropped <code>.form-group</code> for margin utilities (we&rsquo;ve replaced our docs examples with <code>.mb-3</code>).</li>
+<li>Dropped <code>.form-row</code> for the more flexible grid gutters.</li>
+<li>Dropped <code>.form-inline</code> for the more flexible grid.</li>
+<li>Dropped support for <code>.form-control-plaintext</code> inside <code>.input-group</code>s.</li>
+<li>Dropped <code>.input-group-append</code> and <code>.input-group-prepend</code>. You can now just add buttons and <code>.input-group-text</code> as direct children of the input groups.</li>
+<li>Form labels now require the <code>.form-label</code> class. Sass variables are now available to style form labels to your needs.</li>
+<li>The longstanding <a href="https://github.com/twbs/bootstrap/issues/25110">Missing border radius on input group with validation feedback bug</a> is finally fixed by adding an additional <code>.has-validation</code> class to input groups with validation.</li>
+<li>Promoted the Floating labels example to fully supported form component. <a href="/docs/4.0/forms/floating-labels/">See the new Floating labels page.</a></li>
+<li>File inputs now use the <code>.form-control</code> class and don&rsquo;t require JavaScript, additional HTML, or additional classes.</li>
+<li>Added <code>cursor:pointer</code> to <code>.form-control-color</code> color inputs.</li>
+<li>Resized checks and radios to be <code>1em</code> instead of <code>1.25em</code> in an effort to make them scale better with custom <code>$font-size-base</code> values and more.</li>
+</ul>
+<h3 id="javascript">JavaScript</h3>
+<p>Changes to our source and compiled JavaScript files.</p>
+<ul>
+<li>Dropped jQuery dependency and rewrote plugins to be in regular JavaScript.</li>
+<li>Removed underscore from public static methods like <code>_getInstance()</code> → <code>getInstance()</code>.</li>
+<li>Data attributes for all JavaScript plugins are now namespaced to help distinguish CoreUI functionality from third parties and your own code. For example, we use <code>data-coreui-toggle</code> instead of <code>data-toggle</code>.</li>
+<li>Updated Popper to v2.x:
+<ul>
+<li>Removed <code>offset</code> option from our Tooltip/Popover and Dropdown plugins; this can still be achieved using the <code>popperConfig</code> parameter.</li>
+<li>The <code>fallbackPlacement</code> option has become <code>fallbackPlacements</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="grid-and-layout">Grid and layout</h3>
+<p>Changes to any layout tools and our grid system.</p>
+<ul>
+<li>Decreased the number of responsive order utilities per breakpoint. The highest order utility with a number now is <code>.order-5</code> instead of <code>.order-12</code>.</li>
+<li>Dropped the <code>.media</code> component as it can be built with utility classes.</li>
+<li>Remove <code>position: relative</code> from grid columns.</li>
+<li>The horizontal padding is added to the direct children in a row instead of the columns themselves.
+<ul>
+<li>This simplifies our codebase.</li>
+<li>The column classes can now be used stand-alone. Whenever they are used outside a <code>.row</code>, horizontal padding won&rsquo;t be added.</li>
+</ul>
+</li>
+<li>The responsive gutter classes can be used to control the gutter width in horizontal, vertical or both directions.</li>
+<li>The gutter width is now set in <code>rem</code> and decreased from <code>30px</code> to <code>1.5rem</code> (24px).</li>
+<li><code>bootstrap-grid.css</code> now only applies <code>box-sizing: border-box</code> to the column instead of resetting the global box-sizing. This way the grid system can be used, even if <code>box-sizing: border-box</code> is not applied to each element.</li>
+<li>Container horizontal padding updated to match the gutter size of <code>.row</code>s.</li>
+<li>Removed <code>flex: 1 0 100%</code> from rows due to regressions in grid behavior.</li>
+</ul>
+<h3 id="helpers">Helpers</h3>
+<ul>
+<li>Responsive embed helpers have been renamed to <a href="/docs/4.0/helpers/ratio/">ratio helpers</a> with new class names and improved behaviors, as well as a helpful CSS variable.
+<ul>
+<li>Classes have been renamed to change <code>by</code> to <code>x</code> in the aspect ratio. For example, <code>.ratio-16by9</code> is now <code>.ratio-16x9</code>.</li>
+<li>We&rsquo;ve dropped the <code>.embed-responsive-item</code> and element group selector in favor of a simpler <code>.ratio &gt; *</code> selector. No more class is needed, and the ratio helper now works with any HTML element.</li>
+<li>The <code>$embed-responsive-aspect-ratios</code> Sass map has been renamed to <code>$aspect-ratios</code> and its values have been simplified to include the class name and the percentage as the <code>key: value</code> pair.</li>
+<li>CSS variables are now generated and included for each value in the Sass map. Modify the <code>--aspect-ratio</code> variable on the <code>.ratio</code> to create any <a href="/docs/4.0/helpers/ratio/#custom-ratios">custom aspect ratio</a>.</li>
+</ul>
+</li>
+<li>&ldquo;Screen reader&rdquo; classes are now <a href="/docs/4.0/helpers/visually-hidden/">&ldquo;visually hidden&rdquo; classes</a>.
+<ul>
+<li>Changed the Sass file from <code>scss/helpers/_screenreaders.scss</code> to <code>scss/helpers/_visually-hidden.scss</code></li>
+<li>Renamed <code>.sr-only</code> and <code>.sr-only-focusable</code> to <code>.visually-hidden</code> and <code>.visually-hidden-focusable</code></li>
+<li>Renamed <code>sr-only()</code> and <code>sr-only-focusable()</code> mixins to <code>visually-hidden()</code> and <code>visually-hidden-focusable()</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="misc">Misc</h3>
+<ul>
+<li>Added <code>.bg-body</code> for quickly setting the <code>&lt;body&gt;</code>&rsquo;s background to additional elements.</li>
+<li>Negative margin utilities are disabled by default. You can re-enable them by setting <code>$enable-negative-margins: true</code>, but keep in mind this can increase the file size quite a lot.</li>
+</ul>
+<h3 id="sass">Sass</h3>
+<p>Changes to our source Sass files and compiled CSS.</p>
+<ul>
+<li>Added default parameters to each <code>border-radius</code> mixin.</li>
+<li>Updated the next breakpoint when targeting only the <code>xs</code> breakpoint.</li>
+<li><code>box-shadow</code> mixins now allow <code>null</code> values and drop <code>none</code> from multiple arguments.</li>
+<li>Removed <code>hover</code>, <code>hover-focus</code>, <code>plain-hover-focus</code>, and <code>hover-focus-active</code> mixins. Use regular CSS syntax for these moving forward.</li>
+<li>Remove previously deprecated mixins
+<ul>
+<li><code>float()</code></li>
+<li><code>form-control-mixin()</code></li>
+<li><code>nav-divider()</code></li>
+<li><code>retina-img()</code></li>
+<li><code>text-hide()</code> (also dropped the associated utility class, <code>.text-hide</code>)</li>
+<li><code>visibility()</code></li>
+<li><code>form-control-focus()</code></li>
+</ul>
+</li>
+<li>Rearranged forms source files under <code>scss/forms/</code>. <a href="#forms">See Forms section for more details.</a></li>
+<li>Removed print styles and <code>$enable-print-styles</code> variable. Print display classes, however, have remained intact.</li>
+<li>Dropped <code>color()</code>, <code>theme-color()</code> &amp; <code>gray()</code> functions in favor of variables.</li>
+<li>The <code>theme-color-level()</code> function is renamed to <code>color-level()</code> and now accepts any color you want instead of only <code>$theme-color</code> colors.</li>
+<li><code>$enable-grid-classes</code> doesn&rsquo;t disable the generation of container classes anymore</li>
+<li>Renamed <code>$enable-prefers-reduced-motion-media-query</code> and <code>$enable-pointer-cursor-for-buttons</code> to <code>$enable-reduced-motion</code> and <code>$enable-button-pointers</code> for brevity.</li>
+<li>Line heights are dropped from several components to simplify our codebase. The <code>button-size()</code> and <code>pagination-size()</code> do not accept line height parameters anymore.</li>
+<li>The <code>button-variant()</code> mixin now accepts 3 optional color parameters, for each button state, to override the color provided by <code>color-contrast()</code>. By default, these parameters will find which color provides more contrast against the button state&rsquo;s background color with <code>color-contrast()</code>.</li>
+<li>The <code>button-outline-variant()</code> mixin now accepts an additional argument, <code>$active-color</code>, for setting the button&rsquo;s active state text color. By default, this parameter will find which color provides more contrast against the button&rsquo;s active background color with <code>color-contrast()</code>.</li>
+<li>Ditch the Sass map merges, which makes it easier to remove redundant values. Keep in mind you now have to define all values in the Sass maps like <code>$theme-colors</code>. Check out how to deal with <a href="/docs/4.0/customize/sass/#maps-and-loops">Sass maps</a>.</li>
+<li><code>color-yiq()</code> function and related variables are renamed to <code>color-contrast()</code> since it&rsquo;s not related to YIQ colorspace anymore.
+<ul>
+<li><code>$yiq-contrasted-threshold</code> is renamed to <code>$min-contrast-ratio</code>.</li>
+<li><code>$yiq-text-dark</code> and <code>$yiq-text-light</code> are respectively renamed to <code>$color-contrast-dark</code> and <code>$color-contrast-light</code>.</li>
+</ul>
+</li>
+<li>Linear gradients are simplified when gradients are enabled and therefore, <code>gradient-bg()</code> now only accepts an optional <code>$color</code> parameter.</li>
+<li>The <code>bg-gradient-variant()</code> mixin is removed since the <code>.bg-gradient</code> class can now be used to add gradients to elements instead of the <code>.bg-gradient-*</code> classes.</li>
+<li>The <code>media-breakpoint-down()</code> uses the breakpoint itself instead of the next breakpoint. Use <code>media-breakpoint-down(lg)</code> instead of <code>media-breakpoint-down(md)</code> to target viewports smaller than the <code>lg</code> breakpoint.</li>
+<li>The <code>media-breakpoint-between()</code> mixin&rsquo;s second parameter also uses the breakpoint itself instead of the next breakpoint. Use <code>media-between(sm, lg)</code> instead of <code>media-breakpoint-between(sm, md)</code> to target viewports between the <code>sm</code> and <code>lg</code> breakpoints.</li>
+<li>The <code>box-shadow()</code> mixin now better supports <code>none</code> and <code>null</code> with multiple arguments. Now you can pass multiple arguments with either value and get the expected output.</li>
+<li>Each <code>border-radius()</code> mixin now has a default value. You can now call these mixins without specifying a border radius value and the <code>$border-radius</code> variable will be used.</li>
+<li>Added default parameters to each <code>border-radius</code> mixin.</li>
+<li>Updated the next breakpoint when targeting only the <code>xs</code> breakpoint.</li>
+<li><code>box-shadow</code> mixins now allow <code>null</code> values and drop <code>none</code> from multiple arguments.</li>
+<li>The color system which worked with <code>color-level()</code> and <code>$theme-color-interval</code> was removed in favor of a new color system. All <code>lighten()</code> and <code>darken()</code> functions in our codebase are replaced by <code>tint-color()</code> and <code>shade-color()</code>. These functions will mix the color with either white or black instead of changing its lightness by a fixed amount.</li>
+<li>Spinners now honor <code>prefers-reduced-motion: reduce</code> by slowing down animations.</li>
+<li>Renamed <code>scale-color()</code> function to <code>shift-color()</code> to avoid collision with Sass&rsquo;s own color scaling function.</li>
+</ul>
+<h3 id="typography">Typography</h3>
+<ul>
+<li>Removed <code>$display-*</code> variables for a new <code>$display-font-sizes</code> Sass map.</li>
+<li>Removed individual <code>$display-*-weight</code> variables for a single <code>$display-font-weight</code>.</li>
+<li>Added two new <code>.display-*</code> heading styles, <code>.display-5</code> and <code>.display-6</code>.</li>
+<li>Resized existing display headings for a slightly more consistent set of <code>font-size</code>s.</li>
+<li>Links are underlined by default (not just on hover), unless they&rsquo;re part of specific components.</li>
+</ul>
+<h3 id="utilities">Utilities</h3>
+<ul>
+<li>Added new <a href="/docs/4.0/utilities/position/#arrange-elements">position utilities</a> for <code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code>. Values include <code>0</code>, <code>50%</code>, and <code>100%</code> for each property.
+<ul>
+<li>We also added new <code>translate</code> utilities to accompany those position utilities for centering elements when they&rsquo;re being positioned.</li>
+<li>Some great examples have been added to the docs to show these off.</li>
+</ul>
+</li>
+<li>Added new <a href="/docs/4.0/utilities/borders/#border-width"><code>border-width</code> utility</a>.</li>
+<li>The <code>.d-none</code> utility was moved in our CSS to give it more weight over other display utilities.</li>
+<li>Renamed <code>.text-monospace</code> to <code>.font-monospace</code>.</li>
+<li>Removed <code>.text-hide</code> as it&rsquo;s an antiquated method for hiding text that shouldn&rsquo;t be used anymore.</li>
+<li>New <code>line-height</code> utilities: <code>.lh-1</code>, <code>.lh-sm</code>, <code>.lh-base</code> and <code>.lh-lg</code>. See <a href="/docs/4.0/utilities/text/#line-height">here</a>.</li>
+<li><strong>Text utilities:</strong>
+<ul>
+<li>Added <code>.fs-*</code> utilities for <code>font-size</code> utilities (with RFS enabled). These use the same scale as HTML&rsquo;s default headings (1-6, large to small), and can be modified via Sass map.</li>
+<li>Renamed <code>.font-weight-*</code> utilities as <code>.fw-*</code> for brevity and consistency.</li>
+<li>Renamed <code>.font-style-*</code> utilities as <code>.fst-*</code> for brevity and consistency.</li>
+</ul>
+</li>
+<li>Added <code>.d-grid</code> to display utilities</li>
+<li>Added new <code>gap</code> utilities (<code>.gap</code>) for CSS Grid layouts</li>
+<li>Added new <code>.translate-middle-x</code> &amp; <code>.translate-middle-y</code> utilities to horizontally or vertically center absolute/fixed positioned elements.</li>
+<li>Dropped the <code>.text-value-lg</code> as it can be built with the following <code>fs-4 fw-semibold</code> utility classes.</li>
+<li>Dropped the <code>.text-value</code> as it can be built with the following <code>fs-6 fw-semibold</code> utility classes.</li>
+</ul>
+<h3 id="reboot">Reboot</h3>
+<ul>
+<li>Updated <code>th</code> styling to use a default <code>null</code> value for <code>font-weight</code> and inherit <code>text-align</code> instead of setting explicitly.</li>
+<li>Introduce <code>$enable-smooth-scroll</code>, which applies <code>scroll-behavior: smooth</code> globally—except for users asking for reduced motion through <code>prefers-reduced-motion</code> media query.</li>
+</ul>
+<h3 id="rtl">RTL</h3>
+<p><strong>The RTL feature is still experimental and will probably evolve according to user feedback.</strong> Spotted something or have an improvement to suggest? <a href="https://github.com/coreui/coreui/issues/new">Open an issue</a>, we&rsquo;d love to get your insights.</p>
+<h4 id="sass-1">Sass</h4>
+<p>Horizontal direction sensitive variables, utilities and mixins are renamed with more logical names — <code>start</code> and <code>end</code> in lieu of <code>left</code> and <code>right</code>.</p>
+<h5 id="components-1">Components</h5>
+<ul>
+<li>Renamed <code>.dropleft</code> and <code>.dropright</code> to <code>.dropstart</code> and <code>dropend</code>.</li>
+<li>Renamed <code>.dropdown-menu-*-left</code> and <code>.dropdown-menu-*-right</code> to <code>.dropdown-menu-*-start</code> and <code>.dropdown-menu-*-end</code>.</li>
+<li>Renamed <code>.bs-popover-left</code> and <code>.bs-popover-right</code> to <code>.bs-popover-start</code> and <code>.bs-popover-end</code>.</li>
+<li>Renamed <code>.bs-tooltip-left</code> and <code>.bs-tooltip-right</code> to <code>.bs-tooltip-start</code> and <code>.bs-tooltip-end</code>.</li>
+<li>Renamed <code>.carousel-item-left</code> and <code>.carousel-item-right</code> to <code>.carousel-item-start</code> and <code>.carousel-item-end</code>.</li>
+</ul>
+<h5 id="utilities-1">Utilities</h5>
+<ul>
+<li>Renamed <code>.left-*</code> and <code>.right-*</code> to <code>.start-*</code> and <code>.end-*</code>.</li>
+<li>Renamed <code>.float-left</code> and <code>.float-right</code> to <code>.float-start</code> and <code>.float-end</code>.</li>
+<li>Renamed <code>.border-left</code> and <code>.border-right</code> to <code>.border-start</code> and <code>.border-end</code>.</li>
+<li>Renamed <code>.rounded-left</code> and <code>.rounded-right</code> to <code>.rounded-start</code> and <code>.rounded-end</code>.</li>
+<li>Renamed <code>.ml-*</code> and <code>.mr-*</code> to <code>.ms-*</code> and <code>.me-*</code>.</li>
+<li>Renamed <code>.pl-*</code> and <code>.pr-*</code> to <code>.ps-*</code> and <code>.pe-*</code>.</li>
+<li>Renamed <code>.text-left</code> and <code>.text-right</code> to <code>.text-start</code> and <code>.text-end</code>.</li>
+</ul>
+<p>Breakpoints specific variants are consequently renamed too (eg. <code>.text-md-start</code> replaces <code>.text-md-left</code>).</p>
+<h5 id="mixins">Mixins</h5>
+<ul>
+<li>Renamed <code>border-left-radius()</code> and <code>border-right-radius()</code> to <code>border-start-radius()</code> and <code>border-end-radius()</code> — as well as their corner relative variants (eg. <code>.border-bottom-left-radius</code> became <code>.border-bottom-start-radius</code>).</li>
+<li>Renamed <code>caret-left()</code> and <code>caret-right()</code> to <code>caret-start()</code> and <code>caret-end()</code> — subsequently, the <code>caret()</code> mixin now takes <code>start</code> and <code>end</code> as arguments instead of <code>left</code> and <code>right</code>.</li>
+</ul>
+<h5 id="variables">Variables</h5>
+<ul>
+<li>New <code>$breadcrumb-divider-flipped</code> if a different breadcrumb separator is needed in RTL.</li>
+<li>Renamed <code>$navbar-brand-margin-right</code> to <code>$navbar-brand-margin-end</code>.</li>
+<li>Renamed <code>$pagination-margin-left</code> to <code>$pagination-margin-start</code>.</li>
+<li>Renamed <code>$form-check-padding-left</code> to <code>$form-check-padding-start</code>.</li>
+<li>Renamed <code>$form-switch-padding-left</code> to <code>$form-switch-padding-start</code>.</li>
+<li>Renamed <code>$form-check-inline-margin-right</code> to <code>$form-check-inline-margin-end</code>.</li>
+<li>Renamed <code>$form-select-feedback-icon-padding-right</code> to <code>$form-select-feedback-icon-padding-end</code>.</li>
+</ul>
+<!-- ### Components
+
+
+
+#### Header
+- Nawigacja
+
+#### Sidebar
+- Nawigacja
+
+ -->
+
+    </div>
+  </main>
+</div>
+
+
+      <footer class="footer p-3 p-md-5 mt-5 text-center text-sm-start">
+  <div class="container">
+    <ul class="bd-footer-links ps-0 mb-3">
+      <li class="d-inline-block"><a href="https://github.com/coreui">GitHub</a></li>
+      <li class="d-inline-block ms-3"><a href="https://twitter.com/core_ui">Twitter</a></li>
+      <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
+    </ul>
+    <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
+    <p class="mb-0">Currently v4.0.0-alpha.0. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+  </div>
+</footer>
+
+
+      
+  
+    </div>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-bFFwHg1b2BzdcAD2h8KG2m89hpFx7vHhbmlfIid6hF8Ij26jeJZttIUKyv58cSqA" crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+
+<script src="/docs/docs/4.0/assets/js/docs.min.js"></script>
+
+  </body>
+</html>
