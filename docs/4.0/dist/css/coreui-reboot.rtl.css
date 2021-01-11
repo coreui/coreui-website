@@ -21,13 +21,13 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 1rem;
+  font-size: var(--cui-font-size-base, 1rem);
   font-weight: 400;
   line-height: 1.5;
-  color: var(--cui-body-color, #212529);
+  color: var(--cui-body-color, rgba(44, 56, 74, 0.87));
   background-color: var(--cui-body-bg, #fff);
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(0, 0, 21, 0);
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -46,12 +46,24 @@ hr:not([size]) {
   height: 1px;
 }
 
+.vr {
+  display: flex;
+  flex: 0 0 1px;
+  width: 1px;
+  padding: 0 !important;
+  margin: 0;
+  color: var(--cui-vr-color, inherit);
+  background-color: currentColor;
+  border: 0;
+  opacity: 0.25;
+}
+
 h6, h5, h4, h3, h2, h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
-  color: var(--cui-headings-color, );
+  color: var(--cui-headings-color, unset);
 }
 
 h1 {
@@ -182,11 +194,11 @@ sup {
 }
 
 a {
-  color: var(--cui-link-color, #0d6efd);
+  color: var(--cui-link-color, #321fdb);
   text-decoration: underline;
 }
 a:hover {
-  color: var(--cui-link-hover-color, #0a58ca);
+  color: var(--cui-link-hover-color, #2819af);
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -210,7 +222,7 @@ pre {
   margin-bottom: 1rem;
   overflow: auto;
   font-size: 0.875em;
-  color: var(--cui-pre-color, );
+  color: var(--cui-pre-color, unset);
 }
 pre code {
   font-size: inherit;
@@ -230,8 +242,8 @@ a > code {
 kbd {
   padding: 0.2rem 0.4rem;
   font-size: 0.875em;
-  color: var(--cui-kbd-color, #fff);
-  background-color: var(--cui-kbd-bg, #212529);
+  color: var(--cui-kbd-color, rgba(255, 255, 255, 0.87));
+  background-color: var(--cui-kbd-bg, #4f5d73);
   border-radius: 0.2rem;
 }
 kbd kbd {
@@ -257,11 +269,12 @@ table {
 caption {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  color: var(--cui-table-caption-color, #6c757d);
+  color: var(--cui-table-caption-color, rgba(44, 56, 74, 0.38));
   text-align: right;
 }
 
 th {
+  font-weight: 600;
   text-align: inherit;
   text-align: -webkit-match-parent;
 }
