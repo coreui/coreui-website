@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Learn how to enable support for right-to-left text in CoreUI for Bootstrap across our layout, components, and utilities.">
-<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
 <meta name="generator" content="Hugo 0.79.0">
 
 <meta name="docsearch:language" content="en">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-7Tg46c568S0XjKELdHPRd1Fi7iOeLnunh6h5FFdKIy3R0BtWJ1KfTruMKaiyNTLZ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-Rxg5cYTZqXcMAFzxa3dkLGYBjDVqg/w6Xg8x8sJoW4gxhhcGHbvTZ5S99kJ8NokU" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -54,14 +54,14 @@
 <meta name="twitter:creator" content="@core_ui">
 <meta name="twitter:title" content="RTL">
 <meta name="twitter:description" content="Learn how to enable support for right-to-left text in CoreUI for Bootstrap across our layout, components, and utilities.">
-<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 
 <!-- Facebook -->
 <meta property="og:url" content="https://coreui.io/docs/4.0/getting-started/rtl/">
 <meta property="og:title" content="RTL">
 <meta property="og:description" content="Learn how to enable support for right-to-left text in CoreUI for Bootstrap across our layout, components, and utilities.">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta property="og:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1000">
 <meta property="og:image:height" content="500">
@@ -314,6 +314,9 @@
               <a href="/docs/4.0/components/button-group/" class="nav-link">Button group</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/components/callout/" class="nav-link">Callout</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/components/card/" class="nav-link">Card</a>
             </li>
             <li class="nav-item">
@@ -551,8 +554,8 @@
 
       
 <div class="container-lg my-md-4 flex-grow-1">
-  <main class="bd-main order-1">
-    <div class="bd-intro ps-lg-4">
+  <main class="docs-main order-1">
+    <div class="docs-intro ps-lg-4">
       
 <nav class="breadcrumb small mb-5" aria-label="breadcrumb">
   
@@ -579,23 +582,19 @@
     
     
   
-  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 11, 2021</span>
+  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 13, 2021</span>
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
         <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/getting-started/rtl.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
-        <h1 class="bd-title" id="content">RTL</h1>
+        <h1 class="docs-title" id="content">RTL</h1>
       </div>
-      <p class="bd-lead">Learn how to enable support for right-to-left text in CoreUI for Bootstrap across our layout, components, and utilities.</p>
-      <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
-
-
-<div data-ea-publisher="coreui-io" data-ea-type="image"></div>
-
+      <p class="docs-lead">Learn how to enable support for right-to-left text in CoreUI for Bootstrap across our layout, components, and utilities.</p>
+      
     </div>
 
     
-      <div class="bd-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
+      <div class="docs-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
         <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
         <nav id="TableOfContents">
   <ul>
@@ -603,7 +602,6 @@
     <li><a href="#required-html">Required HTML</a>
       <ul>
         <li><a href="#starter-template">Starter template</a></li>
-        <li><a href="#rtl-examples">RTL examples</a></li>
       </ul>
     </li>
     <li><a href="#approach">Approach</a></li>
@@ -620,13 +618,13 @@
       </div>
     
 
-    <div class="bd-content ps-lg-4">
+    <div class="docs-content ps-lg-4">
       
 
       <h2 id="get-familiar">Get familiar</h2>
 <p>We recommend getting familiar with CoreUI for Bootstrap first by reading through our <a href="/docs/4.0/getting-started/introduction/">Getting Started Introduction page</a>. Once you&rsquo;ve run through it, continue reading here for how to enable RTL.</p>
 <p>You may also want to read up on <a href="https://rtlcss.com/">the RTLCSS project</a>, as it powers our approach to RTL.</p>
-<div class="bd-callout bd-callout-warning">
+<div class="docs-callout docs-callout-warning">
 <h3 id="experimental-feature">Experimental feature</h3>
 <p>The RTL feature is still <strong>experimental</strong> and will probably evolve according to user feedback. Spotted something or have an improvement to suggest? <a href="https://github.com/coreui/coreui/issues/new">Open an issue</a>, we&rsquo;d love to get your insights.
 </div>
@@ -638,7 +636,7 @@
 <li>Add an appropriate <code>lang</code> attribute, like <code>lang=&quot;ar&quot;</code>, on the <code>&lt;html&gt;</code> element.</li>
 </ol>
 <p>From there, you&rsquo;ll need to include an RTL version of our CSS. For example, here&rsquo;s the stylesheet for our compiled and minified CSS with RTL enabled:</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.rtl.min.css&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-CtMXAJmLbZ2zgW/jqizMMTfNacRrTdwx4QSPHP584WXFAfScaA1sTufMUbXtDXJM&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/coreui@4.0.0-alpha.0/dist/css/coreui.rtl.min.css&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-OkY56leSb/dcwfOPXfjmD/6eTguTFY42H/XLzYrykzc9DsUgytcACdtG4vLFdNv+&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
 </code></pre></div><h3 id="starter-template">Starter template</h3>
 <p>You can see the above requirements reflected in this modified RTL starter template.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!doctype html&gt;</span>
@@ -649,7 +647,7 @@
     <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1&#34;</span><span class="p">&gt;</span>
 
     <span class="c">&lt;!-- CoreUI for Bootstrap CSS --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.rtl.min.css&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-CtMXAJmLbZ2zgW/jqizMMTfNacRrTdwx4QSPHP584WXFAfScaA1sTufMUbXtDXJM&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/coreui@4.0.0-alpha.0/dist/css/coreui.rtl.min.css&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-OkY56leSb/dcwfOPXfjmD/6eTguTFY42H/XLzYrykzc9DsUgytcACdtG4vLFdNv+&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>مرحبا بالعالم!<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -659,18 +657,16 @@
     <span class="c">&lt;!-- Optional JavaScript; choose one of the two! --&gt;</span>
 
     <span class="c">&lt;!-- Option 1: CoreUI for Bootstrap Bundle with Popper --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/@coreui/coreui@3.3.0/dist/js/coreui.bundle.min.js&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-CZ1fanIfQQA3qdodQmpS5jZTYd/24O61wCeXZPQKEDd1jyNAJ2xBf0YcyoCeAnLh&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/@coreui/coreui@3.3.0/dist/js/coreui.bundle.min.js&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-QhgYN4WY6/5h5VonldJJYUyvf2UPweJFd7leRtB7uSm3sisWLYKpDrwfk9Kvj+C9&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
     <span class="c">&lt;!-- Option 2: Separate Popper and CoreUI for Bootstrap JS --&gt;</span>
     <span class="c">&lt;!--
 </span><span class="c">    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js&#34; integrity=&#34;sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
-</span><span class="c">    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/@coreui/coreui@3.3.0/dist/js/coreui.min.js&#34; integrity=&#34;sha384-7DqihsNt/MNjeJw8SE9vOQ5MxgjzWvhDP3ase43k8UNFhjG/WvaFo2ZNUwbXhEiV&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+</span><span class="c">    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/@coreui/coreui@3.3.0/dist/js/coreui.min.js&#34; integrity=&#34;sha384-auMQVU9h2wHVjeICVw06fZd/Bwu89wUtkbfvQdFUVKmdFyKmJno12PpjJdiyKXjj&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
 </span><span class="c">    --&gt;</span>
   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></div><h3 id="rtl-examples">RTL examples</h3>
-<p>Get started with one of our several <a href="/docs/4.0/examples/#rtl">RTL examples</a>.</p>
-<h2 id="approach">Approach</h2>
+</code></pre></div><h2 id="approach">Approach</h2>
 <p>Our approach to building RTL support into CoreUI for Bootstrap comes with two important decisions that impact how we write and use our CSS:</p>
 <ol>
 <li>
@@ -733,7 +729,7 @@
 
       <footer class="footer p-3 p-md-5 mt-5 text-center text-sm-start">
   <div class="container">
-    <ul class="bd-footer-links ps-0 mb-3">
+    <ul class="docs-footer-links ps-0 mb-3">
       <li class="d-inline-block"><a href="https://github.com/coreui">GitHub</a></li>
       <li class="d-inline-block ms-3"><a href="https://twitter.com/core_ui">Twitter</a></li>
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
@@ -747,7 +743,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-CZ1fanIfQQA3qdodQmpS5jZTYd/24O61wCeXZPQKEDd1jyNAJ2xBf0YcyoCeAnLh" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-QhgYN4WY6/5h5VonldJJYUyvf2UPweJFd7leRtB7uSm3sisWLYKpDrwfk9Kvj+C9" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

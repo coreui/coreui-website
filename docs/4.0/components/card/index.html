@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Bootstrap card component provides a flexible and extensible container for displaying content. Bootstrap card is delivered with a bunch of variants and options.">
-<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
 <meta name="generator" content="Hugo 0.79.0">
 
 <meta name="docsearch:language" content="en">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-7Tg46c568S0XjKELdHPRd1Fi7iOeLnunh6h5FFdKIy3R0BtWJ1KfTruMKaiyNTLZ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-Rxg5cYTZqXcMAFzxa3dkLGYBjDVqg/w6Xg8x8sJoW4gxhhcGHbvTZ5S99kJ8NokU" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -54,14 +54,14 @@
 <meta name="twitter:creator" content="@core_ui">
 <meta name="twitter:title" content="Bootstrap card">
 <meta name="twitter:description" content="Bootstrap card component provides a flexible and extensible container for displaying content. Bootstrap card is delivered with a bunch of variants and options.">
-<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 
 <!-- Facebook -->
 <meta property="og:url" content="https://coreui.io/docs/4.0/components/card/">
 <meta property="og:title" content="Bootstrap card">
 <meta property="og:description" content="Bootstrap card component provides a flexible and extensible container for displaying content. Bootstrap card is delivered with a bunch of variants and options.">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta property="og:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1000">
 <meta property="og:image:height" content="500">
@@ -314,6 +314,9 @@
               <a href="/docs/4.0/components/button-group/" class="nav-link">Button group</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/components/callout/" class="nav-link">Callout</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/components/card/" class="nav-link active" aria-current="page">Card</a>
             </li>
             <li class="nav-item">
@@ -551,8 +554,8 @@
 
       
 <div class="container-lg my-md-4 flex-grow-1">
-  <main class="bd-main order-1">
-    <div class="bd-intro ps-lg-4">
+  <main class="docs-main order-1">
+    <div class="docs-intro ps-lg-4">
       
 <nav class="breadcrumb small mb-5" aria-label="breadcrumb">
   
@@ -579,23 +582,19 @@
     
     
   
-  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 11, 2021</span>
+  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 13, 2021</span>
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
         <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/components/card.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
-        <h1 class="bd-title" id="content">Bootstrap card</h1>
+        <h1 class="docs-title" id="content">Bootstrap card</h1>
       </div>
-      <p class="bd-lead">Bootstrap card component provides a flexible and extensible container for displaying content. Bootstrap card is delivered with a bunch of variants and options.</p>
-      <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
-
-
-<div data-ea-publisher="coreui-io" data-ea-type="image"></div>
-
+      <p class="docs-lead">Bootstrap card component provides a flexible and extensible container for displaying content. Bootstrap card is delivered with a bunch of variants and options.</p>
+      
     </div>
 
     
-      <div class="bd-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
+      <div class="docs-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
         <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
         <nav id="TableOfContents">
   <ul>
@@ -639,7 +638,6 @@
       <ul>
         <li><a href="#card-groups">Card groups</a></li>
         <li><a href="#grid-cards">Grid cards</a></li>
-        <li><a href="#masonry">Masonry</a></li>
       </ul>
     </li>
     <li><a href="#customizing">Customizing</a>
@@ -653,7 +651,7 @@
       </div>
     
 
-    <div class="bd-content ps-lg-4">
+    <div class="docs-content ps-lg-4">
       
 
       <h2 id="about">About</h2>
@@ -661,9 +659,9 @@
 <h2 id="example">Example</h2>
 <p>Cards are built with as little markup and styles as possible but still manage to deliver a bunch of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. Cards have no top, left, and right margins by default, so use <a href="/docs/4.0/utilities/spacing/">spacing utilities</a> as needed. They have no fixed width to start, so they&rsquo;ll fill the full width of its parent.</p>
 <p>Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they&rsquo;ll naturally fill the full width of its parent element. This is easily customized with our various <a href="#sizing">sizing options</a>.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card" style="width: 18rem;">
-  <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+  <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
@@ -672,7 +670,8 @@
   </div>
 </div>
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 18rem;&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>Some quick example text to build on the card title and make up the bulk of the card&#39;s content.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -683,7 +682,7 @@
 <p>Bootstrap card supports a wide variety of content, including images, text, list groups, links, and more. Below are examples of those elements.</p>
 <h3 id="body">Body</h3>
 <p>The main block of a card is the <code>.card-body</code>. Use it whenever you need a padded section within a card.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card">
   <div class="card-body">
     This is some text within a card body.
@@ -697,7 +696,7 @@
 <h3 id="titles-text-and-links">Titles, text, and links</h3>
 <p>Card titles are managed by adding <code>.card-title</code> to a <code>&lt;h*&gt;</code> tag. Identically, links are attached and collected next to each other by adding <code>.card-link</code> to an <code>&lt;a&gt;</code> tag.</p>
 <p>Subtitles are managed by adding a <code>.card-subtitle</code> to a <code>&lt;h*&gt;</code> tag. If the <code>.card-title</code> also, the <code>.card-subtitle</code> items are stored in a <code>.card-body</code> item, the card title, and subtitle are arranged rightly.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
@@ -718,23 +717,24 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="images">Images</h3>
 <p><code>.card-img-top</code> places a picture to the top of the card. With <code>.card-text</code>, text can be added to the card. Text within <code>.card-text</code> can additionally be styled with the regular HTML tags.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card" style="width: 18rem;">
-  <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+  <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
   <div class="card-body">
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 18rem;&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>Some quick example text to build on the card title and make up the bulk of the card&#39;s content.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="list-groups">List groups</h3>
 <p>Create lists of content in a card with a flush list group.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card" style="width: 18rem;">
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Cras justo odio</li>
@@ -749,7 +749,7 @@
     <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;list-group-item&#34;</span><span class="p">&gt;</span>Vestibulum at eros<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card" style="width: 18rem;">
   <div class="card-header">
     Featured
@@ -770,7 +770,7 @@
     <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;list-group-item&#34;</span><span class="p">&gt;</span>Vestibulum at eros<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card" style="width: 18rem;">
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Cras justo odio</li>
@@ -793,9 +793,9 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="kitchen-sink">Kitchen sink</h3>
 <p>Combine and match many content types to build the card you need, or throw everything in there. Shown below are image styles, blocks, text styles, and a list group—all wrapped in a fixed-width card.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card" style="width: 18rem;">
-  <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+  <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
@@ -812,7 +812,8 @@
   </div>
 </div>
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 18rem;&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>Some quick example text to build on the card title and make up the bulk of the card&#39;s content.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -829,7 +830,7 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="header-and-footer">Header and footer</h3>
 <p>Add an optional header and/or footer within a card.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card">
   <div class="card-header">
     Featured
@@ -851,7 +852,7 @@
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <p>Card headers can be styled by adding <code>.card-header</code> to <code>&lt;h*&gt;</code> elements.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card">
   <h5 class="card-header">Featured</h5>
   <div class="card-body">
@@ -868,7 +869,7 @@
     <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span><span class="p">&gt;</span>Go somewhere<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card">
   <div class="card-header">
     Quote
@@ -891,7 +892,7 @@
     <span class="p">&lt;/</span><span class="nt">blockquote</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card text-center">
   <div class="card-header">
     Featured
@@ -922,7 +923,7 @@
 <p>Cards assume no specific <code>width</code> to start, so they&rsquo;ll be 100% wide unless otherwise stated. You can adjust this as required with custom CSS, grid classes, grid Sass mixins, or services.</p>
 <h3 id="using-grid-markup">Using grid markup</h3>
 <p>Using the grid, wrap cards in columns and rows as needed.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="row">
   <div class="col-sm-6">
     <div class="card">
@@ -965,7 +966,7 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="using-utilities">Using utilities</h3>
 <p>Use some of <a href="/docs/4.0/utilities/sizing/">available sizing utilities</a> to rapidly set a card&rsquo;s width.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card w-75">
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
@@ -998,7 +999,7 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="using-custom-css">Using custom CSS</h3>
 <p>Use custom CSS in your stylesheets or as inline styles to set a width.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Special title treatment</h5>
@@ -1015,7 +1016,7 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="text-alignment">Text alignment</h2>
 <p>You can instantly change the text arrangement of any card—in its whole or specific parts—with <a href="/docs/4.0/utilities/text/#text-alignment">text align classes</a>.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Special title treatment</h5>
@@ -1064,7 +1065,7 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="navigation">Navigation</h2>
 <p>Add some navigation to a card&rsquo;s header (or block) with Bootstrap&rsquo;s <a href="/docs/4.0/components/navs-tabs/">nav components</a>.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card text-center">
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
@@ -1105,7 +1106,7 @@
     <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span><span class="p">&gt;</span>Go somewhere<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card text-center">
   <div class="card-header">
     <ul class="nav nav-pills card-header-pills">
@@ -1150,9 +1151,9 @@
 <p>Cards introduce several options for acting with images. Pick from appending &ldquo;image caps&rdquo; at either end of a card, overlaying images with content, or just inserting the image in a card.</p>
 <h3 id="image-caps">Image caps</h3>
 <p>Similar to headers and footers, cards can include top and bottom &ldquo;image caps&rdquo;—images at the top or bottom of a card.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card mb-3">
-  <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+  <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
@@ -1166,11 +1167,12 @@
     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </div>
-  <svg class="bd-placeholder-img card-img-bottom" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+  <svg class="docs-placeholder-img card-img-bottom" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
 </div>
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card mb-3&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1183,13 +1185,14 @@
     <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;&lt;</span><span class="nt">small</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;text-muted&#34;</span><span class="p">&gt;</span>Last updated 3 mins ago<span class="p">&lt;/</span><span class="nt">small</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-bottom&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-bottom&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="image-overlays">Image overlays</h3>
 <p>Adapt an image into a background and overlay your text. Depending on the image, you may need additional styles or utilities.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card bg-dark text-white">
-  <svg class="bd-placeholder-img bd-placeholder-img-lg card-img" width="100%" height="270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Card image" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Card image</text></svg>
+  <svg class="docs-placeholder-img docs-placeholder-img-lg card-img" width="100%" height="270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Card image" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Card image</text></svg>
 
   <div class="card-img-overlay">
     <h5 class="card-title">Card title</h5>
@@ -1198,24 +1201,25 @@
   </div>
 </div>
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card bg-dark text-white&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img docs-placeholder-img-lg card-img&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;270&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Card image&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Card image<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-overlay&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>Last updated 3 mins ago<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
-<div class="bd-callout bd-callout-info">
+<div class="docs-callout docs-callout-info">
 Note that content should not be larger than the height of the image. If content is larger than the image the content will be displayed outside the image.
 </div>
 
 <h2 id="horizontal">Horizontal</h2>
 <p>Using a combination of grid and utility classes, cards can be made horizontal in a mobile-friendly and responsive way. In the example below, we remove the grid gutters with <code>.g-0</code> and use <code>.col-md-*</code> classes to make the card horizontal at the <code>md</code> breakpoint. Further adjustments may be needed depending on your card content.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <svg class="bd-placeholder-img" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image</text></svg>
+      <svg class="docs-placeholder-img" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image</text></svg>
 
     </div>
     <div class="col-md-8">
@@ -1230,7 +1234,8 @@ Note that content should not be larger than the height of the image. If content 
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card mb-3&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;max-width: 540px;&#34;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row g-0&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-md-4&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;250&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-md-8&#34;</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
@@ -1245,7 +1250,7 @@ Note that content should not be larger than the height of the image. If content 
 <p>Cards include various options for customizing their backgrounds, borders, and color.</p>
 <h3 id="background-and-color">Background and color</h3>
 <p>Use <a href="/docs/4.0/utilities/colors/">text and background utilities</a> to change the appearance of a card.</p>
-<div class="bd-example">
+<div class="docs-example">
 
 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
   <div class="card-header">Header</div>
@@ -1359,14 +1364,14 @@ Note that content should not be larger than the height of the image. If content 
     <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>Some quick example text to build on the card title and make up the bulk of the card&#39;s content.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
-<div class="bd-callout bd-callout-info">
+<div class="docs-callout docs-callout-info">
 <h5 id="conveying-meaning-to-assistive-technologies">Conveying meaning to assistive technologies</h5>
 <p>Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the <code>.visually-hidden</code> class.
 </div>
 
 <h3 id="border">Border</h3>
 <p>Use <a href="/docs/4.0/utilities/borders/">border utilities</a> to change just the <code>border-color</code> of a card. Note that you can put <code>.text-{color}</code> classes on the parent <code>.card</code> or a subset of the card&rsquo;s contents as shown below.</p>
-<div class="bd-example">
+<div class="docs-example">
 
 <div class="card border-primary mb-3" style="max-width: 18rem;">
   <div class="card-header">Header</div>
@@ -1482,7 +1487,7 @@ Note that content should not be larger than the height of the image. If content 
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="top-border">Top border</h3>
 <p>Use <a href="/docs/4.0/utilities/borders/">border utilities</a> to change just the <code>border-color</code> of a card. Note that you can put <code>.text-{color}</code> classes on the parent <code>.card</code> or a subset of the card&rsquo;s contents as shown below.</p>
-<div class="bd-example">
+<div class="docs-example">
 
 <div class="card border-top-primary border-top-3 mb-3" style="max-width: 18rem;">
   <div class="card-header">Header</div>
@@ -1598,7 +1603,7 @@ Note that content should not be larger than the height of the image. If content 
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="mixins-utilities">Mixins utilities</h3>
 <p>You are able to adjust the borders on the card elements as needed, and even exclude their <code>background-color</code> with <code>.bg-transparent</code>.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card border-success mb-3" style="max-width: 18rem;">
   <div class="card-header bg-transparent border-success">Header</div>
   <div class="card-body text-success">
@@ -1619,10 +1624,10 @@ Note that content should not be larger than the height of the image. If content 
 <p>In addition to styling the content within cards, Bootstrap includes a few options for laying out series of cards. For the time being, <strong>these layout options are not yet responsive</strong>.</p>
 <h3 id="card-groups">Card groups</h3>
 <p>Use card groups to render cards as a single, attached element with equal width and height columns. Card groups start off stacked and use <code>display: flex;</code> to become attached with uniform dimensions starting at the <code>sm</code> breakpoint.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card-group">
   <div class="card">
-    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+    <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
@@ -1631,7 +1636,7 @@ Note that content should not be larger than the height of the image. If content 
     </div>
   </div>
   <div class="card">
-    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+    <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
@@ -1640,7 +1645,7 @@ Note that content should not be larger than the height of the image. If content 
     </div>
   </div>
   <div class="card">
-    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+    <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
@@ -1651,7 +1656,8 @@ Note that content should not be larger than the height of the image. If content 
 </div>
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-group&#34;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1659,7 +1665,8 @@ Note that content should not be larger than the height of the image. If content 
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This card has supporting text below as a natural lead-in to additional content.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1667,7 +1674,8 @@ Note that content should not be larger than the height of the image. If content 
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1676,10 +1684,10 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <p>When using card groups with footers, their content will automatically line up.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="card-group">
   <div class="card">
-    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+    <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
@@ -1690,7 +1698,7 @@ Note that content should not be larger than the height of the image. If content 
     </div>
   </div>
   <div class="card">
-    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+    <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
@@ -1701,7 +1709,7 @@ Note that content should not be larger than the height of the image. If content 
     </div>
   </div>
   <div class="card">
-    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+    <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
@@ -1714,7 +1722,8 @@ Note that content should not be larger than the height of the image. If content 
 </div>
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-group&#34;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1724,7 +1733,8 @@ Note that content should not be larger than the height of the image. If content 
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This card has supporting text below as a natural lead-in to additional content.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1734,7 +1744,8 @@ Note that content should not be larger than the height of the image. If content 
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1746,11 +1757,11 @@ Note that content should not be larger than the height of the image. If content 
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="grid-cards">Grid cards</h3>
 <p>Use the Bootstrap grid system and its <a href="/docs/4.0/layout/grid/#row-columns"><code>.row-cols</code> classes</a> to control how many grid columns (wrapped around your cards) you show per row. For example, here&rsquo;s <code>.row-cols-1</code> laying out the cards on one column, and <code>.row-cols-md-2</code> splitting four cards to equal width across multiple rows, from the medium breakpoint up.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="row row-cols-1 row-cols-md-2 g-4">
   <div class="col">
     <div class="card">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -1760,7 +1771,7 @@ Note that content should not be larger than the height of the image. If content 
   </div>
   <div class="col">
     <div class="card">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -1770,7 +1781,7 @@ Note that content should not be larger than the height of the image. If content 
   </div>
   <div class="col">
     <div class="card">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -1780,7 +1791,7 @@ Note that content should not be larger than the height of the image. If content 
   </div>
   <div class="col">
     <div class="card">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -1792,7 +1803,8 @@ Note that content should not be larger than the height of the image. If content 
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row row-cols-1 row-cols-md-2 g-4&#34;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;140&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1801,7 +1813,8 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;140&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1810,7 +1823,8 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;140&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a longer card with supporting text below as a natural lead-in to additional content.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1819,7 +1833,8 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;140&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1828,11 +1843,11 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <p>Change it to <code>.row-cols-3</code> and you&rsquo;ll see the fourth card wrap.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
     <div class="card">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -1842,7 +1857,7 @@ Note that content should not be larger than the height of the image. If content 
   </div>
   <div class="col">
     <div class="card">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -1852,7 +1867,7 @@ Note that content should not be larger than the height of the image. If content 
   </div>
   <div class="col">
     <div class="card">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -1862,7 +1877,7 @@ Note that content should not be larger than the height of the image. If content 
   </div>
   <div class="col">
     <div class="card">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -1874,7 +1889,8 @@ Note that content should not be larger than the height of the image. If content 
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row row-cols-1 row-cols-md-3 g-4&#34;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;140&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1883,7 +1899,8 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;140&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1892,7 +1909,8 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;140&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a longer card with supporting text below as a natural lead-in to additional content.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1901,7 +1919,8 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;140&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1910,11 +1929,11 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <p>When you need equal height, add <code>.h-100</code> to the cards. If you want equal heights by default, you can set <code>$card-height: 100%</code> in Sass.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
     <div class="card h-100">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -1924,7 +1943,7 @@ Note that content should not be larger than the height of the image. If content 
   </div>
   <div class="col">
     <div class="card h-100">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -1934,7 +1953,7 @@ Note that content should not be larger than the height of the image. If content 
   </div>
   <div class="col">
     <div class="card h-100">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -1944,7 +1963,7 @@ Note that content should not be larger than the height of the image. If content 
   </div>
   <div class="col">
     <div class="card h-100">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -1956,7 +1975,8 @@ Note that content should not be larger than the height of the image. If content 
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row row-cols-1 row-cols-md-3 g-4&#34;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card h-100&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;140&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1965,7 +1985,8 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card h-100&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;140&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a short card.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1974,7 +1995,8 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card h-100&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;140&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a longer card with supporting text below as a natural lead-in to additional content.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1983,7 +2005,8 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card h-100&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;140&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -1992,11 +2015,11 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <p>Just like with card groups, card footers will automatically line up.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
     <div class="card h-100">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -2009,7 +2032,7 @@ Note that content should not be larger than the height of the image. If content 
   </div>
   <div class="col">
     <div class="card h-100">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -2022,7 +2045,7 @@ Note that content should not be larger than the height of the image. If content 
   </div>
   <div class="col">
     <div class="card h-100">
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+      <svg class="docs-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
 
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -2037,7 +2060,8 @@ Note that content should not be larger than the height of the image. If content 
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row row-cols-1 row-cols-md-3 g-4&#34;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card h-100&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -2049,7 +2073,8 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card h-100&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This card has supporting text below as a natural lead-in to additional content.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -2061,7 +2086,8 @@ Note that content should not be larger than the height of the image. If content 
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card h-100&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-img-top&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img card-img-top&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;180&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Image cap&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Image cap<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
       <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-body&#34;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-title&#34;</span><span class="p">&gt;</span>Card title<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card-text&#34;</span><span class="p">&gt;</span>This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -2072,8 +2098,6 @@ Note that content should not be larger than the height of the image. If content 
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
-<h3 id="masonry">Masonry</h3>
-<p>In <code>v4</code> we used a CSS-only technique to mimic the behavior of <a href="https://masonry.desandro.com/">Masonry</a>-like columns, but this technique came with lots of unpleasant <a href="https://github.com/twbs/bootstrap/pull/28922">side effects</a>. If you want to have this type of layout in <code>v5</code>, you can just make use of Masonry plugin. <strong>Masonry is not included in Bootstrap</strong>, but we&rsquo;ve made a <a href="/docs/4.0/examples/masonry/">demo example</a> to help you get started.</p>
 <h2 id="customizing">Customizing</h2>
 <h3 id="sass">SASS</h3>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$card-spacer-y</span><span class="o">:</span>                     <span class="nv">$spacer</span><span class="p">;</span>
@@ -2108,7 +2132,7 @@ Note that content should not be larger than the height of the image. If content 
 
       <footer class="footer p-3 p-md-5 mt-5 text-center text-sm-start">
   <div class="container">
-    <ul class="bd-footer-links ps-0 mb-3">
+    <ul class="docs-footer-links ps-0 mb-3">
       <li class="d-inline-block"><a href="https://github.com/coreui">GitHub</a></li>
       <li class="d-inline-block ms-3"><a href="https://twitter.com/core_ui">Twitter</a></li>
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
@@ -2122,7 +2146,7 @@ Note that content should not be larger than the height of the image. If content 
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-CZ1fanIfQQA3qdodQmpS5jZTYd/24O61wCeXZPQKEDd1jyNAJ2xBf0YcyoCeAnLh" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-QhgYN4WY6/5h5VonldJJYUyvf2UPweJFd7leRtB7uSm3sisWLYKpDrwfk9Kvj+C9" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

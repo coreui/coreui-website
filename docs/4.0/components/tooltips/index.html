@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-coreui-attributes for local title storage.">
-<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
 <meta name="generator" content="Hugo 0.79.0">
 
 <meta name="docsearch:language" content="en">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-7Tg46c568S0XjKELdHPRd1Fi7iOeLnunh6h5FFdKIy3R0BtWJ1KfTruMKaiyNTLZ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-Rxg5cYTZqXcMAFzxa3dkLGYBjDVqg/w6Xg8x8sJoW4gxhhcGHbvTZ5S99kJ8NokU" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -54,14 +54,14 @@
 <meta name="twitter:creator" content="@core_ui">
 <meta name="twitter:title" content="Tooltips">
 <meta name="twitter:description" content="Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-coreui-attributes for local title storage.">
-<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 
 <!-- Facebook -->
 <meta property="og:url" content="https://coreui.io/docs/4.0/components/tooltips/">
 <meta property="og:title" content="Tooltips">
 <meta property="og:description" content="Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-coreui-attributes for local title storage.">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta property="og:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1000">
 <meta property="og:image:height" content="500">
@@ -314,6 +314,9 @@
               <a href="/docs/4.0/components/button-group/" class="nav-link">Button group</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/components/callout/" class="nav-link">Callout</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/components/card/" class="nav-link">Card</a>
             </li>
             <li class="nav-item">
@@ -551,8 +554,8 @@
 
       
 <div class="container-lg my-md-4 flex-grow-1">
-  <main class="bd-main order-1">
-    <div class="bd-intro ps-lg-4">
+  <main class="docs-main order-1">
+    <div class="docs-intro ps-lg-4">
       
 <nav class="breadcrumb small mb-5" aria-label="breadcrumb">
   
@@ -579,23 +582,19 @@
     
     
   
-  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 11, 2021</span>
+  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 13, 2021</span>
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
         <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/components/tooltips.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
-        <h1 class="bd-title" id="content">Tooltips</h1>
+        <h1 class="docs-title" id="content">Tooltips</h1>
       </div>
-      <p class="bd-lead">Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-coreui-attributes for local title storage.</p>
-      <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
-
-
-<div data-ea-publisher="coreui-io" data-ea-type="image"></div>
-
+      <p class="docs-lead">Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-coreui-attributes for local title storage.</p>
+      
     </div>
 
     
-      <div class="bd-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
+      <div class="docs-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
         <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
         <nav id="TableOfContents">
   <ul>
@@ -634,7 +633,7 @@
       </div>
     
 
-    <div class="bd-content ps-lg-4">
+    <div class="docs-content ps-lg-4">
       
 
       <h2 id="overview">Overview</h2>
@@ -650,11 +649,11 @@
 <li>Tooltips must be hidden before their corresponding elements have been removed from the DOM.</li>
 <li>Tooltips can be triggered thanks to an element inside a shadow DOM.</li>
 </ul>
-<div class="bd-callout bd-callout-info">
+<div class="docs-callout docs-callout-info">
 By default, this component uses the built-in content sanitizer, which strips out any HTML elements that are not explicitly allowed. See the <a href="/docs/4.0/getting-started/javascript/#sanitizer">sanitizer section in our JavaScript documentation</a> for more details.
 </div>
 
-<div class="bd-callout bd-callout-info">
+<div class="docs-callout docs-callout-info">
 The animation effect of this component is dependent on the <code>prefers-reduced-motion</code> media query. See the <a href="/docs/4.0/getting-started/accessibility/#reduced-motion">reduced motion section of our accessibility documentation</a>.
 </div>
 
@@ -667,13 +666,13 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <span class="p">})</span>
 </code></pre></div><h2 id="examples">Examples</h2>
 <p>Hover over the links below to see tooltips:</p>
-<div class="bd-example tooltip-demo">
+<div class="docs-example tooltip-demo">
   <p class="muted">Tight pants next level keffiyeh <a href="#" data-coreui-toggle="tooltip" title="Default tooltip">you probably</a> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel <a href="#" data-coreui-toggle="tooltip" title="Another tooltip">have a</a> terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray. A really ironic artisan <a href="#" data-coreui-toggle="tooltip" title="Another one here too">whatever keytar</a>, scenester farm-to-table banksy Austin <a href="#" data-coreui-toggle="tooltip" title="The last tip!">twitter handle</a> freegan cred raw denim single-origin coffee viral.
   </p>
 </div>
 <p>Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL.</p>
-<div class="bd-example tooltip-demo">
-  <div class="bd-example-tooltips">
+<div class="docs-example tooltip-demo">
+  <div class="docs-example-tooltips">
     <button type="button" class="btn btn-secondary" data-coreui-toggle="tooltip" data-coreui-placement="top" title="Tooltip on top">Tooltip on top</button>
     <button type="button" class="btn btn-secondary" data-coreui-toggle="tooltip" data-coreui-placement="right" title="Tooltip on right">Tooltip on right</button>
     <button type="button" class="btn btn-secondary" data-coreui-toggle="tooltip" data-coreui-placement="bottom" title="Tooltip on bottom">Tooltip on bottom</button>
@@ -698,7 +697,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
   Tooltip with HTML
 <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 </code></pre></div><p>With an SVG:</p>
-<div class="bd-example tooltip-demo">
+<div class="docs-example tooltip-demo">
   <a href="#" data-coreui-toggle="tooltip" title="Default tooltip">
     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100">
       <rect width="100%" height="100%" fill="#563d7c"/>
@@ -711,7 +710,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <p>Trigger the tooltip via JavaScript:</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">exampleEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">tooltip</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Tooltip</span><span class="p">(</span><span class="nx">exampleEl</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
-</code></pre></div><div class="bd-callout bd-callout-warning">
+</code></pre></div><div class="docs-callout docs-callout-warning">
 <h5 id="overflow-auto-and-scroll">Overflow <code>auto</code> and <code>scroll</code></h5>
 <p>Tooltip position attempts to automatically change when a parent container has <code>overflow: auto</code> or <code>overflow: scroll</code> like our <code>.table-responsive</code>, but still keeps the original placement&rsquo;s positioning. To resolve, set the <code>boundary</code> option to anything other than default value, <code>'scrollParent'</code>, such as <code>'window'</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">exampleEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
@@ -723,7 +722,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 
 <h3 id="markup">Markup</h3>
 <p>The required markup for a tooltip is only a <code>data</code> attribute and <code>title</code> on the HTML element you wish to have a tooltip. The generated markup of a tooltip is rather simple, though it does require a position (by default, set to <code>top</code> by the plugin).</p>
-<div class="bd-callout bd-callout-warning">
+<div class="docs-callout docs-callout-warning">
 <h5 id="making-tooltips-work-for-keyboard-and-assistive-technology-users">Making tooltips work for keyboard and assistive technology users</h5>
 <p>You should only add tooltips to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). Although arbitrary HTML elements (such as <code>&lt;span&gt;</code>s) can be made focusable by adding the <code>tabindex=&quot;0&quot;</code> attribute, this will add potentially annoying and confusing tab stops on non-interactive elements for keyboard users, and most assistive technologies currently do not announce the tooltip in this situation. Additionally, do not rely solely on <code>hover</code> as the trigger for your tooltip, as this will make your tooltips impossible to trigger for keyboard users.
 </div>
@@ -741,7 +740,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </code></pre></div><h3 id="disabled-elements">Disabled elements</h3>
 <p>Elements with the <code>disabled</code> attribute aren&rsquo;t interactive, meaning users cannot focus, hover, or click them to trigger a tooltip (or popover). As a workaround, you&rsquo;ll want to trigger the tooltip from a wrapper <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code>, ideally made keyboard-focusable using <code>tabindex=&quot;0&quot;</code>, and override the <code>pointer-events</code> on the disabled element.</p>
 <div class="tooltip-demo">
-<div class="bd-example">
+<div class="docs-example">
 <span class="d-inline-block" tabindex="0" data-coreui-toggle="tooltip" title="Disabled tooltip">
   <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Disabled button</button>
 </span>
@@ -751,7 +750,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </div>
 <h3 id="options">Options</h3>
 <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-coreui-</code>, as in <code>data-coreui-animation=&quot;&quot;</code>.</p>
-<div class="bd-callout bd-callout-warning">
+<div class="docs-callout docs-callout-warning">
 Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code>, and <code>allowList</code> options cannot be supplied using data attributes.
 </div>
 
@@ -892,13 +891,13 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
     </tr>
   </tbody>
 </table>
-<div class="bd-callout bd-callout-info">
+<div class="docs-callout docs-callout-info">
 <h4 id="data-attributes-for-individual-tooltips">Data attributes for individual tooltips</h4>
 <p>Options for individual tooltips can alternatively be specified through the use of data attributes, as explained above.
 </div>
 
 <h3 id="methods">Methods</h3>
-<div class="bd-callout bd-callout-danger">
+<div class="docs-callout docs-callout-danger">
 <h4 id="asynchronous-methods-and-transitions">Asynchronous methods and transitions</h4>
 <p>All API methods are <strong>asynchronous</strong> and start a <strong>transition</strong>. They return to the caller as soon as the transition is started but <strong>before it ends</strong>. In addition, a method call on a <strong>transitioning component will be ignored</strong>.</p>
 <p><a href="/docs/4.0/getting-started/javascript/#asynchronous-functions-and-transitions">See our JavaScript documentation for more information</a>.</p>
@@ -999,7 +998,7 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
 
       <footer class="footer p-3 p-md-5 mt-5 text-center text-sm-start">
   <div class="container">
-    <ul class="bd-footer-links ps-0 mb-3">
+    <ul class="docs-footer-links ps-0 mb-3">
       <li class="d-inline-block"><a href="https://github.com/coreui">GitHub</a></li>
       <li class="d-inline-block ms-3"><a href="https://twitter.com/core_ui">Twitter</a></li>
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
@@ -1013,7 +1012,7 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-CZ1fanIfQQA3qdodQmpS5jZTYd/24O61wCeXZPQKEDd1jyNAJ2xBf0YcyoCeAnLh" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-QhgYN4WY6/5h5VonldJJYUyvf2UPweJFd7leRtB7uSm3sisWLYKpDrwfk9Kvj+C9" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

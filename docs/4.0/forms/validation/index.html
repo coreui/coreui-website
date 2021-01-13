@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.">
-<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
 <meta name="generator" content="Hugo 0.79.0">
 
 <meta name="docsearch:language" content="en">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-7Tg46c568S0XjKELdHPRd1Fi7iOeLnunh6h5FFdKIy3R0BtWJ1KfTruMKaiyNTLZ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-Rxg5cYTZqXcMAFzxa3dkLGYBjDVqg/w6Xg8x8sJoW4gxhhcGHbvTZ5S99kJ8NokU" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -54,14 +54,14 @@
 <meta name="twitter:creator" content="@core_ui">
 <meta name="twitter:title" content="Validation">
 <meta name="twitter:description" content="Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.">
-<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 
 <!-- Facebook -->
 <meta property="og:url" content="https://coreui.io/docs/4.0/forms/validation/">
 <meta property="og:title" content="Validation">
 <meta property="og:description" content="Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta property="og:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1000">
 <meta property="og:image:height" content="500">
@@ -314,6 +314,9 @@
               <a href="/docs/4.0/components/button-group/" class="nav-link">Button group</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/components/callout/" class="nav-link">Callout</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/components/card/" class="nav-link">Card</a>
             </li>
             <li class="nav-item">
@@ -551,8 +554,8 @@
 
       
 <div class="container-lg my-md-4 flex-grow-1">
-  <main class="bd-main order-1">
-    <div class="bd-intro ps-lg-4">
+  <main class="docs-main order-1">
+    <div class="docs-intro ps-lg-4">
       
 <nav class="breadcrumb small mb-5" aria-label="breadcrumb">
   
@@ -584,18 +587,14 @@
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
         <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/forms/validation.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
-        <h1 class="bd-title" id="content">Validation</h1>
+        <h1 class="docs-title" id="content">Validation</h1>
       </div>
-      <p class="bd-lead">Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.</p>
-      <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
-
-
-<div data-ea-publisher="coreui-io" data-ea-type="image"></div>
-
+      <p class="docs-lead">Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.</p>
+      
     </div>
 
     
-      <div class="bd-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
+      <div class="docs-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
         <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
         <nav id="TableOfContents">
   <ul>
@@ -611,10 +610,10 @@
       </div>
     
 
-    <div class="bd-content ps-lg-4">
+    <div class="docs-content ps-lg-4">
       
 
-      <div class="bd-callout bd-callout-warning">
+      <div class="docs-callout docs-callout-warning">
 We are aware that currently the client-side custom validation styles and tooltips are not accessible, since they are not exposed to assistive technologies. While we work on a solution, we&rsquo;d recommend either using the server-side option or the default browser validation method.
 </div>
 
@@ -634,7 +633,7 @@ We are aware that currently the client-side custom validation styles and tooltip
 <h2 id="custom-styles">Custom styles</h2>
 <p>For custom CoreUI for Bootstrap form validation messages, you&rsquo;ll need to add the <code>novalidate</code> boolean attribute to your <code>&lt;form&gt;</code>. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript. Try to submit the form below; our JavaScript will intercept the submit button and relay feedback to you. When attempting to submit, you&rsquo;ll see the <code>:invalid</code> and <code>:valid</code> styles applied to your form controls.</p>
 <p>Custom feedback styles apply custom colors, borders, focus styles, and background icons to better communicate feedback. Background icons for <code>&lt;select&gt;</code>s are only available with <code>.form-select</code>, and not <code>.form-control</code>.</p>
-<div class="bd-example">
+<div class="docs-example">
 <form class="row g-3 needs-validation" novalidate>
   <div class="col-md-4">
     <label for="validationCustom01" class="form-label">First name</label>
@@ -787,7 +786,7 @@ We are aware that currently the client-side custom validation styles and tooltip
 <h2 id="browser-defaults">Browser defaults</h2>
 <p>Not interested in custom validation feedback messages or writing JavaScript to change form behaviors? All good, you can use the browser defaults. Try submitting the form below. Depending on your browser and OS, you&rsquo;ll see a slightly different style of feedback.</p>
 <p>While these feedback styles cannot be styled with CSS, you can still customize the feedback text through JavaScript.</p>
-<div class="bd-example">
+<div class="docs-example">
 <form class="row g-3">
   <div class="col-md-4">
     <label for="validationDefault01" class="form-label">First name</label>
@@ -878,7 +877,7 @@ We are aware that currently the client-side custom validation styles and tooltip
 <p>We recommend using client-side validation, but in case you require server-side validation, you can indicate invalid and valid form fields with <code>.is-invalid</code> and <code>.is-valid</code>. Note that <code>.invalid-feedback</code> is also supported with these classes.</p>
 <p>For invalid fields, ensure that the invalid feedback/error message is associated with the relevant form field using <code>aria-describedby</code> (noting that this attribute allows more than one <code>id</code> to be referenced, in case the field already points to additional form text).</p>
 <p>To fix <a href="https://github.com/twbs/bootstrap/issues/25110">issues with border radii</a>, input groups require an additional <code>.has-validation</code> class.</p>
-<div class="bd-example">
+<div class="docs-example">
 <form class="row g-3">
   <div class="col-md-4">
     <label for="validationServer01" class="form-label">First name</label>
@@ -1014,7 +1013,7 @@ We are aware that currently the client-side custom validation styles and tooltip
 <li><code>&lt;select&gt;</code>s with <code>.form-select</code></li>
 <li><code>.form-check</code>s</li>
 </ul>
-<div class="bd-example">
+<div class="docs-example">
 <form class="was-validated">
   <div class="mb-3">
     <label for="validationTextarea" class="form-label">Textarea</label>
@@ -1105,7 +1104,7 @@ We are aware that currently the client-side custom validation styles and tooltip
 <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="tooltips">Tooltips</h2>
 <p>If your form layout allows it, you can swap the <code>.{valid|invalid}-feedback</code> classes for <code>.{valid|invalid}-tooltip</code> classes to display validation feedback in a styled tooltip. Be sure to have a parent with <code>position: relative</code> on it for tooltip positioning. In the example below, our column classes have this already, but your project may require an alternative setup.</p>
-<div class="bd-example">
+<div class="docs-example">
 <form class="row g-3 needs-validation" novalidate>
   <div class="col-md-4 position-relative">
     <label for="validationTooltip01" class="form-label">First name</label>
@@ -1238,7 +1237,7 @@ We are aware that currently the client-side custom validation styles and tooltip
 
       <footer class="footer p-3 p-md-5 mt-5 text-center text-sm-start">
   <div class="container">
-    <ul class="bd-footer-links ps-0 mb-3">
+    <ul class="docs-footer-links ps-0 mb-3">
       <li class="d-inline-block"><a href="https://github.com/coreui">GitHub</a></li>
       <li class="d-inline-block ms-3"><a href="https://twitter.com/core_ui">Twitter</a></li>
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
@@ -1252,7 +1251,7 @@ We are aware that currently the client-side custom validation styles and tooltip
       
   <script async src="/4.0/assets/js/validate-forms.js"></script>
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-CZ1fanIfQQA3qdodQmpS5jZTYd/24O61wCeXZPQKEDd1jyNAJ2xBf0YcyoCeAnLh" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-QhgYN4WY6/5h5VonldJJYUyvf2UPweJFd7leRtB7uSm3sisWLYKpDrwfk9Kvj+C9" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

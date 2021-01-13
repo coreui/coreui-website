@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Bootstrap breadcrumb navigation component which indicates the current location within a navigational hierarchy that automatically adds separators.">
-<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
 <meta name="generator" content="Hugo 0.79.0">
 
 <meta name="docsearch:language" content="en">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-7Tg46c568S0XjKELdHPRd1Fi7iOeLnunh6h5FFdKIy3R0BtWJ1KfTruMKaiyNTLZ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-Rxg5cYTZqXcMAFzxa3dkLGYBjDVqg/w6Xg8x8sJoW4gxhhcGHbvTZ5S99kJ8NokU" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -54,14 +54,14 @@
 <meta name="twitter:creator" content="@core_ui">
 <meta name="twitter:title" content="Bootstrap breadcrumb">
 <meta name="twitter:description" content="Bootstrap breadcrumb navigation component which indicates the current location within a navigational hierarchy that automatically adds separators.">
-<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 
 <!-- Facebook -->
 <meta property="og:url" content="https://coreui.io/docs/4.0/components/breadcrumb/">
 <meta property="og:title" content="Bootstrap breadcrumb">
 <meta property="og:description" content="Bootstrap breadcrumb navigation component which indicates the current location within a navigational hierarchy that automatically adds separators.">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta property="og:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1000">
 <meta property="og:image:height" content="500">
@@ -314,6 +314,9 @@
               <a href="/docs/4.0/components/button-group/" class="nav-link">Button group</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/components/callout/" class="nav-link">Callout</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/components/card/" class="nav-link">Card</a>
             </li>
             <li class="nav-item">
@@ -551,8 +554,8 @@
 
       
 <div class="container-lg my-md-4 flex-grow-1">
-  <main class="bd-main order-1">
-    <div class="bd-intro ps-lg-4">
+  <main class="docs-main order-1">
+    <div class="docs-intro ps-lg-4">
       
 <nav class="breadcrumb small mb-5" aria-label="breadcrumb">
   
@@ -584,24 +587,20 @@
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
         <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/components/breadcrumb.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
-        <h1 class="bd-title" id="content">Bootstrap breadcrumb</h1>
+        <h1 class="docs-title" id="content">Bootstrap breadcrumb</h1>
       </div>
-      <p class="bd-lead">Bootstrap breadcrumb navigation component which indicates the current location within a navigational hierarchy that automatically adds separators.</p>
-      <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
-
-
-<div data-ea-publisher="coreui-io" data-ea-type="image"></div>
-
+      <p class="docs-lead">Bootstrap breadcrumb navigation component which indicates the current location within a navigational hierarchy that automatically adds separators.</p>
+      
     </div>
 
     
 
-    <div class="bd-content ps-lg-4">
+    <div class="docs-content ps-lg-4">
       
 
       <h2 id="example">Example</h2>
 <p>The breadcrumb navigation provides links back to each previous page the user navigated through and shows the current location in a website or an application. You don&rsquo;t have to add separators, because they automatically added in CSS through <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::before"><code>::before</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/content"><code>content</code></a>.</p>
-<div class="bd-example">
+<div class="docs-example">
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item active" aria-current="page">Home</li>
@@ -644,7 +643,7 @@
 <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="dividers">Dividers</h2>
 <p>Dividers are automatically added in CSS through <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::before"><code>::before</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/content"><code>content</code></a>. They can be changed by modifying a local CSS custom property <code>--coreui-breadcrumb-divider</code>, or through the <code>$breadcrumb-divider</code> Sass variable — and <code>$breadcrumb-divider-flipped</code> for its RTL counterpart, if needed. We default to our Sass variable, which is set as a fallback to the custom property. This way, you get a global divider that you can override without recompiling CSS at any time.</p>
-<div class="bd-example">
+<div class="docs-example">
 <nav style="--coreui-breadcrumb-divider: '>';" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -660,7 +659,7 @@
 <p>When modifying via Sass, the <a href="https://sass-lang.com/documentation/modules/string#quote">quote</a> function is required to generate the quotes around a string. For example, using <code>&gt;</code> as the divider, you can use this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$breadcrumb-divider</span><span class="o">:</span> <span class="nf">quote</span><span class="p">(</span><span class="s2">&#34;&gt;&#34;</span><span class="p">);</span>
 </code></pre></div><p>It&rsquo;s also possible to use an <strong>embedded SVG icon</strong>. Apply it via our CSS custom property, or use the Sass variable.</p>
-<div class="bd-example">
+<div class="docs-example">
 <nav style="--coreui-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -675,7 +674,7 @@
 <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span></code></pre></div>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$breadcrumb-divider</span><span class="o">:</span> <span class="sx">url(&#34;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;8&#39; height=&#39;8&#39;%3E%3Cpath d=&#39;M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z&#39; fill=&#39;currentColor&#39;/%3E%3C/svg%3E&#34;)</span><span class="p">;</span>
 </code></pre></div><p>You can also remove the divider setting <code>--coreui-breadcrumb-divider: '';</code> (empty strings in CSS custom properties counts as a value), or setting the Sass variable to <code>$breadcrumb-divider: none;</code>.</p>
-<div class="bd-example">
+<div class="docs-example">
 <nav style="--coreui-breadcrumb-divider: '';" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -718,7 +717,7 @@
 
       <footer class="footer p-3 p-md-5 mt-5 text-center text-sm-start">
   <div class="container">
-    <ul class="bd-footer-links ps-0 mb-3">
+    <ul class="docs-footer-links ps-0 mb-3">
       <li class="d-inline-block"><a href="https://github.com/coreui">GitHub</a></li>
       <li class="d-inline-block ms-3"><a href="https://twitter.com/core_ui">Twitter</a></li>
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
@@ -732,7 +731,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-CZ1fanIfQQA3qdodQmpS5jZTYd/24O61wCeXZPQKEDd1jyNAJ2xBf0YcyoCeAnLh" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-QhgYN4WY6/5h5VonldJJYUyvf2UPweJFd7leRtB7uSm3sisWLYKpDrwfk9Kvj+C9" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

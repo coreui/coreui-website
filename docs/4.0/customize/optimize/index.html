@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Keep your projects lean, responsive, and maintainable so you can deliver the best experience and focus on more important jobs.">
-<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
 <meta name="generator" content="Hugo 0.79.0">
 
 <meta name="docsearch:language" content="en">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-7Tg46c568S0XjKELdHPRd1Fi7iOeLnunh6h5FFdKIy3R0BtWJ1KfTruMKaiyNTLZ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-Rxg5cYTZqXcMAFzxa3dkLGYBjDVqg/w6Xg8x8sJoW4gxhhcGHbvTZ5S99kJ8NokU" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -54,14 +54,14 @@
 <meta name="twitter:creator" content="@core_ui">
 <meta name="twitter:title" content="Optimize">
 <meta name="twitter:description" content="Keep your projects lean, responsive, and maintainable so you can deliver the best experience and focus on more important jobs.">
-<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 
 <!-- Facebook -->
 <meta property="og:url" content="https://coreui.io/docs/4.0/customize/optimize/">
 <meta property="og:title" content="Optimize">
 <meta property="og:description" content="Keep your projects lean, responsive, and maintainable so you can deliver the best experience and focus on more important jobs.">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta property="og:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1000">
 <meta property="og:image:height" content="500">
@@ -314,6 +314,9 @@
               <a href="/docs/4.0/components/button-group/" class="nav-link">Button group</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/components/callout/" class="nav-link">Callout</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/components/card/" class="nav-link">Card</a>
             </li>
             <li class="nav-item">
@@ -551,8 +554,8 @@
 
       
 <div class="container-lg my-md-4 flex-grow-1">
-  <main class="bd-main order-1">
-    <div class="bd-intro ps-lg-4">
+  <main class="docs-main order-1">
+    <div class="docs-intro ps-lg-4">
       
 <nav class="breadcrumb small mb-5" aria-label="breadcrumb">
   
@@ -584,18 +587,14 @@
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
         <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/customize/optimize.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
-        <h1 class="bd-title" id="content">Optimize</h1>
+        <h1 class="docs-title" id="content">Optimize</h1>
       </div>
-      <p class="bd-lead">Keep your projects lean, responsive, and maintainable so you can deliver the best experience and focus on more important jobs.</p>
-      <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
-
-
-<div data-ea-publisher="coreui-io" data-ea-type="image"></div>
-
+      <p class="docs-lead">Keep your projects lean, responsive, and maintainable so you can deliver the best experience and focus on more important jobs.</p>
+      
     </div>
 
     
-      <div class="bd-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
+      <div class="docs-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
         <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
         <nav id="TableOfContents">
   <ul>
@@ -609,7 +608,7 @@
       </div>
     
 
-    <div class="bd-content ps-lg-4">
+    <div class="docs-content ps-lg-4">
       
 
       <h2 id="lean-sass-imports">Lean Sass imports</h2>
@@ -652,8 +651,9 @@
 <span class="k">@import</span> <span class="s2">&#34;spinners&#34;</span><span class="p">;</span>
 
 <span class="k">@import</span> <span class="s2">&#34;avatar&#34;</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">&#34;header&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;callout&#34;</span><span class="p">;</span>
 <span class="k">@import</span> <span class="s2">&#34;footer&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;header&#34;</span><span class="p">;</span>
 <span class="k">@import</span> <span class="s2">&#34;icon&#34;</span><span class="p">;</span>
 <span class="k">@import</span> <span class="s2">&#34;sidebar&#34;</span><span class="p">;</span>
 <span class="k">@import</span> <span class="s2">&#34;subheader&#34;</span><span class="p">;</span>
@@ -681,7 +681,7 @@
 </span><span class="c1">// import &#39;@coreui/coreui/js/dist/toast&#39;;
 </span><span class="c1">// import &#39;@coreui/coreui/js/dist/tooltip&#39;;
 </span></code></pre></div><p>This way, you&rsquo;re not including any JavaScript you don&rsquo;t intend to use for components like buttons, carousels, and tooltips. If you&rsquo;re importing dropdowns, tooltips or popovers, be sure to list the Popper dependency in your <code>package.json</code> file.</p>
-<div class="bd-callout bd-callout-info">
+<div class="docs-callout docs-callout-info">
 <h3 id="default-exports">Default Exports</h3>
 <p>Files in <code>@coreui/coreui/js/dist</code> use the <strong>default export</strong>, so if you want to use one of them you have to do the following:</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">Modal</span> <span class="nx">from</span> <span class="s1">&#39;@coreui/coreui/js/dist/modal&#39;</span>
@@ -710,7 +710,7 @@
 
       <footer class="footer p-3 p-md-5 mt-5 text-center text-sm-start">
   <div class="container">
-    <ul class="bd-footer-links ps-0 mb-3">
+    <ul class="docs-footer-links ps-0 mb-3">
       <li class="d-inline-block"><a href="https://github.com/coreui">GitHub</a></li>
       <li class="d-inline-block ms-3"><a href="https://twitter.com/core_ui">Twitter</a></li>
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
@@ -724,7 +724,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-CZ1fanIfQQA3qdodQmpS5jZTYd/24O61wCeXZPQKEDd1jyNAJ2xBf0YcyoCeAnLh" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-QhgYN4WY6/5h5VonldJJYUyvf2UPweJFd7leRtB7uSm3sisWLYKpDrwfk9Kvj+C9" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

@@ -1,6 +1,6 @@
 /*!
   * CoreUI v4.0.0-alpha.0 (https://coreui.io)
-  * Copyright 2021 undefined
+  * Copyright 2021 The CoreUI Team (https://github.com/orgs/coreui/people)
   * Licensed under MIT (https://coreui.io)
   */
 import * as Popper from '@popperjs/core';
@@ -56,7 +56,10 @@ function _assertThisInitialized(self) {
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-beta1): util/index.js
+ * CoreUI (v4.0.0-alpha.0): alert.js
+ * Licensed under MIT (https://coreui.io/license)
+ *
+ * This component is a modified version of the Bootstrap's  util/index.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -259,7 +262,10 @@ var defineJQueryPlugin = function defineJQueryPlugin(name, plugin) {
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-beta1): dom/data.js
+ * CoreUI (v4.0.0-alpha.0): alert.js
+ * Licensed under MIT (https://coreui.io/license)
+ *
+ * This component is a modified version of the Bootstrap's dom/data.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -326,7 +332,10 @@ var Data = {
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-beta1): dom/event-handler.js
+ * CoreUI (v4.0.0-alpha.0): alert.js
+ * Licensed under MIT (https://coreui.io/license)
+ *
+ * This component is a modified version of the Bootstrap's  dom/event-handler.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -860,7 +869,10 @@ defineJQueryPlugin(NAME$1, Button);
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-beta1): dom/manipulator.js
+ * CoreUI (v4.0.0-alpha.0): alert.js
+ * Licensed under MIT (https://coreui.io/license)
+ *
+ * This component is a modified version of the Bootstrap's  dom/manipulator.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -904,9 +916,9 @@ var Manipulator = {
 
     var attributes = {};
     Object.keys(element.dataset).filter(function (key) {
-      return key.startsWith('bs');
+      return key.startsWith('coreui');
     }).forEach(function (key) {
-      var pureKey = key.replace(/^bs/, '');
+      var pureKey = key.replace(/^coreui/, '');
       pureKey = pureKey.charAt(0).toLowerCase() + pureKey.slice(1, pureKey.length);
       attributes[pureKey] = normalizeData(element.dataset[key]);
     });
@@ -932,7 +944,10 @@ var Manipulator = {
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-beta1): dom/selector-engine.js
+ * CoreUI (v4.0.0-alpha.0): alert.js
+ * Licensed under MIT (https://coreui.io/license)
+ *
+ * This component is a modified version of the Bootstrap's  dom/selector-engine.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -3087,11 +3102,11 @@ var EVENT_KEY$6 = "." + DATA_KEY$6;
 var DATA_API_KEY$6 = '.data-api';
 var Default$4 = {
   activeLinksExact: true,
-  dropdownAccordion: true
+  groupsAutoCollapse: true
 };
 var DefaultType$4 = {
   activeLinksExact: 'boolean',
-  dropdownAccordion: '(string|boolean)'
+  groupsAutoCollapse: '(string|boolean)'
 };
 var CLASS_NAME_ACTIVE$2 = 'active';
 var CLASS_NAME_SHOW$4 = 'show';
@@ -3276,7 +3291,7 @@ var Navigation = /*#__PURE__*/function (_BaseComponent) {
     }; // Close other groups
 
 
-    if (this._config.dropdownAccordion === true) {
+    if (this._config.groupsAutoCollapse === true) {
       this._getSiblings(toggler.parentNode, filter).forEach(function (element) {
         _this3._slideUp(SelectorEngine.findOne(SELECTOR_NAV_GROUP_ITEMS, element), function () {
           element.classList.remove(CLASS_NAME_SHOW$4);
@@ -3386,7 +3401,10 @@ defineJQueryPlugin(NAME$6, Navigation);
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.0-beta1): util/sanitizer.js
+ * CoreUI (v4.0.0-alpha.0): alert.js
+ * Licensed under MIT (https://coreui.io/license)
+ *
+ * This component is a modified version of the Bootstrap's  util/sanitizer.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -4735,7 +4753,7 @@ var CLASS_NAME_SHOW$7 = 'show';
 var CLASS_NAME_SIDEBAR_NARROW = 'sidebar-narrow';
 var CLASS_NAME_SIDEBAR_OVERLAID = 'sidebar-overlaid';
 var CLASS_NAME_SIDEBAR_SHOW = 'sidebar-show';
-var CLASS_NAME_SIDEBAR_UNFOLDABLE = 'sidebar-unfoldable'; // eslint-disable-next-line prefer-regex-literals
+var CLASS_NAME_SIDEBAR_NARROW_UNFOLDABLE = 'sidebar-narrow-unfoldable'; // eslint-disable-next-line prefer-regex-literals
 
 var REGEXP_SIDEBAR_SHOW = new RegExp('sidebar.*show');
 var EVENT_HIDE$3 = "hide" + EVENT_KEY$a;
@@ -4853,7 +4871,7 @@ var Sidebar = /*#__PURE__*/function (_BaseComponent) {
   };
 
   _proto.toggle = function toggle(breakpoint) {
-    if (this._isVisible()) {
+    if (this._show) {
       this.hide(breakpoint);
       return;
     }
@@ -4871,7 +4889,7 @@ var Sidebar = /*#__PURE__*/function (_BaseComponent) {
 
   _proto.unfoldable = function unfoldable() {
     if (!this._isMobile()) {
-      this._addClassName(CLASS_NAME_SIDEBAR_UNFOLDABLE);
+      this._addClassName(CLASS_NAME_SIDEBAR_NARROW_UNFOLDABLE);
 
       this._unfoldable = true;
     }
@@ -4886,7 +4904,7 @@ var Sidebar = /*#__PURE__*/function (_BaseComponent) {
       }
 
       if (this._unfoldable) {
-        this._element.classList.remove(CLASS_NAME_SIDEBAR_UNFOLDABLE);
+        this._element.classList.remove(CLASS_NAME_SIDEBAR_NARROW_UNFOLDABLE);
 
         this._unfoldable = false;
       }
@@ -4946,7 +4964,7 @@ var Sidebar = /*#__PURE__*/function (_BaseComponent) {
   };
 
   _proto._isUnfoldable = function _isUnfoldable() {
-    return this._element.classList.contains(CLASS_NAME_SIDEBAR_UNFOLDABLE);
+    return this._element.classList.contains(CLASS_NAME_SIDEBAR_NARROW_UNFOLDABLE);
   } // eslint-disable-next-line no-warning-comments
   // TODO: ta metoda nie zawsze działa poprawnie
   ;

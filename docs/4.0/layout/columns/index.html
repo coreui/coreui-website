@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Learn how to modify columns with a handful of options for alignment, ordering, and offsetting thanks to our flexbox grid system. Plus, see how to use column classes to manage widths of non-grid elements.">
-<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
 <meta name="generator" content="Hugo 0.79.0">
 
 <meta name="docsearch:language" content="en">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-7Tg46c568S0XjKELdHPRd1Fi7iOeLnunh6h5FFdKIy3R0BtWJ1KfTruMKaiyNTLZ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-Rxg5cYTZqXcMAFzxa3dkLGYBjDVqg/w6Xg8x8sJoW4gxhhcGHbvTZ5S99kJ8NokU" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -54,14 +54,14 @@
 <meta name="twitter:creator" content="@core_ui">
 <meta name="twitter:title" content="Columns">
 <meta name="twitter:description" content="Learn how to modify columns with a handful of options for alignment, ordering, and offsetting thanks to our flexbox grid system. Plus, see how to use column classes to manage widths of non-grid elements.">
-<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta name="twitter:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 
 <!-- Facebook -->
 <meta property="og:url" content="https://coreui.io/docs/4.0/layout/columns/">
 <meta property="og:title" content="Columns">
 <meta property="og:description" content="Learn how to modify columns with a handful of options for alignment, ordering, and offsetting thanks to our flexbox grid system. Plus, see how to use column classes to manage widths of non-grid elements.">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://coreui.io/4.0/assets/brand/bootstrap-social.png">
+<meta property="og:image" content="https://coreui.io/4.0/assets/brand/coreui-social.jpg">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1000">
 <meta property="og:image:height" content="500">
@@ -314,6 +314,9 @@
               <a href="/docs/4.0/components/button-group/" class="nav-link">Button group</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/components/callout/" class="nav-link">Callout</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/components/card/" class="nav-link">Card</a>
             </li>
             <li class="nav-item">
@@ -551,8 +554,8 @@
 
       
 <div class="container-lg my-md-4 flex-grow-1">
-  <main class="bd-main order-1">
-    <div class="bd-intro ps-lg-4">
+  <main class="docs-main order-1">
+    <div class="docs-intro ps-lg-4">
       
 <nav class="breadcrumb small mb-5" aria-label="breadcrumb">
   
@@ -579,23 +582,19 @@
     
     
   
-  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 11, 2021</span>
+  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 13, 2021</span>
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
         <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/layout/columns.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
-        <h1 class="bd-title" id="content">Columns</h1>
+        <h1 class="docs-title" id="content">Columns</h1>
       </div>
-      <p class="bd-lead">Learn how to modify columns with a handful of options for alignment, ordering, and offsetting thanks to our flexbox grid system. Plus, see how to use column classes to manage widths of non-grid elements.</p>
-      <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
-
-
-<div data-ea-publisher="coreui-io" data-ea-type="image"></div>
-
+      <p class="docs-lead">Learn how to modify columns with a handful of options for alignment, ordering, and offsetting thanks to our flexbox grid system. Plus, see how to use column classes to manage widths of non-grid elements.</p>
+      
     </div>
 
     
-      <div class="bd-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
+      <div class="docs-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
         <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
         <nav id="TableOfContents">
   <ul>
@@ -625,10 +624,10 @@
       </div>
     
 
-    <div class="bd-content ps-lg-4">
+    <div class="docs-content ps-lg-4">
       
 
-      <div class="bd-callout bd-callout-info">
+      <div class="docs-callout docs-callout-info">
 <strong>Heads up!</strong> Be sure to <a href="/docs/4.0/layout/grid/">read the Grid page</a> first before diving into how to modify and customize your grid columns.
 </div>
 
@@ -647,7 +646,7 @@
 <h2 id="alignment">Alignment</h2>
 <p>Use flexbox alignment utilities to vertically and horizontally align columns.</p>
 <h3 id="vertical-alignment">Vertical alignment</h3>
-<div class="bd-example bd-example-row bd-example-row-flex-cols">
+<div class="docs-example docs-example-row docs-example-row-flex-cols">
 <div class="container">
   <div class="row align-items-start">
     <div class="col">
@@ -718,7 +717,7 @@
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
-<div class="bd-example bd-example-row bd-example-row-flex-cols">
+<div class="docs-example docs-example-row docs-example-row-flex-cols">
 <div class="container">
   <div class="row">
     <div class="col align-self-start">
@@ -746,7 +745,7 @@
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="horizontal-alignment">Horizontal alignment</h3>
-<div class="bd-example bd-example-row">
+<div class="docs-example docs-example-row">
 <div class="container">
   <div class="row justify-content-start">
     <div class="col-4">
@@ -849,7 +848,7 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="column-wrapping">Column wrapping</h3>
 <p>If more than 12 columns are placed within a single row, each group of extra columns will, as one unit, wrap onto a new line.</p>
-<div class="bd-example bd-example-row">
+<div class="docs-example docs-example-row">
 <div class="container">
   <div class="row">
     <div class="col-9">.col-9</div>
@@ -866,7 +865,7 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="column-breaks">Column breaks</h3>
 <p>Breaking columns to a new line in flexbox requires a small hack: add an element with <code>width: 100%</code> wherever you want to wrap your columns to a new line. Normally this is accomplished with multiple <code>.row</code>s, but not every implementation method can account for this.</p>
-<div class="bd-example bd-example-row">
+<div class="docs-example docs-example-row">
 <div class="container">
   <div class="row">
     <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
@@ -892,7 +891,7 @@
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <p>You may also apply this break at specific breakpoints with our <a href="/docs/4.0/utilities/display/">responsive display utilities</a>.</p>
-<div class="bd-example bd-example-row">
+<div class="docs-example docs-example-row">
 <div class="container">
   <div class="row">
     <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
@@ -920,7 +919,7 @@
 <h2 id="reordering">Reordering</h2>
 <h3 id="order-classes">Order classes</h3>
 <p>Use <code>.order-</code> classes for controlling the <strong>visual order</strong> of your content. These classes are responsive, so you can set the <code>order</code> by breakpoint (e.g., <code>.order-1.order-md-2</code>). Includes support for <code>1</code> through <code>5</code> across all six grid tiers.</p>
-<div class="bd-example bd-example-row">
+<div class="docs-example docs-example-row">
 <div class="container">
   <div class="row">
     <div class="col">
@@ -948,7 +947,7 @@
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <p>There are also responsive <code>.order-first</code> and <code>.order-last</code> classes that change the <code>order</code> of an element by applying <code>order: -1</code> and <code>order: 6</code>, respectively. These classes can also be intermixed with the numbered <code>.order-*</code> classes as needed.</p>
-<div class="bd-example bd-example-row">
+<div class="docs-example docs-example-row">
 <div class="container">
   <div class="row">
     <div class="col order-last">
@@ -979,7 +978,7 @@
 <p>You can offset grid columns in two ways: our responsive <code>.offset-</code> grid classes and our <a href="/docs/4.0/utilities/spacing/">margin utilities</a>. Grid classes are sized to match columns while margins are more useful for quick layouts where the width of the offset is variable.</p>
 <h4 id="offset-classes">Offset classes</h4>
 <p>Move columns to the right using <code>.offset-md-*</code> classes. These classes increase the left margin of a column by <code>*</code> columns. For example, <code>.offset-md-4</code> moves <code>.col-md-4</code> over four columns.</p>
-<div class="bd-example bd-example-row">
+<div class="docs-example docs-example-row">
 <div class="container">
   <div class="row">
     <div class="col-md-4">.col-md-4</div>
@@ -1006,8 +1005,7 @@
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-md-6 offset-md-3&#34;</span><span class="p">&gt;</span>.col-md-6 .offset-md-3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
-<p>In addition to column clearing at responsive breakpoints, you may need to reset offsets. See this in action in <a href="/docs/4.0/examples/grid/">the grid example</a>.</p>
-<div class="bd-example bd-example-row">
+<div class="docs-example docs-example-row">
 <div class="container">
   <div class="row">
     <div class="col-sm-5 col-md-6">.col-sm-5 .col-md-6</div>
@@ -1030,7 +1028,7 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h4 id="margin-utilities">Margin utilities</h4>
 <p>With the move to flexbox in v4, you can use margin utilities like <code>.me-auto</code> to force sibling columns away from one another.</p>
-<div class="bd-example bd-example-row">
+<div class="docs-example docs-example-row">
 <div class="container">
   <div class="row">
     <div class="col-md-4">.col-md-4</div>
@@ -1061,7 +1059,7 @@
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="standalone-column-classes">Standalone column classes</h2>
 <p>The <code>.col-*</code> classes can also be used outside a <code>.row</code> to give an element a specific width. Whenever column classes are used as non direct children of a row, the paddings are omitted.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="col-3 bg-light p-3 border">
   .col-3: width of 25%
 </div>
@@ -1075,9 +1073,9 @@
   .col-sm-9: width of 75% above sm breakpoint
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <p>The classes can be used together with utilities to create responsive floated images. Make sure to wrap the content in a <a href="/docs/4.0/helpers/clearfix/"><code>.clearfix</code></a> wrapper to clear the float if the text is shorter.</p>
-<div class="bd-example">
+<div class="docs-example">
 <div class="clearfix">
-  <svg class="bd-placeholder-img col-md-6 float-md-end mb-3 ms-md-3" width="100%" height="210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Responsive floated image" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Responsive floated image</text></svg>
+  <svg class="docs-placeholder-img col-md-6 float-md-end mb-3 ms-md-3" width="100%" height="210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Responsive floated image" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Responsive floated image</text></svg>
 
 
   <p>
@@ -1093,7 +1091,8 @@
   </p>
 </div>
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;clearfix&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-md-6 float-md-end mb-3 ms-md-3&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;docs-placeholder-img col-md-6 float-md-end mb-3 ms-md-3&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;210&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;img&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Placeholder: Responsive floated image&#34;</span> <span class="na">preserveAspectRatio</span><span class="o">=</span><span class="s">&#34;xMidYMid slice&#34;</span> <span class="na">focusable</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Placeholder<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;</span><span class="nt">rect</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#868e96&#34;</span><span class="p">/&gt;&lt;</span><span class="nt">text</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;#dee2e6&#34;</span> <span class="na">dy</span><span class="o">=</span><span class="s">&#34;.3em&#34;</span><span class="p">&gt;</span>Responsive floated image<span class="p">&lt;/</span><span class="nt">text</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+
 
   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
     Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue. Fusce dapibus, tellus ac cursus commodo, tortor mauris paddenstoel nibh, ut fermentum massa justo sit amet risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -1115,7 +1114,7 @@
 
       <footer class="footer p-3 p-md-5 mt-5 text-center text-sm-start">
   <div class="container">
-    <ul class="bd-footer-links ps-0 mb-3">
+    <ul class="docs-footer-links ps-0 mb-3">
       <li class="d-inline-block"><a href="https://github.com/coreui">GitHub</a></li>
       <li class="d-inline-block ms-3"><a href="https://twitter.com/core_ui">Twitter</a></li>
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
@@ -1129,7 +1128,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-CZ1fanIfQQA3qdodQmpS5jZTYd/24O61wCeXZPQKEDd1jyNAJ2xBf0YcyoCeAnLh" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-QhgYN4WY6/5h5VonldJJYUyvf2UPweJFd7leRtB7uSm3sisWLYKpDrwfk9Kvj+C9" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>
