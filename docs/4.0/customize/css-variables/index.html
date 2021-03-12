@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Use Bootstrap&rsquo;s CSS custom properties for fast and forward-looking design and development.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.79.0">
+<meta name="generator" content="Hugo 0.81.0">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-SioVlhqDfohZs0yvVVrzGw+diDZpksfDLOVEi9+aVygeysugUIn4ZhURCPazThIe" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hL+L9PKJVU/F+J2QBQ1HRgTGTrScDU0YiRBd79FqMtF6A9Q4xrgIpGz/S0Bd5kIr" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -67,11 +67,17 @@
 <meta property="og:image:height" content="500">
 
 
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
+
 
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-sticky sidebar-lg-show border-end ps-xl-4 docs-sidebar" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -124,6 +130,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/webpack/" class="nav-link">Webpack</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/parcel/" class="nav-link">Parcel</a>
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/accessibility/" class="nav-link">Accessibility</a>
@@ -261,6 +270,9 @@
               <a href="/docs/4.0/forms/select/" class="nav-link">Select</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/forms/multi-select/" class="nav-link">Multi Select</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/forms/checks-radios/" class="nav-link">Checks &amp; radios</a>
             </li>
             <li class="nav-item">
@@ -341,6 +353,9 @@
               <a href="/docs/4.0/components/list-group/" class="nav-link">List group</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/components/loading-buttons/" class="nav-link">Loading buttons</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/components/modal/" class="nav-link">Modal</a>
             </li>
             <li class="nav-item">
@@ -348,6 +363,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/components/navbar/" class="nav-link">Navbar</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/offcanvas/" class="nav-link">Offcanvas</a>
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/components/pagination/" class="nav-link">Pagination</a>
@@ -430,6 +448,9 @@
               <a href="/docs/4.0/utilities/api/" class="nav-link">API</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/utilities/background/" class="nav-link">Background</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/utilities/borders/" class="nav-link">Borders</a>
             </li>
             <li class="nav-item">
@@ -500,8 +521,8 @@
   </ul>
 </div>
 
-    <div class="wrapper flex-grow-1" data-coreui-reliant="sidebar">
-      <header class="header header-sticky mb-5">
+    <div class="wrapper flex-grow-1">
+      <header class="header header-sticky mb-5 elevation-0 border-bottom">
   <div class="container-fluid">
     <button class="header-toggler d-lg-none" type="button" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16">
@@ -586,7 +607,7 @@
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/customize/css-variables.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/v4-dev/docs/content/4.0/customize/css-variables.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
         <h1 class="docs-title" id="content">CSS variables</h1>
       </div>
       <p class="docs-lead">Use Bootstrap&rsquo;s CSS custom properties for fast and forward-looking design and development.</p>
@@ -635,6 +656,7 @@
             <li><a href="#checks-and-radios">Checks and Radios</a></li>
             <li><a href="#form-controls">Form Controls</a></li>
             <li><a href="#input-group">Input Group</a></li>
+            <li><a href="#multi-select">Multi Select</a></li>
             <li><a href="#range">Range</a></li>
             <li><a href="#select">Select</a></li>
           </ul>
@@ -688,14 +710,16 @@
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-accordion-border-color</span>
 <span class="nt">--cui-accordion-button-active-bg</span>
 <span class="nt">--cui-accordion-button-active-color</span>
+<span class="nt">--cui-accordion-button-active-icon</span>
 <span class="nt">--cui-accordion-button-bg</span>
 <span class="nt">--cui-accordion-button-color</span>
-<span class="nt">--cui-accordion-button-focus-border-color</span></code></pre></div>
+<span class="nt">--cui-accordion-button-focus-border-color</span>
+<span class="nt">--cui-accordion-button-icon</span></code></pre></div>
 <h4 id="alerts">Alerts</h4>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-alert-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-bg</span>
-<span class="nt">--cui-alert-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-border-color</span>
-<span class="nt">--cui-alert-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-color</span>
-<span class="nt">--cui-alert-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-link-color</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-alert-bg</span>
+<span class="nt">--cui-alert-border-color</span>
+<span class="nt">--cui-alert-color</span>
+<span class="nt">--cui-alert-link-color</span></code></pre></div>
 <h4 id="badges">Badges</h4>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-badge-color</span></code></pre></div>
 <h4 id="breadcrumb">Breadcrumb</h4>
@@ -705,36 +729,36 @@
 <span class="nt">--cui-breadcrumb-divider-color</span></code></pre></div>
 <h4 id="buttons">Buttons</h4>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-body-color</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-active-background</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-active-border</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-active-color</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-background</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-border-color</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-color</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-disabled-background</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-disabled-border</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-disabled-color</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-hover-background</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-hover-border</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-hover-color</span>
-<span class="nt">--cui-btn-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-shadow</span>
-<span class="nt">--cui-btn-ghost-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-active-background</span>
-<span class="nt">--cui-btn-ghost-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-active-border</span>
-<span class="nt">--cui-btn-ghost-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-color</span>
-<span class="nt">--cui-btn-ghost-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-hover-color</span>
-<span class="nt">--cui-btn-ghost-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-shadow</span>
+<span class="nt">--cui-btn-active-background</span>
+<span class="nt">--cui-btn-active-border</span>
+<span class="nt">--cui-btn-active-color</span>
+<span class="nt">--cui-btn-background</span>
+<span class="nt">--cui-btn-border-color</span>
+<span class="nt">--cui-btn-color</span>
+<span class="nt">--cui-btn-disabled-background</span>
+<span class="nt">--cui-btn-disabled-border</span>
+<span class="nt">--cui-btn-disabled-color</span>
+<span class="nt">--cui-btn-ghost-active-background</span>
+<span class="nt">--cui-btn-ghost-active-border</span>
+<span class="nt">--cui-btn-ghost-color</span>
+<span class="nt">--cui-btn-ghost-hover-color</span>
+<span class="nt">--cui-btn-ghost-shadow</span>
+<span class="nt">--cui-btn-hover-background</span>
+<span class="nt">--cui-btn-hover-border</span>
+<span class="nt">--cui-btn-hover-color</span>
 <span class="nt">--cui-btn-link-color</span>
 <span class="nt">--cui-btn-link-disabled-color</span>
 <span class="nt">--cui-btn-link-hover-color</span>
-<span class="nt">--cui-btn-outline-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-active-background</span>
-<span class="nt">--cui-btn-outline-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-active-border</span>
-<span class="nt">--cui-btn-outline-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-active-color</span>
-<span class="nt">--cui-btn-outline-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-color</span>
-<span class="nt">--cui-btn-outline-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-hover-color</span>
-<span class="nt">--cui-btn-outline-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-shadow</span></code></pre></div>
+<span class="nt">--cui-btn-outline-active-background</span>
+<span class="nt">--cui-btn-outline-active-border</span>
+<span class="nt">--cui-btn-outline-active-color</span>
+<span class="nt">--cui-btn-outline-color</span>
+<span class="nt">--cui-btn-outline-hover-color</span>
+<span class="nt">--cui-btn-outline-shadow</span>
+<span class="nt">--cui-btn-shadow</span></code></pre></div>
 <h4 id="callout">Callout</h4>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-callout-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-border-left-color</span>
-<span class="nt">--cui-callout-border-color</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-callout-border-color</span>
+<span class="nt">--cui-callout-border-left-color</span>
 <span class="nt">--cui-callout-border-left-width</span>
 <span class="nt">--cui-callout-border-width</span></code></pre></div>
 <h4 id="card">Card</h4>
@@ -750,12 +774,17 @@
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-dropdown-bg</span>
 <span class="nt">--cui-dropdown-border-color</span>
 <span class="nt">--cui-dropdown-color</span>
+<span class="nt">--cui-dropdown-dark-link-active-bg</span>
+<span class="nt">--cui-dropdown-dark-link-hover-bg</span>
 <span class="nt">--cui-dropdown-divider-bg</span>
 <span class="nt">--cui-dropdown-header-color</span>
+<span class="nt">--cui-dropdown-link-active-bg</span>
 <span class="nt">--cui-dropdown-link-active-color</span>
 <span class="nt">--cui-dropdown-link-color</span>
 <span class="nt">--cui-dropdown-link-disabled-color</span>
-<span class="nt">--cui-dropdown-link-hover-color</span></code></pre></div>
+<span class="nt">--cui-dropdown-link-hover-bg</span>
+<span class="nt">--cui-dropdown-link-hover-color</span>
+<span class="nt">--cui-position</span></code></pre></div>
 <h4 id="footer">Footer</h4>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-footer-bg</span>
 <span class="nt">--cui-footer-border-color</span>
@@ -778,16 +807,15 @@
 <span class="nt">--cui-header-toggler-hover-icon-bg</span>
 <span class="nt">--cui-header-toggler-icon-bg</span></code></pre></div>
 <h4 id="list-group">List Group</h4>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-list-group-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-background</span>
-<span class="nt">--cui-list-group-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-background-hover</span>
-<span class="nt">--cui-list-group-</span><span class="p">{</span><span class="nt">primary</span><span class="o">|</span><span class="nt">secondary</span><span class="o">|</span><span class="nt">success</span><span class="o">|</span><span class="nt">etc</span><span class="nc">.</span><span class="p">}</span><span class="nt">-color</span>
-<span class="nt">--cui-list-group-action-active-bg</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-list-group-action-active-bg</span>
 <span class="nt">--cui-list-group-action-active-color</span>
 <span class="nt">--cui-list-group-action-color</span>
 <span class="nt">--cui-list-group-action-hover-color</span>
 <span class="nt">--cui-list-group-active-bg</span>
 <span class="nt">--cui-list-group-active-border-color</span>
 <span class="nt">--cui-list-group-active-color</span>
+<span class="nt">--cui-list-group-background</span>
+<span class="nt">--cui-list-group-background-hover</span>
 <span class="nt">--cui-list-group-bg</span>
 <span class="nt">--cui-list-group-border-color</span>
 <span class="nt">--cui-list-group-color</span>
@@ -809,19 +837,26 @@
 <span class="nt">--cui-navbar-disabled-color</span>
 <span class="nt">--cui-navbar-hover-color</span>
 <span class="nt">--cui-navbar-toggler-border-color</span>
-<span class="nt">--cui-navbar-toggler-icon</span></code></pre></div>
+<span class="nt">--cui-navbar-toggler-icon</span>
+<span class="nt">--cui-scroll-height</span></code></pre></div>
 <h4 id="navs-and-tabs">Navs and Tabs</h4>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-nav-link-color</span>
 <span class="nt">--cui-nav-link-disabled-color</span>
 <span class="nt">--cui-nav-link-hover-color</span>
+<span class="nt">--cui-nav-pills-link-active-bg</span>
 <span class="nt">--cui-nav-pills-link-active-color</span>
 <span class="nt">--cui-nav-tabs-border-color</span>
 <span class="nt">--cui-nav-tabs-link-active-bg</span>
 <span class="nt">--cui-nav-tabs-link-active-border-color</span>
 <span class="nt">--cui-nav-tabs-link-active-color</span>
-<span class="nt">--cui-nav-tabs-link-hover-border-color</span></code></pre></div>
+<span class="nt">--cui-nav-tabs-link-hover-border-color</span>
+<span class="nt">--cui-nav-underline-border-color</span>
+<span class="nt">--cui-nav-underline-link-active-border-color</span>
+<span class="nt">--cui-nav-underline-link-active-color</span>
+<span class="nt">--cui-nav-underline-link-color</span></code></pre></div>
 <h4 id="pagination">Pagination</h4>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-pagination-active-border-color</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-pagination-active-bg</span>
+<span class="nt">--cui-pagination-active-border-color</span>
 <span class="nt">--cui-pagination-active-color</span>
 <span class="nt">--cui-pagination-bg</span>
 <span class="nt">--cui-pagination-border-color</span>
@@ -855,6 +890,25 @@
 <span class="nt">--cui-sidebar-color</span>
 <span class="nt">--cui-sidebar-footer-bg</span>
 <span class="nt">--cui-sidebar-header-bg</span>
+<span class="nt">--cui-sidebar-nav-group-bg</span>
+<span class="nt">--cui-sidebar-nav-group-indicator</span>
+<span class="nt">--cui-sidebar-nav-group-indicator-color</span>
+<span class="nt">--cui-sidebar-nav-group-indicator-hover</span>
+<span class="nt">--cui-sidebar-nav-group-indicator-hover-color</span>
+<span class="nt">--cui-sidebar-nav-group-toggle-show-color</span>
+<span class="nt">--cui-sidebar-nav-link-active-bg</span>
+<span class="nt">--cui-sidebar-nav-link-active-color</span>
+<span class="nt">--cui-sidebar-nav-link-active-icon-color</span>
+<span class="nt">--cui-sidebar-nav-link-bg</span>
+<span class="nt">--cui-sidebar-nav-link-color</span>
+<span class="nt">--cui-sidebar-nav-link-disabled-color</span>
+<span class="nt">--cui-sidebar-nav-link-disabled-icon-color</span>
+<span class="nt">--cui-sidebar-nav-link-hover-bg</span>
+<span class="nt">--cui-sidebar-nav-link-hover-color</span>
+<span class="nt">--cui-sidebar-nav-link-hover-icon-color</span>
+<span class="nt">--cui-sidebar-nav-link-icon-color</span>
+<span class="nt">--cui-sidebar-nav-title-color</span>
+<span class="nt">--cui-sidebar-occupy</span>
 <span class="nt">--cui-sidebar-toggler-bg</span>
 <span class="nt">--cui-sidebar-toggler-hover-bg</span>
 <span class="nt">--cui-sidebar-toggler-hover-indicator</span>
@@ -886,7 +940,8 @@
 <span class="nt">--cui-form-switch-focus-bg-image</span>
 <span class="nt">--cui-gradient</span></code></pre></div>
 <h4 id="form-controls">Form Controls</h4>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-form-file-button-color</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-form-file-button-bg</span>
+<span class="nt">--cui-form-file-button-color</span>
 <span class="nt">--cui-form-file-button-hover-bg</span>
 <span class="nt">--cui-input-bg</span>
 <span class="nt">--cui-input-border-color</span>
@@ -902,8 +957,39 @@
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-input-group-addon-bg</span>
 <span class="nt">--cui-input-group-addon-border-color</span>
 <span class="nt">--cui-input-group-addon-color</span></code></pre></div>
+<h4 id="multi-select">Multi Select</h4>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-close-color</span>
+<span class="nt">--cui-close-text-shadow</span>
+<span class="nt">--cui-form-multi-select-bg</span>
+<span class="nt">--cui-form-multi-select-border-color</span>
+<span class="nt">--cui-form-multi-select-color</span>
+<span class="nt">--cui-form-multi-select-disabled-bg</span>
+<span class="nt">--cui-form-multi-select-disabled-color</span>
+<span class="nt">--cui-form-multi-select-focus-bg</span>
+<span class="nt">--cui-form-multi-select-focus-border-color</span>
+<span class="nt">--cui-form-multi-select-focus-color</span>
+<span class="nt">--cui-form-multi-select-option-disabled-color</span>
+<span class="nt">--cui-form-multi-select-option-hover-bg</span>
+<span class="nt">--cui-form-multi-select-option-hover-color</span>
+<span class="nt">--cui-form-multi-select-option-indicator-bg</span>
+<span class="nt">--cui-form-multi-select-option-indicator-border</span>
+<span class="nt">--cui-form-multi-select-option-indicator-checked-bg</span>
+<span class="nt">--cui-form-multi-select-option-selected-bg</span>
+<span class="nt">--cui-form-multi-select-option-selected-indicator-bg</span>
+<span class="nt">--cui-form-multi-select-option-selected-indicator-bg-image</span>
+<span class="nt">--cui-form-multi-select-option-selected-indicator-border-color</span>
+<span class="nt">--cui-form-multi-select-options-bg</span>
+<span class="nt">--cui-form-multi-select-options-border-color</span>
+<span class="nt">--cui-form-multi-select-options-color</span>
+<span class="nt">--cui-form-multi-select-search-bg</span>
+<span class="nt">--cui-form-multi-select-search-border-color</span>
+<span class="nt">--cui-form-multi-select-search-color</span>
+<span class="nt">--cui-form-multi-select-tag-bg</span>
+<span class="nt">--cui-form-multi-select-tag-border-color</span></code></pre></div>
 <h4 id="range">Range</h4>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-form-range-thumb-disabled-bg</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-form-range-thumb-active-bg</span>
+<span class="nt">--cui-form-range-thumb-bg</span>
+<span class="nt">--cui-form-range-thumb-disabled-bg</span>
 <span class="nt">--cui-form-range-track-bg</span></code></pre></div>
 <h4 id="select">Select</h4>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-form-select-bg</span>
@@ -935,7 +1021,7 @@
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-alpha.1. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0-alpha.2. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -943,7 +1029,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-GGu38SDX+hEJN1ajifNnCWv188r3j0w3JllK6TK2A90aFotRDkUJUZu7ms/hRUp0" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-Feli9IkxVnEtu5QziT6QmtZbnOfbTsiaHtX5+sLtHs3y6ystCozQ3btsf5BmATvR" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Track and review changes to the CoreUI for Bootstrap source files, documentation, and components to help you migrate from v3 to v4.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.79.0">
+<meta name="generator" content="Hugo 0.81.0">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-SioVlhqDfohZs0yvVVrzGw+diDZpksfDLOVEi9+aVygeysugUIn4ZhURCPazThIe" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hL+L9PKJVU/F+J2QBQ1HRgTGTrScDU0YiRBd79FqMtF6A9Q4xrgIpGz/S0Bd5kIr" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -67,11 +67,17 @@
 <meta property="og:image:height" content="500">
 
 
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
+
 
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-sticky sidebar-lg-show border-end ps-xl-4 docs-sidebar" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -124,6 +130,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/webpack/" class="nav-link">Webpack</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/parcel/" class="nav-link">Parcel</a>
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/accessibility/" class="nav-link">Accessibility</a>
@@ -261,6 +270,9 @@
               <a href="/docs/4.0/forms/select/" class="nav-link">Select</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/forms/multi-select/" class="nav-link">Multi Select</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/forms/checks-radios/" class="nav-link">Checks &amp; radios</a>
             </li>
             <li class="nav-item">
@@ -341,6 +353,9 @@
               <a href="/docs/4.0/components/list-group/" class="nav-link">List group</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/components/loading-buttons/" class="nav-link">Loading buttons</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/components/modal/" class="nav-link">Modal</a>
             </li>
             <li class="nav-item">
@@ -348,6 +363,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/components/navbar/" class="nav-link">Navbar</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/offcanvas/" class="nav-link">Offcanvas</a>
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/components/pagination/" class="nav-link">Pagination</a>
@@ -430,6 +448,9 @@
               <a href="/docs/4.0/utilities/api/" class="nav-link">API</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/utilities/background/" class="nav-link">Background</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/utilities/borders/" class="nav-link">Borders</a>
             </li>
             <li class="nav-item">
@@ -500,8 +521,8 @@
   </ul>
 </div>
 
-    <div class="wrapper flex-grow-1" data-coreui-reliant="sidebar">
-      <header class="header header-sticky mb-5">
+    <div class="wrapper flex-grow-1">
+      <header class="header header-sticky mb-5 elevation-0 border-bottom">
   <div class="container-fluid">
     <button class="header-toggler d-lg-none" type="button" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16">
@@ -575,11 +596,11 @@
     
     
   
-  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 13, 2021</span>
+  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: March 5, 2021</span>
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/migration.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/v4-dev/docs/content/4.0/migration.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
         <h1 class="docs-title" id="content">Migrating to v4</h1>
       </div>
       <p class="docs-lead">Track and review changes to the CoreUI for Bootstrap source files, documentation, and components to help you migrate from v3 to v4.</p>
@@ -595,6 +616,17 @@
         <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
         <nav id="TableOfContents">
   <ul>
+    <li><a href="#v400-alpha2">v4.0.0-alpha.2</a>
+      <ul>
+        <li><a href="#utilities">Utilities</a></li>
+        <li><a href="#javascript">JavaScript</a></li>
+      </ul>
+    </li>
+    <li><a href="#v400-alpha2-1">v4.0.0-alpha.2</a>
+      <ul>
+        <li><a href="#sidebar">Sidebar</a></li>
+      </ul>
+    </li>
     <li><a href="#v400-alpha0">v4.0.0-alpha.0</a>
       <ul>
         <li><a href="#browser-support">Browser support</a></li>
@@ -625,20 +657,20 @@
         </li>
         <li><a href="#content">Content</a></li>
         <li><a href="#forms">Forms</a></li>
-        <li><a href="#javascript">JavaScript</a></li>
+        <li><a href="#javascript-1">JavaScript</a></li>
         <li><a href="#grid-and-layout">Grid and layout</a></li>
         <li><a href="#helpers">Helpers</a></li>
         <li><a href="#misc">Misc</a></li>
         <li><a href="#sass">Sass</a></li>
         <li><a href="#typography">Typography</a></li>
-        <li><a href="#utilities">Utilities</a></li>
+        <li><a href="#utilities-1">Utilities</a></li>
         <li><a href="#reboot">Reboot</a></li>
         <li><a href="#rtl">RTL</a>
           <ul>
             <li><a href="#sass-1">Sass</a>
               <ul>
                 <li><a href="#components-1">Components</a></li>
-                <li><a href="#utilities-1">Utilities</a></li>
+                <li><a href="#utilities-2">Utilities</a></li>
                 <li><a href="#mixins">Mixins</a></li>
                 <li><a href="#variables">Variables</a></li>
               </ul>
@@ -655,7 +687,28 @@
     <div class="docs-content ps-lg-4">
       
 
-      <h2 id="v400-alpha0">v4.0.0-alpha.0</h2>
+      <h2 id="v400-alpha2">v4.0.0-alpha.2</h2>
+<h3 id="utilities">Utilities</h3>
+<ul>
+<li>Renamed <code>--aspect-ratio</code> to <code>--cui-aspect-ratio</code> to be consistent with other custom properties.</li>
+<li>Extended the <code>.visually-hidden-focusable</code> helper to also work on containers, using <code>:focus-within</code>.</li>
+<li><code>bootstrap-utilities.css</code> now also includes our helpers. Helpers don&rsquo;t need to be imported in custom builds anymore.</li>
+<li>Extended form validation states customization capabilities. Added three new optional parameters to the <code>form-validation-state</code> mixin: <code>tooltip-color</code>, <code>tooltip-bg-color</code>, <code>focus-box-shadow</code>. These parameters can be set in the <code>$form-validation-states</code> map.</li>
+</ul>
+<h3 id="javascript">JavaScript</h3>
+<ul>
+<li>Restored <code>offset</code> option for Dropdown, Popover and Tooltip plugins.</li>
+<li>The default value for the <code>fallbackPlacements</code> is changed to <code>['top', 'right', 'bottom', 'left']</code> for better placement of popper elements.</li>
+<li>All the events for the dropdown are now triggered on the dropdown toggle button and then bubbled up to the parent element.</li>
+<li>Dropdown menus now have a <code>data-coreui-popper=&quot;static&quot;</code> attribute set when the positioning of the dropdown is static and <code>data-coreui-popper=&quot;none&quot;</code> when dropdown is in the navbar. This is added by our JavaScript and helps us use custom position styles without interfering with Popper&rsquo;s positioning.</li>
+<li><code>popperConfig</code> can be passed as a function that accepts the Bootstrap&rsquo;s default Popper config as an argument, so that you can merge this default configuration in your way.</li>
+</ul>
+<h2 id="v400-alpha2-1">v4.0.0-alpha.2</h2>
+<h3 id="sidebar">Sidebar</h3>
+<ul>
+<li>Change responsive behavior</li>
+</ul>
+<h2 id="v400-alpha0">v4.0.0-alpha.0</h2>
 <h3 id="browser-support">Browser support</h3>
 <p>See the browser and devices page for details on what is currently supported in CoreUI 4 for Bootstrap. Since v3, here&rsquo;s what&rsquo;s changed to our browser support:</p>
 <ul>
@@ -845,7 +898,7 @@
 <li>Added <code>cursor:pointer</code> to <code>.form-control-color</code> color inputs.</li>
 <li>Resized checks and radios to be <code>1em</code> instead of <code>1.25em</code> in an effort to make them scale better with custom <code>$font-size-base</code> values and more.</li>
 </ul>
-<h3 id="javascript">JavaScript</h3>
+<h3 id="javascript-1">JavaScript</h3>
 <p>Changes to our source and compiled JavaScript files.</p>
 <ul>
 <li>Dropped jQuery dependency and rewrote plugins to be in regular JavaScript.</li>
@@ -954,7 +1007,7 @@
 <li>Resized existing display headings for a slightly more consistent set of <code>font-size</code>s.</li>
 <li>Links are underlined by default (not just on hover), unless they&rsquo;re part of specific components.</li>
 </ul>
-<h3 id="utilities">Utilities</h3>
+<h3 id="utilities-1">Utilities</h3>
 <ul>
 <li>Added new <a href="/docs/4.0/utilities/position/#arrange-elements">position utilities</a> for <code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code>. Values include <code>0</code>, <code>50%</code>, and <code>100%</code> for each property.
 <ul>
@@ -997,7 +1050,7 @@
 <li>Renamed <code>.bs-tooltip-left</code> and <code>.bs-tooltip-right</code> to <code>.bs-tooltip-start</code> and <code>.bs-tooltip-end</code>.</li>
 <li>Renamed <code>.carousel-item-left</code> and <code>.carousel-item-right</code> to <code>.carousel-item-start</code> and <code>.carousel-item-end</code>.</li>
 </ul>
-<h5 id="utilities-1">Utilities</h5>
+<h5 id="utilities-2">Utilities</h5>
 <ul>
 <li>Renamed <code>.left-*</code> and <code>.right-*</code> to <code>.start-*</code> and <code>.end-*</code>.</li>
 <li>Renamed <code>.float-left</code> and <code>.float-right</code> to <code>.float-start</code> and <code>.float-end</code>.</li>
@@ -1048,7 +1101,7 @@
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-alpha.1. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0-alpha.2. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1056,7 +1109,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-GGu38SDX+hEJN1ajifNnCWv188r3j0w3JllK6TK2A90aFotRDkUJUZu7ms/hRUp0" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-Feli9IkxVnEtu5QziT6QmtZbnOfbTsiaHtX5+sLtHs3y6ystCozQ3btsf5BmATvR" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-coreui-attributes for local title storage.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.79.0">
+<meta name="generator" content="Hugo 0.81.0">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-SioVlhqDfohZs0yvVVrzGw+diDZpksfDLOVEi9+aVygeysugUIn4ZhURCPazThIe" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hL+L9PKJVU/F+J2QBQ1HRgTGTrScDU0YiRBd79FqMtF6A9Q4xrgIpGz/S0Bd5kIr" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -67,11 +67,17 @@
 <meta property="og:image:height" content="500">
 
 
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
+
 
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-sticky sidebar-lg-show border-end ps-xl-4 docs-sidebar" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -124,6 +130,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/webpack/" class="nav-link">Webpack</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/getting-started/parcel/" class="nav-link">Parcel</a>
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/accessibility/" class="nav-link">Accessibility</a>
@@ -261,6 +270,9 @@
               <a href="/docs/4.0/forms/select/" class="nav-link">Select</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/forms/multi-select/" class="nav-link">Multi Select</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/forms/checks-radios/" class="nav-link">Checks &amp; radios</a>
             </li>
             <li class="nav-item">
@@ -341,6 +353,9 @@
               <a href="/docs/4.0/components/list-group/" class="nav-link">List group</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/components/loading-buttons/" class="nav-link">Loading buttons</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/components/modal/" class="nav-link">Modal</a>
             </li>
             <li class="nav-item">
@@ -348,6 +363,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/components/navbar/" class="nav-link">Navbar</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/offcanvas/" class="nav-link">Offcanvas</a>
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/components/pagination/" class="nav-link">Pagination</a>
@@ -430,6 +448,9 @@
               <a href="/docs/4.0/utilities/api/" class="nav-link">API</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/utilities/background/" class="nav-link">Background</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/utilities/borders/" class="nav-link">Borders</a>
             </li>
             <li class="nav-item">
@@ -500,8 +521,8 @@
   </ul>
 </div>
 
-    <div class="wrapper flex-grow-1" data-coreui-reliant="sidebar">
-      <header class="header header-sticky mb-5">
+    <div class="wrapper flex-grow-1">
+      <header class="header header-sticky mb-5 elevation-0 border-bottom">
   <div class="container-fluid">
     <button class="header-toggler d-lg-none" type="button" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16">
@@ -586,7 +607,7 @@
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/components/tooltips.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/v4-dev/docs/content/4.0/components/tooltips.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
         <h1 class="docs-title" id="content">Tooltips</h1>
       </div>
       <p class="docs-lead">Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-coreui-attributes for local title storage.</p>
@@ -609,7 +630,11 @@
       <ul>
         <li><a href="#markup">Markup</a></li>
         <li><a href="#disabled-elements">Disabled elements</a></li>
-        <li><a href="#options">Options</a></li>
+        <li><a href="#options">Options</a>
+          <ul>
+            <li><a href="#using-function-with-popperconfig">Using function with <code>popperConfig</code></a></li>
+          </ul>
+        </li>
         <li><a href="#methods">Methods</a>
           <ul>
             <li><a href="#show">show</a></li>
@@ -628,7 +653,11 @@
     </li>
     <li><a href="#customizing">Customizing</a>
       <ul>
-        <li><a href="#sass">SASS</a></li>
+        <li><a href="#sass">SASS</a>
+          <ul>
+            <li><a href="#variables">Variables</a></li>
+          </ul>
+        </li>
         <li><a href="#css-vars">CSS Vars</a></li>
       </ul>
     </li>
@@ -643,7 +672,7 @@
       <h2 id="overview">Overview</h2>
 <p>Things to know when using the tooltip plugin:</p>
 <ul>
-<li>Tooltips rely on the 3rd party library <a href="https://popper.js.org/">Popper</a> for positioning. You must include <a href="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js">popper.min.js</a> before coreui.js or use <code>coreui.bundle.min.js</code> / <code>coreui.bundle.js</code> which contains Popper in order for tooltips to work!</li>
+<li>Tooltips rely on the 3rd party library <a href="https://popper.js.org/">Popper</a> for positioning. You must include <a href="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.0/dist/umd/popper.min.js">popper.min.js</a> before coreui.js or use <code>coreui.bundle.min.js</code> / <code>coreui.bundle.js</code> which contains Popper in order for tooltips to work!</li>
 <li>Tooltips are opt-in for performance reasons, so <strong>you must initialize them yourself</strong>.</li>
 <li>Tooltips with zero-length titles are never displayed.</li>
 <li>Specify <code>container: 'body'</code> to avoid rendering problems in more complex components (like our input groups, button groups, etc).</li>
@@ -670,8 +699,8 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <span class="p">})</span>
 </code></pre></div><h2 id="examples">Examples</h2>
 <p>Hover over the links below to see tooltips:</p>
-<div class="docs-example tooltip-demo">
-  <p class="muted">Tight pants next level keffiyeh <a href="#" data-coreui-toggle="tooltip" title="Default tooltip">you probably</a> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel <a href="#" data-coreui-toggle="tooltip" title="Another tooltip">have a</a> terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray. A really ironic artisan <a href="#" data-coreui-toggle="tooltip" title="Another one here too">whatever keytar</a>, scenester farm-to-table banksy Austin <a href="#" data-coreui-toggle="tooltip" title="The last tip!">twitter handle</a> freegan cred raw denim single-origin coffee viral.
+<div class="bd-example tooltip-demo">
+  <p class="muted">Placeholder text to demonstrate some <a href="#" data-coreui-toggle="tooltip" title="Default tooltip">inline links</a> with tooltips. This is now just filler, no killer. Content placed here just to mimic the presence of <a href="#" data-coreui-toggle="tooltip" title="Another tooltip">real text</a>. And all that just to give you an idea of how tooltips would look when used in real-world situations. So hopefully you've now seen how <a href="#" data-coreui-toggle="tooltip" title="Another one here too">these tooltips on links</a> can work in practice, once you use them on <a href="#" data-coreui-toggle="tooltip" title="The last tip!">your own</a> site or project.
   </p>
 </div>
 <p>Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL.</p>
@@ -742,18 +771,19 @@ The animation effect of this component is dependent on the <code>prefers-reduced
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><h3 id="disabled-elements">Disabled elements</h3>
-<p>Elements with the <code>disabled</code> attribute aren&rsquo;t interactive, meaning users cannot focus, hover, or click them to trigger a tooltip (or popover). As a workaround, you&rsquo;ll want to trigger the tooltip from a wrapper <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code>, ideally made keyboard-focusable using <code>tabindex=&quot;0&quot;</code>, and override the <code>pointer-events</code> on the disabled element.</p>
+<p>Elements with the <code>disabled</code> attribute aren&rsquo;t interactive, meaning users cannot focus, hover, or click them to trigger a tooltip (or popover). As a workaround, you&rsquo;ll want to trigger the tooltip from a wrapper <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code>, ideally made keyboard-focusable using <code>tabindex=&quot;0&quot;</code>.</p>
 <div class="tooltip-demo">
 <div class="docs-example">
 <span class="d-inline-block" tabindex="0" data-coreui-toggle="tooltip" title="Disabled tooltip">
-  <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Disabled button</button>
+  <button class="btn btn-primary" type="button" disabled>Disabled button</button>
 </span>
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-inline-block&#34;</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;tooltip&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Disabled tooltip&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;pointer-events: none;&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">disabled</span><span class="p">&gt;</span>Disabled button<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">disabled</span><span class="p">&gt;</span>Disabled button<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span></code></pre></div>
 </div>
 <h3 id="options">Options</h3>
-<p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-coreui-</code>, as in <code>data-coreui-animation=&quot;&quot;</code>.</p>
+<p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-coreui-</code>, as in <code>data-coreui-animation=&quot;&quot;</code>.
+Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-coreui-</code>, as in <code>data-coreui-animation=&quot;&quot;</code>. Make sure to change the case type of the option name from camelCase to kebab-case when passing via data attributes. For example: instead of using <code>data-coreui-customClass=&quot;beautifier&quot;</code>, use <code>data-coreui-custom-class=&quot;beautifier&quot;</code>.</p>
 <div class="docs-callout docs-callout-warning">
 Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code>, and <code>allowList</code> options cannot be supplied using data attributes.
 </div>
@@ -849,9 +879,9 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
     </tr>
     <tr>
       <td><code>fallbackPlacements</code></td>
-      <td>null | array</td>
-      <td><code>null</code></td>
-      <td>Allow to specify which position Popper will use on fallback. For more information refer to
+      <td>array</td>
+      <td><code>['top', 'right', 'bottom', 'left']</code></td>
+      <td>Define fallback placements by providing a list of placements in array (in order of preference). For more information refer to
       Popper's <a href="https://popper.js.org/docs/v2/modifiers/flip/#fallbackplacements">behavior docs</a></td>
     </tr>
     <tr>
@@ -888,10 +918,23 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
       <td>Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform sanitization.</td>
     </tr>
     <tr>
+      <td><code>offset</code></td>
+      <td>array | string | function</td>
+      <td><code>[0, 0]</code></td>
+      <td>
+        <p>Offset of the tooltip relative to its target. You can pass a string in data attributes with comma separated values like: <code>data-coreui-offset="10,20"</code></p>
+        <p>When a function is used to determine the offset, it is called with an object containing the popper placement, the reference, and popper rects as its first argument. The triggering element DOM node is passed as the second argument. The function must return an array with two numbers: <code>[<a href="https://popper.js.org/docs/v2/modifiers/offset/#skidding-1">skidding</a>, <a href="https://popper.js.org/docs/v2/modifiers/offset/#distance-1">distance</a>]</code>.</p>
+        <p>For more information refer to Popper's <a href="https://popper.js.org/docs/v2/modifiers/offset/#options">offset docs</a>.</p>
+      </td>
+    </tr>
+    <tr>
       <td><code>popperConfig</code></td>
-      <td>null | object</td>
+      <td>null | object | function</td>
       <td><code>null</code></td>
-      <td>To change Bootstrap's default Popper config, see <a href="https://popper.js.org/docs/v2/constructors/#options">Popper's configuration</a></td>
+      <td>
+        <p>To change Bootstrap's default Popper config, see <a href="https://popper.js.org/docs/v2/constructors/#options">Popper's configuration</a>.</p>
+        <p>When a function is used to create the Popper configuration, it's called with an object that contains the Bootstrap's default Popper configuration. It helps you use and merge the default with your own configuration. The function must return a configuration object for Popper.</p>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -900,7 +943,15 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
 <p>Options for individual tooltips can alternatively be specified through the use of data attributes, as explained above.
 </div>
 
-<h3 id="methods">Methods</h3>
+<h4 id="using-function-with-popperconfig">Using function with <code>popperConfig</code></h4>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">tooltip</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">bootstrap</span><span class="p">.</span><span class="nx">Tooltip</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">popperConfig</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">defaultBsPopperConfig</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// var newPopperConfig = {...}
+</span><span class="c1"></span>    <span class="c1">// use defaultBsPopperConfig if needed...
+</span><span class="c1"></span>    <span class="c1">// return newPopperConfig
+</span><span class="c1"></span>  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div><h3 id="methods">Methods</h3>
 <div class="docs-callout docs-callout-danger">
 <h4 id="asynchronous-methods-and-transitions">Asynchronous methods and transitions</h4>
 <p>All API methods are <strong>asynchronous</strong> and start a <strong>transition</strong>. They return to the caller as soon as the transition is started but <strong>before it ends</strong>. In addition, a method call on a <strong>transitioning component will be ignored</strong>.</p>
@@ -977,9 +1028,10 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
 <span class="nx">tooltip</span><span class="p">.</span><span class="nx">hide</span><span class="p">()</span>
 </code></pre></div><h2 id="customizing">Customizing</h2>
 <h3 id="sass">SASS</h3>
+<h4 id="variables">Variables</h4>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$tooltip-font-size</span><span class="o">:</span>                 <span class="nv">$font-size-sm</span><span class="p">;</span>
 <span class="nv">$tooltip-max-width</span><span class="o">:</span>                 <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
-<span class="nv">$tooltip-color</span><span class="o">:</span>                     <span class="nv">$high-emphasis-light</span><span class="p">;</span>
+<span class="nv">$tooltip-color</span><span class="o">:</span>                     <span class="nv">$high-emphasis-inverse</span><span class="p">;</span>
 <span class="nv">$tooltip-bg</span><span class="o">:</span>                        <span class="nv">$black</span><span class="p">;</span>
 <span class="nv">$tooltip-border-radius</span><span class="o">:</span>             <span class="nv">$border-radius</span><span class="p">;</span>
 <span class="nv">$tooltip-opacity</span><span class="o">:</span>                   <span class="mf">.9</span><span class="p">;</span>
@@ -989,7 +1041,8 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
 
 <span class="nv">$tooltip-arrow-width</span><span class="o">:</span>               <span class="mf">.8</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$tooltip-arrow-height</span><span class="o">:</span>              <span class="mf">.4</span><span class="kt">rem</span><span class="p">;</span>
-<span class="nv">$tooltip-arrow-color</span><span class="o">:</span>               <span class="nv">$tooltip-bg</span><span class="p">;</span></code></pre></div>
+<span class="nv">$tooltip-arrow-color</span><span class="o">:</span>               <span class="nv">$tooltip-bg</span><span class="p">;</span>
+</code></pre></div>
 <h3 id="css-vars">CSS Vars</h3>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-tooltip-arrow-color</span>
 <span class="nt">--cui-tooltip-bg</span>
@@ -1008,7 +1061,7 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-alpha.1. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0-alpha.2. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1016,7 +1069,7 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-GGu38SDX+hEJN1ajifNnCWv188r3j0w3JllK6TK2A90aFotRDkUJUZu7ms/hRUp0" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-Feli9IkxVnEtu5QziT6QmtZbnOfbTsiaHtX5+sLtHs3y6ystCozQ3btsf5BmATvR" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>
