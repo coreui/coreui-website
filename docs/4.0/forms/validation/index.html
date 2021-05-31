@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.81.0">
+<meta name="generator" content="Hugo 0.83.1">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-sj4nNLVki1gzwP+38XyjBKO55Fzkz7IVLU3E5+KhTyfcIH6KkOW98g/dufqEDuB5" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -74,10 +74,14 @@
   })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.0.0-rc.0/css/free.min.css" integrity="sha256-vejWHgYduBq3SYXJHSWSRJp7ktQpZ6d+8HGFtb9Fz9k=" crossorigin="anonymous">
+
+
+
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -109,7 +113,7 @@
 
           Getting started
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/introduction/" class="nav-link">Introduction</a>
             </li>
@@ -158,7 +162,7 @@
 
           Customize
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/customize/overview/" class="nav-link">Overview</a>
             </li>
@@ -191,7 +195,7 @@
 
           Layout
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/layout/breakpoints/" class="nav-link">Breakpoints</a>
             </li>
@@ -232,7 +236,7 @@
 
           Content
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/content/reboot/" class="nav-link">Reboot</a>
             </li>
@@ -259,7 +263,7 @@
 
           Forms
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/forms/overview/" class="nav-link">Overview</a>
             </li>
@@ -303,7 +307,7 @@
 
           Components
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/components/accordion/" class="nav-link">Accordion</a>
             </li>
@@ -408,7 +412,7 @@
 
           Helpers
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/helpers/clearfix/" class="nav-link">Clearfix</a>
             </li>
@@ -443,7 +447,7 @@
 
           Utilities
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/utilities/api/" class="nav-link">API</a>
             </li>
@@ -814,8 +818,7 @@ We are aware that currently the client-side custom validation styles and tooltip
         <span class="nx">form</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;was-validated&#39;</span><span class="p">)</span>
       <span class="p">},</span> <span class="kc">false</span><span class="p">)</span>
     <span class="p">})</span>
-<span class="p">})()</span>
-</code></pre></div>
+<span class="p">})()</span></code></pre></div>
 <h2 id="browser-defaults">Browser defaults</h2>
 <p>Not interested in custom validation feedback messages or writing JavaScript to change form behaviors? All good, you can use the browser defaults. Try submitting the form below. Depending on your browser and OS, you&rsquo;ll see a slightly different style of feedback.</p>
 <p>While these feedback styles cannot be styled with CSS, you can still customize the feedback text through JavaScript.</p>
@@ -1316,7 +1319,7 @@ We are aware that currently the client-side custom validation styles and tooltip
       <span class="nt">border-color</span><span class="nd">:</span> <span class="err">$</span><span class="nt">color</span><span class="p">;</span>
 
       <span class="k">@if</span> <span class="nv">$enable-validation-icons</span> <span class="p">{</span>
-        <span class="nt">padding-right</span><span class="nd">:</span> <span class="err">$</span><span class="nt">input-height-inner</span><span class="p">;</span>
+        <span class="k">@include</span><span class="nd"> ltr-rtl</span><span class="p">(</span><span class="s2">&#34;padding-right&#34;</span><span class="o">,</span> <span class="nv">$input-height-inner</span><span class="p">);</span>
         <span class="nt">background-image</span><span class="nd">:</span> <span class="nt">escape-svg</span><span class="o">(</span><span class="err">$</span><span class="nt">icon</span><span class="o">)</span><span class="p">;</span>
         <span class="nt">background-repeat</span><span class="nd">:</span> <span class="nt">no-repeat</span><span class="p">;</span>
         <span class="nt">background-position</span><span class="nd">:</span> <span class="nt">right</span> <span class="err">$</span><span class="nt">input-height-inner-quarter</span> <span class="nt">center</span><span class="p">;</span>
@@ -1334,7 +1337,7 @@ We are aware that currently the client-side custom validation styles and tooltip
 </span><span class="c1"></span>  <span class="nt">textarea</span><span class="nc">.form-control</span> <span class="p">{</span>
     <span class="k">@include</span><span class="nd"> form-validation-state-selector</span><span class="p">(</span><span class="nv">$state</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">@if</span> <span class="nv">$enable-validation-icons</span> <span class="p">{</span>
-        <span class="nt">padding-right</span><span class="nd">:</span> <span class="err">$</span><span class="nt">input-height-inner</span><span class="p">;</span>
+        <span class="k">@include</span><span class="nd"> ltr-rtl</span><span class="p">(</span><span class="s2">&#34;padding-right&#34;</span><span class="o">,</span> <span class="nv">$input-height-inner</span><span class="p">);</span>
         <span class="nt">background-position</span><span class="nd">:</span> <span class="nt">top</span> <span class="err">$</span><span class="nt">input-height-inner-quarter</span> <span class="nt">right</span> <span class="err">$</span><span class="nt">input-height-inner-quarter</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">}</span>
@@ -1345,10 +1348,13 @@ We are aware that currently the client-side custom validation styles and tooltip
       <span class="nt">border-color</span><span class="nd">:</span> <span class="err">$</span><span class="nt">color</span><span class="p">;</span>
 
       <span class="k">@if</span> <span class="nv">$enable-validation-icons</span> <span class="p">{</span>
-        <span class="nt">padding-right</span><span class="nd">:</span> <span class="err">$</span><span class="nt">form-select-feedback-icon-padding-end</span><span class="p">;</span>
-        <span class="nt">background-image</span><span class="nd">:</span> <span class="nt">escape-svg</span><span class="o">(</span><span class="err">$</span><span class="nt">form-select-indicator</span><span class="o">),</span> <span class="nt">escape-svg</span><span class="o">(</span><span class="err">$</span><span class="nt">icon</span><span class="o">)</span><span class="p">;</span>
-        <span class="nt">background-position</span><span class="nd">:</span> <span class="err">$</span><span class="nt">form-select-bg-position</span><span class="o">,</span> <span class="err">$</span><span class="nt">form-select-feedback-icon-position</span><span class="p">;</span>
-        <span class="nt">background-size</span><span class="nd">:</span> <span class="err">$</span><span class="nt">form-select-bg-size</span><span class="o">,</span> <span class="err">$</span><span class="nt">form-select-feedback-icon-size</span><span class="p">;</span>
+        <span class="k">&amp;</span><span class="nd">:not</span><span class="o">([</span><span class="nt">multiple</span><span class="o">])</span><span class="nd">:not</span><span class="o">([</span><span class="nt">size</span><span class="o">]),</span>
+        <span class="k">&amp;</span><span class="nd">:not</span><span class="o">([</span><span class="nt">multiple</span><span class="o">])[</span><span class="nt">size</span><span class="o">=</span><span class="s2">&#34;1&#34;</span><span class="o">]</span> <span class="p">{</span>
+          <span class="k">@include</span><span class="nd"> ltr-rtl</span><span class="p">(</span><span class="s2">&#34;padding-right&#34;</span><span class="o">,</span> <span class="nv">$form-select-feedback-icon-padding-end</span><span class="p">);</span>
+          <span class="nt">background-image</span><span class="nd">:</span> <span class="nt">escape-svg</span><span class="o">(</span><span class="err">$</span><span class="nt">form-select-indicator</span><span class="o">),</span> <span class="nt">escape-svg</span><span class="o">(</span><span class="err">$</span><span class="nt">icon</span><span class="o">)</span><span class="p">;</span>
+          <span class="nt">background-position</span><span class="nd">:</span> <span class="err">$</span><span class="nt">form-select-bg-position</span><span class="o">,</span> <span class="err">$</span><span class="nt">form-select-feedback-icon-position</span><span class="p">;</span>
+          <span class="nt">background-size</span><span class="nd">:</span> <span class="err">$</span><span class="nt">form-select-bg-size</span><span class="o">,</span> <span class="err">$</span><span class="nt">form-select-feedback-icon-size</span><span class="p">;</span>
+        <span class="p">}</span>
       <span class="p">}</span>
 
       <span class="k">&amp;</span><span class="nd">:focus</span> <span class="p">{</span>
@@ -1377,14 +1383,21 @@ We are aware that currently the client-side custom validation styles and tooltip
   <span class="p">}</span>
   <span class="nc">.form-check-inline</span> <span class="nc">.form-check-input</span> <span class="p">{</span>
     <span class="o">~</span> <span class="nc">.</span><span class="si">#{</span><span class="nv">$state</span><span class="si">}</span><span class="nc">-feedback</span> <span class="p">{</span>
-      <span class="nt">margin-left</span><span class="nd">:</span> <span class="nc">.5em</span><span class="p">;</span>
+      <span class="k">@include</span><span class="nd"> ltr-rtl</span><span class="p">(</span><span class="s2">&#34;margin-left&#34;</span><span class="o">,</span> <span class="mf">.5</span><span class="kt">em</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">}</span>
 
   <span class="nc">.input-group</span> <span class="nc">.form-control</span><span class="o">,</span>
   <span class="nc">.input-group</span> <span class="nc">.form-select</span> <span class="p">{</span>
     <span class="k">@include</span><span class="nd"> form-validation-state-selector</span><span class="p">(</span><span class="nv">$state</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nt">z-index</span><span class="nd">:</span> <span class="nt">3</span><span class="p">;</span>
+      <span class="k">@if</span> <span class="nv">$state</span> <span class="o">==</span> <span class="s2">&#34;valid&#34;</span> <span class="p">{</span>
+        <span class="nt">z-index</span><span class="nd">:</span> <span class="nt">1</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">@else</span> <span class="nt">if</span> <span class="err">$</span><span class="nt">state</span> <span class="o">==</span> <span class="s2">&#34;invalid&#34;</span> <span class="p">{</span>
+        <span class="nt">z-index</span><span class="nd">:</span> <span class="nt">2</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">&amp;</span><span class="nd">:focus</span> <span class="p">{</span>
+        <span class="nt">z-index</span><span class="nd">:</span> <span class="nt">3</span><span class="p">;</span>
+      <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -1426,7 +1439,7 @@ We are aware that currently the client-side custom validation styles and tooltip
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-alpha.2. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1434,7 +1447,7 @@ We are aware that currently the client-side custom validation styles and tooltip
       
   <script async src="/4.0/assets/js/validate-forms.js"></script>
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-0+5HznKWAIuPCY1HRJh0Of3caYyAG8tm3EPCZ286/iHC2AhH9Q7DVffO4IHGZySb" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

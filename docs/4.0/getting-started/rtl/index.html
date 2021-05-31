@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Learn how to enable support for right-to-left text in CoreUI for Bootstrap across our layout, components, and utilities.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.81.0">
+<meta name="generator" content="Hugo 0.83.1">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-sj4nNLVki1gzwP+38XyjBKO55Fzkz7IVLU3E5+KhTyfcIH6KkOW98g/dufqEDuB5" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -74,10 +74,14 @@
   })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.0.0-rc.0/css/free.min.css" integrity="sha256-vejWHgYduBq3SYXJHSWSRJp7ktQpZ6d+8HGFtb9Fz9k=" crossorigin="anonymous">
+
+
+
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -109,7 +113,7 @@
 
           Getting started
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/introduction/" class="nav-link">Introduction</a>
             </li>
@@ -158,7 +162,7 @@
 
           Customize
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/customize/overview/" class="nav-link">Overview</a>
             </li>
@@ -191,7 +195,7 @@
 
           Layout
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/layout/breakpoints/" class="nav-link">Breakpoints</a>
             </li>
@@ -232,7 +236,7 @@
 
           Content
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/content/reboot/" class="nav-link">Reboot</a>
             </li>
@@ -259,7 +263,7 @@
 
           Forms
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/forms/overview/" class="nav-link">Overview</a>
             </li>
@@ -303,7 +307,7 @@
 
           Components
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/components/accordion/" class="nav-link">Accordion</a>
             </li>
@@ -408,7 +412,7 @@
 
           Helpers
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/helpers/clearfix/" class="nav-link">Clearfix</a>
             </li>
@@ -443,7 +447,7 @@
 
           Utilities
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/utilities/api/" class="nav-link">API</a>
             </li>
@@ -603,7 +607,7 @@
     
     
   
-  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 13, 2021</span>
+  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: March 16, 2021</span>
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
@@ -632,12 +636,10 @@
     <li><a href="#approach">Approach</a></li>
     <li><a href="#customize-from-source">Customize from source</a>
       <ul>
-        <li><a href="#custom-rtl-values">Custom RTL values</a></li>
-        <li><a href="#alternative-font-stack">Alternative font stack</a></li>
         <li><a href="#ltr-and-rtl-at-the-same-time">LTR and RTL at the same time</a></li>
+        <li><a href="#rtl-only">RTL only</a></li>
       </ul>
     </li>
-    <li><a href="#the-breadcrumb-case">The breadcrumb case</a></li>
     <li><a href="#additional-resources">Additional resources</a></li>
   </ul>
 </nav>
@@ -650,11 +652,6 @@
       <h2 id="get-familiar">Get familiar</h2>
 <p>We recommend getting familiar with CoreUI for Bootstrap first by reading through our <a href="/docs/4.0/getting-started/introduction/">Getting Started Introduction page</a>. Once you&rsquo;ve run through it, continue reading here for how to enable RTL.</p>
 <p>You may also want to read up on <a href="https://rtlcss.com/">the RTLCSS project</a>, as it powers our approach to RTL.</p>
-<div class="docs-callout docs-callout-warning">
-<h3 id="experimental-feature">Experimental feature</h3>
-<p>The RTL feature is still <strong>experimental</strong> and will probably evolve according to user feedback. Spotted something or have an improvement to suggest? <a href="https://github.com/coreui/coreui/issues/new">Open an issue</a>, we&rsquo;d love to get your insights.
-</div>
-
 <h2 id="required-html">Required HTML</h2>
 <p>There are two strict requirements for enabling RTL in Bootstrap-powered pages.</p>
 <ol>
@@ -662,7 +659,7 @@
 <li>Add an appropriate <code>lang</code> attribute, like <code>lang=&quot;ar&quot;</code>, on the <code>&lt;html&gt;</code> element.</li>
 </ol>
 <p>From there, you&rsquo;ll need to include an RTL version of our CSS. For example, here&rsquo;s the stylesheet for our compiled and minified CSS with RTL enabled:</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/coreui@4.0.0-alpha.2/dist/css/coreui.rtl.min.css&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-7hBVLZJngjur8NSJnebv5ca34At0DMOKWD/fGAtITvn3r0QfvlTEfqfJ7+gWtvL0&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/coreui@4.0.0-rc.1/dist/css/coreui.rtl.min.css&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-x9Fdo40FR704lc5+pF2Y3jcAGHD3fWhkWtF4IvTtUaKtycO8bL6FgygLwecXc7pz&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
 </code></pre></div><h3 id="starter-template">Starter template</h3>
 <p>You can see the above requirements reflected in this modified RTL starter template.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!doctype html&gt;</span>
@@ -673,7 +670,7 @@
     <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1&#34;</span><span class="p">&gt;</span>
 
     <span class="c">&lt;!-- CoreUI for Bootstrap CSS --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/coreui@4.0.0-alpha.2/dist/css/coreui.rtl.min.css&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-7hBVLZJngjur8NSJnebv5ca34At0DMOKWD/fGAtITvn3r0QfvlTEfqfJ7+gWtvL0&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/coreui@4.0.0-rc.1/dist/css/coreui.rtl.min.css&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-x9Fdo40FR704lc5+pF2Y3jcAGHD3fWhkWtF4IvTtUaKtycO8bL6FgygLwecXc7pz&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;</span>
 
     <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>مرحبا بالعالم!<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -683,101 +680,68 @@
     <span class="c">&lt;!-- Optional JavaScript; choose one of the two! --&gt;</span>
 
     <span class="c">&lt;!-- Option 1: CoreUI for Bootstrap Bundle with Popper --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-alpha.2/dist/js/coreui.bundle.min.js&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-0+5HznKWAIuPCY1HRJh0Of3caYyAG8tm3EPCZ286/iHC2AhH9Q7DVffO4IHGZySb&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-rc.1/dist/js/coreui.bundle.min.js&#34;</span> <span class="na">integrity</span><span class="o">=</span><span class="s">&#34;sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0&#34;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&#34;anonymous&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
     <span class="c">&lt;!-- Option 2: Separate Popper and CoreUI for Bootstrap JS --&gt;</span>
     <span class="c">&lt;!--
-</span><span class="c">    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.0/dist/umd/popper.min.js&#34; integrity=&#34;sha384-EOlc5FUOsy7obkrpNXqD9DtrephzQpK7DXijDIKexeJT0qfn4dZ7GDid8suWuQHq&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
-</span><span class="c">    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-alpha.2/dist/js/coreui.min.js&#34; integrity=&#34;sha384-UTFDCzXH9HY29YuduJBgWZg0UbBSDX9/GPzJgoL5TJCZmoZ4UEcb4h0D+9i81T1A&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+</span><span class="c">    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js&#34; integrity=&#34;sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+</span><span class="c">    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/@coreui/coreui@4.0.0-rc.1/dist/js/coreui.min.js&#34; integrity=&#34;sha384-wYb4V6MBNNxN8/LZ0kklXAK5dWzis+vfOQxZ6TpBzuF4KfQh62wzh//gH0ffUBRA&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
 </span><span class="c">    --&gt;</span>
   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div><h2 id="approach">Approach</h2>
-<p>Our approach to building RTL support into CoreUI for Bootstrap comes with two important decisions that impact how we write and use our CSS:</p>
+<p>Our approach to building RTL support into CoreUI comes with two important decisions that impact how we write and use our CSS:</p>
 <ol>
 <li>
-<p><strong>First, we decided to build it with the <a href="https://rtlcss.com/">RTLCSS</a> project.</strong> This gives us some powerful features for managing changes and overrides when moving from LTR to RTL. It also allows us to build two versions of CoreUI for Bootstrap from one codebase.</p>
+<p><strong>First, as in CoreUI 3 we decided to build it with our own mixins</strong> This gives us full control and allows us to generate LTR and RTL separately, or if needed one stylesheet with both versions without any style&rsquo;s duplicates.</p>
 </li>
 <li>
-<p><strong>Second, we&rsquo;ve renamed a handful of directional classes to adopt a logical properties approach.</strong> Most of you have already interacted with logical properties thanks to our flex utilities—they replace direction properties like <code>left</code> and <code>right</code> in favor <code>start</code> and <code>end</code>. That makes the class names and values appropriate for LTR and RTL without any overhead.</p>
+<p><strong>Second, in CoreUI 3 we introduced a handful of directional classes ex. <code>mfs-auto</code>,  but in CoreUI 4 we&rsquo;ve simplified them ex. <code>ms-auto</code>, and renamed all directional classes to adopt a logical properties approach.</strong> Most of you have already interacted with logical properties thanks to our flex utilities—they replace direction properties like <code>left</code> and <code>right</code> in favor <code>start</code> and <code>end</code>. That makes the class names and values appropriate for LTR and RTL without any overhead.</p>
 </li>
 </ol>
 <p>For example, instead of <code>.ml-3</code> for <code>margin-left</code>, use <code>.ms-3</code>.</p>
 <p>Working with RTL, through our source Sass or compiled CSS, shouldn&rsquo;t be much different from our default LTR though.</p>
 <h2 id="customize-from-source">Customize from source</h2>
-<p>When it comes to <a href="/docs/4.0/customize/sass/">customization</a>, the preferred way is to take advantage of variables, maps, and mixins. This approach works the same for RTL, even if it&rsquo;s post-processed from the compiled files, thanks to <a href="https://rtlcss.com/learn/getting-started/why-rtlcss/">how RTLCSS works</a>.</p>
-<h3 id="custom-rtl-values">Custom RTL values</h3>
-<p>Using <a href="https://rtlcss.com/learn/usage-guide/value-directives/">RTLCSS value directives</a>, you can make a variable output a different value for RTL. For example, to decrease the weight for <code>$font-weight-bold</code> throughout the codebase, you may use the <code>/*rtl: {value}*/</code> syntax:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$font-weight-bold</span><span class="o">:</span> <span class="mi">700</span> <span class="si">#{</span><span class="cm">/* rtl:600 </span><span class="c">*/</span><span class="si">}</span> <span class="nv">!default</span><span class="p">;</span>
-</code></pre></div><p>Which would ouput to the following for our default CSS and RTL CSS:</p>
-<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/* coreui.css */</span>
-<span class="nt">dt</span> <span class="p">{</span>
-  <span class="k">font-weight</span><span class="p">:</span> <span class="mi">700</span> <span class="c">/* rtl:600 */</span><span class="p">;</span>
-<span class="p">}</span>
+<p>When it comes to <a href="/docs/4.0/customize/sass/">customization</a>, the preferred way is to take advantage of variables, maps, and mixins.</p>
+<!-- TODO: find solution ### Alternative font stack
 
-<span class="c">/* coreui.rtl.css */</span>
-<span class="nt">dt</span> <span class="p">{</span>
-  <span class="k">font-weight</span><span class="p">:</span> <span class="mi">600</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><h3 id="alternative-font-stack">Alternative font stack</h3>
-<p>In the case you&rsquo;re using a custom font, be aware that not all fonts support the non-Latin alphabet. To switch from Pan-European to Arabic family, you may need to use <code>/*rtl:insert: {value}*/</code> in your font stack to modify the names of font families.</p>
-<p>For example, to switch from <code>Helvetica Neue Webfont</code> for LTR to <code>Helvetica Neue Arabic</code> for RTL, your Sass code look like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$font-family-sans-serif</span><span class="o">:</span>
-  <span class="n">Helvetica</span> <span class="n">Neue</span> <span class="si">#{</span><span class="s2">&#34;/* rtl:insert:Arabic */&#34;</span><span class="si">}</span><span class="o">,</span>
-  <span class="c1">// Cross-platform generic font family (default user interface font)</span>
-  <span class="n">system-ui</span><span class="o">,</span>
-  <span class="c1">// Safari for macOS and iOS (San Francisco)</span>
-  <span class="o">-</span><span class="n">apple-system</span><span class="o">,</span>
-  <span class="c1">// Chrome &lt; 56 for macOS (San Francisco)</span>
-  <span class="n">BlinkMacSystemFont</span><span class="o">,</span>
-  <span class="c1">// Windows</span>
-  <span class="s2">&#34;Segoe UI&#34;</span><span class="o">,</span>
-  <span class="c1">// Android</span>
-  <span class="n">Roboto</span><span class="o">,</span>
-  <span class="c1">// Basic web fallback</span>
-  <span class="n">Arial</span><span class="o">,</span>
-  <span class="c1">// Linux</span>
-  <span class="s2">&#34;Noto Sans&#34;</span><span class="o">,</span>
-  <span class="c1">// Sans serif fallback</span>
-  <span class="no">sans-serif</span><span class="o">,</span>
-  <span class="c1">// Emoji fonts</span>
-  <span class="s2">&#34;Apple Color Emoji&#34;</span><span class="o">,</span> <span class="s2">&#34;Segoe UI Emoji&#34;</span><span class="o">,</span> <span class="s2">&#34;Segoe UI Symbol&#34;</span><span class="o">,</span> <span class="s2">&#34;Noto Color Emoji&#34;</span> <span class="nv">!default</span><span class="p">;</span>
-</code></pre></div><h3 id="ltr-and-rtl-at-the-same-time">LTR and RTL at the same time</h3>
-<p>Need both LTR and RTL on the same page? Thanks to <a href="https://rtlcss.com/learn/usage-guide/string-map/">RTLCSS String Maps</a>, this is pretty straightforward. Wrap your <code>@import</code>s with a class, and set a custom rename rule for RTLCSS:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="cm">/* rtl:begin:options: {
-</span><span class="cm">  &#34;autoRename&#34;: true,
-</span><span class="cm">  &#34;stringMap&#34;:[
-</span><span class="cm">    &#34;name&#34;: &#34;ltr-rtl&#34;,
-</span><span class="cm">    &#34;priority&#34;: 100,
-</span><span class="cm">    &#34;search&#34;: [&#34;ltr&#34;],
-</span><span class="cm">    &#34;replace&#34;: [&#34;rtl&#34;],
-</span><span class="cm">    &#34;options&#34;: {
-</span><span class="cm">      &#34;scope&#34;: &#34;*&#34;,
-</span><span class="cm">      &#34;ignoreCase&#34;: false
-</span><span class="cm">    }
-</span><span class="cm">  ]
-</span><span class="cm">} */</span>
-<span class="nc">.ltr</span> <span class="p">{</span>
-  <span class="k">@import</span> <span class="s2">&#34;../node_modules/bootstrap/scss/bootstrap&#34;</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="cm">/*rtl:end:options*/</span>
-</code></pre></div><p>After running Sass then RTLCSS, each selector in your CSS files will be prepended by <code>.ltr</code>, and <code>.rtl</code> for RTL files. Now you&rsquo;re able to use both files on the same page, and simply use <code>.ltr</code> or <code>.rtl</code> on your components wrappers to use one or the other direction.</p>
-<div class="docs-callout docs-callout-warning">
-<h4 id="edge-cases-and-known-limitations">Edge cases and known limitations</h4>
-<p>While this approach is understandable, please pay attention to the following:</p>
-<ol>
-<li>When switching <code>.ltr</code> and <code>.rtl</code>, make sure you add <code>dir</code> and <code>lang</code> attributes accordingly.</li>
-<li>Loading both files can be a real performance bottleneck: consider some <a href="/docs/4.0/customize/optimize/">optimization</a>, and maybe try to <a href="https://www.filamentgroup.com/lab/load-css-simpler/">load one of those files asynchronously</a>.</li>
-<li>Nesting styles this way will prevent our <code>form-validation-state()</code> mixin from working as intended, thus require you tweak it a bit by yourself. <a href="https://github.com/twbs/bootstrap/issues/31223">See #31223</a>.</li>
-</ol>
+In the case you're using a custom font, be aware that not all fonts support the non-Latin alphabet. To switch from Pan-European to Arabic family, you may need to use `/*rtl:insert: {value}*/` in your font stack to modify the names of font families.
 
-</div>
+For example, to switch from `Helvetica Neue Webfont` for LTR to `Helvetica Neue Arabic` for RTL, your Sass code look like this:
 
-<h2 id="the-breadcrumb-case">The breadcrumb case</h2>
-<p>The <a href="/docs/4.0/components/breadcrumb//#changing-the-separator">breadcrumb separator</a> is the only case requiring its own brand new variable— namely <code>$breadcrumb-divider-flipped</code> —defaulting to <code>$breadcrumb-divider</code>.</p>
-<h2 id="additional-resources">Additional resources</h2>
+```scss
+$font-family-sans-serif:
+  Helvetica Neue #{"/* rtl:insert:Arabic */"},
+  // Cross-platform generic font family (default user interface font)
+  system-ui,
+  // Safari for macOS and iOS (San Francisco)
+  -apple-system,
+  // Chrome < 56 for macOS (San Francisco)
+  BlinkMacSystemFont,
+  // Windows
+  "Segoe UI",
+  // Android
+  Roboto,
+  // Basic web fallback
+  Arial,
+  // Linux
+  "Noto Sans",
+  // Sans serif fallback
+  sans-serif,
+  // Emoji fonts
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+``` -->
+<h3 id="ltr-and-rtl-at-the-same-time">LTR and RTL at the same time</h3>
+<p>Need both LTR and RTL on the same page? All you have to do is set following variables:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$enable-ltr</span><span class="o">:</span> <span class="n">true</span><span class="p">;</span>
+<span class="nv">$enable-rtl</span><span class="o">:</span> <span class="n">true</span><span class="p">;</span>
+</code></pre></div><p>After running Sass, each selector in your CSS files will be prepended by <code>html:not([dir=rtl])</code>, and <code>*[dir=rtl]</code> for RTL files. Now you&rsquo;re able to use both files on the same page.</p>
+<h3 id="rtl-only">RTL only</h3>
+<p>By default LTR is enable and RTL is disable, but you can easily change it and use only RTL.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$enable-ltr</span><span class="o">:</span> <span class="n">false</span><span class="p">;</span>
+<span class="nv">$enable-rtl</span><span class="o">:</span> <span class="n">true</span><span class="p">;</span>
+</code></pre></div><h2 id="additional-resources">Additional resources</h2>
 <ul>
-<li><a href="https://rtlcss.com/">RTLCSS</a></li>
 <li><a href="https://rtlstyling.com/posts/rtl-styling">RTL Styling 101</a></li>
 </ul>
 
@@ -794,7 +758,7 @@
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-alpha.2. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -802,7 +766,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-0+5HznKWAIuPCY1HRJh0Of3caYyAG8tm3EPCZ286/iHC2AhH9Q7DVffO4IHGZySb" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

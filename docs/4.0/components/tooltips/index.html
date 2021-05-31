@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-coreui-attributes for local title storage.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.81.0">
+<meta name="generator" content="Hugo 0.83.1">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-sj4nNLVki1gzwP+38XyjBKO55Fzkz7IVLU3E5+KhTyfcIH6KkOW98g/dufqEDuB5" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -74,10 +74,14 @@
   })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.0.0-rc.0/css/free.min.css" integrity="sha256-vejWHgYduBq3SYXJHSWSRJp7ktQpZ6d+8HGFtb9Fz9k=" crossorigin="anonymous">
+
+
+
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -109,7 +113,7 @@
 
           Getting started
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/introduction/" class="nav-link">Introduction</a>
             </li>
@@ -158,7 +162,7 @@
 
           Customize
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/customize/overview/" class="nav-link">Overview</a>
             </li>
@@ -191,7 +195,7 @@
 
           Layout
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/layout/breakpoints/" class="nav-link">Breakpoints</a>
             </li>
@@ -232,7 +236,7 @@
 
           Content
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/content/reboot/" class="nav-link">Reboot</a>
             </li>
@@ -259,7 +263,7 @@
 
           Forms
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/forms/overview/" class="nav-link">Overview</a>
             </li>
@@ -303,7 +307,7 @@
 
           Components
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/components/accordion/" class="nav-link">Accordion</a>
             </li>
@@ -408,7 +412,7 @@
 
           Helpers
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/helpers/clearfix/" class="nav-link">Clearfix</a>
             </li>
@@ -443,7 +447,7 @@
 
           Utilities
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/utilities/api/" class="nav-link">API</a>
             </li>
@@ -603,7 +607,7 @@
     
     
   
-  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 13, 2021</span>
+  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: April 26, 2021</span>
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
@@ -672,7 +676,7 @@
       <h2 id="overview">Overview</h2>
 <p>Things to know when using the tooltip plugin:</p>
 <ul>
-<li>Tooltips rely on the 3rd party library <a href="https://popper.js.org/">Popper</a> for positioning. You must include <a href="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.0/dist/umd/popper.min.js">popper.min.js</a> before coreui.js or use <code>coreui.bundle.min.js</code> / <code>coreui.bundle.js</code> which contains Popper in order for tooltips to work!</li>
+<li>Tooltips rely on the 3rd party library <a href="https://popper.js.org/">Popper</a> for positioning. You must include <a href="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js">popper.min.js</a> before coreui.js or use <code>coreui.bundle.min.js</code> / <code>coreui.bundle.js</code> which contains Popper in order for tooltips to work!</li>
 <li>Tooltips are opt-in for performance reasons, so <strong>you must initialize them yourself</strong>.</li>
 <li>Tooltips with zero-length titles are never displayed.</li>
 <li>Specify <code>container: 'body'</code> to avoid rendering problems in more complex components (like our input groups, button groups, etc).</li>
@@ -699,7 +703,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <span class="p">})</span>
 </code></pre></div><h2 id="examples">Examples</h2>
 <p>Hover over the links below to see tooltips:</p>
-<div class="bd-example tooltip-demo">
+<div class="docs-example tooltip-demo">
   <p class="muted">Placeholder text to demonstrate some <a href="#" data-coreui-toggle="tooltip" title="Default tooltip">inline links</a> with tooltips. This is now just filler, no killer. Content placed here just to mimic the presence of <a href="#" data-coreui-toggle="tooltip" title="Another tooltip">real text</a>. And all that just to give you an idea of how tooltips would look when used in real-world situations. So hopefully you've now seen how <a href="#" data-coreui-toggle="tooltip" title="Another one here too">these tooltips on links</a> can work in practice, once you use them on <a href="#" data-coreui-toggle="tooltip" title="The last tip!">your own</a> site or project.
   </p>
 </div>
@@ -731,7 +735,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 </code></pre></div><p>With an SVG:</p>
 <div class="docs-example tooltip-demo">
-  <a href="#" data-coreui-toggle="tooltip" title="Default tooltip">
+  <a href="#" class="d-inline-block" data-coreui-toggle="tooltip" title="Default tooltip">
     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100">
       <rect width="100%" height="100%" fill="#563d7c"/>
       <circle cx="50" cy="50" r="30" fill="#007bff"/>
@@ -745,11 +749,11 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <span class="kd">var</span> <span class="nx">tooltip</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Tooltip</span><span class="p">(</span><span class="nx">exampleEl</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
 </code></pre></div><div class="docs-callout docs-callout-warning">
 <h5 id="overflow-auto-and-scroll">Overflow <code>auto</code> and <code>scroll</code></h5>
-<p>Tooltip position attempts to automatically change when a parent container has <code>overflow: auto</code> or <code>overflow: scroll</code> like our <code>.table-responsive</code>, but still keeps the original placement&rsquo;s positioning. To resolve, set the <code>boundary</code> option to anything other than default value, <code>'scrollParent'</code>, such as <code>'window'</code>:</p>
+<p>Tooltip position attempts to automatically change when a <strong>parent container</strong> has <code>overflow: auto</code> or <code>overflow: scroll</code> like our <code>.table-responsive</code>, but still keeps the original placement&rsquo;s positioning. To resolve this, set the <a href="https://popper.js.org/docs/v2/modifiers/flip/#boundary"><code>boundary</code> option</a> (for the flip modifier using the <code>popperConfig</code> option) to any HTMLElement to override the default value, <code>'clippingParents'</code>, such as <code>document.body</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">exampleEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">tooltip</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Tooltip</span><span class="p">(</span><span class="nx">exampleEl</span><span class="p">,</span> <span class="p">{</span>
-  <span class="nx">boundary</span><span class="o">:</span> <span class="s1">&#39;window&#39;</span>
-<span class="p">})</span>
+  <span class="nx">boundary</span><span class="o">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span> <span class="c1">// or document.querySelector(&#39;#boundary&#39;)
+</span><span class="c1"></span><span class="p">})</span>
 </code></pre></div>
 </div>
 
@@ -782,8 +786,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span></code></pre></div>
 </div>
 <h3 id="options">Options</h3>
-<p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-coreui-</code>, as in <code>data-coreui-animation=&quot;&quot;</code>.
-Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-coreui-</code>, as in <code>data-coreui-animation=&quot;&quot;</code>. Make sure to change the case type of the option name from camelCase to kebab-case when passing via data attributes. For example: instead of using <code>data-coreui-customClass=&quot;beautifier&quot;</code>, use <code>data-coreui-custom-class=&quot;beautifier&quot;</code>.</p>
+<p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-coreui-</code>, as in <code>data-coreui-animation=&quot;&quot;</code>. Make sure to change the case type of the option name from camelCase to kebab-case when passing the options via data attributes. For example, instead of using <code>data-coreui-customClass=&quot;beautifier&quot;</code>, use <code>data-coreui-custom-class=&quot;beautifier&quot;</code>.</p>
 <div class="docs-callout docs-callout-warning">
 Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code>, and <code>allowList</code> options cannot be supplied using data attributes.
 </div>
@@ -888,7 +891,7 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
       <td><code>boundary</code></td>
       <td>string | element</td>
       <td><code>'clippingParents'</code></td>
-      <td>Overflow constraint boundary of the tooltip. By default it's <code>'clippingParents'</code> and can accept an HTMLElement reference (JavaScript only). For more information refer to Popper's <a href="https://popper.js.org/docs/v2/utils/detect-overflow/#boundary">preventOverflow docs</a>.</td>
+      <td>Overflow constraint boundary of the tooltip (applies only to Popper's preventOverflow modifier). By default it's <code>'clippingParents'</code> and can accept an HTMLElement reference (via JavaScript only). For more information refer to Popper's <a href="https://popper.js.org/docs/v2/utils/detect-overflow/#boundary">detectOverflow docs</a>.</td>
     </tr>
     <tr>
       <td><code>customClass</code></td>
@@ -1061,7 +1064,7 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-alpha.2. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1069,7 +1072,7 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-0+5HznKWAIuPCY1HRJh0Of3caYyAG8tm3EPCZ286/iHC2AhH9Q7DVffO4IHGZySb" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

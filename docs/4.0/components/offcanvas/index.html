@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Build hidden sidebars into your project for navigation, shopping carts, and more with a few classes and our JavaScript plugin.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.81.0">
+<meta name="generator" content="Hugo 0.83.1">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-sj4nNLVki1gzwP+38XyjBKO55Fzkz7IVLU3E5+KhTyfcIH6KkOW98g/dufqEDuB5" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -74,10 +74,14 @@
   })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.0.0-rc.0/css/free.min.css" integrity="sha256-vejWHgYduBq3SYXJHSWSRJp7ktQpZ6d+8HGFtb9Fz9k=" crossorigin="anonymous">
+
+
+
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -109,7 +113,7 @@
 
           Getting started
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/introduction/" class="nav-link">Introduction</a>
             </li>
@@ -158,7 +162,7 @@
 
           Customize
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/customize/overview/" class="nav-link">Overview</a>
             </li>
@@ -191,7 +195,7 @@
 
           Layout
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/layout/breakpoints/" class="nav-link">Breakpoints</a>
             </li>
@@ -232,7 +236,7 @@
 
           Content
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/content/reboot/" class="nav-link">Reboot</a>
             </li>
@@ -259,7 +263,7 @@
 
           Forms
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/forms/overview/" class="nav-link">Overview</a>
             </li>
@@ -303,7 +307,7 @@
 
           Components
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/components/accordion/" class="nav-link">Accordion</a>
             </li>
@@ -408,7 +412,7 @@
 
           Helpers
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/helpers/clearfix/" class="nav-link">Clearfix</a>
             </li>
@@ -443,7 +447,7 @@
 
           Utilities
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/utilities/api/" class="nav-link">API</a>
             </li>
@@ -603,7 +607,7 @@
     
     
   
-  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 1, 0001</span>
+  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: May 7, 2021</span>
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
@@ -631,12 +635,13 @@
       </ul>
     </li>
     <li><a href="#placement">Placement</a></li>
-    <li><a href="#options">Options</a></li>
+    <li><a href="#backdrop">Backdrop</a></li>
     <li><a href="#accessibility">Accessibility</a></li>
     <li><a href="#usage">Usage</a>
       <ul>
         <li><a href="#via-data-attributes">Via data attributes</a></li>
         <li><a href="#via-javascript">Via JavaScript</a></li>
+        <li><a href="#options">Options</a></li>
         <li><a href="#methods">Methods</a></li>
         <li><a href="#events">Events</a></li>
       </ul>
@@ -673,8 +678,8 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 
 <h2 id="examples">Examples</h2>
 <h3 id="offcanvas-components">Offcanvas components</h3>
-<p>Below is a <em>static</em> offcanvas example (meaning its <code>position</code>, <code>display</code>, and <code>visibility</code> have been overridden). Offcanvas includes support for a header with a close button and an optional body class for some initial <code>padding</code>. We suggest that you include offcanvas headers with dismiss actions whenever possible, or provide an explicit dismiss action.</p>
-<div class="docs-example bd-example-offcanvas p-0 bg-light">
+<p>Below is an offcanvas example that is shown by default (via <code>.show</code> on <code>.offcanvas</code>). Offcanvas includes support for a header with a close button and an optional body class for some initial <code>padding</code>. We suggest that you include offcanvas headers with dismiss actions whenever possible, or provide an explicit dismiss action.</p>
+<div class="docs-example docs-example-offcanvas p-0 bg-light overflow-hidden">
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
@@ -762,9 +767,33 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <ul>
 <li><code>.offcanvas-start</code> places offcanvas on the left of the viewport (shown above)</li>
 <li><code>.offcanvas-end</code> places offcanvas on the right of the viewport</li>
+<li><code>.offcanvas-top</code> places offcanvas on the top of the viewport</li>
 <li><code>.offcanvas-bottom</code> places offcanvas on the bottom of the viewport</li>
 </ul>
-<p>Try the right and bottom examples out below.</p>
+<p>Try the top, right, and bottom examples out below.</p>
+<div class="docs-example">
+<button class="btn btn-primary" type="button" data-coreui-toggle="offcanvas" data-coreui-target="#offcanvasTop" aria-controls="offcanvasTop">Toggle top offcanvas</button>
+
+<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasTopLabel">Offcanvas top</h5>
+    <button type="button" class="btn-close text-reset" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    ...
+  </div>
+</div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;offcanvas&#34;</span> <span class="na">data-coreui-target</span><span class="o">=</span><span class="s">&#34;#offcanvasTop&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;offcanvasTop&#34;</span><span class="p">&gt;</span>Toggle top offcanvas<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas offcanvas-top&#34;</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&#34;-1&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;offcanvasTop&#34;</span> <span class="na">aria-labelledby</span><span class="o">=</span><span class="s">&#34;offcanvasTopLabel&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas-header&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;offcanvasTopLabel&#34;</span><span class="p">&gt;</span>Offcanvas top<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn-close text-reset&#34;</span> <span class="na">data-coreui-dismiss</span><span class="o">=</span><span class="s">&#34;offcanvas&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Close&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas-body&#34;</span><span class="p">&gt;</span>
+    ...
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <div class="docs-example">
 <button class="btn btn-primary" type="button" data-coreui-toggle="offcanvas" data-coreui-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
 
@@ -811,14 +840,14 @@ The animation effect of this component is dependent on the <code>prefers-reduced
     ...
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
-<h2 id="options">Options</h2>
-<p>By default, we disable scrolling on the <code>&lt;body&gt;</code> when an offcanvas is visible and use a gray backdrop. Use the <code>data-coreui-body</code> attribute to enable <code>&lt;body&gt;</code> scrolling, or a combination of both options</p>
+<h2 id="backdrop">Backdrop</h2>
+<p>Scrolling the <code>&lt;body&gt;</code> element is disabled when an offcanvas and its backdrop are visible. Use the <code>data-coreui-scroll</code> attribute to toggle <code>&lt;body&gt;</code> scrolling and <code>data-coreui-backdrop</code> to toggle the backdrop.</p>
 <div class="docs-example">
 <button class="btn btn-primary" type="button" data-coreui-toggle="offcanvas" data-coreui-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Enable body scrolling</button>
 <button class="btn btn-primary" type="button" data-coreui-toggle="offcanvas" data-coreui-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">Enable backdrop (default)</button>
 <button class="btn btn-primary" type="button" data-coreui-toggle="offcanvas" data-coreui-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Enable both scrolling & backdrop</button>
 
-<div class="offcanvas offcanvas-start" data-coreui-body="scroll" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+<div class="offcanvas offcanvas-start" data-coreui-body="scroll" data-coreui-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
     <button type="button" class="btn-close text-reset" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
@@ -827,7 +856,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
     <p>Try scrolling the rest of the page to see this option in action.</p>
   </div>
 </div>
-<div class="offcanvas offcanvas-start" data-coreui-body="backdrop" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
     <button type="button" class="btn-close text-reset" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
@@ -836,7 +865,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
     <p>.....</p>
   </div>
 </div>
-<div class="offcanvas offcanvas-start" data-coreui-body="scroll,backdrop" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+<div class="offcanvas offcanvas-start" data-coreui-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdroped with scrolling</h5>
     <button type="button" class="btn-close text-reset" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
@@ -849,7 +878,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;offcanvas&#34;</span> <span class="na">data-coreui-target</span><span class="o">=</span><span class="s">&#34;#offcanvasWithBackdrop&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;offcanvasWithBackdrop&#34;</span><span class="p">&gt;</span>Enable backdrop (default)<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;offcanvas&#34;</span> <span class="na">data-coreui-target</span><span class="o">=</span><span class="s">&#34;#offcanvasWithBothOptions&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;offcanvasWithBothOptions&#34;</span><span class="p">&gt;</span>Enable both scrolling <span class="err">&amp;</span> backdrop<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas offcanvas-start&#34;</span> <span class="na">data-coreui-body</span><span class="o">=</span><span class="s">&#34;scroll&#34;</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&#34;-1&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;offcanvasScrolling&#34;</span> <span class="na">aria-labelledby</span><span class="o">=</span><span class="s">&#34;offcanvasScrollingLabel&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas offcanvas-start&#34;</span> <span class="na">data-coreui-body</span><span class="o">=</span><span class="s">&#34;scroll&#34;</span> <span class="na">data-coreui-backdrop</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&#34;-1&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;offcanvasScrolling&#34;</span> <span class="na">aria-labelledby</span><span class="o">=</span><span class="s">&#34;offcanvasScrollingLabel&#34;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas-header&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas-title&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;offcanvasScrollingLabel&#34;</span><span class="p">&gt;</span>Colored with scrolling<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn-close text-reset&#34;</span> <span class="na">data-coreui-dismiss</span><span class="o">=</span><span class="s">&#34;offcanvas&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Close&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
@@ -858,7 +887,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
     <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Try scrolling the rest of the page to see this option in action.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas offcanvas-start&#34;</span> <span class="na">data-coreui-body</span><span class="o">=</span><span class="s">&#34;backdrop&#34;</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&#34;-1&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;offcanvasWithBackdrop&#34;</span> <span class="na">aria-labelledby</span><span class="o">=</span><span class="s">&#34;offcanvasWithBackdropLabel&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas offcanvas-start&#34;</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&#34;-1&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;offcanvasWithBackdrop&#34;</span> <span class="na">aria-labelledby</span><span class="o">=</span><span class="s">&#34;offcanvasWithBackdropLabel&#34;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas-header&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas-title&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;offcanvasWithBackdropLabel&#34;</span><span class="p">&gt;</span>Offcanvas with backdrop<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn-close text-reset&#34;</span> <span class="na">data-coreui-dismiss</span><span class="o">=</span><span class="s">&#34;offcanvas&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Close&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
@@ -867,7 +896,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
     <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>.....<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas offcanvas-start&#34;</span> <span class="na">data-coreui-body</span><span class="o">=</span><span class="s">&#34;scroll,backdrop&#34;</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&#34;-1&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;offcanvasWithBothOptions&#34;</span> <span class="na">aria-labelledby</span><span class="o">=</span><span class="s">&#34;offcanvasWithBothOptionsLabel&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas offcanvas-start&#34;</span> <span class="na">data-coreui-scroll</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&#34;-1&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;offcanvasWithBothOptions&#34;</span> <span class="na">aria-labelledby</span><span class="o">=</span><span class="s">&#34;offcanvasWithBothOptionsLabel&#34;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas-header&#34;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">h5</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;offcanvas-title&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;offcanvasWithBothOptionsLabel&#34;</span><span class="p">&gt;</span>Backdroped with scrolling<span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn-close text-reset&#34;</span> <span class="na">data-coreui-dismiss</span><span class="o">=</span><span class="s">&#34;offcanvas&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Close&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
@@ -886,9 +915,6 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <li><code>.offcanvas-start</code> hides the offcanvas on the left</li>
 <li><code>.offcanvas-end</code> hides the offcanvas on the right</li>
 <li><code>.offcanvas-bottom</code> hides the offcanvas on the bottom</li>
-<li><code>data-coreui-body=&quot;scroll&quot;</code> enables <code>&lt;body&gt;</code> scrolling when offcanvas is open</li>
-<li><code>data-coreui-body=&quot;backdrop&quot;</code> disables scrolling and creates a backdrop over the <code>&lt;body&gt;</code> when offcanvas is open <code>(default)</code></li>
-<li><code>data-coreui-body=&quot;backdrop,scroll&quot;</code> combines both options to enable <code>&lt;body&gt;</code> scrolling and create a backdrop over the <code>&lt;body&gt;</code> when offcanvas is open</li>
 </ul>
 <p>Add a dismiss button with the <code>data-coreui-dismiss=&quot;offcanvas&quot;</code> attribute, which triggers the JavaScript functionality. Be sure to use the <code>&lt;button&gt;</code> element with it for proper behavior across all devices.</p>
 <h3 id="via-data-attributes">Via data attributes</h3>
@@ -899,7 +925,40 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <span class="kd">var</span> <span class="nx">offcanvasList</span> <span class="o">=</span> <span class="nx">offcanvasElementList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">offcanvasEl</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="k">new</span> <span class="nx">bootstrap</span><span class="p">.</span><span class="nx">Offcanvas</span><span class="p">(</span><span class="nx">offcanvasEl</span><span class="p">)</span>
 <span class="p">})</span>
-</code></pre></div><h3 id="methods">Methods</h3>
+</code></pre></div><h3 id="options">Options</h3>
+<p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-coreui-</code>, as in <code>data-coreui-backdrop=&quot;&quot;</code>.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>backdrop</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Apply a backdrop on body while offcanvas is open</td>
+</tr>
+<tr>
+<td><code>keyboard</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Closes the offcanvas when escape key is pressed</td>
+</tr>
+<tr>
+<td><code>scroll</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Allow body scrolling while offcanvas is open</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="methods">Methods</h3>
 <div class="docs-callout docs-callout-danger">
 <h4 id="asynchronous-methods-and-transitions">Asynchronous methods and transitions</h4>
 <p>All API methods are <strong>asynchronous</strong> and start a <strong>transition</strong>. They return to the caller as soon as the transition is started but <strong>before it ends</strong>. In addition, a method call on a <strong>transitioning component will be ignored</strong>.</p>
@@ -911,7 +970,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <p>You can create an offcanvas instance with the constructor, for example:</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myOffcanvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myOffcanvas&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">bsOffcanvas</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">bootstrap</span><span class="p">.</span><span class="nx">Offcanvas</span><span class="p">(</span><span class="nx">myOffcanvas</span><span class="p">)</span>
-</code></pre></div><table>
+</code></pre></div><table class="table">
 <thead>
 <tr>
 <th>Method</th>
@@ -932,39 +991,41 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <td>Hides an offcanvas element. <strong>Returns to the caller before the offcanvas element has actually been hidden</strong> (i.e. before the <code>hidden.coreui.offcanvas</code> event occurs).</td>
 </tr>
 <tr>
-<td><code>_getInstance</code></td>
+<td><code>getInstance</code></td>
 <td><em>Static</em> method which allows you to get the offcanvas instance associated with a DOM element</td>
 </tr>
 </tbody>
 </table>
+
 <h3 id="events">Events</h3>
 <p>Bootstrap&rsquo;s offcanvas class exposes a few events for hooking into offcanvas functionality.</p>
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th style="width: 150px;">Event Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>show.coreui.offcanvas</td>
-      <td>This event fires immediately when the <code>show</code> instance method is called.</td>
-    </tr>
-    <tr>
-      <td>shown.coreui.offcanvas</td>
-      <td>This event is fired when an offcanvas element has been made visible to the user (will wait for CSS transitions to complete).</td>
-    </tr>
-    <tr>
-      <td>hide.coreui.offcanvas</td>
-      <td>This event is fired immediately when the <code>hide</code> method has been called.</td>
-    </tr>
-    <tr>
-      <td>hidden.coreui.offcanvas</td>
-      <td>This event is fired when an offcanvas element has been hidden from the user (will wait for CSS transitions to complete).</td>
-    </tr>
-  </tbody>
+<table class="table">
+<thead>
+<tr>
+<th>Event type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show.coreui.offcanvas</code></td>
+<td>This event fires immediately when the <code>show</code> instance method is called.</td>
+</tr>
+<tr>
+<td><code>shown.coreui.offcanvas</code></td>
+<td>This event is fired when an offcanvas element has been made visible to the user (will wait for CSS transitions to complete).</td>
+</tr>
+<tr>
+<td><code>hide.coreui.offcanvas</code></td>
+<td>This event is fired immediately when the <code>hide</code> method has been called.</td>
+</tr>
+<tr>
+<td><code>hidden.coreui.offcanvas</code></td>
+<td>This event is fired when an offcanvas element has been hidden from the user (will wait for CSS transitions to complete).</td>
+</tr>
+</tbody>
 </table>
+
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myOffcanvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myOffcanvas&#39;</span><span class="p">)</span>
 <span class="nx">myOffcanvas</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;hidden.coreui.offcanvas&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="c1">// do something...
@@ -982,7 +1043,6 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <span class="nv">$offcanvas-title-line-height</span><span class="o">:</span>       <span class="nv">$modal-title-line-height</span><span class="p">;</span>
 <span class="nv">$offcanvas-bg-color</span><span class="o">:</span>                <span class="nv">$modal-content-bg</span><span class="p">;</span>
 <span class="nv">$offcanvas-color</span><span class="o">:</span>                   <span class="nv">$modal-content-color</span><span class="p">;</span>
-<span class="nv">$offcanvas-body-backdrop-color</span><span class="o">:</span>     <span class="nf">rgba</span><span class="p">(</span><span class="nv">$modal-backdrop-bg</span><span class="o">,</span> <span class="nv">$modal-backdrop-opacity</span><span class="p">);</span>
 <span class="nv">$offcanvas-box-shadow</span><span class="o">:</span>              <span class="nv">$modal-content-box-shadow-xs</span><span class="p">;</span>
 </code></pre></div>
 
@@ -999,7 +1059,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-alpha.2. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1007,7 +1067,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-0+5HznKWAIuPCY1HRJh0Of3caYyAG8tm3EPCZ286/iHC2AhH9Q7DVffO4IHGZySb" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

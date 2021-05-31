@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Keep your projects lean, responsive, and maintainable so you can deliver the best experience and focus on more important jobs.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.81.0">
+<meta name="generator" content="Hugo 0.83.1">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-sj4nNLVki1gzwP+38XyjBKO55Fzkz7IVLU3E5+KhTyfcIH6KkOW98g/dufqEDuB5" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -74,10 +74,14 @@
   })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.0.0-rc.0/css/free.min.css" integrity="sha256-vejWHgYduBq3SYXJHSWSRJp7ktQpZ6d+8HGFtb9Fz9k=" crossorigin="anonymous">
+
+
+
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -109,7 +113,7 @@
 
           Getting started
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/introduction/" class="nav-link">Introduction</a>
             </li>
@@ -158,7 +162,7 @@
 
           Customize
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/customize/overview/" class="nav-link">Overview</a>
             </li>
@@ -191,7 +195,7 @@
 
           Layout
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/layout/breakpoints/" class="nav-link">Breakpoints</a>
             </li>
@@ -232,7 +236,7 @@
 
           Content
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/content/reboot/" class="nav-link">Reboot</a>
             </li>
@@ -259,7 +263,7 @@
 
           Forms
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/forms/overview/" class="nav-link">Overview</a>
             </li>
@@ -303,7 +307,7 @@
 
           Components
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/components/accordion/" class="nav-link">Accordion</a>
             </li>
@@ -408,7 +412,7 @@
 
           Helpers
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/helpers/clearfix/" class="nav-link">Clearfix</a>
             </li>
@@ -443,7 +447,7 @@
 
           Utilities
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/utilities/api/" class="nav-link">API</a>
             </li>
@@ -628,6 +632,7 @@
     <li><a href="#autoprefixer-browserslistrc">Autoprefixer .browserslistrc</a></li>
     <li><a href="#unused-css">Unused CSS</a></li>
     <li><a href="#minify-and-gzip">Minify and gzip</a></li>
+    <li><a href="#nonblocking-files">Nonblocking files</a></li>
     <li><a href="#always-use-https">Always use HTTPS</a></li>
   </ul>
 </nav>
@@ -732,6 +737,16 @@
 <p>Lastly, this <a href="https://css-tricks.com/how-do-you-remove-unused-css-from-a-site/">CSS Tricks article on unused CSS</a> shows how to use PurgeCSS and other similar tools.</p>
 <h2 id="minify-and-gzip">Minify and gzip</h2>
 <p>Whenever possible, be sure to compress all the code you serve to your visitors. If you&rsquo;re using Bootstrap dist files, try to stick to the minified versions (indicated by the <code>.min.css</code> and <code>.min.js</code> extensions). If you&rsquo;re building Bootstrap from the source with your own build system, be sure to implement your own minifiers for HTML, CSS, and JS.</p>
+<h2 id="nonblocking-files">Nonblocking files</h2>
+<p>While minifying and using compression might seem like enough, making your files nonblocking ones is also a big step in making your site well-optimized and fast enough.</p>
+<p>If you are using a <a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a> plugin in Google Chrome, you may have stumbled over FCP. <a href="https://web.dev/fcp/">The First Contentful Paint</a> metric measures the time from when the page starts loading to when any part of the page&rsquo;s content is rendered on the screen.</p>
+<p>You can improve FCP by deferring non-critical JavaScript or CSS. What does that mean? Simply, JavaScript or stylesheets that don&rsquo;t need to be present on the first paint of your page should be marked with <code>async</code> or <code>defer</code> attributes.</p>
+<p>This ensures that the less important resources are loaded later and not blocking the first paint. On the other hand, critical resources can be included as inline scripts or styles.</p>
+<p>If you want to learn more about this, there are already a lot of great articles about it:</p>
+<ul>
+<li><a href="https://web.dev/render-blocking-resources/">https://web.dev/render-blocking-resources/</a></li>
+<li><a href="https://web.dev/defer-non-critical-css/">https://web.dev/defer-non-critical-css/</a></li>
+</ul>
 <h2 id="always-use-https">Always use HTTPS</h2>
 <p>Your website should only be available over HTTPS connections in production. HTTPS improves the security, privacy, and availability of all sites, and <a href="https://https.cio.gov/everything/">there is no such thing as non-sensitive web traffic</a>. The steps to configure your website to be served exclusively over HTTPS vary widely depending on your architecture and web hosting provider, and thus are beyond the scope of these docs.</p>
 <p>Sites served over HTTPS should also access all stylesheets, scripts, and other assets over HTTPS connections. Otherwise, you&rsquo;ll be sending users <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content">mixed active content</a>, leading to potential vulnerabilities where a site can be compromised by altering a dependency. This can lead to security issues and in-browser warnings displayed to users. Whether you&rsquo;re getting Bootstrap from a CDN or serving it yourself, ensure that you only access it over HTTPS connections.</p>
@@ -749,7 +764,7 @@
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-alpha.2. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -757,7 +772,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-0+5HznKWAIuPCY1HRJh0Of3caYyAG8tm3EPCZ286/iHC2AhH9Q7DVffO4IHGZySb" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

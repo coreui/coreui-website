@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="The utility API is a Sass-based tool to generate utility classes.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.81.0">
+<meta name="generator" content="Hugo 0.83.1">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-sj4nNLVki1gzwP+38XyjBKO55Fzkz7IVLU3E5+KhTyfcIH6KkOW98g/dufqEDuB5" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -74,10 +74,14 @@
   })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.0.0-rc.0/css/free.min.css" integrity="sha256-vejWHgYduBq3SYXJHSWSRJp7ktQpZ6d+8HGFtb9Fz9k=" crossorigin="anonymous">
+
+
+
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -109,7 +113,7 @@
 
           Getting started
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/introduction/" class="nav-link">Introduction</a>
             </li>
@@ -158,7 +162,7 @@
 
           Customize
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/customize/overview/" class="nav-link">Overview</a>
             </li>
@@ -191,7 +195,7 @@
 
           Layout
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/layout/breakpoints/" class="nav-link">Breakpoints</a>
             </li>
@@ -232,7 +236,7 @@
 
           Content
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/content/reboot/" class="nav-link">Reboot</a>
             </li>
@@ -259,7 +263,7 @@
 
           Forms
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/forms/overview/" class="nav-link">Overview</a>
             </li>
@@ -303,7 +307,7 @@
 
           Components
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/components/accordion/" class="nav-link">Accordion</a>
             </li>
@@ -408,7 +412,7 @@
 
           Helpers
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/helpers/clearfix/" class="nav-link">Clearfix</a>
             </li>
@@ -443,7 +447,7 @@
 
           Utilities
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/utilities/api/" class="nav-link active" aria-current="page">API</a>
             </li>
@@ -626,10 +630,7 @@
     <li><a href="#api-explained">API explained</a>
       <ul>
         <li><a href="#custom-class-prefix">Custom class prefix</a></li>
-      </ul>
-    </li>
-    <li><a href="#states">States</a>
-      <ul>
+        <li><a href="#states">States</a></li>
         <li><a href="#responsive-utilities">Responsive utilities</a></li>
         <li><a href="#changing-utilities">Changing utilities</a></li>
         <li><a href="#print-utilities">Print utilities</a></li>
@@ -640,6 +641,7 @@
         <li><a href="#add-utilities">Add utilities</a></li>
         <li><a href="#modify-utilities">Modify utilities</a>
           <ul>
+            <li><a href="#enable-responsive">Enable responsive</a></li>
             <li><a href="#rename-utilities">Rename utilities</a></li>
           </ul>
         </li>
@@ -753,7 +755,7 @@
 <span class="p">.</span><span class="nc">o-50</span> <span class="p">{</span> <span class="k">opacity</span><span class="p">:</span> <span class="mf">.5</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">.</span><span class="nc">o-75</span> <span class="p">{</span> <span class="k">opacity</span><span class="p">:</span> <span class="mf">.75</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">.</span><span class="nc">o-100</span> <span class="p">{</span> <span class="k">opacity</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
-</code></pre></div><h2 id="states">States</h2>
+</code></pre></div><h3 id="states">States</h3>
 <p>Use the <code>state</code> option to generate pseudo-class variations. Example pseudo-classes are <code>:hover</code> and <code>:focus</code>. When a list of states are provided, classnames are created for that pseudo-class. For example, to change opacity on hover, add <code>state: hover</code> and you&rsquo;ll get <code>.opacity-hover:hover</code> in your compiled CSS.</p>
 <p>Need multiple pseudo-classes? Use a space-separated list of states: <code>state: hover focus</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$utilities</span><span class="o">:</span> <span class="p">(</span>
@@ -914,6 +916,48 @@
     <span class="p">)</span><span class="o">,</span>
   <span class="p">)</span>
 <span class="p">);</span>
+</code></pre></div><h4 id="enable-responsive">Enable responsive</h4>
+<p>You can enable responsive classes for an existing set of utilities that are not currently responsive by default. For example, to make the <code>border</code> classes responsive:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@import</span> <span class="s2">&#34;bootstrap/scss/functions&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;bootstrap/scss/variables&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;bootstrap/scss/utilities&#34;</span><span class="p">;</span>
+
+<span class="nv">$utilities</span><span class="o">:</span> <span class="nf">map-merge</span><span class="p">(</span>
+  <span class="nv">$utilities</span><span class="o">,</span> <span class="p">(</span>
+    <span class="s2">&#34;border&#34;</span><span class="o">:</span> <span class="nf">map-merge</span><span class="p">(</span>
+      <span class="nf">map-get</span><span class="p">(</span><span class="nv">$utilities</span><span class="o">,</span> <span class="s2">&#34;border&#34;</span><span class="p">)</span><span class="o">,</span>
+      <span class="p">(</span> <span class="n">responsive</span><span class="o">:</span> <span class="n">true</span> <span class="p">)</span><span class="o">,</span>
+    <span class="p">)</span><span class="o">,</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div><p>This will now generate responsive variations of <code>.border</code> and <code>.border-0</code> for each breakpoint. Your generated CSS will look like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">border</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+<span class="p">.</span><span class="nc">border-0</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+
+<span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">576px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="p">.</span><span class="nc">border-sm</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+  <span class="p">.</span><span class="nc">border-sm-0</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">768px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="p">.</span><span class="nc">border-md</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+  <span class="p">.</span><span class="nc">border-md-0</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">992px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="p">.</span><span class="nc">border-lg</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+  <span class="p">.</span><span class="nc">border-lg-0</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">1200px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="p">.</span><span class="nc">border-xl</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+  <span class="p">.</span><span class="nc">border-xl-0</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">1400px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="p">.</span><span class="nc">border-xxl</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+  <span class="p">.</span><span class="nc">border-xxl-0</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div><h4 id="rename-utilities">Rename utilities</h4>
 <p>Missing v4 utilities, or used to another naming convention? The utilities API can be used to override the resulting <code>class</code> of a given utility—for example, to rename <code>.ms-*</code> utilities to oldish <code>.ml-*</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@import</span> <span class="s2">&#34;bootstrap/scss/functions&#34;</span><span class="p">;</span>
@@ -972,7 +1016,7 @@
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-alpha.2. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -980,7 +1024,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-0+5HznKWAIuPCY1HRJh0Of3caYyAG8tm3EPCZ286/iHC2AhH9Q7DVffO4IHGZySb" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

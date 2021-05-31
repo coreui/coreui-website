@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Use Bootstrap&rsquo;s CSS custom properties for fast and forward-looking design and development.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.81.0">
+<meta name="generator" content="Hugo 0.83.1">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-sj4nNLVki1gzwP+38XyjBKO55Fzkz7IVLU3E5+KhTyfcIH6KkOW98g/dufqEDuB5" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -74,10 +74,14 @@
   })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.0.0-rc.0/css/free.min.css" integrity="sha256-vejWHgYduBq3SYXJHSWSRJp7ktQpZ6d+8HGFtb9Fz9k=" crossorigin="anonymous">
+
+
+
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -109,7 +113,7 @@
 
           Getting started
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/getting-started/introduction/" class="nav-link">Introduction</a>
             </li>
@@ -158,7 +162,7 @@
 
           Customize
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/customize/overview/" class="nav-link">Overview</a>
             </li>
@@ -191,7 +195,7 @@
 
           Layout
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/layout/breakpoints/" class="nav-link">Breakpoints</a>
             </li>
@@ -232,7 +236,7 @@
 
           Content
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/content/reboot/" class="nav-link">Reboot</a>
             </li>
@@ -259,7 +263,7 @@
 
           Forms
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/forms/overview/" class="nav-link">Overview</a>
             </li>
@@ -303,7 +307,7 @@
 
           Components
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/components/accordion/" class="nav-link">Accordion</a>
             </li>
@@ -408,7 +412,7 @@
 
           Helpers
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/helpers/clearfix/" class="nav-link">Clearfix</a>
             </li>
@@ -443,7 +447,7 @@
 
           Utilities
         </a>
-        <ul class="nav-group-items sidebar-nav-sm">
+        <ul class="nav-group-items compact">
             <li class="nav-item">
               <a href="/docs/4.0/utilities/api/" class="nav-link">API</a>
             </li>
@@ -603,7 +607,7 @@
     
     
   
-  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 11, 2021</span>
+  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: March 11, 2021</span>
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
@@ -698,16 +702,25 @@
   --cui-danger: #e55353;
   --cui-light: #ebedef;
   --cui-dark: #4f5d73;
+  --cui-breakpoint-xs: 0;
+  --cui-breakpoint-sm: 576px;
+  --cui-breakpoint-md: 768px;
+  --cui-breakpoint-lg: 992px;
+  --cui-breakpoint-xl: 1200px;
+  --cui-breakpoint-xxl: 1400px;
+  --cui-mobile-breakpoint: md;
   --cui-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --cui-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --cui-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --cui-body-color: rgba(44, 56, 74, 0.95);
 }</span>
 </code></pre></div><h2 id="component-variables">Component variables</h2>
 <p>CoreUI allows you to customize components and create themes (only in CoreUI PRO) using custom properties as local variables for various components. This way we can reduce our compiled CSS, and allow restyling and extending of CoreUI components after Sass compilation.</p>
 <p>Have a look at our variables list below. CoreUI supports mainly color variables, but we will add more variables in future releases.</p>
 <h3 id="components">Components</h3>
 <h4 id="accordion">Accordion</h4>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-accordion-border-color</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-accordion-bg</span>
+<span class="nt">--cui-accordion-border-color</span>
 <span class="nt">--cui-accordion-button-active-bg</span>
 <span class="nt">--cui-accordion-button-active-color</span>
 <span class="nt">--cui-accordion-button-active-icon</span>
@@ -726,35 +739,25 @@
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-breadcrumb-active-color</span>
 <span class="nt">--cui-breadcrumb-bg</span>
 <span class="nt">--cui-breadcrumb-divider</span>
-<span class="nt">--cui-breadcrumb-divider-color</span></code></pre></div>
+<span class="nt">--cui-breadcrumb-divider-color</span>
+<span class="nt">--cui-breadcrumb-divider-flipped</span></code></pre></div>
 <h4 id="buttons">Buttons</h4>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-body-color</span>
-<span class="nt">--cui-btn-active-background</span>
-<span class="nt">--cui-btn-active-border</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-btn-active-bg</span>
+<span class="nt">--cui-btn-active-border-color</span>
 <span class="nt">--cui-btn-active-color</span>
-<span class="nt">--cui-btn-background</span>
+<span class="nt">--cui-btn-bg</span>
 <span class="nt">--cui-btn-border-color</span>
+<span class="nt">--cui-btn-box-shadow</span>
 <span class="nt">--cui-btn-color</span>
-<span class="nt">--cui-btn-disabled-background</span>
-<span class="nt">--cui-btn-disabled-border</span>
+<span class="nt">--cui-btn-disabled-bg</span>
+<span class="nt">--cui-btn-disabled-border-color</span>
 <span class="nt">--cui-btn-disabled-color</span>
-<span class="nt">--cui-btn-ghost-active-background</span>
-<span class="nt">--cui-btn-ghost-active-border</span>
-<span class="nt">--cui-btn-ghost-color</span>
-<span class="nt">--cui-btn-ghost-hover-color</span>
-<span class="nt">--cui-btn-ghost-shadow</span>
-<span class="nt">--cui-btn-hover-background</span>
-<span class="nt">--cui-btn-hover-border</span>
+<span class="nt">--cui-btn-hover-bg</span>
+<span class="nt">--cui-btn-hover-border-color</span>
 <span class="nt">--cui-btn-hover-color</span>
 <span class="nt">--cui-btn-link-color</span>
 <span class="nt">--cui-btn-link-disabled-color</span>
 <span class="nt">--cui-btn-link-hover-color</span>
-<span class="nt">--cui-btn-outline-active-background</span>
-<span class="nt">--cui-btn-outline-active-border</span>
-<span class="nt">--cui-btn-outline-active-color</span>
-<span class="nt">--cui-btn-outline-color</span>
-<span class="nt">--cui-btn-outline-hover-color</span>
-<span class="nt">--cui-btn-outline-shadow</span>
 <span class="nt">--cui-btn-shadow</span></code></pre></div>
 <h4 id="callout">Callout</h4>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-callout-border-color</span>
@@ -808,14 +811,13 @@
 <span class="nt">--cui-header-toggler-icon-bg</span></code></pre></div>
 <h4 id="list-group">List Group</h4>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-list-group-action-active-bg</span>
+<span class="nt">--cui-list-group-action-active-border-color</span>
 <span class="nt">--cui-list-group-action-active-color</span>
 <span class="nt">--cui-list-group-action-color</span>
 <span class="nt">--cui-list-group-action-hover-color</span>
 <span class="nt">--cui-list-group-active-bg</span>
 <span class="nt">--cui-list-group-active-border-color</span>
 <span class="nt">--cui-list-group-active-color</span>
-<span class="nt">--cui-list-group-background</span>
-<span class="nt">--cui-list-group-background-hover</span>
 <span class="nt">--cui-list-group-bg</span>
 <span class="nt">--cui-list-group-border-color</span>
 <span class="nt">--cui-list-group-color</span>
@@ -876,13 +878,15 @@
 <span class="nt">--cui-popover-body-color</span>
 <span class="nt">--cui-popover-border-color</span>
 <span class="nt">--cui-popover-header-bg</span>
+<span class="nt">--cui-popover-header-border-color</span>
 <span class="nt">--cui-popover-header-color</span></code></pre></div>
 <h4 id="progress">Progress</h4>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-progress-bar-bg</span>
 <span class="nt">--cui-progress-bar-color</span>
 <span class="nt">--cui-progress-bg</span></code></pre></div>
 <h4 id="sidebar">Sidebar</h4>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-sidebar-bg</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-is-mobile</span>
+<span class="nt">--cui-sidebar-bg</span>
 <span class="nt">--cui-sidebar-border-color</span>
 <span class="nt">--cui-sidebar-border-width</span>
 <span class="nt">--cui-sidebar-brand-bg</span>
@@ -892,9 +896,7 @@
 <span class="nt">--cui-sidebar-header-bg</span>
 <span class="nt">--cui-sidebar-nav-group-bg</span>
 <span class="nt">--cui-sidebar-nav-group-indicator</span>
-<span class="nt">--cui-sidebar-nav-group-indicator-color</span>
 <span class="nt">--cui-sidebar-nav-group-indicator-hover</span>
-<span class="nt">--cui-sidebar-nav-group-indicator-hover-color</span>
 <span class="nt">--cui-sidebar-nav-group-toggle-show-color</span>
 <span class="nt">--cui-sidebar-nav-link-active-bg</span>
 <span class="nt">--cui-sidebar-nav-link-active-color</span>
@@ -908,11 +910,12 @@
 <span class="nt">--cui-sidebar-nav-link-hover-icon-color</span>
 <span class="nt">--cui-sidebar-nav-link-icon-color</span>
 <span class="nt">--cui-sidebar-nav-title-color</span>
-<span class="nt">--cui-sidebar-occupy</span>
+<span class="nt">--cui-sidebar-occupy-end</span>
+<span class="nt">--cui-sidebar-occupy-start</span>
 <span class="nt">--cui-sidebar-toggler-bg</span>
 <span class="nt">--cui-sidebar-toggler-hover-bg</span>
-<span class="nt">--cui-sidebar-toggler-hover-indicator</span>
-<span class="nt">--cui-sidebar-toggler-indicator</span></code></pre></div>
+<span class="nt">--cui-sidebar-toggler-indicator</span>
+<span class="nt">--cui-sidebar-toggler-indicator-hover</span></code></pre></div>
 <h4 id="toasts">Toasts</h4>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-toast-background-color</span>
 <span class="nt">--cui-toast-border-color</span>
@@ -1002,10 +1005,10 @@
 <h2 id="examples">Examples</h2>
 <p>CSS variables offer similar flexibility to Sass&rsquo;s variables, but without the need for compilation before being served to the browser. For example, here we&rsquo;re resetting our page&rsquo;s font and link styles with CSS variables.</p>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">body</span> <span class="p">{</span>
-  <span class="k">font</span><span class="p">:</span> <span class="mi">1</span><span class="kt">rem</span><span class="o">/</span><span class="mf">1.5</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">coreui</span><span class="o">-</span><span class="n">font</span><span class="o">-</span><span class="kc">sans-serif</span><span class="p">);</span>
+  <span class="k">font</span><span class="p">:</span> <span class="mi">1</span><span class="kt">rem</span><span class="o">/</span><span class="mf">1.5</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">cui</span><span class="o">-</span><span class="n">font</span><span class="o">-</span><span class="kc">sans-serif</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="nt">a</span> <span class="p">{</span>
-  <span class="k">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">coreui</span><span class="o">-</span><span class="kc">blue</span><span class="p">);</span>
+  <span class="k">color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="n">cui</span><span class="o">-</span><span class="kc">blue</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
     </div>
@@ -1021,7 +1024,7 @@
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-alpha.2. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1029,7 +1032,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-0+5HznKWAIuPCY1HRJh0Of3caYyAG8tm3EPCZ286/iHC2AhH9Q7DVffO4IHGZySb" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>
