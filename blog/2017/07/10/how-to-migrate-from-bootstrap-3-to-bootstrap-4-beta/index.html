@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Free Bootstrap Admin Template">
   <meta name="author" content="">
-  <meta name="generator" content="Hugo 0.74.3">
-  <title>How to migrate from Bootstrap 3 to Bootstrap 4 Beta · CoreUI</title><link rel="canonical" href="https://coreui.io/blog/2017/07/10/how-to-migrate-from-bootstrap-3-to-bootstrap-4-beta/">
+  <meta name="generator" content="Hugo 0.82.0">
+  <title>How to migrate from Bootstrap 3 to Bootstrap 4 Beta · CoreUI</title><link rel="canonical" href="https://coreui.io/blog/2017/07/10/How-to-migrate-from-Bootstrap-3-to-Bootstrap-4-Beta/">
 <link rel="stylesheet" href="https://coreui.io/scss/style.min.ca96be1bd741cfb81df7fac66b767b5ab65e0c4c0506be5296f80f291f36d938.css">
   <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-icon-60x60.png">
@@ -34,7 +34,7 @@
 <meta name="twitter:image" content="https://coreui.io/">
 
 <!-- Facebook -->
-<meta property="og:url" content="https://coreui.io/blog/2017/07/10/how-to-migrate-from-bootstrap-3-to-bootstrap-4-beta/">
+<meta property="og:url" content="https://coreui.io/blog/2017/07/10/How-to-migrate-from-Bootstrap-3-to-Bootstrap-4-Beta/">
 <meta property="og:title" content="How to migrate from Bootstrap 3 to Bootstrap 4 Beta · CoreUI">
 <meta property="og:description" content="Free Bootstrap Admin Template">
 <meta property="og:type" content="website">
@@ -45,6 +45,32 @@
 <meta property="og:image:height" content="630">
 
   
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('set', 'linker', {
+    'accept_incoming': true,
+    'domains': ['secure.2checkout.com', 'gumroad.com']
+  });
+  gtag('js', new Date());
+  gtag('config', 'UA-118965717-1');
+</script>
+
+
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '667090843876081');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=667090843876081&ev=PageView&noscript=1"/></noscript>
 
 
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -226,8 +252,11 @@
 <div class="container blog">
       <div class="row">
         <div class="col posts">
+          <div class="alert alert-primary">
+            The blog was moved to new address - <a href="#" class="alert-link" target="_blank">https://blog.coreui.io</a>
+          </div>
           <div class="post">
-            <h2 class="post-title"><a href="https://coreui.io/blog/2017/07/10/how-to-migrate-from-bootstrap-3-to-bootstrap-4-beta/">How to migrate from Bootstrap 3 to Bootstrap 4 Beta</a></h2>
+            <h2 class="post-title"><a href="https://coreui.io/blog/2017/07/10/How-to-migrate-from-Bootstrap-3-to-Bootstrap-4-Beta/">How to migrate from Bootstrap 3 to Bootstrap 4 Beta</a></h2>
             <div class="post-date">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
 <title>calendar</title>
@@ -250,82 +279,262 @@ Monday, July 10, 2017
             <img src="/images/blog/migration-to-bootstrap-4.jpg" class="post-image"/>
             <p>Bootstrap 4 is a major rewrite of the entire project. The most notable changes are summarized below, followed by more specific changes to relevant components.</p>
 <h3 id="typography">Typography</h3>
-<p>{:.table.table-striped}
-Bootstrap 4 alpha 6 | Bootstrap 4 beta
-&mdash; | &mdash;
-<code>.page-header</code> | dropped
-<code>.dl-horizontal</code> | dropped
-<code>&lt;blockquote&gt;</code> | <code>.blockquote</code></p>
+<p>{:.table.table-striped}</p>
+<table>
+<thead>
+<tr>
+<th>Bootstrap 4 alpha 6</th>
+<th>Bootstrap 4 beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.page-header</code></td>
+<td>dropped</td>
+</tr>
+<tr>
+<td><code>.dl-horizontal</code></td>
+<td>dropped</td>
+</tr>
+<tr>
+<td><code>&lt;blockquote&gt;</code></td>
+<td><code>.blockquote</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="images">Images</h3>
-<p>{:.table.table-striped}
-Bootstrap 4 alpha 6 | Bootstrap 4 beta
-&mdash; | &mdash;
-<code>.img-responsive</code> | <code>.img-fluid</code>
-<code>.img-rounded</code> | <code>.rounded</code>
-<code>.img-circle</code> | <code>.rounded-circle</code></p>
+<p>{:.table.table-striped}</p>
+<table>
+<thead>
+<tr>
+<th>Bootstrap 4 alpha 6</th>
+<th>Bootstrap 4 beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.img-responsive</code></td>
+<td><code>.img-fluid</code></td>
+</tr>
+<tr>
+<td><code>.img-rounded</code></td>
+<td><code>.rounded</code></td>
+</tr>
+<tr>
+<td><code>.img-circle</code></td>
+<td><code>.rounded-circle</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="tables">Tables</h3>
-<p>{:.table.table-striped}
-| Bootstrap 4 alpha 6 | Bootstrap 4 beta |
-| &mdash; | &mdash; |
-| <code>.table-condensed</code> | <code>.table-sm</code> |
-| <code>.active</code> | <code>.table-active</code> |
-| <code>.success</code> | <code>.table-success</code> |
-| <code>.info</code> | <code>.table-info</code> |
-| <code>.warning</code> | <code>.table-warning</code> |
-| <code>.danger</code> | <code>.table-danger</code> |
-| <strong>New classes</strong> |
-| - | <code>.table-inverse</code> |
-| - | <code>.thead-default</code> |
-| - | <code>.thead-inverse</code> |</p>
+<p>{:.table.table-striped}</p>
+<table>
+<thead>
+<tr>
+<th>Bootstrap 4 alpha 6</th>
+<th>Bootstrap 4 beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.table-condensed</code></td>
+<td><code>.table-sm</code></td>
+</tr>
+<tr>
+<td><code>.active</code></td>
+<td><code>.table-active</code></td>
+</tr>
+<tr>
+<td><code>.success</code></td>
+<td><code>.table-success</code></td>
+</tr>
+<tr>
+<td><code>.info</code></td>
+<td><code>.table-info</code></td>
+</tr>
+<tr>
+<td><code>.warning</code></td>
+<td><code>.table-warning</code></td>
+</tr>
+<tr>
+<td><code>.danger</code></td>
+<td><code>.table-danger</code></td>
+</tr>
+<tr>
+<td><strong>New classes</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>.table-inverse</code></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>.thead-default</code></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>.thead-inverse</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="forms">Forms</h3>
-<p>{:.table.table-striped}
-Bootstrap 4 alpha 6 | Bootstrap 4 beta
-&mdash; | &mdash;
-<code>.control-label</code> | <code>.form-control-label</code>
-<code>.input-lg</code> | <code>.form-control-lg</code>
-<code>.input-sm</code> | <code>.form-control-sm</code>
-<code>.form-group-*</code> | <code>.form-control-*</code>
-<code>.help-block</code> | <code>.form-text</code>
-<code>.row</code> | <code>.form-row</code>
-<code>.has-error</code> | <code>.has-danger</code>
-<code>.form-control-static</code> | <code>.form-control-plaintext</code></p>
+<p>{:.table.table-striped}</p>
+<table>
+<thead>
+<tr>
+<th>Bootstrap 4 alpha 6</th>
+<th>Bootstrap 4 beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.control-label</code></td>
+<td><code>.form-control-label</code></td>
+</tr>
+<tr>
+<td><code>.input-lg</code></td>
+<td><code>.form-control-lg</code></td>
+</tr>
+<tr>
+<td><code>.input-sm</code></td>
+<td><code>.form-control-sm</code></td>
+</tr>
+<tr>
+<td><code>.form-group-*</code></td>
+<td><code>.form-control-*</code></td>
+</tr>
+<tr>
+<td><code>.help-block</code></td>
+<td><code>.form-text</code></td>
+</tr>
+<tr>
+<td><code>.row</code></td>
+<td><code>.form-row</code></td>
+</tr>
+<tr>
+<td><code>.has-error</code></td>
+<td><code>.has-danger</code></td>
+</tr>
+<tr>
+<td><code>.form-control-static</code></td>
+<td><code>.form-control-plaintext</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="buttons">Buttons</h3>
-<p>{:.table.table-striped}
-Bootstrap 4 alpha 6 | Bootstrap 4 beta
-&mdash; | &mdash;
-<code>.btn-default</code> | <code>.btn-secondary</code>
-<code>.btn-xs</code> | dropped</p>
+<p>{:.table.table-striped}</p>
+<table>
+<thead>
+<tr>
+<th>Bootstrap 4 alpha 6</th>
+<th>Bootstrap 4 beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.btn-default</code></td>
+<td><code>.btn-secondary</code></td>
+</tr>
+<tr>
+<td><code>.btn-xs</code></td>
+<td>dropped</td>
+</tr>
+</tbody>
+</table>
 <h3 id="button-group">Button group</h3>
-<p>{:.table.table-striped}
-Bootstrap 4 alpha 6 | Bootstrap 4 beta
-&mdash; | &mdash;
-<code>.btn-group-justified</code> | dropped
-<code>.btn-group-xs</code> | dropped</p>
+<p>{:.table.table-striped}</p>
+<table>
+<thead>
+<tr>
+<th>Bootstrap 4 alpha 6</th>
+<th>Bootstrap 4 beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.btn-group-justified</code></td>
+<td>dropped</td>
+</tr>
+<tr>
+<td><code>.btn-group-xs</code></td>
+<td>dropped</td>
+</tr>
+</tbody>
+</table>
 <h3 id="dropdowns">Dropdowns</h3>
-<p>{:.table.table-striped}
-Bootstrap 4 alpha 6 | Bootstrap 4 beta
-&mdash; | &mdash;
-<code>.divider</code> | <code>.dropdown-divider</code>
-<code>&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;</code> | <code>dropped</code></p>
+<p>{:.table.table-striped}</p>
+<table>
+<thead>
+<tr>
+<th>Bootstrap 4 alpha 6</th>
+<th>Bootstrap 4 beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.divider</code></td>
+<td><code>.dropdown-divider</code></td>
+</tr>
+<tr>
+<td><code>&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;</code></td>
+<td><code>dropped</code></td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>| Dropdown items now require <code>.dropdown-item</code></li>
 </ul>
 <h3 id="grid-system">Grid system</h3>
-<p>{:.table.table-striped}
-Bootstrap 4 alpha 6 | Bootstrap 4 beta
-&mdash; | &mdash;
-<code>.col-{breakpoint}-{modifier}-{size}</code> | <code>.{modifier}-{breakpoint}-{size}</code>
-ex. <code>.col-md-push-9</code> | ex. <code>.push-md-9</code></p>
+<p>{:.table.table-striped}</p>
+<table>
+<thead>
+<tr>
+<th>Bootstrap 4 alpha 6</th>
+<th>Bootstrap 4 beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.col-{breakpoint}-{modifier}-{size}</code></td>
+<td><code>.{modifier}-{breakpoint}-{size}</code></td>
+</tr>
+<tr>
+<td>ex. <code>.col-md-push-9</code></td>
+<td>ex. <code>.push-md-9</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="navs">Navs</h3>
-<p>{:.table.table-striped}
-Bootstrap 4 alpha 6 | Bootstrap 4 beta
-&mdash; | &mdash;
-<code>.nav &gt; li</code> | <code>.nav &gt; li.nav-item</code>
-<code>.nav &gt; li &gt; a</code> | <code>.nav &gt; li.nav-item &gt; a.nav-link</code></p>
+<p>{:.table.table-striped}</p>
+<table>
+<thead>
+<tr>
+<th>Bootstrap 4 alpha 6</th>
+<th>Bootstrap 4 beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.nav &gt; li</code></td>
+<td><code>.nav &gt; li.nav-item</code></td>
+</tr>
+<tr>
+<td><code>.nav &gt; li &gt; a</code></td>
+<td><code>.nav &gt; li.nav-item &gt; a.nav-link</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="navbar">Navbar</h3>
-<p>{:.table.table-striped}
-Bootstrap 4 alpha 6 | Bootstrap 4 beta
-&mdash; | &mdash;</p>
+<p>{:.table.table-striped}</p>
+<table>
+<thead>
+<tr>
+<th>Bootstrap 4 alpha 6</th>
+<th>Bootstrap 4 beta</th>
+</tr>
+</thead>
+</table>
 <ul>
 <li>| <code>.navbar-expand-{breakpoint}</code>
 <code>.navbar-default</code> | <code>.navbar-light</code>
@@ -333,32 +542,105 @@ Bootstrap 4 alpha 6 | Bootstrap 4 beta
 <code>.navbar-form</code> | <code>.form-inline</code></li>
 </ul>
 <h3 id="panels">Panels</h3>
-<p>{:.table.table-striped}
-Bootstrap 4 alpha 6 | Bootstrap 4 beta
-&mdash; | &mdash;
-<code>.panel</code> | <code>.card</code>
-<code>.panel-default</code> | dropped
-<code>.panel-group</code> | <code>.card-group</code>
-<code>.panel-heading</code> | <code>.card-header</code>
-<code>.panel-title</code> | <code>.card-title</code>
-<code>.panel-body</code> | <code>.card-body</code>
-<code>.panel-footer</code> | <code>.card-footer</code>
-<code>.panel-primary</code>| dropped
-<code>.panel-success</code>| dropped
-<code>.panel-info</code>| dropped
-<code>.panel-warning</code>| dropped
-<code>.panel-danger</code> | dropped
-<code>.panel-footer</code> | <code>.card-footer</code></p>
+<p>{:.table.table-striped}</p>
+<table>
+<thead>
+<tr>
+<th>Bootstrap 4 alpha 6</th>
+<th>Bootstrap 4 beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.panel</code></td>
+<td><code>.card</code></td>
+</tr>
+<tr>
+<td><code>.panel-default</code></td>
+<td>dropped</td>
+</tr>
+<tr>
+<td><code>.panel-group</code></td>
+<td><code>.card-group</code></td>
+</tr>
+<tr>
+<td><code>.panel-heading</code></td>
+<td><code>.card-header</code></td>
+</tr>
+<tr>
+<td><code>.panel-title</code></td>
+<td><code>.card-title</code></td>
+</tr>
+<tr>
+<td><code>.panel-body</code></td>
+<td><code>.card-body</code></td>
+</tr>
+<tr>
+<td><code>.panel-footer</code></td>
+<td><code>.card-footer</code></td>
+</tr>
+<tr>
+<td><code>.panel-primary</code></td>
+<td>dropped</td>
+</tr>
+<tr>
+<td><code>.panel-success</code></td>
+<td>dropped</td>
+</tr>
+<tr>
+<td><code>.panel-info</code></td>
+<td>dropped</td>
+</tr>
+<tr>
+<td><code>.panel-warning</code></td>
+<td>dropped</td>
+</tr>
+<tr>
+<td><code>.panel-danger</code></td>
+<td>dropped</td>
+</tr>
+<tr>
+<td><code>.panel-footer</code></td>
+<td><code>.card-footer</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="carousel">Carousel</h3>
-<p>{:.table.table-striped}
-Bootstrap 4 alpha 6 | Bootstrap 4 beta
-&mdash; | &mdash;
-<code>.next</code> | <code>.carousel-item-next</code>
-<code>.prev</code> | <code>.carousel-item-prev</code>
-<code>.left</code> | <code>.carousel-item-left</code>
-<code>.right</code> | <code>.carousel-item-right</code>
-<code>.carousel-control.right</code> | <code>.carousel-control-right</code>
-<code>.carousel-control.left</code> | <code>.carousel-control-left</code></p>
+<p>{:.table.table-striped}</p>
+<table>
+<thead>
+<tr>
+<th>Bootstrap 4 alpha 6</th>
+<th>Bootstrap 4 beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.next</code></td>
+<td><code>.carousel-item-next</code></td>
+</tr>
+<tr>
+<td><code>.prev</code></td>
+<td><code>.carousel-item-prev</code></td>
+</tr>
+<tr>
+<td><code>.left</code></td>
+<td><code>.carousel-item-left</code></td>
+</tr>
+<tr>
+<td><code>.right</code></td>
+<td><code>.carousel-item-right</code></td>
+</tr>
+<tr>
+<td><code>.carousel-control.right</code></td>
+<td><code>.carousel-control-right</code></td>
+</tr>
+<tr>
+<td><code>.carousel-control.left</code></td>
+<td><code>.carousel-control-left</code></td>
+</tr>
+</tbody>
+</table>
           </div>
         </div><div class="col blog-sidebar">
   <div class="sidebar-box">
@@ -451,7 +733,7 @@ Bootstrap 4 alpha 6 | Bootstrap 4 beta
             </ul>
             <h5>About Us</h5>
             <ul class="list-unstyled">
-              <li><a href="/blog/">Blog</a></li>
+              <li><a href="https://blog.coreui.io/" target="_blank">Blog</a></li>
               <li><a href="/about/hire-us/">Hire Us</a></li>
               <li><a href="/about/hire-us/">Services</a></li>
               <li><a href="/about/legal/cookies/">Cookie Policy</a></li>
@@ -462,11 +744,9 @@ Bootstrap 4 alpha 6 | Bootstrap 4 beta
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.1616358c888fb91dbb2e5daadc81f530c3f9ad8e22391f7a82f6950ec978900e697a4ed9aeebda1a91d8d1282a4af6031a776f672bfa4382ad3a28feebccd167.js"></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.8792ca8badc09be4000ccce0cf8b35a4857c71e8d8d43e7b58ddcf5df14b7e26c35f5552e582edf235a1d2f790ec4693955559c349e4267e9919ad6744156c52.js"></script>
 
-<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a0592292bb39f0012e27c9f&product=unknown" async="async"></script>
-
-<script language="JavaScript">
+<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5a0592292bb39f0012e27c9f&product=unknown" async="async"></script><script language="JavaScript">
   var vId = 'lcus5Za5nLo=';
   var scriptSRC = '/check_affiliate_v2.js';
 
