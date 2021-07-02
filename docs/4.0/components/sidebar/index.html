@@ -67,6 +67,12 @@
 <meta property="og:image:height" content="500">
 
 
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.0.0-rc.0/css/free.min.css" integrity="sha256-vejWHgYduBq3SYXJHSWSRJp7ktQpZ6d+8HGFtb9Fz9k=" crossorigin="anonymous">
 
@@ -75,7 +81,7 @@
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -271,6 +277,9 @@
               <a href="/docs/4.0/forms/select/" class="nav-link">Select</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/forms/multi-select/" class="nav-link">Multi Select</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/forms/checks-radios/" class="nav-link">Checks &amp; radios</a>
             </li>
             <li class="nav-item">
@@ -349,6 +358,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/components/list-group/" class="nav-link">List group</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/components/loading-buttons/" class="nav-link">Loading buttons</a>
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/components/modal/" class="nav-link">Modal</a>
@@ -520,7 +532,7 @@
 </div>
 
     <div class="wrapper flex-grow-1">
-      <header class="header header-sticky mb-5">
+      <header class="header header-sticky mb-5 elevation-0 border-bottom">
   <div class="container-fluid">
     <button class="header-toggler d-lg-none" type="button" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16">
@@ -911,8 +923,53 @@
 <span class="nv">$sidebar-toggler-indicator-color</span><span class="o">:</span>          <span class="nv">$gray-600</span><span class="p">;</span>
 <span class="nv">$sidebar-toggler-indicator-icon</span><span class="o">:</span>           <span class="sx">url(&#34;data:image/svg+xml;charset=utf8,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 11 14&#39;%3E%3Cpath fill=&#39;</span><span class="si">#{</span><span class="nv">$sidebar-toggler-indicator-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z&#39;/%3E%3C/svg%3E&#34;)</span><span class="p">;</span>
 <span class="nv">$sidebar-toggler-hover-bg</span><span class="o">:</span>                 <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mf">.3</span><span class="p">);</span>
+
 <span class="nv">$sidebar-toggler-indicator-hover-color</span><span class="o">:</span>    <span class="nv">$sidebar-nav-link-hover-color</span><span class="p">;</span>
 <span class="nv">$sidebar-toggler-indicator-hover-icon</span><span class="o">:</span>     <span class="sx">url(&#34;data:image/svg+xml;charset=utf8,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 11 14&#39;%3E%3Cpath fill=&#39;</span><span class="si">#{</span><span class="nv">$sidebar-toggler-indicator-hover-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z&#39;/%3E%3C/svg%3E&#34;)</span><span class="p">;</span>
+
+<span class="nv">$sidebar-light-color</span><span class="o">:</span>    <span class="nv">$body-color</span><span class="p">;</span>
+<span class="nv">$sidebar-light-bg</span><span class="o">:</span>       <span class="nv">$white</span><span class="p">;</span>
+<span class="nv">$sidebar-light-border-width</span><span class="o">:</span>                     <span class="mi">0</span><span class="p">;</span>
+<span class="nv">$sidebar-light-border-color</span><span class="o">:</span>                     <span class="ni">transparent</span><span class="p">;</span>
+
+<span class="nv">$sidebar-light-brand-color</span><span class="o">:</span>  <span class="nv">$white</span><span class="p">;</span>
+<span class="nv">$sidebar-light-brand-bg</span><span class="o">:</span>     <span class="nv">$primary</span><span class="p">;</span>
+
+<span class="nv">$sidebar-light-header-bg</span><span class="o">:</span> <span class="nf">rgba</span><span class="p">(</span><span class="nv">$black</span><span class="o">,</span> <span class="mf">.2</span><span class="p">);</span>
+
+<span class="nv">$sidebar-light-nav-title-color</span><span class="o">:</span>                  <span class="nv">$medium-emphasis</span><span class="p">;</span>
+
+<span class="nv">$sidebar-light-nav-link-color</span><span class="o">:</span>                   <span class="nv">$medium-emphasis</span><span class="p">;</span>
+<span class="nv">$sidebar-light-nav-link-bg</span><span class="o">:</span>                      <span class="ni">transparent</span><span class="p">;</span>
+<span class="nv">$sidebar-light-nav-link-icon-color</span><span class="o">:</span>              <span class="nv">$medium-emphasis</span><span class="p">;</span>
+
+<span class="nv">$sidebar-light-nav-link-hover-color</span><span class="o">:</span>             <span class="nv">$high-emphasis</span><span class="p">;</span>
+<span class="nv">$sidebar-light-nav-link-hover-bg</span><span class="o">:</span>                <span class="nf">theme-color</span><span class="p">(</span><span class="s2">&#34;primary&#34;</span><span class="p">);</span>
+<span class="nv">$sidebar-light-nav-link-hover-icon-color</span><span class="o">:</span>        <span class="nv">$high-emphasis</span><span class="p">;</span>
+
+<span class="nv">$sidebar-light-nav-link-active-color</span><span class="o">:</span>            <span class="nv">$high-emphasis</span><span class="p">;</span>
+<span class="nv">$sidebar-light-nav-link-active-bg</span><span class="o">:</span>               <span class="nf">rgba</span><span class="p">(</span><span class="nv">$white</span><span class="o">,</span> <span class="mf">.05</span><span class="p">);</span>
+<span class="nv">$sidebar-light-nav-link-active-icon-color</span><span class="o">:</span>       <span class="nv">$high-emphasis</span><span class="p">;</span>
+
+<span class="nv">$sidebar-light-nav-link-disabled-color</span><span class="o">:</span>          <span class="nv">$disabled</span><span class="p">;</span>
+<span class="nv">$sidebar-light-nav-link-disabled-icon-color</span><span class="o">:</span>     <span class="nv">$sidebar-light-nav-link-icon-color</span><span class="p">;</span>
+
+<span class="nv">$sidebar-light-nav-group-bg</span><span class="o">:</span>                     <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mf">.05</span><span class="p">);</span>
+<span class="nv">$sidebar-light-nav-group-toggle-show-color</span><span class="o">:</span>      <span class="nv">$sidebar-light-nav-link-color</span><span class="p">;</span>
+
+<span class="nv">$sidebar-light-nav-group-indicator-color</span><span class="o">:</span>        <span class="nv">$medium-emphasis</span><span class="p">;</span>
+<span class="nv">$sidebar-light-nav-group-indicator-icon</span><span class="o">:</span>         <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 16 16&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$sidebar-light-nav-group-indicator-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;path fill-rule=&#39;evenodd&#39; d=&#39;M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z&#39;/&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
+<span class="nv">$sidebar-light-nav-group-indicator-hover-color</span><span class="o">:</span>  <span class="nv">$sidebar-light-nav-link-hover-color</span><span class="p">;</span>
+<span class="nv">$sidebar-light-nav-group-indicator-hover-icon</span><span class="o">:</span>   <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 16 16&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$sidebar-light-nav-group-indicator-hover-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;path fill-rule=&#39;evenodd&#39; d=&#39;M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z&#39;/&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
+
+<span class="nv">$sidebar-light-footer-bg</span><span class="o">:</span>                        <span class="nf">rgba</span><span class="p">(</span><span class="nv">$black</span><span class="o">,</span> <span class="mf">.1</span><span class="p">);</span>
+
+<span class="nv">$sidebar-light-toggler-bg</span><span class="o">:</span>                       <span class="nf">rgba</span><span class="p">(</span><span class="nv">$black</span><span class="o">,</span> <span class="mf">.1</span><span class="p">);</span>
+<span class="nv">$sidebar-light-toggler-hover-bg</span><span class="o">:</span>                 <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mf">.2</span><span class="p">);</span>
+<span class="nv">$sidebar-light-toggler-indicator-color</span><span class="o">:</span>          <span class="nv">$medium-emphasis</span><span class="p">;</span>
+<span class="nv">$sidebar-light-toggler-indicator-icon</span><span class="o">:</span>           <span class="sx">url(&#34;data:image/svg+xml;charset=utf8,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 11 14&#39;%3E%3Cpath fill=&#39;</span><span class="si">#{</span><span class="nv">$sidebar-light-toggler-indicator-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z&#39;/%3E%3C/svg%3E&#34;)</span><span class="p">;</span>
+<span class="nv">$sidebar-light-toggler-indicator-hover-color</span><span class="o">:</span>    <span class="nv">$sidebar-light-nav-link-hover-color</span><span class="p">;</span>
+<span class="nv">$sidebar-light-toggler-indicator-hover-icon</span><span class="o">:</span>     <span class="sx">url(&#34;data:image/svg+xml;charset=utf8,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 11 14&#39;%3E%3Cpath fill=&#39;</span><span class="si">#{</span><span class="nv">$sidebar-light-toggler-indicator-hover-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z&#39;/%3E%3C/svg%3E&#34;)</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="css-vars">CSS Vars</h3>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="o">--</span><span class="nt">cui-is-mobile</span>
@@ -924,6 +981,22 @@
 <span class="o">--</span><span class="nt">cui-sidebar-color</span>
 <span class="o">--</span><span class="nt">cui-sidebar-footer-bg</span>
 <span class="o">--</span><span class="nt">cui-sidebar-header-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-group-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-group-indicator</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-group-indicator-hover</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-group-toggle-show-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-active-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-active-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-active-icon-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-disabled-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-disabled-icon-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-hover-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-hover-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-hover-icon-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-icon-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-title-color</span>
 <span class="o">--</span><span class="nt">cui-sidebar-occupy-end</span>
 <span class="o">--</span><span class="nt">cui-sidebar-occupy-start</span>
 <span class="o">--</span><span class="nt">cui-sidebar-toggler-bg</span>

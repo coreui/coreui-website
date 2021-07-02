@@ -815,17 +815,17 @@ class BaseComponent {
  * ------------------------------------------------------------------------
  */
 
-const NAME$e = 'alert';
-const DATA_KEY$d = 'coreui.alert';
-const EVENT_KEY$d = `.${DATA_KEY$d}`;
-const DATA_API_KEY$a = '.data-api';
+const NAME$g = 'alert';
+const DATA_KEY$f = 'coreui.alert';
+const EVENT_KEY$f = `.${DATA_KEY$f}`;
+const DATA_API_KEY$b = '.data-api';
 const SELECTOR_DISMISS = '[data-coreui-dismiss="alert"]';
-const EVENT_CLOSE = `close${EVENT_KEY$d}`;
-const EVENT_CLOSED = `closed${EVENT_KEY$d}`;
-const EVENT_CLICK_DATA_API$9 = `click${EVENT_KEY$d}${DATA_API_KEY$a}`;
+const EVENT_CLOSE = `close${EVENT_KEY$f}`;
+const EVENT_CLOSED = `closed${EVENT_KEY$f}`;
+const EVENT_CLICK_DATA_API$a = `click${EVENT_KEY$f}${DATA_API_KEY$b}`;
 const CLASS_NAME_ALERT = 'alert';
 const CLASS_NAME_FADE$7 = 'fade';
-const CLASS_NAME_SHOW$b = 'show';
+const CLASS_NAME_SHOW$c = 'show';
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -835,7 +835,7 @@ const CLASS_NAME_SHOW$b = 'show';
 class Alert extends BaseComponent {
   // Getters
   static get NAME() {
-    return NAME$e;
+    return NAME$g;
   } // Public
 
 
@@ -861,7 +861,7 @@ class Alert extends BaseComponent {
   }
 
   _removeElement(element) {
-    element.classList.remove(CLASS_NAME_SHOW$b);
+    element.classList.remove(CLASS_NAME_SHOW$c);
     const isAnimated = element.classList.contains(CLASS_NAME_FADE$7);
 
     this._queueCallback(() => this._destroyElement(element), element, isAnimated);
@@ -901,7 +901,7 @@ class Alert extends BaseComponent {
  */
 
 
-EventHandler.on(document, EVENT_CLICK_DATA_API$9, SELECTOR_DISMISS, Alert.handleDismiss(new Alert()));
+EventHandler.on(document, EVENT_CLICK_DATA_API$a, SELECTOR_DISMISS, Alert.handleDismiss(new Alert()));
 /**
  * ------------------------------------------------------------------------
  * jQuery
@@ -926,13 +926,13 @@ defineJQueryPlugin(Alert);
  * ------------------------------------------------------------------------
  */
 
-const NAME$d = 'button';
-const DATA_KEY$c = 'coreui.button';
-const EVENT_KEY$c = `.${DATA_KEY$c}`;
-const DATA_API_KEY$9 = '.data-api';
+const NAME$f = 'button';
+const DATA_KEY$e = 'coreui.button';
+const EVENT_KEY$e = `.${DATA_KEY$e}`;
+const DATA_API_KEY$a = '.data-api';
 const CLASS_NAME_ACTIVE$4 = 'active';
 const SELECTOR_DATA_TOGGLE$6 = '[data-coreui-toggle="button"]';
-const EVENT_CLICK_DATA_API$8 = `click${EVENT_KEY$c}${DATA_API_KEY$9}`;
+const EVENT_CLICK_DATA_API$9 = `click${EVENT_KEY$e}${DATA_API_KEY$a}`;
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -942,7 +942,7 @@ const EVENT_CLICK_DATA_API$8 = `click${EVENT_KEY$c}${DATA_API_KEY$9}`;
 class Button extends BaseComponent {
   // Getters
   static get NAME() {
-    return NAME$d;
+    return NAME$f;
   } // Public
 
 
@@ -970,7 +970,7 @@ class Button extends BaseComponent {
  */
 
 
-EventHandler.on(document, EVENT_CLICK_DATA_API$8, SELECTOR_DATA_TOGGLE$6, event => {
+EventHandler.on(document, EVENT_CLICK_DATA_API$9, SELECTOR_DATA_TOGGLE$6, event => {
   event.preventDefault();
   const button = event.target.closest(SELECTOR_DATA_TOGGLE$6);
   const data = Button.getOrCreateInstance(button);
@@ -1077,16 +1077,16 @@ const Manipulator = {
  * ------------------------------------------------------------------------
  */
 
-const NAME$c = 'carousel';
-const DATA_KEY$b = 'coreui.carousel';
-const EVENT_KEY$b = `.${DATA_KEY$b}`;
-const DATA_API_KEY$8 = '.data-api';
+const NAME$e = 'carousel';
+const DATA_KEY$d = 'coreui.carousel';
+const EVENT_KEY$d = `.${DATA_KEY$d}`;
+const DATA_API_KEY$9 = '.data-api';
 const ARROW_LEFT_KEY = 'ArrowLeft';
 const ARROW_RIGHT_KEY = 'ArrowRight';
 const TOUCHEVENT_COMPAT_WAIT = 500; // Time for mouse compat events to fire after touch
 
 const SWIPE_THRESHOLD = 40;
-const Default$b = {
+const Default$d = {
   interval: 5000,
   keyboard: true,
   slide: false,
@@ -1094,7 +1094,7 @@ const Default$b = {
   wrap: true,
   touch: true
 };
-const DefaultType$b = {
+const DefaultType$d = {
   interval: '(number|boolean)',
   keyboard: 'boolean',
   slide: '(boolean|string)',
@@ -1110,19 +1110,19 @@ const KEY_TO_DIRECTION = {
   [ARROW_LEFT_KEY]: DIRECTION_RIGHT,
   [ARROW_RIGHT_KEY]: DIRECTION_LEFT
 };
-const EVENT_SLIDE = `slide${EVENT_KEY$b}`;
-const EVENT_SLID = `slid${EVENT_KEY$b}`;
-const EVENT_KEYDOWN = `keydown${EVENT_KEY$b}`;
-const EVENT_MOUSEENTER = `mouseenter${EVENT_KEY$b}`;
-const EVENT_MOUSELEAVE = `mouseleave${EVENT_KEY$b}`;
-const EVENT_TOUCHSTART = `touchstart${EVENT_KEY$b}`;
-const EVENT_TOUCHMOVE = `touchmove${EVENT_KEY$b}`;
-const EVENT_TOUCHEND = `touchend${EVENT_KEY$b}`;
-const EVENT_POINTERDOWN = `pointerdown${EVENT_KEY$b}`;
-const EVENT_POINTERUP = `pointerup${EVENT_KEY$b}`;
-const EVENT_DRAG_START = `dragstart${EVENT_KEY$b}`;
-const EVENT_LOAD_DATA_API$4 = `load${EVENT_KEY$b}${DATA_API_KEY$8}`;
-const EVENT_CLICK_DATA_API$7 = `click${EVENT_KEY$b}${DATA_API_KEY$8}`;
+const EVENT_SLIDE = `slide${EVENT_KEY$d}`;
+const EVENT_SLID = `slid${EVENT_KEY$d}`;
+const EVENT_KEYDOWN$1 = `keydown${EVENT_KEY$d}`;
+const EVENT_MOUSEENTER = `mouseenter${EVENT_KEY$d}`;
+const EVENT_MOUSELEAVE = `mouseleave${EVENT_KEY$d}`;
+const EVENT_TOUCHSTART = `touchstart${EVENT_KEY$d}`;
+const EVENT_TOUCHMOVE = `touchmove${EVENT_KEY$d}`;
+const EVENT_TOUCHEND = `touchend${EVENT_KEY$d}`;
+const EVENT_POINTERDOWN = `pointerdown${EVENT_KEY$d}`;
+const EVENT_POINTERUP = `pointerup${EVENT_KEY$d}`;
+const EVENT_DRAG_START = `dragstart${EVENT_KEY$d}`;
+const EVENT_LOAD_DATA_API$5 = `load${EVENT_KEY$d}${DATA_API_KEY$9}`;
+const EVENT_CLICK_DATA_API$8 = `click${EVENT_KEY$d}${DATA_API_KEY$9}`;
 const CLASS_NAME_CAROUSEL = 'carousel';
 const CLASS_NAME_ACTIVE$3 = 'active';
 const CLASS_NAME_SLIDE = 'slide';
@@ -1169,11 +1169,11 @@ class Carousel extends BaseComponent {
 
 
   static get Default() {
-    return Default$b;
+    return Default$d;
   }
 
   static get NAME() {
-    return NAME$c;
+    return NAME$e;
   } // Public
 
 
@@ -1251,11 +1251,11 @@ class Carousel extends BaseComponent {
 
 
   _getConfig(config) {
-    config = { ...Default$b,
+    config = { ...Default$d,
       ...Manipulator.getDataAttributes(this._element),
       ...(typeof config === 'object' ? config : {})
     };
-    typeCheckConfig(NAME$c, config, DefaultType$b);
+    typeCheckConfig(NAME$e, config, DefaultType$d);
     return config;
   }
 
@@ -1278,7 +1278,7 @@ class Carousel extends BaseComponent {
 
   _addEventListeners() {
     if (this._config.keyboard) {
-      EventHandler.on(this._element, EVENT_KEYDOWN, event => this._keydown(event));
+      EventHandler.on(this._element, EVENT_KEYDOWN$1, event => this._keydown(event));
     }
 
     if (this._config.pause === 'hover') {
@@ -1593,8 +1593,8 @@ class Carousel extends BaseComponent {
  */
 
 
-EventHandler.on(document, EVENT_CLICK_DATA_API$7, SELECTOR_DATA_SLIDE, Carousel.dataApiClickHandler);
-EventHandler.on(window, EVENT_LOAD_DATA_API$4, () => {
+EventHandler.on(document, EVENT_CLICK_DATA_API$8, SELECTOR_DATA_SLIDE, Carousel.dataApiClickHandler);
+EventHandler.on(window, EVENT_LOAD_DATA_API$5, () => {
   const carousels = SelectorEngine.find(SELECTOR_DATA_RIDE);
 
   for (let i = 0, len = carousels.length; i < len; i++) {
@@ -1625,24 +1625,24 @@ defineJQueryPlugin(Carousel);
  * ------------------------------------------------------------------------
  */
 
-const NAME$b = 'collapse';
-const DATA_KEY$a = 'coreui.collapse';
-const EVENT_KEY$a = `.${DATA_KEY$a}`;
-const DATA_API_KEY$7 = '.data-api';
-const Default$a = {
+const NAME$d = 'collapse';
+const DATA_KEY$c = 'coreui.collapse';
+const EVENT_KEY$c = `.${DATA_KEY$c}`;
+const DATA_API_KEY$8 = '.data-api';
+const Default$c = {
   toggle: true,
   parent: ''
 };
-const DefaultType$a = {
+const DefaultType$c = {
   toggle: 'boolean',
   parent: '(string|element)'
 };
-const EVENT_SHOW$6 = `show${EVENT_KEY$a}`;
-const EVENT_SHOWN$6 = `shown${EVENT_KEY$a}`;
-const EVENT_HIDE$6 = `hide${EVENT_KEY$a}`;
-const EVENT_HIDDEN$6 = `hidden${EVENT_KEY$a}`;
-const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$a}${DATA_API_KEY$7}`;
-const CLASS_NAME_SHOW$a = 'show';
+const EVENT_SHOW$7 = `show${EVENT_KEY$c}`;
+const EVENT_SHOWN$7 = `shown${EVENT_KEY$c}`;
+const EVENT_HIDE$7 = `hide${EVENT_KEY$c}`;
+const EVENT_HIDDEN$7 = `hidden${EVENT_KEY$c}`;
+const EVENT_CLICK_DATA_API$7 = `click${EVENT_KEY$c}${DATA_API_KEY$8}`;
+const CLASS_NAME_SHOW$b = 'show';
 const CLASS_NAME_COLLAPSE = 'collapse';
 const CLASS_NAME_COLLAPSING = 'collapsing';
 const CLASS_NAME_COLLAPSED = 'collapsed';
@@ -1689,16 +1689,16 @@ class Collapse extends BaseComponent {
 
 
   static get Default() {
-    return Default$a;
+    return Default$c;
   }
 
   static get NAME() {
-    return NAME$b;
+    return NAME$d;
   } // Public
 
 
   toggle() {
-    if (this._element.classList.contains(CLASS_NAME_SHOW$a)) {
+    if (this._element.classList.contains(CLASS_NAME_SHOW$b)) {
       this.hide();
     } else {
       this.show();
@@ -1706,7 +1706,7 @@ class Collapse extends BaseComponent {
   }
 
   show() {
-    if (this._isTransitioning || this._element.classList.contains(CLASS_NAME_SHOW$a)) {
+    if (this._isTransitioning || this._element.classList.contains(CLASS_NAME_SHOW$b)) {
       return;
     }
 
@@ -1738,7 +1738,7 @@ class Collapse extends BaseComponent {
       }
     }
 
-    const startEvent = EventHandler.trigger(this._element, EVENT_SHOW$6);
+    const startEvent = EventHandler.trigger(this._element, EVENT_SHOW$7);
 
     if (startEvent.defaultPrevented) {
       return;
@@ -1751,7 +1751,7 @@ class Collapse extends BaseComponent {
         }
 
         if (!activesData) {
-          Data.set(elemActive, DATA_KEY$a, null);
+          Data.set(elemActive, DATA_KEY$c, null);
         }
       });
     }
@@ -1776,11 +1776,11 @@ class Collapse extends BaseComponent {
     const complete = () => {
       this._element.classList.remove(CLASS_NAME_COLLAPSING);
 
-      this._element.classList.add(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$a);
+      this._element.classList.add(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$b);
 
       this._element.style[dimension] = '';
       this.setTransitioning(false);
-      EventHandler.trigger(this._element, EVENT_SHOWN$6);
+      EventHandler.trigger(this._element, EVENT_SHOWN$7);
     };
 
     const capitalizedDimension = dimension[0].toUpperCase() + dimension.slice(1);
@@ -1792,11 +1792,11 @@ class Collapse extends BaseComponent {
   }
 
   hide() {
-    if (this._isTransitioning || !this._element.classList.contains(CLASS_NAME_SHOW$a)) {
+    if (this._isTransitioning || !this._element.classList.contains(CLASS_NAME_SHOW$b)) {
       return;
     }
 
-    const startEvent = EventHandler.trigger(this._element, EVENT_HIDE$6);
+    const startEvent = EventHandler.trigger(this._element, EVENT_HIDE$7);
 
     if (startEvent.defaultPrevented) {
       return;
@@ -1809,7 +1809,7 @@ class Collapse extends BaseComponent {
 
     this._element.classList.add(CLASS_NAME_COLLAPSING);
 
-    this._element.classList.remove(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$a);
+    this._element.classList.remove(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$b);
 
     const triggerArrayLength = this._triggerArray.length;
 
@@ -1818,7 +1818,7 @@ class Collapse extends BaseComponent {
         const trigger = this._triggerArray[i];
         const elem = getElementFromSelector(trigger);
 
-        if (elem && !elem.classList.contains(CLASS_NAME_SHOW$a)) {
+        if (elem && !elem.classList.contains(CLASS_NAME_SHOW$b)) {
           trigger.classList.add(CLASS_NAME_COLLAPSED);
           trigger.setAttribute('aria-expanded', false);
         }
@@ -1834,7 +1834,7 @@ class Collapse extends BaseComponent {
 
       this._element.classList.add(CLASS_NAME_COLLAPSE);
 
-      EventHandler.trigger(this._element, EVENT_HIDDEN$6);
+      EventHandler.trigger(this._element, EVENT_HIDDEN$7);
     };
 
     this._element.style[dimension] = '';
@@ -1848,12 +1848,12 @@ class Collapse extends BaseComponent {
 
 
   _getConfig(config) {
-    config = { ...Default$a,
+    config = { ...Default$c,
       ...config
     };
     config.toggle = Boolean(config.toggle); // Coerce string values
 
-    typeCheckConfig(NAME$b, config, DefaultType$a);
+    typeCheckConfig(NAME$d, config, DefaultType$c);
     return config;
   }
 
@@ -1880,7 +1880,7 @@ class Collapse extends BaseComponent {
       return;
     }
 
-    const isOpen = element.classList.contains(CLASS_NAME_SHOW$a);
+    const isOpen = element.classList.contains(CLASS_NAME_SHOW$b);
     triggerArray.forEach(elem => {
       if (isOpen) {
         elem.classList.remove(CLASS_NAME_COLLAPSED);
@@ -1895,7 +1895,7 @@ class Collapse extends BaseComponent {
 
   static collapseInterface(element, config) {
     let data = Collapse.getInstance(element);
-    const _config = { ...Default$a,
+    const _config = { ...Default$c,
       ...Manipulator.getDataAttributes(element),
       ...(typeof config === 'object' && config ? config : {})
     };
@@ -1931,7 +1931,7 @@ class Collapse extends BaseComponent {
  */
 
 
-EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$5, function (event) {
+EventHandler.on(document, EVENT_CLICK_DATA_API$7, SELECTOR_DATA_TOGGLE$5, function (event) {
   // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
   if (event.target.tagName === 'A' || event.delegateTarget && event.delegateTarget.tagName === 'A') {
     event.preventDefault();
@@ -1983,27 +1983,27 @@ defineJQueryPlugin(Collapse);
  * ------------------------------------------------------------------------
  */
 
-const NAME$a = 'dropdown';
-const DATA_KEY$9 = 'coreui.dropdown';
-const EVENT_KEY$9 = `.${DATA_KEY$9}`;
-const DATA_API_KEY$6 = '.data-api';
+const NAME$c = 'dropdown';
+const DATA_KEY$b = 'coreui.dropdown';
+const EVENT_KEY$b = `.${DATA_KEY$b}`;
+const DATA_API_KEY$7 = '.data-api';
 const ESCAPE_KEY$2 = 'Escape';
 const SPACE_KEY = 'Space';
-const TAB_KEY = 'Tab';
+const TAB_KEY$1 = 'Tab';
 const ARROW_UP_KEY = 'ArrowUp';
 const ARROW_DOWN_KEY = 'ArrowDown';
-const RIGHT_MOUSE_BUTTON = 2; // MouseEvent.button value for the secondary button, usually the right button
+const RIGHT_MOUSE_BUTTON$1 = 2; // MouseEvent.button value for the secondary button, usually the right button
 
 const REGEXP_KEYDOWN = new RegExp(`${ARROW_UP_KEY}|${ARROW_DOWN_KEY}|${ESCAPE_KEY$2}`);
-const EVENT_HIDE$5 = `hide${EVENT_KEY$9}`;
-const EVENT_HIDDEN$5 = `hidden${EVENT_KEY$9}`;
-const EVENT_SHOW$5 = `show${EVENT_KEY$9}`;
-const EVENT_SHOWN$5 = `shown${EVENT_KEY$9}`;
-const EVENT_CLICK = `click${EVENT_KEY$9}`;
-const EVENT_CLICK_DATA_API$5 = `click${EVENT_KEY$9}${DATA_API_KEY$6}`;
-const EVENT_KEYDOWN_DATA_API = `keydown${EVENT_KEY$9}${DATA_API_KEY$6}`;
-const EVENT_KEYUP_DATA_API = `keyup${EVENT_KEY$9}${DATA_API_KEY$6}`;
-const CLASS_NAME_SHOW$9 = 'show';
+const EVENT_HIDE$6 = `hide${EVENT_KEY$b}`;
+const EVENT_HIDDEN$6 = `hidden${EVENT_KEY$b}`;
+const EVENT_SHOW$6 = `show${EVENT_KEY$b}`;
+const EVENT_SHOWN$6 = `shown${EVENT_KEY$b}`;
+const EVENT_CLICK$1 = `click${EVENT_KEY$b}`;
+const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$b}${DATA_API_KEY$7}`;
+const EVENT_KEYDOWN_DATA_API = `keydown${EVENT_KEY$b}${DATA_API_KEY$7}`;
+const EVENT_KEYUP_DATA_API$1 = `keyup${EVENT_KEY$b}${DATA_API_KEY$7}`;
+const CLASS_NAME_SHOW$a = 'show';
 const CLASS_NAME_DROPUP = 'dropup';
 const CLASS_NAME_DROPEND = 'dropend';
 const CLASS_NAME_DROPSTART = 'dropstart';
@@ -2018,7 +2018,7 @@ const PLACEMENT_BOTTOM = isRTL() ? 'bottom-end' : 'bottom-start';
 const PLACEMENT_BOTTOMEND = isRTL() ? 'bottom-start' : 'bottom-end';
 const PLACEMENT_RIGHT = isRTL() ? 'left-start' : 'right-start';
 const PLACEMENT_LEFT = isRTL() ? 'right-start' : 'left-start';
-const Default$9 = {
+const Default$b = {
   offset: [0, 2],
   boundary: 'clippingParents',
   reference: 'toggle',
@@ -2026,7 +2026,7 @@ const Default$9 = {
   popperConfig: null,
   autoClose: true
 };
-const DefaultType$9 = {
+const DefaultType$b = {
   offset: '(array|string|function)',
   boundary: '(string|element)',
   reference: '(string|element|object)',
@@ -2053,15 +2053,15 @@ class Dropdown extends BaseComponent {
 
 
   static get Default() {
-    return Default$9;
+    return Default$b;
   }
 
   static get DefaultType() {
-    return DefaultType$9;
+    return DefaultType$b;
   }
 
   static get NAME() {
-    return NAME$a;
+    return NAME$c;
   } // Public
 
 
@@ -2070,7 +2070,7 @@ class Dropdown extends BaseComponent {
       return;
     }
 
-    const isActive = this._element.classList.contains(CLASS_NAME_SHOW$9);
+    const isActive = this._element.classList.contains(CLASS_NAME_SHOW$a);
 
     if (isActive) {
       this.hide();
@@ -2081,7 +2081,7 @@ class Dropdown extends BaseComponent {
   }
 
   show() {
-    if (isDisabled(this._element) || this._menu.classList.contains(CLASS_NAME_SHOW$9)) {
+    if (isDisabled(this._element) || this._menu.classList.contains(CLASS_NAME_SHOW$a)) {
       return;
     }
 
@@ -2089,7 +2089,7 @@ class Dropdown extends BaseComponent {
     const relatedTarget = {
       relatedTarget: this._element
     };
-    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$5, relatedTarget);
+    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$6, relatedTarget);
 
     if (showEvent.defaultPrevented) {
       return;
@@ -2135,15 +2135,15 @@ class Dropdown extends BaseComponent {
 
     this._element.setAttribute('aria-expanded', true);
 
-    this._menu.classList.toggle(CLASS_NAME_SHOW$9);
+    this._menu.classList.toggle(CLASS_NAME_SHOW$a);
 
-    this._element.classList.toggle(CLASS_NAME_SHOW$9);
+    this._element.classList.toggle(CLASS_NAME_SHOW$a);
 
-    EventHandler.trigger(this._element, EVENT_SHOWN$5, relatedTarget);
+    EventHandler.trigger(this._element, EVENT_SHOWN$6, relatedTarget);
   }
 
   hide() {
-    if (isDisabled(this._element) || !this._menu.classList.contains(CLASS_NAME_SHOW$9)) {
+    if (isDisabled(this._element) || !this._menu.classList.contains(CLASS_NAME_SHOW$a)) {
       return;
     }
 
@@ -2172,14 +2172,14 @@ class Dropdown extends BaseComponent {
 
 
   _addEventListeners() {
-    EventHandler.on(this._element, EVENT_CLICK, event => {
+    EventHandler.on(this._element, EVENT_CLICK$1, event => {
       event.preventDefault();
       this.toggle();
     });
   }
 
   _completeHide(relatedTarget) {
-    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$5, relatedTarget);
+    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$6, relatedTarget);
 
     if (hideEvent.defaultPrevented) {
       return;
@@ -2195,14 +2195,14 @@ class Dropdown extends BaseComponent {
       this._popper.destroy();
     }
 
-    this._menu.classList.remove(CLASS_NAME_SHOW$9);
+    this._menu.classList.remove(CLASS_NAME_SHOW$a);
 
-    this._element.classList.remove(CLASS_NAME_SHOW$9);
+    this._element.classList.remove(CLASS_NAME_SHOW$a);
 
     this._element.setAttribute('aria-expanded', 'false');
 
     Manipulator.removeDataAttribute(this._menu, 'popper');
-    EventHandler.trigger(this._element, EVENT_HIDDEN$5, relatedTarget);
+    EventHandler.trigger(this._element, EVENT_HIDDEN$6, relatedTarget);
   }
 
   _getConfig(config) {
@@ -2210,11 +2210,11 @@ class Dropdown extends BaseComponent {
       ...Manipulator.getDataAttributes(this._element),
       ...config
     };
-    typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
+    typeCheckConfig(NAME$c, config, this.constructor.DefaultType);
 
     if (typeof config.reference === 'object' && !isElement(config.reference) && typeof config.reference.getBoundingClientRect !== 'function') {
       // Popper virtual elements require a getBoundingClientRect method
-      throw new TypeError(`${NAME$a.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`);
+      throw new TypeError(`${NAME$c.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`);
     }
 
     return config;
@@ -2328,7 +2328,7 @@ class Dropdown extends BaseComponent {
   }
 
   static clearMenus(event) {
-    if (event && (event.button === RIGHT_MOUSE_BUTTON || event.type === 'keyup' && event.key !== TAB_KEY)) {
+    if (event && (event.button === RIGHT_MOUSE_BUTTON$1 || event.type === 'keyup' && event.key !== TAB_KEY$1)) {
       return;
     }
 
@@ -2341,7 +2341,7 @@ class Dropdown extends BaseComponent {
         continue;
       }
 
-      if (!context._element.classList.contains(CLASS_NAME_SHOW$9)) {
+      if (!context._element.classList.contains(CLASS_NAME_SHOW$a)) {
         continue;
       }
 
@@ -2358,7 +2358,7 @@ class Dropdown extends BaseComponent {
         } // Tab navigation through the dropdown menu or events from contained inputs shouldn't close the menu
 
 
-        if (context._menu.contains(event.target) && (event.type === 'keyup' && event.key === TAB_KEY || /input|select|option|textarea|form/i.test(event.target.tagName))) {
+        if (context._menu.contains(event.target) && (event.type === 'keyup' && event.key === TAB_KEY$1 || /input|select|option|textarea|form/i.test(event.target.tagName))) {
           continue;
         }
 
@@ -2387,7 +2387,7 @@ class Dropdown extends BaseComponent {
       return;
     }
 
-    const isActive = this.classList.contains(CLASS_NAME_SHOW$9);
+    const isActive = this.classList.contains(CLASS_NAME_SHOW$a);
 
     if (!isActive && event.key === ESCAPE_KEY$2) {
       return;
@@ -2433,9 +2433,9 @@ class Dropdown extends BaseComponent {
 
 EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_DATA_TOGGLE$4, Dropdown.dataApiKeydownHandler);
 EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_MENU, Dropdown.dataApiKeydownHandler);
-EventHandler.on(document, EVENT_CLICK_DATA_API$5, Dropdown.clearMenus);
-EventHandler.on(document, EVENT_KEYUP_DATA_API, Dropdown.clearMenus);
-EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_TOGGLE$4, function (event) {
+EventHandler.on(document, EVENT_CLICK_DATA_API$6, Dropdown.clearMenus);
+EventHandler.on(document, EVENT_KEYUP_DATA_API$1, Dropdown.clearMenus);
+EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$4, function (event) {
   event.preventDefault();
   Dropdown.dropdownInterface(this);
 });
@@ -2447,6 +2447,186 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_TOGGLE$4, functi
  */
 
 defineJQueryPlugin(Dropdown);
+
+/**
+ * --------------------------------------------------------------------------
+ * CoreUI (v4.0.0-rc.1): loading-button.js
+ * Licensed under MIT (https://coreui.io/license)
+ */
+/**
+ * ------------------------------------------------------------------------
+ * Constants
+ * ------------------------------------------------------------------------
+ */
+
+const NAME$b = 'loading-button';
+const DATA_KEY$a = 'coreui.loading-button';
+const EVENT_KEY$a = `.${DATA_KEY$a}`;
+const EVENT_START = `start${EVENT_KEY$a}`;
+const EVENT_STOP = `stop${EVENT_KEY$a}`;
+const CLASS_NAME_IS_LOADING = 'is-loading';
+const CLASS_NAME_LOADING_BUTTON_SPINNER = 'btn-loading-spinner';
+const Default$a = {
+  disabledOnLoading: false,
+  spinner: true,
+  spinnerType: 'border',
+  timeout: false
+};
+const DefaultType$a = {
+  disabledOnLoading: 'boolean',
+  spinner: 'boolean',
+  spinnerType: 'string',
+  timeout: '(boolean|number)'
+};
+/**
+ * ------------------------------------------------------------------------
+ * Class Definition
+ * ------------------------------------------------------------------------
+ */
+
+class LoadingButton extends BaseComponent {
+  constructor(element, config) {
+    super(element);
+    this._config = this._getConfig(config);
+    this._timeout = this._config.timeout;
+    this._spinner = null;
+    this._state = 'idle';
+
+    if (this._element) {
+      Data.set(element, DATA_KEY$a, this);
+    }
+  } // Getters
+
+
+  static get Default() {
+    return Default$a;
+  }
+
+  static get DefaultType() {
+    return DefaultType$a;
+  }
+
+  static get DATA_KEY() {
+    return DATA_KEY$a;
+  }
+
+  static get NAME() {
+    return NAME$b;
+  } // Public
+
+
+  start() {
+    if (this._state !== 'loading') {
+      this._createSpinner();
+
+      this._state = 'loading';
+      setTimeout(() => {
+        this._element.classList.add(CLASS_NAME_IS_LOADING);
+
+        EventHandler.trigger(this._element, EVENT_START);
+
+        if (this._config.disabledOnLoading) {
+          this._element.setAttribute('disabled', true);
+        }
+      }, 1);
+
+      if (this._config.timeout) {
+        setTimeout(() => {
+          this.stop();
+        }, this._config.timeout);
+      }
+    }
+  }
+
+  stop() {
+    this._element.classList.remove(CLASS_NAME_IS_LOADING);
+
+    const stoped = () => {
+      this._removeSpinner();
+
+      this._state = 'idle';
+
+      if (this._config.disabledOnLoading) {
+        this._element.removeAttribute('disabled');
+      }
+
+      EventHandler.trigger(this._element, EVENT_STOP);
+    };
+
+    if (this._spinner) {
+      this._queueCallback(stoped, this._spinner, true);
+
+      return;
+    }
+
+    stoped();
+  }
+
+  dispose() {
+    Data.removeData(this._element, DATA_KEY$a);
+    this._element = null;
+  }
+
+  _getConfig(config) {
+    config = { ...Default$a,
+      ...Manipulator.getDataAttributes(this._element),
+      ...(typeof config === 'object' ? config : {})
+    };
+    typeCheckConfig(NAME$b, config, DefaultType$a);
+    return config;
+  }
+
+  _createSpinner() {
+    if (this._config.spinner) {
+      const spinner = document.createElement('span');
+      const type = this._config.spinnerType;
+      spinner.classList.add(CLASS_NAME_LOADING_BUTTON_SPINNER, `spinner-${type}`, `spinner-${type}-sm`);
+      spinner.setAttribute('role', 'status');
+      spinner.setAttribute('aria-hidden', 'true');
+
+      this._element.insertBefore(spinner, this._element.firstChild);
+
+      this._spinner = spinner;
+    }
+  }
+
+  _removeSpinner() {
+    if (this._config.spinner) {
+      this._spinner.remove();
+
+      this._spinner = null;
+    }
+  } // Static
+
+
+  static loadingButtonInterface(element, config) {
+    const data = LoadingButton.getOrCreateInstance(element, config);
+
+    if (typeof config === 'string') {
+      if (typeof data[config] === 'undefined') {
+        throw new TypeError(`No method named "${config}"`);
+      }
+
+      data[config]();
+    }
+  }
+
+  static jQueryInterface(config) {
+    return this.each(function () {
+      LoadingButton.loadingButtonInterface(this, config);
+    });
+  }
+
+}
+/**
+ * ------------------------------------------------------------------------
+ * jQuery
+ * ------------------------------------------------------------------------
+ * add .LoadingButton to jQuery only if jQuery is present
+ */
+
+
+defineJQueryPlugin(LoadingButton);
 
 /**
  * --------------------------------------------------------------------------
@@ -2558,7 +2738,7 @@ class ScrollBarHelper {
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
-const Default$8 = {
+const Default$9 = {
   isVisible: true,
   // if false, we use the backdrop helper without adding any element to the dom
   isAnimated: false,
@@ -2566,17 +2746,17 @@ const Default$8 = {
   // give the choice to place backdrop under different elements
   clickCallback: null
 };
-const DefaultType$8 = {
+const DefaultType$9 = {
   isVisible: 'boolean',
   isAnimated: 'boolean',
   rootElement: '(element|string)',
   clickCallback: '(function|null)'
 };
-const NAME$9 = 'backdrop';
+const NAME$a = 'backdrop';
 const CLASS_NAME_BACKDROP$1 = 'modal-backdrop';
 const CLASS_NAME_FADE$6 = 'fade';
-const CLASS_NAME_SHOW$8 = 'show';
-const EVENT_MOUSEDOWN = `mousedown.coreui.${NAME$9}`;
+const CLASS_NAME_SHOW$9 = 'show';
+const EVENT_MOUSEDOWN = `mousedown.coreui.${NAME$a}`;
 
 class Backdrop {
   constructor(config) {
@@ -2597,7 +2777,7 @@ class Backdrop {
       reflow(this._getElement());
     }
 
-    this._getElement().classList.add(CLASS_NAME_SHOW$8);
+    this._getElement().classList.add(CLASS_NAME_SHOW$9);
 
     this._emulateAnimation(() => {
       execute(callback);
@@ -2610,7 +2790,7 @@ class Backdrop {
       return;
     }
 
-    this._getElement().classList.remove(CLASS_NAME_SHOW$8);
+    this._getElement().classList.remove(CLASS_NAME_SHOW$9);
 
     this._emulateAnimation(() => {
       this.dispose();
@@ -2635,12 +2815,12 @@ class Backdrop {
   }
 
   _getConfig(config) {
-    config = { ...Default$8,
+    config = { ...Default$9,
       ...(typeof config === 'object' ? config : {})
     }; // use getElement() with the default "body" to get a fresh Element on each instantiation
 
     config.rootElement = getElement(config.rootElement);
-    typeCheckConfig(NAME$9, config, DefaultType$8);
+    typeCheckConfig(NAME$a, config, DefaultType$9);
     return config;
   }
 
@@ -2690,36 +2870,36 @@ class Backdrop {
  * ------------------------------------------------------------------------
  */
 
-const NAME$8 = 'modal';
-const DATA_KEY$8 = 'coreui.modal';
-const EVENT_KEY$8 = `.${DATA_KEY$8}`;
-const DATA_API_KEY$5 = '.data-api';
+const NAME$9 = 'modal';
+const DATA_KEY$9 = 'coreui.modal';
+const EVENT_KEY$9 = `.${DATA_KEY$9}`;
+const DATA_API_KEY$6 = '.data-api';
 const ESCAPE_KEY$1 = 'Escape';
-const Default$7 = {
+const Default$8 = {
   backdrop: true,
   keyboard: true,
   focus: true
 };
-const DefaultType$7 = {
+const DefaultType$8 = {
   backdrop: '(boolean|string)',
   keyboard: 'boolean',
   focus: 'boolean'
 };
-const EVENT_HIDE$4 = `hide${EVENT_KEY$8}`;
-const EVENT_HIDE_PREVENTED = `hidePrevented${EVENT_KEY$8}`;
-const EVENT_HIDDEN$4 = `hidden${EVENT_KEY$8}`;
-const EVENT_SHOW$4 = `show${EVENT_KEY$8}`;
-const EVENT_SHOWN$4 = `shown${EVENT_KEY$8}`;
-const EVENT_FOCUSIN$2 = `focusin${EVENT_KEY$8}`;
-const EVENT_RESIZE$1 = `resize${EVENT_KEY$8}`;
-const EVENT_CLICK_DISMISS$2 = `click.dismiss${EVENT_KEY$8}`;
-const EVENT_KEYDOWN_DISMISS$1 = `keydown.dismiss${EVENT_KEY$8}`;
-const EVENT_MOUSEUP_DISMISS = `mouseup.dismiss${EVENT_KEY$8}`;
-const EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${EVENT_KEY$8}`;
-const EVENT_CLICK_DATA_API$4 = `click${EVENT_KEY$8}${DATA_API_KEY$5}`;
+const EVENT_HIDE$5 = `hide${EVENT_KEY$9}`;
+const EVENT_HIDE_PREVENTED = `hidePrevented${EVENT_KEY$9}`;
+const EVENT_HIDDEN$5 = `hidden${EVENT_KEY$9}`;
+const EVENT_SHOW$5 = `show${EVENT_KEY$9}`;
+const EVENT_SHOWN$5 = `shown${EVENT_KEY$9}`;
+const EVENT_FOCUSIN$2 = `focusin${EVENT_KEY$9}`;
+const EVENT_RESIZE$1 = `resize${EVENT_KEY$9}`;
+const EVENT_CLICK_DISMISS$2 = `click.dismiss${EVENT_KEY$9}`;
+const EVENT_KEYDOWN_DISMISS$1 = `keydown.dismiss${EVENT_KEY$9}`;
+const EVENT_MOUSEUP_DISMISS = `mouseup.dismiss${EVENT_KEY$9}`;
+const EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${EVENT_KEY$9}`;
+const EVENT_CLICK_DATA_API$5 = `click${EVENT_KEY$9}${DATA_API_KEY$6}`;
 const CLASS_NAME_OPEN = 'modal-open';
 const CLASS_NAME_FADE$5 = 'fade';
-const CLASS_NAME_SHOW$7 = 'show';
+const CLASS_NAME_SHOW$8 = 'show';
 const CLASS_NAME_STATIC = 'modal-static';
 const SELECTOR_DIALOG = '.modal-dialog';
 const SELECTOR_MODAL_BODY = '.modal-body';
@@ -2745,11 +2925,11 @@ class Modal extends BaseComponent {
 
 
   static get Default() {
-    return Default$7;
+    return Default$8;
   }
 
   static get NAME() {
-    return NAME$8;
+    return NAME$9;
   } // Public
 
 
@@ -2762,7 +2942,7 @@ class Modal extends BaseComponent {
       return;
     }
 
-    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$4, {
+    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$5, {
       relatedTarget
     });
 
@@ -2807,7 +2987,7 @@ class Modal extends BaseComponent {
       return;
     }
 
-    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$4);
+    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$5);
 
     if (hideEvent.defaultPrevented) {
       return;
@@ -2827,7 +3007,7 @@ class Modal extends BaseComponent {
 
     EventHandler.off(document, EVENT_FOCUSIN$2);
 
-    this._element.classList.remove(CLASS_NAME_SHOW$7);
+    this._element.classList.remove(CLASS_NAME_SHOW$8);
 
     EventHandler.off(this._element, EVENT_CLICK_DISMISS$2);
     EventHandler.off(this._dialog, EVENT_MOUSEDOWN_DISMISS);
@@ -2836,7 +3016,7 @@ class Modal extends BaseComponent {
   }
 
   dispose() {
-    [window, this._dialog].forEach(htmlElement => EventHandler.off(htmlElement, EVENT_KEY$8));
+    [window, this._dialog].forEach(htmlElement => EventHandler.off(htmlElement, EVENT_KEY$9));
 
     this._backdrop.dispose();
 
@@ -2864,11 +3044,11 @@ class Modal extends BaseComponent {
   }
 
   _getConfig(config) {
-    config = { ...Default$7,
+    config = { ...Default$8,
       ...Manipulator.getDataAttributes(this._element),
       ...(typeof config === 'object' ? config : {})
     };
-    typeCheckConfig(NAME$8, config, DefaultType$7);
+    typeCheckConfig(NAME$9, config, DefaultType$8);
     return config;
   }
 
@@ -2900,7 +3080,7 @@ class Modal extends BaseComponent {
       reflow(this._element);
     }
 
-    this._element.classList.add(CLASS_NAME_SHOW$7);
+    this._element.classList.add(CLASS_NAME_SHOW$8);
 
     if (this._config.focus) {
       this._enforceFocus();
@@ -2912,7 +3092,7 @@ class Modal extends BaseComponent {
       }
 
       this._isTransitioning = false;
-      EventHandler.trigger(this._element, EVENT_SHOWN$4, {
+      EventHandler.trigger(this._element, EVENT_SHOWN$5, {
         relatedTarget
       });
     };
@@ -2971,7 +3151,7 @@ class Modal extends BaseComponent {
 
       this._scrollBar.reset();
 
-      EventHandler.trigger(this._element, EVENT_HIDDEN$4);
+      EventHandler.trigger(this._element, EVENT_HIDDEN$5);
     });
   }
 
@@ -3086,20 +3266,20 @@ class Modal extends BaseComponent {
  */
 
 
-EventHandler.on(document, EVENT_CLICK_DATA_API$4, SELECTOR_DATA_TOGGLE$3, function (event) {
+EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_TOGGLE$3, function (event) {
   const target = getElementFromSelector(this);
 
   if (['A', 'AREA'].includes(this.tagName)) {
     event.preventDefault();
   }
 
-  EventHandler.one(target, EVENT_SHOW$4, showEvent => {
+  EventHandler.one(target, EVENT_SHOW$5, showEvent => {
     if (showEvent.defaultPrevented) {
       // only register focus restorer if modal will actually get shown
       return;
     }
 
-    EventHandler.one(target, EVENT_HIDDEN$4, () => {
+    EventHandler.one(target, EVENT_HIDDEN$5, () => {
       if (isVisible(this)) {
         this.focus();
       }
@@ -3116,6 +3296,848 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$4, SELECTOR_DATA_TOGGLE$3, functi
  */
 
 defineJQueryPlugin(Modal);
+
+/**
+ * --------------------------------------------------------------------------
+ * CoreUI PRO (v4.0.0-rc.1): multi-select.js
+ * License (https://coreui.io/pro/license)
+ * --------------------------------------------------------------------------
+ */
+/**
+ * ------------------------------------------------------------------------
+ * Constants
+ * ------------------------------------------------------------------------
+ */
+
+const NAME$8 = 'multi-select';
+const DATA_KEY$8 = 'coreui.multi-select';
+const EVENT_KEY$8 = `.${DATA_KEY$8}`;
+const DATA_API_KEY$5 = '.data-api';
+const TAB_KEY = 'Tab';
+const RIGHT_MOUSE_BUTTON = 2;
+const SELECTOR_INPUT = '.form-multi-select-search';
+const SELECTOR_OPTGROUP = '.form-multi-select-optgroup';
+const SELECTOR_OPTION = '.form-multi-select-option';
+const SELECTOR_OPTIONS = '.form-multi-select-options';
+const SELECTOR_OPTIONS_EMPTY = '.form-multi-select-options-empty';
+const SELECTOR_SELECT = '.form-multi-select';
+const SELECTOR_SELECTION = '.form-multi-select-selection';
+const SELECTOR_SELECTION_CLEANER = '.form-multi-select-selection-cleaner';
+const EVENT_CHANGED = `changed${EVENT_KEY$8}`;
+const EVENT_CLICK = `click${EVENT_KEY$8}`;
+const EVENT_HIDE$4 = `hide${EVENT_KEY$8}`;
+const EVENT_HIDDEN$4 = `hidden${EVENT_KEY$8}`;
+const EVENT_KEYDOWN = `keydown${EVENT_KEY$8}`;
+const EVENT_KEYUP = `keyup${EVENT_KEY$8}`;
+const EVENT_SEARCH = `search${EVENT_KEY$8}`;
+const EVENT_SHOW$4 = `show${EVENT_KEY$8}`;
+const EVENT_SHOWN$4 = `showN${EVENT_KEY$8}`;
+const EVENT_CLICK_DATA_API$4 = `click${EVENT_KEY$8}${DATA_API_KEY$5}`;
+const EVENT_KEYUP_DATA_API = `keyup${EVENT_KEY$8}${DATA_API_KEY$5}`;
+const EVENT_LOAD_DATA_API$4 = `load${EVENT_KEY$8}${DATA_API_KEY$5}`;
+const CLASS_NAME_DISABLED = 'disabled';
+const CLASS_NAME_SELECT = 'form-multi-select';
+const CLASS_NAME_SELECT_DROPDOWN = 'form-multi-select-dropdown';
+const CLASS_NAME_SELECT_MULTIPLE = 'form-multi-select-multiple';
+const CLASS_NAME_SELECT_WITH_CLEANER = 'form-multi-select-with-cleaner';
+const CLASS_NAME_SELECT_ALL = 'form-multi-select-all';
+const CLASS_NAME_OPTGROUP = 'form-multi-select-optgroup';
+const CLASS_NAME_OPTGROUP_LABEL = 'form-multi-select-optgroup-label';
+const CLASS_NAME_OPTION = 'form-multi-select-option';
+const CLASS_NAME_OPTION_WITH_CHECKBOX = 'form-multi-select-option-with-checkbox';
+const CLASS_NAME_OPTIONS = 'form-multi-select-options';
+const CLASS_NAME_OPTIONS_EMPTY = 'form-multi-select-options-empty';
+const CLASS_NAME_SEARCH = 'form-multi-select-search';
+const CLASS_NAME_SELECTED = 'form-multi-selected';
+const CLASS_NAME_SELECTION = 'form-multi-select-selection';
+const CLASS_NAME_SELECTION_CLEANER = 'form-multi-select-selection-cleaner';
+const CLASS_NAME_SELECTION_TAGS = 'form-multi-select-selection-tags';
+const CLASS_NAME_SHOW$7 = 'show';
+const CLASS_NAME_TAG = 'form-multi-select-tag';
+const CLASS_NAME_TAG_DELETE = 'form-multi-select-tag-delete';
+const CLASS_NAME_LABEL = 'label';
+const Default$7 = {
+  cleaner: true,
+  multiple: true,
+  placeholder: 'Select...',
+  options: false,
+  optionsMaxHeight: 'auto',
+  optionsStyle: 'checkbox',
+  search: false,
+  searchNoResultsLabel: 'No results found',
+  selectAll: true,
+  selectAllLabel: 'Select all options',
+  selectionType: 'tags',
+  selectionTypeCounterText: 'item(s) selected'
+};
+const DefaultType$7 = {
+  cleaner: 'boolean',
+  multiple: 'boolean',
+  placeholder: 'string',
+  options: '(boolean|array)',
+  optionsMaxHeight: '(number|string)',
+  optionsStyle: 'string',
+  search: 'boolean',
+  searchNoResultsLabel: 'string',
+  selectAll: 'boolean',
+  selectAllLabel: 'string',
+  selectionType: 'string',
+  selectionTypeCounterText: 'string'
+};
+/**
+ * ------------------------------------------------------------------------
+ * Class Definition
+ * ------------------------------------------------------------------------
+ */
+
+class MultiSelect extends BaseComponent {
+  constructor(element, config) {
+    super(element);
+    this._selectAllElement = null;
+    this._selectionElement = null;
+    this._selectionCleanerElement = null;
+    this._searchElement = null;
+    this._optionsElement = null;
+    this._config = this._getConfig(config);
+    this._clone = null;
+    this._options = this._getOptions();
+    this._search = '';
+    this._selection = this._getSelectedOptions(this._options);
+
+    if (this._config.options.length > 0) {
+      this._createNativeSelect(this._config.options);
+    }
+
+    this._createSelect();
+
+    this._addEventListeners();
+
+    Data.set(this._element, DATA_KEY$8, this);
+  } // Getters
+
+
+  static get Default() {
+    return Default$7;
+  }
+
+  static get DefaultType() {
+    return DefaultType$7;
+  }
+
+  static get DATA_KEY() {
+    return DATA_KEY$8;
+  }
+
+  static get NAME() {
+    return NAME$8;
+  } // Public
+
+
+  show() {
+    EventHandler.trigger(this._element, EVENT_SHOW$4);
+
+    this._clone.classList.add(CLASS_NAME_SHOW$7);
+
+    if (this._config.search) {
+      SelectorEngine.findOne(SELECTOR_INPUT, this._clone).focus();
+    }
+
+    EventHandler.trigger(this._element, EVENT_SHOWN$4);
+  }
+
+  hide() {
+    EventHandler.trigger(this._element, EVENT_HIDE$4);
+
+    this._clone.classList.remove(CLASS_NAME_SHOW$7);
+
+    EventHandler.trigger(this._element, EVENT_HIDDEN$4);
+  }
+
+  search(text) {
+    this._search = text.length > 0 ? text.toLowerCase() : text;
+
+    this._filterOptionsList();
+
+    EventHandler.trigger(this._element, EVENT_SEARCH);
+  }
+
+  update(config) {
+    this._config = this._getConfig(config);
+    this._options = this._getOptions();
+    this._selection = this._getSelectedOptions(this._options);
+
+    this._clone.remove();
+
+    this._element.innerHTML = '';
+
+    this._createNativeOptions(this._element, this._options);
+
+    this._createSelect();
+
+    this._addEventListeners();
+  }
+
+  selectAll(options = this._options) {
+    options.forEach(option => {
+      if (option.disabled) {
+        return;
+      }
+
+      if (option.label) {
+        this.selectAll(option.options);
+        return;
+      }
+
+      this._selectOption(option.value, option.text);
+    });
+  }
+
+  deselectAll(options = this._options) {
+    options.forEach(option => {
+      if (option.disabled) {
+        return;
+      }
+
+      if (option.label) {
+        this.deselectAll(option.options);
+        return;
+      }
+
+      this._deselectOption(option.value);
+    });
+  }
+
+  getValue() {
+    return this._selection;
+  } // Private
+
+
+  _addEventListeners() {
+    EventHandler.on(this._clone, EVENT_CLICK, () => {
+      this.show();
+    });
+    EventHandler.on(this._searchElement, EVENT_KEYUP, () => {
+      this._onSearchChange(this._searchElement);
+    });
+    EventHandler.on(this._searchElement, EVENT_KEYDOWN, event => {
+      const key = event.keyCode || event.charCode;
+
+      if ((key === 8 || key === 46) && event.target.value.length === 0) {
+        this._deselectLastOption();
+      }
+    });
+    EventHandler.on(this._selectAllElement, EVENT_CLICK, event => {
+      event.preventDefault();
+      event.stopPropagation();
+      this.selectAll();
+    });
+    EventHandler.on(this._optionsElement, EVENT_CLICK, event => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      this._onOptionsClick(event.target);
+    });
+    EventHandler.on(this._selectionCleanerElement, EVENT_CLICK, event => {
+      event.preventDefault();
+      event.stopPropagation();
+      this.deselectAll();
+    });
+    EventHandler.on(this._optionsElement, EVENT_KEYDOWN, event => {
+      const key = event.keyCode || event.charCode;
+
+      if (key === 13) {
+        this._onOptionsClick(event.target);
+
+        SelectorEngine.findOne(SELECTOR_INPUT, this._clone).focus();
+      }
+    });
+  }
+
+  _getConfig(config) {
+    config = { ...Default$7,
+      ...Manipulator.getDataAttributes(this._element),
+      ...(typeof config === 'object' ? config : {})
+    };
+    typeCheckConfig(NAME$8, config, DefaultType$7);
+    return config;
+  }
+
+  _getClassNames() {
+    return [...this._element.classList.value.split(' ')];
+  }
+
+  _getOptions(node = this._element) {
+    if (this._config.options) {
+      return this._config.options;
+    }
+
+    const nodes = Array.from(node.childNodes).filter(element => element.nodeName === 'OPTION' || element.nodeName === 'OPTGROUP');
+    const options = [];
+    nodes.forEach(node => {
+      if (node.nodeName === 'OPTION') {
+        options.push({
+          value: node.value,
+          text: node.innerHTML,
+          selected: node.selected,
+          disabled: node.disabled
+        });
+      }
+
+      if (node.nodeName === 'OPTGROUP') {
+        options.push({
+          label: node.label,
+          options: this._getOptions(node)
+        });
+      }
+    });
+    return options;
+  }
+
+  _getSelectedOptions(options) {
+    const selected = [];
+    options.forEach(e => {
+      if (typeof e.value === 'undefined') {
+        this._getSelectedOptions(e.options);
+
+        return;
+      }
+
+      if (e.selected) {
+        // Add only the last option if single select
+        if (!this._config.multiple) {
+          selected.length = 0;
+        }
+
+        selected.push({
+          value: String(e.value),
+          text: e.text
+        });
+      }
+    });
+    return selected;
+  }
+
+  _createNativeSelect(data) {
+    this._element.classList.add(CLASS_NAME_SELECT);
+
+    if (this._config.multiple) {
+      this._element.setAttribute('multiple', true);
+    }
+
+    this._createNativeOptions(this._element, data);
+  }
+
+  _createNativeOptions(parentElement, options) {
+    options.forEach(option => {
+      // eslint-disable-next-line no-negated-condition
+      if (typeof option.options !== 'undefined') {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = option.label;
+
+        this._createNativeOptions(optgroup, option.options);
+
+        parentElement.append(optgroup);
+      } else {
+        const opt = document.createElement('OPTION');
+        opt.value = option.value;
+
+        if (option.disabled === true) {
+          opt.setAttribute('disabled', 'disabled');
+        }
+
+        if (option.selected === true) {
+          opt.setAttribute('selected', 'selected');
+        }
+
+        opt.innerHTML = option.text;
+        parentElement.append(opt);
+      }
+    });
+  }
+
+  _hideNativeSelect() {
+    this._element.tabIndex = '-1';
+    this._element.style.display = 'none';
+  }
+
+  _createSelect() {
+    const div = document.createElement('div');
+    div.classList.add(CLASS_NAME_SELECT);
+
+    this._getClassNames().forEach(className => {
+      div.classList.add(className);
+    });
+
+    if (this._config.multiple) {
+      div.classList.add(CLASS_NAME_SELECT_MULTIPLE);
+    }
+
+    if (this._config.multiple && this._config.selectionType === 'tags') {
+      div.classList.add(CLASS_NAME_SELECTION_TAGS);
+    }
+
+    this._clone = div;
+
+    this._element.parentNode.insertBefore(div, this._element.nextSibling);
+
+    this._createSelection();
+
+    this._createSelectionCleaner();
+
+    if (this._config.search) {
+      this._createSearchInput();
+
+      this._updateSearch();
+    }
+
+    this._createOptionsContainer();
+
+    this._hideNativeSelect();
+
+    this._updateOptionsList();
+  }
+
+  _createSelection() {
+    const span = document.createElement('span');
+    span.classList.add(CLASS_NAME_SELECTION);
+
+    this._clone.append(span);
+
+    this._updateSelection();
+
+    this._selectionElement = span;
+  }
+
+  _createSelectionCleaner() {
+    if (this._config.cleaner && this._config.multiple) {
+      const cleaner = document.createElement('button');
+      cleaner.classList.add(CLASS_NAME_SELECTION_CLEANER);
+
+      this._clone.append(cleaner);
+
+      this._clone.classList.add(CLASS_NAME_SELECT_WITH_CLEANER);
+
+      this._updateSelectionCleaner();
+
+      this._selectionCleanerElement = cleaner;
+    }
+  }
+
+  _createSearchInput() {
+    const input = document.createElement('input');
+    input.classList.add(CLASS_NAME_SEARCH);
+    this._searchElement = input;
+
+    this._updateSearchSize();
+
+    this._clone.append(input);
+  }
+
+  _createOptionsContainer() {
+    const dropdownDiv = document.createElement('div');
+    dropdownDiv.classList.add(CLASS_NAME_SELECT_DROPDOWN);
+
+    if (this._config.selectAll && this._config.multiple) {
+      const selectAll = document.createElement('button');
+      selectAll.classList.add(CLASS_NAME_SELECT_ALL);
+      selectAll.innerHTML = this._config.selectAllLabel;
+      this._selectAllElement = selectAll;
+      dropdownDiv.append(selectAll);
+    }
+
+    const optionsDiv = document.createElement('div');
+    optionsDiv.classList.add(CLASS_NAME_OPTIONS);
+
+    if (this._config.optionsMaxHeight !== 'auto') {
+      optionsDiv.style.maxHeight = `${this._config.optionsMaxHeight}px`;
+      optionsDiv.style.overflow = 'scroll';
+    }
+
+    dropdownDiv.append(optionsDiv);
+
+    this._clone.append(dropdownDiv);
+
+    this._createOptions(optionsDiv, this._options);
+
+    this._optionsElement = optionsDiv;
+  }
+
+  _createOptions(parentElement, options) {
+    options.forEach(option => {
+      if (typeof option.value !== 'undefined') {
+        const optionDiv = document.createElement('div');
+        optionDiv.classList.add(CLASS_NAME_OPTION);
+
+        if (option.disabled) {
+          optionDiv.classList.add(CLASS_NAME_DISABLED);
+        }
+
+        if (this._config.optionsStyle === 'checkbox') {
+          optionDiv.classList.add(CLASS_NAME_OPTION_WITH_CHECKBOX);
+        }
+
+        optionDiv.dataset.value = String(option.value);
+        optionDiv.tabIndex = 0;
+        optionDiv.innerHTML = option.text;
+        parentElement.append(optionDiv);
+      }
+
+      if (typeof option.label !== 'undefined') {
+        const optgroup = document.createElement('div');
+        optgroup.classList.add(CLASS_NAME_OPTGROUP);
+        const optgrouplabel = document.createElement('div');
+        optgrouplabel.innerHTML = option.label;
+        optgrouplabel.classList.add(CLASS_NAME_OPTGROUP_LABEL);
+        optgroup.append(optgrouplabel);
+
+        this._createOptions(optgroup, option.options);
+
+        parentElement.append(optgroup);
+      }
+    });
+  }
+
+  _createTag(value, text) {
+    const tag = document.createElement('span');
+    tag.classList.add(CLASS_NAME_TAG);
+    tag.dataset.value = value;
+    tag.innerHTML = text;
+    const closeBtn = document.createElement('button');
+    closeBtn.classList.add(CLASS_NAME_TAG_DELETE, 'text-medium-emphasis');
+    closeBtn.setAttribute('aria-label', 'Close');
+    closeBtn.innerHTML = '<span aria-hidden="true">&times;</span>';
+    tag.append(closeBtn);
+    EventHandler.on(closeBtn, EVENT_CLICK, event => {
+      event.preventDefault();
+      event.stopPropagation();
+      tag.remove();
+
+      this._deselectOption(value);
+    });
+    return tag;
+  }
+
+  _onOptionsClick(element) {
+    if (!element.classList.contains(CLASS_NAME_OPTION) || element.classList.contains(CLASS_NAME_LABEL)) {
+      return;
+    }
+
+    const value = String(element.dataset.value);
+    const text = element.textContent;
+
+    if (this._config.multiple && element.classList.contains(CLASS_NAME_SELECTED)) {
+      this._deselectOption(value);
+    } else if (this._config.multiple && !element.classList.contains(CLASS_NAME_SELECTED)) {
+      this._selectOption(value, text);
+    } else if (!this._config.multiple) {
+      this._selectOption(value, text);
+    }
+  }
+
+  _selectOption(value, text) {
+    if (!this._config.multiple) {
+      this.deselectAll();
+    }
+
+    if (this._selection.filter(e => e.value === value).length === 0) {
+      this._selection.push({
+        value,
+        text
+      });
+    }
+
+    const nativeOption = SelectorEngine.findOne(`option[value="${value}"]`, this._element);
+
+    if (nativeOption) {
+      nativeOption.selected = true;
+    }
+
+    const option = SelectorEngine.findOne(`[data-value="${value}"]`, this._optionsElement);
+
+    if (option) {
+      option.classList.add(CLASS_NAME_SELECTED);
+    }
+
+    EventHandler.trigger(this._element, EVENT_CHANGED, {
+      value: this._selection
+    });
+
+    this._updateSelection();
+
+    this._updateSelectionCleaner();
+
+    this._updateSearch();
+
+    this._updateSearchSize();
+  }
+
+  _deselectOption(value) {
+    const selected = this._selection.filter(e => e.value !== value);
+
+    this._selection = selected;
+    SelectorEngine.findOne(`option[value="${value}"]`, this._element).selected = false;
+    const option = SelectorEngine.findOne(`[data-value="${value}"]`, this._optionsElement);
+
+    if (option) {
+      option.classList.remove(CLASS_NAME_SELECTED);
+    }
+
+    EventHandler.trigger(this._element, EVENT_CHANGED, {
+      value: this._selection
+    });
+
+    this._updateSelection();
+
+    this._updateSelectionCleaner();
+
+    this._updateSearch();
+
+    this._updateSearchSize();
+  }
+
+  _deselectLastOption() {
+    if (this._selection.length > 0) {
+      const last = this._selection.pop();
+
+      this._deselectOption(last.value);
+    }
+  }
+
+  _updateSelection() {
+    const selection = SelectorEngine.findOne(SELECTOR_SELECTION, this._clone);
+
+    if (this._config.multiple && this._config.selectionType === 'counter') {
+      selection.innerHTML = `${this._selection.length} ${this._config.selectionTypeCounterText}`;
+      return;
+    }
+
+    if (this._config.multiple && this._config.selectionType === 'tags') {
+      selection.innerHTML = '';
+
+      this._selection.forEach(e => {
+        selection.append(this._createTag(e.value, e.text));
+      });
+
+      return;
+    }
+
+    if (this._config.multiple && this._config.selectionType === 'text') {
+      selection.innerHTML = this._selection.map(e => e.text).join(', ');
+      return;
+    }
+
+    if (this._selection.length > 0) {
+      selection.innerHTML = this._selection[0].text;
+    }
+  }
+
+  _updateSelectionCleaner() {
+    if (!this._config.cleaner || this._selectionCleanerElement === null) {
+      return;
+    }
+
+    const selectionCleaner = SelectorEngine.findOne(SELECTOR_SELECTION_CLEANER, this._clone);
+
+    if (this._selection.length > 0) {
+      selectionCleaner.style.removeProperty('display');
+      return;
+    }
+
+    selectionCleaner.style.display = 'none';
+  }
+
+  _updateSearch() {
+    if (!this._config.search) {
+      return;
+    }
+
+    if (this._selection.length > 0 && !this._config.multiple) {
+      this._searchElement.placeholder = this._selection[0].text;
+      this._selectionElement.style.display = 'none';
+      return;
+    }
+
+    if (this._selection.length > 0 && this._config.multiple && this._config.selectionType !== 'counter') {
+      this._searchElement.placeholder = '';
+
+      this._selectionElement.style.removeProperty('display');
+
+      return;
+    }
+
+    if (this._selection.length === 0 && this._config.multiple) {
+      this._searchElement.placeholder = this._config.placeholder;
+      this._selectionElement.style.display = 'none';
+      return;
+    }
+
+    if (this._config.multiple && this._config.selectionType === 'counter') {
+      this._searchElement.placeholder = `${this._selection.length} item(s) selected`;
+      this._selectionElement.style.display = 'none';
+    }
+  }
+
+  _updateSearchSize(size = 2) {
+    if (!this._searchElement || !this._config.multiple) {
+      return;
+    }
+
+    if (this._selection.length > 0 && (this._config.selectionType === 'tags' || this._config.selectionType === 'text')) {
+      this._searchElement.size = size;
+      return;
+    }
+
+    if (this._selection.length === 0 && (this._config.selectionType === 'tags' || this._config.selectionType === 'text')) {
+      this._searchElement.removeAttribute('size');
+    }
+  }
+
+  _onSearchChange(element) {
+    if (element) {
+      this.search(element.value);
+
+      this._updateSearchSize(element.value.length + 1);
+    }
+  }
+
+  _updateOptionsList(options = this._options) {
+    options.forEach(option => {
+      if (option.label) {
+        this._updateOptionsList(option.options);
+
+        return;
+      }
+
+      if (option.selected) {
+        this._selectOption(option.value, option.text);
+      }
+    });
+  }
+
+  _isVisible(element) {
+    const style = window.getComputedStyle(element);
+    return style.display !== 'none';
+  }
+
+  _filterOptionsList() {
+    const options = SelectorEngine.find(SELECTOR_OPTION, this._clone);
+    let visibleOptions = 0;
+    options.forEach(option => {
+      // eslint-disable-next-line unicorn/prefer-includes
+      if (option.textContent.toLowerCase().indexOf(this._search) === -1) {
+        option.style.display = 'none';
+      } else {
+        option.style.removeProperty('display');
+        visibleOptions++;
+      }
+
+      const optgroup = option.closest(SELECTOR_OPTGROUP);
+
+      if (optgroup) {
+        if (SelectorEngine.children(optgroup, SELECTOR_OPTION).filter(element => this._isVisible(element)).length > 0) {
+          optgroup.style.removeProperty('display');
+        } else {
+          optgroup.style.display = 'none';
+        }
+      }
+    });
+
+    if (visibleOptions > 0) {
+      if (SelectorEngine.findOne(SELECTOR_OPTIONS_EMPTY, this._clone)) {
+        SelectorEngine.findOne(SELECTOR_OPTIONS_EMPTY, this._clone).remove();
+      }
+
+      return;
+    }
+
+    if (visibleOptions === 0) {
+      const placeholder = document.createElement('div');
+      placeholder.classList.add(CLASS_NAME_OPTIONS_EMPTY);
+      placeholder.innerHTML = this._config.searchNoResultsLabel;
+
+      if (!SelectorEngine.findOne(SELECTOR_OPTIONS_EMPTY, this._clone)) {
+        SelectorEngine.findOne(SELECTOR_OPTIONS, this._clone).append(placeholder);
+      }
+    }
+  } // Static
+
+
+  static multiSelectInterface(element, config) {
+    const data = MultiSelect.getOrCreateInstance(element, config);
+
+    if (typeof config === 'string') {
+      if (typeof data[config] === 'undefined') {
+        throw new TypeError(`No method named "${config}"`);
+      }
+
+      data[config]();
+    }
+  }
+
+  static jQueryInterface(config) {
+    return this.each(function () {
+      MultiSelect.multiSelectInterface(this, config);
+    });
+  }
+
+  static clearMenus(event) {
+    if (event && (event.button === RIGHT_MOUSE_BUTTON || event.type === 'keyup' && event.key !== TAB_KEY)) {
+      return;
+    }
+
+    const selects = SelectorEngine.find(SELECTOR_SELECT);
+
+    for (let i = 0, len = selects.length; i < len; i++) {
+      const context = Data.get(selects[i], DATA_KEY$8);
+      ({
+        relatedTarget: selects[i]
+      });
+
+      if (event && event.type === 'click') ;
+
+      if (!context) {
+        continue;
+      }
+
+      if (!context._clone.classList.contains(CLASS_NAME_SHOW$7)) {
+        continue;
+      }
+
+      if (context._clone.contains(event.target)) {
+        continue;
+      }
+
+      context._clone.classList.remove(CLASS_NAME_SHOW$7);
+
+      EventHandler.trigger(context._element, EVENT_HIDDEN$4);
+    }
+  }
+
+}
+/**
+ * ------------------------------------------------------------------------
+ * Data Api implementation
+ * ------------------------------------------------------------------------
+ */
+
+
+EventHandler.on(window, EVENT_LOAD_DATA_API$4, () => {
+  SelectorEngine.find(SELECTOR_SELECT).forEach(ms => {
+    if (ms.tabIndex !== -1) {
+      MultiSelect.multiSelectInterface(ms);
+    }
+  });
+});
+EventHandler.on(document, EVENT_CLICK_DATA_API$4, MultiSelect.clearMenus);
+EventHandler.on(document, EVENT_KEYUP_DATA_API, MultiSelect.clearMenus);
+/**
+ * ------------------------------------------------------------------------
+ * jQuery
+ * ------------------------------------------------------------------------
+ * add .MultiSelect to jQuery only if jQuery is present
+ */
+
+defineJQueryPlugin(MultiSelect);
 
 /**
  * --------------------------------------------------------------------------
@@ -3181,6 +4203,10 @@ class Navigation extends BaseComponent {
 
   static get DefaultType() {
     return DefaultType$6;
+  }
+
+  static get NAME() {
+    return NAME$7;
   } // Private
 
 
@@ -3396,7 +4422,7 @@ EventHandler.on(window, EVENT_LOAD_DATA_API$3, () => {
  * add .Navigation to jQuery only if jQuery is present
  */
 
-defineJQueryPlugin(NAME$7);
+defineJQueryPlugin(Navigation);
 
 /**
  * --------------------------------------------------------------------------
@@ -5208,7 +6234,7 @@ EventHandler.on(window, EVENT_LOAD_DATA_API, () => {
  * ------------------------------------------------------------------------
  */
 
-defineJQueryPlugin(NAME$2);
+defineJQueryPlugin(Sidebar);
 
 /**
  * --------------------------------------------------------------------------
@@ -5639,5 +6665,5 @@ class Toast extends BaseComponent {
 
 defineJQueryPlugin(Toast);
 
-export { Alert, Button, Carousel, Collapse, Dropdown, Modal, Navigation, Offcanvas as OffCanvas, Popover, ScrollSpy, Sidebar, Tab, Toast, Tooltip };
+export { Alert, Button, Carousel, Collapse, Dropdown, LoadingButton, Modal, MultiSelect, Navigation, Offcanvas as OffCanvas, Popover, ScrollSpy, Sidebar, Tab, Toast, Tooltip };
 //# sourceMappingURL=coreui.esm.js.map
