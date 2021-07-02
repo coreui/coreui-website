@@ -2476,7 +2476,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.0.0-rc.1): loading-button.js
+   * CoreUI (v4.0.0): loading-button.js
    * Licensed under MIT (https://coreui.io/license)
    */
   /**
@@ -3325,7 +3325,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.0.0-rc.1): multi-select.js
+   * CoreUI PRO (v4.0.0): multi-select.js
    * License (https://coreui.io/pro/license)
    * --------------------------------------------------------------------------
    */
