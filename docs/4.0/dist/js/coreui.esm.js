@@ -1,5 +1,5 @@
 /*!
-  * CoreUI v4.0.0-rc.5 (https://coreui.io)
+  * CoreUI v4.0.0 (https://coreui.io)
   * Copyright 2021 The CoreUI Team (https://github.com/orgs/coreui/people)
   * Licensed under MIT (https://coreui.io)
   */
@@ -7,7 +7,7 @@ import * as Popper from '@popperjs/core';
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): dom/selector-engine.js
+ * CoreUI (v4.0.0): dom/selector-engine.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's  dom/selector-engine.js
@@ -81,7 +81,7 @@ const SelectorEngine = {
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): alert.js
+ * CoreUI (v4.0.0): alert.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's  util/index.js
@@ -206,24 +206,6 @@ const getElement = obj => {
   return null;
 };
 
-const emulateTransitionEnd = (element, duration) => {
-  let called = false;
-  const durationPadding = 5;
-  const emulatedDuration = duration + durationPadding;
-
-  function listener() {
-    called = true;
-    element.removeEventListener(TRANSITION_END, listener);
-  }
-
-  element.addEventListener(TRANSITION_END, listener);
-  setTimeout(() => {
-    if (!called) {
-      triggerTransitionEnd(element);
-    }
-  }, emulatedDuration);
-};
-
 const typeCheckConfig = (componentName, config, configTypes) => {
   Object.keys(configTypes).forEach(property => {
     const expectedTypes = configTypes[property];
@@ -292,16 +274,25 @@ const getjQuery = () => {
     jQuery
   } = window;
 
-  if (jQuery && !document.body.hasAttribute('data-bs-no-jquery')) {
+  if (jQuery && !document.body.hasAttribute('data-coreui-no-jquery')) {
     return jQuery;
   }
 
   return null;
 };
 
+const DOMContentLoadedCallbacks = [];
+
 const onDOMContentLoaded = callback => {
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', callback);
+    // add listener on the first call when the document is in loading state
+    if (!DOMContentLoadedCallbacks.length) {
+      document.addEventListener('DOMContentLoaded', () => {
+        DOMContentLoadedCallbacks.forEach(callback => callback());
+      });
+    }
+
+    DOMContentLoadedCallbacks.push(callback);
   } else {
     callback();
   }
@@ -333,6 +324,36 @@ const execute = callback => {
     callback();
   }
 };
+
+const executeAfterTransition = (callback, transitionElement, waitForTransition = true) => {
+  if (!waitForTransition) {
+    execute(callback);
+    return;
+  }
+
+  const durationPadding = 5;
+  const emulatedDuration = getTransitionDurationFromElement(transitionElement) + durationPadding;
+  let called = false;
+
+  const handler = ({
+    target
+  }) => {
+    if (target !== transitionElement) {
+      return;
+    }
+
+    called = true;
+    transitionElement.removeEventListener(TRANSITION_END, handler);
+    execute(callback);
+  };
+
+  transitionElement.addEventListener(TRANSITION_END, handler);
+  setTimeout(() => {
+    if (!called) {
+      triggerTransitionEnd(transitionElement);
+    }
+  }, emulatedDuration);
+};
 /**
  * Return the previous/next element of a list.
  *
@@ -363,64 +384,7 @@ const getNextActiveElement = (list, activeElement, shouldGetNext, isCycleAllowed
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): dom/data.js
- * Licensed under MIT (https://coreui.io/license)
- *
- * This component is a modified version of the Bootstrap's dom/data.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
-
-/**
- * ------------------------------------------------------------------------
- * Constants
- * ------------------------------------------------------------------------
- */
-const elementMap = new Map();
-var Data = {
-  set(element, key, instance) {
-    if (!elementMap.has(element)) {
-      elementMap.set(element, new Map());
-    }
-
-    const instanceMap = elementMap.get(element); // make it clear we only want one instance per element
-    // can be removed later when multiple key/instances are fine to be used
-
-    if (!instanceMap.has(key) && instanceMap.size !== 0) {
-      // eslint-disable-next-line no-console
-      console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
-      return;
-    }
-
-    instanceMap.set(key, instance);
-  },
-
-  get(element, key) {
-    if (elementMap.has(element)) {
-      return elementMap.get(element).get(key) || null;
-    }
-
-    return null;
-  },
-
-  remove(element, key) {
-    if (!elementMap.has(element)) {
-      return;
-    }
-
-    const instanceMap = elementMap.get(element);
-    instanceMap.delete(key); // free up element references if there are no instances left for an element
-
-    if (instanceMap.size === 0) {
-      elementMap.delete(element);
-    }
-  }
-
-};
-
-/**
- * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): dom/event-handler.js
+ * CoreUI (v4.0.0): dom/event-handler.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's  dom/event-handler.js
@@ -712,7 +676,64 @@ const EventHandler = {
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): alert.js
+ * CoreUI (v4.0.0): dom/data.js
+ * Licensed under MIT (https://coreui.io/license)
+ *
+ * This component is a modified version of the Bootstrap's dom/data.js
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * --------------------------------------------------------------------------
+ */
+
+/**
+ * ------------------------------------------------------------------------
+ * Constants
+ * ------------------------------------------------------------------------
+ */
+const elementMap = new Map();
+var Data = {
+  set(element, key, instance) {
+    if (!elementMap.has(element)) {
+      elementMap.set(element, new Map());
+    }
+
+    const instanceMap = elementMap.get(element); // make it clear we only want one instance per element
+    // can be removed later when multiple key/instances are fine to be used
+
+    if (!instanceMap.has(key) && instanceMap.size !== 0) {
+      // eslint-disable-next-line no-console
+      console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
+      return;
+    }
+
+    instanceMap.set(key, instance);
+  },
+
+  get(element, key) {
+    if (elementMap.has(element)) {
+      return elementMap.get(element).get(key) || null;
+    }
+
+    return null;
+  },
+
+  remove(element, key) {
+    if (!elementMap.has(element)) {
+      return;
+    }
+
+    const instanceMap = elementMap.get(element);
+    instanceMap.delete(key); // free up element references if there are no instances left for an element
+
+    if (instanceMap.size === 0) {
+      elementMap.delete(element);
+    }
+  }
+
+};
+
+/**
+ * --------------------------------------------------------------------------
+ * CoreUI (v4.0.0): alert.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's base-component.js
@@ -725,7 +746,7 @@ const EventHandler = {
  * ------------------------------------------------------------------------
  */
 
-const VERSION = '4.0.0-rc.5';
+const VERSION = '4.0.0';
 
 class BaseComponent {
   constructor(element) {
@@ -748,20 +769,17 @@ class BaseComponent {
   }
 
   _queueCallback(callback, element, isAnimated = true) {
-    if (!isAnimated) {
-      execute(callback);
-      return;
-    }
-
-    const transitionDuration = getTransitionDurationFromElement(element);
-    EventHandler.one(element, 'transitionend', () => execute(callback));
-    emulateTransitionEnd(element, transitionDuration);
+    executeAfterTransition(callback, element, isAnimated);
   }
   /** Static */
 
 
   static getInstance(element) {
     return Data.get(element, this.DATA_KEY);
+  }
+
+  static getOrCreateInstance(element, config = {}) {
+    return this.getInstance(element) || new this(element, typeof config === 'object' ? config : null);
   }
 
   static get VERSION() {
@@ -784,7 +802,7 @@ class BaseComponent {
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): alert.js
+ * CoreUI (v4.0.0): alert.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's alert.js
@@ -797,17 +815,17 @@ class BaseComponent {
  * ------------------------------------------------------------------------
  */
 
-const NAME$g = 'alert';
-const DATA_KEY$f = 'coreui.alert';
-const EVENT_KEY$f = `.${DATA_KEY$f}`;
-const DATA_API_KEY$b = '.data-api';
+const NAME$e = 'alert';
+const DATA_KEY$d = 'coreui.alert';
+const EVENT_KEY$d = `.${DATA_KEY$d}`;
+const DATA_API_KEY$a = '.data-api';
 const SELECTOR_DISMISS = '[data-coreui-dismiss="alert"]';
-const EVENT_CLOSE = `close${EVENT_KEY$f}`;
-const EVENT_CLOSED = `closed${EVENT_KEY$f}`;
-const EVENT_CLICK_DATA_API$a = `click${EVENT_KEY$f}${DATA_API_KEY$b}`;
+const EVENT_CLOSE = `close${EVENT_KEY$d}`;
+const EVENT_CLOSED = `closed${EVENT_KEY$d}`;
+const EVENT_CLICK_DATA_API$9 = `click${EVENT_KEY$d}${DATA_API_KEY$a}`;
 const CLASS_NAME_ALERT = 'alert';
 const CLASS_NAME_FADE$7 = 'fade';
-const CLASS_NAME_SHOW$c = 'show';
+const CLASS_NAME_SHOW$b = 'show';
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -817,7 +835,7 @@ const CLASS_NAME_SHOW$c = 'show';
 class Alert extends BaseComponent {
   // Getters
   static get NAME() {
-    return NAME$g;
+    return NAME$e;
   } // Public
 
 
@@ -843,28 +861,21 @@ class Alert extends BaseComponent {
   }
 
   _removeElement(element) {
-    element.classList.remove(CLASS_NAME_SHOW$c);
+    element.classList.remove(CLASS_NAME_SHOW$b);
     const isAnimated = element.classList.contains(CLASS_NAME_FADE$7);
 
     this._queueCallback(() => this._destroyElement(element), element, isAnimated);
   }
 
   _destroyElement(element) {
-    if (element.parentNode) {
-      element.parentNode.removeChild(element);
-    }
-
+    element.remove();
     EventHandler.trigger(element, EVENT_CLOSED);
   } // Static
 
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.get(this, DATA_KEY$f);
-
-      if (!data) {
-        data = new Alert(this);
-      }
+      const data = Alert.getOrCreateInstance(this);
 
       if (config === 'close') {
         data[config](this);
@@ -890,7 +901,7 @@ class Alert extends BaseComponent {
  */
 
 
-EventHandler.on(document, EVENT_CLICK_DATA_API$a, SELECTOR_DISMISS, Alert.handleDismiss(new Alert()));
+EventHandler.on(document, EVENT_CLICK_DATA_API$9, SELECTOR_DISMISS, Alert.handleDismiss(new Alert()));
 /**
  * ------------------------------------------------------------------------
  * jQuery
@@ -902,7 +913,7 @@ defineJQueryPlugin(Alert);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): alert.js
+ * CoreUI (v4.0.0): alert.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's button.js
@@ -915,13 +926,13 @@ defineJQueryPlugin(Alert);
  * ------------------------------------------------------------------------
  */
 
-const NAME$f = 'button';
-const DATA_KEY$e = 'coreui.button';
-const EVENT_KEY$e = `.${DATA_KEY$e}`;
-const DATA_API_KEY$a = '.data-api';
+const NAME$d = 'button';
+const DATA_KEY$c = 'coreui.button';
+const EVENT_KEY$c = `.${DATA_KEY$c}`;
+const DATA_API_KEY$9 = '.data-api';
 const CLASS_NAME_ACTIVE$4 = 'active';
 const SELECTOR_DATA_TOGGLE$6 = '[data-coreui-toggle="button"]';
-const EVENT_CLICK_DATA_API$9 = `click${EVENT_KEY$e}${DATA_API_KEY$a}`;
+const EVENT_CLICK_DATA_API$8 = `click${EVENT_KEY$c}${DATA_API_KEY$9}`;
 /**
  * ------------------------------------------------------------------------
  * Class Definition
@@ -931,7 +942,7 @@ const EVENT_CLICK_DATA_API$9 = `click${EVENT_KEY$e}${DATA_API_KEY$a}`;
 class Button extends BaseComponent {
   // Getters
   static get NAME() {
-    return NAME$f;
+    return NAME$d;
   } // Public
 
 
@@ -943,11 +954,7 @@ class Button extends BaseComponent {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.get(this, DATA_KEY$e);
-
-      if (!data) {
-        data = new Button(this);
-      }
+      const data = Button.getOrCreateInstance(this);
 
       if (config === 'toggle') {
         data[config]();
@@ -963,15 +970,10 @@ class Button extends BaseComponent {
  */
 
 
-EventHandler.on(document, EVENT_CLICK_DATA_API$9, SELECTOR_DATA_TOGGLE$6, event => {
+EventHandler.on(document, EVENT_CLICK_DATA_API$8, SELECTOR_DATA_TOGGLE$6, event => {
   event.preventDefault();
   const button = event.target.closest(SELECTOR_DATA_TOGGLE$6);
-  let data = Data.get(button, DATA_KEY$e);
-
-  if (!data) {
-    data = new Button(button);
-  }
-
+  const data = Button.getOrCreateInstance(button);
   data.toggle();
 });
 /**
@@ -985,7 +987,7 @@ defineJQueryPlugin(Button);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): dom/manipulator.js
+ * CoreUI (v4.0.0): dom/manipulator.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's  dom/manipulator.js
@@ -1062,7 +1064,7 @@ const Manipulator = {
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): carousel.js
+ * CoreUI (v4.0.0): carousel.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's carousel.js
@@ -1075,16 +1077,16 @@ const Manipulator = {
  * ------------------------------------------------------------------------
  */
 
-const NAME$e = 'carousel';
-const DATA_KEY$d = 'coreui.carousel';
-const EVENT_KEY$d = `.${DATA_KEY$d}`;
-const DATA_API_KEY$9 = '.data-api';
+const NAME$c = 'carousel';
+const DATA_KEY$b = 'coreui.carousel';
+const EVENT_KEY$b = `.${DATA_KEY$b}`;
+const DATA_API_KEY$8 = '.data-api';
 const ARROW_LEFT_KEY = 'ArrowLeft';
 const ARROW_RIGHT_KEY = 'ArrowRight';
 const TOUCHEVENT_COMPAT_WAIT = 500; // Time for mouse compat events to fire after touch
 
 const SWIPE_THRESHOLD = 40;
-const Default$d = {
+const Default$b = {
   interval: 5000,
   keyboard: true,
   slide: false,
@@ -1092,7 +1094,7 @@ const Default$d = {
   wrap: true,
   touch: true
 };
-const DefaultType$d = {
+const DefaultType$b = {
   interval: '(number|boolean)',
   keyboard: 'boolean',
   slide: '(boolean|string)',
@@ -1104,19 +1106,23 @@ const ORDER_NEXT = 'next';
 const ORDER_PREV = 'prev';
 const DIRECTION_LEFT = 'left';
 const DIRECTION_RIGHT = 'right';
-const EVENT_SLIDE = `slide${EVENT_KEY$d}`;
-const EVENT_SLID = `slid${EVENT_KEY$d}`;
-const EVENT_KEYDOWN$1 = `keydown${EVENT_KEY$d}`;
-const EVENT_MOUSEENTER = `mouseenter${EVENT_KEY$d}`;
-const EVENT_MOUSELEAVE = `mouseleave${EVENT_KEY$d}`;
-const EVENT_TOUCHSTART = `touchstart${EVENT_KEY$d}`;
-const EVENT_TOUCHMOVE = `touchmove${EVENT_KEY$d}`;
-const EVENT_TOUCHEND = `touchend${EVENT_KEY$d}`;
-const EVENT_POINTERDOWN = `pointerdown${EVENT_KEY$d}`;
-const EVENT_POINTERUP = `pointerup${EVENT_KEY$d}`;
-const EVENT_DRAG_START = `dragstart${EVENT_KEY$d}`;
-const EVENT_LOAD_DATA_API$5 = `load${EVENT_KEY$d}${DATA_API_KEY$9}`;
-const EVENT_CLICK_DATA_API$8 = `click${EVENT_KEY$d}${DATA_API_KEY$9}`;
+const KEY_TO_DIRECTION = {
+  [ARROW_LEFT_KEY]: DIRECTION_RIGHT,
+  [ARROW_RIGHT_KEY]: DIRECTION_LEFT
+};
+const EVENT_SLIDE = `slide${EVENT_KEY$b}`;
+const EVENT_SLID = `slid${EVENT_KEY$b}`;
+const EVENT_KEYDOWN = `keydown${EVENT_KEY$b}`;
+const EVENT_MOUSEENTER = `mouseenter${EVENT_KEY$b}`;
+const EVENT_MOUSELEAVE = `mouseleave${EVENT_KEY$b}`;
+const EVENT_TOUCHSTART = `touchstart${EVENT_KEY$b}`;
+const EVENT_TOUCHMOVE = `touchmove${EVENT_KEY$b}`;
+const EVENT_TOUCHEND = `touchend${EVENT_KEY$b}`;
+const EVENT_POINTERDOWN = `pointerdown${EVENT_KEY$b}`;
+const EVENT_POINTERUP = `pointerup${EVENT_KEY$b}`;
+const EVENT_DRAG_START = `dragstart${EVENT_KEY$b}`;
+const EVENT_LOAD_DATA_API$4 = `load${EVENT_KEY$b}${DATA_API_KEY$8}`;
+const EVENT_CLICK_DATA_API$7 = `click${EVENT_KEY$b}${DATA_API_KEY$8}`;
 const CLASS_NAME_CAROUSEL = 'carousel';
 const CLASS_NAME_ACTIVE$3 = 'active';
 const CLASS_NAME_SLIDE = 'slide';
@@ -1163,18 +1169,16 @@ class Carousel extends BaseComponent {
 
 
   static get Default() {
-    return Default$d;
+    return Default$b;
   }
 
   static get NAME() {
-    return NAME$e;
+    return NAME$c;
   } // Public
 
 
   next() {
-    if (!this._isSliding) {
-      this._slide(ORDER_NEXT);
-    }
+    this._slide(ORDER_NEXT);
   }
 
   nextWhenVisible() {
@@ -1186,9 +1190,7 @@ class Carousel extends BaseComponent {
   }
 
   prev() {
-    if (!this._isSliding) {
-      this._slide(ORDER_PREV);
-    }
+    this._slide(ORDER_PREV);
   }
 
   pause(event) {
@@ -1249,10 +1251,11 @@ class Carousel extends BaseComponent {
 
 
   _getConfig(config) {
-    config = { ...Default$d,
-      ...config
+    config = { ...Default$b,
+      ...Manipulator.getDataAttributes(this._element),
+      ...(typeof config === 'object' ? config : {})
     };
-    typeCheckConfig(NAME$e, config, DefaultType$d);
+    typeCheckConfig(NAME$c, config, DefaultType$b);
     return config;
   }
 
@@ -1275,7 +1278,7 @@ class Carousel extends BaseComponent {
 
   _addEventListeners() {
     if (this._config.keyboard) {
-      EventHandler.on(this._element, EVENT_KEYDOWN$1, event => this._keydown(event));
+      EventHandler.on(this._element, EVENT_KEYDOWN, event => this._keydown(event));
     }
 
     if (this._config.pause === 'hover') {
@@ -1348,14 +1351,12 @@ class Carousel extends BaseComponent {
       return;
     }
 
-    if (event.key === ARROW_LEFT_KEY) {
+    const direction = KEY_TO_DIRECTION[event.key];
+
+    if (direction) {
       event.preventDefault();
 
-      this._slide(DIRECTION_RIGHT);
-    } else if (event.key === ARROW_RIGHT_KEY) {
-      event.preventDefault();
-
-      this._slide(DIRECTION_LEFT);
+      this._slide(direction);
     }
   }
 
@@ -1436,6 +1437,10 @@ class Carousel extends BaseComponent {
 
     if (nextElement && nextElement.classList.contains(CLASS_NAME_ACTIVE$3)) {
       this._isSliding = false;
+      return;
+    }
+
+    if (this._isSliding) {
       return;
     }
 
@@ -1522,10 +1527,10 @@ class Carousel extends BaseComponent {
 
 
   static carouselInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$d);
-    let _config = { ...Default$d,
-      ...Manipulator.getDataAttributes(element)
-    };
+    const data = Carousel.getOrCreateInstance(element, config);
+    let {
+      _config
+    } = data;
 
     if (typeof config === 'object') {
       _config = { ..._config,
@@ -1534,10 +1539,6 @@ class Carousel extends BaseComponent {
     }
 
     const action = typeof config === 'string' ? config : _config.slide;
-
-    if (!data) {
-      data = new Carousel(element, _config);
-    }
 
     if (typeof config === 'number') {
       data.to(config);
@@ -1578,7 +1579,7 @@ class Carousel extends BaseComponent {
     Carousel.carouselInterface(target, config);
 
     if (slideIndex) {
-      Data.get(target, DATA_KEY$d).to(slideIndex);
+      Carousel.getInstance(target).to(slideIndex);
     }
 
     event.preventDefault();
@@ -1592,12 +1593,12 @@ class Carousel extends BaseComponent {
  */
 
 
-EventHandler.on(document, EVENT_CLICK_DATA_API$8, SELECTOR_DATA_SLIDE, Carousel.dataApiClickHandler);
-EventHandler.on(window, EVENT_LOAD_DATA_API$5, () => {
+EventHandler.on(document, EVENT_CLICK_DATA_API$7, SELECTOR_DATA_SLIDE, Carousel.dataApiClickHandler);
+EventHandler.on(window, EVENT_LOAD_DATA_API$4, () => {
   const carousels = SelectorEngine.find(SELECTOR_DATA_RIDE);
 
   for (let i = 0, len = carousels.length; i < len; i++) {
-    Carousel.carouselInterface(carousels[i], Data.get(carousels[i], DATA_KEY$d));
+    Carousel.carouselInterface(carousels[i], Carousel.getInstance(carousels[i]));
   }
 });
 /**
@@ -1611,7 +1612,7 @@ defineJQueryPlugin(Carousel);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): collapse.js
+ * CoreUI (v4.0.0): collapse.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's collapse.js
@@ -1624,24 +1625,24 @@ defineJQueryPlugin(Carousel);
  * ------------------------------------------------------------------------
  */
 
-const NAME$d = 'collapse';
-const DATA_KEY$c = 'coreui.collapse';
-const EVENT_KEY$c = `.${DATA_KEY$c}`;
-const DATA_API_KEY$8 = '.data-api';
-const Default$c = {
+const NAME$b = 'collapse';
+const DATA_KEY$a = 'coreui.collapse';
+const EVENT_KEY$a = `.${DATA_KEY$a}`;
+const DATA_API_KEY$7 = '.data-api';
+const Default$a = {
   toggle: true,
   parent: ''
 };
-const DefaultType$c = {
+const DefaultType$a = {
   toggle: 'boolean',
   parent: '(string|element)'
 };
-const EVENT_SHOW$7 = `show${EVENT_KEY$c}`;
-const EVENT_SHOWN$7 = `shown${EVENT_KEY$c}`;
-const EVENT_HIDE$7 = `hide${EVENT_KEY$c}`;
-const EVENT_HIDDEN$7 = `hidden${EVENT_KEY$c}`;
-const EVENT_CLICK_DATA_API$7 = `click${EVENT_KEY$c}${DATA_API_KEY$8}`;
-const CLASS_NAME_SHOW$b = 'show';
+const EVENT_SHOW$6 = `show${EVENT_KEY$a}`;
+const EVENT_SHOWN$6 = `shown${EVENT_KEY$a}`;
+const EVENT_HIDE$6 = `hide${EVENT_KEY$a}`;
+const EVENT_HIDDEN$6 = `hidden${EVENT_KEY$a}`;
+const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$a}${DATA_API_KEY$7}`;
+const CLASS_NAME_SHOW$a = 'show';
 const CLASS_NAME_COLLAPSE = 'collapse';
 const CLASS_NAME_COLLAPSING = 'collapsing';
 const CLASS_NAME_COLLAPSED = 'collapsed';
@@ -1688,16 +1689,16 @@ class Collapse extends BaseComponent {
 
 
   static get Default() {
-    return Default$c;
+    return Default$a;
   }
 
   static get NAME() {
-    return NAME$d;
+    return NAME$b;
   } // Public
 
 
   toggle() {
-    if (this._element.classList.contains(CLASS_NAME_SHOW$b)) {
+    if (this._element.classList.contains(CLASS_NAME_SHOW$a)) {
       this.hide();
     } else {
       this.show();
@@ -1705,7 +1706,7 @@ class Collapse extends BaseComponent {
   }
 
   show() {
-    if (this._isTransitioning || this._element.classList.contains(CLASS_NAME_SHOW$b)) {
+    if (this._isTransitioning || this._element.classList.contains(CLASS_NAME_SHOW$a)) {
       return;
     }
 
@@ -1730,14 +1731,14 @@ class Collapse extends BaseComponent {
 
     if (actives) {
       const tempActiveData = actives.find(elem => container !== elem);
-      activesData = tempActiveData ? Data.get(tempActiveData, DATA_KEY$c) : null;
+      activesData = tempActiveData ? Collapse.getInstance(tempActiveData) : null;
 
       if (activesData && activesData._isTransitioning) {
         return;
       }
     }
 
-    const startEvent = EventHandler.trigger(this._element, EVENT_SHOW$7);
+    const startEvent = EventHandler.trigger(this._element, EVENT_SHOW$6);
 
     if (startEvent.defaultPrevented) {
       return;
@@ -1750,7 +1751,7 @@ class Collapse extends BaseComponent {
         }
 
         if (!activesData) {
-          Data.set(elemActive, DATA_KEY$c, null);
+          Data.set(elemActive, DATA_KEY$a, null);
         }
       });
     }
@@ -1775,11 +1776,11 @@ class Collapse extends BaseComponent {
     const complete = () => {
       this._element.classList.remove(CLASS_NAME_COLLAPSING);
 
-      this._element.classList.add(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$b);
+      this._element.classList.add(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$a);
 
       this._element.style[dimension] = '';
       this.setTransitioning(false);
-      EventHandler.trigger(this._element, EVENT_SHOWN$7);
+      EventHandler.trigger(this._element, EVENT_SHOWN$6);
     };
 
     const capitalizedDimension = dimension[0].toUpperCase() + dimension.slice(1);
@@ -1791,11 +1792,11 @@ class Collapse extends BaseComponent {
   }
 
   hide() {
-    if (this._isTransitioning || !this._element.classList.contains(CLASS_NAME_SHOW$b)) {
+    if (this._isTransitioning || !this._element.classList.contains(CLASS_NAME_SHOW$a)) {
       return;
     }
 
-    const startEvent = EventHandler.trigger(this._element, EVENT_HIDE$7);
+    const startEvent = EventHandler.trigger(this._element, EVENT_HIDE$6);
 
     if (startEvent.defaultPrevented) {
       return;
@@ -1808,7 +1809,7 @@ class Collapse extends BaseComponent {
 
     this._element.classList.add(CLASS_NAME_COLLAPSING);
 
-    this._element.classList.remove(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$b);
+    this._element.classList.remove(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$a);
 
     const triggerArrayLength = this._triggerArray.length;
 
@@ -1817,7 +1818,7 @@ class Collapse extends BaseComponent {
         const trigger = this._triggerArray[i];
         const elem = getElementFromSelector(trigger);
 
-        if (elem && !elem.classList.contains(CLASS_NAME_SHOW$b)) {
+        if (elem && !elem.classList.contains(CLASS_NAME_SHOW$a)) {
           trigger.classList.add(CLASS_NAME_COLLAPSED);
           trigger.setAttribute('aria-expanded', false);
         }
@@ -1833,7 +1834,7 @@ class Collapse extends BaseComponent {
 
       this._element.classList.add(CLASS_NAME_COLLAPSE);
 
-      EventHandler.trigger(this._element, EVENT_HIDDEN$7);
+      EventHandler.trigger(this._element, EVENT_HIDDEN$6);
     };
 
     this._element.style[dimension] = '';
@@ -1847,12 +1848,12 @@ class Collapse extends BaseComponent {
 
 
   _getConfig(config) {
-    config = { ...Default$c,
+    config = { ...Default$a,
       ...config
     };
     config.toggle = Boolean(config.toggle); // Coerce string values
 
-    typeCheckConfig(NAME$d, config, DefaultType$c);
+    typeCheckConfig(NAME$b, config, DefaultType$a);
     return config;
   }
 
@@ -1879,7 +1880,7 @@ class Collapse extends BaseComponent {
       return;
     }
 
-    const isOpen = element.classList.contains(CLASS_NAME_SHOW$b);
+    const isOpen = element.classList.contains(CLASS_NAME_SHOW$a);
     triggerArray.forEach(elem => {
       if (isOpen) {
         elem.classList.remove(CLASS_NAME_COLLAPSED);
@@ -1893,8 +1894,8 @@ class Collapse extends BaseComponent {
 
 
   static collapseInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$c);
-    const _config = { ...Default$c,
+    let data = Collapse.getInstance(element);
+    const _config = { ...Default$a,
       ...Manipulator.getDataAttributes(element),
       ...(typeof config === 'object' && config ? config : {})
     };
@@ -1930,7 +1931,7 @@ class Collapse extends BaseComponent {
  */
 
 
-EventHandler.on(document, EVENT_CLICK_DATA_API$7, SELECTOR_DATA_TOGGLE$5, function (event) {
+EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$5, function (event) {
   // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
   if (event.target.tagName === 'A' || event.delegateTarget && event.delegateTarget.tagName === 'A') {
     event.preventDefault();
@@ -1940,7 +1941,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$7, SELECTOR_DATA_TOGGLE$5, functi
   const selector = getSelectorFromElement(this);
   const selectorElements = SelectorEngine.find(selector);
   selectorElements.forEach(element => {
-    const data = Data.get(element, DATA_KEY$c);
+    const data = Collapse.getInstance(element);
     let config;
 
     if (data) {
@@ -1969,7 +1970,7 @@ defineJQueryPlugin(Collapse);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): dropdown.js
+ * CoreUI (v4.0.0): dropdown.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's dropdown.js
@@ -1982,27 +1983,27 @@ defineJQueryPlugin(Collapse);
  * ------------------------------------------------------------------------
  */
 
-const NAME$c = 'dropdown';
-const DATA_KEY$b = 'coreui.dropdown';
-const EVENT_KEY$b = `.${DATA_KEY$b}`;
-const DATA_API_KEY$7 = '.data-api';
+const NAME$a = 'dropdown';
+const DATA_KEY$9 = 'coreui.dropdown';
+const EVENT_KEY$9 = `.${DATA_KEY$9}`;
+const DATA_API_KEY$6 = '.data-api';
 const ESCAPE_KEY$2 = 'Escape';
 const SPACE_KEY = 'Space';
-const TAB_KEY$1 = 'Tab';
+const TAB_KEY = 'Tab';
 const ARROW_UP_KEY = 'ArrowUp';
 const ARROW_DOWN_KEY = 'ArrowDown';
-const RIGHT_MOUSE_BUTTON$1 = 2; // MouseEvent.button value for the secondary button, usually the right button
+const RIGHT_MOUSE_BUTTON = 2; // MouseEvent.button value for the secondary button, usually the right button
 
 const REGEXP_KEYDOWN = new RegExp(`${ARROW_UP_KEY}|${ARROW_DOWN_KEY}|${ESCAPE_KEY$2}`);
-const EVENT_HIDE$6 = `hide${EVENT_KEY$b}`;
-const EVENT_HIDDEN$6 = `hidden${EVENT_KEY$b}`;
-const EVENT_SHOW$6 = `show${EVENT_KEY$b}`;
-const EVENT_SHOWN$6 = `shown${EVENT_KEY$b}`;
-const EVENT_CLICK$1 = `click${EVENT_KEY$b}`;
-const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$b}${DATA_API_KEY$7}`;
-const EVENT_KEYDOWN_DATA_API = `keydown${EVENT_KEY$b}${DATA_API_KEY$7}`;
-const EVENT_KEYUP_DATA_API$1 = `keyup${EVENT_KEY$b}${DATA_API_KEY$7}`;
-const CLASS_NAME_SHOW$a = 'show';
+const EVENT_HIDE$5 = `hide${EVENT_KEY$9}`;
+const EVENT_HIDDEN$5 = `hidden${EVENT_KEY$9}`;
+const EVENT_SHOW$5 = `show${EVENT_KEY$9}`;
+const EVENT_SHOWN$5 = `shown${EVENT_KEY$9}`;
+const EVENT_CLICK = `click${EVENT_KEY$9}`;
+const EVENT_CLICK_DATA_API$5 = `click${EVENT_KEY$9}${DATA_API_KEY$6}`;
+const EVENT_KEYDOWN_DATA_API = `keydown${EVENT_KEY$9}${DATA_API_KEY$6}`;
+const EVENT_KEYUP_DATA_API = `keyup${EVENT_KEY$9}${DATA_API_KEY$6}`;
+const CLASS_NAME_SHOW$9 = 'show';
 const CLASS_NAME_DROPUP = 'dropup';
 const CLASS_NAME_DROPEND = 'dropend';
 const CLASS_NAME_DROPSTART = 'dropstart';
@@ -2017,7 +2018,7 @@ const PLACEMENT_BOTTOM = isRTL() ? 'bottom-end' : 'bottom-start';
 const PLACEMENT_BOTTOMEND = isRTL() ? 'bottom-start' : 'bottom-end';
 const PLACEMENT_RIGHT = isRTL() ? 'left-start' : 'right-start';
 const PLACEMENT_LEFT = isRTL() ? 'right-start' : 'left-start';
-const Default$b = {
+const Default$9 = {
   offset: [0, 2],
   boundary: 'clippingParents',
   reference: 'toggle',
@@ -2025,7 +2026,7 @@ const Default$b = {
   popperConfig: null,
   autoClose: true
 };
-const DefaultType$b = {
+const DefaultType$9 = {
   offset: '(array|string|function)',
   boundary: '(string|element)',
   reference: '(string|element|object)',
@@ -2052,15 +2053,15 @@ class Dropdown extends BaseComponent {
 
 
   static get Default() {
-    return Default$b;
+    return Default$9;
   }
 
   static get DefaultType() {
-    return DefaultType$b;
+    return DefaultType$9;
   }
 
   static get NAME() {
-    return NAME$c;
+    return NAME$a;
   } // Public
 
 
@@ -2069,7 +2070,7 @@ class Dropdown extends BaseComponent {
       return;
     }
 
-    const isActive = this._element.classList.contains(CLASS_NAME_SHOW$a);
+    const isActive = this._element.classList.contains(CLASS_NAME_SHOW$9);
 
     if (isActive) {
       this.hide();
@@ -2080,7 +2081,7 @@ class Dropdown extends BaseComponent {
   }
 
   show() {
-    if (isDisabled(this._element) || this._menu.classList.contains(CLASS_NAME_SHOW$a)) {
+    if (isDisabled(this._element) || this._menu.classList.contains(CLASS_NAME_SHOW$9)) {
       return;
     }
 
@@ -2088,7 +2089,7 @@ class Dropdown extends BaseComponent {
     const relatedTarget = {
       relatedTarget: this._element
     };
-    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$6, relatedTarget);
+    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$5, relatedTarget);
 
     if (showEvent.defaultPrevented) {
       return;
@@ -2134,15 +2135,15 @@ class Dropdown extends BaseComponent {
 
     this._element.setAttribute('aria-expanded', true);
 
-    this._menu.classList.toggle(CLASS_NAME_SHOW$a);
+    this._menu.classList.toggle(CLASS_NAME_SHOW$9);
 
-    this._element.classList.toggle(CLASS_NAME_SHOW$a);
+    this._element.classList.toggle(CLASS_NAME_SHOW$9);
 
-    EventHandler.trigger(this._element, EVENT_SHOWN$6, relatedTarget);
+    EventHandler.trigger(this._element, EVENT_SHOWN$5, relatedTarget);
   }
 
   hide() {
-    if (isDisabled(this._element) || !this._menu.classList.contains(CLASS_NAME_SHOW$a)) {
+    if (isDisabled(this._element) || !this._menu.classList.contains(CLASS_NAME_SHOW$9)) {
       return;
     }
 
@@ -2171,14 +2172,14 @@ class Dropdown extends BaseComponent {
 
 
   _addEventListeners() {
-    EventHandler.on(this._element, EVENT_CLICK$1, event => {
+    EventHandler.on(this._element, EVENT_CLICK, event => {
       event.preventDefault();
       this.toggle();
     });
   }
 
   _completeHide(relatedTarget) {
-    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$6, relatedTarget);
+    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$5, relatedTarget);
 
     if (hideEvent.defaultPrevented) {
       return;
@@ -2194,14 +2195,14 @@ class Dropdown extends BaseComponent {
       this._popper.destroy();
     }
 
-    this._menu.classList.remove(CLASS_NAME_SHOW$a);
+    this._menu.classList.remove(CLASS_NAME_SHOW$9);
 
-    this._element.classList.remove(CLASS_NAME_SHOW$a);
+    this._element.classList.remove(CLASS_NAME_SHOW$9);
 
     this._element.setAttribute('aria-expanded', 'false');
 
     Manipulator.removeDataAttribute(this._menu, 'popper');
-    EventHandler.trigger(this._element, EVENT_HIDDEN$6, relatedTarget);
+    EventHandler.trigger(this._element, EVENT_HIDDEN$5, relatedTarget);
   }
 
   _getConfig(config) {
@@ -2209,11 +2210,11 @@ class Dropdown extends BaseComponent {
       ...Manipulator.getDataAttributes(this._element),
       ...config
     };
-    typeCheckConfig(NAME$c, config, this.constructor.DefaultType);
+    typeCheckConfig(NAME$a, config, this.constructor.DefaultType);
 
     if (typeof config.reference === 'object' && !isElement(config.reference) && typeof config.reference.getBoundingClientRect !== 'function') {
       // Popper virtual elements require a getBoundingClientRect method
-      throw new TypeError(`${NAME$c.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`);
+      throw new TypeError(`${NAME$a.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`);
     }
 
     return config;
@@ -2309,13 +2310,7 @@ class Dropdown extends BaseComponent {
 
 
   static dropdownInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$b);
-
-    const _config = typeof config === 'object' ? config : null;
-
-    if (!data) {
-      data = new Dropdown(element, _config);
-    }
+    const data = Dropdown.getOrCreateInstance(element, config);
 
     if (typeof config === 'string') {
       if (typeof data[config] === 'undefined') {
@@ -2333,20 +2328,20 @@ class Dropdown extends BaseComponent {
   }
 
   static clearMenus(event) {
-    if (event && (event.button === RIGHT_MOUSE_BUTTON$1 || event.type === 'keyup' && event.key !== TAB_KEY$1)) {
+    if (event && (event.button === RIGHT_MOUSE_BUTTON || event.type === 'keyup' && event.key !== TAB_KEY)) {
       return;
     }
 
     const toggles = SelectorEngine.find(SELECTOR_DATA_TOGGLE$4);
 
     for (let i = 0, len = toggles.length; i < len; i++) {
-      const context = Data.get(toggles[i], DATA_KEY$b);
+      const context = Dropdown.getInstance(toggles[i]);
 
       if (!context || context._config.autoClose === false) {
         continue;
       }
 
-      if (!context._element.classList.contains(CLASS_NAME_SHOW$a)) {
+      if (!context._element.classList.contains(CLASS_NAME_SHOW$9)) {
         continue;
       }
 
@@ -2363,7 +2358,7 @@ class Dropdown extends BaseComponent {
         } // Tab navigation through the dropdown menu or events from contained inputs shouldn't close the menu
 
 
-        if (context._menu.contains(event.target) && (event.type === 'keyup' && event.key === TAB_KEY$1 || /input|select|option|textarea|form/i.test(event.target.tagName))) {
+        if (context._menu.contains(event.target) && (event.type === 'keyup' && event.key === TAB_KEY || /input|select|option|textarea|form/i.test(event.target.tagName))) {
           continue;
         }
 
@@ -2392,7 +2387,7 @@ class Dropdown extends BaseComponent {
       return;
     }
 
-    const isActive = this.classList.contains(CLASS_NAME_SHOW$a);
+    const isActive = this.classList.contains(CLASS_NAME_SHOW$9);
 
     if (!isActive && event.key === ESCAPE_KEY$2) {
       return;
@@ -2438,9 +2433,9 @@ class Dropdown extends BaseComponent {
 
 EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_DATA_TOGGLE$4, Dropdown.dataApiKeydownHandler);
 EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_MENU, Dropdown.dataApiKeydownHandler);
-EventHandler.on(document, EVENT_CLICK_DATA_API$6, Dropdown.clearMenus);
-EventHandler.on(document, EVENT_KEYUP_DATA_API$1, Dropdown.clearMenus);
-EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$4, function (event) {
+EventHandler.on(document, EVENT_CLICK_DATA_API$5, Dropdown.clearMenus);
+EventHandler.on(document, EVENT_KEYUP_DATA_API, Dropdown.clearMenus);
+EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_TOGGLE$4, function (event) {
   event.preventDefault();
   Dropdown.dropdownInterface(this);
 });
@@ -2455,402 +2450,133 @@ defineJQueryPlugin(Dropdown);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.1): loading-button.js
- * Licensed under MIT (https://coreui.io/license)
- */
-/**
- * ------------------------------------------------------------------------
- * Constants
- * ------------------------------------------------------------------------
- */
-
-const NAME$b = 'loading-button';
-const DATA_KEY$a = 'coreui.loading-button';
-const EVENT_KEY$a = `.${DATA_KEY$a}`;
-const MAX_PERCENT = 100;
-const MILLISECONDS = 10;
-const PROGRESS_BAR_BG_COLOR_LIGHT = 'rgba(255, 255, 255, .2)';
-const PROGRESS_BAR_BG_COLOR_DARK = 'rgba(0, 0, 0, .2)';
-const EVENT_START = `start${EVENT_KEY$a}`;
-const EVENT_STOP = `stop${EVENT_KEY$a}`;
-const EVENT_COMPLETE = `complete${EVENT_KEY$a}`;
-const CLASS_NAME_IS_LOADING = 'is-loading';
-const CLASS_NAME_LOADING_BUTTON_PROGRESS = 'btn-loading-progress';
-const CLASS_NAME_LOADING_BUTTON_SPINNER = 'btn-loading-spinner';
-const Default$a = {
-  percent: 0,
-  progress: false,
-  spinner: true,
-  spinnerType: 'border',
-  timeout: 1000
-};
-const DefaultType$a = {
-  percent: 'number',
-  progress: 'boolean',
-  spinner: 'boolean',
-  spinnerType: 'string',
-  timeout: 'number'
-};
-/**
- * ------------------------------------------------------------------------
- * Class Definition
- * ------------------------------------------------------------------------
- */
-
-class LoadingButton extends BaseComponent {
-  constructor(element, config) {
-    super(element);
-    this._config = this._getConfig(config);
-    this._pause = false;
-    this._percent = this._config.percent;
-    this._timeout = this._config.timeout;
-    this._progressBar = null;
-    this._spinner = null;
-    this._state = 'idle';
-
-    if (this._element) {
-      Data.set(element, DATA_KEY$a, this);
-    }
-  } // Getters
-
-
-  static get Default() {
-    return Default$a;
-  }
-
-  static get DefaultType() {
-    return DefaultType$a;
-  }
-
-  static get DATA_KEY() {
-    return DATA_KEY$a;
-  }
-
-  static get NAME() {
-    return NAME$b;
-  } // Public
-
-
-  start() {
-    if (this._state !== 'loading') {
-      this._createSpinner();
-
-      this._createProgressBar();
-
-      setTimeout(() => {
-        this._element.classList.add(CLASS_NAME_IS_LOADING);
-
-        this._loading();
-
-        EventHandler.trigger(this._element, EVENT_START);
-      }, 1);
-    }
-  }
-
-  stop() {
-    this._element.classList.remove(CLASS_NAME_IS_LOADING);
-
-    const stoped = () => {
-      this._removeSpinner();
-
-      this._removeProgressBar();
-
-      this._state = 'idle';
-      EventHandler.trigger(this._element, EVENT_STOP);
-
-      if (this._percent >= 100) {
-        EventHandler.trigger(this._element, EVENT_COMPLETE);
-      }
-
-      this._percent = this._config.percent;
-      this._timeout = this._config.timeout;
-    };
-
-    if (this._spinner) {
-      const transitionDuration = getTransitionDurationFromElement(this._spinner);
-      EventHandler.one(this._spinner, 'transitionend', stoped);
-      emulateTransitionEnd(this._spinner, transitionDuration);
-      return;
-    }
-
-    stoped();
-  }
-
-  pause() {
-    this._pause = true;
-    this._state = 'pause';
-  }
-
-  resume() {
-    this._pause = false;
-
-    this._loading();
-  }
-
-  complete() {
-    this._timeout = 1000;
-  }
-
-  updatePercent(percent) {
-    const diff = (this._percent - percent) / 100;
-    this._timeout *= 1 + diff;
-    this._percent = percent;
-  }
-
-  dispose() {
-    Data.removeData(this._element, DATA_KEY$a);
-    this._element = null;
-  }
-
-  update(config) {
-    this._config = this._getConfig(config);
-  }
-
-  _getConfig(config) {
-    config = { ...Default$a,
-      ...Manipulator.getDataAttributes(this._element),
-      ...config
-    };
-    typeCheckConfig(NAME$b, config, DefaultType$a);
-    return config;
-  }
-
-  _loading() {
-    const progress = setInterval(() => {
-      this._state = 'loading';
-
-      if (this._percent >= MAX_PERCENT) {
-        this.stop();
-        clearInterval(progress);
-        return;
-      }
-
-      if (this._pause) {
-        clearInterval(progress);
-        return;
-      }
-
-      const frames = this._timeout / (MAX_PERCENT - this._percent) / MILLISECONDS;
-      this._percent = Math.round((this._percent + 1 / frames) * 100) / 100;
-      this._timeout -= MILLISECONDS;
-
-      this._animateProgressBar();
-    }, MILLISECONDS);
-  }
-
-  _createProgressBar() {
-    if (this._config.progress) {
-      const progress = document.createElement('div');
-      progress.classList.add(CLASS_NAME_LOADING_BUTTON_PROGRESS);
-      progress.setAttribute('role', 'progressbar');
-      progress.setAttribute('aria-hidden', 'true');
-      progress.style.backgroundColor = this._progressBarBg();
-
-      this._element.insertBefore(progress, this._element.firstChild);
-
-      this._progressBar = progress;
-    }
-  }
-
-  _createSpinner() {
-    if (this._config.spinner) {
-      const spinner = document.createElement('span');
-      const type = this._config.spinnerType;
-      spinner.classList.add(CLASS_NAME_LOADING_BUTTON_SPINNER, `spinner-${type}`, `spinner-${type}-sm`);
-      spinner.setAttribute('role', 'status');
-      spinner.setAttribute('aria-hidden', 'true');
-
-      this._element.insertBefore(spinner, this._element.firstChild);
-
-      this._spinner = spinner;
-    }
-  }
-
-  _removeProgressBar() {
-    if (this._config.progress) {
-      this._progressBar.remove();
-
-      this._progressBar = null;
-    }
-  }
-
-  _removeSpinner() {
-    if (this._config.spinner) {
-      this._spinner.remove();
-
-      this._spinner = null;
-    }
-  }
-
-  _progressBarBg() {
-    // The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
-    const yiqContrastedThreshold = 150;
-    const color = window.getComputedStyle(this._element).getPropertyValue('background-color') === 'rgba(0, 0, 0, 0)' ? 'rgb(255, 255, 255)' : window.getComputedStyle(this._element).getPropertyValue('background-color');
-    const rgb = color.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-    const r = Number.parseInt(rgb[1], 10);
-    const g = Number.parseInt(rgb[2], 10);
-    const b = Number.parseInt(rgb[3], 10);
-    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
-
-    if (yiq > yiqContrastedThreshold) {
-      return PROGRESS_BAR_BG_COLOR_DARK;
-    }
-
-    return PROGRESS_BAR_BG_COLOR_LIGHT;
-  }
-
-  _animateProgressBar() {
-    if (this._config.progress) {
-      this._progressBar.style.width = `${this._percent}%`;
-    }
-  } // Static
-
-
-  static loadingButtonInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$a);
-    let _config = { ...Default$a,
-      ...Manipulator.getDataAttributes(element)
-    };
-
-    if (typeof config === 'object') {
-      _config = { ..._config,
-        ...config
-      };
-    }
-
-    if (!data) {
-      data = new LoadingButton(element, _config);
-    }
-
-    if (typeof config === 'string') {
-      if (typeof data[config] === 'undefined') {
-        throw new TypeError(`No method named "${config}"`);
-      }
-
-      data[config]();
-    }
-  }
-
-  static jQueryInterface(config) {
-    return this.each(function () {
-      LoadingButton.loadingButtonInterface(this, config);
-    });
-  }
-
-}
-/**
- * ------------------------------------------------------------------------
- * jQuery
- * ------------------------------------------------------------------------
- * add .LoadingButton to jQuery only if jQuery is present
- */
-
-
-defineJQueryPlugin(LoadingButton);
-
-/**
- * --------------------------------------------------------------------------
- * Bootstrap (v5.0.1): util/scrollBar.js
+ * Bootstrap (v5.0.2): util/scrollBar.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
 const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
 const SELECTOR_STICKY_CONTENT = '.sticky-top';
 
-const getWidth = () => {
-  // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
-  const documentWidth = document.documentElement.clientWidth;
-  return Math.abs(window.innerWidth - documentWidth);
-};
-
-const hide = (width = getWidth()) => {
-  _disableOverFlow(); // give padding to element to balances the hidden scrollbar width
-
-
-  _setElementAttributes('body', 'paddingRight', calculatedValue => calculatedValue + width); // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements, to keep shown fullwidth
-
-
-  _setElementAttributes(SELECTOR_FIXED_CONTENT, 'paddingRight', calculatedValue => calculatedValue + width);
-
-  _setElementAttributes(SELECTOR_STICKY_CONTENT, 'marginRight', calculatedValue => calculatedValue - width);
-};
-
-const _disableOverFlow = () => {
-  const actualValue = document.body.style.overflow;
-
-  if (actualValue) {
-    Manipulator.setDataAttribute(document.body, 'overflow', actualValue);
+class ScrollBarHelper {
+  constructor() {
+    this._element = document.body;
   }
 
-  document.body.style.overflow = 'hidden';
-};
+  getWidth() {
+    // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
+    const documentWidth = document.documentElement.clientWidth;
+    return Math.abs(window.innerWidth - documentWidth);
+  }
 
-const _setElementAttributes = (selector, styleProp, callback) => {
-  const scrollbarWidth = getWidth();
-  SelectorEngine.find(selector).forEach(element => {
-    if (element !== document.body && window.innerWidth > element.clientWidth + scrollbarWidth) {
-      return;
-    }
+  hide() {
+    const width = this.getWidth();
 
+    this._disableOverFlow(); // give padding to element to balance the hidden scrollbar width
+
+
+    this._setElementAttributes(this._element, 'paddingRight', calculatedValue => calculatedValue + width); // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
+
+
+    this._setElementAttributes(SELECTOR_FIXED_CONTENT, 'paddingRight', calculatedValue => calculatedValue + width);
+
+    this._setElementAttributes(SELECTOR_STICKY_CONTENT, 'marginRight', calculatedValue => calculatedValue - width);
+  }
+
+  _disableOverFlow() {
+    this._saveInitialAttribute(this._element, 'overflow');
+
+    this._element.style.overflow = 'hidden';
+  }
+
+  _setElementAttributes(selector, styleProp, callback) {
+    const scrollbarWidth = this.getWidth();
+
+    const manipulationCallBack = element => {
+      if (element !== this._element && window.innerWidth > element.clientWidth + scrollbarWidth) {
+        return;
+      }
+
+      this._saveInitialAttribute(element, styleProp);
+
+      const calculatedValue = window.getComputedStyle(element)[styleProp];
+      element.style[styleProp] = `${callback(Number.parseFloat(calculatedValue))}px`;
+    };
+
+    this._applyManipulationCallback(selector, manipulationCallBack);
+  }
+
+  reset() {
+    this._resetElementAttributes(this._element, 'overflow');
+
+    this._resetElementAttributes(this._element, 'paddingRight');
+
+    this._resetElementAttributes(SELECTOR_FIXED_CONTENT, 'paddingRight');
+
+    this._resetElementAttributes(SELECTOR_STICKY_CONTENT, 'marginRight');
+  }
+
+  _saveInitialAttribute(element, styleProp) {
     const actualValue = element.style[styleProp];
 
     if (actualValue) {
       Manipulator.setDataAttribute(element, styleProp, actualValue);
     }
+  }
 
-    const calculatedValue = window.getComputedStyle(element)[styleProp];
-    element.style[styleProp] = `${callback(Number.parseFloat(calculatedValue))}px`;
-  });
-};
+  _resetElementAttributes(selector, styleProp) {
+    const manipulationCallBack = element => {
+      const value = Manipulator.getDataAttribute(element, styleProp);
 
-const reset = () => {
-  _resetElementAttributes('body', 'overflow');
+      if (typeof value === 'undefined') {
+        element.style.removeProperty(styleProp);
+      } else {
+        Manipulator.removeDataAttribute(element, styleProp);
+        element.style[styleProp] = value;
+      }
+    };
 
-  _resetElementAttributes('body', 'paddingRight');
+    this._applyManipulationCallback(selector, manipulationCallBack);
+  }
 
-  _resetElementAttributes(SELECTOR_FIXED_CONTENT, 'paddingRight');
-
-  _resetElementAttributes(SELECTOR_STICKY_CONTENT, 'marginRight');
-};
-
-const _resetElementAttributes = (selector, styleProp) => {
-  SelectorEngine.find(selector).forEach(element => {
-    const value = Manipulator.getDataAttribute(element, styleProp);
-
-    if (typeof value === 'undefined') {
-      element.style.removeProperty(styleProp);
+  _applyManipulationCallback(selector, callBack) {
+    if (isElement(selector)) {
+      callBack(selector);
     } else {
-      Manipulator.removeDataAttribute(element, styleProp);
-      element.style[styleProp] = value;
+      SelectorEngine.find(selector, this._element).forEach(callBack);
     }
-  });
-};
+  }
+
+  isOverflowing() {
+    return this.getWidth() > 0;
+  }
+
+}
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.1): util/backdrop.js
+ * Bootstrap (v5.0.2): util/backdrop.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
-const Default$9 = {
+const Default$8 = {
   isVisible: true,
   // if false, we use the backdrop helper without adding any element to the dom
   isAnimated: false,
-  rootElement: document.body,
+  rootElement: 'body',
   // give the choice to place backdrop under different elements
   clickCallback: null
 };
-const DefaultType$9 = {
+const DefaultType$8 = {
   isVisible: 'boolean',
   isAnimated: 'boolean',
-  rootElement: 'element',
+  rootElement: '(element|string)',
   clickCallback: '(function|null)'
 };
-const NAME$a = 'backdrop';
+const NAME$9 = 'backdrop';
 const CLASS_NAME_BACKDROP$1 = 'modal-backdrop';
 const CLASS_NAME_FADE$6 = 'fade';
-const CLASS_NAME_SHOW$9 = 'show';
-const EVENT_MOUSEDOWN = `mousedown.coreui.${NAME$a}`;
+const CLASS_NAME_SHOW$8 = 'show';
+const EVENT_MOUSEDOWN = `mousedown.coreui.${NAME$9}`;
 
 class Backdrop {
   constructor(config) {
@@ -2871,7 +2597,7 @@ class Backdrop {
       reflow(this._getElement());
     }
 
-    this._getElement().classList.add(CLASS_NAME_SHOW$9);
+    this._getElement().classList.add(CLASS_NAME_SHOW$8);
 
     this._emulateAnimation(() => {
       execute(callback);
@@ -2884,7 +2610,7 @@ class Backdrop {
       return;
     }
 
-    this._getElement().classList.remove(CLASS_NAME_SHOW$9);
+    this._getElement().classList.remove(CLASS_NAME_SHOW$8);
 
     this._emulateAnimation(() => {
       this.dispose();
@@ -2909,11 +2635,12 @@ class Backdrop {
   }
 
   _getConfig(config) {
-    config = { ...Default$9,
+    config = { ...Default$8,
       ...(typeof config === 'object' ? config : {})
-    };
-    config.rootElement = config.rootElement || document.body;
-    typeCheckConfig(NAME$a, config, DefaultType$9);
+    }; // use getElement() with the default "body" to get a fresh Element on each instantiation
+
+    config.rootElement = getElement(config.rootElement);
+    typeCheckConfig(NAME$9, config, DefaultType$8);
     return config;
   }
 
@@ -2937,33 +2664,20 @@ class Backdrop {
 
     EventHandler.off(this._element, EVENT_MOUSEDOWN);
 
-    const {
-      parentNode
-    } = this._getElement();
-
-    if (parentNode) {
-      parentNode.removeChild(this._element);
-    }
+    this._element.remove();
 
     this._isAppended = false;
   }
 
   _emulateAnimation(callback) {
-    if (!this._config.isAnimated) {
-      execute(callback);
-      return;
-    }
-
-    const backdropTransitionDuration = getTransitionDurationFromElement(this._getElement());
-    EventHandler.one(this._getElement(), 'transitionend', () => execute(callback));
-    emulateTransitionEnd(this._getElement(), backdropTransitionDuration);
+    executeAfterTransition(callback, this._getElement(), this._config.isAnimated);
   }
 
 }
 
 /**
  * --------------------------------------------------------------------------
-  * CoreUI (v4.0.0-rc.5): modal.js
+  * CoreUI (v4.0.0): modal.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's modal.js
@@ -2976,36 +2690,36 @@ class Backdrop {
  * ------------------------------------------------------------------------
  */
 
-const NAME$9 = 'modal';
-const DATA_KEY$9 = 'coreui.modal';
-const EVENT_KEY$9 = `.${DATA_KEY$9}`;
-const DATA_API_KEY$6 = '.data-api';
+const NAME$8 = 'modal';
+const DATA_KEY$8 = 'coreui.modal';
+const EVENT_KEY$8 = `.${DATA_KEY$8}`;
+const DATA_API_KEY$5 = '.data-api';
 const ESCAPE_KEY$1 = 'Escape';
-const Default$8 = {
+const Default$7 = {
   backdrop: true,
   keyboard: true,
   focus: true
 };
-const DefaultType$8 = {
+const DefaultType$7 = {
   backdrop: '(boolean|string)',
   keyboard: 'boolean',
   focus: 'boolean'
 };
-const EVENT_HIDE$5 = `hide${EVENT_KEY$9}`;
-const EVENT_HIDE_PREVENTED = `hidePrevented${EVENT_KEY$9}`;
-const EVENT_HIDDEN$5 = `hidden${EVENT_KEY$9}`;
-const EVENT_SHOW$5 = `show${EVENT_KEY$9}`;
-const EVENT_SHOWN$5 = `shown${EVENT_KEY$9}`;
-const EVENT_FOCUSIN$2 = `focusin${EVENT_KEY$9}`;
-const EVENT_RESIZE = `resize${EVENT_KEY$9}`;
-const EVENT_CLICK_DISMISS$2 = `click.dismiss${EVENT_KEY$9}`;
-const EVENT_KEYDOWN_DISMISS$1 = `keydown.dismiss${EVENT_KEY$9}`;
-const EVENT_MOUSEUP_DISMISS = `mouseup.dismiss${EVENT_KEY$9}`;
-const EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${EVENT_KEY$9}`;
-const EVENT_CLICK_DATA_API$5 = `click${EVENT_KEY$9}${DATA_API_KEY$6}`;
+const EVENT_HIDE$4 = `hide${EVENT_KEY$8}`;
+const EVENT_HIDE_PREVENTED = `hidePrevented${EVENT_KEY$8}`;
+const EVENT_HIDDEN$4 = `hidden${EVENT_KEY$8}`;
+const EVENT_SHOW$4 = `show${EVENT_KEY$8}`;
+const EVENT_SHOWN$4 = `shown${EVENT_KEY$8}`;
+const EVENT_FOCUSIN$2 = `focusin${EVENT_KEY$8}`;
+const EVENT_RESIZE$1 = `resize${EVENT_KEY$8}`;
+const EVENT_CLICK_DISMISS$2 = `click.dismiss${EVENT_KEY$8}`;
+const EVENT_KEYDOWN_DISMISS$1 = `keydown.dismiss${EVENT_KEY$8}`;
+const EVENT_MOUSEUP_DISMISS = `mouseup.dismiss${EVENT_KEY$8}`;
+const EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${EVENT_KEY$8}`;
+const EVENT_CLICK_DATA_API$4 = `click${EVENT_KEY$8}${DATA_API_KEY$5}`;
 const CLASS_NAME_OPEN = 'modal-open';
 const CLASS_NAME_FADE$5 = 'fade';
-const CLASS_NAME_SHOW$8 = 'show';
+const CLASS_NAME_SHOW$7 = 'show';
 const CLASS_NAME_STATIC = 'modal-static';
 const SELECTOR_DIALOG = '.modal-dialog';
 const SELECTOR_MODAL_BODY = '.modal-body';
@@ -3026,15 +2740,16 @@ class Modal extends BaseComponent {
     this._isShown = false;
     this._ignoreBackdropClick = false;
     this._isTransitioning = false;
+    this._scrollBar = new ScrollBarHelper();
   } // Getters
 
 
   static get Default() {
-    return Default$8;
+    return Default$7;
   }
 
   static get NAME() {
-    return NAME$9;
+    return NAME$8;
   } // Public
 
 
@@ -3047,20 +2762,22 @@ class Modal extends BaseComponent {
       return;
     }
 
-    if (this._isAnimated()) {
-      this._isTransitioning = true;
-    }
-
-    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$5, {
+    const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$4, {
       relatedTarget
     });
 
-    if (this._isShown || showEvent.defaultPrevented) {
+    if (showEvent.defaultPrevented) {
       return;
     }
 
     this._isShown = true;
-    hide();
+
+    if (this._isAnimated()) {
+      this._isTransitioning = true;
+    }
+
+    this._scrollBar.hide();
+
     document.body.classList.add(CLASS_NAME_OPEN);
 
     this._adjustDialog();
@@ -3090,7 +2807,7 @@ class Modal extends BaseComponent {
       return;
     }
 
-    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$5);
+    const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$4);
 
     if (hideEvent.defaultPrevented) {
       return;
@@ -3110,7 +2827,7 @@ class Modal extends BaseComponent {
 
     EventHandler.off(document, EVENT_FOCUSIN$2);
 
-    this._element.classList.remove(CLASS_NAME_SHOW$8);
+    this._element.classList.remove(CLASS_NAME_SHOW$7);
 
     EventHandler.off(this._element, EVENT_CLICK_DISMISS$2);
     EventHandler.off(this._dialog, EVENT_MOUSEDOWN_DISMISS);
@@ -3119,7 +2836,7 @@ class Modal extends BaseComponent {
   }
 
   dispose() {
-    [window, this._dialog].forEach(htmlElement => EventHandler.off(htmlElement, EVENT_KEY$9));
+    [window, this._dialog].forEach(htmlElement => EventHandler.off(htmlElement, EVENT_KEY$8));
 
     this._backdrop.dispose();
 
@@ -3147,11 +2864,11 @@ class Modal extends BaseComponent {
   }
 
   _getConfig(config) {
-    config = { ...Default$8,
+    config = { ...Default$7,
       ...Manipulator.getDataAttributes(this._element),
-      ...config
+      ...(typeof config === 'object' ? config : {})
     };
-    typeCheckConfig(NAME$9, config, DefaultType$8);
+    typeCheckConfig(NAME$8, config, DefaultType$7);
     return config;
   }
 
@@ -3183,7 +2900,7 @@ class Modal extends BaseComponent {
       reflow(this._element);
     }
 
-    this._element.classList.add(CLASS_NAME_SHOW$8);
+    this._element.classList.add(CLASS_NAME_SHOW$7);
 
     if (this._config.focus) {
       this._enforceFocus();
@@ -3195,7 +2912,7 @@ class Modal extends BaseComponent {
       }
 
       this._isTransitioning = false;
-      EventHandler.trigger(this._element, EVENT_SHOWN$5, {
+      EventHandler.trigger(this._element, EVENT_SHOWN$4, {
         relatedTarget
       });
     };
@@ -3230,9 +2947,9 @@ class Modal extends BaseComponent {
 
   _setResizeEvent() {
     if (this._isShown) {
-      EventHandler.on(window, EVENT_RESIZE, () => this._adjustDialog());
+      EventHandler.on(window, EVENT_RESIZE$1, () => this._adjustDialog());
     } else {
-      EventHandler.off(window, EVENT_RESIZE);
+      EventHandler.off(window, EVENT_RESIZE$1);
     }
   }
 
@@ -3252,8 +2969,9 @@ class Modal extends BaseComponent {
 
       this._resetAdjustments();
 
-      reset();
-      EventHandler.trigger(this._element, EVENT_HIDDEN$5);
+      this._scrollBar.reset();
+
+      EventHandler.trigger(this._element, EVENT_HIDDEN$4);
     });
   }
 
@@ -3289,27 +3007,32 @@ class Modal extends BaseComponent {
       return;
     }
 
-    const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+    const {
+      classList,
+      scrollHeight,
+      style
+    } = this._element;
+    const isModalOverflowing = scrollHeight > document.documentElement.clientHeight; // return if the following background transition hasn't yet completed
 
-    if (!isModalOverflowing) {
-      this._element.style.overflowY = 'hidden';
+    if (!isModalOverflowing && style.overflowY === 'hidden' || classList.contains(CLASS_NAME_STATIC)) {
+      return;
     }
 
-    this._element.classList.add(CLASS_NAME_STATIC);
+    if (!isModalOverflowing) {
+      style.overflowY = 'hidden';
+    }
 
-    const modalTransitionDuration = getTransitionDurationFromElement(this._dialog);
-    EventHandler.off(this._element, 'transitionend');
-    EventHandler.one(this._element, 'transitionend', () => {
-      this._element.classList.remove(CLASS_NAME_STATIC);
+    classList.add(CLASS_NAME_STATIC);
+
+    this._queueCallback(() => {
+      classList.remove(CLASS_NAME_STATIC);
 
       if (!isModalOverflowing) {
-        EventHandler.one(this._element, 'transitionend', () => {
-          this._element.style.overflowY = '';
-        });
-        emulateTransitionEnd(this._element, modalTransitionDuration);
+        this._queueCallback(() => {
+          style.overflowY = '';
+        }, this._dialog);
       }
-    });
-    emulateTransitionEnd(this._element, modalTransitionDuration);
+    }, this._dialog);
 
     this._element.focus();
   } // ----------------------------------------------------------------------
@@ -3319,7 +3042,9 @@ class Modal extends BaseComponent {
 
   _adjustDialog() {
     const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
-    const scrollbarWidth = getWidth();
+
+    const scrollbarWidth = this._scrollBar.getWidth();
+
     const isBodyOverflowing = scrollbarWidth > 0;
 
     if (!isBodyOverflowing && isModalOverflowing && !isRTL() || isBodyOverflowing && !isModalOverflowing && isRTL()) {
@@ -3339,7 +3064,7 @@ class Modal extends BaseComponent {
 
   static jQueryInterface(config, relatedTarget) {
     return this.each(function () {
-      const data = Modal.getInstance(this) || new Modal(this, typeof config === 'object' ? config : {});
+      const data = Modal.getOrCreateInstance(this, config);
 
       if (typeof config !== 'string') {
         return;
@@ -3361,26 +3086,26 @@ class Modal extends BaseComponent {
  */
 
 
-EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_TOGGLE$3, function (event) {
+EventHandler.on(document, EVENT_CLICK_DATA_API$4, SELECTOR_DATA_TOGGLE$3, function (event) {
   const target = getElementFromSelector(this);
 
   if (['A', 'AREA'].includes(this.tagName)) {
     event.preventDefault();
   }
 
-  EventHandler.one(target, EVENT_SHOW$5, showEvent => {
+  EventHandler.one(target, EVENT_SHOW$4, showEvent => {
     if (showEvent.defaultPrevented) {
       // only register focus restorer if modal will actually get shown
       return;
     }
 
-    EventHandler.one(target, EVENT_HIDDEN$5, () => {
+    EventHandler.one(target, EVENT_HIDDEN$4, () => {
       if (isVisible(this)) {
         this.focus();
       }
     });
   });
-  const data = Modal.getInstance(target) || new Modal(target);
+  const data = Modal.getOrCreateInstance(target);
   data.toggle(this);
 });
 /**
@@ -3394,842 +3119,7 @@ defineJQueryPlugin(Modal);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI PRO (v4.0.0-rc.1): multi-select.js
- * License (https://coreui.io/pro/license)
- * --------------------------------------------------------------------------
- */
-/**
- * ------------------------------------------------------------------------
- * Constants
- * ------------------------------------------------------------------------
- */
-
-const NAME$8 = 'mutli-select';
-const DATA_KEY$8 = 'coreui.mutli-select';
-const EVENT_KEY$8 = `.${DATA_KEY$8}`;
-const DATA_API_KEY$5 = '.data-api';
-const TAB_KEY = 'Tab';
-const RIGHT_MOUSE_BUTTON = 2;
-const SELECTOR_INPUT = '.form-multi-select-search';
-const SELECTOR_OPTGROUP = '.form-multi-select-optgroup';
-const SELECTOR_OPTION = '.form-multi-select-option';
-const SELECTOR_OPTIONS = '.form-multi-select-options';
-const SELECTOR_OPTIONS_EMPTY = '.form-multi-select-options-empty';
-const SELECTOR_SELECT = '.form-multi-select';
-const SELECTOR_SELECTED = '.form-multi-selected';
-const SELECTOR_SELECTION = '.form-multi-select-selection';
-const SELECTOR_SELECTION_CLEANER = '.form-multi-select-selection-cleaner';
-const EVENT_CHANGED = `changed${EVENT_KEY$8}`;
-const EVENT_CLICK = `click${EVENT_KEY$8}`;
-const EVENT_HIDE$4 = `hide${EVENT_KEY$8}`;
-const EVENT_HIDDEN$4 = `hidden${EVENT_KEY$8}`;
-const EVENT_KEYDOWN = `keydown${EVENT_KEY$8}`;
-const EVENT_KEYUP = `keyup${EVENT_KEY$8}`;
-const EVENT_SEARCH = `search${EVENT_KEY$8}`;
-const EVENT_SHOW$4 = `show${EVENT_KEY$8}`;
-const EVENT_SHOWN$4 = `showN${EVENT_KEY$8}`;
-const EVENT_CLICK_DATA_API$4 = `click${EVENT_KEY$8}${DATA_API_KEY$5}`;
-const EVENT_KEYUP_DATA_API = `keyup${EVENT_KEY$8}${DATA_API_KEY$5}`;
-const EVENT_LOAD_DATA_API$4 = `load${EVENT_KEY$8}${DATA_API_KEY$5}`;
-const CLASS_NAME_SELECT = 'form-multi-select';
-const CLASS_NAME_SELECT_INLINE = 'form-multi-select-inline';
-const CLASS_NAME_SELECT_MULTIPLE = 'form-multi-select-multiple';
-const CLASS_NAME_OPTGROUP = 'form-multi-select-optgroup';
-const CLASS_NAME_OPTGROUP_LABEL = 'form-multi-select-optgroup-label';
-const CLASS_NAME_OPTION = 'form-multi-select-option';
-const CLASS_NAME_OPTIONS = 'form-multi-select-options';
-const CLASS_NAME_OPTIONS_EMPTY = 'form-multi-select-options-empty';
-const CLASS_NAME_SEARCH = 'form-multi-select-search';
-const CLASS_NAME_SELECTED = 'form-multi-selected';
-const CLASS_NAME_SELECTION = 'form-multi-select-selection';
-const CLASS_NAME_SELECTION_CLEANER = 'form-multi-select-selection-cleaner';
-const CLASS_NAME_SELECTION_TAGS = 'form-multi-select-selection-tags';
-const CLASS_NAME_SHOW$7 = 'show';
-const CLASS_NAME_TAG = 'form-multi-select-tag';
-const CLASS_NAME_TAG_DELETE = 'form-multi-select-tag-delete';
-const CLASS_NAME_LABEL = 'label';
-const Default$7 = {
-  inline: false,
-  multiple: true,
-  options: false,
-  optionsEmptyPlaceholder: 'no items',
-  search: false,
-  searchPlaceholder: 'Select...',
-  selection: true,
-  selectionType: 'counter',
-  selectionTypeCounterText: 'item(s) selected'
-};
-const DefaultType$7 = {
-  inline: 'boolean',
-  multiple: 'boolean',
-  options: '(boolean|array)',
-  optionsEmptyPlaceholder: 'string',
-  search: 'boolean',
-  searchPlaceholder: 'string',
-  selection: 'boolean',
-  selectionType: 'string',
-  selectionTypeCounterText: 'string'
-};
-/**
- * ------------------------------------------------------------------------
- * Class Definition
- * ------------------------------------------------------------------------
- */
-
-class MultiSelect extends BaseComponent {
-  constructor(element, config) {
-    super(element);
-    this._selectionElement = null;
-    this._selectionCleanerElement = null;
-    this._searchElement = null;
-    this._optionsElement = null;
-    this._config = this._getConfig(config);
-    this._clone = null;
-    this._options = this._getOptions();
-    this._search = '';
-    this._selection = this._getSelectedOptions(this._options);
-
-    if (this._config.options.length > 0) {
-      this._createNativeSelect(this._config.options);
-    }
-
-    this._createSelect();
-
-    this._addEventListeners();
-
-    Data.set(this._element, DATA_KEY$8, this);
-  } // Getters
-
-
-  static get Default() {
-    return Default$7;
-  }
-
-  static get DefaultType() {
-    return DefaultType$7;
-  }
-
-  static get DATA_KEY() {
-    return DATA_KEY$8;
-  }
-
-  static get NAME() {
-    return NAME$8;
-  } // Public
-
-
-  show() {
-    EventHandler.trigger(this._element, EVENT_SHOW$4);
-
-    this._clone.classList.add(CLASS_NAME_SHOW$7);
-
-    if (this._config.search) {
-      SelectorEngine.findOne(SELECTOR_INPUT, this._clone).focus();
-    }
-
-    EventHandler.trigger(this._element, EVENT_SHOWN$4);
-  }
-
-  hide() {
-    EventHandler.trigger(this._element, EVENT_HIDE$4);
-
-    this._clone.classList.remove(CLASS_NAME_SHOW$7);
-
-    EventHandler.trigger(this._element, EVENT_HIDDEN$4);
-  }
-
-  search(text) {
-    this._search = text.length > 0 ? text.toLowerCase() : text;
-
-    this._filterOptionsList();
-
-    EventHandler.trigger(this._element, EVENT_SEARCH);
-  }
-
-  update(config) {
-    this._config = this._getConfig(config);
-    this._options = this._getOptions();
-    this._selection = this._getSelectedOptions(this._options);
-
-    this._clone.remove();
-
-    this._element.innerHTML = '';
-
-    this._createNativeOptions(this._element, this._options);
-
-    this._createSelect();
-
-    this._addEventListeners();
-  }
-
-  getValue() {
-    return this._selection;
-  } // Private
-
-
-  _addEventListeners() {
-    EventHandler.on(this._clone, EVENT_CLICK, () => {
-      this.show();
-    });
-    EventHandler.on(this._searchElement, EVENT_KEYUP, () => {
-      this._onSearchChange(this._searchElement);
-    });
-    EventHandler.on(this._searchElement, EVENT_KEYDOWN, event => {
-      const key = event.keyCode || event.charCode;
-
-      if ((key === 8 || key === 46) && event.target.value.length === 0) {
-        this._selectionDeleteLast();
-      }
-    });
-    EventHandler.on(this._optionsElement, EVENT_CLICK, event => {
-      event.preventDefault();
-      event.stopPropagation();
-
-      this._onOptionsClick(event.target);
-    });
-    EventHandler.on(this._selectionCleanerElement, EVENT_CLICK, event => {
-      event.preventDefault();
-      event.stopPropagation();
-
-      this._selectionClear();
-
-      this._updateSelection(); // this._updateSelectionCleaner()
-
-
-      this._updateSearch();
-
-      this._updateSearchSize();
-    });
-    EventHandler.on(this._optionsElement, EVENT_KEYDOWN, event => {
-      const key = event.keyCode || event.charCode;
-
-      if (key === 13) {
-        this._onOptionsClick(event.target);
-
-        SelectorEngine.findOne(SELECTOR_INPUT, this._clone).focus();
-      }
-    });
-  }
-
-  _getConfig(config) {
-    config = { ...Default$7,
-      ...Manipulator.getDataAttributes(this._element),
-      ...config
-    };
-    typeCheckConfig(NAME$8, config, DefaultType$7);
-    return config;
-  }
-
-  _getClassNames() {
-    return [...this._element.classList.value.split(' ')];
-  }
-
-  _getOptions(node = this._element) {
-    if (this._config.options) {
-      return this._config.options;
-    }
-
-    const nodes = Array.from(node.childNodes).filter(element => element.nodeName === 'OPTION' || element.nodeName === 'OPTGROUP');
-    const options = [];
-    nodes.forEach(node => {
-      if (node.nodeName === 'OPTION') {
-        options.push({
-          value: node.value,
-          text: node.innerHTML,
-          selected: node.selected
-        });
-      }
-
-      if (node.nodeName === 'OPTGROUP') {
-        options.push({
-          label: node.label,
-          options: this._getOptions(node)
-        });
-      }
-    });
-    return options;
-  }
-
-  _getSelectedOptions(options) {
-    const selected = [];
-    options.forEach(e => {
-      if (typeof e.value === 'undefined') {
-        this._getSelectedOptions(e.options);
-
-        return;
-      }
-
-      if (e.selected) {
-        // Add only the last option if single select
-        if (!this._config.multiple) {
-          selected.length = 0;
-        }
-
-        selected.push({
-          value: String(e.value),
-          text: e.text
-        });
-      }
-    });
-    return selected;
-  }
-
-  _createNativeSelect(data) {
-    const select = document.createElement('select');
-    select.classList.add(CLASS_NAME_SELECT);
-
-    if (this._element.id) {
-      select.id = this._element.id;
-    }
-
-    if (this._config.multiple) {
-      select.multiple = true;
-    }
-
-    this._createNativeOptions(select, data);
-
-    this._element.replaceWith(select);
-
-    this._element = select;
-  }
-
-  _createNativeOptions(parentElement, options) {
-    options.forEach(option => {
-      // eslint-disable-next-line no-negated-condition
-      if (typeof option.options !== 'undefined') {
-        const optgroup = document.createElement('optgroup');
-        optgroup.label = option.label;
-
-        this._createNativeOptions(optgroup, option.options);
-
-        parentElement.append(optgroup);
-      } else {
-        const opt = document.createElement('OPTION');
-        opt.value = option.value;
-
-        if (option.selected === true) {
-          opt.setAttribute('selected', 'selected');
-        }
-
-        opt.innerHTML = option.text;
-        parentElement.append(opt);
-      }
-    });
-  }
-
-  _hideNativeSelect() {
-    this._element.tabIndex = '-1';
-    this._element.style.display = 'none';
-  }
-
-  _createSelect() {
-    const div = document.createElement('div');
-    div.classList.add(CLASS_NAME_SELECT);
-
-    this._getClassNames().forEach(className => {
-      div.classList.add(className);
-    });
-
-    if (this._config.multiple) {
-      div.classList.add(CLASS_NAME_SELECT_MULTIPLE);
-    }
-
-    if (this._config.inline) {
-      div.classList.add(CLASS_NAME_SELECT_INLINE);
-    }
-
-    if (this._config.selectionType === 'tags') {
-      div.classList.add(CLASS_NAME_SELECTION_TAGS);
-    }
-
-    this._clone = div;
-
-    this._element.parentNode.insertBefore(div, this._element.nextSibling);
-
-    if (!this._config.inline || this._config.inline && this._config.selection) {
-      this._createSelection(); // this._createSelectionCleaner()
-
-    }
-
-    if (this._config.search) {
-      this._createSearchInput();
-
-      this._updateSearch();
-    }
-
-    this._createOptionsContainer();
-
-    this._hideNativeSelect();
-
-    this._updateOptionsList();
-  }
-
-  _createSelection() {
-    const span = document.createElement('span');
-    span.classList.add(CLASS_NAME_SELECTION);
-
-    this._clone.append(span);
-
-    this._updateSelection();
-
-    this._selectionElement = span;
-  }
-
-  _createSelectionCleaner() {
-    const cleaner = document.createElement('span');
-    cleaner.classList.add(CLASS_NAME_SELECTION_CLEANER);
-    cleaner.innerHTML = '&times;';
-
-    this._clone.append(cleaner); // this._updateSelectionCleaner()
-
-
-    this._selectionCleanerElement = cleaner;
-  }
-
-  _createSearchInput() {
-    const input = document.createElement('input');
-    input.classList.add(CLASS_NAME_SEARCH);
-    this._searchElement = input;
-
-    this._updateSearchSize();
-
-    this._clone.append(input);
-  }
-
-  _createOptionsContainer() {
-    const div = document.createElement('div');
-    div.classList.add(CLASS_NAME_OPTIONS);
-
-    this._clone.append(div);
-
-    this._createOptions(div, this._options);
-
-    this._optionsElement = div;
-  }
-
-  _createOptions(parentElement, options) {
-    options.forEach(option => {
-      if (typeof option.value !== 'undefined') {
-        const optionDiv = document.createElement('div');
-        optionDiv.classList.add(CLASS_NAME_OPTION);
-        optionDiv.dataset.value = String(option.value);
-        optionDiv.tabIndex = 0;
-        optionDiv.innerHTML = option.text;
-        parentElement.append(optionDiv);
-      }
-
-      if (typeof option.label !== 'undefined') {
-        const optgroup = document.createElement('div');
-        optgroup.classList.add(CLASS_NAME_OPTGROUP);
-        const optgrouplabel = document.createElement('div');
-        optgrouplabel.innerHTML = option.label;
-        optgrouplabel.classList.add(CLASS_NAME_OPTGROUP_LABEL);
-        optgroup.append(optgrouplabel);
-
-        this._createOptions(optgroup, option.options);
-
-        parentElement.append(optgroup);
-      }
-    });
-  }
-
-  _createTag(value, text) {
-    const tag = document.createElement('span');
-    tag.classList.add(CLASS_NAME_TAG);
-    tag.dataset.value = value;
-    tag.innerHTML = text;
-    const closeBtn = document.createElement('span');
-    closeBtn.classList.add(CLASS_NAME_TAG_DELETE, 'close');
-    closeBtn.setAttribute('aria-label', 'Close');
-    closeBtn.innerHTML = '<span aria-hidden="true">&times;</span>';
-    tag.append(closeBtn); // eslint-disable-next-line no-warning-comments
-    // TODO: zastanowić się czy nie zrobić tego globalnie
-
-    EventHandler.on(closeBtn, EVENT_CLICK, event => {
-      event.preventDefault();
-      event.stopPropagation();
-      tag.remove();
-
-      this._selectionDelete(value);
-
-      this._updateOptionsList();
-
-      this._updateSearch();
-    });
-    return tag;
-  }
-
-  _onOptionsClick(element) {
-    if (!element.classList.contains(CLASS_NAME_OPTION) || element.classList.contains(CLASS_NAME_LABEL)) {
-      return;
-    }
-
-    const value = String(element.dataset.value);
-    const text = element.textContent;
-
-    if (this._config.multiple && element.classList.contains(CLASS_NAME_SELECTED)) {
-      this._selectionDelete(value);
-    } else if (this._config.multiple && !element.classList.contains(CLASS_NAME_SELECTED)) {
-      this._selectionAdd(value, text);
-    } else if (!this._config.multiple) {
-      this._selectionAdd(value, text);
-    }
-
-    this._updateSelection(); // this._updateSelectionCleaner()
-
-
-    this._updateSearch();
-
-    this._updateSearchSize();
-  }
-
-  _selectionAdd(value, text) {
-    if (!this._config.multiple) {
-      this._selectionClear();
-    }
-
-    if (this._selection.filter(e => e.value === value).length === 0) {
-      this._selection.push({
-        value,
-        text
-      });
-    }
-
-    this._selectOption(value);
-  }
-
-  _selectionClear() {
-    this._selection.length = 0;
-
-    this._clearOptions();
-  }
-
-  _selectionDelete(value) {
-    const selected = this._selection.filter(e => e.value !== value);
-
-    this._selection = selected;
-
-    this._unSelectOption(value);
-  }
-
-  _selectionDeleteLast() {
-    if (this._selection.length > 0) {
-      const last = this._selection.pop();
-
-      this._selectionDelete(last.value);
-
-      this._updateSelection(); // this._updateSelectionCleaner()
-
-
-      this._updateSearch();
-    }
-  } // .form-multi-select-selections
-
-
-  _updateSelection() {
-    if (this._config.inline && !this._config.selection) {
-      return;
-    }
-
-    const selection = SelectorEngine.findOne(SELECTOR_SELECTION, this._clone);
-
-    if (this._config.multiple && this._config.selectionType === 'counter') {
-      selection.innerHTML = `${this._selection.length} ${this._config.selectionTypeCounterText}`;
-      return;
-    }
-
-    if (this._config.multiple && this._config.selectionType === 'tags') {
-      selection.innerHTML = '';
-
-      this._selection.forEach(e => {
-        selection.append(this._createTag(e.value, e.text));
-      });
-
-      return;
-    }
-
-    if (this._config.multiple && this._config.selectionType === 'text') {
-      selection.innerHTML = this._selection.map(e => e.text).join(', ');
-      return;
-    }
-
-    if (this._selection.length > 0) {
-      selection.innerHTML = this._selection[0].text;
-    }
-  }
-
-  _updateSelectionCleaner() {
-    if (this._selectionCleanerElement === null) {
-      return;
-    }
-
-    const selectionCleaner = SelectorEngine.findOne(SELECTOR_SELECTION_CLEANER, this._clone);
-
-    if (this._selection.length > 0) {
-      selectionCleaner.style.removeProperty('display');
-      return;
-    }
-
-    selectionCleaner.style.display = 'none';
-  }
-
-  _updateSearch() {
-    if (!this._config.search) {
-      return;
-    }
-
-    if (this._selection.length === 0 && (this._config.selectionType === 'tags' || this._config.selectionType === 'text')) {
-      this._searchElement.removeAttribute('size');
-    }
-
-    if (this._selection.length > 0 && !this._config.multiple && !this._config.inline) {
-      this._searchElement.placeholder = this._selection[0].text;
-      this._selectionElement.style.display = 'none';
-      return;
-    }
-
-    if (this._selection.length > 0 && this._config.multiple && this._config.selectionType !== 'counter' && !this._config.inline) {
-      this._searchElement.placeholder = '';
-
-      this._selectionElement.style.removeProperty('display');
-
-      return;
-    }
-
-    if (this._selection.length === 0 && this._config.multiple && !this._config.inline) {
-      this._searchElement.placeholder = this._config.searchPlaceholder;
-      this._selectionElement.style.display = 'none';
-      return;
-    }
-
-    if (this._config.multiple && this._config.selectionType === 'counter' && !this._config.inline) {
-      this._searchElement.placeholder = `${this._selection.length} item(s) selected`;
-      this._selectionElement.style.display = 'none';
-      return;
-    }
-
-    if (this._config.inline) {
-      this._searchElement.placeholder = this._config.searchPlaceholder;
-    }
-  }
-
-  _updateSearchSize(size = 2) {
-    if (!this._config.inline && this._selection.length > 0 && (this._config.selectionType === 'tags' || this._config.selectionType === 'text')) {
-      this._searchElement.size = size;
-      return;
-    }
-
-    if (this._selection.length === 0 && (this._config.selectionType === 'tags' || this._config.selectionType === 'text')) {
-      this._searchElement.removeAttribute('size');
-    }
-  } // .form-multi-select-selections
-
-
-  _selectOption(value) {
-    SelectorEngine.findOne(`option[value="${value}"]`, this._element).selected = true; // eslint-disable-next-line no-warning-comments
-    // TODO: improve this solution
-
-    const option = SelectorEngine.findOne(`[data-value="${value}"]`, this._optionsElement);
-
-    if (option) {
-      option.classList.add(CLASS_NAME_SELECTED);
-    }
-
-    EventHandler.trigger(this._element, EVENT_CHANGED, {
-      value: this._selection
-    });
-  }
-
-  _unSelectOption(value) {
-    SelectorEngine.findOne(`option[value="${value}"]`, this._element).selected = false; // eslint-disable-next-line no-warning-comments
-    // TODO: improve this solution
-
-    const option = SelectorEngine.findOne(`[data-value="${value}"]`, this._optionsElement);
-
-    if (option) {
-      option.classList.remove(CLASS_NAME_SELECTED);
-    }
-
-    EventHandler.trigger(this._element, EVENT_CHANGED, {
-      value: this._selection
-    });
-  }
-
-  _clearOptions() {
-    this._element.value = null;
-    SelectorEngine.find(SELECTOR_SELECTED, this._clone).forEach(element => {
-      element.classList.remove(CLASS_NAME_SELECTED);
-    });
-  } // eslint-disable-next-line no-warning-comments
-  // TODO: poprawić tą nazwę
-
-
-  _onSearchChange(element) {
-    if (element) {
-      this.search(element.value);
-
-      this._updateSearchSize(element.value.length + 1);
-    }
-  }
-
-  _updateOptionsList() {
-    const options = SelectorEngine.find(SELECTOR_OPTION, this._clone);
-    options.forEach(option => {
-      if (this._selection.filter(e => e.value === option.dataset.value).length !== 0) {
-        option.classList.add(CLASS_NAME_SELECTED);
-      }
-
-      if (this._selection.filter(e => e.value === option.dataset.value).length === 0) {
-        option.classList.remove(CLASS_NAME_SELECTED);
-      }
-    });
-  }
-
-  _isHidden(element) {
-    return element.offsetParent === null;
-  }
-
-  _isVisible(element) {
-    const style = window.getComputedStyle(element);
-    return style.display !== 'none';
-  }
-
-  _filterOptionsList() {
-    const options = SelectorEngine.find(SELECTOR_OPTION, this._clone);
-    let visibleOptions = 0;
-    options.forEach(option => {
-      // eslint-disable-next-line unicorn/prefer-includes
-      if (option.textContent.toLowerCase().indexOf(this._search) === -1) {
-        option.style.display = 'none';
-      } else {
-        option.style.removeProperty('display');
-        visibleOptions++;
-      }
-
-      const optgroup = option.closest(SELECTOR_OPTGROUP);
-
-      if (optgroup) {
-        if (SelectorEngine.children(optgroup, SELECTOR_OPTION).filter(element => this._isVisible(element)).length > 0) {
-          optgroup.style.removeProperty('display');
-        } else {
-          optgroup.style.display = 'none';
-        }
-      }
-    });
-
-    if (visibleOptions > 0) {
-      if (SelectorEngine.findOne(SELECTOR_OPTIONS_EMPTY, this._clone)) {
-        SelectorEngine.findOne(SELECTOR_OPTIONS_EMPTY, this._clone).remove();
-      }
-
-      return;
-    }
-
-    if (visibleOptions === 0) {
-      const placeholder = document.createElement('div');
-      placeholder.classList.add(CLASS_NAME_OPTIONS_EMPTY);
-      placeholder.innerHTML = this._config.optionsEmptyPlaceholder;
-
-      if (!SelectorEngine.findOne(SELECTOR_OPTIONS_EMPTY, this._clone)) {
-        SelectorEngine.findOne(SELECTOR_OPTIONS, this._clone).append(placeholder);
-      }
-    }
-  } // Static
-
-
-  static multiSelectInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$8);
-    let _config = { ...Default$7,
-      ...Manipulator.getDataAttributes(element)
-    };
-
-    if (typeof config === 'object') {
-      _config = { ..._config,
-        ...config
-      };
-    }
-
-    if (!data) {
-      data = new MultiSelect(element, _config);
-    }
-
-    if (typeof config === 'string') {
-      if (typeof data[config] === 'undefined') {
-        throw new TypeError(`No method named "${config}"`);
-      }
-
-      data[config]();
-    }
-  }
-
-  static jQueryInterface(config) {
-    return this.each(function () {
-      MultiSelect.multiSelectInterface(this, config);
-    });
-  }
-
-  static clearMenus(event) {
-    if (event && (event.button === RIGHT_MOUSE_BUTTON || event.type === 'keyup' && event.key !== TAB_KEY)) {
-      return;
-    }
-
-    const selects = SelectorEngine.find(SELECTOR_SELECT);
-
-    for (let i = 0, len = selects.length; i < len; i++) {
-      const context = Data.get(selects[i], DATA_KEY$8);
-      ({
-        relatedTarget: selects[i]
-      });
-
-      if (event && event.type === 'click') ;
-
-      if (!context) {
-        continue;
-      }
-
-      if (!context._clone.classList.contains(CLASS_NAME_SHOW$7)) {
-        continue;
-      }
-
-      if (context._clone.contains(event.target)) {
-        continue;
-      }
-
-      context._clone.classList.remove(CLASS_NAME_SHOW$7);
-
-      EventHandler.trigger(context._element, EVENT_HIDDEN$4);
-    }
-  }
-
-}
-/**
- * ------------------------------------------------------------------------
- * Data Api implementation
- * ------------------------------------------------------------------------
- */
-
-
-EventHandler.on(window, EVENT_LOAD_DATA_API$4, () => {
-  SelectorEngine.find(SELECTOR_SELECT).forEach(ms => {
-    if (ms.tabIndex !== -1) {
-      MultiSelect.multiSelectInterface(ms);
-    }
-  });
-});
-EventHandler.on(document, EVENT_CLICK_DATA_API$4, MultiSelect.clearMenus);
-EventHandler.on(document, EVENT_KEYUP_DATA_API, MultiSelect.clearMenus);
-/**
- * ------------------------------------------------------------------------
- * jQuery
- * ------------------------------------------------------------------------
- * add .MultiSelect to jQuery only if jQuery is present
- */
-
-defineJQueryPlugin(MultiSelect);
-
-/**
- * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): alert.js
+ * CoreUI (v4.0.0): alert.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */
@@ -4291,16 +3181,13 @@ class Navigation extends BaseComponent {
 
   static get DefaultType() {
     return DefaultType$6;
-  }
-
-  static get NAME() {
-    return NAME$7;
   } // Private
 
 
   _getConfig(config) {
     config = { ...Default$6,
-      ...config
+      ...Manipulator.getDataAttributes(this._element),
+      ...(typeof config === 'object' ? config : {})
     };
     typeCheckConfig(NAME$7, config, DefaultType$6);
     return config;
@@ -4408,11 +3295,10 @@ class Navigation extends BaseComponent {
     setTimeout(() => {
       element.style.height = `${height}px`;
     }, 0);
-    const transitionDuration = getTransitionDurationFromElement(element);
-    EventHandler.one(element, 'transitionend', () => {
+
+    this._queueCallback(() => {
       element.style.height = 'auto';
-    });
-    emulateTransitionEnd(element, transitionDuration);
+    }, element, true);
   }
 
   _slideUp(element, callback) {
@@ -4421,13 +3307,12 @@ class Navigation extends BaseComponent {
     setTimeout(() => {
       element.style.height = '0px';
     }, 0);
-    const transitionDuration = getTransitionDurationFromElement(element);
-    EventHandler.one(element, 'transitionend', () => {
+
+    this._queueCallback(() => {
       if (typeof callback === 'function') {
         callback();
       }
-    });
-    emulateTransitionEnd(element, transitionDuration);
+    }, element, true);
   }
 
   _toggleGroupItems(event) {
@@ -4474,15 +3359,7 @@ class Navigation extends BaseComponent {
 
 
   static navigationInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$7);
-    const _config = { ...Default$6,
-      ...Manipulator.getDataAttributes(element),
-      ...(typeof config === 'object' && config ? config : {})
-    };
-
-    if (!data) {
-      data = new Navigation(element, _config);
-    }
+    const data = Navigation.getOrCreateInstance(element, config);
 
     if (typeof config === 'string') {
       if (typeof data[config] === 'undefined') {
@@ -4519,11 +3396,11 @@ EventHandler.on(window, EVENT_LOAD_DATA_API$3, () => {
  * add .Navigation to jQuery only if jQuery is present
  */
 
-defineJQueryPlugin(Navigation);
+defineJQueryPlugin(NAME$7);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): dropdown.js
+ * CoreUI (v4.0.0): dropdown.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's offcanvas.js
@@ -4613,7 +3490,7 @@ class Offcanvas extends BaseComponent {
     this._backdrop.show();
 
     if (!this._config.scroll) {
-      hide();
+      new ScrollBarHelper().hide();
 
       this._enforceFocusOnElement(this._element);
     }
@@ -4666,7 +3543,7 @@ class Offcanvas extends BaseComponent {
       this._element.style.visibility = 'hidden';
 
       if (!this._config.scroll) {
-        reset();
+        new ScrollBarHelper().reset();
       }
 
       EventHandler.trigger(this._element, EVENT_HIDDEN$3);
@@ -4724,7 +3601,7 @@ class Offcanvas extends BaseComponent {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      const data = Data.get(this, DATA_KEY$6) || new Offcanvas(this, typeof config === 'object' ? config : {});
+      const data = Offcanvas.getOrCreateInstance(this, config);
 
       if (typeof config !== 'string') {
         return;
@@ -4770,12 +3647,10 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$2, SELECTOR_DATA_TOGGLE$2, functi
     Offcanvas.getInstance(allReadyOpen).hide();
   }
 
-  const data = Data.get(target, DATA_KEY$6) || new Offcanvas(target);
+  const data = Offcanvas.getOrCreateInstance(target);
   data.toggle(this);
 });
-EventHandler.on(window, EVENT_LOAD_DATA_API$2, () => {
-  SelectorEngine.find(OPEN_SELECTOR).forEach(el => (Data.get(el, DATA_KEY$6) || new Offcanvas(el)).show());
-});
+EventHandler.on(window, EVENT_LOAD_DATA_API$2, () => SelectorEngine.find(OPEN_SELECTOR).forEach(el => Offcanvas.getOrCreateInstance(el).show()));
 /**
  * ------------------------------------------------------------------------
  * jQuery
@@ -4786,7 +3661,7 @@ defineJQueryPlugin(Offcanvas);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): alert.js
+ * CoreUI (v4.0.0): alert.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's  util/sanitizer.js
@@ -4884,7 +3759,7 @@ function sanitizeHtml(unsafeHtml, allowList, sanitizeFn) {
     const elName = el.nodeName.toLowerCase();
 
     if (!allowlistKeys.includes(elName)) {
-      el.parentNode.removeChild(el);
+      el.remove();
       continue;
     }
 
@@ -4902,7 +3777,7 @@ function sanitizeHtml(unsafeHtml, allowList, sanitizeFn) {
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): tooltip.js
+ * CoreUI (v4.0.0): tooltip.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's tooltip.js
@@ -5074,8 +3949,8 @@ class Tooltip extends BaseComponent {
     clearTimeout(this._timeout);
     EventHandler.off(this._element.closest(`.${CLASS_NAME_MODAL}`), 'hide.coreui.modal', this._hideModalHandler);
 
-    if (this.tip && this.tip.parentNode) {
-      this.tip.parentNode.removeChild(this.tip);
+    if (this.tip) {
+      this.tip.remove();
     }
 
     if (this._popper) {
@@ -5180,8 +4055,8 @@ class Tooltip extends BaseComponent {
         return;
       }
 
-      if (this._hoverState !== HOVER_STATE_SHOW && tip.parentNode) {
-        tip.parentNode.removeChild(tip);
+      if (this._hoverState !== HOVER_STATE_SHOW) {
+        tip.remove();
       }
 
       this._cleanTipClass();
@@ -5568,13 +4443,7 @@ class Tooltip extends BaseComponent {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.get(this, DATA_KEY$5);
-
-      const _config = typeof config === 'object' && config;
-
-      if (!data) {
-        data = new Tooltip(this, _config);
-      }
+      const data = Tooltip.getOrCreateInstance(this, config);
 
       if (typeof config === 'string') {
         if (typeof data[config] === 'undefined') {
@@ -5599,7 +4468,7 @@ defineJQueryPlugin(Tooltip);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): popover.js
+ * CoreUI (v4.0.0): popover.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's popover.js
@@ -5680,11 +4549,11 @@ class Popover extends Tooltip {
     this.tip = super.getTipElement();
 
     if (!this.getTitle()) {
-      this.tip.removeChild(SelectorEngine.findOne(SELECTOR_TITLE, this.tip));
+      SelectorEngine.findOne(SELECTOR_TITLE, this.tip).remove();
     }
 
     if (!this._getContent()) {
-      this.tip.removeChild(SelectorEngine.findOne(SELECTOR_CONTENT, this.tip));
+      SelectorEngine.findOne(SELECTOR_CONTENT, this.tip).remove();
     }
 
     return this.tip;
@@ -5726,14 +4595,7 @@ class Popover extends Tooltip {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.get(this, DATA_KEY$4);
-
-      const _config = typeof config === 'object' ? config : null;
-
-      if (!data) {
-        data = new Popover(this, _config);
-        Data.set(this, DATA_KEY$4, data);
-      }
+      const data = Popover.getOrCreateInstance(this, config);
 
       if (typeof config === 'string') {
         if (typeof data[config] === 'undefined') {
@@ -5758,7 +4620,7 @@ defineJQueryPlugin(Popover);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): scrollspy.js
+ * CoreUI (v4.0.0): scrollspy.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's scrollspy.js
@@ -5795,6 +4657,7 @@ const SELECTOR_NAV_LIST_GROUP$1 = '.nav, .list-group';
 const SELECTOR_NAV_LINKS = '.nav-link';
 const SELECTOR_NAV_ITEMS = '.nav-item';
 const SELECTOR_LIST_ITEMS = '.list-group-item';
+const SELECTOR_LINK_ITEMS = `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}, .${CLASS_NAME_DROPDOWN_ITEM}`;
 const SELECTOR_DROPDOWN$1 = '.dropdown';
 const SELECTOR_DROPDOWN_TOGGLE$1 = '.dropdown-toggle';
 const METHOD_OFFSET = 'offset';
@@ -5810,7 +4673,6 @@ class ScrollSpy extends BaseComponent {
     super(element);
     this._scrollElement = this._element.tagName === 'BODY' ? window : this._element;
     this._config = this._getConfig(config);
-    this._selector = `${this._config.target} ${SELECTOR_NAV_LINKS}, ${this._config.target} ${SELECTOR_LIST_ITEMS}, ${this._config.target} .${CLASS_NAME_DROPDOWN_ITEM}`;
     this._offsets = [];
     this._targets = [];
     this._activeTarget = null;
@@ -5838,7 +4700,7 @@ class ScrollSpy extends BaseComponent {
     this._offsets = [];
     this._targets = [];
     this._scrollHeight = this._getScrollHeight();
-    const targets = SelectorEngine.find(this._selector);
+    const targets = SelectorEngine.find(SELECTOR_LINK_ITEMS, this._config.target);
     targets.map(element => {
       const targetSelector = getSelectorFromElement(element);
       const target = targetSelector ? SelectorEngine.findOne(targetSelector) : null;
@@ -5870,20 +4732,7 @@ class ScrollSpy extends BaseComponent {
       ...Manipulator.getDataAttributes(this._element),
       ...(typeof config === 'object' && config ? config : {})
     };
-
-    if (typeof config.target !== 'string' && isElement(config.target)) {
-      let {
-        id
-      } = config.target;
-
-      if (!id) {
-        id = getUID(NAME$3);
-        config.target.id = id;
-      }
-
-      config.target = `#${id}`;
-    }
-
+    config.target = getElement(config.target) || document.documentElement;
     typeCheckConfig(NAME$3, config, DefaultType$2);
     return config;
   }
@@ -5943,16 +4792,13 @@ class ScrollSpy extends BaseComponent {
 
     this._clear();
 
-    const queries = this._selector.split(',').map(selector => `${selector}[data-coreui-target="${target}"],${selector}[href="${target}"]`);
-
-    const link = SelectorEngine.findOne(queries.join(','));
+    const queries = SELECTOR_LINK_ITEMS.split(',').map(selector => `${selector}[data-coreui-target="${target}"],${selector}[href="${target}"]`);
+    const link = SelectorEngine.findOne(queries.join(','), this._config.target);
+    link.classList.add(CLASS_NAME_ACTIVE$1);
 
     if (link.classList.contains(CLASS_NAME_DROPDOWN_ITEM)) {
       SelectorEngine.findOne(SELECTOR_DROPDOWN_TOGGLE$1, link.closest(SELECTOR_DROPDOWN$1)).classList.add(CLASS_NAME_ACTIVE$1);
-      link.classList.add(CLASS_NAME_ACTIVE$1);
     } else {
-      // Set triggered link as active
-      link.classList.add(CLASS_NAME_ACTIVE$1);
       SelectorEngine.parents(link, SELECTOR_NAV_LIST_GROUP$1).forEach(listGroup => {
         // Set triggered links parents as active
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
@@ -5970,13 +4816,13 @@ class ScrollSpy extends BaseComponent {
   }
 
   _clear() {
-    SelectorEngine.find(this._selector).filter(node => node.classList.contains(CLASS_NAME_ACTIVE$1)).forEach(node => node.classList.remove(CLASS_NAME_ACTIVE$1));
+    SelectorEngine.find(SELECTOR_LINK_ITEMS, this._config.target).filter(node => node.classList.contains(CLASS_NAME_ACTIVE$1)).forEach(node => node.classList.remove(CLASS_NAME_ACTIVE$1));
   } // Static
 
 
   static jQueryInterface(config) {
     return this.each(function () {
-      const data = ScrollSpy.getInstance(this) || new ScrollSpy(this, typeof config === 'object' ? config : {});
+      const data = ScrollSpy.getOrCreateInstance(this, config);
 
       if (typeof config !== 'string') {
         return;
@@ -6012,7 +4858,7 @@ defineJQueryPlugin(ScrollSpy);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): sidebar.js
+ * CoreUI (v4.0.0): sidebar.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */
@@ -6030,6 +4876,7 @@ const Default$1 = {};
 const DefaultType$1 = {};
 const CLASS_NAME_BACKDROP = 'sidebar-backdrop';
 const CLASS_NAME_FADE$2 = 'fade';
+const CLASS_NAME_HIDE$1 = 'hide';
 const CLASS_NAME_SHOW$2 = 'show';
 const CLASS_NAME_SIDEBAR = 'sidebar';
 const CLASS_NAME_SIDEBAR_NARROW = 'sidebar-narrow';
@@ -6038,6 +4885,7 @@ const CLASS_NAME_SIDEBAR_NARROW_UNFOLDABLE = 'sidebar-narrow-unfoldable';
 const REGEXP_SIDEBAR_SELF_HIDING = /sidebar-self-hiding/;
 const EVENT_HIDE$2 = `hide${EVENT_KEY$2}`;
 const EVENT_HIDDEN$2 = `hidden${EVENT_KEY$2}`;
+const EVENT_RESIZE = 'resize';
 const EVENT_SHOW$2 = `show${EVENT_KEY$2}`;
 const EVENT_SHOWN$2 = `shown${EVENT_KEY$2}`;
 const EVENT_CLICK_DATA_API$1 = `click${EVENT_KEY$2}${DATA_API_KEY$1}`;
@@ -6083,6 +4931,10 @@ class Sidebar extends BaseComponent {
   show() {
     EventHandler.trigger(this._element, EVENT_SHOW$2);
 
+    if (this._element.classList.contains(CLASS_NAME_HIDE$1)) {
+      this._element.classList.remove(CLASS_NAME_HIDE$1);
+    }
+
     if (REGEXP_SIDEBAR_SELF_HIDING.test(this._element.className)) {
       this._element.classList.add(CLASS_NAME_SHOW$2);
     }
@@ -6103,9 +4955,7 @@ class Sidebar extends BaseComponent {
       }
     };
 
-    const transitionDuration = getTransitionDurationFromElement(this._element);
-    EventHandler.one(this._element, 'transitionend', complete);
-    emulateTransitionEnd(this._element, transitionDuration);
+    this._queueCallback(complete, this._element, true);
   }
 
   hide() {
@@ -6113,6 +4963,12 @@ class Sidebar extends BaseComponent {
 
     if (this._element.classList.contains(CLASS_NAME_SHOW$2)) {
       this._element.classList.remove(CLASS_NAME_SHOW$2);
+    } else {
+      this._element.classList.add(CLASS_NAME_HIDE$1);
+    }
+
+    if (this._isVisible()) {
+      this._element.classList.add(CLASS_NAME_HIDE$1);
     }
 
     if (this._isMobile()) {
@@ -6131,9 +4987,7 @@ class Sidebar extends BaseComponent {
       }
     };
 
-    const transitionDuration = getTransitionDurationFromElement(this._element);
-    EventHandler.one(this._element, 'transitionend', complete);
-    emulateTransitionEnd(this._element, transitionDuration);
+    this._queueCallback(complete, this._element, true);
   }
 
   toggle() {
@@ -6309,17 +5163,16 @@ class Sidebar extends BaseComponent {
       event.preventDefault();
       this.hide();
     });
+    EventHandler.on(window, EVENT_RESIZE, () => {
+      if (this._isMobile() && this._isVisible()) {
+        this.hide();
+      }
+    });
   } // Static
 
 
   static sidebarInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$2);
-
-    const _config = typeof config === 'object' && config;
-
-    if (!data) {
-      data = new Sidebar(element, _config);
-    }
+    const data = Sidebar.getOrCreateInstance(element, config);
 
     if (typeof config === 'string') {
       if (typeof data[config] === 'undefined') {
@@ -6355,11 +5208,11 @@ EventHandler.on(window, EVENT_LOAD_DATA_API, () => {
  * ------------------------------------------------------------------------
  */
 
-defineJQueryPlugin(Sidebar);
+defineJQueryPlugin(NAME$2);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): tab.js
+ * CoreUI (v4.0.0): tab.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's tab.js
@@ -6517,7 +5370,7 @@ class Tab extends BaseComponent {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      const data = Data.get(this, DATA_KEY$1) || new Tab(this);
+      const data = Tab.getOrCreateInstance(this);
 
       if (typeof config === 'string') {
         if (typeof data[config] === 'undefined') {
@@ -6546,7 +5399,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (
     return;
   }
 
-  const data = Data.get(this, DATA_KEY$1) || new Tab(this);
+  const data = Tab.getOrCreateInstance(this);
   data.show();
 });
 /**
@@ -6560,7 +5413,7 @@ defineJQueryPlugin(Tab);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): toast.js
+ * CoreUI (v4.0.0): toast.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's toast.js
@@ -6763,13 +5616,7 @@ class Toast extends BaseComponent {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.get(this, DATA_KEY);
-
-      const _config = typeof config === 'object' && config;
-
-      if (!data) {
-        data = new Toast(this, _config);
-      }
+      const data = Toast.getOrCreateInstance(this, config);
 
       if (typeof config === 'string') {
         if (typeof data[config] === 'undefined') {
@@ -6792,5 +5639,5 @@ class Toast extends BaseComponent {
 
 defineJQueryPlugin(Toast);
 
-export { Alert, Button, Carousel, Collapse, Dropdown, LoadingButton, Modal, MultiSelect, Navigation, Offcanvas as OffCanvas, Popover, ScrollSpy, Sidebar, Tab, Toast, Tooltip };
+export { Alert, Button, Carousel, Collapse, Dropdown, Modal, Navigation, Offcanvas as OffCanvas, Popover, ScrollSpy, Sidebar, Tab, Toast, Tooltip };
 //# sourceMappingURL=coreui.esm.js.map

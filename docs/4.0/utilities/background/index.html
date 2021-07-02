@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Convey meaning through background-color and add decoration with gradients.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.83.1">
+<meta name="generator" content="Hugo 0.84.0">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-jTLdEzvDirhpT2iVYVF2UkZI/gZbvaLs6ZoVvEOsnaR2j0913ZM/Uk+AVBxWyEXs" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -67,12 +67,6 @@
 <meta property="og:image:height" content="500">
 
 
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
-
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.0.0-rc.0/css/free.min.css" integrity="sha256-vejWHgYduBq3SYXJHSWSRJp7ktQpZ6d+8HGFtb9Fz9k=" crossorigin="anonymous">
 
@@ -81,7 +75,7 @@
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -217,6 +211,9 @@
             <li class="nav-item">
               <a href="/docs/4.0/layout/z-index/" class="nav-link">Z-index</a>
             </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/css-grid/" class="nav-link">CSS Grid</a>
+            </li>
         </ul>
       </li>
 
@@ -272,9 +269,6 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/forms/select/" class="nav-link">Select</a>
-            </li>
-            <li class="nav-item">
-              <a href="/docs/4.0/forms/multi-select/" class="nav-link">Multi Select</a>
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/forms/checks-radios/" class="nav-link">Checks &amp; radios</a>
@@ -355,9 +349,6 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/components/list-group/" class="nav-link">List group</a>
-            </li>
-            <li class="nav-item">
-              <a href="/docs/4.0/components/loading-buttons/" class="nav-link">Loading buttons</a>
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/components/modal/" class="nav-link">Modal</a>
@@ -473,6 +464,9 @@
               <a href="/docs/4.0/utilities/interactions/" class="nav-link">Interactions</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/utilities/opacity/" class="nav-link">Opacity</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/utilities/overflow/" class="nav-link">Overflow</a>
             </li>
             <li class="nav-item">
@@ -526,7 +520,7 @@
 </div>
 
     <div class="wrapper flex-grow-1">
-      <header class="header header-sticky mb-5 elevation-0 border-bottom">
+      <header class="header header-sticky mb-5">
   <div class="container-fluid">
     <button class="header-toggler d-lg-none" type="button" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16">
@@ -611,7 +605,7 @@
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/v4-dev/docs/content/4.0/utilities/background.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/utilities/background.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
         <h1 class="docs-title" id="content">Background</h1>
       </div>
       <p class="docs-lead">Convey meaning through <code>background-color</code> and add decoration with gradients.</p>
@@ -752,10 +746,10 @@
 <h3 id="mixins">Mixins</h3>
 <p><strong>No mixins are used to generate our background utilities</strong>, but we do have some additional mixins for other situations where you&rsquo;d like to create your own gradients.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@mixin</span><span class="nf"> gradient-bg</span><span class="p">(</span><span class="nv">$color</span><span class="o">:</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">background-color</span><span class="nd">:</span> <span class="err">$</span><span class="nt">color</span><span class="p">;</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="nv">$color</span><span class="p">;</span>
 
   <span class="k">@if</span> <span class="nv">$enable-gradients</span> <span class="p">{</span>
-    <span class="nt">background-image</span><span class="nd">:</span> <span class="nt">var</span><span class="o">(</span><span class="nt">--</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">variable-prefix</span><span class="p">}</span><span class="nt">gradient</span><span class="o">)</span><span class="p">;</span>
+    <span class="na">background-image</span><span class="o">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="si">#{</span><span class="nv">$variable-prefix</span><span class="si">}</span><span class="n">gradient</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -763,39 +757,34 @@
 </span><span class="c1">//
 </span><span class="c1">// Creates two color stops, start and end, by specifying a color and position for each color stop.
 </span><span class="c1"></span><span class="k">@mixin</span><span class="nf"> gradient-x</span><span class="p">(</span><span class="nv">$start-color</span><span class="o">:</span> <span class="nv">$gray-700</span><span class="o">,</span> <span class="nv">$end-color</span><span class="o">:</span> <span class="nv">$gray-800</span><span class="o">,</span> <span class="nv">$start-percent</span><span class="o">:</span> <span class="mi">0</span><span class="kt">%</span><span class="o">,</span> <span class="nv">$end-percent</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">background-image</span><span class="nd">:</span> <span class="nt">linear-gradient</span><span class="o">(</span><span class="nt">to</span> <span class="nt">right</span><span class="o">,</span> <span class="err">$</span><span class="nt">start-color</span> <span class="err">$</span><span class="nt">start-percent</span><span class="o">,</span> <span class="err">$</span><span class="nt">end-color</span> <span class="err">$</span><span class="nt">end-percent</span><span class="o">)</span><span class="p">;</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="nf">linear-gradient</span><span class="p">(</span><span class="n">to</span> <span class="ni">right</span><span class="o">,</span> <span class="nv">$start-color</span> <span class="nv">$start-percent</span><span class="o">,</span> <span class="nv">$end-color</span> <span class="nv">$end-percent</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="c1">// Vertical gradient, from top to bottom
 </span><span class="c1">//
 </span><span class="c1">// Creates two color stops, start and end, by specifying a color and position for each color stop.
 </span><span class="c1"></span><span class="k">@mixin</span><span class="nf"> gradient-y</span><span class="p">(</span><span class="nv">$start-color</span><span class="o">:</span> <span class="nv">$gray-700</span><span class="o">,</span> <span class="nv">$end-color</span><span class="o">:</span> <span class="nv">$gray-800</span><span class="o">,</span> <span class="nv">$start-percent</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$end-percent</span><span class="o">:</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">background-image</span><span class="nd">:</span> <span class="nt">linear-gradient</span><span class="o">(</span><span class="nt">to</span> <span class="nt">bottom</span><span class="o">,</span> <span class="err">$</span><span class="nt">start-color</span> <span class="err">$</span><span class="nt">start-percent</span><span class="o">,</span> <span class="err">$</span><span class="nt">end-color</span> <span class="err">$</span><span class="nt">end-percent</span><span class="o">)</span><span class="p">;</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="nf">linear-gradient</span><span class="p">(</span><span class="n">to</span> <span class="ni">bottom</span><span class="o">,</span> <span class="nv">$start-color</span> <span class="nv">$start-percent</span><span class="o">,</span> <span class="nv">$end-color</span> <span class="nv">$end-percent</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="k">@mixin</span><span class="nf"> gradient-directional</span><span class="p">(</span><span class="nv">$start-color</span><span class="o">:</span> <span class="nv">$gray-700</span><span class="o">,</span> <span class="nv">$end-color</span><span class="o">:</span> <span class="nv">$gray-800</span><span class="o">,</span> <span class="nv">$deg</span><span class="o">:</span> <span class="mi">45</span><span class="kt">deg</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">background-image</span><span class="nd">:</span> <span class="nt">linear-gradient</span><span class="o">(</span><span class="err">$</span><span class="nt">deg</span><span class="o">,</span> <span class="err">$</span><span class="nt">start-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">end-color</span><span class="o">)</span><span class="p">;</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="nf">linear-gradient</span><span class="p">(</span><span class="nv">$deg</span><span class="o">,</span> <span class="nv">$start-color</span><span class="o">,</span> <span class="nv">$end-color</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="k">@mixin</span><span class="nf"> gradient-x-three-colors</span><span class="p">(</span><span class="nv">$start-color</span><span class="o">:</span> <span class="nv">$blue</span><span class="o">,</span> <span class="nv">$mid-color</span><span class="o">:</span> <span class="nv">$purple</span><span class="o">,</span> <span class="nv">$color-stop</span><span class="o">:</span> <span class="mi">50</span><span class="kt">%</span><span class="o">,</span> <span class="nv">$end-color</span><span class="o">:</span> <span class="nv">$red</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">background-image</span><span class="nd">:</span> <span class="nt">linear-gradient</span><span class="o">(</span><span class="nt">to</span> <span class="nt">right</span><span class="o">,</span> <span class="err">$</span><span class="nt">start-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">mid-color</span> <span class="err">$</span><span class="nt">color-stop</span><span class="o">,</span> <span class="err">$</span><span class="nt">end-color</span><span class="o">)</span><span class="p">;</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="nf">linear-gradient</span><span class="p">(</span><span class="n">to</span> <span class="ni">right</span><span class="o">,</span> <span class="nv">$start-color</span><span class="o">,</span> <span class="nv">$mid-color</span> <span class="nv">$color-stop</span><span class="o">,</span> <span class="nv">$end-color</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="k">@mixin</span><span class="nf"> gradient-y-three-colors</span><span class="p">(</span><span class="nv">$start-color</span><span class="o">:</span> <span class="nv">$blue</span><span class="o">,</span> <span class="nv">$mid-color</span><span class="o">:</span> <span class="nv">$purple</span><span class="o">,</span> <span class="nv">$color-stop</span><span class="o">:</span> <span class="mi">50</span><span class="kt">%</span><span class="o">,</span> <span class="nv">$end-color</span><span class="o">:</span> <span class="nv">$red</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">background-image</span><span class="nd">:</span> <span class="nt">linear-gradient</span><span class="o">(</span><span class="err">$</span><span class="nt">start-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">mid-color</span> <span class="err">$</span><span class="nt">color-stop</span><span class="o">,</span> <span class="err">$</span><span class="nt">end-color</span><span class="o">)</span><span class="p">;</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="nf">linear-gradient</span><span class="p">(</span><span class="nv">$start-color</span><span class="o">,</span> <span class="nv">$mid-color</span> <span class="nv">$color-stop</span><span class="o">,</span> <span class="nv">$end-color</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="k">@mixin</span><span class="nf"> gradient-radial</span><span class="p">(</span><span class="nv">$inner-color</span><span class="o">:</span> <span class="nv">$gray-700</span><span class="o">,</span> <span class="nv">$outer-color</span><span class="o">:</span> <span class="nv">$gray-800</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">background-image</span><span class="nd">:</span> <span class="nt">radial-gradient</span><span class="o">(</span><span class="nt">circle</span><span class="o">,</span> <span class="err">$</span><span class="nt">inner-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">outer-color</span><span class="o">)</span><span class="p">;</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="nf">radial-gradient</span><span class="p">(</span><span class="ni">circle</span><span class="o">,</span> <span class="nv">$inner-color</span><span class="o">,</span> <span class="nv">$outer-color</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="k">@mixin</span><span class="nf"> gradient-striped</span><span class="p">(</span><span class="nv">$color</span><span class="o">:</span> <span class="nf">rgba</span><span class="p">(</span><span class="nv">$white</span><span class="o">,</span> <span class="mf">.15</span><span class="p">)</span><span class="o">,</span> <span class="nv">$angle</span><span class="o">:</span> <span class="mi">45</span><span class="kt">deg</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">background-image</span><span class="nd">:</span> <span class="nt">linear-gradient</span><span class="o">(</span><span class="err">$</span><span class="nt">angle</span><span class="o">,</span> <span class="err">$</span><span class="nt">color</span> <span class="nt">25</span><span class="err">%</span><span class="o">,</span> <span class="nt">transparent</span> <span class="nt">25</span><span class="err">%</span><span class="o">,</span> <span class="nt">transparent</span> <span class="nt">50</span><span class="err">%</span><span class="o">,</span> <span class="err">$</span><span class="nt">color</span> <span class="nt">50</span><span class="err">%</span><span class="o">,</span> <span class="err">$</span><span class="nt">color</span> <span class="nt">75</span><span class="err">%</span><span class="o">,</span> <span class="nt">transparent</span> <span class="nt">75</span><span class="err">%</span><span class="o">,</span> <span class="nt">transparent</span><span class="o">)</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">@mixin</span><span class="nf"> gradient</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">background-color</span><span class="nd">:</span> <span class="nt">var</span><span class="o">(</span><span class="nt">--</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">variable-prefix</span><span class="p">}</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">color</span><span class="p">}</span><span class="o">,</span> <span class="nt">map-get</span><span class="o">(</span><span class="err">$</span><span class="nt">value</span><span class="o">,</span> <span class="s2">&#34;stop&#34;</span><span class="o">))</span><span class="p">;</span>
-  <span class="nt">background-image</span><span class="nd">:</span> <span class="nt">linear-gradient</span><span class="o">(</span><span class="nt">45deg</span><span class="o">,</span> <span class="nt">var</span><span class="o">(</span><span class="nt">--</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">variable-prefix</span><span class="p">}</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">color</span><span class="p">}</span><span class="nt">-start</span><span class="o">,</span> <span class="nt">map-get</span><span class="o">(</span><span class="err">$</span><span class="nt">value</span><span class="o">,</span> <span class="s2">&#34;start&#34;</span><span class="o">))</span> <span class="nt">0</span><span class="err">%</span><span class="o">,</span> <span class="nt">var</span><span class="o">(</span><span class="nt">--</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">variable-prefix</span><span class="p">}</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">color</span><span class="p">}</span><span class="nt">-stop</span><span class="o">,</span> <span class="nt">map-get</span><span class="o">(</span><span class="err">$</span><span class="nt">value</span><span class="o">,</span> <span class="s2">&#34;stop&#34;</span><span class="o">)</span> <span class="nt">100</span><span class="err">%</span><span class="o">))</span><span class="p">;</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="nf">linear-gradient</span><span class="p">(</span><span class="nv">$angle</span><span class="o">,</span> <span class="nv">$color</span> <span class="mi">25</span><span class="kt">%</span><span class="o">,</span> <span class="ni">transparent</span> <span class="mi">25</span><span class="kt">%</span><span class="o">,</span> <span class="ni">transparent</span> <span class="mi">50</span><span class="kt">%</span><span class="o">,</span> <span class="nv">$color</span> <span class="mi">50</span><span class="kt">%</span><span class="o">,</span> <span class="nv">$color</span> <span class="mi">75</span><span class="kt">%</span><span class="o">,</span> <span class="ni">transparent</span> <span class="mi">75</span><span class="kt">%</span><span class="o">,</span> <span class="ni">transparent</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="utilities-api">Utilities API</h3>
@@ -828,7 +817,7 @@
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -836,7 +825,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-caJEC8fMoc6Q3cPepbgNz8nEv350Wy42/1qEtfZnUn6NGNTJWLkzCzXXz08CVs/B" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

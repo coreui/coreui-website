@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Bootstrap List Groups allows displaying are a series of content. Learn how to use Bootstrap list group to build complex list structure on your website.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.83.1">
+<meta name="generator" content="Hugo 0.84.0">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-jTLdEzvDirhpT2iVYVF2UkZI/gZbvaLs6ZoVvEOsnaR2j0913ZM/Uk+AVBxWyEXs" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -67,12 +67,6 @@
 <meta property="og:image:height" content="500">
 
 
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
-
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.0.0-rc.0/css/free.min.css" integrity="sha256-vejWHgYduBq3SYXJHSWSRJp7ktQpZ6d+8HGFtb9Fz9k=" crossorigin="anonymous">
 
@@ -81,7 +75,7 @@
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -217,6 +211,9 @@
             <li class="nav-item">
               <a href="/docs/4.0/layout/z-index/" class="nav-link">Z-index</a>
             </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/css-grid/" class="nav-link">CSS Grid</a>
+            </li>
         </ul>
       </li>
 
@@ -272,9 +269,6 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/forms/select/" class="nav-link">Select</a>
-            </li>
-            <li class="nav-item">
-              <a href="/docs/4.0/forms/multi-select/" class="nav-link">Multi Select</a>
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/forms/checks-radios/" class="nav-link">Checks &amp; radios</a>
@@ -355,9 +349,6 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/components/list-group/" class="nav-link active" aria-current="page">List group</a>
-            </li>
-            <li class="nav-item">
-              <a href="/docs/4.0/components/loading-buttons/" class="nav-link">Loading buttons</a>
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/components/modal/" class="nav-link">Modal</a>
@@ -473,6 +464,9 @@
               <a href="/docs/4.0/utilities/interactions/" class="nav-link">Interactions</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/utilities/opacity/" class="nav-link">Opacity</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/utilities/overflow/" class="nav-link">Overflow</a>
             </li>
             <li class="nav-item">
@@ -526,7 +520,7 @@
 </div>
 
     <div class="wrapper flex-grow-1">
-      <header class="header header-sticky mb-5 elevation-0 border-bottom">
+      <header class="header header-sticky mb-5">
   <div class="container-fluid">
     <button class="header-toggler d-lg-none" type="button" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16">
@@ -611,7 +605,7 @@
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/v4-dev/docs/content/4.0/components/list-group.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/components/list-group.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
         <h1 class="docs-title" id="content">Bootstrap list group</h1>
       </div>
       <p class="docs-lead">Bootstrap List Groups allows displaying are a series of content. Learn how to use Bootstrap list group to build complex list structure on your website.</p>
@@ -649,6 +643,7 @@
             <li><a href="#show">show</a></li>
             <li><a href="#dispose">dispose</a></li>
             <li><a href="#getinstance">getInstance</a></li>
+            <li><a href="#getorcreateinstance">getOrCreateInstance</a></li>
           </ul>
         </li>
         <li><a href="#events">Events</a></li>
@@ -1279,6 +1274,10 @@
 <p><em>Static</em> method which allows you to get the tab instance associated with a DOM element</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">triggerEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#trigger&#39;</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">tab</span> <span class="o">=</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Tab</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">(</span><span class="nx">triggerEl</span><span class="p">)</span> <span class="c1">// Returns a Bootstrap tab instance
+</span></code></pre></div><h4 id="getorcreateinstance">getOrCreateInstance</h4>
+<p><em>Static</em> method which allows you to get the tab instance associated with a DOM element, or create a new one in case it wasn&rsquo;t initialised</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">triggerEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#trigger&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">tab</span> <span class="o">=</span> <span class="nx">bootstrap</span><span class="p">.</span><span class="nx">Tab</span><span class="p">.</span><span class="nx">getOrCreateInstance</span><span class="p">(</span><span class="nx">triggerEl</span><span class="p">)</span> <span class="c1">// Returns a Bootstrap tab instance
 </span></code></pre></div><h3 id="events">Events</h3>
 <p>When showing a new tab, the events fire in the following order:</p>
 <ol>
@@ -1314,22 +1313,24 @@
     </tr>
   </tbody>
 </table>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">tabEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;a[data-coreui-toggle=&#34;list&#34;]&#39;</span><span class="p">)</span>
-<span class="nx">tabEl</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;shown.coreui.tab&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="c1">// newly activated tab
-</span><span class="c1"></span>  <span class="nx">event</span><span class="p">.</span><span class="nx">relatedTarget</span> <span class="c1">// previous active tab
-</span><span class="c1"></span><span class="p">})</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">tabElms</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;a[data-coreui-toggle=&#34;list&#34;]&#39;</span><span class="p">)</span>
+<span class="nx">tabElms</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tabElm</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">tabElm</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;shown.coreui.tab&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="c1">// newly activated tab
+</span><span class="c1"></span>    <span class="nx">event</span><span class="p">.</span><span class="nx">relatedTarget</span> <span class="c1">// previous active tab
+</span><span class="c1"></span>  <span class="p">})</span>
+<span class="p">}</span>
 </code></pre></div><h2 id="customizing">Customizing</h2>
 <h3 id="sass">SASS</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$list-group-color</span><span class="o">:</span>                  <span class="n">unset</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$list-group-color</span><span class="o">:</span>                  <span class="ni">unset</span><span class="p">;</span>
 <span class="nv">$list-group-bg</span><span class="o">:</span>                     <span class="nv">$white</span><span class="p">;</span>
 <span class="nv">$list-group-border-color</span><span class="o">:</span>           <span class="nf">rgba</span><span class="p">(</span><span class="nv">$black</span><span class="o">,</span> <span class="mf">.125</span><span class="p">);</span>
 <span class="nv">$list-group-border-width</span><span class="o">:</span>           <span class="nv">$border-width</span><span class="p">;</span>
 <span class="nv">$list-group-border-radius</span><span class="o">:</span>          <span class="nv">$border-radius</span><span class="p">;</span>
 
-<span class="nv">$list-group-item-padding-y</span><span class="o">:</span>         <span class="nv">$spacer</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nv">$list-group-item-padding-y</span><span class="o">:</span>         <span class="nv">$spacer</span> <span class="o">*</span> <span class="mf">.5</span><span class="p">;</span>
 <span class="nv">$list-group-item-padding-x</span><span class="o">:</span>         <span class="nv">$spacer</span><span class="p">;</span>
-<span class="nv">$list-group-item-bg-scale</span><span class="o">:</span>          <span class="mi">-80</span><span class="kt">%</span><span class="p">;</span>
+<span class="nv">$list-group-item-bg-scale</span><span class="o">:</span>          <span class="o">-</span><span class="mi">80</span><span class="kt">%</span><span class="p">;</span>
 <span class="nv">$list-group-item-color-scale</span><span class="o">:</span>       <span class="mi">40</span><span class="kt">%</span><span class="p">;</span>
 
 <span class="nv">$list-group-hover-bg</span><span class="o">:</span>               <span class="nv">$gray-100</span><span class="p">;</span>
@@ -1374,12 +1375,12 @@
 <span class="p">);</span></code></pre></div>
 <h5 id="color-function">Color function</h5>
 <p>The color set can be generated automatically thanks to our <code>list-group-color-map</code> function.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@function</span> <span class="nt">list-group-color-map</span><span class="o">(</span><span class="err">$</span><span class="nt">color</span><span class="o">)</span> <span class="p">{</span>
-  <span class="k">@return</span> <span class="o">(</span>
-    <span class="s2">&#34;bg&#34;</span><span class="nd">:</span> <span class="nt">shift-color</span><span class="o">(</span><span class="err">$</span><span class="nt">color</span><span class="o">,</span> <span class="err">$</span><span class="nt">list-group-item-bg-scale</span><span class="o">),</span>
-    <span class="s2">&#34;bg-hover&#34;</span><span class="nd">:</span> <span class="nt">shade-color</span><span class="o">(</span><span class="err">$</span><span class="nt">color</span><span class="o">,</span> <span class="nt">10</span><span class="err">%</span><span class="o">),</span>
-    <span class="s2">&#34;color&#34;</span><span class="nd">:</span> <span class="nt">shift-color</span><span class="o">(</span><span class="err">$</span><span class="nt">color</span><span class="o">,</span> <span class="err">$</span><span class="nt">list-group-item-color-scale</span><span class="o">)</span>
-  <span class="o">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@function</span><span class="nf"> list-group-color-map</span><span class="p">(</span><span class="nv">$color</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">@return</span> <span class="p">(</span>
+    <span class="s2">&#34;bg&#34;</span><span class="o">:</span> <span class="nf">shift-color</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="nv">$list-group-item-bg-scale</span><span class="p">)</span><span class="o">,</span>
+    <span class="s2">&#34;bg-hover&#34;</span><span class="o">:</span> <span class="nf">shade-color</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="mi">10</span><span class="kt">%</span><span class="p">)</span><span class="o">,</span>
+    <span class="s2">&#34;color&#34;</span><span class="o">:</span> <span class="nf">shift-color</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="nv">$list-group-item-color-scale</span><span class="p">)</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$alert-variants</span><span class="o">:</span> <span class="p">(</span>
@@ -1393,25 +1394,25 @@
 </span><span class="c1">// Add modifier classes to change text and background color on individual items.
 </span><span class="c1">// Organizationally, this must come after the `:hover` states.
 </span><span class="c1"></span>
-<span class="k">@each</span> <span class="err">$</span><span class="nt">state</span><span class="o">,</span> <span class="err">$</span><span class="nt">variant</span> <span class="nt">in</span> <span class="err">$</span><span class="nt">list-group-variants</span> <span class="p">{</span>
+<span class="k">@each</span> <span class="nv">$state</span><span class="o">,</span> <span class="nv">$variant</span> <span class="ow">in</span> <span class="nv">$list-group-variants</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> list-group-item-variant</span><span class="p">(</span><span class="nv">$state</span><span class="o">,</span> <span class="nv">$variant</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="css-vars">CSS Vars</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-list-group-action-active-bg</span>
-<span class="nt">--cui-list-group-action-active-border-color</span>
-<span class="nt">--cui-list-group-action-active-color</span>
-<span class="nt">--cui-list-group-action-color</span>
-<span class="nt">--cui-list-group-action-hover-color</span>
-<span class="nt">--cui-list-group-active-bg</span>
-<span class="nt">--cui-list-group-active-border-color</span>
-<span class="nt">--cui-list-group-active-color</span>
-<span class="nt">--cui-list-group-bg</span>
-<span class="nt">--cui-list-group-border-color</span>
-<span class="nt">--cui-list-group-color</span>
-<span class="nt">--cui-list-group-disabled-bg</span>
-<span class="nt">--cui-list-group-disabled-color</span>
-<span class="nt">--cui-list-group-hover-bg</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="o">--</span><span class="nt">cui-list-group-action-active-bg</span>
+<span class="o">--</span><span class="nt">cui-list-group-action-active-border-color</span>
+<span class="o">--</span><span class="nt">cui-list-group-action-active-color</span>
+<span class="o">--</span><span class="nt">cui-list-group-action-color</span>
+<span class="o">--</span><span class="nt">cui-list-group-action-hover-color</span>
+<span class="o">--</span><span class="nt">cui-list-group-active-bg</span>
+<span class="o">--</span><span class="nt">cui-list-group-active-border-color</span>
+<span class="o">--</span><span class="nt">cui-list-group-active-color</span>
+<span class="o">--</span><span class="nt">cui-list-group-bg</span>
+<span class="o">--</span><span class="nt">cui-list-group-border-color</span>
+<span class="o">--</span><span class="nt">cui-list-group-color</span>
+<span class="o">--</span><span class="nt">cui-list-group-disabled-bg</span>
+<span class="o">--</span><span class="nt">cui-list-group-disabled-color</span>
+<span class="o">--</span><span class="nt">cui-list-group-hover-bg</span></code></pre></div>
 
     </div>
   </main>
@@ -1426,7 +1427,7 @@
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1434,7 +1435,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-caJEC8fMoc6Q3cPepbgNz8nEv350Wy42/1qEtfZnUn6NGNTJWLkzCzXXz08CVs/B" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>
