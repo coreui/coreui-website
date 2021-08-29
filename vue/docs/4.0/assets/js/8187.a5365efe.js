@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_coreui_vue=self.webpackChunk_coreui_vue||[]).push([[8187],{8187:(e,t,u)=>{u.r(t),u.d(t,{default:()=>n});const n={mounted(){this.$router.push("/getting-started/introduction.html")},render:function(e,t,u,n,r,s){return null}}}}]);
