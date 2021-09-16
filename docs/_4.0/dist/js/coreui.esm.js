@@ -1,5 +1,5 @@
 /*!
-  * CoreUI v4.0.0-rc.5 (https://coreui.io)
+  * CoreUI v4.0.0 (https://coreui.io)
   * Copyright 2021 The CoreUI Team (https://github.com/orgs/coreui/people)
   * Licensed under MIT (https://coreui.io)
   */
@@ -7,7 +7,7 @@ import * as Popper from '@popperjs/core';
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): dom/selector-engine.js
+ * CoreUI (v4.0.0): dom/selector-engine.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's  dom/selector-engine.js
@@ -81,7 +81,7 @@ const SelectorEngine = {
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): alert.js
+ * CoreUI (v4.0.0): alert.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's  util/index.js
@@ -206,24 +206,6 @@ const getElement = obj => {
   return null;
 };
 
-const emulateTransitionEnd = (element, duration) => {
-  let called = false;
-  const durationPadding = 5;
-  const emulatedDuration = duration + durationPadding;
-
-  function listener() {
-    called = true;
-    element.removeEventListener(TRANSITION_END, listener);
-  }
-
-  element.addEventListener(TRANSITION_END, listener);
-  setTimeout(() => {
-    if (!called) {
-      triggerTransitionEnd(element);
-    }
-  }, emulatedDuration);
-};
-
 const typeCheckConfig = (componentName, config, configTypes) => {
   Object.keys(configTypes).forEach(property => {
     const expectedTypes = configTypes[property];
@@ -292,16 +274,25 @@ const getjQuery = () => {
     jQuery
   } = window;
 
-  if (jQuery && !document.body.hasAttribute('data-bs-no-jquery')) {
+  if (jQuery && !document.body.hasAttribute('data-coreui-no-jquery')) {
     return jQuery;
   }
 
   return null;
 };
 
+const DOMContentLoadedCallbacks = [];
+
 const onDOMContentLoaded = callback => {
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', callback);
+    // add listener on the first call when the document is in loading state
+    if (!DOMContentLoadedCallbacks.length) {
+      document.addEventListener('DOMContentLoaded', () => {
+        DOMContentLoadedCallbacks.forEach(callback => callback());
+      });
+    }
+
+    DOMContentLoadedCallbacks.push(callback);
   } else {
     callback();
   }
@@ -333,6 +324,36 @@ const execute = callback => {
     callback();
   }
 };
+
+const executeAfterTransition = (callback, transitionElement, waitForTransition = true) => {
+  if (!waitForTransition) {
+    execute(callback);
+    return;
+  }
+
+  const durationPadding = 5;
+  const emulatedDuration = getTransitionDurationFromElement(transitionElement) + durationPadding;
+  let called = false;
+
+  const handler = ({
+    target
+  }) => {
+    if (target !== transitionElement) {
+      return;
+    }
+
+    called = true;
+    transitionElement.removeEventListener(TRANSITION_END, handler);
+    execute(callback);
+  };
+
+  transitionElement.addEventListener(TRANSITION_END, handler);
+  setTimeout(() => {
+    if (!called) {
+      triggerTransitionEnd(transitionElement);
+    }
+  }, emulatedDuration);
+};
 /**
  * Return the previous/next element of a list.
  *
@@ -363,64 +384,7 @@ const getNextActiveElement = (list, activeElement, shouldGetNext, isCycleAllowed
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): dom/data.js
- * Licensed under MIT (https://coreui.io/license)
- *
- * This component is a modified version of the Bootstrap's dom/data.js
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- * --------------------------------------------------------------------------
- */
-
-/**
- * ------------------------------------------------------------------------
- * Constants
- * ------------------------------------------------------------------------
- */
-const elementMap = new Map();
-var Data = {
-  set(element, key, instance) {
-    if (!elementMap.has(element)) {
-      elementMap.set(element, new Map());
-    }
-
-    const instanceMap = elementMap.get(element); // make it clear we only want one instance per element
-    // can be removed later when multiple key/instances are fine to be used
-
-    if (!instanceMap.has(key) && instanceMap.size !== 0) {
-      // eslint-disable-next-line no-console
-      console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
-      return;
-    }
-
-    instanceMap.set(key, instance);
-  },
-
-  get(element, key) {
-    if (elementMap.has(element)) {
-      return elementMap.get(element).get(key) || null;
-    }
-
-    return null;
-  },
-
-  remove(element, key) {
-    if (!elementMap.has(element)) {
-      return;
-    }
-
-    const instanceMap = elementMap.get(element);
-    instanceMap.delete(key); // free up element references if there are no instances left for an element
-
-    if (instanceMap.size === 0) {
-      elementMap.delete(element);
-    }
-  }
-
-};
-
-/**
- * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): dom/event-handler.js
+ * CoreUI (v4.0.0): dom/event-handler.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's  dom/event-handler.js
@@ -712,7 +676,64 @@ const EventHandler = {
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): alert.js
+ * CoreUI (v4.0.0): dom/data.js
+ * Licensed under MIT (https://coreui.io/license)
+ *
+ * This component is a modified version of the Bootstrap's dom/data.js
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * --------------------------------------------------------------------------
+ */
+
+/**
+ * ------------------------------------------------------------------------
+ * Constants
+ * ------------------------------------------------------------------------
+ */
+const elementMap = new Map();
+var Data = {
+  set(element, key, instance) {
+    if (!elementMap.has(element)) {
+      elementMap.set(element, new Map());
+    }
+
+    const instanceMap = elementMap.get(element); // make it clear we only want one instance per element
+    // can be removed later when multiple key/instances are fine to be used
+
+    if (!instanceMap.has(key) && instanceMap.size !== 0) {
+      // eslint-disable-next-line no-console
+      console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
+      return;
+    }
+
+    instanceMap.set(key, instance);
+  },
+
+  get(element, key) {
+    if (elementMap.has(element)) {
+      return elementMap.get(element).get(key) || null;
+    }
+
+    return null;
+  },
+
+  remove(element, key) {
+    if (!elementMap.has(element)) {
+      return;
+    }
+
+    const instanceMap = elementMap.get(element);
+    instanceMap.delete(key); // free up element references if there are no instances left for an element
+
+    if (instanceMap.size === 0) {
+      elementMap.delete(element);
+    }
+  }
+
+};
+
+/**
+ * --------------------------------------------------------------------------
+ * CoreUI (v4.0.0): alert.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's base-component.js
@@ -725,7 +746,7 @@ const EventHandler = {
  * ------------------------------------------------------------------------
  */
 
-const VERSION = '4.0.0-rc.5';
+const VERSION = '4.0.0';
 
 class BaseComponent {
   constructor(element) {
@@ -748,20 +769,17 @@ class BaseComponent {
   }
 
   _queueCallback(callback, element, isAnimated = true) {
-    if (!isAnimated) {
-      execute(callback);
-      return;
-    }
-
-    const transitionDuration = getTransitionDurationFromElement(element);
-    EventHandler.one(element, 'transitionend', () => execute(callback));
-    emulateTransitionEnd(element, transitionDuration);
+    executeAfterTransition(callback, element, isAnimated);
   }
   /** Static */
 
 
   static getInstance(element) {
     return Data.get(element, this.DATA_KEY);
+  }
+
+  static getOrCreateInstance(element, config = {}) {
+    return this.getInstance(element) || new this(element, typeof config === 'object' ? config : null);
   }
 
   static get VERSION() {
@@ -784,7 +802,7 @@ class BaseComponent {
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): alert.js
+ * CoreUI (v4.0.0): alert.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's alert.js
@@ -850,21 +868,14 @@ class Alert extends BaseComponent {
   }
 
   _destroyElement(element) {
-    if (element.parentNode) {
-      element.parentNode.removeChild(element);
-    }
-
+    element.remove();
     EventHandler.trigger(element, EVENT_CLOSED);
   } // Static
 
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.get(this, DATA_KEY$f);
-
-      if (!data) {
-        data = new Alert(this);
-      }
+      const data = Alert.getOrCreateInstance(this);
 
       if (config === 'close') {
         data[config](this);
@@ -902,7 +913,7 @@ defineJQueryPlugin(Alert);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): alert.js
+ * CoreUI (v4.0.0): alert.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's button.js
@@ -943,11 +954,7 @@ class Button extends BaseComponent {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.get(this, DATA_KEY$e);
-
-      if (!data) {
-        data = new Button(this);
-      }
+      const data = Button.getOrCreateInstance(this);
 
       if (config === 'toggle') {
         data[config]();
@@ -966,12 +973,7 @@ class Button extends BaseComponent {
 EventHandler.on(document, EVENT_CLICK_DATA_API$9, SELECTOR_DATA_TOGGLE$6, event => {
   event.preventDefault();
   const button = event.target.closest(SELECTOR_DATA_TOGGLE$6);
-  let data = Data.get(button, DATA_KEY$e);
-
-  if (!data) {
-    data = new Button(button);
-  }
-
+  const data = Button.getOrCreateInstance(button);
   data.toggle();
 });
 /**
@@ -985,7 +987,7 @@ defineJQueryPlugin(Button);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): dom/manipulator.js
+ * CoreUI (v4.0.0): dom/manipulator.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's  dom/manipulator.js
@@ -1062,7 +1064,7 @@ const Manipulator = {
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): carousel.js
+ * CoreUI (v4.0.0): carousel.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's carousel.js
@@ -1104,6 +1106,10 @@ const ORDER_NEXT = 'next';
 const ORDER_PREV = 'prev';
 const DIRECTION_LEFT = 'left';
 const DIRECTION_RIGHT = 'right';
+const KEY_TO_DIRECTION = {
+  [ARROW_LEFT_KEY]: DIRECTION_RIGHT,
+  [ARROW_RIGHT_KEY]: DIRECTION_LEFT
+};
 const EVENT_SLIDE = `slide${EVENT_KEY$d}`;
 const EVENT_SLID = `slid${EVENT_KEY$d}`;
 const EVENT_KEYDOWN$1 = `keydown${EVENT_KEY$d}`;
@@ -1172,9 +1178,7 @@ class Carousel extends BaseComponent {
 
 
   next() {
-    if (!this._isSliding) {
-      this._slide(ORDER_NEXT);
-    }
+    this._slide(ORDER_NEXT);
   }
 
   nextWhenVisible() {
@@ -1186,9 +1190,7 @@ class Carousel extends BaseComponent {
   }
 
   prev() {
-    if (!this._isSliding) {
-      this._slide(ORDER_PREV);
-    }
+    this._slide(ORDER_PREV);
   }
 
   pause(event) {
@@ -1250,7 +1252,8 @@ class Carousel extends BaseComponent {
 
   _getConfig(config) {
     config = { ...Default$d,
-      ...config
+      ...Manipulator.getDataAttributes(this._element),
+      ...(typeof config === 'object' ? config : {})
     };
     typeCheckConfig(NAME$e, config, DefaultType$d);
     return config;
@@ -1348,14 +1351,12 @@ class Carousel extends BaseComponent {
       return;
     }
 
-    if (event.key === ARROW_LEFT_KEY) {
+    const direction = KEY_TO_DIRECTION[event.key];
+
+    if (direction) {
       event.preventDefault();
 
-      this._slide(DIRECTION_RIGHT);
-    } else if (event.key === ARROW_RIGHT_KEY) {
-      event.preventDefault();
-
-      this._slide(DIRECTION_LEFT);
+      this._slide(direction);
     }
   }
 
@@ -1436,6 +1437,10 @@ class Carousel extends BaseComponent {
 
     if (nextElement && nextElement.classList.contains(CLASS_NAME_ACTIVE$3)) {
       this._isSliding = false;
+      return;
+    }
+
+    if (this._isSliding) {
       return;
     }
 
@@ -1522,10 +1527,10 @@ class Carousel extends BaseComponent {
 
 
   static carouselInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$d);
-    let _config = { ...Default$d,
-      ...Manipulator.getDataAttributes(element)
-    };
+    const data = Carousel.getOrCreateInstance(element, config);
+    let {
+      _config
+    } = data;
 
     if (typeof config === 'object') {
       _config = { ..._config,
@@ -1534,10 +1539,6 @@ class Carousel extends BaseComponent {
     }
 
     const action = typeof config === 'string' ? config : _config.slide;
-
-    if (!data) {
-      data = new Carousel(element, _config);
-    }
 
     if (typeof config === 'number') {
       data.to(config);
@@ -1578,7 +1579,7 @@ class Carousel extends BaseComponent {
     Carousel.carouselInterface(target, config);
 
     if (slideIndex) {
-      Data.get(target, DATA_KEY$d).to(slideIndex);
+      Carousel.getInstance(target).to(slideIndex);
     }
 
     event.preventDefault();
@@ -1597,7 +1598,7 @@ EventHandler.on(window, EVENT_LOAD_DATA_API$5, () => {
   const carousels = SelectorEngine.find(SELECTOR_DATA_RIDE);
 
   for (let i = 0, len = carousels.length; i < len; i++) {
-    Carousel.carouselInterface(carousels[i], Data.get(carousels[i], DATA_KEY$d));
+    Carousel.carouselInterface(carousels[i], Carousel.getInstance(carousels[i]));
   }
 });
 /**
@@ -1611,7 +1612,7 @@ defineJQueryPlugin(Carousel);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): collapse.js
+ * CoreUI (v4.0.0): collapse.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's collapse.js
@@ -1730,7 +1731,7 @@ class Collapse extends BaseComponent {
 
     if (actives) {
       const tempActiveData = actives.find(elem => container !== elem);
-      activesData = tempActiveData ? Data.get(tempActiveData, DATA_KEY$c) : null;
+      activesData = tempActiveData ? Collapse.getInstance(tempActiveData) : null;
 
       if (activesData && activesData._isTransitioning) {
         return;
@@ -1893,7 +1894,7 @@ class Collapse extends BaseComponent {
 
 
   static collapseInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$c);
+    let data = Collapse.getInstance(element);
     const _config = { ...Default$c,
       ...Manipulator.getDataAttributes(element),
       ...(typeof config === 'object' && config ? config : {})
@@ -1940,7 +1941,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$7, SELECTOR_DATA_TOGGLE$5, functi
   const selector = getSelectorFromElement(this);
   const selectorElements = SelectorEngine.find(selector);
   selectorElements.forEach(element => {
-    const data = Data.get(element, DATA_KEY$c);
+    const data = Collapse.getInstance(element);
     let config;
 
     if (data) {
@@ -1969,7 +1970,7 @@ defineJQueryPlugin(Collapse);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): dropdown.js
+ * CoreUI (v4.0.0): dropdown.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's dropdown.js
@@ -2309,13 +2310,7 @@ class Dropdown extends BaseComponent {
 
 
   static dropdownInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$b);
-
-    const _config = typeof config === 'object' ? config : null;
-
-    if (!data) {
-      data = new Dropdown(element, _config);
-    }
+    const data = Dropdown.getOrCreateInstance(element, config);
 
     if (typeof config === 'string') {
       if (typeof data[config] === 'undefined') {
@@ -2340,7 +2335,7 @@ class Dropdown extends BaseComponent {
     const toggles = SelectorEngine.find(SELECTOR_DATA_TOGGLE$4);
 
     for (let i = 0, len = toggles.length; i < len; i++) {
-      const context = Data.get(toggles[i], DATA_KEY$b);
+      const context = Dropdown.getInstance(toggles[i]);
 
       if (!context || context._config.autoClose === false) {
         continue;
@@ -2455,7 +2450,7 @@ defineJQueryPlugin(Dropdown);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.1): loading-button.js
+ * CoreUI (v4.0.0): loading-button.js
  * Licensed under MIT (https://coreui.io/license)
  */
 /**
@@ -2467,29 +2462,21 @@ defineJQueryPlugin(Dropdown);
 const NAME$b = 'loading-button';
 const DATA_KEY$a = 'coreui.loading-button';
 const EVENT_KEY$a = `.${DATA_KEY$a}`;
-const MAX_PERCENT = 100;
-const MILLISECONDS = 10;
-const PROGRESS_BAR_BG_COLOR_LIGHT = 'rgba(255, 255, 255, .2)';
-const PROGRESS_BAR_BG_COLOR_DARK = 'rgba(0, 0, 0, .2)';
 const EVENT_START = `start${EVENT_KEY$a}`;
 const EVENT_STOP = `stop${EVENT_KEY$a}`;
-const EVENT_COMPLETE = `complete${EVENT_KEY$a}`;
 const CLASS_NAME_IS_LOADING = 'is-loading';
-const CLASS_NAME_LOADING_BUTTON_PROGRESS = 'btn-loading-progress';
 const CLASS_NAME_LOADING_BUTTON_SPINNER = 'btn-loading-spinner';
 const Default$a = {
-  percent: 0,
-  progress: false,
+  disabledOnLoading: false,
   spinner: true,
   spinnerType: 'border',
-  timeout: 1000
+  timeout: false
 };
 const DefaultType$a = {
-  percent: 'number',
-  progress: 'boolean',
+  disabledOnLoading: 'boolean',
   spinner: 'boolean',
   spinnerType: 'string',
-  timeout: 'number'
+  timeout: '(boolean|number)'
 };
 /**
  * ------------------------------------------------------------------------
@@ -2501,10 +2488,7 @@ class LoadingButton extends BaseComponent {
   constructor(element, config) {
     super(element);
     this._config = this._getConfig(config);
-    this._pause = false;
-    this._percent = this._config.percent;
     this._timeout = this._config.timeout;
-    this._progressBar = null;
     this._spinner = null;
     this._state = 'idle';
 
@@ -2535,15 +2519,22 @@ class LoadingButton extends BaseComponent {
     if (this._state !== 'loading') {
       this._createSpinner();
 
-      this._createProgressBar();
-
+      this._state = 'loading';
       setTimeout(() => {
         this._element.classList.add(CLASS_NAME_IS_LOADING);
 
-        this._loading();
-
         EventHandler.trigger(this._element, EVENT_START);
+
+        if (this._config.disabledOnLoading) {
+          this._element.setAttribute('disabled', true);
+        }
       }, 1);
+
+      if (this._config.timeout) {
+        setTimeout(() => {
+          this.stop();
+        }, this._config.timeout);
+      }
     }
   }
 
@@ -2553,48 +2544,22 @@ class LoadingButton extends BaseComponent {
     const stoped = () => {
       this._removeSpinner();
 
-      this._removeProgressBar();
-
       this._state = 'idle';
-      EventHandler.trigger(this._element, EVENT_STOP);
 
-      if (this._percent >= 100) {
-        EventHandler.trigger(this._element, EVENT_COMPLETE);
+      if (this._config.disabledOnLoading) {
+        this._element.removeAttribute('disabled');
       }
 
-      this._percent = this._config.percent;
-      this._timeout = this._config.timeout;
+      EventHandler.trigger(this._element, EVENT_STOP);
     };
 
     if (this._spinner) {
-      const transitionDuration = getTransitionDurationFromElement(this._spinner);
-      EventHandler.one(this._spinner, 'transitionend', stoped);
-      emulateTransitionEnd(this._spinner, transitionDuration);
+      this._queueCallback(stoped, this._spinner, true);
+
       return;
     }
 
     stoped();
-  }
-
-  pause() {
-    this._pause = true;
-    this._state = 'pause';
-  }
-
-  resume() {
-    this._pause = false;
-
-    this._loading();
-  }
-
-  complete() {
-    this._timeout = 1000;
-  }
-
-  updatePercent(percent) {
-    const diff = (this._percent - percent) / 100;
-    this._timeout *= 1 + diff;
-    this._percent = percent;
   }
 
   dispose() {
@@ -2602,54 +2567,13 @@ class LoadingButton extends BaseComponent {
     this._element = null;
   }
 
-  update(config) {
-    this._config = this._getConfig(config);
-  }
-
   _getConfig(config) {
     config = { ...Default$a,
       ...Manipulator.getDataAttributes(this._element),
-      ...config
+      ...(typeof config === 'object' ? config : {})
     };
     typeCheckConfig(NAME$b, config, DefaultType$a);
     return config;
-  }
-
-  _loading() {
-    const progress = setInterval(() => {
-      this._state = 'loading';
-
-      if (this._percent >= MAX_PERCENT) {
-        this.stop();
-        clearInterval(progress);
-        return;
-      }
-
-      if (this._pause) {
-        clearInterval(progress);
-        return;
-      }
-
-      const frames = this._timeout / (MAX_PERCENT - this._percent) / MILLISECONDS;
-      this._percent = Math.round((this._percent + 1 / frames) * 100) / 100;
-      this._timeout -= MILLISECONDS;
-
-      this._animateProgressBar();
-    }, MILLISECONDS);
-  }
-
-  _createProgressBar() {
-    if (this._config.progress) {
-      const progress = document.createElement('div');
-      progress.classList.add(CLASS_NAME_LOADING_BUTTON_PROGRESS);
-      progress.setAttribute('role', 'progressbar');
-      progress.setAttribute('aria-hidden', 'true');
-      progress.style.backgroundColor = this._progressBarBg();
-
-      this._element.insertBefore(progress, this._element.firstChild);
-
-      this._progressBar = progress;
-    }
   }
 
   _createSpinner() {
@@ -2666,61 +2590,17 @@ class LoadingButton extends BaseComponent {
     }
   }
 
-  _removeProgressBar() {
-    if (this._config.progress) {
-      this._progressBar.remove();
-
-      this._progressBar = null;
-    }
-  }
-
   _removeSpinner() {
     if (this._config.spinner) {
       this._spinner.remove();
 
       this._spinner = null;
     }
-  }
-
-  _progressBarBg() {
-    // The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
-    const yiqContrastedThreshold = 150;
-    const color = window.getComputedStyle(this._element).getPropertyValue('background-color') === 'rgba(0, 0, 0, 0)' ? 'rgb(255, 255, 255)' : window.getComputedStyle(this._element).getPropertyValue('background-color');
-    const rgb = color.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-    const r = Number.parseInt(rgb[1], 10);
-    const g = Number.parseInt(rgb[2], 10);
-    const b = Number.parseInt(rgb[3], 10);
-    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
-
-    if (yiq > yiqContrastedThreshold) {
-      return PROGRESS_BAR_BG_COLOR_DARK;
-    }
-
-    return PROGRESS_BAR_BG_COLOR_LIGHT;
-  }
-
-  _animateProgressBar() {
-    if (this._config.progress) {
-      this._progressBar.style.width = `${this._percent}%`;
-    }
   } // Static
 
 
   static loadingButtonInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$a);
-    let _config = { ...Default$a,
-      ...Manipulator.getDataAttributes(element)
-    };
-
-    if (typeof config === 'object') {
-      _config = { ..._config,
-        ...config
-      };
-    }
-
-    if (!data) {
-      data = new LoadingButton(element, _config);
-    }
+    const data = LoadingButton.getOrCreateInstance(element, config);
 
     if (typeof config === 'string') {
       if (typeof data[config] === 'undefined') {
@@ -2750,85 +2630,111 @@ defineJQueryPlugin(LoadingButton);
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.1): util/scrollBar.js
+ * Bootstrap (v5.0.2): util/scrollBar.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
 const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
 const SELECTOR_STICKY_CONTENT = '.sticky-top';
 
-const getWidth = () => {
-  // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
-  const documentWidth = document.documentElement.clientWidth;
-  return Math.abs(window.innerWidth - documentWidth);
-};
-
-const hide = (width = getWidth()) => {
-  _disableOverFlow(); // give padding to element to balances the hidden scrollbar width
-
-
-  _setElementAttributes('body', 'paddingRight', calculatedValue => calculatedValue + width); // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements, to keep shown fullwidth
-
-
-  _setElementAttributes(SELECTOR_FIXED_CONTENT, 'paddingRight', calculatedValue => calculatedValue + width);
-
-  _setElementAttributes(SELECTOR_STICKY_CONTENT, 'marginRight', calculatedValue => calculatedValue - width);
-};
-
-const _disableOverFlow = () => {
-  const actualValue = document.body.style.overflow;
-
-  if (actualValue) {
-    Manipulator.setDataAttribute(document.body, 'overflow', actualValue);
+class ScrollBarHelper {
+  constructor() {
+    this._element = document.body;
   }
 
-  document.body.style.overflow = 'hidden';
-};
+  getWidth() {
+    // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
+    const documentWidth = document.documentElement.clientWidth;
+    return Math.abs(window.innerWidth - documentWidth);
+  }
 
-const _setElementAttributes = (selector, styleProp, callback) => {
-  const scrollbarWidth = getWidth();
-  SelectorEngine.find(selector).forEach(element => {
-    if (element !== document.body && window.innerWidth > element.clientWidth + scrollbarWidth) {
-      return;
-    }
+  hide() {
+    const width = this.getWidth();
 
+    this._disableOverFlow(); // give padding to element to balance the hidden scrollbar width
+
+
+    this._setElementAttributes(this._element, 'paddingRight', calculatedValue => calculatedValue + width); // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
+
+
+    this._setElementAttributes(SELECTOR_FIXED_CONTENT, 'paddingRight', calculatedValue => calculatedValue + width);
+
+    this._setElementAttributes(SELECTOR_STICKY_CONTENT, 'marginRight', calculatedValue => calculatedValue - width);
+  }
+
+  _disableOverFlow() {
+    this._saveInitialAttribute(this._element, 'overflow');
+
+    this._element.style.overflow = 'hidden';
+  }
+
+  _setElementAttributes(selector, styleProp, callback) {
+    const scrollbarWidth = this.getWidth();
+
+    const manipulationCallBack = element => {
+      if (element !== this._element && window.innerWidth > element.clientWidth + scrollbarWidth) {
+        return;
+      }
+
+      this._saveInitialAttribute(element, styleProp);
+
+      const calculatedValue = window.getComputedStyle(element)[styleProp];
+      element.style[styleProp] = `${callback(Number.parseFloat(calculatedValue))}px`;
+    };
+
+    this._applyManipulationCallback(selector, manipulationCallBack);
+  }
+
+  reset() {
+    this._resetElementAttributes(this._element, 'overflow');
+
+    this._resetElementAttributes(this._element, 'paddingRight');
+
+    this._resetElementAttributes(SELECTOR_FIXED_CONTENT, 'paddingRight');
+
+    this._resetElementAttributes(SELECTOR_STICKY_CONTENT, 'marginRight');
+  }
+
+  _saveInitialAttribute(element, styleProp) {
     const actualValue = element.style[styleProp];
 
     if (actualValue) {
       Manipulator.setDataAttribute(element, styleProp, actualValue);
     }
+  }
 
-    const calculatedValue = window.getComputedStyle(element)[styleProp];
-    element.style[styleProp] = `${callback(Number.parseFloat(calculatedValue))}px`;
-  });
-};
+  _resetElementAttributes(selector, styleProp) {
+    const manipulationCallBack = element => {
+      const value = Manipulator.getDataAttribute(element, styleProp);
 
-const reset = () => {
-  _resetElementAttributes('body', 'overflow');
+      if (typeof value === 'undefined') {
+        element.style.removeProperty(styleProp);
+      } else {
+        Manipulator.removeDataAttribute(element, styleProp);
+        element.style[styleProp] = value;
+      }
+    };
 
-  _resetElementAttributes('body', 'paddingRight');
+    this._applyManipulationCallback(selector, manipulationCallBack);
+  }
 
-  _resetElementAttributes(SELECTOR_FIXED_CONTENT, 'paddingRight');
-
-  _resetElementAttributes(SELECTOR_STICKY_CONTENT, 'marginRight');
-};
-
-const _resetElementAttributes = (selector, styleProp) => {
-  SelectorEngine.find(selector).forEach(element => {
-    const value = Manipulator.getDataAttribute(element, styleProp);
-
-    if (typeof value === 'undefined') {
-      element.style.removeProperty(styleProp);
+  _applyManipulationCallback(selector, callBack) {
+    if (isElement(selector)) {
+      callBack(selector);
     } else {
-      Manipulator.removeDataAttribute(element, styleProp);
-      element.style[styleProp] = value;
+      SelectorEngine.find(selector, this._element).forEach(callBack);
     }
-  });
-};
+  }
+
+  isOverflowing() {
+    return this.getWidth() > 0;
+  }
+
+}
 
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.0.1): util/backdrop.js
+ * Bootstrap (v5.0.2): util/backdrop.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * --------------------------------------------------------------------------
  */
@@ -2836,14 +2742,14 @@ const Default$9 = {
   isVisible: true,
   // if false, we use the backdrop helper without adding any element to the dom
   isAnimated: false,
-  rootElement: document.body,
+  rootElement: 'body',
   // give the choice to place backdrop under different elements
   clickCallback: null
 };
 const DefaultType$9 = {
   isVisible: 'boolean',
   isAnimated: 'boolean',
-  rootElement: 'element',
+  rootElement: '(element|string)',
   clickCallback: '(function|null)'
 };
 const NAME$a = 'backdrop';
@@ -2911,8 +2817,9 @@ class Backdrop {
   _getConfig(config) {
     config = { ...Default$9,
       ...(typeof config === 'object' ? config : {})
-    };
-    config.rootElement = config.rootElement || document.body;
+    }; // use getElement() with the default "body" to get a fresh Element on each instantiation
+
+    config.rootElement = getElement(config.rootElement);
     typeCheckConfig(NAME$a, config, DefaultType$9);
     return config;
   }
@@ -2937,33 +2844,20 @@ class Backdrop {
 
     EventHandler.off(this._element, EVENT_MOUSEDOWN);
 
-    const {
-      parentNode
-    } = this._getElement();
-
-    if (parentNode) {
-      parentNode.removeChild(this._element);
-    }
+    this._element.remove();
 
     this._isAppended = false;
   }
 
   _emulateAnimation(callback) {
-    if (!this._config.isAnimated) {
-      execute(callback);
-      return;
-    }
-
-    const backdropTransitionDuration = getTransitionDurationFromElement(this._getElement());
-    EventHandler.one(this._getElement(), 'transitionend', () => execute(callback));
-    emulateTransitionEnd(this._getElement(), backdropTransitionDuration);
+    executeAfterTransition(callback, this._getElement(), this._config.isAnimated);
   }
 
 }
 
 /**
  * --------------------------------------------------------------------------
-  * CoreUI (v4.0.0-rc.5): modal.js
+  * CoreUI (v4.0.0): modal.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's modal.js
@@ -2997,7 +2891,7 @@ const EVENT_HIDDEN$5 = `hidden${EVENT_KEY$9}`;
 const EVENT_SHOW$5 = `show${EVENT_KEY$9}`;
 const EVENT_SHOWN$5 = `shown${EVENT_KEY$9}`;
 const EVENT_FOCUSIN$2 = `focusin${EVENT_KEY$9}`;
-const EVENT_RESIZE = `resize${EVENT_KEY$9}`;
+const EVENT_RESIZE$1 = `resize${EVENT_KEY$9}`;
 const EVENT_CLICK_DISMISS$2 = `click.dismiss${EVENT_KEY$9}`;
 const EVENT_KEYDOWN_DISMISS$1 = `keydown.dismiss${EVENT_KEY$9}`;
 const EVENT_MOUSEUP_DISMISS = `mouseup.dismiss${EVENT_KEY$9}`;
@@ -3026,6 +2920,7 @@ class Modal extends BaseComponent {
     this._isShown = false;
     this._ignoreBackdropClick = false;
     this._isTransitioning = false;
+    this._scrollBar = new ScrollBarHelper();
   } // Getters
 
 
@@ -3047,20 +2942,22 @@ class Modal extends BaseComponent {
       return;
     }
 
-    if (this._isAnimated()) {
-      this._isTransitioning = true;
-    }
-
     const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$5, {
       relatedTarget
     });
 
-    if (this._isShown || showEvent.defaultPrevented) {
+    if (showEvent.defaultPrevented) {
       return;
     }
 
     this._isShown = true;
-    hide();
+
+    if (this._isAnimated()) {
+      this._isTransitioning = true;
+    }
+
+    this._scrollBar.hide();
+
     document.body.classList.add(CLASS_NAME_OPEN);
 
     this._adjustDialog();
@@ -3149,7 +3046,7 @@ class Modal extends BaseComponent {
   _getConfig(config) {
     config = { ...Default$8,
       ...Manipulator.getDataAttributes(this._element),
-      ...config
+      ...(typeof config === 'object' ? config : {})
     };
     typeCheckConfig(NAME$9, config, DefaultType$8);
     return config;
@@ -3230,9 +3127,9 @@ class Modal extends BaseComponent {
 
   _setResizeEvent() {
     if (this._isShown) {
-      EventHandler.on(window, EVENT_RESIZE, () => this._adjustDialog());
+      EventHandler.on(window, EVENT_RESIZE$1, () => this._adjustDialog());
     } else {
-      EventHandler.off(window, EVENT_RESIZE);
+      EventHandler.off(window, EVENT_RESIZE$1);
     }
   }
 
@@ -3252,7 +3149,8 @@ class Modal extends BaseComponent {
 
       this._resetAdjustments();
 
-      reset();
+      this._scrollBar.reset();
+
       EventHandler.trigger(this._element, EVENT_HIDDEN$5);
     });
   }
@@ -3289,27 +3187,32 @@ class Modal extends BaseComponent {
       return;
     }
 
-    const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+    const {
+      classList,
+      scrollHeight,
+      style
+    } = this._element;
+    const isModalOverflowing = scrollHeight > document.documentElement.clientHeight; // return if the following background transition hasn't yet completed
 
-    if (!isModalOverflowing) {
-      this._element.style.overflowY = 'hidden';
+    if (!isModalOverflowing && style.overflowY === 'hidden' || classList.contains(CLASS_NAME_STATIC)) {
+      return;
     }
 
-    this._element.classList.add(CLASS_NAME_STATIC);
+    if (!isModalOverflowing) {
+      style.overflowY = 'hidden';
+    }
 
-    const modalTransitionDuration = getTransitionDurationFromElement(this._dialog);
-    EventHandler.off(this._element, 'transitionend');
-    EventHandler.one(this._element, 'transitionend', () => {
-      this._element.classList.remove(CLASS_NAME_STATIC);
+    classList.add(CLASS_NAME_STATIC);
+
+    this._queueCallback(() => {
+      classList.remove(CLASS_NAME_STATIC);
 
       if (!isModalOverflowing) {
-        EventHandler.one(this._element, 'transitionend', () => {
-          this._element.style.overflowY = '';
-        });
-        emulateTransitionEnd(this._element, modalTransitionDuration);
+        this._queueCallback(() => {
+          style.overflowY = '';
+        }, this._dialog);
       }
-    });
-    emulateTransitionEnd(this._element, modalTransitionDuration);
+    }, this._dialog);
 
     this._element.focus();
   } // ----------------------------------------------------------------------
@@ -3319,7 +3222,9 @@ class Modal extends BaseComponent {
 
   _adjustDialog() {
     const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
-    const scrollbarWidth = getWidth();
+
+    const scrollbarWidth = this._scrollBar.getWidth();
+
     const isBodyOverflowing = scrollbarWidth > 0;
 
     if (!isBodyOverflowing && isModalOverflowing && !isRTL() || isBodyOverflowing && !isModalOverflowing && isRTL()) {
@@ -3339,7 +3244,7 @@ class Modal extends BaseComponent {
 
   static jQueryInterface(config, relatedTarget) {
     return this.each(function () {
-      const data = Modal.getInstance(this) || new Modal(this, typeof config === 'object' ? config : {});
+      const data = Modal.getOrCreateInstance(this, config);
 
       if (typeof config !== 'string') {
         return;
@@ -3380,7 +3285,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_TOGGLE$3, functi
       }
     });
   });
-  const data = Modal.getInstance(target) || new Modal(target);
+  const data = Modal.getOrCreateInstance(target);
   data.toggle(this);
 });
 /**
@@ -3394,7 +3299,7 @@ defineJQueryPlugin(Modal);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI PRO (v4.0.0-rc.1): multi-select.js
+ * CoreUI PRO (v4.0.0): multi-select.js
  * License (https://coreui.io/pro/license)
  * --------------------------------------------------------------------------
  */
@@ -3404,8 +3309,8 @@ defineJQueryPlugin(Modal);
  * ------------------------------------------------------------------------
  */
 
-const NAME$8 = 'mutli-select';
-const DATA_KEY$8 = 'coreui.mutli-select';
+const NAME$8 = 'multi-select';
+const DATA_KEY$8 = 'coreui.multi-select';
 const EVENT_KEY$8 = `.${DATA_KEY$8}`;
 const DATA_API_KEY$5 = '.data-api';
 const TAB_KEY = 'Tab';
@@ -3416,7 +3321,6 @@ const SELECTOR_OPTION = '.form-multi-select-option';
 const SELECTOR_OPTIONS = '.form-multi-select-options';
 const SELECTOR_OPTIONS_EMPTY = '.form-multi-select-options-empty';
 const SELECTOR_SELECT = '.form-multi-select';
-const SELECTOR_SELECTED = '.form-multi-selected';
 const SELECTOR_SELECTION = '.form-multi-select-selection';
 const SELECTOR_SELECTION_CLEANER = '.form-multi-select-selection-cleaner';
 const EVENT_CHANGED = `changed${EVENT_KEY$8}`;
@@ -3431,12 +3335,16 @@ const EVENT_SHOWN$4 = `showN${EVENT_KEY$8}`;
 const EVENT_CLICK_DATA_API$4 = `click${EVENT_KEY$8}${DATA_API_KEY$5}`;
 const EVENT_KEYUP_DATA_API = `keyup${EVENT_KEY$8}${DATA_API_KEY$5}`;
 const EVENT_LOAD_DATA_API$4 = `load${EVENT_KEY$8}${DATA_API_KEY$5}`;
+const CLASS_NAME_DISABLED = 'disabled';
 const CLASS_NAME_SELECT = 'form-multi-select';
-const CLASS_NAME_SELECT_INLINE = 'form-multi-select-inline';
+const CLASS_NAME_SELECT_DROPDOWN = 'form-multi-select-dropdown';
 const CLASS_NAME_SELECT_MULTIPLE = 'form-multi-select-multiple';
+const CLASS_NAME_SELECT_WITH_CLEANER = 'form-multi-select-with-cleaner';
+const CLASS_NAME_SELECT_ALL = 'form-multi-select-all';
 const CLASS_NAME_OPTGROUP = 'form-multi-select-optgroup';
 const CLASS_NAME_OPTGROUP_LABEL = 'form-multi-select-optgroup-label';
 const CLASS_NAME_OPTION = 'form-multi-select-option';
+const CLASS_NAME_OPTION_WITH_CHECKBOX = 'form-multi-select-option-with-checkbox';
 const CLASS_NAME_OPTIONS = 'form-multi-select-options';
 const CLASS_NAME_OPTIONS_EMPTY = 'form-multi-select-options-empty';
 const CLASS_NAME_SEARCH = 'form-multi-select-search';
@@ -3449,24 +3357,30 @@ const CLASS_NAME_TAG = 'form-multi-select-tag';
 const CLASS_NAME_TAG_DELETE = 'form-multi-select-tag-delete';
 const CLASS_NAME_LABEL = 'label';
 const Default$7 = {
-  inline: false,
+  cleaner: true,
   multiple: true,
+  placeholder: 'Select...',
   options: false,
-  optionsEmptyPlaceholder: 'no items',
+  optionsMaxHeight: 'auto',
+  optionsStyle: 'checkbox',
   search: false,
-  searchPlaceholder: 'Select...',
-  selection: true,
-  selectionType: 'counter',
+  searchNoResultsLabel: 'No results found',
+  selectAll: true,
+  selectAllLabel: 'Select all options',
+  selectionType: 'tags',
   selectionTypeCounterText: 'item(s) selected'
 };
 const DefaultType$7 = {
-  inline: 'boolean',
+  cleaner: 'boolean',
   multiple: 'boolean',
+  placeholder: 'string',
   options: '(boolean|array)',
-  optionsEmptyPlaceholder: 'string',
+  optionsMaxHeight: '(number|string)',
+  optionsStyle: 'string',
   search: 'boolean',
-  searchPlaceholder: 'string',
-  selection: 'boolean',
+  searchNoResultsLabel: 'string',
+  selectAll: 'boolean',
+  selectAllLabel: 'string',
   selectionType: 'string',
   selectionTypeCounterText: 'string'
 };
@@ -3479,6 +3393,7 @@ const DefaultType$7 = {
 class MultiSelect extends BaseComponent {
   constructor(element, config) {
     super(element);
+    this._selectAllElement = null;
     this._selectionElement = null;
     this._selectionCleanerElement = null;
     this._searchElement = null;
@@ -3562,6 +3477,36 @@ class MultiSelect extends BaseComponent {
     this._addEventListeners();
   }
 
+  selectAll(options = this._options) {
+    options.forEach(option => {
+      if (option.disabled) {
+        return;
+      }
+
+      if (option.label) {
+        this.selectAll(option.options);
+        return;
+      }
+
+      this._selectOption(option.value, option.text);
+    });
+  }
+
+  deselectAll(options = this._options) {
+    options.forEach(option => {
+      if (option.disabled) {
+        return;
+      }
+
+      if (option.label) {
+        this.deselectAll(option.options);
+        return;
+      }
+
+      this._deselectOption(option.value);
+    });
+  }
+
   getValue() {
     return this._selection;
   } // Private
@@ -3578,8 +3523,13 @@ class MultiSelect extends BaseComponent {
       const key = event.keyCode || event.charCode;
 
       if ((key === 8 || key === 46) && event.target.value.length === 0) {
-        this._selectionDeleteLast();
+        this._deselectLastOption();
       }
+    });
+    EventHandler.on(this._selectAllElement, EVENT_CLICK, event => {
+      event.preventDefault();
+      event.stopPropagation();
+      this.selectAll();
     });
     EventHandler.on(this._optionsElement, EVENT_CLICK, event => {
       event.preventDefault();
@@ -3590,15 +3540,7 @@ class MultiSelect extends BaseComponent {
     EventHandler.on(this._selectionCleanerElement, EVENT_CLICK, event => {
       event.preventDefault();
       event.stopPropagation();
-
-      this._selectionClear();
-
-      this._updateSelection(); // this._updateSelectionCleaner()
-
-
-      this._updateSearch();
-
-      this._updateSearchSize();
+      this.deselectAll();
     });
     EventHandler.on(this._optionsElement, EVENT_KEYDOWN, event => {
       const key = event.keyCode || event.charCode;
@@ -3614,7 +3556,7 @@ class MultiSelect extends BaseComponent {
   _getConfig(config) {
     config = { ...Default$7,
       ...Manipulator.getDataAttributes(this._element),
-      ...config
+      ...(typeof config === 'object' ? config : {})
     };
     typeCheckConfig(NAME$8, config, DefaultType$7);
     return config;
@@ -3636,7 +3578,8 @@ class MultiSelect extends BaseComponent {
         options.push({
           value: node.value,
           text: node.innerHTML,
-          selected: node.selected
+          selected: node.selected,
+          disabled: node.disabled
         });
       }
 
@@ -3675,22 +3618,13 @@ class MultiSelect extends BaseComponent {
   }
 
   _createNativeSelect(data) {
-    const select = document.createElement('select');
-    select.classList.add(CLASS_NAME_SELECT);
-
-    if (this._element.id) {
-      select.id = this._element.id;
-    }
+    this._element.classList.add(CLASS_NAME_SELECT);
 
     if (this._config.multiple) {
-      select.multiple = true;
+      this._element.setAttribute('multiple', true);
     }
 
-    this._createNativeOptions(select, data);
-
-    this._element.replaceWith(select);
-
-    this._element = select;
+    this._createNativeOptions(this._element, data);
   }
 
   _createNativeOptions(parentElement, options) {
@@ -3706,6 +3640,10 @@ class MultiSelect extends BaseComponent {
       } else {
         const opt = document.createElement('OPTION');
         opt.value = option.value;
+
+        if (option.disabled === true) {
+          opt.setAttribute('disabled', 'disabled');
+        }
 
         if (option.selected === true) {
           opt.setAttribute('selected', 'selected');
@@ -3734,11 +3672,7 @@ class MultiSelect extends BaseComponent {
       div.classList.add(CLASS_NAME_SELECT_MULTIPLE);
     }
 
-    if (this._config.inline) {
-      div.classList.add(CLASS_NAME_SELECT_INLINE);
-    }
-
-    if (this._config.selectionType === 'tags') {
+    if (this._config.multiple && this._config.selectionType === 'tags') {
       div.classList.add(CLASS_NAME_SELECTION_TAGS);
     }
 
@@ -3746,10 +3680,9 @@ class MultiSelect extends BaseComponent {
 
     this._element.parentNode.insertBefore(div, this._element.nextSibling);
 
-    if (!this._config.inline || this._config.inline && this._config.selection) {
-      this._createSelection(); // this._createSelectionCleaner()
+    this._createSelection();
 
-    }
+    this._createSelectionCleaner();
 
     if (this._config.search) {
       this._createSearchInput();
@@ -3776,14 +3709,18 @@ class MultiSelect extends BaseComponent {
   }
 
   _createSelectionCleaner() {
-    const cleaner = document.createElement('span');
-    cleaner.classList.add(CLASS_NAME_SELECTION_CLEANER);
-    cleaner.innerHTML = '&times;';
+    if (this._config.cleaner && this._config.multiple) {
+      const cleaner = document.createElement('button');
+      cleaner.classList.add(CLASS_NAME_SELECTION_CLEANER);
 
-    this._clone.append(cleaner); // this._updateSelectionCleaner()
+      this._clone.append(cleaner);
 
+      this._clone.classList.add(CLASS_NAME_SELECT_WITH_CLEANER);
 
-    this._selectionCleanerElement = cleaner;
+      this._updateSelectionCleaner();
+
+      this._selectionCleanerElement = cleaner;
+    }
   }
 
   _createSearchInput() {
@@ -3797,14 +3734,32 @@ class MultiSelect extends BaseComponent {
   }
 
   _createOptionsContainer() {
-    const div = document.createElement('div');
-    div.classList.add(CLASS_NAME_OPTIONS);
+    const dropdownDiv = document.createElement('div');
+    dropdownDiv.classList.add(CLASS_NAME_SELECT_DROPDOWN);
 
-    this._clone.append(div);
+    if (this._config.selectAll && this._config.multiple) {
+      const selectAll = document.createElement('button');
+      selectAll.classList.add(CLASS_NAME_SELECT_ALL);
+      selectAll.innerHTML = this._config.selectAllLabel;
+      this._selectAllElement = selectAll;
+      dropdownDiv.append(selectAll);
+    }
 
-    this._createOptions(div, this._options);
+    const optionsDiv = document.createElement('div');
+    optionsDiv.classList.add(CLASS_NAME_OPTIONS);
 
-    this._optionsElement = div;
+    if (this._config.optionsMaxHeight !== 'auto') {
+      optionsDiv.style.maxHeight = `${this._config.optionsMaxHeight}px`;
+      optionsDiv.style.overflow = 'scroll';
+    }
+
+    dropdownDiv.append(optionsDiv);
+
+    this._clone.append(dropdownDiv);
+
+    this._createOptions(optionsDiv, this._options);
+
+    this._optionsElement = optionsDiv;
   }
 
   _createOptions(parentElement, options) {
@@ -3812,6 +3767,15 @@ class MultiSelect extends BaseComponent {
       if (typeof option.value !== 'undefined') {
         const optionDiv = document.createElement('div');
         optionDiv.classList.add(CLASS_NAME_OPTION);
+
+        if (option.disabled) {
+          optionDiv.classList.add(CLASS_NAME_DISABLED);
+        }
+
+        if (this._config.optionsStyle === 'checkbox') {
+          optionDiv.classList.add(CLASS_NAME_OPTION_WITH_CHECKBOX);
+        }
+
         optionDiv.dataset.value = String(option.value);
         optionDiv.tabIndex = 0;
         optionDiv.innerHTML = option.text;
@@ -3838,23 +3802,17 @@ class MultiSelect extends BaseComponent {
     tag.classList.add(CLASS_NAME_TAG);
     tag.dataset.value = value;
     tag.innerHTML = text;
-    const closeBtn = document.createElement('span');
-    closeBtn.classList.add(CLASS_NAME_TAG_DELETE, 'close');
+    const closeBtn = document.createElement('button');
+    closeBtn.classList.add(CLASS_NAME_TAG_DELETE, 'text-medium-emphasis');
     closeBtn.setAttribute('aria-label', 'Close');
     closeBtn.innerHTML = '<span aria-hidden="true">&times;</span>';
-    tag.append(closeBtn); // eslint-disable-next-line no-warning-comments
-    // TODO: zastanowić się czy nie zrobić tego globalnie
-
+    tag.append(closeBtn);
     EventHandler.on(closeBtn, EVENT_CLICK, event => {
       event.preventDefault();
       event.stopPropagation();
       tag.remove();
 
-      this._selectionDelete(value);
-
-      this._updateOptionsList();
-
-      this._updateSearch();
+      this._deselectOption(value);
     });
     return tag;
   }
@@ -3868,24 +3826,17 @@ class MultiSelect extends BaseComponent {
     const text = element.textContent;
 
     if (this._config.multiple && element.classList.contains(CLASS_NAME_SELECTED)) {
-      this._selectionDelete(value);
+      this._deselectOption(value);
     } else if (this._config.multiple && !element.classList.contains(CLASS_NAME_SELECTED)) {
-      this._selectionAdd(value, text);
+      this._selectOption(value, text);
     } else if (!this._config.multiple) {
-      this._selectionAdd(value, text);
+      this._selectOption(value, text);
     }
-
-    this._updateSelection(); // this._updateSelectionCleaner()
-
-
-    this._updateSearch();
-
-    this._updateSearchSize();
   }
 
-  _selectionAdd(value, text) {
+  _selectOption(value, text) {
     if (!this._config.multiple) {
-      this._selectionClear();
+      this.deselectAll();
     }
 
     if (this._selection.filter(e => e.value === value).length === 0) {
@@ -3895,42 +3846,64 @@ class MultiSelect extends BaseComponent {
       });
     }
 
-    this._selectOption(value);
+    const nativeOption = SelectorEngine.findOne(`option[value="${value}"]`, this._element);
+
+    if (nativeOption) {
+      nativeOption.selected = true;
+    }
+
+    const option = SelectorEngine.findOne(`[data-value="${value}"]`, this._optionsElement);
+
+    if (option) {
+      option.classList.add(CLASS_NAME_SELECTED);
+    }
+
+    EventHandler.trigger(this._element, EVENT_CHANGED, {
+      value: this._selection
+    });
+
+    this._updateSelection();
+
+    this._updateSelectionCleaner();
+
+    this._updateSearch();
+
+    this._updateSearchSize();
   }
 
-  _selectionClear() {
-    this._selection.length = 0;
-
-    this._clearOptions();
-  }
-
-  _selectionDelete(value) {
+  _deselectOption(value) {
     const selected = this._selection.filter(e => e.value !== value);
 
     this._selection = selected;
+    SelectorEngine.findOne(`option[value="${value}"]`, this._element).selected = false;
+    const option = SelectorEngine.findOne(`[data-value="${value}"]`, this._optionsElement);
 
-    this._unSelectOption(value);
+    if (option) {
+      option.classList.remove(CLASS_NAME_SELECTED);
+    }
+
+    EventHandler.trigger(this._element, EVENT_CHANGED, {
+      value: this._selection
+    });
+
+    this._updateSelection();
+
+    this._updateSelectionCleaner();
+
+    this._updateSearch();
+
+    this._updateSearchSize();
   }
 
-  _selectionDeleteLast() {
+  _deselectLastOption() {
     if (this._selection.length > 0) {
       const last = this._selection.pop();
 
-      this._selectionDelete(last.value);
-
-      this._updateSelection(); // this._updateSelectionCleaner()
-
-
-      this._updateSearch();
+      this._deselectOption(last.value);
     }
-  } // .form-multi-select-selections
-
+  }
 
   _updateSelection() {
-    if (this._config.inline && !this._config.selection) {
-      return;
-    }
-
     const selection = SelectorEngine.findOne(SELECTOR_SELECTION, this._clone);
 
     if (this._config.multiple && this._config.selectionType === 'counter') {
@@ -3959,7 +3932,7 @@ class MultiSelect extends BaseComponent {
   }
 
   _updateSelectionCleaner() {
-    if (this._selectionCleanerElement === null) {
+    if (!this._config.cleaner || this._selectionCleanerElement === null) {
       return;
     }
 
@@ -3978,17 +3951,13 @@ class MultiSelect extends BaseComponent {
       return;
     }
 
-    if (this._selection.length === 0 && (this._config.selectionType === 'tags' || this._config.selectionType === 'text')) {
-      this._searchElement.removeAttribute('size');
-    }
-
-    if (this._selection.length > 0 && !this._config.multiple && !this._config.inline) {
+    if (this._selection.length > 0 && !this._config.multiple) {
       this._searchElement.placeholder = this._selection[0].text;
       this._selectionElement.style.display = 'none';
       return;
     }
 
-    if (this._selection.length > 0 && this._config.multiple && this._config.selectionType !== 'counter' && !this._config.inline) {
+    if (this._selection.length > 0 && this._config.multiple && this._config.selectionType !== 'counter') {
       this._searchElement.placeholder = '';
 
       this._selectionElement.style.removeProperty('display');
@@ -3996,25 +3965,24 @@ class MultiSelect extends BaseComponent {
       return;
     }
 
-    if (this._selection.length === 0 && this._config.multiple && !this._config.inline) {
-      this._searchElement.placeholder = this._config.searchPlaceholder;
+    if (this._selection.length === 0 && this._config.multiple) {
+      this._searchElement.placeholder = this._config.placeholder;
       this._selectionElement.style.display = 'none';
       return;
     }
 
-    if (this._config.multiple && this._config.selectionType === 'counter' && !this._config.inline) {
+    if (this._config.multiple && this._config.selectionType === 'counter') {
       this._searchElement.placeholder = `${this._selection.length} item(s) selected`;
       this._selectionElement.style.display = 'none';
-      return;
-    }
-
-    if (this._config.inline) {
-      this._searchElement.placeholder = this._config.searchPlaceholder;
     }
   }
 
   _updateSearchSize(size = 2) {
-    if (!this._config.inline && this._selection.length > 0 && (this._config.selectionType === 'tags' || this._config.selectionType === 'text')) {
+    if (!this._searchElement || !this._config.multiple) {
+      return;
+    }
+
+    if (this._selection.length > 0 && (this._config.selectionType === 'tags' || this._config.selectionType === 'text')) {
       this._searchElement.size = size;
       return;
     }
@@ -4022,47 +3990,7 @@ class MultiSelect extends BaseComponent {
     if (this._selection.length === 0 && (this._config.selectionType === 'tags' || this._config.selectionType === 'text')) {
       this._searchElement.removeAttribute('size');
     }
-  } // .form-multi-select-selections
-
-
-  _selectOption(value) {
-    SelectorEngine.findOne(`option[value="${value}"]`, this._element).selected = true; // eslint-disable-next-line no-warning-comments
-    // TODO: improve this solution
-
-    const option = SelectorEngine.findOne(`[data-value="${value}"]`, this._optionsElement);
-
-    if (option) {
-      option.classList.add(CLASS_NAME_SELECTED);
-    }
-
-    EventHandler.trigger(this._element, EVENT_CHANGED, {
-      value: this._selection
-    });
   }
-
-  _unSelectOption(value) {
-    SelectorEngine.findOne(`option[value="${value}"]`, this._element).selected = false; // eslint-disable-next-line no-warning-comments
-    // TODO: improve this solution
-
-    const option = SelectorEngine.findOne(`[data-value="${value}"]`, this._optionsElement);
-
-    if (option) {
-      option.classList.remove(CLASS_NAME_SELECTED);
-    }
-
-    EventHandler.trigger(this._element, EVENT_CHANGED, {
-      value: this._selection
-    });
-  }
-
-  _clearOptions() {
-    this._element.value = null;
-    SelectorEngine.find(SELECTOR_SELECTED, this._clone).forEach(element => {
-      element.classList.remove(CLASS_NAME_SELECTED);
-    });
-  } // eslint-disable-next-line no-warning-comments
-  // TODO: poprawić tą nazwę
-
 
   _onSearchChange(element) {
     if (element) {
@@ -4072,21 +4000,18 @@ class MultiSelect extends BaseComponent {
     }
   }
 
-  _updateOptionsList() {
-    const options = SelectorEngine.find(SELECTOR_OPTION, this._clone);
+  _updateOptionsList(options = this._options) {
     options.forEach(option => {
-      if (this._selection.filter(e => e.value === option.dataset.value).length !== 0) {
-        option.classList.add(CLASS_NAME_SELECTED);
+      if (option.label) {
+        this._updateOptionsList(option.options);
+
+        return;
       }
 
-      if (this._selection.filter(e => e.value === option.dataset.value).length === 0) {
-        option.classList.remove(CLASS_NAME_SELECTED);
+      if (option.selected) {
+        this._selectOption(option.value, option.text);
       }
     });
-  }
-
-  _isHidden(element) {
-    return element.offsetParent === null;
   }
 
   _isVisible(element) {
@@ -4128,7 +4053,7 @@ class MultiSelect extends BaseComponent {
     if (visibleOptions === 0) {
       const placeholder = document.createElement('div');
       placeholder.classList.add(CLASS_NAME_OPTIONS_EMPTY);
-      placeholder.innerHTML = this._config.optionsEmptyPlaceholder;
+      placeholder.innerHTML = this._config.searchNoResultsLabel;
 
       if (!SelectorEngine.findOne(SELECTOR_OPTIONS_EMPTY, this._clone)) {
         SelectorEngine.findOne(SELECTOR_OPTIONS, this._clone).append(placeholder);
@@ -4138,20 +4063,7 @@ class MultiSelect extends BaseComponent {
 
 
   static multiSelectInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$8);
-    let _config = { ...Default$7,
-      ...Manipulator.getDataAttributes(element)
-    };
-
-    if (typeof config === 'object') {
-      _config = { ..._config,
-        ...config
-      };
-    }
-
-    if (!data) {
-      data = new MultiSelect(element, _config);
-    }
+    const data = MultiSelect.getOrCreateInstance(element, config);
 
     if (typeof config === 'string') {
       if (typeof data[config] === 'undefined') {
@@ -4229,7 +4141,7 @@ defineJQueryPlugin(MultiSelect);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): alert.js
+ * CoreUI (v4.0.0): alert.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */
@@ -4300,7 +4212,8 @@ class Navigation extends BaseComponent {
 
   _getConfig(config) {
     config = { ...Default$6,
-      ...config
+      ...Manipulator.getDataAttributes(this._element),
+      ...(typeof config === 'object' ? config : {})
     };
     typeCheckConfig(NAME$7, config, DefaultType$6);
     return config;
@@ -4408,11 +4321,10 @@ class Navigation extends BaseComponent {
     setTimeout(() => {
       element.style.height = `${height}px`;
     }, 0);
-    const transitionDuration = getTransitionDurationFromElement(element);
-    EventHandler.one(element, 'transitionend', () => {
+
+    this._queueCallback(() => {
       element.style.height = 'auto';
-    });
-    emulateTransitionEnd(element, transitionDuration);
+    }, element, true);
   }
 
   _slideUp(element, callback) {
@@ -4421,13 +4333,12 @@ class Navigation extends BaseComponent {
     setTimeout(() => {
       element.style.height = '0px';
     }, 0);
-    const transitionDuration = getTransitionDurationFromElement(element);
-    EventHandler.one(element, 'transitionend', () => {
+
+    this._queueCallback(() => {
       if (typeof callback === 'function') {
         callback();
       }
-    });
-    emulateTransitionEnd(element, transitionDuration);
+    }, element, true);
   }
 
   _toggleGroupItems(event) {
@@ -4474,15 +4385,7 @@ class Navigation extends BaseComponent {
 
 
   static navigationInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$7);
-    const _config = { ...Default$6,
-      ...Manipulator.getDataAttributes(element),
-      ...(typeof config === 'object' && config ? config : {})
-    };
-
-    if (!data) {
-      data = new Navigation(element, _config);
-    }
+    const data = Navigation.getOrCreateInstance(element, config);
 
     if (typeof config === 'string') {
       if (typeof data[config] === 'undefined') {
@@ -4523,7 +4426,7 @@ defineJQueryPlugin(Navigation);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): dropdown.js
+ * CoreUI (v4.0.0): dropdown.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's offcanvas.js
@@ -4613,7 +4516,7 @@ class Offcanvas extends BaseComponent {
     this._backdrop.show();
 
     if (!this._config.scroll) {
-      hide();
+      new ScrollBarHelper().hide();
 
       this._enforceFocusOnElement(this._element);
     }
@@ -4666,7 +4569,7 @@ class Offcanvas extends BaseComponent {
       this._element.style.visibility = 'hidden';
 
       if (!this._config.scroll) {
-        reset();
+        new ScrollBarHelper().reset();
       }
 
       EventHandler.trigger(this._element, EVENT_HIDDEN$3);
@@ -4724,7 +4627,7 @@ class Offcanvas extends BaseComponent {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      const data = Data.get(this, DATA_KEY$6) || new Offcanvas(this, typeof config === 'object' ? config : {});
+      const data = Offcanvas.getOrCreateInstance(this, config);
 
       if (typeof config !== 'string') {
         return;
@@ -4770,12 +4673,10 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$2, SELECTOR_DATA_TOGGLE$2, functi
     Offcanvas.getInstance(allReadyOpen).hide();
   }
 
-  const data = Data.get(target, DATA_KEY$6) || new Offcanvas(target);
+  const data = Offcanvas.getOrCreateInstance(target);
   data.toggle(this);
 });
-EventHandler.on(window, EVENT_LOAD_DATA_API$2, () => {
-  SelectorEngine.find(OPEN_SELECTOR).forEach(el => (Data.get(el, DATA_KEY$6) || new Offcanvas(el)).show());
-});
+EventHandler.on(window, EVENT_LOAD_DATA_API$2, () => SelectorEngine.find(OPEN_SELECTOR).forEach(el => Offcanvas.getOrCreateInstance(el).show()));
 /**
  * ------------------------------------------------------------------------
  * jQuery
@@ -4786,7 +4687,7 @@ defineJQueryPlugin(Offcanvas);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): alert.js
+ * CoreUI (v4.0.0): alert.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's  util/sanitizer.js
@@ -4884,7 +4785,7 @@ function sanitizeHtml(unsafeHtml, allowList, sanitizeFn) {
     const elName = el.nodeName.toLowerCase();
 
     if (!allowlistKeys.includes(elName)) {
-      el.parentNode.removeChild(el);
+      el.remove();
       continue;
     }
 
@@ -4902,7 +4803,7 @@ function sanitizeHtml(unsafeHtml, allowList, sanitizeFn) {
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): tooltip.js
+ * CoreUI (v4.0.0): tooltip.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's tooltip.js
@@ -5074,8 +4975,8 @@ class Tooltip extends BaseComponent {
     clearTimeout(this._timeout);
     EventHandler.off(this._element.closest(`.${CLASS_NAME_MODAL}`), 'hide.coreui.modal', this._hideModalHandler);
 
-    if (this.tip && this.tip.parentNode) {
-      this.tip.parentNode.removeChild(this.tip);
+    if (this.tip) {
+      this.tip.remove();
     }
 
     if (this._popper) {
@@ -5180,8 +5081,8 @@ class Tooltip extends BaseComponent {
         return;
       }
 
-      if (this._hoverState !== HOVER_STATE_SHOW && tip.parentNode) {
-        tip.parentNode.removeChild(tip);
+      if (this._hoverState !== HOVER_STATE_SHOW) {
+        tip.remove();
       }
 
       this._cleanTipClass();
@@ -5568,13 +5469,7 @@ class Tooltip extends BaseComponent {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.get(this, DATA_KEY$5);
-
-      const _config = typeof config === 'object' && config;
-
-      if (!data) {
-        data = new Tooltip(this, _config);
-      }
+      const data = Tooltip.getOrCreateInstance(this, config);
 
       if (typeof config === 'string') {
         if (typeof data[config] === 'undefined') {
@@ -5599,7 +5494,7 @@ defineJQueryPlugin(Tooltip);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): popover.js
+ * CoreUI (v4.0.0): popover.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's popover.js
@@ -5680,11 +5575,11 @@ class Popover extends Tooltip {
     this.tip = super.getTipElement();
 
     if (!this.getTitle()) {
-      this.tip.removeChild(SelectorEngine.findOne(SELECTOR_TITLE, this.tip));
+      SelectorEngine.findOne(SELECTOR_TITLE, this.tip).remove();
     }
 
     if (!this._getContent()) {
-      this.tip.removeChild(SelectorEngine.findOne(SELECTOR_CONTENT, this.tip));
+      SelectorEngine.findOne(SELECTOR_CONTENT, this.tip).remove();
     }
 
     return this.tip;
@@ -5726,14 +5621,7 @@ class Popover extends Tooltip {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.get(this, DATA_KEY$4);
-
-      const _config = typeof config === 'object' ? config : null;
-
-      if (!data) {
-        data = new Popover(this, _config);
-        Data.set(this, DATA_KEY$4, data);
-      }
+      const data = Popover.getOrCreateInstance(this, config);
 
       if (typeof config === 'string') {
         if (typeof data[config] === 'undefined') {
@@ -5758,7 +5646,7 @@ defineJQueryPlugin(Popover);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): scrollspy.js
+ * CoreUI (v4.0.0): scrollspy.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's scrollspy.js
@@ -5795,6 +5683,7 @@ const SELECTOR_NAV_LIST_GROUP$1 = '.nav, .list-group';
 const SELECTOR_NAV_LINKS = '.nav-link';
 const SELECTOR_NAV_ITEMS = '.nav-item';
 const SELECTOR_LIST_ITEMS = '.list-group-item';
+const SELECTOR_LINK_ITEMS = `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}, .${CLASS_NAME_DROPDOWN_ITEM}`;
 const SELECTOR_DROPDOWN$1 = '.dropdown';
 const SELECTOR_DROPDOWN_TOGGLE$1 = '.dropdown-toggle';
 const METHOD_OFFSET = 'offset';
@@ -5810,7 +5699,6 @@ class ScrollSpy extends BaseComponent {
     super(element);
     this._scrollElement = this._element.tagName === 'BODY' ? window : this._element;
     this._config = this._getConfig(config);
-    this._selector = `${this._config.target} ${SELECTOR_NAV_LINKS}, ${this._config.target} ${SELECTOR_LIST_ITEMS}, ${this._config.target} .${CLASS_NAME_DROPDOWN_ITEM}`;
     this._offsets = [];
     this._targets = [];
     this._activeTarget = null;
@@ -5838,7 +5726,7 @@ class ScrollSpy extends BaseComponent {
     this._offsets = [];
     this._targets = [];
     this._scrollHeight = this._getScrollHeight();
-    const targets = SelectorEngine.find(this._selector);
+    const targets = SelectorEngine.find(SELECTOR_LINK_ITEMS, this._config.target);
     targets.map(element => {
       const targetSelector = getSelectorFromElement(element);
       const target = targetSelector ? SelectorEngine.findOne(targetSelector) : null;
@@ -5870,20 +5758,7 @@ class ScrollSpy extends BaseComponent {
       ...Manipulator.getDataAttributes(this._element),
       ...(typeof config === 'object' && config ? config : {})
     };
-
-    if (typeof config.target !== 'string' && isElement(config.target)) {
-      let {
-        id
-      } = config.target;
-
-      if (!id) {
-        id = getUID(NAME$3);
-        config.target.id = id;
-      }
-
-      config.target = `#${id}`;
-    }
-
+    config.target = getElement(config.target) || document.documentElement;
     typeCheckConfig(NAME$3, config, DefaultType$2);
     return config;
   }
@@ -5943,16 +5818,13 @@ class ScrollSpy extends BaseComponent {
 
     this._clear();
 
-    const queries = this._selector.split(',').map(selector => `${selector}[data-coreui-target="${target}"],${selector}[href="${target}"]`);
-
-    const link = SelectorEngine.findOne(queries.join(','));
+    const queries = SELECTOR_LINK_ITEMS.split(',').map(selector => `${selector}[data-coreui-target="${target}"],${selector}[href="${target}"]`);
+    const link = SelectorEngine.findOne(queries.join(','), this._config.target);
+    link.classList.add(CLASS_NAME_ACTIVE$1);
 
     if (link.classList.contains(CLASS_NAME_DROPDOWN_ITEM)) {
       SelectorEngine.findOne(SELECTOR_DROPDOWN_TOGGLE$1, link.closest(SELECTOR_DROPDOWN$1)).classList.add(CLASS_NAME_ACTIVE$1);
-      link.classList.add(CLASS_NAME_ACTIVE$1);
     } else {
-      // Set triggered link as active
-      link.classList.add(CLASS_NAME_ACTIVE$1);
       SelectorEngine.parents(link, SELECTOR_NAV_LIST_GROUP$1).forEach(listGroup => {
         // Set triggered links parents as active
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
@@ -5970,13 +5842,13 @@ class ScrollSpy extends BaseComponent {
   }
 
   _clear() {
-    SelectorEngine.find(this._selector).filter(node => node.classList.contains(CLASS_NAME_ACTIVE$1)).forEach(node => node.classList.remove(CLASS_NAME_ACTIVE$1));
+    SelectorEngine.find(SELECTOR_LINK_ITEMS, this._config.target).filter(node => node.classList.contains(CLASS_NAME_ACTIVE$1)).forEach(node => node.classList.remove(CLASS_NAME_ACTIVE$1));
   } // Static
 
 
   static jQueryInterface(config) {
     return this.each(function () {
-      const data = ScrollSpy.getInstance(this) || new ScrollSpy(this, typeof config === 'object' ? config : {});
+      const data = ScrollSpy.getOrCreateInstance(this, config);
 
       if (typeof config !== 'string') {
         return;
@@ -6012,7 +5884,7 @@ defineJQueryPlugin(ScrollSpy);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): sidebar.js
+ * CoreUI (v4.0.0): sidebar.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */
@@ -6030,6 +5902,7 @@ const Default$1 = {};
 const DefaultType$1 = {};
 const CLASS_NAME_BACKDROP = 'sidebar-backdrop';
 const CLASS_NAME_FADE$2 = 'fade';
+const CLASS_NAME_HIDE$1 = 'hide';
 const CLASS_NAME_SHOW$2 = 'show';
 const CLASS_NAME_SIDEBAR = 'sidebar';
 const CLASS_NAME_SIDEBAR_NARROW = 'sidebar-narrow';
@@ -6038,6 +5911,7 @@ const CLASS_NAME_SIDEBAR_NARROW_UNFOLDABLE = 'sidebar-narrow-unfoldable';
 const REGEXP_SIDEBAR_SELF_HIDING = /sidebar-self-hiding/;
 const EVENT_HIDE$2 = `hide${EVENT_KEY$2}`;
 const EVENT_HIDDEN$2 = `hidden${EVENT_KEY$2}`;
+const EVENT_RESIZE = 'resize';
 const EVENT_SHOW$2 = `show${EVENT_KEY$2}`;
 const EVENT_SHOWN$2 = `shown${EVENT_KEY$2}`;
 const EVENT_CLICK_DATA_API$1 = `click${EVENT_KEY$2}${DATA_API_KEY$1}`;
@@ -6083,6 +5957,10 @@ class Sidebar extends BaseComponent {
   show() {
     EventHandler.trigger(this._element, EVENT_SHOW$2);
 
+    if (this._element.classList.contains(CLASS_NAME_HIDE$1)) {
+      this._element.classList.remove(CLASS_NAME_HIDE$1);
+    }
+
     if (REGEXP_SIDEBAR_SELF_HIDING.test(this._element.className)) {
       this._element.classList.add(CLASS_NAME_SHOW$2);
     }
@@ -6103,9 +5981,7 @@ class Sidebar extends BaseComponent {
       }
     };
 
-    const transitionDuration = getTransitionDurationFromElement(this._element);
-    EventHandler.one(this._element, 'transitionend', complete);
-    emulateTransitionEnd(this._element, transitionDuration);
+    this._queueCallback(complete, this._element, true);
   }
 
   hide() {
@@ -6113,6 +5989,12 @@ class Sidebar extends BaseComponent {
 
     if (this._element.classList.contains(CLASS_NAME_SHOW$2)) {
       this._element.classList.remove(CLASS_NAME_SHOW$2);
+    } else {
+      this._element.classList.add(CLASS_NAME_HIDE$1);
+    }
+
+    if (this._isVisible()) {
+      this._element.classList.add(CLASS_NAME_HIDE$1);
     }
 
     if (this._isMobile()) {
@@ -6131,9 +6013,7 @@ class Sidebar extends BaseComponent {
       }
     };
 
-    const transitionDuration = getTransitionDurationFromElement(this._element);
-    EventHandler.one(this._element, 'transitionend', complete);
-    emulateTransitionEnd(this._element, transitionDuration);
+    this._queueCallback(complete, this._element, true);
   }
 
   toggle() {
@@ -6309,17 +6189,16 @@ class Sidebar extends BaseComponent {
       event.preventDefault();
       this.hide();
     });
+    EventHandler.on(window, EVENT_RESIZE, () => {
+      if (this._isMobile() && this._isVisible()) {
+        this.hide();
+      }
+    });
   } // Static
 
 
   static sidebarInterface(element, config) {
-    let data = Data.get(element, DATA_KEY$2);
-
-    const _config = typeof config === 'object' && config;
-
-    if (!data) {
-      data = new Sidebar(element, _config);
-    }
+    const data = Sidebar.getOrCreateInstance(element, config);
 
     if (typeof config === 'string') {
       if (typeof data[config] === 'undefined') {
@@ -6359,7 +6238,7 @@ defineJQueryPlugin(Sidebar);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): tab.js
+ * CoreUI (v4.0.0): tab.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's tab.js
@@ -6517,7 +6396,7 @@ class Tab extends BaseComponent {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      const data = Data.get(this, DATA_KEY$1) || new Tab(this);
+      const data = Tab.getOrCreateInstance(this);
 
       if (typeof config === 'string') {
         if (typeof data[config] === 'undefined') {
@@ -6546,7 +6425,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (
     return;
   }
 
-  const data = Data.get(this, DATA_KEY$1) || new Tab(this);
+  const data = Tab.getOrCreateInstance(this);
   data.show();
 });
 /**
@@ -6560,7 +6439,7 @@ defineJQueryPlugin(Tab);
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI (v4.0.0-rc.5): toast.js
+ * CoreUI (v4.0.0): toast.js
  * Licensed under MIT (https://coreui.io/license)
  *
  * This component is a modified version of the Bootstrap's toast.js
@@ -6763,13 +6642,7 @@ class Toast extends BaseComponent {
 
   static jQueryInterface(config) {
     return this.each(function () {
-      let data = Data.get(this, DATA_KEY);
-
-      const _config = typeof config === 'object' && config;
-
-      if (!data) {
-        data = new Toast(this, _config);
-      }
+      const data = Toast.getOrCreateInstance(this, config);
 
       if (typeof config === 'string') {
         if (typeof data[config] === 'undefined') {

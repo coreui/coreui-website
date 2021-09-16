@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Documentation and examples for CoreUI&rsquo;s powerful, responsive header. Includes support for branding, navigation, and more.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.83.1">
+<meta name="generator" content="Hugo 0.84.0">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-olZc7C0gJuj344muig5HPr40nkI7KeuLFHOwdxJpvVjq4UhCgHSXLSdTwQE2GdoV" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -216,6 +216,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/layout/z-index/" class="nav-link">Z-index</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/css-grid/" class="nav-link">CSS Grid</a>
             </li>
         </ul>
       </li>
@@ -473,6 +476,9 @@
               <a href="/docs/4.0/utilities/interactions/" class="nav-link">Interactions</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/utilities/opacity/" class="nav-link">Opacity</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/utilities/overflow/" class="nav-link">Overflow</a>
             </li>
             <li class="nav-item">
@@ -611,7 +617,7 @@
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/v4-dev/docs/content/4.0/components/header.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/components/header.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
         <h1 class="docs-title" id="content">Header</h1>
       </div>
       <p class="docs-lead">Documentation and examples for CoreUI&rsquo;s powerful, responsive header. Includes support for branding, navigation, and more.</p>
@@ -1022,8 +1028,8 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <h3 id="sass">SASS</h3>
 <h4 id="variables">Variables</h4>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$header-min-height</span><span class="o">:</span>             <span class="mi">4</span><span class="kt">rem</span><span class="p">;</span>
-<span class="nv">$header-padding-y</span><span class="o">:</span>              <span class="nv">$spacer</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-<span class="nv">$header-padding-x</span><span class="o">:</span>              <span class="nv">$spacer</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nv">$header-padding-y</span><span class="o">:</span>              <span class="nv">$spacer</span> <span class="o">*</span> <span class="mf">.5</span><span class="p">;</span>
+<span class="nv">$header-padding-x</span><span class="o">:</span>              <span class="nv">$spacer</span> <span class="o">*</span> <span class="mf">.5</span><span class="p">;</span>
 <span class="nv">$header-brand-font-size</span><span class="o">:</span>        <span class="nv">$font-size-lg</span><span class="p">;</span>
 <span class="nv">$header-color</span><span class="o">:</span>                  <span class="nv">$medium-emphasis</span><span class="p">;</span>
 <span class="nv">$header-bg</span><span class="o">:</span>                     <span class="nv">$white</span><span class="p">;</span>
@@ -1036,7 +1042,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <span class="c1">// Compute the header-brand padding-y so the header-brand will have the same height as header-text and nav-link
 </span><span class="c1"></span><span class="nv">$nav-link-height</span><span class="o">:</span>               <span class="nv">$font-size-base</span> <span class="o">*</span> <span class="nv">$line-height-base</span> <span class="o">+</span> <span class="nv">$nav-link-padding-y</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
 <span class="nv">$header-brand-height</span><span class="o">:</span>           <span class="nv">$header-brand-font-size</span> <span class="o">*</span> <span class="nv">$line-height-base</span><span class="p">;</span>
-<span class="nv">$header-brand-padding-y</span><span class="o">:</span>        <span class="p">(</span><span class="nv">$nav-link-height</span> <span class="o">-</span> <span class="nv">$header-brand-height</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nv">$header-brand-padding-y</span><span class="o">:</span>        <span class="p">(</span><span class="nv">$nav-link-height</span> <span class="o">-</span> <span class="nv">$header-brand-height</span><span class="p">)</span> <span class="o">*</span> <span class="mf">.5</span><span class="p">;</span>
 <span class="nv">$header-brand-margin-end</span><span class="o">:</span>       <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$header-brand-font-size</span><span class="o">:</span>        <span class="nv">$font-size-lg</span><span class="p">;</span>
 <span class="nv">$header-brand-color</span><span class="o">:</span>            <span class="nv">$gray-900</span><span class="p">;</span>
@@ -1045,7 +1051,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <span class="nv">$header-toggler-padding-y</span><span class="o">:</span>      <span class="mf">.25</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$header-toggler-padding-x</span><span class="o">:</span>      <span class="mf">.75</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$header-toggler-font-size</span><span class="o">:</span>      <span class="nv">$font-size-lg</span><span class="p">;</span>
-<span class="nv">$header-toggler-bg</span><span class="o">:</span>             <span class="no">transparent</span><span class="p">;</span>
+<span class="nv">$header-toggler-bg</span><span class="o">:</span>             <span class="ni">transparent</span><span class="p">;</span>
 <span class="nv">$header-toggler-border</span><span class="o">:</span>         <span class="mi">0</span><span class="p">;</span>
 <span class="nv">$header-toggler-border-radius</span><span class="o">:</span>  <span class="nv">$btn-border-radius</span><span class="p">;</span>
 
@@ -1059,21 +1065,21 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <span class="nv">$header-divider-border-color</span><span class="o">:</span>   <span class="nv">$header-border-color</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="css-vars">CSS Vars</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-header-active-color</span>
-<span class="nt">--cui-header-bg</span>
-<span class="nt">--cui-header-border-color</span>
-<span class="nt">--cui-header-border-width</span>
-<span class="nt">--cui-header-brand-color</span>
-<span class="nt">--cui-header-brand-hover-color</span>
-<span class="nt">--cui-header-color</span>
-<span class="nt">--cui-header-disabled-color</span>
-<span class="nt">--cui-header-divider-border-color</span>
-<span class="nt">--cui-header-divider-border-width</span>
-<span class="nt">--cui-header-hover-color</span>
-<span class="nt">--cui-header-toggler-bg</span>
-<span class="nt">--cui-header-toggler-border-color</span>
-<span class="nt">--cui-header-toggler-hover-icon-bg</span>
-<span class="nt">--cui-header-toggler-icon-bg</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="o">--</span><span class="nt">cui-header-active-color</span>
+<span class="o">--</span><span class="nt">cui-header-bg</span>
+<span class="o">--</span><span class="nt">cui-header-border-color</span>
+<span class="o">--</span><span class="nt">cui-header-border-width</span>
+<span class="o">--</span><span class="nt">cui-header-brand-color</span>
+<span class="o">--</span><span class="nt">cui-header-brand-hover-color</span>
+<span class="o">--</span><span class="nt">cui-header-color</span>
+<span class="o">--</span><span class="nt">cui-header-disabled-color</span>
+<span class="o">--</span><span class="nt">cui-header-divider-border-color</span>
+<span class="o">--</span><span class="nt">cui-header-divider-border-width</span>
+<span class="o">--</span><span class="nt">cui-header-hover-color</span>
+<span class="o">--</span><span class="nt">cui-header-toggler-bg</span>
+<span class="o">--</span><span class="nt">cui-header-toggler-border-color</span>
+<span class="o">--</span><span class="nt">cui-header-toggler-hover-icon-bg</span>
+<span class="o">--</span><span class="nt">cui-header-toggler-icon-bg</span></code></pre></div>
 
     </div>
   </main>
@@ -1088,7 +1094,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1096,7 +1102,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-WQ570Fv+kl2hTp4yt87TitCF9MpR0Xm41MNnsgy4Soz5/wOF1BRE+3fvNHcHr4EP" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

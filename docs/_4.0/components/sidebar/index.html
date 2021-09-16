@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Bootstrap Sidebar is a powerful and customizable responsive navigation component for any type of vertical navigation. Bootstrap Sidebar come with built-in support for branding, navigation, and more.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.83.1">
+<meta name="generator" content="Hugo 0.84.0">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-olZc7C0gJuj344muig5HPr40nkI7KeuLFHOwdxJpvVjq4UhCgHSXLSdTwQE2GdoV" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -216,6 +216,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/layout/z-index/" class="nav-link">Z-index</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/css-grid/" class="nav-link">CSS Grid</a>
             </li>
         </ul>
       </li>
@@ -473,6 +476,9 @@
               <a href="/docs/4.0/utilities/interactions/" class="nav-link">Interactions</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/utilities/opacity/" class="nav-link">Opacity</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/utilities/overflow/" class="nav-link">Overflow</a>
             </li>
             <li class="nav-item">
@@ -607,11 +613,11 @@
     
     
   
-  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 13, 2021</span>
+  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: July 2, 2021</span>
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/v4-dev/docs/content/4.0/components/sidebar.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/components/sidebar.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
         <h1 class="docs-title" id="content">Sidebar</h1>
       </div>
       <p class="docs-lead">Bootstrap Sidebar is a powerful and customizable responsive navigation component for any type of vertical navigation. Bootstrap Sidebar come with built-in support for branding, navigation, and more.</p>
@@ -713,7 +719,7 @@
       </a>
     </li>
   </ul>
-  <button class="sidebar-minimizer c-brand-minimizer" type="button"></button>
+  <button class="sidebar-toggler" type="button"></button>
 </div>
 
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sidebar sidebar-show&#34;</span><span class="p">&gt;</span>
@@ -758,7 +764,7 @@
       <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sidebar-minimizer c-brand-minimizer&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;sidebar-toggler&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="responsive-behaviors">Responsive behaviors</h2>
 <p>Sidebar can utilize <code>.sidebar-{-sm|-md|-lg|-xl|-xxl}-show</code> classes to change whether is visible or hidden. You can easily choose when to show or hide sidebar.</p>
@@ -835,17 +841,17 @@
 <h3 id="sass">SASS</h3>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$sidebar-width</span><span class="o">:</span>                            <span class="mi">16</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-widths</span><span class="o">:</span> <span class="p">(</span>
-  <span class="n">sm</span><span class="o">:</span> <span class="mi">12</span><span class="kt">rem</span><span class="o">,</span>
-  <span class="n">lg</span><span class="o">:</span> <span class="mi">20</span><span class="kt">rem</span><span class="o">,</span>
-  <span class="n">xl</span><span class="o">:</span> <span class="mi">24</span><span class="kt">rem</span>
+  <span class="na">sm</span><span class="o">:</span> <span class="mi">12</span><span class="kt">rem</span><span class="o">,</span>
+  <span class="na">lg</span><span class="o">:</span> <span class="mi">20</span><span class="kt">rem</span><span class="o">,</span>
+  <span class="na">xl</span><span class="o">:</span> <span class="mi">24</span><span class="kt">rem</span>
 <span class="p">);</span>
 <span class="nv">$sidebar-padding-y</span><span class="o">:</span>                        <span class="mi">0</span><span class="p">;</span>
 <span class="nv">$sidebar-padding-x</span><span class="o">:</span>                        <span class="mi">0</span><span class="p">;</span>
 <span class="nv">$sidebar-color</span><span class="o">:</span>                            <span class="nv">$high-emphasis-inverse</span><span class="p">;</span>
 <span class="nv">$sidebar-bg</span><span class="o">:</span>                               <span class="nv">$gray-base</span><span class="p">;</span>
 <span class="nv">$sidebar-border-width</span><span class="o">:</span>                     <span class="mi">0</span><span class="p">;</span>
-<span class="nv">$sidebar-border-color</span><span class="o">:</span>                     <span class="no">transparent</span><span class="p">;</span>
-<span class="nv">$sidebar-transition</span><span class="o">:</span>                       <span class="no">margin</span><span class="o">-</span><span class="no">left</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="no">margin</span><span class="o">-</span><span class="no">right</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="no">box-shadow</span> <span class="mf">.075</span><span class="kt">s</span><span class="o">,</span> <span class="no">transform</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="no">width</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="no">z-index</span> <span class="mi">0</span><span class="kt">s</span> <span class="n">ease</span> <span class="mf">.15</span><span class="kt">s</span><span class="p">;</span>
+<span class="nv">$sidebar-border-color</span><span class="o">:</span>                     <span class="ni">transparent</span><span class="p">;</span>
+<span class="nv">$sidebar-transition</span><span class="o">:</span>                       <span class="n">margin-left</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="n">margin-right</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="n">box-shadow</span> <span class="mf">.075</span><span class="kt">s</span><span class="o">,</span> <span class="ni">transform</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="ni">width</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="ni">z</span><span class="o">-</span><span class="n">index</span> <span class="mi">0</span><span class="kt">s</span> <span class="ni">ease</span> <span class="mf">.15</span><span class="kt">s</span><span class="p">;</span>
 
 <span class="nv">$sidebar-brand-height</span><span class="o">:</span>                     <span class="mi">4</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-brand-color</span><span class="o">:</span>                      <span class="nv">$high-emphasis-inverse</span><span class="p">;</span>
@@ -855,25 +861,25 @@
 <span class="nv">$sidebar-header-padding-y</span><span class="o">:</span>                 <span class="mf">.75</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-header-padding-x</span><span class="o">:</span>                 <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-header-bg</span><span class="o">:</span>                        <span class="nf">rgba</span><span class="p">(</span><span class="nv">$black</span><span class="o">,</span> <span class="mf">.2</span><span class="p">);</span>
-<span class="nv">$sidebar-header-height-transition</span><span class="o">:</span>         <span class="no">height</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="no">padding</span> <span class="mf">.15</span><span class="kt">s</span><span class="p">;</span>
+<span class="nv">$sidebar-header-height-transition</span><span class="o">:</span>         <span class="n">height</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="n">padding</span> <span class="mf">.15</span><span class="kt">s</span><span class="p">;</span>
 
 <span class="nv">$sidebar-narrow-width</span><span class="o">:</span>                     <span class="mi">4</span><span class="kt">rem</span><span class="p">;</span>
 
 <span class="nv">$sidebar-backdrop-bg</span><span class="o">:</span>                      <span class="nv">$black</span><span class="p">;</span>
 <span class="nv">$sidebar-backdrop-opacity</span><span class="o">:</span>                 <span class="mf">.5</span><span class="p">;</span>
-<span class="nv">$sidebar-backdrop-transition</span><span class="o">:</span>              <span class="no">opacity</span> <span class="mf">.15</span><span class="kt">s</span> <span class="n">linear</span><span class="p">;</span>
+<span class="nv">$sidebar-backdrop-transition</span><span class="o">:</span>              <span class="ni">opacity</span> <span class="mf">.15</span><span class="kt">s</span> <span class="ni">linear</span><span class="p">;</span>
 
 <span class="nv">$sidebar-nav-title-padding-y</span><span class="o">:</span>              <span class="mf">.75</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-nav-title-padding-x</span><span class="o">:</span>              <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-nav-title-margin-top</span><span class="o">:</span>             <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-nav-title-color</span><span class="o">:</span>                  <span class="nv">$medium-emphasis-inverse</span><span class="p">;</span>
-<span class="nv">$sidebar-nav-title-transition</span><span class="o">:</span>             <span class="no">height</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="no">margin</span> <span class="mf">.15</span><span class="kt">s</span><span class="p">;</span>
+<span class="nv">$sidebar-nav-title-transition</span><span class="o">:</span>             <span class="n">height</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="n">margin</span> <span class="mf">.15</span><span class="kt">s</span><span class="p">;</span>
 
 <span class="nv">$sidebar-nav-link-padding-y</span><span class="o">:</span>               <span class="mf">.8445</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-nav-link-padding-x</span><span class="o">:</span>               <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-nav-link-color</span><span class="o">:</span>                   <span class="nv">$medium-emphasis-inverse</span><span class="p">;</span>
-<span class="nv">$sidebar-nav-link-bg</span><span class="o">:</span>                      <span class="no">transparent</span><span class="p">;</span>
-<span class="nv">$sidebar-nav-link-transition</span><span class="o">:</span>              <span class="no">background</span> <span class="mf">.15</span><span class="kt">s</span> <span class="n">ease</span><span class="o">,</span> <span class="no">color</span> <span class="mf">.15</span><span class="kt">s</span> <span class="n">ease</span><span class="p">;</span>
+<span class="nv">$sidebar-nav-link-bg</span><span class="o">:</span>                      <span class="ni">transparent</span><span class="p">;</span>
+<span class="nv">$sidebar-nav-link-transition</span><span class="o">:</span>              <span class="n">background</span> <span class="mf">.15</span><span class="kt">s</span> <span class="ni">ease</span><span class="o">,</span> <span class="ni">color</span> <span class="mf">.15</span><span class="kt">s</span> <span class="ni">ease</span><span class="p">;</span>
 <span class="nv">$sidebar-nav-link-icon-color</span><span class="o">:</span>              <span class="nv">$medium-emphasis-inverse</span><span class="p">;</span>
 
 <span class="nv">$sidebar-nav-link-hover-color</span><span class="o">:</span>             <span class="nv">$high-emphasis-inverse</span><span class="p">;</span>
@@ -892,25 +898,25 @@
 <span class="nv">$sidebar-nav-icon-font-size</span><span class="o">:</span>               <span class="nv">$sidebar-nav-icon-height</span><span class="p">;</span>
 
 <span class="nv">$sidebar-nav-group-bg</span><span class="o">:</span>                     <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mf">.2</span><span class="p">);</span>
-<span class="nv">$sidebar-nav-group-transition</span><span class="o">:</span>             <span class="no">background</span> <span class="mf">.15</span><span class="kt">s</span> <span class="n">ease-in-out</span><span class="p">;</span>
-<span class="nv">$sidebar-nav-group-items-transition</span><span class="o">:</span>       <span class="no">height</span> <span class="mf">.15</span><span class="kt">s</span> <span class="n">ease</span><span class="p">;</span>
+<span class="nv">$sidebar-nav-group-transition</span><span class="o">:</span>             <span class="n">background</span> <span class="mf">.15</span><span class="kt">s</span> <span class="ni">ease-in-out</span><span class="p">;</span>
+<span class="nv">$sidebar-nav-group-items-transition</span><span class="o">:</span>       <span class="n">height</span> <span class="mf">.15</span><span class="kt">s</span> <span class="ni">ease</span><span class="p">;</span>
 <span class="nv">$sidebar-nav-group-toggle-show-color</span><span class="o">:</span>      <span class="nv">$sidebar-nav-link-color</span><span class="p">;</span>
 
 <span class="nv">$sidebar-nav-group-indicator-color</span><span class="o">:</span>        <span class="nv">$medium-emphasis-inverse</span><span class="p">;</span>
 <span class="nv">$sidebar-nav-group-indicator-icon</span><span class="o">:</span>         <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 16 16&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$sidebar-nav-group-indicator-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;path fill-rule=&#39;evenodd&#39; d=&#39;M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z&#39;/&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
 <span class="nv">$sidebar-nav-group-indicator-hover-color</span><span class="o">:</span>  <span class="nv">$sidebar-nav-link-hover-color</span><span class="p">;</span>
 <span class="nv">$sidebar-nav-group-indicator-hover-icon</span><span class="o">:</span>   <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 16 16&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$sidebar-nav-group-indicator-hover-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;path fill-rule=&#39;evenodd&#39; d=&#39;M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z&#39;/&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
-<span class="nv">$sidebar-nav-group-indicator-transition</span><span class="o">:</span>   <span class="no">transform</span> <span class="mf">.15</span><span class="kt">s</span><span class="p">;</span>
+<span class="nv">$sidebar-nav-group-indicator-transition</span><span class="o">:</span>   <span class="ni">transform</span> <span class="mf">.15</span><span class="kt">s</span><span class="p">;</span>
 
-<span class="nv">$sidebar-footer-height</span><span class="o">:</span>                    <span class="no">auto</span><span class="p">;</span>
+<span class="nv">$sidebar-footer-height</span><span class="o">:</span>                    <span class="ni">auto</span><span class="p">;</span>
 <span class="nv">$sidebar-footer-padding-y</span><span class="o">:</span>                 <span class="mf">.75</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-footer-padding-x</span><span class="o">:</span>                 <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-footer-bg</span><span class="o">:</span>                        <span class="nf">rgba</span><span class="p">(</span><span class="nv">$black</span><span class="o">,</span> <span class="mf">.2</span><span class="p">);</span>
-<span class="nv">$sidebar-footer-height-transition</span><span class="o">:</span>         <span class="no">height</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="no">padding</span> <span class="mf">.15</span><span class="kt">s</span><span class="p">;</span>
+<span class="nv">$sidebar-footer-height-transition</span><span class="o">:</span>         <span class="n">height</span> <span class="mf">.15</span><span class="kt">s</span><span class="o">,</span> <span class="n">padding</span> <span class="mf">.15</span><span class="kt">s</span><span class="p">;</span>
 
 <span class="nv">$sidebar-toggler-height</span><span class="o">:</span>                   <span class="mi">3</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-toggler-bg</span><span class="o">:</span>                       <span class="nf">rgba</span><span class="p">(</span><span class="nv">$black</span><span class="o">,</span> <span class="mf">.2</span><span class="p">);</span>
-<span class="nv">$sidebar-toggler-transition</span><span class="o">:</span>               <span class="no">transform</span> <span class="mf">.15</span><span class="kt">s</span><span class="p">;</span>
+<span class="nv">$sidebar-toggler-transition</span><span class="o">:</span>               <span class="ni">transform</span> <span class="mf">.15</span><span class="kt">s</span><span class="p">;</span>
 
 <span class="nv">$sidebar-toggler-indicator-width</span><span class="o">:</span>          <span class="mi">4</span><span class="kt">rem</span><span class="p">;</span>
 <span class="nv">$sidebar-toggler-indicator-height</span><span class="o">:</span>         <span class="mi">3</span><span class="kt">rem</span><span class="p">;</span>
@@ -924,7 +930,7 @@
 <span class="nv">$sidebar-light-color</span><span class="o">:</span>    <span class="nv">$body-color</span><span class="p">;</span>
 <span class="nv">$sidebar-light-bg</span><span class="o">:</span>       <span class="nv">$white</span><span class="p">;</span>
 <span class="nv">$sidebar-light-border-width</span><span class="o">:</span>                     <span class="mi">0</span><span class="p">;</span>
-<span class="nv">$sidebar-light-border-color</span><span class="o">:</span>                     <span class="no">transparent</span><span class="p">;</span>
+<span class="nv">$sidebar-light-border-color</span><span class="o">:</span>                     <span class="ni">transparent</span><span class="p">;</span>
 
 <span class="nv">$sidebar-light-brand-color</span><span class="o">:</span>  <span class="nv">$white</span><span class="p">;</span>
 <span class="nv">$sidebar-light-brand-bg</span><span class="o">:</span>     <span class="nv">$primary</span><span class="p">;</span>
@@ -934,7 +940,7 @@
 <span class="nv">$sidebar-light-nav-title-color</span><span class="o">:</span>                  <span class="nv">$medium-emphasis</span><span class="p">;</span>
 
 <span class="nv">$sidebar-light-nav-link-color</span><span class="o">:</span>                   <span class="nv">$medium-emphasis</span><span class="p">;</span>
-<span class="nv">$sidebar-light-nav-link-bg</span><span class="o">:</span>                      <span class="no">transparent</span><span class="p">;</span>
+<span class="nv">$sidebar-light-nav-link-bg</span><span class="o">:</span>                      <span class="ni">transparent</span><span class="p">;</span>
 <span class="nv">$sidebar-light-nav-link-icon-color</span><span class="o">:</span>              <span class="nv">$medium-emphasis</span><span class="p">;</span>
 
 <span class="nv">$sidebar-light-nav-link-hover-color</span><span class="o">:</span>             <span class="nv">$high-emphasis</span><span class="p">;</span>
@@ -966,37 +972,37 @@
 <span class="nv">$sidebar-light-toggler-indicator-hover-icon</span><span class="o">:</span>     <span class="sx">url(&#34;data:image/svg+xml;charset=utf8,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 11 14&#39;%3E%3Cpath fill=&#39;</span><span class="si">#{</span><span class="nv">$sidebar-light-toggler-indicator-hover-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z&#39;/%3E%3C/svg%3E&#34;)</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="css-vars">CSS Vars</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-is-mobile</span>
-<span class="nt">--cui-sidebar-bg</span>
-<span class="nt">--cui-sidebar-border-color</span>
-<span class="nt">--cui-sidebar-border-width</span>
-<span class="nt">--cui-sidebar-brand-bg</span>
-<span class="nt">--cui-sidebar-brand-color</span>
-<span class="nt">--cui-sidebar-color</span>
-<span class="nt">--cui-sidebar-footer-bg</span>
-<span class="nt">--cui-sidebar-header-bg</span>
-<span class="nt">--cui-sidebar-nav-group-bg</span>
-<span class="nt">--cui-sidebar-nav-group-indicator</span>
-<span class="nt">--cui-sidebar-nav-group-indicator-hover</span>
-<span class="nt">--cui-sidebar-nav-group-toggle-show-color</span>
-<span class="nt">--cui-sidebar-nav-link-active-bg</span>
-<span class="nt">--cui-sidebar-nav-link-active-color</span>
-<span class="nt">--cui-sidebar-nav-link-active-icon-color</span>
-<span class="nt">--cui-sidebar-nav-link-bg</span>
-<span class="nt">--cui-sidebar-nav-link-color</span>
-<span class="nt">--cui-sidebar-nav-link-disabled-color</span>
-<span class="nt">--cui-sidebar-nav-link-disabled-icon-color</span>
-<span class="nt">--cui-sidebar-nav-link-hover-bg</span>
-<span class="nt">--cui-sidebar-nav-link-hover-color</span>
-<span class="nt">--cui-sidebar-nav-link-hover-icon-color</span>
-<span class="nt">--cui-sidebar-nav-link-icon-color</span>
-<span class="nt">--cui-sidebar-nav-title-color</span>
-<span class="nt">--cui-sidebar-occupy-end</span>
-<span class="nt">--cui-sidebar-occupy-start</span>
-<span class="nt">--cui-sidebar-toggler-bg</span>
-<span class="nt">--cui-sidebar-toggler-hover-bg</span>
-<span class="nt">--cui-sidebar-toggler-indicator</span>
-<span class="nt">--cui-sidebar-toggler-indicator-hover</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="o">--</span><span class="nt">cui-is-mobile</span>
+<span class="o">--</span><span class="nt">cui-sidebar-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-border-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-border-width</span>
+<span class="o">--</span><span class="nt">cui-sidebar-brand-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-brand-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-footer-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-header-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-group-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-group-indicator</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-group-indicator-hover</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-group-toggle-show-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-active-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-active-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-active-icon-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-disabled-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-disabled-icon-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-hover-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-hover-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-hover-icon-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-link-icon-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-nav-title-color</span>
+<span class="o">--</span><span class="nt">cui-sidebar-occupy-end</span>
+<span class="o">--</span><span class="nt">cui-sidebar-occupy-start</span>
+<span class="o">--</span><span class="nt">cui-sidebar-toggler-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-toggler-hover-bg</span>
+<span class="o">--</span><span class="nt">cui-sidebar-toggler-indicator</span>
+<span class="o">--</span><span class="nt">cui-sidebar-toggler-indicator-hover</span></code></pre></div>
 
     </div>
   </main>
@@ -1011,7 +1017,7 @@
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1019,7 +1025,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-WQ570Fv+kl2hTp4yt87TitCF9MpR0Xm41MNnsgy4Soz5/wOF1BRE+3fvNHcHr4EP" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

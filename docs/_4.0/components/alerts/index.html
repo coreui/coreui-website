@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Bootstrap alerts give contextual feedback information for common user operations. The alert component is delivered with a bunch of usable and adjustable alert messages.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.83.1">
+<meta name="generator" content="Hugo 0.84.0">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-olZc7C0gJuj344muig5HPr40nkI7KeuLFHOwdxJpvVjq4UhCgHSXLSdTwQE2GdoV" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -216,6 +216,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/layout/z-index/" class="nav-link">Z-index</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/css-grid/" class="nav-link">CSS Grid</a>
             </li>
         </ul>
       </li>
@@ -473,6 +476,9 @@
               <a href="/docs/4.0/utilities/interactions/" class="nav-link">Interactions</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/utilities/opacity/" class="nav-link">Opacity</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/utilities/overflow/" class="nav-link">Overflow</a>
             </li>
             <li class="nav-item">
@@ -611,7 +617,7 @@
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/v4-dev/docs/content/4.0/components/alerts.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/components/alerts.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
         <h1 class="docs-title" id="content">Bootstrap alerts</h1>
       </div>
       <p class="docs-lead">Bootstrap alerts give contextual feedback information for common user operations. The alert component is delivered with a bunch of usable and adjustable alert messages.</p>
@@ -953,6 +959,15 @@ When an alert is dismissed, the element is completely removed from the page stru
         Static method which allows you to get the alert instance associated to a DOM element, you can use it like this: <code>coreui.Alert.getInstance(alert)</code>
       </td>
     </tr>
+    <tr>
+      <td>
+        <code>getOrCreateInstance</code>
+      </td>
+      <td>
+        Static method which returns an alert instance associated to a DOM element or create a new one in case it wasn't initialised.
+        You can use it like this: <code>bootstrap.Alert.getOrCreateInstance(element)</code>
+      </td>
+    </tr>
   </tbody>
 </table>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">alertNode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.alert&#39;</span><span class="p">)</span>
@@ -997,8 +1012,8 @@ When an alert is dismissed, the element is completely removed from the page stru
 <span class="nv">$alert-border-radius</span><span class="o">:</span>           <span class="nv">$border-radius</span><span class="p">;</span>
 <span class="nv">$alert-link-font-weight</span><span class="o">:</span>        <span class="nv">$font-weight-bold</span><span class="p">;</span>
 <span class="nv">$alert-border-width</span><span class="o">:</span>            <span class="nv">$border-width</span><span class="p">;</span>
-<span class="nv">$alert-bg-scale</span><span class="o">:</span>                <span class="mi">-80</span><span class="kt">%</span><span class="p">;</span>
-<span class="nv">$alert-border-scale</span><span class="o">:</span>            <span class="mi">-70</span><span class="kt">%</span><span class="p">;</span>
+<span class="nv">$alert-bg-scale</span><span class="o">:</span>                <span class="o">-</span><span class="mi">80</span><span class="kt">%</span><span class="p">;</span>
+<span class="nv">$alert-border-scale</span><span class="o">:</span>            <span class="o">-</span><span class="mi">70</span><span class="kt">%</span><span class="p">;</span>
 <span class="nv">$alert-color-scale</span><span class="o">:</span>             <span class="mi">40</span><span class="kt">%</span><span class="p">;</span>
 <span class="nv">$alert-dismissible-padding-r</span><span class="o">:</span>   <span class="nv">$alert-padding-x</span> <span class="o">*</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// 3x covers width of x plus default padding on either side
 </span><span class="c1"></span>
@@ -1030,13 +1045,13 @@ When an alert is dismissed, the element is completely removed from the page stru
 <span class="p">);</span></code></pre></div>
 <h5 id="color-function">Color function</h5>
 <p>The color set can be generated automatically thanks to our <code>alert-color-map</code> function.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@function</span> <span class="nt">alert-color-map</span><span class="o">(</span><span class="err">$</span><span class="nt">color</span><span class="o">)</span> <span class="p">{</span>
-  <span class="k">@return</span> <span class="o">(</span>
-    <span class="s2">&#34;bg&#34;</span><span class="nd">:</span> <span class="nt">shift-color</span><span class="o">(</span><span class="err">$</span><span class="nt">color</span><span class="o">,</span> <span class="err">$</span><span class="nt">alert-bg-scale</span><span class="o">),</span>
-    <span class="s2">&#34;border-color&#34;</span><span class="nd">:</span> <span class="nt">shift-color</span><span class="o">(</span><span class="err">$</span><span class="nt">color</span><span class="o">,</span> <span class="err">$</span><span class="nt">alert-border-scale</span><span class="o">),</span>
-    <span class="s2">&#34;color&#34;</span><span class="nd">:</span> <span class="nt">shift-color</span><span class="o">(</span><span class="err">$</span><span class="nt">color</span><span class="o">,</span> <span class="err">$</span><span class="nt">alert-color-scale</span><span class="o">),</span>
-    <span class="s2">&#34;link-color&#34;</span><span class="nd">:</span> <span class="nt">shade-color</span><span class="o">(</span><span class="nt">shift-color</span><span class="o">(</span><span class="err">$</span><span class="nt">color</span><span class="o">,</span> <span class="err">$</span><span class="nt">alert-color-scale</span><span class="o">),</span> <span class="nt">20</span><span class="err">%</span><span class="o">)</span>
-  <span class="o">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@function</span><span class="nf"> alert-color-map</span><span class="p">(</span><span class="nv">$color</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">@return</span> <span class="p">(</span>
+    <span class="s2">&#34;bg&#34;</span><span class="o">:</span> <span class="nf">shift-color</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="nv">$alert-bg-scale</span><span class="p">)</span><span class="o">,</span>
+    <span class="s2">&#34;border-color&#34;</span><span class="o">:</span> <span class="nf">shift-color</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="nv">$alert-border-scale</span><span class="p">)</span><span class="o">,</span>
+    <span class="s2">&#34;color&#34;</span><span class="o">:</span> <span class="nf">shift-color</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="nv">$alert-color-scale</span><span class="p">)</span><span class="o">,</span>
+    <span class="s2">&#34;link-color&#34;</span><span class="o">:</span> <span class="nf">shade-color</span><span class="p">(</span><span class="nf">shift-color</span><span class="p">(</span><span class="nv">$color</span><span class="o">,</span> <span class="nv">$alert-color-scale</span><span class="p">)</span><span class="o">,</span> <span class="mi">20</span><span class="kt">%</span><span class="p">)</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$alert-variants</span><span class="o">:</span> <span class="p">(</span>
@@ -1047,15 +1062,15 @@ When an alert is dismissed, the element is completely removed from the page stru
 <p>CoreUI&rsquo;s alert component is built with a base-modifier class approach. This means the bulk of the styling is contained to a base class <code>.alert</code> while style variations are confined to modifier classes (e.g., <code>.alert-danger</code>). These modifier classes are built from the <code>$alert-variants</code> map to make customizing the number and name of our modifier classes.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">// Generate contextual modifier classes for colorizing the alert.
 </span><span class="c1"></span>
-<span class="k">@each</span> <span class="err">$</span><span class="nt">state</span><span class="o">,</span> <span class="err">$</span><span class="nt">variant</span> <span class="nt">in</span> <span class="err">$</span><span class="nt">alert-variants</span> <span class="p">{</span>
+<span class="k">@each</span> <span class="nv">$state</span><span class="o">,</span> <span class="nv">$variant</span> <span class="ow">in</span> <span class="nv">$alert-variants</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> alert-variant</span><span class="p">(</span><span class="nv">$state</span><span class="o">,</span> <span class="nv">$variant</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="css-vars">CSS Vars</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-alert-bg</span>
-<span class="nt">--cui-alert-border-color</span>
-<span class="nt">--cui-alert-color</span>
-<span class="nt">--cui-alert-link-color</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="o">--</span><span class="nt">cui-alert-bg</span>
+<span class="o">--</span><span class="nt">cui-alert-border-color</span>
+<span class="o">--</span><span class="nt">cui-alert-color</span>
+<span class="o">--</span><span class="nt">cui-alert-link-color</span></code></pre></div>
 
     </div>
   </main>
@@ -1070,7 +1085,7 @@ When an alert is dismissed, the element is completely removed from the page stru
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1078,7 +1093,7 @@ When an alert is dismissed, the element is completely removed from the page stru
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-WQ570Fv+kl2hTp4yt87TitCF9MpR0Xm41MNnsgy4Soz5/wOF1BRE+3fvNHcHr4EP" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Buttons with built-in loading indicators. Indicate the loading state of the button bridging the gap between action and feedback.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.83.1">
+<meta name="generator" content="Hugo 0.84.0">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-olZc7C0gJuj344muig5HPr40nkI7KeuLFHOwdxJpvVjq4UhCgHSXLSdTwQE2GdoV" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -216,6 +216,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/layout/z-index/" class="nav-link">Z-index</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/css-grid/" class="nav-link">CSS Grid</a>
             </li>
         </ul>
       </li>
@@ -473,6 +476,9 @@
               <a href="/docs/4.0/utilities/interactions/" class="nav-link">Interactions</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/utilities/opacity/" class="nav-link">Opacity</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/utilities/overflow/" class="nav-link">Overflow</a>
             </li>
             <li class="nav-item">
@@ -607,11 +613,11 @@
     
     
   
-  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: January 19, 2021</span>
+  <span class="breadcrumb-date ms-auto text-disabled-dark">Last updated: June 16, 2021</span>
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/v4-dev/docs/content/4.0/components/loading-buttons.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/components/loading-buttons.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
         <h1 class="docs-title" id="content">Loading Buttons</h1>
       </div>
       <p class="docs-lead">Buttons with built-in loading indicators. Indicate the loading state of the button bridging the gap between action and feedback.</p>
@@ -634,7 +640,6 @@
         <li><a href="#grow">Grow</a></li>
       </ul>
     </li>
-    <li><a href="#progress-bar">Progress Bar</a></li>
     <li><a href="#usage">Usage</a>
       <ul>
         <li><a href="#options">Options</a></li>
@@ -652,10 +657,10 @@
 
       <h2 id="basic-example">Basic example</h2>
 <div class="docs-example">
-<button type="button" class="btn btn-primary btn-loading">Submit</button>
+<button type="button" class="btn btn-primary btn-loading" data-coreui-timeout="2000">Submit</button>
 <button type="button" class="btn btn-outline-primary btn-loading">Submit</button>
 <button type="button" class="btn btn-ghost-primary btn-loading">Submit</button>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary btn-loading&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary btn-loading&#34;</span> <span class="na">data-coreui-timeout</span><span class="o">=</span><span class="s">&#34;2000&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-outline-primary btn-loading&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-ghost-primary btn-loading&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="spinners">Spinners</h2>
@@ -675,12 +680,6 @@
 </div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-info btn-loading&#34;</span> <span class="na">data-coreui-spinner-type</span><span class="o">=</span><span class="s">&#34;grow&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-outline-success btn-loading&#34;</span> <span class="na">data-coreui-spinner-type</span><span class="o">=</span><span class="s">&#34;grow&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-ghost-warning btn-loading&#34;</span> <span class="na">data-coreui-spinner-type</span><span class="o">=</span><span class="s">&#34;grow&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></code></pre></div>
-<h2 id="progress-bar">Progress Bar</h2>
-<div class="docs-example">
-<button type="button" class="btn btn-danger btn-loading" data-coreui-progress="true">Submit</button>
-<button type="button" class="btn btn-danger btn-loading" data-coreui-progress="true" data-coreui-spinner="false">Submit</button>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-danger btn-loading&#34;</span> <span class="na">data-coreui-progress</span><span class="o">=</span><span class="s">&#34;true&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-danger btn-loading&#34;</span> <span class="na">data-coreui-progress</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="na">data-coreui-spinner</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="usage">Usage</h2>
 <h3 id="options">Options</h3>
 <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-coreui-</code>, as in <code>data-coreui-percent=&quot;&quot;</code>.</p>
@@ -695,9 +694,9 @@
   </thead>
   <tbody>
     <tr>
-      <td><code>percent</code></td>
-      <td>number</td>
-      <td><code>0</code></td>
+      <td><code>disabledOnLoading</code></td>
+      <td>boolean</td>
+      <td><code>false</code></td>
       <td></td>
     </tr>
     <tr>
@@ -714,8 +713,8 @@
     </tr>
     <tr>
       <td><code>timeout</code></td>
-      <td>number</td>
-      <td><code>1000</code></td>
+      <td>boolean | number</td>
+      <td><code>false</code></td>
       <td></td>
     </tr>
   </tbody>
@@ -733,43 +732,12 @@
       <td><code>start</code></td>
       <td>
         Starts loading.
-        Shows the multi select's options.
       </td>
     </tr>
     <tr>
       <td><code>stop</code></td>
       <td>
-        Stops loading and reset the percent of loaded to the initial value.
-      </td>
-    </tr>
-    <tr>
-      <td><code>pause</code></td>
-      <td>
-        Pauses loading.
-      </td>
-    </tr>
-    <tr>
-      <td><code>resume</code></td>
-      <td>
-        Resumes loading.
-      </td>
-    </tr>
-    <tr>
-      <td><code>complete</code></td>
-      <td>
-        Sets the percent of loaded to the 100%.
-      </td>
-    </tr>
-        <tr>
-      <td><code>update</code></td>
-      <td>
-        Updates the configuration of loading button.
-      </td>
-    </tr>
-    <tr>
-      <td><code>updatePercent</code></td>
-      <td>
-        Sets the percent of loaded to the provided value.
+        Stops loading.
       </td>
     </tr>
     <tr>
@@ -815,18 +783,10 @@
         Fires immediately when the stop method is called.
       </td>
     </tr>
-    <tr>
-      <td>
-        <code>complete.coreui.loading-button</code>
-      </td>
-      <td>
-        Fires immediately when the loading process is completed.
-      </td>
-    </tr>
   </tbody>
 </table>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myBtnLoading</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myBtnLoading&#39;</span><span class="p">)</span>
-<span class="nx">myBtnLoading</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;complete.coreui.loading-button&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<span class="nx">myBtnLoading</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;stop.coreui.loading-button&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="c1">// do something...
 </span><span class="c1"></span><span class="p">})</span>
 </code></pre></div>
@@ -843,7 +803,7 @@
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -851,7 +811,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-WQ570Fv+kl2hTp4yt87TitCF9MpR0Xm41MNnsgy4Soz5/wOF1BRE+3fvNHcHr4EP" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

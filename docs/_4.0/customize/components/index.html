@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Learn how and why we build nearly all our components responsively and with base and modifier classes.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.83.1">
+<meta name="generator" content="Hugo 0.84.0">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-olZc7C0gJuj344muig5HPr40nkI7KeuLFHOwdxJpvVjq4UhCgHSXLSdTwQE2GdoV" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -216,6 +216,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/layout/z-index/" class="nav-link">Z-index</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/css-grid/" class="nav-link">CSS Grid</a>
             </li>
         </ul>
       </li>
@@ -473,6 +476,9 @@
               <a href="/docs/4.0/utilities/interactions/" class="nav-link">Interactions</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/utilities/opacity/" class="nav-link">Opacity</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/utilities/overflow/" class="nav-link">Overflow</a>
             </li>
             <li class="nav-item">
@@ -611,7 +617,7 @@
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/v4-dev/docs/content/4.0/customize/components.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/customize/components.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
         <h1 class="docs-title" id="content">Components</h1>
       </div>
       <p class="docs-lead">Learn how and why we build nearly all our components responsively and with base and modifier classes.</p>
@@ -648,7 +654,7 @@
 <p>Here are two examples of how we loop over the <code>$theme-colors</code> map to generate modifiers to the <code>.alert</code> and <code>.list-group</code> components.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">// Generate contextual modifier classes for colorizing the alert.
 </span><span class="c1"></span>
-<span class="k">@each</span> <span class="err">$</span><span class="nt">state</span><span class="o">,</span> <span class="err">$</span><span class="nt">variant</span> <span class="nt">in</span> <span class="err">$</span><span class="nt">alert-variants</span> <span class="p">{</span>
+<span class="k">@each</span> <span class="nv">$state</span><span class="o">,</span> <span class="nv">$variant</span> <span class="ow">in</span> <span class="nv">$alert-variants</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> alert-variant</span><span class="p">(</span><span class="nv">$state</span><span class="o">,</span> <span class="nv">$variant</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -657,7 +663,7 @@
 </span><span class="c1">// Add modifier classes to change text and background color on individual items.
 </span><span class="c1">// Organizationally, this must come after the `:hover` states.
 </span><span class="c1"></span>
-<span class="k">@each</span> <span class="err">$</span><span class="nt">state</span><span class="o">,</span> <span class="err">$</span><span class="nt">variant</span> <span class="nt">in</span> <span class="err">$</span><span class="nt">list-group-variants</span> <span class="p">{</span>
+<span class="k">@each</span> <span class="nv">$state</span><span class="o">,</span> <span class="nv">$variant</span> <span class="ow">in</span> <span class="nv">$list-group-variants</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> list-group-item-variant</span><span class="p">(</span><span class="nv">$state</span><span class="o">,</span> <span class="nv">$variant</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -666,25 +672,25 @@
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">// We deliberately hardcode the `bs-` prefix because we check
 </span><span class="c1">// this custom property in JS to determine Popper&#39;s positioning
 </span><span class="c1"></span>
-<span class="k">@each</span> <span class="err">$</span><span class="nt">breakpoint</span> <span class="nt">in</span> <span class="nt">map-keys</span><span class="o">(</span><span class="err">$</span><span class="nt">grid-breakpoints</span><span class="o">)</span> <span class="p">{</span>
+<span class="k">@each</span> <span class="nv">$breakpoint</span> <span class="ow">in</span> <span class="nf">map-keys</span><span class="p">(</span><span class="nv">$grid-breakpoints</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="nv">$breakpoint</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$infix</span><span class="o">:</span> <span class="nf">breakpoint-infix</span><span class="p">(</span><span class="nv">$breakpoint</span><span class="o">,</span> <span class="nv">$grid-breakpoints</span><span class="p">);</span>
 
     <span class="nc">.dropdown-menu</span><span class="si">#{</span><span class="nv">$infix</span><span class="si">}</span><span class="nc">-start</span> <span class="p">{</span>
-      <span class="nt">--</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">variable-prefix</span><span class="p">}</span><span class="nt">position</span><span class="nd">:</span> <span class="nt">start</span><span class="p">;</span>
+      <span class="na">--#{$variable-prefix}position</span><span class="o">:</span> <span class="ni">start</span><span class="p">;</span>
 
       <span class="k">&amp;</span><span class="o">[</span><span class="nt">data-coreui-popper</span><span class="o">]</span> <span class="p">{</span>
-        <span class="nt">right</span><span class="nd">:</span> <span class="nt">auto</span> <span class="nn">#</span><span class="p">{</span><span class="s2">&#34;/* rtl:ignore */&#34;</span><span class="p">};</span>
-        <span class="nt">left</span><span class="nd">:</span> <span class="nt">0</span> <span class="nn">#</span><span class="p">{</span><span class="s2">&#34;/* rtl:ignore */&#34;</span><span class="p">};</span>
+        <span class="na">right</span><span class="o">:</span> <span class="ni">auto</span><span class="p">;</span>
+        <span class="na">left</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">}</span>
 
     <span class="nc">.dropdown-menu</span><span class="si">#{</span><span class="nv">$infix</span><span class="si">}</span><span class="nc">-end</span> <span class="p">{</span>
-      <span class="nt">--</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">variable-prefix</span><span class="p">}</span><span class="nt">position</span><span class="nd">:</span> <span class="nt">end</span><span class="p">;</span>
+      <span class="na">--#{$variable-prefix}position</span><span class="o">:</span> <span class="ni">end</span><span class="p">;</span>
 
       <span class="k">&amp;</span><span class="o">[</span><span class="nt">data-coreui-popper</span><span class="o">]</span> <span class="p">{</span>
-        <span class="nt">right</span><span class="nd">:</span> <span class="nt">0</span> <span class="nn">#</span><span class="p">{</span><span class="s2">&#34;/* rtl:ignore */&#34;</span><span class="p">};</span>
-        <span class="nt">left</span><span class="nd">:</span> <span class="nt">auto</span> <span class="nn">#</span><span class="p">{</span><span class="s2">&#34;/* rtl:ignore */&#34;</span><span class="p">};</span>
+        <span class="na">right</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="na">left</span><span class="o">:</span> <span class="ni">auto</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">}</span>
@@ -692,12 +698,12 @@
 </code></pre></div>
 <p>Should you modify your <code>$grid-breakpoints</code>, your changes will apply to all the loops iterating over that map.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$grid-breakpoints</span><span class="o">:</span> <span class="p">(</span>
-  <span class="n">xs</span><span class="o">:</span> <span class="mi">0</span><span class="o">,</span>
-  <span class="n">sm</span><span class="o">:</span> <span class="mi">576</span><span class="kt">px</span><span class="o">,</span>
-  <span class="n">md</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="o">,</span>
-  <span class="n">lg</span><span class="o">:</span> <span class="mi">992</span><span class="kt">px</span><span class="o">,</span>
-  <span class="n">xl</span><span class="o">:</span> <span class="mi">1200</span><span class="kt">px</span><span class="o">,</span>
-  <span class="n">xxl</span><span class="o">:</span> <span class="mi">1400</span><span class="kt">px</span>
+  <span class="na">xs</span><span class="o">:</span> <span class="mi">0</span><span class="o">,</span>
+  <span class="na">sm</span><span class="o">:</span> <span class="mi">576</span><span class="kt">px</span><span class="o">,</span>
+  <span class="na">md</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="o">,</span>
+  <span class="na">lg</span><span class="o">:</span> <span class="mi">992</span><span class="kt">px</span><span class="o">,</span>
+  <span class="na">xl</span><span class="o">:</span> <span class="mi">1200</span><span class="kt">px</span><span class="o">,</span>
+  <span class="na">xxl</span><span class="o">:</span> <span class="mi">1400</span><span class="kt">px</span>
 <span class="p">);</span>
 </code></pre></div>
 <p>For more information and examples on how to modify our Sass maps and variables, please refer to <a href="/docs/4.0/layout/grid/#sass">the Sass section of the Grid documentation</a>.</p>
@@ -744,7 +750,7 @@
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -752,7 +758,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-WQ570Fv+kl2hTp4yt87TitCF9MpR0Xm41MNnsgy4Soz5/wOF1BRE+3fvNHcHr4EP" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.83.1">
+<meta name="generator" content="Hugo 0.84.0">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.0">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hDpCDIeCFljAX+KHhBM6ZfpcsPcz3+9GsExfLcjbHCyoKkr1qNsXr6DC04FI05gJ" crossorigin="anonymous">
+<link href="/docs/4.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-olZc7C0gJuj344muig5HPr40nkI7KeuLFHOwdxJpvVjq4UhCgHSXLSdTwQE2GdoV" crossorigin="anonymous">
 
 <link href="/docs/4.0/assets/css/docs.css" rel="stylesheet">
 
@@ -216,6 +216,9 @@
             </li>
             <li class="nav-item">
               <a href="/docs/4.0/layout/z-index/" class="nav-link">Z-index</a>
+            </li>
+            <li class="nav-item">
+              <a href="/docs/4.0/layout/css-grid/" class="nav-link">CSS Grid</a>
             </li>
         </ul>
       </li>
@@ -473,6 +476,9 @@
               <a href="/docs/4.0/utilities/interactions/" class="nav-link">Interactions</a>
             </li>
             <li class="nav-item">
+              <a href="/docs/4.0/utilities/opacity/" class="nav-link">Opacity</a>
+            </li>
+            <li class="nav-item">
               <a href="/docs/4.0/utilities/overflow/" class="nav-link">Overflow</a>
             </li>
             <li class="nav-item">
@@ -611,7 +617,7 @@
 </nav>
 
       <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/v4-dev/docs/content/4.0/utilities/borders.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/4.0/utilities/borders.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
         <h1 class="docs-title" id="content">Borders</h1>
       </div>
       <p class="docs-lead">Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.</p>
@@ -819,11 +825,11 @@
 <h3 id="variables">Variables</h3>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$border-width</span><span class="o">:</span>                <span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
 <span class="nv">$border-widths</span><span class="o">:</span> <span class="p">(</span>
-  <span class="mi">1</span><span class="o">:</span> <span class="mi">1</span><span class="kt">px</span><span class="o">,</span>
-  <span class="mi">2</span><span class="o">:</span> <span class="mi">2</span><span class="kt">px</span><span class="o">,</span>
-  <span class="mi">3</span><span class="o">:</span> <span class="mi">3</span><span class="kt">px</span><span class="o">,</span>
-  <span class="mi">4</span><span class="o">:</span> <span class="mi">4</span><span class="kt">px</span><span class="o">,</span>
-  <span class="mi">5</span><span class="o">:</span> <span class="mi">5</span><span class="kt">px</span>
+  <span class="na">1</span><span class="o">:</span> <span class="mi">1</span><span class="kt">px</span><span class="o">,</span>
+  <span class="na">2</span><span class="o">:</span> <span class="mi">2</span><span class="kt">px</span><span class="o">,</span>
+  <span class="na">3</span><span class="o">:</span> <span class="mi">3</span><span class="kt">px</span><span class="o">,</span>
+  <span class="na">4</span><span class="o">:</span> <span class="mi">4</span><span class="kt">px</span><span class="o">,</span>
+  <span class="na">5</span><span class="o">:</span> <span class="mi">5</span><span class="kt">px</span>
 <span class="p">);</span>
 
 <span class="nv">$border-color</span><span class="o">:</span>                <span class="nv">$gray-200</span><span class="p">;</span>
@@ -836,17 +842,17 @@
 <h3 id="mixins">Mixins</h3>
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@mixin</span><span class="nf"> border-radius</span><span class="p">(</span><span class="nv">$radius</span><span class="o">:</span> <span class="nv">$border-radius</span><span class="o">,</span> <span class="nv">$fallback-border-radius</span><span class="o">:</span> <span class="n">false</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">@if</span> <span class="nv">$enable-rounded</span> <span class="p">{</span>
-    <span class="nt">border-radius</span><span class="nd">:</span> <span class="nt">valid-radius</span><span class="o">(</span><span class="err">$</span><span class="nt">radius</span><span class="o">)</span><span class="p">;</span>
+    <span class="na">border-radius</span><span class="o">:</span> <span class="nf">valid-radius</span><span class="p">(</span><span class="nv">$radius</span><span class="p">);</span>
   <span class="p">}</span>
-  <span class="k">@else</span> <span class="nt">if</span> <span class="err">$</span><span class="nt">fallback-border-radius</span> <span class="o">!=</span> <span class="nt">false</span> <span class="p">{</span>
-    <span class="nt">border-radius</span><span class="nd">:</span> <span class="err">$</span><span class="nt">fallback-border-radius</span><span class="p">;</span>
+  <span class="k">@else if</span> <span class="nv">$fallback-border-radius</span> <span class="o">!=</span> <span class="n">false</span> <span class="p">{</span>
+    <span class="na">border-radius</span><span class="o">:</span> <span class="nv">$fallback-border-radius</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="k">@mixin</span><span class="nf"> border-top-radius</span><span class="p">(</span><span class="nv">$radius</span><span class="o">:</span> <span class="nv">$border-radius</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">@if</span> <span class="nv">$enable-rounded</span> <span class="p">{</span>
-    <span class="nt">border-top-left-radius</span><span class="nd">:</span> <span class="nt">valid-radius</span><span class="o">(</span><span class="err">$</span><span class="nt">radius</span><span class="o">)</span><span class="p">;</span>
-    <span class="nt">border-top-right-radius</span><span class="nd">:</span> <span class="nt">valid-radius</span><span class="o">(</span><span class="err">$</span><span class="nt">radius</span><span class="o">)</span><span class="p">;</span>
+    <span class="na">border-top-left-radius</span><span class="o">:</span> <span class="nf">valid-radius</span><span class="p">(</span><span class="nv">$radius</span><span class="p">);</span>
+    <span class="na">border-top-right-radius</span><span class="o">:</span> <span class="nf">valid-radius</span><span class="p">(</span><span class="nv">$radius</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -859,8 +865,8 @@
 
 <span class="k">@mixin</span><span class="nf"> border-bottom-radius</span><span class="p">(</span><span class="nv">$radius</span><span class="o">:</span> <span class="nv">$border-radius</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">@if</span> <span class="nv">$enable-rounded</span> <span class="p">{</span>
-    <span class="nt">border-bottom-right-radius</span><span class="nd">:</span> <span class="nt">valid-radius</span><span class="o">(</span><span class="err">$</span><span class="nt">radius</span><span class="o">)</span><span class="p">;</span>
-    <span class="nt">border-bottom-left-radius</span><span class="nd">:</span> <span class="nt">valid-radius</span><span class="o">(</span><span class="err">$</span><span class="nt">radius</span><span class="o">)</span><span class="p">;</span>
+    <span class="na">border-bottom-right-radius</span><span class="o">:</span> <span class="nf">valid-radius</span><span class="p">(</span><span class="nv">$radius</span><span class="p">);</span>
+    <span class="na">border-bottom-left-radius</span><span class="o">:</span> <span class="nf">valid-radius</span><span class="p">(</span><span class="nv">$radius</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -873,7 +879,7 @@
 
 <span class="k">@mixin</span><span class="nf"> border-top-start-radius</span><span class="p">(</span><span class="nv">$radius</span><span class="o">:</span> <span class="nv">$border-radius</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">@if</span> <span class="nv">$enable-rounded</span> <span class="p">{</span>
-    <span class="nt">border-top-left-radius</span><span class="nd">:</span> <span class="nt">valid-radius</span><span class="o">(</span><span class="err">$</span><span class="nt">radius</span><span class="o">)</span><span class="p">;</span>
+    <span class="na">border-top-left-radius</span><span class="o">:</span> <span class="nf">valid-radius</span><span class="p">(</span><span class="nv">$radius</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -900,14 +906,14 @@
 <div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss">    <span class="s2">&#34;border&#34;</span><span class="nd">:</span> <span class="o">(</span>
       <span class="nt">property</span><span class="nd">:</span> <span class="nt">border</span><span class="o">,</span>
       <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
-        <span class="nt">null</span><span class="nd">:</span> <span class="err">$</span><span class="nt">border-width</span> <span class="nt">solid</span> <span class="nt">var</span><span class="o">(</span><span class="nt">--</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">variable-prefix</span><span class="p">}</span><span class="nt">border-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">border-color</span><span class="o">),</span>
+        <span class="nt">null</span><span class="nd">:</span> <span class="err">$</span><span class="nt">border-width</span> <span class="nt">solid</span> <span class="nt">var</span><span class="o">(--</span><span class="si">#{</span><span class="nv">$variable-prefix</span><span class="si">}</span><span class="nt">border-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">border-color</span><span class="o">),</span>
         <span class="nt">0</span><span class="nd">:</span> <span class="nt">0</span><span class="o">,</span>
       <span class="o">),</span>
     <span class="o">),</span>
     <span class="s2">&#34;border-top&#34;</span><span class="nd">:</span> <span class="o">(</span>
       <span class="nt">property</span><span class="nd">:</span> <span class="nt">border-top</span><span class="o">,</span>
       <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
-        <span class="nt">null</span><span class="nd">:</span> <span class="err">$</span><span class="nt">border-width</span> <span class="nt">solid</span> <span class="nt">var</span><span class="o">(</span><span class="nt">--</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">variable-prefix</span><span class="p">}</span><span class="nt">border-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">border-color</span><span class="o">),</span>
+        <span class="nt">null</span><span class="nd">:</span> <span class="err">$</span><span class="nt">border-width</span> <span class="nt">solid</span> <span class="nt">var</span><span class="o">(--</span><span class="si">#{</span><span class="nv">$variable-prefix</span><span class="si">}</span><span class="nt">border-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">border-color</span><span class="o">),</span>
         <span class="nt">0</span><span class="nd">:</span> <span class="nt">0</span><span class="o">,</span>
       <span class="o">)</span>
     <span class="o">),</span>
@@ -915,7 +921,7 @@
       <span class="nt">property</span><span class="nd">:</span> <span class="nt">border-right</span><span class="o">,</span>
       <span class="nt">class</span><span class="nd">:</span> <span class="nt">border-end</span><span class="o">,</span>
       <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
-        <span class="nt">null</span><span class="nd">:</span> <span class="err">$</span><span class="nt">border-width</span> <span class="nt">solid</span> <span class="nt">var</span><span class="o">(</span><span class="nt">--</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">variable-prefix</span><span class="p">}</span><span class="nt">border-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">border-color</span><span class="o">),</span>
+        <span class="nt">null</span><span class="nd">:</span> <span class="err">$</span><span class="nt">border-width</span> <span class="nt">solid</span> <span class="nt">var</span><span class="o">(--</span><span class="si">#{</span><span class="nv">$variable-prefix</span><span class="si">}</span><span class="nt">border-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">border-color</span><span class="o">),</span>
         <span class="nt">0</span><span class="nd">:</span> <span class="nt">0</span><span class="o">,</span>
       <span class="o">),</span>
       <span class="nt">rtl</span><span class="nd">:</span> <span class="nt">true</span>
@@ -923,7 +929,7 @@
     <span class="s2">&#34;border-bottom&#34;</span><span class="nd">:</span> <span class="o">(</span>
       <span class="nt">property</span><span class="nd">:</span> <span class="nt">border-bottom</span><span class="o">,</span>
       <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
-        <span class="nt">null</span><span class="nd">:</span> <span class="err">$</span><span class="nt">border-width</span> <span class="nt">solid</span> <span class="nt">var</span><span class="o">(</span><span class="nt">--</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">variable-prefix</span><span class="p">}</span><span class="nt">border-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">border-color</span><span class="o">),</span>
+        <span class="nt">null</span><span class="nd">:</span> <span class="err">$</span><span class="nt">border-width</span> <span class="nt">solid</span> <span class="nt">var</span><span class="o">(--</span><span class="si">#{</span><span class="nv">$variable-prefix</span><span class="si">}</span><span class="nt">border-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">border-color</span><span class="o">),</span>
         <span class="nt">0</span><span class="nd">:</span> <span class="nt">0</span><span class="o">,</span>
       <span class="o">)</span>
     <span class="o">),</span>
@@ -931,7 +937,7 @@
       <span class="nt">property</span><span class="nd">:</span> <span class="nt">border-left</span><span class="o">,</span>
       <span class="nt">class</span><span class="nd">:</span> <span class="nt">border-start</span><span class="o">,</span>
       <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
-        <span class="nt">null</span><span class="nd">:</span> <span class="err">$</span><span class="nt">border-width</span> <span class="nt">solid</span> <span class="nt">var</span><span class="o">(</span><span class="nt">--</span><span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">variable-prefix</span><span class="p">}</span><span class="nt">border-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">border-color</span><span class="o">),</span>
+        <span class="nt">null</span><span class="nd">:</span> <span class="err">$</span><span class="nt">border-width</span> <span class="nt">solid</span> <span class="nt">var</span><span class="o">(--</span><span class="si">#{</span><span class="nv">$variable-prefix</span><span class="si">}</span><span class="nt">border-color</span><span class="o">,</span> <span class="err">$</span><span class="nt">border-color</span><span class="o">),</span>
         <span class="nt">0</span><span class="nd">:</span> <span class="nt">0</span><span class="o">,</span>
       <span class="o">),</span>
       <span class="nt">rtl</span><span class="nd">:</span> <span class="nt">true</span>
@@ -1046,7 +1052,7 @@
       <li class="d-inline-block ms-3"><a href="https://community.coreui.io/">Community</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.0.0-rc.5. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.0.0. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1054,7 +1060,7 @@
       
   
     </div>
-    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-1ZjinIBODK/W2LyBJTucKwg9wDmGPkNKkFtBnhtecfI9g7SRLpTBueHDH7WbYqL0" crossorigin="anonymous"></script>
+    <script src="/docs/4.0/dist/js/coreui.bundle.min.js" integrity="sha384-WQ570Fv+kl2hTp4yt87TitCF9MpR0Xm41MNnsgy4Soz5/wOF1BRE+3fvNHcHr4EP" crossorigin="anonymous"></script>
 
 
 <script src="/docs/4.0/assets/js/docs.min.js"></script>
