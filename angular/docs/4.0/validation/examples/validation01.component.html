@@ -1,0 +1,66 @@
+<form #customStylesForm="ngForm"
+      (ngSubmit)="onSubmit1()"
+      [cGutter]="3"
+      [validated]="customStylesValidated"
+      novalidate
+      cForm cRow
+      class="needs-validation"
+>
+  <c-col [md]="4">
+    <label cLabel for="validationCustom01">First name</label>
+    <input cFormControl id="validationCustom01" required type="text" value="Mark" />
+    <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+  </c-col>
+  <c-col [md]="4">
+    <label cLabel for="validationCustom02">Last name</label>
+    <input cFormControl id="validationCustom02" required type="text" value="Otto" />
+    <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+  </c-col>
+  <c-col [md]="4">
+    <label cLabel for="validationCustomUsername">Username</label>
+    <c-input-group class="has-validation">
+      <span cInputGroupText id="inputGroupPrepend">@</span>
+      <input aria-describedby="inputGroupPrepend"
+             cFormControl
+             id="validationCustomUsername"
+             required
+             type="text"
+      />
+      <c-form-feedback [valid]="false">Please choose a username.</c-form-feedback>
+    </c-input-group>
+  </c-col>
+  <c-col [md]="6">
+    <label cLabel for="validationCustom03">City</label>
+    <input cFormControl id="validationCustom03" required type="text" />
+    <c-form-feedback [valid]="false">Please provide a valid city.</c-form-feedback>
+  </c-col>
+  <c-col [md]="3">
+    <label cLabel for="validationCustom04">State</label>
+    <select cSelect id="validationCustom04" required>
+      <option value="">Choose...</option>
+      <option>...</option>
+    </select>
+    <c-form-feedback [valid]="false">Please provide a valid State.</c-form-feedback>
+  </c-col>
+  <c-col [md]="3">
+    <label cLabel for="validationCustom05">Zip code</label>
+    <input cFormControl id="validationCustom05" required type="text" />
+    <c-form-feedback [valid]="false">Please provide a valid zip.</c-form-feedback>
+  </c-col>
+  <c-col [xs]="12">
+    <c-form-check>
+      <input cFormCheckInput id="invalidCheck" name="invalidCheck" required type="checkbox" />
+      <label cFormCheckLabel for="invalidCheck">Agree to terms and conditions</label>
+    </c-form-check>
+    <c-form-feedback [valid]="false">You must agree before submitting.</c-form-feedback>
+  </c-col>
+  <c-col [xs]="12">
+    <button cButton class="me-1" color="primary" type="submit">
+      Submit form
+    </button>
+    <button (click)="onReset1()" cButton color="secondary" type="reset">
+      Reset
+    </button>
+  </c-col>
+</form>
+
