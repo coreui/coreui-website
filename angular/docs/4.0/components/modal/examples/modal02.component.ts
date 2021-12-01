@@ -13,6 +13,6 @@ export class Modal02Component {
   }
 
   handleLiveDemoChange(event: any) {
-    this.visible = event.visible;
+    this.visible = event;
   }
 }
