@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_coreui_bootstrap_vue_docs=self.webpackChunk_coreui_bootstrap_vue_docs||[]).push([[2228],{42228:(e,s,o)=>{o.r(s),o.d(s,{default:()=>u});const u={}}}]);
