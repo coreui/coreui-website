@@ -1,5 +1,5 @@
 ```typescript
-import { AvatarModule } from '@coreui/avatar';
+import { AvatarModule } from '@coreui/angular';
 
 @NgModule({
   imports: [AvatarModule,]

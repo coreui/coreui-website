@@ -1,5 +1,5 @@
 ```typescript
-import { BadgeModule } from '@coreui/badge';
+import { BadgeModule } from '@coreui/angular';
 
 @NgModule({
   imports: [BadgeModule,]

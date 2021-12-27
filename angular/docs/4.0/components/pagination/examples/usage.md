@@ -1,5 +1,5 @@
 ```typescript
-import { PaginationModule } from '@coreui/pagination';
+import { PaginationModule } from '@coreui/angular';
 
 @NgModule({
   imports: [PaginationModule,]

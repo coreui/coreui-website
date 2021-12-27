@@ -1,5 +1,5 @@
 ```typescript
-import { BreadcrumbModule } from '@coreui/breadcrumb';
+import { BreadcrumbModule } from '@coreui/angular';
 
 @NgModule({
   imports: [BreadcrumbModule,]
