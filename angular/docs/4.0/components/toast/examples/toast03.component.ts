@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { ToasterComponent, ToasterPlacement } from '../../../../../../../coreui-angular/src/lib/toast/public_api';
+import { ToasterComponent, ToasterPlacement } from '@coreui/angular';
 import { AppToastSampleComponent } from './toast-sample.component';
 
 @Component({

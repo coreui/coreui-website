@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, forwardRef, Input, Renderer2 } from '@angular/core';
 
-import { ToastComponent, ToasterService } from '../../../../../../../coreui-angular/src/public-api';
+import { ToastComponent, ToasterService } from '@coreui/angular';
 
 @Component({
   selector: 'app-toast-sample',
@@ -14,10 +14,10 @@ export class AppToastSampleComponent extends ToastComponent {
   @Input() title = '';
 
   constructor(
-    public hostElement: ElementRef,
-    public renderer: Renderer2,
-    public toasterService: ToasterService,
-    public changeDetectorRef: ChangeDetectorRef
+    public override hostElement: ElementRef,
+    public override renderer: Renderer2,
+    public override toasterService: ToasterService,
+    public override changeDetectorRef: ChangeDetectorRef
   ) {
     super(hostElement, renderer, toasterService, changeDetectorRef);
   }

@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'docs-multi-select01',
   templateUrl: './multi-select01.component.html',
-  styleUrls: ['./multi-select01.component.scss']
 })
-export class MultiSelect01Component implements OnInit {
+export class MultiSelect01Component {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  frontend = [
+    {
+      value: 'Angular'
+    },
+    {
+      value: 'Bootstrap'
+    },
+    {
+      value: 'React.js'
+    },
+    {
+      value: 'Vue.js'
+    }
+  ];
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { INavData } from '../../../../../../../coreui-angular/src/lib/sidebar';
+import { INavData } from '@coreui/angular';
 
 export const navItems: INavData[] = [
   {
