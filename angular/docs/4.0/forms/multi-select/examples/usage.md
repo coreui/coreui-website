@@ -2,7 +2,7 @@
 import { MultiSelectModule } from '@coreui/angular';
 
 @NgModule({
-  imports: [MultiSelectModule,]
+    imports: [MultiSelectModule,]
 })
 export class AppModule(){}
 ```
