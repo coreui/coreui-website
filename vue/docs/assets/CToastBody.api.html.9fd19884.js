@@ -1,4 +1,0 @@
-import{_ as s,e as a}from"./app.c7446378.js";const n={},e=a(`<h3 id="ctoastbody" tabindex="-1">CToastBody <a class="anchor-link" href="#ctoastbody" aria-hidden="true">#</a></h3><div class="language-jsx ext-jsx line-numbers-mode"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CToastBody <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
-<span class="token comment">// or</span>
-<span class="token keyword">import</span> CToastBody <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/toast/CToastBody&#39;</span>
-</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div>`,2);function o(t,c){return e}var p=s(n,[["render",o]]);export{p as default};

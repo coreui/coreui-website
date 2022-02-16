@@ -1,4 +1,0 @@
-import{_ as n,e as s}from"./app.c7446378.js";const a={},o=s(`<h3 id="cformcontrol" tabindex="-1">CFormControl <a class="anchor-link" href="#cformcontrol" aria-hidden="true">#</a></h3><div class="language-jsx ext-jsx line-numbers-mode"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CFormControl <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
-<span class="token comment">// or</span>
-<span class="token keyword">import</span> CFormControl <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/form/CFormControl&#39;</span>
-</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div>`,2);function e(r,t){return o}var p=n(a,[["render",e]]);export{p as default};

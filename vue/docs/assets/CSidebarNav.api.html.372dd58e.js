@@ -1,0 +1,4 @@
+import{_ as a,e as s}from"./app.0880af9b.js";const n={},e=s(`<h3 id="csidebarnav" tabindex="-1">CSidebarNav <a class="anchor-link" href="#csidebarnav" aria-hidden="true">#</a></h3><div class="language-jsx ext-jsx line-numbers-mode"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CSidebarNav <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
+<span class="token comment">// or</span>
+<span class="token keyword">import</span> CSidebarNav <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/sidebar/CSidebarNav&#39;</span>
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div>`,2);function r(c,o){return e}var i=a(n,[["render",r]]);export{i as default};
