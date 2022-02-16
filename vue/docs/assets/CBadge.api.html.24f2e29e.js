@@ -1,0 +1,1 @@
+const e={key:"v-44b90693",path:"/api/badge/CBadge.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CBadge",slug:"cbadge",children:[]}],git:{updatedTime:163570725e4,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:3}]}};export{e as data};

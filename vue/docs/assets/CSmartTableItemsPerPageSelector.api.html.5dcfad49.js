@@ -1,0 +1,1 @@
+const e={key:"v-02dc8f4d",path:"/api/smart-table/CSmartTableItemsPerPageSelector.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CSmartTableItemsPerPageSelector",slug:"csmarttableitemsperpageselector",children:[]}],git:{updatedTime:1635761591e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};

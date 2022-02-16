@@ -1,0 +1,1 @@
+const a={key:"v-97e498ce",path:"/api/avatar/CAvatar.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CAvatar",slug:"cavatar",children:[]}],git:{updatedTime:163570725e4,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:3}]}};export{a as data};

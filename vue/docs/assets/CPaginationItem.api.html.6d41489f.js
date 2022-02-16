@@ -1,0 +1,1 @@
+const t={key:"v-616a5484",path:"/api/pagination/CPaginationItem.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CPaginationItem",slug:"cpaginationitem",children:[]}],git:{updatedTime:1635168931e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{t as data};

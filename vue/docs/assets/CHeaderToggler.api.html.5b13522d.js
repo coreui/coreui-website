@@ -1,0 +1,1 @@
+const e={key:"v-17dc31eb",path:"/api/header/CHeaderToggler.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CHeaderToggler",slug:"cheadertoggler",children:[]}],git:{updatedTime:1635168931e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};

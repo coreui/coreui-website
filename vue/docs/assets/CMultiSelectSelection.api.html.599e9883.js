@@ -1,0 +1,1 @@
+const e={key:"v-d33cd538",path:"/api/multi-select/CMultiSelectSelection.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CMultiSelectSelection",slug:"cmultiselectselection",children:[]}],git:{updatedTime:1635761591e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};
