@@ -1,0 +1,56 @@
+<c-smart-table
+    activePage="2"
+    cleaner
+    clickableRows
+    [columnSorter]="true"
+    [columns]="columns"
+    footer
+    header
+    [itemsPerPageSelect]="true"
+    [itemsPerPage]="5"
+    [items]="usersData"
+    pagination
+    selectable
+    [sorterValue]="{ column: 'name', state: 'asc' }"
+    [tableBodyProps]="{align: 'middle'}"
+    [tableFilter]="true"
+    [tableFootProps]="{color: 'warning'}"
+    [tableHeadProps]="{color: 'warning'}"
+    [tableProps]="{ hover: true, striped: true, responsive: true }"
+>
+    <ng-template cTemplateId="tableDetails" let-item="item">
+      <div>
+        <div [visible]="this.details_visible[item._id]===true" cCollapse class="card-body">
+          <h5>{{item['name']}}</h5>
+          <p class="text-muted">User since: {{item['registered']}}</p>
+          <button cButton color="info" size="sm">
+            User Settings
+          </button>
+          <button cButton class="ms-1" color="danger" size="sm">
+            Delete
+          </button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template cTemplateId="tableData" let-columnName="columnName" let-item="item" let-tdContent="tdContent">
+      <td [cTableActive]="item?.['_cellProps']?.[columnName]?.active ?? item?.['_cellProps']?._all?.active"
+          [cTableColor]="item?.['_cellProps']?.[columnName]?.color ?? item?.['_cellProps']?._all?.color"
+          [cAlign]="item?.['_cellProps']?.[columnName]?.align ?? item?.['_cellProps']?._all?.align">
+        <ng-container [ngSwitch]="columnName">
+          <ng-container *ngSwitchCase="'status'">
+            <c-badge [color]="getBadge(tdContent)">
+              {{(item[columnName])}}
+            </c-badge>
+          </ng-container>
+          <ng-container *ngSwitchCase="'show'" class="py-2">
+            <button (click)="toggleDetails(item._id)" cButton color="primary" size="sm" variant="outline">
+              Show
+            </button>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            {{tdContent}}
+          </ng-container>
+        </ng-container>
+      </td>
+    </ng-template>
+</c-smart-table>
