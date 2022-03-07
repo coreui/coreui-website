@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Bootstrap collapse component toggles the visibility of content across your project with a few classes and some scripts. Useful for a large amount of content.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.93.2">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.1">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-J2WCKfhPxbtZAT+USOoPNCnZVozpAaGtaH/LUcSKXjdCXN85i5fGMTy1Agp8HChK" crossorigin="anonymous">
+<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-4RjTy+ihDlYQqAQJodVMv1QuiX0mRlR0xtuKKu1P8I2TxVdGPXaW+VxJ6PirwMm4" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/assets/css/docs.css" rel="stylesheet">
 
@@ -77,7 +77,7 @@
 
 
   </head>
-  <body class="d-flex">
+  <body class="d-flex legacy-theme">
     
     <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
@@ -106,7 +106,7 @@
       JavaScript / Vanilla JS
     </button>
     <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
-      <li><a class="dropdown-item disabled" href="#" disabled>Angular <span class="badge bg-warning float-end mt-1">Work in Progress</span></a></li>
+      <li><a class="dropdown-item" href="https://coreui.io/angular/docs/4.0/getting-started/introduction">Angular</a></li>
       <li><a class="dropdown-item" href="https://coreui.io/react/docs/" target="_blank">React.js</a></li>
       <li><a class="dropdown-item" href="https://coreui.io/vue/docs/" target="_blank">Vue.js</a></li>
     </ul>
@@ -377,13 +377,25 @@
             <li class="nav-item">
               <a href="#" class="nav-link disabled"  disabled="disabled">
                 Form Mask
-                  <span class="badge bg-warning ms-auto">WIP v4.2</span>
+                  <span class="badge bg-warning ms-auto">WIP</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link disabled"  disabled="disabled">
+              <a href="https://coreui.io/docs/forms/date-picker/" class="nav-link" >
+                Date Picker
+                  <span class="badge bg-success ms-auto">LAB</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/forms/date-range-picker/" class="nav-link" >
                 Date Range Picker
-                  <span class="badge bg-warning ms-auto">WIP v4.2</span>
+                  <span class="badge bg-success ms-auto">LAB</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/forms/time-picker/" class="nav-link" >
+                Time Picker
+                  <span class="badge bg-success ms-auto">LAB</span>
               </a>
             </li>
             <li class="nav-item">
@@ -828,8 +840,8 @@
   
 </nav>
 
-      <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/components/collapse.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+      <div class="d-md-flex flex-md-row align-items-center justify-content-between">
+        
         <h1 class="docs-title" id="content">Bootstrap collapse</h1>
       </div>
       <p class="docs-lead">Bootstrap collapse component toggles the visibility of content across your project with a few classes and some scripts. Useful for a large amount of content.</p>
@@ -905,19 +917,19 @@ The animation effect of this component is dependent on the <code>prefers-reduced
     Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#collapseExample&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;collapseExample&#34;</span><span class="p">&gt;</span>
-    Link with href
-  <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">data-coreui-target</span><span class="o">=</span><span class="s">&#34;#collapseExample&#34;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;collapseExample&#34;</span><span class="p">&gt;</span>
-    Button with data-coreui-target
-  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;collapseExample&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card card-body&#34;</span><span class="p">&gt;</span>
-    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#collapseExample&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;collapseExample&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    Link with href
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">data-coreui-target</span><span class="o">=</span><span class="s">&#34;#collapseExample&#34;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;collapseExample&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    Button with data-coreui-target
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;collapseExample&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card card-body&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <h2 id="horizontal">Horizontal</h2>
 <p>The collapse plugin also supports horizontal collapsing. Add the <code>.collapse-horizontal</code> modifier class to transition the <code>width</code> instead of <code>height</code> and set a <code>width</code> on the immediate child element. Feel free to write your own custom Sass, use inline styles, or use our <a href="https://coreui.io/docs/utilities/sizing/">width utilities</a>.</p>
 <div class="docs-callout docs-callout-info">
@@ -937,18 +949,18 @@ Please note that while the example below has a <code>min-height</code> set to av
     </div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">data-coreui-target</span><span class="o">=</span><span class="s">&#34;#collapseWidthExample&#34;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;collapseWidthExample&#34;</span><span class="p">&gt;</span>
-    Toggle width collapse
-  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;min-height: 120px;&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;collapse collapse-horizontal&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;collapseWidthExample&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card card-body&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 300px;&#34;</span><span class="p">&gt;</span>
-      This is some placeholder content for a horizontal collapse. It&#39;s hidden by default and shown when triggered.
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">data-coreui-target</span><span class="o">=</span><span class="s">&#34;#collapseWidthExample&#34;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;collapseWidthExample&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    Toggle width collapse
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;min-height: 120px;&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;collapse collapse-horizontal&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;collapseWidthExample&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card card-body&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 300px;&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      This is some placeholder content for a horizontal collapse. It&#39;s hidden by default and shown when triggered.
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <h2 id="multiple-targets">Multiple targets</h2>
 <p>A <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> can show and hide multiple elements by referencing them with a selector in its <code>href</code> or <code>data-coreui-target</code> attribute.
 Multiple <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> can show and hide an element if they each reference it with their <code>href</code> or <code>data-coreui-target</code> attribute</p>
@@ -974,27 +986,27 @@ Multiple <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> can show and hide
     </div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#multiCollapseExample1&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;multiCollapseExample1&#34;</span><span class="p">&gt;</span>Toggle first element<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">data-coreui-target</span><span class="o">=</span><span class="s">&#34;#multiCollapseExample2&#34;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;multiCollapseExample2&#34;</span><span class="p">&gt;</span>Toggle second element<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">data-coreui-target</span><span class="o">=</span><span class="s">&#34;.multi-collapse&#34;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;multiCollapseExample1 multiCollapseExample2&#34;</span><span class="p">&gt;</span>Toggle both elements<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;collapse multi-collapse&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;multiCollapseExample1&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card card-body&#34;</span><span class="p">&gt;</span>
-        Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;collapse multi-collapse&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;multiCollapseExample2&#34;</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card card-body&#34;</span><span class="p">&gt;</span>
-        Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
-      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#multiCollapseExample1&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;multiCollapseExample1&#34;</span><span class="p">&gt;</span>Toggle first element<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">data-coreui-target</span><span class="o">=</span><span class="s">&#34;#multiCollapseExample2&#34;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;multiCollapseExample2&#34;</span><span class="p">&gt;</span>Toggle second element<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;collapse&#34;</span> <span class="na">data-coreui-target</span><span class="o">=</span><span class="s">&#34;.multi-collapse&#34;</span> <span class="na">aria-expanded</span><span class="o">=</span><span class="s">&#34;false&#34;</span> <span class="na">aria-controls</span><span class="o">=</span><span class="s">&#34;multiCollapseExample1 multiCollapseExample2&#34;</span><span class="p">&gt;</span>Toggle both elements<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;collapse multi-collapse&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;multiCollapseExample1&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card card-body&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;collapse multi-collapse&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;multiCollapseExample2&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;card card-body&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        Some placeholder content for the second collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <h2 id="accessibility">Accessibility</h2>
 <p>Be sure to add <code>aria-expanded</code> to the control component. This attribute explicitly sends the current state of the collapsible element connected to the control to screen readers and related assistive technologies. If the collapsible part is closed by default, the attribute on the control element should have a value of <code>aria-expanded=&quot;false&quot;</code>. If you have set the collapsible element to be open by default using the <code>show</code> class, set <code>aria-expanded=&quot;true&quot;</code> on the control alternatively. The plugin will automatically toggle this attribute on the control based on whether or not the collapsible element has been opened or closed (via JavaScript, or because the user triggered another control element also tied to the same collapsible element). If the control element&rsquo;s HTML element is not a button (e.g., an <code>&lt;a&gt;</code> or <code>&lt;div&gt;</code>), the attribute <code>role=&quot;button&quot;</code> should be added to the element.</p>
 <p>If your control element is targeting a single collapsible element – i.e., the <code>data-coreui-target</code> attribute is pointing to an <code>id</code> selector – you should attach the <code>aria-controls</code> attribute to the control part, including the <code>id</code> of the collapsible element. Modern screen readers and related assistive technologies address this attribute to provide users with extra shortcuts to navigate directly to the collapsible element itself.</p>
@@ -1012,11 +1024,11 @@ Multiple <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> can show and hide
 <p>To add accordion-like group management to a collapsible area, add the data attribute <code>data-coreui-parent=&quot;#selector&quot;</code>. Refer to the demo to see this in action.</p>
 <h3 id="via-javascript">Via JavaScript</h3>
 <p>Enable manually with:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">collapseElementList</span> <span class="o">=</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.collapse&#39;</span><span class="p">))</span>
-<span class="kd">var</span> <span class="nx">collapseList</span> <span class="o">=</span> <span class="nx">collapseElementList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">collapseEl</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Collapse</span><span class="p">(</span><span class="nx">collapseEl</span><span class="p">)</span>
-<span class="p">})</span>
-</code></pre></div><h3 id="options">Options</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">collapseElementList</span> <span class="o">=</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.collapse&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">collapseList</span> <span class="o">=</span> <span class="nx">collapseElementList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">collapseEl</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Collapse</span><span class="p">(</span><span class="nx">collapseEl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><h3 id="options">Options</h3>
 <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-coreui-</code>, as in <code>data-coreui-parent=&quot;&quot;</code>.</p>
 <table class="table">
   <thead>
@@ -1052,11 +1064,11 @@ Multiple <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> can show and hide
 
 <p>Activates your content as a collapsible element. Accepts an optional options <code>object</code>.</p>
 <p>You can create a collapse instance with the constructor, for example:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myCollapse</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myCollapse&#39;</span><span class="p">)</span>
-<span class="kd">var</span> <span class="nx">cuiCollapse</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Collapse</span><span class="p">(</span><span class="nx">myCollapse</span><span class="p">,</span> <span class="p">{</span>
-  <span class="nx">toggle</span><span class="o">:</span> <span class="kc">false</span>
-<span class="p">})</span>
-</code></pre></div><table class="table">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">myCollapse</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myCollapse&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">cuiCollapse</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Collapse</span><span class="p">(</span><span class="nx">myCollapse</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">toggle</span><span class="o">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><table class="table">
   <thead>
     <tr>
       <th>Method</th>
@@ -1127,36 +1139,36 @@ Multiple <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> can show and hide
     </tr>
   </tbody>
 </table>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myCollapsible</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myCollapsible&#39;</span><span class="p">)</span>
-<span class="nx">myCollapsible</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;hidden.coreui.collapse&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// do something...
-</span><span class="c1"></span><span class="p">})</span>
-</code></pre></div><h2 id="customization">Customization</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">myCollapsible</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myCollapsible&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">myCollapsible</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;hidden.coreui.collapse&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// do something...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
+</span></span></code></pre></div><h2 id="customization">Customization</h2>
 <h3 id="sass">SASS</h3>
 <h4 id="variables">Variables</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$transition-collapse</span><span class="o">:</span>         <span class="n">height</span> <span class="mf">.35</span><span class="kt">s</span> <span class="ni">ease</span><span class="p">;</span>
-<span class="nv">$transition-collapse-width</span><span class="o">:</span>   <span class="ni">width</span> <span class="mf">.35</span><span class="kt">s</span> <span class="ni">ease</span><span class="p">;</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nv">$transition-collapse</span><span class="o">:</span>         <span class="n">height</span> <span class="mf">.35</span><span class="kt">s</span> <span class="ni">ease</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$transition-collapse-width</span><span class="o">:</span>   <span class="ni">width</span> <span class="mf">.35</span><span class="kt">s</span> <span class="ni">ease</span><span class="p">;</span>
+</span></span></code></pre></div>
 <h4 id="classes">Classes</h4>
 <p>Collapse transition classes can be found in scss/_transitions.scss as these are shared across multiple components (collapse and accordion).</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="nc">.collapse</span> <span class="p">{</span>
-  <span class="k">&amp;</span><span class="nd">:not</span><span class="o">(</span><span class="nc">.show</span><span class="o">)</span> <span class="p">{</span>
-    <span class="na">display</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="nc">.collapsing</span> <span class="p">{</span>
-  <span class="na">height</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="na">overflow</span><span class="o">:</span> <span class="ni">hidden</span><span class="p">;</span>
-  <span class="k">@include</span><span class="nd"> transition</span><span class="p">(</span><span class="nv">$transition-collapse</span><span class="p">);</span>
-
-  <span class="k">&amp;</span><span class="nc">.collapse-horizontal</span> <span class="p">{</span>
-    <span class="na">width</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="na">height</span><span class="o">:</span> <span class="ni">auto</span><span class="p">;</span>
-    <span class="k">@include</span><span class="nd"> transition</span><span class="p">(</span><span class="nv">$transition-collapse-width</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.collapse</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">&amp;</span><span class="nd">:not</span><span class="o">(</span><span class="nc">.show</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">display</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.collapsing</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">height</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">overflow</span><span class="o">:</span> <span class="ni">hidden</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">@include</span><span class="nd"> transition</span><span class="p">(</span><span class="nv">$transition-collapse</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">&amp;</span><span class="nc">.collapse-horizontal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">width</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">height</span><span class="o">:</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">@include</span><span class="nd"> transition</span><span class="p">(</span><span class="nv">$transition-collapse-width</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
 
     </div>
   </main>
@@ -1168,9 +1180,12 @@ Multiple <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> can show and hide
     <ul class="docs-footer-links ps-0 mb-3">
       <li class="d-inline-block"><a href="https://github.com/coreui">GitHub</a></li>
       <li class="d-inline-block ms-3"><a href="https://twitter.com/core_ui">Twitter</a></li>
+      <li class="d-inline-block ms-3 ps-3 border-start border-2"><a href="https://coreui.io/angular/">CoreUI for Angular</a></li>
+      <li class="d-inline-block ms-3"><a href="https://coreui.io/react/">CoreUI for React.js</a></li>
+      <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.1.0. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.1.1. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1178,7 +1193,7 @@ Multiple <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code> can show and hide
       
   
     </div>
-    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-xrIl/D1LLvXm2eAIEikcV4kDtg/8t0OyMXYhb4v8gWYWAN0lvuEzXiHkPpDsXl9x" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-PXOm0LjM7kBY7at2HNqu2pAJsTVQUPRzpJSwQD0V//zsjFAcv61qjiZj3ELesLb1" crossorigin="anonymous"></script>
 
 
 <script src="https://coreui.io/docs/assets/js/docs.min.js"></script>

@@ -1,5 +1,5 @@
 /*!
-  * CoreUI v4.1.0 (https://coreui.io)
+  * CoreUI v4.2.0-beta.0 (https://coreui.io)
   * Copyright 2022 The CoreUI Team (https://github.com/orgs/coreui/people)
   * Licensed under MIT (https://coreui.io)
   */
@@ -11,7 +11,7 @@
 
   function _interopNamespace(e) {
     if (e && e.__esModule) return e;
-    const n = Object.create(null);
+    const n = Object.create(null, { [Symbol.toStringTag]: { value: 'Module' } });
     if (e) {
       for (const k in e) {
         if (k !== 'default') {
@@ -31,7 +31,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): alert.js
+   * CoreUI (v4.2.0-beta.0): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's  util/index.js
@@ -42,12 +42,12 @@
   const MILLISECONDS_MULTIPLIER = 1000;
   const TRANSITION_END = 'transitionend'; // Shoutout AngusCroll (https://goo.gl/pxwQGp)
 
-  const toType = obj => {
-    if (obj === null || obj === undefined) {
-      return `${obj}`;
+  const toType = object => {
+    if (object === null || object === undefined) {
+      return `${object}`;
     }
 
-    return {}.toString.call(obj).match(/\s([a-z]+)/i)[1].toLowerCase();
+    return Object.prototype.toString.call(object).match(/\s([a-z]+)/i)[1].toLowerCase();
   };
   /**
    * --------------------------------------------------------------------------
@@ -172,10 +172,30 @@
       return false;
     }
 
-    return getComputedStyle(element).getPropertyValue('visibility') === 'visible';
+    const elementIsVisible = getComputedStyle(element).getPropertyValue('visibility') === 'visible'; // Handle `details` element as its content may falsie appear visible when it is closed
+
+    const closedDetails = element.closest('details:not([open])');
+
+    if (!closedDetails) {
+      return elementIsVisible;
+    }
+
+    if (closedDetails !== element) {
+      const summary = element.closest('summary');
+
+      if (summary && summary.parentNode !== closedDetails) {
+        return false;
+      }
+
+      if (summary === null) {
+        return false;
+      }
+    }
+
+    return elementIsVisible;
   };
 
-  const isDisabled = element => {
+  const isDisabled$1 = element => {
     if (!element || element.nodeType !== Node.ELEMENT_NODE) {
       return true;
     }
@@ -345,7 +365,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): dom/event-handler.js
+   * CoreUI (v4.2.0-beta.0): dom/event-handler.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's  dom/event-handler.js
@@ -636,7 +656,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): dom/data.js
+   * CoreUI (v4.2.0-beta.0): dom/data.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's dom/data.js
@@ -693,7 +713,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): alert.js
+   * CoreUI (v4.2.0-beta.0): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's base-component.js
@@ -706,7 +726,7 @@
    * ------------------------------------------------------------------------
    */
 
-  const VERSION = '4.1.0';
+  const VERSION = '4.2.0-beta.0';
 
   class BaseComponent {
     constructor(element) {
@@ -775,7 +795,7 @@
         event.preventDefault();
       }
 
-      if (isDisabled(this)) {
+      if (isDisabled$1(this)) {
         return;
       }
 
@@ -788,7 +808,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): alert.js
+   * CoreUI (v4.2.0-beta.0): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's alert.js
@@ -801,12 +821,12 @@
    * ------------------------------------------------------------------------
    */
 
-  const NAME$h = 'alert';
-  const DATA_KEY$g = 'coreui.alert';
-  const EVENT_KEY$g = `.${DATA_KEY$g}`;
-  const EVENT_CLOSE = `close${EVENT_KEY$g}`;
-  const EVENT_CLOSED = `closed${EVENT_KEY$g}`;
-  const CLASS_NAME_FADE$6 = 'fade';
+  const NAME$m = 'alert';
+  const DATA_KEY$l = 'coreui.alert';
+  const EVENT_KEY$l = `.${DATA_KEY$l}`;
+  const EVENT_CLOSE = `close${EVENT_KEY$l}`;
+  const EVENT_CLOSED = `closed${EVENT_KEY$l}`;
+  const CLASS_NAME_FADE$5 = 'fade';
   const CLASS_NAME_SHOW$b = 'show';
   /**
    * ------------------------------------------------------------------------
@@ -817,7 +837,7 @@
   class Alert extends BaseComponent {
     // Getters
     static get NAME() {
-      return NAME$h;
+      return NAME$m;
     } // Public
 
 
@@ -830,7 +850,7 @@
 
       this._element.classList.remove(CLASS_NAME_SHOW$b);
 
-      const isAnimated = this._element.classList.contains(CLASS_NAME_FADE$6);
+      const isAnimated = this._element.classList.contains(CLASS_NAME_FADE$5);
 
       this._queueCallback(() => this._destroyElement(), this._element, isAnimated);
     } // Private
@@ -880,7 +900,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): alert.js
+   * CoreUI (v4.2.0-beta.0): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's button.js
@@ -893,13 +913,13 @@
    * ------------------------------------------------------------------------
    */
 
-  const NAME$g = 'button';
-  const DATA_KEY$f = 'coreui.button';
-  const EVENT_KEY$f = `.${DATA_KEY$f}`;
-  const DATA_API_KEY$a = '.data-api';
+  const NAME$l = 'button';
+  const DATA_KEY$k = 'coreui.button';
+  const EVENT_KEY$k = `.${DATA_KEY$k}`;
+  const DATA_API_KEY$e = '.data-api';
   const CLASS_NAME_ACTIVE$4 = 'active';
-  const SELECTOR_DATA_TOGGLE$6 = '[data-coreui-toggle="button"]';
-  const EVENT_CLICK_DATA_API$9 = `click${EVENT_KEY$f}${DATA_API_KEY$a}`;
+  const SELECTOR_DATA_TOGGLE$9 = '[data-coreui-toggle="button"]';
+  const EVENT_CLICK_DATA_API$9 = `click${EVENT_KEY$k}${DATA_API_KEY$e}`;
   /**
    * ------------------------------------------------------------------------
    * Class Definition
@@ -909,7 +929,7 @@
   class Button extends BaseComponent {
     // Getters
     static get NAME() {
-      return NAME$g;
+      return NAME$l;
     } // Public
 
 
@@ -937,9 +957,9 @@
    */
 
 
-  EventHandler.on(document, EVENT_CLICK_DATA_API$9, SELECTOR_DATA_TOGGLE$6, event => {
+  EventHandler.on(document, EVENT_CLICK_DATA_API$9, SELECTOR_DATA_TOGGLE$9, event => {
     event.preventDefault();
-    const button = event.target.closest(SELECTOR_DATA_TOGGLE$6);
+    const button = event.target.closest(SELECTOR_DATA_TOGGLE$9);
     const data = Button.getOrCreateInstance(button);
     data.toggle();
   });
@@ -954,7 +974,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): dom/manipulator.js
+   * CoreUI (v4.2.0-beta.0): dom/manipulator.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's  dom/manipulator.js
@@ -1029,9 +1049,548 @@
 
   };
 
+  const createGroupsInArray = (arr, numberOfGroups) => {
+    const perGroup = Math.ceil(arr.length / numberOfGroups);
+    return Array.from({
+      length: numberOfGroups
+    }).fill('').map((_, i) => arr.slice(i * perGroup, (i + 1) * perGroup));
+  };
+  const getMonthsNames = locale => {
+    const months = [];
+    const d = new Date();
+    d.setDate(1);
+
+    for (let i = 0; i < 12; i++) {
+      d.setMonth(i);
+      months.push(d.toLocaleString(locale, {
+        month: 'short'
+      }));
+    }
+
+    return months;
+  };
+  const getYears = year => {
+    const years = [];
+
+    for (let _year = year - 6; _year < year + 6; _year++) {
+      years.push(_year);
+    }
+
+    return years;
+  };
+
+  const getLeadingDays = (year, month, firstDayOfWeek) => {
+    // 0: sunday
+    // 1: monday
+    const dates = [];
+    const d = new Date(year, month);
+    const y = d.getFullYear();
+    const m = d.getMonth();
+    const firstWeekday = new Date(y, m, 1).getDay();
+    let leadingDays = 6 - (6 - firstWeekday) - firstDayOfWeek;
+
+    if (firstDayOfWeek) {
+      leadingDays = leadingDays < 0 ? 7 + leadingDays : leadingDays;
+    }
+
+    for (let i = leadingDays * -1; i < 0; i++) {
+      dates.push({
+        date: new Date(y, m, i + 1),
+        month: 'previous'
+      });
+    }
+
+    return dates;
+  };
+
+  const getMonthDays = (year, month) => {
+    const dates = [];
+    const lastDay = new Date(year, month + 1, 0).getDate();
+
+    for (let i = 1; i <= lastDay; i++) {
+      dates.push({
+        date: new Date(year, month, i),
+        month: 'current'
+      });
+    }
+
+    return dates;
+  };
+
+  const getTrailingDays = (year, month, leadingDays, monthDays) => {
+    const dates = [];
+    const days = 42 - (leadingDays.length + monthDays.length);
+
+    for (let i = 1; i <= days; i++) {
+      dates.push({
+        date: new Date(year, month + 1, i),
+        month: 'next'
+      });
+    }
+
+    return dates;
+  };
+
+  const getMonthDetails = (year, month, firstDayOfWeek) => {
+    const daysPrevMonth = getLeadingDays(year, month, firstDayOfWeek);
+    const daysThisMonth = getMonthDays(year, month);
+    const daysNextMonth = getTrailingDays(year, month, daysPrevMonth, daysThisMonth);
+    const days = [...daysPrevMonth, ...daysThisMonth, ...daysNextMonth];
+    const weeks = [];
+    days.forEach((day, index) => {
+      if (index % 7 === 0 || weeks.length === 0) {
+        weeks.push([]);
+      }
+
+      weeks[weeks.length - 1].push(day);
+    });
+    return weeks;
+  };
+  const isDisabled = (date, min, max, dates) => {
+    let disabled;
+
+    if (dates) {
+      dates.forEach(_date => {
+        if (Array.isArray(_date) && isDateInRange(date, _date[0], _date[1])) {
+          disabled = true;
+        }
+
+        if (_date instanceof Date && isSameDateAs(date, _date)) {
+          disabled = true;
+        }
+      });
+    }
+
+    if (min && date < min) {
+      disabled = true;
+    }
+
+    if (max && date > max) {
+      disabled = true;
+    }
+
+    return disabled;
+  };
+  const isDateInRange = (date, start, end) => {
+    return start && end && start <= date && date <= end;
+  };
+  const isDateSelected = (date, start, end) => {
+    return start && isSameDateAs(start, date) || end && isSameDateAs(end, date);
+  };
+  const isEndDate = (date, start, end) => {
+    return start && end && isSameDateAs(end, date) && start < end;
+  };
+  const isLastDayOfMonth = date => {
+    const test = new Date(date.getTime());
+    const month = test.getMonth();
+    test.setDate(test.getDate() + 1);
+    return test.getMonth() !== month;
+  };
+  const isSameDateAs = (date, date2) => {
+    return date.getDate() === date2.getDate() && date.getMonth() === date2.getMonth() && date.getFullYear() === date2.getFullYear();
+  };
+  const isStartDate = (date, start, end) => {
+    return start && end && isSameDateAs(start, date) && start < end;
+  };
+  const isToday = date => {
+    const today = new Date();
+    return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+  };
+
+  /* eslint-disable multiline-ternary */
+  /**
+  * ------------------------------------------------------------------------
+  * Constants
+  * ------------------------------------------------------------------------
+  */
+
+  const NAME$k = 'calendar';
+  const DATA_KEY$j = 'coreui.calendar';
+  const EVENT_KEY$j = `.${DATA_KEY$j}`;
+  const DATA_API_KEY$d = '.data-api';
+  const EVENT_CALENDAR_DATE_CHANGE = `calendarDateChange${EVENT_KEY$j}`;
+  const EVENT_CELL_HOVER = `cellHover${EVENT_KEY$j}`;
+  const EVENT_END_DATE_CHANGE$1 = `endDateChange${EVENT_KEY$j}`;
+  const EVENT_LOAD_DATA_API$9 = `load${EVENT_KEY$j}${DATA_API_KEY$d}`;
+  const EVENT_MOUSEENTER$1 = `mouseenter${EVENT_KEY$j}`;
+  const EVENT_MOUSELEAVE$1 = `mouseleave${EVENT_KEY$j}`;
+  const EVENT_START_DATE_CHANGE$1 = `startDateChange${EVENT_KEY$j}`;
+  const CLASS_NAME_CALENDAR = 'calendar';
+  const SELECTOR_CALENDAR = '.calendar';
+  const SELECTOR_CALENDAR_CELL_INNER = '.calendar-cell-inner';
+  const Default$j = {
+    calendarDate: new Date(),
+    disabledDates: null,
+    endDate: null,
+    firstDayOfWeek: 1,
+    locale: navigator.language,
+    maxDate: null,
+    minDate: null,
+    range: true,
+    startDate: null,
+    selectEndDate: false,
+    weekdayLength: 2
+  };
+  const DefaultType$j = {
+    calendarDate: '(date|string|null)',
+    disabledDates: '(array|null)',
+    endDate: '(date|string|null)',
+    firstDayOfWeek: 'number',
+    locale: 'string',
+    maxDate: '(date|string|null)',
+    minDate: '(date|string|null)',
+    range: 'boolean',
+    startDate: '(date|string|null)',
+    selectEndDate: 'boolean',
+    weekdayLength: 'number'
+  };
+  /**
+  * ------------------------------------------------------------------------
+  * Class Definition
+  * ------------------------------------------------------------------------
+  */
+
+  class Calendar extends BaseComponent {
+    constructor(element, config) {
+      super(element);
+      this._config = this._getConfig(config);
+      this._calendarDate = this._config.calendarDate;
+      this._startDate = this._config.startDate;
+      this._endDate = this._config.endDate;
+      this._selectEndDate = this._config.selectEndDate;
+      this._view = 'days';
+
+      this._createCalendar();
+
+      this._addEventListeners();
+    } // Getters
+
+
+    static get Default() {
+      return Default$j;
+    }
+
+    static get DefaultType() {
+      return DefaultType$j;
+    }
+
+    static get NAME() {
+      return NAME$k;
+    } // Private
+
+
+    _addEventListeners() {
+      // Cell interactions
+      EventHandler.on(this._element, 'click', SELECTOR_CALENDAR_CELL_INNER, event => {
+        event.preventDefault();
+
+        if (event.target.classList.contains('day')) {
+          this._selectDate(Manipulator.getDataAttribute(event.target, 'date'));
+        }
+
+        if (event.target.classList.contains('month')) {
+          this._setCalendarDate(new Date(this._calendarDate.getFullYear(), Manipulator.getDataAttribute(event.target, 'month'), 1));
+
+          this._view = 'days';
+        }
+
+        if (event.target.classList.contains('year')) {
+          this._calendarDate = new Date(Manipulator.getDataAttribute(event.target, 'year'), this._calendarDate.getMonth(), 1);
+          this._view = 'months';
+        }
+
+        this._updateCalendar();
+      });
+      EventHandler.on(this._element, EVENT_MOUSEENTER$1, SELECTOR_CALENDAR_CELL_INNER, event => {
+        event.preventDefault();
+
+        if (event.target.parentElement.classList.contains('disabled')) {
+          return;
+        }
+
+        EventHandler.trigger(this._element, EVENT_CELL_HOVER, {
+          date: new Date(Manipulator.getDataAttribute(event.target, 'date'))
+        });
+      });
+      EventHandler.on(this._element, EVENT_MOUSELEAVE$1, SELECTOR_CALENDAR_CELL_INNER, event => {
+        event.preventDefault();
+        EventHandler.trigger(this._element, EVENT_CELL_HOVER, {
+          date: null
+        });
+      }); // Navigation
+
+      EventHandler.on(this._element, 'click', '.btn-prev', event => {
+        event.preventDefault();
+
+        this._modifyCalendarDate(0, -1);
+      });
+      EventHandler.on(this._element, 'click', '.btn-double-prev', event => {
+        event.preventDefault();
+
+        this._modifyCalendarDate(-1);
+      });
+      EventHandler.on(this._element, 'click', '.btn-next', event => {
+        event.preventDefault();
+
+        this._modifyCalendarDate(0, 1);
+      });
+      EventHandler.on(this._element, 'click', '.btn-double-next', event => {
+        event.preventDefault();
+
+        this._modifyCalendarDate(1);
+      });
+      EventHandler.on(this._element, 'click', '.btn-month', event => {
+        event.preventDefault();
+        this._view = 'months';
+        this._element.innerHTML = '';
+
+        this._createCalendar();
+      });
+      EventHandler.on(this._element, 'click', '.btn-year', event => {
+        event.preventDefault();
+        this._view = 'years';
+        this._element.innerHTML = '';
+
+        this._createCalendar();
+      });
+    }
+
+    _setCalendarDate(date) {
+      this._calendarDate = date;
+      EventHandler.trigger(this._element, EVENT_CALENDAR_DATE_CHANGE, {
+        date
+      });
+    }
+
+    _modifyCalendarDate(years, months = 0) {
+      const year = this._calendarDate.getFullYear();
+
+      const month = this._calendarDate.getMonth();
+
+      const d = new Date(year, month, 1);
+
+      if (years) {
+        d.setFullYear(d.getFullYear() + years);
+      }
+
+      if (months) {
+        d.setMonth(d.getMonth() + months);
+      }
+
+      this._calendarDate = d;
+      EventHandler.trigger(this._element, EVENT_CALENDAR_DATE_CHANGE, {
+        date: d
+      });
+
+      this._updateCalendar();
+    }
+
+    _setEndDate(date, selectEndDate = false) {
+      this._endDate = new Date(date);
+      EventHandler.trigger(this._element, EVENT_END_DATE_CHANGE$1, {
+        date: this._endDate,
+        selectEndDate
+      });
+    }
+
+    _setStartDate(date, selectEndDate = true) {
+      this._startDate = new Date(date);
+      EventHandler.trigger(this._element, EVENT_START_DATE_CHANGE$1, {
+        date: this._startDate,
+        selectEndDate
+      });
+    }
+
+    _selectDate(date) {
+      if (isDisabled(date, this._config.minDate, this._config.maxDate, this._config.disabledDates)) {
+        return;
+      }
+
+      if (this._config.range) {
+        if (this._selectEndDate) {
+          if (this._startDate && this._startDate > new Date(date)) {
+            this._setEndDate(this._startDate);
+
+            this._setStartDate(date);
+          } else {
+            this._setEndDate(date);
+          }
+        } else {
+          this._setStartDate(date, true);
+        }
+      } else {
+        this._setStartDate(date);
+      }
+    }
+
+    _createCalendar() {
+      const {
+        firstDayOfWeek,
+        locale,
+        weekdayLength
+      } = this._config;
+
+      const year = this._calendarDate.getFullYear();
+
+      const month = this._calendarDate.getMonth(); // Create navigation
+
+
+      const navigationElement = document.createElement('div');
+      navigationElement.classList.add('calendar-nav');
+      navigationElement.innerHTML = `
+      <div class="calendar-nav-prev">
+        <button class="btn btn-transparent btn-sm btn-double-prev">
+          <span class="calendar-nav-icon calendar-nav-icon-double-prev"></span>
+        </button>
+        <button class="btn btn-transparent btn-sm btn-prev">
+          <span class="calendar-nav-icon calendar-nav-icon-prev"></span>
+        </button>
+      </div>
+      <div class="calendar-nav-date">
+        <button class="btn btn-transparent btn-sm btn-month">
+          ${this._calendarDate.toLocaleDateString(locale, {
+      month: 'long'
+    })}
+        </button>
+        <button class="btn btn-transparent btn-sm btn-year">
+          ${this._calendarDate.toLocaleDateString(locale, {
+      year: 'numeric'
+    })}
+        </button>
+      </div>
+      <div class="calendar-nav-next">
+        <button class="btn btn-transparent btn-sm btn-next">
+          <span class="calendar-nav-icon calendar-nav-icon-next"></span>
+        </button>
+        <button class="btn btn-transparent btn-sm btn-double-next">
+          <span class="calendar-nav-icon calendar-nav-icon-double-next"></span>
+        </button>
+      </div>
+    `;
+      const monthDetails = getMonthDetails(year, month, firstDayOfWeek);
+      const listOfMonths = createGroupsInArray(getMonthsNames(locale), 4);
+      const listOfYears = createGroupsInArray(getYears(this._calendarDate.getFullYear()), 4);
+      const weekDays = monthDetails[0];
+      const calendarTable = document.createElement('table');
+      calendarTable.innerHTML = `
+    ${this._view === 'days' ? `
+      <thead>
+        <tr>
+          ${weekDays.map(({
+      date
+    }) => `<th class="calendar-cell">
+              <div class="calendar-header-cell-inner">
+                ${date.toLocaleDateString(locale, {
+      weekday: 'long'
+    }).slice(0, weekdayLength)}
+              </div>
+            </th>`).join('')}
+        </tr>
+      </thead>` : ''}
+      <tbody>
+        ${this._view === 'days' ? monthDetails.map(week => `<tr>${week.map(({
+      date,
+      month
+    }) => `<td class="calendar-cell ${this._dayClassNames(date, month)}">
+              <div
+                class="calendar-cell-inner day"
+                data-coreui-date="${date}"
+              >${date.toLocaleDateString(locale, {
+      day: 'numeric'
+    })}</div>
+            </td>`).join('')}</tr>`).join('') : ''}
+        ${this._view === 'months' ? listOfMonths.map((row, index) => `<tr>${row.map((month, idx) => `<td class="calendar-cell">
+              <div class="calendar-cell-inner month" data-coreui-month="${index * 3 + idx}">
+                ${month}
+              </div>
+            </td>`).join('')}</tr>`).join('') : ''}
+        ${this._view === 'years' ? listOfYears.map(row => `<tr>${row.map(year => `<td class="calendar-cell">
+              <div class="calendar-cell-inner year" data-coreui-year="${year}">
+                ${year}
+              </div>
+            </td>`).join('')}</tr>`).join('') : ''}
+      </tbody>
+    `;
+
+      this._element.classList.add(CLASS_NAME_CALENDAR);
+
+      this._element.append(navigationElement, calendarTable);
+    }
+
+    _updateCalendar() {
+      this._element.innerHTML = '';
+
+      this._createCalendar();
+    }
+
+    _dayClassNames(date, month) {
+      const classNames = [isToday(date) && 'today', isDisabled(date, this._config.minDate, this._config.maxDate, this._config.disabledDates) && 'disabled', `${month}`, isLastDayOfMonth(date) && 'last', month === 'current' && isDateInRange(date, this._startDate, this._endDate) && 'range', isDateSelected(date, this._startDate, this._endDate) && 'selected', isStartDate(date, this._startDate, this._endDate) && 'start', isEndDate(date, this._startDate, this._endDate) && 'end'];
+      return classNames.join(' ');
+    }
+
+    _getConfig(config) {
+      config = { ...this.constructor.Default,
+        ...Manipulator.getDataAttributes(this._element),
+        ...config
+      };
+      typeCheckConfig(NAME$k, config, DefaultType$j);
+      return config;
+    } // Static
+
+
+    static calendarInterface(element, config) {
+      const data = Calendar.getOrCreateInstance(element, config);
+
+      if (typeof config === 'string') {
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config]();
+      }
+    }
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = Calendar.getOrCreateInstance(this);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config](this);
+      });
+    }
+
+  }
+  /**
+  * ------------------------------------------------------------------------
+  * Data Api implementation
+  * ------------------------------------------------------------------------
+  */
+
+
+  EventHandler.on(window, EVENT_LOAD_DATA_API$9, () => {
+    Array.from(document.querySelectorAll(SELECTOR_CALENDAR)).forEach(element => {
+      Calendar.calendarInterface(element);
+    });
+  });
+  /**
+  * ------------------------------------------------------------------------
+  * jQuery
+  * ------------------------------------------------------------------------
+  * add .Calendar to jQuery only if jQuery is present
+  */
+
+  defineJQueryPlugin(Calendar);
+
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): dom/selector-engine.js
+   * CoreUI (v4.2.0-beta.0): dom/selector-engine.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's  dom/selector-engine.js
@@ -1097,14 +1656,14 @@
 
     focusableChildren(element) {
       const focusables = ['a', 'button', 'input', 'textarea', 'select', 'details', '[tabindex]', '[contenteditable="true"]'].map(selector => `${selector}:not([tabindex^="-"])`).join(', ');
-      return this.find(focusables, element).filter(el => !isDisabled(el) && isVisible(el));
+      return this.find(focusables, element).filter(el => !isDisabled$1(el) && isVisible(el));
     }
 
   };
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): carousel.js
+   * CoreUI (v4.2.0-beta.0): carousel.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's carousel.js
@@ -1117,16 +1676,16 @@
    * ------------------------------------------------------------------------
    */
 
-  const NAME$f = 'carousel';
-  const DATA_KEY$e = 'coreui.carousel';
-  const EVENT_KEY$e = `.${DATA_KEY$e}`;
-  const DATA_API_KEY$9 = '.data-api';
+  const NAME$j = 'carousel';
+  const DATA_KEY$i = 'coreui.carousel';
+  const EVENT_KEY$i = `.${DATA_KEY$i}`;
+  const DATA_API_KEY$c = '.data-api';
   const ARROW_LEFT_KEY = 'ArrowLeft';
   const ARROW_RIGHT_KEY = 'ArrowRight';
   const TOUCHEVENT_COMPAT_WAIT = 500; // Time for mouse compat events to fire after touch
 
   const SWIPE_THRESHOLD = 40;
-  const Default$e = {
+  const Default$i = {
     interval: 5000,
     keyboard: true,
     slide: false,
@@ -1134,7 +1693,7 @@
     wrap: true,
     touch: true
   };
-  const DefaultType$e = {
+  const DefaultType$i = {
     interval: '(number|boolean)',
     keyboard: 'boolean',
     slide: '(boolean|string)',
@@ -1150,19 +1709,19 @@
     [ARROW_LEFT_KEY]: DIRECTION_RIGHT,
     [ARROW_RIGHT_KEY]: DIRECTION_LEFT
   };
-  const EVENT_SLIDE = `slide${EVENT_KEY$e}`;
-  const EVENT_SLID = `slid${EVENT_KEY$e}`;
-  const EVENT_KEYDOWN$1 = `keydown${EVENT_KEY$e}`;
-  const EVENT_MOUSEENTER = `mouseenter${EVENT_KEY$e}`;
-  const EVENT_MOUSELEAVE = `mouseleave${EVENT_KEY$e}`;
-  const EVENT_TOUCHSTART = `touchstart${EVENT_KEY$e}`;
-  const EVENT_TOUCHMOVE = `touchmove${EVENT_KEY$e}`;
-  const EVENT_TOUCHEND = `touchend${EVENT_KEY$e}`;
-  const EVENT_POINTERDOWN = `pointerdown${EVENT_KEY$e}`;
-  const EVENT_POINTERUP = `pointerup${EVENT_KEY$e}`;
-  const EVENT_DRAG_START = `dragstart${EVENT_KEY$e}`;
-  const EVENT_LOAD_DATA_API$5 = `load${EVENT_KEY$e}${DATA_API_KEY$9}`;
-  const EVENT_CLICK_DATA_API$8 = `click${EVENT_KEY$e}${DATA_API_KEY$9}`;
+  const EVENT_SLIDE = `slide${EVENT_KEY$i}`;
+  const EVENT_SLID = `slid${EVENT_KEY$i}`;
+  const EVENT_KEYDOWN$1 = `keydown${EVENT_KEY$i}`;
+  const EVENT_MOUSEENTER = `mouseenter${EVENT_KEY$i}`;
+  const EVENT_MOUSELEAVE = `mouseleave${EVENT_KEY$i}`;
+  const EVENT_TOUCHSTART = `touchstart${EVENT_KEY$i}`;
+  const EVENT_TOUCHMOVE = `touchmove${EVENT_KEY$i}`;
+  const EVENT_TOUCHEND = `touchend${EVENT_KEY$i}`;
+  const EVENT_POINTERDOWN = `pointerdown${EVENT_KEY$i}`;
+  const EVENT_POINTERUP = `pointerup${EVENT_KEY$i}`;
+  const EVENT_DRAG_START = `dragstart${EVENT_KEY$i}`;
+  const EVENT_LOAD_DATA_API$8 = `load${EVENT_KEY$i}${DATA_API_KEY$c}`;
+  const EVENT_CLICK_DATA_API$8 = `click${EVENT_KEY$i}${DATA_API_KEY$c}`;
   const CLASS_NAME_CAROUSEL = 'carousel';
   const CLASS_NAME_ACTIVE$3 = 'active';
   const CLASS_NAME_SLIDE = 'slide';
@@ -1209,11 +1768,11 @@
 
 
     static get Default() {
-      return Default$e;
+      return Default$i;
     }
 
     static get NAME() {
-      return NAME$f;
+      return NAME$j;
     } // Public
 
 
@@ -1291,11 +1850,11 @@
 
 
     _getConfig(config) {
-      config = { ...Default$e,
+      config = { ...Default$i,
         ...Manipulator.getDataAttributes(this._element),
         ...(typeof config === 'object' ? config : {})
       };
-      typeCheckConfig(NAME$f, config, DefaultType$e);
+      typeCheckConfig(NAME$j, config, DefaultType$i);
       return config;
     }
 
@@ -1432,7 +1991,7 @@
         const activeIndicator = SelectorEngine.findOne(SELECTOR_ACTIVE$1, this._indicatorsElement);
         activeIndicator.classList.remove(CLASS_NAME_ACTIVE$3);
         activeIndicator.removeAttribute('aria-current');
-        const indicators = SelectorEngine.find(SELECTOR_INDICATOR, this._indicatorsElement);
+        const indicators = SelectorEngine.find(SELECTOR_INDICATOR, this._indicatorsElement); // eslint-disable-next-line unicorn/no-for-loop
 
         for (let i = 0; i < indicators.length; i++) {
           if (Number.parseInt(indicators[i].getAttribute('data-coreui-slide-to'), 10) === this._getItemIndex(element)) {
@@ -1638,7 +2197,7 @@
 
 
   EventHandler.on(document, EVENT_CLICK_DATA_API$8, SELECTOR_DATA_SLIDE, Carousel.dataApiClickHandler);
-  EventHandler.on(window, EVENT_LOAD_DATA_API$5, () => {
+  EventHandler.on(window, EVENT_LOAD_DATA_API$8, () => {
     const carousels = SelectorEngine.find(SELECTOR_DATA_RIDE);
 
     for (let i = 0, len = carousels.length; i < len; i++) {
@@ -1656,7 +2215,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): collapse.js
+   * CoreUI (v4.2.0-beta.0): collapse.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's collapse.js
@@ -1669,23 +2228,23 @@
    * ------------------------------------------------------------------------
    */
 
-  const NAME$e = 'collapse';
-  const DATA_KEY$d = 'coreui.collapse';
-  const EVENT_KEY$d = `.${DATA_KEY$d}`;
-  const DATA_API_KEY$8 = '.data-api';
-  const Default$d = {
+  const NAME$i = 'collapse';
+  const DATA_KEY$h = 'coreui.collapse';
+  const EVENT_KEY$h = `.${DATA_KEY$h}`;
+  const DATA_API_KEY$b = '.data-api';
+  const Default$h = {
     toggle: true,
     parent: null
   };
-  const DefaultType$d = {
+  const DefaultType$h = {
     toggle: 'boolean',
     parent: '(null|element)'
   };
-  const EVENT_SHOW$7 = `show${EVENT_KEY$d}`;
-  const EVENT_SHOWN$7 = `shown${EVENT_KEY$d}`;
-  const EVENT_HIDE$7 = `hide${EVENT_KEY$d}`;
-  const EVENT_HIDDEN$7 = `hidden${EVENT_KEY$d}`;
-  const EVENT_CLICK_DATA_API$7 = `click${EVENT_KEY$d}${DATA_API_KEY$8}`;
+  const EVENT_SHOW$7 = `show${EVENT_KEY$h}`;
+  const EVENT_SHOWN$7 = `shown${EVENT_KEY$h}`;
+  const EVENT_HIDE$7 = `hide${EVENT_KEY$h}`;
+  const EVENT_HIDDEN$7 = `hidden${EVENT_KEY$h}`;
+  const EVENT_CLICK_DATA_API$7 = `click${EVENT_KEY$h}${DATA_API_KEY$b}`;
   const CLASS_NAME_SHOW$a = 'show';
   const CLASS_NAME_COLLAPSE = 'collapse';
   const CLASS_NAME_COLLAPSING = 'collapsing';
@@ -1695,7 +2254,7 @@
   const WIDTH = 'width';
   const HEIGHT = 'height';
   const SELECTOR_ACTIVES = '.collapse.show, .collapse.collapsing';
-  const SELECTOR_DATA_TOGGLE$5 = '[data-coreui-toggle="collapse"]';
+  const SELECTOR_DATA_TOGGLE$8 = '[data-coreui-toggle="collapse"]';
   /**
    * ------------------------------------------------------------------------
    * Class Definition
@@ -1708,7 +2267,7 @@
       this._isTransitioning = false;
       this._config = this._getConfig(config);
       this._triggerArray = [];
-      const toggleList = SelectorEngine.find(SELECTOR_DATA_TOGGLE$5);
+      const toggleList = SelectorEngine.find(SELECTOR_DATA_TOGGLE$8);
 
       for (let i = 0, len = toggleList.length; i < len; i++) {
         const elem = toggleList[i];
@@ -1735,11 +2294,11 @@
 
 
     static get Default() {
-      return Default$d;
+      return Default$h;
     }
 
     static get NAME() {
-      return NAME$e;
+      return NAME$i;
     } // Public
 
 
@@ -1789,7 +2348,7 @@
         }
 
         if (!activesData) {
-          Data.set(elemActive, DATA_KEY$d, null);
+          Data.set(elemActive, DATA_KEY$h, null);
         }
       });
 
@@ -1878,14 +2437,14 @@
 
 
     _getConfig(config) {
-      config = { ...Default$d,
+      config = { ...Default$h,
         ...Manipulator.getDataAttributes(this._element),
         ...config
       };
       config.toggle = Boolean(config.toggle); // Coerce string values
 
       config.parent = getElement(config.parent);
-      typeCheckConfig(NAME$e, config, DefaultType$d);
+      typeCheckConfig(NAME$i, config, DefaultType$h);
       return config;
     }
 
@@ -1899,7 +2458,7 @@
       }
 
       const children = SelectorEngine.find(CLASS_NAME_DEEPER_CHILDREN, this._config.parent);
-      SelectorEngine.find(SELECTOR_DATA_TOGGLE$5, this._config.parent).filter(elem => !children.includes(elem)).forEach(element => {
+      SelectorEngine.find(SELECTOR_DATA_TOGGLE$8, this._config.parent).filter(elem => !children.includes(elem)).forEach(element => {
         const selected = getElementFromSelector(element);
 
         if (selected) {
@@ -1953,7 +2512,7 @@
    */
 
 
-  EventHandler.on(document, EVENT_CLICK_DATA_API$7, SELECTOR_DATA_TOGGLE$5, function (event) {
+  EventHandler.on(document, EVENT_CLICK_DATA_API$7, SELECTOR_DATA_TOGGLE$8, function (event) {
     // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
     if (event.target.tagName === 'A' || event.delegateTarget && event.delegateTarget.tagName === 'A') {
       event.preventDefault();
@@ -1978,7 +2537,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): dropdown.js
+   * CoreUI (v4.2.0-beta.0): dropdown.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's dropdown.js
@@ -1991,10 +2550,10 @@
    * ------------------------------------------------------------------------
    */
 
-  const NAME$d = 'dropdown';
-  const DATA_KEY$c = 'coreui.dropdown';
-  const EVENT_KEY$c = `.${DATA_KEY$c}`;
-  const DATA_API_KEY$7 = '.data-api';
+  const NAME$h = 'dropdown';
+  const DATA_KEY$g = 'coreui.dropdown';
+  const EVENT_KEY$g = `.${DATA_KEY$g}`;
+  const DATA_API_KEY$a = '.data-api';
   const ESCAPE_KEY$2 = 'Escape';
   const SPACE_KEY = 'Space';
   const TAB_KEY$2 = 'Tab';
@@ -2003,19 +2562,19 @@
   const RIGHT_MOUSE_BUTTON$1 = 2; // MouseEvent.button value for the secondary button, usually the right button
 
   const REGEXP_KEYDOWN = new RegExp(`${ARROW_UP_KEY}|${ARROW_DOWN_KEY}|${ESCAPE_KEY$2}`);
-  const EVENT_HIDE$6 = `hide${EVENT_KEY$c}`;
-  const EVENT_HIDDEN$6 = `hidden${EVENT_KEY$c}`;
-  const EVENT_SHOW$6 = `show${EVENT_KEY$c}`;
-  const EVENT_SHOWN$6 = `shown${EVENT_KEY$c}`;
-  const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$c}${DATA_API_KEY$7}`;
-  const EVENT_KEYDOWN_DATA_API = `keydown${EVENT_KEY$c}${DATA_API_KEY$7}`;
-  const EVENT_KEYUP_DATA_API$1 = `keyup${EVENT_KEY$c}${DATA_API_KEY$7}`;
+  const EVENT_HIDE$6 = `hide${EVENT_KEY$g}`;
+  const EVENT_HIDDEN$6 = `hidden${EVENT_KEY$g}`;
+  const EVENT_SHOW$6 = `show${EVENT_KEY$g}`;
+  const EVENT_SHOWN$6 = `shown${EVENT_KEY$g}`;
+  const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$g}${DATA_API_KEY$a}`;
+  const EVENT_KEYDOWN_DATA_API = `keydown${EVENT_KEY$g}${DATA_API_KEY$a}`;
+  const EVENT_KEYUP_DATA_API$1 = `keyup${EVENT_KEY$g}${DATA_API_KEY$a}`;
   const CLASS_NAME_SHOW$9 = 'show';
   const CLASS_NAME_DROPUP = 'dropup';
   const CLASS_NAME_DROPEND = 'dropend';
   const CLASS_NAME_DROPSTART = 'dropstart';
   const CLASS_NAME_NAVBAR = 'navbar';
-  const SELECTOR_DATA_TOGGLE$4 = '[data-coreui-toggle="dropdown"]';
+  const SELECTOR_DATA_TOGGLE$7 = '[data-coreui-toggle="dropdown"]';
   const SELECTOR_MENU = '.dropdown-menu';
   const SELECTOR_NAVBAR_NAV = '.navbar-nav';
   const SELECTOR_VISIBLE_ITEMS = '.dropdown-menu .dropdown-item:not(.disabled):not(:disabled)';
@@ -2025,7 +2584,7 @@
   const PLACEMENT_BOTTOMEND = isRTL() ? 'bottom-start' : 'bottom-end';
   const PLACEMENT_RIGHT = isRTL() ? 'left-start' : 'right-start';
   const PLACEMENT_LEFT = isRTL() ? 'right-start' : 'left-start';
-  const Default$c = {
+  const Default$g = {
     offset: [0, 2],
     boundary: 'clippingParents',
     reference: 'toggle',
@@ -2033,7 +2592,7 @@
     popperConfig: null,
     autoClose: true
   };
-  const DefaultType$c = {
+  const DefaultType$g = {
     offset: '(array|string|function)',
     boundary: '(string|element)',
     reference: '(string|element|object)',
@@ -2058,15 +2617,15 @@
 
 
     static get Default() {
-      return Default$c;
+      return Default$g;
     }
 
     static get DefaultType() {
-      return DefaultType$c;
+      return DefaultType$g;
     }
 
     static get NAME() {
-      return NAME$d;
+      return NAME$h;
     } // Public
 
 
@@ -2075,7 +2634,7 @@
     }
 
     show() {
-      if (isDisabled(this._element) || this._isShown(this._menu)) {
+      if (isDisabled$1(this._element) || this._isShown(this._menu)) {
         return;
       }
 
@@ -2116,7 +2675,7 @@
     }
 
     hide() {
-      if (isDisabled(this._element) || !this._isShown(this._menu)) {
+      if (isDisabled$1(this._element) || !this._isShown(this._menu)) {
         return;
       }
 
@@ -2176,11 +2735,11 @@
         ...Manipulator.getDataAttributes(this._element),
         ...config
       };
-      typeCheckConfig(NAME$d, config, this.constructor.DefaultType);
+      typeCheckConfig(NAME$h, config, this.constructor.DefaultType);
 
       if (typeof config.reference === 'object' && !isElement(config.reference) && typeof config.reference.getBoundingClientRect !== 'function') {
         // Popper virtual elements require a getBoundingClientRect method
-        throw new TypeError(`${NAME$d.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`);
+        throw new TypeError(`${NAME$h.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`);
       }
 
       return config;
@@ -2325,7 +2884,7 @@
         return;
       }
 
-      const toggles = SelectorEngine.find(SELECTOR_DATA_TOGGLE$4);
+      const toggles = SelectorEngine.find(SELECTOR_DATA_TOGGLE$7);
 
       for (let i = 0, len = toggles.length; i < len; i++) {
         const context = Dropdown.getInstance(toggles[i]);
@@ -2389,11 +2948,11 @@
       event.preventDefault();
       event.stopPropagation();
 
-      if (isDisabled(this)) {
+      if (isDisabled$1(this)) {
         return;
       }
 
-      const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$4) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$4)[0];
+      const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$7) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$7)[0];
       const instance = Dropdown.getOrCreateInstance(getToggleButton);
 
       if (event.key === ESCAPE_KEY$2) {
@@ -2424,11 +2983,11 @@
    */
 
 
-  EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_DATA_TOGGLE$4, Dropdown.dataApiKeydownHandler);
+  EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_DATA_TOGGLE$7, Dropdown.dataApiKeydownHandler);
   EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_MENU, Dropdown.dataApiKeydownHandler);
   EventHandler.on(document, EVENT_CLICK_DATA_API$6, Dropdown.clearMenus);
   EventHandler.on(document, EVENT_KEYUP_DATA_API$1, Dropdown.clearMenus);
-  EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$4, function (event) {
+  EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$7, function (event) {
     event.preventDefault();
     Dropdown.getOrCreateInstance(this).toggle();
   });
@@ -2443,7 +3002,1198 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): loading-button.js
+   * CoreUI (v4.2.0-alpha.0): picker.js
+   * Licensed under MIT (https://coreui.io/license)
+   * --------------------------------------------------------------------------
+   */
+  /**
+  * ------------------------------------------------------------------------
+  * Constants
+  * ------------------------------------------------------------------------
+  */
+
+  const NAME$g = 'picker';
+  const DATA_KEY$f = 'coreui.picker';
+  const EVENT_KEY$f = `.${DATA_KEY$f}`;
+  const EVENT_CANCEL = `onCancelClick${EVENT_KEY$f}`;
+  const Default$f = {
+    cancelButtonText: 'Cancel',
+    container: 'dropdown',
+    disabled: false,
+    footer: false,
+    okButtonText: 'OK'
+  };
+  const DefaultType$f = {
+    cancelButtonText: 'string',
+    container: 'string',
+    disabled: 'boolean',
+    footer: 'boolean',
+    okButtonText: 'string'
+  };
+  /**
+  * ------------------------------------------------------------------------
+  * Class Definition
+  * ------------------------------------------------------------------------
+  */
+
+  class Picker extends BaseComponent {
+    constructor(element, config) {
+      super(element);
+      this._config = this._getConfig(config);
+      this._dropdown = null; //
+
+      this._dropdownEl = null;
+      this._dropdownMenuEl = null;
+      this._dropdownToggleEl = null;
+
+      this._createPicker();
+    } // Getters
+
+
+    static get Default() {
+      return Default$f;
+    }
+
+    static get DefaultType() {
+      return DefaultType$f;
+    }
+
+    static get NAME() {
+      return NAME$g;
+    } // Private
+
+
+    _createDropdown() {
+      const dropdownEl = document.createElement('div');
+      dropdownEl.classList.add('picker');
+      this._dropdownEl = dropdownEl;
+      const dropdownToggleEl = document.createElement('div');
+      this._dropdownToggleEl = dropdownToggleEl;
+
+      if (!this._config.disabled) {
+        Manipulator.setDataAttribute(dropdownToggleEl, 'toggle', 'dropdown');
+      }
+
+      const dropdownMenuEl = document.createElement('div');
+      dropdownMenuEl.classList.add('dropdown-menu');
+      this._dropdownMenuEl = dropdownMenuEl;
+      dropdownEl.append(dropdownToggleEl, dropdownMenuEl);
+
+      this._element.append(dropdownEl);
+
+      this._dropdown = new Dropdown(dropdownToggleEl, {
+        autoClose: 'outside'
+      });
+    }
+
+    _createFooter() {
+      const footerEl = document.createElement('div');
+      footerEl.classList.add('picker-footer');
+      const cancelButtonEl = document.createElement('button');
+      cancelButtonEl.classList.add('btn', 'btn-sm', 'btn-ghost-primary');
+      cancelButtonEl.type = 'button';
+      cancelButtonEl.innerHTML = this._config.cancelButtonText;
+      cancelButtonEl.addEventListener('click', () => {
+        this._dropdown.hide();
+
+        EventHandler.trigger(this._element, EVENT_CANCEL);
+      });
+      const okButtonEl = document.createElement('button');
+      okButtonEl.classList.add('btn', 'btn-sm', 'btn-primary');
+      okButtonEl.type = 'button';
+      okButtonEl.innerHTML = this._config.okButtonText;
+      okButtonEl.addEventListener('click', () => {
+        this._dropdown.hide();
+      });
+      footerEl.append(cancelButtonEl, okButtonEl);
+
+      this._dropdownMenuEl.append(footerEl);
+    }
+
+    _createPicker() {
+      if (this._config.container === 'dropdown') {
+        this._createDropdown();
+      }
+
+      if (this._config.footer || this._config.timepicker) {
+        this._createFooter();
+      }
+    }
+
+    _getConfig(config) {
+      config = { ...this.constructor.Default,
+        ...Manipulator.getDataAttributes(this._element),
+        ...(typeof config === 'object' ? config : {})
+      };
+      typeCheckConfig(NAME$g, config, DefaultType$f);
+      return config;
+    }
+
+  }
+
+  const convert12hTo24h = (abbr, hour) => {
+    if (abbr === 'am' && hour === 12) {
+      return 0;
+    }
+
+    if (abbr === 'am') {
+      return hour;
+    }
+
+    if (abbr === 'pm' && hour === 12) {
+      return 12;
+    }
+
+    return hour + 12;
+  };
+  const convert24hTo12h = hour => hour % 12 || 12;
+  const getAmPm = (date, locale) => {
+    if (date.toLocaleTimeString(locale).includes('AM')) {
+      return 'am';
+    }
+
+    if (date.toLocaleTimeString(locale).includes('PM')) {
+      return 'pm';
+    }
+
+    return date.getHours() >= 12 ? 'pm' : 'am';
+  };
+  const isAmPm = locale => ['am', 'AM', 'pm', 'PM'].some(el => new Date().toLocaleString(locale).includes(el));
+
+  /* eslint-disable indent */
+  /**
+  * ------------------------------------------------------------------------
+  * Constants
+  * ------------------------------------------------------------------------
+  */
+
+  const NAME$f = 'time-picker';
+  const DATA_KEY$e = 'coreui.time-picker';
+  const EVENT_KEY$e = `.${DATA_KEY$e}`;
+  const DATA_API_KEY$9 = '.data-api';
+  const EVENT_CHANGE = `change${EVENT_KEY$e}`;
+  const EVENT_LOAD_DATA_API$7 = `load${EVENT_KEY$e}${DATA_API_KEY$9}`;
+  const SELECTOR_DATA_TOGGLE$6 = '[data-coreui-toggle="time-picker"]';
+  const Default$e = { ...Picker.Default,
+    cleaner: true,
+    container: 'dropdown',
+    disabled: false,
+    footer: true,
+    inputReadOnly: false,
+    locale: navigator.language,
+    placeholder: 'Select time',
+    size: null,
+    value: null,
+    variant: 'roll'
+  };
+  const DefaultType$e = { ...Picker.DefaultType,
+    cleaner: 'boolean',
+    container: 'string',
+    disabled: 'boolean',
+    inputReadOnly: 'boolean',
+    locale: 'string',
+    placeholder: 'string',
+    size: '(string|null)',
+    value: '(date|string|null)',
+    variant: 'string'
+  };
+  /**
+  * ------------------------------------------------------------------------
+  * Class Definition
+  * ------------------------------------------------------------------------
+  */
+
+  class TimePicker extends Picker {
+    constructor(element, config) {
+      super(element);
+
+      this._handleTimeChange = (set, value) => {
+        const _date = this._date || new Date('1970-01-01');
+
+        if (set === 'toggle') {
+          if (value === 'am') {
+            this._ampm = 'am';
+
+            _date.setHours(_date.getHours() - 12);
+          }
+
+          if (value === 'pm') {
+            this._ampm = 'pm';
+
+            _date.setHours(_date.getHours() + 12);
+          }
+        }
+
+        if (set === 'hours') {
+          if (isAmPm(this._config.locale)) {
+            _date.setHours(convert12hTo24h(this._ampm, Number.parseInt(value, 10)));
+          } else {
+            _date.setHours(Number.parseInt(value, 10));
+          }
+        }
+
+        if (set === 'minutes') {
+          _date.setMinutes(Number.parseInt(value, 10));
+        }
+
+        if (set === 'seconds') {
+          _date.setSeconds(Number.parseInt(value, 10));
+        }
+
+        if (this._input) {
+          this._input.value = _date.toLocaleTimeString(this._config.locale);
+        }
+
+        this._date = new Date(_date);
+        EventHandler.trigger(this._element, EVENT_CHANGE, {
+          timeString: _date.toTimeString(),
+          localeTimeString: _date.toLocaleTimeString(),
+          date: _date
+        });
+      };
+
+      this._config = this._getConfig(config);
+      this._date = this._convertStringToDate(this._config.value);
+      this._ampm = this._date ? getAmPm(new Date(this._date), this._config.locale) : 'am';
+      this._uid = Math.random().toString(36).slice(2); // subcomponents
+
+      this._input = null;
+      this._selectAmPm = null;
+      this._selectHours = null;
+      this._selectMinutes = null;
+      this._selectSeconds = null;
+      this._timePickerBody = null;
+
+      this._createTimePicker();
+
+      this._createTimePickerSelection();
+
+      this._addEventListeners();
+
+      const children = SelectorEngine.find('.selected', this._element);
+
+      if (children) {
+        children.forEach(child => this._scrollTop(child.parentNode, child));
+      }
+    } // Getters
+
+
+    static get Default() {
+      return Default$e;
+    }
+
+    static get DefaultType() {
+      return DefaultType$e;
+    }
+
+    static get NAME() {
+      return NAME$f;
+    } // Public
+
+
+    clear() {
+      this._date = null;
+      this._input.value = '';
+      this._timePickerBody.innerHTML = '';
+
+      this._createTimePickerSelection();
+    }
+
+    reset() {
+      this._date = this._convertStringToDate(this._config.value);
+      this._input.value = this._convertStringToDate(this._config.value).toLocaleTimeString(this._config.locale);
+      this._timePickerBody.innerHTML = '';
+
+      this._createTimePickerSelection();
+    }
+
+    update(config) {
+      this._config = this._getConfig(config);
+      this._element.innerHTML = '';
+
+      this._createTimePicker();
+
+      this._createTimePickerSelection();
+    } // Private
+
+
+    _addEventListeners() {
+      EventHandler.on(this._element, 'click', '.picker-input-group-cleaner', event => {
+        event.stopPropagation();
+        this.clear();
+      });
+      EventHandler.on(this._element, 'onCancelClick.coreui.picker', () => {
+        this.reset();
+      });
+    }
+
+    _convertStringToDate(date) {
+      return date ? date instanceof Date ? date : new Date(`1970-01-01 ${this._config.value}`) : null;
+    }
+
+    _createInputGroup() {
+      const inputGroupEl = document.createElement('div');
+      inputGroupEl.classList.add('input-group', 'picker-input-group');
+
+      if (this._config.size) {
+        inputGroupEl.classList.add(`input-group-${this._config.size}`);
+      }
+
+      const inputEl = document.createElement('input');
+      inputEl.classList.add('form-control');
+      inputEl.disabled = this._config.disabled;
+      inputEl.placeholder = this._config.placeholder;
+      inputEl.readOnly = this._config.inputReadOnly;
+      inputEl.type = 'text';
+      inputEl.value = this._date ? this._date.toLocaleTimeString(this._config.locale) : '';
+      const inputGroupTextEl = document.createElement('span');
+      inputGroupTextEl.classList.add('input-group-text');
+      inputGroupTextEl.innerHTML = `
+      <span class="picker-input-group-indicator">
+        <span class="picker-input-group-icon time-picker-input-icon"></span>
+      </span>`;
+
+      if (this._config.cleaner) {
+        inputGroupTextEl.innerHTML += `
+        <span class="picker-input-group-cleaner" role="button">
+          <span class="picker-input-group-icon time-picker-cleaner-icon"></span>
+        </span>`;
+      }
+
+      inputGroupEl.append(inputEl, inputGroupTextEl);
+      this._input = inputEl;
+      return inputGroupEl;
+    }
+
+    _createTimePicker() {
+      this._element.classList.add('time-picker');
+
+      if (this._config.container === 'dropdown') {
+        this._dropdownToggleEl.append(this._createInputGroup());
+
+        this._dropdownMenuEl.prepend(this._createTimePickerBody());
+      }
+
+      if (this._config.container === 'inline') {
+        this._element.append(this._createTimePickerBody());
+      }
+    }
+
+    _createTimePickerBody() {
+      const timePickerBodyEl = document.createElement('div');
+      timePickerBodyEl.classList.add('time-picker-body');
+
+      if (this._config.variant === 'roll') {
+        timePickerBodyEl.classList.add('time-picker-roll');
+      }
+
+      this._timePickerBody = timePickerBodyEl;
+      return timePickerBodyEl;
+    }
+
+    _createTimePickerSelection() {
+      const selectedHour = this._date ? isAmPm(this._config.locale) ? convert24hTo12h(this._date.getHours()) : this._date.getHours() : null;
+      const selectedMinute = this._date ? this._date.getMinutes() : null;
+      const selectedSecond = this._date ? this._date.getSeconds() : null;
+
+      if (this._config.variant === 'roll') {
+        this._createTimePickerRoll(selectedHour, selectedMinute, selectedSecond);
+      }
+
+      if (this._config.variant === 'select') {
+        this._createTimePickerSelect(selectedHour, selectedMinute, selectedSecond);
+      }
+    }
+
+    _createSelect(className, options, element, selected) {
+      const selectEl = document.createElement('select');
+      selectEl.classList.add('form-select', 'form-select-sm', className);
+      selectEl.disabled = this._config.disabled;
+      selectEl.addEventListener('change', event => this._handleTimeChange(className, event.target.value));
+      options.forEach(option => {
+        const optionEl = document.createElement('option');
+        optionEl.value = option.value;
+        optionEl.innerHTML = option.label;
+        selectEl.append(optionEl);
+      });
+
+      if (selected) {
+        selectEl.value = selected.toString();
+      }
+
+      this[element] = selectEl;
+      return selectEl;
+    }
+
+    _createTimePickerSelect(selectedHour, selectedMinute, selectedSecond) {
+      const timeSeparatorEl = document.createElement('div');
+      timeSeparatorEl.classList.add('time-separator');
+      timeSeparatorEl.innerHTML = ':';
+      this._timePickerBody.innerHTML = '<span class="time-picker-inline-icon"></span>';
+
+      this._timePickerBody.append(this._createSelect('hours', this._getHours(), '_selectHours', selectedHour), timeSeparatorEl.cloneNode(true), this._createSelect('minutes', this._getMinutesOrSeconds(), '_selectMinutes', selectedMinute), timeSeparatorEl, this._createSelect('seconds', this._getMinutesOrSeconds(), '_selectSeconds', selectedSecond));
+
+      if (isAmPm(this._config.locale)) {
+        this._timePickerBody.append(this._createSelect('toggle', [{
+          value: 'am',
+          label: 'AM'
+        }, {
+          value: 'pm',
+          label: 'PM'
+        }], '_selectAmPm', this._ampm));
+      }
+    }
+
+    _createTimePickerRoll(selectedHour, selectedMinute, selectedSecond) {
+      this._timePickerBody.append(this._createTimePickerRollCol(this._getHours(), 'hours', selectedHour), this._createTimePickerRollCol(this._getMinutesOrSeconds(), 'minutes', selectedMinute), this._createTimePickerRollCol(this._getMinutesOrSeconds(), 'seconds', selectedSecond));
+
+      if (isAmPm(this._config.locale)) {
+        this._timePickerBody.append(this._createTimePickerRollCol([{
+          value: 'am',
+          label: 'AM'
+        }, {
+          value: 'pm',
+          label: 'PM'
+        }], 'toggle', this._ampm));
+      }
+    }
+
+    _createTimePickerRollCol(options, part, selected) {
+      const timePickerRollColEl = document.createElement('div');
+      timePickerRollColEl.classList.add('time-picker-roll-col');
+      options.forEach(option => {
+        const timePickerRollCellEl = document.createElement('div');
+        timePickerRollCellEl.classList.add('time-picker-roll-cell');
+
+        if (option.value === selected) {
+          timePickerRollCellEl.classList.add('selected');
+        }
+
+        timePickerRollCellEl.setAttribute('role', 'button');
+        timePickerRollCellEl.innerHTML = option.label;
+        timePickerRollCellEl.addEventListener('click', () => {
+          timePickerRollCellEl.classList.add('selected');
+
+          this._scrollTo(timePickerRollColEl, timePickerRollCellEl);
+
+          for (const sibling of timePickerRollColEl.children) {
+            if (sibling !== timePickerRollCellEl) {
+              sibling.classList.remove('selected');
+            }
+          }
+
+          this._handleTimeChange(part, option.value);
+        });
+        timePickerRollColEl.append(timePickerRollCellEl);
+      });
+      return timePickerRollColEl;
+    }
+
+    _getConfig(config) {
+      config = { ...this.constructor.Default,
+        ...Manipulator.getDataAttributes(this._element),
+        ...(typeof config === 'object' ? config : {})
+      };
+      typeCheckConfig(NAME$f, config, DefaultType$e);
+      return config;
+    }
+
+    _getHours(locale = this._config.locale) {
+      return Array.from({
+        length: isAmPm(locale) ? 12 : 24
+      }, (_, i) => {
+        return {
+          value: isAmPm(locale) ? i + 1 : i,
+          label: (isAmPm(locale) ? i + 1 : i).toLocaleString(locale)
+        };
+      });
+    }
+
+    _getMinutesOrSeconds(locale = this._config.locale) {
+      return Array.from({
+        length: 60
+      }, (_, i) => {
+        return {
+          value: i,
+          label: i.toLocaleString(locale).padStart(2, 0 .toLocaleString(locale))
+        };
+      });
+    }
+
+    _scrollTo(parent, children) {
+      parent.scrollTo({
+        top: children.offsetTop,
+        behavior: 'smooth'
+      });
+    }
+
+    _scrollTop(parent, children) {
+      parent.scrollTop = children.offsetTop;
+    }
+
+    _updateTimePicker() {
+      this._element.innerHTML = '';
+
+      this._createTimePicker();
+    } // Static
+
+
+    static timePickerInterface(element, config) {
+      const data = TimePicker.getOrCreateInstance(element, config);
+
+      if (typeof config === 'string') {
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config]();
+      }
+    }
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = TimePicker.getOrCreateInstance(this);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config](this);
+      });
+    }
+
+  }
+  /**
+  * ------------------------------------------------------------------------
+  * Data Api implementation
+  * ------------------------------------------------------------------------
+  */
+
+
+  EventHandler.on(window, EVENT_LOAD_DATA_API$7, () => {
+    const timePickers = SelectorEngine.find(SELECTOR_DATA_TOGGLE$6);
+
+    for (let i = 0, len = timePickers.length; i < len; i++) {
+      TimePicker.timePickerInterface(timePickers[i]);
+    }
+  });
+  /**
+  * ------------------------------------------------------------------------
+  * jQuery
+  * ------------------------------------------------------------------------
+  * add .TimePicker to jQuery only if jQuery is present
+  */
+
+  defineJQueryPlugin(TimePicker);
+
+  /**
+   * --------------------------------------------------------------------------
+   * CoreUI (v4.2.0-alpha.0): date-range-picker.js
+   * Licensed under MIT (https://coreui.io/license)
+   * --------------------------------------------------------------------------
+   */
+  /**
+  * ------------------------------------------------------------------------
+  * Constants
+  * ------------------------------------------------------------------------
+  */
+
+  const NAME$e = 'date-range-picker';
+  const DATA_KEY$d = 'coreui.date-range-picker';
+  const EVENT_KEY$d = `.${DATA_KEY$d}`;
+  const DATA_API_KEY$8 = '.data-api';
+  const EVENT_END_DATE_CHANGE = `endDateChange${EVENT_KEY$d}`;
+  const EVENT_START_DATE_CHANGE = `startDateChange${EVENT_KEY$d}`;
+  const EVENT_LOAD_DATA_API$6 = `load${EVENT_KEY$d}${DATA_API_KEY$8}`;
+  const SELECTOR_DATA_TOGGLE$5 = '[data-coreui-toggle="date-range-picker"]';
+  const Default$d = { ...Picker.Default,
+    calendars: 2,
+    cleaner: true,
+    calendarDate: null,
+    date: null,
+    disabled: false,
+    disabledDates: null,
+    endDate: null,
+    firstDayOfWeek: 1,
+    locale: navigator.language,
+    maxDate: null,
+    minDate: null,
+    placeholder: ['Start date', 'End date'],
+    range: true,
+    ranges: {},
+    size: null,
+    startDate: null,
+    selectEndDate: false,
+    timepicker: false
+  };
+  const DefaultType$d = { ...Picker.DefaultType,
+    calendars: 'number',
+    cleaner: 'boolean',
+    calendarDate: '(date|string|null)',
+    date: '(date|string|null)',
+    disabledDates: '(array|null)',
+    disabled: 'boolean',
+    endDate: '(date|string|null)',
+    firstDayOfWeek: 'number',
+    locale: 'string',
+    maxDate: '(date|string|null)',
+    minDate: '(date|string|null)',
+    placeholder: '(array|string)',
+    range: 'boolean',
+    ranges: 'object',
+    size: '(string|null)',
+    startDate: '(date|string|null)',
+    selectEndDate: 'boolean',
+    timepicker: 'boolean'
+  };
+  /**
+  * ------------------------------------------------------------------------
+  * Class Definition
+  * ------------------------------------------------------------------------
+  */
+
+  class DateRangePicker extends Picker {
+    constructor(element, config) {
+      super(element);
+      this._config = this._getConfig(config);
+      this._calendarDate = this._convertStringToDate(this._config.calendarDate || this._config.date || this._config.startDate || new Date());
+      this._startDate = this._convertStringToDate(this._config.date || this._config.startDate);
+      this._endDate = this._convertStringToDate(this._config.endDate);
+      this._mobile = window.innerWidth < 768;
+      this._selectEndDate = this._config.selectEndDate; // nodes
+
+      this._calendars = null;
+      this._calendarStart = null;
+      this._calendarEnd = null;
+      this._dateRangePicker = null;
+      this._endInput = null;
+      this._startInput = null;
+      this._timePickerEnd = null;
+      this._timePickerStart = null;
+
+      this._createDateRangePicker();
+
+      this._createCalendars();
+
+      this._addEventListeners();
+
+      this._addCalendarEventListeners();
+    } // Getters
+
+
+    static get Default() {
+      return Default$d;
+    }
+
+    static get DefaultType() {
+      return DefaultType$d;
+    }
+
+    static get NAME() {
+      return NAME$e;
+    } // Public
+
+
+    clear() {
+      this._date = null;
+      this._endDate = null;
+      this._endInput.value = '';
+      this._startDate = null;
+      this._startInput.value = '';
+      this._calendars.innerHTML = '';
+
+      this._createCalendars();
+
+      this._addCalendarEventListeners();
+    }
+
+    reset() {
+      this._date = null;
+      this._endDate = this._config.endDate;
+      this._endInput.value = this._setInputValue(this._config.endDate);
+      this._startDate = this._config.startDate;
+      this._startInput.value = this._setInputValue(this._config.startDate);
+      this._calendars.innerHTML = '';
+
+      this._createCalendars();
+
+      this._addCalendarEventListeners();
+    }
+
+    update(config) {
+      this._config = this._getConfig(config);
+      this._element.innerHTML = '';
+
+      this._createDateRangePicker();
+
+      this._createCalendars();
+
+      this._addEventListeners();
+
+      this._addCalendarEventListeners();
+    } // Private
+
+
+    _addEventListeners() {
+      EventHandler.on(this._startInput, 'click', () => {
+        this._selectEndDate = false;
+      });
+      EventHandler.on(this._endInput, 'click', () => {
+        this._selectEndDate = true;
+      });
+      EventHandler.on(this._element, 'click', '.picker-input-group-cleaner', event => {
+        event.stopPropagation();
+        this.clear();
+      });
+      EventHandler.on(this._element, 'onCancelClick.coreui.picker', () => {
+        this.reset();
+      });
+      EventHandler.on(window, 'resize', () => {
+        this._mobile = window.innerWidth < 768;
+      });
+    }
+
+    _addCalendarEventListeners() {
+      SelectorEngine.find('.calendar', this._element).forEach(calendar => {
+        EventHandler.on(calendar, 'calendarDateChange.coreui.calendar', event => {
+          this._calendarDate = event.date;
+
+          this._updateCalendars();
+        });
+        EventHandler.on(calendar, 'startDateChange.coreui.calendar', event => {
+          this._startDate = event.date;
+          this._selectEndDate = event.selectEndDate;
+          this._startInput.value = this._setInputValue(event.date);
+
+          this._updateCalendars();
+
+          EventHandler.trigger(this._element, EVENT_START_DATE_CHANGE, {
+            date: event.date
+          });
+        });
+        EventHandler.on(calendar, 'endDateChange.coreui.calendar', event => {
+          this._endDate = event.date;
+          this._selectEndDate = event.selectEndDate;
+          this._endInput.value = this._setInputValue(event.date);
+
+          this._updateCalendars();
+
+          EventHandler.trigger(this._element, EVENT_END_DATE_CHANGE, {
+            date: event.date
+          });
+        });
+        EventHandler.on(calendar, 'cellHover.coreui.calendar', event => {
+          if (this._selectEndDate) {
+            this._endInput.value = event.date ? event.date.toLocaleDateString(this._config.locale) : this._endDate ? this._setInputValue(this._endDate) : '';
+            return;
+          }
+
+          this._startInput.value = event.date ? event.date.toLocaleDateString(this._config.locale) : this._startDate ? this._setInputValue(this._startDate) : '';
+        });
+      });
+    }
+
+    _convertStringToDate(date) {
+      return date ? date instanceof Date ? date : new Date(date) : null;
+    }
+
+    _createInput(placeholder, value) {
+      const inputEl = document.createElement('input');
+      inputEl.classList.add('form-control');
+      inputEl.disabled = this._config.disabled;
+      inputEl.placeholder = placeholder;
+      inputEl.readOnly = this._config.inputReadOnly;
+      inputEl.type = 'text';
+      inputEl.value = value;
+      return inputEl;
+    }
+
+    _createInputGroup() {
+      const inputGroupEl = document.createElement('div');
+      inputGroupEl.classList.add('input-group', 'picker-input-group');
+
+      if (this._config.size) {
+        inputGroupEl.classList.add(`input-group-${this._config.size}`);
+      }
+
+      const startInputEl = this._createInput(this._getPlaceholder()[0], this._setInputValue(this._startDate));
+
+      const endInputEl = this._createInput(this._getPlaceholder()[1], this._setInputValue(this._endDate));
+
+      const inputGroupTextSeparatorEl = document.createElement('span');
+      inputGroupTextSeparatorEl.classList.add('input-group-text');
+      inputGroupTextSeparatorEl.innerHTML = '<span class="picker-input-group-icon date-picker-arrow-icon"></span>';
+      const inputGroupTextEl = document.createElement('span');
+      inputGroupTextEl.classList.add('input-group-text');
+      inputGroupTextEl.innerHTML = `
+      <span class="picker-input-group-indicator">
+        <span class="picker-input-group-icon time-picker-input-icon"></span>
+      </span>`;
+
+      if (this._config.cleaner) {
+        inputGroupTextEl.innerHTML += `
+        <span class="picker-input-group-cleaner" role="button">
+          <span class="picker-input-group-icon time-picker-cleaner-icon"></span>
+        </span>`;
+      }
+
+      this._startInput = startInputEl;
+      this._endInput = endInputEl;
+
+      if (this._config.range) {
+        inputGroupEl.append(startInputEl, inputGroupTextSeparatorEl, endInputEl, inputGroupTextEl);
+      } else {
+        inputGroupEl.append(startInputEl, inputGroupTextEl);
+      }
+
+      return inputGroupEl;
+    }
+
+    _createCalendars() {
+      const calendarStartElement = document.createElement('div');
+      calendarStartElement.classList.add('date-picker-calendar');
+      Array.from({
+        length: this._mobile ? 1 : this._config.calendars
+      }).forEach((_, index) => {
+        const calendarEl = document.createElement('div');
+        calendarEl.classList.add('date-picker-calendar');
+
+        this._calendars.append(calendarEl); // eslint-disable-next-line no-new
+
+
+        new Calendar(calendarEl, {
+          calendarDate: new Date(this._calendarDate.getFullYear(), this._calendarDate.getMonth() + index, 1),
+          disabledDates: this._config.disabledDates,
+          endDate: this._endDate,
+          firstDayOfWeek: this._config.firstDayOfWeek,
+          locale: this._config.locale,
+          maxDate: this._config.maxDate,
+          minDate: this._config.minDate,
+          range: this._config.range,
+          selectEndDate: this._selectEndDate,
+          startDate: this._startDate
+        });
+
+        if (this._config.timepicker) {
+          if ((this._config.calendars === 1 || this._mobile) && this._config.range) {
+            const timePickerStartEl = document.createElement('div');
+            timePickerStartEl.classList.add('time-picker'); // eslint-disable-next-line no-new
+
+            new TimePicker(timePickerStartEl, {
+              container: 'inline',
+              disabled: !this._startDate,
+              locale: this._config.locale,
+              value: this._startDate,
+              variant: 'select'
+            });
+            calendarEl.append(timePickerStartEl);
+            EventHandler.one(timePickerStartEl, 'change.coreui.timepicker', event => {
+              this._startDate = event.date;
+              this._startInput.value = this._setInputValue(this._startDate);
+
+              this._updateCalendars();
+            });
+            const timePickerEndEl = document.createElement('div');
+            timePickerEndEl.classList.add('time-picker'); // eslint-disable-next-line no-new
+
+            new TimePicker(timePickerEndEl, {
+              container: 'inline',
+              disabled: !this._endDate,
+              locale: this._config.locale,
+              value: this._endDate,
+              variant: 'select'
+            });
+            calendarEl.append(timePickerEndEl);
+            EventHandler.one(timePickerEndEl, 'change.coreui.time-picker', event => {
+              this._endDate = event.date;
+              this._endInput.value = this._setInputValue(this._endDate);
+
+              this._updateCalendars();
+            });
+          }
+
+          if (!this._mobile && (index === 0 || this._config.calendars - index === 1)) {
+            const timePickerEl = document.createElement('div');
+            timePickerEl.classList.add('time-picker'); // eslint-disable-next-line no-new
+
+            new TimePicker(timePickerEl, {
+              container: 'inline',
+              disabled: index === 0 ? !this._startDate : !this._endDate,
+              locale: this._config.locale,
+              value: index === 0 ? this._startDate : this._endDate,
+              variant: 'select'
+            });
+            calendarEl.append(timePickerEl);
+            EventHandler.one(timePickerEl, 'change.coreui.time-picker', event => {
+              if (index === 0) {
+                this._startDate = event.date;
+                this._startInput.value = this._setInputValue(this._startDate);
+              } else {
+                this._endDate = event.date;
+                this._endInput.value = this._setInputValue(this._endDate);
+              }
+
+              this._updateCalendars();
+            });
+          }
+        }
+
+        this._calendars.append(calendarEl);
+      });
+    }
+
+    _createDateRangePicker() {
+      this._element.classList.add('date-picker');
+
+      this._dropdownToggleEl.append(this._createInputGroup());
+
+      this._dropdownMenuEl.prepend(this._createDateRangePickerBody());
+    }
+
+    _createDateRangePickerBody() {
+      const dateRangePickerBodyEl = document.createElement('div');
+      dateRangePickerBodyEl.classList.add('date-picker-body');
+
+      if (Object.keys(this._config.ranges).length) {
+        const dateRangePickerRangesEl = document.createElement('div');
+        dateRangePickerRangesEl.classList.add('date-picker-ranges');
+        Object.keys(this._config.ranges).forEach(key => {
+          const buttonEl = document.createElement('button');
+          buttonEl.classList.add('btn', 'btn-ghost-secondary');
+          buttonEl.role = 'button';
+          buttonEl.addEventListener('click', () => {
+            this._startDate = this._config.ranges[key][0];
+            this._endDate = this._config.ranges[key][1];
+            this._startInput.value = this._setInputValue(this._startDate);
+            this._endInput.value = this._setInputValue(this._endDate);
+
+            this._updateCalendars();
+          });
+          buttonEl.innerHTML = key;
+          dateRangePickerRangesEl.append(buttonEl);
+        });
+        dateRangePickerBodyEl.append(dateRangePickerRangesEl);
+      }
+
+      const calendarsEl = document.createElement('div');
+      calendarsEl.classList.add('date-picker-calendars');
+      this._calendars = calendarsEl;
+      dateRangePickerBodyEl.append(calendarsEl);
+      return dateRangePickerBodyEl;
+    }
+
+    _setInputValue(date) {
+      return date ? this._config.timepicker ? date.toLocaleString(this._config.locale) : date.toLocaleDateString(this._config.locale) : '';
+    }
+
+    _updateCalendars() {
+      this._calendars.innerHTML = '';
+
+      this._createCalendars();
+
+      this._addCalendarEventListeners();
+    }
+
+    _getConfig(config) {
+      config = { ...this.constructor.Default,
+        ...Manipulator.getDataAttributes(this._element),
+        ...(typeof config === 'object' ? config : {})
+      };
+      typeCheckConfig(NAME$e, config, DefaultType$d);
+      return config;
+    }
+
+    _getPlaceholder() {
+      const {
+        placeholder
+      } = this._config;
+
+      if (typeof placeholder === 'string') {
+        return placeholder.split(',');
+      }
+
+      return placeholder;
+    } // Static
+
+
+    static dateRangePickerInterface(element, config) {
+      const data = DateRangePicker.getOrCreateInstance(element, config);
+
+      if (typeof config === 'string') {
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config]();
+      }
+    }
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = DateRangePicker.getOrCreateInstance(this);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config](this);
+      });
+    }
+
+  }
+  /**
+  * ------------------------------------------------------------------------
+  * Data Api implementation
+  * ------------------------------------------------------------------------
+  */
+
+
+  EventHandler.on(window, EVENT_LOAD_DATA_API$6, () => {
+    const dateRangePickers = SelectorEngine.find(SELECTOR_DATA_TOGGLE$5);
+
+    for (let i = 0, len = dateRangePickers.length; i < len; i++) {
+      DateRangePicker.dateRangePickerInterface(dateRangePickers[i]);
+    }
+  });
+  /**
+  * ------------------------------------------------------------------------
+  * jQuery
+  * ------------------------------------------------------------------------
+  * add .DateRangePicker to jQuery only if jQuery is present
+  */
+
+  defineJQueryPlugin(DateRangePicker);
+
+  /**
+   * --------------------------------------------------------------------------
+   * CoreUI (v4.1.0): date-picker.js
+   * Licensed under MIT (https://coreui.io/license)
+   * --------------------------------------------------------------------------
+   */
+  /**
+  * ------------------------------------------------------------------------
+  * Constants
+  * ------------------------------------------------------------------------
+  */
+
+  const NAME$d = 'date-picker';
+  const DATA_KEY$c = 'coreui.date-picker';
+  const EVENT_KEY$c = `.${DATA_KEY$c}`;
+  const DATA_API_KEY$7 = '.data-api';
+  const EVENT_DATE_CHANGE = `dateChange${EVENT_KEY$c}`;
+  const EVENT_LOAD_DATA_API$5 = `load${EVENT_KEY$c}${DATA_API_KEY$7}`;
+  const SELECTOR_DATA_TOGGLE$4 = '[data-coreui-toggle="date-picker"]';
+  const Default$c = { ...DateRangePicker.Default,
+    calendars: 1,
+    placeholder: ['Select date'],
+    range: false
+  };
+  const DefaultType$c = { ...DateRangePicker.DefaultType,
+    date: '(date|string|null)'
+  };
+  /**
+  * ------------------------------------------------------------------------
+  * Class Definition
+  * ------------------------------------------------------------------------
+  */
+
+  class DatePicker extends DateRangePicker {
+    // Getters
+    static get Default() {
+      return Default$c;
+    }
+
+    static get DefaultType() {
+      return DefaultType$c;
+    }
+
+    static get NAME() {
+      return NAME$d;
+    } // Overrides
+
+
+    _addCalendarEventListeners() {
+      super._addCalendarEventListeners();
+
+      SelectorEngine.find('.calendar', this._element).forEach(calendar => {
+        EventHandler.on(calendar, 'startDateChange.coreui.calendar', event => {
+          this._startDate = event.date;
+          this._selectEndDate = event.selectEndDate;
+          this._startInput.value = this._setInputValue(event.date);
+
+          this._updateCalendars();
+
+          EventHandler.trigger(this._element, EVENT_DATE_CHANGE, {
+            date: event.date
+          });
+        });
+      });
+    } // Static
+
+
+    static datePickerInterface(element, config) {
+      const data = DatePicker.getOrCreateInstance(element, config);
+
+      if (typeof config === 'string') {
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config]();
+      }
+    }
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = DatePicker.getOrCreateInstance(this);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config](this);
+      });
+    }
+
+  }
+  /**
+  * ------------------------------------------------------------------------
+  * Data Api implementation
+  * ------------------------------------------------------------------------
+  */
+
+
+  EventHandler.on(window, EVENT_LOAD_DATA_API$5, () => {
+    const datePickers = SelectorEngine.find(SELECTOR_DATA_TOGGLE$4);
+
+    for (let i = 0, len = datePickers.length; i < len; i++) {
+      DatePicker.datePickerInterface(datePickers[i]);
+    }
+  });
+  /**
+  * ------------------------------------------------------------------------
+  * jQuery
+  * ------------------------------------------------------------------------
+  * add .DatePicker to jQuery only if jQuery is present
+  */
+
+  defineJQueryPlugin(DatePicker);
+
+  /**
+   * --------------------------------------------------------------------------
+   * CoreUI (v4.2.0-beta.0): loading-button.js
    * Licensed under MIT (https://coreui.io/license)
    */
   /**
@@ -2748,7 +4498,7 @@
     clickCallback: '(function|null)'
   };
   const NAME$b = 'backdrop';
-  const CLASS_NAME_FADE$5 = 'fade';
+  const CLASS_NAME_FADE$4 = 'fade';
   const CLASS_NAME_SHOW$8 = 'show';
   const EVENT_MOUSEDOWN = `mousedown.coreui.${NAME$b}`;
 
@@ -2799,7 +4549,7 @@
         backdrop.className = this._config.className;
 
         if (this._config.isAnimated) {
-          backdrop.classList.add(CLASS_NAME_FADE$5);
+          backdrop.classList.add(CLASS_NAME_FADE$4);
         }
 
         this._element = backdrop;
@@ -2954,7 +4704,7 @@
 
   /**
    * --------------------------------------------------------------------------
-    * CoreUI (v4.1.0): modal.js
+    * CoreUI (v4.2.0-beta.0): modal.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's modal.js
@@ -2994,7 +4744,7 @@
   const EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${EVENT_KEY$9}`;
   const EVENT_CLICK_DATA_API$5 = `click${EVENT_KEY$9}${DATA_API_KEY$6}`;
   const CLASS_NAME_OPEN = 'modal-open';
-  const CLASS_NAME_FADE$4 = 'fade';
+  const CLASS_NAME_FADE$3 = 'fade';
   const CLASS_NAME_SHOW$7 = 'show';
   const CLASS_NAME_STATIC = 'modal-static';
   const OPEN_SELECTOR$1 = '.modal.show';
@@ -3256,7 +5006,7 @@
     }
 
     _isAnimated() {
-      return this._element.classList.contains(CLASS_NAME_FADE$4);
+      return this._element.classList.contains(CLASS_NAME_FADE$3);
     }
 
     _triggerBackdropTransition() {
@@ -3386,7 +5136,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.1.0): multi-select.js
+   * CoreUI PRO (v4.2.0-beta.0): multi-select.js
    * License (https://coreui.io/pro/license)
    * --------------------------------------------------------------------------
    */
@@ -3716,7 +5466,6 @@
 
     _createNativeOptions(parentElement, options) {
       options.forEach(option => {
-        // eslint-disable-next-line no-negated-condition
         if (typeof option.options !== 'undefined') {
           const optgroup = document.createElement('optgroup');
           optgroup.label = option.label;
@@ -4045,7 +5794,7 @@
       }
 
       if (this._selection.length > 0 && this._config.multiple && this._config.selectionType !== 'counter') {
-        this._searchElement.placeholder = '';
+        this._searchElement.removeAttribute('placeholder');
 
         this._selectionElement.style.removeProperty('display');
 
@@ -4229,7 +5978,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): navigation.js
+   * CoreUI (v4.2.0-beta.0): navigation.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -4514,7 +6263,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): dropdown.js
+   * CoreUI (v4.2.0-beta.0): dropdown.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's offcanvas.js
@@ -4741,7 +6490,7 @@
       event.preventDefault();
     }
 
-    if (isDisabled(this)) {
+    if (isDisabled$1(this)) {
       return;
     }
 
@@ -4773,7 +6522,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): alert.js
+   * CoreUI (v4.2.0-beta.0): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's  util/sanitizer.js
@@ -4888,7 +6637,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): tooltip.js
+   * CoreUI (v4.2.0-beta.0): tooltip.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's tooltip.js
@@ -4963,7 +6712,7 @@
     MOUSEENTER: `mouseenter${EVENT_KEY$5}`,
     MOUSELEAVE: `mouseleave${EVENT_KEY$5}`
   };
-  const CLASS_NAME_FADE$3 = 'fade';
+  const CLASS_NAME_FADE$2 = 'fade';
   const CLASS_NAME_MODAL = 'modal';
   const CLASS_NAME_SHOW$3 = 'show';
   const HOVER_STATE_SHOW = 'show';
@@ -5103,7 +6852,7 @@
       this._element.setAttribute('aria-describedby', tipId);
 
       if (this._config.animation) {
-        tip.classList.add(CLASS_NAME_FADE$3);
+        tip.classList.add(CLASS_NAME_FADE$2);
       }
 
       const placement = typeof this._config.placement === 'function' ? this._config.placement.call(this, tip, this._element) : this._config.placement;
@@ -5156,7 +6905,7 @@
         }
       };
 
-      const isAnimated = this.tip.classList.contains(CLASS_NAME_FADE$3);
+      const isAnimated = this.tip.classList.contains(CLASS_NAME_FADE$2);
 
       this._queueCallback(complete, this.tip, isAnimated);
     }
@@ -5202,7 +6951,7 @@
       this._activeTrigger[TRIGGER_CLICK] = false;
       this._activeTrigger[TRIGGER_FOCUS] = false;
       this._activeTrigger[TRIGGER_HOVER] = false;
-      const isAnimated = this.tip.classList.contains(CLASS_NAME_FADE$3);
+      const isAnimated = this.tip.classList.contains(CLASS_NAME_FADE$2);
 
       this._queueCallback(complete, this.tip, isAnimated);
 
@@ -5229,7 +6978,7 @@
       element.innerHTML = this._config.template;
       const tip = element.children[0];
       this.setContent(tip);
-      tip.classList.remove(CLASS_NAME_FADE$3, CLASS_NAME_SHOW$3);
+      tip.classList.remove(CLASS_NAME_FADE$2, CLASS_NAME_SHOW$3);
       this.tip = tip;
       return this.tip;
     }
@@ -5601,7 +7350,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): popover.js
+   * CoreUI (v4.2.0-beta.0): popover.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's popover.js
@@ -5714,7 +7463,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): scrollspy.js
+   * CoreUI (v4.2.0-beta.0): scrollspy.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's scrollspy.js
@@ -5952,7 +7701,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): sidebar.js
+   * CoreUI (v4.2.0-beta.0): sidebar.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -5969,7 +7718,6 @@
   const Default$1 = {};
   const DefaultType$1 = {};
   const CLASS_NAME_BACKDROP = 'sidebar-backdrop';
-  const CLASS_NAME_FADE$2 = 'fade';
   const CLASS_NAME_HIDE$1 = 'hide';
   const CLASS_NAME_SHOW$2 = 'show';
   const CLASS_NAME_SIDEBAR_NARROW = 'sidebar-narrow';
@@ -6000,7 +7748,7 @@
       this._overlaid = this._isOverlaid();
       this._narrow = this._isNarrow();
       this._unfoldable = this._isUnfoldable();
-      this._backdrop = null;
+      this._backdrop = this._initializeBackDrop();
 
       this._addEventListeners();
     } // Getters
@@ -6029,7 +7777,9 @@
       if (this._isMobile()) {
         this._element.classList.add(CLASS_NAME_SHOW$2);
 
-        this._showBackdrop();
+        this._backdrop.show();
+
+        new ScrollBarHelper().hide();
       }
 
       const complete = () => {
@@ -6055,7 +7805,9 @@
       }
 
       if (this._isMobile()) {
-        this._removeBackdrop();
+        this._backdrop.hide();
+
+        new ScrollBarHelper().reset();
       } else {
         this._element.classList.add(CLASS_NAME_HIDE$1);
       }
@@ -6144,6 +7896,16 @@
       return config;
     }
 
+    _initializeBackDrop() {
+      return new Backdrop({
+        className: CLASS_NAME_BACKDROP,
+        isVisible: this._isMobile(),
+        isAnimated: true,
+        rootElement: this._element.parentNode,
+        clickCallback: () => this.hide()
+      });
+    }
+
     _isMobile() {
       return Boolean(window.getComputedStyle(this._element, null).getPropertyValue('--cui-is-mobile'));
     }
@@ -6163,33 +7925,11 @@
     _isVisible() {
       const rect = this._element.getBoundingClientRect();
 
-      return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+      return rect.top >= 0 && rect.left >= 0 && Math.floor(rect.bottom) <= (window.innerHeight || document.documentElement.clientHeight) && Math.floor(rect.right) <= (window.innerWidth || document.documentElement.clientWidth);
     }
 
     _addClassName(className) {
       this._element.classList.add(className);
-    }
-
-    _removeBackdrop() {
-      if (this._backdrop) {
-        this._backdrop.remove();
-
-        this._backdrop = null;
-      }
-    }
-
-    _showBackdrop() {
-      if (!this._backdrop) {
-        this._backdrop = document.createElement('div');
-        this._backdrop.className = CLASS_NAME_BACKDROP;
-
-        this._backdrop.classList.add(CLASS_NAME_FADE$2);
-
-        document.body.append(this._backdrop);
-        reflow(this._backdrop);
-
-        this._backdrop.classList.add(CLASS_NAME_SHOW$2);
-      }
     }
 
     _clickOutListener(event, sidebar) {
@@ -6239,6 +7979,7 @@
       EventHandler.on(window, EVENT_RESIZE, () => {
         if (this._isMobile() && this._isVisible()) {
           this.hide();
+          this._backdrop = this._initializeBackDrop();
         }
       });
     } // Static
@@ -6285,7 +8026,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): tab.js
+   * CoreUI (v4.2.0-beta.0): tab.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's tab.js
@@ -6468,7 +8209,7 @@
       event.preventDefault();
     }
 
-    if (isDisabled(this)) {
+    if (isDisabled$1(this)) {
       return;
     }
 
@@ -6486,7 +8227,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): toast.js
+   * CoreUI (v4.2.0-beta.0): toast.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's toast.js
@@ -6719,15 +8460,18 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.1.0): index.esm.js
+   * CoreUI (v4.2.0-beta.0): index.esm.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
   const index_umd = {
     Alert,
     Button,
+    Calendar,
     Carousel,
     Collapse,
+    DatePicker,
+    DateRangePicker,
     Dropdown,
     LoadingButton,
     Modal,
@@ -6738,6 +8482,7 @@
     ScrollSpy,
     Sidebar,
     Tab,
+    Timepicker: TimePicker,
     Toast,
     Tooltip
   };

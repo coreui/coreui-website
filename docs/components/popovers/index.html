@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Documentation and examples for adding Bootstrap popovers, like those found in iOS, to any element on your site.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.89.4">
+<meta name="generator" content="Hugo 0.93.2">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.1">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-J2WCKfhPxbtZAT+USOoPNCnZVozpAaGtaH/LUcSKXjdCXN85i5fGMTy1Agp8HChK" crossorigin="anonymous">
+<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-4RjTy+ihDlYQqAQJodVMv1QuiX0mRlR0xtuKKu1P8I2TxVdGPXaW+VxJ6PirwMm4" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/assets/css/docs.css" rel="stylesheet">
 
@@ -77,7 +77,7 @@
 
 
   </head>
-  <body class="d-flex">
+  <body class="d-flex legacy-theme">
     
     <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
@@ -106,7 +106,7 @@
       JavaScript / Vanilla JS
     </button>
     <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
-      <li><a class="dropdown-item disabled" href="#" disabled>Angular <span class="badge bg-warning float-end mt-1">Work in Progress</span></a></li>
+      <li><a class="dropdown-item" href="https://coreui.io/angular/docs/4.0/getting-started/introduction">Angular</a></li>
       <li><a class="dropdown-item" href="https://coreui.io/react/docs/" target="_blank">React.js</a></li>
       <li><a class="dropdown-item" href="https://coreui.io/vue/docs/" target="_blank">Vue.js</a></li>
     </ul>
@@ -377,13 +377,25 @@
             <li class="nav-item">
               <a href="#" class="nav-link disabled"  disabled="disabled">
                 Form Mask
-                  <span class="badge bg-warning ms-auto">WIP v4.2</span>
+                  <span class="badge bg-warning ms-auto">WIP</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link disabled"  disabled="disabled">
+              <a href="https://coreui.io/docs/forms/date-picker/" class="nav-link" >
+                Date Picker
+                  <span class="badge bg-success ms-auto">LAB</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/forms/date-range-picker/" class="nav-link" >
                 Date Range Picker
-                  <span class="badge bg-warning ms-auto">WIP v4.2</span>
+                  <span class="badge bg-success ms-auto">LAB</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/forms/time-picker/" class="nav-link" >
+                Time Picker
+                  <span class="badge bg-success ms-auto">LAB</span>
               </a>
             </li>
             <li class="nav-item">
@@ -828,8 +840,8 @@
   
 </nav>
 
-      <div class="d-md-flex flex-md-row-reverse align-items-center justify-content-between">
-        <a class="btn btn-sm btn-outline-secondary mb-2 mb-md-0" href="https://github.com/coreui/coreui/blob/main/docs/content/components/popovers.md" title="View and edit this file on GitHub" target="_blank" rel="noopener">View on GitHub</a>
+      <div class="d-md-flex flex-md-row align-items-center justify-content-between">
+        
         <h1 class="docs-title" id="content">Bootstrap popovers</h1>
       </div>
       <p class="docs-lead">Documentation and examples for adding Bootstrap popovers, like those found in iOS, to any element on your site.</p>
@@ -907,7 +919,7 @@
 <li>Specify <code>container: 'body'</code> to avoid rendering problems in more complex components (like our input groups, button groups, etc).</li>
 <li>Triggering popovers on hidden elements will not work.</li>
 <li>Popovers for <code>.disabled</code> or <code>disabled</code> elements must be triggered on a wrapper element.</li>
-<li>When triggered from anchors that wrap across multiple lines, popovers will be centered between the anchors' overall width. Use <code>.text-nowrap</code> on your <code>&lt;a&gt;</code>s to avoid this behavior.</li>
+<li>When triggered from anchors that wrap across multiple lines, popovers will be centered between the anchors&rsquo; overall width. Use <code>.text-nowrap</code> on your <code>&lt;a&gt;</code>s to avoid this behavior.</li>
 <li>Popovers must be hidden before their corresponding elements have been removed from the DOM.</li>
 <li>Popovers can be triggered thanks to an element inside a shadow DOM.</li>
 </ul>
@@ -922,19 +934,19 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <p>Keep reading to see how popovers work with some examples.</p>
 <h2 id="example-enable-popovers-everywhere">Example: Enable popovers everywhere</h2>
 <p>One way to initialize all popovers on a page would be to select them by their <code>data-coreui-toggle</code> attribute:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">popoverTriggerList</span> <span class="o">=</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;[data-coreui-toggle=&#34;popover&#34;]&#39;</span><span class="p">))</span>
-<span class="kd">var</span> <span class="nx">popoverList</span> <span class="o">=</span> <span class="nx">popoverTriggerList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">popoverTriggerEl</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Popover</span><span class="p">(</span><span class="nx">popoverTriggerEl</span><span class="p">)</span>
-<span class="p">})</span>
-</code></pre></div><h2 id="example-using-the-container-option">Example: Using the <code>container</code> option</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">popoverTriggerList</span> <span class="o">=</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;[data-coreui-toggle=&#34;popover&#34;]&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">popoverList</span> <span class="o">=</span> <span class="nx">popoverTriggerList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">popoverTriggerEl</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Popover</span><span class="p">(</span><span class="nx">popoverTriggerEl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><h2 id="example-using-the-container-option">Example: Using the <code>container</code> option</h2>
 <p>When you have some styles on a parent element that interfere with a popover, you&rsquo;ll want to specify a custom <code>container</code> so that the popover&rsquo;s HTML appears within that element instead.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">popover</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Popover</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.example-popover&#39;</span><span class="p">),</span> <span class="p">{</span>
-  <span class="nx">container</span><span class="o">:</span> <span class="s1">&#39;body&#39;</span>
-<span class="p">})</span>
-</code></pre></div><h2 id="example">Example</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">popover</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Popover</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.example-popover&#39;</span><span class="p">),</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">container</span><span class="o">:</span> <span class="s1">&#39;body&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><h2 id="example">Example</h2>
 <div class="docs-example">
 <button type="button" class="btn btn-lg btn-danger" data-coreui-toggle="popover" title="Popover title" data-coreui-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-lg btn-danger&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Popover title&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;And here&#39;s some amazing content. It&#39;s very engaging. Right?&#34;</span><span class="p">&gt;</span>Click to toggle popover<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-lg btn-danger&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Popover title&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;And here&#39;s some amazing content. It&#39;s very engaging. Right?&#34;</span><span class="p">&gt;</span>Click to toggle popover<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></span></span></code></pre></div>
 <h3 id="four-directions">Four directions</h3>
 <p>Four options are available: top, right, bottom, and left aligned. Directions are mirrored when using Bootstrap in RTL.</p>
 <div class="docs-example">
@@ -950,18 +962,18 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <button type="button" class="btn btn-secondary" data-coreui-container="body" data-coreui-toggle="popover" data-coreui-placement="left" data-coreui-content="Left popover">
   Popover on left
 </button>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-secondary&#34;</span> <span class="na">data-coreui-container</span><span class="o">=</span><span class="s">&#34;body&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">data-coreui-placement</span><span class="o">=</span><span class="s">&#34;top&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;Top popover&#34;</span><span class="p">&gt;</span>
-  Popover on top
-<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-secondary&#34;</span> <span class="na">data-coreui-container</span><span class="o">=</span><span class="s">&#34;body&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">data-coreui-placement</span><span class="o">=</span><span class="s">&#34;right&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;Right popover&#34;</span><span class="p">&gt;</span>
-  Popover on right
-<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-secondary&#34;</span> <span class="na">data-coreui-container</span><span class="o">=</span><span class="s">&#34;body&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">data-coreui-placement</span><span class="o">=</span><span class="s">&#34;bottom&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;Bottom popover&#34;</span><span class="p">&gt;</span>
-  Popover on bottom
-<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-secondary&#34;</span> <span class="na">data-coreui-container</span><span class="o">=</span><span class="s">&#34;body&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">data-coreui-placement</span><span class="o">=</span><span class="s">&#34;left&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;Left popover&#34;</span><span class="p">&gt;</span>
-  Popover on left
-<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-secondary&#34;</span> <span class="na">data-coreui-container</span><span class="o">=</span><span class="s">&#34;body&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">data-coreui-placement</span><span class="o">=</span><span class="s">&#34;top&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;Top popover&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  Popover on top
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-secondary&#34;</span> <span class="na">data-coreui-container</span><span class="o">=</span><span class="s">&#34;body&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">data-coreui-placement</span><span class="o">=</span><span class="s">&#34;right&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;Right popover&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  Popover on right
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-secondary&#34;</span> <span class="na">data-coreui-container</span><span class="o">=</span><span class="s">&#34;body&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">data-coreui-placement</span><span class="o">=</span><span class="s">&#34;bottom&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;Bottom popover&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  Popover on bottom
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-secondary&#34;</span> <span class="na">data-coreui-container</span><span class="o">=</span><span class="s">&#34;body&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">data-coreui-placement</span><span class="o">=</span><span class="s">&#34;left&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;Left popover&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  Popover on left
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></span></span></code></pre></div>
 <h3 id="dismiss-on-next-click">Dismiss on next click</h3>
 <p>Use the <code>focus</code> trigger to dismiss popovers on the user&rsquo;s next click of a different element than the toggle element.</p>
 <div class="docs-callout docs-callout-danger">
@@ -971,25 +983,25 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 
 <div class="docs-example">
 <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-coreui-toggle="popover" data-coreui-trigger="focus" title="Dismissible popover" data-coreui-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-lg btn-danger&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">data-coreui-trigger</span><span class="o">=</span><span class="s">&#34;focus&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Dismissible popover&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;And here&#39;s some amazing content. It&#39;s very engaging. Right?&#34;</span><span class="p">&gt;</span>Dismissible popover<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span></code></pre></div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">popover</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Popover</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.popover-dismiss&#39;</span><span class="p">),</span> <span class="p">{</span>
-  <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;focus&#39;</span>
-<span class="p">})</span>
-</code></pre></div><h3 id="disabled-elements">Disabled elements</h3>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-lg btn-danger&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">data-coreui-trigger</span><span class="o">=</span><span class="s">&#34;focus&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Dismissible popover&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;And here&#39;s some amazing content. It&#39;s very engaging. Right?&#34;</span><span class="p">&gt;</span>Dismissible popover<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">popover</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Popover</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.popover-dismiss&#39;</span><span class="p">),</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">trigger</span><span class="o">:</span> <span class="s1">&#39;focus&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><h3 id="disabled-elements">Disabled elements</h3>
 <p>Elements with the <code>disabled</code> attribute aren&rsquo;t interactive, meaning users cannot hover or click them to trigger a popover (or tooltip). As a workaround, you&rsquo;ll want to trigger the popover from a wrapper <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code>, ideally made keyboard-focusable using <code>tabindex=&quot;0&quot;</code>.</p>
 <p>For disabled popover triggers, you may also prefer <code>data-coreui-trigger=&quot;hover focus&quot;</code> so that the popover appears as immediate visual feedback to your users as they may not expect to <em>click</em> on a disabled element.</p>
 <div class="docs-example">
 <span class="d-inline-block" tabindex="0" data-coreui-toggle="popover" data-coreui-trigger="hover focus" data-coreui-content="Disabled popover">
   <button class="btn btn-primary" type="button" disabled>Disabled button</button>
 </span>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-inline-block&#34;</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">data-coreui-trigger</span><span class="o">=</span><span class="s">&#34;hover focus&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;Disabled popover&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">disabled</span><span class="p">&gt;</span>Disabled button<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-inline-block&#34;</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;popover&#34;</span> <span class="na">data-coreui-trigger</span><span class="o">=</span><span class="s">&#34;hover focus&#34;</span> <span class="na">data-coreui-content</span><span class="o">=</span><span class="s">&#34;Disabled popover&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">disabled</span><span class="p">&gt;</span>Disabled button<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span></span></span></code></pre></div>
 <h2 id="usage">Usage</h2>
 <p>Enable popovers via JavaScript:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">exampleEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
-<span class="kd">var</span> <span class="nx">popover</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Popover</span><span class="p">(</span><span class="nx">exampleEl</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
-</code></pre></div><div class="docs-callout docs-callout-warning">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">exampleEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">popover</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Popover</span><span class="p">(</span><span class="nx">exampleEl</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span>
+</span></span></code></pre></div><div class="docs-callout docs-callout-warning">
 <h3 id="making-popovers-work-for-keyboard-and-assistive-technology-users">Making popovers work for keyboard and assistive technology users</h3>
 <p>To allow keyboard users to activate your popovers, you should only add them to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). Although arbitrary HTML elements (such as <code>&lt;span&gt;</code>s) can be made focusable by adding the <code>tabindex=&quot;0&quot;</code> attribute, this will add potentially annoying and confusing tab stops on non-interactive elements for keyboard users, and most assistive technologies currently do not announce the popover&rsquo;s content in this situation. Additionally, do not rely solely on <code>hover</code> as the trigger for your popovers, as this will make them impossible to trigger for keyboard users.</p>
 <p>While you can insert rich, structured HTML in popovers with the <code>html</code> option, we strongly recommend that you avoid adding an excessive amount of content. The way popovers currently work is that, once displayed, their content is tied to the trigger element with the <code>aria-describedby</code> attribute. As a result, the entirety of the popover&rsquo;s content will be announced to assistive technology users as one long, uninterrupted stream.</p>
@@ -1161,14 +1173,14 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
 </div>
 
 <h4 id="using-function-with-popperconfig">Using function with <code>popperConfig</code></h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">popover</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">bootstrap</span><span class="p">.</span><span class="nx">Popover</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="p">{</span>
-  <span class="nx">popperConfig</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">defaultBsPopperConfig</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// var newPopperConfig = {...}
-</span><span class="c1"></span>    <span class="c1">// use defaultBsPopperConfig if needed...
-</span><span class="c1"></span>    <span class="c1">// return newPopperConfig
-</span><span class="c1"></span>  <span class="p">}</span>
-<span class="p">})</span>
-</code></pre></div><h3 id="methods">Methods</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">popover</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">bootstrap</span><span class="p">.</span><span class="nx">Popover</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">popperConfig</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">defaultBsPopperConfig</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// var newPopperConfig = {...}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// use defaultBsPopperConfig if needed...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// return newPopperConfig
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><h3 id="methods">Methods</h3>
 <div class="docs-callout docs-callout-danger">
 <h4 id="asynchronous-methods-and-transitions">Asynchronous methods and transitions</h4>
 <p>All API methods are <strong>asynchronous</strong> and start a <strong>transition</strong>. They return to the caller as soon as the transition is started but <strong>before it ends</strong>. In addition, a method call on a <strong>transitioning component will be ignored</strong>.</p>
@@ -1178,37 +1190,37 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
 
 <h4 id="show">show</h4>
 <p>Reveals an element&rsquo;s popover. <strong>Returns to the caller before the popover has actually been shown</strong> (i.e. before the <code>shown.coreui.popover</code> event occurs). This is considered a &ldquo;manual&rdquo; triggering of the popover. Popovers whose title and content are both zero-length are never displayed.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">show</span><span class="p">()</span>
-</code></pre></div><h4 id="hide">hide</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">show</span><span class="p">()</span>
+</span></span></code></pre></div><h4 id="hide">hide</h4>
 <p>Hides an element&rsquo;s popover. <strong>Returns to the caller before the popover has actually been hidden</strong> (i.e. before the <code>hidden.coreui.popover</code> event occurs). This is considered a &ldquo;manual&rdquo; triggering of the popover.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">hide</span><span class="p">()</span>
-</code></pre></div><h4 id="toggle">toggle</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">hide</span><span class="p">()</span>
+</span></span></code></pre></div><h4 id="toggle">toggle</h4>
 <p>Toggles an element&rsquo;s popover. <strong>Returns to the caller before the popover has actually been shown or hidden</strong> (i.e. before the <code>shown.coreui.popover</code> or <code>hidden.coreui.popover</code> event occurs). This is considered a &ldquo;manual&rdquo; triggering of the popover.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">toggle</span><span class="p">()</span>
-</code></pre></div><h4 id="dispose">dispose</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">toggle</span><span class="p">()</span>
+</span></span></code></pre></div><h4 id="dispose">dispose</h4>
 <p>Hides and destroys an element&rsquo;s popover (Removes stored data on the DOM element). Popovers that use delegation (which are created using <a href="#options">the <code>selector</code> option</a>) cannot be individually destroyed on descendant trigger elements.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">dispose</span><span class="p">()</span>
-</code></pre></div><h4 id="enable">enable</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">dispose</span><span class="p">()</span>
+</span></span></code></pre></div><h4 id="enable">enable</h4>
 <p>Gives an element&rsquo;s popover the ability to be shown. <strong>Popovers are enabled by default.</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">enable</span><span class="p">()</span>
-</code></pre></div><h4 id="disable">disable</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">enable</span><span class="p">()</span>
+</span></span></code></pre></div><h4 id="disable">disable</h4>
 <p>Removes the ability for an element&rsquo;s popover to be shown. The popover will only be able to be shown if it is re-enabled.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">disable</span><span class="p">()</span>
-</code></pre></div><h4 id="toggleenabled">toggleEnabled</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">disable</span><span class="p">()</span>
+</span></span></code></pre></div><h4 id="toggleenabled">toggleEnabled</h4>
 <p>Toggles the ability for an element&rsquo;s popover to be shown or hidden.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">toggleEnabled</span><span class="p">()</span>
-</code></pre></div><h4 id="update">update</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">toggleEnabled</span><span class="p">()</span>
+</span></span></code></pre></div><h4 id="update">update</h4>
 <p>Updates the position of an element&rsquo;s popover.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">update</span><span class="p">()</span>
-</code></pre></div><h4 id="getinstance">getInstance</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">myPopover</span><span class="p">.</span><span class="nx">update</span><span class="p">()</span>
+</span></span></code></pre></div><h4 id="getinstance">getInstance</h4>
 <p><em>Static</em> method which allows you to get the popover instance associated with a DOM element</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">exampleTriggerEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
-<span class="kd">var</span> <span class="nx">popover</span> <span class="o">=</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Popover</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">(</span><span class="nx">exampleTriggerEl</span><span class="p">)</span> <span class="c1">// Returns a Bootstrap popover instance
-</span></code></pre></div><h4 id="getorcreateinstance">getOrCreateInstance</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">exampleTriggerEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">popover</span> <span class="o">=</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">Popover</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">(</span><span class="nx">exampleTriggerEl</span><span class="p">)</span> <span class="c1">// Returns a Bootstrap popover instance
+</span></span></span></code></pre></div><h4 id="getorcreateinstance">getOrCreateInstance</h4>
 <p><em>Static</em> method which allows you to get the popover instance associated with a DOM element, or create a new one in case it wasn&rsquo;t initialized</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">exampleTriggerEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
-<span class="kd">var</span> <span class="nx">popover</span> <span class="o">=</span> <span class="nx">bootstrap</span><span class="p">.</span><span class="nx">Popover</span><span class="p">.</span><span class="nx">getOrCreateInstance</span><span class="p">(</span><span class="nx">exampleTriggerEl</span><span class="p">)</span> <span class="c1">// Returns a Bootstrap popover instance
-</span></code></pre></div><h3 id="events">Events</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">exampleTriggerEl</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">popover</span> <span class="o">=</span> <span class="nx">bootstrap</span><span class="p">.</span><span class="nx">Popover</span><span class="p">.</span><span class="nx">getOrCreateInstance</span><span class="p">(</span><span class="nx">exampleTriggerEl</span><span class="p">)</span> <span class="c1">// Returns a Bootstrap popover instance
+</span></span></span></code></pre></div><h3 id="events">Events</h3>
 <table class="table">
   <thead>
     <tr>
@@ -1239,46 +1251,46 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
     </tr>
   </tbody>
 </table>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myPopoverTrigger</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myPopover&#39;</span><span class="p">)</span>
-<span class="nx">myPopoverTrigger</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;hidden.coreui.popover&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// do something...
-</span><span class="c1"></span><span class="p">})</span>
-</code></pre></div><h2 id="customizing">Customizing</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">myPopoverTrigger</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myPopover&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">myPopoverTrigger</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;hidden.coreui.popover&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// do something...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
+</span></span></code></pre></div><h2 id="customizing">Customizing</h2>
 <h3 id="sass">SASS</h3>
 <h4 id="variables">Variables</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$popover-font-size</span><span class="o">:</span>                 <span class="nv">$font-size-sm</span><span class="p">;</span>
-<span class="nv">$popover-bg</span><span class="o">:</span>                        <span class="nv">$white</span><span class="p">;</span>
-<span class="nv">$popover-max-width</span><span class="o">:</span>                 <span class="mi">276</span><span class="kt">px</span><span class="p">;</span>
-<span class="nv">$popover-border-width</span><span class="o">:</span>              <span class="nv">$border-width</span><span class="p">;</span>
-<span class="nv">$popover-border-color</span><span class="o">:</span>              <span class="nf">rgba</span><span class="p">(</span><span class="nv">$black</span><span class="o">,</span> <span class="mf">.2</span><span class="p">);</span>
-<span class="nv">$popover-border-radius</span><span class="o">:</span>             <span class="nv">$border-radius-lg</span><span class="p">;</span>
-<span class="nv">$popover-inner-border-radius</span><span class="o">:</span>       <span class="nf">subtract</span><span class="p">(</span><span class="nv">$popover-border-radius</span><span class="o">,</span> <span class="nv">$popover-border-width</span><span class="p">);</span>
-<span class="nv">$popover-box-shadow</span><span class="o">:</span>                <span class="nv">$box-shadow</span><span class="p">;</span>
-
-<span class="nv">$popover-header-bg</span><span class="o">:</span>                 <span class="nf">shade-color</span><span class="p">(</span><span class="nv">$popover-bg</span><span class="o">,</span> <span class="mi">6</span><span class="kt">%</span><span class="p">);</span>
-<span class="nv">$popover-header-color</span><span class="o">:</span>              <span class="nv">$headings-color</span><span class="p">;</span>
-<span class="nv">$popover-header-padding-y</span><span class="o">:</span>          <span class="mf">.5</span><span class="kt">rem</span><span class="p">;</span>
-<span class="nv">$popover-header-padding-x</span><span class="o">:</span>          <span class="nv">$spacer</span><span class="p">;</span>
-
-<span class="nv">$popover-body-color</span><span class="o">:</span>                <span class="nv">$body-color</span><span class="p">;</span>
-<span class="nv">$popover-body-padding-y</span><span class="o">:</span>            <span class="nv">$spacer</span><span class="p">;</span>
-<span class="nv">$popover-body-padding-x</span><span class="o">:</span>            <span class="nv">$spacer</span><span class="p">;</span>
-
-<span class="nv">$popover-arrow-width</span><span class="o">:</span>               <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
-<span class="nv">$popover-arrow-height</span><span class="o">:</span>              <span class="mf">.5</span><span class="kt">rem</span><span class="p">;</span>
-<span class="nv">$popover-arrow-color</span><span class="o">:</span>               <span class="nv">$popover-bg</span><span class="p">;</span>
-
-<span class="nv">$popover-arrow-outer-color</span><span class="o">:</span>         <span class="nf">fade-in</span><span class="p">(</span><span class="nv">$popover-border-color</span><span class="o">,</span> <span class="mf">.05</span><span class="p">);</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nv">$popover-font-size</span><span class="o">:</span>                 <span class="nv">$font-size-sm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-bg</span><span class="o">:</span>                        <span class="nv">$white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-max-width</span><span class="o">:</span>                 <span class="mi">276</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-border-width</span><span class="o">:</span>              <span class="nv">$border-width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-border-color</span><span class="o">:</span>              <span class="nf">rgba</span><span class="p">(</span><span class="nv">$black</span><span class="o">,</span> <span class="mf">.2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-border-radius</span><span class="o">:</span>             <span class="nv">$border-radius-lg</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-inner-border-radius</span><span class="o">:</span>       <span class="nf">subtract</span><span class="p">(</span><span class="nv">$popover-border-radius</span><span class="o">,</span> <span class="nv">$popover-border-width</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-box-shadow</span><span class="o">:</span>                <span class="nv">$box-shadow</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-header-bg</span><span class="o">:</span>                 <span class="nf">shade-color</span><span class="p">(</span><span class="nv">$popover-bg</span><span class="o">,</span> <span class="mi">6</span><span class="kt">%</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-header-color</span><span class="o">:</span>              <span class="nv">$headings-color</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-header-padding-y</span><span class="o">:</span>          <span class="mf">.5</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-header-padding-x</span><span class="o">:</span>          <span class="nv">$spacer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-body-color</span><span class="o">:</span>                <span class="nv">$body-color</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-body-padding-y</span><span class="o">:</span>            <span class="nv">$spacer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-body-padding-x</span><span class="o">:</span>            <span class="nv">$spacer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-arrow-width</span><span class="o">:</span>               <span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-arrow-height</span><span class="o">:</span>              <span class="mf">.5</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-arrow-color</span><span class="o">:</span>               <span class="nv">$popover-bg</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$popover-arrow-outer-color</span><span class="o">:</span>         <span class="nf">fade-in</span><span class="p">(</span><span class="nv">$popover-border-color</span><span class="o">,</span> <span class="mf">.05</span><span class="p">);</span>
+</span></span></code></pre></div>
 <h3 id="css-vars">CSS Vars</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="o">--</span><span class="nt">cui-popover-arrow-color</span>
-<span class="o">--</span><span class="nt">cui-popover-arrow-outer-color</span>
-<span class="o">--</span><span class="nt">cui-popover-bg</span>
-<span class="o">--</span><span class="nt">cui-popover-body-color</span>
-<span class="o">--</span><span class="nt">cui-popover-border-color</span>
-<span class="o">--</span><span class="nt">cui-popover-header-bg</span>
-<span class="o">--</span><span class="nt">cui-popover-header-border-color</span>
-<span class="o">--</span><span class="nt">cui-popover-header-color</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-popover-arrow-color</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-popover-arrow-outer-color</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-popover-bg</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-popover-body-color</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-popover-border-color</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-popover-header-bg</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-popover-header-border-color</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-popover-header-color</span></span></span></code></pre></div>
 
     </div>
   </main>
@@ -1290,9 +1302,12 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
     <ul class="docs-footer-links ps-0 mb-3">
       <li class="d-inline-block"><a href="https://github.com/coreui">GitHub</a></li>
       <li class="d-inline-block ms-3"><a href="https://twitter.com/core_ui">Twitter</a></li>
+      <li class="d-inline-block ms-3 ps-3 border-start border-2"><a href="https://coreui.io/angular/">CoreUI for Angular</a></li>
+      <li class="d-inline-block ms-3"><a href="https://coreui.io/react/">CoreUI for React.js</a></li>
+      <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.1.0. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.1.1. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1300,7 +1315,7 @@ Note that for security reasons the <code>sanitize</code>, <code>sanitizeFn</code
       
   
     </div>
-    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-xrIl/D1LLvXm2eAIEikcV4kDtg/8t0OyMXYhb4v8gWYWAN0lvuEzXiHkPpDsXl9x" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-PXOm0LjM7kBY7at2HNqu2pAJsTVQUPRzpJSwQD0V//zsjFAcv61qjiZj3ELesLb1" crossorigin="anonymous"></script>
 
 
 <script src="https://coreui.io/docs/assets/js/docs.min.js"></script>
