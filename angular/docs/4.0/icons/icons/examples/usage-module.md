@@ -10,4 +10,4 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
   providers: [
     IconSetService
 ...
-...```
+```
