@@ -18,7 +18,7 @@ export class SmartTable01Component {
       _props: { color: 'danger', class: 'fw-bold' },
     },
     'registered',
-    { key: 'role', filter: false, sorter: false, _style: { width: '15%' } },
+    { key: 'role', filter: false, sorter: false, _style: { width: '15%' }, _classes: 'text-muted small' },
     { key: 'status', _style: { width: '15%' } },
     {
       key: 'show',

@@ -1,5 +1,6 @@
 <c-smart-table
-    activePage="2"
+  #smartTable="cSmartTable"
+  activePage="2"
     cleaner
     clickableRows
     [columnFilter]="true"
@@ -34,9 +35,11 @@
       </div>
     </ng-template>
     <ng-template cTemplateId="tableData" let-columnName="columnName" let-item="item" let-tdContent="tdContent">
-      <td [cTableActive]="item?.['_cellProps']?.[columnName]?.active ?? item?.['_cellProps']?._all?.active"
-          [cTableColor]="item?.['_cellProps']?.[columnName]?.color ?? item?.['_cellProps']?._all?.color"
-          [cAlign]="item?.['_cellProps']?.[columnName]?.align ?? item?.['_cellProps']?._all?.align">
+      <td [cTableActive]="smartTable.tableDataCellProps(item, columnName)?.['active']"
+          [cTableColor]="smartTable.tableDataCellProps(item, columnName)?.color"
+          [cAlign]="smartTable.tableDataCellProps(item, columnName)?.align"
+          [ngClass]="smartTable.tableDataCellClasses(item, columnName)"
+      >
         <ng-container [ngSwitch]="columnName">
           <ng-container *ngSwitchCase="'status'">
             <c-badge [color]="getBadge(tdContent)">
