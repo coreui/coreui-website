@@ -1,1 +1,0 @@
-const e={key:"v-74162167",path:"/api/form/CFormSelect.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CFormSelect",slug:"cformselect",children:[]}],git:{updatedTime:1636113553e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:4}]}};export{e as data};

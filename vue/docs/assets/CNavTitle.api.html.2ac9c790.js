@@ -1,4 +1,0 @@
-import{_ as s,e as n}from"./app.4b737878.js";const a={},e=n(`<h3 id="cnavtitle" tabindex="-1">CNavTitle <a class="anchor-link" href="#cnavtitle" aria-hidden="true">#</a></h3><div class="language-jsx ext-jsx line-numbers-mode"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CNavTitle <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
-<span class="token comment">// or</span>
-<span class="token keyword">import</span> CNavTitle <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/nav/CNavTitle&#39;</span>
-</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div>`,2);function t(r,c){return e}var p=s(a,[["render",t]]);export{p as default};

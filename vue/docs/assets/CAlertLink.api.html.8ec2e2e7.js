@@ -1,4 +1,0 @@
-import{_ as n,e as s}from"./app.0880af9b.js";const a={},e=s(`<h3 id="calertlink" tabindex="-1">CAlertLink <a class="anchor-link" href="#calertlink" aria-hidden="true">#</a></h3><div class="language-jsx ext-jsx line-numbers-mode"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CAlertLink <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
-<span class="token comment">// or</span>
-<span class="token keyword">import</span> CAlertLink <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/alert/CAlertLink&#39;</span>
-</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div>`,2);function r(t,c){return e}var p=n(a,[["render",r]]);export{p as default};
