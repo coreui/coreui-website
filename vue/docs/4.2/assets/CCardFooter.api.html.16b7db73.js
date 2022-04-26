@@ -1,0 +1,1 @@
+const e={key:"v-104f4d10",path:"/api/card/CCardFooter.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CCardFooter",slug:"ccardfooter",children:[]}],git:{updatedTime:1635168931e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};

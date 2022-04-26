@@ -1,0 +1,1 @@
+const e={key:"v-dc5377cc",path:"/api/form/CFormRange.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CFormRange",slug:"cformrange",children:[]}],git:{updatedTime:1650285905e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:4}]}};export{e as data};

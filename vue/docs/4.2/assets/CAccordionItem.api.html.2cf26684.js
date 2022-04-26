@@ -1,0 +1,1 @@
+const e={key:"v-f57fe540",path:"/api/accordion/CAccordionItem.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CAccordionItem",slug:"caccordionitem",children:[]}],git:{updatedTime:163570725e4,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:3}]}};export{e as data};

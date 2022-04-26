@@ -1,0 +1,1 @@
+const e={key:"v-27b0cf00",path:"/api/nav/CNavItem.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CNavItem",slug:"cnavitem",children:[]}],git:{updatedTime:1635168931e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};

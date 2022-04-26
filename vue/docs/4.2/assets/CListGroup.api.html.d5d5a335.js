@@ -1,0 +1,1 @@
+const t={key:"v-46550284",path:"/api/list-group/CListGroup.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CListGroup",slug:"clistgroup",children:[]}],git:{updatedTime:1635168931e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{t as data};
