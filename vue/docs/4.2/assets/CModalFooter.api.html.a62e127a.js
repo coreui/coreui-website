@@ -1,1 +1,0 @@
-const e={key:"v-4ad4ec10",path:"/api/modal/CModalFooter.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CModalFooter",slug:"cmodalfooter",children:[]}],git:{updatedTime:1635168931e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};

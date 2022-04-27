@@ -1,1 +1,0 @@
-const e={key:"v-6bcc0cd5",path:"/api/grid/CCol.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CCol",slug:"ccol",children:[]}],git:{updatedTime:1635168931e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};

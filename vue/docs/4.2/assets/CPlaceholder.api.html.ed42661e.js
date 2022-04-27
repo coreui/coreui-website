@@ -1,1 +1,0 @@
-const e={key:"v-3a87575a",path:"/api/placeholder/CPlaceholder.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CPlaceholder",slug:"cplaceholder",children:[]}],git:{updatedTime:1638114261e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:1}]}};export{e as data};

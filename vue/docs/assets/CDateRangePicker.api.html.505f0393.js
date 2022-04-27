@@ -1,1 +1,0 @@
-const e={key:"v-30ea3053",path:"/api/date-range-picker/CDateRangePicker.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CDateRangePicker",slug:"cdaterangepicker",children:[]}],git:{updatedTime:164859017e4,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};

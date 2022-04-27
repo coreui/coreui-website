@@ -1,1 +1,0 @@
-import{_ as t}from"./app.2381318b.js";const e={mounted(){this.$router.push("/getting-started/introduction.html")}};function r(n,o,s,c,i,_){return null}var a=t(e,[["render",r],["__file","Redirect.vue"]]);export{a as default};

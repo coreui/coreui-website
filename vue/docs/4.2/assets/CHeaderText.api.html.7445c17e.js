@@ -1,1 +1,0 @@
-const e={key:"v-7ae0e584",path:"/api/header/CHeaderText.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CHeaderText",slug:"cheadertext",children:[]}],git:{updatedTime:1635168931e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};

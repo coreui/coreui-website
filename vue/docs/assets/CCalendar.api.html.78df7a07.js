@@ -1,1 +1,0 @@
-const e={key:"v-50cda8e2",path:"/api/calendar/CCalendar.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CCalendar",slug:"ccalendar",children:[]}],git:{updatedTime:164859017e4,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};
