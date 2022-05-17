@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Learn how to include CoreUI for Bootstrap in your project using Webpack or other bundlers.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.93.2">
+<meta name="generator" content="Hugo 0.74.3">
 
 <meta name="docsearch:language" content="en">
-<meta name="docsearch:version" content="4.1">
+<meta name="docsearch:version" content="4.2">
 
-<title>Webpack and bundlers · CoreUI v4.1</title>
+<title>Webpack and bundlers · CoreUI v4.2</title>
 
 <link rel="canonical" href="https://coreui.io/docs/getting-started/webpack/">
 
 
 
 <!-- Bootstrap core CSS -->
-<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-4RjTy+ihDlYQqAQJodVMv1QuiX0mRlR0xtuKKu1P8I2TxVdGPXaW+VxJ6PirwMm4" crossorigin="anonymous">
+<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-YUdsYsgRlkUONN8mdJ0FYda0kzlomX2TWturtRobleAB8py9rvyfGQzJdLRc9lFL" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/assets/css/docs.css" rel="stylesheet">
 
@@ -77,7 +77,7 @@
 
 
   </head>
-  <body class="d-flex legacy-theme">
+  <body class="d-flex">
     
     <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
@@ -383,19 +383,19 @@
             <li class="nav-item">
               <a href="https://coreui.io/docs/forms/date-picker/" class="nav-link" >
                 Date Picker
-                  <span class="badge bg-success ms-auto">LAB</span>
+                  <span class="badge bg-danger ms-auto">PRO</span>
               </a>
             </li>
             <li class="nav-item">
               <a href="https://coreui.io/docs/forms/date-range-picker/" class="nav-link" >
                 Date Range Picker
-                  <span class="badge bg-success ms-auto">LAB</span>
+                  <span class="badge bg-danger ms-auto">PRO</span>
               </a>
             </li>
             <li class="nav-item">
               <a href="https://coreui.io/docs/forms/time-picker/" class="nav-link" >
                 Time Picker
-                  <span class="badge bg-success ms-auto">LAB</span>
+                  <span class="badge bg-danger ms-auto">PRO</span>
               </a>
             </li>
             <li class="nav-item">
@@ -845,10 +845,9 @@
         <h1 class="docs-title" id="content">Webpack and bundlers</h1>
       </div>
       <p class="docs-lead">Learn how to include CoreUI for Bootstrap in your project using Webpack or other bundlers.</p>
-      <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+      
 
-
-<div data-ea-publisher="coreui-io" data-ea-type="image"></div>
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEAICKJY&placement=coreuiio" id="_carbonads_js"></script>
 
     </div>
 
@@ -877,72 +876,72 @@
 <p><a href="https://coreui.io/docs/getting-started/download/#npm">Install CoreUI</a> as a Node.js module using npm.</p>
 <h2 id="importing-javascript">Importing JavaScript</h2>
 <p>Import <a href="https://coreui.io/docs/getting-started/javascript/">CoreUI&rsquo;s JavaScript</a> by adding this line to your app&rsquo;s entry point (usually <code>index.js</code> or <code>app.js</code>):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="s1">&#39;@coreui/coreui&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// or get all of the named exports for further usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">coreui</span> <span class="nx">from</span> <span class="s1">&#39;@coreui/coreui&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><p>Alternatively, if you only need just a few of our plugins, you may <strong>import plugins individually</strong> as needed:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">Alert</span> <span class="nx">from</span> <span class="s1">&#39;@coreui/coreui/js/dist/alert&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// or, specify which plugins you need:
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Tooltip</span><span class="p">,</span> <span class="nx">Toast</span><span class="p">,</span> <span class="nx">Popover</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@coreui/coreui&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><p>CoreUI for Bootstrap depends on <a href="https://popper.js.org/">Popper</a>, which is specified in the <code>peerDependencies</code> property.
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="s1">&#39;@coreui/coreui&#39;</span><span class="p">;</span>
+
+<span class="c1">// or get all of the named exports for further usage
+</span><span class="c1"></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">coreui</span> <span class="nx">from</span> <span class="s1">&#39;@coreui/coreui&#39;</span><span class="p">;</span>
+</code></pre></div><p>Alternatively, if you only need just a few of our plugins, you may <strong>import plugins individually</strong> as needed:</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">Alert</span> <span class="nx">from</span> <span class="s1">&#39;@coreui/coreui/js/dist/alert&#39;</span><span class="p">;</span>
+
+<span class="c1">// or, specify which plugins you need:
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Tooltip</span><span class="p">,</span> <span class="nx">Toast</span><span class="p">,</span> <span class="nx">Popover</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@coreui/coreui&#39;</span><span class="p">;</span>
+</code></pre></div><p>CoreUI for Bootstrap depends on <a href="https://popper.js.org/">Popper</a>, which is specified in the <code>peerDependencies</code> property.
 This means that you will have to make sure to add it to your <code>package.json</code> using <code>npm install @popperjs/core</code>.</p>
 <h2 id="importing-styles">Importing Styles</h2>
 <h3 id="importing-precompiled-sass">Importing Precompiled Sass</h3>
 <p>To enjoy the full potential of CoreUI for Bootstrap and customize it to your needs, use the source files as a part of your project&rsquo;s bundling process.</p>
 <p>First, create your own <code>_custom.scss</code> and use it to override the <a href="https://coreui.io/docs/customize/sass/">built-in custom variables</a>. Then, use your main Sass file to import your custom variables, followed by Bootstrap:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="k">@import</span> <span class="s2">&#34;custom&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">@import</span> <span class="s2">&#34;~@coreui/coreui/scss/coreui&#34;</span><span class="p">;</span>
-</span></span></code></pre></div><p>For CoreUI for Bootstrap to compile, make sure you install and use the required loaders: <a href="https://github.com/webpack-contrib/sass-loader">sass-loader</a>, <a href="https://github.com/webpack-contrib/postcss-loader">postcss-loader</a> with <a href="https://github.com/postcss/autoprefixer#webpack">Autoprefixer</a>. With minimal setup, your webpack config should include this rule or similar:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// ...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.(scss)$/</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">use</span><span class="o">:</span> <span class="p">[{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// inject CSS to page
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;style-loader&#39;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// translates CSS into CommonJS modules
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;css-loader&#39;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Run postcss actions
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;postcss-loader&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="c1">// `postcssOptions` is needed for postcss 8.x;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="c1">// if you use postcss 7.x skip the key
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">postcssOptions</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// postcss plugins, can be exported to postcss.config.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">plugins</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;autoprefixer&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">          <span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">      <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// compiles Sass to CSS
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;sass-loader&#39;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// ...
-</span></span></span></code></pre></div><h3 id="importing-compiled-css">Importing Compiled CSS</h3>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@import</span> <span class="s2">&#34;custom&#34;</span><span class="p">;</span>
+<span class="k">@import</span> <span class="s2">&#34;~@coreui/coreui/scss/coreui&#34;</span><span class="p">;</span>
+</code></pre></div><p>For CoreUI for Bootstrap to compile, make sure you install and use the required loaders: <a href="https://github.com/webpack-contrib/sass-loader">sass-loader</a>, <a href="https://github.com/webpack-contrib/postcss-loader">postcss-loader</a> with <a href="https://github.com/postcss/autoprefixer#webpack">Autoprefixer</a>. With minimal setup, your webpack config should include this rule or similar:</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// ...
+</span><span class="c1"></span><span class="p">{</span>
+  <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.(scss)$/</span><span class="p">,</span>
+  <span class="nx">use</span><span class="o">:</span> <span class="p">[{</span>
+    <span class="c1">// inject CSS to page
+</span><span class="c1"></span>    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;style-loader&#39;</span>
+  <span class="p">},</span> <span class="p">{</span>
+    <span class="c1">// translates CSS into CommonJS modules
+</span><span class="c1"></span>    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;css-loader&#39;</span>
+  <span class="p">},</span> <span class="p">{</span>
+    <span class="c1">// Run postcss actions
+</span><span class="c1"></span>    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;postcss-loader&#39;</span><span class="p">,</span>
+    <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// `postcssOptions` is needed for postcss 8.x;
+</span><span class="c1"></span>      <span class="c1">// if you use postcss 7.x skip the key
+</span><span class="c1"></span>      <span class="nx">postcssOptions</span><span class="o">:</span> <span class="p">{</span>
+        <span class="c1">// postcss plugins, can be exported to postcss.config.js
+</span><span class="c1"></span>        <span class="nx">plugins</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="p">[</span>
+            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;autoprefixer&#39;</span><span class="p">)</span>
+          <span class="p">];</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="p">{</span>
+    <span class="c1">// compiles Sass to CSS
+</span><span class="c1"></span>    <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;sass-loader&#39;</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+<span class="c1">// ...
+</span></code></pre></div><h3 id="importing-compiled-css">Importing Compiled CSS</h3>
 <p>Alternatively, you may use CoreUI&rsquo;s ready-to-use CSS by simply adding this line to your project&rsquo;s entry point:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="s1">&#39;@coreui/coreui/dist/css/coreui.min.css&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><p>In this case you may use your existing rule for <code>css</code> without any special modifications to webpack config, except you don&rsquo;t need <code>sass-loader</code> just <a href="https://github.com/webpack-contrib/style-loader">style-loader</a> and <a href="https://github.com/webpack-contrib/css-loader">css-loader</a>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// ...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">use</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="s1">&#39;style-loader&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="s1">&#39;css-loader&#39;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// ...
-</span></span></span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="s1">&#39;@coreui/coreui/dist/css/coreui.min.css&#39;</span><span class="p">;</span>
+</code></pre></div><p>In this case you may use your existing rule for <code>css</code> without any special modifications to webpack config, except you don&rsquo;t need <code>sass-loader</code> just <a href="https://github.com/webpack-contrib/style-loader">style-loader</a> and <a href="https://github.com/webpack-contrib/css-loader">css-loader</a>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// ...
+</span><span class="c1"></span><span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span>
+      <span class="nx">use</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s1">&#39;style-loader&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;css-loader&#39;</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="c1">// ...
+</span></code></pre></div>
     </div>
   </main>
 </div>
@@ -958,7 +957,7 @@ This means that you will have to make sure to add it to your <code>package.json<
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.1.1. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.1.4. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -966,7 +965,7 @@ This means that you will have to make sure to add it to your <code>package.json<
       
   
     </div>
-    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-PXOm0LjM7kBY7at2HNqu2pAJsTVQUPRzpJSwQD0V//zsjFAcv61qjiZj3ELesLb1" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-YPtos5ypUKfh542wG5kSmDTs7wKbtPcnNs5lpYFuO3fyv4vAUqvOmSZR7RE2e7Cd" crossorigin="anonymous"></script>
 
 
 <script src="https://coreui.io/docs/assets/js/docs.min.js"></script>

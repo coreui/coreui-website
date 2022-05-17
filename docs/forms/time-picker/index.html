@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Create consistent cross-browser and cross-device time picker.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.93.2">
+<meta name="generator" content="Hugo 0.74.3">
 
 <meta name="docsearch:language" content="en">
-<meta name="docsearch:version" content="4.1">
+<meta name="docsearch:version" content="4.2">
 
-<title>Time Picker · CoreUI v4.1</title>
+<title>Time Picker · CoreUI v4.2</title>
 
 <link rel="canonical" href="https://coreui.io/docs/forms/time-picker/">
 
 
 
 <!-- Bootstrap core CSS -->
-<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-4RjTy+ihDlYQqAQJodVMv1QuiX0mRlR0xtuKKu1P8I2TxVdGPXaW+VxJ6PirwMm4" crossorigin="anonymous">
+<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-YUdsYsgRlkUONN8mdJ0FYda0kzlomX2TWturtRobleAB8py9rvyfGQzJdLRc9lFL" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/assets/css/docs.css" rel="stylesheet">
 
@@ -77,7 +77,7 @@
 
 
   </head>
-  <body class="d-flex legacy-theme">
+  <body class="d-flex">
     
     <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
@@ -383,19 +383,19 @@
             <li class="nav-item">
               <a href="https://coreui.io/docs/forms/date-picker/" class="nav-link" >
                 Date Picker
-                  <span class="badge bg-success ms-auto">LAB</span>
+                  <span class="badge bg-danger ms-auto">PRO</span>
               </a>
             </li>
             <li class="nav-item">
               <a href="https://coreui.io/docs/forms/date-range-picker/" class="nav-link" >
                 Date Range Picker
-                  <span class="badge bg-success ms-auto">LAB</span>
+                  <span class="badge bg-danger ms-auto">PRO</span>
               </a>
             </li>
             <li class="nav-item">
               <a href="https://coreui.io/docs/forms/time-picker/" class="nav-link active" aria-current="page" >
                 Time Picker
-                  <span class="badge bg-success ms-auto">LAB</span>
+                  <span class="badge bg-danger ms-auto">PRO</span>
               </a>
             </li>
             <li class="nav-item">
@@ -845,10 +845,9 @@
         <h1 class="docs-title" id="content">Time Picker</h1>
       </div>
       <p class="docs-lead">Create consistent cross-browser and cross-device time picker.</p>
-      <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+      
 
-
-<div data-ea-publisher="coreui-io" data-ea-type="image"></div>
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEAICKJY&placement=coreuiio" id="_carbonads_js"></script>
 
     </div>
 
@@ -857,7 +856,6 @@
         <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#installation">Installation</a></li>
     <li><a href="#example">Example</a></li>
     <li><a href="#sizing">Sizing</a></li>
     <li><a href="#disabled">Disabled</a></li>
@@ -903,32 +901,29 @@
     <div class="docs-content ps-lg-4">
       
 
-      <h2 id="installation">Installation</h2>
-<p>This component is part of the CoreUI LAB. If you want to use Time Picker component you have to install <strong>next</strong> version of the <code>@coreui/coreui-pro@next</code> package. The LAB is the place where we release components that are actively developed and will be included in future releases of <code>@coreui/coreui-pro</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">npm install @coreui/coreui-pro@next
-</span></span></code></pre></div><h2 id="example">Example</h2>
+      <h2 id="example">Example</h2>
 <div class="docs-example">
 <div class="row">
   <div class="col-lg-4">
     <div class="time-picker" data-coreui-locale="en-US" data-coreui-toggle="time-picker"></div>
   </div>
   <div class="col-lg-4">
-    <div class="time-picker" data-coreui-locale="en-US" data-coreui-toggle="time-picker" data-coreui-value="02:17:35 PM"></div>
+    <div class="time-picker" data-coreui-locale="en-US" data-coreui-time="02:17:35 PM" data-coreui-toggle="time-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-value</span><span class="o">=</span><span class="s">&#34;02:17:35 PM&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-time</span><span class="o">=</span><span class="s">&#34;02:17:35 PM&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="sizing">Sizing</h2>
 <p>Set heights using <code>data-coreui-size</code> attribute like <code>data-coreui-size=&quot;lg&quot;</code> and <code>data-coreui-size=&quot;sm&quot;</code>.</p>
 <div class="docs-example">
 <div class="row mb-4">
-  <div class="col-lg-4">
+  <div class="col-lg-5">
     <div class="time-picker" data-coreui-locale="en-US" data-coreui-size="lg" data-coreui-toggle="time-picker"></div>
   </div>
 </div>
@@ -937,16 +932,16 @@
     <div class="time-picker" data-coreui-locale="en-US" data-coreui-size="sm" data-coreui-toggle="time-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row mb-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-size</span><span class="o">=</span><span class="s">&#34;lg&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-size</span><span class="o">=</span><span class="s">&#34;sm&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row mb-4&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-size</span><span class="o">=</span><span class="s">&#34;lg&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-size</span><span class="o">=</span><span class="s">&#34;sm&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="disabled">Disabled</h2>
 <p>Add the <code>data-coreui-disabled=&quot;true&quot;</code> attribute on an input to give it a grayed out appearance and remove pointer events.</p>
 <div class="docs-example">
@@ -955,11 +950,11 @@
     <div class="time-picker" data-coreui-disabled="true" data-coreui-locale="en-US" data-coreui-toggle="time-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-disabled</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-disabled</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="readonly">Readonly</h2>
 <p>Add the <code>data-coreui-input-read-only=&quot;true&quot;</code> boolean attribute to prevent modification of the input&rsquo;s value.</p>
 <div class="docs-example">
@@ -968,11 +963,11 @@
     <div class="time-picker" data-coreui-input-read-only="true" data-coreui-locale="en-US" data-coreui-toggle="time-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-input-read-only</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-input-read-only</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="non-english-locale">Non-english locale</h2>
 <h3 id="auto">Auto</h3>
 <div class="docs-example">
@@ -981,11 +976,11 @@
     <div data-coreui-toggle="time-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="chinese">Chinese</h3>
 <div class="docs-example">
 <div class="row">
@@ -993,11 +988,11 @@
     <div class="time-picker" data-coreui-locale="zh-CN" data-coreui-placeholder="入住日期" data-coreui-toggle="time-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;zh-CN&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;入住日期&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;zh-CN&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;入住日期&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="japanese">Japanese</h3>
 <div class="docs-example">
 <div class="row">
@@ -1005,11 +1000,11 @@
     <div class="time-picker" data-coreui-locale="ja" data-coreui-placeholder="日付を選択" data-coreui-toggle="time-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;ja&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;日付を選択&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;ja&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;日付を選択&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="korean">Korean</h3>
 <div class="docs-example">
 <div class="row">
@@ -1017,11 +1012,11 @@
     <div class="time-picker" data-coreui-locale="ko" data-coreui-placeholder="날짜 선택" data-coreui-toggle="time-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;ko&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;날짜 선택&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;ko&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;날짜 선택&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="right-to-left-support">Right to left support</h2>
 <p>RTL support is built-in and can be explicitly controlled through the <code>$enable-rtl</code> variables in scss.</p>
 <h3 id="hebrew">Hebrew</h3>
@@ -1031,11 +1026,11 @@
     <div class="time-picker" data-coreui-locale="he-IL" data-coreui-placeholder="בחר תאריך" data-coreui-toggle="time-picker" dir="rtl"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;he-IL&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;בחר תאריך&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&#34;rtl&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;he-IL&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;בחר תאריך&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&#34;rtl&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="persian">Persian</h3>
 <div class="docs-example">
 <div class="row">
@@ -1043,23 +1038,23 @@
     <div class="time-picker" data-coreui-locale="fa-IR" data-coreui-placeholder="تاریخ شروع" data-coreui-toggle="time-picker" dir="rtl"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;fa-IR&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;تاریخ شروع&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&#34;rtl&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;fa-IR&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;تاریخ شروع&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&#34;rtl&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="usage">Usage</h2>
 <h3 id="via-data-attributes">Via data attributes</h3>
 <p>Add <code>data-coreui-toggle=&quot;time-picker&quot;</code> to a <code>div</code> element.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="via-javascript">Via JavaScript</h3>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><h3 id="via-javascript">Via JavaScript</h3>
 <p>Call the time picker via JavaScript:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">timePickerElementList</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.time-picker&#39;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">timePickerList</span> <span class="o">=</span> <span class="nx">timePickerElementList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">timePickerEl</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">TimePicker</span><span class="p">(</span><span class="nx">timePickerEl</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">})</span>
-</span></span></code></pre></div><h3 id="options">Options</h3>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;time-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">timePickerElementList</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.time-picker&#39;</span><span class="p">))</span>
+<span class="kd">var</span> <span class="nx">timePickerList</span> <span class="o">=</span> <span class="nx">timePickerElementList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">timePickerEl</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">TimePicker</span><span class="p">(</span><span class="nx">timePickerEl</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div><h3 id="options">Options</h3>
 <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-coreui-</code>, as in <code>data-coreui-cleaner=&quot;&quot;</code>. Make sure to change the case type of the option name from camelCase to kebab-case when passing the options via data attributes. For example, instead of using <code>data-coreui-inputReadOnly=&quot;false&quot;</code>, use <code>data-coreui-input-read-only=&quot;false&quot;</code>.</p>
 <table class="table">
   <thead>
@@ -1072,16 +1067,34 @@
   </thead>
   <tbody>
     <tr>
-      <td><code>cancelButtonText</code></td>
+      <td><code>cancelButtonLabel</code></td>
       <td>string</td>
       <td><code>'Cancel'</code></td>
-      <td>Cancel button text.</td>
+      <td>Cancel button inner HTML</td>
+    </tr>
+    <tr>
+      <td><code>cancelButtonClasses</code></td>
+      <td>array | string</td>
+      <td><code>['btn', 'btn-sm', 'btn-ghost-primary']</code></td>
+      <td>CSS class names that will be added to the cancel button</td>
     </tr>
     <tr>
       <td><code>cleaner</code></td>
       <td>boolean</td>
       <td><code>true</code></td>
       <td>Enables selection cleaner element.</td>
+    </tr>
+    <tr>
+      <td><code>confirmButtonLabel</code></td>
+      <td>string</td>
+      <td><code>'OK'</code></td>
+      <td>Confirm button inner HTML</td>
+    </tr>
+    <tr>
+      <td><code>confirmButtonClasses</code></td>
+      <td>array | string</td>
+      <td><code>['btn', 'btn-sm', 'btn-primary']</code></td>
+      <td>CSS class names that will be added to the confirm button</td>
     </tr>
     <tr>
       <td><code>container</code></td>
@@ -1102,6 +1115,12 @@
       <td>Toggle the disabled state for the component.</td>
     </tr>
     <tr>
+      <td><code>indicator</code></td>
+      <td>boolean</td>
+      <td><code>true</code></td>
+      <td>Toggle visibility or set the content of the input indicator.</td>
+    </tr>
+    <tr>
       <td><code>inputReadOnly</code></td>
       <td>boolean</td>
       <td><code>false</code></td>
@@ -1110,14 +1129,8 @@
     <tr>
       <td><code>locale</code></td>
       <td>string</td>
-      <td><code>navigator.language</code></td>
+      <td><code>'default'</code></td>
       <td>Sets the default locale for components. If not set, it is inherited from the navigator.language.</td>
-    </tr>
-    <tr>
-      <td><code>okButtonText</code></td>
-      <td>string</td>
-      <td><code>'OK'</code></td>
-      <td>Ok button text.</td>
     </tr>
     <tr>
       <td><code>placeholder</code></td>
@@ -1132,7 +1145,7 @@
       <td>Size the component small or large.</td>
     </tr>
     <tr>
-      <td><code>value</code></td>
+      <td><code>time</code></td>
       <td>date | string | null</td>
       <td><code>null</code></td>
       <td>Default value of the component</td>
@@ -1153,25 +1166,25 @@
       <th>Description</th>
     </tr>
   </thead>
-  <tbody>
+   <tbody>
     <tr>
       <td><code>clear</code></td>
-      <td></td>
+      <td>Clear selection of the time picker.</td>
     </tr>
     <tr>
       <td><code>reset</code></td>
-      <td></td>
+      <td>Reset selection of the time picker to the initial value.</td>
     </tr>
     <tr>
       <td><code>update</code></td>
       <td>
-        Updates the position of an element's dropdown.
+        Updates the configuration of the time picker.
       </td>
     </tr>
     <tr>
       <td><code>dispose</code></td>
       <td>
-        Destroys an element's dropdown. (Removes stored data on the DOM element)
+        Destroys a component. (Removes stored data on the DOM element)
       </td>
     </tr>
     <tr>
@@ -1179,7 +1192,7 @@
         <code>getInstance</code>
       </td>
       <td>
-        Static method which allows you to get the dropdown instance associated to a DOM element, you can use it like this: <code>coreui.TimePicker.getInstance(element)</code>
+        Static method which allows you to get the time picker instance associated to a DOM element, you can use it like this: <code>coreui.TimePicker.getInstance(element)</code>
       </td>
     </tr>
     <tr>
@@ -1187,7 +1200,7 @@
         <code>getOrCreateInstance</code>
       </td>
       <td>
-        Static method which returns a dropdown instance associated to a DOM element or create a new one in case it wasn't initialized.
+        Static method which returns a time picker instance associated to a DOM element or create a new one in case it wasn't initialized.
         You can use it like this: <code>coreui.TimePicker.getOrCreateInstance(element)</code>
       </td>
     </tr>
@@ -1204,7 +1217,7 @@
   <tbody>
     <tr>
       <td>
-        <code>change.coreui.time-picker</code>
+        <code>timeChange.coreui.time-picker</code>
       </td>
       <td>
         Callback fired when the value changed.
@@ -1212,31 +1225,28 @@
     </tr>
   </tbody>
 </table>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">myTimePicker</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myTimePicker&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nx">myTimePicker</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;change.coreui.time-picker&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">timeString</span><span class="p">,</span> <span class="nx">localeTimeString</span><span class="p">,</span> <span class="nx">date</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// do something...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
-</span></span></code></pre></div><h2 id="customizing">Customizing</h2>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myTimePicker</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myTimePicker&#39;</span><span class="p">)</span>
+<span class="nx">myTimePicker</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;timeChange.coreui.time-picker&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">timeString</span><span class="p">,</span> <span class="nx">localeTimeString</span><span class="p">,</span> <span class="nx">date</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do something...
+</span><span class="c1"></span><span class="p">})</span>
+</code></pre></div><h2 id="customizing">Customizing</h2>
 <h3 id="sass">SASS</h3>
 <h4 id="variables">Variables</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nv">$time-picker-default-icon-color</span><span class="o">:</span>       <span class="nv">$gray-600</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$time-picker-default-icon</span><span class="o">:</span>             <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$time-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;271.514 95.5 239.514 95.5 239.514 273.611 355.127 328.559 368.864 299.657 271.514 253.389 271.514 95.5&#39; class=&#39;ci-primary&#39;&gt;&lt;/polygon&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$time-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16Zm0,448C141.125,464,48,370.875,48,256S141.125,48,256,48s208,93.125,208,208S370.875,464,256,464Z&#39; class=&#39;ci-primary&#39;&gt;&lt;/path&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$time-picker-cleaner-icon-color</span><span class="o">:</span>       <span class="nv">$gray-600</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$time-picker-cleaner-icon</span><span class="o">:</span>             <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$time-picker-cleaner-icon-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;348.071 141.302 260.308 229.065 172.545 141.302 149.917 163.929 237.681 251.692 149.917 339.456 172.545 362.083 260.308 274.32 348.071 362.083 370.699 339.456 282.935 251.692 370.699 163.929 348.071 141.302&#39; class=&#39;ci-primary&#39;&gt;&lt;/polygon&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$time-picker-cleaner-icon-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M425.706,86.294A240,240,0,0,0,86.294,425.706,240,240,0,0,0,425.706,86.294ZM256,464C141.309,464,48,370.691,48,256S141.309,48,256,48s208,93.309,208,208S370.691,464,256,464Z&#39; class=&#39;ci-primary&#39;&gt;&lt;/path&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$time-picker-cleaner-icon-hover-color</span><span class="o">:</span> <span class="nv">$body-color</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$time-picker-cleaner-icon-hover</span><span class="o">:</span>       <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$time-picker-cleaner-icon-hover-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;348.071 141.302 260.308 229.065 172.545 141.302 149.917 163.929 237.681 251.692 149.917 339.456 172.545 362.083 260.308 274.32 348.071 362.083 370.699 339.456 282.935 251.692 370.699 163.929 348.071 141.302&#39; class=&#39;ci-primary&#39;&gt;&lt;/polygon&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$time-picker-cleaner-icon-hover-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M425.706,86.294A240,240,0,0,0,86.294,425.706,240,240,0,0,0,425.706,86.294ZM256,464C141.309,464,48,370.691,48,256S141.309,48,256,48s208,93.309,208,208S370.691,464,256,464Z&#39; class=&#39;ci-primary&#39;&gt;&lt;/path&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$time-picker-body-padding</span><span class="o">:</span>             <span class="nv">$spacer</span> <span class="o">*</span> <span class="mf">.5</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$time-picker-body-border-width</span><span class="o">:</span>        <span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$time-picker-body-border-color</span><span class="o">:</span>        <span class="nv">$border-color</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$time-picker-roll-col-border-width</span><span class="o">:</span>    <span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$time-picker-roll-col-border-color</span><span class="o">:</span>    <span class="nv">$border-color</span><span class="p">;</span>
-</span></span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$time-picker-default-icon-color</span><span class="o">:</span>       <span class="nv">$gray-600</span><span class="p">;</span>
+<span class="nv">$time-picker-default-icon</span><span class="o">:</span>             <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$time-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;271.514 95.5 239.514 95.5 239.514 273.611 355.127 328.559 368.864 299.657 271.514 253.389 271.514 95.5&#39; class=&#39;ci-primary&#39;&gt;&lt;/polygon&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$time-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16Zm0,448C141.125,464,48,370.875,48,256S141.125,48,256,48s208,93.125,208,208S370.875,464,256,464Z&#39; class=&#39;ci-primary&#39;&gt;&lt;/path&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
+
+<span class="nv">$time-picker-cleaner-icon-color</span><span class="o">:</span>       <span class="nv">$gray-600</span><span class="p">;</span>
+<span class="nv">$time-picker-cleaner-icon</span><span class="o">:</span>             <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$time-picker-cleaner-icon-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;348.071 141.302 260.308 229.065 172.545 141.302 149.917 163.929 237.681 251.692 149.917 339.456 172.545 362.083 260.308 274.32 348.071 362.083 370.699 339.456 282.935 251.692 370.699 163.929 348.071 141.302&#39; class=&#39;ci-primary&#39;&gt;&lt;/polygon&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$time-picker-cleaner-icon-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M425.706,86.294A240,240,0,0,0,86.294,425.706,240,240,0,0,0,425.706,86.294ZM256,464C141.309,464,48,370.691,48,256S141.309,48,256,48s208,93.309,208,208S370.691,464,256,464Z&#39; class=&#39;ci-primary&#39;&gt;&lt;/path&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
+<span class="nv">$time-picker-cleaner-icon-hover-color</span><span class="o">:</span> <span class="nv">$body-color</span><span class="p">;</span>
+<span class="nv">$time-picker-cleaner-icon-hover</span><span class="o">:</span>       <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$time-picker-cleaner-icon-hover-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;348.071 141.302 260.308 229.065 172.545 141.302 149.917 163.929 237.681 251.692 149.917 339.456 172.545 362.083 260.308 274.32 348.071 362.083 370.699 339.456 282.935 251.692 370.699 163.929 348.071 141.302&#39; class=&#39;ci-primary&#39;&gt;&lt;/polygon&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$time-picker-cleaner-icon-hover-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M425.706,86.294A240,240,0,0,0,86.294,425.706,240,240,0,0,0,425.706,86.294ZM256,464C141.309,464,48,370.691,48,256S141.309,48,256,48s208,93.309,208,208S370.691,464,256,464Z&#39; class=&#39;ci-primary&#39;&gt;&lt;/path&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
+
+<span class="nv">$time-picker-body-padding</span><span class="o">:</span>             <span class="nv">$spacer</span> <span class="o">*</span> <span class="mf">.5</span><span class="p">;</span>
+<span class="nv">$time-picker-roll-col-border-width</span><span class="o">:</span>    <span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
+<span class="nv">$time-picker-roll-col-border-color</span><span class="o">:</span>    <span class="nv">$border-color</span><span class="p">;</span>
+</code></pre></div>
 <h3 id="css-vars">CSS Vars</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-time-picker-body-border-top</span>
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-time-picker-body-padding</span>
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-time-picker-roll-col-border</span></span></span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-time-picker-body-padding</span>
+<span class="nt">--cui-time-picker-roll-col-border</span></code></pre></div>
 
     </div>
   </main>
@@ -1253,7 +1263,7 @@
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.1.1. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.1.4. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1261,7 +1271,7 @@
       
   
     </div>
-    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-PXOm0LjM7kBY7at2HNqu2pAJsTVQUPRzpJSwQD0V//zsjFAcv61qjiZj3ELesLb1" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-YPtos5ypUKfh542wG5kSmDTs7wKbtPcnNs5lpYFuO3fyv4vAUqvOmSZR7RE2e7Cd" crossorigin="anonymous"></script>
 
 
 <script src="https://coreui.io/docs/assets/js/docs.min.js"></script>
