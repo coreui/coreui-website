@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Create consistent cross-browser and cross-device date range picker.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.93.2">
+<meta name="generator" content="Hugo 0.74.3">
 
 <meta name="docsearch:language" content="en">
-<meta name="docsearch:version" content="4.1">
+<meta name="docsearch:version" content="4.2">
 
-<title>Date Range Picker · CoreUI v4.1</title>
+<title>Date Range Picker · CoreUI v4.2</title>
 
 <link rel="canonical" href="https://coreui.io/docs/forms/date-range-picker/">
 
 
 
 <!-- Bootstrap core CSS -->
-<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-4RjTy+ihDlYQqAQJodVMv1QuiX0mRlR0xtuKKu1P8I2TxVdGPXaW+VxJ6PirwMm4" crossorigin="anonymous">
+<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-YUdsYsgRlkUONN8mdJ0FYda0kzlomX2TWturtRobleAB8py9rvyfGQzJdLRc9lFL" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/assets/css/docs.css" rel="stylesheet">
 
@@ -77,7 +77,7 @@
 
 
   </head>
-  <body class="d-flex legacy-theme">
+  <body class="d-flex">
     
     <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
@@ -383,19 +383,19 @@
             <li class="nav-item">
               <a href="https://coreui.io/docs/forms/date-picker/" class="nav-link" >
                 Date Picker
-                  <span class="badge bg-success ms-auto">LAB</span>
+                  <span class="badge bg-danger ms-auto">PRO</span>
               </a>
             </li>
             <li class="nav-item">
               <a href="https://coreui.io/docs/forms/date-range-picker/" class="nav-link active" aria-current="page" >
                 Date Range Picker
-                  <span class="badge bg-success ms-auto">LAB</span>
+                  <span class="badge bg-danger ms-auto">PRO</span>
               </a>
             </li>
             <li class="nav-item">
               <a href="https://coreui.io/docs/forms/time-picker/" class="nav-link" >
                 Time Picker
-                  <span class="badge bg-success ms-auto">LAB</span>
+                  <span class="badge bg-danger ms-auto">PRO</span>
               </a>
             </li>
             <li class="nav-item">
@@ -845,10 +845,9 @@
         <h1 class="docs-title" id="content">Date Range Picker</h1>
       </div>
       <p class="docs-lead">Create consistent cross-browser and cross-device date range picker.</p>
-      <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+      
 
-
-<div data-ea-publisher="coreui-io" data-ea-type="image"></div>
+<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEAICKJY&placement=coreuiio" id="_carbonads_js"></script>
 
     </div>
 
@@ -857,9 +856,9 @@
         <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#installation">Installation</a></li>
     <li><a href="#example">Example</a>
       <ul>
+        <li><a href="#with-footer">With footer</a></li>
         <li><a href="#with-timepicker">With timepicker</a></li>
       </ul>
     </li>
@@ -888,6 +887,7 @@
         <li><a href="#via-javascript">Via JavaScript</a></li>
         <li><a href="#options">Options</a></li>
         <li><a href="#methods">Methods</a></li>
+        <li><a href="#events">Events</a></li>
       </ul>
     </li>
     <li><a href="#customizing">Customizing</a>
@@ -908,10 +908,7 @@
     <div class="docs-content ps-lg-4">
       
 
-      <h2 id="installation">Installation</h2>
-<p>This component is part of the CoreUI LAB. If you want to use Date Range Picker component you have to install <strong>next</strong> version of the <code>@coreui/coreui-pro@next</code> package. The LAB is the place where we release components that are actively developed and will be included in future releases of <code>@coreui/coreui-pro</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">npm install @coreui/coreui-pro@next
-</span></span></code></pre></div><h2 id="example">Example</h2>
+      <h2 id="example">Example</h2>
 <div class="docs-example">
   <div class="row">
     <div class="col-lg-5">
@@ -926,19 +923,57 @@
       </div>
     </div>
   </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">div</span>
-</span></span><span class="line"><span class="cl">        <span class="na">data-coreui-start-date</span><span class="o">=</span><span class="s">&#34;2022/08/03&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="na">data-coreui-end-date</span><span class="o">=</span><span class="s">&#34;2022/08/17&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span>
+        <span class="na">data-coreui-start-date</span><span class="o">=</span><span class="s">&#34;2022/08/03&#34;</span>
+        <span class="na">data-coreui-end-date</span><span class="o">=</span><span class="s">&#34;2022/08/17&#34;</span>
+        <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span>
+        <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+<h3 id="with-footer">With footer</h3>
+<div class="docs-example">
+  <div class="row mb-4">
+    <div class="col-lg-5">
+      <div
+        data-coreui-footer="true"
+        data-coreui-locale="en-US"
+        data-coreui-toggle="date-range-picker">
+      </div>
+    </div>2
+    <div class="col-lg-5">
+      <div
+        data-coreui-start-date="2022/08/03"
+        data-coreui-end-date="2022/09/17"
+        data-coreui-footer="true"
+        data-coreui-locale="en-US"
+        data-coreui-toggle="date-range-picker">
+      </div>
+    </div>
+  </div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row mb-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span>
+        <span class="na">data-coreui-footer</span><span class="o">=</span><span class="s">&#34;true&#34;</span>
+        <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span>
+        <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>2
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span>
+        <span class="na">data-coreui-start-date</span><span class="o">=</span><span class="s">&#34;2022/08/03&#34;</span>
+        <span class="na">data-coreui-end-date</span><span class="o">=</span><span class="s">&#34;2022/09/17&#34;</span>
+        <span class="na">data-coreui-footer</span><span class="o">=</span><span class="s">&#34;true&#34;</span>
+        <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span>
+        <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="with-timepicker">With timepicker</h3>
 <div class="docs-example">
   <div class="row mb-4">
@@ -961,31 +996,31 @@
       </div>
     </div>
   </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row mb-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-7&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">div</span>
-</span></span><span class="line"><span class="cl">        <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="na">data-coreui-timepicker</span><span class="o">=</span><span class="s">&#34;true&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-7&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">div</span>
-</span></span><span class="line"><span class="cl">        <span class="na">data-coreui-start-date</span><span class="o">=</span><span class="s">&#34;2022/08/03 02:34:17 AM&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="na">data-coreui-end-date</span><span class="o">=</span><span class="s">&#34;2022/09/17 11:29:41 PM&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="na">data-coreui-timepicker</span><span class="o">=</span><span class="s">&#34;true&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row mb-4&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-7&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span>
+        <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span>
+        <span class="na">data-coreui-timepicker</span><span class="o">=</span><span class="s">&#34;true&#34;</span>
+        <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-7&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span>
+        <span class="na">data-coreui-start-date</span><span class="o">=</span><span class="s">&#34;2022/08/03 02:34:17 AM&#34;</span>
+        <span class="na">data-coreui-end-date</span><span class="o">=</span><span class="s">&#34;2022/09/17 11:29:41 PM&#34;</span>
+        <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span>
+        <span class="na">data-coreui-timepicker</span><span class="o">=</span><span class="s">&#34;true&#34;</span>
+        <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="sizing">Sizing</h2>
 <p>Set heights using <code>data-coreui-size</code> attribute like <code>data-coreui-size=&quot;lg&quot;</code> and <code>data-coreui-size=&quot;sm&quot;</code>.</p>
 <div class="docs-example">
 <div class="row mb-4">
-  <div class="col-lg-5">
+  <div class="col-lg-6">
     <div data-coreui-locale="en-US" data-coreui-size="lg" data-coreui-toggle="date-range-picker"></div>
   </div>
 </div>
@@ -994,16 +1029,16 @@
     <div data-coreui-locale="en-US" data-coreui-size="sm" data-coreui-toggle="date-range-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row mb-4&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-size</span><span class="o">=</span><span class="s">&#34;lg&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-size</span><span class="o">=</span><span class="s">&#34;sm&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row mb-4&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-6&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-size</span><span class="o">=</span><span class="s">&#34;lg&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-size</span><span class="o">=</span><span class="s">&#34;sm&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="disabled">Disabled</h2>
 <p>Add the <code>data-coreui-disabled=&quot;true&quot;</code> attribute on an input to give it a grayed out appearance and remove pointer events.</p>
 <div class="docs-example">
@@ -1012,11 +1047,11 @@
     <div data-coreui-disabled="true" data-coreui-locale="en-US" data-coreui-toggle="date-range-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-disabled</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-disabled</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="readonly">Readonly</h2>
 <p>Add the <code>data-coreui-input-read-only=&quot;true&quot;</code> boolean attribute to prevent modification of the input&rsquo;s value.</p>
 <div class="docs-example">
@@ -1025,11 +1060,11 @@
     <div data-coreui-input-read-only="true" data-coreui-locale="en-US" data-coreui-toggle="date-range-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-input-read-only</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-input-read-only</span><span class="o">=</span><span class="s">&#34;true&#34;</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;en-US&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="disabled-dates">Disabled dates</h2>
 <div class="docs-example">
 <div class="row">
@@ -1037,66 +1072,66 @@
     <div id="myDateRangePickerDisabledDates"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;myDateRangePickerDisabledDates&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">locale</span><span class="o">:</span> <span class="s1">&#39;en-US&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">calendarDate</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">disabledDates</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)],</span>
-</span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]</span>
-</span></span><span class="line"><span class="cl">  <span class="p">],</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">maxDate</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">minDate</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">myDateRangePickerDisabledDates</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">DateRangePicker</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myDateRangePickerDisabledDates&#39;</span><span class="p">),</span> <span class="nx">options</span><span class="p">)</span>
-</span></span></code></pre></div><h2 id="custom-ranges">Custom ranges</h2>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;myDateRangePickerDisabledDates&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">locale</span><span class="o">:</span> <span class="s1">&#39;en-US&#39;</span><span class="p">,</span>
+  <span class="nx">calendarDate</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+  <span class="nx">disabledDates</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">[</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)],</span>
+    <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+    <span class="p">[</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]</span>
+  <span class="p">],</span>
+  <span class="nx">maxDate</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+  <span class="nx">minDate</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">myDateRangePickerDisabledDates</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">DateRangePicker</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myDateRangePickerDisabledDates&#39;</span><span class="p">),</span> <span class="nx">options</span><span class="p">)</span>
+</code></pre></div><h2 id="custom-ranges">Custom ranges</h2>
 <div class="docs-example">
 <div class="row">
   <div class="col-lg-5">
     <div id="myDateRangePickerCustomRanges"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;myDateRangePickerCustomRanges&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">optionsCustomRanges</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">locale</span><span class="o">:</span> <span class="s1">&#39;en-US&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">ranges</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Today</span><span class="o">:</span> <span class="p">[</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()],</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">Yesterday</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">setDate</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)),</span>
-</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">setDate</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)),</span>
-</span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Last 7 Days&#39;</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">setDate</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">-</span> <span class="mi">6</span><span class="p">)),</span>
-</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()),</span>
-</span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Last 30 Days&#39;</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">setDate</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">-</span> <span class="mi">29</span><span class="p">)),</span>
-</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()),</span>
-</span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="s1">&#39;This Month&#39;</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">setDate</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span>
-</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getFullYear</span><span class="p">(),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Last Month&#39;</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getFullYear</span><span class="p">(),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getFullYear</span><span class="p">(),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getMonth</span><span class="p">(),</span> <span class="mi">0</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">myDateRangePickerCustomRanges</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">DateRangePicker</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myDateRangePickerCustomRanges&#39;</span><span class="p">),</span> <span class="nx">optionsCustomRanges</span><span class="p">)</span>
-</span></span></code></pre></div><h2 id="non-english-locale">Non-english locale</h2>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;myDateRangePickerCustomRanges&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">optionsCustomRanges</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">locale</span><span class="o">:</span> <span class="s1">&#39;en-US&#39;</span><span class="p">,</span>
+  <span class="nx">ranges</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">Today</span><span class="o">:</span> <span class="p">[</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()],</span>
+    <span class="nx">Yesterday</span><span class="o">:</span> <span class="p">[</span>
+      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">setDate</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)),</span>
+      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">setDate</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)),</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Last 7 Days&#39;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">setDate</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">-</span> <span class="mi">6</span><span class="p">)),</span>
+      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()),</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Last 30 Days&#39;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">setDate</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">-</span> <span class="mi">29</span><span class="p">)),</span>
+      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()),</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;This Month&#39;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">setDate</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span>
+      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getFullYear</span><span class="p">(),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Last Month&#39;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getFullYear</span><span class="p">(),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+      <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getFullYear</span><span class="p">(),</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getMonth</span><span class="p">(),</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">myDateRangePickerCustomRanges</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">DateRangePicker</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myDateRangePickerCustomRanges&#39;</span><span class="p">),</span> <span class="nx">optionsCustomRanges</span><span class="p">)</span>
+</code></pre></div><h2 id="non-english-locale">Non-english locale</h2>
 <h3 id="auto">Auto</h3>
 <div class="docs-example">
 <div class="row">
@@ -1104,11 +1139,11 @@
     <div data-coreui-toggle="date-range-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="chinese">Chinese</h3>
 <div class="docs-example">
 <div class="row">
@@ -1116,11 +1151,11 @@
     <div data-coreui-locale="zh-CN" data-coreui-placeholder="入住日期,退房日期" data-coreui-toggle="date-range-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;zh-CN&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;入住日期,退房日期&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;zh-CN&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;入住日期,退房日期&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="japanese">Japanese</h3>
 <div class="docs-example">
 <div class="row">
@@ -1128,11 +1163,11 @@
     <div data-coreui-locale="ja" data-coreui-placeholder="日付を選択,終了日" data-coreui-toggle="date-range-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;ja&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;日付を選択,終了日&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;ja&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;日付を選択,終了日&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="korean">Korean</h3>
 <div class="docs-example">
 <div class="row">
@@ -1140,11 +1175,11 @@
     <div data-coreui-locale="ko" data-coreui-placeholder="날짜 선택,종료일" data-coreui-toggle="date-range-picker"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;ko&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;날짜 선택,종료일&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;ko&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;날짜 선택,종료일&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="right-to-left-support">Right to left support</h2>
 <p>RTL support is built-in and can be explicitly controlled through the <code>$enable-rtl</code> variables in scss.</p>
 <h3 id="hebrew">Hebrew</h3>
@@ -1154,11 +1189,11 @@
     <div data-coreui-locale="he-IL" data-coreui-placeholder="בחר תאריך,תאריך סיום" data-coreui-toggle="date-range-picker" dir="rtl"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;he-IL&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;בחר תאריך,תאריך סיום&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&#34;rtl&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;he-IL&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;בחר תאריך,תאריך סיום&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&#34;rtl&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h3 id="persian">Persian</h3>
 <div class="docs-example">
 <div class="row">
@@ -1166,23 +1201,23 @@
     <div data-coreui-locale="fa-IR" data-coreui-placeholder="تاریخ شروع,تاریخ پایان" data-coreui-toggle="date-range-picker" dir="rtl"></div>
   </div>
 </div>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;fa-IR&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;تاریخ شروع,تاریخ پایان&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&#34;rtl&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
+</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;row&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;col-lg-5&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-locale</span><span class="o">=</span><span class="s">&#34;fa-IR&#34;</span> <span class="na">data-coreui-placeholder</span><span class="o">=</span><span class="s">&#34;تاریخ شروع,تاریخ پایان&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span> <span class="na">dir</span><span class="o">=</span><span class="s">&#34;rtl&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
 <h2 id="usage">Usage</h2>
 <h3 id="via-data-attributes">Via data attributes</h3>
 <p>Add <code>data-coreui-toggle=&quot;date-range-picker&quot;</code> to a <code>div</code> element.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span></code></pre></div><h3 id="via-javascript">Via JavaScript</h3>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><h3 id="via-javascript">Via JavaScript</h3>
 <p>Call the time picker via JavaScript:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">dateRangePickerElementList</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.date-range-picker&#39;</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">dateRangePickerList</span> <span class="o">=</span> <span class="nx">dateRangePickerElementList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">dateRangePickerEl</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">DateRangePicker</span><span class="p">(</span><span class="nx">dateRangePickerEl</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">})</span>
-</span></span></code></pre></div><h3 id="options">Options</h3>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;date-range-picker&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">dateRangePickerElementList</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.date-range-picker&#39;</span><span class="p">))</span>
+<span class="kd">var</span> <span class="nx">dateRangePickerList</span> <span class="o">=</span> <span class="nx">dateRangePickerElementList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">dateRangePickerEl</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">DateRangePicker</span><span class="p">(</span><span class="nx">dateRangePickerEl</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div><h3 id="options">Options</h3>
 <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-coreui-</code>, as in <code>data-coreui-cleaner=&quot;&quot;</code>. Make sure to change the case type of the option name from camelCase to kebab-case when passing the options via data attributes. For example, instead of using <code>data-coreui-inputReadOnly=&quot;false&quot;</code>, use <code>data-coreui-input-read-only=&quot;false&quot;</code>.</p>
 <div class="table-responsive">
   <table class="table">
@@ -1208,16 +1243,34 @@
         <td>The number of calendars that render on desktop devices.</td>
       </tr>
       <tr>
-        <td><code>cancelButtonText</code></td>
+        <td><code>cancelButton</code></td>
         <td>string</td>
         <td><code>'Cancel'</code></td>
-        <td>Cancel button text.</td>
+        <td>Cancel button inner HTML</td>
+      </tr>
+      <tr>
+        <td><code>cancelButtonClasses</code></td>
+        <td>array | string</td>
+        <td><code>['btn', 'btn-sm', 'btn-ghost-primary']</code></td>
+        <td>CSS class names that will be added to the cancel button</td>
       </tr>
       <tr>
         <td><code>cleaner</code></td>
         <td>boolean</td>
         <td><code>true</code></td>
         <td>Enables selection cleaner element.</td>
+      </tr>
+      <tr>
+        <td><code>confirmButton</code></td>
+        <td>string</td>
+        <td><code>'OK'</code></td>
+        <td>Confirm button inner HTML</td>
+      </tr>
+      <tr>
+        <td><code>confirmButtonClasses</code></td>
+        <td>array | string</td>
+        <td><code>['btn', 'btn-sm', 'btn-primary']</code></td>
+        <td>CSS class names that will be added to the confirm button</td>
       </tr>
       <tr>
         <td><code>disabled</code></td>
@@ -1255,21 +1308,33 @@
         </td>
       </tr>
       <tr>
-        <td><code>inputReadOnly</code></td>
-        <td>boolean</td>
-        <td><code>false</code></td>
-        <td>Toggle the readonly state for the component.</td>
-      </tr>
-      <tr>
         <td><code>footer</code></td>
         <td>boolean</td>
         <td><code>false</code></td>
         <td>Toggle visibility of footer element.</td>
       </tr>
       <tr>
+        <td><code>format</code></td>
+        <td>string</td>
+        <td></td>
+        <td>Set date format. We use date-fns to format dates. Visit <a href="https://date-fns.org/v2.28.0/docs/format" target="_blank" rel="nofollow">https://date-fns.org/v2.28.0/docs/format</a> to check accepted patterns.</td>
+      </tr>
+      <tr>
+        <td><code>indicator</code></td>
+        <td>boolean</td>
+        <td><code>true</code></td>
+        <td>Toggle visibility or set the content of the input indicator.</td>
+      </tr>
+      <tr>
+        <td><code>inputReadOnly</code></td>
+        <td>boolean</td>
+        <td><code>false</code></td>
+        <td>Toggle the readonly state for the component.</td>
+      </tr>
+      <tr>
         <td><code>locale</code></td>
         <td>string</td>
-        <td><code>navigator.language</code></td>
+        <td><code>'default'</code></td>
         <td>Sets the default locale for components. If not set, it is inherited from the navigator.language.</td>
       </tr>
       <tr>
@@ -1285,15 +1350,9 @@
         <td>Min selectable date.</td>
       </tr>
       <tr>
-        <td><code>okButtonText</code></td>
-        <td>string</td>
-        <td><code>'OK'</code></td>
-        <td>Ok button text.</td>
-      </tr>
-      <tr>
         <td><code>placeholder</code></td>
         <td>string</td>
-        <td><code>'Select time'</code></td>
+        <td><code>['Start date', 'End date']</code></td>
         <td>Specifies a short hint that is visible in the input.</td>
       </tr>
       <tr>
@@ -1301,6 +1360,18 @@
         <td>object</td>
         <td><code>{}</code></td>
         <td>Predefined date ranges the user can select from.</td>
+      </tr>
+      <tr>
+        <td><code>rangesButtonsClasses</code></td>
+        <td>array | string</td>
+        <td><code>['btn', 'btn-ghost-secondary']</code></td>
+        <td>CSS class names that will be added to ranges buttons</td>
+      </tr>
+      <tr>
+        <td><code>separator</code></td>
+        <td>boolean</td>
+        <td><code>true</code></td>
+        <td>Toggle visibility or set the content of the inputs separator.</td>
       </tr>
       <tr>
         <td><code>size</code></td>
@@ -1321,22 +1392,22 @@
         <td>Provide an additional time selection by adding select boxes to choose times.</td>
       </tr>
       <tr>
-        <td><code>value</code></td>
-        <td>date | string | null</td>
-        <td><code>null</code></td>
-        <td>Default value of the component</td>
+        <td><code>todayButton</code></td>
+        <td>string</td>
+        <td><code>'Today'</code></td>
+        <td>Today button inner HTML</td>
       </tr>
       <tr>
-        <td><code>variant</code></td>
-        <td><code>'inline'</code> | <code>'roll'</code></td>
-        <td><code>'roll'</code></td>
-        <td>TODO: add description</td>
+        <td><code>todayButtonClasses</code></td>
+        <td>array | string</td>
+        <td><code>['btn', 'btn-sm', 'me-2']</code></td>
+        <td>CSS class names that will be added to the today button</td>
       </tr>
       <tr>
-        <td><code>weekdayLength</code></td>
-        <td>number</td>
+        <td><code>weekdayFormat</code></td>
+        <td>number | 'long' | 'narrow' | 'short'</td>
         <td><code>2</code></td>
-        <td>Set length of day name.</td>
+        <td>Set length or format of day name.</td>
       </tr>
     </tbody>
   </table>
@@ -1353,22 +1424,22 @@
     <tbody>
       <tr>
         <td><code>clear</code></td>
-        <td>...</td>
+        <td>Clear selection of the date range picker.</td>
       </tr>
       <tr>
         <td><code>reset</code></td>
-        <td>...</td>
+        <td>Reset selection of the date range picker to the initial value.</td>
       </tr>
       <tr>
         <td><code>update</code></td>
         <td>
-          Updates the position of an element's dropdown.
+          Updates the configuration of the date range picker.
         </td>
       </tr>
       <tr>
         <td><code>dispose</code></td>
         <td>
-          Destroys an element's dropdown. (Removes stored data on the DOM element)
+          Destroys a component. (Removes stored data on the DOM element)
         </td>
       </tr>
       <tr>
@@ -1376,7 +1447,7 @@
           <code>getInstance</code>
         </td>
         <td>
-          Static method which allows you to get the dropdown instance associated to a DOM element, you can use it like this: <code>coreui.DateRangePicker.getInstance(element)</code>
+          Static method which allows you to get the date range picker instance associated to a DOM element, you can use it like this: <code>coreui.DateRangePicker.getInstance(element)</code>
         </td>
       </tr>
       <tr>
@@ -1384,14 +1455,14 @@
           <code>getOrCreateInstance</code>
         </td>
         <td>
-          Static method which returns a dropdown instance associated to a DOM element or create a new one in case it wasn't initialized.
+          Static method which returns a date range picker instance associated to a DOM element or create a new one in case it wasn't initialized.
           You can use it like this: <code>coreui.DateRangePicker.getOrCreateInstance(element)</code>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
-### Events
+<h3 id="events">Events</h3>
 <div class="table-responsive">
   <table class="table">
     <thead>
@@ -1420,34 +1491,40 @@
     </tbody>
   </table>
 </div>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">myDateRangePicker</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myDateRangePicker&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nx">myDateRangePicker</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;dateChange.coreui.date-range-picker&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">date</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// do something...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
-</span></span></code></pre></div><h2 id="customizing">Customizing</h2>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myDateRangePicker</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myDateRangePicker&#39;</span><span class="p">)</span>
+<span class="nx">myDateRangePicker</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;endDateChange.coreui.date-range-picker&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">date</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do something...
+</span><span class="c1"></span><span class="p">})</span>
+</code></pre></div><h2 id="customizing">Customizing</h2>
 <h3 id="sass">SASS</h3>
 <h4 id="variables">Variables</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nv">$date-picker-default-icon-color</span><span class="o">:</span>       <span class="nv">$gray-600</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-default-icon</span><span class="o">:</span>             <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z&#39;&gt;&lt;/path&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-cleaner-icon-color</span><span class="o">:</span>       <span class="nv">$gray-600</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-cleaner-icon</span><span class="o">:</span>             <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-cleaner-icon-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;306.912 214.461 256 265.373 205.088 214.461 182.461 237.088 233.373 288 182.461 338.912 205.088 361.539 256 310.627 306.912 361.539 329.539 338.912 278.627 288 329.539 237.088 306.912 214.461&#39;&gt;&lt;/polygon&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-cleaner-icon-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z&#39;&gt;&lt;/path&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-cleaner-icon-hover-color</span><span class="o">:</span> <span class="nv">$body-color</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-cleaner-icon-hover</span><span class="o">:</span>       <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-cleaner-icon-hover-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;306.912 214.461 256 265.373 205.088 214.461 182.461 237.088 233.373 288 182.461 338.912 205.088 361.539 256 310.627 306.912 361.539 329.539 338.912 278.627 288 329.539 237.088 306.912 214.461&#39;&gt;&lt;/polygon&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-cleaner-icon-hover-color</span><span class="si">}</span><span class="sx">)</span><span class="s1">&#39; d=&#39;</span><span class="n">M472</span><span class="o">,</span><span class="mi">96</span><span class="kt">H</span><span class="mi">384</span><span class="kt">V</span><span class="mi">40</span><span class="kt">H</span><span class="mi">352</span><span class="kt">V</span><span class="mi">96</span><span class="kt">H</span><span class="mi">160</span><span class="kt">V</span><span class="mi">40</span><span class="kt">H</span><span class="mi">128</span><span class="kt">V</span><span class="mi">96</span><span class="kt">H</span><span class="mi">40</span><span class="kt">a</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">-</span><span class="mi">24</span><span class="o">,</span><span class="mi">24</span><span class="kt">V</span><span class="mi">456</span><span class="kt">a</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">24</span><span class="o">,</span><span class="mi">24</span><span class="kt">H</span><span class="mi">472</span><span class="kt">a</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">24</span><span class="o">-</span><span class="mi">24</span><span class="kt">V</span><span class="mi">120</span><span class="kt">A</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">472</span><span class="o">,</span><span class="mi">96</span><span class="kt">Zm</span><span class="o">-</span><span class="mi">8</span><span class="o">,</span><span class="mi">352</span><span class="kt">H</span><span class="mi">48</span><span class="kt">V</span><span class="mi">128</span><span class="kt">h</span><span class="mi">80</span><span class="kt">v</span><span class="mi">40</span><span class="kt">h</span><span class="mi">32</span><span class="kt">V</span><span class="mi">128</span><span class="kt">H</span><span class="mi">352</span><span class="kt">v</span><span class="mi">40</span><span class="kt">h</span><span class="mi">32</span><span class="kt">V</span><span class="mi">128</span><span class="kt">h</span><span class="mi">80</span><span class="kt">Z</span><span class="s1">&#39;&gt;&lt;/path&gt;&lt;/svg&gt;&#34;);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-separator-icon-color</span><span class="o">:</span>     <span class="nv">$gray-600</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-separator-icon</span><span class="o">:</span>           <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-separator-icon-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;359.873 121.377 337.246 144.004 433.243 240.001 16 240.001 16 240.002 16 272.001 16 272.002 433.24 272.002 337.246 367.996 359.873 390.623 494.498 256 359.873 121.377&#39;&gt;&lt;/polygon&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-separator-icon-rtl</span><span class="o">:</span>       <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-separator-icon-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;497.333 239.999 80.092 239.999 176.087 144.004 153.46 121.377 18.837 256 153.46 390.623 176.087 367.996 80.09 271.999 497.333 271.999 497.333 239.999&#39;&gt;&lt;/polygon&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-ranges-width</span><span class="o">:</span>             <span class="mi">10</span><span class="kt">rem</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-ranges-padding</span><span class="o">:</span>           <span class="nv">$spacer</span> <span class="o">*</span> <span class="mf">.5</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-ranges-border-width</span><span class="o">:</span>      <span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-ranges-border-color</span><span class="o">:</span>      <span class="nv">$border-color</span><span class="p">;</span>
-</span></span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$date-picker-default-icon-color</span><span class="o">:</span>       <span class="nv">$gray-600</span><span class="p">;</span>
+<span class="nv">$date-picker-default-icon</span><span class="o">:</span>             <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z&#39;&gt;&lt;/path&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
+
+<span class="nv">$date-picker-cleaner-icon-color</span><span class="o">:</span>       <span class="nv">$gray-600</span><span class="p">;</span>
+<span class="nv">$date-picker-cleaner-icon</span><span class="o">:</span>             <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-cleaner-icon-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;306.912 214.461 256 265.373 205.088 214.461 182.461 237.088 233.373 288 182.461 338.912 205.088 361.539 256 310.627 306.912 361.539 329.539 338.912 278.627 288 329.539 237.088 306.912 214.461&#39;&gt;&lt;/polygon&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-cleaner-icon-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z&#39;&gt;&lt;/path&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
+<span class="nv">$date-picker-cleaner-icon-hover-color</span><span class="o">:</span> <span class="nv">$body-color</span><span class="p">;</span>
+<span class="nv">$date-picker-cleaner-icon-hover</span><span class="o">:</span>       <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-cleaner-icon-hover-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;306.912 214.461 256 265.373 205.088 214.461 182.461 237.088 233.373 288 182.461 338.912 205.088 361.539 256 310.627 306.912 361.539 329.539 338.912 278.627 288 329.539 237.088 306.912 214.461&#39;&gt;&lt;/polygon&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-cleaner-icon-hover-color</span><span class="si">}</span><span class="sx">)</span><span class="s1">&#39; d=&#39;</span><span class="n">M472</span><span class="o">,</span><span class="mi">96</span><span class="kt">H</span><span class="mi">384</span><span class="kt">V</span><span class="mi">40</span><span class="kt">H</span><span class="mi">352</span><span class="kt">V</span><span class="mi">96</span><span class="kt">H</span><span class="mi">160</span><span class="kt">V</span><span class="mi">40</span><span class="kt">H</span><span class="mi">128</span><span class="kt">V</span><span class="mi">96</span><span class="kt">H</span><span class="mi">40</span><span class="kt">a</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0-24</span><span class="o">,</span><span class="mi">24</span><span class="kt">V</span><span class="mi">456</span><span class="kt">a</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">24</span><span class="o">,</span><span class="mi">24</span><span class="kt">H</span><span class="mi">472</span><span class="kt">a</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">24-24</span><span class="kt">V</span><span class="mi">120</span><span class="kt">A</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">24</span><span class="mf">.028</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">472</span><span class="o">,</span><span class="mi">96</span><span class="kt">Zm</span><span class="mi">-8</span><span class="o">,</span><span class="mi">352</span><span class="kt">H</span><span class="mi">48</span><span class="kt">V</span><span class="mi">128</span><span class="kt">h</span><span class="mi">80</span><span class="kt">v</span><span class="mi">40</span><span class="kt">h</span><span class="mi">32</span><span class="kt">V</span><span class="mi">128</span><span class="kt">H</span><span class="mi">352</span><span class="kt">v</span><span class="mi">40</span><span class="kt">h</span><span class="mi">32</span><span class="kt">V</span><span class="mi">128</span><span class="kt">h</span><span class="mi">80</span><span class="kt">Z</span><span class="s1">&#39;&gt;&lt;/path&gt;&lt;/svg&gt;&#34;);</span>
+
+<span class="nv">$date-picker-separator-icon-color</span><span class="o">:</span>     <span class="nv">$gray-600</span><span class="p">;</span>
+<span class="nv">$date-picker-separator-icon</span><span class="o">:</span>           <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-separator-icon-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;359.873 121.377 337.246 144.004 433.243 240.001 16 240.001 16 240.002 16 272.001 16 272.002 433.24 272.002 337.246 367.996 359.873 390.623 494.498 256 359.873 121.377&#39;&gt;&lt;/polygon&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
+<span class="nv">$date-picker-separator-icon-rtl</span><span class="o">:</span>       <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-separator-icon-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;497.333 239.999 80.092 239.999 176.087 144.004 153.46 121.377 18.837 256 153.46 390.623 176.087 367.996 80.09 271.999 497.333 271.999 497.333 239.999&#39;&gt;&lt;/polygon&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
+
+<span class="nv">$date-picker-ranges-width</span><span class="o">:</span>             <span class="mi">10</span><span class="kt">rem</span><span class="p">;</span>
+<span class="nv">$date-picker-ranges-padding</span><span class="o">:</span>           <span class="nv">$spacer</span> <span class="o">*</span> <span class="mf">.5</span><span class="p">;</span>
+<span class="nv">$date-picker-ranges-border-width</span><span class="o">:</span>      <span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
+<span class="nv">$date-picker-ranges-border-color</span><span class="o">:</span>      <span class="nv">$border-color</span><span class="p">;</span>
+
+<span class="nv">$date-picker-timepicker-width</span><span class="o">:</span>         <span class="p">(</span><span class="mi">7</span> <span class="o">*</span> <span class="nv">$calendar-table-cell-size</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nv">$calendar-table-margin</span><span class="p">);</span>
+<span class="nv">$date-picker-timepicker-border-width</span><span class="o">:</span>  <span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
+<span class="nv">$date-picker-timepicker-border-color</span><span class="o">:</span>  <span class="nv">$border-color</span><span class="p">;</span>
+</code></pre></div>
 <h3 id="css-vars">CSS Vars</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-date-picker-ranges-border</span>
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-date-picker-ranges-padding</span>
-</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="nt">cui-date-picker-ranges-width</span></span></span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nt">--cui-date-picker-ranges-border</span>
+<span class="nt">--cui-date-picker-ranges-padding</span>
+<span class="nt">--cui-date-picker-ranges-width</span>
+<span class="nt">--cui-date-picker-timepicker-border-top</span>
+<span class="nt">--cui-date-picker-timepicker-width</span></code></pre></div>
 
     </div>
   </main>
@@ -1464,7 +1541,7 @@
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.1.1. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.1.4. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1472,7 +1549,7 @@
       
   
     </div>
-    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-PXOm0LjM7kBY7at2HNqu2pAJsTVQUPRzpJSwQD0V//zsjFAcv61qjiZj3ELesLb1" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-YPtos5ypUKfh542wG5kSmDTs7wKbtPcnNs5lpYFuO3fyv4vAUqvOmSZR7RE2e7Cd" crossorigin="anonymous"></script>
 
 
 <script src="https://coreui.io/docs/assets/js/docs.min.js"></script>
