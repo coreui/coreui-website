@@ -257,7 +257,7 @@ const pricing = (data) => {
             currentPriceElement.classList.add("em-active")
             const emEl = document.createElement("div")
             emEl.classList.add("product-em-price", "text-angular")
-            emEl.innerHTML = `${productEMPrice} <div class="small"><strong>Limited offer!</strong><br/>-40% using code <strong>EMKT</strong></div>`
+            emEl.innerHTML = `${productEMPrice} <div class="small"><strong>Limiteda offer!</strong><br/>-40% using code <strong>EMKT</strong></div>`
             currentPriceElement.after(emEl)
           }
         }

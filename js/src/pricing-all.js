@@ -102,12 +102,12 @@ triggerTabList.forEach(function (triggerEl) {
 
 const userLang = () => navigator.language || navigator.userLanguage;
 
-const formatCurrency = (amount, currency) => {
+const formatCurrency = (amount, currency, monthly) => {
   return new Intl.NumberFormat(userLang, {
     style: "currency",
     currency,
     minimumFractionDigits: 0,
-  }).format(amount);
+  }).format(monthly ? Math.ceil(amount / 12) : amount);
 };
 
 const getQueryParams = (params, url) => {
@@ -151,9 +151,28 @@ const getEMPrice = (product, currency, quantity) => {
 
 const pricing = (data) => {
   const code = data.countryCode;
+  const country = data.country;
   const currency = CURRENCIES.includes(data.currency) ? data.currency : "USD";
   const paymentCurrencyElement = document.getElementById("payment-currency");
   paymentCurrencyElement.innerHTML = currency;
+
+  if (EM_CURRENCIES.includes(currency)) {
+    const pageHeaderEl = document.getElementsByClassName("page-header");
+    pageHeaderEl[0].classList.add("mb-0");
+    const emBanerEl = document.createElement("section")
+    emBanerEl.classList.add("baner", "banner-red", "mb-5")
+    emBanerEl.innerHTML = `
+      <div class="container py-4">
+        <h2 class="banner-primary-header">Parity Purchasing Power Discount</h2>
+        <h3 class="banner-secondary-header">
+          We want to create products that are affordable for everyone that's why we support Parity Purchasing Power
+        </h3>
+        <div class="banner-description">
+          We noticed you're in <strong>${country}</strong> and eligible for the Parity Purchasing Power discount, so if you need it, use code <strong>EMKT</strong> to get <strong>40% off</strong> your subscription at checkout.
+        </div>
+      </div>`
+    pageHeaderEl[0].after(emBanerEl)
+  }
 
   fetch("/data/pricing.json")
     .then((res) => res.json())
@@ -181,75 +200,57 @@ const pricing = (data) => {
         )[0];
         const productCurrentPrice = formatCurrency(
           getCurrentPrice(productPricing, currency, 4),
-          currency
+          currency,
+          true
         );
-        const productEMPrice = formatCurrency(
-          getEMPrice(productPricing, currency, 4),
-          currency
+        const productCurrentPriceAnnualy = formatCurrency(
+          getCurrentPrice(productPricing, currency, 4),
+          currency,
+          false
         );
         const productOldPrice = formatCurrency(
           getOldPrice(productPricing, currency, 4),
-          currency
+          currency,
+          true
         );
 
         const currentPriceElement = document.getElementsByClassName(
           `current-price-${productName}`
         );
+        const currentPriceAnnuallyElement = document.getElementsByClassName(
+          `current-price-annually-${productName}`
+        );
         const oldPriceElement = document.getElementsByClassName(
           `old-price-${productName}`
         );
-        // const buyButtonElement = document.getElementsByClassName(`buy-${productName}`);
         const buyButtonElement = document.getElementsByClassName(`buy-${productName}`);
 
         Array.from(buyButtonElement).forEach((el) => {
-          el.href =
-            el.href.indexOf("QTY=") !== -1
-              ? `${el.href}&LANG=${
-                  userLang().split("-")[0]
-                }&CURRENCY=${currency}`
-              : `${el.href}&language=${
-                  userLang().split("-")[0]
-                }&currency=${currency}`;
+          const url = new URL(el.href)
+          url.searchParams.set("LANG", userLang().split("-")[0])
+          url.searchParams.set("CURRENCY", currency)
+          el.href = url.toString();
         });
 
-        // buyButtonElement.href =
-        //   buyButtonElement.href.indexOf("QTY=") !== -1
-        //     ? `${buyButtonElement.href}&LANG=${
-        //         userLang().split("-")[0]
-        //       }&CURRENCY=${currency}`
-        //     : `${buyButtonElement.href}&language=${
-        //         userLang().split("-")[0]
-        //       }&currency=${currency}`;
 
         if (productCurrentPrice) {
-          // currentPriceElement.innerHTML = productCurrentPrice;
-
           Array.from(currentPriceElement).forEach((el) => {
             el.innerHTML = productCurrentPrice;
+          });
+        }
 
-            if (EM_CURRENCIES.includes(currency)) {
-              if (el.classList.contains("em-active")) {
-                return
-              }
-
-              el.classList.add("em-active")
-              const emEl = document.createElement("div")
-              emEl.classList.add("product-em-price", "text-angular")
-              emEl.innerHTML = `${productEMPrice} <div class="small"><strong>Limited offer!</strong><br/>-40% using code <strong>EMKT</strong></div>`
-              el.after(emEl)
-            }
+        if (currentPriceAnnuallyElement) {
+          Array.from(currentPriceAnnuallyElement).forEach((el) => {
+            el.innerHTML = productCurrentPriceAnnualy;
           });
         }
         
         if (getOldPrice(productPricing, currency, 4)) {
-          // oldPriceElement.innerHTML = productOldPrice;
 
           Array.from(oldPriceElement).forEach((el) => {
             el.innerHTML = productOldPrice;
           });
         }
-
-        // updatePriceBasedOnQuantity(productName, productPricing, currency);
       });
     })
     .catch((err) => {
