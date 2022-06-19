@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities. For more complex implementations, custom CSS may be necessary.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.74.3">
+<meta name="generator" content="Hugo 0.93.3">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.2">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-YUdsYsgRlkUONN8mdJ0FYda0kzlomX2TWturtRobleAB8py9rvyfGQzJdLRc9lFL" crossorigin="anonymous">
+<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-q0Ja96GxuKqNEh7KDLa79pu47abmS0a2pZpPREKd5ZPlutD+GEJI/Jhe5SXkr5mr" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/assets/css/docs.css" rel="stylesheet">
 
@@ -889,11 +889,25 @@
 <p>Apply <code>display</code> utilities to create a flexbox container and transform <strong>direct children elements</strong> into flex items. Flex containers and items are able to be modified further with additional flex properties.</p>
 <div class="docs-example">
 <div class="d-flex p-2 docs-highlight">I'm a flexbox container!</div>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex p-2 docs-highlight&#34;</span><span class="p">&gt;</span>I&#39;m a flexbox container!<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex p-2 docs-highlight&#34;</span><span class="p">&gt;</span>I&#39;m a flexbox container!<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <div class="docs-example">
 <div class="d-inline-flex p-2 docs-highlight">I'm an inline flexbox container!</div>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-inline-flex p-2 docs-highlight&#34;</span><span class="p">&gt;</span>I&#39;m an inline flexbox container!<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-inline-flex p-2 docs-highlight&#34;</span><span class="p">&gt;</span>I&#39;m an inline flexbox container!<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <p>Responsive variations also exist for <code>.d-flex</code> and <code>.d-inline-flex</code>.</p>
+<ul>
+<li><code>.d-flex</code></li>
+<li><code>.d-inline-flex</code></li>
+<li><code>.d-sm-flex</code></li>
+<li><code>.d-sm-inline-flex</code></li>
+<li><code>.d-md-flex</code></li>
+<li><code>.d-md-inline-flex</code></li>
+<li><code>.d-lg-flex</code></li>
+<li><code>.d-lg-inline-flex</code></li>
+<li><code>.d-xl-flex</code></li>
+<li><code>.d-xl-inline-flex</code></li>
+<li><code>.d-xxl-flex</code></li>
+<li><code>.d-xxl-inline-flex</code></li>
+</ul>
 
 <h2 id="direction">Direction</h2>
 <p>Set the direction of flex items in a flex container with direction utilities. In most cases you can omit the horizontal class here as the browser default is <code>row</code>. However, you may encounter situations where you needed to explicitly set this value (like responsive layouts).</p>
@@ -909,16 +923,16 @@
   <div class="p-2 docs-highlight">Flex item 2</div>
   <div class="p-2 docs-highlight">Flex item 3</div>
 </div>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-row docs-highlight mb-3&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-row-reverse docs-highlight&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-row docs-highlight mb-3&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-row-reverse docs-highlight&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <p>Use <code>.flex-column</code> to set a vertical direction, or <code>.flex-column-reverse</code>  to start the vertical direction from the opposite side.</p>
 <div class="docs-example">
 <div class="d-flex flex-column docs-highlight mb-3">
@@ -931,17 +945,43 @@
   <div class="p-2 docs-highlight">Flex item 2</div>
   <div class="p-2 docs-highlight">Flex item 3</div>
 </div>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-column docs-highlight mb-3&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-column-reverse docs-highlight&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-column docs-highlight mb-3&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-column-reverse docs-highlight&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item 3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <p>Responsive variations also exist for <code>flex-direction</code>.</p>
+<ul>
+<li><code>.flex-row</code></li>
+<li><code>.flex-row-reverse</code></li>
+<li><code>.flex-column</code></li>
+<li><code>.flex-column-reverse</code></li>
+<li><code>.flex-sm-row</code></li>
+<li><code>.flex-sm-row-reverse</code></li>
+<li><code>.flex-sm-column</code></li>
+<li><code>.flex-sm-column-reverse</code></li>
+<li><code>.flex-md-row</code></li>
+<li><code>.flex-md-row-reverse</code></li>
+<li><code>.flex-md-column</code></li>
+<li><code>.flex-md-column-reverse</code></li>
+<li><code>.flex-lg-row</code></li>
+<li><code>.flex-lg-row-reverse</code></li>
+<li><code>.flex-lg-column</code></li>
+<li><code>.flex-lg-column-reverse</code></li>
+<li><code>.flex-xl-row</code></li>
+<li><code>.flex-xl-row-reverse</code></li>
+<li><code>.flex-xl-column</code></li>
+<li><code>.flex-xl-column-reverse</code></li>
+<li><code>.flex-xxl-row</code></li>
+<li><code>.flex-xxl-row-reverse</code></li>
+<li><code>.flex-xxl-column</code></li>
+<li><code>.flex-xxl-column-reverse</code></li>
+</ul>
 
 <h2 id="justify-content">Justify content</h2>
 <p>Use <code>justify-content</code> utilities on flexbox containers to change the alignment of flex items on the main axis (the x-axis to start, y-axis if <code>flex-direction: column</code>). Choose from <code>start</code> (browser default), <code>end</code>, <code>center</code>, <code>between</code>, <code>around</code>, or <code>evenly</code>.</p>
@@ -977,13 +1017,51 @@
     <div class="p-2 docs-highlight">Flex item</div>
   </div>
 </div>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex justify-content-start&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex justify-content-end&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex justify-content-center&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex justify-content-between&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex justify-content-around&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex justify-content-evenly&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Responsive variations also exist for <code>justify-content</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex justify-content-start&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex justify-content-end&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex justify-content-center&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex justify-content-between&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex justify-content-around&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex justify-content-evenly&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Responsive variations also exist for <code>justify-content</code>.</p>
+<ul>
+<li><code>.justify-content-start</code></li>
+<li><code>.justify-content-end</code></li>
+<li><code>.justify-content-center</code></li>
+<li><code>.justify-content-between</code></li>
+<li><code>.justify-content-around</code></li>
+<li><code>.justify-content-evenly</code></li>
+<li><code>.justify-content-sm-start</code></li>
+<li><code>.justify-content-sm-end</code></li>
+<li><code>.justify-content-sm-center</code></li>
+<li><code>.justify-content-sm-between</code></li>
+<li><code>.justify-content-sm-around</code></li>
+<li><code>.justify-content-sm-evenly</code></li>
+<li><code>.justify-content-md-start</code></li>
+<li><code>.justify-content-md-end</code></li>
+<li><code>.justify-content-md-center</code></li>
+<li><code>.justify-content-md-between</code></li>
+<li><code>.justify-content-md-around</code></li>
+<li><code>.justify-content-md-evenly</code></li>
+<li><code>.justify-content-lg-start</code></li>
+<li><code>.justify-content-lg-end</code></li>
+<li><code>.justify-content-lg-center</code></li>
+<li><code>.justify-content-lg-between</code></li>
+<li><code>.justify-content-lg-around</code></li>
+<li><code>.justify-content-lg-evenly</code></li>
+<li><code>.justify-content-xl-start</code></li>
+<li><code>.justify-content-xl-end</code></li>
+<li><code>.justify-content-xl-center</code></li>
+<li><code>.justify-content-xl-between</code></li>
+<li><code>.justify-content-xl-around</code></li>
+<li><code>.justify-content-xl-evenly</code></li>
+<li><code>.justify-content-xxl-start</code></li>
+<li><code>.justify-content-xxl-end</code></li>
+<li><code>.justify-content-xxl-center</code></li>
+<li><code>.justify-content-xxl-between</code></li>
+<li><code>.justify-content-xxl-around</code></li>
+<li><code>.justify-content-xxl-evenly</code></li>
+</ul>
 
 <h2 id="align-items">Align items</h2>
 <p>Use <code>align-items</code> utilities on flexbox containers to change the alignment of flex items on the cross axis (the y-axis to start, x-axis if <code>flex-direction: column</code>). Choose from <code>start</code>, <code>end</code>, <code>center</code>, <code>baseline</code>, or <code>stretch</code> (browser default).</p>
@@ -1014,12 +1092,44 @@
     <div class="p-2 docs-highlight">Flex item</div>
   </div>
 </div>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-start&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-end&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-center&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-baseline&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-stretch&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Responsive variations also exist for <code>align-items</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-start&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-end&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-center&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-baseline&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-stretch&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Responsive variations also exist for <code>align-items</code>.</p>
+<ul>
+<li><code>.align-items-start</code></li>
+<li><code>.align-items-end</code></li>
+<li><code>.align-items-center</code></li>
+<li><code>.align-items-baseline</code></li>
+<li><code>.align-items-stretch</code></li>
+<li><code>.align-items-sm-start</code></li>
+<li><code>.align-items-sm-end</code></li>
+<li><code>.align-items-sm-center</code></li>
+<li><code>.align-items-sm-baseline</code></li>
+<li><code>.align-items-sm-stretch</code></li>
+<li><code>.align-items-md-start</code></li>
+<li><code>.align-items-md-end</code></li>
+<li><code>.align-items-md-center</code></li>
+<li><code>.align-items-md-baseline</code></li>
+<li><code>.align-items-md-stretch</code></li>
+<li><code>.align-items-lg-start</code></li>
+<li><code>.align-items-lg-end</code></li>
+<li><code>.align-items-lg-center</code></li>
+<li><code>.align-items-lg-baseline</code></li>
+<li><code>.align-items-lg-stretch</code></li>
+<li><code>.align-items-xl-start</code></li>
+<li><code>.align-items-xl-end</code></li>
+<li><code>.align-items-xl-center</code></li>
+<li><code>.align-items-xl-baseline</code></li>
+<li><code>.align-items-xl-stretch</code></li>
+<li><code>.align-items-xxl-start</code></li>
+<li><code>.align-items-xxl-end</code></li>
+<li><code>.align-items-xxl-center</code></li>
+<li><code>.align-items-xxl-baseline</code></li>
+<li><code>.align-items-xxl-stretch</code></li>
+</ul>
 
 <h2 id="align-self">Align self</h2>
 <p>Use <code>align-self</code> utilities on flexbox items to individually change their alignment on the cross axis (the y-axis to start, x-axis if <code>flex-direction: column</code>). Choose from the same options as <code>align-items</code>: <code>start</code>, <code>end</code>, <code>center</code>, <code>baseline</code>, or <code>stretch</code> (browser default).</p>
@@ -1050,12 +1160,44 @@
     <div class="p-2 docs-highlight">Flex item</div>
   </div>
 </div>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;align-self-start&#34;</span><span class="p">&gt;</span>Aligned flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;align-self-end&#34;</span><span class="p">&gt;</span>Aligned flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;align-self-center&#34;</span><span class="p">&gt;</span>Aligned flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;align-self-baseline&#34;</span><span class="p">&gt;</span>Aligned flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;align-self-stretch&#34;</span><span class="p">&gt;</span>Aligned flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Responsive variations also exist for <code>align-self</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;align-self-start&#34;</span><span class="p">&gt;</span>Aligned flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;align-self-end&#34;</span><span class="p">&gt;</span>Aligned flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;align-self-center&#34;</span><span class="p">&gt;</span>Aligned flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;align-self-baseline&#34;</span><span class="p">&gt;</span>Aligned flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;align-self-stretch&#34;</span><span class="p">&gt;</span>Aligned flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Responsive variations also exist for <code>align-self</code>.</p>
+<ul>
+<li><code>.align-self-start</code></li>
+<li><code>.align-self-end</code></li>
+<li><code>.align-self-center</code></li>
+<li><code>.align-self-baseline</code></li>
+<li><code>.align-self-stretch</code></li>
+<li><code>.align-self-sm-start</code></li>
+<li><code>.align-self-sm-end</code></li>
+<li><code>.align-self-sm-center</code></li>
+<li><code>.align-self-sm-baseline</code></li>
+<li><code>.align-self-sm-stretch</code></li>
+<li><code>.align-self-md-start</code></li>
+<li><code>.align-self-md-end</code></li>
+<li><code>.align-self-md-center</code></li>
+<li><code>.align-self-md-baseline</code></li>
+<li><code>.align-self-md-stretch</code></li>
+<li><code>.align-self-lg-start</code></li>
+<li><code>.align-self-lg-end</code></li>
+<li><code>.align-self-lg-center</code></li>
+<li><code>.align-self-lg-baseline</code></li>
+<li><code>.align-self-lg-stretch</code></li>
+<li><code>.align-self-xl-start</code></li>
+<li><code>.align-self-xl-end</code></li>
+<li><code>.align-self-xl-center</code></li>
+<li><code>.align-self-xl-baseline</code></li>
+<li><code>.align-self-xl-stretch</code></li>
+<li><code>.align-self-xxl-start</code></li>
+<li><code>.align-self-xxl-end</code></li>
+<li><code>.align-self-xxl-center</code></li>
+<li><code>.align-self-xxl-baseline</code></li>
+<li><code>.align-self-xxl-stretch</code></li>
+</ul>
 
 <h2 id="fill">Fill</h2>
 <p>Use the <code>.flex-fill</code> class on a series of sibling elements to force them into widths equal to their content (or equal widths if their content does not surpass their border-boxes) while taking up all available horizontal space.</p>
@@ -1065,12 +1207,20 @@
   <div class="p-2 flex-fill docs-highlight">Flex item</div>
   <div class="p-2 flex-fill docs-highlight">Flex item</div>
 </div>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex docs-highlight&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 flex-fill docs-highlight&#34;</span><span class="p">&gt;</span>Flex item with a lot of content<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 flex-fill docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 flex-fill docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex docs-highlight&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 flex-fill docs-highlight&#34;</span><span class="p">&gt;</span>Flex item with a lot of content<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 flex-fill docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 flex-fill docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <p>Responsive variations also exist for <code>flex-fill</code>.</p>
+<ul>
+<li><code>.flex-fill</code></li>
+<li><code>.flex-sm-fill</code></li>
+<li><code>.flex-md-fill</code></li>
+<li><code>.flex-lg-fill</code></li>
+<li><code>.flex-xl-fill</code></li>
+<li><code>.flex-xxl-fill</code></li>
+</ul>
 
 <h2 id="grow-and-shrink">Grow and shrink</h2>
 <p>Use <code>.flex-grow-*</code> utilities to toggle a flex item&rsquo;s ability to grow to fill available space. In the example below, the <code>.flex-grow-1</code> elements uses all available space it can, while allowing the remaining two flex items their necessary space.</p>
@@ -1080,22 +1230,36 @@
   <div class="p-2 docs-highlight">Flex item</div>
   <div class="p-2 docs-highlight">Third flex item</div>
 </div>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex docs-highlight&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 flex-grow-1 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Third flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex docs-highlight&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 flex-grow-1 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Third flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <p>Use <code>.flex-shrink-*</code> utilities to toggle a flex item&rsquo;s ability to shrink if necessary. In the example below, the second flex item with <code>.flex-shrink-1</code> is forced to wrap its contents to a new line, &ldquo;shrinking&rdquo; to allow more space for the previous flex item with <code>.w-100</code>.</p>
 <div class="docs-example">
 <div class="d-flex docs-highlight">
   <div class="p-2 w-100 docs-highlight">Flex item</div>
   <div class="p-2 flex-shrink-1 docs-highlight">Flex item</div>
 </div>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex docs-highlight&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 w-100 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 flex-shrink-1 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex docs-highlight&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 w-100 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 flex-shrink-1 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <p>Responsive variations also exist for <code>flex-grow</code> and <code>flex-shrink</code>.</p>
+<ul>
+<li><code>.flex-{grow|shrink}-0</code></li>
+<li><code>.flex-{grow|shrink}-1</code></li>
+<li><code>.flex-sm-{grow|shrink}-0</code></li>
+<li><code>.flex-sm-{grow|shrink}-1</code></li>
+<li><code>.flex-md-{grow|shrink}-0</code></li>
+<li><code>.flex-md-{grow|shrink}-1</code></li>
+<li><code>.flex-lg-{grow|shrink}-0</code></li>
+<li><code>.flex-lg-{grow|shrink}-1</code></li>
+<li><code>.flex-xl-{grow|shrink}-0</code></li>
+<li><code>.flex-xl-{grow|shrink}-1</code></li>
+<li><code>.flex-xxl-{grow|shrink}-0</code></li>
+<li><code>.flex-xxl-{grow|shrink}-1</code></li>
+</ul>
 
 <h2 id="auto-margins">Auto margins</h2>
 <p>Flexbox can do some pretty awesome things when you mix flex alignments with auto margins. Shown below are three examples of controlling flex items via auto margins: default (no auto margin), pushing two items to the right (<code>.me-auto</code>), and pushing two items to the left (<code>.ms-auto</code>).</p>
@@ -1117,23 +1281,23 @@
   <div class="p-2 docs-highlight">Flex item</div>
   <div class="ms-auto p-2 docs-highlight">Flex item</div>
 </div>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex docs-highlight mb-3&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex docs-highlight mb-3&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;me-auto p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex docs-highlight mb-3&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;ms-auto p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex docs-highlight mb-3&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex docs-highlight mb-3&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;me-auto p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex docs-highlight mb-3&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;ms-auto p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <h3 id="with-align-items">With align-items</h3>
 <p>Vertically move one flex item to the top or bottom of a container by mixing <code>align-items</code>, <code>flex-direction: column</code>, and <code>margin-top: auto</code> or <code>margin-bottom: auto</code>.</p>
 <div class="docs-example">
@@ -1148,17 +1312,17 @@
   <div class="p-2 docs-highlight">Flex item</div>
   <div class="mt-auto p-2 docs-highlight">Flex item</div>
 </div>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-start flex-column docs-highlight mb-3&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;height: 200px;&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;mb-auto p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-end flex-column docs-highlight mb-3&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;height: 200px;&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;mt-auto p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-start flex-column docs-highlight mb-3&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;height: 200px;&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;mb-auto p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-end flex-column docs-highlight mb-3&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;height: 200px;&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;mt-auto p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <h2 id="wrap">Wrap</h2>
 <p>Change how flex items wrap in a flex container. Choose from no wrapping at all (the browser default) with <code>.flex-nowrap</code>, wrapping with <code>.flex-wrap</code>, or reverse wrapping with <code>.flex-wrap-reverse</code>.</p>
 <div class="docs-example">
@@ -1170,10 +1334,10 @@
     <div class="p-2 docs-highlight">Flex item</div>
   </div>
 </div>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-nowrap&#34;</span><span class="p">&gt;</span>
-  ...
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><div class="docs-example">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-nowrap&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><div class="docs-example">
   <div class="d-flex flex-wrap docs-highlight">
     <div class="p-2 docs-highlight">Flex item</div>
     <div class="p-2 docs-highlight">Flex item</div>
@@ -1192,10 +1356,10 @@
     <div class="p-2 docs-highlight">Flex item</div>
   </div>
 </div>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-wrap&#34;</span><span class="p">&gt;</span>
-  ...
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><div class="docs-example">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-wrap&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><div class="docs-example">
   <div class="d-flex flex-wrap-reverse docs-highlight">
     <div class="p-2 docs-highlight">Flex item</div>
     <div class="p-2 docs-highlight">Flex item</div>
@@ -1214,10 +1378,30 @@
     <div class="p-2 docs-highlight">Flex item</div>
   </div>
 </div>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-wrap-reverse&#34;</span><span class="p">&gt;</span>
-  ...
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Responsive variations also exist for <code>flex-wrap</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-wrap-reverse&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Responsive variations also exist for <code>flex-wrap</code>.</p>
+<ul>
+<li><code>.flex-nowrap</code></li>
+<li><code>.flex-wrap</code></li>
+<li><code>.flex-wrap-reverse</code></li>
+<li><code>.flex-sm-nowrap</code></li>
+<li><code>.flex-sm-wrap</code></li>
+<li><code>.flex-sm-wrap-reverse</code></li>
+<li><code>.flex-md-nowrap</code></li>
+<li><code>.flex-md-wrap</code></li>
+<li><code>.flex-md-wrap-reverse</code></li>
+<li><code>.flex-lg-nowrap</code></li>
+<li><code>.flex-lg-wrap</code></li>
+<li><code>.flex-lg-wrap-reverse</code></li>
+<li><code>.flex-xl-nowrap</code></li>
+<li><code>.flex-xl-wrap</code></li>
+<li><code>.flex-xl-wrap-reverse</code></li>
+<li><code>.flex-xxl-nowrap</code></li>
+<li><code>.flex-xxl-wrap</code></li>
+<li><code>.flex-xxl-wrap-reverse</code></li>
+</ul>
 
 <h2 id="order">Order</h2>
 <p>Change the <em>visual</em> order of specific flex items with a handful of <code>order</code> utilities. We only provide options for making an item first or last, as well as a reset to use the DOM order. As <code>order</code> takes any integer value from 0 to 5, add custom CSS for any additional values needed.</p>
@@ -1227,14 +1411,66 @@
   <div class="order-2 p-2 docs-highlight">Second flex item</div>
   <div class="order-1 p-2 docs-highlight">Third flex item</div>
 </div>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-nowrap docs-highlight&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;order-3 p-2 docs-highlight&#34;</span><span class="p">&gt;</span>First flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;order-2 p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Second flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;order-1 p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Third flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex flex-nowrap docs-highlight&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;order-3 p-2 docs-highlight&#34;</span><span class="p">&gt;</span>First flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;order-2 p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Second flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;order-1 p-2 docs-highlight&#34;</span><span class="p">&gt;</span>Third flex item<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <p>Responsive variations also exist for <code>order</code>.</p>
+<ul>
+<li><code>.order-0</code></li>
+<li><code>.order-1</code></li>
+<li><code>.order-2</code></li>
+<li><code>.order-3</code></li>
+<li><code>.order-4</code></li>
+<li><code>.order-5</code></li>
+<li><code>.order-sm-0</code></li>
+<li><code>.order-sm-1</code></li>
+<li><code>.order-sm-2</code></li>
+<li><code>.order-sm-3</code></li>
+<li><code>.order-sm-4</code></li>
+<li><code>.order-sm-5</code></li>
+<li><code>.order-md-0</code></li>
+<li><code>.order-md-1</code></li>
+<li><code>.order-md-2</code></li>
+<li><code>.order-md-3</code></li>
+<li><code>.order-md-4</code></li>
+<li><code>.order-md-5</code></li>
+<li><code>.order-lg-0</code></li>
+<li><code>.order-lg-1</code></li>
+<li><code>.order-lg-2</code></li>
+<li><code>.order-lg-3</code></li>
+<li><code>.order-lg-4</code></li>
+<li><code>.order-lg-5</code></li>
+<li><code>.order-xl-0</code></li>
+<li><code>.order-xl-1</code></li>
+<li><code>.order-xl-2</code></li>
+<li><code>.order-xl-3</code></li>
+<li><code>.order-xl-4</code></li>
+<li><code>.order-xl-5</code></li>
+<li><code>.order-xxl-0</code></li>
+<li><code>.order-xxl-1</code></li>
+<li><code>.order-xxl-2</code></li>
+<li><code>.order-xxl-3</code></li>
+<li><code>.order-xxl-4</code></li>
+<li><code>.order-xxl-5</code></li>
+</ul>
 
 <p>Additionally there are also responsive <code>.order-first</code> and <code>.order-last</code> classes that change the <code>order</code> of an element by applying <code>order: -1</code> and <code>order: 6</code>, respectively.</p>
+<ul>
+<li><code>.order-first</code></li>
+<li><code>.order-last</code></li>
+<li><code>.order-sm-first</code></li>
+<li><code>.order-sm-last</code></li>
+<li><code>.order-md-first</code></li>
+<li><code>.order-md-last</code></li>
+<li><code>.order-lg-first</code></li>
+<li><code>.order-lg-last</code></li>
+<li><code>.order-xl-first</code></li>
+<li><code>.order-xl-last</code></li>
+<li><code>.order-xxl-first</code></li>
+<li><code>.order-xxl-last</code></li>
+</ul>
 
 <h2 id="align-content">Align content</h2>
 <p>Use <code>align-content</code> utilities on flexbox containers to align flex items <em>together</em> on the cross axis. Choose from <code>start</code> (browser default), <code>end</code>, <code>center</code>, <code>between</code>, <code>around</code>, or <code>stretch</code>. To demonstrate these utilities, we&rsquo;ve enforced <code>flex-wrap: wrap</code> and increased the number of flex items.</p>
@@ -1258,10 +1494,10 @@
     <div class="p-2 docs-highlight">Flex item</div>
   </div>
 </div>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-content-start flex-wrap&#34;</span><span class="p">&gt;</span>
-  ...
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><div class="docs-example">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-content-start flex-wrap&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><div class="docs-example">
   <div class="d-flex align-content-end flex-wrap docs-highlight mb-3" style="height: 200px">
     <div class="p-2 docs-highlight">Flex item</div>
     <div class="p-2 docs-highlight">Flex item</div>
@@ -1280,8 +1516,8 @@
     <div class="p-2 docs-highlight">Flex item</div>
   </div>
 </div>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-content-end flex-wrap&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><div class="docs-example">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-content-end flex-wrap&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><div class="docs-example">
   <div class="d-flex align-content-center flex-wrap docs-highlight mb-3" style="height: 200px">
     <div class="p-2 docs-highlight">Flex item</div>
     <div class="p-2 docs-highlight">Flex item</div>
@@ -1300,8 +1536,8 @@
     <div class="p-2 docs-highlight">Flex item</div>
   </div>
 </div>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-content-center flex-wrap&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><div class="docs-example">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-content-center flex-wrap&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><div class="docs-example">
   <div class="d-flex align-content-between flex-wrap docs-highlight mb-3" style="height: 200px">
     <div class="p-2 docs-highlight">Flex item</div>
     <div class="p-2 docs-highlight">Flex item</div>
@@ -1320,8 +1556,8 @@
     <div class="p-2 docs-highlight">Flex item</div>
   </div>
 </div>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-content-between flex-wrap&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><div class="docs-example">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-content-between flex-wrap&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><div class="docs-example">
   <div class="d-flex align-content-around flex-wrap docs-highlight mb-3" style="height: 200px">
     <div class="p-2 docs-highlight">Flex item</div>
     <div class="p-2 docs-highlight">Flex item</div>
@@ -1340,8 +1576,8 @@
     <div class="p-2 docs-highlight">Flex item</div>
   </div>
 </div>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-content-around flex-wrap&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><div class="docs-example">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-content-around flex-wrap&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><div class="docs-example">
   <div class="d-flex align-content-stretch flex-wrap docs-highlight mb-3" style="height: 200px">
     <div class="p-2 docs-highlight">Flex item</div>
     <div class="p-2 docs-highlight">Flex item</div>
@@ -1360,8 +1596,40 @@
     <div class="p-2 docs-highlight">Flex item</div>
   </div>
 </div>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-content-stretch flex-wrap&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Responsive variations also exist for <code>align-content</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-content-stretch flex-wrap&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>Responsive variations also exist for <code>align-content</code>.</p>
+<ul>
+<li><code>.align-content-start</code></li>
+<li><code>.align-content-end</code></li>
+<li><code>.align-content-center</code></li>
+<li><code>.align-content-around</code></li>
+<li><code>.align-content-stretch</code></li>
+<li><code>.align-content-sm-start</code></li>
+<li><code>.align-content-sm-end</code></li>
+<li><code>.align-content-sm-center</code></li>
+<li><code>.align-content-sm-around</code></li>
+<li><code>.align-content-sm-stretch</code></li>
+<li><code>.align-content-md-start</code></li>
+<li><code>.align-content-md-end</code></li>
+<li><code>.align-content-md-center</code></li>
+<li><code>.align-content-md-around</code></li>
+<li><code>.align-content-md-stretch</code></li>
+<li><code>.align-content-lg-start</code></li>
+<li><code>.align-content-lg-end</code></li>
+<li><code>.align-content-lg-center</code></li>
+<li><code>.align-content-lg-around</code></li>
+<li><code>.align-content-lg-stretch</code></li>
+<li><code>.align-content-xl-start</code></li>
+<li><code>.align-content-xl-end</code></li>
+<li><code>.align-content-xl-center</code></li>
+<li><code>.align-content-xl-around</code></li>
+<li><code>.align-content-xl-stretch</code></li>
+<li><code>.align-content-xxl-start</code></li>
+<li><code>.align-content-xxl-end</code></li>
+<li><code>.align-content-xxl-center</code></li>
+<li><code>.align-content-xxl-around</code></li>
+<li><code>.align-content-xxl-stretch</code></li>
+</ul>
 
 <h2 id="media-object">Media object</h2>
 <p>Looking to replicate the <a href="https://getbootstrap.com/docs/4.6/components/media-object/">media object component</a> from Bootstrap 4? Recreate it in no time with a few flex utilities that allow even more flexibility and customization than before.</p>
@@ -1375,14 +1643,14 @@
     This is some content from a media component. You can replace this with any content and adjust it as needed.
   </div>
 </div>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flex-shrink-0&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flex-grow-1 ms-3&#34;</span><span class="p">&gt;</span>
-    This is some content from a media component. You can replace this with any content and adjust it as needed.
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flex-shrink-0&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flex-grow-1 ms-3&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    This is some content from a media component. You can replace this with any content and adjust it as needed.
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <p>And say you want to vertically center the content next to the image:</p>
 <div class="docs-example">
 <div class="d-flex align-items-center">
@@ -1394,120 +1662,120 @@
     This is some content from a media component. You can replace this with any content and adjust it as needed.
   </div>
 </div>
-</div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-center&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flex-shrink-0&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flex-grow-1 ms-3&#34;</span><span class="p">&gt;</span>
-    This is some content from a media component. You can replace this with any content and adjust it as needed.
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></code></pre></div>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;d-flex align-items-center&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flex-shrink-0&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;...&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;...&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;flex-grow-1 ms-3&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    This is some content from a media component. You can replace this with any content and adjust it as needed.
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div>
 <h2 id="sass">SASS</h2>
 <h3 id="utilities-api">Utilities API</h3>
 <p>Flexbox utilities are declared in our utilities API in <code>scss/_utilities.scss</code>. <a href="https://coreui.io/docs/utilities/api/#using-the-api">Learn how to use the utilities API.</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss">    <span class="s2">&#34;flex&#34;</span><span class="nd">:</span> <span class="o">(</span>
-      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
-      <span class="nt">property</span><span class="nd">:</span> <span class="nt">flex</span><span class="o">,</span>
-      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span><span class="nt">fill</span><span class="nd">:</span> <span class="nt">1</span> <span class="nt">1</span> <span class="nt">auto</span><span class="o">)</span>
-    <span class="o">),</span>
-    <span class="s2">&#34;flex-direction&#34;</span><span class="nd">:</span> <span class="o">(</span>
-      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
-      <span class="nt">property</span><span class="nd">:</span> <span class="nt">flex-direction</span><span class="o">,</span>
-      <span class="nt">class</span><span class="nd">:</span> <span class="nt">flex</span><span class="o">,</span>
-      <span class="nt">values</span><span class="nd">:</span> <span class="nt">row</span> <span class="nt">column</span> <span class="nt">row-reverse</span> <span class="nt">column-reverse</span>
-    <span class="o">),</span>
-    <span class="s2">&#34;flex-grow&#34;</span><span class="nd">:</span> <span class="o">(</span>
-      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
-      <span class="nt">property</span><span class="nd">:</span> <span class="nt">flex-grow</span><span class="o">,</span>
-      <span class="nt">class</span><span class="nd">:</span> <span class="nt">flex</span><span class="o">,</span>
-      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
-        <span class="nt">grow-0</span><span class="nd">:</span> <span class="nt">0</span><span class="o">,</span>
-        <span class="nt">grow-1</span><span class="nd">:</span> <span class="nt">1</span><span class="o">,</span>
-      <span class="o">)</span>
-    <span class="o">),</span>
-    <span class="s2">&#34;flex-shrink&#34;</span><span class="nd">:</span> <span class="o">(</span>
-      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
-      <span class="nt">property</span><span class="nd">:</span> <span class="nt">flex-shrink</span><span class="o">,</span>
-      <span class="nt">class</span><span class="nd">:</span> <span class="nt">flex</span><span class="o">,</span>
-      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
-        <span class="nt">shrink-0</span><span class="nd">:</span> <span class="nt">0</span><span class="o">,</span>
-        <span class="nt">shrink-1</span><span class="nd">:</span> <span class="nt">1</span><span class="o">,</span>
-      <span class="o">)</span>
-    <span class="o">),</span>
-    <span class="s2">&#34;flex-wrap&#34;</span><span class="nd">:</span> <span class="o">(</span>
-      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
-      <span class="nt">property</span><span class="nd">:</span> <span class="nt">flex-wrap</span><span class="o">,</span>
-      <span class="nt">class</span><span class="nd">:</span> <span class="nt">flex</span><span class="o">,</span>
-      <span class="nt">values</span><span class="nd">:</span> <span class="nt">wrap</span> <span class="nt">nowrap</span> <span class="nt">wrap-reverse</span>
-    <span class="o">),</span>
-    <span class="s2">&#34;gap&#34;</span><span class="nd">:</span> <span class="o">(</span>
-      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
-      <span class="nt">property</span><span class="nd">:</span> <span class="nt">gap</span><span class="o">,</span>
-      <span class="nt">class</span><span class="nd">:</span> <span class="nt">gap</span><span class="o">,</span>
-      <span class="nt">values</span><span class="nd">:</span> <span class="err">$</span><span class="nt">spacers</span>
-    <span class="o">),</span>
-    <span class="s2">&#34;justify-content&#34;</span><span class="nd">:</span> <span class="o">(</span>
-      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
-      <span class="nt">property</span><span class="nd">:</span> <span class="nt">justify-content</span><span class="o">,</span>
-      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
-        <span class="nt">start</span><span class="nd">:</span> <span class="nt">flex-start</span><span class="o">,</span>
-        <span class="nt">end</span><span class="nd">:</span> <span class="nt">flex-end</span><span class="o">,</span>
-        <span class="nt">center</span><span class="nd">:</span> <span class="nt">center</span><span class="o">,</span>
-        <span class="nt">between</span><span class="nd">:</span> <span class="nt">space-between</span><span class="o">,</span>
-        <span class="nt">around</span><span class="nd">:</span> <span class="nt">space-around</span><span class="o">,</span>
-        <span class="nt">evenly</span><span class="nd">:</span> <span class="nt">space-evenly</span><span class="o">,</span>
-      <span class="o">)</span>
-    <span class="o">),</span>
-    <span class="s2">&#34;align-items&#34;</span><span class="nd">:</span> <span class="o">(</span>
-      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
-      <span class="nt">property</span><span class="nd">:</span> <span class="nt">align-items</span><span class="o">,</span>
-      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
-        <span class="nt">start</span><span class="nd">:</span> <span class="nt">flex-start</span><span class="o">,</span>
-        <span class="nt">end</span><span class="nd">:</span> <span class="nt">flex-end</span><span class="o">,</span>
-        <span class="nt">center</span><span class="nd">:</span> <span class="nt">center</span><span class="o">,</span>
-        <span class="nt">baseline</span><span class="nd">:</span> <span class="nt">baseline</span><span class="o">,</span>
-        <span class="nt">stretch</span><span class="nd">:</span> <span class="nt">stretch</span><span class="o">,</span>
-      <span class="o">)</span>
-    <span class="o">),</span>
-    <span class="s2">&#34;align-content&#34;</span><span class="nd">:</span> <span class="o">(</span>
-      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
-      <span class="nt">property</span><span class="nd">:</span> <span class="nt">align-content</span><span class="o">,</span>
-      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
-        <span class="nt">start</span><span class="nd">:</span> <span class="nt">flex-start</span><span class="o">,</span>
-        <span class="nt">end</span><span class="nd">:</span> <span class="nt">flex-end</span><span class="o">,</span>
-        <span class="nt">center</span><span class="nd">:</span> <span class="nt">center</span><span class="o">,</span>
-        <span class="nt">between</span><span class="nd">:</span> <span class="nt">space-between</span><span class="o">,</span>
-        <span class="nt">around</span><span class="nd">:</span> <span class="nt">space-around</span><span class="o">,</span>
-        <span class="nt">stretch</span><span class="nd">:</span> <span class="nt">stretch</span><span class="o">,</span>
-      <span class="o">)</span>
-    <span class="o">),</span>
-    <span class="s2">&#34;align-self&#34;</span><span class="nd">:</span> <span class="o">(</span>
-      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
-      <span class="nt">property</span><span class="nd">:</span> <span class="nt">align-self</span><span class="o">,</span>
-      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
-        <span class="nt">auto</span><span class="nd">:</span> <span class="nt">auto</span><span class="o">,</span>
-        <span class="nt">start</span><span class="nd">:</span> <span class="nt">flex-start</span><span class="o">,</span>
-        <span class="nt">end</span><span class="nd">:</span> <span class="nt">flex-end</span><span class="o">,</span>
-        <span class="nt">center</span><span class="nd">:</span> <span class="nt">center</span><span class="o">,</span>
-        <span class="nt">baseline</span><span class="nd">:</span> <span class="nt">baseline</span><span class="o">,</span>
-        <span class="nt">stretch</span><span class="nd">:</span> <span class="nt">stretch</span><span class="o">,</span>
-      <span class="o">)</span>
-    <span class="o">),</span>
-    <span class="s2">&#34;order&#34;</span><span class="nd">:</span> <span class="o">(</span>
-      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
-      <span class="nt">property</span><span class="nd">:</span> <span class="nt">order</span><span class="o">,</span>
-      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
-        <span class="nt">first</span><span class="nd">:</span> <span class="nt">-1</span><span class="o">,</span>
-        <span class="nt">0</span><span class="nd">:</span> <span class="nt">0</span><span class="o">,</span>
-        <span class="nt">1</span><span class="nd">:</span> <span class="nt">1</span><span class="o">,</span>
-        <span class="nt">2</span><span class="nd">:</span> <span class="nt">2</span><span class="o">,</span>
-        <span class="nt">3</span><span class="nd">:</span> <span class="nt">3</span><span class="o">,</span>
-        <span class="nt">4</span><span class="nd">:</span> <span class="nt">4</span><span class="o">,</span>
-        <span class="nt">5</span><span class="nd">:</span> <span class="nt">5</span><span class="o">,</span>
-        <span class="nt">last</span><span class="nd">:</span> <span class="nt">6</span><span class="o">,</span>
-      <span class="o">),</span>
-    <span class="o">),</span>
-    </code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl">    <span class="s2">&#34;flex&#34;</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">property</span><span class="nd">:</span> <span class="nt">flex</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span><span class="nt">fill</span><span class="nd">:</span> <span class="nt">1</span> <span class="nt">1</span> <span class="nt">auto</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;flex-direction&#34;</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">property</span><span class="nd">:</span> <span class="nt">flex-direction</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">class</span><span class="nd">:</span> <span class="nt">flex</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">values</span><span class="nd">:</span> <span class="nt">row</span> <span class="nt">column</span> <span class="nt">row-reverse</span> <span class="nt">column-reverse</span>
+</span></span><span class="line"><span class="cl">    <span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;flex-grow&#34;</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">property</span><span class="nd">:</span> <span class="nt">flex-grow</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">class</span><span class="nd">:</span> <span class="nt">flex</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">grow-0</span><span class="nd">:</span> <span class="nt">0</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">grow-1</span><span class="nd">:</span> <span class="nt">1</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;flex-shrink&#34;</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">property</span><span class="nd">:</span> <span class="nt">flex-shrink</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">class</span><span class="nd">:</span> <span class="nt">flex</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">shrink-0</span><span class="nd">:</span> <span class="nt">0</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">shrink-1</span><span class="nd">:</span> <span class="nt">1</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;flex-wrap&#34;</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">property</span><span class="nd">:</span> <span class="nt">flex-wrap</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">class</span><span class="nd">:</span> <span class="nt">flex</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">values</span><span class="nd">:</span> <span class="nt">wrap</span> <span class="nt">nowrap</span> <span class="nt">wrap-reverse</span>
+</span></span><span class="line"><span class="cl">    <span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;gap&#34;</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">property</span><span class="nd">:</span> <span class="nt">gap</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">class</span><span class="nd">:</span> <span class="nt">gap</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">values</span><span class="nd">:</span> <span class="err">$</span><span class="nt">spacers</span>
+</span></span><span class="line"><span class="cl">    <span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;justify-content&#34;</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">property</span><span class="nd">:</span> <span class="nt">justify-content</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">start</span><span class="nd">:</span> <span class="nt">flex-start</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">end</span><span class="nd">:</span> <span class="nt">flex-end</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">center</span><span class="nd">:</span> <span class="nt">center</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">between</span><span class="nd">:</span> <span class="nt">space-between</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">around</span><span class="nd">:</span> <span class="nt">space-around</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">evenly</span><span class="nd">:</span> <span class="nt">space-evenly</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;align-items&#34;</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">property</span><span class="nd">:</span> <span class="nt">align-items</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">start</span><span class="nd">:</span> <span class="nt">flex-start</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">end</span><span class="nd">:</span> <span class="nt">flex-end</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">center</span><span class="nd">:</span> <span class="nt">center</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">baseline</span><span class="nd">:</span> <span class="nt">baseline</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">stretch</span><span class="nd">:</span> <span class="nt">stretch</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;align-content&#34;</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">property</span><span class="nd">:</span> <span class="nt">align-content</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">start</span><span class="nd">:</span> <span class="nt">flex-start</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">end</span><span class="nd">:</span> <span class="nt">flex-end</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">center</span><span class="nd">:</span> <span class="nt">center</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">between</span><span class="nd">:</span> <span class="nt">space-between</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">around</span><span class="nd">:</span> <span class="nt">space-around</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">stretch</span><span class="nd">:</span> <span class="nt">stretch</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;align-self&#34;</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">property</span><span class="nd">:</span> <span class="nt">align-self</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">auto</span><span class="nd">:</span> <span class="nt">auto</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">start</span><span class="nd">:</span> <span class="nt">flex-start</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">end</span><span class="nd">:</span> <span class="nt">flex-end</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">center</span><span class="nd">:</span> <span class="nt">center</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">baseline</span><span class="nd">:</span> <span class="nt">baseline</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">stretch</span><span class="nd">:</span> <span class="nt">stretch</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;order&#34;</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">responsive</span><span class="nd">:</span> <span class="nt">true</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">property</span><span class="nd">:</span> <span class="nt">order</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">values</span><span class="nd">:</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">first</span><span class="nd">:</span> <span class="o">-</span><span class="nt">1</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">0</span><span class="nd">:</span> <span class="nt">0</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">1</span><span class="nd">:</span> <span class="nt">1</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">2</span><span class="nd">:</span> <span class="nt">2</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">3</span><span class="nd">:</span> <span class="nt">3</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">4</span><span class="nd">:</span> <span class="nt">4</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">5</span><span class="nd">:</span> <span class="nt">5</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">last</span><span class="nd">:</span> <span class="nt">6</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="o">),</span>
+</span></span><span class="line"><span class="cl">    </span></span></code></pre></div>
 
     </div>
   </main>
@@ -1524,7 +1792,7 @@
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.1.4. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.2.1. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1532,7 +1800,7 @@
       
   
     </div>
-    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-YPtos5ypUKfh542wG5kSmDTs7wKbtPcnNs5lpYFuO3fyv4vAUqvOmSZR7RE2e7Cd" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-buYULMZH2OycNNKg+mmxa2waaFcciDgcA0Gd8CBDU+/Afub3TONdYMWYN0AgLuLS" crossorigin="anonymous"></script>
 
 
 <script src="https://coreui.io/docs/assets/js/docs.min.js"></script>

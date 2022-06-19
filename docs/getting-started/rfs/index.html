@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="CoreUI&rsquo;s resizing engine responsively scales common CSS properties to better utilize available space across viewports and devices.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.74.3">
+<meta name="generator" content="Hugo 0.93.3">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.2">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-YUdsYsgRlkUONN8mdJ0FYda0kzlomX2TWturtRobleAB8py9rvyfGQzJdLRc9lFL" crossorigin="anonymous">
+<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-q0Ja96GxuKqNEh7KDLa79pu47abmS0a2pZpPREKd5ZPlutD+GEJI/Jhe5SXkr5mr" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/assets/css/docs.css" rel="stylesheet">
 
@@ -879,46 +879,46 @@
 <p>The mixins are included in CoreUI and are available once you include CoreUI&rsquo;s <code>scss</code>. RFS can also be <a href="https://github.com/twbs/rfs/tree/v9.0.3#installation">installed standalone</a> if needed.</p>
 <h3 id="using-the-mixins">Using the mixins</h3>
 <p>The <code>rfs()</code> mixin has shorthands for <code>font-size</code>, <code>margin</code>, <code>margin-top</code>, <code>margin-right</code>, <code>margin-bottom</code>, <code>margin-left</code>, <code>padding</code>, <code>padding-top</code>, <code>padding-right</code>, <code>padding-bottom</code>, and <code>padding-left</code>. See the example below for source Sass and compiled CSS.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nc">.title</span> <span class="p">{</span>
-  <span class="k">@include</span><span class="nd"> font-size</span><span class="p">(</span><span class="mi">4</span><span class="kt">rem</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">title</span> <span class="p">{</span>
-  <span class="k">font-size</span><span class="p">:</span> <span class="nb">calc</span><span class="p">(</span><span class="mf">1.525</span><span class="kt">rem</span> <span class="o">+</span> <span class="mf">3.3</span><span class="kt">vw</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">1200px</span><span class="o">)</span> <span class="p">{</span>
-  <span class="p">.</span><span class="nc">title</span> <span class="p">{</span>
-    <span class="k">font-size</span><span class="p">:</span> <span class="mi">4</span><span class="kt">rem</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>Any other property can be passed to the <code>rfs()</code> mixin like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nc">.selector</span> <span class="p">{</span>
-  <span class="k">@include</span><span class="nd"> rfs</span><span class="p">(</span><span class="mi">4</span><span class="kt">rem</span><span class="o">,</span> <span class="no">border</span><span class="o">-</span><span class="n">radius</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div><p><code>!important</code> can also just be added to whatever value you want:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nc">.selector</span> <span class="p">{</span>
-  <span class="k">@include</span><span class="nd"> padding</span><span class="p">(</span><span class="mi">2</span><span class="mf">.5</span><span class="kt">rem</span> <span class="nv">!important</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div><h3 id="using-the-functions">Using the functions</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.title</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">@include</span><span class="nd"> font-size</span><span class="p">(</span><span class="mi">4</span><span class="kt">rem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">title</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="nb">calc</span><span class="p">(</span><span class="mf">1.525</span><span class="kt">rem</span> <span class="o">+</span> <span class="mf">3.3</span><span class="kt">vw</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">1200px</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">title</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-size</span><span class="p">:</span> <span class="mi">4</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Any other property can be passed to the <code>rfs()</code> mixin like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.selector</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">@include</span><span class="nd"> rfs</span><span class="p">(</span><span class="mi">4</span><span class="kt">rem</span><span class="o">,</span> <span class="n">border-radius</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>!important</code> can also just be added to whatever value you want:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.selector</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">@include</span><span class="nd"> padding</span><span class="p">(</span><span class="mi">2</span><span class="mf">.5</span><span class="kt">rem</span> <span class="k">!important</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="using-the-functions">Using the functions</h3>
 <p>When you don&rsquo;t want to use the includes, there are also two functions:</p>
 <ul>
 <li><code>rfs-value()</code> converts a value into a <code>rem</code> value if a <code>px</code> value is passed, in other cases it returns the same result.</li>
 <li><code>rfs-fluid-value()</code> returns the fluid version of a value if the property needs rescaling.</li>
 </ul>
 <p>In this example, we use one of CoreUI for Bootstrap built-in <a href="https://coreui.io/docs/layout/breakpoints/">responsive breakpoint mixins</a> to only apply styling below the <code>lg</code> breakpoint.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nc">.selector</span> <span class="p">{</span>
-  <span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nt">padding</span><span class="nd">:</span> <span class="nt">rfs-fluid-value</span><span class="o">(</span><span class="nt">2rem</span><span class="o">)</span><span class="p">;</span>
-    <span class="nt">font-size</span><span class="nd">:</span> <span class="nt">rfs-fluid-value</span><span class="o">(</span><span class="nt">1</span><span class="nc">.125rem</span><span class="o">)</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">max-width</span><span class="o">:</span> <span class="nt">991</span><span class="p">.</span><span class="nc">98px</span><span class="o">)</span> <span class="p">{</span>
-  <span class="p">.</span><span class="nc">selector</span> <span class="p">{</span>
-    <span class="k">padding</span><span class="p">:</span> <span class="nb">calc</span><span class="p">(</span><span class="mf">1.325</span><span class="kt">rem</span> <span class="o">+</span> <span class="mf">0.9</span><span class="kt">vw</span><span class="p">);</span>
-    <span class="k">font-size</span><span class="p">:</span> <span class="mf">1.125</span><span class="kt">rem</span><span class="p">;</span> <span class="c">/* 1.125rem is small enough, so RFS won&#39;t rescale this */</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><h2 id="extended-documentation">Extended documentation</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.selector</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">padding</span><span class="o">:</span> <span class="nf">rfs-fluid-value</span><span class="p">(</span><span class="mi">2</span><span class="kt">rem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="na">font-size</span><span class="o">:</span> <span class="nf">rfs-fluid-value</span><span class="p">(</span><span class="mi">1</span><span class="mf">.125</span><span class="kt">rem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">max-width</span><span class="o">:</span> <span class="nt">991</span><span class="p">.</span><span class="nc">98px</span><span class="o">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">selector</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">padding</span><span class="p">:</span> <span class="nb">calc</span><span class="p">(</span><span class="mf">1.325</span><span class="kt">rem</span> <span class="o">+</span> <span class="mf">0.9</span><span class="kt">vw</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-size</span><span class="p">:</span> <span class="mf">1.125</span><span class="kt">rem</span><span class="p">;</span> <span class="c">/* 1.125rem is small enough, so RFS won&#39;t rescale this */</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="extended-documentation">Extended documentation</h2>
 <p>RFS is a separate project under the Bootstrap organization. More about RFS and its configuration can be found on its <a href="https://github.com/twbs/rfs/tree/9.0.3">GitHub repository</a>.</p>
 
     </div>
@@ -936,7 +936,7 @@
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.1.4. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.2.1. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -944,7 +944,7 @@
       
   
     </div>
-    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-YPtos5ypUKfh542wG5kSmDTs7wKbtPcnNs5lpYFuO3fyv4vAUqvOmSZR7RE2e7Cd" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-buYULMZH2OycNNKg+mmxa2waaFcciDgcA0Gd8CBDU+/Afub3TONdYMWYN0AgLuLS" crossorigin="anonymous"></script>
 
 
 <script src="https://coreui.io/docs/assets/js/docs.min.js"></script>

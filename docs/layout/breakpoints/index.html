@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Breakpoints are the triggers in CoreUI for Bootstrap for how your layout responsive changes across device or viewport sizes.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.74.3">
+<meta name="generator" content="Hugo 0.93.3">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.2">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-YUdsYsgRlkUONN8mdJ0FYda0kzlomX2TWturtRobleAB8py9rvyfGQzJdLRc9lFL" crossorigin="anonymous">
+<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-q0Ja96GxuKqNEh7KDLa79pu47abmS0a2pZpPREKd5ZPlutD+GEJI/Jhe5SXkr5mr" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/assets/css/docs.css" rel="stylesheet">
 
@@ -931,113 +931,113 @@
 </table>
 <p>Each breakpoint was chosen to comfortably hold containers whose widths are multiples of 12. Breakpoints are also representative of a subset of common device sizes and viewport dimensions—they don&rsquo;t specifically target every use case or device. Instead, the ranges provide a strong and consistent foundation to build on for nearly any device.</p>
 <p>These breakpoints are customizable via Sass—you&rsquo;ll find them in a Sass map in our <code>_variables.scss</code> stylesheet.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$grid-breakpoints</span><span class="o">:</span> <span class="p">(</span>
-  <span class="n">xs</span><span class="o">:</span> <span class="mi">0</span><span class="o">,</span>
-  <span class="n">sm</span><span class="o">:</span> <span class="mi">576</span><span class="kt">px</span><span class="o">,</span>
-  <span class="n">md</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="o">,</span>
-  <span class="n">lg</span><span class="o">:</span> <span class="mi">992</span><span class="kt">px</span><span class="o">,</span>
-  <span class="n">xl</span><span class="o">:</span> <span class="mi">1200</span><span class="kt">px</span><span class="o">,</span>
-  <span class="n">xxl</span><span class="o">:</span> <span class="mi">1400</span><span class="kt">px</span>
-<span class="p">);</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nv">$grid-breakpoints</span><span class="o">:</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="na">xs</span><span class="o">:</span> <span class="mi">0</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="na">sm</span><span class="o">:</span> <span class="mi">576</span><span class="kt">px</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="na">md</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="na">lg</span><span class="o">:</span> <span class="mi">992</span><span class="kt">px</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="na">xl</span><span class="o">:</span> <span class="mi">1200</span><span class="kt">px</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="na">xxl</span><span class="o">:</span> <span class="mi">1400</span><span class="kt">px</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></div>
 <p>For more information and examples on how to modify our Sass maps and variables, please refer to <a href="https://coreui.io/docs/layout/grid/#sass">the Sass section of the Grid documentation</a>.</p>
 <h2 id="media-queries">Media queries</h2>
 <p>Since CoreUI for Bootstrap is developed to be mobile first, we use a handful of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">media queries</a> to create sensible breakpoints for our layouts and interfaces. These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes.</p>
 <h3 id="min-width">Min-width</h3>
 <p>CoreUI for Bootstrap primarily uses the following media query ranges—or breakpoints—in our source Sass files for our layout, grid system, and components.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">// Source mixins
-</span><span class="c1"></span>
-<span class="c1">// No media query necessary for xs breakpoint as it&#39;s effectively `@media (min-width: 0) { ... }`
-</span><span class="c1"></span><span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="n">xxl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// Usage
-</span><span class="c1"></span>
-<span class="c1">// Example: Hide starting at `min-width: 0`, and then show at the `sm` breakpoint
-</span><span class="c1"></span><span class="nc">.custom-class</span> <span class="p">{</span>
-  <span class="nt">display</span><span class="nd">:</span> <span class="nt">none</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nc">.custom-class</span> <span class="p">{</span>
-    <span class="nt">display</span><span class="nd">:</span> <span class="nt">block</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>These Sass mixins translate in our compiled CSS using the values declared in our Sass variables. For example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">// X-Small devices (portrait phones, less than 576px)
-</span><span class="c1">// No media query for `xs` since this is the default in Bootstrap
-</span><span class="c1"></span>
-<span class="c1">// Small devices (landscape phones, 576px and up)
-</span><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="no">min-width</span><span class="o">:</span> <span class="mi">576</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// Medium devices (tablets, 768px and up)
-</span><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="no">min-width</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// Large devices (desktops, 992px and up)
-</span><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="no">min-width</span><span class="o">:</span> <span class="mi">992</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// X-Large devices (large desktops, 1200px and up)
-</span><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="no">min-width</span><span class="o">:</span> <span class="mi">1200</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// XX-Large devices (larger desktops, 1400px and up)
-</span><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="no">min-width</span><span class="o">:</span> <span class="mi">1400</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-</code></pre></div><h3 id="max-width">Max-width</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// Source mixins
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// No media query necessary for xs breakpoint as it&#39;s effectively `@media (min-width: 0) { ... }`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="n">xxl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Usage
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Example: Hide starting at `min-width: 0`, and then show at the `sm` breakpoint
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nc">.custom-class</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">display</span><span class="o">:</span> <span class="ni">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-up</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nc">.custom-class</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">display</span><span class="o">:</span> <span class="ni">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>These Sass mixins translate in our compiled CSS using the values declared in our Sass variables. For example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// X-Small devices (portrait phones, less than 576px)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// No media query for `xs` since this is the default in Bootstrap
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Small devices (landscape phones, 576px and up)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="na">min-width</span><span class="o">:</span> <span class="mi">576</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Medium devices (tablets, 768px and up)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="na">min-width</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Large devices (desktops, 992px and up)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="na">min-width</span><span class="o">:</span> <span class="mi">992</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// X-Large devices (large desktops, 1200px and up)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="na">min-width</span><span class="o">:</span> <span class="mi">1200</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// XX-Large devices (larger desktops, 1400px and up)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="na">min-width</span><span class="o">:</span> <span class="mi">1400</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span></code></pre></div><h3 id="max-width">Max-width</h3>
 <p>We occasionally use media queries that go in the other direction (the given screen size <em>or smaller</em>):</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">// No media query necessary for xs breakpoint as it&#39;s effectively `@media (max-width: 0) { ... }`
-</span><span class="c1"></span><span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">xxl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// Example: Style from medium breakpoint and down
-</span><span class="c1"></span><span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nc">.custom-class</span> <span class="p">{</span>
-    <span class="nt">display</span><span class="nd">:</span> <span class="nt">block</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>These mixins take those declared breakpoints, subtract <code>.02px</code> from them, and use them as our <code>max-width</code> values. For example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">// `xs` returns only a ruleset and no media query
-</span><span class="c1">// ... { ... }
-</span><span class="c1"></span>
-<span class="c1">// `sm` applies to x-small devices (portrait phones, less than 576px)
-</span><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="no">max-width</span><span class="o">:</span> <span class="mi">575</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// `md` applies to small devices (landscape phones, less than 768px)
-</span><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="no">max-width</span><span class="o">:</span> <span class="mi">767</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// `lg` applies to medium devices (tablets, less than 992px)
-</span><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="no">max-width</span><span class="o">:</span> <span class="mi">991</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// `xl` applies to large devices (desktops, less than 1200px)
-</span><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="no">max-width</span><span class="o">:</span> <span class="mi">1199</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// `xxl` applies to x-large devices (large desktops, less than 1400px)
-</span><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="no">max-width</span><span class="o">:</span> <span class="mi">1399</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-</code></pre></div><div class="docs-callout docs-callout-warning">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// No media query necessary for xs breakpoint as it&#39;s effectively `@media (max-width: 0) { ... }`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">xxl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Example: Style from medium breakpoint and down
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@include</span><span class="nd"> media-breakpoint-down</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nc">.custom-class</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">display</span><span class="o">:</span> <span class="ni">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>These mixins take those declared breakpoints, subtract <code>.02px</code> from them, and use them as our <code>max-width</code> values. For example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// `xs` returns only a ruleset and no media query
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ... { ... }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// `sm` applies to x-small devices (portrait phones, less than 576px)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="na">max-width</span><span class="o">:</span> <span class="mi">575</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// `md` applies to small devices (landscape phones, less than 768px)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="na">max-width</span><span class="o">:</span> <span class="mi">767</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// `lg` applies to medium devices (tablets, less than 992px)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="na">max-width</span><span class="o">:</span> <span class="mi">991</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// `xl` applies to large devices (desktops, less than 1200px)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="na">max-width</span><span class="o">:</span> <span class="mi">1199</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// `xxl` applies to x-large devices (large desktops, less than 1400px)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="na">max-width</span><span class="o">:</span> <span class="mi">1399</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span></code></pre></div><div class="docs-callout docs-callout-warning">
 <strong>Why subtract .02px?</strong> Browsers don&rsquo;t currently support <a href="https://www.w3.org/TR/mediaqueries-4/#range-context">range context queries</a>, so we work around the limitations of <a href="https://www.w3.org/TR/mediaqueries-4/#mq-min-max"><code>min-</code> and <code>max-</code> prefixes</a> and viewports with fractional widths (which can occur under certain conditions on high-dpi devices, for instance) by using values with higher precision.
 </div>
 
 <h3 id="single-breakpoint">Single breakpoint</h3>
 <p>There are also media queries and mixins for targeting a single segment of screen sizes using the minimum and maximum breakpoint widths.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@include</span><span class="nd"> media-breakpoint-only</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-only</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-only</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-only</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-only</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span><span class="nd"> media-breakpoint-only</span><span class="p">(</span><span class="n">xxl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-</code></pre></div><p>For example the <code>@include media-breakpoint-only(md) { ... }</code> will result in :</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@media</span> <span class="p">(</span><span class="no">min-width</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="no">max-width</span><span class="o">:</span> <span class="mi">991</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-</code></pre></div><h3 id="between-breakpoints">Between breakpoints</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-only</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-only</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-only</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-only</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-only</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-only</span><span class="p">(</span><span class="n">xxl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span></code></pre></div><p>For example the <code>@include media-breakpoint-only(md) { ... }</code> will result in :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="k">@media</span> <span class="p">(</span><span class="na">min-width</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="na">max-width</span><span class="o">:</span> <span class="mi">991</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span></code></pre></div><h3 id="between-breakpoints">Between breakpoints</h3>
 <p>Similarly, media queries may span multiple breakpoint widths:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="k">@include</span><span class="nd"> media-breakpoint-between</span><span class="p">(</span><span class="n">md</span><span class="o">,</span> <span class="n">xl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-</code></pre></div><p>Which results in:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="c1">// Example
-</span><span class="c1">// Apply styles starting from medium devices and up to extra large devices
-</span><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="no">min-width</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="no">max-width</span><span class="o">:</span> <span class="mi">1199</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="k">@include</span><span class="nd"> media-breakpoint-between</span><span class="p">(</span><span class="n">md</span><span class="o">,</span> <span class="n">xl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span></code></pre></div><p>Which results in:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// Example
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Apply styles starting from medium devices and up to extra large devices
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@media</span> <span class="p">(</span><span class="na">min-width</span><span class="o">:</span> <span class="mi">768</span><span class="kt">px</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="na">max-width</span><span class="o">:</span> <span class="mi">1199</span><span class="mf">.98</span><span class="kt">px</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
+</span></span></code></pre></div>
     </div>
   </main>
 </div>
@@ -1053,7 +1053,7 @@
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.1.4. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.2.1. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -1061,7 +1061,7 @@
       
   
     </div>
-    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-YPtos5ypUKfh542wG5kSmDTs7wKbtPcnNs5lpYFuO3fyv4vAUqvOmSZR7RE2e7Cd" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-buYULMZH2OycNNKg+mmxa2waaFcciDgcA0Gd8CBDU+/Afub3TONdYMWYN0AgLuLS" crossorigin="anonymous"></script>
 
 
 <script src="https://coreui.io/docs/assets/js/docs.min.js"></script>

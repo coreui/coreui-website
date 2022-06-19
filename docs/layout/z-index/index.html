@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="While not a part of Bootstrap&rsquo;s grid system, z-indexes play an important part in how our components overlay and interact with one another.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.74.3">
+<meta name="generator" content="Hugo 0.93.3">
 
 <meta name="docsearch:language" content="en">
 <meta name="docsearch:version" content="4.2">
@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-YUdsYsgRlkUONN8mdJ0FYda0kzlomX2TWturtRobleAB8py9rvyfGQzJdLRc9lFL" crossorigin="anonymous">
+<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-q0Ja96GxuKqNEh7KDLa79pu47abmS0a2pZpPREKd5ZPlutD+GEJI/Jhe5SXkr5mr" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/assets/css/docs.css" rel="stylesheet">
 
@@ -859,17 +859,17 @@
       <p>Several CoreUI for Bootstrap components utilize <code>z-index</code>, the CSS property that helps control layout by providing a third axis to arrange content. We utilize a default z-index scale in CoreUI for Bootstrap that&rsquo;s been designed to properly layer navigation, tooltips and popovers, modals, and more.</p>
 <p>These higher values start at an arbitrary number, high and specific enough to ideally avoid conflicts. We need a standard set of these across our layered components—tooltips, popovers, navbars, dropdowns, modals—so we can be reasonably consistent in the behaviors. There&rsquo;s no reason we couldn&rsquo;t have used <code>100</code>+ or <code>500</code>+.</p>
 <p>We don&rsquo;t encourage customization of these individual values; should you change one, you likely need to change them all.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scss" data-lang="scss"><span class="nv">$zindex-dropdown</span><span class="o">:</span>                   <span class="mi">1000</span><span class="p">;</span>
-<span class="nv">$zindex-sticky</span><span class="o">:</span>                     <span class="mi">1020</span><span class="p">;</span>
-<span class="nv">$zindex-fixed</span><span class="o">:</span>                      <span class="mi">1030</span><span class="p">;</span>
-<span class="nv">$zindex-offcanvas-backdrop</span><span class="o">:</span>         <span class="mi">1040</span><span class="p">;</span>
-<span class="nv">$zindex-offcanvas</span><span class="o">:</span>                  <span class="mi">1045</span><span class="p">;</span>
-<span class="nv">$zindex-modal-backdrop</span><span class="o">:</span>             <span class="mi">1050</span><span class="p">;</span>
-<span class="nv">$zindex-modal</span><span class="o">:</span>                      <span class="mi">1055</span><span class="p">;</span>
-<span class="nv">$zindex-popover</span><span class="o">:</span>                    <span class="mi">1070</span><span class="p">;</span>
-<span class="nv">$zindex-tooltip</span><span class="o">:</span>                    <span class="mi">1080</span><span class="p">;</span>
-<span class="nv">$zindex-toaster</span><span class="o">:</span>                    <span class="mi">1090</span><span class="p">;</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nv">$zindex-dropdown</span><span class="o">:</span>                   <span class="mi">1000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$zindex-sticky</span><span class="o">:</span>                     <span class="mi">1020</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$zindex-fixed</span><span class="o">:</span>                      <span class="mi">1030</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$zindex-offcanvas-backdrop</span><span class="o">:</span>         <span class="mi">1040</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$zindex-offcanvas</span><span class="o">:</span>                  <span class="mi">1045</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$zindex-modal-backdrop</span><span class="o">:</span>             <span class="mi">1050</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$zindex-modal</span><span class="o">:</span>                      <span class="mi">1055</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$zindex-popover</span><span class="o">:</span>                    <span class="mi">1070</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$zindex-tooltip</span><span class="o">:</span>                    <span class="mi">1080</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$zindex-toaster</span><span class="o">:</span>                    <span class="mi">1090</span><span class="p">;</span>
+</span></span></code></pre></div>
 <p>To handle overlapping borders within components (e.g., buttons and inputs in input groups), we use low single digit <code>z-index</code> values of <code>1</code>, <code>2</code>, and <code>3</code> for default, hover, and active states. On hover/focus/active, we bring a particular element to the forefront with a higher <code>z-index</code> value to show their border over the sibling elements.</p>
 
     </div>
@@ -887,7 +887,7 @@
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.1.4. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+    <p class="mb-0">Currently v4.2.1. Code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
   </div>
 </footer>
 
@@ -895,7 +895,7 @@
       
   
     </div>
-    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-YPtos5ypUKfh542wG5kSmDTs7wKbtPcnNs5lpYFuO3fyv4vAUqvOmSZR7RE2e7Cd" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-buYULMZH2OycNNKg+mmxa2waaFcciDgcA0Gd8CBDU+/Afub3TONdYMWYN0AgLuLS" crossorigin="anonymous"></script>
 
 
 <script src="https://coreui.io/docs/assets/js/docs.min.js"></script>
