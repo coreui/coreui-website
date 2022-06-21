@@ -1,0 +1,6 @@
+<c-multi-select multiple>
+  <c-multi-select-option *ngFor="let option of frontend" [value]="option.value" [selected]="option.selected ?? false" [disabled]="option.disabled">{{option.value}}</c-multi-select-option>
+  <c-multi-select-optgroup label="Backend">
+    <c-multi-select-option *ngFor="let option of backend" [value]="option.value" [selected]="option.selected ?? false">{{option.label}}</c-multi-select-option>
+  </c-multi-select-optgroup>
+</c-multi-select>

@@ -1,0 +1,65 @@
+<form #browserDefaultsForm="ngForm"
+      (ngSubmit)="onSubmit2()"
+      [gutter]="3"
+      [validated]="browserDefaultsValidated"
+      cForm
+      cRow
+      ngNativeValidate
+>
+  <c-col [md]="4">
+    <label cLabel for="validationDefault01">Email</label>
+    <input cFormControl id="validationDefault01" required type="text" value="Mark" />
+    <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+  </c-col>
+  <c-col [md]="4">
+    <label cLabel for="validationDefault02">Email</label>
+    <input cFormControl id="validationDefault02" required type="text" value="Otto" />
+    <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+  </c-col>
+  <c-col [md]="4">
+    <label cLabel for="validationDefaultUsername">Username</label>
+    <c-input-group class="has-validation">
+      <span cInputGroupText id="inputGroupPrepend1">@</span>
+      <input aria-describedby="inputGroupPrepend1"
+             cFormControl
+             id="validationDefaultUsername"
+             required
+             type="text"
+      />
+      <c-form-feedback [valid]="false">Please choose a username.</c-form-feedback>
+    </c-input-group>
+  </c-col>
+  <c-col [md]="6">
+    <label cLabel for="validationDefault03">City</label>
+    <input cFormControl id="validationDefault03" required type="text" />
+    <c-form-feedback [valid]="false">Please provide a valid city.</c-form-feedback>
+  </c-col>
+  <c-col [md]="3">
+    <label cLabel for="validationDefault04">State</label>
+    <select cSelect id="validationDefault04" required>
+      <option value="">Choose...</option>
+      <option>...</option>
+    </select>
+    <c-form-feedback [valid]="false">Please provide a valid State.</c-form-feedback>
+  </c-col>
+  <c-col [md]="3">
+    <label cLabel for="validationDefault05">Zip code</label>
+    <input cFormControl id="validationDefault05" required type="text" />
+    <c-form-feedback [valid]="false">Please provide a valid zip.</c-form-feedback>
+  </c-col>
+  <c-col [xs]="12">
+    <c-form-check>
+      <input cFormCheckInput id="invalidCheck1" name="invalidCheck" required type="checkbox" />
+      <label cFormCheckLabel for="invalidCheck1">Agree to terms and conditions</label>
+    </c-form-check>
+    <c-form-feedback [valid]="false">You must agree before submitting.</c-form-feedback>
+  </c-col>
+  <c-col [xs]="12">
+    <button cButton class="me-1" color="primary" type="submit">
+      Submit form
+    </button>
+    <button (click)="onReset2()" cButton color="secondary" type="reset">
+      Reset
+    </button>
+  </c-col>
+</form>
