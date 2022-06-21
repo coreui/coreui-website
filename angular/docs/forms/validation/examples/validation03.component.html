@@ -1,0 +1,69 @@
+<form [gutter]="3" cForm cRow class="needs-validation" ngNativeValidate>
+  <c-col [md]="4">
+    <label cLabel for="validationServer01">First name</label>
+    <input [valid]="true"
+           cFormControl
+           id="validationServer01"
+           required
+           type="text"
+           value="Mark"
+    />
+    <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+  </c-col>
+  <c-col [md]="4">
+    <label cLabel for="validationServer02">Last name</label>
+    <input [valid]="true"
+           cFormControl
+           id="validationServer02"
+           required
+           type="text"
+           value="Otto"
+    />
+    <c-form-feedback [valid]="true">Looks good!</c-form-feedback>
+  </c-col>
+  <c-col [md]="4">
+    <label cLabel for="validationServerUsername">Username</label>
+    <c-input-group class="has-validation">
+      <span cInputGroupText id="inputGroupPrepend03">@</span>
+      <input [valid]="false"
+             aria-describedby="inputGroupPrepend03"
+             cFormControl
+             id="validationServerUsername"
+             required
+             type="text"
+      />
+      <c-form-feedback [valid]="false">Please choose a username.</c-form-feedback>
+    </c-input-group>
+  </c-col>
+  <c-col [md]="6">
+    <label cLabel for="validationServer03">City</label>
+    <input [valid]="false" cFormControl id="validationServer03" required type="text" />
+    <c-form-feedback [valid]="false">Please provide a valid city.</c-form-feedback>
+  </c-col>
+  <c-col [md]="3">
+    <label cLabel for="validationServer04">State</label>
+    <select [valid]="false" cSelect id="validationServer04">
+      <option disabled>Choose...</option>
+      <option>...</option>
+    </select>
+    <c-form-feedback [valid]="false">Please provide a valid state.</c-form-feedback>
+  </c-col>
+  <c-col [md]="3">
+    <label cLabel for="validationServer05">Zip code</label>
+    <input [valid]="false" cFormControl id="validationServer05" required type="text" />
+    <c-form-feedback [valid]="false">Please provide a valid zip.</c-form-feedback>
+  </c-col>
+  <c-col [xs]="12">
+    <c-form-check class="mb-3">
+      <input [valid]="false" cFormCheckInput id="invalidCheckServer" required type="checkbox">
+      <label cFormCheckLabel for="invalidCheckServer">Agree to terms and conditions</label>
+    </c-form-check>
+    <c-form-feedback [valid]="false">You must agree before submitting.</c-form-feedback>
+  </c-col>
+  <c-col [xs]="12">
+    <button cButton color="primary" type="submit">
+      Submit form
+    </button>
+  </c-col>
+</form>
+
