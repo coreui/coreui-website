@@ -275,9 +275,9 @@
       </div>
     </div>
     <div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent">
-      <header class="header header-sticky mb-4">
+      <header class="header header-light bg-primary header-sticky mb-4">
         <div class="container-fluid">
-          <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+          <button class="header-toggler px-md-0 me-md-3 d-md-none" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
             <svg class="icon icon-lg">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
             </svg>
@@ -285,32 +285,19 @@
             <svg width="118" height="46" alt="CoreUI Logo">
               <use xlink:href="assets/brand/coreui.svg#full"></use>
             </svg></a>
-          <ul class="header-nav d-none d-md-flex">
-            <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
-          </ul>
-          <nav class="header-nav ms-auto me-4">
-            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-              <input class="btn-check" id="btn-light-theme" type="radio" name="theme-switch" autocomplete="off" value="light" onchange="handleThemeChange(this)">
-              <label class="btn btn-primary" for="btn-light-theme">
-                <svg class="icon">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-sun"></use>
-                </svg>
-              </label>
-              <input class="btn-check" id="btn-dark-theme" type="radio" name="theme-switch" autocomplete="off" value="dark" onchange="handleThemeChange(this)">
-              <label class="btn btn-primary" for="btn-dark-theme">
-                <svg class="icon">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-moon"></use>
-                </svg>
-              </label>
+          <form class="d-flex" role="search">
+            <div class="input-group"><span class="input-group-text bg-light border-0 px-1" id="search-addon">
+                <svg class="icon icon-lg my-1 mx-2 text-disabled">
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-search"></use>
+                </svg></span>
+              <input class="form-control bg-light border-0" type="text" placeholder="Search..." aria-label="Search" aria-describedby="search-addon">
             </div>
-          </nav>
-          <ul class="header-nav me-3">
+          </form>
+          <ul class="header-nav ms-auto me-3">
             <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <svg class="icon icon-lg my-1 mx-2">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-                </svg><span class="badge rounded-pill position-absolute top-0 end-0 bg-danger-gradient">5</span></a>
+                </svg><span class="position-absolute top-0 start-50 translate-middle p-1 ms-2 mt-1 bg-danger border border-light rounded-circle"><span class="visually-hidden">New alerts</span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
                 <div class="dropdown-header bg-light dark:bg-white dark:bg-opacity-10"><strong>You have 5 notifications</strong></div><a class="dropdown-item" href="#">
                   <svg class="icon me-2 text-success">
@@ -346,9 +333,9 @@
             <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <svg class="icon icon-lg my-1 mx-2">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
-                </svg><span class="badge rounded-pill position-absolute top-0 end-0 bg-warning-gradient">5</span></a>
-              <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
-                <div class="dropdown-header bg-light dark:bg-white dark:bg-opacity-10"><strong>You have 5 pending tasks</strong></div><a class="dropdown-item d-block" href="#">
+                </svg><span class="position-absolute top-0 start-50 translate-middle p-1 ms-2 mt-1 bg-danger border border-light rounded-circle"><span class="visually-hidden">New alerts</span></span></a>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg py-0">
+                <div class="dropdown-header bg-light fw-semibold dark:bg-white dark:bg-opacity-10">You have 5 pending tasks</div><a class="dropdown-item d-block" href="#">
                   <div class="small mb-1">Upgrade NPM &amp; Bower<span class="float-end"><strong>0%</strong></span></div><span class="progress progress-thin">
                     <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                   </span>
@@ -368,13 +355,14 @@
                   <div class="small mb-1">Angular 8 Version<span class="float-end"><strong>100%</strong></span></div><span class="progress progress-thin">
                     <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                   </span>
-                </a><a class="dropdown-item text-center border-top" href="#"><strong>View all tasks</strong></a>
+                </a>
+                <div class="p-2"><a class="btn btn-outline-primary w-100" href="#">View all tasks</a></div>
               </div>
             </li>
             <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <svg class="icon icon-lg my-1 mx-2">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                </svg><span class="badge rounded-pill position-absolute top-0 end-0 bg-info-gradient">7</span></a>
+                </svg><span class="position-absolute top-0 start-50 translate-middle p-1 ms-2 mt-1 bg-danger border border-light rounded-circle"><span class="visually-hidden">New alerts</span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
                 <div class="dropdown-header bg-light dark:bg-white dark:bg-opacity-10"><strong>You have 4 messages</strong></div><a class="dropdown-item" href="#">
                   <div class="message">
@@ -418,7 +406,7 @@
           </ul>
           <ul class="header-nav me-4">
             <li class="nav-item dropdown d-flex align-items-center"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg" alt="user@email.com"></div>
+                <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg" alt="user@email.com"><span class="avatar-status bg-success"></span></div>
               </a>
               <div class="dropdown-menu dropdown-menu-end pt-0">
                 <div class="dropdown-header bg-light py-2 dark:bg-white dark:bg-opacity-10">
@@ -466,9 +454,6 @@
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-applications-settings"></use>
             </svg>
           </button>
-        </div>
-        <div class="header-divider"></div>
-        <div class="container-fluid">
         </div>
       </header>
       <div class="body flex-grow-1 px-3">

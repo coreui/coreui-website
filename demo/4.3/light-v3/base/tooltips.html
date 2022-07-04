@@ -44,7 +44,7 @@
     <link rel="canonical" href="https://coreui.io/docs/components/tooltips/">
   </head>
   <body>
-    <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+    <div class="sidebar sidebar-light sidebar-fixed" id="sidebar">
       <div class="sidebar-brand d-none d-md-flex">
         <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
           <use xlink:href="assets/brand/coreui.svg#full"></use>
@@ -52,21 +52,13 @@
         <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
           <use xlink:href="assets/brand/coreui.svg#signet"></use>
         </svg>
+        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
       </div>
       <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
         <li class="nav-item"><a class="nav-link" href="index.html">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
-            </svg> Dashboard<span class="badge bg-info-gradient ms-auto">NEW</span></a></li>
-        <li class="nav-title">Theme</li>
-        <li class="nav-item"><a class="nav-link" href="colors.html">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-drop"></use>
-            </svg> Colors</a></li>
-        <li class="nav-item"><a class="nav-link" href="typography.html">
-            <svg class="nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
-            </svg> Typography</a></li>
+            </svg> Dashboard<span class="badge bg-primary-gradient ms-auto">NEW</span></a></li>
         <li class="nav-title">Components</li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
@@ -144,7 +136,7 @@
         <li class="nav-item"><a class="nav-link" href="widgets.html">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calculator"></use>
-            </svg> Widgets<span class="badge bg-info-gradient ms-auto">NEW</span></a></li>
+            </svg> Widgets<span class="badge bg-primary-gradient ms-auto">NEW</span></a></li>
         <li class="nav-divider"></li>
         <li class="nav-title">Plugins</li>
         <li class="nav-item"><a class="nav-link" href="calendar.html">
@@ -220,7 +212,7 @@
         <li class="nav-item px-3 d-narrow-none">
           <div class="text-uppercase mb-1"><small><b>CPU Usage</b></small></div>
           <div class="progress progress-thin">
-            <div class="progress-bar bg-info-gradient" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-primary-gradient" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
           </div><small class="text-medium-emphasis-inverse">348 Processes. 1/4 Cores.</small>
         </li>
         <li class="nav-item px-3 d-narrow-none">
@@ -236,7 +228,6 @@
           </div><small class="text-medium-emphasis-inverse">243GB/256GB</small>
         </li>
       </ul>
-      <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
     </div>
     <div class="sidebar sidebar-light sidebar-lg sidebar-end sidebar-overlaid hide" id="aside">
       <div class="sidebar-header bg-transparent p-0">
@@ -429,10 +420,10 @@
         </div>
       </div>
     </div>
-    <div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent">
-      <header class="header header-sticky mb-4">
+    <div class="wrapper d-flex flex-column min-vh-100 bg-light bg-opacity-50 dark:bg-transparent">
+      <header class="header header-light bg-primary header-sticky mb-4">
         <div class="container-fluid">
-          <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+          <button class="header-toggler px-md-0 me-md-3 d-md-none" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
             <svg class="icon icon-lg">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
             </svg>
@@ -440,32 +431,19 @@
             <svg width="118" height="46" alt="CoreUI Logo">
               <use xlink:href="assets/brand/coreui.svg#full"></use>
             </svg></a>
-          <ul class="header-nav d-none d-md-flex">
-            <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
-          </ul>
-          <nav class="header-nav ms-auto me-4">
-            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-              <input class="btn-check" id="btn-light-theme" type="radio" name="theme-switch" autocomplete="off" value="light" onchange="handleThemeChange(this)">
-              <label class="btn btn-primary" for="btn-light-theme">
-                <svg class="icon">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-sun"></use>
-                </svg>
-              </label>
-              <input class="btn-check" id="btn-dark-theme" type="radio" name="theme-switch" autocomplete="off" value="dark" onchange="handleThemeChange(this)">
-              <label class="btn btn-primary" for="btn-dark-theme">
-                <svg class="icon">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-moon"></use>
-                </svg>
-              </label>
+          <form class="d-flex" role="search">
+            <div class="input-group"><span class="input-group-text bg-light border-0 px-1" id="search-addon">
+                <svg class="icon icon-lg my-1 mx-2 text-disabled">
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-search"></use>
+                </svg></span>
+              <input class="form-control bg-light border-0" type="text" placeholder="Search..." aria-label="Search" aria-describedby="search-addon">
             </div>
-          </nav>
-          <ul class="header-nav me-3">
+          </form>
+          <ul class="header-nav ms-auto me-3">
             <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <svg class="icon icon-lg my-1 mx-2">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-                </svg><span class="badge rounded-pill position-absolute top-0 end-0 bg-danger-gradient">5</span></a>
+                </svg><span class="position-absolute top-0 start-50 translate-middle p-1 ms-2 mt-1 bg-danger border border-light rounded-circle"><span class="visually-hidden">New alerts</span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
                 <div class="dropdown-header bg-light dark:bg-white dark:bg-opacity-10"><strong>You have 5 notifications</strong></div><a class="dropdown-item" href="#">
                   <svg class="icon me-2 text-success">
@@ -501,9 +479,9 @@
             <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <svg class="icon icon-lg my-1 mx-2">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
-                </svg><span class="badge rounded-pill position-absolute top-0 end-0 bg-warning-gradient">5</span></a>
-              <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
-                <div class="dropdown-header bg-light dark:bg-white dark:bg-opacity-10"><strong>You have 5 pending tasks</strong></div><a class="dropdown-item d-block" href="#">
+                </svg><span class="position-absolute top-0 start-50 translate-middle p-1 ms-2 mt-1 bg-danger border border-light rounded-circle"><span class="visually-hidden">New alerts</span></span></a>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg py-0">
+                <div class="dropdown-header bg-light fw-semibold dark:bg-white dark:bg-opacity-10">You have 5 pending tasks</div><a class="dropdown-item d-block" href="#">
                   <div class="small mb-1">Upgrade NPM &amp; Bower<span class="float-end"><strong>0%</strong></span></div><span class="progress progress-thin">
                     <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                   </span>
@@ -523,13 +501,14 @@
                   <div class="small mb-1">Angular 8 Version<span class="float-end"><strong>100%</strong></span></div><span class="progress progress-thin">
                     <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                   </span>
-                </a><a class="dropdown-item text-center border-top" href="#"><strong>View all tasks</strong></a>
+                </a>
+                <div class="p-2"><a class="btn btn-outline-primary w-100" href="#">View all tasks</a></div>
               </div>
             </li>
             <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <svg class="icon icon-lg my-1 mx-2">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                </svg><span class="badge rounded-pill position-absolute top-0 end-0 bg-info-gradient">7</span></a>
+                </svg><span class="position-absolute top-0 start-50 translate-middle p-1 ms-2 mt-1 bg-danger border border-light rounded-circle"><span class="visually-hidden">New alerts</span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
                 <div class="dropdown-header bg-light dark:bg-white dark:bg-opacity-10"><strong>You have 4 messages</strong></div><a class="dropdown-item" href="#">
                   <div class="message">
@@ -573,7 +552,7 @@
           </ul>
           <ul class="header-nav me-4">
             <li class="nav-item dropdown d-flex align-items-center"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg" alt="user@email.com"></div>
+                <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg" alt="user@email.com"><span class="avatar-status bg-success"></span></div>
               </a>
               <div class="dropdown-menu dropdown-menu-end pt-0">
                 <div class="dropdown-header bg-light py-2 dark:bg-white dark:bg-opacity-10">
@@ -622,10 +601,12 @@
             </svg>
           </button>
         </div>
-        <div class="header-divider"></div>
-        <div class="container-fluid">
+      </header>
+      <div class="body flex-grow-1 px-3">
+        <div class="container-lg">
+          <div class="fs-2 fw-semibold">Tooltips</div>
           <nav aria-label="breadcrumb">
-            <ol class="breadcrumb my-0 ms-2">
+            <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
                 <!-- if breadcrumb is single--><a href="#">Home</a>
               </li>
@@ -638,10 +619,6 @@
               <li class="breadcrumb-item active"><span>Tooltips</span></li>
             </ol>
           </nav>
-        </div>
-      </header>
-      <div class="body flex-grow-1 px-3">
-        <div class="container-lg">
           <div class="callout callout-info border-top-0 border-bottom-0 border-end-0 elevation-2 bg-white dark:bg-opacity-10">CoreUI Tooltip has been created as an extension of Bootstrap Tooltip. Tooltip is delivered with some new features, variants, and unique design that matches CoreUI Design System requirements.<br><br>For more information please visit our official
             <a href="https://coreui.io/docs/components/tooltips/" target="_blank">documentation</a>.
           </div>
@@ -653,7 +630,7 @@
                   <p>Hover over the links below to see tooltips:</p>
                   <div class="example">
                     <ul class="nav nav-underline" role="tablist">
-                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-56" role="tab">
+                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1044" role="tab">
                           <svg class="icon me-2">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                           </svg>Preview</a></li>
@@ -663,7 +640,7 @@
                           </svg>Code</a></li>
                     </ul>
                     <div class="tab-content rounded-bottom">
-                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-56">
+                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1044">
                         <p>Placeholder text to demonstrate some <a href="#" data-coreui-toggle="tooltip" data-coreui-original-title="Default tooltip">inline links</a> with tooltips. This is now just filler, no killer. Content placed here just to mimic the presence of <a href="#" data-coreui-toggle="tooltip" data-coreui-original-title="Another tooltip">real text</a>. And all that just to give you an idea of how tooltips would look when used in real-world situations. So hopefully you've now seen how <a href="#" data-coreui-toggle="tooltip" data-coreui-original-title="Another one here too">these tooltips on links</a> can work in practice, once you use them on <a href="#" data-coreui-toggle="tooltip" title="The last tip!">your own</a> site or project.</p>
                       </div>
                     </div>
@@ -672,7 +649,7 @@
                   <p>Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left. Directions are mirrored when using Bootstrap in RTL.</p>
                   <div class="example">
                     <ul class="nav nav-underline" role="tablist">
-                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1268" role="tab">
+                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-403" role="tab">
                           <svg class="icon me-2">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                           </svg>Preview</a></li>
@@ -682,7 +659,7 @@
                           </svg>Code</a></li>
                     </ul>
                     <div class="tab-content rounded-bottom">
-                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1268">
+                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-403">
                         <button class="btn btn-secondary" type="button" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-original-title="Tooltip on top">Tooltip on top</button>
                         <button class="btn btn-secondary" type="button" data-coreui-toggle="tooltip" data-coreui-placement="right" data-coreui-original-title="Tooltip on right">Tooltip on right</button>
                         <button class="btn btn-secondary" type="button" data-coreui-toggle="tooltip" data-coreui-placement="bottom" data-coreui-original-title="Tooltip on bottom">Tooltip on bottom</button>
@@ -701,7 +678,7 @@
                   <p>Elements with the <code>disabled</code> attribute aren’t interactive, meaning users cannot focus, hover, or click them to trigger a tooltip (or popover). As a workaround, you’ll want to trigger the tooltip from a wrapper <code> &lt;div&gt;</code> or <code>&lt;span&gt;</code>, ideally made keyboard-focusable using <code>tabindex="0"</code>.</p>
                   <div class="example">
                     <ul class="nav nav-underline" role="tablist">
-                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-325" role="tab">
+                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1145" role="tab">
                           <svg class="icon me-2">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                           </svg>Preview</a></li>
@@ -711,7 +688,7 @@
                           </svg>Code</a></li>
                     </ul>
                     <div class="tab-content rounded-bottom">
-                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-325"><span class="d-inline-block" tabindex="0" data-coreui-toggle="tooltip" data-coreui-original-title="Disabled tooltip">
+                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1145"><span class="d-inline-block" tabindex="0" data-coreui-toggle="tooltip" data-coreui-original-title="Disabled tooltip">
                           <button class="btn btn-primary" type="button" disabled="">Disabled button</button></span>
                       </div>
                     </div>
