@@ -1,14 +1,14 @@
 @charset "UTF-8";
 /*!
  * CoreUI PRO - HTML, CSS, and JavaScript UI Components Library
- * @version v4.3.0-beta.1
+ * @version v4.3.0
  * @link https://coreui.io/pro/
  * Copyright (c) 2021 creativeLabs Łukasz Holeczek
  * License (https://coreui.io/pro/license/)
 */
 /*!
  * CoreUI PRO - HTML, CSS, and JavaScript UI Components Library
- * @version v4.3.0-beta.1
+ * @version v4.3.0
  * @link https://coreui.io/pro/
  * Copyright (c) 2021 creativeLabs Łukasz Holeczek
  * License (https://coreui.io/pro/license/)
@@ -3217,6 +3217,12 @@ textarea.form-control-lg {
   background-color: var(--cui-btn-disabled-bg);
   border-color: var(--cui-btn-disabled-border-color);
   opacity: var(--cui-btn-disabled-opacity);
+}
+
+.btn-transparent {
+  --cui-btn-active-border-color: transparent;
+  --cui-btn-disabled-border-color: transparent;
+  --cui-btn-hover-border-color: transparent;
 }
 
 .btn-primary {
@@ -7291,6 +7297,7 @@ textarea.form-control-lg {
   --cui-calendar-cell-range-hover-bg: rgba(50, 31, 219, 0.25);
   --cui-calendar-cell-range-hover-border-color: #321fdb;
   --cui-calendar-cell-today-color: #e55353;
+  font-weight: initial;
 }
 .calendar table {
   width: calc(var(--cui-calendar-table-cell-size) * 7);
@@ -7542,7 +7549,6 @@ textarea.form-control-lg {
   background-color: var(--cui-input-focus-bg, #fff);
   border-color: var(--cui-input-focus-border-color, #998fed);
   outline: 0;
-  border-radius: 0.375rem;
   box-shadow: 0 0 0 0.25rem rgba(50, 31, 219, 0.25);
 }
 
@@ -7572,12 +7578,21 @@ textarea.form-control-lg {
 .picker-input-group .form-control.form-control:disabled + .input-group-text {
   background-color: var(--cui-input-disabled-bg, #d8dbe0);
 }
-.picker-input-group .input-group-lg .picker-input-group-icon {
+.picker-input-group.input-group {
+  border-radius: 0.375rem;
+}
+.picker-input-group.input-group-lg {
+  border-radius: 0.5rem;
+}
+.picker-input-group.input-group-lg .picker-input-group-icon {
   width: 1.25rem;
   height: 1.25rem;
   font-size: 1.25rem;
 }
-.picker-input-group .input-group-sm .picker-input-group-icon {
+.picker-input-group.input-group-sm {
+  border-radius: 0.25rem;
+}
+.picker-input-group.input-group-sm .picker-input-group-icon {
   width: 0.875rem;
   height: 0.875rem;
   font-size: 0.875rem;
