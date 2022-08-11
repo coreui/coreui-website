@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import { ValidatorFn, ValidationErrors, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ValidatorFn, ValidationErrors, UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ValidationFormsService } from './validation-forms.service';
 
 /** passwords must match - custom validator */
-export function confirmPasswordValidator(control: FormGroup): ValidationErrors | null {
+export function confirmPasswordValidator(control: UntypedFormGroup): ValidationErrors | null {
   const password = control.get('password');
   const confirm = control.get('confirmPassword');
   return password?.value && password?.value === confirm?.value
@@ -19,11 +19,11 @@ export function confirmPasswordValidator(control: FormGroup): ValidationErrors |
   providers: [ValidationFormsService],
 })
 export class Validation06Component {
-  simpleForm!: FormGroup;
+  simpleForm!: UntypedFormGroup;
   submitted = false;
   formErrors: any;
 
-  constructor(private fb: FormBuilder, public vf: ValidationFormsService) {
+  constructor(private fb: UntypedFormBuilder, public vf: ValidationFormsService) {
     this.formErrors = this.vf.errorMessages;
     this.createForm();
   }

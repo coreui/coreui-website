@@ -1,8 +1,11 @@
 ```typescript
-import { AccordionModule } from '@coreui/angular';
+import { AccordionModule, SharedModule } from '@coreui/angular';
 
 @NgModule({
-    imports: [AccordionModule]
+    imports: [
+      AccordionModule,
+      SharedModule
+    ]
 })
 export class AppModule(){}
 ```
