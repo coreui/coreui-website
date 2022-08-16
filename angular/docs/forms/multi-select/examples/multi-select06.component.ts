@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'docs-multi-select06',
@@ -7,7 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class MultiSelect06Component {
 
-  formGroup = new FormGroup({
-    multiSelect: new FormControl(['Angular', 'Bootstrap'])
+  formGroup = new UntypedFormGroup({
+    multiSelect: new UntypedFormControl(['Angular', 'Bootstrap'])
   });
 }

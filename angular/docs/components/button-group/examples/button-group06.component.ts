@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'docs-button-group06-example',
@@ -7,12 +7,12 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class ButtonGroup06Component {
 
-  formRadio1 = new FormGroup({
-    radio1: new FormControl('Radio1')
+  formRadio1 = new UntypedFormGroup({
+    radio1: new UntypedFormControl('Radio1')
   });
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
   ) { }
 
   setRadioValue(value: string): void {

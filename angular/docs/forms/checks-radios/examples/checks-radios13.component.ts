@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'docs-checks-radios13',
@@ -13,7 +13,7 @@ export class ChecksRadios13Component {
     checkbox3: [{ value: false, disabled: true }]
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: UntypedFormBuilder) {}
 
   setValue(controlName: string) {
     const prevValue = this.btnCheckGroup.get(controlName)?.value;
