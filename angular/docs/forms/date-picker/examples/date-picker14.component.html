@@ -1,0 +1,11 @@
+<c-row>
+  <c-col lg="4">
+    <form #form="ngForm">
+      <c-date-picker [(ngModel)]="date" name="datePicker"></c-date-picker>
+    </form>
+  </c-col>
+</c-row>
+<br>
+Form value: {{ form.value | json }}
+<br>
+timePicker value: {{ form.value['datePicker'] | date:'fullDate'}}
