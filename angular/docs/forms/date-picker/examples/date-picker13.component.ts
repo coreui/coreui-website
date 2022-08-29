@@ -16,7 +16,7 @@ export class DatePicker13Component implements OnInit {
   formGroup!: FormGroup<IDatePickerForm>;
 
   get toLocaleDateString() {
-    return this.formGroup.value.datePicker ? this.formGroup.value.datePicker.toLocaleDateString() : '';
+    return this.formGroup.value.datePicker ? this.formGroup.value.datePicker?.toLocaleDateString() : '';
   }
 
   ngOnInit(): void {

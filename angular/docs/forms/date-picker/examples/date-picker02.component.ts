@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class DatePicker02Component {
 
-  public date? = new Date();
+  public date?: Date | null = new Date();
   public calendarDate = Date.now();
 
   onToday() {
@@ -14,6 +14,6 @@ export class DatePicker02Component {
   }
 
   onCancel() {
-    this.date = undefined;
+    this.date = null;
   }
 }

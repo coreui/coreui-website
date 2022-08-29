@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 export class DateRangePicker02Component {
 
   public date = new Date();
-  public startDate? = new Date(new Date().setDate(this.date.getDate() + 1));
-  public endDate? = new Date(new Date().setDate(this.date.getDate() + 3));
+  public startDate?: Date | null = new Date(new Date().setDate(this.date.getDate() + 1));
+  public endDate?: Date | null = new Date(new Date().setDate(this.date.getDate() + 3));
   public calendarDate = Date.now();
 
   onToday() {
@@ -16,7 +16,7 @@ export class DateRangePicker02Component {
   }
 
   onClear() {
-    this.startDate = undefined;
-    this.endDate = undefined;
+    this.startDate = null;
+    this.endDate = null;
   }
 }
