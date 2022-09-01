@@ -4,7 +4,7 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Boostrap Admin Template (4.2.0-beta.0): multi-select.js
+ * CoreUI Boostrap Admin Template (4.2.0): multi-select.js
  * License (https://coreui.io/pro/license)
  * --------------------------------------------------------------------------
  */

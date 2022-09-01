@@ -2,7 +2,7 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Boostrap Admin Template (v4.2.0-beta.0): main.js
+ * CoreUI Boostrap Admin Template (v4.2.0): main.js
  * License (https://coreui.io/pro/license)
  * --------------------------------------------------------------------------
  */

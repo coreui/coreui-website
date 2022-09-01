@@ -2,7 +2,7 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Boostrap Admin Template (4.2.0-beta.0): datatables.js
+ * CoreUI Boostrap Admin Template (4.2.0): datatables.js
  * License (https://coreui.io/pro/license)
  * --------------------------------------------------------------------------
  */

@@ -1,5 +1,5 @@
 /*!
-FullCalendar v5.10.1
+FullCalendar v5.10.2
 Docs & License: https://fullcalendar.io/
 (c) 2021 Adam Shaw
 */
@@ -77,14 +77,15 @@ var FullCalendar = (function (exports) {
             Fragment: y,
             createContext: createContext$1,
             createPortal: I,
-            flushToDom: flushToDom$1,
+            flushSync: flushSync$1,
             unmountComponentAtNode: unmountComponentAtNode$1,
         };
     }
     // HACKS...
     // TODO: lock version
     // TODO: link gh issues
-    function flushToDom$1() {
+    function flushSync$1(runBeforeFlush) {
+        runBeforeFlush();
         var oldDebounceRendering = n.debounceRendering; // orig
         var callbackQ = [];
         function execCallbackSync(callback) {
@@ -5120,7 +5121,7 @@ var FullCalendar = (function (exports) {
     var Fragment = FullCalendarVDom.Fragment;
     var createContext = FullCalendarVDom.createContext;
     var createPortal = FullCalendarVDom.createPortal;
-    var flushToDom = FullCalendarVDom.flushToDom;
+    var flushSync = FullCalendarVDom.flushSync;
     var unmountComponentAtNode = FullCalendarVDom.unmountComponentAtNode;
     /* eslint-enable */
 
@@ -8135,11 +8136,14 @@ var FullCalendar = (function (exports) {
                 interactionSettingsStore[component.uid] = settings;
             };
             _this.unregisterInteractiveComponent = function (component) {
-                for (var _i = 0, _a = _this.interactionsStore[component.uid]; _i < _a.length; _i++) {
-                    var listener = _a[_i];
-                    listener.destroy();
+                var listeners = _this.interactionsStore[component.uid];
+                if (listeners) {
+                    for (var _i = 0, listeners_1 = listeners; _i < listeners_1.length; _i++) {
+                        var listener = listeners_1[_i];
+                        listener.destroy();
+                    }
+                    delete _this.interactionsStore[component.uid];
                 }
-                delete _this.interactionsStore[component.uid];
                 delete interactionSettingsStore[component.uid];
             };
             // Resizing
@@ -9798,7 +9802,7 @@ var FullCalendar = (function (exports) {
 
     // exports
     // --------------------------------------------------------------------------------------------------
-    var version = '5.10.1'; // important to type it, so .d.ts has generic string
+    var version = '5.10.2'; // important to type it, so .d.ts has generic string
 
     var Calendar = /** @class */ (function (_super) {
         __extends(Calendar, _super);
@@ -9825,12 +9829,14 @@ var FullCalendar = (function (exports) {
                 if (_this.isRendering) {
                     _this.isRendered = true;
                     var currentData_1 = _this.currentData;
-                    render(createElement(CalendarRoot, { options: currentData_1.calendarOptions, theme: currentData_1.theme, emitter: currentData_1.emitter }, function (classNames, height, isHeightAuto, forPrint) {
-                        _this.setClassNames(classNames);
-                        _this.setHeight(height);
-                        return (createElement(CustomContentRenderContext.Provider, { value: _this.customContentRenderId },
-                            createElement(CalendarContent, __assign({ isHeightAuto: isHeightAuto, forPrint: forPrint }, currentData_1))));
-                    }), _this.el);
+                    flushSync(function () {
+                        render(createElement(CalendarRoot, { options: currentData_1.calendarOptions, theme: currentData_1.theme, emitter: currentData_1.emitter }, function (classNames, height, isHeightAuto, forPrint) {
+                            _this.setClassNames(classNames);
+                            _this.setHeight(height);
+                            return (createElement(CustomContentRenderContext.Provider, { value: _this.customContentRenderId },
+                                createElement(CalendarContent, __assign({ isHeightAuto: isHeightAuto, forPrint: forPrint }, currentData_1))));
+                        }), _this.el);
+                    });
                 }
                 else if (_this.isRendered) {
                     _this.isRendered = false;
@@ -9838,7 +9844,6 @@ var FullCalendar = (function (exports) {
                     _this.setClassNames([]);
                     _this.setHeight('');
                 }
-                flushToDom();
             };
             _this.el = el;
             _this.renderRunner = new DelayedRunner(_this.handleRenderRequest);
@@ -9876,8 +9881,10 @@ var FullCalendar = (function (exports) {
             }
         };
         Calendar.prototype.updateSize = function () {
-            _super.prototype.updateSize.call(this);
-            flushToDom();
+            var _this = this;
+            flushSync(function () {
+                _super.prototype.updateSize.call(_this);
+            });
         };
         Calendar.prototype.batchRendering = function (func) {
             this.renderRunner.pause('batchRendering');
@@ -10546,8 +10553,9 @@ var FullCalendar = (function (exports) {
         AutoScroller.prototype.computeBestEdge = function (left, top) {
             var edgeThreshold = this.edgeThreshold;
             var bestSide = null;
-            for (var _i = 0, _a = this.scrollCaches; _i < _a.length; _i++) {
-                var scrollCache = _a[_i];
+            var scrollCaches = this.scrollCaches || [];
+            for (var _i = 0, scrollCaches_1 = scrollCaches; _i < scrollCaches_1.length; _i++) {
+                var scrollCache = scrollCaches_1[_i];
                 var rect = scrollCache.clientRect;
                 var leftDist = left - rect.left;
                 var rightDist = rect.right - left;
@@ -14891,7 +14899,7 @@ var FullCalendar = (function (exports) {
     exports.findDirectChildren = findDirectChildren;
     exports.findElements = findElements;
     exports.flexibleCompare = flexibleCompare;
-    exports.flushToDom = flushToDom;
+    exports.flushSync = flushSync;
     exports.formatDate = formatDate;
     exports.formatDayString = formatDayString;
     exports.formatIsoTimeString = formatIsoTimeString;

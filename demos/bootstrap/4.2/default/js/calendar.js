@@ -2,7 +2,7 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Boostrap Admin Template (4.2.0-beta.0): calendar.js
+ * CoreUI Boostrap Admin Template (4.2.0): calendar.js
  * License (https://coreui.io/pro/license)
  * --------------------------------------------------------------------------
  */

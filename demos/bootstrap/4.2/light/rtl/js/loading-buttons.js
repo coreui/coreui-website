@@ -2,7 +2,7 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Boostrap Admin Template (4.2.0-beta.0): loading-buttons.js
+ * CoreUI Boostrap Admin Template (4.2.0): loading-buttons.js
  * License (https://coreui.io/pro/license)
  * --------------------------------------------------------------------------
  */
