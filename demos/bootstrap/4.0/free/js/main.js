@@ -2,7 +2,7 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Boostrap Admin Template (v4.0.2): main.js
+ * CoreUI Boostrap Admin Template (v4.2.1): main.js
  * Licensed under MIT (https://coreui.io/license)
  * --------------------------------------------------------------------------
  */
@@ -14,10 +14,8 @@ Chart.defaults.plugins.tooltip.position = 'nearest';
 Chart.defaults.plugins.tooltip.external = coreui.ChartJS.customTooltips;
 Chart.defaults.defaultFontColor = '#646470';
 
-const random = (min, max) => {
-  // eslint-disable-next-line no-mixed-operators
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}; // eslint-disable-next-line no-unused-vars
+const random = (min, max) => // eslint-disable-next-line no-mixed-operators
+Math.floor(Math.random() * (max - min + 1) + min); // eslint-disable-next-line no-unused-vars
 
 
 const cardChart1 = new Chart(document.getElementById('card-chart1'), {
