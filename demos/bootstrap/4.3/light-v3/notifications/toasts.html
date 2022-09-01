@@ -41,6 +41,22 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- We use those styles to show code examples, you should remove them in your application.-->
     <link href="css/examples.css" rel="stylesheet">
+    <script>
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-KX4JH47');
+    </script>
     <link rel="canonical" href="https://coreui.io/docs/components/toasts/">
   </head>
   <body>
@@ -440,10 +456,10 @@
             </div>
           </form>
           <ul class="header-nav ms-auto me-3">
-            <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <svg class="icon icon-lg my-1 mx-2">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-                </svg><span class="position-absolute top-0 start-50 translate-middle p-1 ms-2 mt-1 bg-danger border border-light rounded-circle"><span class="visually-hidden">New alerts</span></span></a>
+            <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="d-inline-block my-1 mx-2 position-relative">
+                  <svg class="icon icon-lg">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
+                  </svg><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New alerts</span></span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
                 <div class="dropdown-header bg-light dark:bg-white dark:bg-opacity-10"><strong>You have 5 notifications</strong></div><a class="dropdown-item" href="#">
                   <svg class="icon me-2 text-success">
@@ -476,10 +492,10 @@
                 </a>
               </div>
             </li>
-            <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <svg class="icon icon-lg my-1 mx-2">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
-                </svg><span class="position-absolute top-0 start-50 translate-middle p-1 ms-2 mt-1 bg-danger border border-light rounded-circle"><span class="visually-hidden">New alerts</span></span></a>
+            <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="d-inline-block my-1 mx-2 position-relative">
+                  <svg class="icon icon-lg">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+                  </svg><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New alerts</span></span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg py-0">
                 <div class="dropdown-header bg-light fw-semibold dark:bg-white dark:bg-opacity-10">You have 5 pending tasks</div><a class="dropdown-item d-block" href="#">
                   <div class="small mb-1">Upgrade NPM &amp; Bower<span class="float-end"><strong>0%</strong></span></div><span class="progress progress-thin">
@@ -505,10 +521,10 @@
                 <div class="p-2"><a class="btn btn-outline-primary w-100" href="#">View all tasks</a></div>
               </div>
             </li>
-            <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <svg class="icon icon-lg my-1 mx-2">
-                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                </svg><span class="position-absolute top-0 start-50 translate-middle p-1 ms-2 mt-1 bg-danger border border-light rounded-circle"><span class="visually-hidden">New alerts</span></span></a>
+            <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="d-inline-block my-1 mx-2 position-relative">
+                  <svg class="icon icon-lg">
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+                  </svg><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New alerts</span></span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
                 <div class="dropdown-header bg-light dark:bg-white dark:bg-opacity-10"><strong>You have 4 messages</strong></div><a class="dropdown-item" href="#">
                   <div class="message">
@@ -628,7 +644,7 @@
               <p class="text-medium-emphasis small">Toasts are as flexible as you need and have very little required markup. At a minimum, we require a single element to contain your “toasted” content and strongly encourage a dismiss button.</p>
               <div class="example">
                 <ul class="nav nav-underline" role="tablist">
-                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1286" role="tab">
+                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-225" role="tab">
                       <svg class="icon me-2">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                       </svg>Preview</a></li>
@@ -638,7 +654,7 @@
                       </svg>Code</a></li>
                 </ul>
                 <div class="tab-content rounded-bottom">
-                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1286">
+                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-225">
                     <div class="bg-light p-3 dark:bg-black dark:bg-opacity-10">
                       <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header">
@@ -661,7 +677,7 @@
               <p class="text-medium-emphasis small">Click the button the below to show as toast (positioning with our utilities in the lower right corner) that has been hidden by default with <code>.hide</code>.</p>
               <div class="example">
                 <ul class="nav nav-underline" role="tablist">
-                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1270" role="tab">
+                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-337" role="tab">
                       <svg class="icon me-2">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                       </svg>Preview</a></li>
@@ -671,7 +687,7 @@
                       </svg>Code</a></li>
                 </ul>
                 <div class="tab-content rounded-bottom">
-                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1270">
+                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-337">
                     <div class="toaster position-fixed bottom-0 end-0 p-3" style="z-index: 5">
                       <div class="toast hide" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header">
@@ -695,7 +711,7 @@
               <p class="text-medium-emphasis small">Toasts are slightly translucent, too, so they blend over whatever they might appear over.</p>
               <div class="example">
                 <ul class="nav nav-underline" role="tablist">
-                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1022" role="tab">
+                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-968" role="tab">
                       <svg class="icon me-2">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                       </svg>Preview</a></li>
@@ -705,7 +721,7 @@
                       </svg>Code</a></li>
                 </ul>
                 <div class="tab-content rounded-bottom">
-                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1022">
+                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-968">
                     <div class="bg-dark p-3">
                       <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header">
@@ -728,7 +744,7 @@
               <p class="text-medium-emphasis small">You can stack toasts by wrapping them in a toast container, which will vertically add some spacing.</p>
               <div class="example">
                 <ul class="nav nav-underline" role="tablist">
-                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-687" role="tab">
+                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-282" role="tab">
                       <svg class="icon me-2">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                       </svg>Preview</a></li>
@@ -738,7 +754,7 @@
                       </svg>Code</a></li>
                 </ul>
                 <div class="tab-content rounded-bottom">
-                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-687">
+                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-282">
                     <div class="bg-light p-3 dark:bg-black dark:bg-opacity-10">
                       <div class="toast-container">
                         <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
@@ -772,7 +788,7 @@
               <p class="text-medium-emphasis small">Customize your toasts by removing sub-components, tweaking with <a href="https://coreui.io/docs/utilities/api/">utilities</a>, or adding your own markup. Here we’ve created a simpler toast by removing the default <code>.toast-header</code>, adding a custom hide icon from <a href="https://icons.coreui.io/">CoreUI Icons</a>, and using some <a href="https://coreui.io/docs/utilities/flex/">flexbox utilities</a> to adjust the layout.</p>
               <div class="example">
                 <ul class="nav nav-underline" role="tablist">
-                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-813" role="tab">
+                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-284" role="tab">
                       <svg class="icon me-2">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                       </svg>Preview</a></li>
@@ -782,7 +798,7 @@
                       </svg>Code</a></li>
                 </ul>
                 <div class="tab-content rounded-bottom">
-                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-813">
+                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-284">
                     <div class="bg-light p-3 dark:bg-black dark:bg-opacity-10">
                       <div class="toast align-items-center fade show" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="d-flex">
@@ -797,7 +813,7 @@
               <p class="text-medium-emphasis small">Alternatively, you can also add additional controls and components to toasts.</p>
               <div class="example">
                 <ul class="nav nav-underline" role="tablist">
-                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-210" role="tab">
+                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-30" role="tab">
                       <svg class="icon me-2">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                       </svg>Preview</a></li>
@@ -807,7 +823,7 @@
                       </svg>Code</a></li>
                 </ul>
                 <div class="tab-content rounded-bottom">
-                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-210">
+                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-30">
                     <div class="bg-light p-3 dark:bg-black dark:bg-opacity-10">
                       <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-body">Hello, world! This is a toast message.
@@ -829,7 +845,7 @@
               <p class="text-medium-emphasis small">Building on the above example, you can create different toast color schemes with our <a href="https://coreui.io/docs/utilities/colors/">color</a> and <a href="https://coreui.io/docs/utilities/background/">background</a> utilities. Here we’ve added <code>.bg-primary</code> and <code>.text-white</code> to the <code>.toast</code>, and then added <code>.btn-close-white</code> to our close button. For a crisp edge, we remove the default border with <code>.border-0</code>.</p>
               <div class="example">
                 <ul class="nav nav-underline" role="tablist">
-                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-26" role="tab">
+                  <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-270" role="tab">
                       <svg class="icon me-2">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                       </svg>Preview</a></li>
@@ -839,7 +855,7 @@
                       </svg>Code</a></li>
                 </ul>
                 <div class="tab-content rounded-bottom">
-                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-26">
+                  <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-270">
                     <div class="bg-light p-3 dark:bg-black dark:bg-opacity-10">
                       <div class="toast align-items-center text-white bg-primary border-0 fade show" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="d-flex">
