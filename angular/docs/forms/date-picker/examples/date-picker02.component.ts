@@ -6,11 +6,14 @@ import { Component } from '@angular/core';
 })
 export class DatePicker02Component {
 
-  public date = new Date();
+  public date?: Date | null = new Date();
   public calendarDate = Date.now();
 
   onToday() {
     this.calendarDate = Date.now();
   }
 
+  onCancel() {
+    this.date = null;
+  }
 }
