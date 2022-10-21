@@ -1,14 +1,14 @@
 @charset "UTF-8";
 /*!
  * CoreUI PRO - HTML, CSS, and JavaScript UI Components Library
- * @version v4.3.2
+ * @version v4.3.4
  * @link https://coreui.io/pro/
  * Copyright (c) 2021 creativeLabs Łukasz Holeczek
  * License (https://coreui.io/pro/license/)
 */
 /*!
  * CoreUI PRO - HTML, CSS, and JavaScript UI Components Library
- * @version v4.3.2
+ * @version v4.3.4
  * @link https://coreui.io/pro/
  * Copyright (c) 2021 creativeLabs Łukasz Holeczek
  * License (https://coreui.io/pro/license/)
@@ -6660,7 +6660,7 @@ textarea.form-control-lg {
 }
 @media (max-width: 575.98px) {
   .offcanvas-sm.showing, .offcanvas-sm.show:not(.hiding) {
-    transform: none;
+    transform: none !important;
   }
 }
 @media (max-width: 575.98px) {
@@ -6748,7 +6748,7 @@ textarea.form-control-lg {
 }
 @media (max-width: 767.98px) {
   .offcanvas-md.showing, .offcanvas-md.show:not(.hiding) {
-    transform: none;
+    transform: none !important;
   }
 }
 @media (max-width: 767.98px) {
@@ -6836,7 +6836,7 @@ textarea.form-control-lg {
 }
 @media (max-width: 991.98px) {
   .offcanvas-lg.showing, .offcanvas-lg.show:not(.hiding) {
-    transform: none;
+    transform: none !important;
   }
 }
 @media (max-width: 991.98px) {
@@ -6924,7 +6924,7 @@ textarea.form-control-lg {
 }
 @media (max-width: 1199.98px) {
   .offcanvas-xl.showing, .offcanvas-xl.show:not(.hiding) {
-    transform: none;
+    transform: none !important;
   }
 }
 @media (max-width: 1199.98px) {
@@ -7012,7 +7012,7 @@ textarea.form-control-lg {
 }
 @media (max-width: 1399.98px) {
   .offcanvas-xxl.showing, .offcanvas-xxl.show:not(.hiding) {
-    transform: none;
+    transform: none !important;
   }
 }
 @media (max-width: 1399.98px) {
@@ -7089,7 +7089,7 @@ textarea.form-control-lg {
   transform: translateY(100%);
 }
 .offcanvas.showing, .offcanvas.show:not(.hiding) {
-  transform: none;
+  transform: none !important;
 }
 .offcanvas.showing, .offcanvas.hiding, .offcanvas.show {
   visibility: visible;
@@ -8068,6 +8068,8 @@ textarea.form-control-lg {
   --cui-sidebar-brand-color: rgba(255, 255, 255, 0.87);
   --cui-sidebar-brand-height: 4rem;
   --cui-sidebar-brand-bg: rgba(0, 0, 21, 0.2);
+  --cui-sidebar-close-button-width: 2rem;
+  --cui-sidebar-close-button-height: 4rem;
   --cui-sidebar-header-height: 4rem;
   --cui-sidebar-header-bg: rgba(0, 0, 21, 0.2);
   --cui-sidebar-header-padding-x: 1rem;
@@ -8275,8 +8277,8 @@ textarea.form-control-lg {
   position: absolute;
   top: 0;
   left: 0;
-  width: var(--cui-sidebar-width);
-  height: var(--cui-sidebar-header-height);
+  width: var(--cui-sidebar-close-button-width);
+  height: var(--cui-sidebar-close-button-height);
   color: var(--cui-sidebar-color);
   background: transparent;
   border: 0;
@@ -8531,6 +8533,9 @@ textarea.form-control-lg {
 }
 .sidebar-nav .nav-icon:first-child {
   margin-right: calc(var(--cui-sidebar-nav-link-padding-x) * -1);
+}
+.sidebar-nav svg.nav-icon {
+  overflow: hidden;
 }
 .sidebar-nav .nav-group {
   position: relative;

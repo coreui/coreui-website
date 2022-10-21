@@ -1,5 +1,5 @@
 /*!
-  * CoreUI v4.3.2 (https://coreui.io)
+  * CoreUI v4.3.4 (https://coreui.io)
   * Copyright 2022 The CoreUI Team (https://github.com/orgs/coreui/people)
   * Licensed under MIT (https://coreui.io)
   */
@@ -11,7 +11,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): alert.js
+   * CoreUI (v4.3.4): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's  util/index.js
@@ -329,7 +329,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): dom/event-handler.js
+   * CoreUI (v4.3.4): dom/event-handler.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's  dom/event-handler.js
@@ -591,7 +591,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): dom/data.js
+   * CoreUI (v4.3.4): dom/data.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's dom/data.js
@@ -646,7 +646,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): dom/manipulator.js
+   * CoreUI (v4.3.4): dom/manipulator.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's  dom/manipulator.js
@@ -780,7 +780,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): alert.js
+   * CoreUI (v4.3.4): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's base-component.js
@@ -791,7 +791,7 @@
    * Constants
    */
 
-  const VERSION = '4.3.2';
+  const VERSION = '4.3.4';
   /**
    * Class definition
    */
@@ -888,7 +888,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): alert.js
+   * CoreUI (v4.3.4): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's alert.js
@@ -971,7 +971,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): alert.js
+   * CoreUI (v4.3.4): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's button.js
@@ -1639,7 +1639,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): dom/selector-engine.js
+   * CoreUI (v4.3.4): dom/selector-engine.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's  dom/selector-engine.js
@@ -1849,7 +1849,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): carousel.js
+   * CoreUI (v4.3.4): carousel.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's carousel.js
@@ -2300,7 +2300,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): collapse.js
+   * CoreUI (v4.3.4): collapse.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's collapse.js
@@ -2654,7 +2654,7 @@
     } else {
       if ((typeof argument === 'string' || argStr === '[object String]') && typeof console !== 'undefined') {
         // eslint-disable-next-line no-console
-        console.warn("Starting with v2.0.0-beta.1 date-fns doesn't accept strings as date arguments. Please use `parseISO` to parse strings. See: https://git.io/fjule"); // eslint-disable-next-line no-console
+        console.warn("Starting with v2.0.0-beta.1 date-fns doesn't accept strings as date arguments. Please use `parseISO` to parse strings. See: https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#string-arguments"); // eslint-disable-next-line no-console
 
         console.warn(new Error().stack);
       }
@@ -2670,10 +2670,6 @@
    *
    * @description
    * Add the specified number of milliseconds to the given date.
-   *
-   * ### v2.0.0 breaking changes:
-   *
-   * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
    *
    * @param {Date|Number} date - the date to be changed
    * @param {Number} amount - the amount of milliseconds to be added. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
@@ -2691,6 +2687,11 @@
     var timestamp = toDate(dirtyDate).getTime();
     var amount = toInteger(dirtyAmount);
     return new Date(timestamp + amount);
+  }
+
+  var defaultOptions = {};
+  function getDefaultOptions() {
+    return defaultOptions;
   }
 
   /**
@@ -2747,10 +2748,6 @@
    * @description
    * Returns true if the given value is an instance of Date. The function works for dates transferred across iframes.
    *
-   * ### v2.0.0 breaking changes:
-   *
-   * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
-   *
    * @param {*} value - the value to check
    * @returns {boolean} true if the given value is a date
    * @throws {TypeError} 1 arguments required
@@ -2793,32 +2790,6 @@
    *
    * Time value of Date: http://es5.github.io/#x15.9.1.1
    *
-   * ### v2.0.0 breaking changes:
-   *
-   * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
-   *
-   * - Now `isValid` doesn't throw an exception
-   *   if the first argument is not an instance of Date.
-   *   Instead, argument is converted beforehand using `toDate`.
-   *
-   *   Examples:
-   *
-   *   | `isValid` argument        | Before v2.0.0 | v2.0.0 onward |
-   *   |---------------------------|---------------|---------------|
-   *   | `new Date()`              | `true`        | `true`        |
-   *   | `new Date('2016-01-01')`  | `true`        | `true`        |
-   *   | `new Date('')`            | `false`       | `false`       |
-   *   | `new Date(1488370835081)` | `true`        | `true`        |
-   *   | `new Date(NaN)`           | `false`       | `false`       |
-   *   | `'2016-01-01'`            | `TypeError`   | `false`       |
-   *   | `''`                      | `TypeError`   | `false`       |
-   *   | `1488370835081`           | `TypeError`   | `true`        |
-   *   | `NaN`                     | `TypeError`   | `false`       |
-   *
-   *   We introduce this change to make *date-fns* consistent with ECMAScript behavior
-   *   that try to coerce arguments to the expected type
-   *   (which is also the case with other *date-fns* functions).
-   *
    * @param {*} date - the date to check
    * @returns {Boolean} the date is valid
    * @throws {TypeError} 1 argument required
@@ -2850,513 +2821,6 @@
     return !isNaN(Number(date));
   }
 
-  var formatDistanceLocale = {
-    lessThanXSeconds: {
-      one: 'less than a second',
-      other: 'less than {{count}} seconds'
-    },
-    xSeconds: {
-      one: '1 second',
-      other: '{{count}} seconds'
-    },
-    halfAMinute: 'half a minute',
-    lessThanXMinutes: {
-      one: 'less than a minute',
-      other: 'less than {{count}} minutes'
-    },
-    xMinutes: {
-      one: '1 minute',
-      other: '{{count}} minutes'
-    },
-    aboutXHours: {
-      one: 'about 1 hour',
-      other: 'about {{count}} hours'
-    },
-    xHours: {
-      one: '1 hour',
-      other: '{{count}} hours'
-    },
-    xDays: {
-      one: '1 day',
-      other: '{{count}} days'
-    },
-    aboutXWeeks: {
-      one: 'about 1 week',
-      other: 'about {{count}} weeks'
-    },
-    xWeeks: {
-      one: '1 week',
-      other: '{{count}} weeks'
-    },
-    aboutXMonths: {
-      one: 'about 1 month',
-      other: 'about {{count}} months'
-    },
-    xMonths: {
-      one: '1 month',
-      other: '{{count}} months'
-    },
-    aboutXYears: {
-      one: 'about 1 year',
-      other: 'about {{count}} years'
-    },
-    xYears: {
-      one: '1 year',
-      other: '{{count}} years'
-    },
-    overXYears: {
-      one: 'over 1 year',
-      other: 'over {{count}} years'
-    },
-    almostXYears: {
-      one: 'almost 1 year',
-      other: 'almost {{count}} years'
-    }
-  };
-
-  var formatDistance = function (token, count, options) {
-    var result;
-    var tokenValue = formatDistanceLocale[token];
-
-    if (typeof tokenValue === 'string') {
-      result = tokenValue;
-    } else if (count === 1) {
-      result = tokenValue.one;
-    } else {
-      result = tokenValue.other.replace('{{count}}', count.toString());
-    }
-
-    if (options !== null && options !== void 0 && options.addSuffix) {
-      if (options.comparison && options.comparison > 0) {
-        return 'in ' + result;
-      } else {
-        return result + ' ago';
-      }
-    }
-
-    return result;
-  };
-
-  const formatDistance$1 = formatDistance;
-
-  function buildFormatLongFn(args) {
-    return function () {
-      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      // TODO: Remove String()
-      var width = options.width ? String(options.width) : args.defaultWidth;
-      var format = args.formats[width] || args.formats[args.defaultWidth];
-      return format;
-    };
-  }
-
-  var dateFormats = {
-    full: 'EEEE, MMMM do, y',
-    long: 'MMMM do, y',
-    medium: 'MMM d, y',
-    short: 'MM/dd/yyyy'
-  };
-  var timeFormats = {
-    full: 'h:mm:ss a zzzz',
-    long: 'h:mm:ss a z',
-    medium: 'h:mm:ss a',
-    short: 'h:mm a'
-  };
-  var dateTimeFormats = {
-    full: "{{date}} 'at' {{time}}",
-    long: "{{date}} 'at' {{time}}",
-    medium: '{{date}}, {{time}}',
-    short: '{{date}}, {{time}}'
-  };
-  var formatLong = {
-    date: buildFormatLongFn({
-      formats: dateFormats,
-      defaultWidth: 'full'
-    }),
-    time: buildFormatLongFn({
-      formats: timeFormats,
-      defaultWidth: 'full'
-    }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats,
-      defaultWidth: 'full'
-    })
-  };
-  const formatLong$1 = formatLong;
-
-  var formatRelativeLocale = {
-    lastWeek: "'last' eeee 'at' p",
-    yesterday: "'yesterday at' p",
-    today: "'today at' p",
-    tomorrow: "'tomorrow at' p",
-    nextWeek: "eeee 'at' p",
-    other: 'P'
-  };
-
-  var formatRelative = function (token, _date, _baseDate, _options) {
-    return formatRelativeLocale[token];
-  };
-
-  const formatRelative$1 = formatRelative;
-
-  function buildLocalizeFn(args) {
-    return function (dirtyIndex, dirtyOptions) {
-      var options = dirtyOptions || {};
-      var context = options.context ? String(options.context) : 'standalone';
-      var valuesArray;
-
-      if (context === 'formatting' && args.formattingValues) {
-        var defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
-        var width = options.width ? String(options.width) : defaultWidth;
-        valuesArray = args.formattingValues[width] || args.formattingValues[defaultWidth];
-      } else {
-        var _defaultWidth = args.defaultWidth;
-
-        var _width = options.width ? String(options.width) : args.defaultWidth;
-
-        valuesArray = args.values[_width] || args.values[_defaultWidth];
-      }
-
-      var index = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex; // @ts-ignore: For some reason TypeScript just don't want to match it, no matter how hard we try. I challenge you to try to remove it!
-
-      return valuesArray[index];
-    };
-  }
-
-  var eraValues = {
-    narrow: ['B', 'A'],
-    abbreviated: ['BC', 'AD'],
-    wide: ['Before Christ', 'Anno Domini']
-  };
-  var quarterValues = {
-    narrow: ['1', '2', '3', '4'],
-    abbreviated: ['Q1', 'Q2', 'Q3', 'Q4'],
-    wide: ['1st quarter', '2nd quarter', '3rd quarter', '4th quarter']
-  }; // Note: in English, the names of days of the week and months are capitalized.
-  // If you are making a new locale based on this one, check if the same is true for the language you're working on.
-  // Generally, formatted dates should look like they are in the middle of a sentence,
-  // e.g. in Spanish language the weekdays and months should be in the lowercase.
-
-  var monthValues = {
-    narrow: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-    abbreviated: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    wide: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  };
-  var dayValues = {
-    narrow: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-    short: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-    abbreviated: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    wide: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-  };
-  var dayPeriodValues = {
-    narrow: {
-      am: 'a',
-      pm: 'p',
-      midnight: 'mi',
-      noon: 'n',
-      morning: 'morning',
-      afternoon: 'afternoon',
-      evening: 'evening',
-      night: 'night'
-    },
-    abbreviated: {
-      am: 'AM',
-      pm: 'PM',
-      midnight: 'midnight',
-      noon: 'noon',
-      morning: 'morning',
-      afternoon: 'afternoon',
-      evening: 'evening',
-      night: 'night'
-    },
-    wide: {
-      am: 'a.m.',
-      pm: 'p.m.',
-      midnight: 'midnight',
-      noon: 'noon',
-      morning: 'morning',
-      afternoon: 'afternoon',
-      evening: 'evening',
-      night: 'night'
-    }
-  };
-  var formattingDayPeriodValues = {
-    narrow: {
-      am: 'a',
-      pm: 'p',
-      midnight: 'mi',
-      noon: 'n',
-      morning: 'in the morning',
-      afternoon: 'in the afternoon',
-      evening: 'in the evening',
-      night: 'at night'
-    },
-    abbreviated: {
-      am: 'AM',
-      pm: 'PM',
-      midnight: 'midnight',
-      noon: 'noon',
-      morning: 'in the morning',
-      afternoon: 'in the afternoon',
-      evening: 'in the evening',
-      night: 'at night'
-    },
-    wide: {
-      am: 'a.m.',
-      pm: 'p.m.',
-      midnight: 'midnight',
-      noon: 'noon',
-      morning: 'in the morning',
-      afternoon: 'in the afternoon',
-      evening: 'in the evening',
-      night: 'at night'
-    }
-  };
-
-  var ordinalNumber = function (dirtyNumber, _options) {
-    var number = Number(dirtyNumber); // If ordinal numbers depend on context, for example,
-    // if they are different for different grammatical genders,
-    // use `options.unit`.
-    //
-    // `unit` can be 'year', 'quarter', 'month', 'week', 'date', 'dayOfYear',
-    // 'day', 'hour', 'minute', 'second'.
-
-    var rem100 = number % 100;
-
-    if (rem100 > 20 || rem100 < 10) {
-      switch (rem100 % 10) {
-        case 1:
-          return number + 'st';
-
-        case 2:
-          return number + 'nd';
-
-        case 3:
-          return number + 'rd';
-      }
-    }
-
-    return number + 'th';
-  };
-
-  var localize = {
-    ordinalNumber: ordinalNumber,
-    era: buildLocalizeFn({
-      values: eraValues,
-      defaultWidth: 'wide'
-    }),
-    quarter: buildLocalizeFn({
-      values: quarterValues,
-      defaultWidth: 'wide',
-      argumentCallback: function (quarter) {
-        return quarter - 1;
-      }
-    }),
-    month: buildLocalizeFn({
-      values: monthValues,
-      defaultWidth: 'wide'
-    }),
-    day: buildLocalizeFn({
-      values: dayValues,
-      defaultWidth: 'wide'
-    }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues,
-      defaultWidth: 'wide',
-      formattingValues: formattingDayPeriodValues,
-      defaultFormattingWidth: 'wide'
-    })
-  };
-  const localize$1 = localize;
-
-  function buildMatchFn(args) {
-    return function (string) {
-      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var width = options.width;
-      var matchPattern = width && args.matchPatterns[width] || args.matchPatterns[args.defaultMatchWidth];
-      var matchResult = string.match(matchPattern);
-
-      if (!matchResult) {
-        return null;
-      }
-
-      var matchedString = matchResult[0];
-      var parsePatterns = width && args.parsePatterns[width] || args.parsePatterns[args.defaultParseWidth];
-      var key = Array.isArray(parsePatterns) ? findIndex(parsePatterns, function (pattern) {
-        return pattern.test(matchedString);
-      }) : findKey(parsePatterns, function (pattern) {
-        return pattern.test(matchedString);
-      });
-      var value;
-      value = args.valueCallback ? args.valueCallback(key) : key;
-      value = options.valueCallback ? options.valueCallback(value) : value;
-      var rest = string.slice(matchedString.length);
-      return {
-        value: value,
-        rest: rest
-      };
-    };
-  }
-
-  function findKey(object, predicate) {
-    for (var key in object) {
-      if (object.hasOwnProperty(key) && predicate(object[key])) {
-        return key;
-      }
-    }
-
-    return undefined;
-  }
-
-  function findIndex(array, predicate) {
-    for (var key = 0; key < array.length; key++) {
-      if (predicate(array[key])) {
-        return key;
-      }
-    }
-
-    return undefined;
-  }
-
-  function buildMatchPatternFn(args) {
-    return function (string) {
-      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var matchResult = string.match(args.matchPattern);
-      if (!matchResult) return null;
-      var matchedString = matchResult[0];
-      var parseResult = string.match(args.parsePattern);
-      if (!parseResult) return null;
-      var value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
-      value = options.valueCallback ? options.valueCallback(value) : value;
-      var rest = string.slice(matchedString.length);
-      return {
-        value: value,
-        rest: rest
-      };
-    };
-  }
-
-  var matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
-  var parseOrdinalNumberPattern = /\d+/i;
-  var matchEraPatterns = {
-    narrow: /^(b|a)/i,
-    abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
-    wide: /^(before christ|before common era|anno domini|common era)/i
-  };
-  var parseEraPatterns = {
-    any: [/^b/i, /^(a|c)/i]
-  };
-  var matchQuarterPatterns = {
-    narrow: /^[1234]/i,
-    abbreviated: /^q[1234]/i,
-    wide: /^[1234](th|st|nd|rd)? quarter/i
-  };
-  var parseQuarterPatterns = {
-    any: [/1/i, /2/i, /3/i, /4/i]
-  };
-  var matchMonthPatterns = {
-    narrow: /^[jfmasond]/i,
-    abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
-    wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
-  };
-  var parseMonthPatterns = {
-    narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
-    any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^may/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
-  };
-  var matchDayPatterns = {
-    narrow: /^[smtwf]/i,
-    short: /^(su|mo|tu|we|th|fr|sa)/i,
-    abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
-    wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
-  };
-  var parseDayPatterns = {
-    narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
-    any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
-  };
-  var matchDayPeriodPatterns = {
-    narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
-    any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
-  };
-  var parseDayPeriodPatterns = {
-    any: {
-      am: /^a/i,
-      pm: /^p/i,
-      midnight: /^mi/i,
-      noon: /^no/i,
-      morning: /morning/i,
-      afternoon: /afternoon/i,
-      evening: /evening/i,
-      night: /night/i
-    }
-  };
-  var match = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern,
-      parsePattern: parseOrdinalNumberPattern,
-      valueCallback: function (value) {
-        return parseInt(value, 10);
-      }
-    }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns,
-      defaultMatchWidth: 'wide',
-      parsePatterns: parseEraPatterns,
-      defaultParseWidth: 'any'
-    }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns,
-      defaultMatchWidth: 'wide',
-      parsePatterns: parseQuarterPatterns,
-      defaultParseWidth: 'any',
-      valueCallback: function (index) {
-        return index + 1;
-      }
-    }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns,
-      defaultMatchWidth: 'wide',
-      parsePatterns: parseMonthPatterns,
-      defaultParseWidth: 'any'
-    }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns,
-      defaultMatchWidth: 'wide',
-      parsePatterns: parseDayPatterns,
-      defaultParseWidth: 'any'
-    }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns,
-      defaultMatchWidth: 'any',
-      parsePatterns: parseDayPeriodPatterns,
-      defaultParseWidth: 'any'
-    })
-  };
-  const match$1 = match;
-
-  /**
-   * @type {Locale}
-   * @category Locales
-   * @summary English locale (United States).
-   * @language English
-   * @iso-639-2 eng
-   * @author Sasha Koss [@kossnocorp]{@link https://github.com/kossnocorp}
-   * @author Lesha Koss [@leshakoss]{@link https://github.com/leshakoss}
-   */
-  var locale = {
-    code: 'en-US',
-    formatDistance: formatDistance$1,
-    formatLong: formatLong$1,
-    formatRelative: formatRelative$1,
-    localize: localize$1,
-    match: match$1,
-    options: {
-      weekStartsOn: 0
-      /* Sunday */
-      ,
-      firstWeekContainsDate: 1
-    }
-  };
-  const defaultLocale = locale;
-
   /**
    * @name subMilliseconds
    * @category Millisecond Helpers
@@ -3364,10 +2828,6 @@
    *
    * @description
    * Subtract the specified number of milliseconds from the given date.
-   *
-   * ### v2.0.0 breaking changes:
-   *
-   * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
    *
    * @param {Date|Number} date - the date to be changed
    * @param {Number} amount - the amount of milliseconds to be subtracted. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
@@ -3386,9 +2846,7 @@
     return addMilliseconds(dirtyDate, -amount);
   }
 
-  var MILLISECONDS_IN_DAY = 86400000; // This function will be a part of public API when UTC function will be implemented.
-  // See issue: https://github.com/date-fns/date-fns/issues/376
-
+  var MILLISECONDS_IN_DAY = 86400000;
   function getUTCDayOfYear(dirtyDate) {
     requiredArgs(1, arguments);
     var date = toDate(dirtyDate);
@@ -3400,8 +2858,6 @@
     return Math.floor(difference / MILLISECONDS_IN_DAY) + 1;
   }
 
-  // See issue: https://github.com/date-fns/date-fns/issues/376
-
   function startOfUTCISOWeek(dirtyDate) {
     requiredArgs(1, arguments);
     var weekStartsOn = 1;
@@ -3412,8 +2868,6 @@
     date.setUTCHours(0, 0, 0, 0);
     return date;
   }
-
-  // See issue: https://github.com/date-fns/date-fns/issues/376
 
   function getUTCISOWeekYear(dirtyDate) {
     requiredArgs(1, arguments);
@@ -3437,8 +2891,6 @@
     }
   }
 
-  // See issue: https://github.com/date-fns/date-fns/issues/376
-
   function startOfUTCISOWeekYear(dirtyDate) {
     requiredArgs(1, arguments);
     var year = getUTCISOWeekYear(dirtyDate);
@@ -3449,9 +2901,7 @@
     return date;
   }
 
-  var MILLISECONDS_IN_WEEK$1 = 604800000; // This function will be a part of public API when UTC function will be implemented.
-  // See issue: https://github.com/date-fns/date-fns/issues/376
-
+  var MILLISECONDS_IN_WEEK$1 = 604800000;
   function getUTCISOWeek(dirtyDate) {
     requiredArgs(1, arguments);
     var date = toDate(dirtyDate);
@@ -3462,15 +2912,12 @@
     return Math.round(diff / MILLISECONDS_IN_WEEK$1) + 1;
   }
 
-  // See issue: https://github.com/date-fns/date-fns/issues/376
+  function startOfUTCWeek(dirtyDate, options) {
+    var _ref, _ref2, _ref3, _options$weekStartsOn, _options$locale, _options$locale$optio, _defaultOptions$local, _defaultOptions$local2;
 
-  function startOfUTCWeek(dirtyDate, dirtyOptions) {
     requiredArgs(1, arguments);
-    var options = dirtyOptions || {};
-    var locale = options.locale;
-    var localeWeekStartsOn = locale && locale.options && locale.options.weekStartsOn;
-    var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
-    var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn); // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
+    var defaultOptions = getDefaultOptions();
+    var weekStartsOn = toInteger((_ref = (_ref2 = (_ref3 = (_options$weekStartsOn = options === null || options === void 0 ? void 0 : options.weekStartsOn) !== null && _options$weekStartsOn !== void 0 ? _options$weekStartsOn : options === null || options === void 0 ? void 0 : (_options$locale = options.locale) === null || _options$locale === void 0 ? void 0 : (_options$locale$optio = _options$locale.options) === null || _options$locale$optio === void 0 ? void 0 : _options$locale$optio.weekStartsOn) !== null && _ref3 !== void 0 ? _ref3 : defaultOptions.weekStartsOn) !== null && _ref2 !== void 0 ? _ref2 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.weekStartsOn) !== null && _ref !== void 0 ? _ref : 0); // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
 
     if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
       throw new RangeError('weekStartsOn must be between 0 and 6 inclusively');
@@ -3484,17 +2931,14 @@
     return date;
   }
 
-  // See issue: https://github.com/date-fns/date-fns/issues/376
+  function getUTCWeekYear(dirtyDate, options) {
+    var _ref, _ref2, _ref3, _options$firstWeekCon, _options$locale, _options$locale$optio, _defaultOptions$local, _defaultOptions$local2;
 
-  function getUTCWeekYear(dirtyDate, dirtyOptions) {
     requiredArgs(1, arguments);
     var date = toDate(dirtyDate);
     var year = date.getUTCFullYear();
-    var options = dirtyOptions || {};
-    var locale = options.locale;
-    var localeFirstWeekContainsDate = locale && locale.options && locale.options.firstWeekContainsDate;
-    var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger(localeFirstWeekContainsDate);
-    var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger(options.firstWeekContainsDate); // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
+    var defaultOptions = getDefaultOptions();
+    var firstWeekContainsDate = toInteger((_ref = (_ref2 = (_ref3 = (_options$firstWeekCon = options === null || options === void 0 ? void 0 : options.firstWeekContainsDate) !== null && _options$firstWeekCon !== void 0 ? _options$firstWeekCon : options === null || options === void 0 ? void 0 : (_options$locale = options.locale) === null || _options$locale === void 0 ? void 0 : (_options$locale$optio = _options$locale.options) === null || _options$locale$optio === void 0 ? void 0 : _options$locale$optio.firstWeekContainsDate) !== null && _ref3 !== void 0 ? _ref3 : defaultOptions.firstWeekContainsDate) !== null && _ref2 !== void 0 ? _ref2 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.firstWeekContainsDate) !== null && _ref !== void 0 ? _ref : 1); // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
 
     if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
       throw new RangeError('firstWeekContainsDate must be between 1 and 7 inclusively');
@@ -3503,11 +2947,11 @@
     var firstWeekOfNextYear = new Date(0);
     firstWeekOfNextYear.setUTCFullYear(year + 1, 0, firstWeekContainsDate);
     firstWeekOfNextYear.setUTCHours(0, 0, 0, 0);
-    var startOfNextYear = startOfUTCWeek(firstWeekOfNextYear, dirtyOptions);
+    var startOfNextYear = startOfUTCWeek(firstWeekOfNextYear, options);
     var firstWeekOfThisYear = new Date(0);
     firstWeekOfThisYear.setUTCFullYear(year, 0, firstWeekContainsDate);
     firstWeekOfThisYear.setUTCHours(0, 0, 0, 0);
-    var startOfThisYear = startOfUTCWeek(firstWeekOfThisYear, dirtyOptions);
+    var startOfThisYear = startOfUTCWeek(firstWeekOfThisYear, options);
 
     if (date.getTime() >= startOfNextYear.getTime()) {
       return year + 1;
@@ -3518,26 +2962,21 @@
     }
   }
 
-  // See issue: https://github.com/date-fns/date-fns/issues/376
+  function startOfUTCWeekYear(dirtyDate, options) {
+    var _ref, _ref2, _ref3, _options$firstWeekCon, _options$locale, _options$locale$optio, _defaultOptions$local, _defaultOptions$local2;
 
-  function startOfUTCWeekYear(dirtyDate, dirtyOptions) {
     requiredArgs(1, arguments);
-    var options = dirtyOptions || {};
-    var locale = options.locale;
-    var localeFirstWeekContainsDate = locale && locale.options && locale.options.firstWeekContainsDate;
-    var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger(localeFirstWeekContainsDate);
-    var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger(options.firstWeekContainsDate);
-    var year = getUTCWeekYear(dirtyDate, dirtyOptions);
+    var defaultOptions = getDefaultOptions();
+    var firstWeekContainsDate = toInteger((_ref = (_ref2 = (_ref3 = (_options$firstWeekCon = options === null || options === void 0 ? void 0 : options.firstWeekContainsDate) !== null && _options$firstWeekCon !== void 0 ? _options$firstWeekCon : options === null || options === void 0 ? void 0 : (_options$locale = options.locale) === null || _options$locale === void 0 ? void 0 : (_options$locale$optio = _options$locale.options) === null || _options$locale$optio === void 0 ? void 0 : _options$locale$optio.firstWeekContainsDate) !== null && _ref3 !== void 0 ? _ref3 : defaultOptions.firstWeekContainsDate) !== null && _ref2 !== void 0 ? _ref2 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.firstWeekContainsDate) !== null && _ref !== void 0 ? _ref : 1);
+    var year = getUTCWeekYear(dirtyDate, options);
     var firstWeek = new Date(0);
     firstWeek.setUTCFullYear(year, 0, firstWeekContainsDate);
     firstWeek.setUTCHours(0, 0, 0, 0);
-    var date = startOfUTCWeek(firstWeek, dirtyOptions);
+    var date = startOfUTCWeek(firstWeek, options);
     return date;
   }
 
-  var MILLISECONDS_IN_WEEK = 604800000; // This function will be a part of public API when UTC function will be implemented.
-  // See issue: https://github.com/date-fns/date-fns/issues/376
-
+  var MILLISECONDS_IN_WEEK = 604800000;
   function getUTCWeek(dirtyDate, options) {
     requiredArgs(1, arguments);
     var date = toDate(dirtyDate);
@@ -3653,6 +3092,7 @@
     evening: 'evening',
     night: 'night'
   };
+
   /*
    * |     | Unit                           |     | Unit                           |
    * |-----|--------------------------------|-----|--------------------------------|
@@ -3698,7 +3138,6 @@
    * - `P` is long localized date format
    * - `p` is long localized time format
    */
-
   var formatters = {
     // Era
     G: function (date, token, localize) {
@@ -4503,7 +3942,7 @@
 
   const formatters$1 = formatters;
 
-  function dateLongFormatter(pattern, formatLong) {
+  var dateLongFormatter = function (pattern, formatLong) {
     switch (pattern) {
       case 'P':
         return formatLong.date({
@@ -4526,9 +3965,9 @@
           width: 'full'
         });
     }
-  }
+  };
 
-  function timeLongFormatter(pattern, formatLong) {
+  var timeLongFormatter = function (pattern, formatLong) {
     switch (pattern) {
       case 'p':
         return formatLong.time({
@@ -4551,9 +3990,9 @@
           width: 'full'
         });
     }
-  }
+  };
 
-  function dateTimeLongFormatter(pattern, formatLong) {
+  var dateTimeLongFormatter = function (pattern, formatLong) {
     var matchResult = pattern.match(/(P+)(p+)?/) || [];
     var datePattern = matchResult[1];
     var timePattern = matchResult[2];
@@ -4592,7 +4031,7 @@
     }
 
     return dateTimeFormat.replace('{{date}}', dateLongFormatter(datePattern, formatLong)).replace('{{time}}', timeLongFormatter(timePattern, formatLong));
-  }
+  };
 
   var longFormatters = {
     p: timeLongFormatter,
@@ -4610,15 +4049,521 @@
   }
   function throwProtectedError(token, format, input) {
     if (token === 'YYYY') {
-      throw new RangeError("Use `yyyy` instead of `YYYY` (in `".concat(format, "`) for formatting years to the input `").concat(input, "`; see: https://git.io/fxCyr"));
+      throw new RangeError("Use `yyyy` instead of `YYYY` (in `".concat(format, "`) for formatting years to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
     } else if (token === 'YY') {
-      throw new RangeError("Use `yy` instead of `YY` (in `".concat(format, "`) for formatting years to the input `").concat(input, "`; see: https://git.io/fxCyr"));
+      throw new RangeError("Use `yy` instead of `YY` (in `".concat(format, "`) for formatting years to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
     } else if (token === 'D') {
-      throw new RangeError("Use `d` instead of `D` (in `".concat(format, "`) for formatting days of the month to the input `").concat(input, "`; see: https://git.io/fxCyr"));
+      throw new RangeError("Use `d` instead of `D` (in `".concat(format, "`) for formatting days of the month to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
     } else if (token === 'DD') {
-      throw new RangeError("Use `dd` instead of `DD` (in `".concat(format, "`) for formatting days of the month to the input `").concat(input, "`; see: https://git.io/fxCyr"));
+      throw new RangeError("Use `dd` instead of `DD` (in `".concat(format, "`) for formatting days of the month to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
     }
   }
+
+  var formatDistanceLocale = {
+    lessThanXSeconds: {
+      one: 'less than a second',
+      other: 'less than {{count}} seconds'
+    },
+    xSeconds: {
+      one: '1 second',
+      other: '{{count}} seconds'
+    },
+    halfAMinute: 'half a minute',
+    lessThanXMinutes: {
+      one: 'less than a minute',
+      other: 'less than {{count}} minutes'
+    },
+    xMinutes: {
+      one: '1 minute',
+      other: '{{count}} minutes'
+    },
+    aboutXHours: {
+      one: 'about 1 hour',
+      other: 'about {{count}} hours'
+    },
+    xHours: {
+      one: '1 hour',
+      other: '{{count}} hours'
+    },
+    xDays: {
+      one: '1 day',
+      other: '{{count}} days'
+    },
+    aboutXWeeks: {
+      one: 'about 1 week',
+      other: 'about {{count}} weeks'
+    },
+    xWeeks: {
+      one: '1 week',
+      other: '{{count}} weeks'
+    },
+    aboutXMonths: {
+      one: 'about 1 month',
+      other: 'about {{count}} months'
+    },
+    xMonths: {
+      one: '1 month',
+      other: '{{count}} months'
+    },
+    aboutXYears: {
+      one: 'about 1 year',
+      other: 'about {{count}} years'
+    },
+    xYears: {
+      one: '1 year',
+      other: '{{count}} years'
+    },
+    overXYears: {
+      one: 'over 1 year',
+      other: 'over {{count}} years'
+    },
+    almostXYears: {
+      one: 'almost 1 year',
+      other: 'almost {{count}} years'
+    }
+  };
+
+  var formatDistance = function (token, count, options) {
+    var result;
+    var tokenValue = formatDistanceLocale[token];
+
+    if (typeof tokenValue === 'string') {
+      result = tokenValue;
+    } else if (count === 1) {
+      result = tokenValue.one;
+    } else {
+      result = tokenValue.other.replace('{{count}}', count.toString());
+    }
+
+    if (options !== null && options !== void 0 && options.addSuffix) {
+      if (options.comparison && options.comparison > 0) {
+        return 'in ' + result;
+      } else {
+        return result + ' ago';
+      }
+    }
+
+    return result;
+  };
+
+  const formatDistance$1 = formatDistance;
+
+  function buildFormatLongFn(args) {
+    return function () {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      // TODO: Remove String()
+      var width = options.width ? String(options.width) : args.defaultWidth;
+      var format = args.formats[width] || args.formats[args.defaultWidth];
+      return format;
+    };
+  }
+
+  var dateFormats = {
+    full: 'EEEE, MMMM do, y',
+    long: 'MMMM do, y',
+    medium: 'MMM d, y',
+    short: 'MM/dd/yyyy'
+  };
+  var timeFormats = {
+    full: 'h:mm:ss a zzzz',
+    long: 'h:mm:ss a z',
+    medium: 'h:mm:ss a',
+    short: 'h:mm a'
+  };
+  var dateTimeFormats = {
+    full: "{{date}} 'at' {{time}}",
+    long: "{{date}} 'at' {{time}}",
+    medium: '{{date}}, {{time}}',
+    short: '{{date}}, {{time}}'
+  };
+  var formatLong = {
+    date: buildFormatLongFn({
+      formats: dateFormats,
+      defaultWidth: 'full'
+    }),
+    time: buildFormatLongFn({
+      formats: timeFormats,
+      defaultWidth: 'full'
+    }),
+    dateTime: buildFormatLongFn({
+      formats: dateTimeFormats,
+      defaultWidth: 'full'
+    })
+  };
+  const formatLong$1 = formatLong;
+
+  var formatRelativeLocale = {
+    lastWeek: "'last' eeee 'at' p",
+    yesterday: "'yesterday at' p",
+    today: "'today at' p",
+    tomorrow: "'tomorrow at' p",
+    nextWeek: "eeee 'at' p",
+    other: 'P'
+  };
+
+  var formatRelative = function (token, _date, _baseDate, _options) {
+    return formatRelativeLocale[token];
+  };
+
+  const formatRelative$1 = formatRelative;
+
+  function buildLocalizeFn(args) {
+    return function (dirtyIndex, options) {
+      var context = options !== null && options !== void 0 && options.context ? String(options.context) : 'standalone';
+      var valuesArray;
+
+      if (context === 'formatting' && args.formattingValues) {
+        var defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
+        var width = options !== null && options !== void 0 && options.width ? String(options.width) : defaultWidth;
+        valuesArray = args.formattingValues[width] || args.formattingValues[defaultWidth];
+      } else {
+        var _defaultWidth = args.defaultWidth;
+
+        var _width = options !== null && options !== void 0 && options.width ? String(options.width) : args.defaultWidth;
+
+        valuesArray = args.values[_width] || args.values[_defaultWidth];
+      }
+
+      var index = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex; // @ts-ignore: For some reason TypeScript just don't want to match it, no matter how hard we try. I challenge you to try to remove it!
+
+      return valuesArray[index];
+    };
+  }
+
+  var eraValues = {
+    narrow: ['B', 'A'],
+    abbreviated: ['BC', 'AD'],
+    wide: ['Before Christ', 'Anno Domini']
+  };
+  var quarterValues = {
+    narrow: ['1', '2', '3', '4'],
+    abbreviated: ['Q1', 'Q2', 'Q3', 'Q4'],
+    wide: ['1st quarter', '2nd quarter', '3rd quarter', '4th quarter']
+  }; // Note: in English, the names of days of the week and months are capitalized.
+  // If you are making a new locale based on this one, check if the same is true for the language you're working on.
+  // Generally, formatted dates should look like they are in the middle of a sentence,
+  // e.g. in Spanish language the weekdays and months should be in the lowercase.
+
+  var monthValues = {
+    narrow: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+    abbreviated: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    wide: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  };
+  var dayValues = {
+    narrow: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+    short: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+    abbreviated: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    wide: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  };
+  var dayPeriodValues = {
+    narrow: {
+      am: 'a',
+      pm: 'p',
+      midnight: 'mi',
+      noon: 'n',
+      morning: 'morning',
+      afternoon: 'afternoon',
+      evening: 'evening',
+      night: 'night'
+    },
+    abbreviated: {
+      am: 'AM',
+      pm: 'PM',
+      midnight: 'midnight',
+      noon: 'noon',
+      morning: 'morning',
+      afternoon: 'afternoon',
+      evening: 'evening',
+      night: 'night'
+    },
+    wide: {
+      am: 'a.m.',
+      pm: 'p.m.',
+      midnight: 'midnight',
+      noon: 'noon',
+      morning: 'morning',
+      afternoon: 'afternoon',
+      evening: 'evening',
+      night: 'night'
+    }
+  };
+  var formattingDayPeriodValues = {
+    narrow: {
+      am: 'a',
+      pm: 'p',
+      midnight: 'mi',
+      noon: 'n',
+      morning: 'in the morning',
+      afternoon: 'in the afternoon',
+      evening: 'in the evening',
+      night: 'at night'
+    },
+    abbreviated: {
+      am: 'AM',
+      pm: 'PM',
+      midnight: 'midnight',
+      noon: 'noon',
+      morning: 'in the morning',
+      afternoon: 'in the afternoon',
+      evening: 'in the evening',
+      night: 'at night'
+    },
+    wide: {
+      am: 'a.m.',
+      pm: 'p.m.',
+      midnight: 'midnight',
+      noon: 'noon',
+      morning: 'in the morning',
+      afternoon: 'in the afternoon',
+      evening: 'in the evening',
+      night: 'at night'
+    }
+  };
+
+  var ordinalNumber = function (dirtyNumber, _options) {
+    var number = Number(dirtyNumber); // If ordinal numbers depend on context, for example,
+    // if they are different for different grammatical genders,
+    // use `options.unit`.
+    //
+    // `unit` can be 'year', 'quarter', 'month', 'week', 'date', 'dayOfYear',
+    // 'day', 'hour', 'minute', 'second'.
+
+    var rem100 = number % 100;
+
+    if (rem100 > 20 || rem100 < 10) {
+      switch (rem100 % 10) {
+        case 1:
+          return number + 'st';
+
+        case 2:
+          return number + 'nd';
+
+        case 3:
+          return number + 'rd';
+      }
+    }
+
+    return number + 'th';
+  };
+
+  var localize = {
+    ordinalNumber: ordinalNumber,
+    era: buildLocalizeFn({
+      values: eraValues,
+      defaultWidth: 'wide'
+    }),
+    quarter: buildLocalizeFn({
+      values: quarterValues,
+      defaultWidth: 'wide',
+      argumentCallback: function (quarter) {
+        return quarter - 1;
+      }
+    }),
+    month: buildLocalizeFn({
+      values: monthValues,
+      defaultWidth: 'wide'
+    }),
+    day: buildLocalizeFn({
+      values: dayValues,
+      defaultWidth: 'wide'
+    }),
+    dayPeriod: buildLocalizeFn({
+      values: dayPeriodValues,
+      defaultWidth: 'wide',
+      formattingValues: formattingDayPeriodValues,
+      defaultFormattingWidth: 'wide'
+    })
+  };
+  const localize$1 = localize;
+
+  function buildMatchFn(args) {
+    return function (string) {
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var width = options.width;
+      var matchPattern = width && args.matchPatterns[width] || args.matchPatterns[args.defaultMatchWidth];
+      var matchResult = string.match(matchPattern);
+
+      if (!matchResult) {
+        return null;
+      }
+
+      var matchedString = matchResult[0];
+      var parsePatterns = width && args.parsePatterns[width] || args.parsePatterns[args.defaultParseWidth];
+      var key = Array.isArray(parsePatterns) ? findIndex(parsePatterns, function (pattern) {
+        return pattern.test(matchedString);
+      }) : findKey(parsePatterns, function (pattern) {
+        return pattern.test(matchedString);
+      });
+      var value;
+      value = args.valueCallback ? args.valueCallback(key) : key;
+      value = options.valueCallback ? options.valueCallback(value) : value;
+      var rest = string.slice(matchedString.length);
+      return {
+        value: value,
+        rest: rest
+      };
+    };
+  }
+
+  function findKey(object, predicate) {
+    for (var key in object) {
+      if (object.hasOwnProperty(key) && predicate(object[key])) {
+        return key;
+      }
+    }
+
+    return undefined;
+  }
+
+  function findIndex(array, predicate) {
+    for (var key = 0; key < array.length; key++) {
+      if (predicate(array[key])) {
+        return key;
+      }
+    }
+
+    return undefined;
+  }
+
+  function buildMatchPatternFn(args) {
+    return function (string) {
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var matchResult = string.match(args.matchPattern);
+      if (!matchResult) return null;
+      var matchedString = matchResult[0];
+      var parseResult = string.match(args.parsePattern);
+      if (!parseResult) return null;
+      var value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
+      value = options.valueCallback ? options.valueCallback(value) : value;
+      var rest = string.slice(matchedString.length);
+      return {
+        value: value,
+        rest: rest
+      };
+    };
+  }
+
+  var matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
+  var parseOrdinalNumberPattern = /\d+/i;
+  var matchEraPatterns = {
+    narrow: /^(b|a)/i,
+    abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
+    wide: /^(before christ|before common era|anno domini|common era)/i
+  };
+  var parseEraPatterns = {
+    any: [/^b/i, /^(a|c)/i]
+  };
+  var matchQuarterPatterns = {
+    narrow: /^[1234]/i,
+    abbreviated: /^q[1234]/i,
+    wide: /^[1234](th|st|nd|rd)? quarter/i
+  };
+  var parseQuarterPatterns = {
+    any: [/1/i, /2/i, /3/i, /4/i]
+  };
+  var matchMonthPatterns = {
+    narrow: /^[jfmasond]/i,
+    abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
+    wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
+  };
+  var parseMonthPatterns = {
+    narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
+    any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^may/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
+  };
+  var matchDayPatterns = {
+    narrow: /^[smtwf]/i,
+    short: /^(su|mo|tu|we|th|fr|sa)/i,
+    abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
+    wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
+  };
+  var parseDayPatterns = {
+    narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
+    any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
+  };
+  var matchDayPeriodPatterns = {
+    narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
+    any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
+  };
+  var parseDayPeriodPatterns = {
+    any: {
+      am: /^a/i,
+      pm: /^p/i,
+      midnight: /^mi/i,
+      noon: /^no/i,
+      morning: /morning/i,
+      afternoon: /afternoon/i,
+      evening: /evening/i,
+      night: /night/i
+    }
+  };
+  var match = {
+    ordinalNumber: buildMatchPatternFn({
+      matchPattern: matchOrdinalNumberPattern,
+      parsePattern: parseOrdinalNumberPattern,
+      valueCallback: function (value) {
+        return parseInt(value, 10);
+      }
+    }),
+    era: buildMatchFn({
+      matchPatterns: matchEraPatterns,
+      defaultMatchWidth: 'wide',
+      parsePatterns: parseEraPatterns,
+      defaultParseWidth: 'any'
+    }),
+    quarter: buildMatchFn({
+      matchPatterns: matchQuarterPatterns,
+      defaultMatchWidth: 'wide',
+      parsePatterns: parseQuarterPatterns,
+      defaultParseWidth: 'any',
+      valueCallback: function (index) {
+        return index + 1;
+      }
+    }),
+    month: buildMatchFn({
+      matchPatterns: matchMonthPatterns,
+      defaultMatchWidth: 'wide',
+      parsePatterns: parseMonthPatterns,
+      defaultParseWidth: 'any'
+    }),
+    day: buildMatchFn({
+      matchPatterns: matchDayPatterns,
+      defaultMatchWidth: 'wide',
+      parsePatterns: parseDayPatterns,
+      defaultParseWidth: 'any'
+    }),
+    dayPeriod: buildMatchFn({
+      matchPatterns: matchDayPeriodPatterns,
+      defaultMatchWidth: 'any',
+      parsePatterns: parseDayPeriodPatterns,
+      defaultParseWidth: 'any'
+    })
+  };
+  const match$1 = match;
+
+  /**
+   * @type {Locale}
+   * @category Locales
+   * @summary English locale (United States).
+   * @language English
+   * @iso-639-2 eng
+   * @author Sasha Koss [@kossnocorp]{@link https://github.com/kossnocorp}
+   * @author Lesha Koss [@leshakoss]{@link https://github.com/leshakoss}
+   */
+  var locale = {
+    code: 'en-US',
+    formatDistance: formatDistance$1,
+    formatLong: formatLong$1,
+    formatRelative: formatRelative$1,
+    localize: localize$1,
+    match: match$1,
+    options: {
+      weekStartsOn: 0
+      /* Sunday */
+      ,
+      firstWeekContainsDate: 1
+    }
+  };
+  const defaultLocale = locale;
 
   // - [yYQqMLwIdDecihHKkms]o matches any available ordinal number token
   //   (one of the certain letters followed by `o`)
@@ -4647,7 +4592,7 @@
    * Return the formatted date string in the given format. The result may vary by locale.
    *
    * > ⚠️ Please note that the `format` tokens differ from Moment.js and other libraries.
-   * > See: https://git.io/fxCyr
+   * > See: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
    *
    * The characters wrapped between two single quotes characters (') are escaped.
    * Two single quotes in a row, whether inside or outside a quoted sequence, represent a 'real' single quote.
@@ -4883,30 +4828,10 @@
    *    - `p`: long localized time
    *
    * 8. `YY` and `YYYY` tokens represent week-numbering years but they are often confused with years.
-   *    You should enable `options.useAdditionalWeekYearTokens` to use them. See: https://git.io/fxCyr
+   *    You should enable `options.useAdditionalWeekYearTokens` to use them. See: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
    *
    * 9. `D` and `DD` tokens represent days of the year but they are often confused with days of the month.
-   *    You should enable `options.useAdditionalDayOfYearTokens` to use them. See: https://git.io/fxCyr
-   *
-   * ### v2.0.0 breaking changes:
-   *
-   * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
-   *
-   * - The second argument is now required for the sake of explicitness.
-   *
-   *   ```javascript
-   *   // Before v2.0.0
-   *   format(new Date(2016, 0, 1))
-   *
-   *   // v2.0.0 onward
-   *   format(new Date(2016, 0, 1), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx")
-   *   ```
-   *
-   * - New format string API for `format` function
-   *   which is based on [Unicode Technical Standard #35](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table).
-   *   See [this post](https://blog.date-fns.org/post/unicode-tokens-in-date-fns-v2-sreatyki91jg) for more details.
-   *
-   * - Characters are now escaped using single quote symbols (`'`) instead of square brackets.
+   *    You should enable `options.useAdditionalDayOfYearTokens` to use them. See: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
    *
    * @param {Date|Number} date - the original date
    * @param {String} format - the string of tokens
@@ -4915,9 +4840,9 @@
    * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
    * @param {Number} [options.firstWeekContainsDate=1] - the day of January, which is
    * @param {Boolean} [options.useAdditionalWeekYearTokens=false] - if true, allows usage of the week-numbering year tokens `YY` and `YYYY`;
-   *   see: https://git.io/fxCyr
+   *   see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
    * @param {Boolean} [options.useAdditionalDayOfYearTokens=false] - if true, allows usage of the day of year tokens `D` and `DD`;
-   *   see: https://git.io/fxCyr
+   *   see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
    * @returns {String} the formatted date string
    * @throws {TypeError} 2 arguments required
    * @throws {RangeError} `date` must not be Invalid Date
@@ -4925,47 +4850,45 @@
    * @throws {RangeError} `options.locale` must contain `formatLong` property
    * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
    * @throws {RangeError} `options.firstWeekContainsDate` must be between 1 and 7
-   * @throws {RangeError} use `yyyy` instead of `YYYY` for formatting years using [format provided] to the input [input provided]; see: https://git.io/fxCyr
-   * @throws {RangeError} use `yy` instead of `YY` for formatting years using [format provided] to the input [input provided]; see: https://git.io/fxCyr
-   * @throws {RangeError} use `d` instead of `D` for formatting days of the month using [format provided] to the input [input provided]; see: https://git.io/fxCyr
-   * @throws {RangeError} use `dd` instead of `DD` for formatting days of the month using [format provided] to the input [input provided]; see: https://git.io/fxCyr
+   * @throws {RangeError} use `yyyy` instead of `YYYY` for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+   * @throws {RangeError} use `yy` instead of `YY` for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+   * @throws {RangeError} use `d` instead of `D` for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+   * @throws {RangeError} use `dd` instead of `DD` for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
    * @throws {RangeError} format string contains an unescaped latin alphabet character
    *
    * @example
    * // Represent 11 February 2014 in middle-endian format:
-   * var result = format(new Date(2014, 1, 11), 'MM/dd/yyyy')
+   * const result = format(new Date(2014, 1, 11), 'MM/dd/yyyy')
    * //=> '02/11/2014'
    *
    * @example
    * // Represent 2 July 2014 in Esperanto:
    * import { eoLocale } from 'date-fns/locale/eo'
-   * var result = format(new Date(2014, 6, 2), "do 'de' MMMM yyyy", {
+   * const result = format(new Date(2014, 6, 2), "do 'de' MMMM yyyy", {
    *   locale: eoLocale
    * })
    * //=> '2-a de julio 2014'
    *
    * @example
    * // Escape string by single quote characters:
-   * var result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
+   * const result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
    * //=> "3 o'clock"
    */
 
-  function format(dirtyDate, dirtyFormatStr, dirtyOptions) {
+  function format(dirtyDate, dirtyFormatStr, options) {
+    var _ref, _options$locale, _ref2, _ref3, _ref4, _options$firstWeekCon, _options$locale2, _options$locale2$opti, _defaultOptions$local, _defaultOptions$local2, _ref5, _ref6, _ref7, _options$weekStartsOn, _options$locale3, _options$locale3$opti, _defaultOptions$local3, _defaultOptions$local4;
+
     requiredArgs(2, arguments);
     var formatStr = String(dirtyFormatStr);
-    var options = dirtyOptions || {};
-    var locale = options.locale || defaultLocale;
-    var localeFirstWeekContainsDate = locale.options && locale.options.firstWeekContainsDate;
-    var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger(localeFirstWeekContainsDate);
-    var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger(options.firstWeekContainsDate); // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
+    var defaultOptions = getDefaultOptions();
+    var locale = (_ref = (_options$locale = options === null || options === void 0 ? void 0 : options.locale) !== null && _options$locale !== void 0 ? _options$locale : defaultOptions.locale) !== null && _ref !== void 0 ? _ref : defaultLocale;
+    var firstWeekContainsDate = toInteger((_ref2 = (_ref3 = (_ref4 = (_options$firstWeekCon = options === null || options === void 0 ? void 0 : options.firstWeekContainsDate) !== null && _options$firstWeekCon !== void 0 ? _options$firstWeekCon : options === null || options === void 0 ? void 0 : (_options$locale2 = options.locale) === null || _options$locale2 === void 0 ? void 0 : (_options$locale2$opti = _options$locale2.options) === null || _options$locale2$opti === void 0 ? void 0 : _options$locale2$opti.firstWeekContainsDate) !== null && _ref4 !== void 0 ? _ref4 : defaultOptions.firstWeekContainsDate) !== null && _ref3 !== void 0 ? _ref3 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.firstWeekContainsDate) !== null && _ref2 !== void 0 ? _ref2 : 1); // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
 
     if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
       throw new RangeError('firstWeekContainsDate must be between 1 and 7 inclusively');
     }
 
-    var localeWeekStartsOn = locale.options && locale.options.weekStartsOn;
-    var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
-    var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn); // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
+    var weekStartsOn = toInteger((_ref5 = (_ref6 = (_ref7 = (_options$weekStartsOn = options === null || options === void 0 ? void 0 : options.weekStartsOn) !== null && _options$weekStartsOn !== void 0 ? _options$weekStartsOn : options === null || options === void 0 ? void 0 : (_options$locale3 = options.locale) === null || _options$locale3 === void 0 ? void 0 : (_options$locale3$opti = _options$locale3.options) === null || _options$locale3$opti === void 0 ? void 0 : _options$locale3$opti.weekStartsOn) !== null && _ref7 !== void 0 ? _ref7 : defaultOptions.weekStartsOn) !== null && _ref6 !== void 0 ? _ref6 : (_defaultOptions$local3 = defaultOptions.locale) === null || _defaultOptions$local3 === void 0 ? void 0 : (_defaultOptions$local4 = _defaultOptions$local3.options) === null || _defaultOptions$local4 === void 0 ? void 0 : _defaultOptions$local4.weekStartsOn) !== null && _ref5 !== void 0 ? _ref5 : 0); // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
 
     if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
       throw new RangeError('weekStartsOn must be between 0 and 6 inclusively');
@@ -5001,7 +4924,7 @@
 
       if (firstCharacter === 'p' || firstCharacter === 'P') {
         var longFormatter = longFormatters$1[firstCharacter];
-        return longFormatter(substring, locale.formatLong, formatterOptions);
+        return longFormatter(substring, locale.formatLong);
       }
 
       return substring;
@@ -5020,12 +4943,12 @@
       var formatter = formatters$1[firstCharacter];
 
       if (formatter) {
-        if (!options.useAdditionalWeekYearTokens && isProtectedWeekYearToken(substring)) {
-          throwProtectedError(substring, dirtyFormatStr, dirtyDate);
+        if (!(options !== null && options !== void 0 && options.useAdditionalWeekYearTokens) && isProtectedWeekYearToken(substring)) {
+          throwProtectedError(substring, dirtyFormatStr, String(dirtyDate));
         }
 
-        if (!options.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(substring)) {
-          throwProtectedError(substring, dirtyFormatStr, dirtyDate);
+        if (!(options !== null && options !== void 0 && options.useAdditionalDayOfYearTokens) && isProtectedDayOfYearToken(substring)) {
+          throwProtectedError(substring, dirtyFormatStr, String(dirtyDate));
         }
 
         return formatter(utcDate, substring, locale.localize, formatterOptions);
@@ -5041,7 +4964,13 @@
   }
 
   function cleanEscapedString(input) {
-    return input.match(escapedStringRegExp)[1].replace(doubleQuoteRegExp, "'");
+    var matched = input.match(escapedStringRegExp);
+
+    if (!matched) {
+      return input;
+    }
+
+    return matched[1].replace(doubleQuoteRegExp, "'");
   }
 
   /**
@@ -5057,31 +4986,6 @@
    *
    * If the argument isn't a string, the function cannot parse the string or
    * the values are invalid, it returns Invalid Date.
-   *
-   * ### v2.0.0 breaking changes:
-   *
-   * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
-   *
-   * - The previous `parse` implementation was renamed to `parseISO`.
-   *
-   *   ```javascript
-   *   // Before v2.0.0
-   *   parse('2016-01-01')
-   *
-   *   // v2.0.0 onward
-   *   parseISO('2016-01-01')
-   *   ```
-   *
-   * - `parseISO` now validates separate date and time values in ISO-8601 strings
-   *   and returns `Invalid Date` if the date is invalid.
-   *
-   *   ```javascript
-   *   parseISO('2018-13-32')
-   *   //=> Invalid Date
-   *   ```
-   *
-   * - `parseISO` now doesn't fall back to `new Date` constructor
-   *   if it fails to parse a string argument. Instead, it returns `Invalid Date`.
    *
    * @param {String} argument - the value to convert
    * @param {Object} [options] - an object with options.
@@ -5102,10 +5006,11 @@
    * //=> Fri Apr 11 2014 00:00:00
    */
 
-  function parseISO(argument, dirtyOptions) {
+  function parseISO(argument, options) {
+    var _options$additionalDi;
+
     requiredArgs(1, arguments);
-    var options = dirtyOptions || {};
-    var additionalDigits = options.additionalDigits == null ? 2 : toInteger(options.additionalDigits);
+    var additionalDigits = toInteger((_options$additionalDi = options === null || options === void 0 ? void 0 : options.additionalDigits) !== null && _options$additionalDi !== void 0 ? _options$additionalDi : 2);
 
     if (additionalDigits !== 2 && additionalDigits !== 1 && additionalDigits !== 0) {
       throw new RangeError('additionalDigits must be 0, 1 or 2');
@@ -5492,38 +5397,57 @@
   var min = Math.min;
   var round = Math.round;
 
-  function getBoundingClientRect(element, includeScale) {
+  function getUAString() {
+    var uaData = navigator.userAgentData;
+
+    if (uaData != null && uaData.brands) {
+      return uaData.brands.map(function (item) {
+        return item.brand + "/" + item.version;
+      }).join(' ');
+    }
+
+    return navigator.userAgent;
+  }
+
+  function isLayoutViewport() {
+    return !/^((?!chrome|android).)*safari/i.test(getUAString());
+  }
+
+  function getBoundingClientRect(element, includeScale, isFixedStrategy) {
     if (includeScale === void 0) {
       includeScale = false;
     }
 
-    var rect = element.getBoundingClientRect();
+    if (isFixedStrategy === void 0) {
+      isFixedStrategy = false;
+    }
+
+    var clientRect = element.getBoundingClientRect();
     var scaleX = 1;
     var scaleY = 1;
 
-    if (isHTMLElement(element) && includeScale) {
-      var offsetHeight = element.offsetHeight;
-      var offsetWidth = element.offsetWidth; // Do not attempt to divide by 0, otherwise we get `Infinity` as scale
-      // Fallback to 1 in case both values are `0`
-
-      if (offsetWidth > 0) {
-        scaleX = round(rect.width) / offsetWidth || 1;
-      }
-
-      if (offsetHeight > 0) {
-        scaleY = round(rect.height) / offsetHeight || 1;
-      }
+    if (includeScale && isHTMLElement(element)) {
+      scaleX = element.offsetWidth > 0 ? round(clientRect.width) / element.offsetWidth || 1 : 1;
+      scaleY = element.offsetHeight > 0 ? round(clientRect.height) / element.offsetHeight || 1 : 1;
     }
 
+    var _ref = isElement(element) ? getWindow(element) : window,
+        visualViewport = _ref.visualViewport;
+
+    var addVisualOffsets = !isLayoutViewport() && isFixedStrategy;
+    var x = (clientRect.left + (addVisualOffsets && visualViewport ? visualViewport.offsetLeft : 0)) / scaleX;
+    var y = (clientRect.top + (addVisualOffsets && visualViewport ? visualViewport.offsetTop : 0)) / scaleY;
+    var width = clientRect.width / scaleX;
+    var height = clientRect.height / scaleY;
     return {
-      width: rect.width / scaleX,
-      height: rect.height / scaleY,
-      top: rect.top / scaleY,
-      right: rect.right / scaleX,
-      bottom: rect.bottom / scaleY,
-      left: rect.left / scaleX,
-      x: rect.left / scaleX,
-      y: rect.top / scaleY
+      width: width,
+      height: height,
+      top: y,
+      right: x + width,
+      bottom: y + height,
+      left: x,
+      x: x,
+      y: y
     };
   }
 
@@ -5618,8 +5542,8 @@
 
 
   function getContainingBlock(element) {
-    var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') !== -1;
-    var isIE = navigator.userAgent.indexOf('Trident') !== -1;
+    var isFirefox = /firefox/i.test(getUAString());
+    var isIE = /Trident/i.test(getUAString());
 
     if (isIE && isHTMLElement(element)) {
       // In IE 9, 10 and 11 fixed elements containing block is always established by the viewport
@@ -6040,31 +5964,21 @@
     return getBoundingClientRect(getDocumentElement(element)).left + getWindowScroll(element).scrollLeft;
   }
 
-  function getViewportRect(element) {
+  function getViewportRect(element, strategy) {
     var win = getWindow(element);
     var html = getDocumentElement(element);
     var visualViewport = win.visualViewport;
     var width = html.clientWidth;
     var height = html.clientHeight;
     var x = 0;
-    var y = 0; // NB: This isn't supported on iOS <= 12. If the keyboard is open, the popper
-    // can be obscured underneath it.
-    // Also, `html.clientHeight` adds the bottom bar height in Safari iOS, even
-    // if it isn't open, so if this isn't available, the popper will be detected
-    // to overflow the bottom of the screen too early.
+    var y = 0;
 
     if (visualViewport) {
       width = visualViewport.width;
-      height = visualViewport.height; // Uses Layout Viewport (like Chrome; Safari does not currently)
-      // In Chrome, it returns a value very close to 0 (+/-) but contains rounding
-      // errors due to floating point numbers, so we need to check precision.
-      // Safari returns a number <= 0, usually < -1 when pinch-zoomed
-      // Feature detection fails in mobile emulation mode in Chrome.
-      // Math.abs(win.innerWidth / visualViewport.scale - visualViewport.width) <
-      // 0.001
-      // Fallback here: "Not Safari" userAgent
+      height = visualViewport.height;
+      var layoutViewport = isLayoutViewport();
 
-      if (!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
+      if (layoutViewport || !layoutViewport && strategy === 'fixed') {
         x = visualViewport.offsetLeft;
         y = visualViewport.offsetTop;
       }
@@ -6158,8 +6072,8 @@
     });
   }
 
-  function getInnerBoundingClientRect(element) {
-    var rect = getBoundingClientRect(element);
+  function getInnerBoundingClientRect(element, strategy) {
+    var rect = getBoundingClientRect(element, false, strategy === 'fixed');
     rect.top = rect.top + element.clientTop;
     rect.left = rect.left + element.clientLeft;
     rect.bottom = rect.top + element.clientHeight;
@@ -6171,8 +6085,8 @@
     return rect;
   }
 
-  function getClientRectFromMixedType(element, clippingParent) {
-    return clippingParent === viewport ? rectToClientRect(getViewportRect(element)) : isElement(clippingParent) ? getInnerBoundingClientRect(clippingParent) : rectToClientRect(getDocumentRect(getDocumentElement(element)));
+  function getClientRectFromMixedType(element, clippingParent, strategy) {
+    return clippingParent === viewport ? rectToClientRect(getViewportRect(element, strategy)) : isElement(clippingParent) ? getInnerBoundingClientRect(clippingParent, strategy) : rectToClientRect(getDocumentRect(getDocumentElement(element)));
   } // A "clipping parent" is an overflowable container with the characteristic of
   // clipping (or hiding) overflowing elements with a position different from
   // `initial`
@@ -6195,18 +6109,18 @@
   // clipping parents
 
 
-  function getClippingRect(element, boundary, rootBoundary) {
+  function getClippingRect(element, boundary, rootBoundary, strategy) {
     var mainClippingParents = boundary === 'clippingParents' ? getClippingParents(element) : [].concat(boundary);
     var clippingParents = [].concat(mainClippingParents, [rootBoundary]);
     var firstClippingParent = clippingParents[0];
     var clippingRect = clippingParents.reduce(function (accRect, clippingParent) {
-      var rect = getClientRectFromMixedType(element, clippingParent);
+      var rect = getClientRectFromMixedType(element, clippingParent, strategy);
       accRect.top = max(rect.top, accRect.top);
       accRect.right = min(rect.right, accRect.right);
       accRect.bottom = min(rect.bottom, accRect.bottom);
       accRect.left = max(rect.left, accRect.left);
       return accRect;
-    }, getClientRectFromMixedType(element, firstClippingParent));
+    }, getClientRectFromMixedType(element, firstClippingParent, strategy));
     clippingRect.width = clippingRect.right - clippingRect.left;
     clippingRect.height = clippingRect.bottom - clippingRect.top;
     clippingRect.x = clippingRect.left;
@@ -6287,6 +6201,8 @@
     var _options = options,
         _options$placement = _options.placement,
         placement = _options$placement === void 0 ? state.placement : _options$placement,
+        _options$strategy = _options.strategy,
+        strategy = _options$strategy === void 0 ? state.strategy : _options$strategy,
         _options$boundary = _options.boundary,
         boundary = _options$boundary === void 0 ? clippingParents : _options$boundary,
         _options$rootBoundary = _options.rootBoundary,
@@ -6301,7 +6217,7 @@
     var altContext = elementContext === popper ? reference : popper;
     var popperRect = state.rects.popper;
     var element = state.elements[altBoundary ? altContext : elementContext];
-    var clippingClientRect = getClippingRect(isElement(element) ? element : element.contextElement || getDocumentElement(state.elements.popper), boundary, rootBoundary);
+    var clippingClientRect = getClippingRect(isElement(element) ? element : element.contextElement || getDocumentElement(state.elements.popper), boundary, rootBoundary, strategy);
     var referenceClientRect = getBoundingClientRect(state.elements.reference);
     var popperOffsets = computeOffsets({
       reference: referenceClientRect,
@@ -6815,7 +6731,7 @@
     var isOffsetParentAnElement = isHTMLElement(offsetParent);
     var offsetParentIsScaled = isHTMLElement(offsetParent) && isElementScaled(offsetParent);
     var documentElement = getDocumentElement(offsetParent);
-    var rect = getBoundingClientRect(elementOrVirtualElement, offsetParentIsScaled);
+    var rect = getBoundingClientRect(elementOrVirtualElement, offsetParentIsScaled, isFixed);
     var scroll = {
       scrollLeft: 0,
       scrollTop: 0
@@ -7169,7 +7085,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): dropdown.js
+   * CoreUI (v4.3.4): dropdown.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's dropdown.js
@@ -7602,7 +7518,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.3.2): picker.js
+   * CoreUI PRO (v4.3.4): picker.js
    * License (https://coreui.io/pro/license-new/)
    * --------------------------------------------------------------------------
    */
@@ -8307,7 +8223,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.3.2): date-range-picker.js
+   * CoreUI PRO (v4.3.4): date-range-picker.js
    * License (https://coreui.io/pro/license-new/)
    * --------------------------------------------------------------------------
    */
@@ -8934,7 +8850,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.3.2): date-picker.js
+   * CoreUI PRO (v4.3.4): date-picker.js
    * License (https://coreui.io/pro/license-new/)
    * --------------------------------------------------------------------------
    */
@@ -9055,7 +8971,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.3.2): loading-button.js
+   * CoreUI PRO (v4.3.4): loading-button.js
    * License (https://coreui.io/pro/license-new/)
    * --------------------------------------------------------------------------
    */
@@ -9609,7 +9525,7 @@
 
   /**
    * --------------------------------------------------------------------------
-    * CoreUI (v4.3.2): modal.js
+    * CoreUI (v4.3.4): modal.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's modal.js
@@ -9985,7 +9901,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.3.2): multi-select.js
+   * CoreUI PRO (v4.3.4): multi-select.js
    * License (https://coreui.io/pro/license-new/)
    * --------------------------------------------------------------------------
    */
@@ -10858,7 +10774,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): navigation.js
+   * CoreUI (v4.3.4): navigation.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -11144,7 +11060,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): dropdown.js
+   * CoreUI (v4.3.4): dropdown.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's offcanvas.js
@@ -11421,7 +11337,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): alert.js
+   * CoreUI (v4.3.4): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's  util/sanitizer.js
@@ -11687,7 +11603,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): tooltip.js
+   * CoreUI (v4.3.4): tooltip.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's tooltip.js
@@ -12314,7 +12230,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): popover.js
+   * CoreUI (v4.3.4): popover.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's popover.js
@@ -12400,7 +12316,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): scrollspy.js
+   * CoreUI (v4.3.4): scrollspy.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's scrollspy.js
@@ -12690,7 +12606,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): sidebar.js
+   * CoreUI (v4.3.4): sidebar.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -13014,7 +12930,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): tab.js
+   * CoreUI (v4.3.4): tab.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's tab.js
@@ -13342,7 +13258,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): toast.js
+   * CoreUI (v4.3.4): toast.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's toast.js
@@ -13562,7 +13478,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.3.2): index.esm.js
+   * CoreUI (v4.3.4): index.esm.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
