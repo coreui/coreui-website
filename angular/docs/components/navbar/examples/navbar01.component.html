@@ -1,10 +1,10 @@
-<c-navbar class="bg-dark" colorScheme="light" [expand]="'md'" class="bg-light">
+<c-navbar colorScheme="light" expand="lg" class="bg-light">
   <c-container fluid>
     <a cNavbarBrand href="https://coreui.io/angular/" target="_blank">
       Navbar
     </a>
     <button [cNavbarToggler]="collapseRef"></button>
-    <div #collapseRef="cCollapse" navbar cCollapse [visible]="true">
+    <div #collapseRef="cCollapse" navbar cCollapse>
       <c-navbar-nav class="me-auto mb-2 mb-lg-0">
         <c-nav-item>
           <a cNavLink active>Home</a>
@@ -12,22 +12,20 @@
         <c-nav-item>
           <a cNavLink>Link</a>
         </c-nav-item>
+        <c-dropdown variant="nav-item" [popper]="false">
+          <a cDropdownToggle cNavLink>Dropdown</a>
+          <ul cDropdownMenu>
+            <li><button cDropdownItem>Action</button></li>
+            <li><button cDropdownItem>Another action</button></li>
+            <li><button cDropdownItem>Something else here</button></li>
+          </ul>
+        </c-dropdown>
         <c-nav-item>
-          <c-dropdown variant="nav-item" [popper]="false">
-            <a [routerLink]="[]" cDropdownToggle cNavLink>Dropdown</a>
-            <ul cDropdownMenu>
-              <li><button cDropdownItem>Action</button></li>
-              <li><button cDropdownItem>Another action</button></li>
-              <li><button cDropdownItem>Something else here</button></li>
-            </ul>
-          </c-dropdown>
-        </c-nav-item>
-        <c-nav-item>
-          <a cNavLink disabled>Disabled</a>
+          <a cNavLink disabled class="d-block d-lg-none d-xl-block">Disabled</a>
         </c-nav-item>
       </c-navbar-nav>
-      <form cForm class="d-flex">
-        <input cFormControl type="search" class="me-2" placeholder="Search">
+      <form cForm class="d-flex" role="search">
+        <input cFormControl type="search" placeholder="Search" aria-label="Search" class="me-1">
         <button cButton color="success" variant="outline">Search</button>
       </form>
     </div>

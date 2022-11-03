@@ -1,0 +1,101 @@
+<c-navbar colorScheme="dark" expand="lg" class="bg-dark">
+  <c-container fluid>
+    <a cNavbarBrand href="https://coreui.io/angular/" target="_blank">
+      Navbar
+    </a>
+    <button [cNavbarToggler]="collapseRef1"></button>
+    <div #collapseRef1="cCollapse" navbar cCollapse>
+      <c-navbar-nav class="me-auto mb-2 mb-lg-0">
+        <c-nav-item>
+          <a cNavLink active>Home</a>
+        </c-nav-item>
+        <c-nav-item>
+          <a cNavLink>Link</a>
+        </c-nav-item>
+        <c-dropdown variant="nav-item" [popper]="false">
+          <a cDropdownToggle cNavLink>Dropdown</a>
+          <ul cDropdownMenu dark>
+            <li><button cDropdownItem>Action</button></li>
+            <li><button cDropdownItem>Another action</button></li>
+            <li><button cDropdownItem>Something else here</button></li>
+          </ul>
+        </c-dropdown>
+        <c-nav-item>
+          <a cNavLink disabled class="d-block d-lg-none d-xl-block">Disabled</a>
+        </c-nav-item>
+      </c-navbar-nav>
+      <form cForm class="d-flex" role="search">
+        <input cFormControl type="search" placeholder="Search" aria-label="Search" class="me-1">
+        <button cButton color="success" variant="outline">Search</button>
+      </form>
+    </div>
+  </c-container>
+</c-navbar>
+<br>
+<c-navbar colorScheme="dark" expand="lg" class="bg-primary">
+  <c-container fluid>
+    <a cNavbarBrand href="https://coreui.io/angular/" target="_blank">
+      Navbar
+    </a>
+    <button [cNavbarToggler]="collapseRef2"></button>
+    <div #collapseRef2="cCollapse" navbar cCollapse>
+      <c-navbar-nav class="me-auto mb-2 mb-lg-0">
+        <c-nav-item>
+          <a cNavLink active>Home</a>
+        </c-nav-item>
+        <c-nav-item>
+          <a cNavLink>Link</a>
+        </c-nav-item>
+        <c-dropdown variant="nav-item" [popper]="false">
+          <a cDropdownToggle cNavLink>Dropdown</a>
+          <ul cDropdownMenu>
+            <li><button cDropdownItem>Action</button></li>
+            <li><button cDropdownItem>Another action</button></li>
+            <li><button cDropdownItem>Something else here</button></li>
+          </ul>
+        </c-dropdown>
+        <c-nav-item>
+          <a cNavLink disabled class="d-block d-lg-none d-xl-block">Disabled</a>
+        </c-nav-item>
+      </c-navbar-nav>
+      <form cForm class="d-flex" role="search">
+        <input cFormControl type="search" placeholder="Search" aria-label="Search" class="me-1">
+        <button cButton color="success" variant="outline">Search</button>
+      </form>
+    </div>
+  </c-container>
+</c-navbar>
+<br>
+<c-navbar colorScheme="light" expand="lg" [ngStyle]="{ backgroundColor: '#e3f2fd' }">
+  <c-container fluid>
+    <a cNavbarBrand href="https://coreui.io/angular/" target="_blank">
+      Navbar
+    </a>
+    <button [cNavbarToggler]="collapseRef3"></button>
+    <div #collapseRef3="cCollapse" navbar cCollapse>
+      <c-navbar-nav class="me-auto mb-2 mb-lg-0">
+        <c-nav-item>
+          <a cNavLink active>Home</a>
+        </c-nav-item>
+        <c-nav-item>
+          <a cNavLink>Link</a>
+        </c-nav-item>
+        <c-dropdown variant="nav-item" [popper]="false">
+          <a cDropdownToggle cNavLink>Dropdown</a>
+          <ul cDropdownMenu [ngStyle]="{ backgroundColor: '#e3f2fd' }">
+            <li><button cDropdownItem>Action</button></li>
+            <li><button cDropdownItem>Another action</button></li>
+            <li><button cDropdownItem>Something else here</button></li>
+          </ul>
+        </c-dropdown>
+        <c-nav-item>
+          <a cNavLink disabled class="d-block d-lg-none d-xl-block">Disabled</a>
+        </c-nav-item>
+      </c-navbar-nav>
+      <form cForm class="d-flex" role="search">
+        <input cFormControl type="search" placeholder="Search" aria-label="Search" class="me-1">
+        <button cButton color="success" variant="outline">Search</button>
+      </form>
+    </div>
+  </c-container>
+</c-navbar>
