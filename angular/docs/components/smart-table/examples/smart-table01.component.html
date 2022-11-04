@@ -21,18 +21,22 @@
     [tableProps]="{ hover: true, striped: true, responsive: true }"
 >
     <ng-template cTemplateId="tableDetails" let-item="item">
-      <div>
-        <div [visible]="this.details_visible[item._id]===true" cCollapse class="card-body">
-          <h5>{{item['name']}}</h5>
-          <p class="text-muted">User since: {{item['registered']}}</p>
-          <button cButton color="info" size="sm">
-            User Settings
-          </button>
-          <button cButton class="ms-1" color="danger" size="sm">
-            Delete
-          </button>
+        <div [visible]="this.details_visible[item._id]===true" cCollapse>
+          <c-card class="rounded-0">
+            <c-card-body>
+              <h5>{{item['name']}}</h5>
+              <p class="text-muted">User since: {{item['registered']}}</p>
+            </c-card-body>
+            <c-card-footer>
+              <button cButton color="info" size="sm">
+                User Settings
+              </button>
+              <button cButton class="ms-1" color="danger" size="sm">
+                Delete
+              </button>
+            </c-card-footer>
+          </c-card>
         </div>
-      </div>
     </ng-template>
     <ng-template cTemplateId="tableData" let-columnName="columnName" let-item="item" let-tdContent="tdContent">
       <td [cTableActive]="smartTable.tableDataCellProps(item, columnName)?.['active']"
