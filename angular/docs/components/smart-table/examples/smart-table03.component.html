@@ -1,0 +1,20 @@
+<c-smart-table
+  [columnSorter]="{ external: true }"
+  [columns]="columns"
+  [columnFilter]="{ external: true, lazy: false }"
+  [items]="usersExternal"
+  [itemsPerPage]="params.itemsPerPage"
+  [loading]="loadingData"
+  [tableProps]="{ hover: true, striped: true, responsive: true }"
+  (columnFilterValueChange)="handleColumnFilterValueChange($event)"
+  [columnFilterValue]="columnFilterValue"
+  (sorterValueChange)="handleSorterValueChange($event)"
+  (filteredItemsChange)="handleFilteredItemsChange($event)"
+  cleaner
+  header
+></c-smart-table>
+<c-smart-pagination
+  [activePage]="params.page"
+  (activePageChange)="handleActivePageChange($event)"
+  [pages]="totalPages"
+></c-smart-pagination>
