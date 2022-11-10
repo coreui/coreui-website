@@ -1,0 +1,1 @@
+const e={key:"v-034d8078",path:"/api/smart-table/CSmartTableHead.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CSmartTableHead",slug:"csmarttablehead",children:[]}],git:{updatedTime:1667759858e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:3}]}};export{e as data};

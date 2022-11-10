@@ -1,0 +1,1 @@
+const e={key:"v-1dab50f3",path:"/api/table/CTable.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CTable",slug:"ctable",children:[]}],git:{updatedTime:1666996693e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:5}]}};export{e as data};
