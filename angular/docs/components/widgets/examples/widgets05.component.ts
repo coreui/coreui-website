@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'docs-widgets05',
   templateUrl: './widgets05.component.html',
-  styles: []
 })
 export class Widgets05Component {
 
