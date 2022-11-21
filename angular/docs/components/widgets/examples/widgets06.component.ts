@@ -1,19 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { cilChartPie } from '@coreui/icons';
+import { Component } from '@angular/core';
+import { cilChartPie, cilArrowRight } from '@coreui/icons';
 
 @Component({
   selector: 'docs-widgets06',
   templateUrl: './widgets06.component.html',
-  styles: [
-  ]
 })
-export class Widgets06Component implements OnInit {
+export class Widgets06Component {
 
-  icons = { cilChartPie };
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  icons = { cilChartPie, cilArrowRight };
 
 }

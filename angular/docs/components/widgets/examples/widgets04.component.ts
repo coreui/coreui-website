@@ -4,7 +4,6 @@ import { cibFacebook, cibLinkedin, cibTwitter } from '@coreui/icons';
 @Component({
   selector: 'docs-widgets04',
   templateUrl: './widgets04.component.html',
-  styles: []
 })
 export class Widgets04Component implements AfterContentInit {
 

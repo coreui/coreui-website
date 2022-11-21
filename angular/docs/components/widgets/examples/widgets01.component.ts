@@ -6,7 +6,6 @@ import { getStyle } from '@coreui/utils/src';
 @Component({
   selector: 'docs-widgets01',
   templateUrl: './widgets01.component.html',
-  styles: []
 })
 export class Widgets01Component implements OnInit {
 
