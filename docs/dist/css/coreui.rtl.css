@@ -1,14 +1,14 @@
 @charset "UTF-8";
 /*!
  * CoreUI PRO - HTML, CSS, and JavaScript UI Components Library
- * @version v4.3.4
+ * @version v4.4.1
  * @link https://coreui.io/pro/
  * Copyright (c) 2021 creativeLabs Łukasz Holeczek
  * License (https://coreui.io/pro/license/)
 */
 /*!
  * CoreUI PRO - HTML, CSS, and JavaScript UI Components Library
- * @version v4.3.4
+ * @version v4.4.1
  * @link https://coreui.io/pro/
  * Copyright (c) 2021 creativeLabs Łukasz Holeczek
  * License (https://coreui.io/pro/license/)
@@ -2267,7 +2267,7 @@ textarea.form-control-lg {
   --cui-form-multi-select-tag-bg: #ebedef;
   --cui-form-multi-select-tag-border-color: #d8dbe0;
   --cui-form-multi-select-tag-border: 1px solid var(--cui-form-multi-select-tag-border-color);
-  --cui-form-multi-select-tag-border-radius: 0.375rem;
+  --cui-form-multi-select-tag-border-radius: 0.25rem;
   position: relative;
   display: block;
   width: 100%;
@@ -2297,9 +2297,15 @@ textarea.form-control-lg {
 .form-multi-select.form-multi-select-with-cleaner {
   padding-left: 4.5rem;
 }
+.form-multi-select.is-invalid {
+  --cui-form-multi-select-border-color: #e55353;
+}
+.form-multi-select.is-valid {
+  --cui-form-multi-select-border-color: #2eb85c;
+}
 
 .form-multi-select-selection-tags {
-  min-height: calc(2.25rem + 2px);
+  min-height: 2.25rem;
   padding: var(--cui-form-multi-select-selection-tags-padding-y) var(--cui-form-multi-select-selection-tags-padding-x);
   padding-left: var(--cui-form-multi-select-indicator-padding);
 }
@@ -2493,28 +2499,32 @@ textarea.form-control-lg {
   --cui-form-multi-select-padding-y: 0.25rem;
   --cui-form-multi-select-padding-x: 0.5rem;
   --cui-form-multi-select-font-size: 0.875rem;
-  --cui-form-multi-select-selection-tags-padding-x: 0.0675rem;
-  --cui-form-multi-select-tag-padding-y: calc(0.115rem - 1px);
+  --cui-form-multi-select-border-radius: 0.25rem;
+  --cui-form-multi-select-selection-tags-padding-x: 0.125rem;
+  --cui-form-multi-select-tag-padding-y: 0;
   --cui-form-multi-select-tag-padding-x: 0.5rem;
   --cui-form-multi-select-tag-margin-y: 0.0675rem;
   --cui-form-multi-select-tag-margin-x: 0.0675rem;
+  --cui-form-multi-select-tag-border-radius: 0.125rem;
 }
 .form-multi-select-sm.form-multi-select-selection-tags {
-  min-height: calc(1.8125rem + 2px);
+  min-height: 1.8125rem;
 }
 .form-multi-select-sm.form-multi-select-selection-tags .form-multi-select-search {
-  height: 1.6775rem;
+  height: calc(1.6775rem - 2px);
 }
 
 .form-multi-select-lg {
   --cui-form-multi-select-padding-y: 0.5rem;
   --cui-form-multi-select-padding-x: 1rem;
   --cui-form-multi-select-font-size: 1.25rem;
+  --cui-form-multi-select-border-radius: 0.5rem;
   --cui-form-multi-select-selection-tags-padding-x: 0.125rem;
   --cui-form-multi-select-tag-padding-y: calc(0.25rem - 1px);
   --cui-form-multi-select-tag-padding-x: 0.5rem;
   --cui-form-multi-select-tag-margin-y: 0.125rem;
   --cui-form-multi-select-tag-margin-x: 0.125rem;
+  --cui-form-multi-select-tag-border-radius: 0.375rem;
 }
 .form-multi-select-lg.form-multi-select-selection-tags {
   min-height: calc(2.875rem + 2px);
@@ -7639,6 +7649,30 @@ textarea.form-control-lg {
 .date-picker .dropdown-menu {
   width: min-content;
 }
+.date-picker.is-invalid .form-control {
+  --cui-input-border-color: #e55353;
+}
+.date-picker.is-invalid .input-group-text {
+  --cui-input-group-addon-border-color: #e55353;
+}
+.date-picker.is-invalid .picker-input-group-indicator {
+  --cui-input-group-addon-color: #e55353;
+}
+.date-picker.is-invalid .date-picker-input-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpath fill='%23e55353' d='M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z'%3e%3c/path%3e%3crect width='32' height='32' x='112' y='224' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='224' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='224' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='224' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='296' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='296' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='296' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='296' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='368' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='368' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='368' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='368' fill='%23e55353'%3e%3c/rect%3e%3c/svg%3e");
+}
+.date-picker.is-valid .form-control {
+  --cui-input-border-color: #2eb85c;
+}
+.date-picker.is-valid .input-group-text {
+  --cui-input-group-addon-border-color: #2eb85c;
+}
+.date-picker.is-valid .picker-input-group-indicator {
+  --cui-input-group-addon-color: #2eb85c;
+}
+.date-picker.is-valid .date-picker-input-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpath fill='%232eb85c' d='M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z'%3e%3c/path%3e%3crect width='32' height='32' x='112' y='224' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='224' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='224' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='224' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='296' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='296' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='296' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='296' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='368' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='368' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='368' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='368' fill='%232eb85c'%3e%3c/rect%3e%3c/svg%3e");
+}
 
 .date-picker-body {
   display: grid;
@@ -7717,6 +7751,30 @@ textarea.form-control-lg {
 .time-picker {
   --cui-time-picker-body-padding: 0.5rem;
   --cui-time-picker-roll-col-border: 1px solid #d8dbe0;
+}
+.time-picker.is-invalid .form-control {
+  --cui-input-border-color: #e55353;
+}
+.time-picker.is-invalid .input-group-text {
+  --cui-input-group-addon-border-color: #e55353;
+}
+.time-picker.is-invalid .picker-input-group-indicator {
+  --cui-input-group-addon-color: #e55353;
+}
+.time-picker.is-invalid .time-picker-input-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='%23e55353' points='271.514 95.5 239.514 95.5 239.514 273.611 355.127 328.559 368.864 299.657 271.514 253.389 271.514 95.5' class='ci-primary'%3e%3c/polygon%3e%3cpath fill='%23e55353' d='M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16Zm0,448C141.125,464,48,370.875,48,256S141.125,48,256,48s208,93.125,208,208S370.875,464,256,464Z' class='ci-primary'%3e%3c/path%3e%3c/svg%3e");
+}
+.time-picker.is-valid .form-control {
+  --cui-input-border-color: #2eb85c;
+}
+.time-picker.is-valid .input-group-text {
+  --cui-input-group-addon-border-color: #2eb85c;
+}
+.time-picker.is-valid .picker-input-group-indicator {
+  --cui-input-group-addon-color: #2eb85c;
+}
+.time-picker.is-valid .time-picker-input-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='%232eb85c' points='271.514 95.5 239.514 95.5 239.514 273.611 355.127 328.559 368.864 299.657 271.514 253.389 271.514 95.5' class='ci-primary'%3e%3c/polygon%3e%3cpath fill='%232eb85c' d='M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16Zm0,448C141.125,464,48,370.875,48,256S141.125,48,256,48s208,93.125,208,208S370.875,464,256,464Z' class='ci-primary'%3e%3c/path%3e%3c/svg%3e");
 }
 
 .time-picker-body {
@@ -7975,6 +8033,9 @@ textarea.form-control-lg {
 }
 .header-toggler:not(:disabled) {
   cursor: pointer;
+}
+.header-toggler.prevent-hide {
+  display: block !important;
 }
 
 .header-toggler-icon {

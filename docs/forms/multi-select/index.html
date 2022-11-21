@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-B25jn3HrWNnbfszQBjQT5iHKf8BuG+Og9Al4zXNJgLl6orefC7UQYjD/Uxo1jMis" crossorigin="anonymous">
+<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-ancM2XfKXXNg2l08AgpTUzRISdhh77O9e24ZZ7KfZMgEUBCUKKT/N6mIYkTz2n4v" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/assets/css/docs.css" rel="stylesheet">
 
@@ -876,13 +876,21 @@
   
 </nav>
 
-      
-      <div class="bg-danger bg-opacity-10 border-start border-start-5 border-start-danger p-4 pb-3 mb-5">
-        <h3 class="mb-4">CoreUI PRO Component</h3>
-        <p>
-          To use this component you must have a CoreUI PRO license. Buy the <a href="https://coreui.io/pricing/?framework=bootstrap&docs=coreui-banner-pro">CoreUI PRO</a> and get access to all PRO components, features, templates, and dedicated support.
-        </p>
-      </div>
+      <a class="black-friday-banner rounded" href="https://coreui.io/pricing/?framework=bootstrap&amp;docs=coreui-banner-black-friday">
+        <div class="row">
+          <div class="col-xl-7 align-self-center">
+            <div class="p-3 p-xl-5">
+              <h2>Black Friday? Black Week? <br> CoreUI makes it MONTH!</h2>
+              <div> With CoreUI you don't have to wait till Black Friday, cause we launched our Black Friday promo - right here, right now! Up to 70% discount for CoreUI PRO Admin Templates and PRO UI Components.</div>
+            </div>
+          </div>
+          <div class="col-xl-5">
+            <div class="p-2">
+              <img class="logo mx-auto" src="https://coreui.io/docs/assets/img/black-hexagon400h.webp" alt="CoreUI logo" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </a>
       
       <h1 class="docs-title" id="content">Multi Select</h1>
       <p class="docs-lead">Customize the native <code>&lt;select&gt;</code>s with a powerful Multi-Select component that changes the element&rsquo;s initial appearance and brings some new functionalities.</p>
@@ -1421,79 +1429,85 @@
 <td><code>cleaner</code></td>
 <td>boolean</td>
 <td><code>true</code></td>
-<td></td>
+<td>Enables selection cleaner element.</td>
 </tr>
 <tr>
 <td><code>disabled</code></td>
 <td>boolean</td>
 <td><code>false</code></td>
-<td></td>
+<td>Toggle the disabled state for the component.</td>
 </tr>
 <tr>
-<td><code>multiple</code></td>
+<td><code>invalid</code></td>
 <td>boolean</td>
-<td><code>true</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>placeholder</code></td>
-<td>string</td>
-<td><code>'Select...'</code></td>
-<td></td>
+<td><code>false</code></td>
+<td>Toggle the invalid state for the component.</td>
 </tr>
 <tr>
 <td><code>options</code></td>
 <td>(boolean|array)</td>
 <td><code>false</code></td>
-<td></td>
+<td>List of option elements.</td>
 </tr>
 <tr>
 <td><code>optionsMaxHeight</code></td>
 <td>(number|string)</td>
 <td><code>'auto'</code></td>
-<td></td>
+<td>Sets <code>max-height</code> of options list.</td>
 </tr>
 <tr>
 <td><code>optionsStyle</code></td>
 <td>string</td>
 <td><code>'checkbox'</code></td>
-<td></td>
+<td>Sets option style.</td>
+</tr>
+<tr>
+<td><code>placeholder</code></td>
+<td>string</td>
+<td><code>'Select...'</code></td>
+<td>Specifies a short hint that is visible in the input.</td>
 </tr>
 <tr>
 <td><code>search</code></td>
 <td>boolean</td>
 <td><code>false</code></td>
-<td></td>
+<td>Enables search input element.</td>
 </tr>
 <tr>
 <td><code>searchNoResultsLabel</code></td>
 <td>string</td>
 <td><code>'No results found'</code></td>
-<td></td>
+<td>Sets the label for no results when filtering.</td>
 </tr>
 <tr>
 <td><code>selectAll</code></td>
 <td>boolean</td>
 <td><code>true</code></td>
-<td></td>
+<td>Enables select all button.</td>
 </tr>
 <tr>
 <td><code>selectAllLabel</code></td>
 <td>string</td>
 <td><code>'Select all options'</code></td>
-<td></td>
+<td>Sets the select all button label.</td>
 </tr>
 <tr>
 <td><code>selectionType</code></td>
 <td>string</td>
 <td><code>'tag'</code></td>
-<td></td>
+<td>Sets the selection style.</td>
 </tr>
 <tr>
 <td><code>selectionTypeCounterText</code></td>
 <td>string</td>
 <td><code>'item(s) selected'</code></td>
-<td></td>
+<td>Sets the counter selection label.</td>
+</tr>
+<tr>
+<td><code>valid</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Toggle the valid state for the component.</td>
 </tr>
 </tbody>
 </table></div>
@@ -1675,6 +1689,8 @@
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-border-width</span><span class="o">:</span>            <span class="nv">$input-border-width</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-border-color</span><span class="o">:</span>            <span class="nv">$input-border-color</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-border-radius</span><span class="o">:</span>           <span class="nv">$border-radius</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-border-radius-sm</span><span class="o">:</span>        <span class="nv">$border-radius-sm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-border-radius-lg</span><span class="o">:</span>        <span class="nv">$border-radius-lg</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-box-shadow</span><span class="o">:</span>              <span class="ni">inset</span> <span class="mi">0</span> <span class="mi">1</span><span class="kt">px</span> <span class="mi">2</span><span class="kt">px</span> <span class="nf">rgba</span><span class="p">(</span><span class="nv">$black</span><span class="o">,</span> <span class="mf">.075</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-focus-width</span><span class="o">:</span>             <span class="nv">$input-focus-width</span><span class="p">;</span>
@@ -1686,14 +1702,16 @@
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-selection-tags-padding-y</span><span class="o">:</span>  <span class="mf">.125</span><span class="kt">rem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-selection-tags-padding-x</span><span class="o">:</span>  <span class="mf">.125</span><span class="kt">rem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-bg</span><span class="o">:</span>             <span class="nv">$light</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-border-width</span><span class="o">:</span>   <span class="nv">$border-width</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-border-color</span><span class="o">:</span>   <span class="nv">$border-color</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-border-radius</span><span class="o">:</span>  <span class="nv">$border-radius</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-margin-y</span><span class="o">:</span>       <span class="mf">.125</span><span class="kt">rem</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-margin-x</span><span class="o">:</span>       <span class="mf">.125</span><span class="kt">rem</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-padding-y</span><span class="o">:</span>      <span class="nf">subtract</span><span class="p">((</span><span class="nv">$form-multi-select-padding-y</span> <span class="o">-</span> <span class="nv">$form-multi-select-selection-tags-padding-y</span> <span class="o">-</span> <span class="nv">$form-multi-select-tag-margin-y</span><span class="p">)</span><span class="o">,</span> <span class="nv">$form-multi-select-tag-border-width</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-padding-x</span><span class="o">:</span>      <span class="mf">.5</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-bg</span><span class="o">:</span>                <span class="nv">$light</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-border-width</span><span class="o">:</span>      <span class="nv">$border-width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-border-color</span><span class="o">:</span>      <span class="nv">$border-color</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-border-radius</span><span class="o">:</span>     <span class="mf">.25</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-border-radius-sm</span><span class="o">:</span>  <span class="mf">.125</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-border-radius-lg</span><span class="o">:</span>  <span class="mf">.375</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-margin-y</span><span class="o">:</span>          <span class="mf">.125</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-margin-x</span><span class="o">:</span>          <span class="mf">.125</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-padding-y</span><span class="o">:</span>         <span class="nf">subtract</span><span class="p">((</span><span class="nv">$form-multi-select-padding-y</span> <span class="o">-</span> <span class="nv">$form-multi-select-selection-tags-padding-y</span> <span class="o">-</span> <span class="nv">$form-multi-select-tag-margin-y</span><span class="p">)</span><span class="o">,</span> <span class="nv">$form-multi-select-tag-border-width</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-padding-x</span><span class="o">:</span>         <span class="mf">.5</span><span class="kt">rem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-search-color</span><span class="o">:</span>          <span class="nv">$input-color</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-search-bg</span><span class="o">:</span>             <span class="nv">$input-bg</span><span class="p">;</span>
@@ -1766,10 +1784,10 @@
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-padding-x-sm</span><span class="o">:</span>                 <span class="nv">$input-padding-x-sm</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-font-size-sm</span><span class="o">:</span>                 <span class="nv">$input-font-size-sm</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-selection-tags-padding-y-sm</span><span class="o">:</span>  <span class="mf">.0675</span><span class="kt">rem</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-selection-tags-padding-x-sm</span><span class="o">:</span>  <span class="mf">.0675</span><span class="kt">rem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-selection-tags-padding-x-sm</span><span class="o">:</span>  <span class="mf">.125</span><span class="kt">rem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-margin-y-sm</span><span class="o">:</span>              <span class="mf">.0675</span><span class="kt">rem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-margin-x-sm</span><span class="o">:</span>              <span class="mf">.0675</span><span class="kt">rem</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-padding-y-sm</span><span class="o">:</span>             <span class="nf">subtract</span><span class="p">((</span><span class="nv">$form-multi-select-padding-y-sm</span> <span class="o">-</span> <span class="nv">$form-multi-select-selection-tags-padding-y-sm</span> <span class="o">-</span> <span class="nv">$form-multi-select-tag-margin-y-sm</span><span class="p">)</span><span class="o">,</span> <span class="nv">$form-multi-select-tag-border-width</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-padding-y-sm</span><span class="o">:</span>             <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$form-multi-select-tag-padding-x-sm</span><span class="o">:</span>             <span class="mf">.5</span><span class="kt">rem</span><span class="p">;</span>
 </span></span></code></pre></div>
 
@@ -1796,7 +1814,7 @@
       
   
     </div>
-    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-PXCF+7AmSRaBre024Vj/351upY3ItGUEnFXlXC/dzueNTk5I2xipIib6qgx3GRjw" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-sdicgarETjmkPk1vKKZAbvlceGM/fMS7m+2dan6ptvZJac2nG4cEm6A2av4r+e8R" crossorigin="anonymous"></script>
 
 
 <script src="https://coreui.io/docs/assets/js/docs.min.js"></script>

@@ -17,7 +17,7 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-B25jn3HrWNnbfszQBjQT5iHKf8BuG+Og9Al4zXNJgLl6orefC7UQYjD/Uxo1jMis" crossorigin="anonymous">
+<link href="https://coreui.io/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-ancM2XfKXXNg2l08AgpTUzRISdhh77O9e24ZZ7KfZMgEUBCUKKT/N6mIYkTz2n4v" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/assets/css/docs.css" rel="stylesheet">
 
@@ -876,13 +876,21 @@
   
 </nav>
 
-      
-      <div class="bg-danger bg-opacity-10 border-start border-start-5 border-start-danger p-4 pb-3 mb-5">
-        <h3 class="mb-4">CoreUI PRO Component</h3>
-        <p>
-          To use this component you must have a CoreUI PRO license. Buy the <a href="https://coreui.io/pricing/?framework=bootstrap&docs=coreui-banner-pro">CoreUI PRO</a> and get access to all PRO components, features, templates, and dedicated support.
-        </p>
-      </div>
+      <a class="black-friday-banner rounded" href="https://coreui.io/pricing/?framework=bootstrap&amp;docs=coreui-banner-black-friday">
+        <div class="row">
+          <div class="col-xl-7 align-self-center">
+            <div class="p-3 p-xl-5">
+              <h2>Black Friday? Black Week? <br> CoreUI makes it MONTH!</h2>
+              <div> With CoreUI you don't have to wait till Black Friday, cause we launched our Black Friday promo - right here, right now! Up to 70% discount for CoreUI PRO Admin Templates and PRO UI Components.</div>
+            </div>
+          </div>
+          <div class="col-xl-5">
+            <div class="p-2">
+              <img class="logo mx-auto" src="https://coreui.io/docs/assets/img/black-hexagon400h.webp" alt="CoreUI logo" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </a>
       
       <h1 class="docs-title" id="content">Date Picker</h1>
       <p class="docs-lead">Create consistent cross-browser and cross-device time picker.</p>
@@ -1389,6 +1397,12 @@
 <td>Toggle the readonly state for the component.</td>
 </tr>
 <tr>
+<td><code>invalid</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Toggle the invalid state for the component.</td>
+</tr>
+<tr>
 <td><code>locale</code></td>
 <td>string</td>
 <td><code>'default'</code></td>
@@ -1435,6 +1449,12 @@
 <td>array | string</td>
 <td><code>['btn', 'btn-sm', 'me-2']</code></td>
 <td>CSS class names that will be added to the today button</td>
+</tr>
+<tr>
+<td><code>valid</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Toggle the valid state for the component.</td>
 </tr>
 <tr>
 <td><code>weekdayFormat</code></td>
@@ -1531,6 +1551,8 @@
 <h3 id="sass-variables">SASS variables</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nv">$date-picker-default-icon-color</span><span class="o">:</span>       <span class="nv">$gray-600</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$date-picker-default-icon</span><span class="o">:</span>             <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z&#39;&gt;&lt;/path&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-default-icon-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-invalid-icon</span><span class="o">:</span>             <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z&#39;&gt;&lt;/path&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-invalid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$date-picker-valid-icon</span><span class="o">:</span>               <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z&#39;&gt;&lt;/path&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;224&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;296&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;112&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;200&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;280&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; x=&#39;368&#39; y=&#39;368&#39; fill=&#39;</span><span class="si">#{</span><span class="nv">$form-feedback-valid-color</span><span class="si">}</span><span class="sx">&#39;&gt;&lt;/rect&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$date-picker-cleaner-icon-color</span><span class="o">:</span>       <span class="nv">$gray-600</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$date-picker-cleaner-icon</span><span class="o">:</span>             <span class="sx">url(&#34;data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39; role=&#39;img&#39;&gt;&lt;polygon fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-cleaner-icon-color</span><span class="si">}</span><span class="sx">&#39; points=&#39;306.912 214.461 256 265.373 205.088 214.461 182.461 237.088 233.373 288 182.461 338.912 205.088 361.539 256 310.627 306.912 361.539 329.539 338.912 278.627 288 329.539 237.088 306.912 214.461&#39;&gt;&lt;/polygon&gt;&lt;path fill=&#39;</span><span class="si">#{</span><span class="nv">$date-picker-cleaner-icon-color</span><span class="si">}</span><span class="sx">&#39; d=&#39;M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z&#39;&gt;&lt;/path&gt;&lt;/svg&gt;&#34;)</span><span class="p">;</span>
@@ -1619,7 +1641,7 @@
       
   
     </div>
-    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-PXCF+7AmSRaBre024Vj/351upY3ItGUEnFXlXC/dzueNTk5I2xipIib6qgx3GRjw" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/dist/js/coreui.bundle.min.js" integrity="sha384-sdicgarETjmkPk1vKKZAbvlceGM/fMS7m+2dan6ptvZJac2nG4cEm6A2av4r+e8R" crossorigin="anonymous"></script>
 
 
 <script src="https://coreui.io/docs/assets/js/docs.min.js"></script>
