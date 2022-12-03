@@ -1,0 +1,19 @@
+<c-smart-table
+  [columnFilter]="true"
+  [(columnFilterValue)]="columnFilterValue"
+  [columnSorter]="true"
+  [columns]="columns"
+  header
+  itemsPerPage="10"
+  [itemsPerPageSelect]="true"
+  [items]="newData"
+  pagination
+  [tableProps]="{ hover: true, striped: true, responsive: true }"
+>
+  <ng-template cTemplateId="columnFilter_role" let-column let-header="header">
+    <c-multi-select multiple size="sm" (valueChange)="handleValueChange($event)" [value]="selected">
+      <c-multi-select-option *ngFor="let role of roles" [value]="role">{{role}}</c-multi-select-option>
+    </c-multi-select>
+  </ng-template>
+</c-smart-table>
+
