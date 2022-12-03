@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import usersData from './_data';
+import usersData from './data';
 
 @Component({
   selector: 'docs-smart-table01',
