@@ -6,7 +6,6 @@
 * Copyright (c) 2022 creativeLabs Łukasz Holeczek
 * License (https://coreui.io/pro/license)
 -->
-
 <html lang="en">
   <head>
     <base href="./">
@@ -35,7 +34,7 @@
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!-- Vendors styles-->
-    <link rel="stylesheet" href="node_modules/simplebar/dist/simplebar.css">
+    <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
     <link rel="stylesheet" href="css/vendors/simplebar.css">
     <!-- Main styles for this application-->
     <link href="css/style.css" rel="stylesheet">
@@ -43,18 +42,18 @@
     <link href="css/examples.css" rel="stylesheet">
     <script>
       (function(w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({
-      'gtm.start': new Date().getTime(),
-      event: 'gtm.js'
-      });
-      var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s),
-      dl = l != 'dataLayer' ? '&l=' + l : '';
-      j.async = true;
-      j.src =
-      'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-      f.parentNode.insertBefore(j, f);
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-KX4JH47');
     </script>
   </head>
@@ -70,13 +69,13 @@
                   <p class="text-medium-emphasis">Sign In to your account</p>
                   <div class="input-group mb-3"><span class="input-group-text">
                       <svg class="icon">
-                        <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-user"></use>
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                       </svg></span>
                     <input class="form-control" type="text" placeholder="Username">
                   </div>
                   <div class="input-group mb-4"><span class="input-group-text">
                       <svg class="icon">
-                        <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-lock-locked"></use>
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                       </svg></span>
                     <input class="form-control" type="password" placeholder="Password">
                   </div>
@@ -105,35 +104,36 @@
       </div>
     </div>
     <!-- CoreUI and necessary plugins-->
-    <script src="node_modules/@coreui/coreui-pro/dist/js/coreui.bundle.min.js"></script>
-    <script src="node_modules/simplebar/dist/simplebar.min.js"></script>
+    <script src="vendors/@coreui/coreui-pro/js/coreui.bundle.min.js"></script>
+    <script src="vendors/simplebar/js/simplebar.min.js"></script>
     <script>
       if (document.body.classList.contains('dark-theme')) {
-        var element =  document.getElementById('btn-dark-theme');
+        var element = document.getElementById('btn-dark-theme');
         if (typeof(element) != 'undefined' && element != null) {
           document.getElementById('btn-dark-theme').checked = true;
         }
       } else {
-        var element =  document.getElementById('btn-light-theme');
+        var element = document.getElementById('btn-light-theme');
         if (typeof(element) != 'undefined' && element != null) {
           document.getElementById('btn-light-theme').checked = true;
         }
       }
+
       function handleThemeChange(src) {
         var event = document.createEvent('Event');
         event.initEvent('themeChange', true, true);
-      
-        if (src.value === 'light' ) {
+
+        if (src.value === 'light') {
           document.body.classList.remove('dark-theme');
         }
-        if (src.value === 'dark' ) {
+        if (src.value === 'dark') {
           document.body.classList.add('dark-theme');
         }
         document.body.dispatchEvent(event);
       }
-      
     </script>
-    <script> 
+    <script>
     </script>
+
   </body>
 </html>
