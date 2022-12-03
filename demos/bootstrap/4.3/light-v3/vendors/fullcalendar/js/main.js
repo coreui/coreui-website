@@ -1,7 +1,7 @@
 /*!
-FullCalendar v5.10.2
+FullCalendar v5.11.3
 Docs & License: https://fullcalendar.io/
-(c) 2021 Adam Shaw
+(c) 2022 Adam Shaw
 */
 var FullCalendar = (function (exports) {
     'use strict';
@@ -1207,8 +1207,7 @@ var FullCalendar = (function (exports) {
             return currentResults;
         };
     }
-    function memoizeHashlike(// used?
-    workerFunc, resEquality, teardownFunc) {
+    function memoizeHashlike(workerFunc, resEquality, teardownFunc) {
         var _this = this;
         var currentArgHash = {};
         var currentResHash = {};
@@ -1842,13 +1841,14 @@ var FullCalendar = (function (exports) {
         eventSources: identity,
     };
     var COMPLEX_OPTION_COMPARATORS = {
-        headerToolbar: isBoolComplexEqual,
-        footerToolbar: isBoolComplexEqual,
-        buttonText: isBoolComplexEqual,
-        buttonHints: isBoolComplexEqual,
-        buttonIcons: isBoolComplexEqual,
+        headerToolbar: isMaybeObjectsEqual,
+        footerToolbar: isMaybeObjectsEqual,
+        buttonText: isMaybeObjectsEqual,
+        buttonHints: isMaybeObjectsEqual,
+        buttonIcons: isMaybeObjectsEqual,
+        dateIncrement: isMaybeObjectsEqual,
     };
-    function isBoolComplexEqual(a, b) {
+    function isMaybeObjectsEqual(a, b) {
         if (typeof a === 'object' && typeof b === 'object' && a && b) { // both non-null objects
             return isPropsEqual(a, b);
         }
@@ -5206,6 +5206,12 @@ var FullCalendar = (function (exports) {
             return !compareObjs(this.props, nextProps, this.propEquality) ||
                 !compareObjs(this.state, nextState, this.stateEquality);
         };
+        // HACK for freakin' React StrictMode
+        PureComponent.prototype.safeSetState = function (newState) {
+            if (!compareObjs(this.state, __assign(__assign({}, this.state), newState), this.stateEquality)) {
+                this.setState(newState);
+            }
+        };
         PureComponent.addPropsEquality = addPropsEquality;
         PureComponent.addStateEquality = addStateEquality;
         PureComponent.contextType = ViewContextType;
@@ -7396,11 +7402,15 @@ var FullCalendar = (function (exports) {
             var anyChanges = false;
             var extra = {};
             for (var optionName in raw) {
-                if (raw[optionName] === currentRaw[optionName]) {
+                if (raw[optionName] === currentRaw[optionName] ||
+                    (COMPLEX_OPTION_COMPARATORS[optionName] &&
+                        COMPLEX_OPTION_COMPARATORS[optionName](raw[optionName], currentRaw[optionName]))) {
                     refined[optionName] = currentRefined[optionName];
                 }
                 else {
-                    if (raw[optionName] === this.currentCalendarOptionsInput[optionName]) {
+                    if (raw[optionName] === this.currentCalendarOptionsInput[optionName] ||
+                        (COMPLEX_OPTION_COMPARATORS[optionName] &&
+                            COMPLEX_OPTION_COMPARATORS[optionName](raw[optionName], this.currentCalendarOptionsInput[optionName]))) {
                         if (optionName in this.currentCalendarOptionsRefined) { // might be an "extra" prop
                             refined[optionName] = this.currentCalendarOptionsRefined[optionName];
                         }
@@ -9233,7 +9243,7 @@ var FullCalendar = (function (exports) {
             };
             // TODO: can do a really simple print-view. dont need to join rows
             _this.handleSizing = function () {
-                _this.setState(__assign({ shrinkWidth: _this.computeShrinkWidth() }, _this.computeScrollerDims()));
+                _this.safeSetState(__assign({ shrinkWidth: _this.computeShrinkWidth() }, _this.computeScrollerDims()));
             };
             return _this;
         }
@@ -9802,7 +9812,7 @@ var FullCalendar = (function (exports) {
 
     // exports
     // --------------------------------------------------------------------------------------------------
-    var version = '5.10.2'; // important to type it, so .d.ts has generic string
+    var version = '5.11.3'; // important to type it, so .d.ts has generic string
 
     var Calendar = /** @class */ (function (_super) {
         __extends(Calendar, _super);
@@ -12718,7 +12728,7 @@ var FullCalendar = (function (exports) {
                 var oldInstanceHeights = this.state.eventInstanceHeights;
                 var newInstanceHeights = this.queryEventInstanceHeights();
                 var limitByContentHeight = props.dayMaxEvents === true || props.dayMaxEventRows === true;
-                this.setState({
+                this.safeSetState({
                     // HACK to prevent oscillations of events being shown/hidden from max-event-rows
                     // Essentially, once you compute an element's height, never null-out.
                     // TODO: always display all events, as visibility:hidden?

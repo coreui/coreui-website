@@ -1,11 +1,11 @@
 /* global google */
-
 /**
  * --------------------------------------------------------------------------
- * CoreUI Boostrap Admin Template (4.2.0): google-maps.js
+ * CoreUI Boostrap Admin Template (4.3.0): google-maps.js
  * License (https://coreui.io/pro/license)
  * --------------------------------------------------------------------------
  */
+
 const initMap = () => {
   const locations = [{
     lat: 37.431489,
@@ -62,7 +62,6 @@ const initMap = () => {
     return marker;
   });
 };
-
 if (window.google && window.google.maps) {
   initMap();
 }

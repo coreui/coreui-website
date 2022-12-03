@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
-
 /* global coreui */
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Boostrap Admin Template (4.2.0): multi-select.js
+ * CoreUI Boostrap Admin Template (4.3.0): multi-select.js
  * License (https://coreui.io/pro/license)
  * --------------------------------------------------------------------------
  */
+
 const options = [{
   value: 0,
   text: 'enhancement'
@@ -120,7 +120,9 @@ const select8c = new coreui.MultiSelect(select8, {
   search: false,
   options,
   selection: false
-}); //
+});
+
+//
 
 const select9 = document.getElementById('select-9');
 const select9c = new coreui.MultiSelect(select9, {

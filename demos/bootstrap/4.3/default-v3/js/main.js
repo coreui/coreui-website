@@ -2,26 +2,32 @@
 
 /**
  * --------------------------------------------------------------------------
- * CoreUI Boostrap Admin Template (v4.2.0): main.js
+ * CoreUI Boostrap Admin Template (v4.3.0): main.js
  * License (https://coreui.io/pro/license)
  * --------------------------------------------------------------------------
  */
+
 // Disable the on-canvas tooltip
+
 Chart.defaults.pointHitDetectionRadius = 1;
 Chart.defaults.plugins.tooltip.enabled = false;
 Chart.defaults.plugins.tooltip.mode = 'index';
 Chart.defaults.plugins.tooltip.position = 'nearest';
 Chart.defaults.plugins.tooltip.external = coreui.ChartJS.customTooltips;
-Chart.defaults.color = coreui.Utils.getStyle('--cui-body-color'); // console.log(Chart.defaults.color)
+Chart.defaults.color = coreui.Utils.getStyle('--cui-body-color');
+
+// console.log(Chart.defaults.color)
 
 document.body.addEventListener('themeChange', () => {
   cardChart1.data.datasets[0].pointBackgroundColor = coreui.Utils.getStyle('--cui-primary');
   cardChart1.update();
-}); // const random = (min, max) =>
+});
+
+// const random = (min, max) =>
 //   // eslint-disable-next-line no-mixed-operators
 //   Math.floor(Math.random() * (max - min + 1) + min)
-// eslint-disable-next-line no-unused-vars
 
+// eslint-disable-next-line no-unused-vars
 const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
   type: 'bar',
   data: {
@@ -70,9 +76,10 @@ const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
         grid: {
           // display: false,
           drawBorder: false,
-          borderDash: [2, 4] // drawTicks: false
-
+          borderDash: [2, 4]
+          // drawTicks: false
         },
+
         gridLines: {
           // You can change the color, the dash effect, the main axe color, etc.
           borderDash: [8, 4],
@@ -86,14 +93,15 @@ const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
           },
           maxTicksLimit: 5,
           padding: 16,
-          stepSize: Math.ceil(100 / 4) // max: 250
-
+          stepSize: Math.ceil(100 / 4)
+          // max: 250
         }
       }
     }
   }
-}); // eslint-disable-next-line no-unused-vars
+});
 
+// eslint-disable-next-line no-unused-vars
 const cardChartNew1 = new Chart(document.getElementById('card-chart-new1'), {
   type: 'line',
   data: {
@@ -189,8 +197,9 @@ const cardChart1 = new Chart(document.getElementById('card-chart1'), {
       }
     }
   }
-}); // eslint-disable-next-line no-unused-vars
+});
 
+// eslint-disable-next-line no-unused-vars
 const cardChart3 = new Chart(document.getElementById('card-chart3'), {
   type: 'line',
   data: {
@@ -230,8 +239,9 @@ const cardChart3 = new Chart(document.getElementById('card-chart3'), {
       }
     }
   }
-}); // eslint-disable-next-line no-unused-vars
+});
 
+// eslint-disable-next-line no-unused-vars
 const cardChart4 = new Chart(document.getElementById('card-chart4'), {
   type: 'bar',
   data: {
