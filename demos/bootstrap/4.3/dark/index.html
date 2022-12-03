@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
 * CoreUI PRO Bootstrap Admin Template
-* @version v4.3.0
+* @version v4.2.0
 * @link https://coreui.io/pro/
 * Copyright (c) 2022 creativeLabs Łukasz Holeczek
 * License (https://coreui.io/pro/license)
@@ -41,9 +41,25 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- We use those styles to show code examples, you should remove them in your application.-->
     <link href="css/examples.css" rel="stylesheet">
+    <script>
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-KX4JH47');
+    </script>
     <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
   </head>
-  <body>
+  <body class="dark-theme">
     <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
       <div class="sidebar-brand d-none d-md-flex">
         <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
@@ -212,7 +228,7 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item mt-auto"><a class="nav-link" href="docs.html">
+        <li class="nav-item mt-auto"><a class="nav-link" href="https://coreui.io/docs/templates/installation/" target="_blank">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-description"></use>
             </svg> Docs</a></li>
@@ -891,13 +907,13 @@
                     <div class="col-sm-6">
                       <div class="row">
                         <div class="col-6">
-                          <div class="border-start border-start-4 border-start-info px-3 mb-3"><small class="text-medium-emphasis">New Clients</small>
+                          <div class="border-start border-start-4 border-start-info px-3 mb-3"><small class="text-medium-emphasis text-truncate">New Clients</small>
                             <div class="fs-5 fw-semibold">9.123</div>
                           </div>
                         </div>
                         <!-- /.col-->
                         <div class="col-6">
-                          <div class="border-start border-start-4 border-start-danger px-3 mb-3"><small class="text-medium-emphasis">Recuring Clients</small>
+                          <div class="border-start border-start-4 border-start-danger px-3 mb-3"><small class="text-medium-emphasis text-truncate">Recuring Clients</small>
                             <div class="fs-5 fw-semibold">22.643</div>
                           </div>
                         </div>
@@ -987,13 +1003,13 @@
                     <div class="col-sm-6">
                       <div class="row">
                         <div class="col-6">
-                          <div class="border-start border-start-4 border-start-warning px-3 mb-3"><small class="text-medium-emphasis">Pageviews</small>
+                          <div class="border-start border-start-4 border-start-warning px-3 mb-3"><small class="text-medium-emphasis text-truncate">Pageviews</small>
                             <div class="fs-5 fw-semibold">78.623</div>
                           </div>
                         </div>
                         <!-- /.col-->
                         <div class="col-6">
-                          <div class="border-start border-start-4 border-start-success px-3 mb-3"><small class="text-medium-emphasis">Organic</small>
+                          <div class="border-start border-start-4 border-start-success px-3 mb-3"><small class="text-medium-emphasis text-truncate">Organic</small>
                             <div class="fs-5 fw-semibold">49.123</div>
                           </div>
                         </div>
@@ -1116,8 +1132,8 @@
                             <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/1.jpg" alt="user@email.com"><span class="avatar-status bg-success"></span></div>
                           </td>
                           <td>
-                            <div>Yiorgos Avraamu</div>
-                            <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>
+                            <div class="text-nowrap">Yiorgos Avraamu</div>
+                            <div class="small text-medium-emphasis text-nowrap">New | Registered: Jan 1, 2020</div>
                           </td>
                           <td class="text-center">
                             <svg class="icon icon-xl">
@@ -1125,11 +1141,11 @@
                             </svg>
                           </td>
                           <td>
-                            <div class="clearfix">
+                            <div class="d-flex justify-content-between">
                               <div class="float-start">
                                 <div class="fw-semibold">50%</div>
                               </div>
-                              <div class="float-end"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
+                              <div class="float-end ms-1 text-nowrap"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
                             </div>
                             <div class="progress progress-thin">
                               <div class="progress-bar bg-success-gradient" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -1142,7 +1158,7 @@
                           </td>
                           <td>
                             <div class="small text-medium-emphasis">Last login</div>
-                            <div class="fw-semibold">10 sec ago</div>
+                            <div class="fw-semibold text-nowrap">10 sec ago</div>
                           </td>
                           <td>
                             <div class="dropdown">
@@ -1160,8 +1176,8 @@
                             <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/2.jpg" alt="user@email.com"><span class="avatar-status bg-danger-gradient"></span></div>
                           </td>
                           <td>
-                            <div>Avram Tarasios</div>
-                            <div class="small text-medium-emphasis"><span>Recurring</span> | Registered: Jan 1, 2020</div>
+                            <div class="text-nowrap">Avram Tarasios</div>
+                            <div class="small text-medium-emphasis text-nowrap">Recurring | Registered: Jan 1, 2020</div>
                           </td>
                           <td class="text-center">
                             <svg class="icon icon-xl">
@@ -1169,11 +1185,11 @@
                             </svg>
                           </td>
                           <td>
-                            <div class="clearfix">
+                            <div class="d-flex justify-content-between">
                               <div class="float-start">
                                 <div class="fw-semibold">10%</div>
                               </div>
-                              <div class="float-end"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
+                              <div class="float-end ms-1 text-nowrap"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
                             </div>
                             <div class="progress progress-thin">
                               <div class="progress-bar bg-info-gradient" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
@@ -1186,7 +1202,7 @@
                           </td>
                           <td>
                             <div class="small text-medium-emphasis">Last login</div>
-                            <div class="fw-semibold">5 minutes ago</div>
+                            <div class="fw-semibold text-nowrap">5 minutes ago</div>
                           </td>
                           <td>
                             <div class="dropdown">
@@ -1204,8 +1220,8 @@
                             <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/3.jpg" alt="user@email.com"><span class="avatar-status bg-warning-gradient"></span></div>
                           </td>
                           <td>
-                            <div>Quintin Ed</div>
-                            <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>
+                            <div class="text-nowrap">Quintin Ed</div>
+                            <div class="small text-medium-emphasis text-nowrap">New | Registered: Jan 1, 2020</div>
                           </td>
                           <td class="text-center">
                             <svg class="icon icon-xl">
@@ -1213,11 +1229,11 @@
                             </svg>
                           </td>
                           <td>
-                            <div class="clearfix">
+                            <div class="d-flex justify-content-between">
                               <div class="float-start">
                                 <div class="fw-semibold">74%</div>
                               </div>
-                              <div class="float-end"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
+                              <div class="float-end ms-1 text-nowrap"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
                             </div>
                             <div class="progress progress-thin">
                               <div class="progress-bar bg-warning-gradient" role="progressbar" style="width: 74%" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100"></div>
@@ -1230,7 +1246,7 @@
                           </td>
                           <td>
                             <div class="small text-medium-emphasis">Last login</div>
-                            <div class="fw-semibold">1 hour ago</div>
+                            <div class="fw-semibold text-nowrap">1 hour ago</div>
                           </td>
                           <td>
                             <div class="dropdown">
@@ -1248,8 +1264,8 @@
                             <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/4.jpg" alt="user@email.com"><span class="avatar-status bg-secondary-gradient"></span></div>
                           </td>
                           <td>
-                            <div>Enéas Kwadwo</div>
-                            <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>
+                            <div class="text-nowrap">Enéas Kwadwo</div>
+                            <div class="small text-medium-emphasis text-nowrap">New | Registered: Jan 1, 2020</div>
                           </td>
                           <td class="text-center">
                             <svg class="icon icon-xl">
@@ -1257,11 +1273,11 @@
                             </svg>
                           </td>
                           <td>
-                            <div class="clearfix">
+                            <div class="d-flex justify-content-between">
                               <div class="float-start">
                                 <div class="fw-semibold">98%</div>
                               </div>
-                              <div class="float-end"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
+                              <div class="float-end ms-1 text-nowrap"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
                             </div>
                             <div class="progress progress-thin">
                               <div class="progress-bar bg-danger-gradient" role="progressbar" style="width: 98%" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100"></div>
@@ -1274,7 +1290,7 @@
                           </td>
                           <td>
                             <div class="small text-medium-emphasis">Last login</div>
-                            <div class="fw-semibold">Last month</div>
+                            <div class="fw-semibold text-nowrap">Last month</div>
                           </td>
                           <td>
                             <div class="dropdown">
@@ -1292,8 +1308,8 @@
                             <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/5.jpg" alt="user@email.com"><span class="avatar-status bg-success"></span></div>
                           </td>
                           <td>
-                            <div>Agapetus Tadeáš</div>
-                            <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>
+                            <div class="text-nowrap">Agapetus Tadeáš</div>
+                            <div class="small text-medium-emphasis text-nowrap">New | Registered: Jan 1, 2020</div>
                           </td>
                           <td class="text-center">
                             <svg class="icon icon-xl">
@@ -1301,11 +1317,11 @@
                             </svg>
                           </td>
                           <td>
-                            <div class="clearfix">
+                            <div class="d-flex justify-content-between">
                               <div class="float-start">
                                 <div class="fw-semibold">22%</div>
                               </div>
-                              <div class="float-end"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
+                              <div class="float-end ms-1 text-nowrap"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
                             </div>
                             <div class="progress progress-thin">
                               <div class="progress-bar bg-info-gradient" role="progressbar" style="width: 22%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
@@ -1318,7 +1334,7 @@
                           </td>
                           <td>
                             <div class="small text-medium-emphasis">Last login</div>
-                            <div class="fw-semibold">Last week</div>
+                            <div class="fw-semibold text-nowrap">Last week</div>
                           </td>
                           <td>
                             <div class="dropdown dropup">
@@ -1336,8 +1352,8 @@
                             <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/6.jpg" alt="user@email.com"><span class="avatar-status bg-danger-gradient"></span></div>
                           </td>
                           <td>
-                            <div>Friderik Dávid</div>
-                            <div class="small text-medium-emphasis"><span>New</span> | Registered: Jan 1, 2020</div>
+                            <div class="text-nowrap">Friderik Dávid</div>
+                            <div class="small text-medium-emphasis text-nowrap">New | Registered: Jan 1, 2020</div>
                           </td>
                           <td class="text-center">
                             <svg class="icon icon-xl">
@@ -1345,11 +1361,11 @@
                             </svg>
                           </td>
                           <td>
-                            <div class="clearfix">
+                            <div class="d-flex justify-content-between">
                               <div class="float-start">
                                 <div class="fw-semibold">43%</div>
                               </div>
-                              <div class="float-end"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
+                              <div class="float-end ms-1 text-nowrap"><small class="text-medium-emphasis">Jun 11, 2020 - Jul 10, 2020</small></div>
                             </div>
                             <div class="progress progress-thin">
                               <div class="progress-bar bg-success-gradient" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
@@ -1362,7 +1378,7 @@
                           </td>
                           <td>
                             <div class="small text-medium-emphasis">Last login</div>
-                            <div class="fw-semibold">Yesterday</div>
+                            <div class="fw-semibold text-nowrap">Yesterday</div>
                           </td>
                           <td>
                             <div class="dropdown dropup">
