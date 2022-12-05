@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // let usersUrl: string = '/api/users';
-let usersUrl: string = 'https://f6ixzh.sse.codesandbox.io/';
+let usersUrl: string = 'https://m8gn8f.sse.codesandbox.io/';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -41,7 +41,7 @@ export class UsersService {
   /** GET status from the server */
   getStatus(): Observable<any> {
     return this.httpClient.get<any>(
-      'https://f6ixzh.sse.codesandbox.io/api/status',
+      'https://m8gn8f.sse.codesandbox.io/api/status',
       httpOptions
     );
   }
