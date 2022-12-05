@@ -4,8 +4,7 @@ import usersData from './data';
 
 @Component({
   selector: 'docs-smart-table04',
-  templateUrl: './smart-table04.component.html',
-  styleUrls: ['./smart-table04.component.scss']
+  templateUrl: './smart-table04.component.html'
 })
 export class SmartTable04Component {
 
@@ -14,7 +13,7 @@ export class SmartTable04Component {
     return { id, name, role, status };
   });
 
-  roles = [...new Set(usersData.map(item => item.role))]
+  roles = [...new Set(usersData.map(item => item.role))];
 
   selected: string[] = ['Staff', 'Admin'];
 
@@ -31,27 +30,29 @@ export class SmartTable04Component {
   ];
 
   set columnFilterValue(value) {
-    this._columnFilterValue = {...value};
+    this._columnFilterValue = { ...value };
     if (!Object.entries(value).length) {
       this.selected = [];
     }
   }
+
   get columnFilterValue() {
     return this._columnFilterValue;
   }
+
   private _columnFilterValue: any = {};
 
   handleValueChange($event: any) {
-    const columnFilterValue = { ...this.columnFilterValue }
+    const columnFilterValue = { ...this.columnFilterValue };
     if ($event?.length) {
-      const selected = [...$event]
+      const selected = [...$event];
       this.selected = selected;
       const filterFunction = (item: any) => selected.includes(item);
-      this.columnFilterValue = { ...columnFilterValue, role: filterFunction }
+      this.columnFilterValue = { ...columnFilterValue, role: filterFunction };
       return;
     }
     delete columnFilterValue.role;
-    this.columnFilterValue = { ...columnFilterValue }
+    this.columnFilterValue = { ...columnFilterValue };
   }
 
 }
