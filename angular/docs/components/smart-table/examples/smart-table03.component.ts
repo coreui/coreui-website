@@ -1,129 +1,193 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, retry, takeUntil, tap } from 'rxjs/operators';
 
-import { IUsers, UsersService } from './users.service';
+import { IColumn, IColumnFilterValue, ISorterValue } from '@coreui/angular';
+import { IApiParams, IUsers, UsersService } from './users.service';
+
+export interface IParams {
+  activePage?: number;
+  columnFilterValue?: IColumnFilterValue;
+  itemsPerPage?: number;
+  loadingData?: boolean;
+  sorterValue?: ISorterValue;
+  totalPages?: number;
+}
 
 @Component({
   selector: 'docs-smart-table03',
   templateUrl: './smart-table03.component.html',
-  providers: [UsersService],
-  styles: []
+  providers: [UsersService]
 })
-export class SmartTable03Component implements OnInit {
+export class SmartTable03Component implements OnInit, OnDestroy {
 
-  title = 'CoreUI-Angular Smart Table Example';
+  constructor(
+    private usersService: UsersService
+  ) {
+  }
 
-  usersExternal: IUsers[] = Array.from({ length: 5 });
-  usersFallback = Array.from({ length: 5 });
-
-  serverStatus = { status: 'DOWN' };
-
-  columns = [
-    'id',
+  title = 'CoreUI Angular Smart Table Example';
+  readonly columns: (string | IColumn)[] = [
     {
-      key: 'name',
-      _style: { width: '40%' }
+      key: 'first_name',
+      _style: { width: '15%' }
     },
-    { key: 'registered', filter: false, sorter: false },
-    { key: 'role', _style: { width: '20%' } },
-    { key: 'status', _style: { width: '15%' } },
     {
-      key: 'show',
-      label: '',
-      _style: { width: '5%' },
-      filter: false,
-      sorter: false
+      key: 'last_name',
+      _style: { width: '15%' }
+    },
+    'email',
+    {
+      key: 'country',
+      _style: { width: '22%' }
+    },
+    {
+      key: 'ip_address',
+      label: 'IP',
+      _style: { width: '15%' }
     }
   ];
+  readonly activePage$ = new BehaviorSubject(0);
+  readonly columnFilterValue$ = new BehaviorSubject({});
+  readonly itemsPerPage$ = new BehaviorSubject(5);
+  readonly loadingData$ = new BehaviorSubject<boolean>(true);
+  readonly totalPages$ = new BehaviorSubject<number>(1);
+  readonly sorterValue$ = new BehaviorSubject({});
+  readonly totalItems$ = new BehaviorSubject(0);
 
-  params = {
-    page: 1,
-    columnFilterValue: '',
-    tableFilterValue: '',
-    sorterValue: '',
-    itemsPerPage: 5
-  };
+  readonly apiParams$ = new BehaviorSubject<IApiParams>({ limit: this.itemsPerPage$.value, offset: 0 });
+  readonly errorMessage$ = new Subject<string>();
+  readonly retry$ = new Subject<boolean>();
 
-  columnFilterValue = [];
-  tableFilterValue = '';
-  sorterValue = {};
-  loadingData = true;
-  totalPages = 1;
-  activePage = 1;
+  readonly props$: Observable<IParams> = combineLatest([
+    this.activePage$,
+    this.columnFilterValue$,
+    this.itemsPerPage$,
+    this.loadingData$,
+    this.sorterValue$,
+    this.totalPages$
+  ]).pipe(
+    debounceTime(100),
+    map(([activePage, columnFilterValue, itemsPerPage, loadingData, sorterValue, totalPages]) => ({
+      activePage,
+      columnFilterValue,
+      itemsPerPage,
+      loadingData,
+      sorterValue,
+      totalPages
+    }))
+  );
+  usersData$!: Observable<IUsers[] | unknown>;
+  readonly #destroy$ = new Subject<boolean>();
 
-  constructor(private usersService: UsersService) {}
+  private _apiParams: IApiParams = {};
 
-  ngOnInit() {
-    this.getStatus();
-  }
+  set apiParams(value: any) {
+    const params = {
+      ...this._apiParams,
+      ...value
+    };
 
-  getStatus() {
-    let retry = 0;
-    const intervalId = setInterval(() => {
-      retry++;
-      this.usersService.getStatus().subscribe(
-        (next) => {
-          console.log('next', next);
-          this.serverStatus = { ...next };
-        },
-        (error) => {
-          console.log('error', error);
-        },
-        () => {
-          console.log('complete');
-          this.getUsers();
-          clearInterval(intervalId);
-        }
-      );
-      if (retry > 10) {
-        clearInterval(intervalId);
+    const entries = new Map(Object.entries(params));
+    entries.forEach((value, key, map) => {
+      if (value === '' || value === undefined || value === null) {
+        map.delete(key);
       }
-    }, 2000);
-  }
-
-  getUsers(): void {
-    this.loadingData = true;
-    this.usersService.getUsers({ ...this.params }).subscribe((next) => {
-      console.log(next);
-      const users = next.users;
-      this.usersExternal = [...users];
-      this.loadingData = false;
-      this.totalPages = next.pages;
-      console.log('usersExternal', users);
     });
+
+    const apiParams = Object.fromEntries(entries);
+    this.loadingData$.next(true);
+    this._apiParams = { ...apiParams };
+    this.retry$.next(true);
+    this.apiParams$.next({ ...apiParams });
   }
 
-  handleColumnFilterValueChange($event: any) {
-    console.log('handleColumnFilterValueChange', $event);
-    this.columnFilterValue = $event;
-    this.params.columnFilterValue = JSON.stringify(this.columnFilterValue);
-    this.params.page = 1;
-    this.getUsers();
+  ngOnDestroy(): void {
+    this.#destroy$.next(true);
   }
 
-  handleTableFilterValueChange($event: any) {
-    console.log('handleTableFilterValueChange', $event);
-    this.tableFilterValue = $event;
-    this.params.tableFilterValue = JSON.stringify(this.tableFilterValue);
-    this.getUsers();
+  ngOnInit(): void {
+
+    this.activePage$.pipe(
+      takeUntil(this.#destroy$)
+    ).subscribe((page) => {
+      const limit = this.itemsPerPage$.value;
+      const offset = limit * page - limit;
+      this.apiParams = { offset, limit };
+    });
+
+    this.itemsPerPage$.pipe(
+      distinctUntilChanged(),
+      takeUntil(this.#destroy$)
+    ).subscribe((limit) => {
+      const totalPages = Math.ceil(this.totalItems$.value / limit) ?? 1;
+      this.totalPages$.next(totalPages);
+    });
+
+    this.totalItems$.pipe(
+      distinctUntilChanged(),
+      takeUntil(this.#destroy$)
+    ).subscribe((totalItems) => {
+      const totalPages = Math.ceil(totalItems / this.itemsPerPage$.value) ?? 1;
+      this.totalPages$.next(totalPages);
+    });
+
+    this.totalPages$.pipe(
+      takeUntil(this.#destroy$)
+    ).subscribe((totalPages) => {
+      const activePage = this.activePage$.value > totalPages ? totalPages : this.activePage$.value;
+      this.setActivePage(activePage);
+    });
+
+    this.usersData$ = this.usersService.getUsers(this.apiParams$).pipe(
+      retry({
+        delay: (error) => {
+          console.warn('Retry: ', error);
+          this.errorMessage$.next(error.message ?? `Error: ${JSON.stringify(error)}`);
+          this.loadingData$.next(false);
+          return this.retry$;
+        }
+      }),
+      tap((response) => {
+        this.totalItems$.next(response.number_of_matching_records);
+        if (response.number_of_records) {
+          this.errorMessage$.next('');
+        }
+        this.retry$.next(false);
+        this.loadingData$.next(false);
+      }),
+      map((response) => {
+        return response.records;
+      })
+    );
   }
 
-  handleSorterValueChange(sorterValue: any) {
-    const sorter = Object.keys(sorterValue).length
-      ? { ...sorterValue, asc: sorterValue.state === 'asc' }
-      : {};
-    console.log('handleSorterValueChange', sorter);
-    this.params.sorterValue = JSON.stringify(sorter);
-    this.getUsers();
+  handleColumnFilterValueChange(columnFilterValue: IColumnFilterValue) {
+    this.setActivePage(1);
+    this.apiParams = { ...columnFilterValue };
+    this.columnFilterValue$.next(columnFilterValue);
   }
 
-  handleFilteredItemsChange($event: any) {
-    console.log('handleFilteredItemsChange', $event);
+  handleSorterValueChange(sorterValue: ISorterValue) {
+    this.sorterValue$.next(!!sorterValue.state ? sorterValue : {});
+    const sort = !!sorterValue.state ? `${sorterValue.column}%${sorterValue.state}` : '';
+    this.apiParams = { sort };
+  }
+
+  handleFilteredItemsChange(filteredItems: IUsers[]) {
+    // console.table(filteredItems);
   }
 
   handleActivePageChange(page: number) {
-    console.log('handleActivePageChange', page);
-    this.params.page = page;
-    this.getUsers();
+    this.setActivePage(page);
   }
 
+  handleItemsPerPageChange(limit: number) {
+    this.itemsPerPage$.next(limit);
+  }
+
+  setActivePage(page: number) {
+    page = page > 0 && this.totalPages$.value + 1 > page ? page : 1;
+    this.activePage$.next(page);
+  }
 }

@@ -55,9 +55,9 @@ export class SmartTable05Component {
 
   set columnFilterValue(value) {
     this._columnFilterValue = { ...value };
-    if (!Object.entries(value).length) {
-      this.startDate = null;
-    }
+    // if (!Object.entries(value).length) {
+    //   this.startDate = null;
+    // }
   }
 
   get columnFilterValue() {

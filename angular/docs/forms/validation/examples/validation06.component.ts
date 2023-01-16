@@ -1,65 +1,77 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { ValidatorFn, ValidationErrors, UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { ValidationFormsService } from './validation-forms.service';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from "@angular/forms";
+import { ValidationFormsService } from "./validation-forms.service";
 
 /** passwords must match - custom validator */
-export function confirmPasswordValidator(control: UntypedFormGroup): ValidationErrors | null {
-  const password = control.get('password');
-  const confirm = control.get('confirmPassword');
-  return password?.value && password?.value === confirm?.value
-    ? null
-    : { passwordMismatch: true };
-};
+export class PasswordValidators {
+  static confirmPassword(control: AbstractControl): ValidationErrors | null {
+    const password = control.get("password");
+    const confirm = control.get("confirmPassword");
+    if (password?.valid && password?.value === confirm?.value) {
+      confirm?.setErrors(null);
+      return null;
+    }
+    confirm?.setErrors({ passwordMismatch: true });
+    return { passwordMismatch: true };
+  }
+}
 
 @Component({
-  selector: 'docs-validation06',
-  templateUrl: './validation06.component.html',
-  styleUrls: ['./validation06.component.scss'],
-  providers: [ValidationFormsService],
+  selector: "docs-validation06",
+  templateUrl: "./validation06.component.html",
+  styleUrls: ["./validation06.component.scss"],
+  providers: [ValidationFormsService]
 })
 export class Validation06Component {
-  simpleForm!: UntypedFormGroup;
+  simpleForm!: FormGroup;
   submitted = false;
   formErrors: any;
+  formControls!: string[];
 
-  constructor(private fb: UntypedFormBuilder, public vf: ValidationFormsService) {
-    this.formErrors = this.vf.errorMessages;
+  constructor(
+    private formBuilder: FormBuilder,
+    public validationFormsService: ValidationFormsService
+  ) {
+    this.formErrors = this.validationFormsService.errorMessages;
     this.createForm();
   }
 
   createForm() {
-    this.simpleForm = this.fb.group(
+    this.simpleForm = this.formBuilder.group(
       {
-        firstName: ['', [Validators.required]],
-        lastName: ['', [Validators.required]],
+        firstName: ["", [Validators.required]],
+        lastName: ["", [Validators.required]],
         username: [
-          '',
+          "",
           [
             Validators.required,
-            Validators.minLength(this.vf.formRules.usernameMin),
-            Validators.pattern(this.vf.formRules.nonEmpty),
-          ],
+            Validators.minLength(this.validationFormsService.formRules.usernameMin),
+            Validators.pattern(this.validationFormsService.formRules.nonEmpty)
+          ]
         ],
-        email: ['', [Validators.required, Validators.email]],
+        email: ["", [Validators.required, Validators.email]],
         password: [
-          '',
+          "",
           [
             Validators.required,
-            Validators.minLength(this.vf.formRules.passwordMin),
-            Validators.pattern(this.vf.formRules.passwordPattern),
-          ],
+            Validators.minLength(this.validationFormsService.formRules.passwordMin),
+            Validators.pattern(this.validationFormsService.formRules.passwordPattern)
+          ]
         ],
-        confirmPassword: ['', [Validators.required]],
-        accept: [false, [Validators.requiredTrue]],
+        confirmPassword: [
+          "",
+          [
+            Validators.required,
+            Validators.minLength(this.validationFormsService.formRules.passwordMin),
+            Validators.pattern(this.validationFormsService.formRules.passwordPattern)
+          ]
+        ],
+        accept: [false, [Validators.requiredTrue]]
       },
-      { validators: confirmPasswordValidator }
+      { validators: [PasswordValidators.confirmPassword] }
     );
-  }
-
-  // convenience getter for easy access to form fields
-  get f() {
-    return this.simpleForm.controls;
+    this.formControls = Object.keys(this.simpleForm.controls);
   }
 
   onReset() {
@@ -71,7 +83,7 @@ export class Validation06Component {
     this.submitted = true;
 
     // stop here if form is invalid
-    return this.simpleForm.status === 'VALID';
+    return this.simpleForm.status === "VALID";
   }
 
   onSubmit() {
@@ -80,7 +92,7 @@ export class Validation06Component {
     if (this.onValidate()) {
       // TODO: Submit form value
       console.warn(this.simpleForm.value);
-      alert('SUCCESS!');
+      alert("SUCCESS!");
     }
   }
 }
