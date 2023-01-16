@@ -1,1 +1,0 @@
-const e={key:"v-7978a12e",path:"/api/form/CFormTextarea.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CFormTextarea",slug:"cformtextarea",children:[]}],git:{updatedTime:1666996726e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:6}]}};export{e as data};

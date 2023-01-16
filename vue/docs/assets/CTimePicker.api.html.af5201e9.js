@@ -1,1 +1,0 @@
-const e={key:"v-fac32784",path:"/api/time-picker/CTimePicker.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CTimePicker",slug:"ctimepicker",children:[]}],git:{updatedTime:1668640204e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:4}]}};export{e as data};
