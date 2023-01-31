@@ -1,6 +1,6 @@
 /*!
-  * CoreUI v4.4.2 (https://coreui.io)
-  * Copyright 2022 The CoreUI Team (https://github.com/orgs/coreui/people)
+  * CoreUI [object Object] v4.4.3 (https://coreui.io)
+  * Copyright 2023 The CoreUI Team (https://github.com/orgs/coreui/people)
   * Licensed under MIT (https://coreui.io)
   */
 (function (global, factory) {
@@ -11,7 +11,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): alert.js
+   * CoreUI (v4.4.3): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's util/index.js
@@ -261,7 +261,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): dom/event-handler.js
+   * CoreUI (v4.4.3): dom/event-handler.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's dom/event-handler.js
@@ -486,7 +486,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): dom/data.js
+   * CoreUI (v4.4.3): dom/data.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's dom/data.js
@@ -537,7 +537,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): dom/manipulator.js
+   * CoreUI (v4.4.3): dom/manipulator.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's dom/manipulator.js
@@ -597,7 +597,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.4): tab.js
+   * CoreUI (v4.2.6): tab.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's util/config.js
@@ -652,7 +652,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): alert.js
+   * CoreUI (v4.4.3): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's base-component.js
@@ -664,7 +664,7 @@
    * Constants
    */
 
-  const VERSION = '4.4.2';
+  const VERSION = '4.4.3';
 
   /**
    * Class definition
@@ -723,7 +723,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): dom/selector-engine.js
+   * CoreUI (v4.4.3): dom/selector-engine.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's dom/selector-engine.js
@@ -814,7 +814,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.4): tab.js
+   * CoreUI (v4.2.6): tab.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's util/component-functions.js
@@ -841,7 +841,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): alert.js
+   * CoreUI (v4.4.3): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's alert.js
@@ -918,7 +918,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): alert.js
+   * CoreUI (v4.4.3): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's button.js
@@ -1518,7 +1518,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.4): tab.js
+   * CoreUI (v4.2.6): tab.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's util/swipe.js
@@ -1640,7 +1640,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): carousel.js
+   * CoreUI (v4.4.3): carousel.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's carousel.js
@@ -2015,7 +2015,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): collapse.js
+   * CoreUI (v4.4.3): collapse.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's collapse.js
@@ -2269,6 +2269,7 @@
     }
   }
 
+  function _typeof$1(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$1 = function _typeof(obj) { return typeof obj; }; } else { _typeof$1 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$1(obj); }
   /**
    * @name toDate
    * @category Common Helpers
@@ -2304,7 +2305,7 @@
     requiredArgs(1, arguments);
     var argStr = Object.prototype.toString.call(argument); // Clone the date
 
-    if (argument instanceof Date || typeof argument === 'object' && argStr === '[object Date]') {
+    if (argument instanceof Date || _typeof$1(argument) === 'object' && argStr === '[object Date]') {
       // Prevent the date to lose the milliseconds when passed to new Date() in IE10
       return new Date(argument.getTime());
     } else if (typeof argument === 'number' || argStr === '[object Number]') {
@@ -2398,6 +2399,7 @@
 
   var millisecondsInHour = 3600000;
 
+  function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
   /**
    * @name isDate
    * @category Common Helpers
@@ -2433,7 +2435,7 @@
 
   function isDate(value) {
     requiredArgs(1, arguments);
-    return value instanceof Date || typeof value === 'object' && Object.prototype.toString.call(value) === '[object Date]';
+    return value instanceof Date || _typeof(value) === 'object' && Object.prototype.toString.call(value) === '[object Date]';
   }
 
   /**
@@ -2671,7 +2673,7 @@
 
   var formatters$2 = {
     // Year
-    y: function (date, token) {
+    y: function y(date, token) {
       // From http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_tokens
       // | Year     |     y | yy |   yyy |  yyyy | yyyyy |
       // |----------|-------|----|-------|-------|-------|
@@ -2686,16 +2688,16 @@
       return addLeadingZeros(token === 'yy' ? year % 100 : year, token.length);
     },
     // Month
-    M: function (date, token) {
+    M: function M(date, token) {
       var month = date.getUTCMonth();
       return token === 'M' ? String(month + 1) : addLeadingZeros(month + 1, 2);
     },
     // Day of the month
-    d: function (date, token) {
+    d: function d(date, token) {
       return addLeadingZeros(date.getUTCDate(), token.length);
     },
     // AM or PM
-    a: function (date, token) {
+    a: function a(date, token) {
       var dayPeriodEnumValue = date.getUTCHours() / 12 >= 1 ? 'pm' : 'am';
 
       switch (token) {
@@ -2715,23 +2717,23 @@
       }
     },
     // Hour [1-12]
-    h: function (date, token) {
+    h: function h(date, token) {
       return addLeadingZeros(date.getUTCHours() % 12 || 12, token.length);
     },
     // Hour [0-23]
-    H: function (date, token) {
+    H: function H(date, token) {
       return addLeadingZeros(date.getUTCHours(), token.length);
     },
     // Minute
-    m: function (date, token) {
+    m: function m(date, token) {
       return addLeadingZeros(date.getUTCMinutes(), token.length);
     },
     // Second
-    s: function (date, token) {
+    s: function s(date, token) {
       return addLeadingZeros(date.getUTCSeconds(), token.length);
     },
     // Fraction of second
-    S: function (date, token) {
+    S: function S(date, token) {
       var numberOfDigits = token.length;
       var milliseconds = date.getUTCMilliseconds();
       var fractionalSeconds = Math.floor(milliseconds * Math.pow(10, numberOfDigits - 3));
@@ -2798,7 +2800,7 @@
    */
   var formatters = {
     // Era
-    G: function (date, token, localize) {
+    G: function G(date, token, localize) {
       var era = date.getUTCFullYear() > 0 ? 1 : 0;
 
       switch (token) {
@@ -2825,7 +2827,7 @@
       }
     },
     // Year
-    y: function (date, token, localize) {
+    y: function y(date, token, localize) {
       // Ordinal number
       if (token === 'yo') {
         var signedYear = date.getUTCFullYear(); // Returns 1 for 1 BC (which is year 0 in JavaScript)
@@ -2839,7 +2841,7 @@
       return formatters$3.y(date, token);
     },
     // Local week-numbering year
-    Y: function (date, token, localize, options) {
+    Y: function Y(date, token, localize, options) {
       var signedWeekYear = getUTCWeekYear(date, options); // Returns 1 for 1 BC (which is year 0 in JavaScript)
 
       var weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear; // Two digit year
@@ -2860,7 +2862,7 @@
       return addLeadingZeros(weekYear, token.length);
     },
     // ISO week-numbering year
-    R: function (date, token) {
+    R: function R(date, token) {
       var isoWeekYear = getUTCISOWeekYear(date); // Padding
 
       return addLeadingZeros(isoWeekYear, token.length);
@@ -2874,12 +2876,12 @@
     // | BC 2 |   2 |  -1 |
     // Also `yy` always returns the last two digits of a year,
     // while `uu` pads single digit years to 2 characters and returns other years unchanged.
-    u: function (date, token) {
+    u: function u(date, token) {
       var year = date.getUTCFullYear();
       return addLeadingZeros(year, token.length);
     },
     // Quarter
-    Q: function (date, token, localize) {
+    Q: function Q(date, token, localize) {
       var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
 
       switch (token) {
@@ -2921,7 +2923,7 @@
       }
     },
     // Stand-alone quarter
-    q: function (date, token, localize) {
+    q: function q(date, token, localize) {
       var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
 
       switch (token) {
@@ -2963,7 +2965,7 @@
       }
     },
     // Month
-    M: function (date, token, localize) {
+    M: function M(date, token, localize) {
       var month = date.getUTCMonth();
 
       switch (token) {
@@ -3001,7 +3003,7 @@
       }
     },
     // Stand-alone month
-    L: function (date, token, localize) {
+    L: function L(date, token, localize) {
       var month = date.getUTCMonth();
 
       switch (token) {
@@ -3043,7 +3045,7 @@
       }
     },
     // Local week of year
-    w: function (date, token, localize, options) {
+    w: function w(date, token, localize, options) {
       var week = getUTCWeek(date, options);
 
       if (token === 'wo') {
@@ -3055,7 +3057,7 @@
       return addLeadingZeros(week, token.length);
     },
     // ISO week of year
-    I: function (date, token, localize) {
+    I: function I(date, token, localize) {
       var isoWeek = getUTCISOWeek(date);
 
       if (token === 'Io') {
@@ -3067,7 +3069,7 @@
       return addLeadingZeros(isoWeek, token.length);
     },
     // Day of the month
-    d: function (date, token, localize) {
+    d: function d(date, token, localize) {
       if (token === 'do') {
         return localize.ordinalNumber(date.getUTCDate(), {
           unit: 'date'
@@ -3077,7 +3079,7 @@
       return formatters$3.d(date, token);
     },
     // Day of year
-    D: function (date, token, localize) {
+    D: function D(date, token, localize) {
       var dayOfYear = getUTCDayOfYear(date);
 
       if (token === 'Do') {
@@ -3089,7 +3091,7 @@
       return addLeadingZeros(dayOfYear, token.length);
     },
     // Day of week
-    E: function (date, token, localize) {
+    E: function E(date, token, localize) {
       var dayOfWeek = date.getUTCDay();
 
       switch (token) {
@@ -3126,7 +3128,7 @@
       }
     },
     // Local day of week
-    e: function (date, token, localize, options) {
+    e: function e(date, token, localize, options) {
       var dayOfWeek = date.getUTCDay();
       var localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
 
@@ -3175,7 +3177,7 @@
       }
     },
     // Stand-alone local day of week
-    c: function (date, token, localize, options) {
+    c: function c(date, token, localize, options) {
       var dayOfWeek = date.getUTCDay();
       var localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
 
@@ -3224,7 +3226,7 @@
       }
     },
     // ISO day of week
-    i: function (date, token, localize) {
+    i: function i(date, token, localize) {
       var dayOfWeek = date.getUTCDay();
       var isoDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
 
@@ -3274,7 +3276,7 @@
       }
     },
     // AM or PM
-    a: function (date, token, localize) {
+    a: function a(date, token, localize) {
       var hours = date.getUTCHours();
       var dayPeriodEnumValue = hours / 12 >= 1 ? 'pm' : 'am';
 
@@ -3307,7 +3309,7 @@
       }
     },
     // AM, PM, midnight, noon
-    b: function (date, token, localize) {
+    b: function b(date, token, localize) {
       var hours = date.getUTCHours();
       var dayPeriodEnumValue;
 
@@ -3348,7 +3350,7 @@
       }
     },
     // in the morning, in the afternoon, in the evening, at night
-    B: function (date, token, localize) {
+    B: function B(date, token, localize) {
       var hours = date.getUTCHours();
       var dayPeriodEnumValue;
 
@@ -3386,7 +3388,7 @@
       }
     },
     // Hour [1-12]
-    h: function (date, token, localize) {
+    h: function h(date, token, localize) {
       if (token === 'ho') {
         var hours = date.getUTCHours() % 12;
         if (hours === 0) hours = 12;
@@ -3398,7 +3400,7 @@
       return formatters$3.h(date, token);
     },
     // Hour [0-23]
-    H: function (date, token, localize) {
+    H: function H(date, token, localize) {
       if (token === 'Ho') {
         return localize.ordinalNumber(date.getUTCHours(), {
           unit: 'hour'
@@ -3408,7 +3410,7 @@
       return formatters$3.H(date, token);
     },
     // Hour [0-11]
-    K: function (date, token, localize) {
+    K: function K(date, token, localize) {
       var hours = date.getUTCHours() % 12;
 
       if (token === 'Ko') {
@@ -3420,7 +3422,7 @@
       return addLeadingZeros(hours, token.length);
     },
     // Hour [1-24]
-    k: function (date, token, localize) {
+    k: function k(date, token, localize) {
       var hours = date.getUTCHours();
       if (hours === 0) hours = 24;
 
@@ -3433,7 +3435,7 @@
       return addLeadingZeros(hours, token.length);
     },
     // Minute
-    m: function (date, token, localize) {
+    m: function m(date, token, localize) {
       if (token === 'mo') {
         return localize.ordinalNumber(date.getUTCMinutes(), {
           unit: 'minute'
@@ -3443,7 +3445,7 @@
       return formatters$3.m(date, token);
     },
     // Second
-    s: function (date, token, localize) {
+    s: function s(date, token, localize) {
       if (token === 'so') {
         return localize.ordinalNumber(date.getUTCSeconds(), {
           unit: 'second'
@@ -3453,11 +3455,11 @@
       return formatters$3.s(date, token);
     },
     // Fraction of second
-    S: function (date, token) {
+    S: function S(date, token) {
       return formatters$3.S(date, token);
     },
     // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
-    X: function (date, token, _localize, options) {
+    X: function X(date, token, _localize, options) {
       var originalDate = options._originalDate || date;
       var timezoneOffset = originalDate.getTimezoneOffset();
 
@@ -3489,7 +3491,7 @@
       }
     },
     // Timezone (ISO-8601. If offset is 0, output is `'+00:00'` or equivalent)
-    x: function (date, token, _localize, options) {
+    x: function x(date, token, _localize, options) {
       var originalDate = options._originalDate || date;
       var timezoneOffset = originalDate.getTimezoneOffset();
 
@@ -3517,7 +3519,7 @@
       }
     },
     // Timezone (GMT)
-    O: function (date, token, _localize, options) {
+    O: function O(date, token, _localize, options) {
       var originalDate = options._originalDate || date;
       var timezoneOffset = originalDate.getTimezoneOffset();
 
@@ -3535,7 +3537,7 @@
       }
     },
     // Timezone (specific non-location)
-    z: function (date, token, _localize, options) {
+    z: function z(date, token, _localize, options) {
       var originalDate = options._originalDate || date;
       var timezoneOffset = originalDate.getTimezoneOffset();
 
@@ -3553,13 +3555,13 @@
       }
     },
     // Seconds timestamp
-    t: function (date, token, _localize, options) {
+    t: function t(date, token, _localize, options) {
       var originalDate = options._originalDate || date;
       var timestamp = Math.floor(originalDate.getTime() / 1000);
       return addLeadingZeros(timestamp, token.length);
     },
     // Milliseconds timestamp
-    T: function (date, token, _localize, options) {
+    T: function T(date, token, _localize, options) {
       var originalDate = options._originalDate || date;
       var timestamp = originalDate.getTime();
       return addLeadingZeros(timestamp, token.length);
@@ -3600,7 +3602,7 @@
 
   const formatters$1 = formatters;
 
-  var dateLongFormatter = function (pattern, formatLong) {
+  var dateLongFormatter = function dateLongFormatter(pattern, formatLong) {
     switch (pattern) {
       case 'P':
         return formatLong.date({
@@ -3625,7 +3627,7 @@
     }
   };
 
-  var timeLongFormatter = function (pattern, formatLong) {
+  var timeLongFormatter = function timeLongFormatter(pattern, formatLong) {
     switch (pattern) {
       case 'p':
         return formatLong.time({
@@ -3650,7 +3652,7 @@
     }
   };
 
-  var dateTimeLongFormatter = function (pattern, formatLong) {
+  var dateTimeLongFormatter = function dateTimeLongFormatter(pattern, formatLong) {
     var matchResult = pattern.match(/(P+)(p+)?/) || [];
     var datePattern = matchResult[1];
     var timePattern = matchResult[2];
@@ -3781,7 +3783,7 @@
     }
   };
 
-  var formatDistance = function (token, count, options) {
+  var formatDistance = function formatDistance(token, count, options) {
     var result;
     var tokenValue = formatDistanceLocale[token];
 
@@ -3859,7 +3861,7 @@
     other: 'P'
   };
 
-  var formatRelative = function (token, _date, _baseDate, _options) {
+  var formatRelative = function formatRelative(token, _date, _baseDate, _options) {
     return formatRelativeLocale[token];
   };
 
@@ -3978,7 +3980,7 @@
     }
   };
 
-  var ordinalNumber = function (dirtyNumber, _options) {
+  var ordinalNumber = function ordinalNumber(dirtyNumber, _options) {
     var number = Number(dirtyNumber); // If ordinal numbers depend on context, for example,
     // if they are different for different grammatical genders,
     // use `options.unit`.
@@ -4013,7 +4015,7 @@
     quarter: buildLocalizeFn({
       values: quarterValues,
       defaultWidth: 'wide',
-      argumentCallback: function (quarter) {
+      argumentCallback: function argumentCallback(quarter) {
         return quarter - 1;
       }
     }),
@@ -4158,7 +4160,7 @@
     ordinalNumber: buildMatchPatternFn({
       matchPattern: matchOrdinalNumberPattern,
       parsePattern: parseOrdinalNumberPattern,
-      valueCallback: function (value) {
+      valueCallback: function valueCallback(value) {
         return parseInt(value, 10);
       }
     }),
@@ -4173,7 +4175,7 @@
       defaultMatchWidth: 'wide',
       parsePatterns: parseQuarterPatterns,
       defaultParseWidth: 'any',
-      valueCallback: function (index) {
+      valueCallback: function valueCallback(index) {
         return index + 1;
       }
     }),
@@ -6701,49 +6703,49 @@
 
   const Popper = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
     __proto__: null,
-    popperGenerator,
-    detectOverflow,
-    createPopperBase: createPopper$2,
-    createPopper,
-    createPopperLite: createPopper$1,
-    top,
-    bottom,
-    right,
-    left,
-    auto,
-    basePlacements,
-    start,
-    end,
-    clippingParents,
-    viewport,
-    popper,
-    reference,
-    variationPlacements,
-    placements,
-    beforeRead,
-    read,
-    afterRead,
-    beforeMain,
-    main,
     afterMain,
-    beforeWrite,
-    write,
+    afterRead,
     afterWrite,
-    modifierPhases,
     applyStyles: applyStyles$1,
     arrow: arrow$1,
+    auto,
+    basePlacements,
+    beforeMain,
+    beforeRead,
+    beforeWrite,
+    bottom,
+    clippingParents,
     computeStyles: computeStyles$1,
+    createPopper,
+    createPopperBase: createPopper$2,
+    createPopperLite: createPopper$1,
+    detectOverflow,
+    end,
     eventListeners,
     flip: flip$1,
     hide: hide$1,
+    left,
+    main,
+    modifierPhases,
     offset: offset$1,
+    placements,
+    popper,
+    popperGenerator,
     popperOffsets: popperOffsets$1,
-    preventOverflow: preventOverflow$1
+    preventOverflow: preventOverflow$1,
+    read,
+    reference,
+    right,
+    start,
+    top,
+    variationPlacements,
+    viewport,
+    write
   }, Symbol.toStringTag, { value: 'Module' }));
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): dropdown.js
+   * CoreUI (v4.4.3): dropdown.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's dropdown.js
@@ -7113,7 +7115,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.2): picker.js
+   * CoreUI PRO (v4.4.3): picker.js
    * License (https://coreui.io/pro/license-new/)
    * --------------------------------------------------------------------------
    */
@@ -7737,7 +7739,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.2): date-range-picker.js
+   * CoreUI PRO (v4.4.3): date-range-picker.js
    * License (https://coreui.io/pro/license-new/)
    * --------------------------------------------------------------------------
    */
@@ -8287,7 +8289,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.2): date-picker.js
+   * CoreUI PRO (v4.4.3): date-picker.js
    * License (https://coreui.io/pro/license-new/)
    * --------------------------------------------------------------------------
    */
@@ -8403,7 +8405,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.2): loading-button.js
+   * CoreUI PRO (v4.4.3): loading-button.js
    * License (https://coreui.io/pro/license-new/)
    * --------------------------------------------------------------------------
    */
@@ -8562,7 +8564,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.4): tab.js
+   * CoreUI (v4.2.6): tab.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's util/scrollBar.js
@@ -8662,7 +8664,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.4): tab.js
+   * CoreUI (v4.2.6): tab.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's util/backdrop.js
@@ -8789,7 +8791,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.4): tab.js
+   * CoreUI (v4.2.6): tab.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's util/focustrap.js
@@ -8890,7 +8892,7 @@
 
   /**
    * --------------------------------------------------------------------------
-    * CoreUI (v4.4.2): modal.js
+    * CoreUI (v4.4.3): modal.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's modal.js
@@ -9199,7 +9201,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.2): multi-select.js
+   * CoreUI PRO (v4.4.3): multi-select.js
    * License (https://coreui.io/pro/license-new/)
    * --------------------------------------------------------------------------
    */
@@ -9910,7 +9912,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): navigation.js
+   * CoreUI (v4.4.3): navigation.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -10164,7 +10166,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): dropdown.js
+   * CoreUI (v4.4.3): dropdown.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's offcanvas.js
@@ -10397,7 +10399,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): alert.js
+   * CoreUI (v4.4.3): alert.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's util/sanitizer.js
@@ -10495,7 +10497,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.4): tab.js
+   * CoreUI (v4.2.6): tab.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This is a modified version of the Bootstrap's util/template-factory.js
@@ -10633,7 +10635,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): tooltip.js
+   * CoreUI (v4.4.3): tooltip.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's tooltip.js
@@ -11147,7 +11149,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): popover.js
+   * CoreUI (v4.4.3): popover.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's popover.js
@@ -11230,7 +11232,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): scrollspy.js
+   * CoreUI (v4.4.3): scrollspy.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's scrollspy.js
@@ -11492,7 +11494,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): sidebar.js
+   * CoreUI (v4.4.3): sidebar.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
@@ -11772,7 +11774,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): tab.js
+   * CoreUI (v4.4.3): tab.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's tab.js
@@ -12036,7 +12038,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): toast.js
+   * CoreUI (v4.4.3): toast.js
    * Licensed under MIT (https://coreui.io/license)
    *
    * This component is a modified version of the Bootstrap's toast.js
@@ -12222,7 +12224,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.2): index.esm.js
+   * CoreUI (v4.4.3): index.esm.js
    * Licensed under MIT (https://coreui.io/license)
    * --------------------------------------------------------------------------
    */
