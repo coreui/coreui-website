@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { freeSet } from '@coreui/icons/js/free';
+import { freeSet } from '@coreui/icons';
 
 @Component({
   selector: 'docs-icons02x',

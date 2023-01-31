@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { cilArrowTop, cilOptions } from '@coreui/icons';
-import { getStyle } from '@coreui/utils/src';
+import { getStyle } from '@coreui/utils';
 
 @Component({
   selector: 'docs-widgets01',

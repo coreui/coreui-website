@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { cilShieldAlt, cilList } from '@coreui/icons/js/free';
+import { cilShieldAlt, cilList } from '@coreui/icons';
 
 @Component({
   selector: 'docs-icons02',
