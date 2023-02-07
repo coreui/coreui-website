@@ -7,7 +7,7 @@
   <meta name="generator" content="Hugo 0.87.0"><title>How to create a single page application using React.js · CoreUI</title><link rel="canonical" href="https://coreui.io/blog/how-to-create-a-single-page-application-using-reactjs/"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.5dd9b416dc3053cf8778b6ed85d20f9c3fc9950db7e39c34ae5457b6b85c4f96.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.adcc3c3d64655f54843763d8e2928baea34f22de77c70d47050e3bfd3a1fbbc9.css">
   <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-icon-72x72.png">
@@ -461,7 +461,7 @@ Thursday, June 23, 2022
 <ol>
 <li>Use your desired location to create the react app with the command below;</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npx create-react-app app-name
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">npx create-react-app app-name
 </code></pre></div><p>App-name directory to be built in the following default files:</p>
 <pre><code>app-name
 ├── README.md
@@ -487,80 +487,80 @@ Thursday, June 23, 2022
 </code></pre><ol start="2">
 <li>Execute the following command to install react-router-dom:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm install react-router-dom 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">npm install react-router-dom 
 </code></pre></div><ol start="3">
 <li>Wrapping The App Component</li>
 </ol>
 <p>React Router has 2 types of routers: BrowserRouter and HashRouter. We&rsquo;re using BrowserRouter in this example because it makes the URL&rsquo;s look like example.com/about rather than example.com/#/about. React Router uses a hash (hash) at the end of the URL to determine what page to load.</p>
 <p>You must include the code below in your src.index.js:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react&#34;</span>
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">render</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react-dom&#34;</span>
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserRouter</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react-router-dom&#34;</span>
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">App</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;./App&#34;</span>
-<span style="color:#a6e22e">render</span>(
-  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">BrowserRouter</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">App</span> <span style="color:#f92672">/&gt;</span>
-  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/BrowserRouter&gt;,</span>
-  document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#34;#root&#34;</span>)
-)
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-dom&#34;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">BrowserRouter</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-router-dom&#34;</span>
+<span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s2">&#34;./App&#34;</span>
+<span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">BrowserRouter</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="err">/BrowserRouter&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;#root&#34;</span><span class="p">)</span>
+<span class="p">)</span>
 </code></pre></div><ol start="4">
 <li>The following code should be used to create a file named src/pages/HomePage.js:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"> <span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">HomePage</span>() {
-<span style="color:#66d9ef">return</span> (
-  <span style="color:#f92672">&lt;&gt;</span>
-   <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">h1</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Hey</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">HomePage</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/h1&gt;</span>
-    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">p</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">This</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">awesome</span> <span style="color:#a6e22e">HomePage</span> <span style="color:#a6e22e">subtitle</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/p&gt;</span>
-  <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/&gt;</span>
-);
-}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"> <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">HomePage</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">return</span> <span class="p">(</span>
+  <span class="o">&lt;&gt;</span>
+   <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hey</span> <span class="nx">from</span> <span class="nx">HomePage</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+    <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">This</span> <span class="nx">is</span> <span class="nx">your</span> <span class="nx">awesome</span> <span class="nx">HomePage</span> <span class="nx">subtitle</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+  <span class="o">&lt;</span><span class="err">/&gt;</span>
+<span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div><ol start="5">
 <li>The following code should be used to create a file named src/pages/UserPage.js.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useParams</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react-router-dom&#34;</span>;
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">UserPage</span>() {
-  <span style="color:#66d9ef">let</span> { <span style="color:#a6e22e">id</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">useParams</span>();
-  <span style="color:#66d9ef">return</span> (
-    <span style="color:#f92672">&lt;&gt;</span>
-      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">h1</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Hello</span> <span style="color:#a6e22e">there</span> <span style="color:#a6e22e">user</span> {<span style="color:#a6e22e">id</span>}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/h1&gt;</span>
-      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">p</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">This</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">awesome</span> <span style="color:#a6e22e">User</span> <span style="color:#a6e22e">Profile</span> <span style="color:#a6e22e">page</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/p&gt;</span>
-    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/&gt;</span>
-  );
-}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">useParams</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-router-dom&#34;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">UserPage</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="p">{</span> <span class="nx">id</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useParams</span><span class="p">();</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">there</span> <span class="nx">user</span> <span class="p">{</span><span class="nx">id</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">This</span> <span class="nx">is</span> <span class="nx">your</span> <span class="nx">awesome</span> <span class="nx">User</span> <span class="nx">Profile</span> <span class="nx">page</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+    <span class="o">&lt;</span><span class="err">/&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div><ol start="6">
 <li>Route and switch group all routes together to make sure that they take precedence over each other.</li>
 </ol>
 <p>The following routes should be there in your App.js file:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react&#34;</span>
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Route</span>, <span style="color:#a6e22e">Switch</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react-router-dom&#34;</span>
-<span style="color:#75715e">// We will create these two pages in a moment
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">HomePage</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;./pages/HomePage&#34;</span>
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">UserPage</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;./pages/UserPage&#34;</span>
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">App</span>() {
-  <span style="color:#66d9ef">return</span> (
-    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Switch</span><span style="color:#f92672">&gt;</span>
-      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Route</span> <span style="color:#a6e22e">exact</span> <span style="color:#a6e22e">path</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#a6e22e">component</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">HomePage</span>} <span style="color:#f92672">/&gt;</span>
-      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Route</span> <span style="color:#a6e22e">path</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/:id&#34;</span> <span style="color:#a6e22e">component</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">UserPage</span>} <span style="color:#f92672">/&gt;</span>
-    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/Switch&gt;</span>
-  )
-}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Route</span><span class="p">,</span> <span class="nx">Switch</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-router-dom&#34;</span>
+<span class="c1">// We will create these two pages in a moment
+</span><span class="c1"></span><span class="kr">import</span> <span class="nx">HomePage</span> <span class="nx">from</span> <span class="s2">&#34;./pages/HomePage&#34;</span>
+<span class="kr">import</span> <span class="nx">UserPage</span> <span class="nx">from</span> <span class="s2">&#34;./pages/UserPage&#34;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Switch</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">exact</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;/&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">HomePage</span><span class="p">}</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;/:id&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">UserPage</span><span class="p">}</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="err">/Switch&gt;</span>
+  <span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div><ol start="7">
 <li>You can link to a page inside the SPA.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react&#34;</span>
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Link</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react-router-dom&#34;</span>
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">HomePage</span>() {
-  <span style="color:#66d9ef">return</span> (
-    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span><span style="color:#f92672">&gt;</span>
-      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">h1</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Home</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/h1&gt;</span>
-      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">p</span><span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Link</span> <span style="color:#a6e22e">to</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/your desired link&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Your</span> <span style="color:#a6e22e">desired</span> <span style="color:#a6e22e">link</span>.<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/Link&gt;</span>
-      <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/p&gt;</span>
-    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
-  )
-}
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Link</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-router-dom&#34;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">HomePage</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&#34;container&#34;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Home</span> <span class="o">&lt;</span><span class="err">/h1&gt;</span>
+      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Link</span> <span class="nx">to</span><span class="o">=</span><span class="s2">&#34;/your desired link&#34;</span><span class="o">&gt;</span><span class="nx">Your</span> <span class="nx">desired</span> <span class="nx">link</span><span class="p">.</span><span class="o">&lt;</span><span class="err">/Link&gt;</span>
+      <span class="o">&lt;</span><span class="err">/p&gt;</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+  <span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div><p>You are now ready to run the code and see your development at https://localhost:3000.</p>
 <h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
 <h3 id="is-reactjs-a-single-page-application">Is ReactJS a single page application?</h3>
@@ -608,6 +608,35 @@ Thursday, June 23, 2022
     <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEAICKJY&placement=coreuiio" id="_carbonads_js"></script>
   </div>
   <div class="my-5 py-2"></div><div class="post mb-0 px-3">
+      <div class="row">
+        <div class="col-4">
+          <a href="https://coreui.io/blog/bootstrap-react-tutorial-with-examples/"><img src="/images/blog/react-bootstrap-cover.webp" class="post-image mb-0"/></a>
+        </div>
+        <div class="col-8">
+          <h4 class="post-title"><a href="https://coreui.io/blog/bootstrap-react-tutorial-with-examples/">How to use Bootstrap 5 in React.js - an original tutorial with (not original) examples</a></h4>
+          <div class="post-date">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+<title>calendar</title>
+<path d="M59 12h-11v-7h-4v7h-24v-7h-4v7h-11c-1.656 0.002-2.998 1.344-3 3v42c0.002 1.656 1.344 2.998 3 3h54c1.656-0.002 2.998-1.344 3-3v-42c-0.002-1.656-1.344-2.998-3-3h-0zM58 56h-52v-40h10v5h4v-5h24v5h4v-5h10z"></path>
+<path d="M14 28h4v4h-4v-4z"></path>
+<path d="M25 28h4v4h-4v-4z"></path>
+<path d="M35 28h4v4h-4v-4z"></path>
+<path d="M46 28h4v4h-4v-4z"></path>
+<path d="M14 37h4v4h-4v-4z"></path>
+<path d="M25 37h4v4h-4v-4z"></path>
+<path d="M35 37h4v4h-4v-4z"></path>
+<path d="M46 37h4v4h-4v-4z"></path>
+<path d="M14 46h4v4h-4v-4z"></path>
+<path d="M25 46h4v4h-4v-4z"></path>
+<path d="M35 46h4v4h-4v-4z"></path>
+<path d="M46 46h4v4h-4v-4z"></path>
+</svg>
+Tuesday, February 7, 2023
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div><div class="post mb-0 px-3">
       <div class="row">
         <div class="col-4">
           <a href="https://coreui.io/blog/react-ui-component-libraries/"><img src="/images/blog/sliders.webp" class="post-image mb-0"/></a>
@@ -661,35 +690,6 @@ Thursday, February 2, 2023
 <path d="M46 46h4v4h-4v-4z"></path>
 </svg>
 Tuesday, December 13, 2022
-          </div>
-        </div>
-      </div>
-      <hr>
-    </div><div class="post mb-0 px-3">
-      <div class="row">
-        <div class="col-4">
-          <a href="https://coreui.io/blog/top-5-react-libraries-not-only-for-x-mas/"><img src="/images/blog/sliders.webp" class="post-image mb-0"/></a>
-        </div>
-        <div class="col-8">
-          <h4 class="post-title"><a href="https://coreui.io/blog/top-5-react-libraries-not-only-for-x-mas/">Top 5 React libraries (not only) for X-mas</a></h4>
-          <div class="post-date">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-<title>calendar</title>
-<path d="M59 12h-11v-7h-4v7h-24v-7h-4v7h-11c-1.656 0.002-2.998 1.344-3 3v42c0.002 1.656 1.344 2.998 3 3h54c1.656-0.002 2.998-1.344 3-3v-42c-0.002-1.656-1.344-2.998-3-3h-0zM58 56h-52v-40h10v5h4v-5h24v5h4v-5h10z"></path>
-<path d="M14 28h4v4h-4v-4z"></path>
-<path d="M25 28h4v4h-4v-4z"></path>
-<path d="M35 28h4v4h-4v-4z"></path>
-<path d="M46 28h4v4h-4v-4z"></path>
-<path d="M14 37h4v4h-4v-4z"></path>
-<path d="M25 37h4v4h-4v-4z"></path>
-<path d="M35 37h4v4h-4v-4z"></path>
-<path d="M46 37h4v4h-4v-4z"></path>
-<path d="M14 46h4v4h-4v-4z"></path>
-<path d="M25 46h4v4h-4v-4z"></path>
-<path d="M35 46h4v4h-4v-4z"></path>
-<path d="M46 46h4v4h-4v-4z"></path>
-</svg>
-Sunday, December 4, 2022
           </div>
         </div>
       </div>
