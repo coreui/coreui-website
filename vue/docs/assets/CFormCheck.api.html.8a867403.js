@@ -1,1 +1,0 @@
-const e={key:"v-0758a6a2",path:"/api/form/CFormCheck.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CFormCheck",slug:"cformcheck",children:[]}],git:{updatedTime:1673891223e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:7}]}};export{e as data};

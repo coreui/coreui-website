@@ -1,1 +1,0 @@
-const e={key:"v-fc3fa214",path:"/api/smart-table/CSmartTableBody.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CSmartTableBody",slug:"csmarttablebody",children:[]}],git:{updatedTime:1635761591e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};
