@@ -1,0 +1,31 @@
+<form [formGroup]="formGroup">
+  <p>Form value: {{ formGroup.value | json }}</p>
+  <hr>
+  <c-multi-select
+    (searchValueChange)="searchValue$.next($event)"
+    (valueChange)="handleValueChange($event)"
+    [multiple]="true"
+    [options]="(options$ | async)"
+    [search]="'external'"
+    [visibleItems]="8"
+    formControlName="sampleSelect"
+    itemMinWidth="333"
+    virtualScroller
+  >
+
+    <ng-template cTemplateId="multiSelectOptionTemplate" let-even="even" let-index="index" let-option>
+      <c-multi-select-option
+        [disabled]="option.disabled"
+        [label]="option.label"
+        [ngStyle]="{'background-color': even ? '#ffeeee' : '#eeffee' }"
+        [selected]="option.selected"
+        [text]="option.text"
+        [value]="option.value"
+        [visible]="option.visible"
+      >
+        <svg [cIcon]="even ? icons.cilPaperclip : icons.cilFolderOpen" class="me-1" />
+        <b>{{option.value}}.</b> {{option.label}} [idx: {{index}}]
+      </c-multi-select-option>
+    </ng-template>
+  </c-multi-select>
+</form>

@@ -1,8 +1,11 @@
 ```typescript
-import { SmartTableModule } from '@coreui/angular';
+import { SmartTableModule, SharedModule } from '@coreui/angular';
 
 @NgModule({
-        imports: [SmartTableModule,]
+  imports: [
+    SmartTableModule,
+    SharedModule
+  ]
 })
-export class AppModule() { }
+...
 ```

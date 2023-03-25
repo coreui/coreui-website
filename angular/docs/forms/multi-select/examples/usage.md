@@ -1,8 +1,11 @@
 ```typescript
-import { MultiSelectModule } from '@coreui/angular';
+import { MultiSelectModule, SharedModule } from '@coreui/angular';
 
 @NgModule({
-    imports: [MultiSelectModule,]
+    imports: [
+      MultiSelectModule,
+      SharedModule
+    ]
 })
 export class AppModule(){}
 ```
