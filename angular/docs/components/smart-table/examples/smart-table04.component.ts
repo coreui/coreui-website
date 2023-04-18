@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
+import { IColumn, IItem } from '@coreui/angular';
 
 import usersData from './data';
+
+interface IData extends IItem {
+  id?: number
+  name?: string
+  role?: string
+  status?: string
+}
 
 @Component({
   selector: 'docs-smart-table04',
@@ -8,16 +16,16 @@ import usersData from './data';
 })
 export class SmartTable04Component {
 
-  newData = usersData.map(item => {
-    const { id, name, role, status } = { ...item };
-    return { id, name, role, status };
+  newData: IData[] = usersData.map(item => {
+    const { id, name, role, status } = { ...item } as Partial<NonNullable<typeof item>>;
+    return { id, name, role, status } as IData;
   });
 
-  roles = [...new Set(usersData.map(item => item.role))];
+  roles: string[] = [...new Set(usersData.map(item => item['role']))];
 
   selected: string[] = ['Staff', 'Admin'];
 
-  columns = [
+  columns: IColumn[] = [
     {
       key: 'name',
       _style: { width: '50%' }

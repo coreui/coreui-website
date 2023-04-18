@@ -1,8 +1,15 @@
 import { Component } from '@angular/core';
-
 import { endOfDay, startOfDay } from 'date-fns';
+import { IColumn, IItem } from '@coreui/angular';
 
 import usersData from './data';
+import { extend } from 'lodash-es';
+
+interface IData extends IItem {
+  id?: number;
+  name?: string;
+  registered?: string
+}
 
 @Component({
   selector: 'docs-smart-table05',
@@ -10,12 +17,12 @@ import usersData from './data';
 })
 export class SmartTable05Component {
 
-  newData = usersData.map((item) => {
-    const { id, name, registered } = { ...item };
-    return { id, name, registered };
+  newData: IData[] = usersData.map((item) => {
+    const { id, name, registered } = { ...item } as Partial<NonNullable<typeof item>>
+    return { id, name, registered } as IData;
   });
 
-  columns = [
+  columns: IColumn[] = [
     {
       key: 'name',
       _style: { width: '50%' }

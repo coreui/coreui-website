@@ -1,4 +1,6 @@
-const usersData = [
+import { IItem } from '@coreui/angular';
+
+const usersData: IItem[] = [
   {id: 0, name: 'John Doe', registered: '2022/01/01', role: 'Guest', status: 'Pending' },
   {id: 1, name: 'Samppa Nori', registered: '2022/01/31', role: 'Member', status: 'Active', _props: { color: 'success', align: 'middle' },},
   {id: 2, name: 'Estavan Lykos', registered: '2022/02/01', role: 'Staff', status: 'Banned', _cellProps: { 'name': { color: 'info', active: true }}},
