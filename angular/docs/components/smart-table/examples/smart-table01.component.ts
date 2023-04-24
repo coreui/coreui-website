@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import usersData from './data';
+import { IColumn, IItem } from '@coreui/angular';
 
 @Component({
   selector: 'docs-smart-table01',
@@ -9,9 +10,9 @@ import usersData from './data';
 })
 export class SmartTable01Component {
 
-  usersData = usersData;
+  usersData: IItem[] = usersData;
 
-  columns = [
+  columns: (IColumn | string)[] = [
     {
       key: 'name',
       _style: { width: '40%' },
