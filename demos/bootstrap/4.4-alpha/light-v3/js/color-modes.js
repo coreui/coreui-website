@@ -5,7 +5,7 @@
 */
 
 (() => {
-  const THEME = 'coreui-pro-bootstrap-admin-template-theme-default-v3';
+  const THEME = 'coreui-pro-bootstrap-admin-template-theme-light-v3';
   const storedTheme = localStorage.getItem(THEME);
   const getPreferredTheme = () => {
     if (storedTheme) {

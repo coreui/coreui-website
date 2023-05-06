@@ -14,14 +14,18 @@ Chart.defaults.plugins.tooltip.mode = 'index';
 Chart.defaults.plugins.tooltip.position = 'nearest';
 Chart.defaults.plugins.tooltip.external = coreui.ChartJS.customTooltips;
 Chart.defaults.defaultFontColor = coreui.Utils.getStyle('--cui-body-color');
-for (const event of 'ColorSchemeChange DOMContentLoaded'.split(' ')) {
-  window.addEventListener(event, () => {
-    cardChart1.data.datasets[0].pointBackgroundColor = coreui.Utils.getStyle('--cui-primary');
-    cardChart2.data.datasets[0].pointBackgroundColor = coreui.Utils.getStyle('--cui-info');
-    cardChart1.update();
-    cardChart2.update();
-  });
-}
+document.documentElement.addEventListener('ColorSchemeChange', () => {
+  updateCharts();
+});
+window.addEventListener('DOMContentLoaded', () => {
+  updateCharts();
+});
+const updateCharts = () => {
+  cardChart1.data.datasets[0].pointBackgroundColor = coreui.Utils.getStyle('--cui-primary');
+  cardChart2.data.datasets[0].pointBackgroundColor = coreui.Utils.getStyle('--cui-info');
+  cardChart1.update();
+  cardChart2.update();
+};
 const cardChart1 = new Chart(document.getElementById('card-chart1'), {
   type: 'line',
   data: {

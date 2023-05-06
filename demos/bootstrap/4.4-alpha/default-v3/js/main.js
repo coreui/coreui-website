@@ -15,87 +15,23 @@ Chart.defaults.plugins.tooltip.mode = 'index';
 Chart.defaults.plugins.tooltip.position = 'nearest';
 Chart.defaults.plugins.tooltip.external = coreui.ChartJS.customTooltips;
 Chart.defaults.defaultFontColor = coreui.Utils.getStyle('--cui-body-color');
-for (const event of 'ColorSchemeChange DOMContentLoaded'.split(' ')) {
-  window.addEventListener(event, () => {
-    cardChart1.data.datasets[0].pointBackgroundColor = coreui.Utils.getStyle('--cui-primary');
-    mainBarChart.options.scales.x.ticks.color = coreui.Utils.getStyle('--cui-body-color');
-    mainBarChart.options.scales.y.ticks.color = coreui.Utils.getStyle('--cui-body-color');
-    cardChart1.update();
-    mainBarChart.update();
-  });
-}
-const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
-  type: 'bar',
-  data: {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    datasets: [{
-      label: 'Users',
-      backgroundColor: coreui.Utils.getStyle('--cui-primary'),
-      borderRadius: 6,
-      borderSkipped: false,
-      data: [78, 81, 80, 45, 34, 12, 40, 85, 65, 23, 12, 98, 34, 84, 67, 82],
-      barPercentage: 0.6,
-      categoryPercentage: 0.5
-    }, {
-      label: 'New users',
-      backgroundColor: coreui.Utils.getStyle('--cui-gray-100'),
-      borderRadius: 6,
-      borderSkipped: false,
-      data: [78, 81, 80, 45, 34, 12, 40, 85, 65, 23, 12, 98, 34, 84, 67, 82],
-      barPercentage: 0.6,
-      categoryPercentage: 0.5
-    }]
-  },
-  options: {
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-          drawBorder: false,
-          drawTicks: false
-        },
-        ticks: {
-          color: coreui.Utils.getStyle('--cui-text-disabled'),
-          font: {
-            size: 14
-          },
-          padding: 16
-        }
-      },
-      y: {
-        grid: {
-          // display: false,
-          drawBorder: false,
-          borderDash: [2, 4]
-          // drawTicks: false
-        },
-
-        gridLines: {
-          // You can change the color, the dash effect, the main axe color, etc.
-          borderDash: [8, 4],
-          color: '#348632'
-        },
-        ticks: {
-          beginAtZero: true,
-          color: coreui.Utils.getStyle('--cui-text-disabled'),
-          font: {
-            size: 14
-          },
-          maxTicksLimit: 5,
-          padding: 16,
-          stepSize: Math.ceil(100 / 4)
-          // max: 250
-        }
-      }
-    }
-  }
+document.documentElement.addEventListener('ColorSchemeChange', () => {
+  updateCharts();
 });
+window.addEventListener('DOMContentLoaded', () => {
+  updateCharts();
+});
+const updateCharts = () => {
+  cardChart1.data.datasets[0].pointBackgroundColor = coreui.Utils.getStyle('--cui-primary');
+  mainBarChart.options.scales.x.ticks.color = coreui.Utils.getStyle('--cui-body-color');
+  mainBarChart.options.scales.y.ticks.color = coreui.Utils.getStyle('--cui-body-color');
+  mainBarChart.options.scales.x.grid.color = coreui.Utils.getStyle('--cui-border-color-translucent');
+  mainBarChart.options.scales.x.ticks.color = coreui.Utils.getStyle('--cui-body-color');
+  mainBarChart.options.scales.y.grid.color = coreui.Utils.getStyle('--cui-border-color-translucent');
+  mainBarChart.options.scales.y.ticks.color = coreui.Utils.getStyle('--cui-body-color');
+  cardChart1.update();
+  mainBarChart.update();
+};
 
 // eslint-disable-next-line no-unused-vars
 const cardChartNew1 = new Chart(document.getElementById('card-chart-new1'), {
@@ -281,6 +217,78 @@ const cardChart4 = new Chart(document.getElementById('card-chart4'), {
         },
         ticks: {
           display: false
+        }
+      }
+    }
+  }
+});
+const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
+  type: 'bar',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [{
+      label: 'Users',
+      backgroundColor: coreui.Utils.getStyle('--cui-primary'),
+      borderRadius: 6,
+      borderSkipped: false,
+      data: [78, 81, 80, 45, 34, 12, 40, 85, 65, 23, 12, 98, 34, 84, 67, 82],
+      barPercentage: 0.6,
+      categoryPercentage: 0.5
+    }, {
+      label: 'New users',
+      backgroundColor: coreui.Utils.getStyle('--cui-gray-100'),
+      borderRadius: 6,
+      borderSkipped: false,
+      data: [78, 81, 80, 45, 34, 12, 40, 85, 65, 23, 12, 98, 34, 84, 67, 82],
+      barPercentage: 0.6,
+      categoryPercentage: 0.5
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+          drawBorder: false,
+          drawTicks: false
+        },
+        ticks: {
+          color: coreui.Utils.getStyle('--cui-text-disabled'),
+          font: {
+            size: 14
+          },
+          padding: 16
+        }
+      },
+      y: {
+        grid: {
+          // display: false,
+          drawBorder: false,
+          borderDash: [2, 4]
+          // drawTicks: false
+        },
+
+        gridLines: {
+          // You can change the color, the dash effect, the main axe color, etc.
+          borderDash: [8, 4],
+          color: '#348632'
+        },
+        ticks: {
+          beginAtZero: true,
+          color: coreui.Utils.getStyle('--cui-text-disabled'),
+          font: {
+            size: 14
+          },
+          maxTicksLimit: 5,
+          padding: 16,
+          stepSize: Math.ceil(100 / 4)
+          // max: 250
         }
       }
     }
