@@ -15,13 +15,15 @@ Chart.defaults.plugins.tooltip.mode = 'index';
 Chart.defaults.plugins.tooltip.position = 'nearest';
 Chart.defaults.plugins.tooltip.external = coreui.ChartJS.customTooltips;
 Chart.defaults.defaultFontColor = coreui.Utils.getStyle('--cui-body-color');
-document.documentElement.addEventListener('ColorSchemeChange', () => {
-  cardChart1.data.datasets[0].pointBackgroundColor = coreui.Utils.getStyle('--cui-primary');
-  mainBarChart.options.scales.x.ticks.color = coreui.Utils.getStyle('--cui-body-color');
-  mainBarChart.options.scales.y.ticks.color = coreui.Utils.getStyle('--cui-body-color');
-  cardChart1.update();
-  mainBarChart.update();
-});
+for (const event of 'ColorSchemeChange DOMContentLoaded'.split(' ')) {
+  window.addEventListener(event, () => {
+    cardChart1.data.datasets[0].pointBackgroundColor = coreui.Utils.getStyle('--cui-primary');
+    mainBarChart.options.scales.x.ticks.color = coreui.Utils.getStyle('--cui-body-color');
+    mainBarChart.options.scales.y.ticks.color = coreui.Utils.getStyle('--cui-body-color');
+    cardChart1.update();
+    mainBarChart.update();
+  });
+}
 const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
   type: 'bar',
   data: {
