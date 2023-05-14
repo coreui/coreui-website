@@ -1,5 +1,5 @@
 /*!
-  * CoreUI v4.6.0-alpha.0 (https://coreui.io)
+  * CoreUI v4.6.0-alpha.1 (https://coreui.io)
   * Copyright 2023 The CoreUI Team (https://github.com/orgs/coreui/people)
   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
   */
@@ -663,7 +663,7 @@ class Config {
  * Constants
  */
 
-const VERSION = '4.6.0-alpha.0';
+const VERSION = '4.6.0-alpha.1';
 
 /**
  * Class definition
