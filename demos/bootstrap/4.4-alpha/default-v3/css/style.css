@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /*!
- * CoreUI  v4.3.0-alpha.0 (https://coreui.io)
+ * CoreUI PRO  v4.6.0-alpha.1 (https://coreui.io)
  * Copyright (c) 2023 creativeLabs Łukasz Holeczek
- * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
+ * License (https://coreui.io/pro/license/)
  */
 :root,
 [data-coreui-theme=light] {
@@ -474,8 +474,8 @@ table {
 }
 
 caption {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
   color: var(--cui-table-caption-color, var(--cui-secondary-color));
   text-align: left;
 }
@@ -1932,7 +1932,7 @@ progress {
   border-color: var(--cui-table-border-color);
 }
 .table > :not(caption) > * > * {
-  padding: 0.5rem 0.5rem;
+  padding: 0.75rem 0.75rem;
   color: var(--cui-table-color-state, var(--cui-table-color-type, var(--cui-table-color)));
   background-color: var(--cui-table-bg);
   border-bottom-width: var(--cui-border-width);
@@ -2221,7 +2221,9 @@ progress {
   opacity: 1;
 }
 .form-control:disabled {
+  color: var(--cui-body-color);
   background-color: var(--cui-secondary-bg);
+  border-color: var(--cui-border-color);
   opacity: 1;
 }
 .form-control::-webkit-file-upload-button {
@@ -2398,6 +2400,7 @@ textarea.form-control-lg {
 }
 .form-select:disabled {
   background-color: var(--cui-secondary-bg);
+  border-color: var(--cui-border-color);
 }
 .form-select:-moz-focusring {
   color: transparent;
@@ -2427,6 +2430,7 @@ textarea.form-control-lg {
 
 .form-multi-select {
   --cui-form-multi-select-zindex: 1000;
+  --cui-form-multi-select-font-family: ;
   --cui-form-multi-select-font-size: 0.9375rem;
   --cui-form-multi-select-font-weight: 400;
   --cui-form-multi-select-line-height: 1.5;
@@ -2436,7 +2440,9 @@ textarea.form-control-lg {
   --cui-form-multi-select-border-width: var(--cui-border-width);
   --cui-form-multi-select-border-color: var(--cui-border-color);
   --cui-form-multi-select-border-radius: var(--cui-border-radius);
+  --cui-form-multi-select-disabled-color: var(--cui-body-color);
   --cui-form-multi-select-disabled-bg: var(--cui-secondary-bg);
+  --cui-form-multi-select-disabled-border-color: var(--cui-border-color);
   --cui-form-multi-select-focus-color: var(--cui-body-color);
   --cui-form-multi-select-focus-bg: var(--cui-body-bg);
   --cui-form-multi-select-focus-border-color: #99ccff;
@@ -2553,6 +2559,7 @@ select.form-multi-select {
 .form-multi-select.disabled .form-multi-select-input-group {
   color: var(--cui-form-multi-select-disabled-color);
   background-color: var(--cui-form-multi-select-disabled-bg);
+  border-color: var(--cui-border-color);
 }
 .form-multi-select.show .form-multi-select-input-group {
   color: var(--cui-form-multi-select-focus-color);
@@ -3476,6 +3483,7 @@ select.form-multi-select {
 .btn {
   --cui-btn-padding-x: 0.75rem;
   --cui-btn-padding-y: 0.375rem;
+  --cui-btn-font-family: ;
   --cui-btn-font-size: 0.9375rem;
   --cui-btn-font-weight: 400;
   --cui-btn-line-height: 1.5;
@@ -4581,6 +4589,7 @@ select.form-multi-select {
   --cui-dropdown-color: #d8dbe0;
   --cui-dropdown-bg: #768192;
   --cui-dropdown-border-color: var(--cui-border-color-translucent);
+  --cui-dropdown-box-shadow: ;
   --cui-dropdown-link-color: #d8dbe0;
   --cui-dropdown-link-hover-color: #fff;
   --cui-dropdown-divider-bg: var(--cui-border-color-translucent);
@@ -4694,6 +4703,7 @@ select.form-multi-select {
 .nav {
   --cui-nav-link-padding-x: 1rem;
   --cui-nav-link-padding-y: 0.5rem;
+  --cui-nav-link-font-weight: ;
   --cui-nav-link-color: var(--cui-link-color);
   --cui-nav-link-hover-color: var(--cui-link-hover-color);
   --cui-nav-link-disabled-color: var(--cui-secondary-color);
@@ -4904,6 +4914,7 @@ select.form-multi-select {
 .navbar-nav {
   --cui-nav-link-padding-x: 0;
   --cui-nav-link-padding-y: 0.5rem;
+  --cui-nav-link-font-weight: ;
   --cui-nav-link-color: var(--cui-navbar-color);
   --cui-nav-link-hover-color: var(--cui-navbar-hover-color);
   --cui-nav-link-disabled-color: var(--cui-navbar-disabled-color);
@@ -5278,13 +5289,19 @@ select.form-multi-select {
   --cui-card-spacer-y: 1rem;
   --cui-card-spacer-x: 1rem;
   --cui-card-title-spacer-y: 0.5rem;
+  --cui-card-title-color: ;
+  --cui-card-subtitle-color: ;
   --cui-card-border-width: var(--cui-border-width);
   --cui-card-border-color: var(--cui-border-color-translucent);
   --cui-card-border-radius: var(--cui-border-radius);
+  --cui-card-box-shadow: ;
   --cui-card-inner-border-radius: calc(var(--cui-border-radius) - (var(--cui-border-width)));
   --cui-card-cap-padding-y: 0.5rem;
   --cui-card-cap-padding-x: 1rem;
   --cui-card-cap-bg: rgba(var(--cui-body-color-rgb), 0.03);
+  --cui-card-cap-color: ;
+  --cui-card-height: ;
+  --cui-card-color: ;
   --cui-card-bg: var(--cui-body-bg);
   --cui-card-img-overlay-padding: 1rem;
   --cui-card-group-margin: 0.75rem;
@@ -5601,6 +5618,8 @@ select.form-multi-select {
   --cui-breadcrumb-padding-x: 0;
   --cui-breadcrumb-padding-y: 0;
   --cui-breadcrumb-margin-bottom: 1rem;
+  --cui-breadcrumb-bg: ;
+  --cui-breadcrumb-border-radius: ;
   --cui-breadcrumb-divider-color: var(--cui-secondary-color);
   --cui-breadcrumb-item-padding-x: 0.5rem;
   --cui-breadcrumb-item-active-color: var(--cui-secondary-color);
@@ -6348,6 +6367,7 @@ select.form-multi-select {
   --cui-toast-spacing: 1.5rem;
   --cui-toast-max-width: 350px;
   --cui-toast-font-size: 0.875rem;
+  --cui-toast-color: ;
   --cui-toast-bg: rgba(var(--cui-body-bg-rgb), 0.85);
   --cui-toast-border-width: var(--cui-border-width);
   --cui-toast-border-color: var(--cui-border-color-translucent);
@@ -6414,6 +6434,7 @@ select.form-multi-select {
   --cui-modal-width: 500px;
   --cui-modal-padding: 1rem;
   --cui-modal-margin: 0.5rem;
+  --cui-modal-color: ;
   --cui-modal-bg: var(--cui-body-bg);
   --cui-modal-border-color: var(--cui-border-color-translucent);
   --cui-modal-border-width: var(--cui-border-width);
@@ -6427,6 +6448,7 @@ select.form-multi-select {
   --cui-modal-header-border-width: var(--cui-border-width);
   --cui-modal-title-line-height: 1.5;
   --cui-modal-footer-gap: 0.5rem;
+  --cui-modal-footer-bg: ;
   --cui-modal-footer-border-color: var(--cui-border-color);
   --cui-modal-footer-border-width: var(--cui-border-width);
   position: fixed;
@@ -6704,6 +6726,7 @@ select.form-multi-select {
   --cui-tooltip-max-width: 200px;
   --cui-tooltip-padding-x: 0.5rem;
   --cui-tooltip-padding-y: 0.25rem;
+  --cui-tooltip-margin: ;
   --cui-tooltip-font-size: 0.8203125rem;
   --cui-tooltip-color: var(--cui-body-bg);
   --cui-tooltip-bg: var(--cui-emphasis-color);
@@ -8170,6 +8193,7 @@ select.form-multi-select {
 
 .date-picker {
   --cui-date-picker-zindex: 1000;
+  --cui-date-picker-font-family: ;
   --cui-date-picker-font-size: 0.9375rem;
   --cui-date-picker-font-weight: 400;
   --cui-date-picker-line-height: 1.5;
@@ -8179,7 +8203,9 @@ select.form-multi-select {
   --cui-date-picker-border-width: var(--cui-border-width);
   --cui-date-picker-border-color: var(--cui-border-color);
   --cui-date-picker-border-radius: 0.375rem;
+  --cui-date-picker-disabled-color: var(--cui-body-color);
   --cui-date-picker-disabled-bg: var(--cui-secondary-bg);
+  --cui-date-picker-disabled-border-color: var(--cui-border-color);
   --cui-date-picker-focus-color: var(--cui-body-color);
   --cui-date-picker-focus-bg: var(--cui-body-bg);
   --cui-date-picker-focus-border-color: #99ccff;
@@ -8328,7 +8354,7 @@ select.form-multi-select {
   width: min-content;
   background-color: var(--cui-date-picker-dropdown-bg);
   background-clip: padding-box;
-  border: var(--cui- var(--cui-border-width)) solid var(--cui-date-picker-dropdown-border-color);
+  border: var(--cui-date-picker-dropdown-border-width) solid var(--cui-date-picker-dropdown-border-color);
   border-radius: var(--cui-date-picker-dropdown-border-radius);
 }
 .date-picker.show .date-picker-dropdown {
@@ -8425,6 +8451,7 @@ select.form-multi-select {
 
 .time-picker {
   --cui-time-picker-zindex: 1000;
+  --cui-time-picker-font-family: ;
   --cui-time-picker-font-size: 0.9375rem;
   --cui-time-picker-font-weight: 400;
   --cui-time-picker-line-height: 1.5;
@@ -8434,7 +8461,9 @@ select.form-multi-select {
   --cui-time-picker-border-width: var(--cui-border-width);
   --cui-time-picker-border-color: var(--cui-border-color);
   --cui-time-picker-border-radius: var(--cui-border-radius);
+  --cui-time-picker-disabled-color: var(--cui-body-color);
   --cui-time-picker-disabled-bg: var(--cui-secondary-bg);
+  --cui-time-picker-disabled-border-color: var(--cui-border-color);
   --cui-time-picker-focus-color: var(--cui-body-color);
   --cui-time-picker-focus-bg: var(--cui-body-bg);
   --cui-time-picker-focus-border-color: #99ccff;
@@ -8463,6 +8492,7 @@ select.form-multi-select {
   --cui-time-picker-inline-select-color: var(--cui-body-color);
   --cui-time-picker-inline-select-padding-y: 0.25rem;
   --cui-time-picker-inline-select-padding-x: 0.5rem;
+  --cui-time-picker-inline-select-disabled-color: var(--cui-body-color);
 }
 .time-picker.is-invalid {
   --cui-time-picker-border-color: #ef376e !important;
