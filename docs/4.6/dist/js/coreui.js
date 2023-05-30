@@ -1,5 +1,5 @@
 /*!
-  * CoreUI v4.6.0-alpha.1 (https://coreui.io)
+  * CoreUI v4.6.0-alpha.2 (https://coreui.io)
   * Copyright 2023 The CoreUI Team (https://github.com/orgs/coreui/people)
   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
   */
@@ -685,7 +685,7 @@
    * Constants
    */
 
-  const VERSION = '4.6.0-alpha.1';
+  const VERSION = '4.6.0-alpha.2';
 
   /**
    * Class definition
@@ -2423,6 +2423,7 @@
     inputReadOnly: false,
     invalid: false,
     locale: 'default',
+    name: null,
     placeholder: 'Select time',
     required: true,
     size: null,
@@ -2443,6 +2444,7 @@
     inputReadOnly: 'boolean',
     invalid: 'boolean',
     locale: 'string',
+    name: 'string',
     placeholder: 'string',
     required: 'boolean',
     size: '(string|null)',
@@ -2666,8 +2668,8 @@
       inputEl.required = this._config.required;
       inputEl.type = 'text';
       inputEl.value = this._date ? this._date.toLocaleTimeString(this._config.locale) : '';
-      if (this._element.id) {
-        inputEl.name = `time-picker-${this._element.id}`;
+      if (this._config.name || this._element.id) {
+        inputEl.name = this._config.name || `time-picker-${this._element.id}`;
       }
       const events = ['change', 'keyup', 'paste'];
       for (const event of events) {
@@ -3033,6 +3035,7 @@
     disabled: false,
     disabledDates: null,
     endDate: null,
+    endName: null,
     firstDayOfWeek: 1,
     footer: false,
     format: null,
@@ -3041,6 +3044,7 @@
     locale: 'default',
     maxDate: null,
     minDate: null,
+    name: null,
     placeholder: ['Start date', 'End date'],
     range: true,
     ranges: {},
@@ -3049,6 +3053,7 @@
     separator: true,
     size: null,
     startDate: null,
+    startName: null,
     selectAdjacementDays: false,
     selectEndDate: false,
     showAdjacementDays: true,
@@ -3069,6 +3074,7 @@
     disabledDates: '(array|null)',
     disabled: 'boolean',
     endDate: '(date|string|null)',
+    endName: 'string',
     firstDayOfWeek: 'number',
     footer: 'boolean',
     format: '(string|null)',
@@ -3077,6 +3083,7 @@
     locale: 'string',
     maxDate: '(date|string|null)',
     minDate: '(date|string|null)',
+    name: 'string',
     placeholder: '(array|string)',
     range: 'boolean',
     ranges: 'object',
@@ -3085,6 +3092,7 @@
     separator: 'boolean',
     size: '(string|null)',
     startDate: '(date|string|null)',
+    startName: 'string',
     selectAdjacementDays: 'boolean',
     selectEndDate: 'boolean',
     showAdjacementDays: 'boolean',
@@ -3341,8 +3349,16 @@
     _createDateRangePickerInputGroup() {
       const inputGroupEl = document.createElement('div');
       inputGroupEl.classList.add(CLASS_NAME_INPUT_GROUP$1);
-      const startInputEl = this._createInput(this._config.range ? 'date-range-picker-start-date' : 'date-picker', this._getPlaceholder()[0], this._setInputValue(this._startDate));
-      const endInputEl = this._createInput('date-range-picker-end-date', this._getPlaceholder()[1], this._setInputValue(this._endDate));
+      let startInputName = null;
+      if (this._config.name || this._config.startName || this._element.id) {
+        startInputName = this._config.name || this._config.startName || (this._config.range ? `date-range-picker-start-date-${this._element.id}` : `date-picker-${this._element.id}`);
+      }
+      const startInputEl = this._createInput(startInputName, this._getPlaceholder()[0], this._setInputValue(this._startDate));
+      let endInputName = null;
+      if (this._config.endName || this._element.id) {
+        endInputName = this._config.endName || `date-range-picker-end-date-${this._element.id}`;
+      }
+      const endInputEl = this._createInput(endInputName, this._getPlaceholder()[1], this._setInputValue(this._endDate));
       const inputGroupTextSeparatorEl = document.createElement('div');
       inputGroupTextSeparatorEl.classList.add(CLASS_NAME_SEPARATOR);
       this._startInput = startInputEl;
@@ -3563,8 +3579,8 @@
       inputEl.required = this._config.required;
       inputEl.type = 'text';
       inputEl.value = value;
-      if (this._element.id) {
-        inputEl.name = `${name}-${this._element.id}`;
+      if (name) {
+        inputEl.name = name;
       }
       const events = ['change', 'keyup', 'paste'];
       for (const event of events) {
@@ -5099,11 +5115,12 @@
     disabled: false,
     invalid: false,
     multiple: true,
-    placeholder: 'Select...',
-    required: false,
+    name: null,
     options: false,
     optionsMaxHeight: 'auto',
     optionsStyle: 'checkbox',
+    placeholder: 'Select...',
+    required: false,
     search: false,
     searchNoResultsLabel: 'No results found',
     selectAll: true,
@@ -5117,11 +5134,12 @@
     disabled: 'boolean',
     invalid: 'boolean',
     multiple: 'boolean',
-    placeholder: 'string',
-    required: 'boolean',
+    name: 'string',
     options: '(boolean|array)',
     optionsMaxHeight: '(number|string)',
     optionsStyle: 'string',
+    placeholder: 'string',
+    required: 'boolean',
     search: 'boolean',
     searchNoResultsLabel: 'string',
     selectAll: 'boolean',
@@ -5411,8 +5429,8 @@
         this._createSearchInput();
         this._updateSearch();
       }
-      if (this._element.id) {
-        this._element.setAttribute('name', `multi-select-${this._element.id}`);
+      if (this._config.name || this._element.id || this._element.name) {
+        this._element.setAttribute('name', this._config.name || this._element.name || `multi-select-${this._element.id}`);
       }
       this._createOptionsContainer();
       this._hideNativeSelect();
