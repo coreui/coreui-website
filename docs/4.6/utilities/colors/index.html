@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Convey meaning through color with a handful of color utility classes. Includes support for styling links with hover states, too.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.111.3">
+<meta name="generator" content="Hugo 0.112.5">
 
 <meta name="docsearch:language" content="en">
-<meta name="docsearch:version" content="4.1">
+<meta name="docsearch:version" content="4.3">
 
 <title>Colors · CoreUI</title>
 
@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href="https://coreui.io/docs/4.6/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-/sHcsof/cb82oVJQ5XJEIc705z0Qi5H76RNLFZSz0QAfGwCEjo1Rol/F/BkYk0rr" crossorigin="anonymous">
+<link href="https://coreui.io/docs/4.6/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-nU5P7HHFEuTIkjywl55i2or8RCWG+AcRHUhzyQS6XXRhfPA5bHzGzMInS7+pLNkb" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/4.6/assets/css/docs.css" rel="stylesheet">
 
@@ -1022,7 +1022,7 @@
 
       <h2 id="colors">Colors <a class="anchor-link" href="#colors" aria-label="Link to this section: Colors"></a></h2>
 <p>Colorize text with color utilities. If you want to colorize links, you can use the <a href="https://coreui.io/docs/4.6/helpers/colored-links/"><code>.link-*</code> helper classes</a> which have <code>:hover</code> and <code>:focus</code> states.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 
 <p class="text-primary">.text-primary</p>
 <p class="text-primary-emphasis">.text-primary-emphasis</p>
@@ -1052,7 +1052,8 @@
 <p class="text-white-50 bg-dark">.text-white-50</p>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1108,12 +1109,13 @@
 </span></span></code></pre></div><p>We use an RGB version of our <code>--cui-primary</code> (with the value of <code>13, 110, 253</code>) CSS variable and attached a second CSS variable, <code>--cui-text-opacity</code>, for the alpha transparency (with a default value <code>1</code> thanks to a local CSS variable). That means anytime you use <code>.text-primary</code> now, your computed <code>color</code> value is <code>rgba(13, 110, 253, 1)</code>. The local CSS variable inside each <code>.text-*</code> class avoids inheritance issues so nested instances of the utilities don&rsquo;t automatically have a modified alpha transparency.</p>
 <h3 id="example">Example <a class="anchor-link" href="#example" aria-label="Link to this section: Example"></a></h3>
 <p>To change that opacity, override <code>--cui-text-opacity</code> via custom styles or inline styles.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="text-primary">This is default primary text</div>
 <div class="text-primary" style="--cui-text-opacity: .5;">This is 50% opacity primary text</div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1124,14 +1126,15 @@
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;text-primary&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;--cui-text-opacity: .5;&#34;</span><span class="p">&gt;</span>This is 50% opacity primary text<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
 <p>Or, choose from any of the <code>.text-opacity</code> utilities:</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="text-primary">This is default primary text</div>
 <div class="text-primary text-opacity-75">This is 75% opacity primary text</div>
 <div class="text-primary text-opacity-50">This is 50% opacity primary text</div>
 <div class="text-primary text-opacity-25">This is 25% opacity primary text</div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1150,9 +1153,9 @@
 <p>Do you need a gradient in your custom CSS? Just add <code>background-image: var(--cui-gradient);</code>.</p>
 <h3 id="variables">Variables <a class="anchor-link" href="#variables" aria-label="Link to this section: Variables"></a></h3>
 <p>Most <code>color</code> utilities are generated by our theme colors, reassigned from our generic color palette variables.</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_variables.scss">scss/_variables.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_variables.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1172,9 +1175,9 @@
 </span></span><span class="line"><span class="cl"><span class="nv">$teal</span><span class="o">:</span>    <span class="mh">#20c997</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$cyan</span><span class="o">:</span>    <span class="mh">#0dcaf0</span><span class="p">;</span>
 </span></span></code></pre></div></div>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_variables.scss">scss/_variables.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_variables.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1193,9 +1196,9 @@
 </span></span><span class="line"><span class="cl"><span class="nv">$dark</span><span class="o">:</span>          <span class="nv">$gray-900</span><span class="p">;</span>
 </span></span></code></pre></div></div>
 <p>Grayscale colors are also available, but only a subset are used to generate any utilities.</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_variables.scss">scss/_variables.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_variables.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1219,9 +1222,9 @@
 </span></span></code></pre></div></div>
 <h3 id="map">Map <a class="anchor-link" href="#map" aria-label="Link to this section: Map"></a></h3>
 <p>Theme colors are then put into a Sass map so we can loop over them to generate our utilities, component modifiers, and more.</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_variables.scss">scss/_variables.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_variables.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1242,9 +1245,9 @@
 </span></span><span class="line"><span class="cl"><span class="p">);</span>
 </span></span></code></pre></div></div>
 <p>Grayscale colors are also available as a Sass map. <strong>This map is not used to generate any utilities.</strong></p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_variables.scss">scss/_variables.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_variables.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1266,9 +1269,9 @@
 </span></span><span class="line"><span class="cl"><span class="p">);</span>
 </span></span></code></pre></div></div>
 <p>RGB colors are generated from a separate Sass map:</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_maps.scss">scss/_maps.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_maps.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1329,9 +1332,9 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nv">$theme-colors-rgb-dark</span><span class="o">:</span> <span class="nf">map-loop</span><span class="p">(</span><span class="nv">$theme-colors-dark</span><span class="o">,</span> <span class="n">to-rgb</span><span class="o">,</span> <span class="s2">&#34;$value&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  </span></span></code></pre></div></div>
 <p>And color opacities build on that with their own map that&rsquo;s consumed by the utilities API:</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_maps.scss">scss/_maps.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_maps.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1363,9 +1366,9 @@
 </span></span></code></pre></div></div>
 <h3 id="utilities-api">Utilities API <a class="anchor-link" href="#utilities-api" aria-label="Link to this section: Utilities API"></a></h3>
 <p>Color utilities are declared in our utilities API in <code>scss/_utilities.scss</code>. <a href="https://coreui.io/docs/4.6/utilities/api/#using-the-api">Learn how to use the utilities API.</a></p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_utilities.scss">scss/_utilities.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_utilities.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1431,7 +1434,7 @@
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.3.0-alpha.0. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
+    <p class="mb-0">Currently v4.3.0-beta.0. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
   </div>
 </footer>
 
@@ -1439,7 +1442,7 @@
       
   
     </div>
-    <script src="https://coreui.io/docs/4.6/dist/js/coreui.bundle.min.js" integrity="sha384-scnnQvzzPg7Dcr216ljP3DKlPHSP49wSGctZq6i30NduV8H+9BH6ry47qIyXKWzg" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/4.6/dist/js/coreui.bundle.min.js" integrity="sha384-VCnexcCv2cE5Xt5MX3QcPCYdVl7U8RfeOWgMj4sf2xrwUSi+ZYWTpvPmS/KPSqLd" crossorigin="anonymous"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>

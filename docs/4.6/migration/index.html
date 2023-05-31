@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Track and review changes to the CoreUI for Bootstrap source files, documentation, and components to help you migrate from v3 to v4.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.111.3">
+<meta name="generator" content="Hugo 0.112.5">
 
 <meta name="docsearch:language" content="en">
-<meta name="docsearch:version" content="4.1">
+<meta name="docsearch:version" content="4.3">
 
 <title>Migrating to v4 · CoreUI</title>
 
@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href="https://coreui.io/docs/4.6/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-/sHcsof/cb82oVJQ5XJEIc705z0Qi5H76RNLFZSz0QAfGwCEjo1Rol/F/BkYk0rr" crossorigin="anonymous">
+<link href="https://coreui.io/docs/4.6/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-nU5P7HHFEuTIkjywl55i2or8RCWG+AcRHUhzyQS6XXRhfPA5bHzGzMInS7+pLNkb" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/4.6/assets/css/docs.css" rel="stylesheet">
 
@@ -990,45 +990,71 @@
         <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#dependencies">Dependencies</a></li>
-    <li><a href="#browser-support">Browser support</a></li>
-    <li><a href="#documentation-changes">Documentation changes</a></li>
-    <li><a href="#sass">Sass</a></li>
-    <li><a href="#color-system">Color system</a></li>
-    <li><a href="#grid-updates">Grid updates</a></li>
-    <li><a href="#content-reboot-etc">Content, Reboot, etc</a></li>
-    <li><a href="#rtl">RTL</a></li>
-    <li><a href="#forms">Forms</a></li>
-    <li><a href="#components">Components</a>
+    <li><a href="#v430-v460-pro">v4.3.0 (v4.6.0 PRO)</a>
       <ul>
-        <li><a href="#accordion">Accordion</a></li>
-        <li><a href="#alerts">Alerts</a></li>
-        <li><a href="#badges">Badges</a></li>
-        <li><a href="#breadcrumbs">Breadcrumbs</a></li>
-        <li><a href="#buttons">Buttons</a></li>
-        <li><a href="#card">Card</a></li>
-        <li><a href="#carousel">Carousel</a></li>
-        <li><a href="#close-button">Close button</a></li>
-        <li><a href="#collapse">Collapse</a></li>
-        <li><a href="#dropdowns">Dropdowns</a></li>
-        <li><a href="#footer">Footer</a></li>
-        <li><a href="#header">Header</a></li>
-        <li><a href="#jumbotron">Jumbotron</a></li>
-        <li><a href="#list-group">List group</a></li>
-        <li><a href="#navs-and-tabs">Navs and tabs</a></li>
-        <li><a href="#navbars">Navbars</a></li>
-        <li><a href="#offcanvas">Offcanvas</a></li>
-        <li><a href="#pagination">Pagination</a></li>
-        <li><a href="#popovers">Popovers</a></li>
-        <li><a href="#sidebar">Sidebar</a></li>
-        <li><a href="#spinners">Spinners</a></li>
-        <li><a href="#toasts">Toasts</a></li>
-        <li><a href="#tooltips">Tooltips</a></li>
+        <li><a href="#css-variables">CSS variables</a></li>
+        <li><a href="#color-modes">Color modes</a></li>
+        <li><a href="#typography">Typography</a></li>
+        <li><a href="#components">Components</a>
+          <ul>
+            <li><a href="#alert">Alert</a></li>
+            <li><a href="#card">Card</a></li>
+            <li><a href="#close-button">Close button</a></li>
+            <li><a href="#dropdowns">Dropdowns</a></li>
+            <li><a href="#list-group">List group</a></li>
+            <li><a href="#navbar">Navbar</a></li>
+            <li><a href="#navs">Navs</a></li>
+          </ul>
+        </li>
+        <li><a href="#progress-bars">Progress bars</a></li>
+        <li><a href="#forms">Forms</a></li>
+        <li><a href="#helpers">Helpers</a></li>
+        <li><a href="#utilities">Utilities</a></li>
       </ul>
     </li>
-    <li><a href="#utilities">Utilities</a></li>
-    <li><a href="#helpers">Helpers</a></li>
-    <li><a href="#javascript">JavaScript</a></li>
+    <li><a href="#v400">v4.0.0</a>
+      <ul>
+        <li><a href="#dependencies">Dependencies</a></li>
+        <li><a href="#browser-support">Browser support</a></li>
+        <li><a href="#documentation-changes">Documentation changes</a></li>
+        <li><a href="#sass">Sass</a></li>
+        <li><a href="#color-system">Color system</a></li>
+        <li><a href="#grid-updates">Grid updates</a></li>
+        <li><a href="#content-reboot-etc">Content, Reboot, etc</a></li>
+        <li><a href="#rtl">RTL</a></li>
+        <li><a href="#forms-1">Forms</a></li>
+        <li><a href="#components-1">Components</a>
+          <ul>
+            <li><a href="#accordion">Accordion</a></li>
+            <li><a href="#alerts">Alerts</a></li>
+            <li><a href="#badges">Badges</a></li>
+            <li><a href="#breadcrumbs">Breadcrumbs</a></li>
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#card-1">Card</a></li>
+            <li><a href="#carousel">Carousel</a></li>
+            <li><a href="#close-button-1">Close button</a></li>
+            <li><a href="#collapse">Collapse</a></li>
+            <li><a href="#dropdowns-1">Dropdowns</a></li>
+            <li><a href="#footer">Footer</a></li>
+            <li><a href="#header">Header</a></li>
+            <li><a href="#jumbotron">Jumbotron</a></li>
+            <li><a href="#list-group-1">List group</a></li>
+            <li><a href="#navs-and-tabs">Navs and tabs</a></li>
+            <li><a href="#navbars">Navbars</a></li>
+            <li><a href="#offcanvas">Offcanvas</a></li>
+            <li><a href="#pagination">Pagination</a></li>
+            <li><a href="#popovers">Popovers</a></li>
+            <li><a href="#sidebar">Sidebar</a></li>
+            <li><a href="#spinners">Spinners</a></li>
+            <li><a href="#toasts">Toasts</a></li>
+            <li><a href="#tooltips">Tooltips</a></li>
+          </ul>
+        </li>
+        <li><a href="#utilities-1">Utilities</a></li>
+        <li><a href="#helpers-1">Helpers</a></li>
+        <li><a href="#javascript">JavaScript</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
       </div>
@@ -1037,12 +1063,236 @@
     <div class="docs-content ps-lg-4">
       
 
-      <h2 id="dependencies">Dependencies <a class="anchor-link" href="#dependencies" aria-label="Link to this section: Dependencies"></a></h2>
+      <h2 id="v430-v460-pro">v4.3.0 (v4.6.0 PRO) <a class="anchor-link" href="#v430-v460-pro" aria-label="Link to this section: v4.3.0 (v4.6.0 PRO)"></a></h2>
+<h3 id="css-variables">CSS variables <a class="anchor-link" href="#css-variables" aria-label="Link to this section: CSS variables"></a></h3>
+<ul>
+<li>
+<p>Restores CSS variables for breakpoints, though we don&rsquo;t use them in our media queries as they&rsquo;re not supported. However, these can be useful in JS-specific contexts.</p>
+</li>
+<li>
+<p>Per the color modes update, we&rsquo;ve added new utilities for new Sass CSS variables <code>secondary</code> and <code>tertiary</code> text and background colors, plus <code>{color}-bg-subtle</code>, <code>{color}-border-subtle</code>, and <code>{color}-text-emphasis</code> for our theme colors. These new colors are available through Sass and CSS variables (but not our color maps) with the express goal of making it easier to customize across multiple colors modes like light and dark.</p>
+</li>
+<li>
+<p>Adds additional variables for alerts, <code>.btn-close</code>, and <code>.offcanvas</code>.</p>
+</li>
+<li>
+<p>The <code>--cui-heading-color</code> variable is back with an update and dark mode support. First, we now check for a <code>null</code> value on the associated Sass variable, <code>$headings-color</code>, before trying to output the CSS variable, so by default it&rsquo;s not present in our compiled CSS. Second, we use the CSS variable with a fallback value, <code>inherit</code>, allowing the original behavior to persist, but also allowing for overrides.</p>
+</li>
+<li>
+<p>Converts links to use CSS variables for styling <code>color</code>, but not <code>text-decoration</code>. Colors are now set with <code>--cui-link-color-rgb</code> and <code>--cui-link-opacity</code> as <code>rgba()</code> color, allowing you to customize the translucency with ease. The <code>a:hover</code> pseudo-class now overrides <code>--cui-link-color-rgb</code> instead of explicitly setting the <code>color</code> property.</p>
+</li>
+<li>
+<p><code>--cui-border-width</code> is now being used in more components for greater control over default global styling.</p>
+</li>
+<li>
+<p>Adds new root CSS variables for our <code>box-shadow</code>s, including <code>--cui-box-shadow</code>, <code>--cui-box-shadow-sm</code>, <code>--cui-box-shadow-lg</code>, and <code>--cui-box-shadow-inset</code>.</p>
+</li>
+<li>
+<p>Removed several duplicate and unused root CSS variables.</p>
+</li>
+</ul>
+<h3 id="color-modes">Color modes <a class="anchor-link" href="#color-modes" aria-label="Link to this section: Color modes"></a></h3>
+<p>Learn more by reading the new <a href="https://coreui.io/docs/4.6/customize/color-modes/">color modes documentation</a>.</p>
+<ul>
+<li>
+<p><strong>Global support for light (default) and dark color modes.</strong> Set color mode globally on the <code>:root</code> element, on groups of elements and components with a wrapper class, or directly on components, with <code>data-coreui-theme=&quot;light|dark&quot;</code>. Also included is a new <code>color-mode()</code> mixin that can output a ruleset with the <code>data-coreui-theme</code> selector or a media query, depending on your preference.</p>
+<p><span class="badge text-warning-emphasis bg-warning-subtle">Deprecated</span> Color modes replace dark variants for components, so  <code>.btn-close-white</code>, <code>.carousel-dark</code>, <code>.dropdown-menu-dark</code>, and <code>.navbar-dark</code> are deprecated.</p>
+</li>
+<li>
+<p><strong>New extended color system.</strong> We&rsquo;ve added new theme colors (but not in <code>$theme-colors</code>) for a more nuanced, system-wide color palette with new secondary, tertiary, and emphasis colors for <code>color</code> and <code>background-color</code>. These new colors are available as Sass variables, CSS variables, and utilities.</p>
+</li>
+<li>
+<p>We&rsquo;ve also expanded our theme color Sass variables, CSS variables, and utilities to include text emphasis, subtle background colors, and subtle border colors. These are available as Sass variables, CSS variables, and utilities.</p>
+</li>
+<li>
+<p>Adds new <code>_variables-dark.scss</code> stylesheet to house dark-mode specific overrides. This stylesheet should be imported immediately after the existing <code>_variables.scss</code> file in your import stack.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"> // Configuration
+</span></span><span class="line"><span class="cl"> @import &#34;functions&#34;;
+</span></span><span class="line"><span class="cl"> @import &#34;variables&#34;;
+</span></span><span class="line"><span class="cl"><span class="gi">+@import &#34;variables-dark&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="gi"></span> @import &#34;maps&#34;;
+</span></span><span class="line"><span class="cl"> @import &#34;mixins&#34;;
+</span></span><span class="line"><span class="cl"> @import &#34;utilities&#34;;
+</span></span></code></pre></div></li>
+<li>
+<p>Dark mode colors are now derived from our theme colors (e.g., <code>$primary</code>) in Sass, rather than color specific tints or shades (e.g., <code>$blue-300</code>). This allows for a more automated dark mode when customizing the default theme colors.</p>
+</li>
+<li>
+<p>Added Sass maps for generating theme colors for dark mode text, subtle background, and subtle border.</p>
+</li>
+<li>
+<p>Added <code>color-scheme: dark</code> to dark mode CSS to change OS level controls like scrollbars</p>
+</li>
+<li>
+<p>Form validation <code>border-color</code> and text <code>color</code> states now respond to dark mode, thanks to new Sass and CSS variables.</p>
+</li>
+<li>
+<p>Dropped recently added form control background CSS variables and reassigned the Sass variables to use CSS variables instead. This simplifies the styling across color modes and avoids an issue where form controls in dark mode wouldn&rsquo;t update properly.</p>
+</li>
+<li>
+<p>Our <code>box-shadow</code>s will once again always stay dark instead of inverting to white when in dark mode.</p>
+</li>
+<li>
+<p>Improved HTML and JavaScript for our color mode toggle script. The selector for changing the active SVG has been improved, and the markup made more accessible with ARIA attributes.</p>
+</li>
+<li>
+<p>Improved docs code syntax colors and more across light and dark modes.</p>
+</li>
+</ul>
+<h3 id="typography">Typography <a class="anchor-link" href="#typography" aria-label="Link to this section: Typography"></a></h3>
+<ul>
+<li>We no longer set a color for <code>$headings-color-dark</code> or <code>--cui-heading-color</code> for dark mode. To avoid several problems of headings within components appearing the wrong color, we&rsquo;ve set the Sass variable to <code>null</code> and added a <code>null</code> check like we use on the default light mode.</li>
+</ul>
+<h3 id="components">Components <a class="anchor-link" href="#components" aria-label="Link to this section: Components"></a></h3>
+<h4 id="alert">Alert <a class="anchor-link" href="#alert" aria-label="Link to this section: Alert"></a></h4>
+<ul>
+<li>
+<p>Alert variants are now styled via CSS variables.</p>
+</li>
+<li>
+<p><span class="badge text-warning-emphasis bg-warning-subtle">Deprecated</span> The <code>.alert-variant()</code> mixin is now deprecated. We now <a href="https://coreui.io/docs/4.6/components/alerts/#sass-loops">use a Sass loop</a> directly to modify the component&rsquo;s default CSS variables for each variant.</p>
+</li>
+</ul>
+<h4 id="card">Card <a class="anchor-link" href="#card" aria-label="Link to this section: Card"></a></h4>
+<ul>
+<li>Cards now have a <code>color</code> set on them to improve rendering across color modes.</li>
+</ul>
+<h4 id="close-button">Close button <a class="anchor-link" href="#close-button" aria-label="Link to this section: Close button"></a></h4>
+<ul>
+<li><span class="badge text-warning-emphasis bg-warning-subtle">Deprecated</span> The <code>.btn-close-white</code> class has been deprecated and replaced with <code>data-coreui-theme=&quot;dark&quot;</code> on the close button or any parent element. <a href="https://coreui.io/docs/4.6/components/close-button/#dark-variant">See the docs for an example.</a></li>
+</ul>
+<h4 id="dropdowns">Dropdowns <a class="anchor-link" href="#dropdowns" aria-label="Link to this section: Dropdowns"></a></h4>
+<ul>
+<li><span class="badge text-warning-emphasis bg-warning-subtle">Deprecated</span> The <code>.dropdown-menu-dark</code> class has been deprecated and replaced with <code>data-coreui-theme=&quot;dark&quot;</code> on the dropdown or any parent element. <a href="https://coreui.io/docs/4.6/components/dropdowns/#dark-dropdowns">See the docs for an example.</a></li>
+</ul>
+<h4 id="list-group">List group <a class="anchor-link" href="#list-group" aria-label="Link to this section: List group"></a></h4>
+<ul>
+<li>
+<p>List group item variants are now styled via CSS variables.</p>
+</li>
+<li>
+<p><span class="badge text-warning-emphasis bg-warning-subtle">Deprecated</span> The <code>.list-group-variant()</code> mixin is now deprecated. We now <a href="https://coreui.io/docs/4.6/components/list-group/#sass-loops">use a Sass loop</a> directly to modify the component&rsquo;s default CSS variables for each variant.</p>
+</li>
+</ul>
+<h4 id="navbar">Navbar <a class="anchor-link" href="#navbar" aria-label="Link to this section: Navbar"></a></h4>
+<ul>
+<li><span class="badge text-warning-emphasis bg-warning-subtle">Deprecated</span> The <code>.navbar-dark</code> class has been deprecated and replaced with <code>data-coreui-theme=&quot;dark&quot;</code> on the navbar or any parent element. <a href="https://coreui.io/docs/4.6/components/navbar/#color-schemes">See the docs for updated examples.</a></li>
+</ul>
+<h4 id="navs">Navs <a class="anchor-link" href="#navs" aria-label="Link to this section: Navs"></a></h4>
+<ul>
+<li>
+<p>Added new <code>.nav-underline</code> variant for our navigation with a simpler bottom border under the active nav link. <a href="https://coreui.io/docs/4.6/components/navs-tabs/#underline">See the docs for an example.</a></p>
+</li>
+<li>
+<p>Navs now have new <code>:focus-visible</code> styles that better match our custom button focus styles.</p>
+</li>
+</ul>
+<h3 id="progress-bars">Progress bars <a class="anchor-link" href="#progress-bars" aria-label="Link to this section: Progress bars"></a></h3>
+<p>The markup for <a href="https://coreui.io/docs/4.6/components/progress/">progress bars</a> has been updated in v5.3.0. Due to the placement of <code>role</code> and various <code>aria-</code> attributes on the inner <code>.progress-bar</code> element, <strong>some screen readers were not announcing zero value progress bars</strong>. Now, <code>role=&quot;progressbar&quot;</code> and the relevant <code>aria-*</code> attributes are on the outer <code>.progress</code> element, leaving the <code>.progress-bar</code> purely for the visual presentation of the bar and optional label.</p>
+<p>While we recommend adopting the new markup for improved compatibility with all screen readers, note that the legacy progress bar structure will continue to work as before.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- Previous markup --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress-bar&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;progressbar&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Basic example&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 25%&#34;</span> <span class="na">aria-valuenow</span><span class="o">=</span><span class="s">&#34;25&#34;</span> <span class="na">aria-valuemin</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">aria-valuemax</span><span class="o">=</span><span class="s">&#34;100&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- New markup --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;progressbar&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Basic example&#34;</span> <span class="na">aria-valuenow</span><span class="o">=</span><span class="s">&#34;25&#34;</span> <span class="na">aria-valuemin</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">aria-valuemax</span><span class="o">=</span><span class="s">&#34;100&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress-bar&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 25%&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>We&rsquo;ve also introduced a new <code>.progress-stacked</code> class to more logically wrap <a href="https://coreui.io/docs/4.6/components/progress/#multiple-bars">multiple progress bars</a> into a single stacked progress bar.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- Previous markup --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress-bar&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;progressbar&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Segment one&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 15%&#34;</span> <span class="na">aria-valuenow</span><span class="o">=</span><span class="s">&#34;15&#34;</span> <span class="na">aria-valuemin</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">aria-valuemax</span><span class="o">=</span><span class="s">&#34;100&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress-bar bg-success&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;progressbar&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Segment two&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 30%&#34;</span> <span class="na">aria-valuenow</span><span class="o">=</span><span class="s">&#34;30&#34;</span> <span class="na">aria-valuemin</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">aria-valuemax</span><span class="o">=</span><span class="s">&#34;100&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress-bar bg-info&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;progressbar&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Segment three&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 20%&#34;</span> <span class="na">aria-valuenow</span><span class="o">=</span><span class="s">&#34;20&#34;</span> <span class="na">aria-valuemin</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">aria-valuemax</span><span class="o">=</span><span class="s">&#34;100&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- New markup --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress-stacked&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;progressbar&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Segment one&#34;</span> <span class="na">aria-valuenow</span><span class="o">=</span><span class="s">&#34;15&#34;</span> <span class="na">aria-valuemin</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">aria-valuemax</span><span class="o">=</span><span class="s">&#34;100&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 15%&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress-bar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;progressbar&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Segment two&#34;</span> <span class="na">aria-valuenow</span><span class="o">=</span><span class="s">&#34;30&#34;</span> <span class="na">aria-valuemin</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">aria-valuemax</span><span class="o">=</span><span class="s">&#34;100&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 30%&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress-bar bg-success&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress&#34;</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;progressbar&#34;</span> <span class="na">aria-label</span><span class="o">=</span><span class="s">&#34;Segment three&#34;</span> <span class="na">aria-valuenow</span><span class="o">=</span><span class="s">&#34;20&#34;</span> <span class="na">aria-valuemin</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">aria-valuemax</span><span class="o">=</span><span class="s">&#34;100&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;width: 20%&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;progress-bar bg-info&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h3 id="forms">Forms <a class="anchor-link" href="#forms" aria-label="Link to this section: Forms"></a></h3>
+<ul>
+<li>
+<p><code>.form-control</code> is now styled with CSS variables to support color modes. This includes the addition of two new root CSS variables for the default and disabled form control backgrounds.</p>
+</li>
+<li>
+<p><code>.form-check</code> and <code>.form-switch</code> components are now built with CSS variables for setting the <code>background-image</code>. The usage here differs from other components in that the various focus, active, etc states for each component aren&rsquo;t set on the base class. Instead, the states override one variable (e.g., <code>--cui-form-switch-bg</code>).</p>
+</li>
+<li>
+<p>Floating form labels now have a <code>background-color</code> to fix support for <code>&lt;textarea&gt;</code> elements. Additional changes have been made to also support disabled states and more.</p>
+</li>
+<li>
+<p>Fixed display of date and time inputs in WebKit based browsers.</p>
+</li>
+</ul>
+<h3 id="helpers">Helpers <a class="anchor-link" href="#helpers" aria-label="Link to this section: Helpers"></a></h3>
+<ul>
+<li>
+<p>Added new <code>.icon-link</code> helper to quickly place and align Bootstrap Icons alongside a textual link. Icon links support our new link utilities, too.</p>
+</li>
+<li>
+<p>Added new focus ring helper for removing the default <code>outline</code> and setting a custom <code>box-shadow</code> focus ring.</p>
+</li>
+<li>
+<p><a href="https://coreui.io/docs/4.6/helpers/colored-links/">Colored links</a> once again have <code>!important</code> so they work better with our newly added link utilities.</p>
+</li>
+</ul>
+<h3 id="utilities">Utilities <a class="anchor-link" href="#utilities" aria-label="Link to this section: Utilities"></a></h3>
+<ul>
+<li>
+<p><span class="badge text-warning-emphasis bg-warning-subtle">Deprecated</span> <code>.text-muted</code> will be replaced by <code>.text-body-secondary</code> in v6.</p>
+<p>With the addition of the expanded theme colors and variables, the <code>.text-muted</code> variables and utility have been deprecated with v5.3.0. Its default value has also been reassigned to the new <code>--cui-secondary-color</code> CSS variable to better support color modes. It will be removed in v6.0.0.</p>
+</li>
+<li>
+<p>Adds new <code>.overflow-x</code>, <code>.overflow-y</code>, and several <code>.object-fit-*</code> utilities. <em>The object-fit property is used to specify how an <code>&lt;img&gt;</code> or <code>&lt;video&gt;</code> should be resized to fit its container, giving us a responsive alternative to using <code>background-image</code> for a resizable fill/fit image.</em></p>
+</li>
+<li>
+<p>Adds new <code>.fw-medium</code> utility.</p>
+</li>
+<li>
+<p>Added new <a href="https://coreui.io/docs/4.6/utilities/z-index/"><code>.z-*</code> utilities</a> for <code>z-index</code>.</p>
+</li>
+<li>
+<p><a href="https://coreui.io/docs/4.6/utilities/shadows/">Box shadow utilities</a> (and Sass variables) have been updated for dark mode. They now use <code>--cui-body-color-rgb</code> to generate the <code>rgba()</code> color values, allowing them to easily adapt to color modes based on the specified foreground color.</p>
+</li>
+<li>
+<p>Renamed Sass and CSS variables <code>${color}-text</code> to <code>${color}-text-emphasis</code> to match their associated utilities.</p>
+</li>
+<li>
+<p>Added new <code>.link-body-emphasis</code> helper alongside our <a href="https://coreui.io/docs/4.6/helpers/colored-links/">colored links</a>. This creates a colored link using our color mode responsive emphasis color.</p>
+</li>
+<li>
+<p>Added new link utilities for link color opacity, underline offset, underline color, and underline opacity. <a href="https://coreui.io/docs/4.6/utilities/link/">Explore the new links utilities.</a></p>
+</li>
+<li>
+<p>CSS variable based <code>border-width</code> utilities have been reverted to set their property directly (as was done prior to v5.2.0). This avoids inheritance issues across nested elements, including tables.</p>
+</li>
+<li>
+<p>Added new <code>.border-black</code> utility to match our <code>.text-black</code> and <code>.bg-black</code> utilities.</p>
+</li>
+<li>
+<p><span class="badge text-warning-emphasis bg-warning-subtle">Deprecated</span> Deprecated the <code>.text-muted</code> utility and <code>$text-muted</code> Sass variable. It&rsquo;s been replaced by <code>.text-body-secondary</code> and <code>$body-secondary-color</code>.</p>
+</li>
+<li>
+<p>Added new <code>.d-inline-grid</code> <a href="https://coreui.io/docs/4.6/utilities/display/">display utility</a>.</p>
+</li>
+</ul>
+<h2 id="v400">v4.0.0 <a class="anchor-link" href="#v400" aria-label="Link to this section: v4.0.0"></a></h2>
+<h3 id="dependencies">Dependencies <a class="anchor-link" href="#dependencies" aria-label="Link to this section: Dependencies"></a></h3>
 <ul>
 <li>Upgraded from Popper v1.x to Popper v2.x.</li>
 <li>Replaced Libsass with Dart Sass as our Sass compiler given Libsass was deprecated.</li>
 </ul>
-<h2 id="browser-support">Browser support <a class="anchor-link" href="#browser-support" aria-label="Link to this section: Browser support"></a></h2>
+<h3 id="browser-support">Browser support <a class="anchor-link" href="#browser-support" aria-label="Link to this section: Browser support"></a></h3>
 <ul>
 <li>Dropped Internet Explorer 10 and 11</li>
 <li>Dropped Microsoft Edge &lt; 16 (Legacy Edge)</li>
@@ -1052,7 +1302,7 @@
 <li>Dropped Chrome &lt; 60</li>
 </ul>
 <hr class="my-5">
-<h2 id="documentation-changes">Documentation changes <a class="anchor-link" href="#documentation-changes" aria-label="Link to this section: Documentation changes"></a></h2>
+<h3 id="documentation-changes">Documentation changes <a class="anchor-link" href="#documentation-changes" aria-label="Link to this section: Documentation changes"></a></h3>
 <ul>
 <li>Redesigned homepage, docs layout, and footer.</li>
 <li>Added <a href="https://coreui.io/docs/getting-started/parcel/">new Parcel guide</a>.</li>
@@ -1064,7 +1314,7 @@
 <li>Redesigned the navbar and added a new subnav to make it easier to get around our sites and docs versions.</li>
 <li>Added new keyboard shortcut for the search field: <kbd>Ctrl + /</kbd>.</li>
 </ul>
-<h2 id="sass">Sass <a class="anchor-link" href="#sass" aria-label="Link to this section: Sass"></a></h2>
+<h3 id="sass">Sass <a class="anchor-link" href="#sass" aria-label="Link to this section: Sass"></a></h3>
 <ul>
 <li>
 <p>We&rsquo;ve ditched the default Sass map merges to make it easier to remove redundant values. Keep in mind you now have to define all values in the Sass maps like <code>$theme-colors</code>. Check out how to deal with <a href="https://coreui.io/docs/4.6/customize/sass/#maps-and-loops">Sass maps</a>.</p>
@@ -1114,7 +1364,7 @@
 <p>The <code>border-radius()</code> mixin now has a default value.</p>
 </li>
 </ul>
-<h2 id="color-system">Color system <a class="anchor-link" href="#color-system" aria-label="Link to this section: Color system"></a></h2>
+<h3 id="color-system">Color system <a class="anchor-link" href="#color-system" aria-label="Link to this section: Color system"></a></h3>
 <ul>
 <li>
 <p>The color system which worked with <code>color-level()</code> and <code>$theme-color-interval</code> was removed in favor of a new color system. All <code>lighten()</code> and <code>darken()</code> functions in our codebase are replaced by <code>tint-color()</code> and <code>shade-color()</code>. These functions will mix the color with either white or black instead of changing its lightness by a fixed amount. The <code>shift-color()</code> will either tint or shade a color depending on whether its weight parameter is positive or negative. for more details.</p>
@@ -1129,7 +1379,7 @@
 <p>To support our color system, we&rsquo;ve added new custom <code>tint-color()</code> and <code>shade-color()</code> functions to mix our colors appropriately.</p>
 </li>
 </ul>
-<h2 id="grid-updates">Grid updates <a class="anchor-link" href="#grid-updates" aria-label="Link to this section: Grid updates"></a></h2>
+<h3 id="grid-updates">Grid updates <a class="anchor-link" href="#grid-updates" aria-label="Link to this section: Grid updates"></a></h3>
 <ul>
 <li>
 <p><strong>New breakpoint!</strong> Added new <code>xxl</code> breakpoint for <code>1400px</code> and up. No changes to all other breakpoints.</p>
@@ -1160,7 +1410,7 @@
 <p>Updated the <code>make-col</code> mixin to default to equal columns without a specified size.</p>
 </li>
 </ul>
-<h2 id="content-reboot-etc">Content, Reboot, etc <a class="anchor-link" href="#content-reboot-etc" aria-label="Link to this section: Content, Reboot, etc"></a></h2>
+<h3 id="content-reboot-etc">Content, Reboot, etc <a class="anchor-link" href="#content-reboot-etc" aria-label="Link to this section: Content, Reboot, etc"></a></h3>
 <ul>
 <li>
 <p><strong><a href="https://coreui.io/docs/4.6/getting-started/rfs/">RFS</a> is now enabled by default.</strong> Headings using the <code>font-size()</code> mixin will automatically adjust their <code>font-size</code> to scale with the viewport. <em>This feature was previously opt-in with v4.</em></p>
@@ -1208,11 +1458,11 @@
 <p>Added <code>$enable-smooth-scroll</code>, which applies <code>scroll-behavior: smooth</code> globally—except for users asking for reduced motion through <code>prefers-reduced-motion</code> media query.</p>
 </li>
 </ul>
-<h2 id="rtl">RTL <a class="anchor-link" href="#rtl" aria-label="Link to this section: RTL"></a></h2>
+<h3 id="rtl">RTL <a class="anchor-link" href="#rtl" aria-label="Link to this section: RTL"></a></h3>
 <ul>
 <li>Horizontal direction specific variables, utilities, and mixins have all been renamed to use logical properties like those found in flexbox layouts—e.g., <code>start</code> and <code>end</code> in lieu of <code>left</code> and <code>right</code>.</li>
 </ul>
-<h2 id="forms">Forms <a class="anchor-link" href="#forms" aria-label="Link to this section: Forms"></a></h2>
+<h3 id="forms-1">Forms <a class="anchor-link" href="#forms-1" aria-label="Link to this section: Forms"></a></h3>
 <ul>
 <li>
 <p><strong>Added new floating forms!</strong> We&rsquo;ve promoted the Floating labels example to fully supported form components.</p>
@@ -1251,15 +1501,15 @@
 </li>
 </ul>
 <hr class="my-5">
-<h2 id="components">Components <a class="anchor-link" href="#components" aria-label="Link to this section: Components"></a></h2>
+<h3 id="components-1">Components <a class="anchor-link" href="#components-1" aria-label="Link to this section: Components"></a></h3>
 <ul>
 <li>Unified <code>padding</code> values for alerts, breadcrumbs, cards, dropdowns, list groups, modals, popovers, and tooltips to be based on our <code>$spacer</code> variable.</li>
 </ul>
-<h3 id="accordion">Accordion <a class="anchor-link" href="#accordion" aria-label="Link to this section: Accordion"></a></h3>
+<h4 id="accordion">Accordion <a class="anchor-link" href="#accordion" aria-label="Link to this section: Accordion"></a></h4>
 <ul>
 <li>Added <a href="https://coreui.io/docs/4.6/components/accordion/">new accordion component</a>.</li>
 </ul>
-<h3 id="alerts">Alerts <a class="anchor-link" href="#alerts" aria-label="Link to this section: Alerts"></a></h3>
+<h4 id="alerts">Alerts <a class="anchor-link" href="#alerts" aria-label="Link to this section: Alerts"></a></h4>
 <ul>
 <li>
 <p>Alerts now have <a href="https://coreui.io/docs/4.6/components/alerts/#icons">examples with icons</a>.</p>
@@ -1268,7 +1518,7 @@
 <p>Removed custom styles for <code>&lt;hr&gt;</code>s in each alert since they already use <code>currentColor</code>.</p>
 </li>
 </ul>
-<h3 id="badges">Badges <a class="anchor-link" href="#badges" aria-label="Link to this section: Badges"></a></h3>
+<h4 id="badges">Badges <a class="anchor-link" href="#badges" aria-label="Link to this section: Badges"></a></h4>
 <ul>
 <li>
 <p><span class="badge bg-danger">Breaking</span> Dropped all <code>.badge-*</code> color classes for background utilities (e.g., use <code>.bg-primary</code> instead of <code>.badge-primary</code>).</p>
@@ -1283,7 +1533,7 @@
 <p>Increased default padding for badges from <code>.25em</code>/<code>.5em</code> to <code>.35em</code>/<code>.65em</code>.</p>
 </li>
 </ul>
-<h3 id="breadcrumbs">Breadcrumbs <a class="anchor-link" href="#breadcrumbs" aria-label="Link to this section: Breadcrumbs"></a></h3>
+<h4 id="breadcrumbs">Breadcrumbs <a class="anchor-link" href="#breadcrumbs" aria-label="Link to this section: Breadcrumbs"></a></h4>
 <ul>
 <li>
 <p>Simplified the default appearance of breadcrumbs by removing <code>padding</code>, <code>background-color</code>, and <code>border-radius</code>.</p>
@@ -1292,7 +1542,7 @@
 <p>Added new CSS custom property <code>--cui-breadcrumb-divider</code> for easy customization without needing to recompile CSS.</p>
 </li>
 </ul>
-<h3 id="buttons">Buttons <a class="anchor-link" href="#buttons" aria-label="Link to this section: Buttons"></a></h3>
+<h4 id="buttons">Buttons <a class="anchor-link" href="#buttons" aria-label="Link to this section: Buttons"></a></h4>
 <ul>
 <li>
 <p><span class="badge bg-danger">Breaking</span> <strong><a href="https://coreui.io/docs/forms/checks-radios/#toggle-buttons">Toggle buttons</a>, with checkboxes or radios, no longer require JavaScript and have new markup.</strong> We no long require a wrapping element, add <code>.btn-check</code> to the <code>&lt;input&gt;</code>, and pair it with any <code>.btn</code> classes on the <code>&lt;label&gt;</code>. <em>The docs for this has moved from our Buttons page to the new Forms section.</em></p>
@@ -1310,7 +1560,7 @@
 <p>Disabled buttons now have <code>pointer-events: none;</code>.</p>
 </li>
 </ul>
-<h3 id="card">Card <a class="anchor-link" href="#card" aria-label="Link to this section: Card"></a></h3>
+<h4 id="card-1">Card <a class="anchor-link" href="#card-1" aria-label="Link to this section: Card"></a></h4>
 <ul>
 <li>
 <p><span class="badge bg-danger">Breaking</span> Dropped <code>.card-deck</code> in favor of our grid. Wrap your cards in column classes and add a parent <code>.row-cols-*</code> container to recreate card decks (but with more control over responsive alignment).</p>
@@ -1322,7 +1572,7 @@
 <p><span class="badge bg-danger">Breaking</span> Replaced the <code>.card</code> based accordion with a <a href="https://coreui.io/docs/4.6/components/accordion/">new Accordion component</a>.</p>
 </li>
 </ul>
-<h3 id="carousel">Carousel <a class="anchor-link" href="#carousel" aria-label="Link to this section: Carousel"></a></h3>
+<h4 id="carousel">Carousel <a class="anchor-link" href="#carousel" aria-label="Link to this section: Carousel"></a></h4>
 <ul>
 <li>
 <p>Added new <a href="https://coreui.io/docs/4.6/components/carousel/#dark-variant"><code>.carousel-dark</code> variant</a> for dark text, controls, and indicators (great for lighter backgrounds).</p>
@@ -1331,7 +1581,7 @@
 <p>Replaced chevron icons for carousel controls with new SVGs from <a href="https://icons.coreui.io/">Bootstrap Icons</a>.</p>
 </li>
 </ul>
-<h3 id="close-button">Close button <a class="anchor-link" href="#close-button" aria-label="Link to this section: Close button"></a></h3>
+<h4 id="close-button-1">Close button <a class="anchor-link" href="#close-button-1" aria-label="Link to this section: Close button"></a></h4>
 <ul>
 <li>
 <p><span class="badge bg-danger">Breaking</span> Renamed <code>.close</code> to <code>.btn-close</code> for a less generic name.</p>
@@ -1343,11 +1593,11 @@
 <p>Added new <code>.btn-close-white</code> variant that uses <code>filter: invert(1)</code> to enable higher contrast dismiss icons against darker backgrounds.</p>
 </li>
 </ul>
-<h3 id="collapse">Collapse <a class="anchor-link" href="#collapse" aria-label="Link to this section: Collapse"></a></h3>
+<h4 id="collapse">Collapse <a class="anchor-link" href="#collapse" aria-label="Link to this section: Collapse"></a></h4>
 <ul>
 <li>Removed scroll anchoring for accordions.</li>
 </ul>
-<h3 id="dropdowns">Dropdowns <a class="anchor-link" href="#dropdowns" aria-label="Link to this section: Dropdowns"></a></h3>
+<h4 id="dropdowns-1">Dropdowns <a class="anchor-link" href="#dropdowns-1" aria-label="Link to this section: Dropdowns"></a></h4>
 <ul>
 <li>
 <p>Added new <code>.dropdown-menu-dark</code> variant and associated variables for on-demand dark dropdowns.</p>
@@ -1374,11 +1624,11 @@
 <p>Dropdowns now support <code>.dropdown-item</code>s wrapped in <code>&lt;li&gt;</code>s.</p>
 </li>
 </ul>
-<h3 id="footer">Footer <a class="anchor-link" href="#footer" aria-label="Link to this section: Footer"></a></h3>
+<h4 id="footer">Footer <a class="anchor-link" href="#footer" aria-label="Link to this section: Footer"></a></h4>
 <ul>
 <li><span class="badge bg-danger">Breaking</span> Renamed <code>.c-footer</code> to <code>.footer</code>.</li>
 </ul>
-<h3 id="header">Header <a class="anchor-link" href="#header" aria-label="Link to this section: Header"></a></h3>
+<h4 id="header">Header <a class="anchor-link" href="#header" aria-label="Link to this section: Header"></a></h4>
 <ul>
 <li><span class="badge bg-danger">Breaking</span> Renamed <code>.c-header</code> to <code>.header</code>.</li>
 <li><span class="badge bg-danger">Breaking</span> Renamed <code>.c-header-brand</code> to <code>.header-brand</code>.</li>
@@ -1388,27 +1638,28 @@
 <li><span class="badge bg-danger">Breaking</span> Dropped the <code>.c-header-nav-item</code> — use the <code>.nav-item</code> instead.</li>
 <li><span class="badge bg-danger">Breaking</span> Dropped the <code>.c-header-nav-link</code> — use the <code>.nav-link</code> instead.</li>
 </ul>
-<h3 id="jumbotron">Jumbotron <a class="anchor-link" href="#jumbotron" aria-label="Link to this section: Jumbotron"></a></h3>
+<h4 id="jumbotron">Jumbotron <a class="anchor-link" href="#jumbotron" aria-label="Link to this section: Jumbotron"></a></h4>
 <ul>
 <li><span class="badge bg-danger">Breaking</span> Dropped the jumbotron component as it can be replicated with utilities.</li>
 </ul>
-<h3 id="list-group">List group <a class="anchor-link" href="#list-group" aria-label="Link to this section: List group"></a></h3>
+<h4 id="list-group-1">List group <a class="anchor-link" href="#list-group-1" aria-label="Link to this section: List group"></a></h4>
 <ul>
 <li>Added new <a href="https://coreui.io/docs/4.6/components/list-group/#numbered"><code>.list-group-numbered</code> modifier</a> to list groups.</li>
 </ul>
-<h3 id="navs-and-tabs">Navs and tabs <a class="anchor-link" href="#navs-and-tabs" aria-label="Link to this section: Navs and tabs"></a></h3>
+<h4 id="navs-and-tabs">Navs and tabs <a class="anchor-link" href="#navs-and-tabs" aria-label="Link to this section: Navs and tabs"></a></h4>
 <ul>
-<li>Added new <code>null</code> variables for <code>font-size</code>, <code>font-weight</code>, <code>color</code>, and <code>:hover</code> <code>color</code> to the <code>.nav-link</code> class.</li>
+<li>Added new <code>null</code> variables for <code>font-size</code>, <code>font-weight</code>, <code>color</code>, and <code>:hover</code> <code>color</code> to the <code>.nav-link</code> class.
+git</li>
 </ul>
-<h3 id="navbars">Navbars <a class="anchor-link" href="#navbars" aria-label="Link to this section: Navbars"></a></h3>
+<h4 id="navbars">Navbars <a class="anchor-link" href="#navbars" aria-label="Link to this section: Navbars"></a></h4>
 <ul>
 <li><span class="badge bg-danger">Breaking</span> Navbars now require a container within (to drastically simplify spacing requirements and CSS required).</li>
 </ul>
-<h3 id="offcanvas">Offcanvas <a class="anchor-link" href="#offcanvas" aria-label="Link to this section: Offcanvas"></a></h3>
+<h4 id="offcanvas">Offcanvas <a class="anchor-link" href="#offcanvas" aria-label="Link to this section: Offcanvas"></a></h4>
 <ul>
 <li>Added the new <a href="https://coreui.io/docs/4.6/components/offcanvas/">offcanvas component</a>.</li>
 </ul>
-<h3 id="pagination">Pagination <a class="anchor-link" href="#pagination" aria-label="Link to this section: Pagination"></a></h3>
+<h4 id="pagination">Pagination <a class="anchor-link" href="#pagination" aria-label="Link to this section: Pagination"></a></h4>
 <ul>
 <li>
 <p>Pagination links now have customizable <code>margin-left</code> that are dynamically rounded on all corners when separated from one another.</p>
@@ -1417,7 +1668,7 @@
 <p>Added <code>transition</code>s to pagination links.</p>
 </li>
 </ul>
-<h3 id="popovers">Popovers <a class="anchor-link" href="#popovers" aria-label="Link to this section: Popovers"></a></h3>
+<h4 id="popovers">Popovers <a class="anchor-link" href="#popovers" aria-label="Link to this section: Popovers"></a></h4>
 <ul>
 <li>
 <p><span class="badge bg-danger">Breaking</span> Renamed <code>.arrow</code> to <code>.popover-arrow</code> in our default popover template.</p>
@@ -1426,7 +1677,7 @@
 <p>Renamed <code>whiteList</code> option to <code>allowList</code>.</p>
 </li>
 </ul>
-<h3 id="sidebar">Sidebar <a class="anchor-link" href="#sidebar" aria-label="Link to this section: Sidebar"></a></h3>
+<h4 id="sidebar">Sidebar <a class="anchor-link" href="#sidebar" aria-label="Link to this section: Sidebar"></a></h4>
 <ul>
 <li><span class="badge bg-danger">Breaking</span> Renamed <code>.c-sidebar</code> to <code>.sidebar</code>.</li>
 <li><span class="badge bg-danger">Breaking</span> Renamed <code>.c-sidebar-brand</code> to <code>.sidebar-brand</code>.</li>
@@ -1437,7 +1688,7 @@
 <li><span class="badge bg-danger">Breaking</span> Dropped the <code>.c-sidebar-nav-item</code> — use the <code>.nav-item</code> instead.</li>
 <li><span class="badge bg-danger">Breaking</span> Dropped the <code>.c-sidebar-nav-link</code> — use the <code>.nav-link</code> instead.</li>
 </ul>
-<h3 id="spinners">Spinners <a class="anchor-link" href="#spinners" aria-label="Link to this section: Spinners"></a></h3>
+<h4 id="spinners">Spinners <a class="anchor-link" href="#spinners" aria-label="Link to this section: Spinners"></a></h4>
 <ul>
 <li>
 <p>Spinners now honor <code>prefers-reduced-motion: reduce</code> by slowing down animations.</p>
@@ -1446,7 +1697,7 @@
 <p>Improved spinner vertical alignment.</p>
 </li>
 </ul>
-<h3 id="toasts">Toasts <a class="anchor-link" href="#toasts" aria-label="Link to this section: Toasts"></a></h3>
+<h4 id="toasts">Toasts <a class="anchor-link" href="#toasts" aria-label="Link to this section: Toasts"></a></h4>
 <ul>
 <li>
 <p>Toasts can now be <a href="https://coreui.io/docs/4.6/components/toasts/#placement">positioned</a> in a <code>.toast-container</code> with the help of <a href="https://coreui.io/docs/4.6/utilities/position/">positioning utilities</a>.</p>
@@ -1458,7 +1709,7 @@
 <p>Removed <code>overflow: hidden</code> from toasts and replaced with proper <code>border-radius</code>s with <code>calc()</code> functions.</p>
 </li>
 </ul>
-<h3 id="tooltips">Tooltips <a class="anchor-link" href="#tooltips" aria-label="Link to this section: Tooltips"></a></h3>
+<h4 id="tooltips">Tooltips <a class="anchor-link" href="#tooltips" aria-label="Link to this section: Tooltips"></a></h4>
 <ul>
 <li>
 <p><span class="badge bg-danger">Breaking</span> Renamed <code>.arrow</code> to <code>.tooltip-arrow</code> in our default tooltip template.</p>
@@ -1470,7 +1721,7 @@
 <p><span class="badge bg-danger">Breaking</span> Renamed <code>whiteList</code> option to <code>allowList</code>.</p>
 </li>
 </ul>
-<h2 id="utilities">Utilities <a class="anchor-link" href="#utilities" aria-label="Link to this section: Utilities"></a></h2>
+<h3 id="utilities-1">Utilities <a class="anchor-link" href="#utilities-1" aria-label="Link to this section: Utilities"></a></h3>
 <ul>
 <li>
 <p><span class="badge bg-danger">Breaking</span> Renamed several utilities to use logical property names instead of directional names with the addition of RTL support:</p>
@@ -1531,7 +1782,7 @@
 <p>Extended the <code>.visually-hidden-focusable</code> helper to also work on containers, using <code>:focus-within</code>.</p>
 </li>
 </ul>
-<h2 id="helpers">Helpers <a class="anchor-link" href="#helpers" aria-label="Link to this section: Helpers"></a></h2>
+<h3 id="helpers-1">Helpers <a class="anchor-link" href="#helpers-1" aria-label="Link to this section: Helpers"></a></h3>
 <ul>
 <li>
 <p><span class="badge bg-danger">Breaking</span> <strong>Responsive embed helpers have been renamed to <a href="https://coreui.io/docs/4.6/helpers/ratio/">ratio helpers</a></strong> with new class names and improved behaviors, as well as a helpful CSS variable.</p>
@@ -1554,7 +1805,7 @@
 <p><code>bootstrap-utilities.css</code> now also includes our helpers. Helpers don&rsquo;t need to be imported in custom builds anymore.</p>
 </li>
 </ul>
-<h2 id="javascript">JavaScript <a class="anchor-link" href="#javascript" aria-label="Link to this section: JavaScript"></a></h2>
+<h3 id="javascript">JavaScript <a class="anchor-link" href="#javascript" aria-label="Link to this section: JavaScript"></a></h3>
 <ul>
 <li>
 <p><span class="badge bg-danger">Breaking</span> Data attributes for all JavaScript plugins are now namespaced to help distinguish Bootstrap functionality from third parties and your own code. For example, we use <code>data-coreui-toggle</code> instead of <code>data-toggle</code>.</p>
@@ -1590,7 +1841,7 @@
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.3.0-alpha.0. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
+    <p class="mb-0">Currently v4.3.0-beta.0. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
   </div>
 </footer>
 
@@ -1598,7 +1849,7 @@
       
   
     </div>
-    <script src="https://coreui.io/docs/4.6/dist/js/coreui.bundle.min.js" integrity="sha384-scnnQvzzPg7Dcr216ljP3DKlPHSP49wSGctZq6i30NduV8H+9BH6ry47qIyXKWzg" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/4.6/dist/js/coreui.bundle.min.js" integrity="sha384-VCnexcCv2cE5Xt5MX3QcPCYdVl7U8RfeOWgMj4sf2xrwUSi+ZYWTpvPmS/KPSqLd" crossorigin="anonymous"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>

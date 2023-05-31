@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Push notifications to your visitors with a toast, a lightweight and easily customizable alert message.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.111.3">
+<meta name="generator" content="Hugo 0.112.5">
 
 <meta name="docsearch:language" content="en">
-<meta name="docsearch:version" content="4.1">
+<meta name="docsearch:version" content="4.3">
 
 <title>Bootstrap toasts · CoreUI</title>
 
@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href="https://coreui.io/docs/4.6/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-/sHcsof/cb82oVJQ5XJEIc705z0Qi5H76RNLFZSz0QAfGwCEjo1Rol/F/BkYk0rr" crossorigin="anonymous">
+<link href="https://coreui.io/docs/4.6/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-nU5P7HHFEuTIkjywl55i2or8RCWG+AcRHUhzyQS6XXRhfPA5bHzGzMInS7+pLNkb" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/4.6/assets/css/docs.css" rel="stylesheet">
 
@@ -1160,7 +1160,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 <h3 id="basic">Basic <a class="anchor-link" href="#basic" aria-label="Link to this section: Basic"></a></h3>
 <p>To encourage extensible and predictable toasts, we recommend a header and body. Toast headers use <code>display: flex</code>, allowing easy alignment of content thanks to our margin and flexbox utilities.</p>
 <p>Toasts are as flexible as you need and have very little required markup. At a minimum, we require a single element to contain your &ldquo;toasted&rdquo; content and strongly encourage a dismiss button.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example  bg-body-tertiary">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0  bg-body-tertiary">
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
     <svg class="docs-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#007aff"/></svg>
@@ -1175,7 +1175,8 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1234,11 +1235,17 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p>We use the following JavaScript to trigger our live toast demo:</p>
-<div class="docs-example-snippet docs-code-snippet">
-    <div class="docs-clipboard">
-      <button type="button" class="btn-clipboard" title="Copy to clipboard">
-        <svg class="bi" aria-hidden="true"><use xlink:href="#clipboard"></use></svg>
-      </button>
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
+    <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">docs/assets/js/snippets.js</div>
+      <div class="d-flex ms-auto">
+        <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
+            <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
+            <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
+          </svg>
+        </button>
+      </div>
     </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">toastTrigger</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;liveToastBtn&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">toastLiveExample</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;liveToast&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
@@ -1250,7 +1257,7 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <h3 id="translucent">Translucent <a class="anchor-link" href="#translucent" aria-label="Link to this section: Translucent"></a></h3>
 <p>Toasts are slightly translucent to blend in with what&rsquo;s below them.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example bg-dark">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0 bg-dark">
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
     <svg class="docs-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#007aff"/></svg>
@@ -1265,7 +1272,8 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1287,7 +1295,7 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 
 <h3 id="stacking">Stacking <a class="anchor-link" href="#stacking" aria-label="Link to this section: Stacking"></a></h3>
 <p>You can stack toasts by wrapping them in a toast container, which will vertically add some spacing.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example  bg-body-tertiary">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0  bg-body-tertiary">
 <div class="toast-container position-static">
   <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
@@ -1317,7 +1325,8 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1354,7 +1363,7 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 
 <h3 id="custom-content">Custom content <a class="anchor-link" href="#custom-content" aria-label="Link to this section: Custom content"></a></h3>
 <p>Customize your toasts by removing sub-components, tweaking them with <a href="https://coreui.io/docs/4.6/utilities/api/">utilities</a>, or by adding your own markup. Here we&rsquo;ve created a simpler toast by removing the default <code>.toast-header</code>, adding a custom hide icon from <a href="https://icons.coreui.io/">Bootstrap Icons</a>, and using some <a href="https://coreui.io/docs/4.6/utilities/flex/">flexbox utilities</a> to adjust the layout.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example  bg-body-tertiary">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0  bg-body-tertiary">
 <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="d-flex">
     <div class="toast-body">
@@ -1365,7 +1374,8 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1382,7 +1392,7 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
 <p>Alternatively, you can also add additional controls and components to toasts.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example  bg-body-tertiary">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0  bg-body-tertiary">
 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-body">
     Hello, world! This is a toast message.
@@ -1394,7 +1404,8 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1413,7 +1424,7 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 
 <h3 id="color-schemes">Color schemes <a class="anchor-link" href="#color-schemes" aria-label="Link to this section: Color schemes"></a></h3>
 <p>Building on the above example, you can create different toast color schemes with our <a href="https://coreui.io/docs/4.6/utilities/colors/">color</a> and <a href="https://coreui.io/docs/4.6/utilities/background/">background</a> utilities. Here we&rsquo;ve added <code>.text-bg-primary</code> to the <code>.toast</code>, and then added <code>.btn-close-white</code> to our close button. For a crisp edge, we remove the default border with <code>.border-0</code>.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example  bg-body-tertiary">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0  bg-body-tertiary">
 <div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="d-flex">
     <div class="toast-body">
@@ -1424,7 +1435,8 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1442,7 +1454,7 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 
 <h2 id="placement">Placement <a class="anchor-link" href="#placement" aria-label="Link to this section: Placement"></a></h2>
 <p>Place toasts with custom CSS as you need them. The top right is often used for notifications, as is the top middle. If you&rsquo;re only ever going to show one toast at a time, put the positioning styles right on the <code>.toast</code>.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <form>
   <div class="mb-3">
     <label for="selectToastPlacement">Toast placement</label>
@@ -1477,7 +1489,8 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1518,7 +1531,7 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
 <p>For systems that generate more notifications, consider using a wrapping element so they can easily stack.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example bg-dark docs-example-toasts p-0">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0 bg-dark docs-example-toasts p-0">
 <div aria-live="polite" aria-atomic="true" class="position-relative">
   <!-- Position it: -->
   <!-- - `.toast-container` for spacing between toasts -->
@@ -1556,7 +1569,8 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1600,7 +1614,7 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
 <p>You can also get fancy with flexbox utilities to align toasts horizontally and/or vertically.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example bg-dark docs-example-toasts d-flex">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0 bg-dark docs-example-toasts d-flex">
 <!-- Flexbox container for aligning the toasts -->
 <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
 
@@ -1620,7 +1634,8 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1654,7 +1669,7 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;alert&#34;</span> <span class="na">aria-live</span><span class="o">=</span><span class="s">&#34;assertive&#34;</span> <span class="na">aria-atomic</span><span class="o">=</span><span class="s">&#34;true&#34;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p>When using <code>autohide: false</code>, you must add a close button to allow users to dismiss the toast.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example  bg-body-tertiary">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0  bg-body-tertiary">
 <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-coreui-autohide="false">
   <div class="toast-header">
     <svg class="docs-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#007aff"/></svg>
@@ -1669,7 +1684,8 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1812,9 +1828,9 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </span></span></code></pre></div><h2 id="customizing">Customizing <a class="anchor-link" href="#customizing" aria-label="Link to this section: Customizing"></a></h2>
 <h3 id="css-variables">CSS variables <a class="anchor-link" href="#css-variables" aria-label="Link to this section: CSS variables"></a></h3>
 <p>Toasts use local CSS variables on <code>.toast</code> for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too.</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_toasts.scss">scss/_toasts.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_toasts.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1839,9 +1855,9 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}toast-header-bg</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$toast-header-background-color</span><span class="si">}</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}toast-header-border-color</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$toast-header-border-color</span><span class="si">}</span><span class="p">;</span></span></span></code></pre></div></div>
 <h3 id="sass-variables">SASS variables <a class="anchor-link" href="#sass-variables" aria-label="Link to this section: SASS variables"></a></h3>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_variables.scss">scss/_variables.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_variables.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1882,7 +1898,7 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.3.0-alpha.0. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
+    <p class="mb-0">Currently v4.3.0-beta.0. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
   </div>
 </footer>
 
@@ -1890,7 +1906,7 @@ Previously, our scripts dynamically added the <code>.hide</code> class to comple
       
   
     </div>
-    <script src="https://coreui.io/docs/4.6/dist/js/coreui.bundle.min.js" integrity="sha384-scnnQvzzPg7Dcr216ljP3DKlPHSP49wSGctZq6i30NduV8H+9BH6ry47qIyXKWzg" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/4.6/dist/js/coreui.bundle.min.js" integrity="sha384-VCnexcCv2cE5Xt5MX3QcPCYdVl7U8RfeOWgMj4sf2xrwUSi+ZYWTpvPmS/KPSqLd" crossorigin="anonymous"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>

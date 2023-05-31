@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Bootstrap dropdown component allows you to toggle contextual overlays for displaying lists, links, and more html elements.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.111.3">
+<meta name="generator" content="Hugo 0.112.5">
 
 <meta name="docsearch:language" content="en">
-<meta name="docsearch:version" content="4.1">
+<meta name="docsearch:version" content="4.3">
 
 <title>Bootstrap dropdowns · CoreUI</title>
 
@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href="https://coreui.io/docs/4.6/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-/sHcsof/cb82oVJQ5XJEIc705z0Qi5H76RNLFZSz0QAfGwCEjo1Rol/F/BkYk0rr" crossorigin="anonymous">
+<link href="https://coreui.io/docs/4.6/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-nU5P7HHFEuTIkjywl55i2or8RCWG+AcRHUhzyQS6XXRhfPA5bHzGzMInS7+pLNkb" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/4.6/assets/css/docs.css" rel="stylesheet">
 
@@ -1184,7 +1184,7 @@
 
       <h2 id="overview">Overview <a class="anchor-link" href="#overview" aria-label="Link to this section: Overview"></a></h2>
 <p>Dropdowns are toggleable, contextual overlays for displaying lists of links and more. They&rsquo;re made interactive with the included Bootstrap dropdown JavaScript plugin. They&rsquo;re toggled by clicking, not by hovering.</p>
-<p>Dropdowns are built on a third party library, <a href="https://popper.js.org/">Popper.js</a>, which provides dynamic positioning and viewport detection. Be sure to include <a href="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js">popper.min.js</a> before CoreUI&rsquo;s JavaScript or use <code>coreui.bundle.min.js</code> / <code>coreui.bundle.js</code> which contains Popper.js. Popper.js isn&rsquo;t used to position dropdowns in navbars though as dynamic positioning isn&rsquo;t required.</p>
+<p>Dropdowns are built on a third party library, <a href="https://popper.js.org/">Popper.js</a>, which provides dynamic positioning and viewport detection. Be sure to include <a href="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js">popper.min.js</a> before CoreUI&rsquo;s JavaScript or use <code>coreui.bundle.min.js</code> / <code>coreui.bundle.js</code> which contains Popper.js. Popper.js isn&rsquo;t used to position dropdowns in navbars though as dynamic positioning isn&rsquo;t required.</p>
 <h2 id="accessibility">Accessibility <a class="anchor-link" href="#accessibility" aria-label="Link to this section: Accessibility"></a></h2>
 <p>The <a href="https://www.w3.org/TR/wai-aria/"><abbr title="Web Accessibility Initiative">WAI</abbr> <abbr title="Accessible Rich Internet Applications">ARIA</abbr></a> standard defines an actual <a href="https://www.w3.org/TR/wai-aria/#menu"><code>role=&quot;menu&quot;</code> widget</a>, but this is specific to application-like menus which trigger actions or functions. <abbr title="Accessible Rich Internet Applications">ARIA</abbr> menus can only contain menu items, checkbox menu items, radio button menu items, radio button groups, and sub-menus.</p>
 <p>CoreUI for Bootstrap&rsquo;s dropdowns, on the other hand, are designed to be generic and applicable to a variety of situations and markup structures. For instance, it is possible to create dropdowns that contain additional inputs and form controls, such as search fields or login forms. For this reason, Bootstrap does not expect (nor automatically add) any of the <code>role</code> and <code>aria-</code> attributes required for true <abbr title="Accessible Rich Internet Applications">ARIA</abbr> menus. Authors will have to include these more specific attributes themselves.</p>
@@ -1193,7 +1193,7 @@
 <p>Bind the dropdown&rsquo;s toggle and the dropdown menu inside <code>.dropdown</code>, or different element that declares <code>position: relative;</code>. Dropdowns can be triggered from <code>&lt;a&gt;</code> or <code>&lt;button&gt;</code> elements to better fit your possible requirements.</p>
 <h3 id="single-button">Single button <a class="anchor-link" href="#single-button" aria-label="Link to this section: Single button"></a></h3>
 <p>Each single <code>.btn</code> can be changed into a dropdown toggle with small changes. Here&rsquo;s how you can put them to work with either <code>&lt;button&gt;</code> elements:</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
     Dropdown button
@@ -1206,7 +1206,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1225,7 +1226,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
 <p>And with <code>&lt;a&gt;</code> elements:</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="dropdown">
   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-coreui-toggle="dropdown" aria-expanded="false">
     Dropdown link
@@ -1239,7 +1240,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1528,7 +1530,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span></code></pre></div><h2 id="dark-dropdowns">Dark dropdowns <a class="anchor-link" href="#dark-dropdowns" aria-label="Link to this section: Dark dropdowns"></a></h2>
 <p>Opt into darker dropdowns to match a dark navbar or custom style by adding <code>.dropdown-menu-dark</code> onto an existing <code>.dropdown-menu</code>. No changes are required to the dropdown items.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
     Dropdown button
@@ -1543,7 +1545,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1564,7 +1567,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
 <p>And putting it to use in a navbar:</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
@@ -1589,7 +1592,8 @@
 </nav>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1627,7 +1631,7 @@
 
 <h3 id="centered">Centered <a class="anchor-link" href="#centered" aria-label="Link to this section: Centered"></a></h3>
 <p>Make the dropdown menu centered below the toggle with <code>.dropdown-center</code> on the parent element.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="dropdown-center">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
     Centered dropdown
@@ -1640,7 +1644,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1713,7 +1718,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span></code></pre></div><h3 id="dropup-centered">Dropup centered <a class="anchor-link" href="#dropup-centered" aria-label="Link to this section: Dropup centered"></a></h3>
 <p>Make the dropup menu centered above the toggle with <code>.dropup-center</code> on the parent element.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="dropup-center dropup">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
     Centered dropup
@@ -1726,7 +1731,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1852,7 +1858,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span></code></pre></div><h2 id="menu-items">Menu items <a class="anchor-link" href="#menu-items" aria-label="Link to this section: Menu items"></a></h2>
 <p>You can use <code>&lt;a&gt;</code> or <code>&lt;button&gt;</code> elements as dropdown items.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
     Dropdown
@@ -1865,7 +1871,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1884,7 +1891,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
 <p>You can also create non-interactive dropdown items with <code>.dropdown-item-text</code>. Feel free to style further with custom CSS or text utilities.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <ul class="dropdown-menu">
   <li><span class="dropdown-item-text">Dropdown item text</span></li>
   <li><a class="dropdown-item" href="#">Action</a></li>
@@ -1893,7 +1900,8 @@
 </ul>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1909,7 +1917,7 @@
 
 <h3 id="active">Active <a class="anchor-link" href="#active" aria-label="Link to this section: Active"></a></h3>
 <p>Add <code>.active</code> to items in the dropdown to <strong>style them as active</strong>. To convey the active state to assistive technologies, use the <code>aria-current</code> attribute — using the <code>page</code> value for the current page, or <code>true</code> for the current item in a set.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <ul class="dropdown-menu">
   <li><a class="dropdown-item" href="#">Regular link</a></li>
   <li><a class="dropdown-item active" href="#" aria-current="true">Active link</a></li>
@@ -1917,7 +1925,8 @@
 </ul>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1932,7 +1941,7 @@
 
 <h3 id="disabled">Disabled <a class="anchor-link" href="#disabled" aria-label="Link to this section: Disabled"></a></h3>
 <p>Add <code>.disabled</code> to items in the dropdown to <strong>style them as disabled</strong>.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <ul class="dropdown-menu">
   <li><a class="dropdown-item" href="#">Regular link</a></li>
   <li><a class="dropdown-item disabled">Disabled link</a></li>
@@ -1940,7 +1949,8 @@
 </ul>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1959,7 +1969,7 @@
 <strong>Heads up!</strong> Dropdowns are positioned thanks to Popper except when they are contained in a navbar.
 </div>
 
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="btn-group">
   <button type="button" class="btn btn-secondary dropdown-toggle" data-coreui-toggle="dropdown" aria-expanded="false">
     Right-aligned menu example
@@ -1972,7 +1982,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1993,7 +2004,7 @@
 <h3 id="responsive-alignment">Responsive alignment <a class="anchor-link" href="#responsive-alignment" aria-label="Link to this section: Responsive alignment"></a></h3>
 <p>If you want to use responsive alignment, disable dynamic positioning by adding the <code>data-coreui-display=&quot;static&quot;</code> attribute and use the responsive variation classes.</p>
 <p>To align <strong>right</strong> the dropdown menu with the given breakpoint or larger, add <code>.dropdown-menu{-sm|-md|-lg|-xl|-xxl}-end</code>.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="btn-group">
   <button type="button" class="btn btn-secondary dropdown-toggle" data-coreui-toggle="dropdown" data-coreui-display="static" aria-expanded="false">
     Left-aligned but right aligned when large screen
@@ -2006,7 +2017,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -2025,7 +2037,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
 <p>To align <strong>left</strong> the dropdown menu with the given breakpoint or larger, add <code>.dropdown-menu-end</code> and <code>.dropdown-menu{-sm|-md|-lg|-xl|-xxl}-start</code>.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="btn-group">
   <button type="button" class="btn btn-secondary dropdown-toggle" data-coreui-toggle="dropdown" data-coreui-display="static" aria-expanded="false">
     Right-aligned but left aligned when large screen
@@ -2038,7 +2050,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -2059,7 +2072,7 @@
 <p>Note that you don&rsquo;t need to add a <code>data-coreui-display=&quot;static&quot;</code> attribute to dropdown buttons in navbars, since Popper isn&rsquo;t used in navbars.</p>
 <h3 id="alignment-options">Alignment options <a class="anchor-link" href="#alignment-options" aria-label="Link to this section: Alignment options"></a></h3>
 <p>Taking most of the options shown above, here&rsquo;s a small kitchen sink demo of various dropdown alignment options in one place.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="btn-group">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" aria-expanded="false">
     Dropdown
@@ -2138,7 +2151,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -2225,7 +2239,7 @@
 <h2 id="menu-content">Menu content <a class="anchor-link" href="#menu-content" aria-label="Link to this section: Menu content"></a></h2>
 <h3 id="headers">Headers <a class="anchor-link" href="#headers" aria-label="Link to this section: Headers"></a></h3>
 <p>Add a header to label sections of actions in any dropdown menu.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <ul class="dropdown-menu">
   <li><h6 class="dropdown-header">Dropdown header</h6></li>
   <li><a class="dropdown-item" href="#">Action</a></li>
@@ -2233,7 +2247,8 @@
 </ul>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -2248,7 +2263,7 @@
 
 <h3 id="dividers">Dividers <a class="anchor-link" href="#dividers" aria-label="Link to this section: Dividers"></a></h3>
 <p>Separate groups of related menu items with a divider.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <ul class="dropdown-menu">
   <li><a class="dropdown-item" href="#">Action</a></li>
   <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -2258,7 +2273,8 @@
 </ul>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -2275,7 +2291,7 @@
 
 <h3 id="text">Text <a class="anchor-link" href="#text" aria-label="Link to this section: Text"></a></h3>
 <p>Place any freeform text within a dropdown menu with text and use <a href="https://coreui.io/docs/4.6/utilities/spacing/">spacing utilities</a>. Note that you&rsquo;ll likely need additional sizing styles to constrain the menu width.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="dropdown-menu p-4 text-body-secondary" style="max-width: 200px;">
   <p>
     Some example text that's free-flowing within the dropdown menu.
@@ -2286,7 +2302,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -2304,7 +2321,7 @@
 
 <h3 id="forms">Forms <a class="anchor-link" href="#forms" aria-label="Link to this section: Forms"></a></h3>
 <p>Put a form within a dropdown menu, or make it into a dropdown menu, and use <a href="https://coreui.io/docs/4.6/utilities/spacing/">margin or padding utilities</a> to give it the negative space you require.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="dropdown-menu">
   <form class="px-4 py-3">
     <div class="mb-3">
@@ -2331,7 +2348,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -2363,7 +2381,7 @@
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dropdown-item&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span><span class="p">&gt;</span>Forgot password?<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="dropdown">
   <button type="button" class="btn btn-primary dropdown-toggle" data-coreui-toggle="dropdown" aria-expanded="false" data-coreui-auto-close="outside">
     Dropdown form
@@ -2390,7 +2408,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -2424,7 +2443,7 @@
 
 <h2 id="dropdown-options">Dropdown options <a class="anchor-link" href="#dropdown-options" aria-label="Link to this section: Dropdown options"></a></h2>
 <p>Use <code>data-coreui-offset</code> or <code>data-coreui-reference</code> to change the location of the dropdown.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="d-flex">
   <div class="dropdown me-1">
     <button type="button" class="btn btn-secondary dropdown-toggle" data-coreui-toggle="dropdown" aria-expanded="false" data-coreui-offset="10,20">
@@ -2452,7 +2471,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -2487,7 +2507,7 @@
 
 <h3 id="auto-close-behavior">Auto close behavior <a class="anchor-link" href="#auto-close-behavior" aria-label="Link to this section: Auto close behavior"></a></h3>
 <p>By default, the dropdown menu is closed when clicking inside or outside the dropdown menu. You can use the <code>autoClose</code> option to change this behavior of the dropdown.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="btn-group">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-coreui-toggle="dropdown" data-coreui-auto-close="true" aria-expanded="false">
     Default dropdown
@@ -2533,7 +2553,8 @@
 </div>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -2747,9 +2768,9 @@ On touch-enabled devices, opening a dropdown adds empty <code>mouseover</code> h
 </span></span></code></pre></div><h2 id="customizing">Customizing <a class="anchor-link" href="#customizing" aria-label="Link to this section: Customizing"></a></h2>
 <h3 id="css-variables">CSS variables <a class="anchor-link" href="#css-variables" aria-label="Link to this section: CSS variables"></a></h3>
 <p>Dropdowns use local CSS variables on <code>.dropdown-menu</code> for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too.</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_dropdown.scss">scss/_dropdown.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_dropdown.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -2785,9 +2806,9 @@ On touch-enabled devices, opening a dropdown adds empty <code>mouseover</code> h
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}dropdown-header-padding-x</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$dropdown-header-padding-x</span><span class="si">}</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}dropdown-header-padding-y</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$dropdown-header-padding-y</span><span class="si">}</span><span class="p">;</span></span></span></code></pre></div></div>
 <p>Customization through CSS variables can be seen on the <code>.dropdown-menu-dark</code> class where we override specific values without adding duplicate CSS selectors.</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_dropdown.scss">scss/_dropdown.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_dropdown.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -2810,9 +2831,9 @@ On touch-enabled devices, opening a dropdown adds empty <code>mouseover</code> h
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}dropdown-header-color</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$dropdown-dark-header-color</span><span class="si">}</span><span class="p">;</span></span></span></code></pre></div></div>
 <h3 id="sass-variables">SASS variables <a class="anchor-link" href="#sass-variables" aria-label="Link to this section: SASS variables"></a></h3>
 <p>Variables for all dropdowns:</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_variables.scss">scss/_variables.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_variables.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -2856,9 +2877,9 @@ On touch-enabled devices, opening a dropdown adds empty <code>mouseover</code> h
 </span></span></span><span class="line"><span class="cl"><span class="c1">// fusv-enable
 </span></span></span></code></pre></div></div>
 <p>Variables for the <a href="#dark-dropdowns">dark dropdown</a>:</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_variables.scss">scss/_variables.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_variables.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -2881,9 +2902,9 @@ On touch-enabled devices, opening a dropdown adds empty <code>mouseover</code> h
 </span></span><span class="line"><span class="cl"><span class="nv">$dropdown-dark-header-color</span><span class="o">:</span>        <span class="nv">$gray-500</span><span class="p">;</span>
 </span></span></code></pre></div></div>
 <p>Variables for the CSS-based carets that indicate a dropdown&rsquo;s interactivity:</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_variables.scss">scss/_variables.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_variables.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -2898,9 +2919,9 @@ On touch-enabled devices, opening a dropdown adds empty <code>mouseover</code> h
 </span></span></code></pre></div></div>
 <h3 id="sass-mixins">SASS mixins <a class="anchor-link" href="#sass-mixins" aria-label="Link to this section: SASS mixins"></a></h3>
 <p>Mixins are used to generate the CSS-based carets and can be found in <code>scss/mixins/_caret.scss</code>.</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/mixins/_caret.scss">scss/mixins/_caret.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/mixins/_caret.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -2993,7 +3014,7 @@ On touch-enabled devices, opening a dropdown adds empty <code>mouseover</code> h
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.3.0-alpha.0. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
+    <p class="mb-0">Currently v4.3.0-beta.0. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
   </div>
 </footer>
 
@@ -3001,7 +3022,7 @@ On touch-enabled devices, opening a dropdown adds empty <code>mouseover</code> h
       
   
     </div>
-    <script src="https://coreui.io/docs/4.6/dist/js/coreui.bundle.min.js" integrity="sha384-scnnQvzzPg7Dcr216ljP3DKlPHSP49wSGctZq6i30NduV8H+9BH6ry47qIyXKWzg" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/4.6/dist/js/coreui.bundle.min.js" integrity="sha384-VCnexcCv2cE5Xt5MX3QcPCYdVl7U8RfeOWgMj4sf2xrwUSi+ZYWTpvPmS/KPSqLd" crossorigin="anonymous"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>

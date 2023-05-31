@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or custom styles and JavaScript.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.111.3">
+<meta name="generator" content="Hugo 0.112.5">
 
 <meta name="docsearch:language" content="en">
-<meta name="docsearch:version" content="4.1">
+<meta name="docsearch:version" content="4.3">
 
 <title>Validation · CoreUI</title>
 
@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href="https://coreui.io/docs/4.6/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-/sHcsof/cb82oVJQ5XJEIc705z0Qi5H76RNLFZSz0QAfGwCEjo1Rol/F/BkYk0rr" crossorigin="anonymous">
+<link href="https://coreui.io/docs/4.6/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-nU5P7HHFEuTIkjywl55i2or8RCWG+AcRHUhzyQS6XXRhfPA5bHzGzMInS7+pLNkb" crossorigin="anonymous">
 
 <link href="https://coreui.io/docs/4.6/assets/css/docs.css" rel="stylesheet">
 
@@ -1040,7 +1040,7 @@ We are aware that currently the client-side custom validation styles and tooltip
 <h2 id="custom-styles">Custom styles <a class="anchor-link" href="#custom-styles" aria-label="Link to this section: Custom styles"></a></h2>
 <p>For custom CoreUI for Bootstrap form validation messages, you&rsquo;ll need to add the <code>novalidate</code> boolean attribute to your <code>&lt;form&gt;</code>. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript. Try to submit the form below; our JavaScript will intercept the submit button and relay feedback to you. When attempting to submit, you&rsquo;ll see the <code>:invalid</code> and <code>:valid</code> styles applied to your form controls.</p>
 <p>Custom feedback styles apply custom colors, borders, focus styles, and background icons to better communicate feedback. Background icons for <code>&lt;select&gt;</code>s are only available with <code>.form-select</code>, and not <code>.form-control</code>.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <form class="row g-3 needs-validation" novalidate>
   <div class="col-md-4">
     <label for="validationCustom01" class="form-label">First name</label>
@@ -1107,7 +1107,8 @@ We are aware that currently the client-side custom validation styles and tooltip
 </form>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1203,7 +1204,7 @@ We are aware that currently the client-side custom validation styles and tooltip
 <h2 id="browser-defaults">Browser defaults <a class="anchor-link" href="#browser-defaults" aria-label="Link to this section: Browser defaults"></a></h2>
 <p>Not interested in custom validation feedback messages or writing JavaScript to change form behaviors? All good, you can use the browser defaults. Try submitting the form below. Depending on your browser and OS, you&rsquo;ll see a slightly different style of feedback.</p>
 <p>While these feedback styles cannot be styled with CSS, you can still customize the feedback text through JavaScript.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <form class="row g-3">
   <div class="col-md-4">
     <label for="validationDefault01" class="form-label">First name</label>
@@ -1249,7 +1250,8 @@ We are aware that currently the client-side custom validation styles and tooltip
 </form>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1304,7 +1306,7 @@ We are aware that currently the client-side custom validation styles and tooltip
 <p>We recommend using client-side validation, but in case you require server-side validation, you can indicate invalid and valid form fields with <code>.is-invalid</code> and <code>.is-valid</code>. Note that <code>.invalid-feedback</code> is also supported with these classes.</p>
 <p>For invalid fields, ensure that the invalid feedback/error message is associated with the relevant form field using <code>aria-describedby</code> (noting that this attribute allows more than one <code>id</code> to be referenced, in case the field already points to additional form text).</p>
 <p>To fix <a href="https://github.com/twbs/bootstrap/issues/25110">issues with border radius</a>, input groups require an additional <code>.has-validation</code> class.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <form class="row g-3">
   <div class="col-md-4">
     <label for="validationServer01" class="form-label">First name</label>
@@ -1371,7 +1373,8 @@ We are aware that currently the client-side custom validation styles and tooltip
 </form>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1450,7 +1453,7 @@ We are aware that currently the client-side custom validation styles and tooltip
 <li><code>&lt;select&gt;</code>s with <code>.form-select</code></li>
 <li><code>.form-check</code>s</li>
 </ul>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <form class="was-validated">
   <div class="mb-3">
     <label for="validationTextarea" class="form-label">Textarea</label>
@@ -1497,7 +1500,8 @@ We are aware that currently the client-side custom validation styles and tooltip
 </form>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1551,7 +1555,7 @@ We are aware that currently the client-side custom validation styles and tooltip
 
 <h2 id="tooltips">Tooltips <a class="anchor-link" href="#tooltips" aria-label="Link to this section: Tooltips"></a></h2>
 <p>If your form layout allows it, you can swap the <code>.{valid|invalid}-feedback</code> classes for <code>.{valid|invalid}-tooltip</code> classes to display validation feedback in a styled tooltip. Be sure to have a parent with <code>position: relative</code> on it for tooltip positioning. In the example below, our column classes have this already, but your project may require an alternative setup.</p>
-<div class="docs-example-snippet docs-code-snippet"><div class="docs-example">
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <form class="row g-3 needs-validation" novalidate>
   <div class="col-md-4 position-relative">
     <label for="validationTooltip01" class="form-label">First name</label>
@@ -1607,7 +1611,8 @@ We are aware that currently the client-side custom validation styles and tooltip
 </form>
 </div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
         <small class="font-monospace text-body-secondary text-uppercase">html</small>
-        <div class="d-flex ms-auto"><button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
               <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
               <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
@@ -1670,9 +1675,9 @@ We are aware that currently the client-side custom validation styles and tooltip
 
 <h2 id="sass">Sass <a class="anchor-link" href="#sass" aria-label="Link to this section: Sass"></a></h2>
 <h3 id="variables">Variables <a class="anchor-link" href="#variables" aria-label="Link to this section: Variables"></a></h3>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_variables.scss">scss/_variables.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_variables.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1694,9 +1699,9 @@ We are aware that currently the client-side custom validation styles and tooltip
 </span></span></code></pre></div></div>
 <h3 id="mixins">Mixins <a class="anchor-link" href="#mixins" aria-label="Link to this section: Mixins"></a></h3>
 <p>Two mixins are combined together, through our <a href="#loop">loop</a>, to generate our form validation feedback styles.</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/mixins/_forms.scss">scss/mixins/_forms.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/mixins/_forms.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1856,9 +1861,9 @@ We are aware that currently the client-side custom validation styles and tooltip
 </span></span></code></pre></div></div>
 <h3 id="map">Map <a class="anchor-link" href="#map" aria-label="Link to this section: Map"></a></h3>
 <p>This is the validation Sass map from <code>_variables.scss</code>. Override or extend this to generate different or additional states.</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/_variables.scss">scss/_variables.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_variables.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1889,9 +1894,9 @@ We are aware that currently the client-side custom validation styles and tooltip
 <p>Maps of <code>$form-validation-states</code> can contain three optional parameters to override tooltips and focus styles.</p>
 <h3 id="loop">Loop <a class="anchor-link" href="#loop" aria-label="Link to this section: Loop"></a></h3>
 <p>Used to iterate over <code>$form-validation-states</code> map values to generate our validation styles. Any modifications to the above Sass map will be reflected in your compiled CSS via this loop.</p>
-<div class="docs-example-snippet docs-code-snippet docs-scss-docs">
+<div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
-      <a class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small" href="https://github.com/coreui/coreui/blob/v4.3.0-alpha.0/scss/forms/_validation.scss">scss/forms/_validation.scss</a>
+      <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/forms/_validation.scss</div>
       <div class="d-flex ms-auto">
         <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
@@ -1922,7 +1927,7 @@ We are aware that currently the client-side custom validation styles and tooltip
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.3.0-alpha.0. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
+    <p class="mb-0">Currently v4.3.0-beta.0. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
   </div>
 </footer>
 
@@ -1930,7 +1935,7 @@ We are aware that currently the client-side custom validation styles and tooltip
       
   <script async src="https://coreui.io/docs/4.6/assets/js/validate-forms.js"></script>
     </div>
-    <script src="https://coreui.io/docs/4.6/dist/js/coreui.bundle.min.js" integrity="sha384-scnnQvzzPg7Dcr216ljP3DKlPHSP49wSGctZq6i30NduV8H+9BH6ry47qIyXKWzg" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/docs/4.6/dist/js/coreui.bundle.min.js" integrity="sha384-VCnexcCv2cE5Xt5MX3QcPCYdVl7U8RfeOWgMj4sf2xrwUSi+ZYWTpvPmS/KPSqLd" crossorigin="anonymous"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
