@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-849f7162","path":"/api/offcanvas/COffcanvasTitle.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"COffcanvasTitle","slug":"coffcanvastitle","link":"#coffcanvastitle","children":[]}],"filePathRelative":"api/offcanvas/COffcanvasTitle.api.md"}');export{a as data};

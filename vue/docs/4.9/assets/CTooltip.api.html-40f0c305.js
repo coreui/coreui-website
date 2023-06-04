@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-cb95005a","path":"/api/tooltip/CTooltip.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CTooltip","slug":"ctooltip","link":"#ctooltip","children":[]}],"filePathRelative":"api/tooltip/CTooltip.api.md"}');export{t as data};

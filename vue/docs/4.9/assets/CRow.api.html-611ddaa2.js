@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-5e5c99bb","path":"/api/grid/CRow.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CRow","slug":"crow","link":"#crow","children":[]}],"filePathRelative":"api/grid/CRow.api.md"}');export{e as data};

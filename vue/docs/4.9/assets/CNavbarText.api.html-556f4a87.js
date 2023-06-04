@@ -1,0 +1,4 @@
+import{_ as a,o as s,c as n,e}from"./app-eccc9a5e.js";const t={},o=e(`<h3 id="cnavbartext" tabindex="-1">CNavbarText <a class="anchor-link" href="#cnavbartext" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CNavbarText <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
+<span class="token comment">// or</span>
+<span class="token keyword">import</span> CNavbarText <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/navbar/CNavbarText&#39;</span>
+</code></pre></div>`,2),c=[o];function r(p,i){return s(),n("div",null,c)}const d=a(t,[["render",r],["__file","CNavbarText.api.html.vue"]]);export{d as default};

@@ -1,0 +1,1 @@
+const o=JSON.parse('{"key":"v-603ea675","path":"/api/dropdown/CDropdownToggle.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CDropdownToggle","slug":"cdropdowntoggle","link":"#cdropdowntoggle","children":[]}],"filePathRelative":"api/dropdown/CDropdownToggle.api.md"}');export{o as data};

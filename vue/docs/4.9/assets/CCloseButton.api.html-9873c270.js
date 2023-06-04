@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-24d956ec","path":"/api/close-button/CCloseButton.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CCloseButton","slug":"cclosebutton","link":"#cclosebutton","children":[]}],"filePathRelative":"api/close-button/CCloseButton.api.md"}');export{t as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-ea6acd00","path":"/customize/options.html","title":"Options","lang":"en-US","frontmatter":{"title":"Options","name":"Options","description":"Quickly customize CoreUI for Vue with built-in variables to easily toggle global CSS preferences for controlling style and behavior."},"headers":[],"filePathRelative":"customize/options.md"}');export{e as data};

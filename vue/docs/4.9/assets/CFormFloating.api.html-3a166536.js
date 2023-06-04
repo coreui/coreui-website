@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-05f0f7c6","path":"/api/form/CFormFloating.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CFormFloating","slug":"cformfloating","link":"#cformfloating","children":[]}],"filePathRelative":"api/form/CFormFloating.api.md"}');export{t as data};

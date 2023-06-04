@@ -1,0 +1,4 @@
+import{_ as a,o as n,c as s,e}from"./app-eccc9a5e.js";const t={},o=e(`<h3 id="ctablecaption" tabindex="-1">CTableCaption <a class="anchor-link" href="#ctablecaption" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CTableCaption <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
+<span class="token comment">// or</span>
+<span class="token keyword">import</span> CTableCaption <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/table/CTableCaption&#39;</span>
+</code></pre></div>`,2),c=[o];function p(i,l){return n(),s("div",null,c)}const d=a(t,[["render",p],["__file","CTableCaption.api.html.vue"]]);export{d as default};

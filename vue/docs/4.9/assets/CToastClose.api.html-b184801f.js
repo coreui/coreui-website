@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-387a442f","path":"/api/toast/CToastClose.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CToastClose","slug":"ctoastclose","link":"#ctoastclose","children":[]}],"filePathRelative":"api/toast/CToastClose.api.md"}');export{t as data};
