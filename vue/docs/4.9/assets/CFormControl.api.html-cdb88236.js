@@ -1,1 +1,0 @@
-const o=JSON.parse('{"key":"v-1e35017a","path":"/api/form/CFormControl.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CFormControl","slug":"cformcontrol","link":"#cformcontrol","children":[]}],"filePathRelative":"api/form/CFormControl.api.md"}');export{o as data};

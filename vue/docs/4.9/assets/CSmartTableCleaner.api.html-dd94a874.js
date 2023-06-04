@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-60a7c42c","path":"/api/smart-table/CSmartTableCleaner.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CSmartTableCleaner","slug":"csmarttablecleaner","link":"#csmarttablecleaner","children":[]}],"filePathRelative":"api/smart-table/CSmartTableCleaner.api.md"}');export{a as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-db067ac4","path":"/api/date-picker/CDatePicker.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CDatePicker","slug":"cdatepicker","link":"#cdatepicker","children":[]}],"filePathRelative":"api/date-picker/CDatePicker.api.md"}');export{e as data};

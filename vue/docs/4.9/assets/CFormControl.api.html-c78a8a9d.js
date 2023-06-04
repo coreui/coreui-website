@@ -1,4 +1,0 @@
-import{_ as o,o as n,c as s,e as a}from"./app-eccc9a5e.js";const e={},t=a(`<h3 id="cformcontrol" tabindex="-1">CFormControl <a class="anchor-link" href="#cformcontrol" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CFormControl <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
-<span class="token comment">// or</span>
-<span class="token keyword">import</span> CFormControl <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/form/CFormControl&#39;</span>
-</code></pre></div>`,2),r=[t];function c(l,p){return n(),s("div",null,r)}const m=o(e,[["render",c],["__file","CFormControl.api.html.vue"]]);export{m as default};
