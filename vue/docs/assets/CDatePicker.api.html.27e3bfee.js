@@ -1,1 +1,0 @@
-const e={key:"v-db067ac4",path:"/api/date-picker/CDatePicker.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CDatePicker",slug:"cdatepicker",children:[]}],git:{updatedTime:1673888625e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:7},{name:"mrholek",email:"lukasz@holeczek.pl",commits:1}]}};export{e as data};

@@ -1,0 +1,1 @@
+const e={key:"v-2d54081a",path:"/api/table/CTableHead.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CTableHead",slug:"ctablehead",children:[]}],git:{updatedTime:1679760519e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2},{name:"\u0141ukasz Holeczek",email:"lukasz@coreui.io",commits:1}]}};export{e as data};

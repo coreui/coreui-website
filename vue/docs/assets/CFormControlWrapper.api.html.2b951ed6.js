@@ -1,1 +1,0 @@
-const e={key:"v-6bd3a52d",path:"/api/form/CFormControlWrapper.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CFormControlWrapper",slug:"cformcontrolwrapper",children:[]}],git:{updatedTime:1666996726e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};

@@ -1,0 +1,1 @@
+const e={key:"v-7ad31313",path:"/api/toast/CToast.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CToast",slug:"ctoast",children:[]}],git:{updatedTime:1679789843e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:3},{name:"\u0141ukasz Holeczek",email:"lukasz@coreui.io",commits:2}]}};export{e as data};
