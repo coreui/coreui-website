@@ -1,4 +1,0 @@
-import{_ as o,o as n,c as s,e as a}from"./app-2c746a8c.js";const c={},e=a(`<h3 id="caccordionbody" tabindex="-1">CAccordionBody <a class="anchor-link" href="#caccordionbody" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CAccordionBody <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
-<span class="token comment">// or</span>
-<span class="token keyword">import</span> CAccordionBody <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/accordion/CAccordionBody&#39;</span>
-</code></pre></div>`,2),t=[e];function r(d,i){return n(),s("div",null,t)}const l=o(c,[["render",r],["__file","CAccordionBody.api.html.vue"]]);export{l as default};

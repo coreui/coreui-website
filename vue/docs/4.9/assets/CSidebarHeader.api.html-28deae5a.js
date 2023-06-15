@@ -1,0 +1,4 @@
+import{_ as e,o as a,c as s,e as n}from"./app-14b4f807.js";const r={},o=n(`<h3 id="csidebarheader" tabindex="-1">CSidebarHeader <a class="anchor-link" href="#csidebarheader" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CSidebarHeader <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
+<span class="token comment">// or</span>
+<span class="token keyword">import</span> CSidebarHeader <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/sidebar/CSidebarHeader&#39;</span>
+</code></pre></div>`,2),t=[o];function c(d,i){return a(),s("div",null,t)}const l=e(r,[["render",c],["__file","CSidebarHeader.api.html.vue"]]);export{l as default};
