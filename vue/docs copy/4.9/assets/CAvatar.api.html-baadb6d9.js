@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-97e498ce","path":"/api/avatar/CAvatar.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CAvatar","slug":"cavatar","link":"#cavatar","children":[]}],"filePathRelative":"api/avatar/CAvatar.api.md"}');export{a as data};

@@ -1,0 +1,1 @@
+const e={key:"v-355dcd46",path:"/api/modal/CModalHeader.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CModalHeader",slug:"cmodalheader",children:[]}],git:{updatedTime:163570725e4,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:3}]}};export{e as data};

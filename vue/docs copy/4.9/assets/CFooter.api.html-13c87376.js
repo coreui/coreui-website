@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-535a4195","path":"/api/footer/CFooter.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CFooter","slug":"cfooter","link":"#cfooter","children":[]}],"filePathRelative":"api/footer/CFooter.api.md"}');export{e as data};

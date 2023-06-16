@@ -1,0 +1,1 @@
+const l=JSON.parse('{"key":"v-1ab59133","path":"/api/callout/CCallout.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CCallout","slug":"ccallout","link":"#ccallout","children":[]}],"filePathRelative":"api/callout/CCallout.api.md"}');export{l as data};

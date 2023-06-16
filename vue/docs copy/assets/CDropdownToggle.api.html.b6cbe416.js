@@ -1,0 +1,1 @@
+const e={key:"v-603ea675",path:"/api/dropdown/CDropdownToggle.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CDropdownToggle",slug:"cdropdowntoggle",children:[]}],git:{updatedTime:1647902089e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:3}]}};export{e as data};

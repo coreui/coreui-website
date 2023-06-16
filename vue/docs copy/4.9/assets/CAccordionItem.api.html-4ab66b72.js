@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-f57fe540","path":"/api/accordion/CAccordionItem.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CAccordionItem","slug":"caccordionitem","link":"#caccordionitem","children":[]}],"filePathRelative":"api/accordion/CAccordionItem.api.md"}');export{e as data};

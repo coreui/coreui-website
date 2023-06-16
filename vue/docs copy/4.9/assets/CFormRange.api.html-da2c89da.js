@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-dc5377cc","path":"/api/form/CFormRange.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CFormRange","slug":"cformrange","link":"#cformrange","children":[]}],"filePathRelative":"api/form/CFormRange.api.md"}');export{e as data};

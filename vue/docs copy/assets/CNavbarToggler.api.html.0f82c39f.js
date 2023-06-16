@@ -1,0 +1,1 @@
+const e={key:"v-052fa5f1",path:"/api/navbar/CNavbarToggler.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CNavbarToggler",slug:"cnavbartoggler",children:[]}],git:{updatedTime:1635168931e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{e as data};

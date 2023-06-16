@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-17dc31eb","path":"/api/header/CHeaderToggler.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CHeaderToggler","slug":"cheadertoggler","link":"#cheadertoggler","children":[]}],"filePathRelative":"api/header/CHeaderToggler.api.md"}');export{e as data};
