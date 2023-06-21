@@ -31,7 +31,7 @@ export class MultiSelect12Component {
       label: option.last_name,
     }));
 
-    this.options$.next(this.options)
+    this.options$.next([...this.options])
 
   }
 }
