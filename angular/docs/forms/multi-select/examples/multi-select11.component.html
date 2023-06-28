@@ -7,6 +7,7 @@
     multiple="true"
     search="external"
     visibleItems="8"
+    [options]="(filteredOptions$ | async) ?? []"
   >
     <c-multi-select-option
       *ngFor="let option of filteredOptions$ | async"
