@@ -15,17 +15,10 @@ Chart.defaults.plugins.tooltip.mode = 'index';
 Chart.defaults.plugins.tooltip.position = 'nearest';
 Chart.defaults.plugins.tooltip.external = coreui.ChartJS.customTooltips;
 Chart.defaults.color = coreui.Utils.getStyle('--cui-body-color');
-
-// console.log(Chart.defaults.color)
-
 document.body.addEventListener('themeChange', () => {
   cardChart1.data.datasets[0].pointBackgroundColor = coreui.Utils.getStyle('--cui-primary');
   cardChart1.update();
 });
-
-// const random = (min, max) =>
-//   // eslint-disable-next-line no-mixed-operators
-//   Math.floor(Math.random() * (max - min + 1) + min)
 
 // eslint-disable-next-line no-unused-vars
 const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
@@ -74,12 +67,9 @@ const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
       },
       y: {
         grid: {
-          // display: false,
           drawBorder: false,
           borderDash: [2, 4]
-          // drawTicks: false
         },
-
         gridLines: {
           // You can change the color, the dash effect, the main axe color, etc.
           borderDash: [8, 4],
@@ -94,7 +84,6 @@ const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
           maxTicksLimit: 5,
           padding: 16,
           stepSize: Math.ceil(100 / 4)
-          // max: 250
         }
       }
     }

@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<!--
+<!DOCTYPE html><!--
 * CoreUI PRO Bootstrap Admin Template
-* @version v4.2.0
-* @link https://coreui.io/pro/
-* Copyright (c) 2022 creativeLabs Łukasz Holeczek
-* License (https://coreui.io/pro/license)
--->
-<!-- Breadcrumb-->
+* @version v4.3.0
+* @link https://coreui.io/product/bootstrap-dashboard-template/
+* Copyright (c) 2023 creativeLabs Łukasz Holeczek
+* License (https://coreui.io/pro/license/)
+--><!-- Breadcrumb-->
 <html lang="en">
   <head>
     <base href="./../">
@@ -41,6 +39,7 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- We use those styles to show code examples, you should remove them in your application.-->
     <link href="css/examples.css" rel="stylesheet">
+    <!-- Google Tag Manager-->
     <script>
       (function(w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -57,12 +56,18 @@
         f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-KX4JH47');
     </script>
+    <!-- End Google Tag Manager-->
     <link rel="canonical" href="https://coreui.io/docs/forms/validation/">
   </head>
   <body>
+    <!-- Google Tag Manager (noscript)-->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KX4JH47" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript)-->
     <div class="sidebar sidebar-light sidebar-fixed" id="sidebar">
       <div class="sidebar-brand d-none d-md-flex">
-        <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+        <svg class="sidebar-brand-full ms-2" width="118" height="46" alt="CoreUI Logo">
           <use xlink:href="assets/brand/coreui.svg#full"></use>
         </svg>
         <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
@@ -436,7 +441,7 @@
         </div>
       </div>
     </div>
-    <div class="wrapper d-flex flex-column min-vh-100 bg-light bg-opacity-50 dark:bg-transparent">
+    <div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent">
       <header class="header header-light bg-primary header-sticky mb-4">
         <div class="container-fluid">
           <button class="header-toggler px-md-0 me-md-3 d-md-none" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
@@ -643,8 +648,8 @@
                   <p class="text-medium-emphasis small">For custom CoreUI for Bootstrap form validation messages, you’ll need to add the <code>novalidate</code> boolean attribute to your <code>&lt;form&gt;</code>. This disables the browser default feedback tooltips, but still provides access to the form validation APIs in JavaScript. Try to submit the form below; our JavaScript will intercept the submit button and relay feedback to you. When attempting to submit, you’ll see the <code>:invalid</code> and <code>:valid</code> styles applied to your form controls.</p>
                   <p class="text-medium-emphasis small">Custom feedback styles apply custom colors, borders, focus styles, and background icons to better communicate feedback. Background icons for <code>&lt;select&gt;</code>s are only available with <code>.form-select</code>, and not <code>.form-control</code>.</p>
                   <div class="example">
-                    <ul class="nav nav-underline" role="tablist">
-                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-676" role="tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1000" role="tab">
                           <svg class="icon me-2">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                           </svg>Preview</a></li>
@@ -654,7 +659,7 @@
                           </svg>Code</a></li>
                     </ul>
                     <div class="tab-content rounded-bottom">
-                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-676">
+                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1000">
                         <form class="row g-3 needs-validation" novalidate="">
                           <div class="col-md-4">
                             <label class="form-label" for="validationCustom01">First name</label>
@@ -715,8 +720,8 @@
                   <p class="text-medium-emphasis small">Not interested in custom validation feedback messages or writing JavaScript to change form behaviors? All good, you can use the browser defaults. Try submitting the form below. Depending on your browser and OS, you’ll see a slightly different style of feedback.</p>
                   <p class="text-medium-emphasis small">While these feedback styles cannot be styled with CSS, you can still customize the feedback text through JavaScript.</p>
                   <div class="example">
-                    <ul class="nav nav-underline" role="tablist">
-                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-757" role="tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1001" role="tab">
                           <svg class="icon me-2">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                           </svg>Preview</a></li>
@@ -726,7 +731,7 @@
                           </svg>Code</a></li>
                     </ul>
                     <div class="tab-content rounded-bottom">
-                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-757">
+                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1001">
                         <form class="row g-3">
                           <div class="col-md-4">
                             <label class="form-label" for="validationDefault01">First name</label>
@@ -781,8 +786,8 @@
                   <p class="text-medium-emphasis small">For invalid fields, ensure that the invalid feedback/error message is associated with the relevant form field using <code>aria-describedby</code> (noting that this attribute allows more than one <code>id</code> to be referenced, in case the field already points to additional form text).</p>
                   <p class="text-medium-emphasis small">To fix<a href="https://github.com/twbs/bootstrap/issues/25110">issues with border radii</a>, input groups require an additional <code>.has-validation</code> class.</p>
                   <div class="example">
-                    <ul class="nav nav-underline" role="tablist">
-                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-715" role="tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1002" role="tab">
                           <svg class="icon me-2">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                           </svg>Preview</a></li>
@@ -792,7 +797,7 @@
                           </svg>Code</a></li>
                     </ul>
                     <div class="tab-content rounded-bottom">
-                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-715">
+                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1002">
                         <form class="row g-3">
                           <div class="col-md-4">
                             <label class="form-label" for="validationServer01">First name</label>
@@ -860,8 +865,8 @@
                     <li><code>.form-check</code>s</li>
                   </ul>
                   <div class="example">
-                    <ul class="nav nav-underline" role="tablist">
-                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-920" role="tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1003" role="tab">
                           <svg class="icon me-2">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                           </svg>Preview</a></li>
@@ -871,7 +876,7 @@
                           </svg>Code</a></li>
                     </ul>
                     <div class="tab-content rounded-bottom">
-                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-920">
+                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1003">
                         <form class="was-validated">
                           <div class="mb-3">
                             <label class="form-label" for="validationTextarea">Textarea</label>
@@ -921,8 +926,8 @@
                 <div class="card-body">
                   <p class="text-medium-emphasis small">If your form layout allows it, you can swap the <code>.{valid|invalid}-feedback</code> classes for <code>.{valid|invalid}-tooltip</code> classes to display validation feedback in a styled tooltip. Be sure to have a parent with <code>position: relative</code> on it for tooltip positioning. In the example below, our column classes have this already, but your project may require an alternative setup.</p>
                   <div class="example">
-                    <ul class="nav nav-underline" role="tablist">
-                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-345" role="tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1004" role="tab">
                           <svg class="icon me-2">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                           </svg>Preview</a></li>
@@ -932,7 +937,7 @@
                           </svg>Code</a></li>
                     </ul>
                     <div class="tab-content rounded-bottom">
-                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-345">
+                      <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1004">
                         <form class="row g-3 needs-validation" novalidate="">
                           <div class="col-md-4 position-relative">
                             <label class="form-label" for="validationTooltip01">First name</label>
