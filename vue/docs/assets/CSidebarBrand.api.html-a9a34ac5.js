@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-f9d1a240","path":"/api/sidebar/CSidebarBrand.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CSidebarBrand","slug":"csidebarbrand","link":"#csidebarbrand","children":[]}],"filePathRelative":"api/sidebar/CSidebarBrand.api.md"}');export{a as data};

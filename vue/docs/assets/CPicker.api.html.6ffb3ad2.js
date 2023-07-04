@@ -1,1 +1,0 @@
-const e={key:"v-1a48216f",path:"/api/picker/CPicker.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CPicker",slug:"cpicker",children:[]}],git:{updatedTime:1679836245e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2},{name:"\u0141ukasz Holeczek",email:"lukasz@coreui.io",commits:1}]}};export{e as data};

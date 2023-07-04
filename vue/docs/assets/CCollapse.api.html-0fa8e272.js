@@ -1,0 +1,1 @@
+const l=JSON.parse('{"key":"v-51e0db31","path":"/api/collapse/CCollapse.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CCollapse","slug":"ccollapse","link":"#ccollapse","children":[]}],"filePathRelative":"api/collapse/CCollapse.api.md"}');export{l as data};

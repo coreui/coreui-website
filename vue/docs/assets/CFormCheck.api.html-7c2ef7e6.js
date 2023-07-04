@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-0758a6a2","path":"/api/form/CFormCheck.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CFormCheck","slug":"cformcheck","link":"#cformcheck","children":[]}],"filePathRelative":"api/form/CFormCheck.api.md"}');export{e as data};

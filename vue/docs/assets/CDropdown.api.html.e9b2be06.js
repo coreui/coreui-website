@@ -1,1 +1,0 @@
-const e={key:"v-163eef2e",path:"/api/dropdown/CDropdown.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CDropdown",slug:"cdropdown",children:[]}],git:{updatedTime:1679836245e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:4},{name:"\u0141ukasz Holeczek",email:"lukasz@coreui.io",commits:2}]}};export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-7978a12e","path":"/api/form/CFormTextarea.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CFormTextarea","slug":"cformtextarea","link":"#cformtextarea","children":[]}],"filePathRelative":"api/form/CFormTextarea.api.md"}');export{e as data};

@@ -1,1 +1,0 @@
-const e={key:"v-f7d941da",path:"/api/spinner/CSpinner.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CSpinner",slug:"cspinner",children:[]}],git:{updatedTime:163570725e4,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:3}]}};export{e as data};

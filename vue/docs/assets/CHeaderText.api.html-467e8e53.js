@@ -1,0 +1,4 @@
+import{_ as e,o as a,c as s,e as n}from"./app-77034e43.js";const t={},o=n(`<h3 id="cheadertext" tabindex="-1">CHeaderText <a class="anchor-link" href="#cheadertext" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CHeaderText <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
+<span class="token comment">// or</span>
+<span class="token keyword">import</span> CHeaderText <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/header/CHeaderText&#39;</span>
+</code></pre></div>`,2),c=[o];function r(p,d){return a(),s("div",null,c)}const l=e(t,[["render",r],["__file","CHeaderText.api.html.vue"]]);export{l as default};

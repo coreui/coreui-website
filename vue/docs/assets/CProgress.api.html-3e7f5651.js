@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-1dbb439e","path":"/api/progress/CProgress.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CProgress","slug":"cprogress","link":"#cprogress","children":[]}],"filePathRelative":"api/progress/CProgress.api.md"}');export{e as data};

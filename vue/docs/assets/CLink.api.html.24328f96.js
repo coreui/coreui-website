@@ -1,1 +1,0 @@
-const e={key:"v-a23e81d2",path:"/api/link/CLink.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CLink",slug:"clink",children:[]}],git:{updatedTime:1679760519e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2},{name:"\u0141ukasz Holeczek",email:"lukasz@coreui.io",commits:1}]}};export{e as data};

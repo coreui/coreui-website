@@ -1,1 +1,0 @@
-const e={key:"v-1afe2d48",path:"/api/nav/CNavGroup.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CNavGroup",slug:"cnavgroup",children:[]}],git:{updatedTime:1679760519e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:4},{name:"\u0141ukasz Holeczek",email:"lukasz@coreui.io",commits:1}]}};export{e as data};
