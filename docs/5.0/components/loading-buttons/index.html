@@ -1,0 +1,1330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Buttons with built-in loading indicators. Indicate the loading state of the button bridging the gap between action and feedback.">
+<meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
+<meta name="generator" content="Hugo 0.112.5">
+
+<meta name="docsearch:language" content="en">
+<meta name="docsearch:version" content="5.0">
+
+<title>Loading Buttons · CoreUI</title>
+
+<link rel="canonical" href="https://coreui.io/docs/5.0/components/loading-buttons/"><link rel="preconnect" href="https://AK7KMZKZHQ-dsn.algolia.net" crossorigin>
+
+<script src="https://coreui.io/docs/5.0/assets/js/color-modes.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+<link href="https://coreui.io/docs/5.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-HIgf6Oxga84lBgS1HTN1CmDew7QcPuhPUnSGjB0/HP/WBZNM3E8G5csc1B/YyyGS" crossorigin="anonymous">
+
+<link href="https://coreui.io/docs/5.0/assets/css/docs.css" rel="stylesheet">
+
+<link href="https://coreui.io/docs/5.0/scss/docs-pickers.css" rel="stylesheet">
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" href="https://coreui.io/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="https://coreui.io/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="https://coreui.io/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="mask-icon" href="https://coreui.io/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="https://coreui.io/docs/5.0/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#7952b3">
+
+<link rel="apple-touch-icon" sizes="57x57" href="https://coreui.io/docs/5.0/assets/img/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://coreui.io/docs/5.0/assets/img/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://coreui.io/docs/5.0/assets/img/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://coreui.io/docs/5.0/assets/img/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://coreui.io/docs/5.0/assets/img/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://coreui.io/docs/5.0/assets/img/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://coreui.io/docs/5.0/assets/img/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://coreui.io/docs/5.0/assets/img/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://coreui.io/docs/5.0/assets/img/favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="https://coreui.io/docs/5.0/assets/img/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coreui.io/docs/5.0/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://coreui.io/docs/5.0/assets/img/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coreui.io/docs/5.0/assets/img/favicons/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#321fdb">
+<meta name="msapplication-TileImage" content="/assets/img/favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#321fdb">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@core_ui">
+<meta name="twitter:creator" content="@core_ui">
+<meta name="twitter:title" content="Loading Buttons">
+<meta name="twitter:description" content="Buttons with built-in loading indicators. Indicate the loading state of the button bridging the gap between action and feedback.">
+<meta name="twitter:image" content="https://coreui.io/assets/brand/coreui-social.jpg">
+
+<!-- Facebook -->
+<meta property="og:url" content="https://coreui.io/docs/5.0/components/loading-buttons/">
+<meta property="og:title" content="Loading Buttons">
+<meta property="og:description" content="Buttons with built-in loading indicators. Indicate the loading state of the button bridging the gap between action and feedback.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://coreui.io/assets/brand/coreui-social.jpg">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="500">
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.0.0-rc.0/css/free.min.css" integrity="sha256-vejWHgYduBq3SYXJHSWSRJp7ktQpZ6d+8HGFtb9Fz9k=" crossorigin="anonymous">
+
+
+
+  </head>
+  <body class="d-flex">
+    
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
+  <div class="sidebar-brand justify-content-start ps-3">
+    <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
+  <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
+        <g id="coreui-base" fill="currentColor" fill-rule="nonzero">
+            <g id="Group">
+                <path d="M96,24.1244 L57,1.6077 C53.2871871,-0.535893539 48.7128129,-0.535893539 45,1.6077 L6,24.1243 C2.29226017,26.2730089 0.00693260339,30.2313486 0,34.5167 L0,79.55 C0.0068453397,83.8353487 2.29220098,87.7936989 6,89.9423 L45,112.459 C48.7128129,114.602594 53.2871871,114.602594 57,112.459 L96,89.9423 C99.707799,87.7936989 101.993155,83.8353487 102,79.55 L102,34.5167 C101.993093,30.2313678 99.707754,26.273046 96,24.1244 Z M94,79.55 C94,80.9790618 93.2376038,82.2995691 92,83.0141 L53,105.5308 C51.7623957,106.245331 50.2376043,106.245331 49,105.5308 L10,83.0141 C8.76239619,82.2995691 8,80.9790618 8,79.55 L8,34.5167 C8,33.0876382 8.76239619,31.7671309 10,31.0526 L49,8.5359 C50.2376043,7.82136882 51.7623957,7.82136882 53,8.5359 L92,31.0526 C93.2376038,31.7671309 94,33.0876382 94,34.5167 L94,79.55 Z" id="Shape"></path>
+                <path d="M74.0216,70.0713 L71.1556,70.0713 C70.4827679,70.0712861 69.8208069,70.2410241 69.231,70.5648 L51.95,80.05 L32,68.5315 L32,45.554 L51.95,34.0354 L69.2394,43.4904 C69.8278903,43.8122245 70.4878603,43.9808965 71.1586,43.9809 L74.0218,43.9809 C75.1263695,43.9809 76.0218,43.0854695 76.0218,41.9809 L76.0218,39.2691 C76.0218,38.5380907 75.6230914,37.8652844 74.9818,37.5144 L55.793,27.0188 C53.3404536,25.684951 50.3714915,25.7190213 47.9502,27.1088 L28,38.6262 C25.5283249,40.0590349 24.0048565,42.6979488 24,45.5549 L24,68.5309 C24,71.3890593 25.5247614,74.0301204 28,75.4592 L47.95,86.9778 C50.3719859,88.3663725 53.3408028,88.399644 55.7933,87.0657 L74.9833,76.5345 C75.6233016,76.1832775 76.0210885,75.5112406 76.0211,74.7812 L76.0211,72.0712 C76.0210448,70.9668648 75.1259352,70.0715761 74.0216,70.0713 Z" id="Path"></path>
+            </g>
+            <g id="Group" transform="translate(117.000000, 33.000000)">
+                <path d="M51.7447,0.4285 C43.4644161,0.437648027 36.754124,7.14771643 36.7447,15.428 L36.7447,32.7054 C36.7447,40.9896712 43.4604288,47.7054 51.7447,47.7054 C60.0289712,47.7054 66.7447,40.9896712 66.7447,32.7054 L66.7447,15.428 C66.735276,7.14771643 60.0249839,0.437648027 51.7447,0.4285 L51.7447,0.4285 Z M58.7447,32.7054 C58.7447,36.5713932 55.6106932,39.7054 51.7447,39.7054 C47.8787068,39.7054 44.7447,36.5713932 44.7447,32.7054 L44.7447,15.428 C44.7447,11.5620068 47.8787068,8.428 51.7447,8.428 C55.6106932,8.428 58.7447,11.5620068 58.7447,15.428 L58.7447,32.7054 Z" id="Shape"></path>
+                <path d="M15.0788,8.4878 C16.9286881,8.24481332 18.799121,8.74931526 20.2759097,9.88958885 C21.7526984,11.0298624 22.7139842,12.7118169 22.9469,14.563 C23.0096446,15.0584416 23.4318031,15.4294333 23.9312,15.428 L29.9617,15.428 C30.2433078,15.4256279 30.5111615,15.3058932 30.700737,15.0976392 C30.8903124,14.8893852 30.9844237,14.6114912 30.9604,14.3309 C30.3547728,6.2061693 23.38159,0.0460556878 15.2442,0.4472 C7.16132117,0.999887718 0.913134758,7.76221317 1,15.8635 L1,32.27 C0.913131523,40.3712508 7.16126073,47.1335618 15.2441,47.6863 C23.3813933,48.08722 30.3543741,41.9271229 30.96,33.8025 C30.9840545,33.5219017 30.8899539,33.2439902 30.7003719,33.035729 C30.5107899,32.8274679 30.2429178,32.7077421 29.9613,32.7054 L23.9308,32.7054 C23.4314031,32.7039667 23.0092446,33.0749584 22.9465,33.5704 C22.7137048,35.4216544 21.7524848,37.1037177 20.2757044,38.2440932 C18.7989241,39.3844687 16.9284489,39.8890513 15.0785,39.6461 C11.5427997,39.1044016 8.94840923,36.0377838 9,32.4612 L9,15.6724 C8.94840694,12.0957688 11.543004,9.02918626 15.0788,8.4878 L15.0788,8.4878 Z" id="Path"></path>
+                <path d="M97.9222,27.9944 C102.287745,26.0370903 105.09962,21.7015444 105.1064,16.9173 L105.1064,13.2161 C105.1064,6.50617166 99.6669283,1.0667 92.957,1.0667 L76,1.0667 C75.4477153,1.0667 75,1.51441525 75,2.0667 L75,46.0667 C75,46.6189847 75.4477153,47.0667 76,47.0667 L82,47.0667 C82.5522847,47.0667 83,46.6189847 83,46.0667 L83,29.0667 L89.6215,29.0667 L97.5369,46.4805 C97.6991143,46.8373746 98.0548886,47.0667 98.4469,47.0667 L105.038,47.0667 C105.377933,47.0667 105.694523,46.8937728 105.878505,46.6079325 C106.062488,46.3220923 106.088664,45.9623638 105.948,45.6529 L97.9222,27.9944 Z M97.1064,16.9173 C97.1039754,19.2077501 95.2479498,21.0639994 92.9575,21.0667 L83.1064,21.0667 L83.1064,9.0667 L92.9575,9.0667 C95.2479498,9.06940063 97.1039754,10.9256499 97.1064,13.2161 L97.1064,16.9173 Z" id="Shape"></path>
+                <path d="M140,1.0667 L114,1.0667 C113.447715,1.0667 113,1.51441525 113,2.0667 L113,46.0667 C113,46.6189847 113.447715,47.0667 114,47.0667 L140,47.0667 C140.552285,47.0667 141,46.6189847 141,46.0667 L141,40.0667 C141,39.5144153 140.552285,39.0667 140,39.0667 L121,39.0667 L121,27.0667 L134,27.0667 C134.552285,27.0667 135,26.6189847 135,26.0667 L135,20.0667 C135,19.5144153 134.552285,19.0667 134,19.0667 L121,19.0667 L121,9.0667 L140,9.0667 C140.552285,9.0667 141,8.61898475 141,8.0667 L141,2.0667 C141,1.51441525 140.552285,1.0667 140,1.0667 Z" id="Path"></path>
+                <path d="M178,1.0667 L172,1.0667 C171.447715,1.0667 171,1.51441525 171,2.0667 L171,24.7142 C171.111775,27.2875721 169.802567,29.7147754 167.590728,31.0348154 C165.378889,32.3548553 162.621111,32.3548553 160.409272,31.0348154 C158.197433,29.7147754 156.888225,27.2875721 157,24.7142 L157,2.0667 C157,1.51441525 156.552285,1.0667 156,1.0667 L150,1.0667 C149.447715,1.0667 149,1.51441525 149,2.0667 L149,24.7142 C148.889565,30.1458781 151.72415,35.2128902 156.410578,37.96111 C161.097007,40.7093297 166.902993,40.7093297 171.589422,37.96111 C176.27585,35.2128902 179.110435,30.1458781 179,24.7142 L179,2.0667 C179,1.51441525 178.552285,1.0667 178,1.0667 Z" id="Path"></path>
+                <rect id="Rectangle" x="187" y="1.0667" width="8" height="38" rx="1"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
+  </div>
+  <div class="text-body-secondary ms-3 me-5 mb-2 small fw-semibold">Framework:</div>
+  <div class="dropdown ms-3 me-5 mb-4">
+    <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-coreui-toggle="dropdown" aria-expanded="false">
+      JavaScript / Vanilla JS
+    </button>
+    <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="https://coreui.io/angular/docs/4.0/getting-started/introduction">Angular</a></li>
+      <li><a class="dropdown-item" href="https://coreui.io/react/docs/" target="_blank">React.js</a></li>
+      <li><a class="dropdown-item" href="https://coreui.io/vue/docs/" target="_blank">Vue.js</a></li>
+    </ul>
+  </div><ul class="sidebar-nav" data-coreui="navigation">
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="nav-icon text-primary" width="64" height="64" viewBox="0 0 64 64">
+<title>energy</title>
+<path d="M40 26v-24h-4.012l-27.941 38h16.953v22h3.975l28.125-36zM15.953 36l20.047-27.264v21.264h12.9l-19.9 25.471v-19.471z"></path>
+</svg>
+
+          Getting started
+        </a>
+        <ul class="nav-group-items compact">
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/getting-started/introduction/" class="nav-link" >
+                Introduction
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/getting-started/download/" class="nav-link" >
+                Download
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/getting-started/contents/" class="nav-link" >
+                Contents
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/getting-started/browsers-devices/" class="nav-link" >
+                Browsers &amp; devices
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/getting-started/javascript/" class="nav-link" >
+                JavaScript
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/getting-started/webpack/" class="nav-link" >
+                Webpack
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/getting-started/parcel/" class="nav-link" >
+                Parcel
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/getting-started/vite/" class="nav-link" >
+                Vite
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/getting-started/accessibility/" class="nav-link" >
+                Accessibility
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/getting-started/rfs/" class="nav-link" >
+                RFS
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/getting-started/rtl/" class="nav-link" >
+                RTL
+              </a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M425.514,82.055C380.778,39.458,320.673,16,256.271,16,196.248,16,136.415,36.073,92.115,71.071,43.032,109.85,16,164.161,16,224c0,60.1,15.531,98.87,48.876,122.019,28,19.438,68.412,27.731,135.124,27.731h29.75A26.28,26.28,0,0,1,256,400v47.984a32,32,0,0,0,32,32h.032l90.755-.088a32.094,32.094,0,0,0,19.686-6.8c9.725-7.622,34.727-29.4,56.8-66.9C482.3,360.262,496,307.037,496,248,496,184.268,470.968,125.334,425.514,82.055Zm2.173,307.915c-19.3,32.792-40.663,51.447-48.932,57.926L288,447.984V400a58.316,58.316,0,0,0-58.25-58.25H200c-59.69,0-94.644-6.585-116.876-22.019C58.833,302.869,48,273.344,48,224,48,113.833,153.9,48,256.271,48,372.755,48,464,135.851,464,248,464,301.253,451.782,349.019,427.687,389.97Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M128,144a56,56,0,1,0,56,56A56.064,56.064,0,0,0,128,144Zm0,80a24,24,0,1,1,24-24A24.027,24.027,0,0,1,128,224Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M240,72a56,56,0,1,0,56,56A56.064,56.064,0,0,0,240,72Zm0,80a24,24,0,1,1,24-24A24.027,24.027,0,0,1,240,152Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M360,128a56,56,0,1,0,56,56A56.064,56.064,0,0,0,360,128Zm0,80a24,24,0,1,1,24-24A24.027,24.027,0,0,1,360,208Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M376,264a56,56,0,1,0,56,56A56.064,56.064,0,0,0,376,264Zm0,80a24,24,0,1,1,24-24A24.027,24.027,0,0,1,376,344Z" class="ci-primary"/>
+</svg>
+
+          Customize
+        </a>
+        <ul class="nav-group-items compact">
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/customize/overview/" class="nav-link" >
+                Overview
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/customize/sass/" class="nav-link" >
+                Sass
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/customize/options/" class="nav-link" >
+                Options
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/customize/color/" class="nav-link" >
+                Color
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/customize/color-modes/" class="nav-link" >
+                Color modes
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/customize/components/" class="nav-link" >
+                Components
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/customize/css-variables/" class="nav-link" >
+                CSS variables
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/customize/optimize/" class="nav-link" >
+                Optimize
+              </a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"  class="nav-icon text-primary" >
+  <path fill="var(--ci-primary-color, currentColor)" d="M16,64V448H496V64ZM464,240H192V96H464ZM192,272H312V416H192ZM48,96H160V416H48ZM344,416V272H464V416Z" class="ci-primary"/>
+</svg>
+
+          Layout
+        </a>
+        <ul class="nav-group-items compact">
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/layout/breakpoints/" class="nav-link" >
+                Breakpoints
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/layout/containers/" class="nav-link" >
+                Containers
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/layout/grid/" class="nav-link" >
+                Grid
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/layout/columns/" class="nav-link" >
+                Columns
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/layout/gutters/" class="nav-link" >
+                Gutters
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/layout/utilities/" class="nav-link" >
+                Utilities
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/layout/z-index/" class="nav-link" >
+                Z-index
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/layout/css-grid/" class="nav-link" >
+                CSS Grid
+              </a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M136,24H16V144H136Zm-32,88H48V56h56Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M136,200H16V320H136Zm-32,88H48V232h56Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M136,376H16V496H136Zm-32,88H48V408h56Z" class="ci-primary"/>
+  <rect width="320" height="32" x="176" y="23.998" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="256" height="32" x="176" y="111.998" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="320" height="32" x="176" y="199.998" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="256" height="32" x="176" y="287.998" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="256" height="32" x="176" y="463.998" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="320" height="32" x="176" y="375.998" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+</svg>
+
+          Content
+        </a>
+        <ul class="nav-group-items compact">
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/content/reboot/" class="nav-link" >
+                Reboot
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/content/typography/" class="nav-link" >
+                Typography
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/content/images/" class="nav-link" >
+                Images
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/content/tables/" class="nav-link" >
+                Tables
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/content/figures/" class="nav-link" >
+                Figures
+              </a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M23.686,456.521a24.841,24.841,0,0,0,6,25.708l.087.087a24.841,24.841,0,0,0,17.612,7.342,25.179,25.179,0,0,0,8.1-1.344h0a646.28,646.28,0,0,0,248.04-154.207L469.981,167.646A88.832,88.832,0,1,0,344.354,42.019l-9.534,9.534L314.029,30.762a50.4,50.4,0,0,0-71.274,0L108.687,164.83l22.626,22.627L265.382,53.389a18.4,18.4,0,0,1,26.019,0L312.193,74.18l-134.3,134.3A646.28,646.28,0,0,0,23.686,456.521Zm343.3-391.875a56.832,56.832,0,1,1,80.373,80.373l-89.493,89.493-80.372-80.373ZM254.862,176.766l80.372,80.372L280.892,311.48A614.383,614.383,0,0,1,58.779,453.221,614.383,614.383,0,0,1,200.52,231.108Z" class="ci-primary"/>
+</svg>
+
+          Forms
+        </a>
+        <ul class="nav-group-items compact">
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/overview/" class="nav-link" >
+                Overview
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/form-control/" class="nav-link" >
+                Form control
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/select/" class="nav-link" >
+                Select
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/multi-select/" class="nav-link" >
+                Multi Select
+                  <span class="badge bg-danger ms-auto">PRO</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/checks-radios/" class="nav-link" >
+                Checks &amp; radios
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/range/" class="nav-link" >
+                Range
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/input-group/" class="nav-link" >
+                Input group
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/floating-labels/" class="nav-link" >
+                Floating labels
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/date-picker/" class="nav-link" >
+                Date Picker
+                  <span class="badge bg-danger ms-auto">PRO</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/date-range-picker/" class="nav-link" >
+                Date Range Picker
+                  <span class="badge bg-danger ms-auto">PRO</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/time-picker/" class="nav-link" >
+                Time Picker
+                  <span class="badge bg-danger ms-auto">PRO</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/layout/" class="nav-link" >
+                Layout
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/forms/validation/" class="nav-link" >
+                Validation
+              </a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  class="nav-icon text-primary" width="64" height="64" viewBox="0 0 64 64">
+<title>energy</title>
+<path d="M40 26v-24h-4.012l-27.941 38h16.953v22h3.975l28.125-36zM15.953 36l20.047-27.264v21.264h12.9l-19.9 25.471v-19.471z"></path>
+</svg>
+
+          Components
+        </a>
+        <ul class="nav-group-items compact">
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/accordion/" class="nav-link" >
+                Accordion
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/alerts/" class="nav-link" >
+                Alerts
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/avatar/" class="nav-link" >
+                Avatar
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/badge/" class="nav-link" >
+                Badge
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/breadcrumb/" class="nav-link" >
+                Breadcrumb
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/buttons/" class="nav-link" >
+                Buttons
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/button-group/" class="nav-link" >
+                Button group
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/callout/" class="nav-link" >
+                Callout
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/card/" class="nav-link" >
+                Card
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/carousel/" class="nav-link" >
+                Carousel
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/close-button/" class="nav-link" >
+                Close button
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/collapse/" class="nav-link" >
+                Collapse
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/dropdowns/" class="nav-link" >
+                Dropdowns
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/footer/" class="nav-link" >
+                Footer
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/header/" class="nav-link" >
+                Header
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/list-group/" class="nav-link" >
+                List group
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/loading-buttons/" class="nav-link" >
+                Loading buttons
+                  <span class="badge bg-danger ms-auto">PRO</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/modal/" class="nav-link" >
+                Modal
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/navbar/" class="nav-link" >
+                Navbar
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/navs-tabs/" class="nav-link" >
+                Navs &amp; tabs
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/offcanvas/" class="nav-link" >
+                Offcanvas
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/pagination/" class="nav-link" >
+                Pagination
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/placeholders/" class="nav-link" >
+                Placeholders
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/popovers/" class="nav-link" >
+                Popovers
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/progress/" class="nav-link" >
+                Progress
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/scrollspy/" class="nav-link" >
+                Scrollspy
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/sidebar/" class="nav-link" >
+                Sidebar
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/spinners/" class="nav-link" >
+                Spinners
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/toasts/" class="nav-link" >
+                Toasts
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/components/tooltips/" class="nav-link" >
+                Tooltips
+              </a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M93.976,276.6,38.211,332.367a32,32,0,0,0,0,45.255l96.167,96.168a32.038,32.038,0,0,0,45.254,0L235.4,418.024l-22.616-22.616L157.02,451.175a.094.094,0,0,1-.015-.013L60.839,355,116.6,299.23Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M473.789,134.378,377.622,38.21a32.037,32.037,0,0,0-45.254,0L276.6,93.976,299.23,116.6,355,60.838l96.166,96.167L395.4,212.772,418.024,235.4l55.765-55.764a32,32,0,0,0,0-45.255Z" class="ci-primary"/>
+  <rect width="21.941" height="21.941" x="245.515" y="196.544" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 256.485 207.514)"/>
+  <rect width="21.941" height="21.941" x="245.515" y="293.515" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 256.487 304.486)"/>
+  <rect width="21.941" height="21.941" x="294" y="245.029" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 304.969 256)"/>
+  <rect width="21.941" height="21.941" x="197.029" y="245.029" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 208 256)"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M321.3,462.705a47.988,47.988,0,0,0,67.641-.23l73.539-73.539a48,48,0,0,0,0-67.882l-7.764-7.765-240-240L190.946,49.525a48,48,0,0,0-67.882,0l-73.54,73.539h0a48,48,0,0,0,0,67.882l31.764,31.765L321.054,462.475C321.133,462.553,321.216,462.626,321.3,462.705ZM72.152,168.319a16,16,0,0,1,0-22.628l73.539-73.539a16,16,0,0,1,22.628,0l65.054,65.054-96.167,96.167ZM159.833,256,256,159.833,352.171,256l-96.162,96.172Zm214.961,22.627,65.054,65.054a16,16,0,0,1,0,22.628l-73.539,73.539a16,16,0,0,1-22.628,0l-65.054-65.054Z" class="ci-primary"/>
+</svg>
+
+          Helpers
+        </a>
+        <ul class="nav-group-items compact">
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/helpers/clearfix/" class="nav-link" >
+                Clearfix
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/helpers/color-background/" class="nav-link" >
+                Color &amp; background
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/helpers/colored-links/" class="nav-link" >
+                Colored links
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/helpers/focus-ring/" class="nav-link" >
+                Focus ring
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/helpers/icon-link/" class="nav-link" >
+                Icon link
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/helpers/position/" class="nav-link" >
+                Position
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/helpers/ratio/" class="nav-link" >
+                Ratio
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/helpers/stacks/" class="nav-link" >
+                Stacks
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/helpers/stretched-link/" class="nav-link" >
+                Stretched link
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/helpers/text-truncation/" class="nav-link" >
+                Text truncation
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/helpers/vertical-rule/" class="nav-link" >
+                Vertical rule
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/helpers/visually-hidden/" class="nav-link" >
+                Visually hidden
+              </a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M40,496H472a24.028,24.028,0,0,0,24-24V400a24.028,24.028,0,0,0-24-24H40a24.028,24.028,0,0,0-24,24v72A24.028,24.028,0,0,0,40,496Zm8-88H464v56H48Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M45.01,239.489a50.2,50.2,0,0,0,36.2,61.07l158.5,40.524h0a50.174,50.174,0,0,0,61.07-36.2L353.742,97.745,97.969,32.352,85.959,79.326l-58-14.827-7.926,31,58,14.828ZM121.045,71.281l193.767,49.54L294.568,200H88.135ZM286.387,232,269.78,296.956a18.221,18.221,0,0,1-22.141,13.125h0l-158.5-40.525a18.22,18.22,0,0,1-13.124-22.14L80,231.82V232Z" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M420,352c37.5,0,68-32.3,68-72,0-16.181-9.341-38.514-28.559-68.277-13.285-20.576-26.39-37.021-26.941-37.711L420,158.37l-12.5,15.642c-.551.69-13.656,17.135-26.941,37.711C361.341,241.486,352,263.819,352,280,352,319.7,382.505,352,420,352Zm0-141.441C437.658,235.2,456,265.985,456,280c0,22.056-16.149,40-36,40s-36-17.944-36-40C384,265.985,402.343,235.2,420,210.559Z" class="ci-primary"/>
+</svg>
+
+          Utilities
+        </a>
+        <ul class="nav-group-items compact">
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/api/" class="nav-link" >
+                API
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/background/" class="nav-link" >
+                Background
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/borders/" class="nav-link" >
+                Borders
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/colors/" class="nav-link" >
+                Colors
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/display/" class="nav-link" >
+                Display
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/flex/" class="nav-link" >
+                Flex
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/float/" class="nav-link" >
+                Float
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/interactions/" class="nav-link" >
+                Interactions
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/link/" class="nav-link" >
+                Link
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/object-fit/" class="nav-link" >
+                Object fit
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/opacity/" class="nav-link" >
+                Opacity
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/overflow/" class="nav-link" >
+                Overflow
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/position/" class="nav-link" >
+                Position
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/shadows/" class="nav-link" >
+                Shadows
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/sizing/" class="nav-link" >
+                Sizing
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/spacing/" class="nav-link" >
+                Spacing
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/text/" class="nav-link" >
+                Text
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/vertical-align/" class="nav-link" >
+                Vertical align
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/visibility/" class="nav-link" >
+                Visibility
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/utilities/z-index/" class="nav-link" >
+                Z-index
+              </a>
+            </li>
+        </ul>
+      </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M472,232H424V120a24.028,24.028,0,0,0-24-24H40a24.028,24.028,0,0,0-24,24V366a24.028,24.028,0,0,0,24,24H212v50H152v32H304V440H244V390h92v58a24.027,24.027,0,0,0,24,24H472a24.027,24.027,0,0,0,24-24V256A24.027,24.027,0,0,0,472,232ZM336,256V358H48V128H392V232H360A24.027,24.027,0,0,0,336,256ZM464,440H368V264h96Z" class="ci-primary"/>
+</svg>
+
+          Templates
+        </a>
+        <ul class="nav-group-items compact">
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/templates/admin-dashboard/" class="nav-link" >
+                Admin &amp; Dashboard
+                  <span class="badge bg-success ms-auto">New</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/templates/download/" class="nav-link" >
+                Download
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/templates/installation/" class="nav-link" >
+                Installation
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/templates/customize/" class="nav-link" >
+                Customize
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/docs/5.0/templates/contents/" class="nav-link" >
+                Contents
+              </a>
+            </li>
+        </ul>
+      </li>
+    <li class="nav-item">
+      <a href="https://coreui.io/docs/5.0/icons/" class="nav-link" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M487.97,155.853a24.035,24.035,0,0,0-7-18.166L376.126,32.842a24,24,0,0,0-35.546,1.772L250.644,144.536,120.507,171.05a27.1,27.1,0,0,0-20.025,17.026L17.883,405.84a27.268,27.268,0,0,0,6.205,28.917l53.271,53.271a27.263,27.263,0,0,0,28.915,6.207L324.134,411.6a27.144,27.144,0,0,0,16.95-19.655l28.1-128.7L479.2,173.232A24.041,24.041,0,0,0,487.97,155.853Zm-177.6,226.741L97.807,463.222,84.665,450.079l99.36-99.36a56.061,56.061,0,1,0-22.268-22.986l-99.72,99.72L48.894,414.31,129.47,201.881l124.717-25.41,83.052,83.051ZM187.42,301.9a24,24,0,1,1,24,24A24,24,0,0,1,187.42,301.9Zm168.391-69.065L280.973,158,359.749,61.72l92.343,92.343Z" class="ci-primary"/>
+</svg>
+
+        Icons
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="https://coreui.io/docs/5.0/migration/" class="nav-link">
+        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M464,256.25C464,370.8,370.8,464,256.25,464S48.5,370.8,48.5,256.25,141.7,48.5,256.25,48.5a208,208,0,0,1,149.963,64H328.5v32h128V16.5h-32V85.478A239.717,239.717,0,1,0,496,256.25Z" class="ci-primary"/>
+  <polygon fill="var(--ci-primary-color, currentColor)" points="272.5 112.451 240.5 112.549 241.017 282.756 353.301 334.53 366.699 305.47 272.954 262.244 272.5 112.451" class="ci-primary"/>
+</svg>
+
+        Migration
+      </a>
+    </li>
+  </ul>
+</div>
+
+    <div class="wrapper flex-grow-1">
+      <header class="docs-header header header-sticky elevation-0 mb-5">
+  <div class="container-fluid">
+    <button class="header-toggler d-lg-none" type="button" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+</svg>
+
+    </button>
+    <div class="docs-search" id="docsearch"></div>
+
+    <ul class="header-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/coreui/coreui" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" class="icon icon-xl" >
+  <path fill="var(--ci-primary-color, currentColor)" d="M16 0.396c-8.839 0-16 7.167-16 16 0 7.073 4.584 13.068 10.937 15.183 0.803 0.151 1.093-0.344 1.093-0.772 0-0.38-0.009-1.385-0.015-2.719-4.453 0.964-5.391-2.151-5.391-2.151-0.729-1.844-1.781-2.339-1.781-2.339-1.448-0.989 0.115-0.968 0.115-0.968 1.604 0.109 2.448 1.645 2.448 1.645 1.427 2.448 3.744 1.74 4.661 1.328 0.14-1.031 0.557-1.74 1.011-2.135-3.552-0.401-7.287-1.776-7.287-7.907 0-1.751 0.62-3.177 1.645-4.297-0.177-0.401-0.719-2.031 0.141-4.235 0 0 1.339-0.427 4.4 1.641 1.281-0.355 2.641-0.532 4-0.541 1.36 0.009 2.719 0.187 4 0.541 3.043-2.068 4.381-1.641 4.381-1.641 0.859 2.204 0.317 3.833 0.161 4.235 1.015 1.12 1.635 2.547 1.635 4.297 0 6.145-3.74 7.5-7.296 7.891 0.556 0.479 1.077 1.464 1.077 2.959 0 2.14-0.020 3.864-0.020 4.385 0 0.416 0.28 0.916 1.104 0.755 6.4-2.093 10.979-8.093 10.979-15.156 0-8.833-7.161-16-16-16z"/>
+</svg>
+
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://twitter.com/core_ui" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" class="icon icon-xl" >
+  <path fill="var(--ci-primary-color, currentColor)" d="M31.937 6.093c-1.177 0.516-2.437 0.871-3.765 1.032 1.355-0.813 2.391-2.099 2.885-3.631-1.271 0.74-2.677 1.276-4.172 1.579-1.192-1.276-2.896-2.079-4.787-2.079-3.625 0-6.563 2.937-6.563 6.557 0 0.521 0.063 1.021 0.172 1.495-5.453-0.255-10.287-2.875-13.52-6.833-0.568 0.964-0.891 2.084-0.891 3.303 0 2.281 1.161 4.281 2.916 5.457-1.073-0.031-2.083-0.328-2.968-0.817v0.079c0 3.181 2.26 5.833 5.26 6.437-0.547 0.145-1.131 0.229-1.724 0.229-0.421 0-0.823-0.041-1.224-0.115 0.844 2.604 3.26 4.5 6.14 4.557-2.239 1.755-5.077 2.801-8.135 2.801-0.521 0-1.041-0.025-1.563-0.088 2.917 1.86 6.36 2.948 10.079 2.948 12.067 0 18.661-9.995 18.661-18.651 0-0.276 0-0.557-0.021-0.839 1.287-0.917 2.401-2.079 3.281-3.396z"/>
+</svg>
+
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://opencollective.com/coreui" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" fill-rule="evenodd" class="icon icon-xl" viewBox="0 0 40 41" role="img"><title>Open Collective</title><path fill-opacity=".4" d="M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z"/><path d="M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z"/></svg>
+        </a>
+      </li>
+      <li class="nav-item py-2 py-lg-1">
+        <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-body text-opacity-75"></div>
+        <hr class="d-lg-none my-2 text-white-50">
+      </li>
+      <li class="nav-item dropdown">
+        <button class="btn btn-link nav-link py-2 px-2 px-lg-2 d-flex align-items-center"
+                type="button"
+                aria-expanded="false"
+                data-coreui-toggle="dropdown"
+                data-coreui-display="static">
+          <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon-active icon icon-xl" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM234,462.849a208.346,208.346,0,0,1-169.667-125.9c-.364-.859-.706-1.724-1.057-2.587L234,429.939Zm0-69.582L50.889,290.76A209.848,209.848,0,0,1,48,256q0-9.912.922-19.67L234,339.939Zm0-90L54.819,202.96a206.385,206.385,0,0,1,9.514-27.913Q67.1,168.5,70.3,162.191L234,253.934Zm0-86.015L86.914,134.819a209.42,209.42,0,0,1,22.008-25.9q3.72-3.72,7.6-7.228L234,166.027Zm0-87.708L144.352,80.451A206.951,206.951,0,0,1,234,49.151ZM464,256A207.775,207.775,0,0,1,266,463.761V48.239A207.791,207.791,0,0,1,464,256Z" class="ci-primary"/>
+</svg>
+
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cd-theme" style="--cui-dropdown-min-width: 8rem;">
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-coreui-theme-value="light">
+              <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon icon icon-lg me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M256,104c-83.813,0-152,68.187-152,152s68.187,152,152,152,152-68.187,152-152S339.813,104,256,104Zm0,272A120,120,0,1,1,376,256,120.136,120.136,0,0,1,256,376Z" class="ci-primary"/>
+  <rect width="32" height="48" x="240" y="16" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="32" height="48" x="240" y="448" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="48" height="32" x="448" y="240" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="48" height="32" x="16" y="240" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="32" height="45.255" x="400" y="393.373" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 416 416)"/>
+  <rect width="32.001" height="45.255" x="80" y="73.373" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 96 96)"/>
+  <rect width="45.255" height="32" x="73.373" y="400" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45.001 96.002 416.003)"/>
+  <rect width="45.255" height="32.001" x="393.373" y="80" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 416 96)"/>
+</svg>
+
+              Light
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon bi ms-auto d-none" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M199.066,456l-7.379-7.514-3.94-3.9-86.2-86.2.053-.055L17.936,274.665l97.614-97.613,83.565,83.565L398.388,61.344,496,158.958,296.729,358.229,285.469,369.6ZM146.6,358.183l52.459,52.46.1-.1.054.054,52.311-52.311,11.259-11.368L450.746,158.958,398.388,106.6,199.115,305.871,115.55,222.306,63.191,274.665l83.464,83.463Z" class="ci-primary"/>
+</svg>
+
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-coreui-theme-value="dark">
+              <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon icon icon-lg me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M268.279,496c-67.574,0-130.978-26.191-178.534-73.745S16,311.293,16,243.718A252.252,252.252,0,0,1,154.183,18.676a24.44,24.44,0,0,1,34.46,28.958,220.12,220.12,0,0,0,54.8,220.923A218.746,218.746,0,0,0,399.085,333.2h0a220.2,220.2,0,0,0,65.277-9.846,24.439,24.439,0,0,1,28.959,34.461A252.256,252.256,0,0,1,268.279,496ZM153.31,55.781A219.3,219.3,0,0,0,48,243.718C48,365.181,146.816,464,268.279,464a219.3,219.3,0,0,0,187.938-105.31,252.912,252.912,0,0,1-57.13,6.513h0a250.539,250.539,0,0,1-178.268-74.016,252.147,252.147,0,0,1-67.509-235.4Z" class="ci-primary"/>
+</svg>
+
+              Dark
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon bi ms-auto d-none" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M199.066,456l-7.379-7.514-3.94-3.9-86.2-86.2.053-.055L17.936,274.665l97.614-97.613,83.565,83.565L398.388,61.344,496,158.958,296.729,358.229,285.469,369.6ZM146.6,358.183l52.459,52.46.1-.1.054.054,52.311-52.311,11.259-11.368L450.746,158.958,398.388,106.6,199.115,305.871,115.55,222.306,63.191,274.665l83.464,83.463Z" class="ci-primary"/>
+</svg>
+
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center active" data-coreui-theme-value="auto">
+              <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon icon icon-lg me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM234,462.849a208.346,208.346,0,0,1-169.667-125.9c-.364-.859-.706-1.724-1.057-2.587L234,429.939Zm0-69.582L50.889,290.76A209.848,209.848,0,0,1,48,256q0-9.912.922-19.67L234,339.939Zm0-90L54.819,202.96a206.385,206.385,0,0,1,9.514-27.913Q67.1,168.5,70.3,162.191L234,253.934Zm0-86.015L86.914,134.819a209.42,209.42,0,0,1,22.008-25.9q3.72-3.72,7.6-7.228L234,166.027Zm0-87.708L144.352,80.451A206.951,206.951,0,0,1,234,49.151ZM464,256A207.775,207.775,0,0,1,266,463.761V48.239A207.791,207.791,0,0,1,464,256Z" class="ci-primary"/>
+</svg>
+
+              Auto
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon bi ms-auto d-none" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M199.066,456l-7.379-7.514-3.94-3.9-86.2-86.2.053-.055L17.936,274.665l97.614-97.613,83.565,83.565L398.388,61.344,496,158.958,296.729,358.229,285.469,369.6ZM146.6,358.183l52.459,52.46.1-.1.054.054,52.311-52.311,11.259-11.368L450.746,158.958,398.388,106.6,199.115,305.871,115.55,222.306,63.191,274.665l83.464,83.463Z" class="ci-primary"/>
+</svg>
+
+            </button>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item py-2 py-lg-1">
+        <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-body text-opacity-75"></div>
+        <hr class="d-lg-none my-2 text-white-50">
+      </li>
+    </ul>
+    <a class="btn btn-outline-primary d-lg-inline-block my-2 my-md-0 ms-md-3" href="https://coreui.io/docs/5.0/getting-started/download/">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon me-lg-2" viewBox="0 0 512 512">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="272 434.744 272 209.176 240 209.176 240 434.744 188.118 382.862 165.49 405.489 256 496 346.51 405.489 323.882 382.862 272 434.744" class="ci-primary"/>
+  <path fill="var(--ci-primary-color, currentColor)" d="M400,161.176c0-79.4-64.6-144-144-144s-144,64.6-144,144a96,96,0,0,0,0,192h80v-32H112a64,64,0,0,1,0-128h32v-32a112,112,0,0,1,224,0v32h32a64,64,0,0,1,0,128H320v32h80a96,96,0,0,0,0-192Z" class="ci-primary"/>
+</svg>
+
+      <span class="d-none d-lg-inline-block">Download</span>
+    </a>
+    <a class="btn btn-outline-primary d-lg-inline-block my-2 my-md-0 ms-md-3" href="https://coreui.io/about/services/?docs=coreui-header-button">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M262.254,128H365.717l67.933,64H496V160H446.35L378.416,96H120.829a25.235,25.235,0,0,0-18.177,7.786L41.367,168.147,16.093,168l-.186,32,39.1.227L123.782,128H217l-74.341,74.333a58.153,58.153,0,0,0,82.237,82.245l24.065-24.062,95.413,95.414L325.13,376.124a11.337,11.337,0,0,1-16.224.195l-54.16-54.16-22.627,22.628,39.988,39.987-18.649,19.057a11.335,11.335,0,0,1-16.118.086L182.916,349.5l-22.627,22.628,24.67,24.669-14.786,15.656a11.338,11.338,0,0,1-16.219.271L70.71,328H16v32H57.29l73.9,75.208.1.1A42.978,42.978,0,0,0,161.911,448c.212,0,.427,0,.639,0a42.994,42.994,0,0,0,30.887-13.576L207.6,419.428l7.117,7.117a43.021,43.021,0,0,0,30.636,12.693h.24a43.029,43.029,0,0,0,30.739-13.025l19.572-20a43.009,43.009,0,0,0,21.006,5.427c.179,0,.36,0,.539,0A43,43,0,0,0,348.3,398.2l20.382-21.39h62.044l40-40.809H496V304H457.278l-40,40.809H378.5L271.586,237.89,302.281,207.2,279.654,184.57l-77.388,77.379a26.153,26.153,0,0,1-36.983-36.988Z" class="ci-primary"></path>
+</svg>
+
+      Hire Us
+    </a>
+    <a class="btn btn-primary d-lg-inline-block my-2 my-md-0 ms-md-3" href="https://coreui.io/pricing/?framework=bootstrap&docs=coreui-header-button">
+      Buy CoreUI PRO
+    </a>
+  </nav>
+</header>
+
+      
+<div class="container-lg my-md-4 flex-grow-1">
+  <main class="docs-main order-1">
+    <div class="docs-intro ps-lg-4">
+      
+<nav class="breadcrumb small mb-5" aria-label="breadcrumb">
+  
+  
+  
+    
+    
+    
+      <a href='https://coreui.io/docs/5.0/components' class="breadcrumb-item">Components</a>
+    
+    
+  
+    
+    
+    
+    <span class="breadcrumb-item active">Loading buttons</span>
+    
+    
+  
+</nav>
+
+      
+  <div class="bg-danger bg-opacity-10 border-start border-start-5 border-start-danger p-4 pb-3 mb-5">
+    <h3 class="mb-4">CoreUI PRO Component</h3>
+    <p>
+      To use this component you must have a CoreUI PRO license. Buy the <a href="https://coreui.io/pricing/?framework=bootstrap&docs=coreui-banner-pro">CoreUI PRO</a> and get access to all PRO components, features, templates, and dedicated support.
+    </p>
+  </div>
+
+
+      <h1 class="docs-title" id="content">Loading Buttons</h1>
+      <p class="docs-lead">Buttons with built-in loading indicators. Indicate the loading state of the button bridging the gap between action and feedback.</p>
+      <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEAICKJY&placement=coreuiio" id="_carbonads_js"></script>
+
+      
+      <h2>Other frameworks</h2>
+      <p>CoreUI components are available as native Angular, React, and Vue components. To learn more please visit the following pages.</p>
+      <ul>
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+              
+                <li><a href="https://coreui.io/angular/docs/components/loading-button">Angular Loading Button</a></li>
+              
+            
+              
+            
+              
+                <li><a href="https://coreui.io/react/docs/components/loading-button/">React Loading Button</a></li>
+              
+            
+              
+                <li><a href="https://coreui.io/vue/docs/components/loading-button.html">Vue Loading Button</a></li>
+              
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+      
+    </div>
+
+    
+      <div class="docs-toc mt-4 mb-5 my-md-0 ps-xl-5 mb-lg-5 text-muted">
+        <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#basic-example">Basic example</a></li>
+    <li><a href="#spinners">Spinners</a>
+      <ul>
+        <li><a href="#border">Border</a></li>
+        <li><a href="#grow">Grow</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#options">Options</a></li>
+        <li><a href="#methods">Methods</a></li>
+        <li><a href="#events">Events</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    
+
+    <div class="docs-content ps-lg-4">
+      
+
+      <h2 id="basic-example">Basic example <a class="anchor-link" href="#basic-example" aria-label="Link to this section: Basic example"></a></h2>
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
+<button type="button" class="btn btn-primary btn-loading" data-coreui-timeout="2000" data-coreui-toggle="loading-button">Submit</button>
+<button type="button" class="btn btn-outline-primary btn-loading" data-coreui-toggle="loading-button">Submit</button>
+<button type="button" class="btn btn-ghost-primary btn-loading" data-coreui-toggle="loading-button">Submit</button>
+</div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
+        <small class="font-monospace text-body-secondary text-uppercase">html</small>
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
+              <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
+              <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
+            </svg>
+          </button>
+        </div>
+      </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary btn-loading&#34;</span> <span class="na">data-coreui-timeout</span><span class="o">=</span><span class="s">&#34;2000&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;loading-button&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-outline-primary btn-loading&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;loading-button&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-ghost-primary btn-loading&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;loading-button&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></span></span></code></pre></div></div>
+
+<h2 id="spinners">Spinners <a class="anchor-link" href="#spinners" aria-label="Link to this section: Spinners"></a></h2>
+<h3 id="border">Border <a class="anchor-link" href="#border" aria-label="Link to this section: Border"></a></h3>
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
+<button type="button" class="btn btn-info btn-loading" data-coreui-toggle="loading-button">Submit</button>
+<button type="button" class="btn btn-outline-success btn-loading" data-coreui-toggle="loading-button">Submit</button>
+<button type="button" class="btn btn-ghost-warning btn-loading" data-coreui-toggle="loading-button">Submit</button>
+</div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
+        <small class="font-monospace text-body-secondary text-uppercase">html</small>
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
+              <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
+              <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
+            </svg>
+          </button>
+        </div>
+      </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-info btn-loading&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;loading-button&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-outline-success btn-loading&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;loading-button&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-ghost-warning btn-loading&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;loading-button&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></span></span></code></pre></div></div>
+
+<h3 id="grow">Grow <a class="anchor-link" href="#grow" aria-label="Link to this section: Grow"></a></h3>
+<div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
+<button type="button" class="btn btn-info btn-loading" data-coreui-spinner-type="grow" data-coreui-toggle="loading-button">Submit</button>
+<button type="button" class="btn btn-outline-success btn-loading" data-coreui-spinner-type="grow" data-coreui-toggle="loading-button">Submit</button>
+<button type="button" class="btn btn-ghost-warning btn-loading" data-coreui-spinner-type="grow" data-coreui-toggle="loading-button">Submit</button>
+</div><div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-0 border-top border-bottom">
+        <small class="font-monospace text-body-secondary text-uppercase">html</small>
+        <div class="d-flex ms-auto">
+          <button type="button" class="btn-clipboard mt-0 me-0" title="Copy to clipboard">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16">
+              <polygon fill="var(--ci-primary-color, currentColor)" points="408 432 376 432 376 464 112 464 112 136 144 136 144 104 80 104 80 496 408 496 408 432" class="ci-primary"/>
+              <path fill="var(--ci-primary-color, currentColor)" d="M176,16V400H496V153.373L358.627,16ZM464,368H208V48H312V200H464Zm0-200H344V48h1.372L464,166.627Z" class="ci-primary"/>
+            </svg>
+          </button>
+        </div>
+      </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-info btn-loading&#34;</span> <span class="na">data-coreui-spinner-type</span><span class="o">=</span><span class="s">&#34;grow&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;loading-button&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-outline-success btn-loading&#34;</span> <span class="na">data-coreui-spinner-type</span><span class="o">=</span><span class="s">&#34;grow&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;loading-button&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-ghost-warning btn-loading&#34;</span> <span class="na">data-coreui-spinner-type</span><span class="o">=</span><span class="s">&#34;grow&#34;</span> <span class="na">data-coreui-toggle</span><span class="o">=</span><span class="s">&#34;loading-button&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span></span></span></code></pre></div></div>
+
+<h2 id="usage">Usage <a class="anchor-link" href="#usage" aria-label="Link to this section: Usage"></a></h2>
+<h3 id="options">Options <a class="anchor-link" href="#options" aria-label="Link to this section: Options"></a></h3>
+<p>As options can be passed via data attributes or JavaScript, you can append an option name to <code>data-coreui-</code>, as in <code>data-coreui-animation=&quot;{value}&quot;</code>. Make sure to change the case type of the option name from &ldquo;<em>camelCase</em>&rdquo; to &ldquo;<em>kebab-case</em>&rdquo; when passing the options via data attributes. For example, use <code>data-coreui-custom-class=&quot;beautifier&quot;</code> instead of <code>data-coreui-customClass=&quot;beautifier&quot;</code>.</p>
+<p>As of CoreUI 4.2.0, all components support an <strong>experimental</strong> reserved data attribute <code>data-coreui-config</code> that can house simple component configuration as a JSON string. When an element has <code>data-coreui-config='{&quot;delay&quot;:0, &quot;title&quot;:123}'</code> and <code>data-coreui-title=&quot;456&quot;</code> attributes, the final <code>title</code> value will be <code>456</code> and the separate data attributes will override values given on <code>data-coreui-config</code>. In addition, existing data attributes are able to house JSON values like <code>data-coreui-delay='{&quot;show&quot;:0,&quot;hide&quot;:150}'</code>.</p>
+
+<div class="table-responsive"><table class="table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disabledOnLoading</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>spinner</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>spinnerType</code></td>
+<td>string</td>
+<td><code>'border'</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td>boolean | number</td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+
+<h3 id="methods">Methods <a class="anchor-link" href="#methods" aria-label="Link to this section: Methods"></a></h3>
+<div class="table-responsive"><table class="table">
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start</code></td>
+<td>Starts loading.</td>
+</tr>
+<tr>
+<td><code>stop</code></td>
+<td>Stops loading.</td>
+</tr>
+<tr>
+<td><code>dispose</code></td>
+<td>Destroys an element&rsquo;s loading button. (Removes stored data on the DOM element)</td>
+</tr>
+<tr>
+<td><code>getInstance</code></td>
+<td>Static method which allows you to get the multi select instance associated with a DOM element.</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">myBtnLoading</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;btn-loading&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">myBtn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">coreui</span><span class="p">.</span><span class="nx">LoadingButton</span><span class="p">(</span><span class="nx">myBtnLoading</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">myBtn</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
+</span></span></code></pre></div><h3 id="events">Events <a class="anchor-link" href="#events" aria-label="Link to this section: Events"></a></h3>
+<p>Loading Button component exposes a few events for hooking into multi select functionality.</p>
+<div class="table-responsive"><table class="table">
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start.coreui.loading-button</code></td>
+<td>Fires immediately when the start method is called.</td>
+</tr>
+<tr>
+<td><code>stop.coreui.loading-button</code></td>
+<td>Fires immediately when the stop method is called.</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">myBtnLoading</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myBtnLoading&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">myBtnLoading</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;stop.coreui.loading-button&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// do something...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
+</span></span></code></pre></div>
+    </div>
+  </main>
+</div>
+
+
+      <footer class="footer p-3 p-md-5 mt-5 text-center text-sm-start">
+  <div class="container">
+    <ul class="docs-footer-links ps-0 mb-3">
+      <li class="d-inline-block"><a href="https://github.com/coreui/coreui">GitHub</a></li>
+      <li class="d-inline-block ms-3"><a href="https://twitter.com/core_ui">Twitter</a></li>
+      <li class="d-inline-block ms-3 ps-3 border-start border-2"><a href="https://coreui.io/angular/">CoreUI for Angular</a></li>
+      <li class="d-inline-block ms-3"><a href="https://coreui.io/react/">CoreUI for React.js</a></li>
+      <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
+    </ul>
+    <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
+    <p class="mb-0">Currently v5.0.0-alpha.1. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
+  </div>
+</footer>
+
+
+      
+  
+    </div>
+    <script src="https://coreui.io/docs/5.0/dist/js/coreui.bundle.min.js" integrity="sha384-SXlrEEDJbAKvqMVhGcYd15uBplq3FQq3qj2xbBa35z2D++k25xK2/UNKhKIhGyjU" crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+
+<script src="https://coreui.io/docs/5.0/assets/js/docs.min.js"></script>
+
+  </body>
+</html>

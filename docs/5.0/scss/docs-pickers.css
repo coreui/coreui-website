@@ -1,0 +1,621 @@
+div[dir="rtl"] .calendar {
+  --cui-calendar-table-margin: 0.5rem;
+  --cui-calendar-table-cell-size: 2.75rem;
+  --cui-calendar-nav-padding: 0.5rem;
+  --cui-calendar-nav-border-color: var(--cui-border-color);
+  --cui-calendar-nav-border: 1px solid var(--cui-calendar-nav-border-color);
+  --cui-calendar-nav-date-color: var(--cui-body-color);
+  --cui-calendar-nav-date-hover-color: var(--cui-primary);
+  --cui-calendar-nav-icon-width: 1rem;
+  --cui-calendar-nav-icon-height: 1rem;
+  --cui-calendar-nav-icon-double-next: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.38%29' points='95.314 447.313 72.686 424.687 245.373 252 72.686 79.313 95.314 56.687 290.627 252 95.314 447.313'%3e%3c/polygon%3e%3cpolygon fill='rgba%2837, 43, 54, 0.38%29' points='255.314 447.313 232.686 424.687 405.373 252 232.686 79.313 255.314 56.687 450.627 252 255.314 447.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-double-next-hover: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.95%29' points='95.314 447.313 72.686 424.687 245.373 252 72.686 79.313 95.314 56.687 290.627 252 95.314 447.313'%3e%3c/polygon%3e%3cpolygon fill='rgba%2837, 43, 54, 0.95%29' points='255.314 447.313 232.686 424.687 405.373 252 232.686 79.313 255.314 56.687 450.627 252 255.314 447.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-double-prev: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.38%29' points='416.686 447.313 221.373 252 416.686 56.687 439.314 79.313 266.627 252 439.314 424.687 416.686 447.313'%3e%3c/polygon%3e%3cpolygon fill='rgba%2837, 43, 54, 0.38%29' points='256.686 447.313 61.373 252 256.686 56.687 279.314 79.313 106.627 252 279.314 424.687 256.686 447.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-double-prev-hover: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.95%29' points='416.686 447.313 221.373 252 416.686 56.687 439.314 79.313 266.627 252 439.314 424.687 416.686 447.313'%3e%3c/polygon%3e%3cpolygon fill='rgba%2837, 43, 54, 0.95%29' points='256.686 447.313 61.373 252 256.686 56.687 279.314 79.313 106.627 252 279.314 424.687 256.686 447.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-next: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.38%29' points='179.313 451.313 156.687 428.687 329.372 256 156.687 83.313 179.313 60.687 374.627 256 179.313 451.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-next-hover: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.95%29' points='179.313 451.313 156.687 428.687 329.372 256 156.687 83.313 179.313 60.687 374.627 256 179.313 451.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-prev: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.38%29' points='324.687 451.313 129.373 256 324.687 60.687 347.313 83.313 174.628 256 347.313 428.687 324.687 451.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-prev-hover: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.95%29' points='324.687 451.313 129.373 256 324.687 60.687 347.313 83.313 174.628 256 347.313 428.687 324.687 451.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-cell-header-inner-color: var(--cui-secondary-color);
+  --cui-calendar-cell-hover-bg: var(--cui-tertiary-bg);
+  --cui-calendar-cell-disabled-color: var(--cui-tertiary-color);
+  --cui-calendar-cell-selected-color: #fff;
+  --cui-calendar-cell-selected-bg: var(--cui-primary);
+  --cui-calendar-cell-range-bg: rgba(var(--cui-primary-rgb), 0.125);
+  --cui-calendar-cell-range-hover-bg: rgba(var(--cui-primary-rgb), 0.25);
+  --cui-calendar-cell-range-hover-border-color: var(--cui-primary);
+  --cui-calendar-cell-today-color: var(--cui-#e55353);
+  font-weight: initial; }
+  div[dir="rtl"] .calendar table {
+    width: calc(var(--cui-calendar-table-cell-size) * 7);
+    margin: var(--cui-calendar-table-margin); }
+    div[dir="rtl"] .calendar table th,
+    div[dir="rtl"] .calendar table td {
+      width: var(--cui-calendar-table-cell-size); }
+  div[dir="rtl"] .calendar.months ~ .time-picker, div[dir="rtl"] .calendar.years ~ .time-picker {
+    display: none; }
+
+div[dir="rtl"] .calendars {
+  display: flex; }
+
+div[dir="rtl"] .calendar-nav {
+  display: flex;
+  align-items: baseline;
+  padding: var(--cui-calendar-nav-padding);
+  border-bottom: var(--cui-calendar-nav-border); }
+
+div[dir="rtl"] .calendar-nav-date {
+  flex: 1;
+  text-align: center; }
+  div[dir="rtl"] .calendar-nav-date .btn {
+    font-weight: 600;
+    color: var(--cui-calendar-nav-date-color); }
+    div[dir="rtl"] .calendar-nav-date .btn:hover {
+      color: var(--cui-calendar-nav-date-hover-color); }
+
+div[dir="rtl"] .calendar-nav-icon {
+  display: block;
+  width: var(--cui-calendar-nav-icon-width);
+  height: var(--cui-calendar-nav-icon-height);
+  transition: background-image 0.15s ease-in-out; }
+  @media (prefers-reduced-motion: reduce) {
+    div[dir="rtl"] .calendar-nav-icon {
+      transition: none; } }
+div[dir="rtl"] .calendar-nav-icon-double-next {
+  background-image: var(--cui-calendar-nav-icon-double-prev); }
+  div[dir="rtl"] .calendar-nav-icon-double-next:hover {
+    background-image: var(--cui-calendar-nav-icon-double-prev-hover); }
+
+div[dir="rtl"] .calendar-nav-icon-double-prev {
+  background-image: var(--cui-calendar-nav-icon-double-next); }
+  div[dir="rtl"] .calendar-nav-icon-double-prev:hover {
+    background-image: var(--cui-calendar-nav-icon-double-next-hover); }
+
+div[dir="rtl"] .calendar-nav-icon-next {
+  background-image: var(--cui-calendar-nav-icon-prev); }
+  div[dir="rtl"] .calendar-nav-icon-next:hover {
+    background-image: var(--cui-calendar-nav-icon-prev-hover); }
+
+div[dir="rtl"] .calendar-nav-icon-prev {
+  background-image: var(--cui-calendar-nav-icon-next); }
+  div[dir="rtl"] .calendar-nav-icon-prev:hover {
+    background-image: var(--cui-calendar-nav-icon-next-hover); }
+
+div[dir="rtl"] .calendar-header-cell-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--cui-calendar-table-cell-size);
+  font-weight: 600;
+  color: var(--cui-calendar-cell-header-inner-color); }
+
+div[dir="rtl"] .calendar-cell {
+  padding: 1px 0;
+  text-align: center; }
+  div[dir="rtl"] .calendar-cell:not(.disabled):not(.next):not(.previous):hover .calendar-cell-inner, div[dir="rtl"] .calendar-cell.clickable:hover .calendar-cell-inner {
+    cursor: pointer;
+    background-color: var(--cui-calendar-cell-hover-bg); }
+  div[dir="rtl"] .calendar-cell.today .calendar-cell-inner {
+    color: var(--cui-calendar-cell-today-color); }
+  div[dir="rtl"] .calendar-cell.disabled, div[dir="rtl"] .calendar-cell.next, div[dir="rtl"] .calendar-cell.previous .calendar-cell-inner {
+    color: var(--cui-calendar-cell-disabled-color); }
+  div[dir="rtl"] .calendar-cell.disabled .calendar-cell-inner {
+    cursor: not-allowed; }
+  div[dir="rtl"] .calendar-cell.range:not(.selected) .calendar-cell-inner {
+    background: var(--cui-calendar-cell-range-bg);
+    border-radius: 0; }
+  div[dir="rtl"] .calendar-cell.range:not(.selected):hover .calendar-cell-inner {
+    position: relative; }
+    div[dir="rtl"] .calendar-cell.range:not(.selected):hover .calendar-cell-inner::after {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      content: "";
+      background: var(--cui-calendar-cell-range-hover-bg);
+      border-radius: 0.375rem; }
+  div[dir="rtl"] .calendar-cell.range:not(.selected):first-child .calendar-cell-inner, div[dir="rtl"] .calendar-cell:not(.range) + .range .calendar-cell-inner {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem; }
+  div[dir="rtl"] .calendar-cell.range:not(.selected):last-child .calendar-cell-inner, div[dir="rtl"] .calendar-cell.range:not(.selected).last .calendar-cell-inner {
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem; }
+  div[dir="rtl"] .calendar-cell.range-hover .calendar-cell-inner {
+    position: relative; }
+    div[dir="rtl"] .calendar-cell.range-hover .calendar-cell-inner::before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      content: ""; }
+  div[dir="rtl"] .calendar-cell.range-hover .calendar-cell-inner::before, div[dir="rtl"] .calendar-cell.range-hover.selected .calendar-cell-inner::before {
+    border-top: 1px dashed var(--cui-calendar-cell-selected-bg);
+    border-bottom: 1px dashed var(--cui-calendar-cell-selected-bg);
+    border-radius: 0; }
+  div[dir="rtl"] .calendar-cell.range-hover:first-child .calendar-cell-inner::before, div[dir="rtl"] .calendar-cell:not(.range-hover) + .range-hover .calendar-cell-inner::before {
+    border-left: 1px dashed var(--cui-calendar-cell-selected-bg);
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem; }
+  div[dir="rtl"] .calendar-cell.range-hover:last-child .calendar-cell-inner::before, div[dir="rtl"] .calendar-cell.range-hover.last .calendar-cell-inner::before, div[dir="rtl"] .calendar-cell.range-hover + .range-hover:hover .calendar-cell-inner::before, div[dir="rtl"] .calendar-cell.range-hover:first-child:hover .calendar-cell-inner::before {
+    border-right: 1px dashed var(--cui-calendar-cell-selected-bg);
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem; }
+  div[dir="rtl"] .calendar-cell.range-hover.selected:hover .calendar-cell-inner::before {
+    border: 0; }
+  div[dir="rtl"] .calendar-cell.selected:not(.previous):not(.next) .calendar-cell-inner, div[dir="rtl"] .calendar-cell.selected:not(.previous):not(.next).start .calendar-cell-inner, div[dir="rtl"] .calendar-cell.selected:not(.previous):not(.next).end .calendar-cell-inner {
+    position: relative;
+    color: var(--cui-calendar-cell-selected-color);
+    background: var(--cui-calendar-cell-selected-bg); }
+  div[dir="rtl"] .calendar-cell.selected:not(.previous):not(.next).start .calendar-cell-inner::before, div[dir="rtl"] .calendar-cell.selected:not(.previous):not(.next).end .calendar-cell-inner::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    content: "";
+    background: var(--cui-calendar-cell-range-bg); }
+  div[dir="rtl"] .calendar-cell.selected:not(.previous):not(.next).start .calendar-cell-inner::before {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
+  div[dir="rtl"] .calendar-cell.selected:not(.previous):not(.next).end .calendar-cell-inner::before {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem; }
+
+div[dir="rtl"] .calendar-cell-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--cui-calendar-table-cell-size);
+  border-radius: 0.375rem; }
+
+div[dir="rtl"] .dark-theme .calendar,
+div[dir="rtl"] [data-coreui-theme="dark"] .calendar {
+  --cui-calendar-nav-icon-double-next: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%28170, 179, 197, 0.5%29' points='95.314 447.313 72.686 424.687 245.373 252 72.686 79.313 95.314 56.687 290.627 252 95.314 447.313'%3e%3c/polygon%3e%3cpolygon fill='rgba%28170, 179, 197, 0.5%29' points='255.314 447.313 232.686 424.687 405.373 252 232.686 79.313 255.314 56.687 450.627 252 255.314 447.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-double-next-hover: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='%23aab3c5' points='95.314 447.313 72.686 424.687 245.373 252 72.686 79.313 95.314 56.687 290.627 252 95.314 447.313'%3e%3c/polygon%3e%3cpolygon fill='%23aab3c5' points='255.314 447.313 232.686 424.687 405.373 252 232.686 79.313 255.314 56.687 450.627 252 255.314 447.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-double-prev: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%28170, 179, 197, 0.5%29' points='416.686 447.313 221.373 252 416.686 56.687 439.314 79.313 266.627 252 439.314 424.687 416.686 447.313'%3e%3c/polygon%3e%3cpolygon fill='rgba%28170, 179, 197, 0.5%29' points='256.686 447.313 61.373 252 256.686 56.687 279.314 79.313 106.627 252 279.314 424.687 256.686 447.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-double-prev-hover: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='%23aab3c5' points='416.686 447.313 221.373 252 416.686 56.687 439.314 79.313 266.627 252 439.314 424.687 416.686 447.313'%3e%3c/polygon%3e%3cpolygon fill='%23aab3c5' points='256.686 447.313 61.373 252 256.686 56.687 279.314 79.313 106.627 252 279.314 424.687 256.686 447.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-next: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%28170, 179, 197, 0.5%29' points='179.313 451.313 156.687 428.687 329.372 256 156.687 83.313 179.313 60.687 374.627 256 179.313 451.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-next-hover: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='%23aab3c5' points='179.313 451.313 156.687 428.687 329.372 256 156.687 83.313 179.313 60.687 374.627 256 179.313 451.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-prev: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%28170, 179, 197, 0.5%29' points='324.687 451.313 129.373 256 324.687 60.687 347.313 83.313 174.628 256 347.313 428.687 324.687 451.313'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-calendar-nav-icon-prev-hover: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='%23aab3c5' points='324.687 451.313 129.373 256 324.687 60.687 347.313 83.313 174.628 256 347.313 428.687 324.687 451.313'%3e%3c/polygon%3e%3c/svg%3e"); }
+
+div[dir="rtl"] .date-picker {
+  --cui-date-picker-zindex: 1000;
+  --cui-date-picker-font-family: ;
+  --cui-date-picker-font-size: 1rem;
+  --cui-date-picker-font-weight: 400;
+  --cui-date-picker-line-height: 1.5;
+  --cui-date-picker-color: var(--cui-body-color);
+  --cui-date-picker-bg: var(--cui-body-bg);
+  --cui-date-picker-box-shadow: inset 0 1px 2px rgba(8, 10, 12, 0.075);
+  --cui-date-picker-border-width: var(--cui-border-width);
+  --cui-date-picker-border-color: var(--cui-border-color);
+  --cui-date-picker-border-radius: 0.375rem;
+  --cui-date-picker-disabled-color: var(--cui-body-color);
+  --cui-date-picker-disabled-bg: var(--cui-secondary-bg);
+  --cui-date-picker-disabled-border-color: var(--cui-border-color);
+  --cui-date-picker-focus-color: var(--cui-body-color);
+  --cui-date-picker-focus-bg: var(--cui-body-bg);
+  --cui-date-picker-focus-border-color: #998fed;
+  --cui-date-picker-focus-box-shadow: 0 0 0 0.25rem rgba(50, 31, 219, 0.25);
+  --cui-date-picker-placeholder-color: var(--cui-secondary-color);
+  --cui-date-picker-padding-y: 0.375rem;
+  --cui-date-picker-padding-x: 0.75rem;
+  --cui-date-picker-indicator-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpath fill='rgba%2837, 43, 54, 0.38%29' d='M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z'%3e%3c/path%3e%3crect width='32' height='32' x='112' y='224' fill='rgba%2837, 43, 54, 0.38%29'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='224' fill='rgba%2837, 43, 54, 0.38%29'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='224' fill='rgba%2837, 43, 54, 0.38%29'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='224' fill='rgba%2837, 43, 54, 0.38%29'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='296' fill='rgba%2837, 43, 54, 0.38%29'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='296' fill='rgba%2837, 43, 54, 0.38%29'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='296' fill='rgba%2837, 43, 54, 0.38%29'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='296' fill='rgba%2837, 43, 54, 0.38%29'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='368' fill='rgba%2837, 43, 54, 0.38%29'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='368' fill='rgba%2837, 43, 54, 0.38%29'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='368' fill='rgba%2837, 43, 54, 0.38%29'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='368' fill='rgba%2837, 43, 54, 0.38%29'%3e%3c/rect%3e%3c/svg%3e");
+  --cui-date-picker-indicator-icon-bg-size: 1rem;
+  --cui-date-picker-cleaner-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.38%29' points='306.912 214.461 256 265.373 205.088 214.461 182.461 237.088 233.373 288 182.461 338.912 205.088 361.539 256 310.627 306.912 361.539 329.539 338.912 278.627 288 329.539 237.088 306.912 214.461'%3e%3c/polygon%3e%3cpath fill='rgba%2837, 43, 54, 0.38%29' d='M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z'%3e%3c/path%3e%3c/svg%3e");
+  --cui-date-picker-cleaner-icon-hover: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.95%29' points='306.912 214.461 256 265.373 205.088 214.461 182.461 237.088 233.373 288 182.461 338.912 205.088 361.539 256 310.627 306.912 361.539 329.539 338.912 278.627 288 329.539 237.088 306.912 214.461'%3e%3c/polygon%3e%3cpath fill='rgba%2837, 43, 54, 0.95%29%29' d='M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z'%3e%3c/path%3e%3c/svg%3e");
+  --cui-date-picker-cleaner-icon-bg-size: 1rem;
+  --cui-date-picker-separator-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.38%29' points='359.873 121.377 337.246 144.004 433.243 240.001 16 240.001 16 240.002 16 272.001 16 272.002 433.24 272.002 337.246 367.996 359.873 390.623 494.498 256 359.873 121.377'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-date-picker-separator-icon-rtl: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.38%29' points='497.333 239.999 80.092 239.999 176.087 144.004 153.46 121.377 18.837 256 153.46 390.623 176.087 367.996 80.09 271.999 497.333 271.999 497.333 239.999'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-date-picker-separator-icon-bg-size: 1rem;
+  --cui-date-picker-dropdown-bg: var(--cui-body-bg);
+  --cui-date-picker-dropdown-border-width: var(--cui-border-width);
+  --cui-date-picker-dropdown-border-color: var(--cui-border-color);
+  --cui-date-picker-dropdown-border-radius: var(--cui-border-radius);
+  --cui-date-picker-ranges-width: 10rem;
+  --cui-date-picker-ranges-padding: 0.5rem;
+  --cui-date-picker-ranges-border-width: 1px;
+  --cui-date-picker-ranges-border-color: var(--cui-border-color);
+  --cui-date-picker-timepicker-width: 20.25rem;
+  --cui-date-picker-timepicker-border-color: var(--cui-border-color);
+  --cui-date-picker-timepicker-border-top: 1px solid var(--cui-date-picker-timepicker-border-color);
+  --cui-date-picker-footer-padding: 0.5rem;
+  --cui-date-picker-footer-border-width: 1px;
+  --cui-date-picker-footer-border-color: var(--cui-border-color); }
+  div[dir="rtl"] .date-picker.is-invalid {
+    --cui-date-picker-border-color: #e55353 !important;
+    --cui-date-picker-indicator-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpath fill='%23e55353' d='M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z'%3e%3c/path%3e%3crect width='32' height='32' x='112' y='224' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='224' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='224' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='224' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='296' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='296' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='296' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='296' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='368' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='368' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='368' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='368' fill='%23e55353'%3e%3c/rect%3e%3c/svg%3e") !important; }
+  div[dir="rtl"] .date-picker.is-valid {
+    --cui-date-picker-border-color: #2eb85c !important;
+    --cui-date-picker-indicator-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpath fill='%232eb85c' d='M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z'%3e%3c/path%3e%3crect width='32' height='32' x='112' y='224' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='224' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='224' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='224' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='296' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='296' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='296' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='296' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='368' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='368' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='368' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='368' fill='%232eb85c'%3e%3c/rect%3e%3c/svg%3e") !important; }
+
+div[dir="rtl"] .date-picker-input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+  background-color: var(--cui-date-picker-bg);
+  background-clip: padding-box;
+  border: var(--cui-date-picker-border-width) solid var(--cui-date-picker-border-color);
+  border-radius: var(--cui-date-picker-border-radius); }
+  div[dir="rtl"] .date-picker-input-group:hover .date-picker-input:not(:placeholder-shown) ~ .date-picker-indicator:not(:last-child) {
+    display: none; }
+  div[dir="rtl"] .date-picker-input-group:hover .date-picker-input:not(:placeholder-shown) ~ .date-picker-cleaner {
+    display: flex; }
+  .date-picker div[dir="rtl"] .date-picker-input-group {
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+    @media (prefers-reduced-motion: reduce) {
+      .date-picker div[dir="rtl"] .date-picker-input-group {
+        transition: none; } }
+  .date-picker.disabled div[dir="rtl"] .date-picker-input-group {
+    --cui-date-picker-border-color: var(--cui-date-picker-disabled-border-color);
+    background-color: var(--cui-date-picker-disabled-bg); }
+  .date-picker.show div[dir="rtl"] .date-picker-input-group {
+    background-color: var(--cui-date-picker-focus-bg);
+    border-color: var(--cui-date-picker-focus-border-color);
+    outline: 0;
+    box-shadow: var(--cui-date-picker-focus-box-shadow); }
+
+div[dir="rtl"] .date-picker-input {
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+  padding: var(--cui-date-picker-padding-y) var(--cui-date-picker-padding-x);
+  font-family: var(--cui-date-picker-font-family);
+  font-size: var(--cui-date-picker-font-size);
+  font-weight: var(--cui-date-picker-font-weight);
+  line-height: var(--cui-date-picker-line-height);
+  color: var(--cui-date-picker-color);
+  background: transparent;
+  border: 0;
+  appearance: none; }
+  .date-picker.show div[dir="rtl"] .date-picker-input {
+    color: var(--cui-date-picker-focus-color); }
+  div[dir="rtl"] .date-picker-input:disabled {
+    color: var(--cui-date-picker-disabled-color); }
+  div[dir="rtl"] .date-picker-input:focus {
+    z-index: 5;
+    outline: 0; }
+  div[dir="rtl"] .date-picker-input::placeholder {
+    color: var(--cui-date-picker-placeholder-color);
+    opacity: 1; }
+  div[dir="rtl"] .date-picker-input.hover {
+    color: var(--cui-date-picker-placeholder-color); }
+
+div[dir="rtl"] .date-picker-cleaner,
+div[dir="rtl"] .date-picker-separator,
+div[dir="rtl"] .date-picker-indicator {
+  width: 2.5rem;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+div[dir="rtl"] .date-picker-cleaner {
+  display: none;
+  background-image: var(--cui-date-picker-cleaner-icon);
+  background-size: var(--cui-date-picker-cleaner-icon-bg-size); }
+  div[dir="rtl"] .date-picker-cleaner:hover {
+    background-image: var(--cui-date-picker-cleaner-icon-hover); }
+
+div[dir="rtl"] .date-picker-indicator {
+  background-image: var(--cui-date-picker-indicator-icon);
+  background-size: var(--cui-date-picker-indicator-icon-bg-size); }
+
+div[dir="rtl"] .date-picker-separator {
+  background-image: var(--cui-date-picker-separator-icon-rtl);
+  background-size: var(--cui-date-picker-separator-icon-bg-size); }
+
+div[dir="rtl"] .date-picker-dropdown {
+  position: absolute;
+  z-index: var(--cui-date-picker-zindex);
+  display: none;
+  width: min-content;
+  background-color: var(--cui-date-picker-dropdown-bg);
+  background-clip: padding-box;
+  border: var(--cui-date-picker-dropdown-border-width) solid var(--cui-date-picker-dropdown-border-color);
+  border-radius: var(--cui-date-picker-dropdown-border-radius); }
+  .date-picker.show div[dir="rtl"] .date-picker-dropdown {
+    display: block; }
+
+div[dir="rtl"] .date-picker-body {
+  display: grid;
+  grid-template-areas: "ranges calendars" "ranges timepickers";
+  grid-template-rows: auto;
+  grid-template-columns: auto auto; }
+
+div[dir="rtl"] .date-picker-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--cui-date-picker-footer-padding);
+  border-top: var(--cui-date-picker-footer-border-width) solid var(--cui-date-picker-footer-border-color); }
+  div[dir="rtl"] .date-picker-footer .btn + .btn {
+    margin-inline-start: .5rem; }
+
+div[dir="rtl"] .date-picker-ranges {
+  grid-area: ranges;
+  width: var(--cui-date-picker-ranges-width);
+  padding: var(--cui-date-picker-ranges-padding);
+  border-right: var(--cui-date-picker-ranges-border-width) solid var(--cui-date-picker-ranges-border-color); }
+
+div[dir="rtl"] .date-picker-calendars {
+  display: flex;
+  grid-area: calendars; }
+  div[dir="rtl"] .date-picker-calendars .date-picker-calendar:not(:last-child) .calendar-navigation-next {
+    visibility: hidden; }
+  div[dir="rtl"] .date-picker-calendars .date-picker-calendar:not(:first-child) .calendar-navigation-prev {
+    visibility: hidden; }
+
+div[dir="rtl"] .date-picker-timepickers {
+  display: flex;
+  flex-wrap: wrap;
+  grid-area: timepickers;
+  justify-content: space-between;
+  border-top: var(--cui-date-picker-timepicker-border-top); }
+  div[dir="rtl"] .date-picker-timepickers .time-picker {
+    width: var(--cui-date-picker-timepicker-width); }
+  @media (max-width: 767.98px) {
+    div[dir="rtl"] .date-picker-timepickers {
+      display: block; }
+      div[dir="rtl"] .date-picker-timepickers .time-picker {
+        width: 100%; }
+        div[dir="rtl"] .date-picker-timepickers .time-picker + .time-picker {
+          border-top: var(--cui-date-picker-timepicker-border-top); } }
+div[dir="rtl"] .date-picker-sm {
+  --cui-date-picker-border-radius: 0.25rem;
+  --cui-date-picker-padding-y: 0.25rem;
+  --cui-date-picker-padding-x: 0.5rem;
+  --cui-date-picker-padding-x: 0.5rem;
+  --cui-date-picker-cleaner-icon-bg-size: 0.875rem;
+  --cui-date-picker-indicator-icon-bg-size: 0.875rem;
+  --cui-date-picker-separator-icon-bg-size: 0.875rem; }
+
+div[dir="rtl"] .date-picker-lg {
+  --cui-date-picker-border-radius: 0.5rem;
+  --cui-date-picker-padding-y: 0.5rem;
+  --cui-date-picker-padding-x: 1rem;
+  --cui-date-picker-cleaner-icon-bg-size: 1.25rem;
+  --cui-date-picker-indicator-icon-bg-size: 1.25rem;
+  --cui-date-picker-separator-icon-bg-size: 1.25rem; }
+
+div[dir="rtl"] .dark-theme .date-picker,
+div[dir="rtl"] [data-coreui-theme="dark"] .date-picker {
+  --cui-date-picker-cleaner-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%28170, 179, 197, 0.5%29' points='306.912 214.461 256 265.373 205.088 214.461 182.461 237.088 233.373 288 182.461 338.912 205.088 361.539 256 310.627 306.912 361.539 329.539 338.912 278.627 288 329.539 237.088 306.912 214.461'%3e%3c/polygon%3e%3cpath fill='rgba%28170, 179, 197, 0.5%29' d='M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z'%3e%3c/path%3e%3c/svg%3e");
+  --cui-date-picker-cleaner-icon-hover: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='%23aab3c5' points='306.912 214.461 256 265.373 205.088 214.461 182.461 237.088 233.373 288 182.461 338.912 205.088 361.539 256 310.627 306.912 361.539 329.539 338.912 278.627 288 329.539 237.088 306.912 214.461'%3e%3c/polygon%3e%3cpath fill='%23aab3c5' d='M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z'%3e%3c/path%3e%3c/svg%3e");
+  --cui-date-picker-indicator-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpath fill='rgba%28170, 179, 197, 0.5%29' d='M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z'%3e%3c/path%3e%3crect width='32' height='32' x='112' y='224' fill='rgba%28170, 179, 197, 0.5%29'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='224' fill='rgba%28170, 179, 197, 0.5%29'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='224' fill='rgba%28170, 179, 197, 0.5%29'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='224' fill='rgba%28170, 179, 197, 0.5%29'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='296' fill='rgba%28170, 179, 197, 0.5%29'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='296' fill='rgba%28170, 179, 197, 0.5%29'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='296' fill='rgba%28170, 179, 197, 0.5%29'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='296' fill='rgba%28170, 179, 197, 0.5%29'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='368' fill='rgba%28170, 179, 197, 0.5%29'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='368' fill='rgba%28170, 179, 197, 0.5%29'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='368' fill='rgba%28170, 179, 197, 0.5%29'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='368' fill='rgba%28170, 179, 197, 0.5%29'%3e%3c/rect%3e%3c/svg%3e");
+  --cui-date-picker-indicator-invalid-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpath fill='%23e55353' d='M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z'%3e%3c/path%3e%3crect width='32' height='32' x='112' y='224' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='224' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='224' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='224' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='296' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='296' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='296' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='296' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='368' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='368' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='368' fill='%23e55353'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='368' fill='%23e55353'%3e%3c/rect%3e%3c/svg%3e");
+  --cui-date-picker-indicator-valid-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpath fill='%232eb85c' d='M472,96H384V40H352V96H160V40H128V96H40a24.028,24.028,0,0,0-24,24V456a24.028,24.028,0,0,0,24,24H472a24.028,24.028,0,0,0,24-24V120A24.028,24.028,0,0,0,472,96Zm-8,352H48V128h80v40h32V128H352v40h32V128h80Z'%3e%3c/path%3e%3crect width='32' height='32' x='112' y='224' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='224' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='224' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='224' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='296' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='296' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='296' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='296' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='112' y='368' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='200' y='368' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='280' y='368' fill='%232eb85c'%3e%3c/rect%3e%3crect width='32' height='32' x='368' y='368' fill='%232eb85c'%3e%3c/rect%3e%3c/svg%3e");
+  --cui-date-picker-separator-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%28170, 179, 197, 0.5%29' points='359.873 121.377 337.246 144.004 433.243 240.001 16 240.001 16 240.002 16 272.001 16 272.002 433.24 272.002 337.246 367.996 359.873 390.623 494.498 256 359.873 121.377'%3e%3c/polygon%3e%3c/svg%3e");
+  --cui-date-picker-separator-icon-rtl: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%28170, 179, 197, 0.5%29' points='497.333 239.999 80.092 239.999 176.087 144.004 153.46 121.377 18.837 256 153.46 390.623 176.087 367.996 80.09 271.999 497.333 271.999 497.333 239.999'%3e%3c/polygon%3e%3c/svg%3e"); }
+
+div[dir="rtl"] .time-picker {
+  --cui-time-picker-zindex: 1000;
+  --cui-time-picker-font-family: ;
+  --cui-time-picker-font-size: 1rem;
+  --cui-time-picker-font-weight: 400;
+  --cui-time-picker-line-height: 1.5;
+  --cui-time-picker-color: var(--cui-body-color);
+  --cui-time-picker-bg: var(--cui-body-bg);
+  --cui-time-picker-box-shadow: inset 0 1px 2px rgba(8, 10, 12, 0.075);
+  --cui-time-picker-border-width: var(--cui-border-width);
+  --cui-time-picker-border-color: var(--cui-border-color);
+  --cui-time-picker-border-radius: var(--cui-border-radius);
+  --cui-time-picker-disabled-color: var(--cui-body-color);
+  --cui-time-picker-disabled-bg: var(--cui-secondary-bg);
+  --cui-time-picker-disabled-border-color: var(--cui-border-color);
+  --cui-time-picker-focus-color: var(--cui-body-color);
+  --cui-time-picker-focus-bg: var(--cui-body-bg);
+  --cui-time-picker-focus-border-color: #998fed;
+  --cui-time-picker-focus-box-shadow: 0 0 0 0.25rem rgba(50, 31, 219, 0.25);
+  --cui-time-picker-placeholder-color: var(--cui-secondary-color);
+  --cui-time-picker-padding-y: 0.375rem;
+  --cui-time-picker-padding-x: 0.75rem;
+  --cui-time-picker-indicator-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.38%29' points='271.514 95.5 239.514 95.5 239.514 273.611 355.127 328.559 368.864 299.657 271.514 253.389 271.514 95.5'%3e%3c/polygon%3e%3cpath fill='rgba%2837, 43, 54, 0.38%29' d='M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16Zm0,448C141.125,464,48,370.875,48,256S141.125,48,256,48s208,93.125,208,208S370.875,464,256,464Z'%3e%3c/path%3e%3c/svg%3e");
+  --cui-time-picker-indicator-icon-bg-size: 1rem;
+  --cui-time-picker-cleaner-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.38%29' points='348.071 141.302 260.308 229.065 172.545 141.302 149.917 163.929 237.681 251.692 149.917 339.456 172.545 362.083 260.308 274.32 348.071 362.083 370.699 339.456 282.935 251.692 370.699 163.929 348.071 141.302'%3e%3c/polygon%3e%3cpath fill='rgba%2837, 43, 54, 0.38%29' d='M425.706,86.294A240,240,0,0,0,86.294,425.706,240,240,0,0,0,425.706,86.294ZM256,464C141.309,464,48,370.691,48,256S141.309,48,256,48s208,93.309,208,208S370.691,464,256,464Z'%3e%3c/path%3e%3c/svg%3e");
+  --cui-time-picker-cleaner-icon-hover: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%2837, 43, 54, 0.95%29' points='348.071 141.302 260.308 229.065 172.545 141.302 149.917 163.929 237.681 251.692 149.917 339.456 172.545 362.083 260.308 274.32 348.071 362.083 370.699 339.456 282.935 251.692 370.699 163.929 348.071 141.302'%3e%3c/polygon%3e%3cpath fill='rgba%2837, 43, 54, 0.95%29' d='M425.706,86.294A240,240,0,0,0,86.294,425.706,240,240,0,0,0,425.706,86.294ZM256,464C141.309,464,48,370.691,48,256S141.309,48,256,48s208,93.309,208,208S370.691,464,256,464Z'%3e%3c/path%3e%3c/svg%3e");
+  --cui-time-picker-cleaner-icon-bg-size: 1rem;
+  --cui-time-picker-body-padding: 0.5rem;
+  --cui-time-picker-footer-border-width: 1px;
+  --cui-time-picker-footer-border-color: var(--cui-border-color);
+  --cui-time-picker-footer-padding: 0.5rem;
+  --cui-time-picker-dropdown-bg: var(--cui-body-bg);
+  --cui-time-picker-dropdown-border-width: var(--cui-border-width);
+  --cui-time-picker-dropdown-border-color: var(--cui-border-color);
+  --cui-time-picker-dropdown-border-radius: var(--cui-border-radius);
+  --cui-time-picker-roll-col-border-width: var(--cui-border-width);
+  --cui-time-picker-roll-col-border-color: var(--cui-border-color);
+  --cui-time-picker-roll-cell-selected-color: var(--cui-white);
+  --cui-time-picker-roll-cell-selected-bg: var(--cui-primary);
+  --cui-time-picker-inline-select-font-size: 0.875rem;
+  --cui-time-picker-inline-select-color: var(--cui-body-color);
+  --cui-time-picker-inline-select-padding-y: 0.25rem;
+  --cui-time-picker-inline-select-padding-x: 0.5rem;
+  --cui-time-picker-inline-select-disabled-color: var(--cui-body-color); }
+  div[dir="rtl"] .time-picker.is-invalid {
+    --cui-time-picker-border-color: #e55353 !important;
+    --cui-time-picker-indicator-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='%23e55353' points='271.514 95.5 239.514 95.5 239.514 273.611 355.127 328.559 368.864 299.657 271.514 253.389 271.514 95.5'%3e%3c/polygon%3e%3cpath fill='%23e55353' d='M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16Zm0,448C141.125,464,48,370.875,48,256S141.125,48,256,48s208,93.125,208,208S370.875,464,256,464Z'%3e%3c/path%3e%3c/svg%3e") !important; }
+  div[dir="rtl"] .time-picker.is-valid {
+    --cui-time-picker-border-color: #2eb85c !important;
+    --cui-time-picker-indicator-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='%232eb85c' points='271.514 95.5 239.514 95.5 239.514 273.611 355.127 328.559 368.864 299.657 271.514 253.389 271.514 95.5'%3e%3c/polygon%3e%3cpath fill='%232eb85c' d='M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16Zm0,448C141.125,464,48,370.875,48,256S141.125,48,256,48s208,93.125,208,208S370.875,464,256,464Z'%3e%3c/path%3e%3c/svg%3e") !important; }
+
+div[dir="rtl"] .time-picker-input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+  background-color: var(--cui-time-picker-bg);
+  background-clip: padding-box;
+  border: var(--cui-time-picker-border-width) solid var(--cui-time-picker-border-color);
+  border-radius: var(--cui-time-picker-border-radius); }
+  div[dir="rtl"] .time-picker-input-group:hover .time-picker-input:not(:placeholder-shown) ~ .time-picker-indicator:not(:last-child) {
+    display: none; }
+  div[dir="rtl"] .time-picker-input-group:hover .time-picker-input:not(:placeholder-shown) ~ .time-picker-cleaner {
+    display: flex; }
+  .time-picker div[dir="rtl"] .time-picker-input-group {
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+    @media (prefers-reduced-motion: reduce) {
+      .time-picker div[dir="rtl"] .time-picker-input-group {
+        transition: none; } }
+  .time-picker.disabled div[dir="rtl"] .time-picker-input-group {
+    background-color: var(--cui-time-picker-disabled-bg);
+    border-color: var(--cui-time-picker-disabled-border-color); }
+  .time-picker.show div[dir="rtl"] .time-picker-input-group {
+    background-color: var(--cui-time-picker-focus-bg);
+    border-color: var(--cui-time-picker-focus-border-color);
+    outline: 0;
+    box-shadow: var(--cui-time-picker-focus-box-shadow); }
+
+div[dir="rtl"] .time-picker-input {
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+  padding: var(--cui-time-picker-padding-y) var(--cui-time-picker-padding-x);
+  font-family: var(--cui-time-picker-font-family);
+  font-size: var(--cui-time-picker-font-size);
+  font-weight: var(--cui-time-picker-font-weight);
+  line-height: var(--cui-time-picker-line-height);
+  color: var(--cui-time-picker-color);
+  background: transparent;
+  border: 0;
+  appearance: none; }
+  .time-picker.show div[dir="rtl"] .time-picker-input {
+    color: var(--cui-time-picker-focus-color); }
+  div[dir="rtl"] .time-picker-input:disabled {
+    color: var(--cui-time-picker-disabled-color); }
+  div[dir="rtl"] .time-picker-input:focus {
+    z-index: 5;
+    outline: 0; }
+  div[dir="rtl"] .time-picker-input::placeholder {
+    color: var(--cui-time-picker-placeholder-color);
+    opacity: 1; }
+  div[dir="rtl"] .time-picker-input.hover {
+    color: var(--cui-time-picker-placeholder-color); }
+
+div[dir="rtl"] .time-picker-cleaner,
+div[dir="rtl"] .time-picker-indicator {
+  width: 2.5rem;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+div[dir="rtl"] .time-picker-cleaner {
+  display: none;
+  background-image: var(--cui-time-picker-cleaner-icon);
+  background-size: var(--cui-time-picker-cleaner-icon-bg-size); }
+  div[dir="rtl"] .time-picker-cleaner:hover {
+    background-image: var(--cui-time-picker-cleaner-icon-hover); }
+
+div[dir="rtl"] .time-picker-indicator {
+  background-image: var(--cui-time-picker-indicator-icon);
+  background-size: var(--cui-time-picker-indicator-icon-bg-size); }
+
+div[dir="rtl"] .time-picker-dropdown {
+  position: absolute;
+  z-index: var(--cui-time-picker-zindex);
+  display: none;
+  width: min-content;
+  background-color: var(--cui-time-picker-dropdown-bg);
+  background-clip: padding-box;
+  border: var(--cui-time-picker-dropdown-border-width) solid var(--cui-time-picker-dropdown-border-color);
+  border-radius: var(--cui-time-picker-dropdown-border-radius); }
+  .time-picker.show div[dir="rtl"] .time-picker-dropdown {
+    display: block; }
+
+div[dir="rtl"] .time-picker-body {
+  display: flex;
+  align-items: center;
+  padding: var(--cui-time-picker-body-padding); }
+
+div[dir="rtl"] .time-picker-inline-icon {
+  display: block;
+  width: 40px;
+  height: 1.25rem;
+  background-image: var(--cui-time-picker-indicator-icon);
+  background-repeat: no-repeat;
+  background-position: center; }
+
+div[dir="rtl"] .time-picker-inline-select {
+  padding: var(--cui-time-picker-inline-select-padding-y) var(--cui-time-picker-inline-select-padding-x);
+  color: var(--cui-time-picker-inline-select-color);
+  text-align: right;
+  background-color: transparent;
+  border: 0;
+  font-size: var(--cui-time-picker-inline-select-font-size);
+  appearance: none;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */ }
+  div[dir="rtl"] .time-picker-inline-select::-webkit-scrollbar {
+    width: 10px; }
+  div[dir="rtl"] .time-picker-inline-select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 var(--cui-time-picker-inline-select-color); }
+  div[dir="rtl"] .time-picker-inline-select:disabled {
+    color: var(--cui-time-picker-inline-select-disabled-color); }
+
+div[dir="rtl"] .time-picker-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--cui-time-picker-footer-padding);
+  border-top: var(--cui-time-picker-footer-border-width) solid var(--cui-time-picker-footer-border-color); }
+  div[dir="rtl"] .time-picker-footer .btn + .btn {
+    margin-inline-start: .5rem; }
+
+div[dir="rtl"] .time-picker-roll {
+  padding: 0;
+  overflow: hidden;
+  border-radius: inherit; }
+
+div[dir="rtl"] .time-picker-roll-col {
+  height: calc(8 * 32px);
+  overflow: scroll;
+  border-right: var(--cui-time-picker-roll-col-border-width) solid var(--cui-time-picker-roll-col-border-color);
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */ }
+  div[dir="rtl"] .time-picker-roll-col::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */ }
+
+div[dir="rtl"] .time-picker-roll-cell {
+  width: 50px;
+  height: 32px;
+  padding: 0 1rem 0 0.5rem;
+  line-height: 32px; }
+  div[dir="rtl"] .time-picker-roll-cell.selected {
+    color: var(--cui-time-picker-roll-cell-selected-color);
+    background: var(--cui-time-picker-roll-cell-selected-bg); }
+  div[dir="rtl"] .time-picker-roll-cell:last-child::after {
+    display: block;
+    height: calc(7 * 32px);
+    content: ""; }
+
+div[dir="rtl"] .time-picker-sm {
+  --cui-time-picker-border-radius: var(--cui-border-radius-sm);
+  --cui-time-picker-padding-y: 0.25rem;
+  --cui-time-picker-padding-x: 0.5rem;
+  --cui-time-picker-cleaner-icon-bg-size: 0.875rem;
+  --cui-time-picker-indicator-icon-bg-size: 0.875rem; }
+
+div[dir="rtl"] .time-picker-lg {
+  --cui-time-picker-border-radius: var(--cui-border-radius-lg);
+  --cui-time-picker-padding-y: 0.5rem;
+  --cui-time-picker-padding-x: 1rem;
+  --cui-time-picker-cleaner-icon-bg-size: 1.25rem;
+  --cui-time-picker-indicator-icon-bg-size: 1.25rem; }
+
+div[dir="rtl"] .dark-theme .time-picker,
+div[dir="rtl"] [data-coreui-theme="dark"] .time-picker {
+  --cui-time-picker-cleaner-icon: url("data:image/svg+ xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'><polygon fill='rgba(170, 179, 197, 0.5)' points='348.071 141.302 260.308 229.065 172.545 141.302 149.917 163.929 237.681 251.692 149.917 339.456 172.545 362.083 260.308 274.32 348.071 362.083 370.699 339.456 282.935 251.692 370.699 163.929 348.071 141.302'></polygon><path fill='rgba(170, 179, 197, 0.5)' d='M425.706,86.294A240,240,0,0,0,86.294,425.706,240,240,0,0,0,425.706,86.294ZM256,464C141.309,464,48,370.691,48,256S141.309,48,256,48s208,93.309,208,208S370.691,464,256,464Z'></path></svg>");
+  --cui-time-picker-cleaner-icon-hover: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='%23aab3c5  ts='348.071 141.302 260.308 229.065 172.545 141.302 149.917 163.929 237.681 251.692 149.917 339.456 172.545 362.083 260.308 274.32 348.071 362.083 370.699 339.456 282.935 251.692 370.699 163.929 348.071 141.302'%3e%3c/polygon%3e%3cpath fill='%23aab3c5  425.706,86.294A240,240,0,0,0,86.294,425.706,240,240,0,0,0,425.706,86.294ZM256,464C141.309,464,48,370.691,48,256S141.309,48,256,48s208,93.309,208,208S370.691,464,256,464Z'%3e%3c/path%3e%3c/svg%3e");
+  --cui-time-picker-indicator-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='rgba%28170, 179, 197, 0.5%29' points='271.514 95.5 239.514 95.5 239.514 273.611 355.127 328.559 368.864 299.657 271.514 253.389 271.514 95.5'%3e%3c/polygon%3e%3cpath fill='rgba%28170, 179, 197, 0.5%29' d='M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16Zm0,448C141.125,464,48,370.875,48,256S141.125,48,256,48s208,93.125,208,208S370.875,464,256,464Z'%3e%3c/path%3e%3c/svg%3e");
+  --cui-time-picker-indicator-invalid-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='%23ea868f' points='271.514 95.5 239.514 95.5 239.514 273.611 355.127 328.559 368.864 299.657 271.514 253.389 271.514 95.5'%3e%3c/polygon%3e%3cpath fill='%23ea868f' d='M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16Zm0,448C141.125,464,48,370.875,48,256S141.125,48,256,48s208,93.125,208,208S370.875,464,256,464Z'%3e%3c/path%3e%3c/svg%3e");
+  --cui-time-picker-indicator-valid-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' role='img'%3e%3cpolygon fill='%2375b798' points='271.514 95.5 239.514 95.5 239.514 273.611 355.127 328.559 368.864 299.657 271.514 253.389 271.514 95.5'%3e%3c/polygon%3e%3cpath fill='%2375b798' d='M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16Zm0,448C141.125,464,48,370.875,48,256S141.125,48,256,48s208,93.125,208,208S370.875,464,256,464Z'%3e%3c/path%3e%3c/svg%3e"); }
