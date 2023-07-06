@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-8a1df436","path":"/api/form/CInputGroupText.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CInputGroupText","slug":"cinputgrouptext","link":"#cinputgrouptext","children":[]}],"filePathRelative":"api/form/CInputGroupText.api.md"}');export{t as data};

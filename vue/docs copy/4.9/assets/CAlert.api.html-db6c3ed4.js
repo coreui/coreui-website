@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-418dd4b3","path":"/api/alert/CAlert.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CAlert","slug":"calert","link":"#calert","children":[]}],"filePathRelative":"api/alert/CAlert.api.md"}');export{e as data};

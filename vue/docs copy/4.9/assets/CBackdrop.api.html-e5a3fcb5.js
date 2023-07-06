@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-5f72855f","path":"/api/backdrop/CBackdrop.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CBackdrop","slug":"cbackdrop","link":"#cbackdrop","children":[]}],"filePathRelative":"api/backdrop/CBackdrop.api.md"}');export{a as data};

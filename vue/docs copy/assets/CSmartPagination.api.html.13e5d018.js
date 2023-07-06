@@ -1,1 +1,0 @@
-const a={key:"v-4a90d34a",path:"/api/smart-pagination/CSmartPagination.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CSmartPagination",slug:"csmartpagination",children:[]}],git:{updatedTime:1673891223e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:1}]}};export{a as data};

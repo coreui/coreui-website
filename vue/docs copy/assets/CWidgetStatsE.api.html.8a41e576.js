@@ -1,1 +1,0 @@
-const t={key:"v-7fb60fae",path:"/api/widgets/CWidgetStatsE.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CWidgetStatsE",slug:"cwidgetstatse",children:[]}],git:{updatedTime:1635168931e3,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:2}]}};export{t as data};

@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-50cda8e2","path":"/api/calendar/CCalendar.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CCalendar","slug":"ccalendar","link":"#ccalendar","children":[]}],"filePathRelative":"api/calendar/CCalendar.api.md"}');export{a as data};

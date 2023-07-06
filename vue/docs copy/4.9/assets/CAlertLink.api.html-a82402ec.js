@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-b97b0a4e","path":"/api/alert/CAlertLink.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CAlertLink","slug":"calertlink","link":"#calertlink","children":[]}],"filePathRelative":"api/alert/CAlertLink.api.md"}');export{e as data};

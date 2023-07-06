@@ -1,1 +1,0 @@
-const a={key:"v-3dfa00eb",path:"/api/navbar/CNavbar.api.html",title:"",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:3,title:"CNavbar",slug:"cnavbar",children:[]}],git:{updatedTime:163570725e4,contributors:[{name:"\u0141ukasz Holeczek",email:"lukasz@holeczek.pl",commits:3}]}};export{a as data};

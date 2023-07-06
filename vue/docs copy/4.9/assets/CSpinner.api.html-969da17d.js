@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-f7d941da","path":"/api/spinner/CSpinner.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CSpinner","slug":"cspinner","link":"#cspinner","children":[]}],"filePathRelative":"api/spinner/CSpinner.api.md"}');export{e as data};
