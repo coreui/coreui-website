@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-84b14912","path":"/api/multi-select/CMultiSelectNativeSelect.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CMultiSelectGroupOption","slug":"cmultiselectgroupoption","link":"#cmultiselectgroupoption","children":[]}],"filePathRelative":"api/multi-select/CMultiSelectNativeSelect.api.md"}');export{e as data};

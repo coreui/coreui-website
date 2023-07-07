@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-0b0b18a4","path":"/api/table/CTableHeaderCell.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CTableHeaderCell","slug":"ctableheadercell","link":"#ctableheadercell","children":[]}],"filePathRelative":"api/table/CTableHeaderCell.api.md"}');export{e as data};

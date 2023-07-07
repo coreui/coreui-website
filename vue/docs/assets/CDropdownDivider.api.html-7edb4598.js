@@ -1,4 +1,0 @@
-import{_ as n,o as s,c as o,e}from"./app-77034e43.js";const a={},r=e(`<h3 id="cdropdowndivider" tabindex="-1">CDropdownDivider <a class="anchor-link" href="#cdropdowndivider" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CDropdownDivider <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
-<span class="token comment">// or</span>
-<span class="token keyword">import</span> CDropdownDivider <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/dropdown/CDropdownDivider&#39;</span>
-</code></pre></div>`,2),t=[r];function d(c,i){return s(),o("div",null,t)}const l=n(a,[["render",d],["__file","CDropdownDivider.api.html.vue"]]);export{l as default};

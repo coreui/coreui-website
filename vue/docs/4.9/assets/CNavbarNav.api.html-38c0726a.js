@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-0f29330c","path":"/api/navbar/CNavbarNav.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CNavbarNav","slug":"cnavbarnav","link":"#cnavbarnav","children":[]}],"filePathRelative":"api/navbar/CNavbarNav.api.md"}');export{a as data};

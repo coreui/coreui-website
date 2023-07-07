@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-70e31786","path":"/api/toast/CToaster.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CToaster","slug":"ctoaster","link":"#ctoaster","children":[]}],"filePathRelative":"api/toast/CToaster.api.md"}');export{t as data};
