@@ -1,7 +1,7 @@
 /*!
-  * CoreUI [object Object] v4.4.3 (https://coreui.io)
+  * CoreUI v4.6.0 (https://coreui.io)
   * Copyright 2023 The CoreUI Team (https://github.com/orgs/coreui/people)
-  * Licensed under MIT (https://coreui.io)
+  * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
@@ -11,8 +11,59 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): alert.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI dom/data.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
+   *
+   * This is a modified version of the Bootstrap's dom/data.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+
+  /**
+   * Constants
+   */
+
+  const elementMap = new Map();
+  const Data = {
+    set(element, key, instance) {
+      if (!elementMap.has(element)) {
+        elementMap.set(element, new Map());
+      }
+      const instanceMap = elementMap.get(element);
+
+      // make it clear we only want one instance per element
+      // can be removed later when multiple key/instances are fine to be used
+      if (!instanceMap.has(key) && instanceMap.size !== 0) {
+        // eslint-disable-next-line no-console
+        console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
+        return;
+      }
+      instanceMap.set(key, instance);
+    },
+    get(element, key) {
+      if (elementMap.has(element)) {
+        return elementMap.get(element).get(key) || null;
+      }
+      return null;
+    },
+    remove(element, key) {
+      if (!elementMap.has(element)) {
+        return;
+      }
+      const instanceMap = elementMap.get(element);
+      instanceMap.delete(key);
+
+      // free up element references if there are no instances left for an element
+      if (instanceMap.size === 0) {
+        elementMap.delete(element);
+      }
+    }
+  };
+
+  /**
+   * --------------------------------------------------------------------------
+   * CoreUI util/index.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/index.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
@@ -261,13 +312,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): dom/event-handler.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI dom/event-handler.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's dom/event-handler.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -334,7 +386,7 @@
   }
   function normalizeParameters(originalTypeEvent, handler, delegationFunction) {
     const isDelegated = typeof handler === 'string';
-    // todo: tooltip passes `false` instead of selector, so we need to check
+    // TODO: tooltip passes `false` instead of selector, so we need to check
     const callable = isDelegated ? delegationFunction : handler || delegationFunction;
     let typeEvent = getTypeEvent(originalTypeEvent);
     if (!nativeEvents.has(typeEvent)) {
@@ -451,11 +503,10 @@
         nativeDispatch = !jQueryEvent.isImmediatePropagationStopped();
         defaultPrevented = jQueryEvent.isDefaultPrevented();
       }
-      let evt = new Event(event, {
+      const evt = hydrateObj(new Event(event, {
         bubbles,
         cancelable: true
-      });
-      evt = hydrateObj(evt, args);
+      }), args);
       if (defaultPrevented) {
         evt.preventDefault();
       }
@@ -486,59 +537,8 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): dom/data.js
-   * Licensed under MIT (https://coreui.io/license)
-   *
-   * This is a modified version of the Bootstrap's dom/data.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-  /**
-   * Constants
-   */
-
-  const elementMap = new Map();
-  const Data = {
-    set(element, key, instance) {
-      if (!elementMap.has(element)) {
-        elementMap.set(element, new Map());
-      }
-      const instanceMap = elementMap.get(element);
-
-      // make it clear we only want one instance per element
-      // can be removed later when multiple key/instances are fine to be used
-      if (!instanceMap.has(key) && instanceMap.size !== 0) {
-        // eslint-disable-next-line no-console
-        console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
-        return;
-      }
-      instanceMap.set(key, instance);
-    },
-    get(element, key) {
-      if (elementMap.has(element)) {
-        return elementMap.get(element).get(key) || null;
-      }
-      return null;
-    },
-    remove(element, key) {
-      if (!elementMap.has(element)) {
-        return;
-      }
-      const instanceMap = elementMap.get(element);
-      instanceMap.delete(key);
-
-      // free up element references if there are no instances left for an element
-      if (instanceMap.size === 0) {
-        elementMap.delete(element);
-      }
-    }
-  };
-
-  /**
-   * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): dom/manipulator.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI dom/manipulator.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's dom/manipulator.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
@@ -597,13 +597,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/config.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/config.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Class definition
@@ -652,19 +653,20 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): alert.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI base-component.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's base-component.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
+
   /**
    * Constants
    */
 
-  const VERSION = '4.4.3';
+  const VERSION = '4.6.0';
 
   /**
    * Class definition
@@ -723,13 +725,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): dom/selector-engine.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI dom/selector-engine.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's dom/selector-engine.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
   const getSelector = element => {
     let selector = element.getAttribute('data-coreui-target');
     if (!selector || selector === '#') {
@@ -814,13 +817,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/component-functions.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/component-functions.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
   const enableDismissTrigger = (component, method = 'hide') => {
     const clickEvent = `click.dismiss${component.EVENT_KEY}`;
     const name = component.NAME;
@@ -841,13 +845,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): alert.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI alert.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's alert.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -918,13 +923,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): alert.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI button.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's button.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -1130,6 +1136,13 @@
   };
 
   /* eslint-disable indent, multiline-ternary */
+  /**
+   * --------------------------------------------------------------------------
+   * CoreUI PRO calendar.js
+   * License (https://coreui.io/pro/license/)
+   * --------------------------------------------------------------------------
+   */
+
 
   /**
   * ------------------------------------------------------------------------
@@ -1161,8 +1174,10 @@
     maxDate: null,
     minDate: null,
     range: true,
-    startDate: null,
+    selectAdjacementDays: false,
     selectEndDate: false,
+    showAdjacementDays: true,
+    startDate: null,
     weekdayFormat: 2
   };
   const DefaultType$l = {
@@ -1175,8 +1190,10 @@
     maxDate: '(date|string|null)',
     minDate: '(date|string|null)',
     range: 'boolean',
-    startDate: '(date|string|null)',
+    selectAdjacementDays: 'boolean',
     selectEndDate: 'boolean',
+    showAdjacementDays: 'boolean',
+    startDate: '(date|string|null)',
     weekdayFormat: '(number|string)'
   };
 
@@ -1215,7 +1232,20 @@
     _addEventListeners() {
       EventHandler.on(this._element, 'click', SELECTOR_CALENDAR_CELL_INNER, event => {
         event.preventDefault();
+        if (event.target.parentElement.classList.contains('disabled')) {
+          return;
+        }
+        if ((event.target.parentElement.classList.contains('next') || event.target.parentElement.classList.contains('previous')) && !this._config.selectAdjacementDays) {
+          return;
+        }
         if (event.target.classList.contains('day')) {
+          const date = new Date(Manipulator.getDataAttribute(event.target, 'date'));
+          const calendarIndex = Manipulator.getDataAttribute(event.target.closest('.calendar-panel'), 'calendar-index');
+          if (calendarIndex) {
+            this._setCalendarDate(new Date(date.setMonth(date.getMonth() - calendarIndex)));
+          } else {
+            this._setCalendarDate(date);
+          }
           this._selectDate(Manipulator.getDataAttribute(event.target, 'date'));
         }
         if (event.target.classList.contains('month')) {
@@ -1231,6 +1261,9 @@
       EventHandler.on(this._element, EVENT_MOUSEENTER$2, SELECTOR_CALENDAR_CELL_INNER, event => {
         event.preventDefault();
         if (event.target.parentElement.classList.contains('disabled')) {
+          return;
+        }
+        if ((event.target.parentElement.classList.contains('next') || event.target.parentElement.classList.contains('previous')) && !this._config.selectAdjacementDays) {
           return;
         }
         this._hoverDate = new Date(Manipulator.getDataAttribute(event.target, 'date'));
@@ -1342,6 +1375,7 @@
       const month = date.getMonth();
       const calendarPanelEl = document.createElement('div');
       calendarPanelEl.classList.add('calendar-panel');
+      Manipulator.setDataAttribute(calendarPanelEl, 'calendar-index', addMonths);
 
       // Create navigation
       const navigationElement = document.createElement('div');
@@ -1402,13 +1436,13 @@
         ${this._view === 'days' ? monthDetails.map(week => `<tr>${week.map(({
       date,
       month
-    }) => `<td class="calendar-cell ${this._dayClassNames(date, month)}">
-              <div class="calendar-cell-inner day" data-coreui-date="${date}">
-                ${date.toLocaleDateString(this._config.locale, {
+    }) => month === 'current' || this._config.showAdjacementDays ? `<td class="calendar-cell ${this._dayClassNames(date, month)}">
+                <div class="calendar-cell-inner day" data-coreui-date="${date}">
+                  ${date.toLocaleDateString(this._config.locale, {
       day: 'numeric'
     })}
-              </div>
-            </td>`).join('')}</tr>`).join('') : ''}
+                </div>
+              </td>` : '<td></td>').join('')}</tr>`).join('') : ''}
         ${this._view === 'months' ? listOfMonths.map((row, index) => `<tr>${row.map((month, idx) => `<td class="calendar-cell">
               <div class="calendar-cell-inner month" data-coreui-month="${index * 3 + idx - addMonths}">
                 ${month}
@@ -1445,6 +1479,7 @@
         today: isToday(date),
         disabled: isDateDisabled(date, this._config.minDate, this._config.maxDate, this._config.disabledDates),
         [month]: true,
+        clickable: month !== 'current' && this._config.selectAdjacementDays,
         last: isLastDayOfMonth(date),
         range: month === 'current' && isDateInRange(date, this._startDate, this._endDate),
         'range-hover': month === 'current' && (this._hoverDate && this._selectEndDate ? isDateInRange(date, this._startDate, this._hoverDate) : isDateInRange(date, this._hoverDate, this._endDate)),
@@ -1518,13 +1553,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/swipe.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/swipe.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -1640,13 +1676,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): carousel.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI carousel.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's carousel.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -1903,7 +1940,7 @@
       }
       if (!activeElement || !nextElement) {
         // Some weirdness is happening, so we bail
-        // todo: change tests that use empty divs to avoid this check
+        // TODO: change tests that use empty divs to avoid this check
         return;
       }
       const isCycling = Boolean(this._interval);
@@ -2015,13 +2052,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): collapse.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI collapse.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's collapse.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -2249,17 +2287,24 @@
 
   defineJQueryPlugin(Collapse);
 
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+
+    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+      return typeof obj;
+    } : function (obj) {
+      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    }, _typeof(obj);
+  }
+
   function toInteger(dirtyNumber) {
     if (dirtyNumber === null || dirtyNumber === true || dirtyNumber === false) {
       return NaN;
     }
-
     var number = Number(dirtyNumber);
-
     if (isNaN(number)) {
       return number;
     }
-
     return number < 0 ? Math.ceil(number) : Math.floor(number);
   }
 
@@ -2269,7 +2314,6 @@
     }
   }
 
-  function _typeof$1(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$1 = function _typeof(obj) { return typeof obj; }; } else { _typeof$1 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$1(obj); }
   /**
    * @name toDate
    * @category Common Helpers
@@ -2300,12 +2344,12 @@
    * const result = toDate(1392098430000)
    * //=> Tue Feb 11 2014 11:30:30
    */
-
   function toDate(argument) {
     requiredArgs(1, arguments);
-    var argStr = Object.prototype.toString.call(argument); // Clone the date
+    var argStr = Object.prototype.toString.call(argument);
 
-    if (argument instanceof Date || _typeof$1(argument) === 'object' && argStr === '[object Date]') {
+    // Clone the date
+    if (argument instanceof Date || _typeof(argument) === 'object' && argStr === '[object Date]') {
       // Prevent the date to lose the milliseconds when passed to new Date() in IE10
       return new Date(argument.getTime());
     } else if (typeof argument === 'number' || argStr === '[object Number]') {
@@ -2313,11 +2357,10 @@
     } else {
       if ((typeof argument === 'string' || argStr === '[object String]') && typeof console !== 'undefined') {
         // eslint-disable-next-line no-console
-        console.warn("Starting with v2.0.0-beta.1 date-fns doesn't accept strings as date arguments. Please use `parseISO` to parse strings. See: https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#string-arguments"); // eslint-disable-next-line no-console
-
+        console.warn("Starting with v2.0.0-beta.1 date-fns doesn't accept strings as date arguments. Please use `parseISO` to parse strings. See: https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#string-arguments");
+        // eslint-disable-next-line no-console
         console.warn(new Error().stack);
       }
-
       return new Date(NaN);
     }
   }
@@ -2340,7 +2383,6 @@
    * const result = addMilliseconds(new Date(2014, 6, 10, 12, 45, 30, 0), 750)
    * //=> Thu Jul 10 2014 12:45:30.750
    */
-
   function addMilliseconds(dirtyDate, dirtyAmount) {
     requiredArgs(2, arguments);
     var timestamp = toDate(dirtyDate).getTime();
@@ -2378,6 +2420,7 @@
    * @type {number}
    * @default
    */
+
   /**
    * Milliseconds in 1 minute
    *
@@ -2386,8 +2429,8 @@
    * @type {number}
    * @default
    */
-
   var millisecondsInMinute = 60000;
+
   /**
    * Milliseconds in 1 hour
    *
@@ -2396,10 +2439,8 @@
    * @type {number}
    * @default
    */
-
   var millisecondsInHour = 3600000;
 
-  function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
   /**
    * @name isDate
    * @category Common Helpers
@@ -2432,7 +2473,6 @@
    * const result = isDate({})
    * //=> false
    */
-
   function isDate(value) {
     requiredArgs(1, arguments);
     return value instanceof Date || _typeof(value) === 'object' && Object.prototype.toString.call(value) === '[object Date]';
@@ -2469,14 +2509,11 @@
    * const result = isValid(new Date(''))
    * //=> false
    */
-
   function isValid(dirtyDate) {
     requiredArgs(1, arguments);
-
     if (!isDate(dirtyDate) && typeof dirtyDate !== 'number') {
       return false;
     }
-
     var date = toDate(dirtyDate);
     return !isNaN(Number(date));
   }
@@ -2499,7 +2536,6 @@
    * const result = subMilliseconds(new Date(2014, 6, 10, 12, 45, 30, 0), 750)
    * //=> Thu Jul 10 2014 12:45:29.250
    */
-
   function subMilliseconds(dirtyDate, dirtyAmount) {
     requiredArgs(2, arguments);
     var amount = toInteger(dirtyAmount);
@@ -2541,7 +2577,6 @@
     fourthOfJanuaryOfThisYear.setUTCFullYear(year, 0, 4);
     fourthOfJanuaryOfThisYear.setUTCHours(0, 0, 0, 0);
     var startOfThisYear = startOfUTCISOWeek(fourthOfJanuaryOfThisYear);
-
     if (date.getTime() >= startOfNextYear.getTime()) {
       return year + 1;
     } else if (date.getTime() >= startOfThisYear.getTime()) {
@@ -2565,24 +2600,24 @@
   function getUTCISOWeek(dirtyDate) {
     requiredArgs(1, arguments);
     var date = toDate(dirtyDate);
-    var diff = startOfUTCISOWeek(date).getTime() - startOfUTCISOWeekYear(date).getTime(); // Round the number of days to the nearest integer
+    var diff = startOfUTCISOWeek(date).getTime() - startOfUTCISOWeekYear(date).getTime();
+
+    // Round the number of days to the nearest integer
     // because the number of milliseconds in a week is not constant
     // (e.g. it's different in the week of the daylight saving time clock shift)
-
     return Math.round(diff / MILLISECONDS_IN_WEEK$1) + 1;
   }
 
   function startOfUTCWeek(dirtyDate, options) {
     var _ref, _ref2, _ref3, _options$weekStartsOn, _options$locale, _options$locale$optio, _defaultOptions$local, _defaultOptions$local2;
-
     requiredArgs(1, arguments);
     var defaultOptions = getDefaultOptions();
-    var weekStartsOn = toInteger((_ref = (_ref2 = (_ref3 = (_options$weekStartsOn = options === null || options === void 0 ? void 0 : options.weekStartsOn) !== null && _options$weekStartsOn !== void 0 ? _options$weekStartsOn : options === null || options === void 0 ? void 0 : (_options$locale = options.locale) === null || _options$locale === void 0 ? void 0 : (_options$locale$optio = _options$locale.options) === null || _options$locale$optio === void 0 ? void 0 : _options$locale$optio.weekStartsOn) !== null && _ref3 !== void 0 ? _ref3 : defaultOptions.weekStartsOn) !== null && _ref2 !== void 0 ? _ref2 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.weekStartsOn) !== null && _ref !== void 0 ? _ref : 0); // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
+    var weekStartsOn = toInteger((_ref = (_ref2 = (_ref3 = (_options$weekStartsOn = options === null || options === void 0 ? void 0 : options.weekStartsOn) !== null && _options$weekStartsOn !== void 0 ? _options$weekStartsOn : options === null || options === void 0 ? void 0 : (_options$locale = options.locale) === null || _options$locale === void 0 ? void 0 : (_options$locale$optio = _options$locale.options) === null || _options$locale$optio === void 0 ? void 0 : _options$locale$optio.weekStartsOn) !== null && _ref3 !== void 0 ? _ref3 : defaultOptions.weekStartsOn) !== null && _ref2 !== void 0 ? _ref2 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.weekStartsOn) !== null && _ref !== void 0 ? _ref : 0);
 
+    // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
     if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
       throw new RangeError('weekStartsOn must be between 0 and 6 inclusively');
     }
-
     var date = toDate(dirtyDate);
     var day = date.getUTCDay();
     var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
@@ -2593,17 +2628,16 @@
 
   function getUTCWeekYear(dirtyDate, options) {
     var _ref, _ref2, _ref3, _options$firstWeekCon, _options$locale, _options$locale$optio, _defaultOptions$local, _defaultOptions$local2;
-
     requiredArgs(1, arguments);
     var date = toDate(dirtyDate);
     var year = date.getUTCFullYear();
     var defaultOptions = getDefaultOptions();
-    var firstWeekContainsDate = toInteger((_ref = (_ref2 = (_ref3 = (_options$firstWeekCon = options === null || options === void 0 ? void 0 : options.firstWeekContainsDate) !== null && _options$firstWeekCon !== void 0 ? _options$firstWeekCon : options === null || options === void 0 ? void 0 : (_options$locale = options.locale) === null || _options$locale === void 0 ? void 0 : (_options$locale$optio = _options$locale.options) === null || _options$locale$optio === void 0 ? void 0 : _options$locale$optio.firstWeekContainsDate) !== null && _ref3 !== void 0 ? _ref3 : defaultOptions.firstWeekContainsDate) !== null && _ref2 !== void 0 ? _ref2 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.firstWeekContainsDate) !== null && _ref !== void 0 ? _ref : 1); // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
+    var firstWeekContainsDate = toInteger((_ref = (_ref2 = (_ref3 = (_options$firstWeekCon = options === null || options === void 0 ? void 0 : options.firstWeekContainsDate) !== null && _options$firstWeekCon !== void 0 ? _options$firstWeekCon : options === null || options === void 0 ? void 0 : (_options$locale = options.locale) === null || _options$locale === void 0 ? void 0 : (_options$locale$optio = _options$locale.options) === null || _options$locale$optio === void 0 ? void 0 : _options$locale$optio.firstWeekContainsDate) !== null && _ref3 !== void 0 ? _ref3 : defaultOptions.firstWeekContainsDate) !== null && _ref2 !== void 0 ? _ref2 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.firstWeekContainsDate) !== null && _ref !== void 0 ? _ref : 1);
 
+    // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
     if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
       throw new RangeError('firstWeekContainsDate must be between 1 and 7 inclusively');
     }
-
     var firstWeekOfNextYear = new Date(0);
     firstWeekOfNextYear.setUTCFullYear(year + 1, 0, firstWeekContainsDate);
     firstWeekOfNextYear.setUTCHours(0, 0, 0, 0);
@@ -2612,7 +2646,6 @@
     firstWeekOfThisYear.setUTCFullYear(year, 0, firstWeekContainsDate);
     firstWeekOfThisYear.setUTCHours(0, 0, 0, 0);
     var startOfThisYear = startOfUTCWeek(firstWeekOfThisYear, options);
-
     if (date.getTime() >= startOfNextYear.getTime()) {
       return year + 1;
     } else if (date.getTime() >= startOfThisYear.getTime()) {
@@ -2624,7 +2657,6 @@
 
   function startOfUTCWeekYear(dirtyDate, options) {
     var _ref, _ref2, _ref3, _options$firstWeekCon, _options$locale, _options$locale$optio, _defaultOptions$local, _defaultOptions$local2;
-
     requiredArgs(1, arguments);
     var defaultOptions = getDefaultOptions();
     var firstWeekContainsDate = toInteger((_ref = (_ref2 = (_ref3 = (_options$firstWeekCon = options === null || options === void 0 ? void 0 : options.firstWeekContainsDate) !== null && _options$firstWeekCon !== void 0 ? _options$firstWeekCon : options === null || options === void 0 ? void 0 : (_options$locale = options.locale) === null || _options$locale === void 0 ? void 0 : (_options$locale$optio = _options$locale.options) === null || _options$locale$optio === void 0 ? void 0 : _options$locale$optio.firstWeekContainsDate) !== null && _ref3 !== void 0 ? _ref3 : defaultOptions.firstWeekContainsDate) !== null && _ref2 !== void 0 ? _ref2 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.firstWeekContainsDate) !== null && _ref !== void 0 ? _ref : 1);
@@ -2640,21 +2672,20 @@
   function getUTCWeek(dirtyDate, options) {
     requiredArgs(1, arguments);
     var date = toDate(dirtyDate);
-    var diff = startOfUTCWeek(date, options).getTime() - startOfUTCWeekYear(date, options).getTime(); // Round the number of days to the nearest integer
+    var diff = startOfUTCWeek(date, options).getTime() - startOfUTCWeekYear(date, options).getTime();
+
+    // Round the number of days to the nearest integer
     // because the number of milliseconds in a week is not constant
     // (e.g. it's different in the week of the daylight saving time clock shift)
-
     return Math.round(diff / MILLISECONDS_IN_WEEK) + 1;
   }
 
   function addLeadingZeros(number, targetLength) {
     var sign = number < 0 ? '-' : '';
     var output = Math.abs(number).toString();
-
     while (output.length < targetLength) {
       output = '0' + output;
     }
-
     return sign + output;
   }
 
@@ -2670,7 +2701,6 @@
    *
    * Letters marked by * are not implemented but reserved by Unicode standard.
    */
-
   var formatters$2 = {
     // Year
     y: function y(date, token) {
@@ -2682,8 +2712,9 @@
       // | AD 123   |   123 | 23 |   123 |  0123 | 00123 |
       // | AD 1234  |  1234 | 34 |  1234 |  1234 | 01234 |
       // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
-      var signedYear = date.getUTCFullYear(); // Returns 1 for 1 BC (which is year 0 in JavaScript)
 
+      var signedYear = date.getUTCFullYear();
+      // Returns 1 for 1 BC (which is year 0 in JavaScript)
       var year = signedYear > 0 ? signedYear : 1 - signedYear;
       return addLeadingZeros(token === 'yy' ? year % 100 : year, token.length);
     },
@@ -2699,18 +2730,14 @@
     // AM or PM
     a: function a(date, token) {
       var dayPeriodEnumValue = date.getUTCHours() / 12 >= 1 ? 'pm' : 'am';
-
       switch (token) {
         case 'a':
         case 'aa':
           return dayPeriodEnumValue.toUpperCase();
-
         case 'aaa':
           return dayPeriodEnumValue;
-
         case 'aaaaa':
           return dayPeriodEnumValue[0];
-
         case 'aaaa':
         default:
           return dayPeriodEnumValue === 'am' ? 'a.m.' : 'p.m.';
@@ -2752,7 +2779,6 @@
     evening: 'evening',
     night: 'night'
   };
-
   /*
    * |     | Unit                           |     | Unit                           |
    * |-----|--------------------------------|-----|--------------------------------|
@@ -2798,11 +2824,11 @@
    * - `P` is long localized date format
    * - `p` is long localized time format
    */
+
   var formatters = {
     // Era
     G: function G(date, token, localize) {
       var era = date.getUTCFullYear() > 0 ? 1 : 0;
-
       switch (token) {
         // AD, BC
         case 'G':
@@ -2812,13 +2838,11 @@
             width: 'abbreviated'
           });
         // A, B
-
         case 'GGGGG':
           return localize.era(era, {
             width: 'narrow'
           });
         // Anno Domini, Before Christ
-
         case 'GGGG':
         default:
           return localize.era(era, {
@@ -2830,41 +2854,42 @@
     y: function y(date, token, localize) {
       // Ordinal number
       if (token === 'yo') {
-        var signedYear = date.getUTCFullYear(); // Returns 1 for 1 BC (which is year 0 in JavaScript)
-
+        var signedYear = date.getUTCFullYear();
+        // Returns 1 for 1 BC (which is year 0 in JavaScript)
         var year = signedYear > 0 ? signedYear : 1 - signedYear;
         return localize.ordinalNumber(year, {
           unit: 'year'
         });
       }
-
       return formatters$3.y(date, token);
     },
     // Local week-numbering year
     Y: function Y(date, token, localize, options) {
-      var signedWeekYear = getUTCWeekYear(date, options); // Returns 1 for 1 BC (which is year 0 in JavaScript)
+      var signedWeekYear = getUTCWeekYear(date, options);
+      // Returns 1 for 1 BC (which is year 0 in JavaScript)
+      var weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear;
 
-      var weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear; // Two digit year
-
+      // Two digit year
       if (token === 'YY') {
         var twoDigitYear = weekYear % 100;
         return addLeadingZeros(twoDigitYear, 2);
-      } // Ordinal number
+      }
 
-
+      // Ordinal number
       if (token === 'Yo') {
         return localize.ordinalNumber(weekYear, {
           unit: 'year'
         });
-      } // Padding
+      }
 
-
+      // Padding
       return addLeadingZeros(weekYear, token.length);
     },
     // ISO week-numbering year
     R: function R(date, token) {
-      var isoWeekYear = getUTCISOWeekYear(date); // Padding
+      var isoWeekYear = getUTCISOWeekYear(date);
 
+      // Padding
       return addLeadingZeros(isoWeekYear, token.length);
     },
     // Extended year. This is a single number designating the year of this calendar system.
@@ -2883,37 +2908,31 @@
     // Quarter
     Q: function Q(date, token, localize) {
       var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
-
       switch (token) {
         // 1, 2, 3, 4
         case 'Q':
           return String(quarter);
         // 01, 02, 03, 04
-
         case 'QQ':
           return addLeadingZeros(quarter, 2);
         // 1st, 2nd, 3rd, 4th
-
         case 'Qo':
           return localize.ordinalNumber(quarter, {
             unit: 'quarter'
           });
         // Q1, Q2, Q3, Q4
-
         case 'QQQ':
           return localize.quarter(quarter, {
             width: 'abbreviated',
             context: 'formatting'
           });
         // 1, 2, 3, 4 (narrow quarter; could be not numerical)
-
         case 'QQQQQ':
           return localize.quarter(quarter, {
             width: 'narrow',
             context: 'formatting'
           });
         // 1st quarter, 2nd quarter, ...
-
         case 'QQQQ':
         default:
           return localize.quarter(quarter, {
@@ -2925,37 +2944,31 @@
     // Stand-alone quarter
     q: function q(date, token, localize) {
       var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
-
       switch (token) {
         // 1, 2, 3, 4
         case 'q':
           return String(quarter);
         // 01, 02, 03, 04
-
         case 'qq':
           return addLeadingZeros(quarter, 2);
         // 1st, 2nd, 3rd, 4th
-
         case 'qo':
           return localize.ordinalNumber(quarter, {
             unit: 'quarter'
           });
         // Q1, Q2, Q3, Q4
-
         case 'qqq':
           return localize.quarter(quarter, {
             width: 'abbreviated',
             context: 'standalone'
           });
         // 1, 2, 3, 4 (narrow quarter; could be not numerical)
-
         case 'qqqqq':
           return localize.quarter(quarter, {
             width: 'narrow',
             context: 'standalone'
           });
         // 1st quarter, 2nd quarter, ...
-
         case 'qqqq':
         default:
           return localize.quarter(quarter, {
@@ -2967,33 +2980,28 @@
     // Month
     M: function M(date, token, localize) {
       var month = date.getUTCMonth();
-
       switch (token) {
         case 'M':
         case 'MM':
           return formatters$3.M(date, token);
         // 1st, 2nd, ..., 12th
-
         case 'Mo':
           return localize.ordinalNumber(month + 1, {
             unit: 'month'
           });
         // Jan, Feb, ..., Dec
-
         case 'MMM':
           return localize.month(month, {
             width: 'abbreviated',
             context: 'formatting'
           });
         // J, F, ..., D
-
         case 'MMMMM':
           return localize.month(month, {
             width: 'narrow',
             context: 'formatting'
           });
         // January, February, ..., December
-
         case 'MMMM':
         default:
           return localize.month(month, {
@@ -3005,37 +3013,31 @@
     // Stand-alone month
     L: function L(date, token, localize) {
       var month = date.getUTCMonth();
-
       switch (token) {
         // 1, 2, ..., 12
         case 'L':
           return String(month + 1);
         // 01, 02, ..., 12
-
         case 'LL':
           return addLeadingZeros(month + 1, 2);
         // 1st, 2nd, ..., 12th
-
         case 'Lo':
           return localize.ordinalNumber(month + 1, {
             unit: 'month'
           });
         // Jan, Feb, ..., Dec
-
         case 'LLL':
           return localize.month(month, {
             width: 'abbreviated',
             context: 'standalone'
           });
         // J, F, ..., D
-
         case 'LLLLL':
           return localize.month(month, {
             width: 'narrow',
             context: 'standalone'
           });
         // January, February, ..., December
-
         case 'LLLL':
         default:
           return localize.month(month, {
@@ -3047,25 +3049,21 @@
     // Local week of year
     w: function w(date, token, localize, options) {
       var week = getUTCWeek(date, options);
-
       if (token === 'wo') {
         return localize.ordinalNumber(week, {
           unit: 'week'
         });
       }
-
       return addLeadingZeros(week, token.length);
     },
     // ISO week of year
     I: function I(date, token, localize) {
       var isoWeek = getUTCISOWeek(date);
-
       if (token === 'Io') {
         return localize.ordinalNumber(isoWeek, {
           unit: 'week'
         });
       }
-
       return addLeadingZeros(isoWeek, token.length);
     },
     // Day of the month
@@ -3075,25 +3073,21 @@
           unit: 'date'
         });
       }
-
       return formatters$3.d(date, token);
     },
     // Day of year
     D: function D(date, token, localize) {
       var dayOfYear = getUTCDayOfYear(date);
-
       if (token === 'Do') {
         return localize.ordinalNumber(dayOfYear, {
           unit: 'dayOfYear'
         });
       }
-
       return addLeadingZeros(dayOfYear, token.length);
     },
     // Day of week
     E: function E(date, token, localize) {
       var dayOfWeek = date.getUTCDay();
-
       switch (token) {
         // Tue
         case 'E':
@@ -3104,21 +3098,18 @@
             context: 'formatting'
           });
         // T
-
         case 'EEEEE':
           return localize.day(dayOfWeek, {
             width: 'narrow',
             context: 'formatting'
           });
         // Tu
-
         case 'EEEEEE':
           return localize.day(dayOfWeek, {
             width: 'short',
             context: 'formatting'
           });
         // Tuesday
-
         case 'EEEE':
         default:
           return localize.day(dayOfWeek, {
@@ -3131,43 +3122,36 @@
     e: function e(date, token, localize, options) {
       var dayOfWeek = date.getUTCDay();
       var localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
-
       switch (token) {
         // Numerical value (Nth day of week with current locale or weekStartsOn)
         case 'e':
           return String(localDayOfWeek);
         // Padded numerical value
-
         case 'ee':
           return addLeadingZeros(localDayOfWeek, 2);
         // 1st, 2nd, ..., 7th
-
         case 'eo':
           return localize.ordinalNumber(localDayOfWeek, {
             unit: 'day'
           });
-
         case 'eee':
           return localize.day(dayOfWeek, {
             width: 'abbreviated',
             context: 'formatting'
           });
         // T
-
         case 'eeeee':
           return localize.day(dayOfWeek, {
             width: 'narrow',
             context: 'formatting'
           });
         // Tu
-
         case 'eeeeee':
           return localize.day(dayOfWeek, {
             width: 'short',
             context: 'formatting'
           });
         // Tuesday
-
         case 'eeee':
         default:
           return localize.day(dayOfWeek, {
@@ -3180,43 +3164,36 @@
     c: function c(date, token, localize, options) {
       var dayOfWeek = date.getUTCDay();
       var localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
-
       switch (token) {
         // Numerical value (same as in `e`)
         case 'c':
           return String(localDayOfWeek);
         // Padded numerical value
-
         case 'cc':
           return addLeadingZeros(localDayOfWeek, token.length);
         // 1st, 2nd, ..., 7th
-
         case 'co':
           return localize.ordinalNumber(localDayOfWeek, {
             unit: 'day'
           });
-
         case 'ccc':
           return localize.day(dayOfWeek, {
             width: 'abbreviated',
             context: 'standalone'
           });
         // T
-
         case 'ccccc':
           return localize.day(dayOfWeek, {
             width: 'narrow',
             context: 'standalone'
           });
         // Tu
-
         case 'cccccc':
           return localize.day(dayOfWeek, {
             width: 'short',
             context: 'standalone'
           });
         // Tuesday
-
         case 'cccc':
         default:
           return localize.day(dayOfWeek, {
@@ -3229,44 +3206,37 @@
     i: function i(date, token, localize) {
       var dayOfWeek = date.getUTCDay();
       var isoDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
-
       switch (token) {
         // 2
         case 'i':
           return String(isoDayOfWeek);
         // 02
-
         case 'ii':
           return addLeadingZeros(isoDayOfWeek, token.length);
         // 2nd
-
         case 'io':
           return localize.ordinalNumber(isoDayOfWeek, {
             unit: 'day'
           });
         // Tue
-
         case 'iii':
           return localize.day(dayOfWeek, {
             width: 'abbreviated',
             context: 'formatting'
           });
         // T
-
         case 'iiiii':
           return localize.day(dayOfWeek, {
             width: 'narrow',
             context: 'formatting'
           });
         // Tu
-
         case 'iiiiii':
           return localize.day(dayOfWeek, {
             width: 'short',
             context: 'formatting'
           });
         // Tuesday
-
         case 'iiii':
         default:
           return localize.day(dayOfWeek, {
@@ -3279,7 +3249,6 @@
     a: function a(date, token, localize) {
       var hours = date.getUTCHours();
       var dayPeriodEnumValue = hours / 12 >= 1 ? 'pm' : 'am';
-
       switch (token) {
         case 'a':
         case 'aa':
@@ -3287,19 +3256,16 @@
             width: 'abbreviated',
             context: 'formatting'
           });
-
         case 'aaa':
           return localize.dayPeriod(dayPeriodEnumValue, {
             width: 'abbreviated',
             context: 'formatting'
           }).toLowerCase();
-
         case 'aaaaa':
           return localize.dayPeriod(dayPeriodEnumValue, {
             width: 'narrow',
             context: 'formatting'
           });
-
         case 'aaaa':
         default:
           return localize.dayPeriod(dayPeriodEnumValue, {
@@ -3312,7 +3278,6 @@
     b: function b(date, token, localize) {
       var hours = date.getUTCHours();
       var dayPeriodEnumValue;
-
       if (hours === 12) {
         dayPeriodEnumValue = dayPeriodEnum.noon;
       } else if (hours === 0) {
@@ -3320,7 +3285,6 @@
       } else {
         dayPeriodEnumValue = hours / 12 >= 1 ? 'pm' : 'am';
       }
-
       switch (token) {
         case 'b':
         case 'bb':
@@ -3328,19 +3292,16 @@
             width: 'abbreviated',
             context: 'formatting'
           });
-
         case 'bbb':
           return localize.dayPeriod(dayPeriodEnumValue, {
             width: 'abbreviated',
             context: 'formatting'
           }).toLowerCase();
-
         case 'bbbbb':
           return localize.dayPeriod(dayPeriodEnumValue, {
             width: 'narrow',
             context: 'formatting'
           });
-
         case 'bbbb':
         default:
           return localize.dayPeriod(dayPeriodEnumValue, {
@@ -3353,7 +3314,6 @@
     B: function B(date, token, localize) {
       var hours = date.getUTCHours();
       var dayPeriodEnumValue;
-
       if (hours >= 17) {
         dayPeriodEnumValue = dayPeriodEnum.evening;
       } else if (hours >= 12) {
@@ -3363,7 +3323,6 @@
       } else {
         dayPeriodEnumValue = dayPeriodEnum.night;
       }
-
       switch (token) {
         case 'B':
         case 'BB':
@@ -3372,13 +3331,11 @@
             width: 'abbreviated',
             context: 'formatting'
           });
-
         case 'BBBBB':
           return localize.dayPeriod(dayPeriodEnumValue, {
             width: 'narrow',
             context: 'formatting'
           });
-
         case 'BBBB':
         default:
           return localize.dayPeriod(dayPeriodEnumValue, {
@@ -3396,7 +3353,6 @@
           unit: 'hour'
         });
       }
-
       return formatters$3.h(date, token);
     },
     // Hour [0-23]
@@ -3406,32 +3362,27 @@
           unit: 'hour'
         });
       }
-
       return formatters$3.H(date, token);
     },
     // Hour [0-11]
     K: function K(date, token, localize) {
       var hours = date.getUTCHours() % 12;
-
       if (token === 'Ko') {
         return localize.ordinalNumber(hours, {
           unit: 'hour'
         });
       }
-
       return addLeadingZeros(hours, token.length);
     },
     // Hour [1-24]
     k: function k(date, token, localize) {
       var hours = date.getUTCHours();
       if (hours === 0) hours = 24;
-
       if (token === 'ko') {
         return localize.ordinalNumber(hours, {
           unit: 'hour'
         });
       }
-
       return addLeadingZeros(hours, token.length);
     },
     // Minute
@@ -3441,7 +3392,6 @@
           unit: 'minute'
         });
       }
-
       return formatters$3.m(date, token);
     },
     // Second
@@ -3451,7 +3401,6 @@
           unit: 'second'
         });
       }
-
       return formatters$3.s(date, token);
     },
     // Fraction of second
@@ -3462,30 +3411,27 @@
     X: function X(date, token, _localize, options) {
       var originalDate = options._originalDate || date;
       var timezoneOffset = originalDate.getTimezoneOffset();
-
       if (timezoneOffset === 0) {
         return 'Z';
       }
-
       switch (token) {
         // Hours and optional minutes
         case 'X':
           return formatTimezoneWithOptionalMinutes(timezoneOffset);
+
         // Hours, minutes and optional seconds without `:` delimiter
         // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
         // so this token always has the same output as `XX`
-
         case 'XXXX':
         case 'XX':
           // Hours and minutes without `:` delimiter
           return formatTimezone(timezoneOffset);
+
         // Hours, minutes and optional seconds with `:` delimiter
         // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
         // so this token always has the same output as `XXX`
-
         case 'XXXXX':
         case 'XXX': // Hours and minutes with `:` delimiter
-
         default:
           return formatTimezone(timezoneOffset, ':');
       }
@@ -3494,26 +3440,24 @@
     x: function x(date, token, _localize, options) {
       var originalDate = options._originalDate || date;
       var timezoneOffset = originalDate.getTimezoneOffset();
-
       switch (token) {
         // Hours and optional minutes
         case 'x':
           return formatTimezoneWithOptionalMinutes(timezoneOffset);
+
         // Hours, minutes and optional seconds without `:` delimiter
         // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
         // so this token always has the same output as `xx`
-
         case 'xxxx':
         case 'xx':
           // Hours and minutes without `:` delimiter
           return formatTimezone(timezoneOffset);
+
         // Hours, minutes and optional seconds with `:` delimiter
         // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
         // so this token always has the same output as `xxx`
-
         case 'xxxxx':
         case 'xxx': // Hours and minutes with `:` delimiter
-
         default:
           return formatTimezone(timezoneOffset, ':');
       }
@@ -3522,7 +3466,6 @@
     O: function O(date, token, _localize, options) {
       var originalDate = options._originalDate || date;
       var timezoneOffset = originalDate.getTimezoneOffset();
-
       switch (token) {
         // Short
         case 'O':
@@ -3530,7 +3473,6 @@
         case 'OOO':
           return 'GMT' + formatTimezoneShort(timezoneOffset, ':');
         // Long
-
         case 'OOOO':
         default:
           return 'GMT' + formatTimezone(timezoneOffset, ':');
@@ -3540,7 +3482,6 @@
     z: function z(date, token, _localize, options) {
       var originalDate = options._originalDate || date;
       var timezoneOffset = originalDate.getTimezoneOffset();
-
       switch (token) {
         // Short
         case 'z':
@@ -3548,7 +3489,6 @@
         case 'zzz':
           return 'GMT' + formatTimezoneShort(timezoneOffset, ':');
         // Long
-
         case 'zzzz':
         default:
           return 'GMT' + formatTimezone(timezoneOffset, ':');
@@ -3567,30 +3507,24 @@
       return addLeadingZeros(timestamp, token.length);
     }
   };
-
   function formatTimezoneShort(offset, dirtyDelimiter) {
     var sign = offset > 0 ? '-' : '+';
     var absOffset = Math.abs(offset);
     var hours = Math.floor(absOffset / 60);
     var minutes = absOffset % 60;
-
     if (minutes === 0) {
       return sign + String(hours);
     }
-
     var delimiter = dirtyDelimiter || '';
     return sign + String(hours) + delimiter + addLeadingZeros(minutes, 2);
   }
-
   function formatTimezoneWithOptionalMinutes(offset, dirtyDelimiter) {
     if (offset % 60 === 0) {
       var sign = offset > 0 ? '-' : '+';
       return sign + addLeadingZeros(Math.abs(offset) / 60, 2);
     }
-
     return formatTimezone(offset, dirtyDelimiter);
   }
-
   function formatTimezone(offset, dirtyDelimiter) {
     var delimiter = dirtyDelimiter || '';
     var sign = offset > 0 ? '-' : '+';
@@ -3599,7 +3533,6 @@
     var minutes = addLeadingZeros(absOffset % 60, 2);
     return sign + hours + delimiter + minutes;
   }
-
   const formatters$1 = formatters;
 
   var dateLongFormatter = function dateLongFormatter(pattern, formatLong) {
@@ -3608,17 +3541,14 @@
         return formatLong.date({
           width: 'short'
         });
-
       case 'PP':
         return formatLong.date({
           width: 'medium'
         });
-
       case 'PPP':
         return formatLong.date({
           width: 'long'
         });
-
       case 'PPPP':
       default:
         return formatLong.date({
@@ -3626,24 +3556,20 @@
         });
     }
   };
-
   var timeLongFormatter = function timeLongFormatter(pattern, formatLong) {
     switch (pattern) {
       case 'p':
         return formatLong.time({
           width: 'short'
         });
-
       case 'pp':
         return formatLong.time({
           width: 'medium'
         });
-
       case 'ppp':
         return formatLong.time({
           width: 'long'
         });
-
       case 'pppp':
       default:
         return formatLong.time({
@@ -3651,37 +3577,30 @@
         });
     }
   };
-
   var dateTimeLongFormatter = function dateTimeLongFormatter(pattern, formatLong) {
     var matchResult = pattern.match(/(P+)(p+)?/) || [];
     var datePattern = matchResult[1];
     var timePattern = matchResult[2];
-
     if (!timePattern) {
       return dateLongFormatter(pattern, formatLong);
     }
-
     var dateTimeFormat;
-
     switch (datePattern) {
       case 'P':
         dateTimeFormat = formatLong.dateTime({
           width: 'short'
         });
         break;
-
       case 'PP':
         dateTimeFormat = formatLong.dateTime({
           width: 'medium'
         });
         break;
-
       case 'PPP':
         dateTimeFormat = formatLong.dateTime({
           width: 'long'
         });
         break;
-
       case 'PPPP':
       default:
         dateTimeFormat = formatLong.dateTime({
@@ -3689,10 +3608,8 @@
         });
         break;
     }
-
     return dateTimeFormat.replace('{{date}}', dateLongFormatter(datePattern, formatLong)).replace('{{time}}', timeLongFormatter(timePattern, formatLong));
   };
-
   var longFormatters = {
     p: timeLongFormatter,
     P: dateTimeLongFormatter
@@ -3782,11 +3699,9 @@
       other: 'almost {{count}} years'
     }
   };
-
   var formatDistance = function formatDistance(token, count, options) {
     var result;
     var tokenValue = formatDistanceLocale[token];
-
     if (typeof tokenValue === 'string') {
       result = tokenValue;
     } else if (count === 1) {
@@ -3794,7 +3709,6 @@
     } else {
       result = tokenValue.other.replace('{{count}}', count.toString());
     }
-
     if (options !== null && options !== void 0 && options.addSuffix) {
       if (options.comparison && options.comparison > 0) {
         return 'in ' + result;
@@ -3802,10 +3716,8 @@
         return result + ' ago';
       }
     }
-
     return result;
   };
-
   const formatDistance$1 = formatDistance;
 
   function buildFormatLongFn(args) {
@@ -3860,32 +3772,26 @@
     nextWeek: "eeee 'at' p",
     other: 'P'
   };
-
   var formatRelative = function formatRelative(token, _date, _baseDate, _options) {
     return formatRelativeLocale[token];
   };
-
   const formatRelative$1 = formatRelative;
 
   function buildLocalizeFn(args) {
     return function (dirtyIndex, options) {
       var context = options !== null && options !== void 0 && options.context ? String(options.context) : 'standalone';
       var valuesArray;
-
       if (context === 'formatting' && args.formattingValues) {
         var defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
         var width = options !== null && options !== void 0 && options.width ? String(options.width) : defaultWidth;
         valuesArray = args.formattingValues[width] || args.formattingValues[defaultWidth];
       } else {
         var _defaultWidth = args.defaultWidth;
-
         var _width = options !== null && options !== void 0 && options.width ? String(options.width) : args.defaultWidth;
-
         valuesArray = args.values[_width] || args.values[_defaultWidth];
       }
-
-      var index = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex; // @ts-ignore: For some reason TypeScript just don't want to match it, no matter how hard we try. I challenge you to try to remove it!
-
+      var index = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex;
+      // @ts-ignore: For some reason TypeScript just don't want to match it, no matter how hard we try. I challenge you to try to remove it!
       return valuesArray[index];
     };
   }
@@ -3899,11 +3805,12 @@
     narrow: ['1', '2', '3', '4'],
     abbreviated: ['Q1', 'Q2', 'Q3', 'Q4'],
     wide: ['1st quarter', '2nd quarter', '3rd quarter', '4th quarter']
-  }; // Note: in English, the names of days of the week and months are capitalized.
+  };
+
+  // Note: in English, the names of days of the week and months are capitalized.
   // If you are making a new locale based on this one, check if the same is true for the language you're working on.
   // Generally, formatted dates should look like they are in the middle of a sentence,
   // e.g. in Spanish language the weekdays and months should be in the lowercase.
-
   var monthValues = {
     narrow: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
     abbreviated: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -3979,9 +3886,10 @@
       night: 'at night'
     }
   };
-
   var ordinalNumber = function ordinalNumber(dirtyNumber, _options) {
-    var number = Number(dirtyNumber); // If ordinal numbers depend on context, for example,
+    var number = Number(dirtyNumber);
+
+    // If ordinal numbers depend on context, for example,
     // if they are different for different grammatical genders,
     // use `options.unit`.
     //
@@ -3989,23 +3897,18 @@
     // 'day', 'hour', 'minute', 'second'.
 
     var rem100 = number % 100;
-
     if (rem100 > 20 || rem100 < 10) {
       switch (rem100 % 10) {
         case 1:
           return number + 'st';
-
         case 2:
           return number + 'nd';
-
         case 3:
           return number + 'rd';
       }
     }
-
     return number + 'th';
   };
-
   var localize = {
     ordinalNumber: ordinalNumber,
     era: buildLocalizeFn({
@@ -4042,11 +3945,9 @@
       var width = options.width;
       var matchPattern = width && args.matchPatterns[width] || args.matchPatterns[args.defaultMatchWidth];
       var matchResult = string.match(matchPattern);
-
       if (!matchResult) {
         return null;
       }
-
       var matchedString = matchResult[0];
       var parsePatterns = width && args.parsePatterns[width] || args.parsePatterns[args.defaultParseWidth];
       var key = Array.isArray(parsePatterns) ? findIndex(parsePatterns, function (pattern) {
@@ -4064,24 +3965,20 @@
       };
     };
   }
-
   function findKey(object, predicate) {
     for (var key in object) {
       if (object.hasOwnProperty(key) && predicate(object[key])) {
         return key;
       }
     }
-
     return undefined;
   }
-
   function findIndex(array, predicate) {
     for (var key = 0; key < array.length; key++) {
       if (predicate(array[key])) {
         return key;
       }
     }
-
     return undefined;
   }
 
@@ -4217,9 +4114,7 @@
     localize: localize$1,
     match: match$1,
     options: {
-      weekStartsOn: 0
-      /* Sunday */
-      ,
+      weekStartsOn: 0 /* Sunday */,
       firstWeekContainsDate: 1
     }
   };
@@ -4235,14 +4130,15 @@
   //   If there is no matching single quote
   //   then the sequence will continue until the end of the string.
   // - . matches any single character unmatched by previous parts of the RegExps
+  var formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
 
-  var formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g; // This RegExp catches symbols escaped by quotes, and also
+  // This RegExp catches symbols escaped by quotes, and also
   // sequences of symbols P, p, and the combinations like `PPPPPPPppppp`
-
   var longFormattingTokensRegExp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
   var escapedStringRegExp = /^'([^]*?)'?$/;
   var doubleQuoteRegExp = /''/g;
   var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
+
   /**
    * @name format
    * @category Common Helpers
@@ -4537,40 +4433,36 @@
 
   function format(dirtyDate, dirtyFormatStr, options) {
     var _ref, _options$locale, _ref2, _ref3, _ref4, _options$firstWeekCon, _options$locale2, _options$locale2$opti, _defaultOptions$local, _defaultOptions$local2, _ref5, _ref6, _ref7, _options$weekStartsOn, _options$locale3, _options$locale3$opti, _defaultOptions$local3, _defaultOptions$local4;
-
     requiredArgs(2, arguments);
     var formatStr = String(dirtyFormatStr);
     var defaultOptions = getDefaultOptions();
     var locale = (_ref = (_options$locale = options === null || options === void 0 ? void 0 : options.locale) !== null && _options$locale !== void 0 ? _options$locale : defaultOptions.locale) !== null && _ref !== void 0 ? _ref : defaultLocale;
-    var firstWeekContainsDate = toInteger((_ref2 = (_ref3 = (_ref4 = (_options$firstWeekCon = options === null || options === void 0 ? void 0 : options.firstWeekContainsDate) !== null && _options$firstWeekCon !== void 0 ? _options$firstWeekCon : options === null || options === void 0 ? void 0 : (_options$locale2 = options.locale) === null || _options$locale2 === void 0 ? void 0 : (_options$locale2$opti = _options$locale2.options) === null || _options$locale2$opti === void 0 ? void 0 : _options$locale2$opti.firstWeekContainsDate) !== null && _ref4 !== void 0 ? _ref4 : defaultOptions.firstWeekContainsDate) !== null && _ref3 !== void 0 ? _ref3 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.firstWeekContainsDate) !== null && _ref2 !== void 0 ? _ref2 : 1); // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
+    var firstWeekContainsDate = toInteger((_ref2 = (_ref3 = (_ref4 = (_options$firstWeekCon = options === null || options === void 0 ? void 0 : options.firstWeekContainsDate) !== null && _options$firstWeekCon !== void 0 ? _options$firstWeekCon : options === null || options === void 0 ? void 0 : (_options$locale2 = options.locale) === null || _options$locale2 === void 0 ? void 0 : (_options$locale2$opti = _options$locale2.options) === null || _options$locale2$opti === void 0 ? void 0 : _options$locale2$opti.firstWeekContainsDate) !== null && _ref4 !== void 0 ? _ref4 : defaultOptions.firstWeekContainsDate) !== null && _ref3 !== void 0 ? _ref3 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.firstWeekContainsDate) !== null && _ref2 !== void 0 ? _ref2 : 1);
 
+    // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
     if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
       throw new RangeError('firstWeekContainsDate must be between 1 and 7 inclusively');
     }
+    var weekStartsOn = toInteger((_ref5 = (_ref6 = (_ref7 = (_options$weekStartsOn = options === null || options === void 0 ? void 0 : options.weekStartsOn) !== null && _options$weekStartsOn !== void 0 ? _options$weekStartsOn : options === null || options === void 0 ? void 0 : (_options$locale3 = options.locale) === null || _options$locale3 === void 0 ? void 0 : (_options$locale3$opti = _options$locale3.options) === null || _options$locale3$opti === void 0 ? void 0 : _options$locale3$opti.weekStartsOn) !== null && _ref7 !== void 0 ? _ref7 : defaultOptions.weekStartsOn) !== null && _ref6 !== void 0 ? _ref6 : (_defaultOptions$local3 = defaultOptions.locale) === null || _defaultOptions$local3 === void 0 ? void 0 : (_defaultOptions$local4 = _defaultOptions$local3.options) === null || _defaultOptions$local4 === void 0 ? void 0 : _defaultOptions$local4.weekStartsOn) !== null && _ref5 !== void 0 ? _ref5 : 0);
 
-    var weekStartsOn = toInteger((_ref5 = (_ref6 = (_ref7 = (_options$weekStartsOn = options === null || options === void 0 ? void 0 : options.weekStartsOn) !== null && _options$weekStartsOn !== void 0 ? _options$weekStartsOn : options === null || options === void 0 ? void 0 : (_options$locale3 = options.locale) === null || _options$locale3 === void 0 ? void 0 : (_options$locale3$opti = _options$locale3.options) === null || _options$locale3$opti === void 0 ? void 0 : _options$locale3$opti.weekStartsOn) !== null && _ref7 !== void 0 ? _ref7 : defaultOptions.weekStartsOn) !== null && _ref6 !== void 0 ? _ref6 : (_defaultOptions$local3 = defaultOptions.locale) === null || _defaultOptions$local3 === void 0 ? void 0 : (_defaultOptions$local4 = _defaultOptions$local3.options) === null || _defaultOptions$local4 === void 0 ? void 0 : _defaultOptions$local4.weekStartsOn) !== null && _ref5 !== void 0 ? _ref5 : 0); // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
-
+    // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
     if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
       throw new RangeError('weekStartsOn must be between 0 and 6 inclusively');
     }
-
     if (!locale.localize) {
       throw new RangeError('locale must contain localize property');
     }
-
     if (!locale.formatLong) {
       throw new RangeError('locale must contain formatLong property');
     }
-
     var originalDate = toDate(dirtyDate);
-
     if (!isValid(originalDate)) {
       throw new RangeError('Invalid time value');
-    } // Convert the date in system timezone to the same date in UTC+00:00 timezone.
+    }
+
+    // Convert the date in system timezone to the same date in UTC+00:00 timezone.
     // This ensures that when UTC functions will be implemented, locales will be compatible with them.
     // See an issue about UTC functions: https://github.com/date-fns/date-fns/issues/376
-
-
     var timezoneOffset = getTimezoneOffsetInMilliseconds(originalDate);
     var utcDate = subMilliseconds(originalDate, timezoneOffset);
     var formatterOptions = {
@@ -4581,55 +4473,42 @@
     };
     var result = formatStr.match(longFormattingTokensRegExp).map(function (substring) {
       var firstCharacter = substring[0];
-
       if (firstCharacter === 'p' || firstCharacter === 'P') {
         var longFormatter = longFormatters$1[firstCharacter];
         return longFormatter(substring, locale.formatLong);
       }
-
       return substring;
     }).join('').match(formattingTokensRegExp).map(function (substring) {
       // Replace two single quote characters with one single quote character
       if (substring === "''") {
         return "'";
       }
-
       var firstCharacter = substring[0];
-
       if (firstCharacter === "'") {
         return cleanEscapedString(substring);
       }
-
       var formatter = formatters$1[firstCharacter];
-
       if (formatter) {
         if (!(options !== null && options !== void 0 && options.useAdditionalWeekYearTokens) && isProtectedWeekYearToken(substring)) {
           throwProtectedError(substring, dirtyFormatStr, String(dirtyDate));
         }
-
         if (!(options !== null && options !== void 0 && options.useAdditionalDayOfYearTokens) && isProtectedDayOfYearToken(substring)) {
           throwProtectedError(substring, dirtyFormatStr, String(dirtyDate));
         }
-
         return formatter(utcDate, substring, locale.localize, formatterOptions);
       }
-
       if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
         throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
       }
-
       return substring;
     }).join('');
     return result;
   }
-
   function cleanEscapedString(input) {
     var matched = input.match(escapedStringRegExp);
-
     if (!matched) {
       return input;
     }
-
     return matched[1].replace(doubleQuoteRegExp, "'");
   }
 
@@ -4665,64 +4544,51 @@
    * const result = parseISO('+02014101', { additionalDigits: 1 })
    * //=> Fri Apr 11 2014 00:00:00
    */
-
   function parseISO(argument, options) {
     var _options$additionalDi;
-
     requiredArgs(1, arguments);
     var additionalDigits = toInteger((_options$additionalDi = options === null || options === void 0 ? void 0 : options.additionalDigits) !== null && _options$additionalDi !== void 0 ? _options$additionalDi : 2);
-
     if (additionalDigits !== 2 && additionalDigits !== 1 && additionalDigits !== 0) {
       throw new RangeError('additionalDigits must be 0, 1 or 2');
     }
-
     if (!(typeof argument === 'string' || Object.prototype.toString.call(argument) === '[object String]')) {
       return new Date(NaN);
     }
-
     var dateStrings = splitDateString(argument);
     var date;
-
     if (dateStrings.date) {
       var parseYearResult = parseYear(dateStrings.date, additionalDigits);
       date = parseDate(parseYearResult.restDateString, parseYearResult.year);
     }
-
     if (!date || isNaN(date.getTime())) {
       return new Date(NaN);
     }
-
     var timestamp = date.getTime();
     var time = 0;
     var offset;
-
     if (dateStrings.time) {
       time = parseTime(dateStrings.time);
-
       if (isNaN(time)) {
         return new Date(NaN);
       }
     }
-
     if (dateStrings.timezone) {
       offset = parseTimezone(dateStrings.timezone);
-
       if (isNaN(offset)) {
         return new Date(NaN);
       }
     } else {
-      var dirtyDate = new Date(timestamp + time); // js parsed string assuming it's in UTC timezone
+      var dirtyDate = new Date(timestamp + time);
+      // js parsed string assuming it's in UTC timezone
       // but we need it to be parsed in our timezone
       // so we use utc values to build date in our timezone.
       // Year values from 0 to 99 map to the years 1900 to 1999
       // so set year explicitly with setFullYear.
-
       var result = new Date(0);
       result.setFullYear(dirtyDate.getUTCFullYear(), dirtyDate.getUTCMonth(), dirtyDate.getUTCDate());
       result.setHours(dirtyDate.getUTCHours(), dirtyDate.getUTCMinutes(), dirtyDate.getUTCSeconds(), dirtyDate.getUTCMilliseconds());
       return result;
     }
-
     return new Date(timestamp + time + offset);
   }
   var patterns = {
@@ -4733,32 +4599,28 @@
   var dateRegex = /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
   var timeRegex = /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
   var timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
-
   function splitDateString(dateString) {
     var dateStrings = {};
     var array = dateString.split(patterns.dateTimeDelimiter);
-    var timeString; // The regex match should only return at maximum two array elements.
-    // [date], [time], or [date, time].
+    var timeString;
 
+    // The regex match should only return at maximum two array elements.
+    // [date], [time], or [date, time].
     if (array.length > 2) {
       return dateStrings;
     }
-
     if (/:/.test(array[0])) {
       timeString = array[0];
     } else {
       dateStrings.date = array[0];
       timeString = array[1];
-
       if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
         dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
         timeString = dateString.substr(dateStrings.date.length, dateString.length);
       }
     }
-
     if (timeString) {
       var token = patterns.timezone.exec(timeString);
-
       if (token) {
         dateStrings.time = timeString.replace(token[1], '');
         dateStrings.timezone = token[1];
@@ -4766,32 +4628,30 @@
         dateStrings.time = timeString;
       }
     }
-
     return dateStrings;
   }
-
   function parseYear(dateString, additionalDigits) {
     var regex = new RegExp('^(?:(\\d{4}|[+-]\\d{' + (4 + additionalDigits) + '})|(\\d{2}|[+-]\\d{' + (2 + additionalDigits) + '})$)');
-    var captures = dateString.match(regex); // Invalid ISO-formatted year
-
+    var captures = dateString.match(regex);
+    // Invalid ISO-formatted year
     if (!captures) return {
       year: NaN,
       restDateString: ''
     };
     var year = captures[1] ? parseInt(captures[1]) : null;
-    var century = captures[2] ? parseInt(captures[2]) : null; // either year or century is null, not both
+    var century = captures[2] ? parseInt(captures[2]) : null;
 
+    // either year or century is null, not both
     return {
       year: century === null ? year : century * 100,
       restDateString: dateString.slice((captures[1] || captures[2]).length)
     };
   }
-
   function parseDate(dateString, year) {
     // Invalid ISO-formatted year
     if (year === null) return new Date(NaN);
-    var captures = dateString.match(dateRegex); // Invalid ISO-formatted string
-
+    var captures = dateString.match(dateRegex);
+    // Invalid ISO-formatted string
     if (!captures) return new Date(NaN);
     var isWeekDate = !!captures[4];
     var dayOfYear = parseDateUnit(captures[1]);
@@ -4799,29 +4659,23 @@
     var day = parseDateUnit(captures[3]);
     var week = parseDateUnit(captures[4]);
     var dayOfWeek = parseDateUnit(captures[5]) - 1;
-
     if (isWeekDate) {
       if (!validateWeekDate(year, week, dayOfWeek)) {
         return new Date(NaN);
       }
-
       return dayOfISOWeekYear(year, week, dayOfWeek);
     } else {
       var date = new Date(0);
-
       if (!validateDate(year, month, day) || !validateDayOfYearDate(year, dayOfYear)) {
         return new Date(NaN);
       }
-
       date.setUTCFullYear(year, month, Math.max(dayOfYear, day));
       return date;
     }
   }
-
   function parseDateUnit(value) {
     return value ? parseInt(value) : 1;
   }
-
   function parseTime(timeString) {
     var captures = timeString.match(timeRegex);
     if (!captures) return NaN; // Invalid ISO-formatted time
@@ -4829,18 +4683,14 @@
     var hours = parseTimeUnit(captures[1]);
     var minutes = parseTimeUnit(captures[2]);
     var seconds = parseTimeUnit(captures[3]);
-
     if (!validateTime(hours, minutes, seconds)) {
       return NaN;
     }
-
     return hours * millisecondsInHour + minutes * millisecondsInMinute + seconds * 1000;
   }
-
   function parseTimeUnit(value) {
     return value && parseFloat(value.replace(',', '.')) || 0;
   }
-
   function parseTimezone(timezoneString) {
     if (timezoneString === 'Z') return 0;
     var captures = timezoneString.match(timezoneRegex);
@@ -4848,14 +4698,11 @@
     var sign = captures[1] === '+' ? -1 : 1;
     var hours = parseInt(captures[2]);
     var minutes = captures[3] && parseInt(captures[3]) || 0;
-
     if (!validateTimezone(hours, minutes)) {
       return NaN;
     }
-
     return sign * (hours * millisecondsInHour + minutes * millisecondsInMinute);
   }
-
   function dayOfISOWeekYear(isoWeekYear, week, day) {
     var date = new Date(0);
     date.setUTCFullYear(isoWeekYear, 0, 4);
@@ -4863,36 +4710,30 @@
     var diff = (week - 1) * 7 + day + 1 - fourthOfJanuaryDay;
     date.setUTCDate(date.getUTCDate() + diff);
     return date;
-  } // Validation functions
+  }
+
+  // Validation functions
+
   // February is null to handle the leap year (using ||)
-
-
   var daysInMonths = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
   function isLeapYearIndex(year) {
     return year % 400 === 0 || year % 4 === 0 && year % 100 !== 0;
   }
-
   function validateDate(year, month, date) {
     return month >= 0 && month <= 11 && date >= 1 && date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28));
   }
-
   function validateDayOfYearDate(year, dayOfYear) {
     return dayOfYear >= 1 && dayOfYear <= (isLeapYearIndex(year) ? 366 : 365);
   }
-
   function validateWeekDate(_year, week, day) {
     return week >= 1 && week <= 53 && day >= 0 && day <= 6;
   }
-
   function validateTime(hours, minutes, seconds) {
     if (hours === 24) {
       return minutes === 0 && seconds === 0;
     }
-
     return seconds >= 0 && seconds < 60 && minutes >= 0 && minutes < 60 && hours >= 0 && hours < 25;
   }
-
   function validateTimezone(_hours, minutes) {
     return minutes >= 0 && minutes <= 59;
   }
@@ -5060,7 +4901,7 @@
   function getUAString() {
     var uaData = navigator.userAgentData;
 
-    if (uaData != null && uaData.brands) {
+    if (uaData != null && uaData.brands && Array.isArray(uaData.brands)) {
       return uaData.brands.map(function (item) {
         return item.brand + "/" + item.version;
       }).join(' ');
@@ -5348,7 +5189,6 @@
     }
 
     if (!contains(state.elements.popper, arrowElement)) {
-
       return;
     }
 
@@ -5379,10 +5219,9 @@
   // Zooming can change the DPR, but it seems to report a value that will
   // cleanly divide the values into the appropriate subpixels.
 
-  function roundOffsetsByDPR(_ref) {
+  function roundOffsetsByDPR(_ref, win) {
     var x = _ref.x,
         y = _ref.y;
-    var win = window;
     var dpr = win.devicePixelRatio || 1;
     return {
       x: round(x * dpr) / dpr || 0,
@@ -5465,7 +5304,7 @@
     var _ref4 = roundOffsets === true ? roundOffsetsByDPR({
       x: x,
       y: y
-    }) : {
+    }, getWindow(popper)) : {
       x: x,
       y: y
     };
@@ -5491,7 +5330,6 @@
         adaptive = _options$adaptive === void 0 ? true : _options$adaptive,
         _options$roundOffsets = options.roundOffsets,
         roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
-
     var commonStyles = {
       placement: getBasePlacement(state.placement),
       variation: getVariation(state.placement),
@@ -6559,8 +6397,7 @@
 
           state.orderedModifiers = orderedModifiers.filter(function (m) {
             return m.enabled;
-          }); // Validate the provided modifiers so that the consumer will get warned
-
+          });
           runModifierEffects();
           return instance.update();
         },
@@ -6580,7 +6417,6 @@
           // anymore
 
           if (!areValidElements(reference, popper)) {
-
             return;
           } // Store the reference and popper rects to be read by modifiers
 
@@ -6605,7 +6441,6 @@
           });
 
           for (var index = 0; index < state.orderedModifiers.length; index++) {
-
             if (state.reset === true) {
               state.reset = false;
               index = -1;
@@ -6643,7 +6478,6 @@
       };
 
       if (!areValidElements(reference, popper)) {
-
         return instance;
       }
 
@@ -6658,11 +6492,11 @@
       // one.
 
       function runModifierEffects() {
-        state.orderedModifiers.forEach(function (_ref3) {
-          var name = _ref3.name,
-              _ref3$options = _ref3.options,
-              options = _ref3$options === void 0 ? {} : _ref3$options,
-              effect = _ref3.effect;
+        state.orderedModifiers.forEach(function (_ref) {
+          var name = _ref.name,
+              _ref$options = _ref.options,
+              options = _ref$options === void 0 ? {} : _ref$options,
+              effect = _ref.effect;
 
           if (typeof effect === 'function') {
             var cleanupFn = effect({
@@ -6745,13 +6579,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): dropdown.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI dropdown.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's dropdown.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -6820,7 +6655,7 @@
       super(element, config);
       this._popper = null;
       this._parent = this._element.parentNode; // dropdown wrapper
-      // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+      // TODO: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.3/forms/input-group/
       this._menu = SelectorEngine.next(this._element, SELECTOR_MENU)[0] || SelectorEngine.prev(this._element, SELECTOR_MENU)[0] || SelectorEngine.findOne(SELECTOR_MENU, this._parent);
       this._inNavbar = this._detectNavbar();
     }
@@ -6994,7 +6829,7 @@
 
       // Disable Popper if we have a static display or Dropdown is in Navbar
       if (this._inNavbar || this._config.display === 'static') {
-        Manipulator.setDataAttribute(this._menu, 'popper', 'static'); // todo:v6 remove
+        Manipulator.setDataAttribute(this._menu, 'popper', 'static'); // TODO: v6 remove
         defaultBsPopperConfig.modifiers = [{
           name: 'applyStyles',
           enabled: false
@@ -7076,7 +6911,7 @@
       }
       event.preventDefault();
 
-      // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+      // TODO: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.3/forms/input-group/
       const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$7) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$7)[0] || SelectorEngine.next(this, SELECTOR_DATA_TOGGLE$7)[0] || SelectorEngine.findOne(SELECTOR_DATA_TOGGLE$7, event.delegateTarget.parentNode);
       const instance = Dropdown.getOrCreateInstance(getToggleButton);
       if (isUpOrDownEvent) {
@@ -7115,10 +6950,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.3): picker.js
-   * License (https://coreui.io/pro/license-new/)
+   * CoreUI PRO picker.js
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
+
 
   /**
   * ------------------------------------------------------------------------
@@ -7319,6 +7155,13 @@
   };
 
   /* eslint-disable indent */
+  /**
+   * --------------------------------------------------------------------------
+   * CoreUI PRO time-picker.js
+   * License (https://coreui.io/pro/license/)
+   * --------------------------------------------------------------------------
+   */
+
 
   /**
   * ------------------------------------------------------------------------
@@ -7739,10 +7582,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.3): date-range-picker.js
-   * License (https://coreui.io/pro/license-new/)
+   * CoreUI PRO date-range-picker.js
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
+
 
   /**
   * ------------------------------------------------------------------------
@@ -7781,7 +7625,9 @@
     separator: true,
     size: null,
     startDate: null,
+    selectAdjacementDays: false,
     selectEndDate: false,
+    showAdjacementDays: true,
     timepicker: false,
     todayButton: 'Today',
     todayButtonClasses: ['btn', 'btn-sm', 'btn-primary', 'me-auto'],
@@ -7810,7 +7656,9 @@
     separator: 'boolean',
     size: '(string|null)',
     startDate: '(date|string|null)',
+    selectAdjacementDays: 'boolean',
     selectEndDate: 'boolean',
+    showAdjacementDays: 'boolean',
     timepicker: 'boolean',
     todayButton: '(boolean|string)',
     todayButtonClasses: '(array|string)',
@@ -8066,7 +7914,9 @@
         maxDate: this._config.maxDate,
         minDate: this._config.minDate,
         range: this._config.range,
+        selectAdjacementDays: this._config.selectAdjacementDays,
         selectEndDate: this._selectEndDate,
+        showAdjacementDays: this._config.showAdjacementDays,
         startDate: this._startDate
       });
       EventHandler.one(calendarEl, 'calendarDateChange.coreui.calendar', event => {
@@ -8163,6 +8013,14 @@
             this._startInput.value = this._setInputValue(this._startDate);
             this._endInput.value = this._setInputValue(this._endDate);
             this._updateCalendars();
+            EventHandler.trigger(this._element, EVENT_START_DATE_CHANGE, {
+              date: this._startDate,
+              formatedDate: this._formatDate(this._startDate)
+            });
+            EventHandler.trigger(this._element, EVENT_END_DATE_CHANGE, {
+              date: this._endDate,
+              formatedDate: this._formatDate(this._endDate)
+            });
           });
           buttonEl.innerHTML = key;
           dateRangePickerRangesEl.append(buttonEl);
@@ -8289,10 +8147,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.3): date-picker.js
-   * License (https://coreui.io/pro/license-new/)
+   * CoreUI PRO date-picker.js
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
+
 
   /**
   * ------------------------------------------------------------------------
@@ -8405,10 +8264,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.3): loading-button.js
-   * License (https://coreui.io/pro/license-new/)
+   * CoreUI PRO loading-button.js
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * ------------------------------------------------------------------------
@@ -8564,113 +8424,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
-   *
-   * This is a modified version of the Bootstrap's util/scrollBar.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-  /**
-   * Constants
-   */
-
-  const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
-  const SELECTOR_STICKY_CONTENT = '.sticky-top';
-  const PROPERTY_PADDING = 'padding-right';
-  const PROPERTY_MARGIN = 'margin-right';
-
-  /**
-   * Class definition
-   */
-
-  class ScrollBarHelper {
-    constructor() {
-      this._element = document.body;
-    }
-
-    // Public
-    getWidth() {
-      // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
-      const documentWidth = document.documentElement.clientWidth;
-      return Math.abs(window.innerWidth - documentWidth);
-    }
-    hide() {
-      const width = this.getWidth();
-      this._disableOverFlow();
-      // give padding to element to balance the hidden scrollbar width
-      this._setElementAttributes(this._element, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
-      // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
-      this._setElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
-      this._setElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN, calculatedValue => calculatedValue - width);
-    }
-    reset() {
-      this._resetElementAttributes(this._element, 'overflow');
-      this._resetElementAttributes(this._element, PROPERTY_PADDING);
-      this._resetElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING);
-      this._resetElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN);
-    }
-    isOverflowing() {
-      return this.getWidth() > 0;
-    }
-
-    // Private
-    _disableOverFlow() {
-      this._saveInitialAttribute(this._element, 'overflow');
-      this._element.style.overflow = 'hidden';
-    }
-    _setElementAttributes(selector, styleProperty, callback) {
-      const scrollbarWidth = this.getWidth();
-      const manipulationCallBack = element => {
-        if (element !== this._element && window.innerWidth > element.clientWidth + scrollbarWidth) {
-          return;
-        }
-        this._saveInitialAttribute(element, styleProperty);
-        const calculatedValue = window.getComputedStyle(element).getPropertyValue(styleProperty);
-        element.style.setProperty(styleProperty, `${callback(Number.parseFloat(calculatedValue))}px`);
-      };
-      this._applyManipulationCallback(selector, manipulationCallBack);
-    }
-    _saveInitialAttribute(element, styleProperty) {
-      const actualValue = element.style.getPropertyValue(styleProperty);
-      if (actualValue) {
-        Manipulator.setDataAttribute(element, styleProperty, actualValue);
-      }
-    }
-    _resetElementAttributes(selector, styleProperty) {
-      const manipulationCallBack = element => {
-        const value = Manipulator.getDataAttribute(element, styleProperty);
-        // We only want to remove the property if the value is `null`; the value can also be zero
-        if (value === null) {
-          element.style.removeProperty(styleProperty);
-          return;
-        }
-        Manipulator.removeDataAttribute(element, styleProperty);
-        element.style.setProperty(styleProperty, value);
-      };
-      this._applyManipulationCallback(selector, manipulationCallBack);
-    }
-    _applyManipulationCallback(selector, callBack) {
-      if (isElement$1(selector)) {
-        callBack(selector);
-        return;
-      }
-      for (const sel of SelectorEngine.find(selector, this._element)) {
-        callBack(sel);
-      }
-    }
-  }
-
-  /**
-   * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/backdrop.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/backdrop.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -8791,13 +8552,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/focustrap.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/focustrap.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -8892,13 +8654,115 @@
 
   /**
    * --------------------------------------------------------------------------
-    * CoreUI (v4.4.3): modal.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/scrollBar.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
+   *
+   * This is a modified version of the Bootstrap's util/scrollBar.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+
+
+  /**
+   * Constants
+   */
+
+  const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
+  const SELECTOR_STICKY_CONTENT = '.sticky-top';
+  const PROPERTY_PADDING = 'padding-right';
+  const PROPERTY_MARGIN = 'margin-right';
+
+  /**
+   * Class definition
+   */
+
+  class ScrollBarHelper {
+    constructor() {
+      this._element = document.body;
+    }
+
+    // Public
+    getWidth() {
+      // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
+      const documentWidth = document.documentElement.clientWidth;
+      return Math.abs(window.innerWidth - documentWidth);
+    }
+    hide() {
+      const width = this.getWidth();
+      this._disableOverFlow();
+      // give padding to element to balance the hidden scrollbar width
+      this._setElementAttributes(this._element, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
+      // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
+      this._setElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
+      this._setElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN, calculatedValue => calculatedValue - width);
+    }
+    reset() {
+      this._resetElementAttributes(this._element, 'overflow');
+      this._resetElementAttributes(this._element, PROPERTY_PADDING);
+      this._resetElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING);
+      this._resetElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN);
+    }
+    isOverflowing() {
+      return this.getWidth() > 0;
+    }
+
+    // Private
+    _disableOverFlow() {
+      this._saveInitialAttribute(this._element, 'overflow');
+      this._element.style.overflow = 'hidden';
+    }
+    _setElementAttributes(selector, styleProperty, callback) {
+      const scrollbarWidth = this.getWidth();
+      const manipulationCallBack = element => {
+        if (element !== this._element && window.innerWidth > element.clientWidth + scrollbarWidth) {
+          return;
+        }
+        this._saveInitialAttribute(element, styleProperty);
+        const calculatedValue = window.getComputedStyle(element).getPropertyValue(styleProperty);
+        element.style.setProperty(styleProperty, `${callback(Number.parseFloat(calculatedValue))}px`);
+      };
+      this._applyManipulationCallback(selector, manipulationCallBack);
+    }
+    _saveInitialAttribute(element, styleProperty) {
+      const actualValue = element.style.getPropertyValue(styleProperty);
+      if (actualValue) {
+        Manipulator.setDataAttribute(element, styleProperty, actualValue);
+      }
+    }
+    _resetElementAttributes(selector, styleProperty) {
+      const manipulationCallBack = element => {
+        const value = Manipulator.getDataAttribute(element, styleProperty);
+        // We only want to remove the property if the value is `null`; the value can also be zero
+        if (value === null) {
+          element.style.removeProperty(styleProperty);
+          return;
+        }
+        Manipulator.removeDataAttribute(element, styleProperty);
+        element.style.setProperty(styleProperty, value);
+      };
+      this._applyManipulationCallback(selector, manipulationCallBack);
+    }
+    _applyManipulationCallback(selector, callBack) {
+      if (isElement$1(selector)) {
+        callBack(selector);
+        return;
+      }
+      for (const sel of SelectorEngine.find(selector, this._element)) {
+        callBack(sel);
+      }
+    }
+  }
+
+  /**
+   * --------------------------------------------------------------------------
+   * CoreUI modal.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's modal.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -9001,9 +8865,8 @@
       this._queueCallback(() => this._hideModal(), this._element, this._isAnimated());
     }
     dispose() {
-      for (const htmlElement of [window, this._dialog]) {
-        EventHandler.off(htmlElement, EVENT_KEY$7);
-      }
+      EventHandler.off(window, EVENT_KEY$7);
+      EventHandler.off(this._dialog, EVENT_KEY$7);
       this._backdrop.dispose();
       this._focustrap.deactivate();
       super.dispose();
@@ -9058,7 +8921,6 @@
           return;
         }
         if (this._config.keyboard) {
-          event.preventDefault();
           this.hide();
           return;
         }
@@ -9201,10 +9063,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.3): multi-select.js
-   * License (https://coreui.io/pro/license-new/)
+   * CoreUI PRO multi-select.js
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * ------------------------------------------------------------------------
@@ -9444,7 +9307,7 @@
       return config;
     }
     _getClassNames() {
-      return [...this._element.classList.value.split(' ')];
+      return this._element.classList.value.split(' ');
     }
     _getOptions(node = this._element) {
       if (this._config.options) {
@@ -9499,12 +9362,7 @@
     }
     _createNativeOptions(parentElement, options) {
       for (const option of options) {
-        if (typeof option.options !== 'undefined') {
-          const optgroup = document.createElement('optgroup');
-          optgroup.label = option.label;
-          this._createNativeOptions(optgroup, option.options);
-          parentElement.append(optgroup);
-        } else {
+        if (typeof option.options === 'undefined') {
           const opt = document.createElement('OPTION');
           opt.value = option.value;
           if (option.disabled === true) {
@@ -9515,6 +9373,11 @@
           }
           opt.innerHTML = option.text;
           parentElement.append(opt);
+        } else {
+          const optgroup = document.createElement('optgroup');
+          optgroup.label = option.label;
+          this._createNativeOptions(optgroup, option.options);
+          parentElement.append(optgroup);
         }
       }
     }
@@ -9596,7 +9459,7 @@
       optionsDiv.classList.add(CLASS_NAME_OPTIONS);
       if (this._config.optionsMaxHeight !== 'auto') {
         optionsDiv.style.maxHeight = `${this._config.optionsMaxHeight}px`;
-        optionsDiv.style.overflow = 'scroll';
+        optionsDiv.style.overflow = 'auto';
       }
       dropdownDiv.append(optionsDiv);
       this._clone.append(dropdownDiv);
@@ -9912,10 +9775,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): navigation.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI navigation.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * ------------------------------------------------------------------------
@@ -10166,13 +10030,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): dropdown.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI offcanvas.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's offcanvas.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -10327,11 +10192,11 @@
         if (event.key !== ESCAPE_KEY) {
           return;
         }
-        if (!this._config.keyboard) {
-          EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED);
+        if (this._config.keyboard) {
+          this.hide();
           return;
         }
-        this.hide();
+        EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED);
       });
     }
 
@@ -10399,42 +10264,16 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): alert.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/sanitizer.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/sanitizer.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
-  const uriAttributes = new Set(['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href']);
+  // js-docs-start allow-list
   const ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
-
-  /**
-   * A pattern that recognizes a commonly useful subset of URLs that are safe.
-   *
-   * Shout-out to Angular https://github.com/angular/angular/blob/12.2.x/packages/core/src/sanitization/url_sanitizer.ts
-   */
-  const SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file|sms):|[^#&/:?]*(?:[#/?]|$))/i;
-
-  /**
-   * A pattern that matches safe data URLs. Only matches image, video and audio types.
-   *
-   * Shout-out to Angular https://github.com/angular/angular/blob/12.2.x/packages/core/src/sanitization/url_sanitizer.ts
-   */
-  const DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[\d+/a-z]+=*$/i;
-  const allowedAttribute = (attribute, allowedAttributeList) => {
-    const attributeName = attribute.nodeName.toLowerCase();
-    if (allowedAttributeList.includes(attributeName)) {
-      if (uriAttributes.has(attributeName)) {
-        return Boolean(SAFE_URL_PATTERN.test(attribute.nodeValue) || DATA_URL_PATTERN.test(attribute.nodeValue));
-      }
-      return true;
-    }
-
-    // Check if a regular expression validates the attribute.
-    return allowedAttributeList.filter(attributeRegex => attributeRegex instanceof RegExp).some(regex => regex.test(attributeName));
-  };
   const DefaultAllowlist = {
     // Global attributes allowed on any supplied element below.
     '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
@@ -10468,6 +10307,30 @@
     u: [],
     ul: []
   };
+  // js-docs-end allow-list
+
+  const uriAttributes = new Set(['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href']);
+
+  /**
+   * A pattern that recognizes URLs that are safe wrt. XSS in URL navigation
+   * contexts.
+   *
+   * Shout-out to Angular https://github.com/angular/angular/blob/15.2.8/packages/core/src/sanitization/url_sanitizer.ts#L38
+   */
+  // eslint-disable-next-line unicorn/better-regex
+  const SAFE_URL_PATTERN = /^(?!javascript:)(?:[a-z0-9+.-]+:|[^&:/?#]*(?:[/?#]|$))/i;
+  const allowedAttribute = (attribute, allowedAttributeList) => {
+    const attributeName = attribute.nodeName.toLowerCase();
+    if (allowedAttributeList.includes(attributeName)) {
+      if (uriAttributes.has(attributeName)) {
+        return Boolean(SAFE_URL_PATTERN.test(attribute.nodeValue));
+      }
+      return true;
+    }
+
+    // Check if a regular expression validates the attribute.
+    return allowedAttributeList.filter(attributeRegex => attributeRegex instanceof RegExp).some(regex => regex.test(attributeName));
+  };
   function sanitizeHtml(unsafeHtml, allowList, sanitizeFunction) {
     if (!unsafeHtml.length) {
       return unsafeHtml;
@@ -10497,13 +10360,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/template-factory.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/template-factory.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -10635,13 +10499,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): tooltip.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI tooltip.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's tooltip.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -10685,7 +10550,7 @@
     delay: 0,
     fallbackPlacements: ['top', 'right', 'bottom', 'left'],
     html: false,
-    offset: [0, 0],
+    offset: [0, 6],
     placement: 'top',
     popperConfig: null,
     sanitize: true,
@@ -10798,7 +10663,7 @@
         return;
       }
 
-      // todo v6 remove this OR make it optional
+      // TODO: v6 remove this or make it optional
       this._disposePopper();
       const tip = this._getTipElement();
       this._element.setAttribute('aria-describedby', tip.getAttribute('id'));
@@ -10884,12 +10749,12 @@
     _createTipElement(content) {
       const tip = this._getTemplateFactory(content).toHtml();
 
-      // todo: remove this check on v6
+      // TODO: remove this check in v6
       if (!tip) {
         return null;
       }
       tip.classList.remove(CLASS_NAME_FADE$2, CLASS_NAME_SHOW$3);
-      // todo: on v6 the following can be achieved with CSS only
+      // TODO: v6 the following can be achieved with CSS only
       tip.classList.add(`bs-${this.constructor.NAME}-auto`);
       const tipId = getUID(this.constructor.NAME).toString();
       tip.setAttribute('id', tipId);
@@ -11149,13 +11014,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): popover.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI popover.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's popover.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -11232,13 +11098,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): scrollspy.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI scrollspy.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's scrollspy.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -11418,11 +11285,11 @@
         if (!anchor.hash || isDisabled(anchor)) {
           continue;
         }
-        const observableSection = SelectorEngine.findOne(anchor.hash, this._element);
+        const observableSection = SelectorEngine.findOne(decodeURI(anchor.hash), this._element);
 
         // ensure that the observableSection exists & is visible
         if (isVisible(observableSection)) {
-          this._targetLinks.set(anchor.hash, anchor);
+          this._targetLinks.set(decodeURI(anchor.hash), anchor);
           this._observableSections.set(anchor.hash, observableSection);
         }
       }
@@ -11494,10 +11361,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): sidebar.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI sidebar.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * ------------------------------------------------------------------------
@@ -11774,13 +11642,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI tab.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's tab.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -11800,6 +11669,8 @@
   const ARROW_RIGHT_KEY = 'ArrowRight';
   const ARROW_UP_KEY = 'ArrowUp';
   const ARROW_DOWN_KEY = 'ArrowDown';
+  const HOME_KEY = 'Home';
+  const END_KEY = 'End';
   const CLASS_NAME_ACTIVE = 'active';
   const CLASS_NAME_FADE$1 = 'fade';
   const CLASS_NAME_SHOW$1 = 'show';
@@ -11810,7 +11681,7 @@
   const SELECTOR_TAB_PANEL = '.list-group, .nav, [role="tablist"]';
   const SELECTOR_OUTER = '.nav-item, .list-group-item';
   const SELECTOR_INNER = `.nav-link${NOT_SELECTOR_DROPDOWN_TOGGLE}, .list-group-item${NOT_SELECTOR_DROPDOWN_TOGGLE}, [role="tab"]${NOT_SELECTOR_DROPDOWN_TOGGLE}`;
-  const SELECTOR_DATA_TOGGLE = '[data-coreui-toggle="tab"], [data-coreui-toggle="pill"], [data-coreui-toggle="list"]'; // todo:v6: could be only `tab`
+  const SELECTOR_DATA_TOGGLE = '[data-coreui-toggle="tab"], [data-coreui-toggle="pill"], [data-coreui-toggle="list"]'; // TODO: could only be `tab` in v6
   const SELECTOR_INNER_ELEM = `${SELECTOR_INNER}, ${SELECTOR_DATA_TOGGLE}`;
   const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-coreui-toggle="tab"], .${CLASS_NAME_ACTIVE}[data-coreui-toggle="pill"], .${CLASS_NAME_ACTIVE}[data-coreui-toggle="list"]`;
 
@@ -11824,7 +11695,7 @@
       this._parent = this._element.closest(SELECTOR_TAB_PANEL);
       if (!this._parent) {
         return;
-        // todo: should Throw exception on v6
+        // TODO: should throw exception in v6
         // throw new TypeError(`${element.outerHTML} has not a valid parent ${SELECTOR_INNER_ELEM}`)
       }
 
@@ -11906,13 +11777,19 @@
       this._queueCallback(complete, element, element.classList.contains(CLASS_NAME_FADE$1));
     }
     _keydown(event) {
-      if (![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY].includes(event.key)) {
+      if (![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY, HOME_KEY, END_KEY].includes(event.key)) {
         return;
       }
       event.stopPropagation(); // stopPropagation/preventDefault both added to support up/down keys without scrolling the page
       event.preventDefault();
-      const isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
-      const nextActiveElement = getNextActiveElement(this._getChildren().filter(element => !isDisabled(element)), event.target, isNext, true);
+      const children = this._getChildren().filter(element => !isDisabled(element));
+      let nextActiveElement;
+      if ([HOME_KEY, END_KEY].includes(event.key)) {
+        nextActiveElement = children[event.key === HOME_KEY ? 0 : children.length - 1];
+      } else {
+        const isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
+        nextActiveElement = getNextActiveElement(children, event.target, isNext, true);
+      }
       if (nextActiveElement) {
         nextActiveElement.focus({
           preventScroll: true
@@ -11956,7 +11833,7 @@
       }
       this._setAttributeIfNotExists(target, 'role', 'tabpanel');
       if (child.id) {
-        this._setAttributeIfNotExists(target, 'aria-labelledby', `#${child.id}`);
+        this._setAttributeIfNotExists(target, 'aria-labelledby', `${child.id}`);
       }
     }
     _toggleDropDown(element, open) {
@@ -12038,13 +11915,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): toast.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI toast.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's toast.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -12224,10 +12102,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): index.esm.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI index.esm.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
   const index_umd = {
     Alert,
     Button,

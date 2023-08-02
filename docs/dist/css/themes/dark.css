@@ -6,8 +6,8 @@
   --cui-medium-emphasis: rgba(255, 255, 255, 0.6);
   --cui-disabled: rgba(255, 255, 255, 0.38);
   --cui-border-color: rgba(255, 255, 255, 0.075);
-  --cui-link-color: #948dd2;
-  --cui-link-hover-color: #a9a4db;
+  --cui-link-color: #857dcc;
+  --cui-link-hover-color: #9d97d6;
   --cui-bg-primary: #857dcc;
   --cui-bg-secondary: #a7a7a7;
   --cui-bg-success: #519668;
@@ -44,6 +44,8 @@
   --cui-dark-rgb: 0, 0, 21;
   --cui-body-color-rgb: 255, 255, 255;
   --cui-body-bg-rgb: 24, 25, 36;
+  --cui-link-color: #857dcc;
+  --cui-link-color-rgb: 133, 125, 204;
   --cui-primary-start: #4638c2;
   --cui-primary-stop: #2d2587;
   --cui-secondary-start: #d1d2d3;
@@ -82,8 +84,8 @@
   --cui-btn-close-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='rgba(255, 255, 255, 0.87)'><path d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/></svg>");
 }
 .dark-theme .btn-link {
-  --cui-btn-link-color: #948dd2;
-  --cui-btn-link-hover-color: #a9a4db;
+  --cui-btn-link-color: #857dcc;
+  --cui-btn-link-hover-color: #9d97d6;
   --cui-btn-link-disabled-color: rgba(255, 255, 255, 0.38);
 }
 .dark-theme .calendar {
@@ -243,12 +245,12 @@
   --cui-offcanvas-border-color: transparent;
 }
 .dark-theme .pagination {
-  --cui-pagination-color: #948dd2;
+  --cui-pagination-color: #857dcc;
   --cui-pagination-bg: transparent;
   --cui-pagination-border-color: rgba(255, 255, 255, 0.075);
-  --cui-pagination-focus-color: #a9a4db;
+  --cui-pagination-focus-color: #9d97d6;
   --cui-pagination-focus-bg: rgba(255, 255, 255, 0.075);
-  --cui-pagination-hover-color: #a9a4db;
+  --cui-pagination-hover-color: #9d97d6;
   --cui-pagination-hover-bg: rgba(255, 255, 255, 0.075);
   --cui-pagination-hover-border-color: rgba(255, 255, 255, 0.075);
   --cui-pagination-active-color: #fff;
@@ -429,49 +431,55 @@
   --cui-alert-color: #1e1383;
   --cui-alert-bg: #d6d2f8;
   --cui-alert-border-color: #c2bcf4;
+  --cui-alert-link-color: #180f69;
 }
 .dark-theme .alert-primary .alert-link {
-  color: #180f69;
+  color: var(--cui-alert-link-color);
 }
 .dark-theme .alert-secondary {
   --cui-alert-color: #5e636a;
   --cui-alert-bg: #ebedef;
   --cui-alert-border-color: #e2e4e8;
+  --cui-alert-link-color: #4b4f55;
 }
 .dark-theme .alert-secondary .alert-link {
-  color: #4b4f55;
+  color: var(--cui-alert-link-color);
 }
 .dark-theme .alert-success {
   --cui-alert-color: #1c6e37;
   --cui-alert-bg: #d5f1de;
   --cui-alert-border-color: #c0eace;
+  --cui-alert-link-color: #16582c;
 }
 .dark-theme .alert-success .alert-link {
-  color: #16582c;
+  color: var(--cui-alert-link-color);
 }
 .dark-theme .alert-danger {
   --cui-alert-color: #893232;
   --cui-alert-bg: #fadddd;
   --cui-alert-border-color: #f7cbcb;
+  --cui-alert-link-color: #6e2828;
 }
 .dark-theme .alert-danger .alert-link {
-  color: #6e2828;
+  color: var(--cui-alert-link-color);
 }
 .dark-theme .alert-warning {
   --cui-alert-color: rgba(131, 107, 52, 0.97);
   --cui-alert-bg: #feefd0;
   --cui-alert-border-color: #fde8b9;
+  --cui-alert-link-color: rgba(104, 85, 41, 0.976);
 }
 .dark-theme .alert-warning .alert-link {
-  color: rgba(104, 85, 41, 0.976);
+  color: var(--cui-alert-link-color);
 }
 .dark-theme .alert-info {
   --cui-alert-color: #1f5c99;
   --cui-alert-bg: #d6ebff;
   --cui-alert-border-color: #c2e0ff;
+  --cui-alert-link-color: #194a7a;
 }
 .dark-theme .alert-info .alert-link {
-  color: #194a7a;
+  color: var(--cui-alert-link-color);
 }
 .dark-theme .btn-primary {
   --cui-btn-color: #000015;
@@ -784,6 +792,18 @@
   .dark-theme select optgroup {
     color: initial;
   }
+}
+.dark-theme .form-control:disabled {
+  background-color: var(--cui-input-disabled-bg);
+}
+.dark-theme .form-control::file-selector-button {
+  background-color: rgba(0, 0, 21, 0.1);
+}
+.dark-theme .form-control:hover:not(:disabled):not([readonly])::file-selector-button {
+  background-color: rgba(0, 0, 21, 0.2);
+}
+.dark-theme .picker-input-group .form-control:disabled + .input-group-text {
+  background-color: var(--cui-input-disabled-bg);
 }
 .dark-theme .dark\:text-primary, .dark-theme .text-primary:not([class*="dark:"]) {
   color: rgba(var(--cui-primary-rgb), var(--cui-text-opacity)) !important;

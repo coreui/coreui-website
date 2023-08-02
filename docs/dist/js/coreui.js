@@ -1,7 +1,7 @@
 /*!
-  * CoreUI [object Object] v4.4.3 (https://coreui.io)
+  * CoreUI v4.6.0 (https://coreui.io)
   * Copyright 2023 The CoreUI Team (https://github.com/orgs/coreui/people)
-  * Licensed under MIT (https://coreui.io)
+  * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('date-fns'), require('@popperjs/core')) :
@@ -30,8 +30,59 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): alert.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI dom/data.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
+   *
+   * This is a modified version of the Bootstrap's dom/data.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+
+  /**
+   * Constants
+   */
+
+  const elementMap = new Map();
+  const Data = {
+    set(element, key, instance) {
+      if (!elementMap.has(element)) {
+        elementMap.set(element, new Map());
+      }
+      const instanceMap = elementMap.get(element);
+
+      // make it clear we only want one instance per element
+      // can be removed later when multiple key/instances are fine to be used
+      if (!instanceMap.has(key) && instanceMap.size !== 0) {
+        // eslint-disable-next-line no-console
+        console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
+        return;
+      }
+      instanceMap.set(key, instance);
+    },
+    get(element, key) {
+      if (elementMap.has(element)) {
+        return elementMap.get(element).get(key) || null;
+      }
+      return null;
+    },
+    remove(element, key) {
+      if (!elementMap.has(element)) {
+        return;
+      }
+      const instanceMap = elementMap.get(element);
+      instanceMap.delete(key);
+
+      // free up element references if there are no instances left for an element
+      if (instanceMap.size === 0) {
+        elementMap.delete(element);
+      }
+    }
+  };
+
+  /**
+   * --------------------------------------------------------------------------
+   * CoreUI util/index.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/index.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
@@ -280,13 +331,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): dom/event-handler.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI dom/event-handler.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's dom/event-handler.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -353,7 +405,7 @@
   }
   function normalizeParameters(originalTypeEvent, handler, delegationFunction) {
     const isDelegated = typeof handler === 'string';
-    // todo: tooltip passes `false` instead of selector, so we need to check
+    // TODO: tooltip passes `false` instead of selector, so we need to check
     const callable = isDelegated ? delegationFunction : handler || delegationFunction;
     let typeEvent = getTypeEvent(originalTypeEvent);
     if (!nativeEvents.has(typeEvent)) {
@@ -470,11 +522,10 @@
         nativeDispatch = !jQueryEvent.isImmediatePropagationStopped();
         defaultPrevented = jQueryEvent.isDefaultPrevented();
       }
-      let evt = new Event(event, {
+      const evt = hydrateObj(new Event(event, {
         bubbles,
         cancelable: true
-      });
-      evt = hydrateObj(evt, args);
+      }), args);
       if (defaultPrevented) {
         evt.preventDefault();
       }
@@ -505,59 +556,8 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): dom/data.js
-   * Licensed under MIT (https://coreui.io/license)
-   *
-   * This is a modified version of the Bootstrap's dom/data.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-  /**
-   * Constants
-   */
-
-  const elementMap = new Map();
-  const Data = {
-    set(element, key, instance) {
-      if (!elementMap.has(element)) {
-        elementMap.set(element, new Map());
-      }
-      const instanceMap = elementMap.get(element);
-
-      // make it clear we only want one instance per element
-      // can be removed later when multiple key/instances are fine to be used
-      if (!instanceMap.has(key) && instanceMap.size !== 0) {
-        // eslint-disable-next-line no-console
-        console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
-        return;
-      }
-      instanceMap.set(key, instance);
-    },
-    get(element, key) {
-      if (elementMap.has(element)) {
-        return elementMap.get(element).get(key) || null;
-      }
-      return null;
-    },
-    remove(element, key) {
-      if (!elementMap.has(element)) {
-        return;
-      }
-      const instanceMap = elementMap.get(element);
-      instanceMap.delete(key);
-
-      // free up element references if there are no instances left for an element
-      if (instanceMap.size === 0) {
-        elementMap.delete(element);
-      }
-    }
-  };
-
-  /**
-   * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): dom/manipulator.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI dom/manipulator.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's dom/manipulator.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
@@ -616,13 +616,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/config.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/config.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Class definition
@@ -671,19 +672,20 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): alert.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI base-component.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's base-component.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
+
   /**
    * Constants
    */
 
-  const VERSION = '4.4.3';
+  const VERSION = '4.6.0';
 
   /**
    * Class definition
@@ -742,13 +744,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): dom/selector-engine.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI dom/selector-engine.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's dom/selector-engine.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
   const getSelector = element => {
     let selector = element.getAttribute('data-coreui-target');
     if (!selector || selector === '#') {
@@ -833,13 +836,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/component-functions.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/component-functions.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
   const enableDismissTrigger = (component, method = 'hide') => {
     const clickEvent = `click.dismiss${component.EVENT_KEY}`;
     const name = component.NAME;
@@ -860,13 +864,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): alert.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI alert.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's alert.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -937,13 +942,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): alert.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI button.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's button.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -1149,6 +1155,13 @@
   };
 
   /* eslint-disable indent, multiline-ternary */
+  /**
+   * --------------------------------------------------------------------------
+   * CoreUI PRO calendar.js
+   * License (https://coreui.io/pro/license/)
+   * --------------------------------------------------------------------------
+   */
+
 
   /**
   * ------------------------------------------------------------------------
@@ -1180,8 +1193,10 @@
     maxDate: null,
     minDate: null,
     range: true,
-    startDate: null,
+    selectAdjacementDays: false,
     selectEndDate: false,
+    showAdjacementDays: true,
+    startDate: null,
     weekdayFormat: 2
   };
   const DefaultType$l = {
@@ -1194,8 +1209,10 @@
     maxDate: '(date|string|null)',
     minDate: '(date|string|null)',
     range: 'boolean',
-    startDate: '(date|string|null)',
+    selectAdjacementDays: 'boolean',
     selectEndDate: 'boolean',
+    showAdjacementDays: 'boolean',
+    startDate: '(date|string|null)',
     weekdayFormat: '(number|string)'
   };
 
@@ -1234,7 +1251,20 @@
     _addEventListeners() {
       EventHandler.on(this._element, 'click', SELECTOR_CALENDAR_CELL_INNER, event => {
         event.preventDefault();
+        if (event.target.parentElement.classList.contains('disabled')) {
+          return;
+        }
+        if ((event.target.parentElement.classList.contains('next') || event.target.parentElement.classList.contains('previous')) && !this._config.selectAdjacementDays) {
+          return;
+        }
         if (event.target.classList.contains('day')) {
+          const date = new Date(Manipulator.getDataAttribute(event.target, 'date'));
+          const calendarIndex = Manipulator.getDataAttribute(event.target.closest('.calendar-panel'), 'calendar-index');
+          if (calendarIndex) {
+            this._setCalendarDate(new Date(date.setMonth(date.getMonth() - calendarIndex)));
+          } else {
+            this._setCalendarDate(date);
+          }
           this._selectDate(Manipulator.getDataAttribute(event.target, 'date'));
         }
         if (event.target.classList.contains('month')) {
@@ -1250,6 +1280,9 @@
       EventHandler.on(this._element, EVENT_MOUSEENTER$2, SELECTOR_CALENDAR_CELL_INNER, event => {
         event.preventDefault();
         if (event.target.parentElement.classList.contains('disabled')) {
+          return;
+        }
+        if ((event.target.parentElement.classList.contains('next') || event.target.parentElement.classList.contains('previous')) && !this._config.selectAdjacementDays) {
           return;
         }
         this._hoverDate = new Date(Manipulator.getDataAttribute(event.target, 'date'));
@@ -1361,6 +1394,7 @@
       const month = date.getMonth();
       const calendarPanelEl = document.createElement('div');
       calendarPanelEl.classList.add('calendar-panel');
+      Manipulator.setDataAttribute(calendarPanelEl, 'calendar-index', addMonths);
 
       // Create navigation
       const navigationElement = document.createElement('div');
@@ -1421,13 +1455,13 @@
         ${this._view === 'days' ? monthDetails.map(week => `<tr>${week.map(({
       date,
       month
-    }) => `<td class="calendar-cell ${this._dayClassNames(date, month)}">
-              <div class="calendar-cell-inner day" data-coreui-date="${date}">
-                ${date.toLocaleDateString(this._config.locale, {
+    }) => month === 'current' || this._config.showAdjacementDays ? `<td class="calendar-cell ${this._dayClassNames(date, month)}">
+                <div class="calendar-cell-inner day" data-coreui-date="${date}">
+                  ${date.toLocaleDateString(this._config.locale, {
       day: 'numeric'
     })}
-              </div>
-            </td>`).join('')}</tr>`).join('') : ''}
+                </div>
+              </td>` : '<td></td>').join('')}</tr>`).join('') : ''}
         ${this._view === 'months' ? listOfMonths.map((row, index) => `<tr>${row.map((month, idx) => `<td class="calendar-cell">
               <div class="calendar-cell-inner month" data-coreui-month="${index * 3 + idx - addMonths}">
                 ${month}
@@ -1464,6 +1498,7 @@
         today: isToday(date),
         disabled: isDateDisabled(date, this._config.minDate, this._config.maxDate, this._config.disabledDates),
         [month]: true,
+        clickable: month !== 'current' && this._config.selectAdjacementDays,
         last: isLastDayOfMonth(date),
         range: month === 'current' && isDateInRange(date, this._startDate, this._endDate),
         'range-hover': month === 'current' && (this._hoverDate && this._selectEndDate ? isDateInRange(date, this._startDate, this._hoverDate) : isDateInRange(date, this._hoverDate, this._endDate)),
@@ -1537,13 +1572,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/swipe.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/swipe.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -1659,13 +1695,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): carousel.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI carousel.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's carousel.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -1922,7 +1959,7 @@
       }
       if (!activeElement || !nextElement) {
         // Some weirdness is happening, so we bail
-        // todo: change tests that use empty divs to avoid this check
+        // TODO: change tests that use empty divs to avoid this check
         return;
       }
       const isCycling = Boolean(this._interval);
@@ -2034,13 +2071,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): collapse.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI collapse.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's collapse.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -2270,13 +2308,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): dropdown.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI dropdown.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's dropdown.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -2345,7 +2384,7 @@
       super(element, config);
       this._popper = null;
       this._parent = this._element.parentNode; // dropdown wrapper
-      // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+      // TODO: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.3/forms/input-group/
       this._menu = SelectorEngine.next(this._element, SELECTOR_MENU)[0] || SelectorEngine.prev(this._element, SELECTOR_MENU)[0] || SelectorEngine.findOne(SELECTOR_MENU, this._parent);
       this._inNavbar = this._detectNavbar();
     }
@@ -2519,7 +2558,7 @@
 
       // Disable Popper if we have a static display or Dropdown is in Navbar
       if (this._inNavbar || this._config.display === 'static') {
-        Manipulator.setDataAttribute(this._menu, 'popper', 'static'); // todo:v6 remove
+        Manipulator.setDataAttribute(this._menu, 'popper', 'static'); // TODO: v6 remove
         defaultBsPopperConfig.modifiers = [{
           name: 'applyStyles',
           enabled: false
@@ -2601,7 +2640,7 @@
       }
       event.preventDefault();
 
-      // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+      // TODO: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.3/forms/input-group/
       const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$7) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$7)[0] || SelectorEngine.next(this, SELECTOR_DATA_TOGGLE$7)[0] || SelectorEngine.findOne(SELECTOR_DATA_TOGGLE$7, event.delegateTarget.parentNode);
       const instance = Dropdown.getOrCreateInstance(getToggleButton);
       if (isUpOrDownEvent) {
@@ -2640,10 +2679,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.3): picker.js
-   * License (https://coreui.io/pro/license-new/)
+   * CoreUI PRO picker.js
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
+
 
   /**
   * ------------------------------------------------------------------------
@@ -2844,6 +2884,13 @@
   };
 
   /* eslint-disable indent */
+  /**
+   * --------------------------------------------------------------------------
+   * CoreUI PRO time-picker.js
+   * License (https://coreui.io/pro/license/)
+   * --------------------------------------------------------------------------
+   */
+
 
   /**
   * ------------------------------------------------------------------------
@@ -3264,10 +3311,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.3): date-range-picker.js
-   * License (https://coreui.io/pro/license-new/)
+   * CoreUI PRO date-range-picker.js
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
+
 
   /**
   * ------------------------------------------------------------------------
@@ -3306,7 +3354,9 @@
     separator: true,
     size: null,
     startDate: null,
+    selectAdjacementDays: false,
     selectEndDate: false,
+    showAdjacementDays: true,
     timepicker: false,
     todayButton: 'Today',
     todayButtonClasses: ['btn', 'btn-sm', 'btn-primary', 'me-auto'],
@@ -3335,7 +3385,9 @@
     separator: 'boolean',
     size: '(string|null)',
     startDate: '(date|string|null)',
+    selectAdjacementDays: 'boolean',
     selectEndDate: 'boolean',
+    showAdjacementDays: 'boolean',
     timepicker: 'boolean',
     todayButton: '(boolean|string)',
     todayButtonClasses: '(array|string)',
@@ -3591,7 +3643,9 @@
         maxDate: this._config.maxDate,
         minDate: this._config.minDate,
         range: this._config.range,
+        selectAdjacementDays: this._config.selectAdjacementDays,
         selectEndDate: this._selectEndDate,
+        showAdjacementDays: this._config.showAdjacementDays,
         startDate: this._startDate
       });
       EventHandler.one(calendarEl, 'calendarDateChange.coreui.calendar', event => {
@@ -3688,6 +3742,14 @@
             this._startInput.value = this._setInputValue(this._startDate);
             this._endInput.value = this._setInputValue(this._endDate);
             this._updateCalendars();
+            EventHandler.trigger(this._element, EVENT_START_DATE_CHANGE, {
+              date: this._startDate,
+              formatedDate: this._formatDate(this._startDate)
+            });
+            EventHandler.trigger(this._element, EVENT_END_DATE_CHANGE, {
+              date: this._endDate,
+              formatedDate: this._formatDate(this._endDate)
+            });
           });
           buttonEl.innerHTML = key;
           dateRangePickerRangesEl.append(buttonEl);
@@ -3814,10 +3876,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.3): date-picker.js
-   * License (https://coreui.io/pro/license-new/)
+   * CoreUI PRO date-picker.js
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
+
 
   /**
   * ------------------------------------------------------------------------
@@ -3930,10 +3993,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.3): loading-button.js
-   * License (https://coreui.io/pro/license-new/)
+   * CoreUI PRO loading-button.js
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * ------------------------------------------------------------------------
@@ -4089,113 +4153,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
-   *
-   * This is a modified version of the Bootstrap's util/scrollBar.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-  /**
-   * Constants
-   */
-
-  const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
-  const SELECTOR_STICKY_CONTENT = '.sticky-top';
-  const PROPERTY_PADDING = 'padding-right';
-  const PROPERTY_MARGIN = 'margin-right';
-
-  /**
-   * Class definition
-   */
-
-  class ScrollBarHelper {
-    constructor() {
-      this._element = document.body;
-    }
-
-    // Public
-    getWidth() {
-      // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
-      const documentWidth = document.documentElement.clientWidth;
-      return Math.abs(window.innerWidth - documentWidth);
-    }
-    hide() {
-      const width = this.getWidth();
-      this._disableOverFlow();
-      // give padding to element to balance the hidden scrollbar width
-      this._setElementAttributes(this._element, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
-      // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
-      this._setElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
-      this._setElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN, calculatedValue => calculatedValue - width);
-    }
-    reset() {
-      this._resetElementAttributes(this._element, 'overflow');
-      this._resetElementAttributes(this._element, PROPERTY_PADDING);
-      this._resetElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING);
-      this._resetElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN);
-    }
-    isOverflowing() {
-      return this.getWidth() > 0;
-    }
-
-    // Private
-    _disableOverFlow() {
-      this._saveInitialAttribute(this._element, 'overflow');
-      this._element.style.overflow = 'hidden';
-    }
-    _setElementAttributes(selector, styleProperty, callback) {
-      const scrollbarWidth = this.getWidth();
-      const manipulationCallBack = element => {
-        if (element !== this._element && window.innerWidth > element.clientWidth + scrollbarWidth) {
-          return;
-        }
-        this._saveInitialAttribute(element, styleProperty);
-        const calculatedValue = window.getComputedStyle(element).getPropertyValue(styleProperty);
-        element.style.setProperty(styleProperty, `${callback(Number.parseFloat(calculatedValue))}px`);
-      };
-      this._applyManipulationCallback(selector, manipulationCallBack);
-    }
-    _saveInitialAttribute(element, styleProperty) {
-      const actualValue = element.style.getPropertyValue(styleProperty);
-      if (actualValue) {
-        Manipulator.setDataAttribute(element, styleProperty, actualValue);
-      }
-    }
-    _resetElementAttributes(selector, styleProperty) {
-      const manipulationCallBack = element => {
-        const value = Manipulator.getDataAttribute(element, styleProperty);
-        // We only want to remove the property if the value is `null`; the value can also be zero
-        if (value === null) {
-          element.style.removeProperty(styleProperty);
-          return;
-        }
-        Manipulator.removeDataAttribute(element, styleProperty);
-        element.style.setProperty(styleProperty, value);
-      };
-      this._applyManipulationCallback(selector, manipulationCallBack);
-    }
-    _applyManipulationCallback(selector, callBack) {
-      if (isElement(selector)) {
-        callBack(selector);
-        return;
-      }
-      for (const sel of SelectorEngine.find(selector, this._element)) {
-        callBack(sel);
-      }
-    }
-  }
-
-  /**
-   * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/backdrop.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/backdrop.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -4316,13 +4281,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/focustrap.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/focustrap.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -4417,13 +4383,115 @@
 
   /**
    * --------------------------------------------------------------------------
-    * CoreUI (v4.4.3): modal.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/scrollBar.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
+   *
+   * This is a modified version of the Bootstrap's util/scrollBar.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+
+
+  /**
+   * Constants
+   */
+
+  const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
+  const SELECTOR_STICKY_CONTENT = '.sticky-top';
+  const PROPERTY_PADDING = 'padding-right';
+  const PROPERTY_MARGIN = 'margin-right';
+
+  /**
+   * Class definition
+   */
+
+  class ScrollBarHelper {
+    constructor() {
+      this._element = document.body;
+    }
+
+    // Public
+    getWidth() {
+      // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
+      const documentWidth = document.documentElement.clientWidth;
+      return Math.abs(window.innerWidth - documentWidth);
+    }
+    hide() {
+      const width = this.getWidth();
+      this._disableOverFlow();
+      // give padding to element to balance the hidden scrollbar width
+      this._setElementAttributes(this._element, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
+      // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
+      this._setElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
+      this._setElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN, calculatedValue => calculatedValue - width);
+    }
+    reset() {
+      this._resetElementAttributes(this._element, 'overflow');
+      this._resetElementAttributes(this._element, PROPERTY_PADDING);
+      this._resetElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING);
+      this._resetElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN);
+    }
+    isOverflowing() {
+      return this.getWidth() > 0;
+    }
+
+    // Private
+    _disableOverFlow() {
+      this._saveInitialAttribute(this._element, 'overflow');
+      this._element.style.overflow = 'hidden';
+    }
+    _setElementAttributes(selector, styleProperty, callback) {
+      const scrollbarWidth = this.getWidth();
+      const manipulationCallBack = element => {
+        if (element !== this._element && window.innerWidth > element.clientWidth + scrollbarWidth) {
+          return;
+        }
+        this._saveInitialAttribute(element, styleProperty);
+        const calculatedValue = window.getComputedStyle(element).getPropertyValue(styleProperty);
+        element.style.setProperty(styleProperty, `${callback(Number.parseFloat(calculatedValue))}px`);
+      };
+      this._applyManipulationCallback(selector, manipulationCallBack);
+    }
+    _saveInitialAttribute(element, styleProperty) {
+      const actualValue = element.style.getPropertyValue(styleProperty);
+      if (actualValue) {
+        Manipulator.setDataAttribute(element, styleProperty, actualValue);
+      }
+    }
+    _resetElementAttributes(selector, styleProperty) {
+      const manipulationCallBack = element => {
+        const value = Manipulator.getDataAttribute(element, styleProperty);
+        // We only want to remove the property if the value is `null`; the value can also be zero
+        if (value === null) {
+          element.style.removeProperty(styleProperty);
+          return;
+        }
+        Manipulator.removeDataAttribute(element, styleProperty);
+        element.style.setProperty(styleProperty, value);
+      };
+      this._applyManipulationCallback(selector, manipulationCallBack);
+    }
+    _applyManipulationCallback(selector, callBack) {
+      if (isElement(selector)) {
+        callBack(selector);
+        return;
+      }
+      for (const sel of SelectorEngine.find(selector, this._element)) {
+        callBack(sel);
+      }
+    }
+  }
+
+  /**
+   * --------------------------------------------------------------------------
+   * CoreUI modal.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's modal.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -4526,9 +4594,8 @@
       this._queueCallback(() => this._hideModal(), this._element, this._isAnimated());
     }
     dispose() {
-      for (const htmlElement of [window, this._dialog]) {
-        EventHandler.off(htmlElement, EVENT_KEY$7);
-      }
+      EventHandler.off(window, EVENT_KEY$7);
+      EventHandler.off(this._dialog, EVENT_KEY$7);
       this._backdrop.dispose();
       this._focustrap.deactivate();
       super.dispose();
@@ -4583,7 +4650,6 @@
           return;
         }
         if (this._config.keyboard) {
-          event.preventDefault();
           this.hide();
           return;
         }
@@ -4726,10 +4792,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI PRO (v4.4.3): multi-select.js
-   * License (https://coreui.io/pro/license-new/)
+   * CoreUI PRO multi-select.js
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * ------------------------------------------------------------------------
@@ -4969,7 +5036,7 @@
       return config;
     }
     _getClassNames() {
-      return [...this._element.classList.value.split(' ')];
+      return this._element.classList.value.split(' ');
     }
     _getOptions(node = this._element) {
       if (this._config.options) {
@@ -5024,12 +5091,7 @@
     }
     _createNativeOptions(parentElement, options) {
       for (const option of options) {
-        if (typeof option.options !== 'undefined') {
-          const optgroup = document.createElement('optgroup');
-          optgroup.label = option.label;
-          this._createNativeOptions(optgroup, option.options);
-          parentElement.append(optgroup);
-        } else {
+        if (typeof option.options === 'undefined') {
           const opt = document.createElement('OPTION');
           opt.value = option.value;
           if (option.disabled === true) {
@@ -5040,6 +5102,11 @@
           }
           opt.innerHTML = option.text;
           parentElement.append(opt);
+        } else {
+          const optgroup = document.createElement('optgroup');
+          optgroup.label = option.label;
+          this._createNativeOptions(optgroup, option.options);
+          parentElement.append(optgroup);
         }
       }
     }
@@ -5121,7 +5188,7 @@
       optionsDiv.classList.add(CLASS_NAME_OPTIONS);
       if (this._config.optionsMaxHeight !== 'auto') {
         optionsDiv.style.maxHeight = `${this._config.optionsMaxHeight}px`;
-        optionsDiv.style.overflow = 'scroll';
+        optionsDiv.style.overflow = 'auto';
       }
       dropdownDiv.append(optionsDiv);
       this._clone.append(dropdownDiv);
@@ -5437,10 +5504,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): navigation.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI navigation.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * ------------------------------------------------------------------------
@@ -5691,13 +5759,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): dropdown.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI offcanvas.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's offcanvas.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -5852,11 +5921,11 @@
         if (event.key !== ESCAPE_KEY) {
           return;
         }
-        if (!this._config.keyboard) {
-          EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED);
+        if (this._config.keyboard) {
+          this.hide();
           return;
         }
-        this.hide();
+        EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED);
       });
     }
 
@@ -5924,42 +5993,16 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): alert.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/sanitizer.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/sanitizer.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
-  const uriAttributes = new Set(['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href']);
+  // js-docs-start allow-list
   const ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
-
-  /**
-   * A pattern that recognizes a commonly useful subset of URLs that are safe.
-   *
-   * Shout-out to Angular https://github.com/angular/angular/blob/12.2.x/packages/core/src/sanitization/url_sanitizer.ts
-   */
-  const SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file|sms):|[^#&/:?]*(?:[#/?]|$))/i;
-
-  /**
-   * A pattern that matches safe data URLs. Only matches image, video and audio types.
-   *
-   * Shout-out to Angular https://github.com/angular/angular/blob/12.2.x/packages/core/src/sanitization/url_sanitizer.ts
-   */
-  const DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[\d+/a-z]+=*$/i;
-  const allowedAttribute = (attribute, allowedAttributeList) => {
-    const attributeName = attribute.nodeName.toLowerCase();
-    if (allowedAttributeList.includes(attributeName)) {
-      if (uriAttributes.has(attributeName)) {
-        return Boolean(SAFE_URL_PATTERN.test(attribute.nodeValue) || DATA_URL_PATTERN.test(attribute.nodeValue));
-      }
-      return true;
-    }
-
-    // Check if a regular expression validates the attribute.
-    return allowedAttributeList.filter(attributeRegex => attributeRegex instanceof RegExp).some(regex => regex.test(attributeName));
-  };
   const DefaultAllowlist = {
     // Global attributes allowed on any supplied element below.
     '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
@@ -5993,6 +6036,30 @@
     u: [],
     ul: []
   };
+  // js-docs-end allow-list
+
+  const uriAttributes = new Set(['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href']);
+
+  /**
+   * A pattern that recognizes URLs that are safe wrt. XSS in URL navigation
+   * contexts.
+   *
+   * Shout-out to Angular https://github.com/angular/angular/blob/15.2.8/packages/core/src/sanitization/url_sanitizer.ts#L38
+   */
+  // eslint-disable-next-line unicorn/better-regex
+  const SAFE_URL_PATTERN = /^(?!javascript:)(?:[a-z0-9+.-]+:|[^&:/?#]*(?:[/?#]|$))/i;
+  const allowedAttribute = (attribute, allowedAttributeList) => {
+    const attributeName = attribute.nodeName.toLowerCase();
+    if (allowedAttributeList.includes(attributeName)) {
+      if (uriAttributes.has(attributeName)) {
+        return Boolean(SAFE_URL_PATTERN.test(attribute.nodeValue));
+      }
+      return true;
+    }
+
+    // Check if a regular expression validates the attribute.
+    return allowedAttributeList.filter(attributeRegex => attributeRegex instanceof RegExp).some(regex => regex.test(attributeName));
+  };
   function sanitizeHtml(unsafeHtml, allowList, sanitizeFunction) {
     if (!unsafeHtml.length) {
       return unsafeHtml;
@@ -6022,13 +6089,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.2.6): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI util/template-factory.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This is a modified version of the Bootstrap's util/template-factory.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -6160,13 +6228,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): tooltip.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI tooltip.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's tooltip.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -6210,7 +6279,7 @@
     delay: 0,
     fallbackPlacements: ['top', 'right', 'bottom', 'left'],
     html: false,
-    offset: [0, 0],
+    offset: [0, 6],
     placement: 'top',
     popperConfig: null,
     sanitize: true,
@@ -6323,7 +6392,7 @@
         return;
       }
 
-      // todo v6 remove this OR make it optional
+      // TODO: v6 remove this or make it optional
       this._disposePopper();
       const tip = this._getTipElement();
       this._element.setAttribute('aria-describedby', tip.getAttribute('id'));
@@ -6409,12 +6478,12 @@
     _createTipElement(content) {
       const tip = this._getTemplateFactory(content).toHtml();
 
-      // todo: remove this check on v6
+      // TODO: remove this check in v6
       if (!tip) {
         return null;
       }
       tip.classList.remove(CLASS_NAME_FADE$2, CLASS_NAME_SHOW$3);
-      // todo: on v6 the following can be achieved with CSS only
+      // TODO: v6 the following can be achieved with CSS only
       tip.classList.add(`bs-${this.constructor.NAME}-auto`);
       const tipId = getUID(this.constructor.NAME).toString();
       tip.setAttribute('id', tipId);
@@ -6674,13 +6743,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): popover.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI popover.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's popover.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -6757,13 +6827,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): scrollspy.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI scrollspy.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's scrollspy.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -6943,11 +7014,11 @@
         if (!anchor.hash || isDisabled(anchor)) {
           continue;
         }
-        const observableSection = SelectorEngine.findOne(anchor.hash, this._element);
+        const observableSection = SelectorEngine.findOne(decodeURI(anchor.hash), this._element);
 
         // ensure that the observableSection exists & is visible
         if (isVisible(observableSection)) {
-          this._targetLinks.set(anchor.hash, anchor);
+          this._targetLinks.set(decodeURI(anchor.hash), anchor);
           this._observableSections.set(anchor.hash, observableSection);
         }
       }
@@ -7019,10 +7090,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): sidebar.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI sidebar.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * ------------------------------------------------------------------------
@@ -7299,13 +7371,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): tab.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI tab.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's tab.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -7325,6 +7398,8 @@
   const ARROW_RIGHT_KEY = 'ArrowRight';
   const ARROW_UP_KEY = 'ArrowUp';
   const ARROW_DOWN_KEY = 'ArrowDown';
+  const HOME_KEY = 'Home';
+  const END_KEY = 'End';
   const CLASS_NAME_ACTIVE = 'active';
   const CLASS_NAME_FADE$1 = 'fade';
   const CLASS_NAME_SHOW$1 = 'show';
@@ -7335,7 +7410,7 @@
   const SELECTOR_TAB_PANEL = '.list-group, .nav, [role="tablist"]';
   const SELECTOR_OUTER = '.nav-item, .list-group-item';
   const SELECTOR_INNER = `.nav-link${NOT_SELECTOR_DROPDOWN_TOGGLE}, .list-group-item${NOT_SELECTOR_DROPDOWN_TOGGLE}, [role="tab"]${NOT_SELECTOR_DROPDOWN_TOGGLE}`;
-  const SELECTOR_DATA_TOGGLE = '[data-coreui-toggle="tab"], [data-coreui-toggle="pill"], [data-coreui-toggle="list"]'; // todo:v6: could be only `tab`
+  const SELECTOR_DATA_TOGGLE = '[data-coreui-toggle="tab"], [data-coreui-toggle="pill"], [data-coreui-toggle="list"]'; // TODO: could only be `tab` in v6
   const SELECTOR_INNER_ELEM = `${SELECTOR_INNER}, ${SELECTOR_DATA_TOGGLE}`;
   const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-coreui-toggle="tab"], .${CLASS_NAME_ACTIVE}[data-coreui-toggle="pill"], .${CLASS_NAME_ACTIVE}[data-coreui-toggle="list"]`;
 
@@ -7349,7 +7424,7 @@
       this._parent = this._element.closest(SELECTOR_TAB_PANEL);
       if (!this._parent) {
         return;
-        // todo: should Throw exception on v6
+        // TODO: should throw exception in v6
         // throw new TypeError(`${element.outerHTML} has not a valid parent ${SELECTOR_INNER_ELEM}`)
       }
 
@@ -7431,13 +7506,19 @@
       this._queueCallback(complete, element, element.classList.contains(CLASS_NAME_FADE$1));
     }
     _keydown(event) {
-      if (![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY].includes(event.key)) {
+      if (![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY, HOME_KEY, END_KEY].includes(event.key)) {
         return;
       }
       event.stopPropagation(); // stopPropagation/preventDefault both added to support up/down keys without scrolling the page
       event.preventDefault();
-      const isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
-      const nextActiveElement = getNextActiveElement(this._getChildren().filter(element => !isDisabled(element)), event.target, isNext, true);
+      const children = this._getChildren().filter(element => !isDisabled(element));
+      let nextActiveElement;
+      if ([HOME_KEY, END_KEY].includes(event.key)) {
+        nextActiveElement = children[event.key === HOME_KEY ? 0 : children.length - 1];
+      } else {
+        const isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
+        nextActiveElement = getNextActiveElement(children, event.target, isNext, true);
+      }
       if (nextActiveElement) {
         nextActiveElement.focus({
           preventScroll: true
@@ -7481,7 +7562,7 @@
       }
       this._setAttributeIfNotExists(target, 'role', 'tabpanel');
       if (child.id) {
-        this._setAttributeIfNotExists(target, 'aria-labelledby', `#${child.id}`);
+        this._setAttributeIfNotExists(target, 'aria-labelledby', `${child.id}`);
       }
     }
     _toggleDropDown(element, open) {
@@ -7563,13 +7644,14 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): toast.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI toast.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    *
    * This component is a modified version of the Bootstrap's toast.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
 
   /**
    * Constants
@@ -7749,10 +7831,11 @@
 
   /**
    * --------------------------------------------------------------------------
-   * CoreUI (v4.4.3): index.esm.js
-   * Licensed under MIT (https://coreui.io/license)
+   * CoreUI index.esm.js
+   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
+
   const index_umd = {
     Alert,
     Button,
