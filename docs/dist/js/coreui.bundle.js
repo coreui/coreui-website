@@ -1,5 +1,5 @@
 /*!
-  * CoreUI v4.6.0 (https://coreui.io)
+  * CoreUI v4.6.1 (https://coreui.io)
   * Copyright 2023 The CoreUI Team (https://github.com/orgs/coreui/people)
   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
   */
@@ -666,7 +666,7 @@
    * Constants
    */
 
-  const VERSION = '4.6.0';
+  const VERSION = '4.6.1';
 
   /**
    * Class definition
@@ -1299,14 +1299,12 @@
       EventHandler.on(this._element, 'click', '.btn-month', event => {
         event.preventDefault();
         this._view = 'months';
-        this._element.innerHTML = '';
-        this._createCalendarPanel();
+        this._updateCalendar();
       });
       EventHandler.on(this._element, 'click', '.btn-year', event => {
         event.preventDefault();
         this._view = 'years';
-        this._element.innerHTML = '';
-        this._createCalendarPanel();
+        this._updateCalendar();
       });
     }
     _setCalendarDate(date) {
@@ -1472,7 +1470,7 @@
     }
     _updateCalendar() {
       this._element.innerHTML = '';
-      this._createCalendarPanel();
+      this._createCalendar();
     }
     _dayClassNames(date, month) {
       const classNames = {
