@@ -1,5 +1,5 @@
 /*!
-  * CoreUI v4.6.1 (https://coreui.io)
+  * CoreUI v4.6.2 (https://coreui.io)
   * Copyright 2023 The CoreUI Team (https://github.com/orgs/coreui/people)
   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
   */
@@ -663,7 +663,7 @@ class Config {
  * Constants
  */
 
-const VERSION = '4.6.1';
+const VERSION = '4.6.2';
 
 /**
  * Class definition
@@ -1152,6 +1152,7 @@ const DATA_KEY$h = 'coreui.calendar';
 const EVENT_KEY$i = `.${DATA_KEY$h}`;
 const DATA_API_KEY$c = '.data-api';
 const EVENT_CALENDAR_DATE_CHANGE = `calendarDateChange${EVENT_KEY$i}`;
+const EVENT_CALENDAR_MOUSE_LEAVE = `calendarMouseleave${EVENT_KEY$i}`;
 const EVENT_CELL_HOVER = `cellHover${EVENT_KEY$i}`;
 const EVENT_END_DATE_CHANGE$1 = `endDateChange${EVENT_KEY$i}`;
 const EVENT_LOAD_DATA_API$a = `load${EVENT_KEY$i}${DATA_API_KEY$c}`;
@@ -1302,6 +1303,9 @@ class Calendar extends BaseComponent {
       event.preventDefault();
       this._view = 'years';
       this._updateCalendar();
+    });
+    EventHandler.on(this._element, 'mouseleave', 'table', () => {
+      EventHandler.trigger(this._element, EVENT_CALENDAR_MOUSE_LEAVE);
     });
   }
   _setCalendarDate(date) {
@@ -3627,6 +3631,14 @@ class DateRangePicker extends Picker {
     EventHandler.one(calendarEl, 'calendarDateChange.coreui.calendar', event => {
       this._calendarDate = new Date(event.date.getFullYear(), event.date.getMonth(), 1);
       this._updateCalendars();
+    });
+    EventHandler.on(calendarEl, 'calendarMouseleave.coreui.calendar', () => {
+      if (this._startDate) {
+        this._startInput.value = this._setInputValue(this._startDate);
+      }
+      if (this._endDate) {
+        this._endInput.value = this._setInputValue(this._endDate);
+      }
     });
     if (this._config.timepicker) {
       if (this._mobile || this._range && this._config.calendars === 1) {
