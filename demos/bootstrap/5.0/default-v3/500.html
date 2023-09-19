@@ -1,6 +1,6 @@
 <!DOCTYPE html><!--
 * CoreUI PRO Bootstrap Admin Template
-* @version v5.0.0-alpha.0
+* @version v5.0.0-alpha.1
 * @link https://coreui.io/product/bootstrap-dashboard-template/
 * Copyright (c) 2023 creativeLabs Łukasz Holeczek
 * License (https://coreui.io/pro/license/)
@@ -73,7 +73,7 @@
             <div class="clearfix">
               <h1 class="float-start display-3 me-4">500</h1>
               <h4 class="pt-3">Houston, we have a problem!</h4>
-              <p class="text-medium-emphasis">The page you are looking for is temporarily unavailable.</p>
+              <p class="text-body-secondary">The page you are looking for is temporarily unavailable.</p>
             </div>
             <div class="input-group"><span class="input-group-text">
                 <svg class="icon">
@@ -89,31 +89,18 @@
     <!-- CoreUI and necessary plugins-->
     <script src="vendors/@coreui/coreui-pro/js/coreui.bundle.min.js"></script>
     <script src="vendors/simplebar/js/simplebar.min.js"></script>
+    <script src="vendors/i18next/js/i18next.min.js"></script>
+    <script src="vendors/i18next-http-backend/js/i18nextHttpBackend.js"></script>
+    <script src="vendors/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.js"></script>
+    <script src="js/i18next.js"></script>
     <script>
-      if (document.body.classList.contains('dark-theme')) {
-        var element = document.getElementById('btn-dark-theme');
-        if (typeof(element) != 'undefined' && element != null) {
-          document.getElementById('btn-dark-theme').checked = true;
-        }
-      } else {
-        var element = document.getElementById('btn-light-theme');
-        if (typeof(element) != 'undefined' && element != null) {
-          document.getElementById('btn-light-theme').checked = true;
-        }
-      }
+      const header = document.querySelector('header.header');
 
-      function handleThemeChange(src) {
-        var event = document.createEvent('Event');
-        event.initEvent('themeChange', true, true);
-
-        if (src.value === 'light') {
-          document.body.classList.remove('dark-theme');
+      document.addEventListener('scroll', () => {
+        if (header) {
+          header.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0);
         }
-        if (src.value === 'dark') {
-          document.body.classList.add('dark-theme');
-        }
-        document.body.dispatchEvent(event);
-      }
+      });
     </script>
     <script>
     </script>

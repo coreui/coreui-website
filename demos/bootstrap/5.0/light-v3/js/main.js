@@ -1,4 +1,4 @@
-/* global Chart, coreui */
+/* global Chart, coreui, i18next */
 
 /**
  * --------------------------------------------------------------------------
@@ -19,6 +19,54 @@ document.documentElement.addEventListener('ColorSchemeChange', () => {
   updateCharts();
 });
 window.addEventListener('DOMContentLoaded', () => {
+  updateCharts();
+});
+i18next.on('languageChanged', () => {
+  cardChart1.data.labels = [i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april'), i18next.t('may'), i18next.t('june'), i18next.t('july')];
+  cardChart3.data.labels = [i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april'), i18next.t('may'), i18next.t('june'), i18next.t('july')];
+  cardChart4.data.labels = [i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april'), i18next.t('may'), i18next.t('june'), i18next.t('july'), i18next.t('august'), i18next.t('september'), i18next.t('october'), i18next.t('november'), i18next.t('december'), i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april')];
+  const formatParams = {
+    date: {
+      month: 'short'
+    }
+  };
+  mainBarChart.data.labels = [i18next.t('date', {
+    date: new Date(Date.UTC(2022, 0, 1)),
+    formatParams
+  }), i18next.t('date', {
+    date: new Date(Date.UTC(2022, 1, 1)),
+    formatParams
+  }), i18next.t('date', {
+    date: new Date(Date.UTC(2022, 2, 1)),
+    formatParams
+  }), i18next.t('date', {
+    date: new Date(Date.UTC(2022, 3, 1)),
+    formatParams
+  }), i18next.t('date', {
+    date: new Date(Date.UTC(2022, 4, 1)),
+    formatParams
+  }), i18next.t('date', {
+    date: new Date(Date.UTC(2022, 5, 1)),
+    formatParams
+  }), i18next.t('date', {
+    date: new Date(Date.UTC(2022, 6, 1)),
+    formatParams
+  }), i18next.t('date', {
+    date: new Date(Date.UTC(2022, 7, 1)),
+    formatParams
+  }), i18next.t('date', {
+    date: new Date(Date.UTC(2022, 8, 1)),
+    formatParams
+  }), i18next.t('date', {
+    date: new Date(Date.UTC(2022, 9, 1)),
+    formatParams
+  }), i18next.t('date', {
+    date: new Date(Date.UTC(2022, 10, 1)),
+    formatParams
+  }), i18next.t('date', {
+    date: new Date(Date.UTC(2022, 11, 1)),
+    formatParams
+  })];
   updateCharts();
 });
 const updateCharts = () => {
@@ -133,8 +181,6 @@ const cardChart1 = new Chart(document.getElementById('card-chart1'), {
     }
   }
 });
-
-// eslint-disable-next-line no-unused-vars
 const cardChart3 = new Chart(document.getElementById('card-chart3'), {
   type: 'line',
   data: {
@@ -175,8 +221,6 @@ const cardChart3 = new Chart(document.getElementById('card-chart3'), {
     }
   }
 });
-
-// eslint-disable-next-line no-unused-vars
 const cardChart4 = new Chart(document.getElementById('card-chart4'), {
   type: 'bar',
   data: {
@@ -259,7 +303,7 @@ const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
           drawTicks: false
         },
         ticks: {
-          color: coreui.Utils.getStyle('--cui-text-disabled'),
+          color: coreui.Utils.getStyle('--cui-text-secondary'),
           font: {
             size: 14
           },
@@ -281,7 +325,7 @@ const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
         },
         ticks: {
           beginAtZero: true,
-          color: coreui.Utils.getStyle('--cui-text-disabled'),
+          color: coreui.Utils.getStyle('--cui-text-secondary'),
           font: {
             size: 14
           },

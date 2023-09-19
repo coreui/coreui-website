@@ -1,4 +1,4 @@
-/* global Chart, coreui */
+/* global Chart, coreui, i18next */
 
 /**
  * --------------------------------------------------------------------------
@@ -19,6 +19,14 @@ document.documentElement.addEventListener('ColorSchemeChange', () => {
   updateCharts();
 });
 window.addEventListener('DOMContentLoaded', () => {
+  updateCharts();
+});
+i18next.on('languageChanged', () => {
+  mainChart.data.labels = [i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april'), i18next.t('may'), i18next.t('june'), i18next.t('july')];
+  cardChart1.data.labels = [i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april'), i18next.t('may'), i18next.t('june'), i18next.t('july')];
+  cardChart2.data.labels = [i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april'), i18next.t('may'), i18next.t('june'), i18next.t('july')];
+  cardChart3.data.labels = [i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april'), i18next.t('may'), i18next.t('june'), i18next.t('july')];
+  cardChart4.data.labels = [i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april'), i18next.t('may'), i18next.t('june'), i18next.t('july'), i18next.t('august'), i18next.t('september'), i18next.t('october'), i18next.t('november'), i18next.t('december'), i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april')];
   updateCharts();
 });
 const updateCharts = () => {
@@ -150,8 +158,6 @@ const cardChart2 = new Chart(document.getElementById('card-chart2'), {
     }
   }
 });
-
-// eslint-disable-next-line no-unused-vars
 const cardChart3 = new Chart(document.getElementById('card-chart3'), {
   type: 'line',
   data: {
@@ -192,8 +198,6 @@ const cardChart3 = new Chart(document.getElementById('card-chart3'), {
     }
   }
 });
-
-// eslint-disable-next-line no-unused-vars
 const cardChart4 = new Chart(document.getElementById('card-chart4'), {
   type: 'bar',
   data: {
