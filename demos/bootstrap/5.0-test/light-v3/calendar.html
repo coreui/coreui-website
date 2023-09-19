@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<!--
+<!DOCTYPE html><!--
 * CoreUI PRO Bootstrap Admin Template
 * @version v5.0.0-alpha.1
 * @link https://coreui.io/product/bootstrap-dashboard-template/
 * Copyright (c) 2023 creativeLabs Łukasz Holeczek
 * License (https://coreui.io/pro/license/)
 -->
-
 <html lang="en">
   <head>
     <base href="./">
@@ -35,7 +33,7 @@
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!-- Vendors styles-->
-    <link rel="stylesheet" href="node_modules/simplebar/dist/simplebar.css">
+    <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
     <link rel="stylesheet" href="css/vendors/simplebar.css">
     <!-- Main styles for this application-->
     <link href="css/style.css" rel="stylesheet">
@@ -45,11 +43,20 @@
     <script src="js/color-modes.js"></script>
     <!-- Google Tag Manager-->
     <script>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-KX4JH47');
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-KX4JH47');
     </script>
     <!-- End Google Tag Manager-->
   </head>
@@ -72,24 +79,24 @@
         <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
         <button class="btn-close d-md-none" type="button" data-coreui-theme="dark" data-coreui-dismiss="offcanvas" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
       </div>
-      <ul class="sidebar-nav border-end" data-coreui="navigation" data-simplebar>
+      <ul class="sidebar-nav border-end" data-coreui="navigation" data-simplebar="">
         <li class="nav-item"><a class="nav-link" href="index.html">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
             </svg><span data-coreui-i18n="dashboard">Dashboard</span></a></li>
         <li class="nav-title" data-coreui-i18n="theme">Theme</li>
         <li class="nav-item"><a class="nav-link" href="colors.html">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-drop"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-drop"></use>
             </svg><span data-coreui-i18n="colors">Colors</span></a></li>
         <li class="nav-item"><a class="nav-link" href="typography.html">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-pencil"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
             </svg><span data-coreui-i18n="typography"> Typography</span></a></li>
         <li class="nav-title" data-coreui-i18n="components">Components</li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-puzzle"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
             </svg><span data-coreui-i18n="base">Base</span></a>
           <ul class="nav-group-items compact">
             <li class="nav-item"><a class="nav-link" href="base/accordion.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span><span data-coreui-i18n="accordion">Accordion</span></a></li>
@@ -110,7 +117,7 @@
         </li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-cursor"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
             </svg><span data-coreui-i18n="buttons">Buttons</span></a>
           <ul class="nav-group-items compact">
             <li class="nav-item"><a class="nav-link" href="buttons/buttons.html"> Buttons</a></li>
@@ -121,7 +128,7 @@
         </li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-notes"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-notes"></use>
             </svg><span data-coreui-i18n="forms">Forms</span></a>
           <ul class="nav-group-items compact">
             <li class="nav-item"><a class="nav-link" href="forms/form-control.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Form Control</a></li>
@@ -140,7 +147,7 @@
         </li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-star"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-star"></use>
             </svg><span data-coreui-i18n="icons">Icons</span></a>
           <ul class="nav-group-items compact">
             <li class="nav-item"><a class="nav-link" href="icons/coreui-icons-free.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> CoreUI Icons<span class="badge bg-success ms-auto" data-coreui-i18n="free">Free</span></a></li>
@@ -150,7 +157,7 @@
         </li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-bell"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
             </svg><span data-coreui-i18n="notifications">Notifications</span></a>
           <ul class="nav-group-items compact">
             <li class="nav-item"><a class="nav-link" href="notifications/alerts.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Alerts</a></li>
@@ -161,60 +168,60 @@
         </li>
         <li class="nav-item"><a class="nav-link" href="widgets.html">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-calculator"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calculator"></use>
             </svg><span data-coreui-i18n="widgets">Widgets</span><span class="badge bg-info-gradient text-uppercase ms-auto" data-coreui-i18n="new">New</span></a></li>
         <li class="nav-divider"></li>
         <li class="nav-title" data-coreui-i18n="plugins">
-           Plugins</li>
+          Plugins</li>
         <li class="nav-item"><a class="nav-link" href="calendar.html">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-calendar"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
             </svg><span data-coreui-i18n="calendar">Calendar</span><span class="badge bg-danger-gradient ms-auto">PRO</span></a></li>
         <li class="nav-item"><a class="nav-link" href="charts.html">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-chart-pie"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
             </svg><span data-coreui-i18n="charts">Charts</span></a></li>
         <li class="nav-item"><a class="nav-link" href="datatables.html">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-spreadsheet"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-spreadsheet"></use>
             </svg> DataTables<span class="badge bg-danger-gradient ms-auto">PRO</span></a></li>
         <li class="nav-item"><a class="nav-link" href="google-maps.html">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-map"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-map"></use>
             </svg> Google Maps<span class="badge bg-danger-gradient ms-auto">PRO</span></a></li>
         <li class="nav-title" data-coreui-i18n="extras">
-           Extras</li>
+          Extras</li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-star"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-star"></use>
             </svg><span data-coreui-i18n="pages">Pages</span></a>
           <ul class="nav-group-items compact">
             <li class="nav-item"><a class="nav-link" href="login.html" target="_top">
                 <svg class="nav-icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-account-logout"></use>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
                 </svg><span data-coreui-i18n="login">Login</span></a></li>
             <li class="nav-item"><a class="nav-link" href="register.html" target="_top">
                 <svg class="nav-icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-account-logout"></use>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
                 </svg><span data-coreui-i18n="register">Register</span></a></li>
             <li class="nav-item"><a class="nav-link" href="404.html" target="_top">
                 <svg class="nav-icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-bug"></use>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bug"></use>
                 </svg><span data-coreui-i18n="error404">Error 404</span></a></li>
             <li class="nav-item"><a class="nav-link" href="500.html" target="_top">
                 <svg class="nav-icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-bug"></use>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bug"></use>
                 </svg><span data-coreui-i18n="error500">Error 500</span></a></li>
           </ul>
         </li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-layers"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
             </svg><span data-coreui-i18n="apps">Apps</span></a>
           <ul class="nav-group-items compact">
             <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
                 <svg class="nav-icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-description"></use>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-description"></use>
                 </svg> Invoicing</a>
               <ul class="nav-group-items compact">
                 <li class="nav-item"><a class="nav-link" href="apps/invoicing/invoice.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Invoice<span class="badge bg-danger-gradient ms-auto">PRO</span></a></li>
@@ -222,7 +229,7 @@
             </li>
             <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
                 <svg class="nav-icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-envelope-open"></use>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                 </svg> Email</a>
               <ul class="nav-group-items compact">
                 <li class="nav-item"><a class="nav-link" href="apps/email/inbox.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Inbox<span class="badge bg-danger-gradient ms-auto">PRO</span></a></li>
@@ -234,7 +241,7 @@
         </li>
         <li class="nav-item mt-auto"><a class="nav-link" href="https://coreui.io/docs/5.0/templates/installation/" target="_blank">
             <svg class="nav-icon">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-description"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-description"></use>
             </svg><span data-coreui-i18n="docs">Docs</span></a></li>
         <li class="nav-title"><span data-coreui-i18n="systemUtilization">System Utilization</span></li>
         <li class="nav-item px-3 pb-2 d-narrow-none">
@@ -264,15 +271,15 @@
         <ul class="nav nav-pills" role="tablist">
           <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#timeline" role="tab">
               <svg class="icon">
-                <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-list"></use>
+                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list"></use>
               </svg></a></li>
           <li class="nav-item"><a class="nav-link" data-coreui-toggle="tab" href="#messages" role="tab">
               <svg class="icon">
-                <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speech"></use>
+                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speech"></use>
               </svg></a></li>
           <li class="nav-item"><a class="nav-link" data-coreui-toggle="tab" href="#settings" role="tab">
               <svg class="icon">
-                <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-settings"></use>
+                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
               </svg></a></li>
         </ul>
         <button class="btn-close" type="button" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#aside&quot;)).toggle()"></button>
@@ -286,31 +293,31 @@
               <div class="avatar avatar-lg float-end"><img class="avatar-img" src="assets/img/avatars/7.jpg" alt="user@email.com"></div>
               <div>Meeting with <strong>Lucas</strong></div><small class="text-body-secondary me-3">
                 <svg class="icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-calendar"></use>
-                </svg>  1 - 3pm</small><small class="text-body-secondary">
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
+                </svg> 1 - 3pm</small><small class="text-body-secondary">
                 <svg class="icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-location-pin"></use>
-                </svg>  Palo Alto, CA</small>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-location-pin"></use>
+                </svg> Palo Alto, CA</small>
             </div>
             <div class="list-group-item border-start-4 border-start-info">
               <div class="avatar avatar-lg float-end"><img class="avatar-img" src="assets/img/avatars/4.jpg" alt="user@email.com"></div>
               <div>Skype with <strong>Megan</strong></div><small class="text-body-secondary me-3">
                 <svg class="icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-calendar"></use>
-                </svg>  4 - 5pm</small><small class="text-body-secondary">
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
+                </svg> 4 - 5pm</small><small class="text-body-secondary">
                 <svg class="icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/brand.svg#cib-skype"></use>
-                </svg>  On-line</small>
+                  <use xlink:href="vendors/@coreui/icons/svg/brand.svg#cib-skype"></use>
+                </svg> On-line</small>
             </div>
             <div class="list-group-item border-start-4 border-start-secondary bg-body-tertiary text-center fw-bold text-body-secondary text-uppercase small" data-coreui-i18n="tomorrow">Tomorrow</div>
             <div class="list-group-item border-start-4 border-start-danger list-group-item-divider">
               <div>New UI Project - <strong>deadline</strong></div><small class="text-body-secondary me-3">
                 <svg class="icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-calendar"></use>
-                </svg>  10 - 11pm</small><small class="text-body-secondary">
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
+                </svg> 10 - 11pm</small><small class="text-body-secondary">
                 <svg class="icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-home"></use>
-                </svg>  creativeLabs HQ</small>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-home"></use>
+                </svg> creativeLabs HQ</small>
               <div class="avatars-stack mt-2">
                 <div class="avatar avatar-xs"><img class="avatar-img" src="assets/img/avatars/2.jpg" alt="user@email.com"></div>
                 <div class="avatar avatar-xs"><img class="avatar-img" src="assets/img/avatars/3.jpg" alt="user@email.com"></div>
@@ -322,20 +329,20 @@
             <div class="list-group-item border-start-4 border-start-success list-group-item-divider">
               <div><strong>#10 Startups.Garden</strong> Meetup</div><small class="text-body-secondary me-3">
                 <svg class="icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-calendar"></use>
-                </svg>  1 - 3pm</small><small class="text-body-secondary">
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
+                </svg> 1 - 3pm</small><small class="text-body-secondary">
                 <svg class="icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-location-pin"></use>
-                </svg>  Palo Alto, CA</small>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-location-pin"></use>
+                </svg> Palo Alto, CA</small>
             </div>
             <div class="list-group-item border-start-4 border-start-primary list-group-item-divider">
               <div><strong>Team meeting</strong></div><small class="text-body-secondary me-3">
                 <svg class="icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-calendar"></use>
-                </svg>  4 - 6pm</small><small class="text-body-secondary">
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
+                </svg> 4 - 6pm</small><small class="text-body-secondary">
                 <svg class="icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-home"></use>
-                </svg>  creativeLabs HQ</small>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-home"></use>
+                </svg> creativeLabs HQ</small>
               <div class="avatars-stack mt-2">
                 <div class="avatar avatar-xs"><img class="avatar-img" src="assets/img/avatars/2.jpg" alt="user@email.com"></div>
                 <div class="avatar avatar-xs"><img class="avatar-img" src="assets/img/avatars/3.jpg" alt="user@email.com"></div>
@@ -394,7 +401,7 @@
           <div class="aside-options">
             <div class="clearfix mt-4">
               <div class="form-check form-switch form-switch-lg">
-                <input class="form-check-input me-0" id="flexSwitchCheckDefaultLg" type="checkbox" checked>
+                <input class="form-check-input me-0" id="flexSwitchCheckDefaultLg" type="checkbox" checked="">
                 <label class="form-check-label fw-semibold small" for="flexSwitchCheckDefaultLg">Option 1</label>
               </div>
             </div>
@@ -420,7 +427,7 @@
           <div class="aside-options">
             <div class="clearfix mt-3">
               <div class="form-check form-switch form-switch-lg">
-                <input class="form-check-input me-0" id="flexSwitchCheckDefaultLg" type="checkbox" checked>
+                <input class="form-check-input me-0" id="flexSwitchCheckDefaultLg" type="checkbox" checked="">
                 <label class="form-check-label fw-semibold small" for="flexSwitchCheckDefaultLg">Option 4</label>
               </div>
             </div>
@@ -455,13 +462,13 @@
         <div class="container-fluid">
           <button class="header-toggler px-md-0 me-md-3 d-md-none" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
             <svg class="icon icon-lg">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-menu"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
             </svg>
           </button>
           <form class="d-none d-md-flex" role="search">
             <div class="input-group border border-light border-opacity-25 rounded"><span class="input-group-text bg-transparent border-0 px-1" id="search-addon">
                 <svg class="icon icon-lg my-1 mx-2 text-secondary">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-search"></use>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-search"></use>
                 </svg></span>
               <input class="form-control bg-transparent border-0 dark:bg-opacity-50" type="text" placeholder="Search..." aria-label="Search" aria-describedby="search-addon" data-coreui-i18n="[placeholder]search">
             </div>
@@ -469,77 +476,90 @@
           <ul class="header-nav d-none d-sm-flex ms-auto me-3">
             <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="d-inline-block my-1 mx-2 position-relative">
                   <svg class="icon icon-lg">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-bell"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
                   </svg><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New alerts</span></span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
                 <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="notificationsCounter" data-coreui-i18n-counter="5">You have 5 notifications</div><a class="dropdown-item" href="#">
                   <svg class="icon me-2 text-success">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-user-follow"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user-follow"></use>
                   </svg><span data-coreui-i18n="newUserRegistered">New user registered</span></a><a class="dropdown-item" href="#">
                   <svg class="icon me-2 text-danger">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-user-unfollow"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user-unfollow"></use>
                   </svg><span data-coreui-i18n="userDeleted">User deleted</span></a><a class="dropdown-item" href="#">
                   <svg class="icon me-2 text-info">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-chart"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart"></use>
                   </svg><span data-coreui-i18n="salesReportIsReady">Sales report is ready</span></a><a class="dropdown-item" href="#">
                   <svg class="icon me-2 text-success">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-basket"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-basket"></use>
                   </svg><span data-coreui-i18n="newClient">New client</span></a><a class="dropdown-item" href="#">
                   <svg class="icon me-2 text-warning">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
                   </svg><span data-coreui-i18n="serverOverloaded">Server overloaded</span></a>
                 <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold mb-2" data-coreui-i18n="server">Server</div><a class="dropdown-item d-block py-2" href="#">
                   <div class="text-uppercase small fw-semibold mb-1" data-coreui-i18n="cpuUsage">CPU Usage</div>
                   <div class="progress progress-thin">
                     <div class="progress-bar bg-info-gradient" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <div class="small text-body-secondary" data-coreui-i18n="cpuUsageDescription, { 'number_of_processes': 358, 'number_of_cores': '1/4' }">348 Processes. 1/4 Cores.</div></a><a class="dropdown-item d-block py-2" href="#">
+                  <div class="small text-body-secondary" data-coreui-i18n="cpuUsageDescription, { 'number_of_processes': 358, 'number_of_cores': '1/4' }">348 Processes. 1/4 Cores.</div>
+                </a><a class="dropdown-item d-block py-2" href="#">
                   <div class="text-uppercase small fw-semibold mb-1" data-coreui-i18n="memoryUsage">Memory Usage</div>
                   <div class="progress progress-thin">
                     <div class="progress-bar bg-warning-gradient" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <div class="small text-body-secondary">11444MB/16384MB</div></a><a class="dropdown-item d-block py-2" href="#">
+                  <div class="small text-body-secondary">11444MB/16384MB</div>
+                </a><a class="dropdown-item d-block py-2" href="#">
                   <div class="text-uppercase small fw-semibold mb-1" data-coreui-i18n="ssdUsage">SSD Usage</div>
                   <div class="progress progress-thin">
                     <div class="progress-bar bg-danger-gradient" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <div class="small text-body-secondary">243GB/256GB</div></a>
+                  <div class="small text-body-secondary">243GB/256GB</div>
+                </a>
               </div>
             </li>
             <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="d-inline-block my-1 mx-2 position-relative">
                   <svg class="icon icon-lg">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-list-rich"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
                   </svg><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New alerts</span></span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg py-0">
                 <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="taskCounter" data-coreui-i18n-counter="5">You have 5 pending tasks</div><a class="dropdown-item d-block" href="#">
                   <div class="small mb-1">Upgrade NPM &amp; Bower<span class="float-end"><strong>0%</strong></span></div><span class="progress progress-thin">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div></span></a><a class="dropdown-item d-block py-2" href="#">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                  </span>
+                </a><a class="dropdown-item d-block py-2" href="#">
                   <div class="d-flex justify-content-between mb-1">
                     <div class="small">ReactJS Version</div>
                     <div class="fw-semibold">25%</div>
                   </div><span class="progress progress-thin">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></span></a><a class="dropdown-item d-block py-2" href="#">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </span>
+                </a><a class="dropdown-item d-block py-2" href="#">
                   <div class="d-flex justify-content-between mb-1">
                     <div class="small">VueJS Version</div>
                     <div class="fw-semibold">50%</div>
                   </div><span class="progress progress-thin">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div></span></a><a class="dropdown-item d-block py-2" href="#">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                  </span>
+                </a><a class="dropdown-item d-block py-2" href="#">
                   <div class="d-flex justify-content-between mb-1">
                     <div class="small">Add new layouts</div>
                     <div class="fw-semibold">75%</div>
                   </div><span class="progress progress-thin">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div></span></a><a class="dropdown-item d-block py-2" href="#">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </span>
+                </a><a class="dropdown-item d-block py-2" href="#">
                   <div class="d-flex justify-content-between mb-1">
                     <div class="small">Angular Version</div>
                     <div class="fw-semibold">100%</div>
                   </div><span class="progress progress-thin">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></span></a>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </span>
+                </a>
                 <div class="p-2"><a class="btn btn-outline-primary w-100" href="#" data-coreui-i18n="viewAllTasks">View all tasks</a></div>
               </div>
             </li>
             <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="d-inline-block my-1 mx-2 position-relative">
                   <svg class="icon icon-lg">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-envelope-open"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                   </svg><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New alerts</span></span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
                 <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="messagesCounter" data-coreui-i18n-counter="4">You have 4 messages</div><a class="dropdown-item" href="#">
@@ -550,7 +570,8 @@
                     <div><small class="text-body-secondary">John Doe</small><small class="text-body-secondary float-end mt-1">Just now</small></div>
                     <div class="text-truncate font-weight-bold"><span class="text-danger">!</span> Important message</div>
                     <div class="small text-body-secondary text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</div>
-                  </div></a><a class="dropdown-item" href="#">
+                  </div>
+                </a><a class="dropdown-item" href="#">
                   <div class="message">
                     <div class="py-3 me-3 float-start">
                       <div class="avatar"><img class="avatar-img" src="assets/img/avatars/6.jpg" alt="user@email.com"><span class="avatar-status bg-warning"></span></div>
@@ -558,7 +579,8 @@
                     <div><small class="text-body-secondary">John Doe</small><small class="text-body-secondary float-end mt-1">5 minutes ago</small></div>
                     <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
                     <div class="small text-body-secondary text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</div>
-                  </div></a><a class="dropdown-item" href="#">
+                  </div>
+                </a><a class="dropdown-item" href="#">
                   <div class="message">
                     <div class="py-3 me-3 float-start">
                       <div class="avatar"><img class="avatar-img" src="assets/img/avatars/5.jpg" alt="user@email.com"><span class="avatar-status bg-danger"></span></div>
@@ -566,7 +588,8 @@
                     <div><small class="text-body-secondary">John Doe</small><small class="text-body-secondary float-end mt-1">1:52 PM</small></div>
                     <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
                     <div class="small text-body-secondary text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</div>
-                  </div></a><a class="dropdown-item" href="#">
+                  </div>
+                </a><a class="dropdown-item" href="#">
                   <div class="message">
                     <div class="py-3 me-3 float-start">
                       <div class="avatar"><img class="avatar-img" src="assets/img/avatars/4.jpg" alt="user@email.com"><span class="avatar-status bg-info"></span></div>
@@ -574,7 +597,8 @@
                     <div><small class="text-body-secondary">John Doe</small><small class="text-body-secondary float-end mt-1">4:03 PM</small></div>
                     <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
                     <div class="small text-body-secondary text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</div>
-                  </div></a><a class="dropdown-item text-center fw-semibold border-top" href="#" data-coreui-i18n="viewAllMessages">View all messages</a>
+                  </div>
+                </a><a class="dropdown-item text-center fw-semibold border-top" href="#" data-coreui-i18n="viewAllMessages">View all messages</a>
               </div>
             </li>
           </ul>
@@ -585,28 +609,28 @@
             <li class="nav-item dropdown">
               <button class="btn btn-link nav-link py-2 px-2 d-flex align-items-center" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
                 <svg class="icon icon-lg">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-language"></use>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-language"></use>
                 </svg>
               </button>
               <ul class="dropdown-menu dropdown-menu-end" style="--cui-dropdown-min-width: 8rem;">
                 <li>
                   <button class="dropdown-item d-flex align-items-center" type="button" data-coreui-language-value="en" onclick="i18next.changeLanguage(&quot;en&quot;)">
                     <svg class="icon icon-lg me-3">
-                      <use xlink:href="node_modules/@coreui/icons/sprites/flag.svg#cif-gb"></use>
+                      <use xlink:href="vendors/@coreui/icons/svg/flag.svg#cif-gb"></use>
                     </svg>English
                   </button>
                 </li>
                 <li>
                   <button class="dropdown-item d-flex align-items-center" type="button" data-coreui-language-value="es" onclick="i18next.changeLanguage(&quot;es&quot;)">
                     <svg class="icon icon-lg me-3">
-                      <use xlink:href="node_modules/@coreui/icons/sprites/flag.svg#cif-es"></use>
+                      <use xlink:href="vendors/@coreui/icons/svg/flag.svg#cif-es"></use>
                     </svg>Español
                   </button>
                 </li>
                 <li>
                   <button class="dropdown-item d-flex align-items-center" type="button" data-coreui-language-value="pl" onclick="i18next.changeLanguage(&quot;pl&quot;)">
                     <svg class="icon icon-lg me-3">
-                      <use xlink:href="node_modules/@coreui/icons/sprites/flag.svg#cif-pl"></use>
+                      <use xlink:href="vendors/@coreui/icons/svg/flag.svg#cif-pl"></use>
                     </svg>Polski
                   </button>
                 </li>
@@ -615,28 +639,28 @@
             <li class="nav-item dropdown">
               <button class="btn btn-link nav-link py-2 px-2 d-flex align-items-center" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
                 <svg class="icon icon-lg theme-icon-active">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-contrast"></use>
+                  <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-contrast"></use>
                 </svg>
               </button>
               <ul class="dropdown-menu dropdown-menu-end" style="--cui-dropdown-min-width: 8rem;">
                 <li>
                   <button class="dropdown-item d-flex align-items-center" type="button" data-coreui-theme-value="light">
                     <svg class="icon icon-lg me-3">
-                      <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-sun"></use>
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-sun"></use>
                     </svg><span data-coreui-i18n="light">Light</span>
                   </button>
                 </li>
                 <li>
                   <button class="dropdown-item d-flex align-items-center" type="button" data-coreui-theme-value="dark">
                     <svg class="icon icon-lg me-3">
-                      <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-moon"></use>
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-moon"></use>
                     </svg><span data-coreui-i18n="dark"> Dark</span>
                   </button>
                 </li>
                 <li>
                   <button class="dropdown-item d-flex align-items-center active" type="button" data-coreui-theme-value="auto">
                     <svg class="icon icon-lg me-3">
-                      <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-contrast"></use>
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-contrast"></use>
                     </svg>Auto
                   </button>
                 </li>
@@ -646,47 +670,48 @@
               <div class="vr h-100 mx-2 text-white text-opacity-75"></div>
             </li>
             <li class="nav-item dropdown d-flex align-items-center"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg" alt="user@email.com"><span class="avatar-status bg-success"></span></div></a>
+                <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg" alt="user@email.com"><span class="avatar-status bg-success"></span></div>
+              </a>
               <div class="dropdown-menu dropdown-menu-end pt-0">
                 <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="account">Account</div><a class="dropdown-item" href="#">
                   <svg class="icon me-2">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-bell"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
                   </svg><span data-coreui-i18n="updates">Updates</span><span class="badge badge-sm bg-info-gradient ms-2">42</span></a><a class="dropdown-item" href="#">
                   <svg class="icon me-2">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-envelope-open"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                   </svg><span data-coreui-i18n="messages">Messages</span><span class="badge badge-sm badge-sm bg-success ms-2">42</span></a><a class="dropdown-item" href="#">
                   <svg class="icon me-2">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-task"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-task"></use>
                   </svg><span data-coreui-i18n="tasks">Tasks</span><span class="badge badge-sm bg-danger-gradient ms-2">42</span></a><a class="dropdown-item" href="#">
                   <svg class="icon me-2">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-comment-square"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-comment-square"></use>
                   </svg><span data-coreui-i18n="comments">Comments</span><span class="badge badge-sm bg-warning-gradient ms-2">42</span></a>
                 <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold" data-coreui-i18n="settings">Settings</div><a class="dropdown-item" href="#">
                   <svg class="icon me-2">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-user"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                   </svg><span data-coreui-i18n="profile">Profile</span></a><a class="dropdown-item" href="#">
                   <svg class="icon me-2">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-settings"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
                   </svg><span data-coreui-i18n="settings">Settings</span></a><a class="dropdown-item" href="#">
                   <svg class="icon me-2">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-credit-card"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
                   </svg><span data-coreui-i18n="payments">Payments</span><span class="badge badge-sm bg-secondary-gradient text-dark ms-2">42</span></a><a class="dropdown-item" href="#">
                   <svg class="icon me-2">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-file"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-file"></use>
                   </svg><span data-coreui-i18n="projects">Projects</span><span class="badge badge-sm bg-primary-gradient ms-2">42</span></a>
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
                   <svg class="icon me-2">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-lock-locked"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                   </svg><span data-coreui-i18n="lockAccount">Lock Account</span></a><a class="dropdown-item" href="#">
                   <svg class="icon me-2">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-account-logout"></use>
+                    <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
                   </svg><span data-coreui-i18n="logout">Logout</span></a>
               </div>
             </li>
           </ul>
           <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#aside')).show()">
             <svg class="icon icon-lg">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-applications-settings"></use>
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-applications-settings"></use>
             </svg>
           </button>
         </div>
@@ -713,11 +738,11 @@
                 <ul class="nav nav-tabs" role="tablist">
                   <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1000" role="tab">
                       <svg class="icon me-2">
-                        <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-media-play"></use>
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
                       </svg>Preview</a></li>
                   <li class="nav-item"><a class="nav-link" href="https://fullcalendar.io/docs" target="_blank">
                       <svg class="icon me-2">
-                        <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-code"></use>
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-code"></use>
                       </svg>Code</a></li>
                 </ul>
                 <div class="tab-content rounded-bottom">
@@ -731,31 +756,31 @@
         </div>
       </div>
       <footer class="footer">
-        <div><a href="https://coreui.io">CoreUI  </a><a href="https://coreui.io">Bootstrap Admin Template</a> &copy; 2023 creativeLabs.</div>
+        <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2023 creativeLabs.</div>
         <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI PRO UI Components</a></div>
       </footer>
     </div>
     <!-- CoreUI and necessary plugins-->
-    <script src="node_modules/@coreui/coreui-pro/dist/js/coreui.bundle.min.js"></script>
-    <script src="node_modules/simplebar/dist/simplebar.min.js"></script>
-    <script src="node_modules/i18next/dist/umd/i18next.min.js"></script>
-    <script src="node_modules/i18next-http-backend/i18nextHttpBackend.js"></script>
-    <script src="node_modules/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.js"></script>
+    <script src="vendors/@coreui/coreui-pro/js/coreui.bundle.min.js"></script>
+    <script src="vendors/simplebar/js/simplebar.min.js"></script>
+    <script src="vendors/i18next/js/i18next.min.js"></script>
+    <script src="vendors/i18next-http-backend/js/i18nextHttpBackend.js"></script>
+    <script src="vendors/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.js"></script>
     <script src="js/i18next.js"></script>
     <script>
       const header = document.querySelector('header.header');
-      
+
       document.addEventListener('scroll', () => {
         if (header) {
           header.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0);
         }
       });
-      
     </script>
     <!-- Plugins and scripts required by this view-->
-    <script src="node_modules/fullcalendar/index.global.min.js"></script>
+    <script src="vendors/fullcalendar/js/index.global.min.js"></script>
     <script src="js/calendar.js"></script>
-    <script> 
+    <script>
     </script>
+
   </body>
 </html>

@@ -49,8 +49,16 @@ const translate = language => {
   }
   btnToActive.classList.add('active');
   for (const element of document.querySelectorAll('[data-coreui-i18n]')) {
-    const key = element.dataset.coreuiI18n.split(',')[0].toString();
+    let key = element.dataset.coreuiI18n.split(',')[0].toString();
     element.innerHTML = i18next.t(key, geti18nDataAttributes(element));
+    const re = /(?<=\[).*?(?=])/g;
+    const attributeInKey = key.match(re);
+    if (attributeInKey) {
+      key = key.replace(`[${attributeInKey}]`, '');
+      element[attributeInKey] = i18next.t(key, geti18nDataAttributes(element));
+    } else {
+      element.innerHTML = i18next.t(key, geti18nDataAttributes(element));
+    }
   }
   for (const element of document.querySelectorAll('[data-coreui-i18n-date]')) {
     const key = element.dataset.coreuiI18nDate.split(',')[0].toString();
@@ -73,7 +81,7 @@ const translate = language => {
 i18next.use(i18nextHttpBackend).use(i18nextBrowserLanguageDetector).init({
   fallbackLng: 'en',
   backend: {
-    loadPath: './../locales/{{lng}}/translation.json'
+    loadPath: './locales/{{lng}}/translation.json'
   }
 }, () => {
   translate();
