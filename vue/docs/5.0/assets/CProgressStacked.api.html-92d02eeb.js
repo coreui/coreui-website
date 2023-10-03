@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-bead0afc","path":"/api/progress/CProgressStacked.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CProgressStacked","slug":"cprogressstacked","link":"#cprogressstacked","children":[]}],"filePathRelative":"api/progress/CProgressStacked.api.md"}');export{e as data};
