@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-c066b976","path":"/api/alert/CAlertHeading.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CAlertHeading","slug":"calertheading","link":"#calertheading","children":[]}],"filePathRelative":"api/alert/CAlertHeading.api.md"}');export{e as data};

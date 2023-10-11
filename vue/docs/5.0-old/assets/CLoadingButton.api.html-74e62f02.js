@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-42ac2da4","path":"/api/loading-button/CLoadingButton.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CLoadingButton","slug":"cloadingbutton","link":"#cloadingbutton","children":[]}],"filePathRelative":"api/loading-button/CLoadingButton.api.md"}');export{t as data};

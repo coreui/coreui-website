@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-6e887c43","path":"/api/form/CFormLabel.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CFormLabel","slug":"cformlabel","link":"#cformlabel","children":[]}],"filePathRelative":"api/form/CFormLabel.api.md"}');export{e as data};

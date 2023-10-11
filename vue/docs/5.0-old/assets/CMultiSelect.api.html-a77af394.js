@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-7dbfe1aa","path":"/api/multi-select/CMultiSelect.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CMultiSelect","slug":"cmultiselect","link":"#cmultiselect","children":[]}],"filePathRelative":"api/multi-select/CMultiSelect.api.md"}');export{e as data};

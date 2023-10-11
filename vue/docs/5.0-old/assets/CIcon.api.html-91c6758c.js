@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-206a7ea4","path":"/api/coreui-icons-vue/src/CIcon.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CIcon","slug":"cicon","link":"#cicon","children":[]}],"filePathRelative":"api/coreui-icons-vue/src/CIcon.api.md"}');export{e as data};

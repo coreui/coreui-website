@@ -1,4 +1,0 @@
-import{_ as a,o as s,c as n,e}from"./app-717d9e0f.js";const o={},c=e(`<h3 id="ccardbody" tabindex="-1">CCardBody <a class="anchor-link" href="#ccardbody" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CCardBody <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
-<span class="token comment">// or</span>
-<span class="token keyword">import</span> CCardBody <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/card/CCardBody&#39;</span>
-</code></pre></div>`,2),t=[c];function r(d,p){return s(),n("div",null,t)}const l=a(o,[["render",r],["__file","CCardBody.api.html.vue"]]);export{l as default};

@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-1756df54","path":"/api/card/CCardImage.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CCardImage","slug":"ccardimage","link":"#ccardimage","children":[]}],"filePathRelative":"api/card/CCardImage.api.md"}');export{a as data};
