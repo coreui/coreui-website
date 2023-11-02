@@ -1,6 +1,6 @@
 <!DOCTYPE html><!--
 * CoreUI PRO Bootstrap Admin Template
-* @version v5.0.0-alpha.1
+* @version v5.0.0-beta.0
 * @link https://coreui.io/product/bootstrap-dashboard-template/
 * Copyright (c) 2023 creativeLabs Łukasz Holeczek
 * License (https://coreui.io/pro/license/)
@@ -67,7 +67,7 @@
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KX4JH47" height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript)-->
-    <div class="sidebar sidebar-fixed sidebar-dark border-end" id="sidebar">
+    <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
       <div class="sidebar-header border-bottom">
         <div class="sidebar-brand">
           <svg class="sidebar-brand-full" width="110" height="32" alt="CoreUI Logo">
@@ -77,7 +77,7 @@
             <use xlink:href="assets/brand/coreui.svg#signet"></use>
           </svg>
         </div>
-        <button class="btn-close d-md-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
+        <button class="btn-close d-lg-none" type="button" data-coreui-theme="dark" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
       </div>
       <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
         <li class="nav-item"><a class="nav-link" href="index.html">
@@ -120,10 +120,10 @@
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
             </svg><span data-coreui-i18n="buttons">Buttons</span></a>
           <ul class="nav-group-items compact">
-            <li class="nav-item"><a class="nav-link" href="buttons/buttons.html"> Buttons</a></li>
-            <li class="nav-item"><a class="nav-link" href="buttons/button-group.html"> Buttons Group</a></li>
-            <li class="nav-item"><a class="nav-link" href="buttons/loading-buttons.html"> Loading Buttons<span class="badge bg-danger-gradient ms-auto">PRO</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="buttons/dropdowns.html"> Dropdowns</a></li>
+            <li class="nav-item"><a class="nav-link" href="buttons/buttons.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Buttons</a></li>
+            <li class="nav-item"><a class="nav-link" href="buttons/button-group.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Buttons Group</a></li>
+            <li class="nav-item"><a class="nav-link" href="buttons/loading-buttons.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Loading Buttons<span class="badge bg-danger-gradient ms-auto">PRO</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="buttons/dropdowns.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Dropdowns</a></li>
           </ul>
         </li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
@@ -266,13 +266,13 @@
           <div class="small text-body-secondary">243GB/256GB</div>
         </li>
       </ul>
-      <div class="sidebar-footer border-top d-none d-md-flex">
+      <div class="sidebar-footer border-top d-none d-lg-flex">
         <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
       </div>
     </div>
-    <div class="sidebar sidebar-light sidebar-lg sidebar-end sidebar-overlaid border-start hide" id="aside">
-      <div class="sidebar-header border-bottom py-0">
-        <ul class="nav nav-pills" role="tablist">
+    <div class="sidebar sidebar-light sidebar-lg sidebar-end sidebar-overlaid border-start" id="aside">
+      <div class="sidebar-header p-0 position-relative">
+        <ul class="nav nav-underline-border w-100" role="tablist">
           <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#timeline" role="tab">
               <svg class="icon">
                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list"></use>
@@ -286,7 +286,7 @@
                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
               </svg></a></li>
         </ul>
-        <button class="btn-close" type="button" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#aside&quot;)).toggle()"></button>
+        <button class="btn-close position-absolute top-50 end-0 translate-middle my-0" type="button" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#aside&quot;)).toggle()"></button>
       </div>
       <!-- Tab panes-->
       <div class="tab-content">
@@ -463,8 +463,8 @@
     </div>
     <div class="wrapper d-flex flex-column min-vh-100">
       <header class="header header-sticky mb-4">
-        <div class="container-fluid border-bottom">
-          <button class="header-toggler px-md-1 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+        <div class="container-fluid px-3 border-bottom">
+          <button class="header-toggler me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()" style="margin-inline-start: -6px">
             <svg class="icon icon-lg">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
             </svg>
@@ -475,7 +475,7 @@
             <li class="nav-item"><a class="nav-link" href="#" data-coreui-i18n="settings">Settings</a></li>
           </ul>
           <ul class="header-nav ms-auto">
-            <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown d-none d-md-flex"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <svg class="icon icon-lg my-1 mx-2">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
                 </svg><span class="badge rounded-pill position-absolute top-0 end-0 bg-danger-gradient">5</span></a>
@@ -517,7 +517,7 @@
                 </a>
               </div>
             </li>
-            <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown d-none d-md-flex"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <svg class="icon icon-lg my-1 mx-2">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
                 </svg><span class="badge rounded-pill position-absolute top-0 end-0 bg-warning-gradient">5</span></a>
@@ -561,7 +561,7 @@
                 </a><a class="dropdown-item text-center fw-semibold border-top" href="#" data-coreui-i18n="viewAllTasks">View all tasks</a>
               </div>
             </li>
-            <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown d-none d-md-flex"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <svg class="icon icon-lg my-1 mx-2">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                 </svg><span class="badge rounded-pill position-absolute top-0 end-0 bg-info-gradient">7</span></a>
@@ -606,8 +606,8 @@
               </div>
             </li>
           </ul>
-          <ul class="header-nav me-4 ms-3">
-            <li class="nav-item py-2 py-lg-1">
+          <ul class="header-nav">
+            <li class="nav-item py-1">
               <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
             </li>
             <li class="nav-item dropdown">
@@ -670,9 +670,11 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item py-2 py-lg-1">
+            <li class="nav-item py-1">
               <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
             </li>
+          </ul>
+          <ul class="header-nav me-md-4">
             <li class="nav-item dropdown d-flex align-items-center"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg" alt="user@email.com"></div>
               </a>
@@ -713,13 +715,13 @@
               </div>
             </li>
           </ul>
-          <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#aside')).show()">
+          <button class="header-toggler" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#aside')).show()" style="margin-inline-end: -4px">
             <svg class="icon icon-lg">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-applications-settings"></use>
             </svg>
           </button>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid px-3">
           <!-- Breadcrumb-->
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb my-0 ms-2">
@@ -734,13 +736,13 @@
           </nav>
         </div>
       </header>
-      <div class="body flex-grow-1 px-3">
-        <div class="container-lg">
+      <div class="body flex-grow-1">
+        <div class="container-lg px-4">
           <div class="card mb-4">
             <div class="card-header"> DataTables<a class="badge bg-danger-gradient ms-2 text-decoration-none" href="https://coreui.io/pricing/?framework=bootstrap">CoreUI Pro Integration</a></div>
             <div class="card-body">
               <div class="example">
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-underline-border" role="tablist">
                   <li class="nav-item"><a class="nav-link active" data-coreui-toggle="tab" href="#preview-1000" role="tab">
                       <svg class="icon me-2">
                         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-media-play"></use>
@@ -1285,7 +1287,7 @@
         </div>
       </div>
       <footer class="footer">
-        <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2023 creativeLabs.</div>
+        <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io/product/bootstrap-dashboard-template/">Bootstrap Admin Template</a> © 2023 creativeLabs.</div>
         <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI PRO UI Components</a></div>
       </footer>
     </div>
