@@ -1,6 +1,6 @@
 <!DOCTYPE html><!--
 * CoreUI PRO Bootstrap Admin Template
-* @version v5.0.0-beta.0
+* @version v5.0.0-rc.0
 * @link https://coreui.io/product/bootstrap-dashboard-template/
 * Copyright (c) 2023 creativeLabs Łukasz Holeczek
 * License (https://coreui.io/pro/license/)
@@ -135,7 +135,7 @@
             <li class="nav-item"><a class="nav-link" href="forms/form-control.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Form Control</a></li>
             <li class="nav-item"><a class="nav-link" href="forms/select.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Select</a></li>
             <li class="nav-item"><a class="nav-link" href="forms/multi-select.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Multi Select<span class="badge bg-danger-gradient ms-auto">PRO</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="forms/checks-radios.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Checks and radios</a></li>
+            <li class="nav-item"><a class="nav-link" href="forms/checks-radios.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Checks &amp; radios</a></li>
             <li class="nav-item"><a class="nav-link" href="forms/range.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Range</a></li>
             <li class="nav-item"><a class="nav-link" href="forms/input-group.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Input group</a></li>
             <li class="nav-item"><a class="nav-link" href="forms/floating-labels.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Floating labels</a></li>
@@ -240,7 +240,7 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item mt-auto"><a class="nav-link" href="https://coreui.io/docs/5.0/templates/installation/" target="_blank">
+        <li class="nav-item mt-auto"><a class="nav-link" href="https://coreui.io/docs/templates/installation/" target="_blank">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-description"></use>
             </svg><span data-coreui-i18n="docs">Docs</span></a></li>
@@ -263,7 +263,7 @@
           <div class="text-uppercase small fw-bold mb-1" data-coreui-i18n="ssdUsage">SSD Usage</div>
           <div class="progress progress-thin">
             <div class="progress-bar bg-danger-gradient" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-          </div><small class="text-secondary-inverse">243GB/256GB</small>
+          </div><small class="text-body-secondary-inverse">243GB/256GB</small>
         </li>
       </ul>
     </div>
@@ -459,9 +459,9 @@
       </div>
     </div>
     <div class="wrapper d-flex flex-column min-vh-100">
-      <header class="header header-light bg-primary header-sticky mb-4">
-        <div class="container-fluid">
-          <button class="header-toggler px-md-0 me-md-3 d-lg-none" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+      <header class="header header-light bg-primary header-sticky p-0 mb-4">
+        <div class="container-fluid px-4">
+          <button class="header-toggler d-lg-none" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()" style="margin-inline-start: -14px;">
             <svg class="icon icon-lg">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
             </svg>
@@ -471,16 +471,16 @@
                 <svg class="icon icon-lg my-1 mx-2 text-white text-opacity-25">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-search"></use>
                 </svg></span>
-              <input class="form-control bg-transparent border-0 dark:bg-opacity-50" type="text" placeholder="Search..." aria-label="Search" aria-describedby="search-addon" data-coreui-i18n="[placeholder]search">
+              <input class="form-control bg-transparent border-0" type="text" placeholder="Search..." aria-label="Search" aria-describedby="search-addon" data-coreui-i18n="[placeholder]search">
             </div>
           </form>
-          <ul class="header-nav d-none d-sm-flex ms-auto">
+          <ul class="header-nav d-none d-md-flex ms-auto">
             <li class="nav-item dropdown"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="d-inline-block my-1 mx-2 position-relative">
                   <svg class="icon icon-lg">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
                   </svg><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New alerts</span></span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
-                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="notificationsCounter" data-coreui-i18n-counter="5">You have 5 notifications</div><a class="dropdown-item" href="#">
+                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="notificationsCounter, { 'counter': 5 }">You have 5 notifications</div><a class="dropdown-item" href="#">
                   <svg class="icon me-2 text-success">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user-follow"></use>
                   </svg><span data-coreui-i18n="newUserRegistered">New user registered</span></a><a class="dropdown-item" href="#">
@@ -522,7 +522,7 @@
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
                   </svg><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New alerts</span></span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg py-0">
-                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="taskCounter" data-coreui-i18n-counter="5">You have 5 pending tasks</div><a class="dropdown-item d-block" href="#">
+                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="taskCounter, { 'counter': 5 }">You have 5 pending tasks</div><a class="dropdown-item d-block" href="#">
                   <div class="small mb-1">Upgrade NPM &amp; Bower<span class="float-end"><strong>0%</strong></span></div><span class="progress progress-thin">
                     <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                   </span>
@@ -563,7 +563,7 @@
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                   </svg><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New alerts</span></span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
-                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="messagesCounter" data-coreui-i18n-counter="4">You have 4 messages</div><a class="dropdown-item" href="#">
+                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="messagesCounter, { 'counter': 7 }">You have 4 messages</div><a class="dropdown-item" href="#">
                   <div class="message">
                     <div class="py-3 me-3 float-start">
                       <div class="avatar"><img class="avatar-img" src="assets/img/avatars/7.jpg" alt="user@email.com"><span class="avatar-status bg-success"></span></div>
@@ -608,7 +608,7 @@
               <div class="vr h-100 mx-2 text-white text-opacity-75"></div>
             </li>
             <li class="nav-item dropdown">
-              <button class="btn btn-link nav-link py-2 px-2 d-flex align-items-center" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
+              <button class="btn btn-link nav-link" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
                 <svg class="icon icon-lg">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-language"></use>
                 </svg>
@@ -638,7 +638,7 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <button class="btn btn-link nav-link py-2 px-2 d-flex align-items-center" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
+              <button class="btn btn-link nav-link" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
                 <svg class="icon icon-lg theme-icon-active">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-contrast"></use>
                 </svg>
@@ -671,8 +671,8 @@
               <div class="vr h-100 mx-2 text-white text-opacity-75"></div>
             </li>
           </ul>
-          <ul class="header-nav me-md-4">
-            <li class="nav-item dropdown d-flex align-items-center"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <ul class="header-nav">
+            <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg" alt="user@email.com"><span class="avatar-status bg-success"></span></div>
               </a>
               <div class="dropdown-menu dropdown-menu-end pt-0">
@@ -712,7 +712,7 @@
               </div>
             </li>
           </ul>
-          <button class="header-toggler" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#aside')).show()" style="margin-inline-end: -10px">
+          <button class="header-toggler" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#aside')).show()" style="margin-inline-end: -12px">
             <svg class="icon icon-lg">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-applications-settings"></use>
             </svg>
@@ -721,20 +721,17 @@
       </header>
       <div class="body flex-grow-1">
         <div class="container-lg px-4">
-          <!-- Breadcrumb-->
           <div class="fs-2 fw-semibold">Breadcrumb</div>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item">
-                <!-- if breadcrumb is single--><a href="#">Home</a>
+              <li class="breadcrumb-item"><a href="#" data-coreui-i18n="home">Home</a>
               </li>
-              <li class="breadcrumb-item">
-                <!-- if breadcrumb is single--><a href="#">Components</a>
+              <li class="breadcrumb-item"><span data-coreui-i18n="components">Components</span>
               </li>
-              <li class="breadcrumb-item">
-                <!-- if breadcrumb is single--><a href="#">Base</a>
+              <li class="breadcrumb-item"><span data-coreui-i18n="base">Base</span>
               </li>
-              <li class="breadcrumb-item active"><span>Breadcrumb</span></li>
+              <li class="breadcrumb-item active"><span>Breadcrumb</span>
+              </li>
             </ol>
           </nav>
           <div class="row">
@@ -785,7 +782,7 @@
           <!-- /.row-->
         </div>
       </div>
-      <footer class="footer">
+      <footer class="footer px-4">
         <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io/product/bootstrap-dashboard-template/">Bootstrap Admin Template</a> © 2023 creativeLabs.</div>
         <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI PRO UI Components</a></div>
       </footer>

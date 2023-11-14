@@ -1,6 +1,6 @@
 <!DOCTYPE html><!--
 * CoreUI PRO Bootstrap Admin Template
-* @version v5.0.0-beta.0
+* @version v5.0.0-rc.0
 * @link https://coreui.io/product/bootstrap-dashboard-template/
 * Copyright (c) 2023 creativeLabs Łukasz Holeczek
 * License (https://coreui.io/pro/license/)
@@ -135,7 +135,7 @@
             <li class="nav-item"><a class="nav-link" href="forms/form-control.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Form Control</a></li>
             <li class="nav-item"><a class="nav-link" href="forms/select.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Select</a></li>
             <li class="nav-item"><a class="nav-link" href="forms/multi-select.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Multi Select<span class="badge bg-danger-gradient ms-auto">PRO</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="forms/checks-radios.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Checks and radios</a></li>
+            <li class="nav-item"><a class="nav-link" href="forms/checks-radios.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Checks &amp; radios</a></li>
             <li class="nav-item"><a class="nav-link" href="forms/range.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Range</a></li>
             <li class="nav-item"><a class="nav-link" href="forms/input-group.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Input group</a></li>
             <li class="nav-item"><a class="nav-link" href="forms/floating-labels.html"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Floating labels</a></li>
@@ -240,7 +240,7 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item mt-auto"><a class="nav-link" href="https://coreui.io/docs/5.0/templates/installation/" target="_blank">
+        <li class="nav-item mt-auto"><a class="nav-link" href="https://coreui.io/docs/templates/installation/" target="_blank">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-description"></use>
             </svg><span data-coreui-i18n="docs">Docs</span></a></li>
@@ -263,7 +263,7 @@
           <div class="text-uppercase small fw-bold mb-1" data-coreui-i18n="ssdUsage">SSD Usage</div>
           <div class="progress progress-thin">
             <div class="progress-bar bg-danger-gradient" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-          </div><small class="text-secondary-inverse">243GB/256GB</small>
+          </div><small class="text-body-secondary-inverse">243GB/256GB</small>
         </li>
       </ul>
     </div>
@@ -459,9 +459,9 @@
       </div>
     </div>
     <div class="wrapper d-flex flex-column min-vh-100">
-      <header class="header header-light bg-primary header-sticky mb-4">
-        <div class="container-fluid">
-          <button class="header-toggler px-md-0 me-md-3 d-lg-none" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+      <header class="header header-light bg-primary header-sticky p-0 mb-4">
+        <div class="container-fluid px-4">
+          <button class="header-toggler d-lg-none" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()" style="margin-inline-start: -14px;">
             <svg class="icon icon-lg">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
             </svg>
@@ -471,16 +471,16 @@
                 <svg class="icon icon-lg my-1 mx-2 text-white text-opacity-25">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-search"></use>
                 </svg></span>
-              <input class="form-control bg-transparent border-0 dark:bg-opacity-50" type="text" placeholder="Search..." aria-label="Search" aria-describedby="search-addon" data-coreui-i18n="[placeholder]search">
+              <input class="form-control bg-transparent border-0" type="text" placeholder="Search..." aria-label="Search" aria-describedby="search-addon" data-coreui-i18n="[placeholder]search">
             </div>
           </form>
-          <ul class="header-nav d-none d-sm-flex ms-auto">
+          <ul class="header-nav d-none d-md-flex ms-auto">
             <li class="nav-item dropdown"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="d-inline-block my-1 mx-2 position-relative">
                   <svg class="icon icon-lg">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
                   </svg><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New alerts</span></span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
-                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="notificationsCounter" data-coreui-i18n-counter="5">You have 5 notifications</div><a class="dropdown-item" href="#">
+                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="notificationsCounter, { 'counter': 5 }">You have 5 notifications</div><a class="dropdown-item" href="#">
                   <svg class="icon me-2 text-success">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user-follow"></use>
                   </svg><span data-coreui-i18n="newUserRegistered">New user registered</span></a><a class="dropdown-item" href="#">
@@ -522,7 +522,7 @@
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
                   </svg><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New alerts</span></span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg py-0">
-                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="taskCounter" data-coreui-i18n-counter="5">You have 5 pending tasks</div><a class="dropdown-item d-block" href="#">
+                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="taskCounter, { 'counter': 5 }">You have 5 pending tasks</div><a class="dropdown-item d-block" href="#">
                   <div class="small mb-1">Upgrade NPM &amp; Bower<span class="float-end"><strong>0%</strong></span></div><span class="progress progress-thin">
                     <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                   </span>
@@ -563,7 +563,7 @@
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                   </svg><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New alerts</span></span></span></a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
-                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="messagesCounter" data-coreui-i18n-counter="4">You have 4 messages</div><a class="dropdown-item" href="#">
+                <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top" data-coreui-i18n="messagesCounter, { 'counter': 7 }">You have 4 messages</div><a class="dropdown-item" href="#">
                   <div class="message">
                     <div class="py-3 me-3 float-start">
                       <div class="avatar"><img class="avatar-img" src="assets/img/avatars/7.jpg" alt="user@email.com"><span class="avatar-status bg-success"></span></div>
@@ -608,7 +608,7 @@
               <div class="vr h-100 mx-2 text-white text-opacity-75"></div>
             </li>
             <li class="nav-item dropdown">
-              <button class="btn btn-link nav-link py-2 px-2 d-flex align-items-center" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
+              <button class="btn btn-link nav-link" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
                 <svg class="icon icon-lg">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-language"></use>
                 </svg>
@@ -638,7 +638,7 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <button class="btn btn-link nav-link py-2 px-2 d-flex align-items-center" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
+              <button class="btn btn-link nav-link" type="button" aria-expanded="false" data-coreui-toggle="dropdown">
                 <svg class="icon icon-lg theme-icon-active">
                   <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-contrast"></use>
                 </svg>
@@ -671,8 +671,8 @@
               <div class="vr h-100 mx-2 text-white text-opacity-75"></div>
             </li>
           </ul>
-          <ul class="header-nav me-md-4">
-            <li class="nav-item dropdown d-flex align-items-center"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <ul class="header-nav">
+            <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg" alt="user@email.com"><span class="avatar-status bg-success"></span></div>
               </a>
               <div class="dropdown-menu dropdown-menu-end pt-0">
@@ -712,7 +712,7 @@
               </div>
             </li>
           </ul>
-          <button class="header-toggler" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#aside')).show()" style="margin-inline-end: -10px">
+          <button class="header-toggler" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#aside')).show()" style="margin-inline-end: -12px">
             <svg class="icon icon-lg">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-applications-settings"></use>
             </svg>
@@ -721,17 +721,15 @@
       </header>
       <div class="body flex-grow-1">
         <div class="container-lg px-4">
-          <!-- Breadcrumb-->
-          <div class="fs-2 fw-semibold">Widgets</div>
+          <div class="fs-2 fw-semibold" data-coreui-i18n="widgets">Widgets</div>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item">
-                <!-- if breadcrumb is single--><a href="#">Home</a>
+              <li class="breadcrumb-item"><a href="#" data-coreui-i18n="home">Home</a>
               </li>
-              <li class="breadcrumb-item">
-                <!-- if breadcrumb is single--><a href="#">Components</a>
+              <li class="breadcrumb-item"><span data-coreui-i18n="components">Components</span>
               </li>
-              <li class="breadcrumb-item active"><span>Widgets</span></li>
+              <li class="breadcrumb-item active"><span data-coreui-i18n="widgets">Widgets</span>
+              </li>
             </ol>
           </nav>
           <div class="card mb-4">
@@ -748,9 +746,9 @@
                 </ul>
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1000">
-                    <div class="row">
-                      <div class="col-sm-6 col-lg-3">
-                        <div class="card mb-4 mb-lg-0 text-white bg-primary">
+                    <div class="grid">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
+                        <div class="card text-white bg-primary">
                           <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                             <div>
                               <div class="fs-4 fw-semibold">26K <span class="fs-6 fw-normal">(-12.4%
@@ -774,8 +772,8 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
-                        <div class="card mb-4 mb-lg-0 text-white bg-info">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
+                        <div class="card text-white bg-info">
                           <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                             <div>
                               <div class="fs-4 fw-semibold">$6.200 <span class="fs-6 fw-normal">(40.9%
@@ -799,8 +797,8 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
-                        <div class="card mb-4 mb-sm-0 text-white bg-warning">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
+                        <div class="card text-white bg-warning">
                           <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                             <div>
                               <div class="fs-4 fw-semibold">2.49% <span class="fs-6 fw-normal">(84.7%
@@ -824,7 +822,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card text-white bg-danger">
                           <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                             <div>
@@ -848,9 +846,7 @@
                           </div>
                         </div>
                       </div>
-                      <!-- /.col-->
                     </div>
-                    <!-- /.row-->
                   </div>
                 </div>
               </div>
@@ -863,9 +859,9 @@
                 </ul>
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1001">
-                    <div class="row">
-                      <div class="col-sm-6 col-lg-3">
-                        <div class="card mb-4 mb-lg-0">
+                    <div class="grid">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
+                        <div class="card">
                           <div class="card-body">
                             <div class="fs-4 fw-semibold">89.9%</div>
                             <div>Widget title</div>
@@ -876,8 +872,8 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
-                        <div class="card mb-4 mb-lg-0">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
+                        <div class="card">
                           <div class="card-body">
                             <div class="fs-4 fw-semibold">12.124</div>
                             <div>Widget title</div>
@@ -888,8 +884,8 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
-                        <div class="card mb-4 mb-sm-0">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
+                        <div class="card">
                           <div class="card-body">
                             <div class="fs-4 fw-semibold">$98.111,00</div>
                             <div>Widget title</div>
@@ -900,7 +896,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card">
                           <div class="card-body">
                             <div class="fs-4 fw-semibold">2 TB</div>
@@ -913,7 +909,7 @@
                       </div>
                       <!-- /.col-->
                     </div>
-                    <!-- /.row-->
+                    <!-- /.grid-->
                   </div>
                 </div>
               </div>
@@ -926,9 +922,9 @@
                 </ul>
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1002">
-                    <div class="row">
-                      <div class="col-sm-6 col-lg-3">
-                        <div class="card text-white bg-primary mb-4 mb-lg-0">
+                    <div class="grid">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
+                        <div class="card text-white bg-primary">
                           <div class="card-body">
                             <div class="fs-4 fw-semibold">89.9%</div>
                             <div>Widget title</div>
@@ -939,8 +935,8 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
-                        <div class="card text-white bg-warning mb-4 mb-lg-0">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
+                        <div class="card text-white bg-warning">
                           <div class="card-body">
                             <div class="fs-4 fw-semibold">12.124</div>
                             <div>Widget title</div>
@@ -951,8 +947,8 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
-                        <div class="card text-white bg-danger mb-4 mb-md-0">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
+                        <div class="card text-white bg-danger">
                           <div class="card-body">
                             <div class="fs-4 fw-semibold">$98.111,00</div>
                             <div>Widget title</div>
@@ -963,7 +959,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card text-white bg-info">
                           <div class="card-body">
                             <div class="fs-4 fw-semibold">2 TB</div>
@@ -976,7 +972,7 @@
                       </div>
                       <!-- /.col-->
                     </div>
-                    <!-- /.row-->
+                    <!-- /.grid-->
                   </div>
                 </div>
               </div>
@@ -989,8 +985,8 @@
                 </ul>
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1003">
-                    <div class="row">
-                      <div class="col-xl-2 col-sm-4 mb-4 mb-xl-0">
+                    <div class="grid">
+                      <div class="g-col-6 g-col-sm-4 g-col-xl-2">
                         <div class="card">
                           <div class="card-body text-center">
                             <div class="text-body-secondary small text-uppercase fw-semibold">Title</div>
@@ -1002,7 +998,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-xl-2 col-sm-4 mb-4 mb-xl-0">
+                      <div class="g-col-6 g-col-sm-4 g-col-xl-2">
                         <div class="card">
                           <div class="card-body text-center">
                             <div class="text-body-secondary small text-uppercase fw-semibold">Title</div>
@@ -1014,7 +1010,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-xl-2 col-sm-4 mb-4 mb-xl-0">
+                      <div class="g-col-6 g-col-sm-4 g-col-xl-2">
                         <div class="card">
                           <div class="card-body text-center">
                             <div class="text-body-secondary small text-uppercase fw-semibold">Title</div>
@@ -1026,7 +1022,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-xl-2 col-sm-4 mb-4 mb-sm-0">
+                      <div class="g-col-6 g-col-sm-4 g-col-xl-2">
                         <div class="card">
                           <div class="card-body text-center">
                             <div class="text-body-secondary small text-uppercase fw-semibold">Title</div>
@@ -1038,7 +1034,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-xl-2 col-sm-4 mb-4 mb-sm-0">
+                      <div class="g-col-6 g-col-sm-4 g-col-xl-2">
                         <div class="card">
                           <div class="card-body text-center">
                             <div class="text-body-secondary small text-uppercase fw-semibold">Title</div>
@@ -1050,7 +1046,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-xl-2 col-sm-4">
+                      <div class="g-col-6 g-col-sm-4 g-col-xl-2">
                         <div class="card">
                           <div class="card-body text-center">
                             <div class="text-body-secondary small text-uppercase fw-semibold">Title</div>
@@ -1063,7 +1059,7 @@
                       </div>
                       <!-- /.col-->
                     </div>
-                    <!-- /.row-->
+                    <!-- /.grid-->
                   </div>
                 </div>
               </div>
@@ -1076,8 +1072,8 @@
                 </ul>
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1004">
-                    <div class="row">
-                      <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+                    <div class="grid">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card">
                           <div class="card-body p-3 d-flex align-items-center">
                             <div class="bg-primary text-white p-3 me-3">
@@ -1093,7 +1089,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card">
                           <div class="card-body p-3 d-flex align-items-center">
                             <div class="bg-info text-white p-3 me-3">
@@ -1109,7 +1105,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3 mb-4 mb-sm-0">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card">
                           <div class="card-body p-3 d-flex align-items-center">
                             <div class="bg-warning text-white p-3 me-3">
@@ -1125,7 +1121,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card">
                           <div class="card-body p-3 d-flex align-items-center">
                             <div class="bg-danger text-white p-3 me-3">
@@ -1154,8 +1150,8 @@
                 </ul>
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1005">
-                    <div class="row">
-                      <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+                    <div class="grid">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card">
                           <div class="card-body p-3 d-flex align-items-center">
                             <div class="bg-primary text-white p-3 me-3">
@@ -1175,7 +1171,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card">
                           <div class="card-body p-3 d-flex align-items-center">
                             <div class="bg-info text-white p-3 me-3">
@@ -1195,7 +1191,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3 mb-4 mb-sm-0">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card">
                           <div class="card-body p-3 d-flex align-items-center">
                             <div class="bg-warning text-white p-3 me-3">
@@ -1215,7 +1211,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card">
                           <div class="card-body p-3 d-flex align-items-center">
                             <div class="bg-danger text-white p-3 me-3">
@@ -1236,7 +1232,7 @@
                       </div>
                       <!-- /.col-->
                     </div>
-                    <!-- /.row-->
+                    <!-- /.grid-->
                   </div>
                 </div>
               </div>
@@ -1249,8 +1245,8 @@
                 </ul>
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1006">
-                    <div class="row">
-                      <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+                    <div class="grid">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card overflow-hidden">
                           <div class="card-body p-0 d-flex align-items-center">
                             <div class="bg-primary text-white p-4 me-3">
@@ -1266,7 +1262,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card overflow-hidden">
                           <div class="card-body p-0 d-flex align-items-center">
                             <div class="bg-info text-white p-4 me-3">
@@ -1282,7 +1278,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3 mb-4 mb-sm-0">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card overflow-hidden">
                           <div class="card-body p-0 d-flex align-items-center">
                             <div class="bg-warning text-white p-4 me-3">
@@ -1298,7 +1294,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card overflow-hidden">
                           <div class="card-body p-0 d-flex align-items-center">
                             <div class="bg-danger text-white p-4 me-3">
@@ -1327,8 +1323,8 @@
                 </ul>
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1007">
-                    <div class="row">
-                      <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+                    <div class="grid">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card overflow-hidden">
                           <div class="card-body p-0 d-flex align-items-center">
                             <div class="bg-primary text-white py-4 px-5 me-3">
@@ -1344,7 +1340,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card overflow-hidden">
                           <div class="card-body p-0 d-flex align-items-center">
                             <div class="bg-info text-white py-4 px-5 me-3">
@@ -1360,7 +1356,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3 mb-4 mb-sm-0">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card overflow-hidden">
                           <div class="card-body p-0 d-flex align-items-center">
                             <div class="bg-warning text-white py-4 px-5 me-3">
@@ -1376,7 +1372,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-3">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4 g-col-xxl-3">
                         <div class="card overflow-hidden">
                           <div class="card-body p-0 d-flex align-items-center">
                             <div class="bg-danger text-white py-4 px-5 me-3">
@@ -1393,7 +1389,7 @@
                       </div>
                       <!-- /.col-->
                     </div>
-                    <!-- /.row-->
+                    <!-- /.grid-->
                   </div>
                 </div>
               </div>
@@ -1406,8 +1402,8 @@
                 </ul>
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1008">
-                    <div class="row">
-                      <div class="col-sm-6 col-lg-4 mb-4">
+                    <div class="grid">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4">
                         <div class="card" style="--cui-card-cap-bg: #3b5998">
                           <div class="card-header position-relative d-flex justify-content-center align-items-center">
                             <svg class="icon icon-3xl text-white my-4">
@@ -1431,7 +1427,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-4 mb-4">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4">
                         <div class="card" style="--cui-card-cap-bg: #00aced">
                           <div class="card-header position-relative d-flex justify-content-center align-items-center">
                             <svg class="icon icon-3xl text-white my-4">
@@ -1455,7 +1451,7 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-4">
+                      <div class="g-col-12 g-col-sm-6 g-col-xl-4">
                         <div class="card" style="--cui-card-cap-bg: #4875b4">
                           <div class="card-header position-relative d-flex justify-content-center align-items-center">
                             <svg class="icon icon-3xl text-white my-4">
@@ -1480,7 +1476,7 @@
                       </div>
                       <!-- /.col-->
                     </div>
-                    <!-- /.row-->
+                    <!-- /.grid-->
                   </div>
                 </div>
               </div>
@@ -1496,12 +1492,13 @@
                     <div class="card-group">
                       <div class="card">
                         <div class="card-body">
-                          <div class="text-body-secondary text-end mb-4">
+                          <div class="text-body-secondary text-end">
                             <svg class="icon icon-xxl">
                               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-people"></use>
                             </svg>
                           </div>
-                          <div class="fs-4 fw-semibold">87.500</div><small class="text-body-secondary text-uppercase fw-semibold">Visitors</small>
+                          <div class="fs-4 fw-semibold">87.500</div>
+                          <div class="small text-body-secondary text-uppercase fw-semibold text-truncate">Visitors</div>
                           <div class="progress progress-thin mt-3 mb-0">
                             <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
@@ -1509,12 +1506,13 @@
                       </div>
                       <div class="card">
                         <div class="card-body">
-                          <div class="text-body-secondary text-end mb-4">
+                          <div class="text-body-secondary text-end">
                             <svg class="icon icon-xxl">
                               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user-follow"></use>
                             </svg>
                           </div>
-                          <div class="fs-4 fw-semibold">385</div><small class="text-body-secondary text-uppercase fw-semibold">New Clients</small>
+                          <div class="fs-4 fw-semibold">385</div>
+                          <div class="small text-body-secondary text-uppercase fw-semibold text-truncate">New Clients</div>
                           <div class="progress progress-thin mt-3 mb-0">
                             <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
@@ -1522,12 +1520,13 @@
                       </div>
                       <div class="card">
                         <div class="card-body">
-                          <div class="text-body-secondary text-end mb-4">
+                          <div class="text-body-secondary text-end">
                             <svg class="icon icon-xxl">
                               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-basket"></use>
                             </svg>
                           </div>
-                          <div class="fs-4 fw-semibold">1238</div><small class="text-body-secondary text-uppercase fw-semibold">Products sold</small>
+                          <div class="fs-4 fw-semibold">1238</div>
+                          <div class="small text-body-secondary text-uppercase fw-semibold text-truncate">Products sold</div>
                           <div class="progress progress-thin mt-3 mb-0">
                             <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
@@ -1535,12 +1534,13 @@
                       </div>
                       <div class="card">
                         <div class="card-body">
-                          <div class="text-body-secondary text-end mb-4">
+                          <div class="text-body-secondary text-end">
                             <svg class="icon icon-xxl">
                               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                             </svg>
                           </div>
-                          <div class="fs-4 fw-semibold">28%</div><small class="text-body-secondary text-uppercase fw-semibold">Returning Visitors</small>
+                          <div class="fs-4 fw-semibold">28%</div>
+                          <div class="small text-body-secondary text-uppercase fw-semibold text-truncate">Returning Visitors</div>
                           <div class="progress progress-thin mt-3 mb-0">
                             <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
@@ -1548,12 +1548,13 @@
                       </div>
                       <div class="card">
                         <div class="card-body">
-                          <div class="text-body-secondary text-end mb-4">
+                          <div class="text-body-secondary text-end">
                             <svg class="icon icon-xxl">
                               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
                             </svg>
                           </div>
-                          <div class="fs-4 fw-semibold">5:34:11</div><small class="text-body-secondary text-uppercase fw-semibold">Avg. Time</small>
+                          <div class="fs-4 fw-semibold">5:34:11</div>
+                          <div class="small text-body-secondary text-uppercase fw-semibold text-truncate">Avg. Time</div>
                           <div class="progress progress-thin mt-3 mb-0">
                             <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
@@ -1572,16 +1573,17 @@
                 </ul>
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1010">
-                    <div class="row">
-                      <div class="col-sm-6 col-lg-4 col-xl-2 mb-4 mb-lg-0">
+                    <div class="grid">
+                      <div class="g-col-6 g-col-lg-4 g-col-xl-3 g-col-xxl-2">
                         <div class="card">
                           <div class="card-body">
-                            <div class="text-body-secondary text-end mb-4">
+                            <div class="text-body-secondary text-end">
                               <svg class="icon icon-xxl">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-people"></use>
                               </svg>
                             </div>
-                            <div class="fs-4 fw-semibold">87.500</div><small class="text-body-secondary text-uppercase fw-semibold">Visitors</small>
+                            <div class="fs-4 fw-semibold">87.500</div>
+                            <div class="small text-body-secondary text-uppercase fw-semibold text-truncate">Visitors</div>
                             <div class="progress progress-thin mt-3 mb-0">
                               <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -1589,15 +1591,16 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-4 col-xl-2 mb-4 mb-lg-0">
+                      <div class="g-col-6 g-col-lg-4 g-col-xl-3 g-col-xxl-2">
                         <div class="card">
                           <div class="card-body">
-                            <div class="text-body-secondary text-end mb-4">
+                            <div class="text-body-secondary text-end">
                               <svg class="icon icon-xxl">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user-follow"></use>
                               </svg>
                             </div>
-                            <div class="fs-4 fw-semibold">385</div><small class="text-body-secondary text-uppercase fw-semibold">New Clients</small>
+                            <div class="fs-4 fw-semibold">385</div>
+                            <div class="small text-body-secondary text-uppercase fw-semibold text-truncate">New Clients</div>
                             <div class="progress progress-thin mt-3 mb-0">
                               <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -1605,15 +1608,16 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-4 col-xl-2 mb-4 mb-lg-0">
+                      <div class="g-col-6 g-col-lg-4 g-col-xl-3 g-col-xxl-2">
                         <div class="card">
                           <div class="card-body">
-                            <div class="text-body-secondary text-end mb-4">
+                            <div class="text-body-secondary text-end">
                               <svg class="icon icon-xxl">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-basket"></use>
                               </svg>
                             </div>
-                            <div class="fs-4 fw-semibold">1238</div><small class="text-body-secondary text-uppercase fw-semibold">Products sold</small>
+                            <div class="fs-4 fw-semibold">1238</div>
+                            <div class="small text-body-secondary text-uppercase fw-semibold text-truncate">Products sold</div>
                             <div class="progress progress-thin mt-3 mb-0">
                               <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -1621,15 +1625,16 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-4 col-xl-2 mb-4 mb-sm-0">
+                      <div class="g-col-6 g-col-lg-4 g-col-xl-3 g-col-xxl-2">
                         <div class="card">
                           <div class="card-body">
-                            <div class="text-body-secondary text-end mb-4">
+                            <div class="text-body-secondary text-end">
                               <svg class="icon icon-xxl">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                               </svg>
                             </div>
-                            <div class="fs-4 fw-semibold">28%</div><small class="text-body-secondary text-uppercase fw-semibold">Returning Visitors</small>
+                            <div class="fs-4 fw-semibold">28%</div>
+                            <div class="small text-body-secondary text-uppercase fw-semibold text-truncate">Returning Visitors</div>
                             <div class="progress progress-thin mt-3 mb-0">
                               <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -1637,15 +1642,16 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-4 col-xl-2 mb-4 mb-sm-0">
+                      <div class="g-col-6 g-col-lg-4 g-col-xl-3 g-col-xxl-2">
                         <div class="card">
                           <div class="card-body">
-                            <div class="text-body-secondary text-end mb-4">
+                            <div class="text-body-secondary text-end">
                               <svg class="icon icon-xxl">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
                               </svg>
                             </div>
-                            <div class="fs-4 fw-semibold">5:34:11</div><small class="text-body-secondary text-uppercase fw-semibold">Avg. Time</small>
+                            <div class="fs-4 fw-semibold">5:34:11</div>
+                            <div class="small text-body-secondary text-uppercase fw-semibold text-truncate">Avg. Time</div>
                             <div class="progress progress-thin mt-3 mb-0">
                               <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -1653,15 +1659,16 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-4 col-xl-2">
+                      <div class="g-col-6 g-col-lg-4 g-col-xl-3 g-col-xxl-2">
                         <div class="card">
                           <div class="card-body">
-                            <div class="text-body-secondary text-end mb-4">
+                            <div class="text-body-secondary text-end">
                               <svg class="icon icon-xxl">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speech"></use>
                               </svg>
                             </div>
-                            <div class="fs-4 fw-semibold">972</div><small class="text-body-secondary text-uppercase fw-semibold">Comments</small>
+                            <div class="fs-4 fw-semibold">972</div>
+                            <div class="small text-body-secondary text-uppercase fw-semibold text-truncate">Comments</div>
                             <div class="progress progress-thin mt-3 mb-0">
                               <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -1670,7 +1677,7 @@
                       </div>
                       <!-- /.col-->
                     </div>
-                    <!-- /.row-->
+                    <!-- /.grid-->
                   </div>
                 </div>
               </div>
@@ -1683,16 +1690,17 @@
                 </ul>
                 <div class="tab-content rounded-bottom">
                   <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1011">
-                    <div class="row">
-                      <div class="col-sm-6 col-lg-4 col-xl-2 mb-4 mb-lg-0">
+                    <div class="grid">
+                      <div class="g-col-6 g-col-lg-4 g-col-xl-3 g-col-xxl-2">
                         <div class="card text-white bg-info">
                           <div class="card-body">
-                            <div class="text-body-secondary-inverse text-end mb-4">
+                            <div class="text-body-secondary-inverse text-end">
                               <svg class="icon icon-xxl">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-people"></use>
                               </svg>
                             </div>
-                            <div class="fs-4 fw-semibold">87.500</div><small class="text-body-secondary-inverse text-uppercase fw-semibold">Visitors</small>
+                            <div class="fs-4 fw-semibold">87.500</div>
+                            <div class="small text-white text-opacity-75 text-uppercase fw-semibold text-truncate">Visitors</div>
                             <div class="progress progress-white progress-thin mt-3">
                               <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -1700,15 +1708,16 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-4 col-xl-2 mb-4 mb-lg-0">
+                      <div class="g-col-6 g-col-lg-4 g-col-xl-3 g-col-xxl-2">
                         <div class="card text-white bg-success">
                           <div class="card-body">
-                            <div class="text-body-secondary-inverse text-end mb-4">
+                            <div class="text-body-secondary-inverse text-end">
                               <svg class="icon icon-xxl">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user-follow"></use>
                               </svg>
                             </div>
-                            <div class="fs-4 fw-semibold">385</div><small class="text-body-secondary-inverse text-uppercase fw-semibold">New Clients</small>
+                            <div class="fs-4 fw-semibold">385</div>
+                            <div class="small text-white text-opacity-75 text-uppercase fw-semibold text-truncate">New Clients</div>
                             <div class="progress progress-white progress-thin mt-3">
                               <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -1716,15 +1725,16 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-4 col-xl-2 mb-4 mb-lg-0">
+                      <div class="g-col-6 g-col-lg-4 g-col-xl-3 g-col-xxl-2">
                         <div class="card text-white bg-warning">
                           <div class="card-body">
-                            <div class="text-body-secondary-inverse text-end mb-4">
+                            <div class="text-body-secondary-inverse text-end">
                               <svg class="icon icon-xxl">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-basket"></use>
                               </svg>
                             </div>
-                            <div class="fs-4 fw-semibold">1238</div><small class="text-body-secondary-inverse text-uppercase fw-semibold">Products sold</small>
+                            <div class="fs-4 fw-semibold">1238</div>
+                            <div class="small text-white text-opacity-75 text-uppercase fw-semibold text-truncate">Products sold</div>
                             <div class="progress progress-white progress-thin mt-3">
                               <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -1732,15 +1742,16 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-4 col-xl-2 mb-4 mb-sm-0">
+                      <div class="g-col-6 g-col-lg-4 g-col-xl-3 g-col-xxl-2">
                         <div class="card text-white bg-primary">
                           <div class="card-body">
-                            <div class="text-body-secondary-inverse text-end mb-4">
+                            <div class="text-body-secondary-inverse text-end">
                               <svg class="icon icon-xxl">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
                               </svg>
                             </div>
-                            <div class="fs-4 fw-semibold">28%</div><small class="text-body-secondary-inverse text-uppercase fw-semibold">Returning Visitors</small>
+                            <div class="fs-4 fw-semibold">28%</div>
+                            <div class="small text-white text-opacity-75 text-uppercase fw-semibold text-truncate">Returning Visitors</div>
                             <div class="progress progress-white progress-thin mt-3">
                               <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -1748,15 +1759,16 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-4 col-xl-2 mb-4 mb-sm-0">
+                      <div class="g-col-6 g-col-lg-4 g-col-xl-3 g-col-xxl-2">
                         <div class="card text-white bg-danger">
                           <div class="card-body">
-                            <div class="text-body-secondary-inverse text-end mb-4">
+                            <div class="text-body-secondary-inverse text-end">
                               <svg class="icon icon-xxl">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
                               </svg>
                             </div>
-                            <div class="fs-4 fw-semibold">5:34:11</div><small class="text-body-secondary-inverse text-uppercase fw-semibold">Avg. Time</small>
+                            <div class="fs-4 fw-semibold">5:34:11</div>
+                            <div class="small text-white text-opacity-75 text-uppercase fw-semibold text-truncate">Avg. Time</div>
                             <div class="progress progress-white progress-thin mt-3">
                               <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -1764,15 +1776,16 @@
                         </div>
                       </div>
                       <!-- /.col-->
-                      <div class="col-sm-6 col-lg-4 col-xl-2">
+                      <div class="g-col-6 g-col-lg-4 g-col-xl-3 g-col-xxl-2">
                         <div class="card text-white bg-info">
                           <div class="card-body">
-                            <div class="text-body-secondary-inverse text-end mb-4">
+                            <div class="text-body-secondary-inverse text-end">
                               <svg class="icon icon-xxl">
                                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speech"></use>
                               </svg>
                             </div>
-                            <div class="fs-4 fw-semibold">972</div><small class="text-body-secondary-inverse text-uppercase fw-semibold">Comments</small>
+                            <div class="fs-4 fw-semibold">972</div>
+                            <div class="small text-white text-opacity-75 text-uppercase fw-semibold text-truncate">Comments</div>
                             <div class="progress progress-white progress-thin mt-3">
                               <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -1781,7 +1794,7 @@
                       </div>
                       <!-- /.col-->
                     </div>
-                    <!-- /.row-->
+                    <!-- /.grid-->
                   </div>
                 </div>
               </div>
@@ -1789,7 +1802,7 @@
           </div>
         </div>
       </div>
-      <footer class="footer">
+      <footer class="footer px-4">
         <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io/product/bootstrap-dashboard-template/">Bootstrap Admin Template</a> © 2023 creativeLabs.</div>
         <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI PRO UI Components</a></div>
       </footer>

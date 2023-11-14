@@ -22,9 +22,69 @@ window.addEventListener('DOMContentLoaded', () => {
   updateCharts();
 });
 i18next.on('languageChanged', () => {
-  cardChart1.data.labels = [i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april'), i18next.t('may'), i18next.t('june'), i18next.t('july')];
-  cardChart3.data.labels = [i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april'), i18next.t('may'), i18next.t('june'), i18next.t('july')];
-  cardChart4.data.labels = [i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april'), i18next.t('may'), i18next.t('june'), i18next.t('july'), i18next.t('august'), i18next.t('september'), i18next.t('october'), i18next.t('november'), i18next.t('december'), i18next.t('january'), i18next.t('february'), i18next.t('march'), i18next.t('april')];
+  cardChart1.data.labels = [i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 0, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 1, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 2, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 3, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 4, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 5, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 6, 1)
+  })];
+  cardChart3.data.labels = [i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 0, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 1, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 2, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 3, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 4, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 5, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 6, 1)
+  })];
+  cardChart4.data.labels = [i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 0, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 1, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 2, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 3, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 4, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 5, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 6, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 7, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 8, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 9, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 10, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2023, 11, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2024, 0, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2024, 1, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2024, 2, 1)
+  }), i18next.t('dateOnlyMonthName', {
+    date: new Date(2024, 3, 1)
+  })];
   const formatParams = {
     date: {
       month: 'short'
@@ -303,7 +363,7 @@ const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
           drawTicks: false
         },
         ticks: {
-          color: coreui.Utils.getStyle('--cui-text-secondary'),
+          color: coreui.Utils.getStyle('--cui-text-body-secondary'),
           font: {
             size: 14
           },
@@ -325,7 +385,7 @@ const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
         },
         ticks: {
           beginAtZero: true,
-          color: coreui.Utils.getStyle('--cui-text-secondary'),
+          color: coreui.Utils.getStyle('--cui-text-body-secondary'),
           font: {
             size: 14
           },
