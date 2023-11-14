@@ -1,5 +1,5 @@
 /*!
-  * CoreUI v5.0.0-alpha.1 (https://coreui.io)
+  * CoreUI v5.0.0-rc.0 (https://coreui.io)
   * Copyright 2023 The CoreUI Team (https://github.com/orgs/coreui/people)
   * Licensed under MIT (https://github.com/coreui/coreui/blob/main/LICENSE)
   */
@@ -666,7 +666,7 @@
    * Constants
    */
 
-  const VERSION = '5.0.0-alpha.1';
+  const VERSION = '5.0.0-rc.0';
 
   /**
    * Class definition
@@ -750,9 +750,9 @@
       if (hrefAttribute.includes('#') && !hrefAttribute.startsWith('#')) {
         hrefAttribute = `#${hrefAttribute.split('#')[1]}`;
       }
-      selector = hrefAttribute && hrefAttribute !== '#' ? hrefAttribute.trim() : null;
+      selector = hrefAttribute && hrefAttribute !== '#' ? parseSelector(hrefAttribute.trim()) : null;
     }
-    return parseSelector(selector);
+    return selector;
   };
   const SelectorEngine = {
     find(selector, element = document.documentElement) {
@@ -942,7 +942,7 @@
   const DATA_API_KEY$e = '.data-api';
   const CLASS_NAME_ACTIVE$4 = 'active';
   const SELECTOR_DATA_TOGGLE$a = '[data-coreui-toggle="button"]';
-  const EVENT_CLICK_DATA_API$d = `click${EVENT_KEY$i}${DATA_API_KEY$e}`;
+  const EVENT_CLICK_DATA_API$e = `click${EVENT_KEY$i}${DATA_API_KEY$e}`;
 
   /**
    * Class definition
@@ -975,7 +975,7 @@
    * Data API implementation
    */
 
-  EventHandler.on(document, EVENT_CLICK_DATA_API$d, SELECTOR_DATA_TOGGLE$a, event => {
+  EventHandler.on(document, EVENT_CLICK_DATA_API$e, SELECTOR_DATA_TOGGLE$a, event => {
     event.preventDefault();
     const button = event.target.closest(SELECTOR_DATA_TOGGLE$a);
     const data = Button.getOrCreateInstance(button);
@@ -988,25 +988,61 @@
 
   defineJQueryPlugin(Button);
 
+  const convertIsoWeekToDate = isoWeek => {
+    const [year, week] = isoWeek.split(/w/i);
+    // Get date for 4th of January for year
+    const date = new Date(Number(year), 0, 4);
+    // Get previous Monday, add 7 days for each week after first
+    date.setDate(
+    // eslint-disable-next-line no-mixed-operators
+    date.getDate() - (date.getDay() || 7) + 1 + (Number(week) - 1) * 7);
+    return date;
+  };
+  const convertToDateObject = (date, selectionType) => {
+    if (date === null) {
+      return null;
+    }
+    if (date instanceof Date) {
+      return date;
+    }
+    if (selectionType === 'week') {
+      return convertIsoWeekToDate(date);
+    }
+    return new Date(Date.parse(date));
+  };
   const createGroupsInArray = (arr, numberOfGroups) => {
     const perGroup = Math.ceil(arr.length / numberOfGroups);
-    // eslint-disable-next-line unicorn/no-new-array
-    return new Array(numberOfGroups).fill('').map((_, i) => arr.slice(i * perGroup, (i + 1) * perGroup));
+    return Array.from({
+      length: numberOfGroups
+    }).fill('').map((_, i) => arr.slice(i * perGroup, (i + 1) * perGroup));
   };
-  const getLocalDateFromString = (string, locale, time) => {
-    const date = new Date(2013, 11, 31, 17, 19, 22);
-    let regex = time ? date.toLocaleString(locale) : date.toLocaleDateString(locale);
-    regex = regex.replace('2013', '(?<year>[0-9]{2,4})').replace('12', '(?<month>[0-9]{1,2})').replace('31', '(?<day>[0-9]{1,2})');
-    if (time) {
-      regex = regex.replace('5', '(?<hour>[0-9]{1,2})').replace('17', '(?<hour>[0-9]{1,2})').replace('19', '(?<minute>[0-9]{1,2})').replace('22', '(?<second>[0-9]{1,2})').replace('PM', '(?<ampm>[A-Z]{2})');
+  const getCalendarDate = (calendarDate, order, view) => {
+    if (order !== 0 && view === 'days') {
+      return new Date(Date.UTC(calendarDate.getFullYear(), calendarDate.getMonth() + order, 1));
     }
-    const rgx = new RegExp(`${regex}`);
-    const partials = string.match(rgx);
-    if (partials === null) {
-      return;
+    if (order !== 0 && view === 'months') {
+      return new Date(Date.UTC(calendarDate.getFullYear() + order, calendarDate.getMonth(), 1));
     }
-    const newDate = partials.groups && (time ? new Date(Number(partials.groups.year, 10), Number(partials.groups.month, 10) - 1, Number(partials.groups.day), partials.groups.ampm ? partials.groups.ampm === 'PM' ? Number(partials.groups.hour) + 12 : Number(partials.groups.hour) : Number(partials.groups.hour), Number(partials.groups.minute), Number(partials.groups.second)) : new Date(Number(partials.groups.year), Number(partials.groups.month) - 1, Number(partials.groups.day)));
-    return newDate;
+    if (order !== 0 && view === 'years') {
+      return new Date(Date.UTC(calendarDate.getFullYear() + 12 * order, calendarDate.getMonth(), 1));
+    }
+    return calendarDate;
+  };
+  const getDateBySelectionType = (date, selectionType) => {
+    if (date === null) {
+      return null;
+    }
+    if (selectionType === 'week') {
+      return `${date.getFullYear()}W${getWeekNumber(date)}`;
+    }
+    if (selectionType === 'month') {
+      const monthNumber = `0${date.getMonth() + 1}`.slice(-2);
+      return `${date.getFullYear()}-${monthNumber}`;
+    }
+    if (selectionType === 'year') {
+      return `${date.getFullYear()}`;
+    }
+    return date;
   };
   const getMonthsNames = locale => {
     const months = [];
@@ -1069,6 +1105,27 @@
     }
     return dates;
   };
+  const getLocalDateFromString = (string, locale, time) => {
+    const date = new Date(2013, 11, 31, 17, 19, 22);
+    let regex = time ? date.toLocaleString(locale) : date.toLocaleDateString(locale);
+    regex = regex.replace('2013', '(?<year>[0-9]{2,4})').replace('12', '(?<month>[0-9]{1,2})').replace('31', '(?<day>[0-9]{1,2})');
+    if (time) {
+      regex = regex.replace('5', '(?<hour>[0-9]{1,2})').replace('17', '(?<hour>[0-9]{1,2})').replace('19', '(?<minute>[0-9]{1,2})').replace('22', '(?<second>[0-9]{1,2})').replace('PM', '(?<ampm>[A-Z]{2})');
+    }
+    const rgx = new RegExp(`${regex}`);
+    const partials = string.match(rgx);
+    if (partials === null) {
+      return;
+    }
+    const newDate = partials.groups && (time ? new Date(Number(partials.groups.year, 10), Number(partials.groups.month, 10) - 1, Number(partials.groups.day), partials.groups.ampm ? partials.groups.ampm === 'PM' ? Number(partials.groups.hour) + 12 : Number(partials.groups.hour) : Number(partials.groups.hour), Number(partials.groups.minute), Number(partials.groups.second)) : new Date(Number(partials.groups.year), Number(partials.groups.month) - 1, Number(partials.groups.day)));
+    return newDate;
+  };
+  const getWeekNumber = date => {
+    const week1 = new Date(date.getFullYear(), 0, 4);
+    return 1 + Math.round(
+    // eslint-disable-next-line no-mixed-operators
+    ((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+  };
   const getMonthDetails = (year, month, firstDayOfWeek) => {
     const daysPrevMonth = getLeadingDays(year, month, firstDayOfWeek);
     const daysThisMonth = getMonthDays(year, month);
@@ -1077,11 +1134,33 @@
     const weeks = [];
     for (const [index, day] of days.entries()) {
       if (index % 7 === 0 || weeks.length === 0) {
-        weeks.push([]);
+        weeks.push({
+          days: []
+        });
       }
-      weeks[weeks.length - 1].push(day);
+      if ((index + 1) % 7 === 0) {
+        weeks[weeks.length - 1].weekNumber = getWeekNumber(day.date);
+      }
+      weeks[weeks.length - 1].days.push(day);
     }
     return weeks;
+  };
+  const isDisableDateInRange = (startDate, endDate, dates) => {
+    if (startDate && endDate) {
+      const date = new Date(startDate);
+      let disabled = false;
+
+      // eslint-disable-next-line no-unmodified-loop-condition
+      while (date < endDate) {
+        date.setDate(date.getDate() + 1);
+        if (isDateDisabled(date, null, null, dates)) {
+          disabled = true;
+          break;
+        }
+      }
+      return disabled;
+    }
+    return false;
   };
   const isDateDisabled = (date, min, max, dates) => {
     let disabled;
@@ -1109,15 +1188,6 @@
   const isDateSelected = (date, start, end) => {
     return start && isSameDateAs(start, date) || end && isSameDateAs(end, date);
   };
-  const isEndDate = (date, start, end) => {
-    return start && end && isSameDateAs(end, date) && start < end;
-  };
-  const isLastDayOfMonth = date => {
-    const test = new Date(date.getTime());
-    const month = test.getMonth();
-    test.setDate(test.getDate() + 1);
-    return test.getMonth() !== month;
-  };
   const isSameDateAs = (date, date2) => {
     if (date instanceof Date && date2 instanceof Date) {
       return date.getDate() === date2.getDate() && date.getMonth() === date2.getMonth() && date.getFullYear() === date2.getFullYear();
@@ -1127,19 +1197,16 @@
     }
     return false;
   };
-  const isStartDate = (date, start, end) => {
-    return start && end && isSameDateAs(start, date) && start < end;
-  };
   const isToday = date => {
     const today = new Date();
     return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
   };
 
-  /* eslint-disable indent, multiline-ternary */
+  /* eslint-disable complexity, indent, multiline-ternary */
   /**
    * --------------------------------------------------------------------------
    * CoreUI PRO calendar.js
-   * License (https://coreui.io/pro/license-new/)
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
 
@@ -1152,18 +1219,41 @@
   const DATA_KEY$g = 'coreui.calendar';
   const EVENT_KEY$h = `.${DATA_KEY$g}`;
   const DATA_API_KEY$d = '.data-api';
+  const ARROW_UP_KEY$2 = 'ArrowUp';
+  const ARROW_RIGHT_KEY$2 = 'ArrowRight';
+  const ARROW_DOWN_KEY$2 = 'ArrowDown';
+  const ARROW_LEFT_KEY$2 = 'ArrowLeft';
+  const ENTER_KEY$1 = 'Enter';
+  const SPACE_KEY$1 = 'Space';
+  const EVENT_BLUR = `blur${EVENT_KEY$h}`;
   const EVENT_CALENDAR_DATE_CHANGE = `calendarDateChange${EVENT_KEY$h}`;
+  const EVENT_CALENDAR_MOUSE_LEAVE = `calendarMouseleave${EVENT_KEY$h}`;
   const EVENT_CELL_HOVER = `cellHover${EVENT_KEY$h}`;
   const EVENT_END_DATE_CHANGE$1 = `endDateChange${EVENT_KEY$h}`;
-  const EVENT_LOAD_DATA_API$a = `load${EVENT_KEY$h}${DATA_API_KEY$d}`;
+  const EVENT_FOCUS = `focus${EVENT_KEY$h}`;
+  const EVENT_KEYDOWN$3 = `keydown${EVENT_KEY$h}`;
+  const EVENT_SELECT_END_CHANGE = `selectEndChange${EVENT_KEY$h}`;
+  const EVENT_START_DATE_CHANGE$1 = `startDateChange${EVENT_KEY$h}`;
   const EVENT_MOUSEENTER$2 = `mouseenter${EVENT_KEY$h}`;
   const EVENT_MOUSELEAVE$2 = `mouseleave${EVENT_KEY$h}`;
-  const EVENT_START_DATE_CHANGE$1 = `startDateChange${EVENT_KEY$h}`;
+  const EVENT_LOAD_DATA_API$a = `load${EVENT_KEY$h}${DATA_API_KEY$d}`;
+  const EVENT_CLICK_DATA_API$d = `click${EVENT_KEY$h}${DATA_API_KEY$d}`;
   const CLASS_NAME_CALENDAR$1 = 'calendar';
+  const CLASS_NAME_CALENDAR_CELL = 'calendar-cell';
+  const CLASS_NAME_CALENDAR_CELL_INNER = 'calendar-cell-inner';
+  const CLASS_NAME_CALENDAR_ROW = 'calendar-row';
+  const SELECTOR_BTN_DOUBLE_NEXT = '.btn-double-next';
+  const SELECTOR_BTN_DOUBLE_PREV = '.btn-double-prev';
+  const SELECTOR_BTN_MONTH = '.btn-month';
+  const SELECTOR_BTN_NEXT = '.btn-next';
+  const SELECTOR_BTN_PREV = '.btn-prev';
+  const SELECTOR_BTN_YEAR = '.btn-year';
   const SELECTOR_CALENDAR$2 = '.calendar';
-  const SELECTOR_CALENDAR_CELL_INNER = '.calendar-cell-inner';
+  const SELECTOR_CALENDAR_CELL = '.calendar-cell';
+  const SELECTOR_CALENDAR_PANEL = '.calendar-panel';
+  const SELECTOR_CALENDAR_ROW = '.calendar-row';
   const Default$k = {
-    calendarDate: new Date(),
+    calendarDate: null,
     calendars: 1,
     disabledDates: null,
     endDate: null,
@@ -1174,9 +1264,12 @@
     range: true,
     selectAdjacementDays: false,
     selectEndDate: false,
+    selectionType: 'day',
     showAdjacementDays: true,
+    showWeekNumber: false,
     startDate: null,
-    weekdayFormat: 2
+    weekdayFormat: 2,
+    weekNumbersLabel: null
   };
   const DefaultType$k = {
     calendarDate: '(date|string|null)',
@@ -1190,9 +1283,12 @@
     range: 'boolean',
     selectAdjacementDays: 'boolean',
     selectEndDate: 'boolean',
+    selectionType: 'string',
     showAdjacementDays: 'boolean',
+    showWeekNumber: 'boolean',
     startDate: '(date|string|null)',
-    weekdayFormat: '(number|string)'
+    weekdayFormat: '(number|string)',
+    weekNumbersLabel: '(string|null)'
   };
 
   /**
@@ -1203,17 +1299,25 @@
     constructor(element, config) {
       super(element);
       this._config = this._getConfig(config);
-      this._calendarDate = this._config.calendarDate;
-      this._startDate = this._config.startDate;
-      this._endDate = this._config.endDate;
+      this._calendarDate = convertToDateObject(this._config.calendarDate || this._config.startDate || this._config.endDate || new Date(), this._config.selectionType);
+      this._startDate = convertToDateObject(this._config.startDate, this._config.selectionType);
+      this._endDate = convertToDateObject(this._config.endDate, this._config.selectionType);
       this._hoverDate = null;
       this._selectEndDate = this._config.selectEndDate;
-      this._view = 'days';
+      if (this._config.selectionType === 'day' || this._config.selectionType === 'week') {
+        this._view = 'days';
+      }
+      if (this._config.selectionType === 'month') {
+        this._view = 'months';
+      }
+      if (this._config.selectionType === 'year') {
+        this._view = 'years';
+      }
       this._createCalendar();
       this._addEventListeners();
     }
-    // Getters
 
+    // Getters
     static get Default() {
       return Default$k;
     }
@@ -1224,85 +1328,221 @@
       return NAME$l;
     }
 
+    // Public
+    update(config) {
+      this._config = this._getConfig(config);
+      this._calendarDate = convertToDateObject(this._config.calendarDate || this._config.startDate || this._config.endDate || new Date(), this._config.selectionType);
+      this._startDate = convertToDateObject(this._config.startDate, this._config.selectionType);
+      this._endDate = convertToDateObject(this._config.endDate, this._config.selectionType);
+      this._hoverDate = null;
+      this._selectEndDate = this._config.selectEndDate;
+      if (this._config.selectionType === 'day' || this._config.selectionType === 'week') {
+        this._view = 'days';
+      }
+      if (this._config.selectionType === 'month') {
+        this._view = 'months';
+      }
+      if (this._config.selectionType === 'year') {
+        this._view = 'years';
+      }
+      this._element.innerHTML = '';
+      this._createCalendar();
+    }
+
     // Private
-    _addEventListeners() {
-      EventHandler.on(this._element, 'click', SELECTOR_CALENDAR_CELL_INNER, event => {
-        event.preventDefault();
-        if (event.target.parentElement.classList.contains('disabled')) {
-          return;
-        }
-        if ((event.target.parentElement.classList.contains('next') || event.target.parentElement.classList.contains('previous')) && !this._config.selectAdjacementDays) {
-          return;
-        }
-        if (event.target.classList.contains('day')) {
-          const date = new Date(Manipulator.getDataAttribute(event.target, 'date'));
-          const calendarIndex = Manipulator.getDataAttribute(event.target.closest('.calendar-panel'), 'calendar-index');
-          if (calendarIndex) {
-            this._setCalendarDate(new Date(date.setMonth(date.getMonth() - calendarIndex)));
-          } else {
-            this._setCalendarDate(date);
-          }
-          this._selectDate(Manipulator.getDataAttribute(event.target, 'date'));
-        }
-        if (event.target.classList.contains('month')) {
-          this._setCalendarDate(new Date(this._calendarDate.getFullYear(), Manipulator.getDataAttribute(event.target, 'month'), 1));
-          this._view = 'days';
-        }
-        if (event.target.classList.contains('year')) {
-          this._calendarDate = new Date(Manipulator.getDataAttribute(event.target, 'year'), this._calendarDate.getMonth(), 1);
-          this._view = 'months';
-        }
+    _getDate(target) {
+      if (this._config.selectionType === 'week') {
+        const firstCell = SelectorEngine.findOne(SELECTOR_CALENDAR_CELL, target.closest(SELECTOR_CALENDAR_ROW));
+        return new Date(Manipulator.getDataAttribute(firstCell, 'date'));
+      }
+      return new Date(Manipulator.getDataAttribute(target, 'date'));
+    }
+    _handleCalendarClick(event) {
+      const target = event.target.classList.contains(CLASS_NAME_CALENDAR_CELL_INNER) ? event.target.parentElement : event.target;
+      const date = this._getDate(target);
+      const cloneDate = new Date(date);
+      const index = Manipulator.getDataAttribute(target.closest(SELECTOR_CALENDAR_PANEL), 'calendar-index');
+      if (isDateDisabled(date, this._config.minDate, this._config.maxDate, this._config.disabledDates)) {
+        return;
+      }
+      if (this._view === 'days') {
+        this._setCalendarDate(index ? new Date(cloneDate.setMonth(cloneDate.getMonth() - index)) : date);
+      }
+      if (this._view === 'months' && this._config.selectionType !== 'month') {
+        this._setCalendarDate(index ? new Date(cloneDate.setMonth(cloneDate.getMonth() - index)) : date);
+        this._view = 'days';
         this._updateCalendar();
-      });
-      EventHandler.on(this._element, EVENT_MOUSEENTER$2, SELECTOR_CALENDAR_CELL_INNER, event => {
+        return;
+      }
+      if (this._view === 'years' && this._config.selectionType !== 'year') {
+        this._setCalendarDate(index ? new Date(cloneDate.setFullYear(cloneDate.getFullYear() - index)) : date);
+        this._view = 'months';
+        this._updateCalendar();
+        return;
+      }
+      this._hoverDate = null;
+      this._selectDate(date);
+      this._updateClassNames();
+    }
+    _handleCalendarKeydown(event) {
+      const date = this._getDate(event.target);
+      if (event.code === SPACE_KEY$1 || event.key === ENTER_KEY$1) {
         event.preventDefault();
-        if (event.target.parentElement.classList.contains('disabled')) {
+        this._handleCalendarClick(event);
+      }
+      if (event.key === ARROW_RIGHT_KEY$2 || event.key === ARROW_LEFT_KEY$2 || event.key === ARROW_UP_KEY$2 || event.key === ARROW_DOWN_KEY$2) {
+        event.preventDefault();
+        if (this._config.maxDate && date >= convertToDateObject(this._config.maxDate, this._config.selectionType) && (event.key === ARROW_RIGHT_KEY$2 || event.key === ARROW_DOWN_KEY$2)) {
           return;
         }
-        if ((event.target.parentElement.classList.contains('next') || event.target.parentElement.classList.contains('previous')) && !this._config.selectAdjacementDays) {
+        if (this._config.minDate && date <= convertToDateObject(this._config.minDate, this._config.selectionType) && (event.key === ARROW_LEFT_KEY$2 || event.key === ARROW_UP_KEY$2)) {
           return;
         }
-        this._hoverDate = new Date(Manipulator.getDataAttribute(event.target, 'date'));
-        EventHandler.trigger(this._element, EVENT_CELL_HOVER, {
-          date: new Date(Manipulator.getDataAttribute(event.target, 'date'))
-        });
+        let element = event.target;
+        if (this._config.selectionType === 'week' && element.tabIndex === -1) {
+          element = element.closest('tr[tabindex="0"]');
+        }
+        const list = SelectorEngine.find(this._config.selectionType === 'week' ? 'tr[tabindex="0"]' : 'td[tabindex="0"]', this._element);
+        const index = list.indexOf(element);
+        const first = index === 0;
+        const last = index === list.length - 1;
+        const toBoundary = {
+          start: index,
+          end: list.length - (index + 1)
+        };
+        const gap = {
+          ArrowRight: 1,
+          ArrowLeft: -1,
+          ArrowUp: this._config.selectionType === 'week' && this._view === 'days' ? -1 : this._view === 'days' ? -7 : -3,
+          ArrowDown: this._config.selectionType === 'week' && this._view === 'days' ? 1 : this._view === 'days' ? 7 : 3
+        };
+        if (event.key === ARROW_RIGHT_KEY$2 && last || event.key === ARROW_DOWN_KEY$2 && toBoundary.end < gap.ArrowDown || event.key === ARROW_LEFT_KEY$2 && first || event.key === ARROW_UP_KEY$2 && toBoundary.start < Math.abs(gap.ArrowUp)) {
+          const callback = key => {
+            setTimeout(() => {
+              const _list = SelectorEngine.find('td[tabindex="0"], tr[tabindex="0"]', SelectorEngine.find('.calendar-panel', this._element).pop());
+              if (_list.length && key === ARROW_RIGHT_KEY$2) {
+                _list[0].focus();
+              }
+              if (_list.length && key === ARROW_LEFT_KEY$2) {
+                _list[_list.length - 1].focus();
+              }
+              if (_list.length && key === ARROW_DOWN_KEY$2) {
+                _list[gap.ArrowDown - (list.length - index)].focus();
+              }
+              if (_list.length && key === ARROW_UP_KEY$2) {
+                _list[_list.length - (Math.abs(gap.ArrowUp) + 1 - (index + 1))].focus();
+              }
+            }, 0);
+          };
+          if (this._view === 'days') {
+            this._modifyCalendarDate(0, event.key === ARROW_RIGHT_KEY$2 || event.key === ARROW_DOWN_KEY$2 ? 1 : -1, callback(event.key));
+          }
+          if (this._view === 'months') {
+            this._modifyCalendarDate(event.key === ARROW_RIGHT_KEY$2 || event.key === ARROW_DOWN_KEY$2 ? 1 : -1, callback(event.key));
+          }
+          if (this._view === 'years') {
+            this._modifyCalendarDate(event.key === ARROW_RIGHT_KEY$2 || event.key === ARROW_DOWN_KEY$2 ? 10 : -10, callback(event.key));
+          }
+          return;
+        }
+        if (list[index + gap[event.key]].tabIndex === 0) {
+          list[index + gap[event.key]].focus();
+          return;
+        }
+        for (let i = index; i < list.length; event.key === ARROW_RIGHT_KEY$2 || event.key === ARROW_DOWN_KEY$2 ? i++ : i--) {
+          if (list[i + gap[event.key]].tabIndex === 0) {
+            list[i + gap[event.key]].focus();
+            break;
+          }
+        }
+      }
+    }
+    _handleCalendarMouseEnter(event) {
+      const target = event.target.classList.contains(CLASS_NAME_CALENDAR_CELL_INNER) ? event.target.parentElement : event.target;
+      const date = this._getDate(target);
+      if (isDateDisabled(date, this._config.minDate, this._config.maxDate, this._config.disabledDates)) {
+        return;
+      }
+      this._hoverDate = date;
+      EventHandler.trigger(this._element, EVENT_CELL_HOVER, {
+        date: getDateBySelectionType(date, this._config.selectionType)
       });
-      EventHandler.on(this._element, EVENT_MOUSELEAVE$2, SELECTOR_CALENDAR_CELL_INNER, event => {
-        event.preventDefault();
-        this._hoverDate = null;
-        EventHandler.trigger(this._element, EVENT_CELL_HOVER, {
-          date: null
-        });
+      this._updateClassNames();
+    }
+    _handleCalendarMouseLeave() {
+      this._hoverDate = null;
+      EventHandler.trigger(this._element, EVENT_CELL_HOVER, {
+        date: null
+      });
+      this._updateClassNames();
+    }
+    _addEventListeners() {
+      EventHandler.on(this._element, EVENT_CLICK_DATA_API$d, `${SELECTOR_CALENDAR_CELL}[tabindex="0"]`, event => {
+        this._handleCalendarClick(event);
+      });
+      EventHandler.on(this._element, EVENT_KEYDOWN$3, `${SELECTOR_CALENDAR_CELL}[tabindex="0"]`, event => {
+        this._handleCalendarKeydown(event);
+      });
+      EventHandler.on(this._element, EVENT_MOUSEENTER$2, `${SELECTOR_CALENDAR_CELL}[tabindex="0"]`, event => {
+        this._handleCalendarMouseEnter(event);
+      });
+      EventHandler.on(this._element, EVENT_MOUSELEAVE$2, `${SELECTOR_CALENDAR_CELL}[tabindex="0"]`, () => {
+        this._handleCalendarMouseLeave();
+      });
+      EventHandler.on(this._element, EVENT_FOCUS, `${SELECTOR_CALENDAR_CELL}[tabindex="0"]`, event => {
+        this._handleCalendarMouseEnter(event);
+      });
+      EventHandler.on(this._element, EVENT_BLUR, `${SELECTOR_CALENDAR_CELL}[tabindex="0"]`, () => {
+        this._handleCalendarMouseLeave();
+      });
+      EventHandler.on(this._element, EVENT_CLICK_DATA_API$d, `${SELECTOR_CALENDAR_ROW}[tabindex="0"]`, event => {
+        this._handleCalendarClick(event);
+      });
+      EventHandler.on(this._element, EVENT_KEYDOWN$3, `${SELECTOR_CALENDAR_ROW}[tabindex="0"]`, event => {
+        this._handleCalendarKeydown(event);
+      });
+      EventHandler.on(this._element, EVENT_MOUSEENTER$2, `${SELECTOR_CALENDAR_ROW}[tabindex="0"]`, event => {
+        this._handleCalendarMouseEnter(event);
+      });
+      EventHandler.on(this._element, EVENT_MOUSELEAVE$2, `${SELECTOR_CALENDAR_ROW}[tabindex="0"]`, () => {
+        this._handleCalendarMouseLeave();
+      });
+      EventHandler.on(this._element, EVENT_FOCUS, `${SELECTOR_CALENDAR_ROW}[tabindex="0"]`, event => {
+        this._handleCalendarMouseEnter(event);
+      });
+      EventHandler.on(this._element, EVENT_BLUR, `${SELECTOR_CALENDAR_ROW}[tabindex="0"]`, () => {
+        this._handleCalendarMouseLeave();
       });
 
       // Navigation
-      EventHandler.on(this._element, 'click', '.btn-prev', event => {
+      EventHandler.on(this._element, EVENT_CLICK_DATA_API$d, SELECTOR_BTN_PREV, event => {
         event.preventDefault();
         this._modifyCalendarDate(0, -1);
       });
-      EventHandler.on(this._element, 'click', '.btn-double-prev', event => {
+      EventHandler.on(this._element, EVENT_CLICK_DATA_API$d, SELECTOR_BTN_DOUBLE_PREV, event => {
         event.preventDefault();
         this._modifyCalendarDate(this._view === 'years' ? -10 : -1);
       });
-      EventHandler.on(this._element, 'click', '.btn-next', event => {
+      EventHandler.on(this._element, EVENT_CLICK_DATA_API$d, SELECTOR_BTN_NEXT, event => {
         event.preventDefault();
         this._modifyCalendarDate(0, 1);
       });
-      EventHandler.on(this._element, 'click', '.btn-double-next', event => {
+      EventHandler.on(this._element, EVENT_CLICK_DATA_API$d, SELECTOR_BTN_DOUBLE_NEXT, event => {
         event.preventDefault();
         this._modifyCalendarDate(this._view === 'years' ? 10 : 1);
       });
-      EventHandler.on(this._element, 'click', '.btn-month', event => {
+      EventHandler.on(this._element, EVENT_CLICK_DATA_API$d, SELECTOR_BTN_MONTH, event => {
         event.preventDefault();
         this._view = 'months';
-        this._element.innerHTML = '';
-        this._createCalendarPanel();
+        this._updateCalendar();
       });
-      EventHandler.on(this._element, 'click', '.btn-year', event => {
+      EventHandler.on(this._element, EVENT_CLICK_DATA_API$d, SELECTOR_BTN_YEAR, event => {
         event.preventDefault();
         this._view = 'years';
-        this._element.innerHTML = '';
-        this._createCalendarPanel();
+        this._updateCalendar();
+      });
+      EventHandler.on(this._element, EVENT_MOUSELEAVE$2, 'table', () => {
+        EventHandler.trigger(this._element, EVENT_CALENDAR_MOUSE_LEAVE);
       });
     }
     _setCalendarDate(date) {
@@ -1311,7 +1551,7 @@
         date
       });
     }
-    _modifyCalendarDate(years, months = 0) {
+    _modifyCalendarDate(years, months = 0, callback) {
       const year = this._calendarDate.getFullYear();
       const month = this._calendarDate.getMonth();
       const d = new Date(year, month, 1);
@@ -1327,20 +1567,24 @@
           date: d
         });
       }
-      this._updateCalendar();
+      this._updateCalendar(callback);
     }
-    _setEndDate(date, selectEndDate = false) {
-      this._endDate = new Date(date);
+    _setEndDate(date) {
+      this._endDate = date;
       EventHandler.trigger(this._element, EVENT_END_DATE_CHANGE$1, {
-        date: this._endDate,
-        selectEndDate
+        date: getDateBySelectionType(this._endDate, this._config.selectionType)
       });
     }
-    _setStartDate(date, selectEndDate = true) {
-      this._startDate = new Date(date);
+    _setStartDate(date) {
+      this._startDate = date;
       EventHandler.trigger(this._element, EVENT_START_DATE_CHANGE$1, {
-        date: this._startDate,
-        selectEndDate
+        date: getDateBySelectionType(this._startDate, this._config.selectionType)
+      });
+    }
+    _setSelectEndDate(value) {
+      this._selectEndDate = value;
+      EventHandler.trigger(this._element, EVENT_SELECT_END_CHANGE, {
+        value
       });
     }
     _selectDate(date) {
@@ -1349,29 +1593,44 @@
       }
       if (this._config.range) {
         if (this._selectEndDate) {
-          if (this._startDate && this._startDate > new Date(date)) {
-            this._setEndDate(this._startDate);
-            this._setStartDate(date);
-          } else {
-            this._setEndDate(date);
+          this._setSelectEndDate(false);
+          if (this._startDate && this._startDate > date) {
+            this._setStartDate(null);
+            this._setEndDate(null);
+            return;
           }
-        } else {
-          this._setStartDate(date, true);
+          if (isDisableDateInRange(this._startDate, date, this._config.disabledDates)) {
+            this._setStartDate(null);
+            this._setEndDate(null);
+            return;
+          }
+          this._setEndDate(date);
+          return;
         }
-      } else {
+        if (this._endDate && this._endDate < date) {
+          this._setStartDate(null);
+          this._setEndDate(null);
+          return;
+        }
+        if (isDisableDateInRange(date, this._endDate, this._config.disabledDates)) {
+          this._setStartDate(null);
+          this._setEndDate(null);
+          return;
+        }
+        this._setSelectEndDate(true);
         this._setStartDate(date);
+        return;
       }
+      this._setStartDate(date);
     }
-    _createCalendarPanel(addMonths) {
-      let date = this._calendarDate;
-      if (addMonths !== 0) {
-        date = new Date(this._calendarDate.getFullYear(), this._calendarDate.getMonth() + addMonths, 1);
-      }
-      const year = date.getFullYear();
-      const month = date.getMonth();
+    _createCalendarPanel(order) {
+      var _this$_config$weekNum;
+      const calendarDate = getCalendarDate(this._calendarDate, order, this._view);
+      const year = calendarDate.getFullYear();
+      const month = calendarDate.getMonth();
       const calendarPanelEl = document.createElement('div');
       calendarPanelEl.classList.add('calendar-panel');
-      Manipulator.setDataAttribute(calendarPanelEl, 'calendar-index', addMonths);
+      Manipulator.setDataAttribute(calendarPanelEl, 'calendar-index', order);
 
       // Create navigation
       const navigationElement = document.createElement('div');
@@ -1386,13 +1645,13 @@
         </button>` : ''}
       </div>
       <div class="calendar-nav-date">
-        <button class="btn btn-transparent btn-sm btn-month">
-          ${date.toLocaleDateString(this._config.locale, {
+        ${this._view === 'days' ? `<button class="btn btn-transparent btn-sm btn-month">
+          ${calendarDate.toLocaleDateString(this._config.locale, {
       month: 'long'
     })}
-        </button>
+        </button>` : ''}
         <button class="btn btn-transparent btn-sm btn-year">
-          ${date.toLocaleDateString(this._config.locale, {
+          ${calendarDate.toLocaleDateString(this._config.locale, {
       year: 'numeric'
     })}
         </button>
@@ -1408,13 +1667,18 @@
     `;
       const monthDetails = getMonthDetails(year, month, this._config.firstDayOfWeek);
       const listOfMonths = createGroupsInArray(getMonthsNames(this._config.locale), 4);
-      const listOfYears = createGroupsInArray(getYears(date.getFullYear()), 4);
-      const weekDays = monthDetails[0];
+      const listOfYears = createGroupsInArray(getYears(calendarDate.getFullYear()), 4);
+      const weekDays = monthDetails[0].days;
       const calendarTable = document.createElement('table');
       calendarTable.innerHTML = `
     ${this._view === 'days' ? `
       <thead>
         <tr>
+          ${this._config.showWeekNumber ? `<th class="calendar-cell">
+              <div class="calendar-header-cell-inner">
+               ${(_this$_config$weekNum = this._config.weekNumbersLabel) != null ? _this$_config$weekNum : ''}
+              </div>
+            </th>` : ''}
           ${weekDays.map(({
       date
     }) => `<th class="calendar-cell">
@@ -1429,26 +1693,56 @@
         </tr>
       </thead>` : ''}
       <tbody>
-        ${this._view === 'days' ? monthDetails.map(week => `<tr>${week.map(({
-      date,
-      month
-    }) => month === 'current' || this._config.showAdjacementDays ? `<td class="calendar-cell ${this._dayClassNames(date, month)}">
-                <div class="calendar-cell-inner day" data-coreui-date="${date}">
-                  ${date.toLocaleDateString(this._config.locale, {
-      day: 'numeric'
-    })}
-                </div>
-              </td>` : '<td></td>').join('')}</tr>`).join('') : ''}
-        ${this._view === 'months' ? listOfMonths.map((row, index) => `<tr>${row.map((month, idx) => `<td class="calendar-cell">
-              <div class="calendar-cell-inner month" data-coreui-month="${index * 3 + idx - addMonths}">
-                ${month}
-              </div>
-            </td>`).join('')}</tr>`).join('') : ''}
-        ${this._view === 'years' ? listOfYears.map(row => `<tr>${row.map(year => `<td class="calendar-cell">
-              <div class="calendar-cell-inner year" data-coreui-year="${year}">
-                ${year}
-              </div>
-            </td>`).join('')}</tr>`).join('') : ''}
+        ${this._view === 'days' ? monthDetails.map(week => {
+      const date = convertToDateObject(week.weekNumber === 0 ? `${calendarDate.getFullYear()}W53` : `${calendarDate.getFullYear()}W${week.weekNumber}`, this._config.selectionType);
+      return `<tr 
+              class="calendar-row ${this._config.selectionType === 'week' && this._sharedClassNames(date)}"
+              tabindex="${this._config.selectionType === 'week' && week.days.some(day => day.month === 'current') && !isDateDisabled(date, this._config.minDate, this._config.maxDate, this._config.disabledDates) ? 0 : -1}"
+            >
+              ${this._config.showWeekNumber ? `<th class="calendar-cell-week-number">${week.weekNumber === 0 ? 53 : week.weekNumber}</td>` : ''}
+              ${week.days.map(({
+        date,
+        month
+      }) => month === 'current' || this._config.showAdjacementDays ? `<td 
+                  class="calendar-cell ${this._dayClassNames(date, month)}"
+                  tabindex="${this._config.selectionType === 'day' && (month === 'current' || this._config.selectAdjacementDays) && !isDateDisabled(date, this._config.minDate, this._config.maxDate, this._config.disabledDates) ? 0 : -1}"
+                  data-coreui-date="${date}"
+                >
+                  <div class="calendar-cell-inner day">
+                    ${date.toLocaleDateString(this._config.locale, {
+        day: 'numeric'
+      })}
+                  </div>
+                </td>` : '<td></td>').join('')}</tr>`;
+    }).join('') : ''}
+        ${this._view === 'months' ? listOfMonths.map((row, index) => `<tr>
+            ${row.map((month, idx) => {
+      const date = new Date(calendarDate.getFullYear(), index * 3 + idx, 1);
+      return `<td
+                  class="calendar-cell ${this._sharedClassNames(date)}"
+                  data-coreui-date="${date.toDateString()}"
+                  tabindex="${isDateDisabled(date, this._config.minDate, this._config.maxDate, this._config.disabledDates) ? -1 : 0}"
+                >
+                  <div class="calendar-cell-inner month">
+                    ${month}
+                  </div>
+                </td>`;
+    }).join('')}
+          </tr>`).join('') : ''}
+        ${this._view === 'years' ? listOfYears.map(row => `<tr>
+            ${row.map(year => {
+      const date = new Date(year, 0, 1);
+      return `<td
+                  class="calendar-cell ${this._sharedClassNames(date)}"
+                  data-coreui-date="${date.toDateString()}"
+                  tabindex="${isDateDisabled(date, this._config.minDate, this._config.maxDate, this._config.disabledDates) ? -1 : 0}"
+                >
+                  <div class="calendar-cell-inner year">
+                    ${year}
+                  </div>
+                </td>`;
+    }).join('')}
+          </tr>`).join('') : ''}
       </tbody>
     `;
       calendarPanelEl.append(navigationElement, calendarTable);
@@ -1457,6 +1751,13 @@
     _createCalendar() {
       const calendarsEl = document.createElement('div');
       calendarsEl.classList.add('calendars');
+      if (this._config.selectionType && this._view === 'days') {
+        calendarsEl.classList.add(`select-${this._config.selectionType}`);
+      }
+      if (this._config.showWeekNumber) {
+        calendarsEl.classList.add('show-week-numbers');
+      }
+
       // eslint-disable-next-line no-unused-vars
       for (const [index, _] of Array.from({
         length: this._config.calendars
@@ -1466,22 +1767,58 @@
       this._element.classList.add(CLASS_NAME_CALENDAR$1);
       this._element.append(calendarsEl);
     }
-    _updateCalendar() {
+    _updateCalendar(callback) {
       this._element.innerHTML = '';
-      this._createCalendarPanel();
+      this._createCalendar();
+      if (callback) {
+        callback();
+      }
+    }
+    _updateClassNames() {
+      if (this._config.selectionType === 'week') {
+        const rows = SelectorEngine.find(SELECTOR_CALENDAR_ROW, this._element);
+        for (const row of rows) {
+          const firstCell = SelectorEngine.findOne(SELECTOR_CALENDAR_CELL, row);
+          const date = new Date(Manipulator.getDataAttribute(firstCell, 'date'));
+          const classNames = this._sharedClassNames(date);
+          row.className = `${CLASS_NAME_CALENDAR_ROW} ${classNames}`;
+        }
+        return;
+      }
+      const cells = SelectorEngine.find(`${SELECTOR_CALENDAR_CELL}[tabindex="0"]`, this._element);
+      for (const cell of cells) {
+        const date = new Date(Manipulator.getDataAttribute(cell, 'date'));
+        const classNames = this._config.selectionType === 'day' ? this._dayClassNames(date, 'current') : this._sharedClassNames(date);
+        cell.className = `${CLASS_NAME_CALENDAR_CELL} ${classNames}`;
+      }
     }
     _dayClassNames(date, month) {
       const classNames = {
+        ...(this._config.selectionType === 'day' && this._view === 'days' && {
+          clickable: month !== 'current' && this._config.selectAdjacementDays,
+          disabled: isDateDisabled(date, this._config.minDate, this._config.maxDate, this._config.disabledDates),
+          range: month === 'current' && isDateInRange(date, this._startDate, this._endDate),
+          'range-hover': month === 'current' && (this._hoverDate && this._selectEndDate ? isDateInRange(date, this._startDate, this._hoverDate) : isDateInRange(date, this._hoverDate, this._endDate)),
+          selected: isDateSelected(date, this._startDate, this._endDate)
+        }),
         today: isToday(date),
+        [month]: true
+      };
+
+      // eslint-disable-next-line unicorn/no-array-reduce
+      const result = Object.keys(classNames).reduce((o, key) => {
+        // eslint-disable-next-line no-unused-expressions
+        classNames[key] === true && (o[key] = classNames[key]);
+        return o;
+      }, {});
+      return Object.keys(result).join(' ');
+    }
+    _sharedClassNames(date) {
+      const classNames = {
         disabled: isDateDisabled(date, this._config.minDate, this._config.maxDate, this._config.disabledDates),
-        [month]: true,
-        clickable: month !== 'current' && this._config.selectAdjacementDays,
-        last: isLastDayOfMonth(date),
-        range: month === 'current' && isDateInRange(date, this._startDate, this._endDate),
-        'range-hover': month === 'current' && (this._hoverDate && this._selectEndDate ? isDateInRange(date, this._startDate, this._hoverDate) : isDateInRange(date, this._hoverDate, this._endDate)),
-        selected: isDateSelected(date, this._startDate, this._endDate),
-        start: isStartDate(date, this._startDate, this._endDate),
-        end: isEndDate(date, this._startDate, this._endDate)
+        range: isDateInRange(date, this._startDate, this._endDate),
+        'range-hover': (this._config.selectionType === 'week' && this._view === 'days' || this._config.selectionType === 'month' && this._view === 'months' || this._config.selectionType === 'year' && this._view === 'years') && (this._hoverDate && this._selectEndDate ? isDateInRange(date, this._startDate, this._hoverDate) : isDateInRange(date, this._hoverDate, this._endDate)),
+        selected: isDateSelected(date, this._startDate, this._endDate)
       };
 
       // eslint-disable-next-line unicorn/no-array-reduce
@@ -4117,2457 +4454,6 @@
     write
   }, Symbol.toStringTag, { value: 'Module' }));
 
-  function _typeof(obj) {
-    "@babel/helpers - typeof";
-
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-      return typeof obj;
-    } : function (obj) {
-      return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    }, _typeof(obj);
-  }
-
-  function toInteger(dirtyNumber) {
-    if (dirtyNumber === null || dirtyNumber === true || dirtyNumber === false) {
-      return NaN;
-    }
-    var number = Number(dirtyNumber);
-    if (isNaN(number)) {
-      return number;
-    }
-    return number < 0 ? Math.ceil(number) : Math.floor(number);
-  }
-
-  function requiredArgs(required, args) {
-    if (args.length < required) {
-      throw new TypeError(required + ' argument' + (required > 1 ? 's' : '') + ' required, but only ' + args.length + ' present');
-    }
-  }
-
-  /**
-   * @name toDate
-   * @category Common Helpers
-   * @summary Convert the given argument to an instance of Date.
-   *
-   * @description
-   * Convert the given argument to an instance of Date.
-   *
-   * If the argument is an instance of Date, the function returns its clone.
-   *
-   * If the argument is a number, it is treated as a timestamp.
-   *
-   * If the argument is none of the above, the function returns Invalid Date.
-   *
-   * **Note**: *all* Date arguments passed to any *date-fns* function is processed by `toDate`.
-   *
-   * @param {Date|Number} argument - the value to convert
-   * @returns {Date} the parsed date in the local time zone
-   * @throws {TypeError} 1 argument required
-   *
-   * @example
-   * // Clone the date:
-   * const result = toDate(new Date(2014, 1, 11, 11, 30, 30))
-   * //=> Tue Feb 11 2014 11:30:30
-   *
-   * @example
-   * // Convert the timestamp to date:
-   * const result = toDate(1392098430000)
-   * //=> Tue Feb 11 2014 11:30:30
-   */
-  function toDate(argument) {
-    requiredArgs(1, arguments);
-    var argStr = Object.prototype.toString.call(argument);
-
-    // Clone the date
-    if (argument instanceof Date || _typeof(argument) === 'object' && argStr === '[object Date]') {
-      // Prevent the date to lose the milliseconds when passed to new Date() in IE10
-      return new Date(argument.getTime());
-    } else if (typeof argument === 'number' || argStr === '[object Number]') {
-      return new Date(argument);
-    } else {
-      if ((typeof argument === 'string' || argStr === '[object String]') && typeof console !== 'undefined') {
-        // eslint-disable-next-line no-console
-        console.warn("Starting with v2.0.0-beta.1 date-fns doesn't accept strings as date arguments. Please use `parseISO` to parse strings. See: https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#string-arguments");
-        // eslint-disable-next-line no-console
-        console.warn(new Error().stack);
-      }
-      return new Date(NaN);
-    }
-  }
-
-  /**
-   * @name addMilliseconds
-   * @category Millisecond Helpers
-   * @summary Add the specified number of milliseconds to the given date.
-   *
-   * @description
-   * Add the specified number of milliseconds to the given date.
-   *
-   * @param {Date|Number} date - the date to be changed
-   * @param {Number} amount - the amount of milliseconds to be added. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
-   * @returns {Date} the new date with the milliseconds added
-   * @throws {TypeError} 2 arguments required
-   *
-   * @example
-   * // Add 750 milliseconds to 10 July 2014 12:45:30.000:
-   * const result = addMilliseconds(new Date(2014, 6, 10, 12, 45, 30, 0), 750)
-   * //=> Thu Jul 10 2014 12:45:30.750
-   */
-  function addMilliseconds(dirtyDate, dirtyAmount) {
-    requiredArgs(2, arguments);
-    var timestamp = toDate(dirtyDate).getTime();
-    var amount = toInteger(dirtyAmount);
-    return new Date(timestamp + amount);
-  }
-
-  var defaultOptions = {};
-  function getDefaultOptions() {
-    return defaultOptions;
-  }
-
-  /**
-   * Google Chrome as of 67.0.3396.87 introduced timezones with offset that includes seconds.
-   * They usually appear for dates that denote time before the timezones were introduced
-   * (e.g. for 'Europe/Prague' timezone the offset is GMT+00:57:44 before 1 October 1891
-   * and GMT+01:00:00 after that date)
-   *
-   * Date#getTimezoneOffset returns the offset in minutes and would return 57 for the example above,
-   * which would lead to incorrect calculations.
-   *
-   * This function returns the timezone offset in milliseconds that takes seconds in account.
-   */
-  function getTimezoneOffsetInMilliseconds(date) {
-    var utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
-    utcDate.setUTCFullYear(date.getFullYear());
-    return date.getTime() - utcDate.getTime();
-  }
-
-  /**
-   * Days in 1 week.
-   *
-   * @name daysInWeek
-   * @constant
-   * @type {number}
-   * @default
-   */
-
-  /**
-   * Milliseconds in 1 minute
-   *
-   * @name millisecondsInMinute
-   * @constant
-   * @type {number}
-   * @default
-   */
-  var millisecondsInMinute = 60000;
-
-  /**
-   * Milliseconds in 1 hour
-   *
-   * @name millisecondsInHour
-   * @constant
-   * @type {number}
-   * @default
-   */
-  var millisecondsInHour = 3600000;
-
-  /**
-   * @name isDate
-   * @category Common Helpers
-   * @summary Is the given value a date?
-   *
-   * @description
-   * Returns true if the given value is an instance of Date. The function works for dates transferred across iframes.
-   *
-   * @param {*} value - the value to check
-   * @returns {boolean} true if the given value is a date
-   * @throws {TypeError} 1 arguments required
-   *
-   * @example
-   * // For a valid date:
-   * const result = isDate(new Date())
-   * //=> true
-   *
-   * @example
-   * // For an invalid date:
-   * const result = isDate(new Date(NaN))
-   * //=> true
-   *
-   * @example
-   * // For some value:
-   * const result = isDate('2014-02-31')
-   * //=> false
-   *
-   * @example
-   * // For an object:
-   * const result = isDate({})
-   * //=> false
-   */
-  function isDate(value) {
-    requiredArgs(1, arguments);
-    return value instanceof Date || _typeof(value) === 'object' && Object.prototype.toString.call(value) === '[object Date]';
-  }
-
-  /**
-   * @name isValid
-   * @category Common Helpers
-   * @summary Is the given date valid?
-   *
-   * @description
-   * Returns false if argument is Invalid Date and true otherwise.
-   * Argument is converted to Date using `toDate`. See [toDate]{@link https://date-fns.org/docs/toDate}
-   * Invalid Date is a Date, whose time value is NaN.
-   *
-   * Time value of Date: http://es5.github.io/#x15.9.1.1
-   *
-   * @param {*} date - the date to check
-   * @returns {Boolean} the date is valid
-   * @throws {TypeError} 1 argument required
-   *
-   * @example
-   * // For the valid date:
-   * const result = isValid(new Date(2014, 1, 31))
-   * //=> true
-   *
-   * @example
-   * // For the value, convertable into a date:
-   * const result = isValid(1393804800000)
-   * //=> true
-   *
-   * @example
-   * // For the invalid date:
-   * const result = isValid(new Date(''))
-   * //=> false
-   */
-  function isValid(dirtyDate) {
-    requiredArgs(1, arguments);
-    if (!isDate(dirtyDate) && typeof dirtyDate !== 'number') {
-      return false;
-    }
-    var date = toDate(dirtyDate);
-    return !isNaN(Number(date));
-  }
-
-  /**
-   * @name subMilliseconds
-   * @category Millisecond Helpers
-   * @summary Subtract the specified number of milliseconds from the given date.
-   *
-   * @description
-   * Subtract the specified number of milliseconds from the given date.
-   *
-   * @param {Date|Number} date - the date to be changed
-   * @param {Number} amount - the amount of milliseconds to be subtracted. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
-   * @returns {Date} the new date with the milliseconds subtracted
-   * @throws {TypeError} 2 arguments required
-   *
-   * @example
-   * // Subtract 750 milliseconds from 10 July 2014 12:45:30.000:
-   * const result = subMilliseconds(new Date(2014, 6, 10, 12, 45, 30, 0), 750)
-   * //=> Thu Jul 10 2014 12:45:29.250
-   */
-  function subMilliseconds(dirtyDate, dirtyAmount) {
-    requiredArgs(2, arguments);
-    var amount = toInteger(dirtyAmount);
-    return addMilliseconds(dirtyDate, -amount);
-  }
-
-  var MILLISECONDS_IN_DAY = 86400000;
-  function getUTCDayOfYear(dirtyDate) {
-    requiredArgs(1, arguments);
-    var date = toDate(dirtyDate);
-    var timestamp = date.getTime();
-    date.setUTCMonth(0, 1);
-    date.setUTCHours(0, 0, 0, 0);
-    var startOfYearTimestamp = date.getTime();
-    var difference = timestamp - startOfYearTimestamp;
-    return Math.floor(difference / MILLISECONDS_IN_DAY) + 1;
-  }
-
-  function startOfUTCISOWeek(dirtyDate) {
-    requiredArgs(1, arguments);
-    var weekStartsOn = 1;
-    var date = toDate(dirtyDate);
-    var day = date.getUTCDay();
-    var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
-    date.setUTCDate(date.getUTCDate() - diff);
-    date.setUTCHours(0, 0, 0, 0);
-    return date;
-  }
-
-  function getUTCISOWeekYear(dirtyDate) {
-    requiredArgs(1, arguments);
-    var date = toDate(dirtyDate);
-    var year = date.getUTCFullYear();
-    var fourthOfJanuaryOfNextYear = new Date(0);
-    fourthOfJanuaryOfNextYear.setUTCFullYear(year + 1, 0, 4);
-    fourthOfJanuaryOfNextYear.setUTCHours(0, 0, 0, 0);
-    var startOfNextYear = startOfUTCISOWeek(fourthOfJanuaryOfNextYear);
-    var fourthOfJanuaryOfThisYear = new Date(0);
-    fourthOfJanuaryOfThisYear.setUTCFullYear(year, 0, 4);
-    fourthOfJanuaryOfThisYear.setUTCHours(0, 0, 0, 0);
-    var startOfThisYear = startOfUTCISOWeek(fourthOfJanuaryOfThisYear);
-    if (date.getTime() >= startOfNextYear.getTime()) {
-      return year + 1;
-    } else if (date.getTime() >= startOfThisYear.getTime()) {
-      return year;
-    } else {
-      return year - 1;
-    }
-  }
-
-  function startOfUTCISOWeekYear(dirtyDate) {
-    requiredArgs(1, arguments);
-    var year = getUTCISOWeekYear(dirtyDate);
-    var fourthOfJanuary = new Date(0);
-    fourthOfJanuary.setUTCFullYear(year, 0, 4);
-    fourthOfJanuary.setUTCHours(0, 0, 0, 0);
-    var date = startOfUTCISOWeek(fourthOfJanuary);
-    return date;
-  }
-
-  var MILLISECONDS_IN_WEEK$1 = 604800000;
-  function getUTCISOWeek(dirtyDate) {
-    requiredArgs(1, arguments);
-    var date = toDate(dirtyDate);
-    var diff = startOfUTCISOWeek(date).getTime() - startOfUTCISOWeekYear(date).getTime();
-
-    // Round the number of days to the nearest integer
-    // because the number of milliseconds in a week is not constant
-    // (e.g. it's different in the week of the daylight saving time clock shift)
-    return Math.round(diff / MILLISECONDS_IN_WEEK$1) + 1;
-  }
-
-  function startOfUTCWeek(dirtyDate, options) {
-    var _ref, _ref2, _ref3, _options$weekStartsOn, _options$locale, _options$locale$optio, _defaultOptions$local, _defaultOptions$local2;
-    requiredArgs(1, arguments);
-    var defaultOptions = getDefaultOptions();
-    var weekStartsOn = toInteger((_ref = (_ref2 = (_ref3 = (_options$weekStartsOn = options === null || options === void 0 ? void 0 : options.weekStartsOn) !== null && _options$weekStartsOn !== void 0 ? _options$weekStartsOn : options === null || options === void 0 ? void 0 : (_options$locale = options.locale) === null || _options$locale === void 0 ? void 0 : (_options$locale$optio = _options$locale.options) === null || _options$locale$optio === void 0 ? void 0 : _options$locale$optio.weekStartsOn) !== null && _ref3 !== void 0 ? _ref3 : defaultOptions.weekStartsOn) !== null && _ref2 !== void 0 ? _ref2 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.weekStartsOn) !== null && _ref !== void 0 ? _ref : 0);
-
-    // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
-    if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
-      throw new RangeError('weekStartsOn must be between 0 and 6 inclusively');
-    }
-    var date = toDate(dirtyDate);
-    var day = date.getUTCDay();
-    var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
-    date.setUTCDate(date.getUTCDate() - diff);
-    date.setUTCHours(0, 0, 0, 0);
-    return date;
-  }
-
-  function getUTCWeekYear(dirtyDate, options) {
-    var _ref, _ref2, _ref3, _options$firstWeekCon, _options$locale, _options$locale$optio, _defaultOptions$local, _defaultOptions$local2;
-    requiredArgs(1, arguments);
-    var date = toDate(dirtyDate);
-    var year = date.getUTCFullYear();
-    var defaultOptions = getDefaultOptions();
-    var firstWeekContainsDate = toInteger((_ref = (_ref2 = (_ref3 = (_options$firstWeekCon = options === null || options === void 0 ? void 0 : options.firstWeekContainsDate) !== null && _options$firstWeekCon !== void 0 ? _options$firstWeekCon : options === null || options === void 0 ? void 0 : (_options$locale = options.locale) === null || _options$locale === void 0 ? void 0 : (_options$locale$optio = _options$locale.options) === null || _options$locale$optio === void 0 ? void 0 : _options$locale$optio.firstWeekContainsDate) !== null && _ref3 !== void 0 ? _ref3 : defaultOptions.firstWeekContainsDate) !== null && _ref2 !== void 0 ? _ref2 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.firstWeekContainsDate) !== null && _ref !== void 0 ? _ref : 1);
-
-    // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
-    if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
-      throw new RangeError('firstWeekContainsDate must be between 1 and 7 inclusively');
-    }
-    var firstWeekOfNextYear = new Date(0);
-    firstWeekOfNextYear.setUTCFullYear(year + 1, 0, firstWeekContainsDate);
-    firstWeekOfNextYear.setUTCHours(0, 0, 0, 0);
-    var startOfNextYear = startOfUTCWeek(firstWeekOfNextYear, options);
-    var firstWeekOfThisYear = new Date(0);
-    firstWeekOfThisYear.setUTCFullYear(year, 0, firstWeekContainsDate);
-    firstWeekOfThisYear.setUTCHours(0, 0, 0, 0);
-    var startOfThisYear = startOfUTCWeek(firstWeekOfThisYear, options);
-    if (date.getTime() >= startOfNextYear.getTime()) {
-      return year + 1;
-    } else if (date.getTime() >= startOfThisYear.getTime()) {
-      return year;
-    } else {
-      return year - 1;
-    }
-  }
-
-  function startOfUTCWeekYear(dirtyDate, options) {
-    var _ref, _ref2, _ref3, _options$firstWeekCon, _options$locale, _options$locale$optio, _defaultOptions$local, _defaultOptions$local2;
-    requiredArgs(1, arguments);
-    var defaultOptions = getDefaultOptions();
-    var firstWeekContainsDate = toInteger((_ref = (_ref2 = (_ref3 = (_options$firstWeekCon = options === null || options === void 0 ? void 0 : options.firstWeekContainsDate) !== null && _options$firstWeekCon !== void 0 ? _options$firstWeekCon : options === null || options === void 0 ? void 0 : (_options$locale = options.locale) === null || _options$locale === void 0 ? void 0 : (_options$locale$optio = _options$locale.options) === null || _options$locale$optio === void 0 ? void 0 : _options$locale$optio.firstWeekContainsDate) !== null && _ref3 !== void 0 ? _ref3 : defaultOptions.firstWeekContainsDate) !== null && _ref2 !== void 0 ? _ref2 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.firstWeekContainsDate) !== null && _ref !== void 0 ? _ref : 1);
-    var year = getUTCWeekYear(dirtyDate, options);
-    var firstWeek = new Date(0);
-    firstWeek.setUTCFullYear(year, 0, firstWeekContainsDate);
-    firstWeek.setUTCHours(0, 0, 0, 0);
-    var date = startOfUTCWeek(firstWeek, options);
-    return date;
-  }
-
-  var MILLISECONDS_IN_WEEK = 604800000;
-  function getUTCWeek(dirtyDate, options) {
-    requiredArgs(1, arguments);
-    var date = toDate(dirtyDate);
-    var diff = startOfUTCWeek(date, options).getTime() - startOfUTCWeekYear(date, options).getTime();
-
-    // Round the number of days to the nearest integer
-    // because the number of milliseconds in a week is not constant
-    // (e.g. it's different in the week of the daylight saving time clock shift)
-    return Math.round(diff / MILLISECONDS_IN_WEEK) + 1;
-  }
-
-  function addLeadingZeros(number, targetLength) {
-    var sign = number < 0 ? '-' : '';
-    var output = Math.abs(number).toString();
-    while (output.length < targetLength) {
-      output = '0' + output;
-    }
-    return sign + output;
-  }
-
-  /*
-   * |     | Unit                           |     | Unit                           |
-   * |-----|--------------------------------|-----|--------------------------------|
-   * |  a  | AM, PM                         |  A* |                                |
-   * |  d  | Day of month                   |  D  |                                |
-   * |  h  | Hour [1-12]                    |  H  | Hour [0-23]                    |
-   * |  m  | Minute                         |  M  | Month                          |
-   * |  s  | Second                         |  S  | Fraction of second             |
-   * |  y  | Year (abs)                     |  Y  |                                |
-   *
-   * Letters marked by * are not implemented but reserved by Unicode standard.
-   */
-  var formatters$2 = {
-    // Year
-    y: function y(date, token) {
-      // From http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_tokens
-      // | Year     |     y | yy |   yyy |  yyyy | yyyyy |
-      // |----------|-------|----|-------|-------|-------|
-      // | AD 1     |     1 | 01 |   001 |  0001 | 00001 |
-      // | AD 12    |    12 | 12 |   012 |  0012 | 00012 |
-      // | AD 123   |   123 | 23 |   123 |  0123 | 00123 |
-      // | AD 1234  |  1234 | 34 |  1234 |  1234 | 01234 |
-      // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
-
-      var signedYear = date.getUTCFullYear();
-      // Returns 1 for 1 BC (which is year 0 in JavaScript)
-      var year = signedYear > 0 ? signedYear : 1 - signedYear;
-      return addLeadingZeros(token === 'yy' ? year % 100 : year, token.length);
-    },
-    // Month
-    M: function M(date, token) {
-      var month = date.getUTCMonth();
-      return token === 'M' ? String(month + 1) : addLeadingZeros(month + 1, 2);
-    },
-    // Day of the month
-    d: function d(date, token) {
-      return addLeadingZeros(date.getUTCDate(), token.length);
-    },
-    // AM or PM
-    a: function a(date, token) {
-      var dayPeriodEnumValue = date.getUTCHours() / 12 >= 1 ? 'pm' : 'am';
-      switch (token) {
-        case 'a':
-        case 'aa':
-          return dayPeriodEnumValue.toUpperCase();
-        case 'aaa':
-          return dayPeriodEnumValue;
-        case 'aaaaa':
-          return dayPeriodEnumValue[0];
-        case 'aaaa':
-        default:
-          return dayPeriodEnumValue === 'am' ? 'a.m.' : 'p.m.';
-      }
-    },
-    // Hour [1-12]
-    h: function h(date, token) {
-      return addLeadingZeros(date.getUTCHours() % 12 || 12, token.length);
-    },
-    // Hour [0-23]
-    H: function H(date, token) {
-      return addLeadingZeros(date.getUTCHours(), token.length);
-    },
-    // Minute
-    m: function m(date, token) {
-      return addLeadingZeros(date.getUTCMinutes(), token.length);
-    },
-    // Second
-    s: function s(date, token) {
-      return addLeadingZeros(date.getUTCSeconds(), token.length);
-    },
-    // Fraction of second
-    S: function S(date, token) {
-      var numberOfDigits = token.length;
-      var milliseconds = date.getUTCMilliseconds();
-      var fractionalSeconds = Math.floor(milliseconds * Math.pow(10, numberOfDigits - 3));
-      return addLeadingZeros(fractionalSeconds, token.length);
-    }
-  };
-  const formatters$3 = formatters$2;
-
-  var dayPeriodEnum = {
-    am: 'am',
-    pm: 'pm',
-    midnight: 'midnight',
-    noon: 'noon',
-    morning: 'morning',
-    afternoon: 'afternoon',
-    evening: 'evening',
-    night: 'night'
-  };
-  /*
-   * |     | Unit                           |     | Unit                           |
-   * |-----|--------------------------------|-----|--------------------------------|
-   * |  a  | AM, PM                         |  A* | Milliseconds in day            |
-   * |  b  | AM, PM, noon, midnight         |  B  | Flexible day period            |
-   * |  c  | Stand-alone local day of week  |  C* | Localized hour w/ day period   |
-   * |  d  | Day of month                   |  D  | Day of year                    |
-   * |  e  | Local day of week              |  E  | Day of week                    |
-   * |  f  |                                |  F* | Day of week in month           |
-   * |  g* | Modified Julian day            |  G  | Era                            |
-   * |  h  | Hour [1-12]                    |  H  | Hour [0-23]                    |
-   * |  i! | ISO day of week                |  I! | ISO week of year               |
-   * |  j* | Localized hour w/ day period   |  J* | Localized hour w/o day period  |
-   * |  k  | Hour [1-24]                    |  K  | Hour [0-11]                    |
-   * |  l* | (deprecated)                   |  L  | Stand-alone month              |
-   * |  m  | Minute                         |  M  | Month                          |
-   * |  n  |                                |  N  |                                |
-   * |  o! | Ordinal number modifier        |  O  | Timezone (GMT)                 |
-   * |  p! | Long localized time            |  P! | Long localized date            |
-   * |  q  | Stand-alone quarter            |  Q  | Quarter                        |
-   * |  r* | Related Gregorian year         |  R! | ISO week-numbering year        |
-   * |  s  | Second                         |  S  | Fraction of second             |
-   * |  t! | Seconds timestamp              |  T! | Milliseconds timestamp         |
-   * |  u  | Extended year                  |  U* | Cyclic year                    |
-   * |  v* | Timezone (generic non-locat.)  |  V* | Timezone (location)            |
-   * |  w  | Local week of year             |  W* | Week of month                  |
-   * |  x  | Timezone (ISO-8601 w/o Z)      |  X  | Timezone (ISO-8601)            |
-   * |  y  | Year (abs)                     |  Y  | Local week-numbering year      |
-   * |  z  | Timezone (specific non-locat.) |  Z* | Timezone (aliases)             |
-   *
-   * Letters marked by * are not implemented but reserved by Unicode standard.
-   *
-   * Letters marked by ! are non-standard, but implemented by date-fns:
-   * - `o` modifies the previous token to turn it into an ordinal (see `format` docs)
-   * - `i` is ISO day of week. For `i` and `ii` is returns numeric ISO week days,
-   *   i.e. 7 for Sunday, 1 for Monday, etc.
-   * - `I` is ISO week of year, as opposed to `w` which is local week of year.
-   * - `R` is ISO week-numbering year, as opposed to `Y` which is local week-numbering year.
-   *   `R` is supposed to be used in conjunction with `I` and `i`
-   *   for universal ISO week-numbering date, whereas
-   *   `Y` is supposed to be used in conjunction with `w` and `e`
-   *   for week-numbering date specific to the locale.
-   * - `P` is long localized date format
-   * - `p` is long localized time format
-   */
-
-  var formatters = {
-    // Era
-    G: function G(date, token, localize) {
-      var era = date.getUTCFullYear() > 0 ? 1 : 0;
-      switch (token) {
-        // AD, BC
-        case 'G':
-        case 'GG':
-        case 'GGG':
-          return localize.era(era, {
-            width: 'abbreviated'
-          });
-        // A, B
-        case 'GGGGG':
-          return localize.era(era, {
-            width: 'narrow'
-          });
-        // Anno Domini, Before Christ
-        case 'GGGG':
-        default:
-          return localize.era(era, {
-            width: 'wide'
-          });
-      }
-    },
-    // Year
-    y: function y(date, token, localize) {
-      // Ordinal number
-      if (token === 'yo') {
-        var signedYear = date.getUTCFullYear();
-        // Returns 1 for 1 BC (which is year 0 in JavaScript)
-        var year = signedYear > 0 ? signedYear : 1 - signedYear;
-        return localize.ordinalNumber(year, {
-          unit: 'year'
-        });
-      }
-      return formatters$3.y(date, token);
-    },
-    // Local week-numbering year
-    Y: function Y(date, token, localize, options) {
-      var signedWeekYear = getUTCWeekYear(date, options);
-      // Returns 1 for 1 BC (which is year 0 in JavaScript)
-      var weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear;
-
-      // Two digit year
-      if (token === 'YY') {
-        var twoDigitYear = weekYear % 100;
-        return addLeadingZeros(twoDigitYear, 2);
-      }
-
-      // Ordinal number
-      if (token === 'Yo') {
-        return localize.ordinalNumber(weekYear, {
-          unit: 'year'
-        });
-      }
-
-      // Padding
-      return addLeadingZeros(weekYear, token.length);
-    },
-    // ISO week-numbering year
-    R: function R(date, token) {
-      var isoWeekYear = getUTCISOWeekYear(date);
-
-      // Padding
-      return addLeadingZeros(isoWeekYear, token.length);
-    },
-    // Extended year. This is a single number designating the year of this calendar system.
-    // The main difference between `y` and `u` localizers are B.C. years:
-    // | Year | `y` | `u` |
-    // |------|-----|-----|
-    // | AC 1 |   1 |   1 |
-    // | BC 1 |   1 |   0 |
-    // | BC 2 |   2 |  -1 |
-    // Also `yy` always returns the last two digits of a year,
-    // while `uu` pads single digit years to 2 characters and returns other years unchanged.
-    u: function u(date, token) {
-      var year = date.getUTCFullYear();
-      return addLeadingZeros(year, token.length);
-    },
-    // Quarter
-    Q: function Q(date, token, localize) {
-      var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
-      switch (token) {
-        // 1, 2, 3, 4
-        case 'Q':
-          return String(quarter);
-        // 01, 02, 03, 04
-        case 'QQ':
-          return addLeadingZeros(quarter, 2);
-        // 1st, 2nd, 3rd, 4th
-        case 'Qo':
-          return localize.ordinalNumber(quarter, {
-            unit: 'quarter'
-          });
-        // Q1, Q2, Q3, Q4
-        case 'QQQ':
-          return localize.quarter(quarter, {
-            width: 'abbreviated',
-            context: 'formatting'
-          });
-        // 1, 2, 3, 4 (narrow quarter; could be not numerical)
-        case 'QQQQQ':
-          return localize.quarter(quarter, {
-            width: 'narrow',
-            context: 'formatting'
-          });
-        // 1st quarter, 2nd quarter, ...
-        case 'QQQQ':
-        default:
-          return localize.quarter(quarter, {
-            width: 'wide',
-            context: 'formatting'
-          });
-      }
-    },
-    // Stand-alone quarter
-    q: function q(date, token, localize) {
-      var quarter = Math.ceil((date.getUTCMonth() + 1) / 3);
-      switch (token) {
-        // 1, 2, 3, 4
-        case 'q':
-          return String(quarter);
-        // 01, 02, 03, 04
-        case 'qq':
-          return addLeadingZeros(quarter, 2);
-        // 1st, 2nd, 3rd, 4th
-        case 'qo':
-          return localize.ordinalNumber(quarter, {
-            unit: 'quarter'
-          });
-        // Q1, Q2, Q3, Q4
-        case 'qqq':
-          return localize.quarter(quarter, {
-            width: 'abbreviated',
-            context: 'standalone'
-          });
-        // 1, 2, 3, 4 (narrow quarter; could be not numerical)
-        case 'qqqqq':
-          return localize.quarter(quarter, {
-            width: 'narrow',
-            context: 'standalone'
-          });
-        // 1st quarter, 2nd quarter, ...
-        case 'qqqq':
-        default:
-          return localize.quarter(quarter, {
-            width: 'wide',
-            context: 'standalone'
-          });
-      }
-    },
-    // Month
-    M: function M(date, token, localize) {
-      var month = date.getUTCMonth();
-      switch (token) {
-        case 'M':
-        case 'MM':
-          return formatters$3.M(date, token);
-        // 1st, 2nd, ..., 12th
-        case 'Mo':
-          return localize.ordinalNumber(month + 1, {
-            unit: 'month'
-          });
-        // Jan, Feb, ..., Dec
-        case 'MMM':
-          return localize.month(month, {
-            width: 'abbreviated',
-            context: 'formatting'
-          });
-        // J, F, ..., D
-        case 'MMMMM':
-          return localize.month(month, {
-            width: 'narrow',
-            context: 'formatting'
-          });
-        // January, February, ..., December
-        case 'MMMM':
-        default:
-          return localize.month(month, {
-            width: 'wide',
-            context: 'formatting'
-          });
-      }
-    },
-    // Stand-alone month
-    L: function L(date, token, localize) {
-      var month = date.getUTCMonth();
-      switch (token) {
-        // 1, 2, ..., 12
-        case 'L':
-          return String(month + 1);
-        // 01, 02, ..., 12
-        case 'LL':
-          return addLeadingZeros(month + 1, 2);
-        // 1st, 2nd, ..., 12th
-        case 'Lo':
-          return localize.ordinalNumber(month + 1, {
-            unit: 'month'
-          });
-        // Jan, Feb, ..., Dec
-        case 'LLL':
-          return localize.month(month, {
-            width: 'abbreviated',
-            context: 'standalone'
-          });
-        // J, F, ..., D
-        case 'LLLLL':
-          return localize.month(month, {
-            width: 'narrow',
-            context: 'standalone'
-          });
-        // January, February, ..., December
-        case 'LLLL':
-        default:
-          return localize.month(month, {
-            width: 'wide',
-            context: 'standalone'
-          });
-      }
-    },
-    // Local week of year
-    w: function w(date, token, localize, options) {
-      var week = getUTCWeek(date, options);
-      if (token === 'wo') {
-        return localize.ordinalNumber(week, {
-          unit: 'week'
-        });
-      }
-      return addLeadingZeros(week, token.length);
-    },
-    // ISO week of year
-    I: function I(date, token, localize) {
-      var isoWeek = getUTCISOWeek(date);
-      if (token === 'Io') {
-        return localize.ordinalNumber(isoWeek, {
-          unit: 'week'
-        });
-      }
-      return addLeadingZeros(isoWeek, token.length);
-    },
-    // Day of the month
-    d: function d(date, token, localize) {
-      if (token === 'do') {
-        return localize.ordinalNumber(date.getUTCDate(), {
-          unit: 'date'
-        });
-      }
-      return formatters$3.d(date, token);
-    },
-    // Day of year
-    D: function D(date, token, localize) {
-      var dayOfYear = getUTCDayOfYear(date);
-      if (token === 'Do') {
-        return localize.ordinalNumber(dayOfYear, {
-          unit: 'dayOfYear'
-        });
-      }
-      return addLeadingZeros(dayOfYear, token.length);
-    },
-    // Day of week
-    E: function E(date, token, localize) {
-      var dayOfWeek = date.getUTCDay();
-      switch (token) {
-        // Tue
-        case 'E':
-        case 'EE':
-        case 'EEE':
-          return localize.day(dayOfWeek, {
-            width: 'abbreviated',
-            context: 'formatting'
-          });
-        // T
-        case 'EEEEE':
-          return localize.day(dayOfWeek, {
-            width: 'narrow',
-            context: 'formatting'
-          });
-        // Tu
-        case 'EEEEEE':
-          return localize.day(dayOfWeek, {
-            width: 'short',
-            context: 'formatting'
-          });
-        // Tuesday
-        case 'EEEE':
-        default:
-          return localize.day(dayOfWeek, {
-            width: 'wide',
-            context: 'formatting'
-          });
-      }
-    },
-    // Local day of week
-    e: function e(date, token, localize, options) {
-      var dayOfWeek = date.getUTCDay();
-      var localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
-      switch (token) {
-        // Numerical value (Nth day of week with current locale or weekStartsOn)
-        case 'e':
-          return String(localDayOfWeek);
-        // Padded numerical value
-        case 'ee':
-          return addLeadingZeros(localDayOfWeek, 2);
-        // 1st, 2nd, ..., 7th
-        case 'eo':
-          return localize.ordinalNumber(localDayOfWeek, {
-            unit: 'day'
-          });
-        case 'eee':
-          return localize.day(dayOfWeek, {
-            width: 'abbreviated',
-            context: 'formatting'
-          });
-        // T
-        case 'eeeee':
-          return localize.day(dayOfWeek, {
-            width: 'narrow',
-            context: 'formatting'
-          });
-        // Tu
-        case 'eeeeee':
-          return localize.day(dayOfWeek, {
-            width: 'short',
-            context: 'formatting'
-          });
-        // Tuesday
-        case 'eeee':
-        default:
-          return localize.day(dayOfWeek, {
-            width: 'wide',
-            context: 'formatting'
-          });
-      }
-    },
-    // Stand-alone local day of week
-    c: function c(date, token, localize, options) {
-      var dayOfWeek = date.getUTCDay();
-      var localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
-      switch (token) {
-        // Numerical value (same as in `e`)
-        case 'c':
-          return String(localDayOfWeek);
-        // Padded numerical value
-        case 'cc':
-          return addLeadingZeros(localDayOfWeek, token.length);
-        // 1st, 2nd, ..., 7th
-        case 'co':
-          return localize.ordinalNumber(localDayOfWeek, {
-            unit: 'day'
-          });
-        case 'ccc':
-          return localize.day(dayOfWeek, {
-            width: 'abbreviated',
-            context: 'standalone'
-          });
-        // T
-        case 'ccccc':
-          return localize.day(dayOfWeek, {
-            width: 'narrow',
-            context: 'standalone'
-          });
-        // Tu
-        case 'cccccc':
-          return localize.day(dayOfWeek, {
-            width: 'short',
-            context: 'standalone'
-          });
-        // Tuesday
-        case 'cccc':
-        default:
-          return localize.day(dayOfWeek, {
-            width: 'wide',
-            context: 'standalone'
-          });
-      }
-    },
-    // ISO day of week
-    i: function i(date, token, localize) {
-      var dayOfWeek = date.getUTCDay();
-      var isoDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
-      switch (token) {
-        // 2
-        case 'i':
-          return String(isoDayOfWeek);
-        // 02
-        case 'ii':
-          return addLeadingZeros(isoDayOfWeek, token.length);
-        // 2nd
-        case 'io':
-          return localize.ordinalNumber(isoDayOfWeek, {
-            unit: 'day'
-          });
-        // Tue
-        case 'iii':
-          return localize.day(dayOfWeek, {
-            width: 'abbreviated',
-            context: 'formatting'
-          });
-        // T
-        case 'iiiii':
-          return localize.day(dayOfWeek, {
-            width: 'narrow',
-            context: 'formatting'
-          });
-        // Tu
-        case 'iiiiii':
-          return localize.day(dayOfWeek, {
-            width: 'short',
-            context: 'formatting'
-          });
-        // Tuesday
-        case 'iiii':
-        default:
-          return localize.day(dayOfWeek, {
-            width: 'wide',
-            context: 'formatting'
-          });
-      }
-    },
-    // AM or PM
-    a: function a(date, token, localize) {
-      var hours = date.getUTCHours();
-      var dayPeriodEnumValue = hours / 12 >= 1 ? 'pm' : 'am';
-      switch (token) {
-        case 'a':
-        case 'aa':
-          return localize.dayPeriod(dayPeriodEnumValue, {
-            width: 'abbreviated',
-            context: 'formatting'
-          });
-        case 'aaa':
-          return localize.dayPeriod(dayPeriodEnumValue, {
-            width: 'abbreviated',
-            context: 'formatting'
-          }).toLowerCase();
-        case 'aaaaa':
-          return localize.dayPeriod(dayPeriodEnumValue, {
-            width: 'narrow',
-            context: 'formatting'
-          });
-        case 'aaaa':
-        default:
-          return localize.dayPeriod(dayPeriodEnumValue, {
-            width: 'wide',
-            context: 'formatting'
-          });
-      }
-    },
-    // AM, PM, midnight, noon
-    b: function b(date, token, localize) {
-      var hours = date.getUTCHours();
-      var dayPeriodEnumValue;
-      if (hours === 12) {
-        dayPeriodEnumValue = dayPeriodEnum.noon;
-      } else if (hours === 0) {
-        dayPeriodEnumValue = dayPeriodEnum.midnight;
-      } else {
-        dayPeriodEnumValue = hours / 12 >= 1 ? 'pm' : 'am';
-      }
-      switch (token) {
-        case 'b':
-        case 'bb':
-          return localize.dayPeriod(dayPeriodEnumValue, {
-            width: 'abbreviated',
-            context: 'formatting'
-          });
-        case 'bbb':
-          return localize.dayPeriod(dayPeriodEnumValue, {
-            width: 'abbreviated',
-            context: 'formatting'
-          }).toLowerCase();
-        case 'bbbbb':
-          return localize.dayPeriod(dayPeriodEnumValue, {
-            width: 'narrow',
-            context: 'formatting'
-          });
-        case 'bbbb':
-        default:
-          return localize.dayPeriod(dayPeriodEnumValue, {
-            width: 'wide',
-            context: 'formatting'
-          });
-      }
-    },
-    // in the morning, in the afternoon, in the evening, at night
-    B: function B(date, token, localize) {
-      var hours = date.getUTCHours();
-      var dayPeriodEnumValue;
-      if (hours >= 17) {
-        dayPeriodEnumValue = dayPeriodEnum.evening;
-      } else if (hours >= 12) {
-        dayPeriodEnumValue = dayPeriodEnum.afternoon;
-      } else if (hours >= 4) {
-        dayPeriodEnumValue = dayPeriodEnum.morning;
-      } else {
-        dayPeriodEnumValue = dayPeriodEnum.night;
-      }
-      switch (token) {
-        case 'B':
-        case 'BB':
-        case 'BBB':
-          return localize.dayPeriod(dayPeriodEnumValue, {
-            width: 'abbreviated',
-            context: 'formatting'
-          });
-        case 'BBBBB':
-          return localize.dayPeriod(dayPeriodEnumValue, {
-            width: 'narrow',
-            context: 'formatting'
-          });
-        case 'BBBB':
-        default:
-          return localize.dayPeriod(dayPeriodEnumValue, {
-            width: 'wide',
-            context: 'formatting'
-          });
-      }
-    },
-    // Hour [1-12]
-    h: function h(date, token, localize) {
-      if (token === 'ho') {
-        var hours = date.getUTCHours() % 12;
-        if (hours === 0) hours = 12;
-        return localize.ordinalNumber(hours, {
-          unit: 'hour'
-        });
-      }
-      return formatters$3.h(date, token);
-    },
-    // Hour [0-23]
-    H: function H(date, token, localize) {
-      if (token === 'Ho') {
-        return localize.ordinalNumber(date.getUTCHours(), {
-          unit: 'hour'
-        });
-      }
-      return formatters$3.H(date, token);
-    },
-    // Hour [0-11]
-    K: function K(date, token, localize) {
-      var hours = date.getUTCHours() % 12;
-      if (token === 'Ko') {
-        return localize.ordinalNumber(hours, {
-          unit: 'hour'
-        });
-      }
-      return addLeadingZeros(hours, token.length);
-    },
-    // Hour [1-24]
-    k: function k(date, token, localize) {
-      var hours = date.getUTCHours();
-      if (hours === 0) hours = 24;
-      if (token === 'ko') {
-        return localize.ordinalNumber(hours, {
-          unit: 'hour'
-        });
-      }
-      return addLeadingZeros(hours, token.length);
-    },
-    // Minute
-    m: function m(date, token, localize) {
-      if (token === 'mo') {
-        return localize.ordinalNumber(date.getUTCMinutes(), {
-          unit: 'minute'
-        });
-      }
-      return formatters$3.m(date, token);
-    },
-    // Second
-    s: function s(date, token, localize) {
-      if (token === 'so') {
-        return localize.ordinalNumber(date.getUTCSeconds(), {
-          unit: 'second'
-        });
-      }
-      return formatters$3.s(date, token);
-    },
-    // Fraction of second
-    S: function S(date, token) {
-      return formatters$3.S(date, token);
-    },
-    // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
-    X: function X(date, token, _localize, options) {
-      var originalDate = options._originalDate || date;
-      var timezoneOffset = originalDate.getTimezoneOffset();
-      if (timezoneOffset === 0) {
-        return 'Z';
-      }
-      switch (token) {
-        // Hours and optional minutes
-        case 'X':
-          return formatTimezoneWithOptionalMinutes(timezoneOffset);
-
-        // Hours, minutes and optional seconds without `:` delimiter
-        // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
-        // so this token always has the same output as `XX`
-        case 'XXXX':
-        case 'XX':
-          // Hours and minutes without `:` delimiter
-          return formatTimezone(timezoneOffset);
-
-        // Hours, minutes and optional seconds with `:` delimiter
-        // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
-        // so this token always has the same output as `XXX`
-        case 'XXXXX':
-        case 'XXX': // Hours and minutes with `:` delimiter
-        default:
-          return formatTimezone(timezoneOffset, ':');
-      }
-    },
-    // Timezone (ISO-8601. If offset is 0, output is `'+00:00'` or equivalent)
-    x: function x(date, token, _localize, options) {
-      var originalDate = options._originalDate || date;
-      var timezoneOffset = originalDate.getTimezoneOffset();
-      switch (token) {
-        // Hours and optional minutes
-        case 'x':
-          return formatTimezoneWithOptionalMinutes(timezoneOffset);
-
-        // Hours, minutes and optional seconds without `:` delimiter
-        // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
-        // so this token always has the same output as `xx`
-        case 'xxxx':
-        case 'xx':
-          // Hours and minutes without `:` delimiter
-          return formatTimezone(timezoneOffset);
-
-        // Hours, minutes and optional seconds with `:` delimiter
-        // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
-        // so this token always has the same output as `xxx`
-        case 'xxxxx':
-        case 'xxx': // Hours and minutes with `:` delimiter
-        default:
-          return formatTimezone(timezoneOffset, ':');
-      }
-    },
-    // Timezone (GMT)
-    O: function O(date, token, _localize, options) {
-      var originalDate = options._originalDate || date;
-      var timezoneOffset = originalDate.getTimezoneOffset();
-      switch (token) {
-        // Short
-        case 'O':
-        case 'OO':
-        case 'OOO':
-          return 'GMT' + formatTimezoneShort(timezoneOffset, ':');
-        // Long
-        case 'OOOO':
-        default:
-          return 'GMT' + formatTimezone(timezoneOffset, ':');
-      }
-    },
-    // Timezone (specific non-location)
-    z: function z(date, token, _localize, options) {
-      var originalDate = options._originalDate || date;
-      var timezoneOffset = originalDate.getTimezoneOffset();
-      switch (token) {
-        // Short
-        case 'z':
-        case 'zz':
-        case 'zzz':
-          return 'GMT' + formatTimezoneShort(timezoneOffset, ':');
-        // Long
-        case 'zzzz':
-        default:
-          return 'GMT' + formatTimezone(timezoneOffset, ':');
-      }
-    },
-    // Seconds timestamp
-    t: function t(date, token, _localize, options) {
-      var originalDate = options._originalDate || date;
-      var timestamp = Math.floor(originalDate.getTime() / 1000);
-      return addLeadingZeros(timestamp, token.length);
-    },
-    // Milliseconds timestamp
-    T: function T(date, token, _localize, options) {
-      var originalDate = options._originalDate || date;
-      var timestamp = originalDate.getTime();
-      return addLeadingZeros(timestamp, token.length);
-    }
-  };
-  function formatTimezoneShort(offset, dirtyDelimiter) {
-    var sign = offset > 0 ? '-' : '+';
-    var absOffset = Math.abs(offset);
-    var hours = Math.floor(absOffset / 60);
-    var minutes = absOffset % 60;
-    if (minutes === 0) {
-      return sign + String(hours);
-    }
-    var delimiter = dirtyDelimiter || '';
-    return sign + String(hours) + delimiter + addLeadingZeros(minutes, 2);
-  }
-  function formatTimezoneWithOptionalMinutes(offset, dirtyDelimiter) {
-    if (offset % 60 === 0) {
-      var sign = offset > 0 ? '-' : '+';
-      return sign + addLeadingZeros(Math.abs(offset) / 60, 2);
-    }
-    return formatTimezone(offset, dirtyDelimiter);
-  }
-  function formatTimezone(offset, dirtyDelimiter) {
-    var delimiter = dirtyDelimiter || '';
-    var sign = offset > 0 ? '-' : '+';
-    var absOffset = Math.abs(offset);
-    var hours = addLeadingZeros(Math.floor(absOffset / 60), 2);
-    var minutes = addLeadingZeros(absOffset % 60, 2);
-    return sign + hours + delimiter + minutes;
-  }
-  const formatters$1 = formatters;
-
-  var dateLongFormatter = function dateLongFormatter(pattern, formatLong) {
-    switch (pattern) {
-      case 'P':
-        return formatLong.date({
-          width: 'short'
-        });
-      case 'PP':
-        return formatLong.date({
-          width: 'medium'
-        });
-      case 'PPP':
-        return formatLong.date({
-          width: 'long'
-        });
-      case 'PPPP':
-      default:
-        return formatLong.date({
-          width: 'full'
-        });
-    }
-  };
-  var timeLongFormatter = function timeLongFormatter(pattern, formatLong) {
-    switch (pattern) {
-      case 'p':
-        return formatLong.time({
-          width: 'short'
-        });
-      case 'pp':
-        return formatLong.time({
-          width: 'medium'
-        });
-      case 'ppp':
-        return formatLong.time({
-          width: 'long'
-        });
-      case 'pppp':
-      default:
-        return formatLong.time({
-          width: 'full'
-        });
-    }
-  };
-  var dateTimeLongFormatter = function dateTimeLongFormatter(pattern, formatLong) {
-    var matchResult = pattern.match(/(P+)(p+)?/) || [];
-    var datePattern = matchResult[1];
-    var timePattern = matchResult[2];
-    if (!timePattern) {
-      return dateLongFormatter(pattern, formatLong);
-    }
-    var dateTimeFormat;
-    switch (datePattern) {
-      case 'P':
-        dateTimeFormat = formatLong.dateTime({
-          width: 'short'
-        });
-        break;
-      case 'PP':
-        dateTimeFormat = formatLong.dateTime({
-          width: 'medium'
-        });
-        break;
-      case 'PPP':
-        dateTimeFormat = formatLong.dateTime({
-          width: 'long'
-        });
-        break;
-      case 'PPPP':
-      default:
-        dateTimeFormat = formatLong.dateTime({
-          width: 'full'
-        });
-        break;
-    }
-    return dateTimeFormat.replace('{{date}}', dateLongFormatter(datePattern, formatLong)).replace('{{time}}', timeLongFormatter(timePattern, formatLong));
-  };
-  var longFormatters = {
-    p: timeLongFormatter,
-    P: dateTimeLongFormatter
-  };
-  const longFormatters$1 = longFormatters;
-
-  var protectedDayOfYearTokens = ['D', 'DD'];
-  var protectedWeekYearTokens = ['YY', 'YYYY'];
-  function isProtectedDayOfYearToken(token) {
-    return protectedDayOfYearTokens.indexOf(token) !== -1;
-  }
-  function isProtectedWeekYearToken(token) {
-    return protectedWeekYearTokens.indexOf(token) !== -1;
-  }
-  function throwProtectedError(token, format, input) {
-    if (token === 'YYYY') {
-      throw new RangeError("Use `yyyy` instead of `YYYY` (in `".concat(format, "`) for formatting years to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
-    } else if (token === 'YY') {
-      throw new RangeError("Use `yy` instead of `YY` (in `".concat(format, "`) for formatting years to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
-    } else if (token === 'D') {
-      throw new RangeError("Use `d` instead of `D` (in `".concat(format, "`) for formatting days of the month to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
-    } else if (token === 'DD') {
-      throw new RangeError("Use `dd` instead of `DD` (in `".concat(format, "`) for formatting days of the month to the input `").concat(input, "`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md"));
-    }
-  }
-
-  var formatDistanceLocale = {
-    lessThanXSeconds: {
-      one: 'less than a second',
-      other: 'less than {{count}} seconds'
-    },
-    xSeconds: {
-      one: '1 second',
-      other: '{{count}} seconds'
-    },
-    halfAMinute: 'half a minute',
-    lessThanXMinutes: {
-      one: 'less than a minute',
-      other: 'less than {{count}} minutes'
-    },
-    xMinutes: {
-      one: '1 minute',
-      other: '{{count}} minutes'
-    },
-    aboutXHours: {
-      one: 'about 1 hour',
-      other: 'about {{count}} hours'
-    },
-    xHours: {
-      one: '1 hour',
-      other: '{{count}} hours'
-    },
-    xDays: {
-      one: '1 day',
-      other: '{{count}} days'
-    },
-    aboutXWeeks: {
-      one: 'about 1 week',
-      other: 'about {{count}} weeks'
-    },
-    xWeeks: {
-      one: '1 week',
-      other: '{{count}} weeks'
-    },
-    aboutXMonths: {
-      one: 'about 1 month',
-      other: 'about {{count}} months'
-    },
-    xMonths: {
-      one: '1 month',
-      other: '{{count}} months'
-    },
-    aboutXYears: {
-      one: 'about 1 year',
-      other: 'about {{count}} years'
-    },
-    xYears: {
-      one: '1 year',
-      other: '{{count}} years'
-    },
-    overXYears: {
-      one: 'over 1 year',
-      other: 'over {{count}} years'
-    },
-    almostXYears: {
-      one: 'almost 1 year',
-      other: 'almost {{count}} years'
-    }
-  };
-  var formatDistance = function formatDistance(token, count, options) {
-    var result;
-    var tokenValue = formatDistanceLocale[token];
-    if (typeof tokenValue === 'string') {
-      result = tokenValue;
-    } else if (count === 1) {
-      result = tokenValue.one;
-    } else {
-      result = tokenValue.other.replace('{{count}}', count.toString());
-    }
-    if (options !== null && options !== void 0 && options.addSuffix) {
-      if (options.comparison && options.comparison > 0) {
-        return 'in ' + result;
-      } else {
-        return result + ' ago';
-      }
-    }
-    return result;
-  };
-  const formatDistance$1 = formatDistance;
-
-  function buildFormatLongFn(args) {
-    return function () {
-      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      // TODO: Remove String()
-      var width = options.width ? String(options.width) : args.defaultWidth;
-      var format = args.formats[width] || args.formats[args.defaultWidth];
-      return format;
-    };
-  }
-
-  var dateFormats = {
-    full: 'EEEE, MMMM do, y',
-    long: 'MMMM do, y',
-    medium: 'MMM d, y',
-    short: 'MM/dd/yyyy'
-  };
-  var timeFormats = {
-    full: 'h:mm:ss a zzzz',
-    long: 'h:mm:ss a z',
-    medium: 'h:mm:ss a',
-    short: 'h:mm a'
-  };
-  var dateTimeFormats = {
-    full: "{{date}} 'at' {{time}}",
-    long: "{{date}} 'at' {{time}}",
-    medium: '{{date}}, {{time}}',
-    short: '{{date}}, {{time}}'
-  };
-  var formatLong = {
-    date: buildFormatLongFn({
-      formats: dateFormats,
-      defaultWidth: 'full'
-    }),
-    time: buildFormatLongFn({
-      formats: timeFormats,
-      defaultWidth: 'full'
-    }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats,
-      defaultWidth: 'full'
-    })
-  };
-  const formatLong$1 = formatLong;
-
-  var formatRelativeLocale = {
-    lastWeek: "'last' eeee 'at' p",
-    yesterday: "'yesterday at' p",
-    today: "'today at' p",
-    tomorrow: "'tomorrow at' p",
-    nextWeek: "eeee 'at' p",
-    other: 'P'
-  };
-  var formatRelative = function formatRelative(token, _date, _baseDate, _options) {
-    return formatRelativeLocale[token];
-  };
-  const formatRelative$1 = formatRelative;
-
-  function buildLocalizeFn(args) {
-    return function (dirtyIndex, options) {
-      var context = options !== null && options !== void 0 && options.context ? String(options.context) : 'standalone';
-      var valuesArray;
-      if (context === 'formatting' && args.formattingValues) {
-        var defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
-        var width = options !== null && options !== void 0 && options.width ? String(options.width) : defaultWidth;
-        valuesArray = args.formattingValues[width] || args.formattingValues[defaultWidth];
-      } else {
-        var _defaultWidth = args.defaultWidth;
-        var _width = options !== null && options !== void 0 && options.width ? String(options.width) : args.defaultWidth;
-        valuesArray = args.values[_width] || args.values[_defaultWidth];
-      }
-      var index = args.argumentCallback ? args.argumentCallback(dirtyIndex) : dirtyIndex;
-      // @ts-ignore: For some reason TypeScript just don't want to match it, no matter how hard we try. I challenge you to try to remove it!
-      return valuesArray[index];
-    };
-  }
-
-  var eraValues = {
-    narrow: ['B', 'A'],
-    abbreviated: ['BC', 'AD'],
-    wide: ['Before Christ', 'Anno Domini']
-  };
-  var quarterValues = {
-    narrow: ['1', '2', '3', '4'],
-    abbreviated: ['Q1', 'Q2', 'Q3', 'Q4'],
-    wide: ['1st quarter', '2nd quarter', '3rd quarter', '4th quarter']
-  };
-
-  // Note: in English, the names of days of the week and months are capitalized.
-  // If you are making a new locale based on this one, check if the same is true for the language you're working on.
-  // Generally, formatted dates should look like they are in the middle of a sentence,
-  // e.g. in Spanish language the weekdays and months should be in the lowercase.
-  var monthValues = {
-    narrow: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-    abbreviated: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    wide: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  };
-  var dayValues = {
-    narrow: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-    short: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-    abbreviated: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    wide: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-  };
-  var dayPeriodValues = {
-    narrow: {
-      am: 'a',
-      pm: 'p',
-      midnight: 'mi',
-      noon: 'n',
-      morning: 'morning',
-      afternoon: 'afternoon',
-      evening: 'evening',
-      night: 'night'
-    },
-    abbreviated: {
-      am: 'AM',
-      pm: 'PM',
-      midnight: 'midnight',
-      noon: 'noon',
-      morning: 'morning',
-      afternoon: 'afternoon',
-      evening: 'evening',
-      night: 'night'
-    },
-    wide: {
-      am: 'a.m.',
-      pm: 'p.m.',
-      midnight: 'midnight',
-      noon: 'noon',
-      morning: 'morning',
-      afternoon: 'afternoon',
-      evening: 'evening',
-      night: 'night'
-    }
-  };
-  var formattingDayPeriodValues = {
-    narrow: {
-      am: 'a',
-      pm: 'p',
-      midnight: 'mi',
-      noon: 'n',
-      morning: 'in the morning',
-      afternoon: 'in the afternoon',
-      evening: 'in the evening',
-      night: 'at night'
-    },
-    abbreviated: {
-      am: 'AM',
-      pm: 'PM',
-      midnight: 'midnight',
-      noon: 'noon',
-      morning: 'in the morning',
-      afternoon: 'in the afternoon',
-      evening: 'in the evening',
-      night: 'at night'
-    },
-    wide: {
-      am: 'a.m.',
-      pm: 'p.m.',
-      midnight: 'midnight',
-      noon: 'noon',
-      morning: 'in the morning',
-      afternoon: 'in the afternoon',
-      evening: 'in the evening',
-      night: 'at night'
-    }
-  };
-  var ordinalNumber = function ordinalNumber(dirtyNumber, _options) {
-    var number = Number(dirtyNumber);
-
-    // If ordinal numbers depend on context, for example,
-    // if they are different for different grammatical genders,
-    // use `options.unit`.
-    //
-    // `unit` can be 'year', 'quarter', 'month', 'week', 'date', 'dayOfYear',
-    // 'day', 'hour', 'minute', 'second'.
-
-    var rem100 = number % 100;
-    if (rem100 > 20 || rem100 < 10) {
-      switch (rem100 % 10) {
-        case 1:
-          return number + 'st';
-        case 2:
-          return number + 'nd';
-        case 3:
-          return number + 'rd';
-      }
-    }
-    return number + 'th';
-  };
-  var localize = {
-    ordinalNumber: ordinalNumber,
-    era: buildLocalizeFn({
-      values: eraValues,
-      defaultWidth: 'wide'
-    }),
-    quarter: buildLocalizeFn({
-      values: quarterValues,
-      defaultWidth: 'wide',
-      argumentCallback: function argumentCallback(quarter) {
-        return quarter - 1;
-      }
-    }),
-    month: buildLocalizeFn({
-      values: monthValues,
-      defaultWidth: 'wide'
-    }),
-    day: buildLocalizeFn({
-      values: dayValues,
-      defaultWidth: 'wide'
-    }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues,
-      defaultWidth: 'wide',
-      formattingValues: formattingDayPeriodValues,
-      defaultFormattingWidth: 'wide'
-    })
-  };
-  const localize$1 = localize;
-
-  function buildMatchFn(args) {
-    return function (string) {
-      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var width = options.width;
-      var matchPattern = width && args.matchPatterns[width] || args.matchPatterns[args.defaultMatchWidth];
-      var matchResult = string.match(matchPattern);
-      if (!matchResult) {
-        return null;
-      }
-      var matchedString = matchResult[0];
-      var parsePatterns = width && args.parsePatterns[width] || args.parsePatterns[args.defaultParseWidth];
-      var key = Array.isArray(parsePatterns) ? findIndex(parsePatterns, function (pattern) {
-        return pattern.test(matchedString);
-      }) : findKey(parsePatterns, function (pattern) {
-        return pattern.test(matchedString);
-      });
-      var value;
-      value = args.valueCallback ? args.valueCallback(key) : key;
-      value = options.valueCallback ? options.valueCallback(value) : value;
-      var rest = string.slice(matchedString.length);
-      return {
-        value: value,
-        rest: rest
-      };
-    };
-  }
-  function findKey(object, predicate) {
-    for (var key in object) {
-      if (object.hasOwnProperty(key) && predicate(object[key])) {
-        return key;
-      }
-    }
-    return undefined;
-  }
-  function findIndex(array, predicate) {
-    for (var key = 0; key < array.length; key++) {
-      if (predicate(array[key])) {
-        return key;
-      }
-    }
-    return undefined;
-  }
-
-  function buildMatchPatternFn(args) {
-    return function (string) {
-      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var matchResult = string.match(args.matchPattern);
-      if (!matchResult) return null;
-      var matchedString = matchResult[0];
-      var parseResult = string.match(args.parsePattern);
-      if (!parseResult) return null;
-      var value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
-      value = options.valueCallback ? options.valueCallback(value) : value;
-      var rest = string.slice(matchedString.length);
-      return {
-        value: value,
-        rest: rest
-      };
-    };
-  }
-
-  var matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
-  var parseOrdinalNumberPattern = /\d+/i;
-  var matchEraPatterns = {
-    narrow: /^(b|a)/i,
-    abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
-    wide: /^(before christ|before common era|anno domini|common era)/i
-  };
-  var parseEraPatterns = {
-    any: [/^b/i, /^(a|c)/i]
-  };
-  var matchQuarterPatterns = {
-    narrow: /^[1234]/i,
-    abbreviated: /^q[1234]/i,
-    wide: /^[1234](th|st|nd|rd)? quarter/i
-  };
-  var parseQuarterPatterns = {
-    any: [/1/i, /2/i, /3/i, /4/i]
-  };
-  var matchMonthPatterns = {
-    narrow: /^[jfmasond]/i,
-    abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
-    wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
-  };
-  var parseMonthPatterns = {
-    narrow: [/^j/i, /^f/i, /^m/i, /^a/i, /^m/i, /^j/i, /^j/i, /^a/i, /^s/i, /^o/i, /^n/i, /^d/i],
-    any: [/^ja/i, /^f/i, /^mar/i, /^ap/i, /^may/i, /^jun/i, /^jul/i, /^au/i, /^s/i, /^o/i, /^n/i, /^d/i]
-  };
-  var matchDayPatterns = {
-    narrow: /^[smtwf]/i,
-    short: /^(su|mo|tu|we|th|fr|sa)/i,
-    abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
-    wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
-  };
-  var parseDayPatterns = {
-    narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
-    any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
-  };
-  var matchDayPeriodPatterns = {
-    narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
-    any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
-  };
-  var parseDayPeriodPatterns = {
-    any: {
-      am: /^a/i,
-      pm: /^p/i,
-      midnight: /^mi/i,
-      noon: /^no/i,
-      morning: /morning/i,
-      afternoon: /afternoon/i,
-      evening: /evening/i,
-      night: /night/i
-    }
-  };
-  var match = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern,
-      parsePattern: parseOrdinalNumberPattern,
-      valueCallback: function valueCallback(value) {
-        return parseInt(value, 10);
-      }
-    }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns,
-      defaultMatchWidth: 'wide',
-      parsePatterns: parseEraPatterns,
-      defaultParseWidth: 'any'
-    }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns,
-      defaultMatchWidth: 'wide',
-      parsePatterns: parseQuarterPatterns,
-      defaultParseWidth: 'any',
-      valueCallback: function valueCallback(index) {
-        return index + 1;
-      }
-    }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns,
-      defaultMatchWidth: 'wide',
-      parsePatterns: parseMonthPatterns,
-      defaultParseWidth: 'any'
-    }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns,
-      defaultMatchWidth: 'wide',
-      parsePatterns: parseDayPatterns,
-      defaultParseWidth: 'any'
-    }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns,
-      defaultMatchWidth: 'any',
-      parsePatterns: parseDayPeriodPatterns,
-      defaultParseWidth: 'any'
-    })
-  };
-  const match$1 = match;
-
-  /**
-   * @type {Locale}
-   * @category Locales
-   * @summary English locale (United States).
-   * @language English
-   * @iso-639-2 eng
-   * @author Sasha Koss [@kossnocorp]{@link https://github.com/kossnocorp}
-   * @author Lesha Koss [@leshakoss]{@link https://github.com/leshakoss}
-   */
-  var locale = {
-    code: 'en-US',
-    formatDistance: formatDistance$1,
-    formatLong: formatLong$1,
-    formatRelative: formatRelative$1,
-    localize: localize$1,
-    match: match$1,
-    options: {
-      weekStartsOn: 0 /* Sunday */,
-      firstWeekContainsDate: 1
-    }
-  };
-  const defaultLocale = locale;
-
-  // - [yYQqMLwIdDecihHKkms]o matches any available ordinal number token
-  //   (one of the certain letters followed by `o`)
-  // - (\w)\1* matches any sequences of the same letter
-  // - '' matches two quote characters in a row
-  // - '(''|[^'])+('|$) matches anything surrounded by two quote characters ('),
-  //   except a single quote symbol, which ends the sequence.
-  //   Two quote characters do not end the sequence.
-  //   If there is no matching single quote
-  //   then the sequence will continue until the end of the string.
-  // - . matches any single character unmatched by previous parts of the RegExps
-  var formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
-
-  // This RegExp catches symbols escaped by quotes, and also
-  // sequences of symbols P, p, and the combinations like `PPPPPPPppppp`
-  var longFormattingTokensRegExp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
-  var escapedStringRegExp = /^'([^]*?)'?$/;
-  var doubleQuoteRegExp = /''/g;
-  var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
-
-  /**
-   * @name format
-   * @category Common Helpers
-   * @summary Format the date.
-   *
-   * @description
-   * Return the formatted date string in the given format. The result may vary by locale.
-   *
-   * > ⚠️ Please note that the `format` tokens differ from Moment.js and other libraries.
-   * > See: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-   *
-   * The characters wrapped between two single quotes characters (') are escaped.
-   * Two single quotes in a row, whether inside or outside a quoted sequence, represent a 'real' single quote.
-   * (see the last example)
-   *
-   * Format of the string is based on Unicode Technical Standard #35:
-   * https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
-   * with a few additions (see note 7 below the table).
-   *
-   * Accepted patterns:
-   * | Unit                            | Pattern | Result examples                   | Notes |
-   * |---------------------------------|---------|-----------------------------------|-------|
-   * | Era                             | G..GGG  | AD, BC                            |       |
-   * |                                 | GGGG    | Anno Domini, Before Christ        | 2     |
-   * |                                 | GGGGG   | A, B                              |       |
-   * | Calendar year                   | y       | 44, 1, 1900, 2017                 | 5     |
-   * |                                 | yo      | 44th, 1st, 0th, 17th              | 5,7   |
-   * |                                 | yy      | 44, 01, 00, 17                    | 5     |
-   * |                                 | yyy     | 044, 001, 1900, 2017              | 5     |
-   * |                                 | yyyy    | 0044, 0001, 1900, 2017            | 5     |
-   * |                                 | yyyyy   | ...                               | 3,5   |
-   * | Local week-numbering year       | Y       | 44, 1, 1900, 2017                 | 5     |
-   * |                                 | Yo      | 44th, 1st, 1900th, 2017th         | 5,7   |
-   * |                                 | YY      | 44, 01, 00, 17                    | 5,8   |
-   * |                                 | YYY     | 044, 001, 1900, 2017              | 5     |
-   * |                                 | YYYY    | 0044, 0001, 1900, 2017            | 5,8   |
-   * |                                 | YYYYY   | ...                               | 3,5   |
-   * | ISO week-numbering year         | R       | -43, 0, 1, 1900, 2017             | 5,7   |
-   * |                                 | RR      | -43, 00, 01, 1900, 2017           | 5,7   |
-   * |                                 | RRR     | -043, 000, 001, 1900, 2017        | 5,7   |
-   * |                                 | RRRR    | -0043, 0000, 0001, 1900, 2017     | 5,7   |
-   * |                                 | RRRRR   | ...                               | 3,5,7 |
-   * | Extended year                   | u       | -43, 0, 1, 1900, 2017             | 5     |
-   * |                                 | uu      | -43, 01, 1900, 2017               | 5     |
-   * |                                 | uuu     | -043, 001, 1900, 2017             | 5     |
-   * |                                 | uuuu    | -0043, 0001, 1900, 2017           | 5     |
-   * |                                 | uuuuu   | ...                               | 3,5   |
-   * | Quarter (formatting)            | Q       | 1, 2, 3, 4                        |       |
-   * |                                 | Qo      | 1st, 2nd, 3rd, 4th                | 7     |
-   * |                                 | QQ      | 01, 02, 03, 04                    |       |
-   * |                                 | QQQ     | Q1, Q2, Q3, Q4                    |       |
-   * |                                 | QQQQ    | 1st quarter, 2nd quarter, ...     | 2     |
-   * |                                 | QQQQQ   | 1, 2, 3, 4                        | 4     |
-   * | Quarter (stand-alone)           | q       | 1, 2, 3, 4                        |       |
-   * |                                 | qo      | 1st, 2nd, 3rd, 4th                | 7     |
-   * |                                 | qq      | 01, 02, 03, 04                    |       |
-   * |                                 | qqq     | Q1, Q2, Q3, Q4                    |       |
-   * |                                 | qqqq    | 1st quarter, 2nd quarter, ...     | 2     |
-   * |                                 | qqqqq   | 1, 2, 3, 4                        | 4     |
-   * | Month (formatting)              | M       | 1, 2, ..., 12                     |       |
-   * |                                 | Mo      | 1st, 2nd, ..., 12th               | 7     |
-   * |                                 | MM      | 01, 02, ..., 12                   |       |
-   * |                                 | MMM     | Jan, Feb, ..., Dec                |       |
-   * |                                 | MMMM    | January, February, ..., December  | 2     |
-   * |                                 | MMMMM   | J, F, ..., D                      |       |
-   * | Month (stand-alone)             | L       | 1, 2, ..., 12                     |       |
-   * |                                 | Lo      | 1st, 2nd, ..., 12th               | 7     |
-   * |                                 | LL      | 01, 02, ..., 12                   |       |
-   * |                                 | LLL     | Jan, Feb, ..., Dec                |       |
-   * |                                 | LLLL    | January, February, ..., December  | 2     |
-   * |                                 | LLLLL   | J, F, ..., D                      |       |
-   * | Local week of year              | w       | 1, 2, ..., 53                     |       |
-   * |                                 | wo      | 1st, 2nd, ..., 53th               | 7     |
-   * |                                 | ww      | 01, 02, ..., 53                   |       |
-   * | ISO week of year                | I       | 1, 2, ..., 53                     | 7     |
-   * |                                 | Io      | 1st, 2nd, ..., 53th               | 7     |
-   * |                                 | II      | 01, 02, ..., 53                   | 7     |
-   * | Day of month                    | d       | 1, 2, ..., 31                     |       |
-   * |                                 | do      | 1st, 2nd, ..., 31st               | 7     |
-   * |                                 | dd      | 01, 02, ..., 31                   |       |
-   * | Day of year                     | D       | 1, 2, ..., 365, 366               | 9     |
-   * |                                 | Do      | 1st, 2nd, ..., 365th, 366th       | 7     |
-   * |                                 | DD      | 01, 02, ..., 365, 366             | 9     |
-   * |                                 | DDD     | 001, 002, ..., 365, 366           |       |
-   * |                                 | DDDD    | ...                               | 3     |
-   * | Day of week (formatting)        | E..EEE  | Mon, Tue, Wed, ..., Sun           |       |
-   * |                                 | EEEE    | Monday, Tuesday, ..., Sunday      | 2     |
-   * |                                 | EEEEE   | M, T, W, T, F, S, S               |       |
-   * |                                 | EEEEEE  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
-   * | ISO day of week (formatting)    | i       | 1, 2, 3, ..., 7                   | 7     |
-   * |                                 | io      | 1st, 2nd, ..., 7th                | 7     |
-   * |                                 | ii      | 01, 02, ..., 07                   | 7     |
-   * |                                 | iii     | Mon, Tue, Wed, ..., Sun           | 7     |
-   * |                                 | iiii    | Monday, Tuesday, ..., Sunday      | 2,7   |
-   * |                                 | iiiii   | M, T, W, T, F, S, S               | 7     |
-   * |                                 | iiiiii  | Mo, Tu, We, Th, Fr, Sa, Su        | 7     |
-   * | Local day of week (formatting)  | e       | 2, 3, 4, ..., 1                   |       |
-   * |                                 | eo      | 2nd, 3rd, ..., 1st                | 7     |
-   * |                                 | ee      | 02, 03, ..., 01                   |       |
-   * |                                 | eee     | Mon, Tue, Wed, ..., Sun           |       |
-   * |                                 | eeee    | Monday, Tuesday, ..., Sunday      | 2     |
-   * |                                 | eeeee   | M, T, W, T, F, S, S               |       |
-   * |                                 | eeeeee  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
-   * | Local day of week (stand-alone) | c       | 2, 3, 4, ..., 1                   |       |
-   * |                                 | co      | 2nd, 3rd, ..., 1st                | 7     |
-   * |                                 | cc      | 02, 03, ..., 01                   |       |
-   * |                                 | ccc     | Mon, Tue, Wed, ..., Sun           |       |
-   * |                                 | cccc    | Monday, Tuesday, ..., Sunday      | 2     |
-   * |                                 | ccccc   | M, T, W, T, F, S, S               |       |
-   * |                                 | cccccc  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
-   * | AM, PM                          | a..aa   | AM, PM                            |       |
-   * |                                 | aaa     | am, pm                            |       |
-   * |                                 | aaaa    | a.m., p.m.                        | 2     |
-   * |                                 | aaaaa   | a, p                              |       |
-   * | AM, PM, noon, midnight          | b..bb   | AM, PM, noon, midnight            |       |
-   * |                                 | bbb     | am, pm, noon, midnight            |       |
-   * |                                 | bbbb    | a.m., p.m., noon, midnight        | 2     |
-   * |                                 | bbbbb   | a, p, n, mi                       |       |
-   * | Flexible day period             | B..BBB  | at night, in the morning, ...     |       |
-   * |                                 | BBBB    | at night, in the morning, ...     | 2     |
-   * |                                 | BBBBB   | at night, in the morning, ...     |       |
-   * | Hour [1-12]                     | h       | 1, 2, ..., 11, 12                 |       |
-   * |                                 | ho      | 1st, 2nd, ..., 11th, 12th         | 7     |
-   * |                                 | hh      | 01, 02, ..., 11, 12               |       |
-   * | Hour [0-23]                     | H       | 0, 1, 2, ..., 23                  |       |
-   * |                                 | Ho      | 0th, 1st, 2nd, ..., 23rd          | 7     |
-   * |                                 | HH      | 00, 01, 02, ..., 23               |       |
-   * | Hour [0-11]                     | K       | 1, 2, ..., 11, 0                  |       |
-   * |                                 | Ko      | 1st, 2nd, ..., 11th, 0th          | 7     |
-   * |                                 | KK      | 01, 02, ..., 11, 00               |       |
-   * | Hour [1-24]                     | k       | 24, 1, 2, ..., 23                 |       |
-   * |                                 | ko      | 24th, 1st, 2nd, ..., 23rd         | 7     |
-   * |                                 | kk      | 24, 01, 02, ..., 23               |       |
-   * | Minute                          | m       | 0, 1, ..., 59                     |       |
-   * |                                 | mo      | 0th, 1st, ..., 59th               | 7     |
-   * |                                 | mm      | 00, 01, ..., 59                   |       |
-   * | Second                          | s       | 0, 1, ..., 59                     |       |
-   * |                                 | so      | 0th, 1st, ..., 59th               | 7     |
-   * |                                 | ss      | 00, 01, ..., 59                   |       |
-   * | Fraction of second              | S       | 0, 1, ..., 9                      |       |
-   * |                                 | SS      | 00, 01, ..., 99                   |       |
-   * |                                 | SSS     | 000, 001, ..., 999                |       |
-   * |                                 | SSSS    | ...                               | 3     |
-   * | Timezone (ISO-8601 w/ Z)        | X       | -08, +0530, Z                     |       |
-   * |                                 | XX      | -0800, +0530, Z                   |       |
-   * |                                 | XXX     | -08:00, +05:30, Z                 |       |
-   * |                                 | XXXX    | -0800, +0530, Z, +123456          | 2     |
-   * |                                 | XXXXX   | -08:00, +05:30, Z, +12:34:56      |       |
-   * | Timezone (ISO-8601 w/o Z)       | x       | -08, +0530, +00                   |       |
-   * |                                 | xx      | -0800, +0530, +0000               |       |
-   * |                                 | xxx     | -08:00, +05:30, +00:00            | 2     |
-   * |                                 | xxxx    | -0800, +0530, +0000, +123456      |       |
-   * |                                 | xxxxx   | -08:00, +05:30, +00:00, +12:34:56 |       |
-   * | Timezone (GMT)                  | O...OOO | GMT-8, GMT+5:30, GMT+0            |       |
-   * |                                 | OOOO    | GMT-08:00, GMT+05:30, GMT+00:00   | 2     |
-   * | Timezone (specific non-locat.)  | z...zzz | GMT-8, GMT+5:30, GMT+0            | 6     |
-   * |                                 | zzzz    | GMT-08:00, GMT+05:30, GMT+00:00   | 2,6   |
-   * | Seconds timestamp               | t       | 512969520                         | 7     |
-   * |                                 | tt      | ...                               | 3,7   |
-   * | Milliseconds timestamp          | T       | 512969520900                      | 7     |
-   * |                                 | TT      | ...                               | 3,7   |
-   * | Long localized date             | P       | 04/29/1453                        | 7     |
-   * |                                 | PP      | Apr 29, 1453                      | 7     |
-   * |                                 | PPP     | April 29th, 1453                  | 7     |
-   * |                                 | PPPP    | Friday, April 29th, 1453          | 2,7   |
-   * | Long localized time             | p       | 12:00 AM                          | 7     |
-   * |                                 | pp      | 12:00:00 AM                       | 7     |
-   * |                                 | ppp     | 12:00:00 AM GMT+2                 | 7     |
-   * |                                 | pppp    | 12:00:00 AM GMT+02:00             | 2,7   |
-   * | Combination of date and time    | Pp      | 04/29/1453, 12:00 AM              | 7     |
-   * |                                 | PPpp    | Apr 29, 1453, 12:00:00 AM         | 7     |
-   * |                                 | PPPppp  | April 29th, 1453 at ...           | 7     |
-   * |                                 | PPPPpppp| Friday, April 29th, 1453 at ...   | 2,7   |
-   * Notes:
-   * 1. "Formatting" units (e.g. formatting quarter) in the default en-US locale
-   *    are the same as "stand-alone" units, but are different in some languages.
-   *    "Formatting" units are declined according to the rules of the language
-   *    in the context of a date. "Stand-alone" units are always nominative singular:
-   *
-   *    `format(new Date(2017, 10, 6), 'do LLLL', {locale: cs}) //=> '6. listopad'`
-   *
-   *    `format(new Date(2017, 10, 6), 'do MMMM', {locale: cs}) //=> '6. listopadu'`
-   *
-   * 2. Any sequence of the identical letters is a pattern, unless it is escaped by
-   *    the single quote characters (see below).
-   *    If the sequence is longer than listed in table (e.g. `EEEEEEEEEEE`)
-   *    the output will be the same as default pattern for this unit, usually
-   *    the longest one (in case of ISO weekdays, `EEEE`). Default patterns for units
-   *    are marked with "2" in the last column of the table.
-   *
-   *    `format(new Date(2017, 10, 6), 'MMM') //=> 'Nov'`
-   *
-   *    `format(new Date(2017, 10, 6), 'MMMM') //=> 'November'`
-   *
-   *    `format(new Date(2017, 10, 6), 'MMMMM') //=> 'N'`
-   *
-   *    `format(new Date(2017, 10, 6), 'MMMMMM') //=> 'November'`
-   *
-   *    `format(new Date(2017, 10, 6), 'MMMMMMM') //=> 'November'`
-   *
-   * 3. Some patterns could be unlimited length (such as `yyyyyyyy`).
-   *    The output will be padded with zeros to match the length of the pattern.
-   *
-   *    `format(new Date(2017, 10, 6), 'yyyyyyyy') //=> '00002017'`
-   *
-   * 4. `QQQQQ` and `qqqqq` could be not strictly numerical in some locales.
-   *    These tokens represent the shortest form of the quarter.
-   *
-   * 5. The main difference between `y` and `u` patterns are B.C. years:
-   *
-   *    | Year | `y` | `u` |
-   *    |------|-----|-----|
-   *    | AC 1 |   1 |   1 |
-   *    | BC 1 |   1 |   0 |
-   *    | BC 2 |   2 |  -1 |
-   *
-   *    Also `yy` always returns the last two digits of a year,
-   *    while `uu` pads single digit years to 2 characters and returns other years unchanged:
-   *
-   *    | Year | `yy` | `uu` |
-   *    |------|------|------|
-   *    | 1    |   01 |   01 |
-   *    | 14   |   14 |   14 |
-   *    | 376  |   76 |  376 |
-   *    | 1453 |   53 | 1453 |
-   *
-   *    The same difference is true for local and ISO week-numbering years (`Y` and `R`),
-   *    except local week-numbering years are dependent on `options.weekStartsOn`
-   *    and `options.firstWeekContainsDate` (compare [getISOWeekYear]{@link https://date-fns.org/docs/getISOWeekYear}
-   *    and [getWeekYear]{@link https://date-fns.org/docs/getWeekYear}).
-   *
-   * 6. Specific non-location timezones are currently unavailable in `date-fns`,
-   *    so right now these tokens fall back to GMT timezones.
-   *
-   * 7. These patterns are not in the Unicode Technical Standard #35:
-   *    - `i`: ISO day of week
-   *    - `I`: ISO week of year
-   *    - `R`: ISO week-numbering year
-   *    - `t`: seconds timestamp
-   *    - `T`: milliseconds timestamp
-   *    - `o`: ordinal number modifier
-   *    - `P`: long localized date
-   *    - `p`: long localized time
-   *
-   * 8. `YY` and `YYYY` tokens represent week-numbering years but they are often confused with years.
-   *    You should enable `options.useAdditionalWeekYearTokens` to use them. See: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-   *
-   * 9. `D` and `DD` tokens represent days of the year but they are often confused with days of the month.
-   *    You should enable `options.useAdditionalDayOfYearTokens` to use them. See: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-   *
-   * @param {Date|Number} date - the original date
-   * @param {String} format - the string of tokens
-   * @param {Object} [options] - an object with options.
-   * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
-   * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
-   * @param {Number} [options.firstWeekContainsDate=1] - the day of January, which is
-   * @param {Boolean} [options.useAdditionalWeekYearTokens=false] - if true, allows usage of the week-numbering year tokens `YY` and `YYYY`;
-   *   see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-   * @param {Boolean} [options.useAdditionalDayOfYearTokens=false] - if true, allows usage of the day of year tokens `D` and `DD`;
-   *   see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-   * @returns {String} the formatted date string
-   * @throws {TypeError} 2 arguments required
-   * @throws {RangeError} `date` must not be Invalid Date
-   * @throws {RangeError} `options.locale` must contain `localize` property
-   * @throws {RangeError} `options.locale` must contain `formatLong` property
-   * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
-   * @throws {RangeError} `options.firstWeekContainsDate` must be between 1 and 7
-   * @throws {RangeError} use `yyyy` instead of `YYYY` for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-   * @throws {RangeError} use `yy` instead of `YY` for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-   * @throws {RangeError} use `d` instead of `D` for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-   * @throws {RangeError} use `dd` instead of `DD` for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-   * @throws {RangeError} format string contains an unescaped latin alphabet character
-   *
-   * @example
-   * // Represent 11 February 2014 in middle-endian format:
-   * const result = format(new Date(2014, 1, 11), 'MM/dd/yyyy')
-   * //=> '02/11/2014'
-   *
-   * @example
-   * // Represent 2 July 2014 in Esperanto:
-   * import { eoLocale } from 'date-fns/locale/eo'
-   * const result = format(new Date(2014, 6, 2), "do 'de' MMMM yyyy", {
-   *   locale: eoLocale
-   * })
-   * //=> '2-a de julio 2014'
-   *
-   * @example
-   * // Escape string by single quote characters:
-   * const result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
-   * //=> "3 o'clock"
-   */
-
-  function format(dirtyDate, dirtyFormatStr, options) {
-    var _ref, _options$locale, _ref2, _ref3, _ref4, _options$firstWeekCon, _options$locale2, _options$locale2$opti, _defaultOptions$local, _defaultOptions$local2, _ref5, _ref6, _ref7, _options$weekStartsOn, _options$locale3, _options$locale3$opti, _defaultOptions$local3, _defaultOptions$local4;
-    requiredArgs(2, arguments);
-    var formatStr = String(dirtyFormatStr);
-    var defaultOptions = getDefaultOptions();
-    var locale = (_ref = (_options$locale = options === null || options === void 0 ? void 0 : options.locale) !== null && _options$locale !== void 0 ? _options$locale : defaultOptions.locale) !== null && _ref !== void 0 ? _ref : defaultLocale;
-    var firstWeekContainsDate = toInteger((_ref2 = (_ref3 = (_ref4 = (_options$firstWeekCon = options === null || options === void 0 ? void 0 : options.firstWeekContainsDate) !== null && _options$firstWeekCon !== void 0 ? _options$firstWeekCon : options === null || options === void 0 ? void 0 : (_options$locale2 = options.locale) === null || _options$locale2 === void 0 ? void 0 : (_options$locale2$opti = _options$locale2.options) === null || _options$locale2$opti === void 0 ? void 0 : _options$locale2$opti.firstWeekContainsDate) !== null && _ref4 !== void 0 ? _ref4 : defaultOptions.firstWeekContainsDate) !== null && _ref3 !== void 0 ? _ref3 : (_defaultOptions$local = defaultOptions.locale) === null || _defaultOptions$local === void 0 ? void 0 : (_defaultOptions$local2 = _defaultOptions$local.options) === null || _defaultOptions$local2 === void 0 ? void 0 : _defaultOptions$local2.firstWeekContainsDate) !== null && _ref2 !== void 0 ? _ref2 : 1);
-
-    // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
-    if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
-      throw new RangeError('firstWeekContainsDate must be between 1 and 7 inclusively');
-    }
-    var weekStartsOn = toInteger((_ref5 = (_ref6 = (_ref7 = (_options$weekStartsOn = options === null || options === void 0 ? void 0 : options.weekStartsOn) !== null && _options$weekStartsOn !== void 0 ? _options$weekStartsOn : options === null || options === void 0 ? void 0 : (_options$locale3 = options.locale) === null || _options$locale3 === void 0 ? void 0 : (_options$locale3$opti = _options$locale3.options) === null || _options$locale3$opti === void 0 ? void 0 : _options$locale3$opti.weekStartsOn) !== null && _ref7 !== void 0 ? _ref7 : defaultOptions.weekStartsOn) !== null && _ref6 !== void 0 ? _ref6 : (_defaultOptions$local3 = defaultOptions.locale) === null || _defaultOptions$local3 === void 0 ? void 0 : (_defaultOptions$local4 = _defaultOptions$local3.options) === null || _defaultOptions$local4 === void 0 ? void 0 : _defaultOptions$local4.weekStartsOn) !== null && _ref5 !== void 0 ? _ref5 : 0);
-
-    // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
-    if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
-      throw new RangeError('weekStartsOn must be between 0 and 6 inclusively');
-    }
-    if (!locale.localize) {
-      throw new RangeError('locale must contain localize property');
-    }
-    if (!locale.formatLong) {
-      throw new RangeError('locale must contain formatLong property');
-    }
-    var originalDate = toDate(dirtyDate);
-    if (!isValid(originalDate)) {
-      throw new RangeError('Invalid time value');
-    }
-
-    // Convert the date in system timezone to the same date in UTC+00:00 timezone.
-    // This ensures that when UTC functions will be implemented, locales will be compatible with them.
-    // See an issue about UTC functions: https://github.com/date-fns/date-fns/issues/376
-    var timezoneOffset = getTimezoneOffsetInMilliseconds(originalDate);
-    var utcDate = subMilliseconds(originalDate, timezoneOffset);
-    var formatterOptions = {
-      firstWeekContainsDate: firstWeekContainsDate,
-      weekStartsOn: weekStartsOn,
-      locale: locale,
-      _originalDate: originalDate
-    };
-    var result = formatStr.match(longFormattingTokensRegExp).map(function (substring) {
-      var firstCharacter = substring[0];
-      if (firstCharacter === 'p' || firstCharacter === 'P') {
-        var longFormatter = longFormatters$1[firstCharacter];
-        return longFormatter(substring, locale.formatLong);
-      }
-      return substring;
-    }).join('').match(formattingTokensRegExp).map(function (substring) {
-      // Replace two single quote characters with one single quote character
-      if (substring === "''") {
-        return "'";
-      }
-      var firstCharacter = substring[0];
-      if (firstCharacter === "'") {
-        return cleanEscapedString(substring);
-      }
-      var formatter = formatters$1[firstCharacter];
-      if (formatter) {
-        if (!(options !== null && options !== void 0 && options.useAdditionalWeekYearTokens) && isProtectedWeekYearToken(substring)) {
-          throwProtectedError(substring, dirtyFormatStr, String(dirtyDate));
-        }
-        if (!(options !== null && options !== void 0 && options.useAdditionalDayOfYearTokens) && isProtectedDayOfYearToken(substring)) {
-          throwProtectedError(substring, dirtyFormatStr, String(dirtyDate));
-        }
-        return formatter(utcDate, substring, locale.localize, formatterOptions);
-      }
-      if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
-        throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
-      }
-      return substring;
-    }).join('');
-    return result;
-  }
-  function cleanEscapedString(input) {
-    var matched = input.match(escapedStringRegExp);
-    if (!matched) {
-      return input;
-    }
-    return matched[1].replace(doubleQuoteRegExp, "'");
-  }
-
-  /**
-   * @name parseISO
-   * @category Common Helpers
-   * @summary Parse ISO string
-   *
-   * @description
-   * Parse the given string in ISO 8601 format and return an instance of Date.
-   *
-   * Function accepts complete ISO 8601 formats as well as partial implementations.
-   * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
-   *
-   * If the argument isn't a string, the function cannot parse the string or
-   * the values are invalid, it returns Invalid Date.
-   *
-   * @param {String} argument - the value to convert
-   * @param {Object} [options] - an object with options.
-   * @param {0|1|2} [options.additionalDigits=2] - the additional number of digits in the extended year format
-   * @returns {Date} the parsed date in the local time zone
-   * @throws {TypeError} 1 argument required
-   * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
-   *
-   * @example
-   * // Convert string '2014-02-11T11:30:30' to date:
-   * const result = parseISO('2014-02-11T11:30:30')
-   * //=> Tue Feb 11 2014 11:30:30
-   *
-   * @example
-   * // Convert string '+02014101' to date,
-   * // if the additional number of digits in the extended year format is 1:
-   * const result = parseISO('+02014101', { additionalDigits: 1 })
-   * //=> Fri Apr 11 2014 00:00:00
-   */
-  function parseISO(argument, options) {
-    var _options$additionalDi;
-    requiredArgs(1, arguments);
-    var additionalDigits = toInteger((_options$additionalDi = options === null || options === void 0 ? void 0 : options.additionalDigits) !== null && _options$additionalDi !== void 0 ? _options$additionalDi : 2);
-    if (additionalDigits !== 2 && additionalDigits !== 1 && additionalDigits !== 0) {
-      throw new RangeError('additionalDigits must be 0, 1 or 2');
-    }
-    if (!(typeof argument === 'string' || Object.prototype.toString.call(argument) === '[object String]')) {
-      return new Date(NaN);
-    }
-    var dateStrings = splitDateString(argument);
-    var date;
-    if (dateStrings.date) {
-      var parseYearResult = parseYear(dateStrings.date, additionalDigits);
-      date = parseDate(parseYearResult.restDateString, parseYearResult.year);
-    }
-    if (!date || isNaN(date.getTime())) {
-      return new Date(NaN);
-    }
-    var timestamp = date.getTime();
-    var time = 0;
-    var offset;
-    if (dateStrings.time) {
-      time = parseTime(dateStrings.time);
-      if (isNaN(time)) {
-        return new Date(NaN);
-      }
-    }
-    if (dateStrings.timezone) {
-      offset = parseTimezone(dateStrings.timezone);
-      if (isNaN(offset)) {
-        return new Date(NaN);
-      }
-    } else {
-      var dirtyDate = new Date(timestamp + time);
-      // js parsed string assuming it's in UTC timezone
-      // but we need it to be parsed in our timezone
-      // so we use utc values to build date in our timezone.
-      // Year values from 0 to 99 map to the years 1900 to 1999
-      // so set year explicitly with setFullYear.
-      var result = new Date(0);
-      result.setFullYear(dirtyDate.getUTCFullYear(), dirtyDate.getUTCMonth(), dirtyDate.getUTCDate());
-      result.setHours(dirtyDate.getUTCHours(), dirtyDate.getUTCMinutes(), dirtyDate.getUTCSeconds(), dirtyDate.getUTCMilliseconds());
-      return result;
-    }
-    return new Date(timestamp + time + offset);
-  }
-  var patterns = {
-    dateTimeDelimiter: /[T ]/,
-    timeZoneDelimiter: /[Z ]/i,
-    timezone: /([Z+-].*)$/
-  };
-  var dateRegex = /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
-  var timeRegex = /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
-  var timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
-  function splitDateString(dateString) {
-    var dateStrings = {};
-    var array = dateString.split(patterns.dateTimeDelimiter);
-    var timeString;
-
-    // The regex match should only return at maximum two array elements.
-    // [date], [time], or [date, time].
-    if (array.length > 2) {
-      return dateStrings;
-    }
-    if (/:/.test(array[0])) {
-      timeString = array[0];
-    } else {
-      dateStrings.date = array[0];
-      timeString = array[1];
-      if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
-        dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
-        timeString = dateString.substr(dateStrings.date.length, dateString.length);
-      }
-    }
-    if (timeString) {
-      var token = patterns.timezone.exec(timeString);
-      if (token) {
-        dateStrings.time = timeString.replace(token[1], '');
-        dateStrings.timezone = token[1];
-      } else {
-        dateStrings.time = timeString;
-      }
-    }
-    return dateStrings;
-  }
-  function parseYear(dateString, additionalDigits) {
-    var regex = new RegExp('^(?:(\\d{4}|[+-]\\d{' + (4 + additionalDigits) + '})|(\\d{2}|[+-]\\d{' + (2 + additionalDigits) + '})$)');
-    var captures = dateString.match(regex);
-    // Invalid ISO-formatted year
-    if (!captures) return {
-      year: NaN,
-      restDateString: ''
-    };
-    var year = captures[1] ? parseInt(captures[1]) : null;
-    var century = captures[2] ? parseInt(captures[2]) : null;
-
-    // either year or century is null, not both
-    return {
-      year: century === null ? year : century * 100,
-      restDateString: dateString.slice((captures[1] || captures[2]).length)
-    };
-  }
-  function parseDate(dateString, year) {
-    // Invalid ISO-formatted year
-    if (year === null) return new Date(NaN);
-    var captures = dateString.match(dateRegex);
-    // Invalid ISO-formatted string
-    if (!captures) return new Date(NaN);
-    var isWeekDate = !!captures[4];
-    var dayOfYear = parseDateUnit(captures[1]);
-    var month = parseDateUnit(captures[2]) - 1;
-    var day = parseDateUnit(captures[3]);
-    var week = parseDateUnit(captures[4]);
-    var dayOfWeek = parseDateUnit(captures[5]) - 1;
-    if (isWeekDate) {
-      if (!validateWeekDate(year, week, dayOfWeek)) {
-        return new Date(NaN);
-      }
-      return dayOfISOWeekYear(year, week, dayOfWeek);
-    } else {
-      var date = new Date(0);
-      if (!validateDate(year, month, day) || !validateDayOfYearDate(year, dayOfYear)) {
-        return new Date(NaN);
-      }
-      date.setUTCFullYear(year, month, Math.max(dayOfYear, day));
-      return date;
-    }
-  }
-  function parseDateUnit(value) {
-    return value ? parseInt(value) : 1;
-  }
-  function parseTime(timeString) {
-    var captures = timeString.match(timeRegex);
-    if (!captures) return NaN; // Invalid ISO-formatted time
-
-    var hours = parseTimeUnit(captures[1]);
-    var minutes = parseTimeUnit(captures[2]);
-    var seconds = parseTimeUnit(captures[3]);
-    if (!validateTime(hours, minutes, seconds)) {
-      return NaN;
-    }
-    return hours * millisecondsInHour + minutes * millisecondsInMinute + seconds * 1000;
-  }
-  function parseTimeUnit(value) {
-    return value && parseFloat(value.replace(',', '.')) || 0;
-  }
-  function parseTimezone(timezoneString) {
-    if (timezoneString === 'Z') return 0;
-    var captures = timezoneString.match(timezoneRegex);
-    if (!captures) return 0;
-    var sign = captures[1] === '+' ? -1 : 1;
-    var hours = parseInt(captures[2]);
-    var minutes = captures[3] && parseInt(captures[3]) || 0;
-    if (!validateTimezone(hours, minutes)) {
-      return NaN;
-    }
-    return sign * (hours * millisecondsInHour + minutes * millisecondsInMinute);
-  }
-  function dayOfISOWeekYear(isoWeekYear, week, day) {
-    var date = new Date(0);
-    date.setUTCFullYear(isoWeekYear, 0, 4);
-    var fourthOfJanuaryDay = date.getUTCDay() || 7;
-    var diff = (week - 1) * 7 + day + 1 - fourthOfJanuaryDay;
-    date.setUTCDate(date.getUTCDate() + diff);
-    return date;
-  }
-
-  // Validation functions
-
-  // February is null to handle the leap year (using ||)
-  var daysInMonths = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  function isLeapYearIndex(year) {
-    return year % 400 === 0 || year % 4 === 0 && year % 100 !== 0;
-  }
-  function validateDate(year, month, date) {
-    return month >= 0 && month <= 11 && date >= 1 && date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28));
-  }
-  function validateDayOfYearDate(year, dayOfYear) {
-    return dayOfYear >= 1 && dayOfYear <= (isLeapYearIndex(year) ? 366 : 365);
-  }
-  function validateWeekDate(_year, week, day) {
-    return week >= 1 && week <= 53 && day >= 0 && day <= 6;
-  }
-  function validateTime(hours, minutes, seconds) {
-    if (hours === 24) {
-      return minutes === 0 && seconds === 0;
-    }
-    return seconds >= 0 && seconds < 60 && minutes >= 0 && minutes < 60 && hours >= 0 && hours < 25;
-  }
-  function validateTimezone(_hours, minutes) {
-    return minutes >= 0 && minutes <= 59;
-  }
-
   const convert12hTo24h = (abbr, hour) => {
     if (abbr === 'am' && hour === 12) {
       return 0;
@@ -6633,7 +4519,7 @@
   /**
    * --------------------------------------------------------------------------
    * CoreUI PRO time-picker.js
-   * License (https://coreui.io/pro/license-new/)
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
 
@@ -6646,6 +4532,8 @@
   const DATA_KEY$d = 'coreui.time-picker';
   const EVENT_KEY$d = `.${DATA_KEY$d}`;
   const DATA_API_KEY$a = '.data-api';
+  const ENTER_KEY = 'Enter';
+  const SPACE_KEY = 'Space';
   const TAB_KEY$5 = 'Tab';
   const RIGHT_MOUSE_BUTTON$4 = 2;
   const EVENT_CLICK$4 = `click${EVENT_KEY$d}`;
@@ -6846,9 +4734,7 @@
       this._config = this._getConfig(config);
       this._date = this._convertStringToDate(this._config.time);
       this._ampm = this._date ? getAmPm(new Date(this._date), this._config.locale) : 'am';
-      this._dropdownToggleEl.innerHTML = '';
-      this._dropdownMenuEl.innerHTML = '';
-      this._createTimePicker();
+      this._timePickerBody.innerHTML = '';
       this._createTimePickerSelection();
     }
 
@@ -7046,9 +4932,16 @@
         const timePickerRollCellEl = document.createElement('div');
         timePickerRollCellEl.classList.add(CLASS_NAME_ROLL_CELL);
         timePickerRollCellEl.setAttribute('role', 'button');
+        timePickerRollCellEl.tabIndex = 0;
         timePickerRollCellEl.innerHTML = option.label;
         timePickerRollCellEl.addEventListener('click', () => {
           this._handleTimeChange(part, option.value);
+        });
+        timePickerRollCellEl.addEventListener('keydown', event => {
+          if (event.code === SPACE_KEY || event.key === ENTER_KEY) {
+            event.preventDefault();
+            this._handleTimeChange(part, option.value);
+          }
         });
         Manipulator.setDataAttribute(timePickerRollCellEl, part, option.value);
         timePickerRollColEl.append(timePickerRollCellEl);
@@ -7241,7 +5134,7 @@
   /**
    * --------------------------------------------------------------------------
    * CoreUI PRO date-range-picker.js
-   * License (https://coreui.io/pro/license-new/)
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
 
@@ -7309,7 +5202,8 @@
     endName: null,
     firstDayOfWeek: 1,
     footer: false,
-    format: null,
+    inputDateFormat: null,
+    inputDateParse: null,
     invalid: false,
     indicator: true,
     locale: 'default',
@@ -7327,11 +5221,14 @@
     startName: null,
     selectAdjacementDays: false,
     selectEndDate: false,
+    selectionType: 'day',
     showAdjacementDays: true,
+    showWeekNumber: false,
     timepicker: false,
     todayButton: 'Today',
     todayButtonClasses: ['btn', 'btn-sm', 'btn-primary', 'me-auto'],
-    valid: false
+    valid: false,
+    weekNumbersLabel: null
   };
   const DefaultType$f = {
     calendars: 'number',
@@ -7348,8 +5245,9 @@
     endName: 'string',
     firstDayOfWeek: 'number',
     footer: 'boolean',
-    format: '(string|null)',
     indicator: 'boolean',
+    inputDateFormat: 'function',
+    inputDateParse: 'function',
     invalid: 'boolean',
     locale: 'string',
     maxDate: '(date|string|null)',
@@ -7366,11 +5264,14 @@
     startName: 'string',
     selectAdjacementDays: 'boolean',
     selectEndDate: 'boolean',
+    selectionType: 'string',
     showAdjacementDays: 'boolean',
+    showWeekNumber: 'boolean',
     timepicker: 'boolean',
     todayButton: '(boolean|string)',
     todayButtonClasses: '(array|string)',
-    valid: 'boolean'
+    valid: 'boolean',
+    weekNumbersLabel: '(string|null)'
   };
 
   /**
@@ -7381,18 +5282,16 @@
     constructor(element, config) {
       super(element);
       this._config = this._getConfig(config);
-      this._calendarDate = this._convertStringToDate(this._config.calendarDate || this._config.date || this._config.startDate || new Date());
-      this._startDate = this._convertStringToDate(this._config.date || this._config.startDate);
-      this._endDate = this._convertStringToDate(this._config.endDate);
+      this._calendarDate = this._config.calendarDate;
+      this._startDate = this._config.date || this._config.startDate;
+      this._endDate = this._config.endDate;
       this._initialStartDate = null;
       this._initialEndDate = null;
       this._mobile = window.innerWidth < 768;
       this._popper = null;
       this._selectEndDate = this._config.selectEndDate;
+      this._calendar = null;
       this._calendars = null;
-      this._calendarStart = null;
-      this._calendarEnd = null;
-      this._dateRangePicker = null;
       this._endInput = null;
       this._menu = null;
       this._startInput = null;
@@ -7453,13 +5352,14 @@
       this._startDate = this._initialStartDate;
       this._startInput.value = this._setInputValue(this._initialStartDate);
       this._startInput.dispatchEvent(new Event('change'));
-      this._calendars.innerHTML = '';
-      if (this._config.timepicker) {
-        this._timepickers.innerHTML = '';
-      }
       this.hide();
-      this._createDateRangePickerCalendars();
-      this._addCalendarEventListeners();
+      this._calendar.update(this._getCalendarConfig);
+      if (this._timePickerStart) {
+        this._timePickerStart.update(this._getTimePickerConfig(true));
+      }
+      if (this._timePickerEnd) {
+        this._timePickerEnd.update(this._getTimePickerConfig(false));
+      }
     }
     clear() {
       this._endDate = null;
@@ -7468,12 +5368,13 @@
       this._startDate = null;
       this._startInput.value = '';
       this._startInput.dispatchEvent(new Event('change'));
-      this._calendars.innerHTML = '';
-      if (this._config.timepicker) {
-        this._timepickers.innerHTML = '';
+      this._calendar.update(this._getCalendarConfig());
+      if (this._timePickerStart) {
+        this._timePickerStart.update(this._getTimePickerConfig(true));
       }
-      this._createDateRangePickerCalendars();
-      this._addCalendarEventListeners();
+      if (this._timePickerEnd) {
+        this._timePickerEnd.update(this._getTimePickerConfig(false));
+      }
     }
     reset() {
       this._endDate = this._config.endDate;
@@ -7482,21 +5383,20 @@
       this._startDate = this._config.startDate;
       this._startInput.value = this._setInputValue(this._config.startDate);
       this._startInput.dispatchEvent(new Event('change'));
-      this._calendars.innerHTML = '';
-      if (this._config.timepicker) {
-        this._timepickers.innerHTML = '';
+      this._calendar.update(this._getCalendarConfig());
+      if (this._timePickerStart) {
+        this._timePickerStart.update(this._getTimePickerConfig(true));
       }
-      this._createDateRangePickerCalendars();
-      this._addCalendarEventListeners();
+      if (this._timePickerEnd) {
+        this._timePickerEnd.update(this._getTimePickerConfig(false));
+      }
     }
     update(config) {
       this._config = this._getConfig(config);
-      this._calendarDate = this._convertStringToDate(this._config.calendarDate || this._config.date || this._config.startDate || new Date());
-      this._startDate = this._convertStringToDate(this._config.date || this._config.startDate);
-      this._endDate = this._convertStringToDate(this._config.endDate);
+      this._calendarDate = this._config.calendarDate;
+      this._startDate = this._config.date || this._config.startDate;
+      this._endDate = this._config.endDate;
       this._selectEndDate = this._config.selectEndDate;
-      this._dropdownToggleEl.innerHTML = '';
-      this._dropdownMenuEl.innerHTML = '';
       this._createDateRangePicker();
       this._createDateRangePickerCalendars();
       this._addEventListeners();
@@ -7514,14 +5414,14 @@
       });
       EventHandler.on(this._startInput, EVENT_CLICK$3, () => {
         this._selectEndDate = false;
-        this._updateDateRangePickerCalendars();
+        this._calendar.update(this._getCalendarConfig());
       });
       EventHandler.on(this._startInput, EVENT_INPUT, event => {
-        const date = this._config.format ? parseISO(event.target.value) : getLocalDateFromString(event.target.value, this._config.locale, this._config.timepicker);
+        const date = this._config.inputDateParse ? this._config.inputDateParse(event.target.value) : getLocalDateFromString(event.target.value, this._config.locale, this._config.timepicker);
         if (date instanceof Date && date.getTime()) {
           this._startDate = date;
           this._calendarDate = date;
-          this._updateDateRangePickerCalendars();
+          this._calendar.update(this._getCalendarConfig());
         }
       });
       EventHandler.on(this._startInput.form, EVENT_SUBMIT, () => {
@@ -7543,14 +5443,14 @@
       });
       EventHandler.on(this._endInput, EVENT_CLICK$3, () => {
         this._selectEndDate = true;
-        this._updateDateRangePickerCalendars();
+        this._calendar.update(this._getCalendarConfig());
       });
       EventHandler.on(this._endInput, EVENT_INPUT, event => {
-        const date = this._config.format ? parseISO(event.target.value) : getLocalDateFromString(event.target.value, this._config.locale, this._config.timepicker);
+        const date = this._config.inputDateParse ? this._config.inputDateParse(event.target.value) : getLocalDateFromString(event.target.value, this._config.locale, this._config.timepicker);
         if (date instanceof Date && date.getTime()) {
           this._endDate = date;
           this._calendarDate = date;
-          this._updateDateRangePickerCalendars();
+          this._calendar.update(this._getCalendarConfig());
         }
       });
       EventHandler.on(window, EVENT_RESIZE$3, () => {
@@ -7561,40 +5461,72 @@
       for (const calendar of SelectorEngine.find(SELECTOR_CALENDAR$1, this._element)) {
         EventHandler.on(calendar, 'startDateChange.coreui.calendar', event => {
           this._startDate = event.date;
-          this._selectEndDate = event.selectEndDate;
           this._startInput.value = this._setInputValue(event.date);
           this._startInput.dispatchEvent(new Event('change'));
-          this._updateDateRangePickerCalendars();
+          if (this._timePickerStart) {
+            this._timePickerStart.update(this._getTimePickerConfig(true));
+          }
           if (!this._config.range && !this._config.footer && !this._config.timepicker) {
             this.hide();
           }
           EventHandler.trigger(this._element, EVENT_START_DATE_CHANGE, {
-            date: event.date,
-            formatedDate: event.date ? this._formatDate(event.date) : undefined
+            date: event.date
           });
         });
         EventHandler.on(calendar, 'endDateChange.coreui.calendar', event => {
           this._endDate = event.date;
-          this._selectEndDate = event.selectEndDate;
           this._endInput.value = this._setInputValue(event.date);
           this._startInput.dispatchEvent(new Event('change'));
-          this._updateDateRangePickerCalendars();
+          if (this._timePickerEnd) {
+            this._timePickerEnd.update(this._getTimePickerConfig(false));
+          }
           if (this._startDate && !this._config.footer && !this._config.timepicker) {
             this.hide();
           }
           EventHandler.trigger(this._element, EVENT_END_DATE_CHANGE, {
-            date: event.date,
-            formatedDate: event.date ? this._formatDate(event.date) : undefined
+            date: event.date
           });
         });
         EventHandler.on(calendar, 'cellHover.coreui.calendar', event => {
           if (this._selectEndDate) {
-            this._endInput.value = event.date ? this._formatDate(event.date) : '';
+            this._endInput.value = event.date ? this._setInputValue(event.date) : this._setInputValue(this._endDate);
             return;
           }
-          this._startInput.value = event.date ? this._formatDate(event.date) : '';
+          this._startInput.value = event.date ? this._setInputValue(event.date) : this._setInputValue(this._startDate);
+        });
+        EventHandler.on(calendar, 'selectEndChange.coreui.calendar', event => {
+          this._selectEndDate = event.value;
         });
       }
+    }
+    _getCalendarConfig() {
+      return {
+        calendarDate: this._calendarDate,
+        calendars: this._config.calendars,
+        disabledDates: this._config.disabledDates,
+        endDate: this._endDate,
+        firstDayOfWeek: this._config.firstDayOfWeek,
+        locale: this._config.locale,
+        maxDate: this._config.maxDate,
+        minDate: this._config.minDate,
+        range: this._config.range,
+        selectAdjacementDays: this._config.selectAdjacementDays,
+        selectEndDate: this._selectEndDate,
+        selectionType: this._config.selectionType,
+        showAdjacementDays: this._config.showAdjacementDays,
+        showWeekNumber: this._config.showWeekNumber,
+        startDate: this._startDate,
+        weekNumbersLabel: this._config.weekNumbersLabel
+      };
+    }
+    _getTimePickerConfig(start) {
+      return {
+        container: 'inline',
+        disabled: start ? !this._startDate : !this._endDate,
+        locale: this._config.locale,
+        time: start ? this._startDate && new Date(this._startDate) : this._endDate && new Date(this._endDate),
+        variant: 'select'
+      };
     }
     _createDateRangePicker() {
       this._element.classList.add(CLASS_NAME_DATE_PICKER);
@@ -7675,7 +5607,15 @@
             this._startInput.dispatchEvent(new Event('change'));
             this._endInput.value = this._setInputValue(this._endDate);
             this._endInput.dispatchEvent(new Event('change'));
-            this._updateDateRangePickerCalendars();
+            this._calendar.update(this._getCalendarConfig());
+            EventHandler.trigger(this._element, EVENT_START_DATE_CHANGE, {
+              date: this._startDate,
+              formatedDate: this._formatDate(this._startDate)
+            });
+            EventHandler.trigger(this._element, EVENT_END_DATE_CHANGE, {
+              date: this._endDate,
+              formatedDate: this._formatDate(this._endDate)
+            });
           });
           buttonEl.innerHTML = key;
           dateRangePickerRangesEl.append(buttonEl);
@@ -7698,62 +5638,37 @@
       const calendarEl = document.createElement('div');
       calendarEl.classList.add(CLASS_NAME_CALENDAR);
       this._calendars.append(calendarEl);
-
-      // eslint-disable-next-line no-new
-      new Calendar(calendarEl, {
-        calendarDate: new Date(this._calendarDate.getFullYear(), this._calendarDate.getMonth(), 1),
-        calendars: this._config.calendars,
-        disabledDates: this._config.disabledDates,
-        endDate: this._endDate,
-        firstDayOfWeek: this._config.firstDayOfWeek,
-        locale: this._config.locale,
-        maxDate: this._config.maxDate,
-        minDate: this._config.minDate,
-        range: this._config.range,
-        selectAdjacementDays: this._config.selectAdjacementDays,
-        selectEndDate: this._selectEndDate,
-        showAdjacementDays: this._config.showAdjacementDays,
-        startDate: this._startDate
-      });
+      this._calendar = new Calendar(calendarEl, this._getCalendarConfig());
       EventHandler.one(calendarEl, 'calendarDateChange.coreui.calendar', event => {
-        this._calendarDate = new Date(event.date.getFullYear(), event.date.getMonth(), 1);
-        this._updateDateRangePickerCalendars();
+        this._calendarDate = event.date;
+      });
+      EventHandler.on(calendarEl, 'calendarMouseleave.coreui.calendar', () => {
+        if (this._startDate) {
+          this._startInput.value = this._setInputValue(this._startDate);
+        }
+        if (this._endDate) {
+          this._endInput.value = this._setInputValue(this._endDate);
+        }
       });
       if (this._config.timepicker) {
         if (this._mobile || this._range && this._config.calendars === 1) {
           const timePickerStartEl = document.createElement('div');
           timePickerStartEl.classList.add(CLASS_NAME_TIME_PICKER);
-
-          // eslint-disable-next-line no-new
-          new TimePicker(timePickerStartEl, {
-            container: 'inline',
-            disabled: !this._startDate,
-            locale: this._config.locale,
-            time: this._startDate,
-            variant: 'select'
-          });
+          this._timePickerStart = new TimePicker(timePickerStartEl, this._getTimePickerConfig(true));
           calendarEl.append(timePickerStartEl);
           EventHandler.one(timePickerStartEl, 'timeChange.coreui.time-picker', event => {
             this._startDate = event.date;
             this._startInput.value = this._setInputValue(this._startDate);
-            this._updateDateRangePickerCalendars();
+            this._calendar.update(this._getCalendarConfig());
           });
           const timePickerEndEl = document.createElement('div');
           timePickerEndEl.classList.add(CLASS_NAME_TIME_PICKER);
-
-          // eslint-disable-next-line no-new
-          new TimePicker(timePickerEndEl, {
-            container: 'inline',
-            disabled: !this._endDate,
-            locale: this._config.locale,
-            time: this._endDate,
-            variant: 'select'
-          });
+          this._timePickerEnd = new TimePicker(timePickerEndEl, this._getTimePickerConfig(false));
           this._timepickers.append(timePickerEndEl);
           EventHandler.one(timePickerEndEl, 'timeChange.coreui.time-picker', event => {
             this._endDate = event.date;
             this._endInput.value = this._setInputValue(this._endDate);
-            this._updateDateRangePickerCalendars();
+            this._calendar.update(this._getCalendarConfig());
           });
         } else {
           // eslint-disable-next-line no-unused-vars
@@ -7762,15 +5677,12 @@
           }).entries()) {
             const timePickerEl = document.createElement('div');
             timePickerEl.classList.add(CLASS_NAME_TIME_PICKER);
-
-            // eslint-disable-next-line no-new
-            new TimePicker(timePickerEl, {
-              container: 'inline',
-              disabled: index === 0 ? !this._startDate : !this._endDate,
-              locale: this._config.locale,
-              time: index === 0 ? this._startDate : this._endDate,
-              variant: 'select'
-            });
+            const _timepicker = new TimePicker(timePickerEl, this._getTimePickerConfig(index === 0));
+            if (index === 0) {
+              this._timePickerStart = _timepicker;
+            } else {
+              this._timePickerEnd = _timepicker;
+            }
             this._timepickers.append(timePickerEl);
             EventHandler.one(timePickerEl, 'timeChange.coreui.time-picker', event => {
               if (index === 0) {
@@ -7780,7 +5692,7 @@
                 this._endDate = event.date;
                 this._endInput.value = this._setInputValue(this._endDate);
               }
-              this._updateDateRangePickerCalendars();
+              this._calendar.update(this._getCalendarConfig());
             });
           }
         }
@@ -7803,7 +5715,7 @@
           this._endInput.dispatchEvent(new Event('change'));
           this._startInput.value = this._setInputValue(date);
           this._startInput.dispatchEvent(new Event('change'));
-          this._updateDateRangePickerCalendars();
+          this._calendar.update(this._getCalendarConfig());
         });
         footerEl.append(todayButtonEl);
       }
@@ -7829,24 +5741,13 @@
       }
       return footerEl;
     }
-    _updateDateRangePickerCalendars() {
-      this._calendars.innerHTML = '';
-      if (this._config.timepicker) {
-        this._timepickers.innerHTML = '';
-      }
-      this._createDateRangePickerCalendars();
-      this._addCalendarEventListeners();
-    }
-    _convertStringToDate(date) {
-      return date ? date instanceof Date ? date : new Date(date) : null;
-    }
     _createInput(name, placeholder, value) {
       const inputEl = document.createElement('input');
       inputEl.classList.add(CLASS_NAME_INPUT);
       inputEl.autocomplete = 'off';
       inputEl.disabled = this._config.disabled;
       inputEl.placeholder = placeholder;
-      inputEl.readOnly = this._config.inputReadOnly || typeof this._config.format === 'string';
+      inputEl.readOnly = this._config.inputReadOnly;
       inputEl.required = this._config.required;
       inputEl.type = 'text';
       inputEl.value = value;
@@ -7905,13 +5806,11 @@
       this._popper = createPopper(this._togglerElement, this._menu, popperConfig);
     }
     _formatDate(date) {
-      if (this._config.format) {
-        return format(date, this._config.format);
+      if (this._config.selectionType !== 'day') {
+        return date;
       }
-      if (this._config.timepicker) {
-        return date.toLocaleString(this._config.locale);
-      }
-      return date.toLocaleDateString(this._config.locale);
+      const _date = new Date(date);
+      return this._config.inputDateFormat ? this._config.inputDateFormat(_date) : this._config.timepicker ? _date.toLocaleString(this._config.locale) : _date.toLocaleDateString(this._config.locale);
     }
     _getButtonClasses(classes) {
       if (typeof classes === 'string') {
@@ -8014,7 +5913,7 @@
   /**
    * --------------------------------------------------------------------------
    * CoreUI PRO date-picker.js
-   * License (https://coreui.io/pro/license-new/)
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
 
@@ -8073,10 +5972,9 @@
           this._startDate = event.date;
           this._selectEndDate = event.selectEndDate;
           this._startInput.value = this._setInputValue(event.date);
-          this._updateDateRangePickerCalendars();
+          this._calendar.update(this._getCalendarConfig());
           EventHandler.trigger(this._element, EVENT_DATE_CHANGE, {
-            date: event.date,
-            formatedDate: event.date ? this._formatDate(event.date) : undefined
+            date: event.date
           });
         });
       }
@@ -8521,7 +6419,7 @@
   /**
    * --------------------------------------------------------------------------
    * CoreUI PRO loading-button.js
-   * License (https://coreui.io/pro/license-new/)
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
 
@@ -9324,7 +7222,7 @@
   /**
    * --------------------------------------------------------------------------
    * CoreUI PRO multi-select.js
-   * License (https://coreui.io/pro/license-new/)
+   * License (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
 
@@ -11772,6 +9670,9 @@
       if (this._element.classList.contains(CLASS_NAME_HIDE$1)) {
         this._element.classList.remove(CLASS_NAME_HIDE$1);
       }
+      if (this._overlaid) {
+        this._element.classList.add(CLASS_NAME_SHOW$2);
+      }
       if (this._isMobile()) {
         this._element.classList.add(CLASS_NAME_SHOW$2);
         this._backdrop.show();
@@ -11796,7 +9697,8 @@
       if (this._isMobile()) {
         this._backdrop.hide();
         new ScrollBarHelper().reset();
-      } else {
+      }
+      if (!this._isMobile() && !this._overlaid) {
         this._element.classList.add(CLASS_NAME_HIDE$1);
       }
       const complete = () => {
@@ -12007,13 +9909,15 @@
   const ARROW_RIGHT_KEY = 'ArrowRight';
   const ARROW_UP_KEY = 'ArrowUp';
   const ARROW_DOWN_KEY = 'ArrowDown';
+  const HOME_KEY = 'Home';
+  const END_KEY = 'End';
   const CLASS_NAME_ACTIVE = 'active';
   const CLASS_NAME_FADE$1 = 'fade';
   const CLASS_NAME_SHOW$1 = 'show';
   const CLASS_DROPDOWN = 'dropdown';
   const SELECTOR_DROPDOWN_TOGGLE = '.dropdown-toggle';
   const SELECTOR_DROPDOWN_MENU = '.dropdown-menu';
-  const NOT_SELECTOR_DROPDOWN_TOGGLE = ':not(.dropdown-toggle)';
+  const NOT_SELECTOR_DROPDOWN_TOGGLE = `:not(${SELECTOR_DROPDOWN_TOGGLE})`;
   const SELECTOR_TAB_PANEL = '.list-group, .nav, [role="tablist"]';
   const SELECTOR_OUTER = '.nav-item, .list-group-item';
   const SELECTOR_INNER = `.nav-link${NOT_SELECTOR_DROPDOWN_TOGGLE}, .list-group-item${NOT_SELECTOR_DROPDOWN_TOGGLE}, [role="tab"]${NOT_SELECTOR_DROPDOWN_TOGGLE}`;
@@ -12113,13 +10017,19 @@
       this._queueCallback(complete, element, element.classList.contains(CLASS_NAME_FADE$1));
     }
     _keydown(event) {
-      if (![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY].includes(event.key)) {
+      if (![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY, HOME_KEY, END_KEY].includes(event.key)) {
         return;
       }
       event.stopPropagation(); // stopPropagation/preventDefault both added to support up/down keys without scrolling the page
       event.preventDefault();
-      const isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
-      const nextActiveElement = getNextActiveElement(this._getChildren().filter(element => !isDisabled(element)), event.target, isNext, true);
+      const children = this._getChildren().filter(element => !isDisabled(element));
+      let nextActiveElement;
+      if ([HOME_KEY, END_KEY].includes(event.key)) {
+        nextActiveElement = children[event.key === HOME_KEY ? 0 : children.length - 1];
+      } else {
+        const isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
+        nextActiveElement = getNextActiveElement(children, event.target, isNext, true);
+      }
       if (nextActiveElement) {
         nextActiveElement.focus({
           preventScroll: true
@@ -12433,7 +10343,7 @@
   /**
    * --------------------------------------------------------------------------
    * CoreUI PRO index.esm.js
-   * Licensed under MIT (Licensed under MIT (https://coreui.io/pro/license-new/)
+   * Licensed under MIT (Licensed under MIT (https://coreui.io/pro/license/)
    * --------------------------------------------------------------------------
    */
 
