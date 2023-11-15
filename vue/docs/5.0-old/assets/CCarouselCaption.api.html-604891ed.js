@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-64d5b96e","path":"/api/carousel/CCarouselCaption.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CCarouselCaption","slug":"ccarouselcaption","link":"#ccarouselcaption","children":[]}],"filePathRelative":"api/carousel/CCarouselCaption.api.md"}');export{a as data};

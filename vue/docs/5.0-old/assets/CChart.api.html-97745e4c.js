@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-584a6eb8","path":"/api/CChart.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CChart","slug":"cchart","link":"#cchart","children":[]}],"filePathRelative":"api/CChart.api.md"}');export{a as data};

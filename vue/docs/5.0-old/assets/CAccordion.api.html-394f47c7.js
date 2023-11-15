@@ -1,1 +1,0 @@
-const c=JSON.parse('{"key":"v-309e8633","path":"/api/accordion/CAccordion.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CAccordion","slug":"caccordion","link":"#caccordion","children":[]}],"filePathRelative":"api/accordion/CAccordion.api.md"}');export{c as data};

@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-163eef2e","path":"/api/dropdown/CDropdown.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CDropdown","slug":"cdropdown","link":"#cdropdown","children":[]}],"filePathRelative":"api/dropdown/CDropdown.api.md"}');export{e as data};

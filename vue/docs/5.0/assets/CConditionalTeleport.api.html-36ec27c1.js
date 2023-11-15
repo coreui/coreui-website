@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-1c175820","path":"/api/conditional-teleport/CConditionalTeleport.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CConditionalTeleport","slug":"cconditionalteleport","link":"#cconditionalteleport","children":[]}],"filePathRelative":"api/conditional-teleport/CConditionalTeleport.api.md"}');export{t as data};

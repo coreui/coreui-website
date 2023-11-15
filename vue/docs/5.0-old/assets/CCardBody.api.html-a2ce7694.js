@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-68dadf2e","path":"/api/card/CCardBody.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CCardBody","slug":"ccardbody","link":"#ccardbody","children":[]}],"filePathRelative":"api/card/CCardBody.api.md"}');export{a as data};

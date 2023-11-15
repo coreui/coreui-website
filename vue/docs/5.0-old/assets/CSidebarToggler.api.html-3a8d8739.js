@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-4a698629","path":"/api/sidebar/CSidebarToggler.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CSidebarToggler","slug":"csidebartoggler","link":"#csidebartoggler","children":[]}],"filePathRelative":"api/sidebar/CSidebarToggler.api.md"}');export{e as data};

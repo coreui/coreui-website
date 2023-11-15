@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-563c6f2a","path":"/api/list-group/CListGroupItem.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CListGroupItem","slug":"clistgroupitem","link":"#clistgroupitem","children":[]}],"filePathRelative":"api/list-group/CListGroupItem.api.md"}');export{t as data};

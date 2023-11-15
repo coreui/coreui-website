@@ -1,4 +1,0 @@
-import{_ as n,o as a,c as s,e as o}from"./app-69e5539a.js";const e={},t=o(`<h3 id="cformfloating" tabindex="-1">CFormFloating <a class="anchor-link" href="#cformfloating" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CFormFloating <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
-<span class="token comment">// or</span>
-<span class="token keyword">import</span> CFormFloating <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/form/CFormFloating&#39;</span>
-</code></pre></div>`,2),c=[t];function r(i,l){return a(),s("div",null,c)}const m=n(e,[["render",r],["__file","CFormFloating.api.html.vue"]]);export{m as default};

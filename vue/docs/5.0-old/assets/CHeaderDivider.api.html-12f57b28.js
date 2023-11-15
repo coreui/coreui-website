@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-81dcee60","path":"/api/header/CHeaderDivider.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CHeaderDivider","slug":"cheaderdivider","link":"#cheaderdivider","children":[]}],"filePathRelative":"api/header/CHeaderDivider.api.md"}');export{e as data};
