@@ -1,0 +1,29 @@
+<button [cModalToggle]="ModalOne.id" cButton>Open first modal</button>
+
+<c-modal id="liveDemoModalOne" #ModalOne alignment="center">
+  <c-modal-header>
+    <h5 cModalTitle>Modal 1 title</h5>
+    <button [cModalToggle]="ModalOne.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>Show a second modal and hide this one with the button below</c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="ModalOne.id" cButton color="secondary">
+      Close
+    </button>
+    <button [cModalToggle]="ModalTwo.id" cButton color="primary">Open second modal</button>
+  </c-modal-footer>
+</c-modal>
+
+<c-modal id="liveDemoModalTwo" #ModalTwo>
+  <c-modal-header>
+    <h5 cModalTitle>Modal 2 title</h5>
+    <button [cModalToggle]="ModalTwo.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>Hide this modal, and show the first one with the button below</c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="ModalTwo.id" cButton color="secondary">
+      Close
+    </button>
+    <button [cModalToggle]="ModalOne.id" cButton color="primary">Back to first</button>
+  </c-modal-footer>
+</c-modal>

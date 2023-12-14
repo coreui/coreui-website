@@ -1,16 +1,29 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AsyncPipe, JsonPipe, NgStyle } from '@angular/common';
 import { BehaviorSubject, Observable } from 'rxjs';
-
-import { cilPaperclip, cilFolderOpen } from '@coreui/icons';
-import { IOption } from '@coreui/angular';
-import { OptionsRemoteService } from './optionsRemote.service';
 import { map } from 'rxjs/operators';
+
+import { IOption, MultiSelectComponent, MultiSelectOptionComponent, TemplateIdDirective } from '@coreui/angular';
+import { IconDirective } from '@coreui/icons-angular';
+import { cilFolderOpen, cilPaperclip } from '@coreui/icons';
+import { OptionsRemoteService } from './optionsRemote.service';
 
 @Component({
   selector: 'docs-multi-select14',
   templateUrl: './multi-select14.component.html',
-  providers: [OptionsRemoteService]
+  providers: [OptionsRemoteService],
+  imports: [
+    AsyncPipe,
+    IconDirective,
+    JsonPipe,
+    MultiSelectComponent,
+    MultiSelectOptionComponent,
+    NgStyle,
+    ReactiveFormsModule,
+    TemplateIdDirective
+  ],
+  standalone: true
 })
 export class MultiSelect14Component {
   icons = { cilPaperclip, cilFolderOpen };

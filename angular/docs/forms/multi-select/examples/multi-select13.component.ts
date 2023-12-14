@@ -1,15 +1,23 @@
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 
-import { IOption } from '@coreui/angular';
+import { IOption, MultiSelectComponent } from '@coreui/angular';
 import { OptionsRemoteService } from './optionsRemote.service';
 
 @Component({
   selector: 'docs-multi-select13',
   templateUrl: './multi-select13.component.html',
-  providers: [OptionsRemoteService]
+  providers: [OptionsRemoteService],
+  imports: [
+    ReactiveFormsModule,
+    JsonPipe,
+    AsyncPipe,
+    MultiSelectComponent
+  ],
+  standalone: true
 })
 export class MultiSelect13Component {
 
