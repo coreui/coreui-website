@@ -1,0 +1,1563 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Reboot, a collection of element-specific CSS changes in a single file, kickstart Bootstrap to provide an elegant, consistent, and simple baseline to build upon.">
+<meta name="author" content="Łukasz Holeczek">
+<meta name="generator" content="Jekyll v3.8.0">
+
+<title>Reboot - Examples &amp; Tutorials. Learn how to use Reboot · CoreUI</title>
+
+<!-- Documentation extras -->
+<!-- 
+<link href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" rel="stylesheet">
+ -->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="https://coreui.io/bootstrap/docs/2.1/assets/css/coreui-docs.min.css" rel="stylesheet">
+<link href="https://coreui.io/bootstrap/docs/2.1/assets/css/coreui-icons.css" rel="stylesheet">
+
+
+
+<!-- Favicons -->
+<link rel="icon" href="https://coreui.io/bootstrap/docs/favicon.ico">
+<meta name="msapplication-config" content="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/browserconfig.xml">
+<link rel="apple-touch-icon" sizes="57x57" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="https://coreui.io/bootstrap/docs/2.1/assets/img/favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@core_ui">
+<meta name="twitter:creator" content="@core_ui">
+<meta name="twitter:title" content="Reboot">
+<meta name="twitter:description" content="Reboot, a collection of element-specific CSS changes in a single file, kickstart Bootstrap to provide an elegant, consistent, and simple baseline to build upon.">
+<meta name="twitter:image" content="https://coreui.io/bootstrap/docs/2.1/assets/brand/coreui-social-logo.png">
+
+<!-- Facebook -->
+<meta property="og:url" content="https://coreui.io/bootstrap/docs/content/reboot/">
+<meta property="og:title" content="Reboot">
+<meta property="og:description" content="Reboot, a collection of element-specific CSS changes in a single file, kickstart Bootstrap to provide an elegant, consistent, and simple baseline to build upon.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://coreui.io/bootstrap/docs/assets/brand/coreui-social.png">
+<meta property="og:image:secure_url" content="https://coreui.io/bootstrap/docs/2.1/assets/brand/coreui-social.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-9510961-27', 'auto', {'allowLinker': true});
+  ga('require', 'linker');
+  ga('linker:autoLink', ['gumroad.com','genesisui.com']);
+  ga('send', 'pageview');
+
+  ga('create', 'UA-118965717-1', 'auto', {'name': 'sharedTracker', 'allowLinker': true});
+  ga('sharedTracker.require', 'linker');
+  ga('sharedTracker.linker:autoLink', ['gumroad.com','genesisui.com']);
+  ga('sharedTracker.send', 'pageview');
+</script>
+<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5b3f65e507712f0011378729&product=unknown"></script>
+
+    <style>
+      .app-body {
+        overflow-x: initial;
+      }
+    </style>
+  </head>
+  <body class="app header-fixed sidebar-md-show sidebar-fixed">
+    <!-- <a id="skippy" class="sr-only sr-only-focusable" href="#content">
+  <div class="container">
+    <span class="skiplink-text">Skip to main content</span>
+  </div>
+</a>
+ -->
+
+    <header class="app-header navbar">
+  <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="https://coreui.io">
+    <img src="https://coreui.io/bootstrap/docs/2.1/assets/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
+  </a>
+  <ul class="nav navbar-nav mr-auto d-md-down-none">
+    <li class="nav-item px-3">
+      <a class="nav-link" href="https://coreui.io/">CoreUI Website</a>
+    </li>
+    <li class="nav-item px-3">
+      <a class="nav-link" href="https://coreui.io/icons/">CoreUI Icons</a>
+    </li>
+    <li class="nav-item px-3">
+      <a class="btn btn-danger" href="https://coreui.io/#sneak-peek">Try CoreUI PRO 3.0.0-alpha</a>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav d-md-down-none">
+    <li class="nav-item px-3">
+      <a class="btn btn btn-outline-warning" href="https://coreui.io/support/">Contact &amp; Support</a>
+    </li>
+  </ul>
+</header>
+
+
+    <div class="app-body">
+      <div class="sidebar">
+        
+<nav class="sidebar-nav">
+  <ul class="nav">
+
+    
+    
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Getting started
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/getting-started/ui-kit/">
+              UI Kit
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/getting-started/introduction/">
+              Introduction
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/getting-started/browsers-devices/">
+              Browsers & devices
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/getting-started/javascript/">
+              JavaScript
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/getting-started/build-tools/">
+              Build tools
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/getting-started/webpack/">
+              Webpack
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/getting-started/accessibility/">
+              Accessibility
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Layout
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/layout/overview/">
+              Overview
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/layout/grid/">
+              Grid
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/layout/media-object/">
+              Media object
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/layout/utilities-for-layout/">
+              Utilities for layout
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  active">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Content
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item active docs-sidenav-active">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/content/reboot/">
+              Reboot
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/content/typography/">
+              Typography
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/content/code/">
+              Code
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/content/images/">
+              Images
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/content/tables/">
+              Tables
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/content/figures/">
+              Figures
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Components
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/alerts/">
+              Alerts
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/aside-menu/">
+              Aside menu
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/badge/">
+              Badge
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/breadcrumb/">
+              Breadcrumb
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/buttons/">
+              Buttons
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/button-group/">
+              Button group
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/callout/">
+              Callout
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/cards/">
+              Cards
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/carousel/">
+              Carousel
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/collapse/">
+              Collapse
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/dropdowns/">
+              Dropdowns
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/forms/">
+              Forms
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/footer/">
+              Footer
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/input-group/">
+              Input group
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/jumbotron/">
+              Jumbotron
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/list-group/">
+              List group
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/loading-buttons/">
+              Loading buttons
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/masked-input/">
+              Masked input
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/modal/">
+              Modal
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/navs/">
+              Navs
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/navbar/">
+              Navbar
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/pagination/">
+              Pagination
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/popovers/">
+              Popovers
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/progress/">
+              Progress
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/scrollspy/">
+              Scrollspy
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/sidebar/">
+              Sidebar
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/sliders/">
+              Sliders
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/spinners/">
+              Spinners
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/switches/">
+              Switches
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/components/tooltips/">
+              Tooltips
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  ">
+      <a class="nav-link " href="https://coreui.io/bootstrap/docs/icons/">
+        Icons
+      </a>
+      <ul class="nav-dropdown-items">
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Utilities
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/borders/">
+              Borders
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/clearfix/">
+              Clearfix
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/close-icon/">
+              Close icon
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/colors/">
+              Colors
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/display/">
+              Display
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/embed/">
+              Embed
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/flex/">
+              Flex
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/float/">
+              Float
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/image-replacement/">
+              Image replacement
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/position/">
+              Position
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/screenreaders/">
+              Screenreaders
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/sizing/">
+              Sizing
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/spacing/">
+              Spacing
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/text/">
+              Text
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/vertical-align/">
+              Vertical align
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/utilities/visibility/">
+              Visibility
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  ">
+      <a class="nav-link " href="https://coreui.io/bootstrap/docs/2.1/migration/">
+        Migration
+      </a>
+      <ul class="nav-dropdown-items">
+        
+      </ul>
+    </li>
+  
+
+    
+    
+    
+    
+
+    
+
+    <li class="nav-item  nav-dropdown  ">
+      <a class="nav-link  nav-dropdown-toggle " href="#">
+        Admin Templates
+      </a>
+      <ul class="nav-dropdown-items">
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/admin-templates/angular-admin/">
+              Angular Admin
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/admin-templates/bootstrap-admin/">
+              Bootstrap Admin
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/admin-templates/react-admin/">
+              React Admin
+            </a>
+            
+          </li>
+        
+          
+          
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" href="https://coreui.io/bootstrap/docs/2.1/admin-templates/vue-admin/">
+              Vue Admin
+            </a>
+            
+          </li>
+        
+      </ul>
+    </li>
+  
+    <li class="nav-item mt-auto">
+      <a class="nav-link nav-link-success" href="https://coreui.io" target="_top">
+        <i class="nav-icon cui-cloud-download"></i> Download CoreUI</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link nav-link-danger" href="https://coreui.io/pro/" target="_top">
+        <i class="nav-icon cui-layers"></i> Try CoreUI
+        <strong>PRO</strong>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+      </div>
+      <main class="main">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            
+            
+            
+            
+
+            
+
+            
+              
+
+              
+                <li class="breadcrumb-item "><a href="https://coreui.io/bootstrap/docs/">Docs</a></li>
+              
+            
+              
+
+              
+                <li class="breadcrumb-item active">Reboot</li>
+              
+            
+          </ol>
+        </nav>
+        <div class="container-fluid">
+          <a href="/#sneak-peek" class="bg-indigo alert d-block text-center text-white py-3" onclick="ga('send', 'event', 'Go Pro', 'Click', 'Alert under page header');" style="background-color:#6610f2!important;">
+            <strong>Sneak Peek!</strong> CoreUI 3 is coming! Please try the latest version - <strong>CoreUI PRO 3.0.0-alpha.</strong>.
+            <span class="btn btn-sm btn-outline-light ml-3">Try CoreUI PRO 3.0.0-alpha</span>
+          </a>
+          <div class="row">
+            <div class="col-12  col-xl-9 ">
+              <div class="card">
+                <div class="card-body">
+                  <h1 class="docs-title" id="content">Reboot</h1>
+                  <p class="docs-lead">Reboot, a collection of element-specific CSS changes in a single file, kickstart Bootstrap to provide an elegant, consistent, and simple baseline to build upon.</p>
+                  <div class="sharethis-inline-share-buttons my-3"></div>
+                  <h2 id="approach">Approach</h2>
+
+<p>Reboot builds upon Normalize, providing many HTML elements with somewhat opinionated styles using only element selectors. Additional styling is done only with classes. For example, we reboot some <code class="highlighter-rouge">&lt;table&gt;</code> styles for a simpler baseline and later provide <code class="highlighter-rouge">.table</code>, <code class="highlighter-rouge">.table-bordered</code>, and more.</p>
+
+<p>Here are our guidelines and reasons for choosing what to override in Reboot:</p>
+
+<ul>
+  <li>Update some browser default values to use <code class="highlighter-rouge">rem</code>s instead of <code class="highlighter-rouge">em</code>s for scalable component spacing.</li>
+  <li>Avoid <code class="highlighter-rouge">margin-top</code>. Vertical margins can collapse, yielding unexpected results. More importantly though, a single direction of <code class="highlighter-rouge">margin</code> is a simpler mental model.</li>
+  <li>For easier scaling across device sizes, block elements should use <code class="highlighter-rouge">rem</code>s for <code class="highlighter-rouge">margin</code>s.</li>
+  <li>Keep declarations of <code class="highlighter-rouge">font</code>-related properties to a minimum, using <code class="highlighter-rouge">inherit</code> whenever possible.</li>
+</ul>
+
+<h2 id="page-defaults">Page defaults</h2>
+
+<p>The <code class="highlighter-rouge"><span class="nt">&lt;html&gt;</span></code> and <code class="highlighter-rouge">&lt;body&gt;</code> elements are updated to provide better page-wide defaults. More specifically:</p>
+
+<ul>
+  <li>The <code class="highlighter-rouge">box-sizing</code> is globally set on every element—including <code class="highlighter-rouge">*::before</code> and <code class="highlighter-rouge">*::after</code>, to <code class="highlighter-rouge">border-box</code>. This ensures that the declared width of element is never exceeded due to padding or border.
+    <ul>
+      <li>No base <code class="highlighter-rouge">font-size</code> is declared on the <code class="highlighter-rouge"><span class="nt">&lt;html&gt;</span></code>, but <code class="highlighter-rouge">16px</code> is assumed (the browser default). <code class="highlighter-rouge">font-size: 1rem</code> is applied on the <code class="highlighter-rouge">&lt;body&gt;</code> for easy responsive type-scaling via media queries while respecting user preferences and ensuring a more accessible approach.</li>
+    </ul>
+  </li>
+  <li>The <code class="highlighter-rouge">&lt;body&gt;</code> also sets a global <code class="highlighter-rouge">font-family</code>, <code class="highlighter-rouge">line-height</code>, and <code class="highlighter-rouge">text-align</code>. This is inherited later by some form elements to prevent font inconsistencies.</li>
+  <li>For safety, the <code class="highlighter-rouge">&lt;body&gt;</code> has a declared <code class="highlighter-rouge">background-color</code>, defaulting to <code class="highlighter-rouge">#fff</code>.</li>
+</ul>
+
+<h2 id="native-font-stack">Native font stack</h2>
+
+<p>The default web fonts (Helvetica Neue, Helvetica, and Arial) have been dropped in Bootstrap 4 and replaced with a “native font stack” for optimum text rendering on every device and OS. Read more about <a href="https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/">native font stacks in this <em>Smashing Magazine</em> article</a>.</p>
+
+<figure class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="nv">$font-family-sans-serif</span><span class="p">:</span>
+  <span class="c1">// Safari for OS X and iOS (San Francisco)</span>
+  <span class="nt">-apple-system</span><span class="o">,</span>
+  <span class="c1">// Chrome &lt; 56 for OS X (San Francisco)</span>
+  <span class="nt">BlinkMacSystemFont</span><span class="o">,</span>
+  <span class="c1">// Windows</span>
+  <span class="s2">"Segoe UI"</span><span class="o">,</span>
+  <span class="c1">// Android</span>
+  <span class="s2">"Roboto"</span><span class="o">,</span>
+  <span class="c1">// Basic web fallback</span>
+  <span class="s2">"Helvetica Neue"</span><span class="o">,</span> <span class="nt">Arial</span><span class="o">,</span> <span class="nt">sans-serif</span><span class="o">,</span>
+  <span class="c1">// Emoji fonts</span>
+  <span class="s2">"Apple Color Emoji"</span><span class="o">,</span> <span class="s2">"Segoe UI Emoji"</span><span class="o">,</span> <span class="s2">"Segoe UI Symbol"</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span></code></pre></figure>
+
+<p>This <code class="highlighter-rouge">font-family</code> is applied to the <code class="highlighter-rouge">&lt;body&gt;</code> and automatically inherited globally throughout Bootstrap. To switch the global <code class="highlighter-rouge">font-family</code>, update <code class="highlighter-rouge">$font-family-base</code> and recompile Bootstrap.</p>
+
+<h2 id="headings-and-paragraphs">Headings and paragraphs</h2>
+
+<p>All heading elements—e.g., <code class="highlighter-rouge">&lt;h1&gt;</code>—and <code class="highlighter-rouge">&lt;p&gt;</code> are reset to have their <code class="highlighter-rouge">margin-top</code> removed. Headings have <code class="highlighter-rouge">margin-bottom: .5rem</code> added and paragraphs <code class="highlighter-rouge">margin-bottom: 1rem</code> for easy spacing.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Heading</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p><code class="highlighter-rouge">&lt;h1&gt;&lt;/h1&gt;</code></p>
+
+      </td>
+      <td><span class="h1">h1. Bootstrap heading</span></td>
+    </tr>
+    <tr>
+      <td>
+        <p><code class="highlighter-rouge">&lt;h2&gt;&lt;/h2&gt;</code></p>
+
+      </td>
+      <td><span class="h2">h2. Bootstrap heading</span></td>
+    </tr>
+    <tr>
+      <td>
+        <p><code class="highlighter-rouge">&lt;h3&gt;&lt;/h3&gt;</code></p>
+
+      </td>
+      <td><span class="h3">h3. Bootstrap heading</span></td>
+    </tr>
+    <tr>
+      <td>
+        <p><code class="highlighter-rouge">&lt;h4&gt;&lt;/h4&gt;</code></p>
+
+      </td>
+      <td><span class="h4">h4. Bootstrap heading</span></td>
+    </tr>
+    <tr>
+      <td>
+        <p><code class="highlighter-rouge">&lt;h5&gt;&lt;/h5&gt;</code></p>
+
+      </td>
+      <td><span class="h5">h5. Bootstrap heading</span></td>
+    </tr>
+    <tr>
+      <td>
+        <p><code class="highlighter-rouge">&lt;h6&gt;&lt;/h6&gt;</code></p>
+
+      </td>
+      <td><span class="h6">h6. Bootstrap heading</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="lists">Lists</h2>
+
+<p>All lists—<code class="highlighter-rouge">&lt;ul&gt;</code>, <code class="highlighter-rouge">&lt;ol&gt;</code>, and <code class="highlighter-rouge">&lt;dl&gt;</code>—have their <code class="highlighter-rouge">margin-top</code> removed and a <code class="highlighter-rouge">margin-bottom: 1rem</code>. Nested lists have no <code class="highlighter-rouge">margin-bottom</code>.</p>
+
+<div class="docs-example">
+
+
+<ul>
+  <li>Lorem ipsum dolor sit amet</li>
+  <li>Consectetur adipiscing elit</li>
+  <li>Integer molestie lorem at massa</li>
+  <li>Facilisis in pretium nisl aliquet</li>
+  <li>Nulla volutpat aliquam velit
+    <ul>
+      <li>Phasellus iaculis neque</li>
+      <li>Purus sodales ultricies</li>
+      <li>Vestibulum laoreet porttitor sem</li>
+      <li>Ac tristique libero volutpat at</li>
+    </ul>
+  </li>
+  <li>Faucibus porta lacus fringilla vel</li>
+  <li>Aenean sit amet erat nunc</li>
+  <li>Eget porttitor lorem</li>
+</ul>
+
+<ol>
+  <li>Lorem ipsum dolor sit amet</li>
+  <li>Consectetur adipiscing elit</li>
+  <li>Integer molestie lorem at massa</li>
+  <li>Facilisis in pretium nisl aliquet</li>
+  <li>Nulla volutpat aliquam velit</li>
+  <li>Faucibus porta lacus fringilla vel</li>
+  <li>Aenean sit amet erat nunc</li>
+  <li>Eget porttitor lorem</li>
+</ol>
+
+</div>
+
+<p>For simpler styling, clear hierarchy, and better spacing, description lists have updated <code class="highlighter-rouge">margin</code>s. <code class="highlighter-rouge">&lt;dd&gt;</code>s reset <code class="highlighter-rouge">margin-left</code> to <code class="highlighter-rouge">0</code> and add <code class="highlighter-rouge">margin-bottom: .5rem</code>. <code class="highlighter-rouge">&lt;dt&gt;</code>s are <strong>bolded</strong>.</p>
+
+<div class="docs-example">
+  <dl>
+    <dt>Description lists</dt>
+    <dd>A description list is perfect for defining terms.</dd>
+    <dt>Euismod</dt>
+    <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem.</dd>
+    <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+    <dt>Malesuada porta</dt>
+    <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+  </dl>
+</div>
+
+<h2 id="preformatted-text">Preformatted text</h2>
+
+<p>The <code class="highlighter-rouge">&lt;pre&gt;</code> element is reset to remove its <code class="highlighter-rouge">margin-top</code> and use <code class="highlighter-rouge">rem</code> units for its <code class="highlighter-rouge">margin-bottom</code>.</p>
+
+<div class="docs-example">
+<pre>
+.example-element {
+  margin-bottom: 1rem;
+}
+</pre>
+</div>
+
+<h2 id="tables">Tables</h2>
+
+<p>Tables are slightly adjusted to style <code class="highlighter-rouge">&lt;caption&gt;</code>s, collapse borders, and ensure consistent <code class="highlighter-rouge">text-align</code> throughout. Additional changes for borders, padding, and more come with <a href="https://coreui.io/bootstrap/docs/content/tables/">the <code class="highlighter-rouge">.table</code> class</a>.</p>
+
+<div class="docs-example">
+  <table>
+    <caption>
+      This is an example table, and this is its caption to describe the contents.
+    </caption>
+    <thead>
+      <tr>
+        <th>Table heading</th>
+        <th>Table heading</th>
+        <th>Table heading</th>
+        <th>Table heading</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+      </tr>
+      <tr>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+      </tr>
+      <tr>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+        <td>Table cell</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 id="forms">Forms</h2>
+
+<p>Various form elements have been rebooted for simpler base styles. Here are some of the most notable changes:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">&lt;fieldset&gt;</code>s have no borders, padding, or margin so they can be easily used as wrappers for individual inputs or groups of inputs.</li>
+  <li><code class="highlighter-rouge">&lt;legend&gt;</code>s, like fieldsets, have also been restyled to be displayed as a heading of sorts.</li>
+  <li><code class="highlighter-rouge">&lt;label&gt;</code>s are set to <code class="highlighter-rouge">display: inline-block</code> to allow <code class="highlighter-rouge">margin</code> to be applied.</li>
+  <li><code class="highlighter-rouge">&lt;input&gt;</code>s, <code class="highlighter-rouge">&lt;select&gt;</code>s, <code class="highlighter-rouge">&lt;textarea&gt;</code>s, and <code class="highlighter-rouge">&lt;button&gt;</code>s are mostly addressed by Normalize, but Reboot removes their <code class="highlighter-rouge">margin</code> and sets <code class="highlighter-rouge">line-height: inherit</code>, too.</li>
+  <li><code class="highlighter-rouge">&lt;textarea&gt;</code>s are modified to only be resizable vertically as horizontal resizing often “breaks” page layout.</li>
+</ul>
+
+<p>These changes, and more, are demonstrated below.</p>
+
+<form class="docs-example">
+  <fieldset>
+    <legend>Example legend</legend>
+
+    <p>
+      <label for="input">Example input</label>
+      <input type="text" id="input" placeholder="Example input" />
+    </p>
+
+    <p>
+      <label for="select">Example select</label>
+      <select id="select">
+        <option value="">Choose...</option>
+        <optgroup label="Option group 1">
+          <option value="">Option 1</option>
+          <option value="">Option 2</option>
+          <option value="">Option 3</option>
+        </optgroup>
+        <optgroup label="Option group 2">
+          <option value="">Option 4</option>
+          <option value="">Option 5</option>
+          <option value="">Option 6</option>
+        </optgroup>
+      </select>
+    </p>
+
+    <p>
+      <label>
+        <input type="checkbox" value="" />
+        Check this checkbox
+      </label>
+    </p>
+
+    <p>
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="" />
+        Option one is this and that
+      </label>
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
+        Option two is something else that's also super long to demonstrate the wrapping of these fancy form controls.
+      </label>
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled="" />
+        Option three is disabled
+      </label>
+    </p>
+
+    <p>
+      <label for="textarea">Example textarea</label>
+      <textarea id="textarea" rows="3"></textarea>
+    </p>
+
+    <p>
+      <label for="date">Example date</label>
+      <input type="date" id="date" />
+    </p>
+
+    <p>
+      <label for="time">Example time</label>
+      <input type="time" id="time" />
+    </p>
+
+    <p>
+      <label for="output">Example output</label>
+      <output name="result" id="output">100</output>
+    </p>
+
+    <p>
+      <button type="submit">Button submit</button>
+      <input type="submit" value="Input submit button" />
+      <input type="button" value="Input button" />
+    </p>
+
+    <p>
+      <button type="submit" disabled="">Button submit</button>
+      <input type="submit" value="Input submit button" disabled="" />
+      <input type="button" value="Input button" disabled="" />
+    </p>
+  </fieldset>
+</form>
+
+<h2 id="misc-elements">Misc elements</h2>
+
+<h3 id="address">Address</h3>
+
+<p>The <code class="highlighter-rouge">&lt;address&gt;</code> element is updated to reset the browser default <code class="highlighter-rouge">font-style</code> from <code class="highlighter-rouge">italic</code> to <code class="highlighter-rouge">normal</code>. <code class="highlighter-rouge">line-height</code> is also now inherited, and <code class="highlighter-rouge">margin-bottom: 1rem</code> has been added. <code class="highlighter-rouge">&lt;address&gt;</code>s are for presenting contact information for the nearest ancestor (or an entire body of work). Preserve formatting by ending lines with <code class="highlighter-rouge">&lt;br&gt;</code>.</p>
+
+<div class="docs-example">
+  <address>
+    <strong>Twitter, Inc.</strong><br />
+    1355 Market St, Suite 900<br />
+    San Francisco, CA 94103<br />
+    <abbr title="Phone">P:</abbr> (123) 456-7890
+  </address>
+
+  <address>
+    <strong>Full Name</strong><br />
+    <a href="mailto:#">first.last@example.com</a>
+  </address>
+</div>
+
+<h3 id="blockquote">Blockquote</h3>
+
+<p>The default <code class="highlighter-rouge">margin</code> on blockquotes is <code class="highlighter-rouge">1em 40px</code>, so we reset that to <code class="highlighter-rouge">0 0 1rem</code> for something more consistent with other elements.</p>
+
+<div class="docs-example">
+  <blockquote class="blockquote">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+    <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+  </blockquote>
+</div>
+
+<h3 id="inline-elements">Inline elements</h3>
+
+<p>The <code class="highlighter-rouge">&lt;abbr&gt;</code> element receives basic styling to make it stand out amongst paragraph text.</p>
+
+<div class="docs-example">
+  Nulla <abbr title="attribute">attr</abbr> vitae elit libero, a pharetra augue.
+</div>
+
+<h3 id="summary">Summary</h3>
+
+<p>The default <code class="highlighter-rouge">cursor</code> on summary is <code class="highlighter-rouge">text</code>, so we reset that to <code class="highlighter-rouge">pointer</code> to convey that the element can be interacted with by clicking on it.</p>
+
+<div class="docs-example">
+  <details>
+    <summary>Some details</summary>
+    <p>More info about the details.</p>
+  </details>
+
+  <details open="">
+    <summary>Even more details</summary>
+    <p>Here are even more details about the details.</p>
+  </details>
+</div>
+
+<h2 id="html5-hidden-attribute">HTML5 <code class="highlighter-rouge">[hidden]</code> attribute</h2>
+
+<p>HTML5 adds <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden">a new global attribute named <code class="highlighter-rouge">[hidden]</code></a>, which is styled as <code class="highlighter-rouge">display: none</code> by default. Borrowing an idea from <a href="https://purecss.io/">PureCSS</a>, we improve upon this default by making <code class="highlighter-rouge">[hidden] { display: none !important; }</code> to help prevent its <code class="highlighter-rouge">display</code> from getting accidentally overridden. While <code class="highlighter-rouge">[hidden]</code> isn’t natively supported by IE10, the explicit declaration in our CSS gets around that problem.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">hidden</span><span class="nt">&gt;</span></code></pre></figure>
+
+<div class="docs-callout docs-callout-warning">
+<h5 id="jquery-incompatibility">jQuery incompatibility</h5>
+
+<p><code class="highlighter-rouge">[hidden]</code> is not compatible with jQuery’s <code class="highlighter-rouge">$(...).hide()</code> and <code class="highlighter-rouge">$(...).show()</code> methods. Therefore, we don’t currently especially endorse <code class="highlighter-rouge">[hidden]</code> over other techniques for managing the <code class="highlighter-rouge">display</code> of elements.</p>
+</div>
+
+<p>To merely toggle the visibility of an element, meaning its <code class="highlighter-rouge">display</code> is not modified and the element can still affect the flow of the document, use <a href="https://coreui.io/bootstrap/docs/utilities/visibility/">the <code class="highlighter-rouge">.invisible</code> class</a> instead.</p>
+
+                </div>
+              </div>
+            </div>
+            
+              <div class="d-none d-xl-block col-xl-3 toc">
+                <div class="card">
+                  <div class="card-body">
+                    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#approach">Approach</a></li>
+<li class="toc-entry toc-h2"><a href="#page-defaults">Page defaults</a></li>
+<li class="toc-entry toc-h2"><a href="#native-font-stack">Native font stack</a></li>
+<li class="toc-entry toc-h2"><a href="#headings-and-paragraphs">Headings and paragraphs</a></li>
+<li class="toc-entry toc-h2"><a href="#lists">Lists</a></li>
+<li class="toc-entry toc-h2"><a href="#preformatted-text">Preformatted text</a></li>
+<li class="toc-entry toc-h2"><a href="#tables">Tables</a></li>
+<li class="toc-entry toc-h2"><a href="#forms">Forms</a></li>
+<li class="toc-entry toc-h2"><a href="#misc-elements">Misc elements</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#address">Address</a></li>
+<li class="toc-entry toc-h3"><a href="#blockquote">Blockquote</a></li>
+<li class="toc-entry toc-h3"><a href="#inline-elements">Inline elements</a></li>
+<li class="toc-entry toc-h3"><a href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#html5-hidden-attribute">HTML5 [hidden] attribute</a></li>
+</ul>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="app-footer">
+  <div>
+    <a href="https://coreui.io">CoreUI</a>
+    <span>&copy; 2018 creativeLabs.</span>
+  </div>
+  <div class="ml-auto">
+    <span>Powered by</span>
+    <a href="https://coreui.io">CoreUI</a>
+  </div>
+</footer>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<!-- <script>window.jQuery || document.write('<script src="https://coreui.io/bootstrap/docs/2.1/assets/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
+
+<script src="https://coreui.io/bootstrap/docs/2.1/assets/js/vendor/popper.min.js"></script><script src="https://coreui.io/bootstrap/docs/dist/js/bootstrap.js"></script><!--<script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>-->
+
+<script src="https://coreui.io/bootstrap/docs/2.1/assets/js/perfect-scrollbar.min.js"></script>
+<script src="https://coreui.io/bootstrap/docs/2.1/assets/js/coreui.min.js"></script>
+<script src="https://coreui.io/bootstrap/docs/2.1/assets/js/docs.min.js"></script>
+
+
+<script>
+$(document).ready(function(){
+  $("#search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#icons-list .icon").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
+<script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) {  L.start({"baseUrl":"mc.us12.list-manage.com","uuid":"272317181a81e4571a8dc53e0","lid":"7a9caf510c"}) })</script>
+
+  </body>
+</html>
