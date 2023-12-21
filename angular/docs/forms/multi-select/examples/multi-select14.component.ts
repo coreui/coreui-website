@@ -32,7 +32,7 @@ export class MultiSelect14Component {
   readonly searchValue$ = new BehaviorSubject<string>('');
 
   formGroup = new FormGroup({
-    sampleSelect: new FormControl<string[]>(['200'])
+    sampleSelect: new FormControl<number[]>([200])
   });
 
   constructor(
@@ -41,7 +41,7 @@ export class MultiSelect14Component {
     this.options$ = this.optionsService.search(this.searchValue$).pipe(
       map(next => {
         return next.map(option => {
-          const value = option.id.toString().trim();
+          const value = parseInt(option.id);
           const label = option.last_name;
           const text = `${option.last_name} [${value}]`;
           return { value, label, text };
