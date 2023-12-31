@@ -4,10 +4,10 @@ import { IColumn, IItem } from '@coreui/angular';
 import usersData from './data';
 
 interface IData extends IItem {
-  id?: number
-  name?: string
-  role?: string
-  status?: string
+  id?: number;
+  name?: string;
+  role?: string;
+  status?: string;
 }
 
 @Component({
