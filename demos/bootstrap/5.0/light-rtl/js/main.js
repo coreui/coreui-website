@@ -158,8 +158,7 @@ const cardChart1 = new Chart(document.getElementById('card-chart1'), {
           display: false
         },
         grid: {
-          display: false,
-          drawBorder: false
+          display: false
         },
         ticks: {
           display: false
@@ -215,8 +214,7 @@ const cardChart2 = new Chart(document.getElementById('card-chart2'), {
           display: false
         },
         grid: {
-          display: false,
-          drawBorder: false
+          display: false
         },
         ticks: {
           display: false
@@ -321,7 +319,6 @@ const cardChart4 = new Chart(document.getElementById('card-chart4'), {
         },
         grid: {
           display: false,
-          drawBorder: false,
           drawTicks: false
         },
         ticks: {
@@ -354,18 +351,6 @@ const mainChart = new Chart(document.getElementById('main-chart'), {
   options: {
     maintainAspectRatio: false,
     plugins: {
-      annotation: {
-        annotations: {
-          line1: {
-            type: 'line',
-            yMin: 95,
-            yMax: 95,
-            borderColor: coreui.Utils.getStyle('--cui-danger'),
-            borderWidth: 1,
-            borderDash: [8, 5]
-          }
-        }
-      },
       legend: {
         display: false
       }
@@ -381,16 +366,16 @@ const mainChart = new Chart(document.getElementById('main-chart'), {
         }
       },
       y: {
+        beginAtZero: true,
         border: {
           color: coreui.Utils.getStyle('--cui-border-color-translucent')
         },
         grid: {
           color: coreui.Utils.getStyle('--cui-border-color-translucent')
         },
+        max: 250,
         ticks: {
-          beginAtZero: true,
           color: coreui.Utils.getStyle('--cui-body-color'),
-          max: 250,
           maxTicksLimit: 5,
           stepSize: Math.ceil(250 / 5)
         }

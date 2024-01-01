@@ -209,8 +209,7 @@ const cardChart1 = new Chart(document.getElementById('card-chart1'), {
           display: false
         },
         grid: {
-          display: false,
-          drawBorder: false
+          display: false
         },
         ticks: {
           display: false
@@ -316,7 +315,6 @@ const cardChart4 = new Chart(document.getElementById('card-chart4'), {
         },
         grid: {
           display: false,
-          drawBorder: false,
           drawTicks: false
         },
         ticks: {
@@ -357,13 +355,16 @@ const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
     },
     scales: {
       x: {
+        border: {
+          display: false
+        },
         grid: {
+          color: coreui.Utils.getStyle('--cui-border-color-translucent'),
           display: false,
-          drawBorder: false,
           drawTicks: false
         },
         ticks: {
-          color: coreui.Utils.getStyle('--cui-text-body-secondary'),
+          color: coreui.Utils.getStyle('--cui-body-color'),
           font: {
             size: 14
           },
@@ -371,28 +372,22 @@ const mainBarChart = new Chart(document.getElementById('main-bar-chart'), {
         }
       },
       y: {
-        grid: {
-          // display: false,
-          drawBorder: false,
-          borderDash: [2, 4]
-          // drawTicks: false
+        beginAtZero: true,
+        border: {
+          dash: [2, 4],
+          display: false
         },
-
-        gridLines: {
-          // You can change the color, the dash effect, the main axe color, etc.
-          borderDash: [8, 4],
-          color: '#348632'
+        grid: {
+          color: coreui.Utils.getStyle('--cui-border-color-translucent')
         },
         ticks: {
-          beginAtZero: true,
-          color: coreui.Utils.getStyle('--cui-text-body-secondary'),
+          color: coreui.Utils.getStyle('--cui-body-color'),
           font: {
             size: 14
           },
           maxTicksLimit: 5,
           padding: 16,
           stepSize: Math.ceil(100 / 4)
-          // max: 250
         }
       }
     }
