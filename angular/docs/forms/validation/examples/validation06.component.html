@@ -1,16 +1,10 @@
 <c-row>
-  <c-col md="6">
-    <form cForm [formGroup]="simpleForm" novalidate (ngSubmit)="onSubmit()">
+  <c-col [md]="6">
+    <form (ngSubmit)="onSubmit()" [formGroup]="simpleForm" cForm novalidate>
       <c-row class="mb-1">
-        <label cCol [sm]="4" cLabel="col" for="firstName">First name</label>
-        <c-col [sm]="8" *ngIf="simpleForm.controls['firstName'] as ctrl">
+        <label [sm]="4" cCol cLabel="col" for="firstName">First name</label>
+        <c-col *ngIf="simpleForm.controls['firstName'] as ctrl" [sm]="8">
           <input
-            cFormControl
-            id="firstName"
-            formControlName="firstName"
-            placeholder="First name"
-            autocomplete="off"
-            required
             [autofocus]="true"
             [valid]="
               ctrl.touched && ctrl.valid
@@ -19,6 +13,12 @@
                 ? false
                 : undefined
             "
+            autocomplete="off"
+            cFormControl
+            formControlName="firstName"
+            id="firstName"
+            placeholder="First name"
+            required
           />
           <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
             <ng-container *ngIf="ctrl.errors as errors">
@@ -28,15 +28,9 @@
         </c-col>
       </c-row>
       <c-row class="mb-1">
-        <label cCol [sm]="4" cLabel="col" for="lastName">Last name</label>
-        <c-col [sm]="8" *ngIf="simpleForm.controls['lastName'] as ctrl">
+        <label [sm]="4" cCol cLabel="col" for="lastName">Last name</label>
+        <c-col *ngIf="simpleForm.controls['lastName'] as ctrl" [sm]="8">
           <input
-            cFormControl
-            id="lastName"
-            formControlName="lastName"
-            placeholder="Last name"
-            autocomplete="off"
-            required
             [valid]="
               ctrl.touched && ctrl.valid
                 ? true
@@ -44,6 +38,12 @@
                 ? false
                 : undefined
             "
+            autocomplete="off"
+            cFormControl
+            formControlName="lastName"
+            id="lastName"
+            placeholder="Last name"
+            required
           />
           <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
             <ng-container *ngIf="ctrl.errors as errors">
@@ -53,15 +53,9 @@
         </c-col>
       </c-row>
       <c-row class="mb-1">
-        <label cCol [sm]="4" cLabel="col" for="username">Username</label>
-        <c-col [sm]="8" *ngIf="simpleForm.controls['username'] as ctrl">
+        <label [sm]="4" cCol cLabel="col" for="username">Username</label>
+        <c-col *ngIf="simpleForm.controls['username'] as ctrl" [sm]="8">
           <input
-            cFormControl
-            id="username"
-            formControlName="username"
-            placeholder="Username"
-            autocomplete="off"
-            required
             [valid]="
               ctrl.touched && ctrl.valid
                 ? true
@@ -69,6 +63,12 @@
                 ? false
                 : undefined
             "
+            autocomplete="off"
+            cFormControl
+            formControlName="username"
+            id="username"
+            placeholder="Username"
+            required
           />
           <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
             <ng-container *ngIf="ctrl.errors as errors">
@@ -84,16 +84,9 @@
         </c-col>
       </c-row>
       <c-row class="mb-1">
-        <label cCol [sm]="4" cLabel="col" for="email">Email</label>
-        <c-col [sm]="8" *ngIf="simpleForm.controls['email'] as ctrl">
+        <label [sm]="4" cCol cLabel="col" for="email">Email</label>
+        <c-col *ngIf="simpleForm.controls['email'] as ctrl" [sm]="8">
           <input
-            cFormControl
-            id="email"
-            type="email"
-            formControlName="email"
-            placeholder="Email"
-            autocomplete="off"
-            required
             [valid]="
               ctrl.touched && ctrl.valid
                 ? true
@@ -101,6 +94,13 @@
                 ? false
                 : undefined
             "
+            autocomplete="off"
+            cFormControl
+            formControlName="email"
+            id="email"
+            placeholder="Email"
+            required
+            type="email"
           />
           <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
             <ng-container *ngIf="ctrl.errors as errors">
@@ -113,16 +113,9 @@
         </c-col>
       </c-row>
       <c-row class="mb-1">
-        <label cCol [sm]="4" cLabel="col" for="password">Password</label>
-        <c-col [sm]="8" *ngIf="simpleForm.controls['password'] as ctrl">
+        <label [sm]="4" cCol cLabel="col" for="password">Password</label>
+        <c-col *ngIf="simpleForm.controls['password'] as ctrl" [sm]="8">
           <input
-            cFormControl
-            id="password"
-            type="password"
-            formControlName="password"
-            placeholder="Password"
-            autocomplete="new-password"
-            required
             [valid]="
               ctrl.touched && ctrl.valid
                 ? true
@@ -130,6 +123,13 @@
                 ? false
                 : undefined
             "
+            autocomplete="new-password"
+            cFormControl
+            formControlName="password"
+            id="password"
+            placeholder="Password"
+            required
+            type="password"
           />
           <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
             <ng-container *ngIf="ctrl.errors as errors">
@@ -145,16 +145,9 @@
         </c-col>
       </c-row>
       <c-row class="mb-1">
-        <label cCol [sm]="4" cLabel="col" for="confirmPassword">Confirm password</label>
-        <c-col [sm]="8" *ngIf="simpleForm.controls['confirmPassword'] as ctrl">
+        <label [sm]="4" cCol cLabel="col" for="confirmPassword">Confirm password</label>
+        <c-col *ngIf="simpleForm.controls['confirmPassword'] as ctrl" [sm]="8">
           <input
-            cFormControl
-            id="confirmPassword"
-            type="password"
-            formControlName="confirmPassword"
-            placeholder="Confirm password"
-            autocomplete="off"
-            required
             [valid]="
               ctrl.touched && ctrl.valid
                 ? true
@@ -162,6 +155,13 @@
                 ? false
                 : undefined
             "
+            autocomplete="off"
+            cFormControl
+            formControlName="confirmPassword"
+            id="confirmPassword"
+            placeholder="Confirm password"
+            required
+            type="password"
           />
           <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
             <ng-container *ngIf="ctrl.errors as errors">
@@ -174,15 +174,31 @@
         </c-col>
       </c-row>
       <c-row class="mb-1">
+        <label [sm]="4" cCol cLabel="col" for="birthday">Date of Birth</label>
+        <c-col *ngIf="simpleForm.controls['birthday'] as ctrl" [sm]="8">
+          <c-date-picker
+            [valid]="(ctrl.touched && ctrl.valid) ? true : (submitted || ctrl.touched) && ctrl.invalid ? false : undefined"
+            formControlName="birthday"
+            id="birthday"
+            required
+          />
+          <c-form-feedback *ngIf="submitted || ctrl.invalid" [valid]="!(submitted || ctrl.invalid)">
+            <ng-container *ngIf="ctrl.errors as errors">
+              <div *ngIf="errors?.required">Birthday date required</div>
+            </ng-container>
+          </c-form-feedback>
+        </c-col>
+      </c-row>
+      <c-row class="mb-1">
         <c-col *ngIf="simpleForm.controls['accept'] as ctrl">
           <c-form-check>
             <input
-              cFormCheckInput
-              type="checkbox"
-              id="accept"
-              formControlName="accept"
-              required
               [valid]="ctrl.valid ? true : submitted && ctrl.invalid ? false : undefined"
+              cFormCheckInput
+              formControlName="accept"
+              id="accept"
+              required
+              type="checkbox"
             />
             <label cFormCheckLabel custom for="accept">I accept the terms of use</label>
             <c-form-feedback *ngIf="submitted && ctrl.invalid" [valid]="false">
@@ -196,31 +212,31 @@
       <hr />
       <c-button-group>
         <button
+          [disabled]="simpleForm.pristine || simpleForm.invalid"
+          [tabindex]="'0'"
           cButton
           color="primary"
           type="submit"
-          [disabled]="simpleForm.pristine || simpleForm.invalid"
-          [tabindex]="'0'"
         >
           Submit
         </button>
         <button
+          (click)="onValidate()"
+          [disabled]="simpleForm.valid"
+          [tabindex]="'0'"
           cButton
           color="success"
-          [disabled]="simpleForm.valid"
-          (click)="onValidate()"
-          [tabindex]="'0'"
         >
           Validate
         </button>
-        <button cButton color="danger" type="reset" (click)="onReset()" [tabindex]="'0'">
+        <button (click)="onReset()" [tabindex]="'0'" cButton color="danger" type="reset">
           Reset
         </button>
       </c-button-group>
     </form>
   </c-col>
-  <c-col md="6">
-    <c-card class="bg-dark" [ngClass]="{ 'bg-info': simpleForm.valid }">
+  <c-col [md]="6">
+    <c-card [ngClass]="{ 'bg-info': simpleForm.valid }" class="bg-dark">
       <c-card-body>
         <pre class="text-white">Value: <code>{{ simpleForm.value | json }}</code></pre>
         <ul>

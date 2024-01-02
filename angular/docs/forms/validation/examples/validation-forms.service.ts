@@ -21,16 +21,17 @@ export class ValidationFormsService {
     email: '',
     password: '',
     confirmPassword: '',
-    accept: false,
+    birthday: '',
+    accept: false
   };
 
   constructor() {
     this.errorMessages = {
       firstName: {
-        required: 'First name is required',
+        required: 'First name is required'
       },
       lastName: {
-        required: 'Last name is required',
+        required: 'Last name is required'
       },
       username: {
         required: 'Username is required',
@@ -39,7 +40,7 @@ export class ValidationFormsService {
       },
       email: {
         required: 'required',
-        email: 'Invalid email address',
+        email: 'Invalid email address'
       },
       password: {
         required: 'Password is required',
@@ -50,9 +51,12 @@ export class ValidationFormsService {
         required: 'Password confirmation is required',
         passwordMismatch: 'Passwords must match'
       },
+      birthday: {
+        required: 'Birthday date required'
+      },
       accept: {
         requiredTrue: 'You have to accept our Terms and Conditions'
-      },
+      }
     };
   }
 }
