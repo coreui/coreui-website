@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcoreui_pro_angular_admin_template=self.webpackChunkcoreui_pro_angular_admin_template||[]).push([[5289],{5289:(l,t,o)=>{o.r(t),o.d(t,{routes:()=>n});const n=[{path:"",loadComponent:()=>Promise.all([o.e(8625),o.e(441),o.e(8103)]).then(o.bind(o,8103)).then(a=>a.DashboardComponent),data:{title:$localize`Dashboard`}}]}}]);
