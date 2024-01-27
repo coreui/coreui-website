@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcoreui_pro_angular_admin_template=self.webpackChunkcoreui_pro_angular_admin_template||[]).push([[8627],{8627:(s,n,t)=>{t.r(n),t.d(n,{routes:()=>o});const o=[{path:"",loadComponent:()=>Promise.all([t.e(8625),t.e(441),t.e(8592),t.e(2127)]).then(t.bind(t,2127)).then(l=>l.WidgetsComponent),data:{title:"Widgets"}}]}}]);
