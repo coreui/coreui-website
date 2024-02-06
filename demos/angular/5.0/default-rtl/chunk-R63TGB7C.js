@@ -1,0 +1,1 @@
+import"./chunk-RLASGPT3.js";var e=[{path:"",data:{title:"Apps"},children:[{path:"email",loadChildren:()=>import("./chunk-KNGZF6PV.js").then(t=>t.routes)},{path:"invoicing",loadChildren:()=>import("./chunk-TKB4AOWI.js").then(t=>t.routes)}]}];export{e as routes};

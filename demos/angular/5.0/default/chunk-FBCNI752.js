@@ -1,1 +1,0 @@
-import"./chunk-KUU7MVPS.js";var e=[{path:"",data:{title:"Apps"},children:[{path:"email",loadChildren:()=>import("./chunk-KKZBR3ZG.js").then(t=>t.routes)},{path:"invoicing",loadChildren:()=>import("./chunk-YQTMJQEL.js").then(t=>t.routes)}]}];export{e as routes};
