@@ -1,0 +1,26 @@
+<c-navbar colorScheme="light" expand="lg" class="bg-light">
+  <c-container fluid>
+    <a cNavbarBrand>
+      Navbar
+    </a>
+    <button [cNavbarToggler]="collapseRef"></button>
+    <div #collapseRef="cCollapse" navbar cCollapse>
+      <c-navbar-nav class="me-auto mb-2 mb-lg-0">
+        <c-nav-item>
+          <a cNavLink active>Home</a>
+        </c-nav-item>
+        <c-nav-item>
+          <a cNavLink>Link</a>
+        </c-nav-item>
+        <c-nav-item>
+          <a cNavLink disabled class="d-block d-lg-none d-xl-block">Disabled</a>
+        </c-nav-item>
+      </c-navbar-nav>
+      <form cForm class="d-flex" role="search">
+        <input cFormControl type="search" placeholder="Search" aria-label="Search" class="me-2">
+        <button cButton color="success" variant="outline">Search</button>
+      </form>
+    </div>
+  </c-container>
+</c-navbar>
+

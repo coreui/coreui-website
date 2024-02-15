@@ -1,0 +1,16 @@
+<c-navbar class="bg-light" colorScheme="light" expand="lg">
+  <c-container fluid>
+    <a cNavbarBrand href="https://coreui.io/angular/" target="_blank">
+      Navbar
+    </a>
+    <button [cNavbarToggler]="collapseRef"></button>
+    <div #collapseRef="cCollapse" cCollapse navbar>
+      <c-navbar-nav class="me-auto my-2 mb-lg-0" scroll style="--cui-scroll-height: 80px;">
+        <a active cNavLink routerLink="./">Home</a>
+        <a cNavLink routerLink="./" >Features</a>
+        <a cNavLink routerLink="./">Pricing</a>
+        <a cNavLink disabled routerLink="./">Disabled</a>
+      </c-navbar-nav>
+    </div>
+  </c-container>
+</c-navbar>

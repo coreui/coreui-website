@@ -1,0 +1,20 @@
+<form [formGroup]="formGroup">
+  <p>Form value: {{ formGroup.value | json }}</p>
+  <hr />
+  <c-multi-select
+    (searchValueChange)="searchValue$.next($event)"
+    formControlName="sampleSelect"
+    multiple="true"
+    search="external"
+    visibleItems="8"
+    [options]="(filteredOptions$ | async) ?? []"
+  >
+    <c-multi-select-option
+      *ngFor="let option of filteredOptions$ | async"
+      [value]="option.value"
+    >
+      <svg [cIcon]="icons.cilPaperclip" class="me-1" />
+      {{ option.label }}
+    </c-multi-select-option>
+  </c-multi-select>
+</form>

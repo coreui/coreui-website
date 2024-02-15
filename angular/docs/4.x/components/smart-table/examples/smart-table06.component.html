@@ -1,0 +1,31 @@
+<c-smart-table
+  #smartTable="cSmartTable"
+  [columnFilter]="true"
+  [columnSorter]="true"
+  [columns]="columns"
+  header
+  itemsPerPage="10"
+  [itemsPerPageSelect]="true"
+  [items]="filteredUsersData"
+  pagination
+  [tableProps]="{ hover: true, striped: true, responsive: true }"
+>
+  <ng-template cTemplateId="tableData"
+               let-columnName="columnName"
+               let-item="item"
+               let-tdContent="tdContent">
+    <td [cTableActive]="smartTable.tableDataCellProps(item, columnName)?.['active']"
+        [cTableColor]="smartTable.tableDataCellProps(item, columnName)?.color"
+        [cAlign]="smartTable.tableDataCellProps(item, columnName)?.align"
+        [ngClass]="smartTable.tableDataCellClasses(item, columnName)">
+      <ng-container [ngSwitch]="columnName">
+        <ng-container *ngSwitchCase="'address'">
+          {{item[columnName]['country'] ?? "-"}}
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          {{tdContent}}
+        </ng-container>
+      </ng-container>
+    </td>
+  </ng-template>
+</c-smart-table>

@@ -1,0 +1,28 @@
+<button (click)="toggleCollapse(0)" cButton class="me-1" color="primary">Toggle first element</button>
+<button (click)="toggleCollapse(1)" cButton class="me-1" color="primary">Toggle second element</button>
+<button (click)="toggleCollapse(0); toggleCollapse(1);" cButton class="me-1" color="primary">Toggle both</button>
+
+<c-row>
+  <c-col [xs]="6">
+    <div [visible]="visible[0]" cCollapse>
+      <c-card class="mt-3">
+        <c-card-body>
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+          richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
+          anderson cred nesciunt sapiente ea proident.
+        </c-card-body>
+      </c-card>
+    </div>
+  </c-col>
+  <c-col [xs]="6">
+    <div [visible]="visible[1]" cCollapse>
+      <c-card class="mt-3">
+        <c-card-body>
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+          richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
+          anderson cred nesciunt sapiente ea proident.
+        </c-card-body>
+      </c-card>
+    </div>
+  </c-col>
+</c-row>

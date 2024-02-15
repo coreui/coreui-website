@@ -1,0 +1,31 @@
+<c-row>
+  <c-col md="12" xl="6">
+    <c-widget-stat-b
+      [title]="'Widget title'"
+      class="mb-4"
+      text="Lorem ipsum dolor sit amet enim."
+      value="75.9%"
+    >
+      <br><br><br>
+      <c-progress class="my-2" thin>
+        <c-progress-bar [value]="75.9" color="success"></c-progress-bar>
+      </c-progress>
+    </c-widget-stat-b>
+  </c-col>
+  <c-col md="12" xl="6">
+    <c-widget-stat-b
+      #widgetStatB1inv="cWidgetStatB"
+      [title]="'Widget title'"
+      class="mb-4"
+      color="primary"
+      inverse
+      text="Lorem ipsum dolor sit amet enim."
+      value="75.9%"
+    >
+      <br><br><br>
+      <c-progress [white]="widgetStatB1inv.inverse" class="my-2" thin>
+        <c-progress-bar [value]="75.9"></c-progress-bar>
+      </c-progress>
+    </c-widget-stat-b>
+  </c-col>
+</c-row>
