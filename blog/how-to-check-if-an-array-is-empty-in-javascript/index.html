@@ -51,8 +51,6 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
 
-  
-
 </head><body><div class="page-header page-header-short">
   <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="70" class="cui-logo d-none" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -430,9 +428,8 @@ Wednesday, February 7, 2024
               <nav id="TableOfContents">
   <ul>
     <li><a href="#method-1-the-length-property">Method 1: The Length Property</a></li>
-    <li><a href="#method-2-the-arraylength-property-with-a-logical-not-operator">Method 2: The Array.length Property with a Logical NOT Operator</a></li>
-    <li><a href="#method-3-using-arrayisarray-with-length">Method 3: Using Array.isArray() with Length</a></li>
-    <li><a href="#method-4-using-isempty-function-to-check-if-an-array-is-empty">Method 4: Using <code>isEmpty()</code> Function to Check if an Array is Empty</a>
+    <li><a href="#method-2-using-arrayisarray-with-length">Method 2: Using Array.isArray() with Length</a></li>
+    <li><a href="#method-3-using-isempty-function-to-check-if-an-array-is-empty">Method 3: Using <code>isEmpty()</code> Function to Check if an Array is Empty</a>
       <ul>
         <li><a href="#example-in-action">Example in Action</a></li>
       </ul>
@@ -444,6 +441,7 @@ Wednesday, February 7, 2024
         <li><a href="#why-this-matters">Why This Matters</a></li>
       </ul>
     </li>
+    <li><a href="#how-dont-check-if-an-array-is-empty-in-javascript">How don&rsquo;t check if an array is empty in JavaScript?</a></li>
     <li><a href="#conclusion-and-takeaways">Conclusion and Takeaways</a></li>
   </ul>
 </nav><p>In the ever-evolving world of web development, JavaScript stands as a cornerstone, powering dynamic and interactive elements across countless websites and applications. Among its many tasks, one seemingly straightforward yet pivotal operation is determining whether an array is empty. This operation is crucial in various scenarios, such as enabling or disabling buttons based on user input or ensuring data integrity before processing. In this article, part of the &ldquo;how to&rdquo; series, we delve into the intricacies of checking for empty arrays in JavaScript. This guide promises to enlighten those new to the programming world and provide valuable insights for seasoned developers.</p>
@@ -455,15 +453,7 @@ Wednesday, February 7, 2024
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The array is not empty.&#39;</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="method-2-the-arraylength-property-with-a-logical-not-operator">Method 2: The Array.length Property with a Logical NOT Operator</h2>
-<p>A concise way to check for an empty array is by using the logical NOT (<code>!</code>) operator twice in front of the array&rsquo;s <code>length</code> property. This converts the length to a boolean where <code>0</code> (empty array) becomes <code>true</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">if</span> <span class="p">(</span><span class="o">!!</span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The array is empty.&#39;</span><span class="p">)</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The array is not empty.&#39;</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div><h2 id="method-3-using-arrayisarray-with-length">Method 3: Using Array.isArray() with Length</h2>
+</code></pre></div><h2 id="method-2-using-arrayisarray-with-length">Method 2: Using Array.isArray() with Length</h2>
 <p>While <code>Array.isArray()</code> alone does not check for emptiness, combining it with a check for length ensures that not only is the variable an array, but it&rsquo;s also empty. This is a more robust check when you&rsquo;re not certain of the variable&rsquo;s type.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="k">if</span> <span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
@@ -471,7 +461,7 @@ Wednesday, February 7, 2024
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The array is not empty or not an array.&#39;</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><h2 id="method-4-using-isempty-function-to-check-if-an-array-is-empty">Method 4: Using <code>isEmpty()</code> Function to Check if an Array is Empty</h2>
+</code></pre></div><h2 id="method-3-using-isempty-function-to-check-if-an-array-is-empty">Method 3: Using <code>isEmpty()</code> Function to Check if an Array is Empty</h2>
 <p>Consider the following code snippet as an introduction:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">isEmpty</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
@@ -516,6 +506,54 @@ Wednesday, February 7, 2024
 <li>
 <p><strong>Beyond Length</strong>: The example subtly hints at a broader principle in JavaScript programming: understanding the type and structure of your data is as important as knowing the properties and methods available to you. While length is a universally useful property, how and why you use it can vary greatly depending on the context—ranging from simple size checks to more complex logic that involves type-checking, filtering, and mapping over data structures.</p>
 </li>
+</ol>
+<h2 id="how-dont-check-if-an-array-is-empty-in-javascript">How don&rsquo;t check if an array is empty in JavaScript?</h2>
+<p>JavaScript offers a wide range of methods to check if an array is empty, ranging from straightforward to the more convoluted or &ldquo;stupid&rdquo; ways that are more about showcasing creativity or the quirks of the language rather than practicality. Here are some less conventional (not advisable) ways to check if an array is empty. Please don&rsquo;t use them in your projects.</p>
+<ol>
+<li>
+<p><strong>The Array.length Property with a Logical NOT Operator</strong>. A concise way to check for an empty array is by using the logical NOT (<code>!</code>) operator twice before the array’s <code>length</code> property This converts the length to a boolean where <code>0</code> (empty array) becomes <code>true</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">array</span> <span class="p">=&gt;</span> <span class="o">!!</span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="kc">false</span>
+</code></pre></div></li>
+<li>
+<p><strong>Using JSON.stringify</strong>: Convert the array to a JSON string and compare it with the string representation of an empty array.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">array</span> <span class="p">=&gt;</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;[]&#39;</span>
+</code></pre></div></li>
+<li>
+<p><strong>Using a combination of map and reduce</strong>: Try to sum the lengths of elements after mapping, which makes no sense for checking emptiness but works if you just want to do it roundaboutly.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">array</span> <span class="p">=&gt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="p">=&gt;</span> <span class="mi">1</span><span class="p">).</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span>
+</code></pre></div></li>
+<li>
+<p><strong>Employing Array.prototype.join</strong>: Convert the array to a string using a delimiter and check if the resulting string is empty.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">array</span> <span class="p">=&gt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span>
+</code></pre></div></li>
+<li>
+<p><strong>Using Array.prototype.filter:</strong> Filter the array based on a condition that&rsquo;s always false and check the length.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">array</span> <span class="p">=&gt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">filter</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="kc">false</span><span class="p">).</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
+</code></pre></div></li>
+<li>
+<p><strong>Serialize to JSON and back</strong>: Convert the array to JSON and then parse it to an array, checking if the length is zero.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">array</span> <span class="p">=&gt;</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">array</span><span class="p">)).</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
+</code></pre></div></li>
+<li>
+<p><strong>Checking the array&rsquo;s toString method</strong>: This is an indirect way to see if the array is empty.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">array</span> <span class="p">=&gt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span>
+</code></pre></div></li>
+<li>
+<p><strong>Exploiting the spread operator with Math.min or Math.max</strong>: Since <code>Math.min()</code>/<code>Math.max()</code> returns Infinity/-Infinity when called with no arguments, this method exploits that fact in a nonsensical way to check for an empty array.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">array</span> <span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(...</span><span class="nx">array</span><span class="p">)</span> <span class="o">===</span> <span class="kc">Infinity</span>
+</code></pre></div></li>
+<li>
+<p><strong>Using a custom reducer to &ldquo;calculate&rdquo; emptiness</strong>: This is an overly complicated way to see if an array has elements.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">array</span> <span class="p">=&gt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">acc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span>
+</code></pre></div></li>
+<li>
+<p><strong>Detecting array emptiness by trying to access an undefined property</strong>: This uses the fact that accessing an index that doesn&rsquo;t exist in an array returns <code>undefined</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">array</span> <span class="p">=&gt;</span> <span class="nx">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">&amp;&amp;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
+</code></pre></div></li>
+<li>
+<p><strong>Invoke a function with array spread and check arguments length</strong>: Use a function call with spread syntax to check if any arguments were passed.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">array</span> <span class="p">=&gt;</span> <span class="p">((...</span><span class="nx">args</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">args</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)(...</span><span class="nx">array</span><span class="p">)</span>
+</code></pre></div></li>
 </ol>
 <h2 id="conclusion-and-takeaways">Conclusion and Takeaways</h2>
 <p>Mastering array manipulation, including accurately identifying empty arrays, is a foundational skill in JavaScript programming. The <code>Array.isArray()</code> method, paired with a check on the <code>length</code> property, offers a reliable and efficient solution to this common task. As we&rsquo;ve seen, such seemingly minor details can significantly affect web applications' functionality and user experience.</p>
