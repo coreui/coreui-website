@@ -1,0 +1,1 @@
+const getQueryParams=(e,t)=>{let s=t,o=new RegExp("[?&]"+e+"=([^&#]*)","i"),n=o.exec(s);return n?n[1]:null}

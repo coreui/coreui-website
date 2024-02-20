@@ -1,1 +1,0 @@
-const myCarousel=document.querySelector('#templatesCarousel'),carousel=new coreui.Carousel(myCarousel,{});switch(getQueryParams('theme',window.location.href)){case'default-v3':carousel.to(0);break;case'light-v3':carousel.to(1);break;case'default':carousel.to(2);break;case'light':carousel.to(3);break;case'dark':carousel.to(4);break;default:carousel.to(0)}
