@@ -1,0 +1,40 @@
+<button [cModalToggle]="withPopoverModal.id" cButton>Modal with Popover</button>
+
+<c-modal #withPopoverModal alignment="center" id="withPopoverModal">
+  <c-modal-header>
+    <h5 cModalTitle>Modal title</h5>
+    <button [cModalToggle]="withPopoverModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <h5>Popover in a modal</h5>
+    This
+    <button [cPopoverTrigger]="'click'" [cPopover]="popoverHtml" [cPopoverOptions]="{strategy: 'fixed'}" cButton>button</button>
+    triggers a popover on click.
+    <ng-template #popoverHtml>
+      <h3 class="popover-header">
+        Popover title
+      </h3>
+      <div class="popover-body" id="">
+        And here’s some amazing content. It’s very engaging. Right?
+      </div>
+    </ng-template>
+    <hr/>
+    <h5>Tooltips in a modal</h5>
+    <p>
+      <a routerLink cTooltip="Tooltip text">This link</a>
+      and
+      <a [cTooltipOptions]="{strategy: 'fixed'}"
+         routerLink
+         cTooltip="Tooltip text"
+         cTooltipPlacement="bottom">that link
+      </a>
+      have tooltips on hover.
+    </p>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="withPopoverModal.id" cButton color="secondary">
+      Close
+    </button>
+    <button cButton color="primary">Understood</button>
+  </c-modal-footer>
+</c-modal>

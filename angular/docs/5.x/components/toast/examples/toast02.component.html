@@ -1,0 +1,19 @@
+<c-toaster [placement]="position" class="p-3" position="fixed">
+  <c-toast
+    (timer)="onTimerChange($event)"
+    (visibleChange)="onVisibleChange($event)"
+    [visible]="visible">
+    <c-toast-header>
+      <toast-sample-icon></toast-sample-icon>
+      CoreUI for Angular
+    </c-toast-header>
+    <c-toast-body>
+      <p>This is static toast message in a toaster</p>
+      <c-progress thin>
+        <c-progress-bar [value]="percentage"></c-progress-bar>
+      </c-progress>
+    </c-toast-body>
+  </c-toast>
+</c-toaster>
+
+<button (click)="toggleToast()" cButton class="m-1">Send a toast</button>

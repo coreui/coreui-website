@@ -1,0 +1,28 @@
+const usersData = [
+  {id: 0, address: { country: 'France', city: 'Paris'}, name: 'John Doe', registered: '2022/01/01', role: 'Guest', status: 'Pending' },
+  {id: 1, address: { country: 'Chile', city: 'Santiago'}, name: 'Samppa Nori', registered: '2022/01/31', role: 'Member', status: 'Active', _props: { color: 'success', align: 'middle' },},
+  {id: 2, address: { country: 'Germany', city: 'Berlin'}, name: 'Estavan Lykos', registered: '2022/02/01', role: 'Staff', status: 'Banned', _cellProps: { 'name': { color: 'info', active: true }}},
+  {id: 3, address: { country: 'Germany', city: 'Berlin'}, name: 'Chetan Mohamed', registered: '2022/02/01', role: 'Admin', status: 'Inactive', _cellProps: { _all: { color: 'danger'}, role: { active: true }}},
+  {id: 4, address: { country: 'Chile', city: 'Santiago'}, name: 'Derick Maximinus', registered: '2022/03/01', role: 'Member', status: 'Pending', _selected: true },
+  {id: 5, address: { country: 'France', city: 'Paris'}, name: 'Friderik Dávid', registered: '2022/01/21', role: 'Staff', status: 'Active'},
+  {id: 6, address: { country: 'Chile', city: 'Concepción'}, name: 'Yiorgos Avraamu', registered: '2022/01/07', role: 'Member', status: 'Active'},
+  {id: 7, address: { country: 'Chile', city: 'Santiago'}, name: 'Avram Tarasios', registered: '2022/02/08', role: 'Staff', status: 'Banned'},
+  {id: 8, address: { country: 'France', city: 'Lyon'}, name: 'Quintin Ed', registered: '2022/02/01', role: 'Admin', status: 'Inactive'},
+  {id: 9, address: { country: 'Chile', city: 'Santiago'}, name: 'Enéas Kwadwo', registered: '2022/03/01', role: 'Member', status: 'Pending'},
+  {id: 10, address: {}, name: 'Agapetus Tadeáš', registered: '2022/01/21', role: 'Staff', status: 'Active'},
+  {id: 11, address: { country: 'France', city: 'Paris'}, name: 'Carwyn Fachtna', registered: '2022/01/01', role: 'Member', status: 'Active'},
+  {id: 12, address: { country: 'Austria', city: 'Wien'}, name: 'Nehemiah Tatius', registered: '2022/02/11', role: 'Staff', status: 'Banned'},
+  {id: 13, address: { country: 'Austria', city: 'Wien'}, name: 'Ebbe Gemariah', registered: '2022/02/08', role: 'Admin', status: 'Inactive'},
+  {id: 14, address: { country: 'Austria', city: 'Salzburg'}, name: 'Eustorgios Amulius', registered: '2022/03/01', role: 'Member', status: 'Pending'},
+  {id: 15, address: { country: 'Austria', city: 'Wien'}, name: 'Leopold Gáspár', registered: '2022/01/21', role: 'Staff', status: 'Active'},
+  {id: 16, address: { country: 'Chile', city: 'Valparaíso'}, name: 'Pompeius René', registered: '2022/01/10', role: 'Member', status: 'Active'},
+  {id: 17, address: { country: 'Chile', city: 'Santiago'}, name: 'Paĉjo Jadon', registered: '2022/02/01', role: 'Staff', status: 'Banned'},
+  {id: 18, address: { country: 'Australia', city: 'Sydney'}, name: 'Micheal Mercurius', registered: '2022/02/11', role: 'Admin', status: 'Inactive'},
+  {id: 19, address: { country: 'Australia', city: 'Perth'}, name: 'Ganesha Dubhghall', registered: '2022/03/01', role: 'Member', status: 'Pending'},
+  {id: 20, address: { country: 'Chile', city: 'Santiago'}, name: 'Hiroto Šimun', registered: '2022/01/21', role: 'Staff', status: 'Active'},
+  {id: 21, address: { country: 'China', city: 'Shanghai'}, name: 'Vishnu Serghei', registered: '2022/01/01', role: 'Member', status: 'Active'},
+  {id: 22, address: { country: 'China', city: 'Shanghai'}, name: 'Zbyněk Phoibos', registered: '2022/02/14', role: 'Staff', status: 'Banned'},
+  {id: 23, address: { country: 'China', city: 'Shenzen'}, name: 'Aulus Agmundr', registered: '2022/01/01', role: 'Member', status: 'Pending'},
+  {id: 42, address: { country: 'China', city: 'Shanghai'}, name: 'Ford Prefect', registered: '2001/05/25', role: 'Alien', status: 'Don\'t panic!', _cellProps: { role: { active: true }}}
+]
+export default usersData

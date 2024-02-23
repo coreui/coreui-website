@@ -1,0 +1,22 @@
+<button cButton class="d-lg-none" [cOffcanvasToggle]="offcanvasResponsive.id">Toggle offcanvas</button>
+
+<c-alert color="info" class="d-none d-lg-block">Resize your browser to show the responsive offcanvas toggle button.</c-alert>
+
+<c-offcanvas
+  responsive="lg"
+  placement="end"
+  #offcanvasResponsive
+>
+  <c-offcanvas-header>
+    <h5 cOffcanvasTitle>Responsive offcanvas Header</h5>
+    <button
+      aria-label="Close"
+      cButtonClose
+      [cOffcanvasToggle]="offcanvasResponsive.id"
+      class="text-reset"
+    ></button>
+  </c-offcanvas-header>
+  <c-offcanvas-body>
+    <p class="mb-0">This is content within an offcanvas with <code>responsive="lg"</code> property.</p>
+  </c-offcanvas-body>
+</c-offcanvas>
