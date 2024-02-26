@@ -1,0 +1,18 @@
+<c-row class="align-items-center g-2">
+  <c-col xs="auto">
+    <label cLabel="col" for="exampleColorInput">Color picker</label>
+  </c-col>
+  <c-col xs="auto">
+    <input [(ngModel)]="favoriteColor"
+           cFormControl
+           id="exampleColorInput"
+           title="Choose your color"
+           type="color">
+  </c-col>
+  <c-col xs="auto">
+    <div [ngStyle]="{'backgroundColor': favoriteColor}" class="color-box p-1 m-1"></div>
+  </c-col>
+  <c-col xs="auto">
+    <strong>{{favoriteColor}}</strong>
+  </c-col>
+</c-row>

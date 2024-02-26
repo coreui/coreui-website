@@ -1,0 +1,11 @@
+<c-row>
+  <c-col lg="4">
+    <form #form="ngForm">
+      <c-time-picker [(ngModel)]="time" name="timePicker"></c-time-picker>
+    </form>
+  </c-col>
+</c-row>
+<br>
+Form value: {{ form.value | json }}
+<br>
+timePicker value: {{ form.value['timePicker'] | date:'H:mm'}}

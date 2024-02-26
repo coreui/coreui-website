@@ -1,0 +1,18 @@
+<c-row>
+  <c-col lg="4">
+    <c-time-picker
+      [(time)]="time"
+      placeholder="-- : --"
+      #timePicker="cTimePicker"
+    >
+      <ng-template cTemplateId="timePickerFooter" let-dropdown>
+        <button cButton color="secondary" variant="ghost" size="sm"
+                (click)="timePicker.clearTime()" cDropdownClose
+                [dropdownComponent]="dropdown">Cancel
+        </button>
+        <button cButton color="primary" size="sm" [disabled]="!time" cDropdownClose [dropdownComponent]="dropdown">OK
+        </button>
+      </ng-template>
+    </c-time-picker>
+  </c-col>
+</c-row>

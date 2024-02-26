@@ -1,0 +1,15 @@
+<form [formGroup]="formGroup">
+  <p>Form value: {{ formGroup.value | json }}</p>
+  <hr>
+  <c-multi-select
+    (searchValueChange)="searchValue$.next($event)"
+    [options]="(options$ | async) ?? []"
+    [search]="searchFn"
+    formControlName="sampleSelect"
+    itemMinWidth="333"
+    multiple
+    virtualScroller
+    visibleItems="8"
+    [loading]="loading$ | async"
+  />
+</form>

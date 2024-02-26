@@ -1,0 +1,48 @@
+<c-navbar colorScheme="dark" class="bg-dark" expand="xl" placement="fixed-top">
+  <c-container fluid>
+    <a cNavbarBrand>
+      Offcanvas navbar dark
+    </a>
+    <button [cNavbarToggler] cOffcanvasToggle="OffcanvasSidebarDark"></button>
+    <c-offcanvas
+      placement="end"
+      id="OffcanvasSidebarDark"
+      class="text-bg-dark"
+      tabindex="-1"
+    >
+      <c-offcanvas-header>
+        <h5 cOffcanvasTitle>Offcanvas</h5>
+        <button
+          cButtonClose
+          class="text-reset"
+          cOffcanvasToggle="OffcanvasSidebarDark"
+          aria-label="Close"
+          white
+        ></button>
+      </c-offcanvas-header>
+      <c-offcanvas-body>
+        <c-navbar-nav class="justify-content-end flex-grow-1 pe-3">
+          <c-nav-item>
+            <a cNavLink [active]="true">Home</a>
+          </c-nav-item>
+          <c-nav-item>
+            <a cNavLink>Link</a>
+          </c-nav-item>
+          <c-dropdown variant="nav-item" [popper]="false">
+            <a cDropdownToggle cNavLink>Dropdown</a>
+            <ul cDropdownMenu dark>
+              <li><button cDropdownItem>Action</button></li>
+              <li><button cDropdownItem>Another action</button></li>
+              <li cDropdownDivider></li>
+              <li><button cDropdownItem>Something else here</button></li>
+            </ul>
+          </c-dropdown>
+        </c-navbar-nav>
+        <form cForm class="d-flex mt-lg-3 mt-xl-0" role="search">
+          <input cFormControl type="search" placeholder="Search" aria-label="Search" class="me-2">
+          <button cButton color="success">Search</button>
+        </form>
+      </c-offcanvas-body>
+    </c-offcanvas>
+  </c-container>
+</c-navbar>

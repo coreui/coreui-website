@@ -1,0 +1,31 @@
+<c-row>
+  <c-col md="12" xl="6">
+    <c-widget-stat-a
+      class="mb-4"
+      color="primary"
+      [title]="'Widget Title'"
+    >
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        $9000
+        <span class="fs-6 fw-normal">
+      (40.9% <svg [cIcon]="icons.cilArrowTop"></svg>)
+    </span>
+      </ng-template>
+      <ng-template cTemplateId="widgetActionTemplate">
+        <c-dropdown alignment="end" variant="btn-group">
+          <button [caret]="false" cButton cDropdownToggle class="p-0" color="transparent">
+            <svg [cIcon]="icons.cilOptions" class="text-high-emphasis-inverse"></svg>
+          </button>
+          <div cDropdownMenu>
+            <a [routerLink]="[]" cDropdownItem>Action One</a>
+            <a [routerLink]="[]" cDropdownItem>Action Two</a>
+            <a [routerLink]="[]" cDropdownItem>Action Three</a>
+          </div>
+        </c-dropdown>
+      </ng-template>
+      <ng-template cTemplateId="widgetChartTemplate">
+        <c-chart [data]="data" [options]="options" class="mt-3 mx-3" height="110" type="line"></c-chart>
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+</c-row>

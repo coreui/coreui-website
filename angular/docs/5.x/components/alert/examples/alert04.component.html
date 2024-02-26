@@ -1,0 +1,8 @@
+@if (visible) {
+  <c-alert [(visible)]="visible" [dismissible]="dismissible" color="warning" fade>
+    <strong>Go right ahead</strong> and click that dismiss over there on the right.
+  </c-alert>
+}
+<hr>
+<button cButton (click)="visible=!visible">{{ visible ? 'Hide' : 'Show' }}</button>
+<button (click)="dismissible=!dismissible" cButton class="me-1" color="secondary">Toggle</button>
