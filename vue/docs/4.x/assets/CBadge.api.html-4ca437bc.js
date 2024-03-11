@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-44b90693","path":"/api/badge/CBadge.api.html","title":"","lang":"en-US","frontmatter":{"head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/api/badge/CBadge.api.html"}]]},"headers":[{"level":3,"title":"CBadge","slug":"cbadge","link":"#cbadge","children":[]}],"filePathRelative":"api/badge/CBadge.api.md"}');export{e as data};

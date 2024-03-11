@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-7ad31313","path":"/api/toast/CToast.api.html","title":"","lang":"en-US","frontmatter":{"head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/api/toast/CToast.api.html"}]]},"headers":[{"level":3,"title":"CToast","slug":"ctoast","link":"#ctoast","children":[]}],"filePathRelative":"api/toast/CToast.api.md"}');export{t as data};

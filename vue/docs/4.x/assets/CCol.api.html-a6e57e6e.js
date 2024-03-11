@@ -1,0 +1,1 @@
+const l=JSON.parse('{"key":"v-6bcc0cd5","path":"/api/grid/CCol.api.html","title":"","lang":"en-US","frontmatter":{"head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/api/grid/CCol.api.html"}]]},"headers":[{"level":3,"title":"CCol","slug":"ccol","link":"#ccol","children":[]}],"filePathRelative":"api/grid/CCol.api.md"}');export{l as data};
