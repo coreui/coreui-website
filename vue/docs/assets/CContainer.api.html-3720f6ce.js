@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-6138d618","path":"/api/grid/CContainer.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CContainer","slug":"ccontainer","link":"#ccontainer","children":[]}],"filePathRelative":"api/grid/CContainer.api.md"}');export{e as data};

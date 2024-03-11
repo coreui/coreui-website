@@ -1,0 +1,4 @@
+import{_ as a,o as s,c as n,e}from"./app-gJDfq8z1.js";const o={},t=e(`<h3 id="ccarouselcaption" tabindex="-1">CCarouselCaption <a class="anchor-link" href="#ccarouselcaption" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CCarouselCaption <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
+<span class="token comment">// or</span>
+<span class="token keyword">import</span> CCarouselCaption <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/carousel/CCarouselCaption&#39;</span>
+</code></pre></div>`,2),c=[t];function r(p,i){return s(),n("div",null,c)}const u=a(o,[["render",r],["__file","CCarouselCaption.api.html.vue"]]);export{u as default};

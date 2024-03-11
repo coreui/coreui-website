@@ -1,0 +1,4 @@
+import{_ as n,o as s,c as e,e as a}from"./app-gJDfq8z1.js";const t={},o=a(`<h3 id="calertlink" tabindex="-1">CAlertLink <a class="anchor-link" href="#calertlink" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CAlertLink <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
+<span class="token comment">// or</span>
+<span class="token keyword">import</span> CAlertLink <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/alert/CAlertLink&#39;</span>
+</code></pre></div>`,2),c=[o];function r(l,i){return s(),e("div",null,c)}const k=n(t,[["render",r],["__file","CAlertLink.api.html.vue"]]);export{k as default};

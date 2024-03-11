@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-fc3fa214","path":"/api/smart-table/CSmartTableBody.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CSmartTableBody","slug":"csmarttablebody","link":"#csmarttablebody","children":[]}],"filePathRelative":"api/smart-table/CSmartTableBody.api.md"}');export{a as data};

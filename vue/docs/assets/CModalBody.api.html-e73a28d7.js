@@ -1,4 +1,0 @@
-import{_ as a,o as s,c as o,e as n}from"./app-faabb66f.js";const e={},t=n(`<h3 id="cmodalbody" tabindex="-1">CModalBody <a class="anchor-link" href="#cmodalbody" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CModalBody <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
-<span class="token comment">// or</span>
-<span class="token keyword">import</span> CModalBody <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/modal/CModalBody&#39;</span>
-</code></pre></div>`,2),c=[t];function d(l,r){return s(),o("div",null,c)}const i=a(e,[["render",d],["__file","CModalBody.api.html.vue"]]);export{i as default};

@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Documentation and examples for Bootstrap typography, including global settings, headings, body text, lists, and more.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.118.2">
+<meta name="generator" content="Hugo 0.123.6">
 
 <meta name="docsearch:language" content="en">
-<meta name="docsearch:version" content="4.6">
+<meta name="docsearch:version" content="5.0">
 
 
 <title>Bootstrap Typography - extended examples and tutorials</title>
@@ -16,13 +16,15 @@
 
 <link rel="canonical" href="https://coreui.io/bootstrap/docs/content/typography/"><link rel="preconnect" href="https://AK7KMZKZHQ-dsn.algolia.net" crossorigin>
 
-
+<script src="https://coreui.io/bootstrap/docs/assets/js/color-modes.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href="https://coreui.io/bootstrap/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-N6/iVUKuB1Y9fhC3xnBbekegSwfXwMNEIvMxNyYLO6z9vmfxMyEwPNsH0k+p4beB" crossorigin="anonymous">
+<link href="https://coreui.io/bootstrap/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-ry0/VADFZoMb+nqZUTCl4BKR2Tf8jjcAQf5gGULlcwkePPL1I8e20WTTUopDjrx6" crossorigin="anonymous">
 
 <link href="https://coreui.io/bootstrap/docs/assets/css/docs.css" rel="stylesheet">
+
+<link href="https://coreui.io/bootstrap/docs/scss/docs-pickers.css" rel="stylesheet">
 
 <!-- Favicons -->
 <link rel="apple-touch-icon" href="https://coreui.io/bootstrap/docs/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -82,7 +84,7 @@
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end px-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -103,8 +105,8 @@
     </g>
 </svg>
   </div>
-  <div class="text-body-secondary ms-3 me-5 mb-2 small fw-semibold">Framework:</div>
-  <div class="dropdown ms-3 me-5 mb-4">
+  <div class="text-body-secondary mx-3 mb-2 small fw-semibold">Framework:</div>
+  <div class="dropdown mx-3 mb-4">
     <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-coreui-toggle="dropdown" aria-expanded="false">
       JavaScript / Vanilla JS
     </button>
@@ -232,6 +234,11 @@
             <li class="nav-item">
               <a href="https://coreui.io/bootstrap/docs/customize/color/" class="nav-link" >
                 Color
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/bootstrap/docs/customize/color-modes/" class="nav-link" >
+                Color modes
               </a>
             </li>
             <li class="nav-item">
@@ -514,6 +521,11 @@
             <li class="nav-item">
               <a href="https://coreui.io/bootstrap/docs/components/header/" class="nav-link" >
                 Header
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/bootstrap/docs/components/jumbotron/" class="nav-link" >
+                Jumbotron
               </a>
             </li>
             <li class="nav-item">
@@ -824,6 +836,29 @@
             </li>
         </ul>
       </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M464,256.25C464,370.8,370.8,464,256.25,464S48.5,370.8,48.5,256.25,141.7,48.5,256.25,48.5a208,208,0,0,1,149.963,64H328.5v32h128V16.5h-32V85.478A239.717,239.717,0,1,0,496,256.25Z" class="ci-primary"/>
+  <polygon fill="var(--ci-primary-color, currentColor)" points="272.5 112.451 240.5 112.549 241.017 282.756 353.301 334.53 366.699 305.47 272.954 262.244 272.5 112.451" class="ci-primary"/>
+</svg>
+
+          Migration
+        </a>
+        <ul class="nav-group-items compact">
+            <li class="nav-item">
+              <a href="https://coreui.io/bootstrap/docs/migration/v4/" class="nav-link" >
+                v4
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/bootstrap/docs/migration/v5/" class="nav-link" >
+                v5
+              </a>
+            </li>
+        </ul>
+      </li>
     <li class="nav-item">
       <a href="https://coreui.io/bootstrap/docs/icons/" class="nav-link" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
@@ -833,21 +868,11 @@
         Icons
       </a>
     </li>
-    <li class="nav-item">
-      <a href="https://coreui.io/bootstrap/docs/migration/" class="nav-link">
-        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
-  <path fill="var(--ci-primary-color, currentColor)" d="M464,256.25C464,370.8,370.8,464,256.25,464S48.5,370.8,48.5,256.25,141.7,48.5,256.25,48.5a208,208,0,0,1,149.963,64H328.5v32h128V16.5h-32V85.478A239.717,239.717,0,1,0,496,256.25Z" class="ci-primary"/>
-  <polygon fill="var(--ci-primary-color, currentColor)" points="272.5 112.451 240.5 112.549 241.017 282.756 353.301 334.53 366.699 305.47 272.954 262.244 272.5 112.451" class="ci-primary"/>
-</svg>
-
-        Migration
-      </a>
-    </li>
   </ul>
 </div>
 
     <div class="wrapper flex-grow-1">
-      <header class="header header-sticky mb-5 elevation-0 border-bottom">
+      <header class="docs-header header header-sticky elevation-0 mb-5">
   <div class="container-fluid">
     <button class="header-toggler d-lg-none" type="button" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16">
@@ -878,6 +903,75 @@
         <a class="nav-link" href="https://opencollective.com/coreui" target="_blank" rel="noopener">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" fill-rule="evenodd" class="icon icon-xl" viewBox="0 0 40 41" role="img"><title>Open Collective</title><path fill-opacity=".4" d="M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z"/><path d="M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z"/></svg>
         </a>
+      </li>
+      <li class="nav-item py-2 py-lg-1">
+        <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-body text-opacity-75"></div>
+        <hr class="d-lg-none my-2 text-white-50">
+      </li>
+      <li class="nav-item dropdown">
+        <button class="btn btn-link nav-link py-2 px-2 px-lg-2 d-flex align-items-center"
+                type="button"
+                aria-expanded="false"
+                data-coreui-toggle="dropdown"
+                data-coreui-display="static">
+          <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon-active icon icon-xl" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM234,462.849a208.346,208.346,0,0,1-169.667-125.9c-.364-.859-.706-1.724-1.057-2.587L234,429.939Zm0-69.582L50.889,290.76A209.848,209.848,0,0,1,48,256q0-9.912.922-19.67L234,339.939Zm0-90L54.819,202.96a206.385,206.385,0,0,1,9.514-27.913Q67.1,168.5,70.3,162.191L234,253.934Zm0-86.015L86.914,134.819a209.42,209.42,0,0,1,22.008-25.9q3.72-3.72,7.6-7.228L234,166.027Zm0-87.708L144.352,80.451A206.951,206.951,0,0,1,234,49.151ZM464,256A207.775,207.775,0,0,1,266,463.761V48.239A207.791,207.791,0,0,1,464,256Z" class="ci-primary"/>
+</svg>
+
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cd-theme" style="--cui-dropdown-min-width: 8rem;">
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-coreui-theme-value="light">
+              <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon icon icon-lg me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M256,104c-83.813,0-152,68.187-152,152s68.187,152,152,152,152-68.187,152-152S339.813,104,256,104Zm0,272A120,120,0,1,1,376,256,120.136,120.136,0,0,1,256,376Z" class="ci-primary"/>
+  <rect width="32" height="48" x="240" y="16" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="32" height="48" x="240" y="448" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="48" height="32" x="448" y="240" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="48" height="32" x="16" y="240" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="32" height="45.255" x="400" y="393.373" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 416 416)"/>
+  <rect width="32.001" height="45.255" x="80" y="73.373" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 96 96)"/>
+  <rect width="45.255" height="32" x="73.373" y="400" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45.001 96.002 416.003)"/>
+  <rect width="45.255" height="32.001" x="393.373" y="80" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 416 96)"/>
+</svg>
+
+              Light
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon bi ms-auto d-none" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M199.066,456l-7.379-7.514-3.94-3.9-86.2-86.2.053-.055L17.936,274.665l97.614-97.613,83.565,83.565L398.388,61.344,496,158.958,296.729,358.229,285.469,369.6ZM146.6,358.183l52.459,52.46.1-.1.054.054,52.311-52.311,11.259-11.368L450.746,158.958,398.388,106.6,199.115,305.871,115.55,222.306,63.191,274.665l83.464,83.463Z" class="ci-primary"/>
+</svg>
+
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-coreui-theme-value="dark">
+              <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon icon icon-lg me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M268.279,496c-67.574,0-130.978-26.191-178.534-73.745S16,311.293,16,243.718A252.252,252.252,0,0,1,154.183,18.676a24.44,24.44,0,0,1,34.46,28.958,220.12,220.12,0,0,0,54.8,220.923A218.746,218.746,0,0,0,399.085,333.2h0a220.2,220.2,0,0,0,65.277-9.846,24.439,24.439,0,0,1,28.959,34.461A252.256,252.256,0,0,1,268.279,496ZM153.31,55.781A219.3,219.3,0,0,0,48,243.718C48,365.181,146.816,464,268.279,464a219.3,219.3,0,0,0,187.938-105.31,252.912,252.912,0,0,1-57.13,6.513h0a250.539,250.539,0,0,1-178.268-74.016,252.147,252.147,0,0,1-67.509-235.4Z" class="ci-primary"/>
+</svg>
+
+              Dark
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon bi ms-auto d-none" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M199.066,456l-7.379-7.514-3.94-3.9-86.2-86.2.053-.055L17.936,274.665l97.614-97.613,83.565,83.565L398.388,61.344,496,158.958,296.729,358.229,285.469,369.6ZM146.6,358.183l52.459,52.46.1-.1.054.054,52.311-52.311,11.259-11.368L450.746,158.958,398.388,106.6,199.115,305.871,115.55,222.306,63.191,274.665l83.464,83.463Z" class="ci-primary"/>
+</svg>
+
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center active" data-coreui-theme-value="auto">
+              <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon icon icon-lg me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM234,462.849a208.346,208.346,0,0,1-169.667-125.9c-.364-.859-.706-1.724-1.057-2.587L234,429.939Zm0-69.582L50.889,290.76A209.848,209.848,0,0,1,48,256q0-9.912.922-19.67L234,339.939Zm0-90L54.819,202.96a206.385,206.385,0,0,1,9.514-27.913Q67.1,168.5,70.3,162.191L234,253.934Zm0-86.015L86.914,134.819a209.42,209.42,0,0,1,22.008-25.9q3.72-3.72,7.6-7.228L234,166.027Zm0-87.708L144.352,80.451A206.951,206.951,0,0,1,234,49.151ZM464,256A207.775,207.775,0,0,1,266,463.761V48.239A207.791,207.791,0,0,1,464,256Z" class="ci-primary"/>
+</svg>
+
+              Auto
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon bi ms-auto d-none" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M199.066,456l-7.379-7.514-3.94-3.9-86.2-86.2.053-.055L17.936,274.665l97.614-97.613,83.565,83.565L398.388,61.344,496,158.958,296.729,358.229,285.469,369.6ZM146.6,358.183l52.459,52.46.1-.1.054.054,52.311-52.311,11.259-11.368L450.746,158.958,398.388,106.6,199.115,305.871,115.55,222.306,63.191,274.665l83.464,83.463Z" class="ci-primary"/>
+</svg>
+
+            </button>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item py-2 py-lg-1">
+        <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-body text-opacity-75"></div>
+        <hr class="d-lg-none my-2 text-white-50">
       </li>
     </ul>
     <a class="btn btn-outline-primary d-lg-inline-block my-2 my-md-0 ms-md-3" href="https://coreui.io/bootstrap/docs/getting-started/download/">
@@ -984,7 +1078,7 @@
     <div class="docs-content ps-lg-4">
       
 
-      <h2 id="global-settings">Global settings</h2>
+      <h2 id="global-settings">Global settings <a class="anchor-link" href="#global-settings" aria-label="Link to this section: Global settings"></a></h2>
 <p>CoreUI for Bootstrap sets basic global display, typography, and link styles. When more control is needed, check out the <a href="https://coreui.io/bootstrap/docs/utilities/text/">textual utility classes</a>.</p>
 <ul>
 <li>Use a <a href="https://coreui.io/bootstrap/docs/content/reboot/#native-font-stack">native font stack</a> that selects the best <code>font-family</code> for each OS and device.</li>
@@ -994,7 +1088,7 @@
 <li>Use <code>$body-bg</code> to set a <code>background-color</code> on the <code>&lt;body&gt;</code> (<code>#fff</code> by default).</li>
 </ul>
 <p>These styles can be found within <code>_reboot.scss</code>, and the global variables are defined in <code>_variables.scss</code>. Make sure to set <code>$font-size-base</code> in <code>rem</code>.</p>
-<h2 id="headings">Headings</h2>
+<h2 id="headings">Headings <a class="anchor-link" href="#headings" aria-label="Link to this section: Headings"></a></h2>
 <p>All HTML headings, <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code>, are available.</p>
 <div class="table-responsive"><table class="table">
 <thead>
@@ -1062,7 +1156,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;h5&#34;</span><span class="p">&gt;</span>h5. CoreUI heading<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;h6&#34;</span><span class="p">&gt;</span>h6. CoreUI heading<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h3 id="customizing-headings">Customizing headings</h3>
+<h3 id="customizing-headings">Customizing headings <a class="anchor-link" href="#customizing-headings" aria-label="Link to this section: Customizing headings"></a></h3>
 <p>Use the included utility classes to recreate the small secondary heading text from CoreUI 3.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <h3>
@@ -1084,7 +1178,7 @@
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">small</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;text-muted&#34;</span><span class="p">&gt;</span>With faded secondary text<span class="p">&lt;/</span><span class="nt">small</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h2 id="display-headings">Display headings</h2>
+<h2 id="display-headings">Display headings <a class="anchor-link" href="#display-headings" aria-label="Link to this section: Display headings"></a></h2>
 <p>Traditional heading elements are designed to work best in the meat of your page content. When you need a heading to stand out, consider using a <strong>display heading</strong>—a larger, slightly more opinionated heading style.</p>
 <div class="docs-example">
   <div class="display-1 pb-3 mb-3 border-bottom">Display 1</div>
@@ -1126,7 +1220,7 @@
 </span></span><span class="line"><span class="cl"><span class="nv">$display-font-weight</span><span class="o">:</span> <span class="mi">300</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$display-line-height</span><span class="o">:</span> <span class="nv">$headings-line-height</span><span class="p">;</span>
 </span></span></code></pre></div></div>
-<h2 id="lead">Lead</h2>
+<h2 id="lead">Lead <a class="anchor-link" href="#lead" aria-label="Link to this section: Lead"></a></h2>
 <p>Make a paragraph stand out by adding <code>.lead</code>.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <p class="lead">
@@ -1146,7 +1240,7 @@
 </span></span><span class="line"><span class="cl">  This is a lead paragraph. It stands out from regular paragraphs.
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h2 id="inline-text-elements">Inline text elements</h2>
+<h2 id="inline-text-elements">Inline text elements <a class="anchor-link" href="#inline-text-elements" aria-label="Link to this section: Inline text elements"></a></h2>
 <p>Styling for common inline HTML5 elements.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <p>You can use the mark tag to <mark>highlight</mark> text.</p>
@@ -1191,9 +1285,9 @@
 <li><code>.text-decoration-line-through</code> will apply the same styles as <code>&lt;s&gt;</code>.</li>
 </ul>
 <p>While not shown above, feel free to use <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code> in HTML5. <code>&lt;b&gt;</code> is meant to highlight words or phrases without conveying additional importance, while <code>&lt;i&gt;</code> is mostly for voice, technical terms, etc.</p>
-<h2 id="text-utilities">Text utilities</h2>
+<h2 id="text-utilities">Text utilities <a class="anchor-link" href="#text-utilities" aria-label="Link to this section: Text utilities"></a></h2>
 <p>Change text alignment, transform, style, weight, line-height, decoration and color with our <a href="https://coreui.io/bootstrap/docs/utilities/text/">text utilities</a> and <a href="https://coreui.io/bootstrap/docs/utilities/colors/">color utilities</a>.</p>
-<h2 id="abbreviations">Abbreviations</h2>
+<h2 id="abbreviations">Abbreviations <a class="anchor-link" href="#abbreviations" aria-label="Link to this section: Abbreviations"></a></h2>
 <p>Stylized implementation of HTML&rsquo;s <code>&lt;abbr&gt;</code> element for abbreviations and acronyms to show the expanded version on hover. Abbreviations have a default underline and gain a help cursor to provide additional context on hover and to users of assistive technologies.</p>
 <p>Add <code>.initialism</code> to an abbreviation for a slightly smaller font-size.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
@@ -1212,7 +1306,7 @@
       </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">abbr</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;attribute&#34;</span><span class="p">&gt;</span>attr<span class="p">&lt;/</span><span class="nt">abbr</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">abbr</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;HyperText Markup Language&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;initialism&#34;</span><span class="p">&gt;</span>HTML<span class="p">&lt;/</span><span class="nt">abbr</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h2 id="blockquotes">Blockquotes</h2>
+<h2 id="blockquotes">Blockquotes <a class="anchor-link" href="#blockquotes" aria-label="Link to this section: Blockquotes"></a></h2>
 <p>For quoting blocks of content from another source within your document. Wrap <code>&lt;blockquote class=&quot;blockquote&quot;&gt;</code> around any HTML as the quote.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <blockquote class="blockquote">
@@ -1232,7 +1326,7 @@
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>A well-known quote, contained in a blockquote element.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">blockquote</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h3 id="naming-a-source">Naming a source</h3>
+<h3 id="naming-a-source">Naming a source <a class="anchor-link" href="#naming-a-source" aria-label="Link to this section: Naming a source"></a></h3>
 <p>The HTML spec requires that blockquote attribution be placed outside the <code>&lt;blockquote&gt;</code>. When providing attribution, wrap your <code>&lt;blockquote&gt;</code> in a <code>&lt;figure&gt;</code> and use a <code>&lt;figcaption&gt;</code> or a block level element (e.g., <code>&lt;p&gt;</code>) with the <code>.blockquote-footer</code> class. Be sure to wrap the name of the source work in <code>&lt;cite&gt;</code> as well.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <figure>
@@ -1262,7 +1356,7 @@
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h3 id="alignment">Alignment</h3>
+<h3 id="alignment">Alignment <a class="anchor-link" href="#alignment" aria-label="Link to this section: Alignment"></a></h3>
 <p>Use text utilities as needed to change the alignment of your blockquote.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <figure class="text-center">
@@ -1320,8 +1414,8 @@
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h2 id="lists">Lists</h2>
-<h3 id="unstyled">Unstyled</h3>
+<h2 id="lists">Lists <a class="anchor-link" href="#lists" aria-label="Link to this section: Lists"></a></h2>
+<h3 id="unstyled">Unstyled <a class="anchor-link" href="#unstyled" aria-label="Link to this section: Unstyled"></a></h3>
 <p>Remove the default <code>list-style</code> and left margin on list items (immediate children only). <strong>This only applies to immediate children list items</strong>, meaning you will need to add the class for any nested lists as well.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <ul class="list-unstyled">
@@ -1363,7 +1457,7 @@
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>This may still come in handy in some situations.<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h3 id="inline">Inline</h3>
+<h3 id="inline">Inline <a class="anchor-link" href="#inline" aria-label="Link to this section: Inline"></a></h3>
 <p>Remove a list&rsquo;s bullets and apply some light <code>margin</code> with a combination of two classes, <code>.list-inline</code> and <code>.list-inline-item</code>.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <ul class="list-inline">
@@ -1387,7 +1481,7 @@
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">li</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;list-inline-item&#34;</span><span class="p">&gt;</span>But they&#39;re displayed inline.<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h3 id="description-list-alignment">Description list alignment</h3>
+<h3 id="description-list-alignment">Description list alignment <a class="anchor-link" href="#description-list-alignment" aria-label="Link to this section: Description list alignment"></a></h3>
 <p>Align terms and descriptions horizontally by using our grid system&rsquo;s predefined classes (or semantic mixins). For longer terms, you can optionally add a <code>.text-truncate</code> class to truncate the text with an ellipsis.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <dl class="row">
@@ -1449,10 +1543,10 @@
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">dd</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">dl</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h2 id="responsive-font-sizes">Responsive font sizes</h2>
+<h2 id="responsive-font-sizes">Responsive font sizes <a class="anchor-link" href="#responsive-font-sizes" aria-label="Link to this section: Responsive font sizes"></a></h2>
 <p>In CoreUI 4 for Bootstrap, we&rsquo;ve enabled responsive font sizes by default, allowing text to scale more naturally across device and viewport sizes. Have a look at the <a href="https://coreui.io/bootstrap/docs/getting-started/rfs/">RFS page</a> to find out how this works.</p>
-<h2 id="customization">Customization</h2>
-<h3 id="sass-variables">SASS variables</h3>
+<h2 id="customization">Customization <a class="anchor-link" href="#customization" aria-label="Link to this section: Customization"></a></h2>
+<h3 id="sass-variables">SASS variables <a class="anchor-link" href="#sass-variables" aria-label="Link to this section: SASS variables"></a></h3>
 <p>Headings have some dedicated variables for sizing and spacing.</p>
 <div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
@@ -1491,24 +1585,16 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$sub-sup-font-size</span><span class="o">:</span>             <span class="mf">.75</span><span class="kt">em</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$text-high-emphasis</span><span class="o">:</span>            <span class="nv">$high-emphasis</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$text-medium-emphasis</span><span class="o">:</span>          <span class="nv">$medium-emphasis</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$text-disabled</span><span class="o">:</span>                 <span class="nv">$disabled</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// fusv-disable
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$text-muted</span><span class="o">:</span>                  <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="si">#{</span><span class="nv">$prefix</span><span class="si">}</span><span class="n">secondary-color</span><span class="p">);</span> <span class="c1">// Deprecated in 4.3.0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$text-muted</span><span class="o">:</span>                  <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="si">#{</span><span class="nv">$prefix</span><span class="si">}</span><span class="n">secondary-color</span><span class="p">);</span> <span class="c1">// Deprecated in 5.0.0
 </span></span></span><span class="line"><span class="cl"><span class="c1">// fusv-enable
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="nv">$text-high-emphasis-inverse</span><span class="o">:</span>    <span class="nv">$high-emphasis-inverse</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$text-medium-emphasis-inverse</span><span class="o">:</span>  <span class="nv">$medium-emphasis-inverse</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$text-disabled-inverse</span><span class="o">:</span>         <span class="nv">$disabled-inverse</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$initialism-font-size</span><span class="o">:</span>        <span class="nv">$small-font-size</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$initialism-font-size</span><span class="o">:</span>          <span class="nv">$small-font-size</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$blockquote-margin-y</span><span class="o">:</span>           <span class="nv">$spacer</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$blockquote-font-size</span><span class="o">:</span>          <span class="nv">$font-size-base</span> <span class="o">*</span> <span class="mi">1</span><span class="mf">.25</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$blockquote-footer-color</span><span class="o">:</span>       <span class="nv">$gray-600</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$blockquote-footer-font-size</span><span class="o">:</span>   <span class="nv">$small-font-size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$blockquote-margin-y</span><span class="o">:</span>         <span class="nv">$spacer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$blockquote-font-size</span><span class="o">:</span>        <span class="nv">$font-size-base</span> <span class="o">*</span> <span class="mi">1</span><span class="mf">.25</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$blockquote-footer-color</span><span class="o">:</span>     <span class="nv">$gray-600</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$blockquote-footer-font-size</span><span class="o">:</span> <span class="nv">$small-font-size</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$hr-margin-y</span><span class="o">:</span>                 <span class="nv">$spacer</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$hr-color</span><span class="o">:</span>                    <span class="ni">inherit</span><span class="p">;</span>
@@ -1536,7 +1622,7 @@
 </span></span><span class="line"><span class="cl"><span class="nv">$mark-color</span><span class="o">:</span>                  <span class="nv">$body-color</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$mark-bg</span><span class="o">:</span>                     <span class="nv">$yellow-100</span><span class="p">;</span>
 </span></span></code></pre></div></div>
-<h3 id="sass-mixins">SASS Mixins</h3>
+<h3 id="sass-mixins">SASS Mixins <a class="anchor-link" href="#sass-mixins" aria-label="Link to this section: SASS Mixins"></a></h3>
 <p>There are no dedicated mixins for typography, but Bootstrap does use <a href="https://coreui.io/bootstrap/docs/getting-started/rfs/">Responsive Font Sizing (RFS)</a>.</p>
 
     </div>
@@ -1554,7 +1640,7 @@
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.3.2. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
+    <p class="mb-0">Currently v5.0.0-rc.2. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
   </div>
 </footer>
 
@@ -1562,7 +1648,7 @@
       
   
     </div>
-    <script src="https://coreui.io/bootstrap/docs/dist/js/coreui.bundle.min.js" integrity="sha384-J57aCZcRcbraFuQaL18wp1fDE0fLyO7Il/jKACMovk4ddxUIvjRK5ZZnqcHuBF/T" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/bootstrap/docs/dist/js/coreui.bundle.min.js" integrity="sha384-aGTCMmOaT4om0+lHGIaFUYKB+b7cRjX9/j/rq19umAyp+xKEAePEeVcH3pTxkVbu" crossorigin="anonymous"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>

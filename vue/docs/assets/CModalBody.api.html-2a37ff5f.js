@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-56da315e","path":"/api/modal/CModalBody.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CModalBody","slug":"cmodalbody","link":"#cmodalbody","children":[]}],"filePathRelative":"api/modal/CModalBody.api.md"}');export{a as data};

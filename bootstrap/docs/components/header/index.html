@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Documentation and examples for CoreUI&rsquo;s powerful, responsive header. Includes support for branding, navigation, and more.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.118.2">
+<meta name="generator" content="Hugo 0.123.6">
 
 <meta name="docsearch:language" content="en">
-<meta name="docsearch:version" content="4.6">
+<meta name="docsearch:version" content="5.0">
 
 
 <title>Bootstrap Header - extended examples and tutorials</title>
@@ -16,13 +16,15 @@
 
 <link rel="canonical" href="https://coreui.io/bootstrap/docs/components/header/"><link rel="preconnect" href="https://AK7KMZKZHQ-dsn.algolia.net" crossorigin>
 
-
+<script src="https://coreui.io/bootstrap/docs/assets/js/color-modes.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href="https://coreui.io/bootstrap/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-N6/iVUKuB1Y9fhC3xnBbekegSwfXwMNEIvMxNyYLO6z9vmfxMyEwPNsH0k+p4beB" crossorigin="anonymous">
+<link href="https://coreui.io/bootstrap/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-ry0/VADFZoMb+nqZUTCl4BKR2Tf8jjcAQf5gGULlcwkePPL1I8e20WTTUopDjrx6" crossorigin="anonymous">
 
 <link href="https://coreui.io/bootstrap/docs/assets/css/docs.css" rel="stylesheet">
+
+<link href="https://coreui.io/bootstrap/docs/scss/docs-pickers.css" rel="stylesheet">
 
 <!-- Favicons -->
 <link rel="apple-touch-icon" href="https://coreui.io/bootstrap/docs/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -82,7 +84,7 @@
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end px-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -103,8 +105,8 @@
     </g>
 </svg>
   </div>
-  <div class="text-body-secondary ms-3 me-5 mb-2 small fw-semibold">Framework:</div>
-  <div class="dropdown ms-3 me-5 mb-4">
+  <div class="text-body-secondary mx-3 mb-2 small fw-semibold">Framework:</div>
+  <div class="dropdown mx-3 mb-4">
     <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-coreui-toggle="dropdown" aria-expanded="false">
       JavaScript / Vanilla JS
     </button>
@@ -232,6 +234,11 @@
             <li class="nav-item">
               <a href="https://coreui.io/bootstrap/docs/customize/color/" class="nav-link" >
                 Color
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/bootstrap/docs/customize/color-modes/" class="nav-link" >
+                Color modes
               </a>
             </li>
             <li class="nav-item">
@@ -514,6 +521,11 @@
             <li class="nav-item">
               <a href="https://coreui.io/bootstrap/docs/components/header/" class="nav-link active" aria-current="page" >
                 Header
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/bootstrap/docs/components/jumbotron/" class="nav-link" >
+                Jumbotron
               </a>
             </li>
             <li class="nav-item">
@@ -824,6 +836,29 @@
             </li>
         </ul>
       </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M464,256.25C464,370.8,370.8,464,256.25,464S48.5,370.8,48.5,256.25,141.7,48.5,256.25,48.5a208,208,0,0,1,149.963,64H328.5v32h128V16.5h-32V85.478A239.717,239.717,0,1,0,496,256.25Z" class="ci-primary"/>
+  <polygon fill="var(--ci-primary-color, currentColor)" points="272.5 112.451 240.5 112.549 241.017 282.756 353.301 334.53 366.699 305.47 272.954 262.244 272.5 112.451" class="ci-primary"/>
+</svg>
+
+          Migration
+        </a>
+        <ul class="nav-group-items compact">
+            <li class="nav-item">
+              <a href="https://coreui.io/bootstrap/docs/migration/v4/" class="nav-link" >
+                v4
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/bootstrap/docs/migration/v5/" class="nav-link" >
+                v5
+              </a>
+            </li>
+        </ul>
+      </li>
     <li class="nav-item">
       <a href="https://coreui.io/bootstrap/docs/icons/" class="nav-link" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
@@ -833,21 +868,11 @@
         Icons
       </a>
     </li>
-    <li class="nav-item">
-      <a href="https://coreui.io/bootstrap/docs/migration/" class="nav-link">
-        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
-  <path fill="var(--ci-primary-color, currentColor)" d="M464,256.25C464,370.8,370.8,464,256.25,464S48.5,370.8,48.5,256.25,141.7,48.5,256.25,48.5a208,208,0,0,1,149.963,64H328.5v32h128V16.5h-32V85.478A239.717,239.717,0,1,0,496,256.25Z" class="ci-primary"/>
-  <polygon fill="var(--ci-primary-color, currentColor)" points="272.5 112.451 240.5 112.549 241.017 282.756 353.301 334.53 366.699 305.47 272.954 262.244 272.5 112.451" class="ci-primary"/>
-</svg>
-
-        Migration
-      </a>
-    </li>
   </ul>
 </div>
 
     <div class="wrapper flex-grow-1">
-      <header class="header header-sticky mb-5 elevation-0 border-bottom">
+      <header class="docs-header header header-sticky elevation-0 mb-5">
   <div class="container-fluid">
     <button class="header-toggler d-lg-none" type="button" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16">
@@ -878,6 +903,75 @@
         <a class="nav-link" href="https://opencollective.com/coreui" target="_blank" rel="noopener">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" fill-rule="evenodd" class="icon icon-xl" viewBox="0 0 40 41" role="img"><title>Open Collective</title><path fill-opacity=".4" d="M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z"/><path d="M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z"/></svg>
         </a>
+      </li>
+      <li class="nav-item py-2 py-lg-1">
+        <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-body text-opacity-75"></div>
+        <hr class="d-lg-none my-2 text-white-50">
+      </li>
+      <li class="nav-item dropdown">
+        <button class="btn btn-link nav-link py-2 px-2 px-lg-2 d-flex align-items-center"
+                type="button"
+                aria-expanded="false"
+                data-coreui-toggle="dropdown"
+                data-coreui-display="static">
+          <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon-active icon icon-xl" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM234,462.849a208.346,208.346,0,0,1-169.667-125.9c-.364-.859-.706-1.724-1.057-2.587L234,429.939Zm0-69.582L50.889,290.76A209.848,209.848,0,0,1,48,256q0-9.912.922-19.67L234,339.939Zm0-90L54.819,202.96a206.385,206.385,0,0,1,9.514-27.913Q67.1,168.5,70.3,162.191L234,253.934Zm0-86.015L86.914,134.819a209.42,209.42,0,0,1,22.008-25.9q3.72-3.72,7.6-7.228L234,166.027Zm0-87.708L144.352,80.451A206.951,206.951,0,0,1,234,49.151ZM464,256A207.775,207.775,0,0,1,266,463.761V48.239A207.791,207.791,0,0,1,464,256Z" class="ci-primary"/>
+</svg>
+
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cd-theme" style="--cui-dropdown-min-width: 8rem;">
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-coreui-theme-value="light">
+              <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon icon icon-lg me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M256,104c-83.813,0-152,68.187-152,152s68.187,152,152,152,152-68.187,152-152S339.813,104,256,104Zm0,272A120,120,0,1,1,376,256,120.136,120.136,0,0,1,256,376Z" class="ci-primary"/>
+  <rect width="32" height="48" x="240" y="16" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="32" height="48" x="240" y="448" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="48" height="32" x="448" y="240" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="48" height="32" x="16" y="240" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="32" height="45.255" x="400" y="393.373" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 416 416)"/>
+  <rect width="32.001" height="45.255" x="80" y="73.373" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 96 96)"/>
+  <rect width="45.255" height="32" x="73.373" y="400" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45.001 96.002 416.003)"/>
+  <rect width="45.255" height="32.001" x="393.373" y="80" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 416 96)"/>
+</svg>
+
+              Light
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon bi ms-auto d-none" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M199.066,456l-7.379-7.514-3.94-3.9-86.2-86.2.053-.055L17.936,274.665l97.614-97.613,83.565,83.565L398.388,61.344,496,158.958,296.729,358.229,285.469,369.6ZM146.6,358.183l52.459,52.46.1-.1.054.054,52.311-52.311,11.259-11.368L450.746,158.958,398.388,106.6,199.115,305.871,115.55,222.306,63.191,274.665l83.464,83.463Z" class="ci-primary"/>
+</svg>
+
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-coreui-theme-value="dark">
+              <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon icon icon-lg me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M268.279,496c-67.574,0-130.978-26.191-178.534-73.745S16,311.293,16,243.718A252.252,252.252,0,0,1,154.183,18.676a24.44,24.44,0,0,1,34.46,28.958,220.12,220.12,0,0,0,54.8,220.923A218.746,218.746,0,0,0,399.085,333.2h0a220.2,220.2,0,0,0,65.277-9.846,24.439,24.439,0,0,1,28.959,34.461A252.256,252.256,0,0,1,268.279,496ZM153.31,55.781A219.3,219.3,0,0,0,48,243.718C48,365.181,146.816,464,268.279,464a219.3,219.3,0,0,0,187.938-105.31,252.912,252.912,0,0,1-57.13,6.513h0a250.539,250.539,0,0,1-178.268-74.016,252.147,252.147,0,0,1-67.509-235.4Z" class="ci-primary"/>
+</svg>
+
+              Dark
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon bi ms-auto d-none" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M199.066,456l-7.379-7.514-3.94-3.9-86.2-86.2.053-.055L17.936,274.665l97.614-97.613,83.565,83.565L398.388,61.344,496,158.958,296.729,358.229,285.469,369.6ZM146.6,358.183l52.459,52.46.1-.1.054.054,52.311-52.311,11.259-11.368L450.746,158.958,398.388,106.6,199.115,305.871,115.55,222.306,63.191,274.665l83.464,83.463Z" class="ci-primary"/>
+</svg>
+
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center active" data-coreui-theme-value="auto">
+              <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon icon icon-lg me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM234,462.849a208.346,208.346,0,0,1-169.667-125.9c-.364-.859-.706-1.724-1.057-2.587L234,429.939Zm0-69.582L50.889,290.76A209.848,209.848,0,0,1,48,256q0-9.912.922-19.67L234,339.939Zm0-90L54.819,202.96a206.385,206.385,0,0,1,9.514-27.913Q67.1,168.5,70.3,162.191L234,253.934Zm0-86.015L86.914,134.819a209.42,209.42,0,0,1,22.008-25.9q3.72-3.72,7.6-7.228L234,166.027Zm0-87.708L144.352,80.451A206.951,206.951,0,0,1,234,49.151ZM464,256A207.775,207.775,0,0,1,266,463.761V48.239A207.791,207.791,0,0,1,464,256Z" class="ci-primary"/>
+</svg>
+
+              Auto
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon bi ms-auto d-none" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M199.066,456l-7.379-7.514-3.94-3.9-86.2-86.2.053-.055L17.936,274.665l97.614-97.613,83.565,83.565L398.388,61.344,496,158.958,296.729,358.229,285.469,369.6ZM146.6,358.183l52.459,52.46.1-.1.054.054,52.311-52.311,11.259-11.368L450.746,158.958,398.388,106.6,199.115,305.871,115.55,222.306,63.191,274.665l83.464,83.463Z" class="ci-primary"/>
+</svg>
+
+            </button>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item py-2 py-lg-1">
+        <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-body text-opacity-75"></div>
+        <hr class="d-lg-none my-2 text-white-50">
       </li>
     </ul>
     <a class="btn btn-outline-primary d-lg-inline-block my-2 my-md-0 ms-md-3" href="https://coreui.io/bootstrap/docs/getting-started/download/">
@@ -1087,7 +1181,7 @@
   margin-bottom: 20px;
 }
 </style>
-<h2 id="how-it-works">How it works</h2>
+<h2 id="how-it-works">How it works <a class="anchor-link" href="#how-it-works" aria-label="Link to this section: How it works"></a></h2>
 <p>Here&rsquo;s what you need to know before getting started with the header component:</p>
 <ul>
 <li>Headers and their contents are fluid by default. Use <a href="#containers">optional containers</a> to limit their horizontal width.</li>
@@ -1101,7 +1195,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </div>
 
 <p>Read on for an example and list of supported sub-components.</p>
-<h2 id="supported-content">Supported content</h2>
+<h2 id="supported-content">Supported content <a class="anchor-link" href="#supported-content" aria-label="Link to this section: Supported content"></a></h2>
 <p>Headers come with built-in support for a handful of sub-components. Choose from the following as needed:</p>
 <ul>
 <li><code>.header-brand</code> for your company, product, or project name.</li>
@@ -1193,7 +1287,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
 <p>This example uses <a href="https://coreui.io/bootstrap/docs/utilities/colors/">color</a> (<code>bg-light</code>) and <a href="https://coreui.io/bootstrap/docs/utilities/spacing/">spacing</a> (<code>my-2</code>, <code>my-lg-0</code>, <code>mr-sm-0</code>, <code>my-sm-0</code>) utility classes.</p>
-<h3 id="brand">Brand</h3>
+<h3 id="brand">Brand <a class="anchor-link" href="#brand" aria-label="Link to this section: Brand"></a></h3>
 <p>The <code>.header-brand</code> can be applied to most elements, but an anchor works best as some elements might require utility classes or custom styles.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <!-- As a link -->
@@ -1276,7 +1370,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h3 id="nav">Nav</h3>
+<h3 id="nav">Nav <a class="anchor-link" href="#nav" aria-label="Link to this section: Nav"></a></h3>
 <p>Header navigation links build on our <code>.header-nav</code>.</p>
 <p>Active states—with <code>.active</code>—to indicate the current page can be applied directly to <code>.nav-link</code>s or their immediate parent <code>.nav-item</code>s.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
@@ -1417,7 +1511,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h3 id="forms">Forms</h3>
+<h3 id="forms">Forms <a class="anchor-link" href="#forms" aria-label="Link to this section: Forms"></a></h3>
 <p>Place various form controls and components within a header with <code>.d-flex</code>.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <header class="header">
@@ -1528,7 +1622,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h3 id="text">Text</h3>
+<h3 id="text">Text <a class="anchor-link" href="#text" aria-label="Link to this section: Text"></a></h3>
 <p>Headers may contain bits of text with the help of <code>.header-text</code>. This class adjusts vertical alignment and horizontal spacing for strings of text.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <header class="header">
@@ -1552,7 +1646,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h2 id="containers">Containers</h2>
+<h2 id="containers">Containers <a class="anchor-link" href="#containers" aria-label="Link to this section: Containers"></a></h2>
 <p>Although it&rsquo;s not required, you can wrap a header in a <code>.container</code> to center it on a page or add one within to only center the contents of a <a href="#placement">fixed or static top header</a>.</p>
 <div class="docs-example-snippet docs-code-snippet"><div class="docs-example m-0 border-0">
 <div class="container">
@@ -1599,8 +1693,8 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span></span></span></code></pre></div></div>
 
-<h2 id="customizing">Customizing</h2>
-<h3 id="css-variables">CSS variables</h3>
+<h2 id="customizing">Customizing <a class="anchor-link" href="#customizing" aria-label="Link to this section: Customizing"></a></h2>
+<h3 id="css-variables">CSS variables <a class="anchor-link" href="#css-variables" aria-label="Link to this section: CSS variables"></a></h3>
 <p>Headers use local CSS variables on <code>.header</code> for enhanced real-time customization. Values for the CSS variables are set via Sass, so Sass customization is still supported, too.</p>
 <div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
@@ -1623,6 +1717,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}header-hover-color</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$header-hover-color</span><span class="si">}</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}header-disabled-color</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$header-disabled-color</span><span class="si">}</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}header-active-color</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$header-active-color</span><span class="si">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}header-transition</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$header-transition</span><span class="si">}</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}header-brand-padding-y</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$header-brand-padding-y</span><span class="si">}</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}header-brand-color</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$header-brand-color</span><span class="si">}</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}header-brand-hover-color</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$header-brand-hover-color</span><span class="si">}</span><span class="p">;</span>
@@ -1637,9 +1732,8 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}header-nav-link-padding-x</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$header-nav-link-padding-x</span><span class="si">}</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}header-nav-link-padding-y</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$header-nav-link-padding-y</span><span class="si">}</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}header-divider-border-color</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$header-divider-border-color</span><span class="si">}</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}header-divider-border</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$header-divider-border-width</span><span class="si">}</span> <span class="ni">solid</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="si">#{</span><span class="nv">$prefix</span><span class="si">}</span><span class="n">header-divider-border-color</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}subheader-min-height</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$subheader-min-height</span><span class="si">}</span><span class="p">;</span></span></span></code></pre></div></div>
-<h3 id="sass-variables">SASS variables</h3>
+</span></span><span class="line"><span class="cl"><span class="na">--#{$prefix}header-divider-border</span><span class="o">:</span> <span class="si">#{</span><span class="nv">$header-divider-border-width</span><span class="si">}</span> <span class="ni">solid</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="si">#{</span><span class="nv">$prefix</span><span class="si">}</span><span class="n">header-divider-border-color</span><span class="p">);</span></span></span></code></pre></div></div>
+<h3 id="sass-variables">SASS variables <a class="anchor-link" href="#sass-variables" aria-label="Link to this section: SASS variables"></a></h3>
 <div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
       <div class="font-monospace link-secondary link-underline-secondary link-underline-opacity-0 link-underline-opacity-100-hover small">scss/_variables.scss</div>
@@ -1662,6 +1756,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </span></span><span class="line"><span class="cl"><span class="nv">$header-hover-color</span><span class="o">:</span>            <span class="nf">rgba</span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="si">#{</span><span class="nv">$prefix</span><span class="si">}</span><span class="n">emphasis-color-rgb</span><span class="p">)</span><span class="o">,</span> <span class="mf">.8</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$header-active-color</span><span class="o">:</span>           <span class="nf">rgba</span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="si">#{</span><span class="nv">$prefix</span><span class="si">}</span><span class="n">emphasis-color-rgb</span><span class="p">)</span><span class="o">,</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$header-disabled-color</span><span class="o">:</span>         <span class="nf">rgba</span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="si">#{</span><span class="nv">$prefix</span><span class="si">}</span><span class="n">emphasis-color-rgb</span><span class="p">)</span><span class="o">,</span> <span class="mf">.3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$header-transition</span><span class="o">:</span>             <span class="n">box-shadow</span> <span class="mf">.15</span><span class="kt">s</span> <span class="ni">ease-in-out</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Compute the header-brand padding-y so the header-brand will have the same height as header-text and nav-link
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$nav-link-height</span><span class="o">:</span>               <span class="nv">$font-size-base</span> <span class="o">*</span> <span class="nv">$line-height-base</span> <span class="o">+</span> <span class="nv">$nav-link-padding-y</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
@@ -1680,10 +1775,8 @@ The animation effect of this component is dependent on the <code>prefers-reduced
 </span></span><span class="line"><span class="cl"><span class="nv">$header-toggler-border-radius</span><span class="o">:</span>  <span class="nv">$btn-border-radius</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$header-toggler-hover-color</span><span class="o">:</span>    <span class="nf">rgba</span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="si">#{</span><span class="nv">$prefix</span><span class="si">}</span><span class="n">emphasis-color-rgb</span><span class="p">)</span><span class="o">,</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$header-toggler-icon-color</span><span class="o">:</span>        <span class="ni">currentColor</span><span class="p">;</span> <span class="c1">// stylelint-disable-line value-keyword-case
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$header-toggler-icon-bg</span><span class="o">:</span>           <span class="sx">url(&#34;data:image/svg+xml;charset=utf8,%3Csvg viewBox=&#39;0 0 30 30&#39; xmlns=&#39;http://www.w3.org/2000/svg&#39;%3E%3Cpath stroke=&#39;</span><span class="si">#{</span><span class="nv">$header-toggler-icon-color</span><span class="si">}</span><span class="sx">&#39; stroke-width=&#39;2.25&#39; stroke-linecap=&#39;round&#39; stroke-miterlimit=&#39;10&#39; d=&#39;M4 7h22M4 15h22M4 23h22&#39;/%3E%3C/svg%3E&#34;)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$header-toggler-hover-icon-color</span><span class="o">:</span>  <span class="ni">currentColor</span><span class="p">;</span> <span class="c1">// stylelint-disable-line value-keyword-case
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$header-toggler-hover-icon-bg</span><span class="o">:</span>     <span class="sx">url(&#34;data:image/svg+xml;charset=utf8,%3Csvg viewBox=&#39;0 0 30 30&#39; xmlns=&#39;http://www.w3.org/2000/svg&#39;%3E%3Cpath stroke=&#39;</span><span class="si">#{</span><span class="nv">$header-toggler-hover-icon-color</span><span class="si">}</span><span class="sx">&#39; stroke-width=&#39;2.25&#39; stroke-linecap=&#39;round&#39; stroke-miterlimit=&#39;10&#39; d=&#39;M4 7h22M4 15h22M4 23h22&#39;/%3E%3C/svg%3E&#34;)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$header-toggler-icon-bg</span><span class="o">:</span>        <span class="sx">url(&#34;data:image/svg+xml;charset=utf8,%3Csvg viewBox=&#39;0 0 30 30&#39; xmlns=&#39;http://www.w3.org/2000/svg&#39;%3E%3Cpath stroke=&#39;</span><span class="si">#{</span><span class="nv">$header-color</span><span class="si">}</span><span class="sx">&#39; stroke-width=&#39;2.25&#39; stroke-linecap=&#39;round&#39; stroke-miterlimit=&#39;10&#39; d=&#39;M4 7h22M4 15h22M4 23h22&#39;/%3E%3C/svg%3E&#34;)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$header-toggler-hover-icon-bg</span><span class="o">:</span>  <span class="sx">url(&#34;data:image/svg+xml;charset=utf8,%3Csvg viewBox=&#39;0 0 30 30&#39; xmlns=&#39;http://www.w3.org/2000/svg&#39;%3E%3Cpath stroke=&#39;</span><span class="si">#{</span><span class="nv">$header-hover-color</span><span class="si">}</span><span class="sx">&#39; stroke-width=&#39;2.25&#39; stroke-linecap=&#39;round&#39; stroke-miterlimit=&#39;10&#39; d=&#39;M4 7h22M4 15h22M4 23h22&#39;/%3E%3C/svg%3E&#34;)</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$header-nav-link-padding-x</span><span class="o">:</span>     <span class="mf">.5</span><span class="kt">rem</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$header-nav-link-padding-y</span><span class="o">:</span>     <span class="mf">.5</span><span class="kt">rem</span><span class="p">;</span>
@@ -1707,7 +1800,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.3.2. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
+    <p class="mb-0">Currently v5.0.0-rc.2. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
   </div>
 </footer>
 
@@ -1715,7 +1808,7 @@ The animation effect of this component is dependent on the <code>prefers-reduced
       
   
     </div>
-    <script src="https://coreui.io/bootstrap/docs/dist/js/coreui.bundle.min.js" integrity="sha384-J57aCZcRcbraFuQaL18wp1fDE0fLyO7Il/jKACMovk4ddxUIvjRK5ZZnqcHuBF/T" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/bootstrap/docs/dist/js/coreui.bundle.min.js" integrity="sha384-aGTCMmOaT4om0+lHGIaFUYKB+b7cRjX9/j/rq19umAyp+xKEAePEeVcH3pTxkVbu" crossorigin="anonymous"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>

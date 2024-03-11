@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-399c0152","path":"/api/pagination/CPagination.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CPagination","slug":"cpagination","link":"#cpagination","children":[]}],"filePathRelative":"api/pagination/CPagination.api.md"}');export{a as data};

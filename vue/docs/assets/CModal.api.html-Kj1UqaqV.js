@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-03b6fdd3","path":"/api/modal/CModal.api.html","title":"","lang":"en-US","frontmatter":{"head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/api/modal/CModal.api.html"}]]},"headers":[{"level":3,"title":"CModal","slug":"cmodal","link":"#cmodal","children":[]}],"filePathRelative":"api/modal/CModal.api.md"}');export{a as data};

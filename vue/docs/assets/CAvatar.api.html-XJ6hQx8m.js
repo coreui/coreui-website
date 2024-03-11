@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-97e498ce","path":"/api/avatar/CAvatar.api.html","title":"","lang":"en-US","frontmatter":{"head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/api/avatar/CAvatar.api.html"}]]},"headers":[{"level":3,"title":"CAvatar","slug":"cavatar","link":"#cavatar","children":[]}],"filePathRelative":"api/avatar/CAvatar.api.md"}');export{a as data};

@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Utilize our source Sass files to take advantage of variables, maps, mixins, and functions to help you build faster and customize your project.">
 <meta name="author" content="Lukasz Holeczek, Andrzej Kopanski">
-<meta name="generator" content="Hugo 0.118.2">
+<meta name="generator" content="Hugo 0.123.6">
 
 <meta name="docsearch:language" content="en">
-<meta name="docsearch:version" content="4.6">
+<meta name="docsearch:version" content="5.0">
 
 
 <title>Sass · CoreUI</title>
@@ -16,13 +16,15 @@
 
 <link rel="canonical" href="https://coreui.io/bootstrap/docs/customize/sass/"><link rel="preconnect" href="https://AK7KMZKZHQ-dsn.algolia.net" crossorigin>
 
-
+<script src="https://coreui.io/bootstrap/docs/assets/js/color-modes.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href="https://coreui.io/bootstrap/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-N6/iVUKuB1Y9fhC3xnBbekegSwfXwMNEIvMxNyYLO6z9vmfxMyEwPNsH0k+p4beB" crossorigin="anonymous">
+<link href="https://coreui.io/bootstrap/docs/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-ry0/VADFZoMb+nqZUTCl4BKR2Tf8jjcAQf5gGULlcwkePPL1I8e20WTTUopDjrx6" crossorigin="anonymous">
 
 <link href="https://coreui.io/bootstrap/docs/assets/css/docs.css" rel="stylesheet">
+
+<link href="https://coreui.io/bootstrap/docs/scss/docs-pickers.css" rel="stylesheet">
 
 <!-- Favicons -->
 <link rel="apple-touch-icon" href="https://coreui.io/bootstrap/docs/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -82,7 +84,7 @@
   </head>
   <body class="d-flex">
     
-    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end ps-xl-4 docs-sidebar elevation-0" id="sidebar">
+    <div class="sidebar sidebar-lg sidebar-fixed sidebar-self-hiding-md border-end px-xl-4 docs-sidebar elevation-0" id="sidebar">
   <div class="sidebar-brand justify-content-start ps-3">
     <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="50" class="d-block mt-4 mb-5" viewBox="0 0 312 115">
   <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
@@ -103,8 +105,8 @@
     </g>
 </svg>
   </div>
-  <div class="text-body-secondary ms-3 me-5 mb-2 small fw-semibold">Framework:</div>
-  <div class="dropdown ms-3 me-5 mb-4">
+  <div class="text-body-secondary mx-3 mb-2 small fw-semibold">Framework:</div>
+  <div class="dropdown mx-3 mb-4">
     <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-coreui-toggle="dropdown" aria-expanded="false">
       JavaScript / Vanilla JS
     </button>
@@ -232,6 +234,11 @@
             <li class="nav-item">
               <a href="https://coreui.io/bootstrap/docs/customize/color/" class="nav-link" >
                 Color
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/bootstrap/docs/customize/color-modes/" class="nav-link" >
+                Color modes
               </a>
             </li>
             <li class="nav-item">
@@ -514,6 +521,11 @@
             <li class="nav-item">
               <a href="https://coreui.io/bootstrap/docs/components/header/" class="nav-link" >
                 Header
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/bootstrap/docs/components/jumbotron/" class="nav-link" >
+                Jumbotron
               </a>
             </li>
             <li class="nav-item">
@@ -824,6 +836,29 @@
             </li>
         </ul>
       </li>
+
+      <li class="nav-item nav-group ">
+        <a class="nav-link nav-group-toggle" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M464,256.25C464,370.8,370.8,464,256.25,464S48.5,370.8,48.5,256.25,141.7,48.5,256.25,48.5a208,208,0,0,1,149.963,64H328.5v32h128V16.5h-32V85.478A239.717,239.717,0,1,0,496,256.25Z" class="ci-primary"/>
+  <polygon fill="var(--ci-primary-color, currentColor)" points="272.5 112.451 240.5 112.549 241.017 282.756 353.301 334.53 366.699 305.47 272.954 262.244 272.5 112.451" class="ci-primary"/>
+</svg>
+
+          Migration
+        </a>
+        <ul class="nav-group-items compact">
+            <li class="nav-item">
+              <a href="https://coreui.io/bootstrap/docs/migration/v4/" class="nav-link" >
+                v4
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://coreui.io/bootstrap/docs/migration/v5/" class="nav-link" >
+                v5
+              </a>
+            </li>
+        </ul>
+      </li>
     <li class="nav-item">
       <a href="https://coreui.io/bootstrap/docs/icons/" class="nav-link" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
@@ -833,21 +868,11 @@
         Icons
       </a>
     </li>
-    <li class="nav-item">
-      <a href="https://coreui.io/bootstrap/docs/migration/" class="nav-link">
-        <svg xmlns="http://www.w3.org/2000/svg" class="nav-icon text-primary" viewBox="0 0 512 512">
-  <path fill="var(--ci-primary-color, currentColor)" d="M464,256.25C464,370.8,370.8,464,256.25,464S48.5,370.8,48.5,256.25,141.7,48.5,256.25,48.5a208,208,0,0,1,149.963,64H328.5v32h128V16.5h-32V85.478A239.717,239.717,0,1,0,496,256.25Z" class="ci-primary"/>
-  <polygon fill="var(--ci-primary-color, currentColor)" points="272.5 112.451 240.5 112.549 241.017 282.756 353.301 334.53 366.699 305.47 272.954 262.244 272.5 112.451" class="ci-primary"/>
-</svg>
-
-        Migration
-      </a>
-    </li>
   </ul>
 </div>
 
     <div class="wrapper flex-grow-1">
-      <header class="header header-sticky mb-5 elevation-0 border-bottom">
+      <header class="docs-header header header-sticky elevation-0 mb-5">
   <div class="container-fluid">
     <button class="header-toggler d-lg-none" type="button" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16">
@@ -878,6 +903,75 @@
         <a class="nav-link" href="https://opencollective.com/coreui" target="_blank" rel="noopener">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" fill-rule="evenodd" class="icon icon-xl" viewBox="0 0 40 41" role="img"><title>Open Collective</title><path fill-opacity=".4" d="M32.8 21c0 2.4-.8 4.9-2 6.9l5.1 5.1c2.5-3.4 4.1-7.6 4.1-12 0-4.6-1.6-8.8-4-12.2L30.7 14c1.2 2 2 4.3 2 7z"/><path d="M20 33.7a12.8 12.8 0 0 1 0-25.6c2.6 0 5 .7 7 2.1L32 5a20 20 0 1 0 .1 31.9l-5-5.2a13 13 0 0 1-7 2z"/></svg>
         </a>
+      </li>
+      <li class="nav-item py-2 py-lg-1">
+        <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-body text-opacity-75"></div>
+        <hr class="d-lg-none my-2 text-white-50">
+      </li>
+      <li class="nav-item dropdown">
+        <button class="btn btn-link nav-link py-2 px-2 px-lg-2 d-flex align-items-center"
+                type="button"
+                aria-expanded="false"
+                data-coreui-toggle="dropdown"
+                data-coreui-display="static">
+          <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon-active icon icon-xl" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM234,462.849a208.346,208.346,0,0,1-169.667-125.9c-.364-.859-.706-1.724-1.057-2.587L234,429.939Zm0-69.582L50.889,290.76A209.848,209.848,0,0,1,48,256q0-9.912.922-19.67L234,339.939Zm0-90L54.819,202.96a206.385,206.385,0,0,1,9.514-27.913Q67.1,168.5,70.3,162.191L234,253.934Zm0-86.015L86.914,134.819a209.42,209.42,0,0,1,22.008-25.9q3.72-3.72,7.6-7.228L234,166.027Zm0-87.708L144.352,80.451A206.951,206.951,0,0,1,234,49.151ZM464,256A207.775,207.775,0,0,1,266,463.761V48.239A207.791,207.791,0,0,1,464,256Z" class="ci-primary"/>
+</svg>
+
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cd-theme" style="--cui-dropdown-min-width: 8rem;">
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-coreui-theme-value="light">
+              <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon icon icon-lg me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M256,104c-83.813,0-152,68.187-152,152s68.187,152,152,152,152-68.187,152-152S339.813,104,256,104Zm0,272A120,120,0,1,1,376,256,120.136,120.136,0,0,1,256,376Z" class="ci-primary"/>
+  <rect width="32" height="48" x="240" y="16" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="32" height="48" x="240" y="448" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="48" height="32" x="448" y="240" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="48" height="32" x="16" y="240" fill="var(--ci-primary-color, currentColor)" class="ci-primary"/>
+  <rect width="32" height="45.255" x="400" y="393.373" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 416 416)"/>
+  <rect width="32.001" height="45.255" x="80" y="73.373" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 96 96)"/>
+  <rect width="45.255" height="32" x="73.373" y="400" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45.001 96.002 416.003)"/>
+  <rect width="45.255" height="32.001" x="393.373" y="80" fill="var(--ci-primary-color, currentColor)" class="ci-primary" transform="rotate(-45 416 96)"/>
+</svg>
+
+              Light
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon bi ms-auto d-none" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M199.066,456l-7.379-7.514-3.94-3.9-86.2-86.2.053-.055L17.936,274.665l97.614-97.613,83.565,83.565L398.388,61.344,496,158.958,296.729,358.229,285.469,369.6ZM146.6,358.183l52.459,52.46.1-.1.054.054,52.311-52.311,11.259-11.368L450.746,158.958,398.388,106.6,199.115,305.871,115.55,222.306,63.191,274.665l83.464,83.463Z" class="ci-primary"/>
+</svg>
+
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-coreui-theme-value="dark">
+              <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon icon icon-lg me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M268.279,496c-67.574,0-130.978-26.191-178.534-73.745S16,311.293,16,243.718A252.252,252.252,0,0,1,154.183,18.676a24.44,24.44,0,0,1,34.46,28.958,220.12,220.12,0,0,0,54.8,220.923A218.746,218.746,0,0,0,399.085,333.2h0a220.2,220.2,0,0,0,65.277-9.846,24.439,24.439,0,0,1,28.959,34.461A252.256,252.256,0,0,1,268.279,496ZM153.31,55.781A219.3,219.3,0,0,0,48,243.718C48,365.181,146.816,464,268.279,464a219.3,219.3,0,0,0,187.938-105.31,252.912,252.912,0,0,1-57.13,6.513h0a250.539,250.539,0,0,1-178.268-74.016,252.147,252.147,0,0,1-67.509-235.4Z" class="ci-primary"/>
+</svg>
+
+              Dark
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon bi ms-auto d-none" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M199.066,456l-7.379-7.514-3.94-3.9-86.2-86.2.053-.055L17.936,274.665l97.614-97.613,83.565,83.565L398.388,61.344,496,158.958,296.729,358.229,285.469,369.6ZM146.6,358.183l52.459,52.46.1-.1.054.054,52.311-52.311,11.259-11.368L450.746,158.958,398.388,106.6,199.115,305.871,115.55,222.306,63.191,274.665l83.464,83.463Z" class="ci-primary"/>
+</svg>
+
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center active" data-coreui-theme-value="auto">
+              <svg xmlns="http://www.w3.org/2000/svg" class="theme-icon icon icon-lg me-2" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM234,462.849a208.346,208.346,0,0,1-169.667-125.9c-.364-.859-.706-1.724-1.057-2.587L234,429.939Zm0-69.582L50.889,290.76A209.848,209.848,0,0,1,48,256q0-9.912.922-19.67L234,339.939Zm0-90L54.819,202.96a206.385,206.385,0,0,1,9.514-27.913Q67.1,168.5,70.3,162.191L234,253.934Zm0-86.015L86.914,134.819a209.42,209.42,0,0,1,22.008-25.9q3.72-3.72,7.6-7.228L234,166.027Zm0-87.708L144.352,80.451A206.951,206.951,0,0,1,234,49.151ZM464,256A207.775,207.775,0,0,1,266,463.761V48.239A207.791,207.791,0,0,1,464,256Z" class="ci-primary"/>
+</svg>
+
+              Auto
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon bi ms-auto d-none" viewBox="0 0 512 512">
+  <path fill="var(--ci-primary-color, currentColor)" d="M199.066,456l-7.379-7.514-3.94-3.9-86.2-86.2.053-.055L17.936,274.665l97.614-97.613,83.565,83.565L398.388,61.344,496,158.958,296.729,358.229,285.469,369.6ZM146.6,358.183l52.459,52.46.1-.1.054.054,52.311-52.311,11.259-11.368L450.746,158.958,398.388,106.6,199.115,305.871,115.55,222.306,63.191,274.665l83.464,83.463Z" class="ci-primary"/>
+</svg>
+
+            </button>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item py-2 py-lg-1">
+        <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-body text-opacity-75"></div>
+        <hr class="d-lg-none my-2 text-white-50">
       </li>
     </ul>
     <a class="btn btn-outline-primary d-lg-inline-block my-2 my-md-0 ms-md-3" href="https://coreui.io/bootstrap/docs/getting-started/download/">
@@ -945,6 +1039,7 @@
     <li><a href="#file-structure">File structure</a></li>
     <li><a href="#importing">Importing</a></li>
     <li><a href="#compiling">Compiling</a></li>
+    <li><a href="#including">Including</a></li>
     <li><a href="#variable-defaults">Variable defaults</a></li>
     <li><a href="#maps-and-loops">Maps and loops</a>
       <ul>
@@ -976,7 +1071,7 @@
       
 
       <p>Utilize our source Sass files to take advantage of variables, maps, mixins, and more.</p>
-<h2 id="file-structure">File structure</h2>
+<h2 id="file-structure">File structure <a class="anchor-link" href="#file-structure" aria-label="Link to this section: File structure"></a></h2>
 <p>Whenever possible, avoid modifying CoreUI for Bootstrap&rsquo;s core files. For Sass, that means creating your own stylesheet that imports CoreUI for Bootstrap so you can modify and extend it. Assuming you&rsquo;re using a package manager like npm, you&rsquo;ll have a file structure that looks like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">your-project/
 </span></span><span class="line"><span class="cl">├── scss
@@ -992,7 +1087,7 @@
 </span></span><span class="line"><span class="cl">└── @coreui/coreui/
 </span></span><span class="line"><span class="cl">    ├── js
 </span></span><span class="line"><span class="cl">    └── scss
-</span></span></code></pre></div><h2 id="importing">Importing</h2>
+</span></span></code></pre></div><h2 id="importing">Importing <a class="anchor-link" href="#importing" aria-label="Link to this section: Importing"></a></h2>
 <p>In your <code>custom.scss</code>, you&rsquo;ll import CoreUI&rsquo;s source Sass files. You have two options: include all of CoreUI, or pick the parts you need. We encourage the latter, though be aware there are some requirements and dependencies across our components. You also will need to include some JavaScript for our plugins.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// Custom.scss
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Option A: Include all of CoreUI
@@ -1032,7 +1127,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 8. Add additional custom code here
 </span></span></span></code></pre></div><p>With that setup in place, you can begin to modify any of the Sass variables and maps in your <code>custom.scss</code>. You can also start to add parts of CoreUI for Bootstrap under the <code>// Optional</code> section as needed. We suggest using the full import stack from our <code>coreui.scss</code> file as your starting point.</p>
-<h2 id="compiling">Compiling</h2>
+<h2 id="compiling">Compiling <a class="anchor-link" href="#compiling" aria-label="Link to this section: Compiling"></a></h2>
 <p>In order to use your custom Sass code as CSS in the browser, you need a Sass compiler. Sass ships as a CLI package, but you can also compile it with other build tools like <a href="https://gulpjs.com/">Gulp</a> or <a href="https://webpack.js.org/">Webpack</a>, or with a GUI applications. Some IDEs also have Sass compilers built in or as downloadable extensions.</p>
 <p>We like to use the CLI to compile our Sass, but you can use whichever method you prefer. From the command line, run the following:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># Install Sass globally</span>
@@ -1040,7 +1135,21 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Watch your custom Sass for changes and compile it to CSS</span>
 </span></span><span class="line"><span class="cl">sass --watch ./scss/custom.scss ./css/custom.css
-</span></span></code></pre></div><h2 id="variable-defaults">Variable defaults</h2>
+</span></span></code></pre></div><h2 id="including">Including <a class="anchor-link" href="#including" aria-label="Link to this section: Including"></a></h2>
+<p>Once your CSS is compiled, you can include it in your HTML files. Inside your <code>index.html</code> you&rsquo;ll want to include your compiled CSS file. Be sure to update the path to your compiled CSS file if you&rsquo;ve changed it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!doctype html&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Custom CoreUI for Bootstrap<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/css/custom.css&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h2 id="variable-defaults">Variable defaults <a class="anchor-link" href="#variable-defaults" aria-label="Link to this section: Variable defaults"></a></h2>
 <p>Every Sass variable in CoreUI for Bootstrap includes the <code>!default</code> flag allowing you to override the variable&rsquo;s default value in your own Sass without modifying CoreUI for Bootstrap&rsquo;s source code. Copy and paste variables as needed, modify their values, and remove the <code>!default</code> flag. If a variable has already been assigned, then it won&rsquo;t be re-assigned by the default values in Bootstrap.</p>
 <p>You will find the complete list of CoreUI for Bootstrap&rsquo;s variables in <code>scss/_variables.scss</code>. Some variables are set to <code>null</code>, these variables don&rsquo;t output the property unless they are overridden in your configuration.</p>
 <p>Variable overrides must come after our functions are imported, but before the rest of the imports.</p>
@@ -1063,10 +1172,10 @@
 </span></span><span class="line"><span class="cl"><span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/type&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// etc
 </span></span></span></code></pre></div><p>Repeat as necessary for any variable in CoreUI, including the global options below.</p>
-<h2 id="maps-and-loops">Maps and loops</h2>
+<h2 id="maps-and-loops">Maps and loops <a class="anchor-link" href="#maps-and-loops" aria-label="Link to this section: Maps and loops"></a></h2>
 <p>CoreUI for Bootstrap includes a handful of Sass maps, key value pairs that make it easier to generate families of related CSS. We use Sass maps for our colors, grid breakpoints, and more. Just like Sass variables, all Sass maps include the <code>!default</code> flag and can be overridden and extended.</p>
 <p>Some of our Sass maps are merged into empty ones by default. This is done to allow easy expansion of a given Sass map, but comes at the cost of making <em>removing</em> items from a map slightly more difficult.</p>
-<h3 id="modify-map">Modify map</h3>
+<h3 id="modify-map">Modify map <a class="anchor-link" href="#modify-map" aria-label="Link to this section: Modify map"></a></h3>
 <p>All variables in the <code>$theme-colors</code> map are defined as standalone variables. To modify an existing color in our <code>$theme-colors</code> map, add the following to your custom Sass file:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nv">$primary</span><span class="o">:</span> <span class="mh">#0074d9</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$danger</span><span class="o">:</span> <span class="mh">#ff4136</span><span class="p">;</span>
@@ -1075,7 +1184,7 @@
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;primary&#34;</span><span class="o">:</span> <span class="nv">$primary</span><span class="o">,</span>
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;danger&#34;</span><span class="o">:</span> <span class="nv">$danger</span>
 </span></span><span class="line"><span class="cl"><span class="p">);</span>
-</span></span></code></pre></div><h3 id="add-to-map">Add to map</h3>
+</span></span></code></pre></div><h3 id="add-to-map">Add to map <a class="anchor-link" href="#add-to-map" aria-label="Link to this section: Add to map"></a></h3>
 <p>Add new colors to <code>$theme-colors</code>, or any other map, by creating a new Sass map with your custom values and merging it with the original map. In this case, we&rsquo;ll create a new <code>$custom-colors</code> map and merge it with <code>$theme-colors</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// Create your own map
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$custom-colors</span><span class="o">:</span> <span class="p">(</span>
@@ -1084,7 +1193,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Merge the maps
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nv">$theme-colors</span><span class="o">:</span> <span class="nf">map-merge</span><span class="p">(</span><span class="nv">$theme-colors</span><span class="o">,</span> <span class="nv">$custom-colors</span><span class="p">);</span>
-</span></span></code></pre></div><h3 id="remove-from-map">Remove from map</h3>
+</span></span></code></pre></div><h3 id="remove-from-map">Remove from map <a class="anchor-link" href="#remove-from-map" aria-label="Link to this section: Remove from map"></a></h3>
 <p>To remove colors from <code>$theme-colors</code>, or any other map, use <code>map-remove</code>. Be aware you must insert it between our requirements and options:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// Required
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/functions&#34;</span><span class="p">;</span>
@@ -1099,11 +1208,11 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/reboot&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">@import</span> <span class="s2">&#34;../node_modules/@coreui/coreui/scss/type&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// etc
-</span></span></span></code></pre></div><h2 id="required-keys">Required keys</h2>
+</span></span></span></code></pre></div><h2 id="required-keys">Required keys <a class="anchor-link" href="#required-keys" aria-label="Link to this section: Required keys"></a></h2>
 <p>CoreUI for Bootstrap assumes the presence of some specific keys within Sass maps as we used and extend these ourselves. As you customize the included maps, you may encounter errors where a specific Sass map&rsquo;s key is being used.</p>
 <p>For example, we use the <code>primary</code>, <code>success</code>, and <code>danger</code> keys from <code>$theme-colors</code> for links, buttons, and form states. Replacing the values of these keys should present no issues, but removing them may cause Sass compilation issues. In these instances, you&rsquo;ll need to modify the Sass code that makes use of those values.</p>
-<h2 id="functions">Functions</h2>
-<h3 id="colors">Colors</h3>
+<h2 id="functions">Functions <a class="anchor-link" href="#functions" aria-label="Link to this section: Functions"></a></h2>
+<h3 id="colors">Colors <a class="anchor-link" href="#colors" aria-label="Link to this section: Colors"></a></h3>
 <p>Next to the <a href="https://coreui.io/bootstrap/docs/customize/color/#color-sass-maps">Sass maps</a> we have, theme colors can also be used as standalone variables, like <code>$primary</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.custom-element</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="na">color</span><span class="o">:</span> <span class="nv">$gray-100</span><span class="p">;</span>
@@ -1144,7 +1253,12 @@
 </span></span><span class="line"><span class="cl"><span class="nc">.custom-element-2</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="na">color</span><span class="o">:</span> <span class="nf">shade-color</span><span class="p">(</span><span class="nv">$danger</span><span class="o">,</span> <span class="mi">30</span><span class="kt">%</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="color-contrast">Color contrast</h3>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nc">.custom-element-3</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">color</span><span class="o">:</span> <span class="nf">shift-color</span><span class="p">(</span><span class="nv">$success</span><span class="o">,</span> <span class="mi">40</span><span class="kt">%</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="na">background-color</span><span class="o">:</span> <span class="nf">shift-color</span><span class="p">(</span><span class="nv">$success</span><span class="o">,</span> <span class="o">-</span><span class="mi">60</span><span class="kt">%</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="color-contrast">Color contrast <a class="anchor-link" href="#color-contrast" aria-label="Link to this section: Color contrast"></a></h3>
 <p>In order to meet the <a href="https://www.w3.org/TR/WCAG/">Web Content Accessibility Guidelines (WCAG)</a> contrast requirements, authors <strong>must</strong> provide a minimum <a href="https://www.w3.org/TR/WCAG/#contrast-minimum">text color contrast of 4.5:1</a> and a minimum <a href="https://www.w3.org/TR/WCAG/#non-text-contrast">non-text color contrast of 3:1</a>, with very few exceptions.</p>
 <p>An additional function we include in CoreUI for Bootstrap is the color contrast function, <code>color-contrast</code>. It utilizes the <a href="https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests">WCAG 2.0 algorithm</a> for calculating contrast thresholds based on <a href="https://www.w3.org/WAI/GL/wiki/Relative_luminance">relative luminance</a> in a <code>sRGB</code> colorspace to automatically return a light (<code>#fff</code>), dark (<code>#212529</code>) or black (<code>#000</code>) contrast color based on the specified base color. This function is especially useful for mixins or loops where you&rsquo;re generating multiple classes.</p>
 <p>For example, to generate color swatches from our <code>$theme-colors</code> map:</p>
@@ -1161,9 +1275,9 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.custom-element</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="na">color</span><span class="o">:</span> <span class="nf">color-contrast</span><span class="p">(</span><span class="nv">$dark</span><span class="p">);</span> <span class="c1">// returns `color: #fff`
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></div><h3 id="escape-svg">Escape SVG</h3>
+</span></span></code></pre></div><h3 id="escape-svg">Escape SVG <a class="anchor-link" href="#escape-svg" aria-label="Link to this section: Escape SVG"></a></h3>
 <p>We use the <code>escape-svg</code> function to escape the <code>&lt;</code>, <code>&gt;</code> and <code>#</code> characters for SVG background images. When using the <code>escape-svg</code> function, data URIs must be quoted.</p>
-<h3 id="add-and-subtract-functions">Add and Subtract functions</h3>
+<h3 id="add-and-subtract-functions">Add and Subtract functions <a class="anchor-link" href="#add-and-subtract-functions" aria-label="Link to this section: Add and Subtract functions"></a></h3>
 <p>We use the <code>add</code> and <code>subtract</code> functions to wrap the CSS <code>calc</code> function. The primary purpose of these functions is to avoid errors when a &ldquo;unitless&rdquo; <code>0</code> value is passed into a <code>calc</code> expression. Expressions like <code>calc(10px - 0)</code> will return an error in all browsers, despite being mathematically correct.</p>
 <p>Example where the calc is valid:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nv">$border-radius</span><span class="o">:</span> <span class="mf">.25</span><span class="kt">rem</span><span class="p">;</span>
@@ -1191,9 +1305,9 @@
 </span></span><span class="line"><span class="cl">  <span class="c1">// Output .25rem
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="na">border-radius</span><span class="o">:</span> <span class="nf">subtract</span><span class="p">(</span><span class="nv">$border-radius</span><span class="o">,</span> <span class="nv">$border-width</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="mixins">Mixins</h2>
+</span></span></code></pre></div><h2 id="mixins">Mixins <a class="anchor-link" href="#mixins" aria-label="Link to this section: Mixins"></a></h2>
 <p>Our <code>scss/mixins/</code> directory has a ton of mixins that power parts of CoreUI for Bootstrap and can also be used across your own project.</p>
-<h3 id="color-schemes">Color schemes</h3>
+<h3 id="color-schemes">Color schemes <a class="anchor-link" href="#color-schemes" aria-label="Link to this section: Color schemes"></a></h3>
 <p>A shorthand mixin for the <code>prefers-color-scheme</code> media query is available with support for <code>light</code>, <code>dark</code>, and custom color schemes.</p>
 <div class="docs-example-snippet docs-code-snippet docs-file-ref">
     <div class="d-flex align-items-center highlight-toolbar ps-3 pe-2 py-1 border-bottom">
@@ -1213,12 +1327,12 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div></div>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="nc">.custom-element</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">@include</span><span class="nd"> color-scheme</span><span class="p">(</span><span class="ni">dark</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Insert dark mode styles here
+</span></span><span class="line"><span class="cl">  <span class="k">@include</span><span class="nd"> color-scheme</span><span class="p">(</span><span class="ni">light</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Insert light mode styles here
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="k">@include</span><span class="nd"> color-scheme</span><span class="p">(</span><span class="n">custom-named-scheme</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Insert custom color scheme styles here
+</span></span><span class="line"><span class="cl">  <span class="k">@include</span><span class="nd"> color-scheme</span><span class="p">(</span><span class="ni">dark</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Insert dark mode styles here
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div>
@@ -1237,7 +1351,7 @@
       <li class="d-inline-block ms-3"><a href="https://coreui.io/vue/">CoreUI for Vue.js</a></li>
     </ul>
     <p class="mb-0">CoreUI is designed as the extension of <a href="https://getbootstrap.com">Bootstrap</a>. Special thanks for <a href="https://getbootstrap.com/docs/5.0/about/team/">Bootstrap team</a> and <a href="https://github.com/twbs/bootstrap/graphs/contributors">Bootstrap's contributors</a>.</p>
-    <p class="mb-0">Currently v4.3.2. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
+    <p class="mb-0">Currently v5.0.0-rc.2. CoreUI code licensed <a href="https://github.com/coreui/coreui/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>,  docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>. <strong> CoreUI PRO requires a commercial license.</strong></p>
   </div>
 </footer>
 
@@ -1245,7 +1359,7 @@
       
   
     </div>
-    <script src="https://coreui.io/bootstrap/docs/dist/js/coreui.bundle.min.js" integrity="sha384-J57aCZcRcbraFuQaL18wp1fDE0fLyO7Il/jKACMovk4ddxUIvjRK5ZZnqcHuBF/T" crossorigin="anonymous"></script>
+    <script src="https://coreui.io/bootstrap/docs/dist/js/coreui.bundle.min.js" integrity="sha384-aGTCMmOaT4om0+lHGIaFUYKB+b7cRjX9/j/rq19umAyp+xKEAePEeVcH3pTxkVbu" crossorigin="anonymous"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>

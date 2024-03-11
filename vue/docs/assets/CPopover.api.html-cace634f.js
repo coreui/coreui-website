@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-48b93193","path":"/api/popover/CPopover.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CPopover","slug":"cpopover","link":"#cpopover","children":[]}],"filePathRelative":"api/popover/CPopover.api.md"}');export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-418dd4b3","path":"/api/alert/CAlert.api.html","title":"","lang":"en-US","frontmatter":{"head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/api/alert/CAlert.api.html"}]]},"headers":[{"level":3,"title":"CAlert","slug":"calert","link":"#calert","children":[]}],"filePathRelative":"api/alert/CAlert.api.md"}');export{e as data};

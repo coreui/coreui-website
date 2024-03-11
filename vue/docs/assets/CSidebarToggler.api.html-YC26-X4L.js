@@ -1,0 +1,4 @@
+import{_ as e,o as a,c as s,e as n}from"./app-gJDfq8z1.js";const o={},r=n(`<h3 id="csidebartoggler" tabindex="-1">CSidebarToggler <a class="anchor-link" href="#csidebartoggler" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CSidebarToggler <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
+<span class="token comment">// or</span>
+<span class="token keyword">import</span> CSidebarToggler <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/sidebar/CSidebarToggler&#39;</span>
+</code></pre></div>`,2),t=[r];function c(i,l){return a(),s("div",null,t)}const d=e(o,[["render",c],["__file","CSidebarToggler.api.html.vue"]]);export{d as default};

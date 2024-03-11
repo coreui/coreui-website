@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-30ea3053","path":"/api/date-range-picker/CDateRangePicker.api.html","title":"","lang":"en-US","frontmatter":{},"headers":[{"level":3,"title":"CDateRangePicker","slug":"cdaterangepicker","link":"#cdaterangepicker","children":[]}],"filePathRelative":"api/date-range-picker/CDateRangePicker.api.md"}');export{e as data};

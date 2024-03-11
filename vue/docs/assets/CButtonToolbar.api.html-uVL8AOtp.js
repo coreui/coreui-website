@@ -1,0 +1,4 @@
+import{_ as o,o as n,c as a,e as s}from"./app-gJDfq8z1.js";const t={},e=s(`<h3 id="cbuttontoolbar" tabindex="-1">CButtonToolbar <a class="anchor-link" href="#cbuttontoolbar" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CButtonToolbar <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
+<span class="token comment">// or</span>
+<span class="token keyword">import</span> CButtonToolbar <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/button-group/CButtonToolbar&#39;</span>
+</code></pre></div>`,2),c=[e];function r(l,p){return n(),a("div",null,c)}const i=o(t,[["render",r],["__file","CButtonToolbar.api.html.vue"]]);export{i as default};
