@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
-import { ButtonDirective } from '../../../../../../../coreui-angular/src/lib/button/button.directive';
-import { CardTextDirective } from '../../../../../../../coreui-angular/src/lib/card/card-text.directive';
-import { CardTitleDirective } from '../../../../../../../coreui-angular/src/lib/card/card-title.directive';
-import { CardBodyComponent } from '../../../../../../../coreui-angular/src/lib/card/card-body.component';
-import { CardHeaderComponent } from '../../../../../../../coreui-angular/src/lib/card/card-header.component';
-import { CardComponent } from '../../../../../../../coreui-angular/src/lib/card/card.component';
-import { TextColorDirective } from '../../../../../../../coreui-angular/src/lib/utilities/text-color.directive';
-import { ColComponent } from '../../../../../../../coreui-angular/src/lib/grid/col.component';
 import { NgFor } from '@angular/common';
-import { RowComponent } from '../../../../../../../coreui-angular/src/lib/grid/row.component';
+import {
+  ButtonDirective,
+  CardBodyComponent,
+  CardComponent,
+  CardHeaderComponent,
+  CardTextDirective,
+  CardTitleDirective,
+  ColComponent,
+  RowComponent,
+  TextColorDirective
+} from '@coreui/angular';
 
 @Component({
-    selector: 'docs-card22',
-    templateUrl: './card22.component.html',
-    standalone: true,
-    imports: [RowComponent, NgFor, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, CardTitleDirective, CardTextDirective, ButtonDirective]
+  selector: 'docs-card22',
+  templateUrl: './card22.component.html',
+  standalone: true,
+  imports: [RowComponent, NgFor, ColComponent, TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, CardTitleDirective, CardTextDirective, ButtonDirective]
 })
 export class Card22Component {
 
@@ -28,7 +30,5 @@ export class Card22Component {
     { color: 'light' },
     { color: 'dark' }
   ];
-
-  constructor() { }
 
 }

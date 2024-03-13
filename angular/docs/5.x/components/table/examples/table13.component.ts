@@ -1,19 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { AlignDirective } from '../../../../../../../coreui-angular/src/lib/utilities/align.directive';
-import { TableDirective } from '../../../../../../../coreui-angular/src/lib/table/table.directive';
+import { Component } from '@angular/core';
+import { AlignDirective, TableDirective } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-table13',
-    templateUrl: './table13.component.html',
-    styleUrls: ['./table13.component.scss'],
-    standalone: true,
-    imports: [TableDirective, AlignDirective]
+  selector: 'docs-table13',
+  templateUrl: './table13.component.html',
+  styleUrls: ['./table13.component.scss'],
+  standalone: true,
+  imports: [TableDirective, AlignDirective]
 })
-export class Table13Component implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class Table13Component {}

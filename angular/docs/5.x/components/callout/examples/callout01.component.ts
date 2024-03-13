@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
-import { CalloutComponent } from '../../../../../../../coreui-angular/src/lib/callout/callout.component';
+import { CalloutComponent } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-callout01-example',
-    templateUrl: './callout01.component.html',
-    standalone: true,
-    imports: [CalloutComponent],
+  selector: 'docs-callout01-example',
+  templateUrl: './callout01.component.html',
+  standalone: true,
+  imports: [CalloutComponent]
 })
-export class Callout01Component {
-
-  constructor() { }
-}
+export class Callout01Component {}

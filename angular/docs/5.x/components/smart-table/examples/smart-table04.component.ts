@@ -1,12 +1,15 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { IColumn, IItem } from '@coreui/angular';
 
 import usersData from './data';
-import { MultiSelectOptionComponent } from '../../../../../../../coreui-angular/src/lib/multi-select/multi-select-option/multi-select-option.component';
-import { NgFor } from '@angular/common';
-import { MultiSelectComponent } from '../../../../../../../coreui-angular/src/lib/multi-select/multi-select/multi-select.component';
-import { TemplateIdDirective } from '../../../../../../../coreui-angular/src/lib/shared/template-id.directive';
-import { SmartTableComponent } from '../../../../../../../coreui-angular/src/lib/smart-table/smart-table/smart-table.component';
+import {
+  IColumn,
+  IItem,
+  MultiSelectComponent,
+  MultiSelectOptionComponent,
+  SmartTableComponent,
+  TemplateIdDirective
+} from '@coreui/angular';
 
 interface IData extends IItem {
   id?: number;
@@ -16,10 +19,10 @@ interface IData extends IItem {
 }
 
 @Component({
-    selector: 'docs-smart-table04',
-    templateUrl: './smart-table04.component.html',
-    standalone: true,
-    imports: [SmartTableComponent, TemplateIdDirective, MultiSelectComponent, NgFor, MultiSelectOptionComponent]
+  selector: 'docs-smart-table04',
+  templateUrl: './smart-table04.component.html',
+  standalone: true,
+  imports: [SmartTableComponent, TemplateIdDirective, MultiSelectComponent, NgFor, MultiSelectOptionComponent]
 })
 export class SmartTable04Component {
 

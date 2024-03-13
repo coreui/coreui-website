@@ -1,18 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ContainerComponent } from '../../../../../../../coreui-angular/src/lib/grid/container.component';
+import { Component } from '@angular/core';
+import { ContainerComponent } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-containers02',
-    templateUrl: './containers02.component.html',
-    styleUrls: ['./containers02.component.scss'],
-    standalone: true,
-    imports: [ContainerComponent]
+  selector: 'docs-containers02',
+  templateUrl: './containers02.component.html',
+  styleUrls: ['./containers02.component.scss'],
+  standalone: true,
+  imports: [ContainerComponent]
 })
-export class Containers02Component implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class Containers02Component {}

@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
-import { ImgDirective } from '../../../../../../../coreui-angular/src/lib/image/img.directive';
+import { ImgDirective } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-image02-example',
-    templateUrl: './image02.component.html',
-    standalone: true,
-    imports: [ImgDirective],
+  selector: 'docs-image02-example',
+  templateUrl: './image02.component.html',
+  standalone: true,
+  imports: [ImgDirective]
 })
-export class Image02Component {
-
-  constructor() { }
-}
+export class Image02Component {}

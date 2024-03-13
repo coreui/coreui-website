@@ -1,19 +1,10 @@
 import { Component } from '@angular/core';
-import { ProgressBarComponent } from '../../../../../../../coreui-angular/src/lib/progress/progress-bar.component';
-import { ProgressComponent } from '../../../../../../../coreui-angular/src/lib/progress/progress.component';
-import { ProgressBarDirective } from '../../../../../../../coreui-angular/src/lib/progress/progress-bar.directive';
+import { ProgressBarComponent, ProgressComponent } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-progress04-example',
-    templateUrl: './progress04.component.html',
-    standalone: true,
-    imports: [
-        ProgressBarDirective,
-        ProgressComponent,
-        ProgressBarComponent,
-    ],
+  selector: 'docs-progress04-example',
+  templateUrl: './progress04.component.html',
+  standalone: true,
+  imports: [ProgressComponent, ProgressBarComponent]
 })
-export class Progress04Component {
-
-  constructor() { }
-}
+export class Progress04Component {}

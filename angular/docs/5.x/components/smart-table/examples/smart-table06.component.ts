@@ -1,12 +1,14 @@
+import { NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { Component } from '@angular/core';
 
 import usersData from './data-nested';
-import { NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
-import { AlignDirective } from '../../../../../../../coreui-angular/src/lib/utilities/align.directive';
-import { TableColorDirective } from '../../../../../../../coreui-angular/src/lib/table/table-color.directive';
-import { TableActiveDirective } from '../../../../../../../coreui-angular/src/lib/table/table-active.directive';
-import { TemplateIdDirective } from '../../../../../../../coreui-angular/src/lib/shared/template-id.directive';
-import { SmartTableComponent } from '../../../../../../../coreui-angular/src/lib/smart-table/smart-table/smart-table.component';
+import {
+  AlignDirective,
+  SmartTableComponent,
+  TableActiveDirective,
+  TableColorDirective,
+  TemplateIdDirective
+} from '@coreui/angular';
 
 interface IAddress {
   country?: string,
@@ -21,10 +23,10 @@ interface IUser {
 }
 
 @Component({
-    selector: 'docs-smart-table06',
-    templateUrl: './smart-table06.component.html',
-    standalone: true,
-    imports: [SmartTableComponent, TemplateIdDirective, TableActiveDirective, TableColorDirective, AlignDirective, NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault]
+  selector: 'docs-smart-table06',
+  templateUrl: './smart-table06.component.html',
+  standalone: true,
+  imports: [SmartTableComponent, TemplateIdDirective, TableActiveDirective, TableColorDirective, AlignDirective, NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault]
 })
 export class SmartTable06Component {
 

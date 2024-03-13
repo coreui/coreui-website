@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { LoadingButtonComponent } from '../../../../../../../coreui-angular/src/lib/loading-button/loading-button.component';
+import { LoadingButtonComponent } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-loading-button03',
-    templateUrl: './loading-button03.component.html',
-    standalone: true,
-    imports: [LoadingButtonComponent]
+  selector: 'docs-loading-button03',
+  templateUrl: './loading-button03.component.html',
+  standalone: true,
+  imports: [LoadingButtonComponent]
 })
 export class LoadingButton03Component {
 
