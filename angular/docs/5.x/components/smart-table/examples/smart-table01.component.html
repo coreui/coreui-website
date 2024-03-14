@@ -29,7 +29,7 @@
   </ng-template>
 
   <ng-template cTemplateId="tableDetails" let-item="item">
-    <div [visible]="this.details_visible[item._id]===true" cCollapse>
+    <div [visible]="this.details_visible[item.id]===true" cCollapse>
       <c-card class="rounded-0">
         <c-card-body>
           <h5>{{item['name']}}</h5>
@@ -47,10 +47,10 @@
     </div>
   </ng-template>
   <ng-template cTemplateId="tableData" let-columnName="columnName" let-item="item" let-tdContent="tdContent">
-    <td [cTableActive]="smartTable.tableDataCellProps(item, columnName)?.['active']"
-        [cTableColor]="smartTable.tableDataCellProps(item, columnName)?.color"
-        [cAlign]="smartTable.tableDataCellProps(item, columnName)?.align"
-        [ngClass]="smartTable.tableDataCellClasses(item, columnName)"
+    <td [cTableActive]="smartTable.getTableDataCellProps(item, columnName)?.['active']"
+        [cTableColor]="smartTable.getTableDataCellProps(item, columnName)?.['color']"
+        [cAlign]="smartTable.getTableDataCellProps(item, columnName)?.['align']"
+        [ngClass]="smartTable.getTableDataCellClass(item, columnName)"
     >
       <ng-container [ngSwitch]="columnName">
         <ng-container *ngSwitchCase="'status'">
@@ -59,7 +59,7 @@
           </c-badge>
         </ng-container>
         <ng-container *ngSwitchCase="'show'" class="py-2">
-          <button (click)="toggleDetails(item['id'])" cButton color="primary" size="sm" variant="outline">
+          <button (click)="toggleDetails(item.id)" cButton color="primary" size="sm" variant="outline">
             Show
           </button>
         </ng-container>

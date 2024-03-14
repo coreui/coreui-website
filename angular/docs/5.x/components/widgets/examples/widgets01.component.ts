@@ -1,39 +1,42 @@
+import { RouterLink } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
+import {
+  ButtonDirective,
+  ColComponent,
+  DropdownComponent,
+  DropdownItemDirective,
+  DropdownMenuDirective,
+  DropdownToggleDirective,
+  RowComponent,
+  TemplateIdDirective,
+  ThemeDirective,
+  WidgetStatAComponent
+} from '@coreui/angular';
+import { ChartjsComponent } from '@coreui/angular-chartjs';
 import { cilArrowTop, cilOptions } from '@coreui/icons';
+import { IconDirective } from '@coreui/icons-angular';
 import { getStyle } from '@coreui/utils';
-import { ChartjsComponent } from '../../../../../../../coreui-angular-chartjs/src/lib/chartjs.component';
-import { RouterLink } from '@angular/router';
-import { DropdownItemDirective } from '../../../../../../../coreui-angular/src/lib/dropdown/dropdown-item/dropdown-item.directive';
-import { DropdownMenuDirective } from '../../../../../../../coreui-angular/src/lib/dropdown/dropdown-menu/dropdown-menu.directive';
-import { ButtonDirective } from '../../../../../../../coreui-angular/src/lib/button/button.directive';
-import { DropdownComponent, DropdownToggleDirective } from '../../../../../../../coreui-angular/src/lib/dropdown/dropdown/dropdown.component';
-import { ThemeDirective } from '../../../../../../../coreui-angular/src/lib/shared/theme.directive';
-import { IconDirective } from '../../../../../../../coreui-icons-angular/src/lib/icon/icon.directive';
-import { TemplateIdDirective } from '../../../../../../../coreui-angular/src/lib/shared/template-id.directive';
-import { WidgetStatAComponent } from '../../../../../../../coreui-angular/src/lib/widget/widget-stat-a/widget-stat-a.component';
-import { ColComponent } from '../../../../../../../coreui-angular/src/lib/grid/col.component';
-import { RowComponent } from '../../../../../../../coreui-angular/src/lib/grid/row.component';
 
 @Component({
-    selector: 'docs-widgets01',
-    templateUrl: './widgets01.component.html',
-    standalone: true,
-    imports: [
-        RowComponent,
-        ColComponent,
-        WidgetStatAComponent,
-        TemplateIdDirective,
-        IconDirective,
-        ThemeDirective,
-        DropdownComponent,
-        ButtonDirective,
-        DropdownToggleDirective,
-        DropdownMenuDirective,
-        DropdownItemDirective,
-        RouterLink,
-        ChartjsComponent,
-    ],
+  selector: 'docs-widgets01',
+  templateUrl: './widgets01.component.html',
+  standalone: true,
+  imports: [
+    RowComponent,
+    ColComponent,
+    WidgetStatAComponent,
+    TemplateIdDirective,
+    IconDirective,
+    ThemeDirective,
+    DropdownComponent,
+    ButtonDirective,
+    DropdownToggleDirective,
+    DropdownMenuDirective,
+    DropdownItemDirective,
+    RouterLink,
+    ChartjsComponent
+  ]
 })
 export class Widgets01Component implements OnInit {
 

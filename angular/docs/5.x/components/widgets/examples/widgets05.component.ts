@@ -1,21 +1,18 @@
 import { Component } from '@angular/core';
-import { ChartjsComponent } from '../../../../../../../coreui-angular-chartjs/src/lib/chartjs.component';
-import { WidgetStatEComponent } from '../../../../../../../coreui-angular/src/lib/widget/widget-stat-e/widget-stat-e.component';
-import { TextColorDirective } from '../../../../../../../coreui-angular/src/lib/utilities/text-color.directive';
-import { ColComponent } from '../../../../../../../coreui-angular/src/lib/grid/col.component';
-import { RowComponent } from '../../../../../../../coreui-angular/src/lib/grid/row.component';
+import { ChartjsComponent } from '@coreui/angular-chartjs';
+import { ColComponent, RowComponent, TextColorDirective, WidgetStatEComponent } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-widgets05',
-    templateUrl: './widgets05.component.html',
-    standalone: true,
-    imports: [
-        RowComponent,
-        ColComponent,
-        TextColorDirective,
-        WidgetStatEComponent,
-        ChartjsComponent,
-    ],
+  selector: 'docs-widgets05',
+  templateUrl: './widgets05.component.html',
+  standalone: true,
+  imports: [
+    RowComponent,
+    ColComponent,
+    TextColorDirective,
+    WidgetStatEComponent,
+    ChartjsComponent
+  ]
 })
 export class Widgets05Component {
 

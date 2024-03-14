@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { INavData } from '@coreui/angular';
-import { SidebarTogglerDirective } from '../../../../../../../coreui-angular/src/lib/sidebar/sidebar-toggler/sidebar-toggler.directive';
-import { SidebarToggleDirective } from '../../../../../../../coreui-angular/src/lib/sidebar/sidebar-toggle/sidebar-toggle.directive';
-import { SidebarFooterComponent } from '../../../../../../../coreui-angular/src/lib/sidebar/sidebar-footer/sidebar-footer.component';
-import { SidebarNavComponent } from '../../../../../../../coreui-angular/src/lib/sidebar/sidebar-nav/sidebar-nav.component';
-import { SidebarBrandComponent } from '../../../../../../../coreui-angular/src/lib/sidebar/sidebar-brand/sidebar-brand.component';
-import { SidebarHeaderComponent } from '../../../../../../../coreui-angular/src/lib/sidebar/sidebar-header/sidebar-header.component';
-import { SidebarComponent } from '../../../../../../../coreui-angular/src/lib/sidebar/sidebar/sidebar.component';
+import {
+  INavData,
+  SidebarBrandComponent,
+  SidebarComponent,
+  SidebarFooterComponent,
+  SidebarHeaderComponent,
+  SidebarNavComponent,
+  SidebarToggleDirective,
+  SidebarTogglerDirective
+} from '@coreui/angular';
 
 export const navItems: INavData[] = [
   {
@@ -46,11 +48,11 @@ export const navItems: INavData[] = [
 ];
 
 @Component({
-    selector: 'docs-sidebar01',
-    templateUrl: './sidebar01.component.html',
-    styleUrls: ['./sidebar01.component.scss'],
-    standalone: true,
-    imports: [SidebarComponent, SidebarHeaderComponent, SidebarBrandComponent, SidebarNavComponent, SidebarFooterComponent, SidebarToggleDirective, SidebarTogglerDirective]
+  selector: 'docs-sidebar01',
+  templateUrl: './sidebar01.component.html',
+  styleUrls: ['./sidebar01.component.scss'],
+  standalone: true,
+  imports: [SidebarComponent, SidebarHeaderComponent, SidebarBrandComponent, SidebarNavComponent, SidebarFooterComponent, SidebarToggleDirective, SidebarTogglerDirective]
 })
 export class Sidebar01Component {
 

@@ -1,13 +1,10 @@
+import { NgIf, NgTemplateOutlet } from '@angular/common';
 import { Component } from '@angular/core';
-import { IColumn, IItem } from '@coreui/angular';
 
+import { IColumn, IItem, SmartTableComponent, TemplateIdDirective, TooltipDirective } from '@coreui/angular';
 import { cilBadge, cilCalendar, cilGroup, cilUser } from '@coreui/icons';
+import { IconDirective } from '@coreui/icons-angular';
 import usersData from './data';
-import { IconDirective } from '../../../../../../../coreui-icons-angular/src/lib/icon/icon.directive';
-import { TooltipDirective } from '../../../../../../../coreui-angular/src/lib/tooltip/tooltip.directive';
-import { NgTemplateOutlet, NgIf } from '@angular/common';
-import { TemplateIdDirective } from '../../../../../../../coreui-angular/src/lib/shared/template-id.directive';
-import { SmartTableComponent } from '../../../../../../../coreui-angular/src/lib/smart-table/smart-table/smart-table.component';
 
 interface IData extends IItem {
   id?: number;
@@ -19,10 +16,10 @@ interface IData extends IItem {
 }
 
 @Component({
-    selector: 'docs-smart-table08',
-    templateUrl: './smart-table08.component.html',
-    standalone: true,
-    imports: [SmartTableComponent, TemplateIdDirective, NgTemplateOutlet, NgIf, TooltipDirective, IconDirective]
+  selector: 'docs-smart-table08',
+  templateUrl: './smart-table08.component.html',
+  standalone: true,
+  imports: [SmartTableComponent, TemplateIdDirective, NgTemplateOutlet, NgIf, TooltipDirective, IconDirective]
 })
 export class SmartTable08Component {
 

@@ -1,19 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ButtonCloseDirective } from '../../../../../../../coreui-angular/src/lib/button/button-close.directive';
-import { ThemeDirective } from '../../../../../../../coreui-angular/src/lib/shared/theme.directive';
+import { Component } from '@angular/core';
+import { ButtonCloseDirective, ThemeDirective } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-close-button01',
-    templateUrl: './close-button01.component.html',
-    styleUrls: ['./close-button01.component.scss'],
-    standalone: true,
-    imports: [ThemeDirective, ButtonCloseDirective]
+  selector: 'docs-close-button01',
+  templateUrl: './close-button01.component.html',
+  styleUrls: ['./close-button01.component.scss'],
+  standalone: true,
+  imports: [ThemeDirective, ButtonCloseDirective]
 })
-export class CloseButton01Component implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class CloseButton01Component {}

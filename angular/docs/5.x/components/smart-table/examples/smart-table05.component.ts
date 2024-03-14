@@ -1,29 +1,25 @@
 import { Component } from '@angular/core';
 import { endOfDay, startOfDay } from 'date-fns';
-import { IColumn, IItem } from '@coreui/angular';
-
+import { DateRangePickerComponent, IColumn, IItem, SmartTableComponent, TemplateIdDirective } from '@coreui/angular';
+// import { extend } from 'lodash-es';
 import usersData from './data';
-import { extend } from 'lodash-es';
-import { DateRangePickerComponent } from '../../../../../../../coreui-angular/src/lib/date-range-picker/date-range-picker/date-range-picker.component';
-import { TemplateIdDirective } from '../../../../../../../coreui-angular/src/lib/shared/template-id.directive';
-import { SmartTableComponent } from '../../../../../../../coreui-angular/src/lib/smart-table/smart-table/smart-table.component';
 
 interface IData extends IItem {
   id?: number;
   name?: string;
-  registered?: string
+  registered?: string;
 }
 
 @Component({
-    selector: 'docs-smart-table05',
-    templateUrl: './smart-table05.component.html',
-    standalone: true,
-    imports: [SmartTableComponent, TemplateIdDirective, DateRangePickerComponent]
+  selector: 'docs-smart-table05',
+  templateUrl: './smart-table05.component.html',
+  standalone: true,
+  imports: [SmartTableComponent, TemplateIdDirective, DateRangePickerComponent]
 })
 export class SmartTable05Component {
 
   newData: IData[] = usersData.map((item) => {
-    const { id, name, registered } = { ...item } as Partial<NonNullable<typeof item>>
+    const { id, name, registered } = { ...item } as Partial<NonNullable<typeof item>>;
     return { id, name, registered } as IData;
   });
 

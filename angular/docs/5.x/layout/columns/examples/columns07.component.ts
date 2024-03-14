@@ -1,20 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ColComponent } from '../../../../../../../coreui-angular/src/lib/grid/col.component';
-import { RowComponent } from '../../../../../../../coreui-angular/src/lib/grid/row.component';
-import { ContainerComponent } from '../../../../../../../coreui-angular/src/lib/grid/container.component';
+import { Component } from '@angular/core';
+import { ColComponent, ContainerComponent, RowComponent } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-columns07',
-    templateUrl: './columns07.component.html',
-    styleUrls: ['./columns03.component.scss'],
-    standalone: true,
-    imports: [ContainerComponent, RowComponent, ColComponent]
+  selector: 'docs-columns07',
+  templateUrl: './columns07.component.html',
+  styleUrls: ['./columns03.component.scss'],
+  standalone: true,
+  imports: [ContainerComponent, RowComponent, ColComponent]
 })
-export class Columns07Component implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class Columns07Component {}

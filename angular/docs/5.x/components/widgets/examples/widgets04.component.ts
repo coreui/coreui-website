@@ -1,25 +1,23 @@
 import { AfterContentInit, ChangeDetectorRef, Component, Input } from '@angular/core';
 import { cibFacebook, cibLinkedin, cibTwitter } from '@coreui/icons';
-import { ChartjsComponent } from '../../../../../../../coreui-angular-chartjs/src/lib/chartjs.component';
-import { IconDirective } from '../../../../../../../coreui-icons-angular/src/lib/icon/icon.directive';
-import { WidgetStatDComponent } from '../../../../../../../coreui-angular/src/lib/widget/widget-stat-d/widget-stat-d.component';
-import { ColComponent } from '../../../../../../../coreui-angular/src/lib/grid/col.component';
 import { NgFor, NgIf } from '@angular/common';
-import { RowComponent } from '../../../../../../../coreui-angular/src/lib/grid/row.component';
+import { ColComponent, RowComponent, WidgetStatDComponent } from '@coreui/angular';
+import { ChartjsComponent } from '@coreui/angular-chartjs';
+import { IconDirective } from '@coreui/icons-angular';
 
 @Component({
-    selector: 'docs-widgets04',
-    templateUrl: './widgets04.component.html',
-    standalone: true,
-    imports: [
-        RowComponent,
-        NgFor,
-        ColComponent,
-        WidgetStatDComponent,
-        IconDirective,
-        NgIf,
-        ChartjsComponent,
-    ],
+  selector: 'docs-widgets04',
+  templateUrl: './widgets04.component.html',
+  standalone: true,
+  imports: [
+    RowComponent,
+    NgFor,
+    ColComponent,
+    WidgetStatDComponent,
+    IconDirective,
+    NgIf,
+    ChartjsComponent
+  ]
 })
 export class Widgets04Component implements AfterContentInit {
 
@@ -97,7 +95,7 @@ export class Widgets04Component implements AfterContentInit {
         labels: [...this.labels],
         datasets: [{ ...this.datasets, data: [78, 81, 80, 45, 34, 12, 40], label: 'LinkedIn', ...this.colors }]
       }
-    },
+    }
   ];
 
   capStyle(value: string) {

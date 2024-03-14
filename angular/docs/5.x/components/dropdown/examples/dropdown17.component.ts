@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { DropdownItemDirective } from '../../../../../../../coreui-angular/src/lib/dropdown/dropdown-item/dropdown-item.directive';
+import { DropdownItemDirective } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-dropdown17',
-    templateUrl: './dropdown17.component.html',
-    standalone: true,
-    imports: [DropdownItemDirective]
+  selector: 'docs-dropdown17',
+  templateUrl: './dropdown17.component.html',
+  standalone: true,
+  imports: [DropdownItemDirective]
 })
-export class Dropdown17Component {
-}
+export class Dropdown17Component {}

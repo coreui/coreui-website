@@ -1,23 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { TextColorDirective } from '../../../../../../../coreui-angular/src/lib/utilities/text-color.directive';
-import { PopoverDirective } from '../../../../../../../coreui-angular/src/lib/popover/popover.directive';
-import { ButtonDirective } from '../../../../../../../coreui-angular/src/lib/button/button.directive';
+import { Component } from '@angular/core';
+import { ButtonDirective, PopoverDirective, TextColorDirective } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-popover01',
-    templateUrl: './popover01.component.html',
-    standalone: true,
-    imports: [
-        ButtonDirective,
-        PopoverDirective,
-        TextColorDirective,
-    ],
+  selector: 'docs-popover01',
+  templateUrl: './popover01.component.html',
+  standalone: true,
+  imports: [
+    ButtonDirective,
+    PopoverDirective,
+    TextColorDirective
+  ]
 })
-export class Popover01Component implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class Popover01Component {}

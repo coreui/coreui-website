@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { LoadingButtonComponent } from '../../../../../../../coreui-angular/src/lib/loading-button/loading-button.component';
+import { LoadingButtonComponent } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-loading-button01',
-    templateUrl: './loading-button01.component.html',
-    standalone: true,
-    imports: [LoadingButtonComponent]
+  selector: 'docs-loading-button01',
+  templateUrl: './loading-button01.component.html',
+  standalone: true,
+  imports: [LoadingButtonComponent]
 })
 export class LoadingButton01Component {
 
@@ -24,6 +24,6 @@ export class LoadingButton01Component {
   }
 
   onChange(changeEvent: boolean, idx: number): void {
-    console.log(changeEvent, idx)
+    console.log(changeEvent, idx);
   }
 }

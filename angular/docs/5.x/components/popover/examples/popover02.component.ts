@@ -1,18 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { PopoverDirective } from '../../../../../../../coreui-angular/src/lib/popover/popover.directive';
-import { ButtonDirective } from '../../../../../../../coreui-angular/src/lib/button/button.directive';
+import { Component } from '@angular/core';
+import { ButtonDirective, PopoverDirective } from '@coreui/angular';
 
 @Component({
-    selector: 'docs-popover02',
-    templateUrl: './popover02.component.html',
-    standalone: true,
-    imports: [ButtonDirective, PopoverDirective],
+  selector: 'docs-popover02',
+  templateUrl: './popover02.component.html',
+  standalone: true,
+  imports: [ButtonDirective, PopoverDirective]
 })
-export class Popover02Component implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class Popover02Component {}

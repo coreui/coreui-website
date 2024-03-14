@@ -1,16 +1,13 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { IItem, SmartTableComponent, TableColorDirective, TemplateIdDirective } from '@coreui/angular';
 import usersData from './data';
-import { IItem } from '@coreui/angular';
-import { TableColorDirective } from '../../../../../../../coreui-angular/src/lib/table/table-color.directive';
-import { TemplateIdDirective } from '../../../../../../../coreui-angular/src/lib/shared/template-id.directive';
-import { SmartTableComponent } from '../../../../../../../coreui-angular/src/lib/smart-table/smart-table/smart-table.component';
 
 @Component({
-    selector: 'docs-smart-table07',
-    templateUrl: './smart-table07.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [SmartTableComponent, TemplateIdDirective, TableColorDirective]
+  selector: 'docs-smart-table07',
+  templateUrl: './smart-table07.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [SmartTableComponent, TemplateIdDirective, TableColorDirective]
 })
 export class SmartTable07Component {
 

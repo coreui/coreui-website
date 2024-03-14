@@ -1,13 +1,17 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, retry, takeUntil, tap } from 'rxjs/operators';
 
-import { IColumn, IColumnFilterValue, ISorterValue } from '@coreui/angular';
+import {
+  AlertComponent,
+  IColumn,
+  IColumnFilterValue,
+  ISorterValue,
+  SmartPaginationComponent,
+  SmartTableComponent
+} from '@coreui/angular';
 import { IApiParams, IUsers, UsersService } from './users.service';
-import { AlertComponent } from '../../../../../../../coreui-angular/src/lib/alert/alert.component';
-import { SmartPaginationComponent } from '../../../../../../../coreui-angular/src/lib/smart-pagination/smart-pagination.component';
-import { SmartTableComponent } from '../../../../../../../coreui-angular/src/lib/smart-table/smart-table/smart-table.component';
-import { NgIf, AsyncPipe } from '@angular/common';
 
 export interface IParams {
   activePage?: number;
@@ -19,11 +23,11 @@ export interface IParams {
 }
 
 @Component({
-    selector: 'docs-smart-table03',
-    templateUrl: './smart-table03.component.html',
-    providers: [UsersService],
-    standalone: true,
-    imports: [NgIf, SmartTableComponent, SmartPaginationComponent, AlertComponent, AsyncPipe]
+  selector: 'docs-smart-table03',
+  templateUrl: './smart-table03.component.html',
+  providers: [UsersService],
+  standalone: true,
+  imports: [NgIf, SmartTableComponent, SmartPaginationComponent, AlertComponent, AsyncPipe]
 })
 export class SmartTable03Component implements OnInit, OnDestroy {
 
