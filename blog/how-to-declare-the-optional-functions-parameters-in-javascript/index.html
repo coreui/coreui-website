@@ -319,7 +319,7 @@ Tuesday, March 5, 2024
 <img
   loading="lazy"
   class="post-image" 
-  alt="How to declare the optional function parameters in JavaScript?" 
+  alt="javascript optional parameters" 
     srcset="/images/blog/_huebd3bf44e9d3f5de12b412fa652b85bb_82602_7d1adcebfaaa3d1840ce9067365489e1.webp 480w, /images/blog/_huebd3bf44e9d3f5de12b412fa652b85bb_82602_e03b9f660d2d3d533cc9b3f010cdd4f1.webp 768w, /images/blog/_huebd3bf44e9d3f5de12b412fa652b85bb_82602_51015354f8543e27438388ffdc58e9bf.webp 1024w, /images/blog/_huebd3bf44e9d3f5de12b412fa652b85bb_82602_c896636fef9d84fffedadfc39edbed32.webp 1366w"  
   src="/images/blog/_huebd3bf44e9d3f5de12b412fa652b85bb_82602_d49badf4030adb91ca79d18a81c35c2c.webp"
 /> 
@@ -346,6 +346,19 @@ Tuesday, March 5, 2024
 <h2 id="understanding-optional-parameters">Understanding Optional Parameters</h2>
 <p>Optional parameters allow functions to be called with fewer arguments than defined in the function&rsquo;s declaration. This feature can significantly simplify your code, making it more readable and maintainable. Let&rsquo;s explore the various methods to achieve this in JavaScript.</p>
 <h2 id="using-default-parameter-values">Using Default Parameter Values</h2>
+
+  
+  
+  
+  
+
+<img
+  loading="lazy"
+  class="img-fluid" 
+  alt="optional function parameters" 
+    srcset="/images/blog/_hu479ade9de77458c5b8d3d11e267fee8d_48870_a0cb89ccd31533502216370cc26e3e93.webp 480w, /images/blog/_hu479ade9de77458c5b8d3d11e267fee8d_48870_9518226c607dc05449b1891d7fead48a.webp 768w, /images/blog/_hu479ade9de77458c5b8d3d11e267fee8d_48870_8f94a5c83f753b3e661858df467e213b.webp 1024w, /images/blog/_hu479ade9de77458c5b8d3d11e267fee8d_48870_249c1e2c6a92e890f8ea20f277d1b212.webp 1366w"  
+  src="/images/blog/_hu479ade9de77458c5b8d3d11e267fee8d_48870_2ea038ab035e234b766935b24a30c406.webp"
+/>
 <p>One of the most straightforward methods to declare optional parameters is assigning default values directly in the function signature. This feature was introduced in ES6 (ECMAScript 2015) and provides a clean and concise way to handle undefined parameters.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">welcome</span><span class="p">(</span><span class="nx">username</span> <span class="o">=</span> <span class="s1">&#39;New User&#39;</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Welcome, </span><span class="si">${</span><span class="nx">username</span><span class="si">}</span><span class="sb">!`</span><span class="p">)</span>
@@ -355,6 +368,19 @@ Tuesday, March 5, 2024
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">welcome</span><span class="p">(</span><span class="s1">&#39;Alice&#39;</span><span class="p">)</span> <span class="c1">// Output: Welcome, Alice!
 </span></span></span></code></pre></div><p>This method ensures that if the <code>username</code> parameter isn&rsquo;t provided, it defaults to <code>'New User'</code>.</p>
 <h2 id="leveraging-the-logical-or-operator-">Leveraging the Logical OR Operator (||)</h2>
+
+  
+  
+  
+  
+
+<img
+  loading="lazy"
+  class="img-fluid" 
+  alt="declare optional function parameters" 
+    srcset="/images/blog/_hu33bed44e33c9bf2c209f5b309a7a4317_57707_71050c9eda1ce4d1c0f265d609641033.webp 480w, /images/blog/_hu33bed44e33c9bf2c209f5b309a7a4317_57707_901507bebaef4892d164c03636d1b16c.webp 768w, /images/blog/_hu33bed44e33c9bf2c209f5b309a7a4317_57707_f9e6eb90d92399559e8a9a943cd6e800.webp 1024w, /images/blog/_hu33bed44e33c9bf2c209f5b309a7a4317_57707_e79e964d85537c62bc1877241e82706e.webp 1366w"  
+  src="/images/blog/_hu33bed44e33c9bf2c209f5b309a7a4317_57707_064d11528bef23d2a1ceb756c1d78ada.webp"
+/>
 <p>Before ES6, a typical pattern to assign default values to parameters involved using the logical OR operator within the function body.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">welcome</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">username</span> <span class="o">||</span> <span class="s1">&#39;New User&#39;</span>
@@ -365,6 +391,19 @@ Tuesday, March 5, 2024
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">welcome</span><span class="p">(</span><span class="s1">&#39;Alice&#39;</span><span class="p">)</span> <span class="c1">// Output: Welcome, Alice!
 </span></span></span></code></pre></div><p>This technique checks if <code>username</code> is truthy; if not, it defaults to <code>'New User'</code>. However, this approach can lead to unintended results with falsy values like <code>0</code>, <code>null</code>, or <code>''</code> (empty string).</p>
 <h2 id="using-the-argumentslength-property">Using the arguments.length Property</h2>
+
+  
+  
+  
+  
+
+<img
+  loading="lazy"
+  class="img-fluid" 
+  alt="optional parameter" 
+    srcset="/images/blog/_hu203bac16bb79afca1410edfba8496f8f_64833_177f347574159f550664de2d5b268e88.webp 480w, /images/blog/_hu203bac16bb79afca1410edfba8496f8f_64833_06b5255602202e4dbb1af022a1b373aa.webp 768w, /images/blog/_hu203bac16bb79afca1410edfba8496f8f_64833_b1260acd8c59fc02a6a3b382aba6d3f0.webp 1024w, /images/blog/_hu203bac16bb79afca1410edfba8496f8f_64833_3933a0e064cfdac61c57a2a965580a28.webp 1366w"  
+  src="/images/blog/_hu203bac16bb79afca1410edfba8496f8f_64833_ff129c9d58d2a5b76975c3f2b097056a.webp"
+/>
 <p>Another way to handle optional parameters is by checking the <code>arguments.length</code> property, which returns the number of arguments passed to the function.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">welcome</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
