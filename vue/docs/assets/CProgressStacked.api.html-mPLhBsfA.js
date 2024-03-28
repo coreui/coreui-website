@@ -1,4 +1,0 @@
-import{_ as s,o as e,c as a,e as n}from"./app-gJDfq8z1.js";const o={},t=n(`<h3 id="cprogressstacked" tabindex="-1">CProgressStacked <a class="anchor-link" href="#cprogressstacked" aria-hidden="true">#</a></h3><div class="language-jsx" data-ext="jsx"><pre class="language-jsx"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> CProgressStacked <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue&#39;</span>
-<span class="token comment">// or</span>
-<span class="token keyword">import</span> CProgressStacked <span class="token keyword">from</span> <span class="token string">&#39;@coreui/vue/src/components/progress/CProgressStacked&#39;</span>
-</code></pre></div>`,2),r=[t];function c(p,d){return e(),a("div",null,r)}const k=s(o,[["render",c],["__file","CProgressStacked.api.html.vue"]]);export{k as default};
