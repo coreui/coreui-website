@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunk_coreui_coreui_pro_react_admin_template=self.webpackChunk_coreui_coreui_pro_react_admin_template||[]).push([[405],{66265:(e,s,r)=>{r.r(s),r.d(s,{default:()=>l});r(72791);var c=r(55737),a=r(80184);const l=()=>(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)(c.S8,{}),(0,a.jsxs)("div",{className:"wrapper d-flex flex-column min-vh-100",children:[(0,a.jsx)(c.tf,{}),(0,a.jsx)("div",{className:"body flex-grow-1",children:(0,a.jsx)(c.Lk,{})}),(0,a.jsx)(c.qh,{})]}),(0,a.jsx)(c.cM,{})]})}}]);
-//# sourceMappingURL=405.70169e09.chunk.js.map

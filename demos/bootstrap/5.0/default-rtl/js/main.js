@@ -22,100 +22,102 @@ window.addEventListener('DOMContentLoaded', () => {
   updateCharts();
 });
 i18next.on('languageChanged', () => {
-  mainChart.data.labels = [i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 0, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 1, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 2, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 3, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 4, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 5, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 6, 1)
-  })];
-  cardChart1.data.labels = [i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 0, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 1, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 2, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 3, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 4, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 5, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 6, 1)
-  })];
-  cardChart2.data.labels = [i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 0, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 1, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 2, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 3, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 4, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 5, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 6, 1)
-  })];
-  cardChart3.data.labels = [i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 0, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 1, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 2, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 3, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 4, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 5, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 6, 1)
-  })];
-  cardChart4.data.labels = [i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 0, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 1, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 2, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 3, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 4, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 5, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 6, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 7, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 8, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 9, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 10, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2023, 11, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2024, 0, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2024, 1, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2024, 2, 1)
-  }), i18next.t('dateOnlyMonthName', {
-    date: new Date(2024, 3, 1)
-  })];
-  updateCharts();
+  i18next.loadNamespaces('translation').then(() => {
+    mainChart.data.labels = [i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 0, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 1, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 2, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 3, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 4, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 5, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 6, 1)
+    })];
+    cardChart1.data.labels = [i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 0, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 1, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 2, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 3, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 4, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 5, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 6, 1)
+    })];
+    cardChart2.data.labels = [i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 0, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 1, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 2, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 3, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 4, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 5, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 6, 1)
+    })];
+    cardChart3.data.labels = [i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 0, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 1, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 2, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 3, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 4, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 5, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 6, 1)
+    })];
+    cardChart4.data.labels = [i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 0, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 1, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 2, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 3, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 4, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 5, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 6, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 7, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 8, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 9, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 10, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2023, 11, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2024, 0, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2024, 1, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2024, 2, 1)
+    }), i18next.t('dateOnlyMonthName', {
+      date: new Date(2024, 3, 1)
+    })];
+    updateCharts();
+  });
 });
 const updateCharts = () => {
   cardChart1.data.datasets[0].pointBackgroundColor = coreui.Utils.getStyle('--cui-primary');

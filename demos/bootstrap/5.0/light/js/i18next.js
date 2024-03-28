@@ -82,12 +82,13 @@ i18next.use(i18nextHttpBackend).use(i18nextBrowserLanguageDetector).init({
   },
   detection: {
     order: ['querystring', 'cookie', 'localStorage', 'sessionStorage']
-  },
-  debug: true
+  }
 }, () => {
   translate();
 });
 i18next.on('languageChanged', language => {
-  translate(language);
+  i18next.loadNamespaces('translation').then(() => {
+    translate(language);
+  });
 });
 //# sourceMappingURL=i18next.js.map
