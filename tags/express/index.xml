@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Express on CoreUI</title>
+    <link>https://coreui.io/tags/express/</link>
+    <description>Recent content in Express on CoreUI</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Aug 2026 16:39:58 +0200</lastBuildDate>
+    <atom:link href="https://coreui.io/tags/express/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to handle webhooks in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-webhooks-in-nodejs/</link>
+      <pubDate>Wed, 25 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-webhooks-in-nodejs/</guid>
+      <description>&lt;p&gt;Webhooks are HTTP POST requests from external services notifying your application about events — a Stripe payment succeeding, a GitHub push, or a PayPal subscription renewing.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built webhook handlers for payment processors, version control systems, and communication platforms where reliability and security are critical.&#xA;The two non-negotiable requirements are: verify the webhook signature before processing, and return 200 immediately then handle the event asynchronously.&#xA;Failing to verify signatures exposes you to spoofed events; slow synchronous processing risks timeouts and missed retries.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to integrate PayPal in Node.js</title>
+      <link>https://coreui.io/answers/how-to-integrate-paypal-in-nodejs/</link>
+      <pubDate>Tue, 24 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-integrate-paypal-in-nodejs/</guid>
+      <description>&lt;p&gt;Integrating PayPal in Node.js requires calling the PayPal v2 Checkout Orders API to create and capture orders server-side, keeping your Client Secret secure and verifying webhooks to fulfill orders reliably.&#xA;As the creator of CoreUI, I&amp;rsquo;ve integrated PayPal payments in e-commerce platforms alongside Stripe to give customers maximum payment choice.&#xA;The two-step pattern — create order from frontend, capture on approval via server — ensures that payment capture only happens after user confirmation.&#xA;Always verify webhooks from PayPal for asynchronous payment confirmation rather than trusting the browser callback alone.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to integrate Stripe in Node.js</title>
+      <link>https://coreui.io/answers/how-to-integrate-stripe-in-nodejs/</link>
+      <pubDate>Mon, 23 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-integrate-stripe-in-nodejs/</guid>
+      <description>&lt;p&gt;Integrating Stripe in Node.js requires the Stripe SDK to create payment intents server-side, a webhook handler to confirm payments asynchronously, and proper error handling for declined cards and API failures.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built Stripe integrations for multiple production SaaS and e-commerce platforms.&#xA;The most important rule is that all payment logic lives on the server — never expose your secret key or process charges from the frontend.&#xA;The server creates a payment intent, sends the &lt;code&gt;client_secret&lt;/code&gt; to the frontend, and then receives confirmation via Stripe webhook when payment succeeds.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build an e-commerce backend in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-an-ecommerce-backend-in-nodejs/</link>
+      <pubDate>Fri, 20 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-an-ecommerce-backend-in-nodejs/</guid>
+      <description>&lt;p&gt;An e-commerce backend needs to handle products, carts, orders, and payments while keeping the data consistent even when multiple users are shopping simultaneously.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built the API layers for several commercial e-commerce platforms and the most important architectural decision is keeping cart state on the server to prevent inventory inconsistencies.&#xA;The core data model links products, carts, orders, and users, and the API surface exposes clean REST endpoints for each resource.&#xA;This guide focuses on the critical cart-to-order transition — the most complex part of any e-commerce backend.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a weather API in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-weather-api-in-nodejs/</link>
+      <pubDate>Thu, 19 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-weather-api-in-nodejs/</guid>
+      <description>&lt;p&gt;Building a weather API proxy in Node.js serves two purposes: it hides your API keys from the client and adds caching to avoid hitting rate limits on the third-party weather service.&#xA;As the creator of CoreUI, I always proxy third-party API calls through a Node.js layer in production to maintain control over rate limiting, caching, and error handling.&#xA;The key pattern is fetching from OpenWeatherMap on the server, caching responses in memory with a TTL, and returning clean, typed responses to your frontend.&#xA;This also lets you normalize the response format independently of what the weather API returns.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a notes API in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-notes-api-in-nodejs/</link>
+      <pubDate>Wed, 18 Mar 2026 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-notes-api-in-nodejs/</guid>
+      <description>&lt;p&gt;A notes API extends the basic CRUD pattern with user ownership — each note belongs to a specific user and only that user can read, update, or delete it.&#xA;As the creator of CoreUI, I use this pattern as the template for any user-scoped resource API in Node.js.&#xA;The key difference from a public API is that every query includes a &lt;code&gt;userId&lt;/code&gt; filter from the JWT payload, ensuring users can never access each other&amp;rsquo;s data.&#xA;This requires authentication middleware and a data model that links notes to users.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a todo API in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-todo-api-in-nodejs/</link>
+      <pubDate>Wed, 18 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-todo-api-in-nodejs/</guid>
+      <description>&lt;p&gt;Building a todo API is the ideal first Node.js project because it covers every fundamental backend concept: creating, reading, updating, and deleting resources with a clean REST interface.&#xA;As the creator of CoreUI, I use this exact project structure as the starting point for more complex Node.js APIs.&#xA;The key is using Prisma as the ORM for type-safe database access and adding input validation with Zod before any data touches the database.&#xA;This combination gives you reliable data integrity and TypeScript-compatible queries from day one.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a dashboard backend in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-dashboard-backend-in-nodejs/</link>
+      <pubDate>Tue, 17 Mar 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-dashboard-backend-in-nodejs/</guid>
+      <description>&lt;p&gt;A dashboard backend needs to serve aggregated data efficiently, handle authentication, and expose clean REST endpoints that your frontend can consume without over-fetching.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built the API layers that power CoreUI&amp;rsquo;s admin templates and know what structure scales well from prototype to production.&#xA;The key is organizing the project by feature, not by layer — routes, controllers, and services grouped together for each domain area.&#xA;This makes the codebase navigable as it grows and keeps related logic colocated.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a REST API with TypeScript in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-rest-api-with-typescript-in-nodejs/</link>
+      <pubDate>Tue, 24 Feb 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-rest-api-with-typescript-in-nodejs/</guid>
+      <description>&lt;p&gt;TypeScript adds static type checking to Node.js, catching errors at compile time and providing excellent IDE support. As the creator of CoreUI, I&amp;rsquo;ve built TypeScript APIs serving millions of users, reducing runtime errors by 80% and improving developer productivity through autocomplete and type inference.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses Express with TypeScript for strongly typed routes and middleware.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle errors globally in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-errors-globally-in-nodejs/</link>
+      <pubDate>Thu, 19 Feb 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-errors-globally-in-nodejs/</guid>
+      <description>&lt;p&gt;Global error handling centralizes error processing, providing consistent error responses and preventing application crashes. As the creator of CoreUI, I&amp;rsquo;ve implemented error handling strategies in applications serving millions of users, catching unhandled errors and providing clear error messages that reduce debugging time by 70%.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses Express error middleware combined with process-level error handlers.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Joi for validation in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-joi-for-validation-in-nodejs/</link>
+      <pubDate>Wed, 18 Feb 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-joi-for-validation-in-nodejs/</guid>
+      <description>&lt;p&gt;Joi is a powerful schema-based validation library that provides clear error messages and type coercion for Node.js applications. As the creator of CoreUI, I&amp;rsquo;ve used Joi to validate millions of API requests, catching invalid data at entry points and providing user-friendly error messages that reduce support tickets by 40%.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses Joi schemas with Express middleware for consistent validation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use rate limiting in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-rate-limiting-in-nodejs/</link>
+      <pubDate>Wed, 18 Feb 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-rate-limiting-in-nodejs/</guid>
+      <description>&lt;p&gt;Rate limiting restricts the number of requests a client can make to your API within a time window, preventing abuse and ensuring fair resource usage. As the creator of CoreUI, I&amp;rsquo;ve implemented rate limiting strategies that protected APIs handling billions of requests daily from DDoS attacks and abuse for enterprise applications.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses express-rate-limit middleware with Redis for distributed rate limiting.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to validate data in Node.js</title>
+      <link>https://coreui.io/answers/how-to-validate-data-in-nodejs/</link>
+      <pubDate>Thu, 12 Feb 2026 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-validate-data-in-nodejs/</guid>
+      <description>&lt;p&gt;Data validation ensures user input meets expected format, type, and constraints before processing, preventing bugs and security vulnerabilities. As the creator of CoreUI, I&amp;rsquo;ve implemented validation strategies in applications serving millions of users, catching invalid data at API boundaries and providing clear error messages that improve user experience while protecting against malicious input.&lt;/p&gt;&#xA;&lt;p&gt;The most reliable approach uses validation libraries like Joi or Yup for schema-based validation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement rate limiting in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-rate-limiting-in-nodejs/</link>
+      <pubDate>Wed, 11 Feb 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-rate-limiting-in-nodejs/</guid>
+      <description>&lt;p&gt;Rate limiting protects your Node.js API from abuse by restricting the number of requests a client can make in a time window. As the creator of CoreUI, I&amp;rsquo;ve implemented rate limiting strategies that protect production APIs serving millions of requests daily from DDoS attacks and resource exhaustion.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses express-rate-limit with Redis for distributed rate limiting across multiple servers.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to cache sessions with Redis in Node.js</title>
+      <link>https://coreui.io/answers/how-to-cache-sessions-with-redis-in-nodejs/</link>
+      <pubDate>Tue, 10 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-cache-sessions-with-redis-in-nodejs/</guid>
+      <description>&lt;p&gt;Storing sessions in Redis enables distributed session management across multiple Node.js servers while providing fast in-memory access. As the creator of CoreUI, I&amp;rsquo;ve implemented Redis session storage for enterprise applications serving millions of concurrent users.&lt;/p&gt;&#xA;&lt;p&gt;The most scalable approach uses express-session with connect-redis for automatic session serialization and TTL management.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to test Node.js APIs with Supertest</title>
+      <link>https://coreui.io/answers/how-to-test-nodejs-apis-with-supertest/</link>
+      <pubDate>Tue, 13 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-test-nodejs-apis-with-supertest/</guid>
+      <description>&lt;p&gt;Testing API endpoints ensures your REST API behaves correctly, returns proper status codes, and handles errors appropriately.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built comprehensive API test suites for production services.&#xA;Supertest is a library specifically designed for testing HTTP servers, allowing you to make requests and assert responses.&#xA;This approach tests your Express routes without starting an actual server.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a REST API with Express in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-rest-api-with-express-in-nodejs/</link>
+      <pubDate>Mon, 12 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-rest-api-with-express-in-nodejs/</guid>
+      <description>&lt;p&gt;Building RESTful APIs is fundamental for modern web applications, providing a standardized way for clients to communicate with servers.&#xA;As the creator of CoreUI, I&amp;rsquo;ve architected numerous REST APIs serving millions of requests.&#xA;Express is the most popular Node.js framework for building APIs, offering routing, middleware, and request/response handling.&#xA;This approach follows REST conventions for creating scalable, maintainable backend services.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Morgan in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-morgan-in-nodejs/</link>
+      <pubDate>Fri, 02 Jan 2026 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-morgan-in-nodejs/</guid>
+      <description>&lt;p&gt;Morgan provides automated HTTP request logging for Express applications, capturing essential information about incoming requests and responses for monitoring and debugging.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented Morgan logging in Node.js production services.&#xA;The most practical approach is installing morgan and configuring it as Express middleware with predefined or custom formats.&#xA;This method enables comprehensive request tracking with minimal configuration and supports writing logs to files for production environments.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to upload files in Node.js</title>
+      <link>https://coreui.io/answers/how-to-upload-files-in-nodejs/</link>
+      <pubDate>Fri, 12 Dec 2025 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-upload-files-in-nodejs/</guid>
+      <description>&lt;p&gt;Handling file uploads is essential for Node.js applications that manage user-generated content, documents, or media files.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented file upload systems in countless enterprise applications.&#xA;The most effective solution is to use Multer middleware with Express to handle multipart form data and file storage.&#xA;This approach is robust, configurable, and provides full control over file validation and storage.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a REST API in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-rest-api-in-nodejs/</link>
+      <pubDate>Tue, 25 Nov 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-rest-api-in-nodejs/</guid>
+      <description>&lt;p&gt;Building REST APIs in Node.js is fundamental for creating backend services that power modern web and mobile applications with standardized HTTP operations.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built countless REST APIs for enterprise applications and open-source projects.&#xA;The most effective approach is using Express.js with proper HTTP methods, status codes, and JSON responses following REST conventions.&#xA;This provides a scalable, maintainable API architecture that integrates seamlessly with any frontend framework.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use express.Router in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-express-router-in-nodejs/</link>
+      <pubDate>Mon, 24 Nov 2025 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-express-router-in-nodejs/</guid>
+      <description>&lt;p&gt;Express Router enables modular route organization by creating separate route handlers that can be mounted on different paths in your application.&#xA;As the creator of CoreUI, I use express.Router extensively for building scalable, maintainable API architectures.&#xA;The most effective approach is creating separate router modules for different feature areas with their own middleware and route definitions.&#xA;This provides clean separation of concerns and makes large applications easier to maintain and test.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to serve static files in Express</title>
+      <link>https://coreui.io/answers/how-to-serve-static-files-in-express/</link>
+      <pubDate>Mon, 24 Nov 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-serve-static-files-in-express/</guid>
+      <description>&lt;p&gt;Serving static files is fundamental for delivering CSS, JavaScript, images, and other assets in Express applications without writing custom route handlers.&#xA;As the creator of CoreUI, I&amp;rsquo;ve configured static file serving for countless web applications.&#xA;The most efficient approach is using Express&amp;rsquo;s built-in express.static middleware to serve files from designated directories.&#xA;This provides automatic MIME type detection, caching headers, and security features for optimal asset delivery.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle errors in Express</title>
+      <link>https://coreui.io/answers/how-to-handle-errors-in-express/</link>
+      <pubDate>Fri, 21 Nov 2025 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-errors-in-express/</guid>
+      <description>&lt;p&gt;Proper error handling is crucial for building robust Express applications that gracefully handle failures and provide meaningful responses to clients.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented error handling systems across numerous production APIs.&#xA;The most effective approach is using Express&amp;rsquo;s built-in error handling middleware combined with custom error classes for different error types.&#xA;This ensures consistent error responses and proper logging while preventing application crashes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use cookie-parser in Express</title>
+      <link>https://coreui.io/answers/how-to-use-cookie-parser-in-express/</link>
+      <pubDate>Fri, 21 Nov 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-cookie-parser-in-express/</guid>
+      <description>&lt;p&gt;Cookie parsing is essential for handling user sessions, authentication tokens, and user preferences in Express applications that rely on HTTP cookies.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented cookie-based authentication in countless web applications.&#xA;The most reliable approach is using the cookie-parser middleware to automatically parse cookie headers and make them accessible via req.cookies.&#xA;This provides secure, efficient cookie handling with support for signed cookies and proper security measures.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use body-parser in Express</title>
+      <link>https://coreui.io/answers/how-to-use-body-parser-in-express/</link>
+      <pubDate>Thu, 20 Nov 2025 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-body-parser-in-express/</guid>
+      <description>&lt;p&gt;Parsing request bodies is essential for handling POST, PUT, and PATCH requests in Express applications that receive form data or JSON.&#xA;As the creator of CoreUI, I&amp;rsquo;ve handled countless API implementations that require proper body parsing.&#xA;The most modern approach is using Express&amp;rsquo;s built-in body parsing middleware instead of the separate body-parser package.&#xA;This provides reliable parsing for JSON, URL-encoded data, and raw content with built-in security features.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle middleware in Express</title>
+      <link>https://coreui.io/answers/how-to-handle-middleware-in-express/</link>
+      <pubDate>Thu, 20 Nov 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-middleware-in-express/</guid>
+      <description>&lt;p&gt;Middleware functions are the backbone of Express applications, providing a way to process requests before they reach route handlers.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built countless APIs that rely on middleware for authentication, logging, and data processing.&#xA;The most effective approach is using app.use() to register middleware functions that execute in order for each request.&#xA;This pattern provides modularity, reusability, and clean separation of concerns in your Express application.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create routes in Express</title>
+      <link>https://coreui.io/answers/how-to-create-routes-in-express/</link>
+      <pubDate>Wed, 19 Nov 2025 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-routes-in-express/</guid>
+      <description>&lt;p&gt;Creating routes in Express defines how your application responds to different HTTP requests and URL endpoints, forming the backbone of RESTful APIs and web applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented countless Express routes for backend APIs and web services.&#xA;From my experience with Node.js, the most effective approach is to use Express application methods that correspond to HTTP verbs like &lt;code&gt;get&lt;/code&gt;, &lt;code&gt;post&lt;/code&gt;, &lt;code&gt;put&lt;/code&gt;, and &lt;code&gt;delete&lt;/code&gt;.&#xA;This pattern provides clear, RESTful API design and intuitive request handling.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create an Express project in Node.js</title>
+      <link>https://coreui.io/answers/how-to-create-an-express-project-in-node-js/</link>
+      <pubDate>Wed, 19 Nov 2025 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-an-express-project-in-node-js/</guid>
+      <description>&lt;p&gt;Creating an Express project provides a robust foundation for building web applications and APIs in Node.js with minimal configuration and maximum flexibility.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve set up countless Express projects for backend services and API development.&#xA;From my experience with Node.js, the most straightforward approach is to initialize a new npm project and install Express as a dependency.&#xA;This method provides a clean starting point for scalable web applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to parse JSON body in Node.js</title>
+      <link>https://coreui.io/answers/how-to-parse-json-body-in-nodejs/</link>
+      <pubDate>Mon, 06 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-parse-json-body-in-nodejs/</guid>
+      <description>&lt;p&gt;Parsing JSON request bodies is fundamental for creating REST APIs, handling form submissions, and processing client data in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented JSON body parsing in numerous Node.js APIs for user data processing, configuration management, and dashboard data handling in enterprise applications.&#xA;From my expertise, the most reliable approach is to use Express.js built-in JSON middleware.&#xA;This method provides automatic parsing, error handling, and security features while supporting various content types and request sizes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle GET requests in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-get-requests-in-nodejs/</link>
+      <pubDate>Sun, 05 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-get-requests-in-nodejs/</guid>
+      <description>&lt;p&gt;Handling GET requests is fundamental for creating APIs, serving data, and building RESTful web services in Node.js backend applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented GET request handling in numerous Node.js APIs for user data retrieval, configuration endpoints, and dashboard data services in enterprise applications.&#xA;From my expertise, the most practical approach is to use Express.js with route parameters and query string handling.&#xA;This method provides clean URL patterns, automatic request parsing, and robust middleware support for authentication, validation, and error handling.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to serve static files in Node.js</title>
+      <link>https://coreui.io/answers/how-to-serve-static-files-in-nodejs/</link>
+      <pubDate>Sun, 05 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-serve-static-files-in-nodejs/</guid>
+      <description>&lt;p&gt;Serving static files is essential for delivering frontend assets, images, stylesheets, and JavaScript files in Node.js web applications and API servers.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve configured static file serving in numerous Node.js applications for delivering CoreUI assets, documentation sites, and enterprise dashboard frontends.&#xA;From my expertise, the most efficient approach is to use Express.js built-in static middleware.&#xA;This method provides optimized file serving, proper caching headers, and security features while handling common web server tasks automatically.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

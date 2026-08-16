@@ -1,0 +1,1 @@
+var r=function(e,n){var i=e.nextElementSibling;if(!n)return i;for(;i;){if(i.matches(n))return i;i=i.nextElementSibling}},t=function(e,n){var i=e.previousElementSibling;if(!n)return i;for(;i;){if(i.matches(n))return i;i=i.previousElementSibling}};export{t as a,r as g};

@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CButton.Blr4tCFr.js";e();var r=t(),i=()=>(0,r.jsx)(n,{color:`primary`,size:`sm`,style:{"--cui-btn-padding-y":`.25rem`,"--cui-btn-padding-x":`.5rem`,"--cui-btn-font-size":`.75rem`},children:`Custom button`});export{i as ButtonSizes3Example};

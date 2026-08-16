@@ -1,0 +1,1 @@
+import{A as e,D as t,h as n,m as r,p as i}from"./index-WXA455MI.js";var a=e(t()),o=e(r()),s=(0,a.forwardRef)((e,t)=>{var{children:r,className:o}=e,s=n(e,[`children`,`className`]);return a.createElement(`div`,Object.assign({className:i(`card-group`,o)},s,{ref:t}),r)});s.propTypes={children:o.default.node,className:o.default.string},s.displayName=`CCardGroup`;export{s as t};

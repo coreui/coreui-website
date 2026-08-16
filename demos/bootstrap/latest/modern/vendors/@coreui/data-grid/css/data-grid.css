@@ -1,0 +1,562 @@
+/*!
+ * CoreUI PRO data-grid.scss v0.3.0
+ * License (https://coreui.io/pro/license/)
+ */
+.data-grid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  --cui-data-grid-viewport-max-height: 30rem;
+  --cui-data-grid-header-bg: var(--cui-body-bg, #fff);
+  --cui-data-grid-header-shadow: inset 0 calc(-1 * var(--cui-border-width, 1px)) 0 var(--cui-border-color, #dee2e6);
+  --cui-data-grid-cell-selected-bg: rgba(var(--cui-primary-rgb, 50, 31, 219), 0.12);
+  --cui-data-grid-cell-selected-border-color: var(--cui-primary, #321fdb);
+  --cui-data-grid-cell-selected-border-width: 1px;
+  --cui-data-grid-row-handle-width: 2rem;
+  --cui-data-grid-select-cell-width: 2.5rem;
+  --cui-data-grid-sorter-margin: 0.25rem;
+  --cui-data-grid-sorter-opacity: 0.3;
+  --cui-data-grid-spacing: 0.5rem;
+  --cui-data-grid-resizer-width: 0.625rem;
+  --cui-data-grid-resizer-grip-height: 60%;
+  --cui-data-grid-resizer-grip-color: var(--cui-border-color, #dee2e6);
+  --cui-data-grid-resizer-grip-color-hover: var(--cui-secondary-color, #6c757d);
+  --cui-data-grid-pinned-border-width: var(--cui-border-width);
+  --cui-data-grid-pinned-border-color: var(--cui-border-color, #dee2e6);
+  --cui-data-grid-drop-indicator: var(--cui-primary, #321fdb);
+  --cui-data-grid-drag-transition: 0.15s ease;
+  --cui-data-grid-menu-bg: var(--cui-body-bg, #fff);
+  --cui-data-grid-menu-border-color: var(--cui-border-color, #dee2e6);
+  --cui-data-grid-menu-shadow: var(--cui-box-shadow, 0 0.5rem 1rem rgba(0, 0, 0, 0.15));
+  --cui-data-grid-menu-min-width: 10rem;
+  --cui-data-grid-menu-item-hover-bg: var(--cui-tertiary-bg, #f8f9fa);
+  --cui-data-grid-loading-bg: rgba(var(--cui-body-bg-rgb, 255, 255, 255), 0.6);
+  --cui-data-grid-pinned-bg: var(--cui-body-bg, #fff);
+  --cui-data-grid-focus-ring-width: 2px;
+  --cui-data-grid-focus-ring-color: var(--cui-primary, #321fdb);
+}
+.data-grid .data-grid-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cui-data-grid-spacing);
+  align-items: center;
+  min-height: 48px;
+  padding: var(--cui-data-grid-spacing);
+  border-bottom: var(--cui-border-width, 1px) solid var(--cui-border-color, #dee2e6);
+}
+.data-grid .data-grid-toolbar-actions {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+.data-grid .data-grid-toolbar-search {
+  margin-inline-start: auto;
+}
+.data-grid .data-grid-viewport {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: var(--cui-data-grid-viewport-max-height);
+  overflow-y: auto;
+  overflow-anchor: none;
+}
+.data-grid .data-grid-cell-editor {
+  width: 100%;
+  min-width: 4rem;
+}
+.data-grid .data-grid-editor-popup {
+  position: absolute;
+  z-index: 4;
+  padding: 0.25rem;
+  background-color: var(--cui-data-grid-menu-bg);
+  border: var(--cui-border-width, 1px) solid var(--cui-data-grid-menu-border-color);
+  border-radius: var(--cui-border-radius, 0.375rem);
+  box-shadow: var(--cui-data-grid-menu-shadow);
+}
+.data-grid [role=grid] :is(td, th):focus-visible {
+  outline: var(--cui-data-grid-focus-ring-width) solid var(--cui-data-grid-focus-ring-color);
+  outline-offset: calc(-1 * var(--cui-data-grid-focus-ring-width));
+}
+.data-grid .data-grid-viewport:focus-visible {
+  outline: 0;
+}
+.data-grid .data-grid-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: var(--cui-data-grid-header-bg);
+  box-shadow: var(--cui-data-grid-header-shadow);
+}
+.data-grid .data-grid-header tr:not(.data-grid-filter-row) > th {
+  height: 48px;
+  vertical-align: middle;
+}
+.data-grid .data-grid-filter-row > th {
+  padding-top: 0;
+  font-weight: normal;
+}
+.data-grid .data-grid-header th[data-coreui-draggable] {
+  cursor: grab;
+}
+.data-grid .data-grid-header-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.data-grid .data-grid-header-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.data-grid .btn-ghost {
+  --cui-btn-padding-x: var(--cui-btn-padding-y);
+  --cui-btn-line-height: 1;
+}
+.data-grid .data-grid-menu-button {
+  margin-inline-start: auto;
+}
+.data-grid .data-grid-menu {
+  position: absolute;
+  z-index: 4;
+  min-width: var(--cui-data-grid-menu-min-width);
+  padding: 0.25rem 0;
+  background-color: var(--cui-data-grid-menu-bg);
+  border: var(--cui-border-width, 1px) solid var(--cui-data-grid-menu-border-color);
+  border-radius: var(--cui-border-radius, 0.375rem);
+  box-shadow: var(--cui-data-grid-menu-shadow);
+}
+.data-grid .data-grid-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.25rem 0.75rem;
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+.data-grid .data-grid-menu-item:hover, .data-grid .data-grid-menu-item:focus-visible {
+  background-color: var(--cui-data-grid-menu-item-hover-bg);
+}
+.data-grid .data-grid-menu-item[aria-disabled=true] {
+  color: var(--cui-secondary-color, #6c757d);
+  cursor: default;
+  background: none;
+}
+.data-grid .data-grid-filter-menu {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: var(--cui-data-grid-menu-min-width);
+  max-width: 18rem;
+  padding: 0.75rem;
+  background-color: var(--cui-data-grid-menu-bg);
+  border: var(--cui-border-width, 1px) solid var(--cui-data-grid-menu-border-color);
+  border-radius: var(--cui-border-radius, 0.375rem);
+  box-shadow: var(--cui-data-grid-menu-shadow);
+}
+.data-grid .data-grid-filter-menu > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.data-grid .data-grid-filter-menu-condition {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.data-grid .data-grid-filter-menu-join {
+  display: flex;
+  gap: 1rem;
+}
+.data-grid .data-grid-filter-menu-join label {
+  display: flex;
+  gap: 0.375rem;
+  align-items: center;
+}
+.data-grid .data-grid-filter-menu-values {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-height: 14rem;
+  overflow-y: auto;
+}
+.data-grid .data-grid-filter-menu-footer {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+.data-grid .data-grid-column-chooser {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: var(--cui-data-grid-menu-min-width);
+  max-width: 18rem;
+  max-height: 20rem;
+  padding: 0.75rem;
+  overflow-y: auto;
+  background-color: var(--cui-data-grid-menu-bg);
+  border: var(--cui-border-width, 1px) solid var(--cui-data-grid-menu-border-color);
+  border-radius: var(--cui-border-radius, 0.375rem);
+  box-shadow: var(--cui-data-grid-menu-shadow);
+}
+.data-grid .data-grid-column-chooser-option {
+  display: flex;
+  gap: 0.375rem;
+  align-items: center;
+  margin-bottom: 0;
+}
+.data-grid .data-grid-column-chooser-footer {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  padding-top: 0.25rem;
+  margin-top: 0.25rem;
+  border-top: var(--cui-border-width, 1px) solid var(--cui-data-grid-menu-border-color);
+}
+.data-grid .data-grid-filter-button {
+  position: relative;
+  margin-inline-start: auto;
+}
+.data-grid .data-grid-filter-button ~ .data-grid-menu-button {
+  margin-inline-start: 0;
+}
+.data-grid .data-grid-filter-button-filtered::after {
+  position: absolute;
+  inset-block-start: 0.125rem;
+  inset-inline-end: 0.125rem;
+  width: 0.375rem;
+  height: 0.375rem;
+  content: "";
+  background-color: var(--cui-primary, #321fdb);
+  border-radius: 50%;
+}
+.data-grid .data-grid-menu-item-icon {
+  display: inline-flex;
+  opacity: 0.75;
+}
+.data-grid .data-grid-menu-item-icon svg {
+  width: 1em;
+  height: 1em;
+}
+.data-grid .data-grid-menu-divider {
+  height: var(--cui-border-width, 1px);
+  margin: 0.25rem 0;
+  background-color: var(--cui-data-grid-menu-border-color);
+}
+.data-grid .data-grid-dragging {
+  opacity: 0.5;
+}
+.data-grid.data-grid-drag-active {
+  cursor: grabbing;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.data-grid .data-grid-drag-ghost {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1080;
+  display: flex;
+  align-items: center;
+  max-width: 16rem;
+  padding: 0 var(--cui-data-grid-cell-padding-x, 0.5rem);
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  background-color: var(--cui-data-grid-pinned-bg);
+  border: var(--cui-border-width, 1px) solid var(--cui-data-grid-drop-indicator);
+  border-radius: var(--cui-border-radius, 0.375rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transform: translate(-9999px, -9999px);
+  opacity: 0.9;
+}
+.data-grid .data-grid-drag-ghost-settle {
+  transition: transform var(--cui-data-grid-drag-transition), opacity var(--cui-data-grid-drag-transition);
+}
+.data-grid .data-grid-drop-indicator {
+  position: fixed;
+  z-index: 1080;
+  pointer-events: none;
+  background-color: var(--cui-data-grid-drop-indicator);
+  transition: top var(--cui-data-grid-drag-transition), left var(--cui-data-grid-drag-transition);
+}
+.data-grid .data-grid-drag-preview {
+  transition: transform var(--cui-data-grid-drag-transition);
+}
+@media (prefers-reduced-motion: reduce) {
+  .data-grid :is(.data-grid-drop-indicator, .data-grid-drag-preview, .data-grid-drag-ghost-settle) {
+    transition: none;
+  }
+}
+.data-grid .data-grid-drop-indicator-x {
+  width: 0.125rem;
+}
+.data-grid .data-grid-drop-indicator-y {
+  height: 0.125rem;
+}
+.data-grid .data-grid-cell-selected {
+  position: relative;
+  background-color: var(--cui-data-grid-cell-selected-bg);
+}
+.data-grid .data-grid-cell-selected::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  border: 0 solid var(--cui-data-grid-cell-selected-border-color);
+}
+.data-grid .data-grid-cell-selected-top::after {
+  border-top-width: var(--cui-data-grid-cell-selected-border-width);
+}
+.data-grid .data-grid-cell-selected-right::after {
+  border-right-width: var(--cui-data-grid-cell-selected-border-width);
+}
+.data-grid .data-grid-cell-selected-bottom::after {
+  border-bottom-width: var(--cui-data-grid-cell-selected-border-width);
+}
+.data-grid .data-grid-cell-selected-left::after {
+  border-left-width: var(--cui-data-grid-cell-selected-border-width);
+}
+.data-grid .data-grid-row-handle-cell {
+  width: var(--cui-data-grid-row-handle-width);
+  padding-inline: 0;
+  text-align: center;
+}
+.data-grid .data-grid-row-handle {
+  display: inline-flex;
+  color: var(--cui-secondary-color, #6c757d);
+  cursor: grab;
+  touch-action: none;
+}
+.data-grid .data-grid-select-cell {
+  width: var(--cui-data-grid-select-cell-width);
+  text-align: center;
+}
+.data-grid .data-grid-sort-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cui-data-grid-sorter-margin);
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  background: none;
+  border: 0;
+}
+.data-grid .data-grid-sort-icon {
+  display: inline-flex;
+  font-size: 0.875em;
+  opacity: 0;
+}
+.data-grid .data-grid-sort-icon svg {
+  width: 1em;
+  height: 1em;
+}
+.data-grid .data-grid-sortable[aria-sort] .data-grid-sort-icon {
+  opacity: 1;
+}
+.data-grid[data-coreui-sorter-visibility=always] .data-grid-sortable:not([aria-sort]) .data-grid-sort-icon {
+  opacity: var(--cui-data-grid-sorter-opacity);
+}
+.data-grid[data-coreui-sorter-visibility=hover] .data-grid-sortable:not([aria-sort]):hover .data-grid-sort-icon, .data-grid[data-coreui-sorter-visibility=hover] .data-grid-sortable:not([aria-sort]):focus-within .data-grid-sort-icon {
+  opacity: var(--cui-data-grid-sorter-opacity);
+}
+.data-grid .data-grid-viewport > .table {
+  margin-bottom: 0;
+  table-layout: fixed;
+}
+.data-grid:not(.data-grid-auto-row-height) .data-grid-viewport > .table > tbody > tr:not(.data-grid-empty) > td:not(.data-grid-select-cell):not(.data-grid-cell-pinned-start):not(.data-grid-cell-pinned-end) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.data-grid.data-grid-resizable .data-grid-viewport, .data-grid.data-grid-pinned .data-grid-viewport {
+  overflow-x: auto;
+}
+.data-grid.data-grid-resizable .table, .data-grid.data-grid-pinned .table {
+  width: max-content;
+  min-width: 100%;
+}
+.data-grid.data-grid-resizable .data-grid-header th:not(.data-grid-cell-pinned-start):not(.data-grid-cell-pinned-end) {
+  position: relative;
+}
+.data-grid.data-grid-pinned .table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.data-grid .data-grid-cell-pinned-start,
+.data-grid .data-grid-cell-pinned-end {
+  position: sticky;
+  z-index: 1;
+  background-color: var(--cui-data-grid-pinned-bg);
+}
+.data-grid .data-grid-header .data-grid-cell-pinned-start,
+.data-grid .data-grid-header .data-grid-cell-pinned-end {
+  z-index: 3;
+}
+.data-grid .data-grid-cell-pinned-start-last,
+.data-grid .data-grid-cell-pinned-end-first {
+  position: sticky;
+}
+.data-grid .data-grid-cell-pinned-start-last::after,
+.data-grid .data-grid-cell-pinned-end-first::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--cui-data-grid-pinned-border-width);
+  pointer-events: none;
+  content: "";
+}
+.data-grid .data-grid-cell-pinned-start-last::after {
+  inset-inline-end: 0;
+  background: var(--cui-data-grid-pinned-border-color);
+}
+.data-grid .data-grid-cell-pinned-end-first::after {
+  inset-inline-start: 0;
+  background: var(--cui-data-grid-pinned-border-color);
+}
+.data-grid .data-grid-resizer {
+  position: absolute;
+  top: 0;
+  inset-inline-end: calc(-0.5 * var(--cui-data-grid-resizer-width));
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cui-data-grid-resizer-width);
+  height: 100%;
+  cursor: col-resize;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.data-grid .data-grid-resizer::after {
+  width: 2px;
+  height: var(--cui-data-grid-resizer-grip-height);
+  content: "";
+  background-color: var(--cui-data-grid-resizer-grip-color);
+  transition: background-color 0.15s ease;
+}
+.data-grid .data-grid-resizer:hover::after, .data-grid .data-grid-resizer.data-grid-resizer-active::after {
+  background-color: var(--cui-data-grid-resizer-grip-color-hover);
+}
+.data-grid .data-grid-spacer > td {
+  padding: 0;
+  border: 0;
+}
+.data-grid .data-grid-viewport > .table-striped > tbody > tr:nth-of-type(odd) > * {
+  --cui-table-color-type: initial;
+  --cui-table-bg-type: initial;
+}
+.data-grid .data-grid-viewport > .table-striped > tbody > tr.data-grid-row-odd > * {
+  --cui-table-color-type: var(--cui-table-striped-color);
+  --cui-table-bg-type: var(--cui-table-striped-bg);
+}
+.data-grid .data-grid-viewport > .table > tbody > tr:last-child > * {
+  border-bottom-width: 0;
+}
+.data-grid .data-grid-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cui-data-grid-loading-bg);
+}
+.data-grid .data-grid-loading-more {
+  position: sticky;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  padding: var(--cui-data-grid-spacing);
+  background-color: var(--cui-data-grid-loading-bg);
+}
+.data-grid .data-grid-tooltip {
+  position: fixed;
+  z-index: 1080;
+  max-width: 12rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--cui-body-bg, #fff);
+  text-align: center;
+  pointer-events: none;
+  background-color: var(--cui-emphasis-color, #000);
+  border-radius: var(--cui-border-radius, 0.375rem);
+}
+.data-grid .data-grid-empty > td {
+  padding: 2rem 1rem;
+  color: var(--cui-secondary-color, #6c757d);
+  text-align: center;
+}
+.data-grid .data-grid-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cui-data-grid-spacing);
+  align-items: center;
+  min-height: 48px;
+  padding: var(--cui-data-grid-spacing);
+  border-top: var(--cui-border-width, 1px) solid var(--cui-border-color, #dee2e6);
+}
+.data-grid .data-grid-pagination.data-grid-pagination-top {
+  border-top: 0;
+  border-bottom: var(--cui-border-width, 1px) solid var(--cui-border-color, #dee2e6);
+}
+.data-grid .data-grid-pagination .pagination {
+  margin-bottom: 0;
+}
+.data-grid .data-grid-pagination .data-grid-pagination-info {
+  margin-inline-start: auto;
+  color: var(--cui-secondary-color, #6c757d);
+}
+.data-grid .data-grid-pagination .form-select {
+  width: auto;
+}
+
+@media print {
+  .data-grid-print-root {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 2000;
+    background-color: #fff;
+  }
+  .data-grid-print-root h1 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+  .data-grid-print-root table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .data-grid-print-root :is(th, td) {
+    padding: 0.25rem 0.5rem;
+    text-align: start;
+    border: 1px solid #000;
+  }
+  .data-grid-print-root thead {
+    display: table-header-group;
+  }
+  .data-grid-print-root tr {
+    break-inside: avoid;
+  }
+  body:has(.data-grid-print-root) > :not(.data-grid-print-root) {
+    display: none !important;
+  }
+}
+
+/*# sourceMappingURL=data-grid.css.map */

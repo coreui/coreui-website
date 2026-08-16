@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{n,t as r}from"./CProgress.Dgo78eLz.js";e();var i=t(),a=()=>(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(r,{height:1,children:(0,i.jsx)(n,{value:25})}),(0,i.jsx)(r,{height:20,children:(0,i.jsx)(n,{value:25})})]});export{a as ProgressHeight2Example};

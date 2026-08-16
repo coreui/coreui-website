@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-1dab50f3","path":"/api/table/CTable.api.html","title":"","lang":"en-US","frontmatter":{"head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/api/table/CTable.api.html"}]]},"headers":[{"level":3,"title":"CTable","slug":"ctable","link":"#ctable","children":[]}],"filePathRelative":"api/table/CTable.api.md"}');export{e as data};

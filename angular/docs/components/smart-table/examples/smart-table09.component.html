@@ -1,0 +1,45 @@
+<div class="m-3">
+  <hr />
+  <c-smart-table
+    #smartTable="cSmartTable"
+    [(activePage)]="activePage"
+    [columnFilter]="true"
+    [columnSorter]="true"
+    [columns]="columns"
+    [itemsPerPage]="itemsPerPage"
+    [items]="users$ | async"
+    [loading]="loadingData()"
+    [tableProps]="{ hover: true, striped: true, responsive: true }"
+    header
+    pagination
+  >
+    <ng-template
+      cTemplateId="tableData"
+      let-column="column"
+      let-columnName="columnName"
+      let-item="item"
+      let-tdContent="tdContent"
+    >
+      <td
+        [cAlign]="$safeNavigationMigration(smartTable.getTableDataCellProps(column, item)?.['align'])"
+        [cTableActive]="$safeNavigationMigration(smartTable.getTableDataCellProps(column, item)?.['active'])"
+        [cTableColor]="$safeNavigationMigration(smartTable.getTableDataCellProps(column, item)?.['color'])"
+        [ngClass]="smartTable.getTableDataCellClass(column, item)"
+      >
+        @switch (columnName) {
+          @case ('user') {
+            {{ item['first_name'] }}
+            {{ item['last_name'] }}
+            <br />
+            age: {{ item['age'] }}
+          }
+          @default {
+            {{ tdContent }}
+          }
+        }
+      </td>
+    </ng-template>
+  </c-smart-table>
+
+  <hr />
+</div>

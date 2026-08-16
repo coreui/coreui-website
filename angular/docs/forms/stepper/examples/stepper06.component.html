@@ -1,0 +1,156 @@
+@let forms = stepperForms();
+@let frmGroups = stepperFormGroups();
+
+<c-stepper #stepper (finished)="handleFinish($event)" (onReset)="handleReset()" validation>
+  <c-stepper-step [valid]="$safeNavigationMigration(frmGroups[0]?.valid)" label="Step 1">
+    <ng-container *ngTemplateOutlet="tplStep0" />
+  </c-stepper-step>
+  <c-stepper-step [valid]="$safeNavigationMigration(frmGroups[1]?.valid)" label="Step 2">
+    <ng-container *ngTemplateOutlet="tplStep1" />
+  </c-stepper-step>
+  <c-stepper-step [valid]="$safeNavigationMigration(frmGroups[2]?.valid)" label="Step 3">
+    <ng-container *ngTemplateOutlet="tplStep2" />
+  </c-stepper-step>
+</c-stepper>
+
+<p>
+  @if (stepper.finishing()) {
+    <p>All steps have been completed.</p>
+    @for (form of forms; track $index) {
+      <div class="mb-0">
+        <code>{{ form.value | json }}</code>
+      </div>
+    }
+
+    @let disableReset = !stepper.finishing();
+    <hr />
+    <button (click)="stepper.reset()" [disabled]="disableReset" cButton color="danger" type="reset">Reset</button>
+  }
+</p>
+
+<ng-template #navButtons>
+  <hr />
+  @let disablePrev = stepper.activeStepIndex() === 0 || stepper.finishing();
+  <button (click)="stepper.prev()" [disabled]="disablePrev" cButton color="info">Prev</button>
+
+  @let finished = stepper.finishing();
+  @let nextCaption = stepper.activeStepIndex() === stepper.stepsCount() - 1 && !finished ? 'Finish' : 'Next';
+  <button [disabled]="finished" cButton color="primary" type="submit">{{ nextCaption }}</button>
+
+  @let stepValid = stepperForms()[stepper.activeStepIndex()].valid;
+  current step: {{ stepper.activeStepIndex() + 1 }} / {{ stepper.stepsCount() }}
+  <c-badge [color]="stepValid ? 'success' : 'danger'">{{ stepperForms()[stepper.activeStepIndex()].status }}</c-badge
+  ><br />
+</ng-template>
+
+<ng-template #tplStep0>
+  <form (ngSubmit)="onSubmit()" autocomplete="off" cForm ngForm ngNativeValidate>
+    @let stepGroup = stepGroups[0];
+    <c-row class="g-3 pb-5" ngModelGroup="step_0">
+      <c-col [md]="4">
+        <label cLabel for="userFirstName-06">First name</label>
+        <input [ngModel]="stepGroup['firstName']" cFormControl id="userFirstName-06" name="firstName" required />
+      </c-col>
+      <c-col [md]="4">
+        <label cLabel for="userLastName-06">Last name</label>
+        <input [ngModel]="stepGroup['lastName']" cFormControl id="userLastName-06" name="lastName" required />
+      </c-col>
+      <c-col [md]="4">
+        <label cLabel for="userName-06">Username</label>
+        <c-input-group>
+          <span cInputGroupText id="basic-addon1">&#64;</span>
+          <input
+            [ngModel]="stepGroup['userName']"
+            aria-describedby="basic-addon1"
+            aria-label="Username"
+            autocomplete="off"
+            cFormControl
+            id="userName-06"
+            minlength="5"
+            name="userName"
+            required
+          />
+        </c-input-group>
+      </c-col>
+    </c-row>
+    <ng-container *ngTemplateOutlet="navButtons" />
+  </form>
+</ng-template>
+
+<ng-template #tplStep1>
+  <form (ngSubmit)="onSubmit()" autocomplete="off" cForm ngForm ngNativeValidate>
+    @let stepGroup = stepGroups[1];
+    <c-row class="g-3 pb-5" ngModelGroup="step_1">
+      <c-col [md]="6">
+        <label cLabel for="userAddress-06">City</label>
+        <input
+          [ngModel]="stepGroup['address']"
+          cFormControl
+          id="userAddress-06"
+          name="address"
+          required
+          autocomplete="off"
+        />
+      </c-col>
+      <c-col [md]="3">
+        <label cLabel for="userState-06">State</label>
+        <select
+          [ngModel]="stepGroup['state']"
+          aria-label="State select"
+          cSelect
+          id="userState-06"
+          name="state"
+          required
+        >
+          <option disabled>Choose...</option>
+          @for (state of states; track state.code) {
+            <option [ngValue]="state.code">{{ state.name }}</option>
+          }
+        </select>
+      </c-col>
+      <c-col [md]="3">
+        <label cLabel for="userZip-06">Zip</label>
+        <input [ngModel]="stepGroup['zip']" cFormControl id="userZip-06" name="zip" required />
+      </c-col>
+    </c-row>
+    <ng-container *ngTemplateOutlet="navButtons" />
+  </form>
+</ng-template>
+
+<ng-template #tplStep2>
+  <form (ngSubmit)="onSubmit()" autocomplete="off" cForm ngForm ngNativeValidate>
+    @let stepGroup = stepGroups[2];
+    <c-row class="g-3 pb-1" ngModelGroup="step_2">
+      <c-col [md]="6">
+        <label cLabel for="userEmail-06">Email</label>
+        <input [ngModel]="stepGroup['email']" cFormControl id="userEmail-06" name="email" required type="email" />
+      </c-col>
+      <c-col [md]="6">
+        <label cLabel for="userPassword-06">Password</label>
+        <input
+          [ngModel]="stepGroup['password']"
+          autocomplete="new-password"
+          cFormPassword
+          id="userPassword-06"
+          minlength="5"
+          name="password"
+          required
+        />
+      </c-col>
+      <c-col>
+        <c-form-check>
+          <input
+            [ngModel]="stepGroup['terms']"
+            cFormCheckInput
+            id="userTerms-06"
+            name="terms"
+            required
+            type="checkbox"
+          />
+          <label cFormCheckLabel for="userTerms-06">Agree to terms and conditions</label>
+        </c-form-check>
+      </c-col>
+    </c-row>
+    <ng-container *ngTemplateOutlet="navButtons" />
+  </form>
+</ng-template>

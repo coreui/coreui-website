@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.CA1CYuze.js";var n=e({name:`CNavbarNav`,props:{as:{type:String,default:`ul`}},setup(e,{slots:n}){return()=>t(e.as,{class:`navbar-nav`,role:`navigation`},n.default&&n.default())}});export{n as t};

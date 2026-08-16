@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-5e5c99bb","path":"/api/grid/CRow.api.html","title":"","lang":"en-US","frontmatter":{"head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/api/grid/CRow.api.html"}]]},"headers":[{"level":3,"title":"CRow","slug":"crow","link":"#crow","children":[]}],"filePathRelative":"api/grid/CRow.api.md"}');export{e as data};

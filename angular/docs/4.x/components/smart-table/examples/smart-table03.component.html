@@ -1,0 +1,30 @@
+<ng-container *ngIf="props$ | async as props">
+  <c-smart-table
+    [columnSorter]="{ external: true, resetable: true }"
+    [columns]="columns"
+    [columnFilter]="{ external: true, lazy: false }"
+    [items]="(usersData$ | async) ?? []"
+    [itemsPerPage]="props.itemsPerPage"
+    (itemsPerPageChange)="handleItemsPerPageChange($event)"
+    [itemsPerPageOptions]="[5,10,20]"
+    [itemsPerPageSelect]="true"
+    [loading]="props.loadingData"
+    [tableProps]="{ hover: true, striped: true, responsive: true }"
+    (columnFilterValueChange)="handleColumnFilterValueChange($event)"
+    [columnFilterValue]="props.columnFilterValue"
+    [sorterValue]="props.sorterValue"
+    (sorterValueChange)="handleSorterValueChange($event)"
+    (filteredItemsChange)="handleFilteredItemsChange($event)"
+    cleaner
+    header
+  ></c-smart-table>
+  <c-smart-pagination *ngIf="props.totalPages"
+    [activePage]="props.activePage"
+    (activePageChange)="handleActivePageChange($event)"
+    [pages]="props.totalPages"
+  ></c-smart-pagination>
+</ng-container>
+<ng-container *ngIf="errorMessage$ | async as errorMessage">
+  <hr>
+  <c-alert>{{errorMessage}}</c-alert>
+</ng-container>

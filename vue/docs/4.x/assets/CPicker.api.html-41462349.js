@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-1a48216f","path":"/api/picker/CPicker.api.html","title":"","lang":"en-US","frontmatter":{"head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/api/picker/CPicker.api.html"}]]},"headers":[{"level":3,"title":"CPicker","slug":"cpicker","link":"#cpicker","children":[]}],"filePathRelative":"api/picker/CPicker.api.md"}');export{e as data};

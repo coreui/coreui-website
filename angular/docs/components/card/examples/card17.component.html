@@ -1,0 +1,28 @@
+<c-tabs activeItemKey="Active">
+  <c-card class="text-center">
+    <c-card-header>
+      <c-tabs-list class="card-header-tabs" variant="tabs">
+        @for (tab of tabs; track tab) {
+          <button [itemKey]="tab" cTab [disabled]="tab === 'Disabled'">
+            {{ tab }}
+          </button>
+        }
+      </c-tabs-list>
+    </c-card-header>
+    <c-card-body>
+      <c-tabs-content>
+        @for (panel of tabs; track panel) {
+          <c-tab-panel [itemKey]="panel">
+            <ng-container *ngTemplateOutlet="cardBodyTemplate; context: { $implicit: panel }" />
+          </c-tab-panel>
+        }
+      </c-tabs-content>
+    </c-card-body>
+  </c-card>
+</c-tabs>
+
+<ng-template #cardBodyTemplate let-title>
+  <h5 cCardTitle>Card {{ title ?? 'title' }}</h5>
+  <p cCardText>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  <button cButton color="primary">Go somewhere</button>
+</ng-template>

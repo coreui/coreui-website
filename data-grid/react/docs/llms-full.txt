@@ -1,0 +1,4095 @@
+# CoreUI Data Grid React.js documentation
+
+> High-performance React data grid for CoreUI — 100,000 rows with sorting, filtering, selection and pagination.
+
+
+---
+
+# CoreUI React Data Grid
+
+> High-performance React data grid — 100,000 rows with sorting, filtering, selection, pagination, server-side data, column resizing, pinning, ordering and full theming.
+
+CoreUI Data Grid is a high-performance grid for displaying and interacting with
+large tabular datasets. It renders 100,000 rows in the browser with sorting,
+filtering, selection and pagination, and hands off to your API when the data
+outgrows the browser's memory.
+
+## Why Data Grid
+
+- **Fast by default.** Row [virtualization](https://coreui.io/data-grid/react/docs/features/virtualization/) keeps only
+  the visible window in the DOM, so scrolling stays smooth at 100k rows.
+- **Headless core, styled shell.** A proven headless table engine and row
+  virtualization under a CoreUI-themed UI. Drop to the
+  [headless table](https://coreui.io/data-grid/react/docs/api/headless/) any time.
+- **Complete feature set.** Sorting, [filtering](https://coreui.io/data-grid/react/docs/features/filtering/),
+  [selection](https://coreui.io/data-grid/react/docs/features/row-selection/), [pagination](https://coreui.io/data-grid/react/docs/features/pagination/),
+  [server-side data](https://coreui.io/data-grid/react/docs/features/server-side-data/), column
+  [sizing](https://coreui.io/data-grid/react/docs/columns/sizing/), [pinning](https://coreui.io/data-grid/react/docs/columns/pinning/),
+  [ordering & visibility](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/), a
+  [column menu](https://coreui.io/data-grid/react/docs/columns/menu/) and [CSV export](https://coreui.io/data-grid/react/docs/features/csv-export/).
+- **Themeable.** Every knob is a `--cui-data-grid-*` CSS variable resolving
+  through CoreUI semantic tokens, so light/dark theming works with no extra CSS.
+  See [Styling & theming](https://coreui.io/data-grid/react/docs/customization/styling/).
+- **Small.** Around 63 KB gzipped for the underlying grid core — 52 KB with a [lite feature set](https://coreui.io/data-grid/react/docs/customization/feature-sets/).
+
+## How it's built
+
+`<CDataGrid>` is a thin, styled layer over a headless table engine (state,
+sorting, filtering, pagination, pinning, ordering, visibility) and row
+virtualization (windowed rendering). Props are named after the features they
+control, callbacks are verbs (`onSortingChange`, `onSelectionChange`, …), and their
+payloads carry the grid's own state — a small, predictable API.
+
+```tsx
+import { CDataGrid } from '@coreui/react-data-grid'
+import '@coreui/data-grid/dist/css/data-grid.css'
+```
+
+## Get started
+
+1. [Install](https://coreui.io/data-grid/react/docs/getting-started/installation/) the package.
+2. Follow the [Quickstart](https://coreui.io/data-grid/react/docs/getting-started/quickstart/) to render your first
+   grid.
+3. Browse the [feature matrix](https://coreui.io/data-grid/react/docs/getting-started/features/) to see what's
+   available.
+
+## Packages
+
+| Package | Framework | Docs |
+| ------- | --------- | ---- |
+| `@coreui/data-grid` | Vanilla JavaScript | [coreui.io/data-grid/docs](https://coreui.io/data-grid/docs/) |
+| `@coreui/react-data-grid` | React | [coreui.io/data-grid/react/docs](https://coreui.io/data-grid/react/docs/) |
+| `@coreui/vue-data-grid` | Vue | [coreui.io/data-grid/vue/docs](https://coreui.io/data-grid/vue/docs/) |
+| `@coreui/angular-data-grid` | Angular | [coreui.io/data-grid/angular/docs](https://coreui.io/data-grid/angular/docs/) |
+
+
+---
+
+# React Data Grid Installation
+
+> Install CoreUI Data Grid for React via npm and load its stylesheet.
+
+## npm
+
+```sh
+npm install @coreui/react-data-grid
+```
+
+Data Grid ships its stylesheet in the `@coreui/data-grid` package (installed
+automatically as a dependency). It builds on the `.table`, `.btn` and form styles
+from `@coreui/coreui` or `@coreui/coreui-pro` (≥ 5) when one of them is on the
+page, and ships its own copy of them when it is not — see
+[Stylesheet](#stylesheet) below.
+
+```tsx
+import { CDataGrid } from '@coreui/react-data-grid'
+import '@coreui/data-grid/dist/css/data-grid.css'
+```
+
+## Stylesheet
+
+Two builds ship in the package — load exactly one:
+
+| File | Load it when |
+| --- | --- |
+| `data-grid.css` | `@coreui/coreui` or `@coreui/coreui-pro` (≥ 5) is already on the page. |
+| `data-grid.standalone.css` | It is not. Adds ~2.7 kB gzip. |
+
+`data-grid.standalone.css` carries the slice of CoreUI the grid's markup relies
+on — `.table`, `.btn`, the form controls, `.pagination`, `.spinner-border` and
+`.visually-hidden`. Those rules are scoped to `.data-grid` and emitted into a
+`data-grid-base` cascade layer, so they never restyle the rest of your page, and
+an unlayered CoreUI stylesheet always overrides them.
+
+The grid's CSS defines `--cui-data-grid-*` custom properties that resolve through
+CoreUI's semantic variables, so it inherits your theme (including
+`data-coreui-theme="dark"`) automatically. See
+[Styling & theming](https://coreui.io/data-grid/react/docs/customization/styling/) for the full token reference.
+
+Next: the [Quickstart](https://coreui.io/data-grid/react/docs/getting-started/quickstart/).
+
+
+---
+
+# React Data Grid Quickstart
+
+> Render your first CoreUI Data Grid for React in a few lines — columns, data, a stable row key, then your first feature.
+
+This guide builds a working grid from scratch. It assumes you've
+[installed](https://coreui.io/data-grid/react/docs/getting-started/installation/) `@coreui/react-data-grid` and loaded
+its stylesheet.
+
+## 1. The component
+
+The grid renders wherever you place `<CDataGrid>`:
+
+```tsx
+import { CDataGrid } from '@coreui/react-data-grid'
+import '@coreui/data-grid/dist/css/data-grid.css'
+```
+
+## 2. Columns and data
+
+Define columns by `key` (the property to read from each item) and pass your
+`items`:
+
+```tsx
+const items = [
+  { id: 1, name: 'Alice', role: 'admin' },
+  { id: 2, name: 'Bob', role: 'editor' },
+  { id: 3, name: 'Carol', role: 'viewer' },
+]
+
+<CDataGrid
+  columns={[
+    { key: 'name', label: 'Name' },
+    { key: 'role', label: 'Role' },
+  ]}
+  items={items}
+  itemKey={(item) => String(item.id)}
+/>
+```
+
+`itemKey` returns a stable id per row. It's optional, but
+[selection](https://coreui.io/data-grid/react/docs/features/row-selection/) needs it to survive sorting and filtering —
+set it up front.
+
+## 3. Turn on a feature
+
+Every feature is a single prop. Add filtering and selection:
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  itemKey={(item) => String(item.id)}
+  columnFilters // per-column filter row
+  rowSelection // checkbox column with select-all
+/>
+```
+
+Sorting is on by default. From here, explore the
+[feature matrix](https://coreui.io/data-grid/react/docs/getting-started/features/) or jump to any feature page.
+
+## 4. React to changes
+
+The grid calls `onXxx` [callback props](https://coreui.io/data-grid/react/docs/api/events/) with structured state:
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  itemKey={(item) => String(item.id)}
+  rowSelection
+  onSelectionChange={(rowSelection, selectedItems) => {
+    console.log(selectedItems)
+  }}
+/>
+```
+
+## What's next
+
+- Handle large or remote data with [server-side data](https://coreui.io/data-grid/react/docs/features/server-side-data/).
+- Customize cells with a column [`formatter` or `render`](https://coreui.io/data-grid/react/docs/columns/overview/).
+- Replace built-in chrome with [slots](https://coreui.io/data-grid/react/docs/features/slots/) or drive the
+  [headless table](https://coreui.io/data-grid/react/docs/api/headless/) directly.
+
+
+---
+
+# React Data Grid Features
+
+> A capability matrix of everything CoreUI Data Grid for React does today, with the prop that turns each feature on and a link to its docs.
+
+Everything the Data Grid does today, the prop that enables it, and where to
+read more. Features not listed here are on the [roadmap](https://coreui.io/data-grid/react/docs/resources/roadmap/).
+
+## Data & rendering
+
+| Feature | Prop | Docs |
+| --- | --- | --- |
+| Row virtualization | `virtualization` (on by default) | [Virtualization](https://coreui.io/data-grid/react/docs/features/virtualization/) |
+| Pagination | `pagination` | [Pagination](https://coreui.io/data-grid/react/docs/features/pagination/) |
+| Server-side data | `dataProvider` | [Server-side data](https://coreui.io/data-grid/react/docs/features/server-side-data/) |
+| Row selection | `rowSelection` | [Row selection](https://coreui.io/data-grid/react/docs/features/row-selection/) |
+| Infinite scroll | `infiniteScroll` | [Infinite scroll](https://coreui.io/data-grid/react/docs/features/infinite-scroll/) |
+| Auto row height | `autoRowHeight` | [Auto row height](https://coreui.io/data-grid/react/docs/features/virtualization/#auto-row-height) |
+| Row reordering | `rowOrder` | [Row reordering](https://coreui.io/data-grid/react/docs/features/row-reordering/) |
+
+## Sorting & filtering
+
+| Feature | Prop | Docs |
+| --- | --- | --- |
+| Column sorting (multi-column) | `sorting` (on by default) | [Sorting](https://coreui.io/data-grid/react/docs/features/sorting/) |
+| Per-column filter row | `columnFilters` | [Filtering](https://coreui.io/data-grid/react/docs/features/filtering/) |
+| Global search | `globalFilter` | [Filtering](https://coreui.io/data-grid/react/docs/features/filtering/) |
+| Custom filter UI / predicate | `filter`, `filterFn` (per column) | [Filtering](https://coreui.io/data-grid/react/docs/features/filtering/) |
+
+## Columns
+
+| Feature | Prop | Docs |
+| --- | --- | --- |
+| Custom cell formatting / rendering | `formatter`, `render` (per column) | [Columns overview](https://coreui.io/data-grid/react/docs/columns/overview/) |
+| Column resizing | `columnSizing` | [Column sizing](https://coreui.io/data-grid/react/docs/columns/sizing/) |
+| Column pinning | `columnPinning` | [Column pinning](https://coreui.io/data-grid/react/docs/columns/pinning/) |
+| Column ordering (drag & drop) | `columnOrder` | [Ordering & visibility](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/) |
+| Column visibility | `columnVisibility` | [Ordering & visibility](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/) |
+| Column header menu | `columnMenu` | [Column menu](https://coreui.io/data-grid/react/docs/columns/menu/) |
+
+## Interaction
+
+| Feature | Prop | Docs |
+| --- | --- | --- |
+| Keyboard navigation (ARIA grid) | `cellNavigation` | [Keyboard navigation](https://coreui.io/data-grid/react/docs/features/keyboard-navigation/) |
+| Cell selection & clipboard copy | `cellSelection` | [Cell selection](https://coreui.io/data-grid/react/docs/features/cell-selection/) |
+| Inline editing | `editing` | [Inline editing](https://coreui.io/data-grid/react/docs/features/editing/) |
+| Undo & redo | `history` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) |
+| Built-in toolbar | `toolbar` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) |
+
+## Customization & output
+
+| Feature | Prop / API | Docs |
+| --- | --- | --- |
+| Custom toolbar / pagination / empty state | `slots` | [Slots](https://coreui.io/data-grid/react/docs/features/slots/) |
+| CSV export | `exportCsv()`, `downloadCsv()` | [CSV export](https://coreui.io/data-grid/react/docs/features/csv-export/) |
+| Excel export (.xlsx) | `toolbar.export.exporter` | [Excel export](https://coreui.io/data-grid/react/docs/features/excel-export/) |
+| Print | `toolbar.print` | [Print](https://coreui.io/data-grid/react/docs/features/print/) |
+| Save & restore state | `stateKey` | [Save & restore state](https://coreui.io/data-grid/react/docs/features/state/) |
+| Feature sets (smaller bundle) | `features` | [Feature sets](https://coreui.io/data-grid/react/docs/customization/feature-sets/) |
+| Theming (CSS variables) | `--cui-data-grid-*` | [Styling & theming](https://coreui.io/data-grid/react/docs/customization/styling/) |
+| Localization (i18n) | `labels` | [Localization](https://coreui.io/data-grid/react/docs/customization/localization/) |
+| Headless escape hatch | `tableRef` | [Headless table](https://coreui.io/data-grid/react/docs/api/headless/) |
+
+
+---
+
+# React Data Grid Browsers and Devices
+
+> The browsers and devices CoreUI Data Grid for React supports, the floor it targets, and the browserslist configuration behind it.
+
+## Supported browsers
+
+The Data Grid targets the **latest stable releases** of every major browser, with
+a floor of **Chrome 123, Edge 123, Firefox 129, Safari 17.5 and iOS 17.5**.
+Measured with `npx browserslist --coverage`, that range covers **86.47%** of
+global usage.
+
+Browsers built on the same engines (Chromium, Gecko, WebKit) are not listed
+separately but behave the same, as long as their engine is at or above those
+versions. Proxy browsers that render server-side — Opera Mini, UC Browser Mini,
+QQ Browser, KaiOS — are excluded outright and are not supported.
+
+### What sets the floor
+
+The floor is the CoreUI PRO baseline, shared with the component library the grid
+sits next to, not a limit the grid's own code imposes. Its own requirements are
+lower:
+
+| What the grid uses | Available from |
+| --- | --- |
+| `inset-inline-start` / `inset-inline-end` (sticky offsets for pinned columns) | Chrome 87, Firefox 63, Safari 14.1 |
+| `:is()` | Chrome 88, Firefox 78, Safari 14 |
+| Private class fields, `??`, `?.`, `??=` in the shipped bundle | Chrome 85, Firefox 90, Safari 14.1 |
+
+The grid would therefore run on engines older than the floor, but only the range
+above is tested — and sharing the baseline means a page that mixes the grid with
+CoreUI PRO components has a single set of supported engines, not two.
+
+## The browserslist configuration
+
+One file drives both the CSS prefixes Autoprefixer emits and the syntax level
+[rolldown](https://rolldown.rs/) lowers the grid core to — including the
+`@tanstack/table-core` and `@tanstack/virtual-core` it bundles:
+
+```text
+last 2 major versions
+not dead
+unreleased versions
+
+Chrome >= 123
+Edge >= 123
+Firefox >= 129
+iOS >= 17.5
+Safari >= 17.5
+
+not and_uc > 0
+not and_qq > 0
+not kaios > 0
+not op_mini all
+```
+
+Raising the floor is what keeps the bundle small: at the previous Chrome 60 /
+Safari 12 floor the same code needed 57,477 B gzip against 54,742 B (measured
+at the rolldown migration) — a 2.7 kB saving from the floor alone — and
+Autoprefixer dropped every prefix but `-webkit-user-select`.
+
+### Mobile devices
+
+| | Chrome | Firefox | Safari | Android Browser &amp; WebView |
+| --- | --- | --- | --- | --- |
+| **Android** | Supported | Supported | <span class="text-muted">&mdash;</span> | Supported |
+| **iOS** | Supported | Supported | Supported | <span class="text-muted">&mdash;</span> |
+
+### Desktop browsers
+
+| | Chrome | Firefox | Microsoft Edge | Opera | Safari |
+| --- | --- | --- | --- | --- | --- |
+| **Mac** | Supported | Supported | Supported | Supported | Supported |
+| **Windows** | Supported | Supported | Supported | Supported | <span class="text-muted">&mdash;</span> |
+| **Linux** | Supported | Supported | <span class="text-muted">&mdash;</span> | Supported | <span class="text-muted">&mdash;</span> |
+
+## React
+
+`@coreui/react-data-grid` needs **React 18 or newer** on top of the browser range
+above. See [installation](https://coreui.io/data-grid/react/docs/getting-started/installation/).
+
+
+---
+
+# LLMs.txt
+
+> LLM-optimized documentation endpoints for CoreUI React Data Grid — llms.txt, llms-full.txt, and a Markdown version of every page.
+
+## Introduction
+
+[llms.txt](https://llmstxt.org) is an emerging standard that helps AI models understand and navigate documentation. The CoreUI React Data Grid docs expose three LLM-friendly endpoints so assistants can retrieve accurate, up-to-date content straight from the source.
+
+For a richer, tool-based integration, see [MCP Server](https://coreui.io/data-grid/react/docs/ai-tools/mcp/).
+
+## /llms.txt
+
+A structured index of the documentation — every page as a titled, described link, grouped by section. It gives an LLM a compact map of what exists and where.
+
+[Open llms.txt](https://coreui.io/data-grid/react/docs/llms.txt)
+
+## /llms-full.txt
+
+The entire documentation concatenated into a single Markdown file, so a model can ingest the whole set in one request.
+
+[Open llms-full.txt](https://coreui.io/data-grid/react/docs/llms-full.txt)
+
+## Markdown version of any page
+
+Append `.md` to any documentation page URL to get its clean Markdown version, without the site chrome.
+
+For example: [/data-grid/react/docs/features/sorting.md](https://coreui.io/data-grid/react/docs/features/sorting.md)
+
+
+---
+
+# MCP Server
+
+> Bring the CoreUI React Data Grid documentation into your AI coding assistant with the @coreui/docs-mcp Model Context Protocol server.
+
+## Introduction
+
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io) is an open standard that lets AI assistants connect to external tools and data sources. The **`@coreui/docs-mcp`** server gives your assistant direct access to the official CoreUI documentation, so it answers from the current docs instead of relying on stale training data.
+
+Point it at the CoreUI React Data Grid docs with the `--base-path` option shown below.
+
+It provides:
+
+- **Documentation pages** — getting started, features, columns, and API reference.
+- **Live content** — read on demand from `coreui.io`, always matching the latest release.
+- **Structured API** — options, events, and methods for the grid.
+
+The server runs locally over stdio via `npx` — no global install required.
+
+## Installation
+
+### Claude Code
+
+Add the server with the CLI, then start a new session and run `/mcp` to verify the connection:
+
+```bash
+claude mcp add coreui-data-grid -s user -- npx -y @coreui/docs-mcp --framework react --base-path /data-grid/react/docs
+```
+
+### Cursor
+
+Create `.cursor/mcp.json` in your project (or `~/.cursor/mcp.json` for global configuration):
+
+```json
+{
+  "mcpServers": {
+    "coreui-data-grid": {
+      "command": "npx",
+      "args": ["-y", "@coreui/docs-mcp", "--framework", "react", "--base-path", "/data-grid/react/docs"]
+    }
+  }
+}
+```
+
+### VS Code
+
+Create `.vscode/mcp.json` in your project. Note that VS Code uses the `servers` key:
+
+```json
+{
+  "servers": {
+    "coreui-data-grid": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@coreui/docs-mcp", "--framework", "react", "--base-path", "/data-grid/react/docs"]
+    }
+  }
+}
+```
+
+### Windsurf
+
+Edit `~/.codeium/windsurf/mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "coreui-data-grid": {
+      "command": "npx",
+      "args": ["-y", "@coreui/docs-mcp", "--framework", "react", "--base-path", "/data-grid/react/docs"]
+    }
+  }
+}
+```
+
+### Claude Desktop
+
+Edit `claude_desktop_config.json` (Settings → Developer → Edit Config):
+
+```json
+{
+  "mcpServers": {
+    "coreui-data-grid": {
+      "command": "npx",
+      "args": ["-y", "@coreui/docs-mcp", "--framework", "react", "--base-path", "/data-grid/react/docs"]
+    }
+  }
+}
+```
+
+### OpenAI Codex
+
+Add it with the CLI, or edit `~/.codex/config.toml` directly:
+
+```bash
+codex mcp add coreui-data-grid -- npx -y @coreui/docs-mcp --framework react --base-path /data-grid/react/docs
+```
+
+```toml
+[mcp_servers.coreui-data-grid]
+command = "npx"
+args = ["-y", "@coreui/docs-mcp", "--framework", "react", "--base-path", "/data-grid/react/docs"]
+```
+
+## Tools
+
+Once connected, your assistant can call the following tools:
+
+| Tool | Description |
+| --- | --- |
+| `list_components` | List documentation pages, optionally filtered by section or a substring. |
+| `search_docs` | Search the documentation and return the best matching pages. |
+| `get_doc_page` | Fetch the full Markdown of a page by slug or URL. |
+| `get_component_api` | Get the structured API (options, events, methods) for the grid. |
+
+## Configuration
+
+| Flag | Environment variable | Default | Description |
+| --- | --- | --- | --- |
+| `--framework <list>` | `COREUI_DOCS_FRAMEWORKS` | `bootstrap,react,vue` | Enabled editions (comma-separated). The first is the default for tools. |
+| `--base-url <url>` | `COREUI_DOCS_BASE_URL` | `https://coreui.io` | Origin of the CoreUI site. Override only for a staging or self-hosted mirror. |
+| `--base-path <tmpl>` | `COREUI_DOCS_BASE_PATH` | `/{framework}/docs` | Path after the origin where the docs live; `{framework}` is substituted. |
+| `--docs-path <map>` | `COREUI_DOCS_PATHS` | — | Per-framework path overrides, `fw=path` comma-separated. |
+| `--ttl <minutes>` | `COREUI_DOCS_TTL_MINUTES` | `360` | Cache freshness window. |
+| — | `COREUI_DOCS_CACHE_DIR` | OS cache directory | On-disk cache location. |
+
+## Example prompts
+
+Once installed, try asking your AI assistant:
+
+- "How do I enable row selection in CoreUI React Data Grid?"
+- "What options does CoreUI React Data Grid accept?"
+- "Show me the CoreUI React Data Grid pagination documentation."
+- "How do I export CoreUI React Data Grid data to CSV?"
+
+The package is open source and published as [`@coreui/docs-mcp`](https://www.npmjs.com/package/@coreui/docs-mcp).
+
+
+---
+
+# React Data Grid Overview
+
+> A single kitchen-sink React Data Grid demo — 10,000 rows across fourteen columns with the toolbar, per-column filters, sizing, pinning, selection and a column chooser all turned on at once.
+
+This page is the kitchen-sink demo: one grid with every interaction feature
+turned on at once, so you can see how they compose. It renders **10,000 rows**
+across **fourteen columns** — four hidden by default — with the
+[toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/), [per-column filters](https://coreui.io/data-grid/react/docs/features/filtering/),
+[column sizing](https://coreui.io/data-grid/react/docs/columns/sizing/), [pinning](https://coreui.io/data-grid/react/docs/columns/pinning/),
+[ordering & visibility](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/), the
+[column menu](https://coreui.io/data-grid/react/docs/columns/menu/), [row selection](https://coreui.io/data-grid/react/docs/features/row-selection/),
+multi-column [sorting](https://coreui.io/data-grid/react/docs/features/sorting/) and [pagination](https://coreui.io/data-grid/react/docs/features/pagination/).
+
+Every one of these is a single prop, documented on its own page — this demo just
+enables them together.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas', 'Roberts', 'Walker']
+const departments = ['Engineering', 'Sales', 'Marketing', 'Support', 'Finance', 'People']
+const roles = ['Manager', 'Lead', 'Senior', 'Junior', 'Contractor']
+const statuses = ['active', 'invited', 'suspended']
+const countries = ['Poland', 'Germany', 'France', 'Spain', 'Italy', 'United States', 'United Kingdom']
+const cities = ['Warsaw', 'Berlin', 'Paris', 'Madrid', 'Rome', 'New York', 'London']
+
+const badges: Record<string, string> = { active: 'success', invited: 'info', suspended: 'danger' }
+
+const currency = (value: unknown) =>
+  Number(value).toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })
+const date = (value: unknown) => new Date(value as string).toLocaleDateString('en-US')
+
+export const DataGridOverviewExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 10000 }, (_, i) => ({
+        id: i + 1,
+        name: `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`,
+        email: `user${i + 1}@example.com`,
+        department: departments[i % departments.length],
+        role: roles[i % roles.length],
+        status: statuses[i % statuses.length],
+        salary: 45000 + ((i % 60) * 1500),
+        rating: ((i % 9) + 1) / 2,
+        projects: (i % 24) + 1,
+        country: countries[i % countries.length],
+        city: cities[i % cities.length],
+        startDate: new Date(2021, i % 12, (i % 28) + 1).toISOString(),
+        lastActive: new Date(2026, i % 6, (i % 27) + 1).toISOString(),
+        phone: `+1 555 ${String(1000 + (i % 9000))}`
+      })),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        {
+ key: 'id', label: '#', width: 72, hideable: false
+},
+        { key: 'name', label: 'Name', width: 180 },
+        { key: 'email', label: 'Email', width: 220 },
+        {
+ key: 'department', label: 'Department', width: 150, filterType: 'select'
+},
+        {
+ key: 'role', label: 'Role', width: 130, filterType: 'select'
+},
+        {
+          key: 'status',
+          label: 'Status',
+          width: 130,
+          filterType: 'select',
+          render: item => <span className={`badge text-bg-${badges[item.status as string]}`}>{item.status as string}</span>
+        },
+        {
+ key: 'salary', label: 'Salary', width: 130, filterType: 'number', formatter: currency
+},
+        {
+ key: 'rating', label: 'Rating', width: 110, filterType: 'number'
+},
+        {
+ key: 'projects', label: 'Projects', width: 120, filterType: 'number'
+},
+        {
+ key: 'country', label: 'Country', width: 160, filterType: 'select'
+},
+        { key: 'city', label: 'City', width: 150 },
+        {
+ key: 'startDate', label: 'Started', width: 140, filterType: 'date', formatter: date
+},
+        {
+ key: 'lastActive', label: 'Last active', width: 140, filterType: 'date', formatter: date
+},
+        { key: 'phone', label: 'Phone', width: 160 }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      columnFilters
+      columnMenu
+      columnOrder
+      columnPinning={{ start: ['id'] }}
+      columnSizing
+      columnVisibility={{
+        projects: false, city: false, lastActive: false, phone: false
+      }}
+      rowSelection
+      sorting={{ multiple: true }}
+      pagination={{ pageSize: 20, pageSizeOptions: [10, 20, 50, 100] }}
+      toolbar={{
+        columns: true,
+        export: { filename: 'employees.csv' },
+        search: true
+      }}
+    />
+  )
+}
+```
+
+## What's turned on
+
+| Prop | Feature |
+| --- | --- |
+| `toolbar` | [Column chooser, CSV export and global search](https://coreui.io/data-grid/react/docs/features/toolbar/) |
+| `columnFilters` + `filterType` | [Per-column typed filters](https://coreui.io/data-grid/react/docs/features/filtering/) (text, number, date, select) |
+| `columnSizing` | [Drag-to-resize columns](https://coreui.io/data-grid/react/docs/columns/sizing/) |
+| `columnPinning` | [`id` pinned to the start edge](https://coreui.io/data-grid/react/docs/columns/pinning/) |
+| `columnOrder` | [Drag-and-drop column reordering](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/) |
+| `columnVisibility` | [Four columns hidden until you show them](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/) |
+| `columnMenu` | [Per-header sort / pin / hide menu](https://coreui.io/data-grid/react/docs/columns/menu/) |
+| `rowSelection` | [Checkbox column with select-all](https://coreui.io/data-grid/react/docs/features/row-selection/) |
+| `sorting={{ multiple: true }}` | [Shift-click multi-column sort](https://coreui.io/data-grid/react/docs/features/sorting/) |
+| `pagination` | [Page size switcher](https://coreui.io/data-grid/react/docs/features/pagination/) |
+
+## Presentation
+
+`salary` and the two dates use a column [`formatter`](https://coreui.io/data-grid/react/docs/columns/overview/) so the
+displayed value — and the [CSV export](https://coreui.io/data-grid/react/docs/features/csv-export/) — reads as currency
+and localized dates. The `status` column uses [`render`](https://coreui.io/data-grid/react/docs/columns/overview/) to
+draw a colored badge. Everything else is the raw value.
+
+To scale past what fits in the browser, keep this UI and hand data fetching off to
+your API with [server-side data](https://coreui.io/data-grid/react/docs/features/server-side-data/).
+
+
+---
+
+# React Data Grid Virtualization
+
+> Row virtualization renders only the visible window of rows, so the React Data Grid stays fast with 100,000 rows and beyond — sorting, filtering and selection run across the full dataset.
+
+Virtualization keeps the DOM small no matter how large the dataset is: only the
+rows currently in view (plus a small buffer) are rendered as real elements.
+Reach for it whenever you bind more rows than the browser can comfortably paint
+at once — a few thousand and up. It is **on by default** (`virtualization`)
+and is mutually exclusive with [pagination](https://coreui.io/data-grid/react/docs/features/pagination/).
+
+## 100,000 rows, virtualized
+
+Only the visible window of rows exists in the DOM — scroll, sort, filter and
+select across the full dataset. This live demo runs on 100,000 generated rows.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const roles = ['admin', 'editor', 'viewer']
+const statuses = ['active', 'pending', 'banned']
+
+export const DataGridVirtualExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 100_000 }, (_, i) => {
+        const name = `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`
+        return {
+          id: i + 1,
+          name,
+          email: `${name.toLowerCase().replace(' ', '.')}${i}@example.com`,
+          role: roles[i % roles.length],
+          status: statuses[i % statuses.length],
+          score: (i * 37) % 1000
+        }
+      }),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        { key: 'id', label: '#', width: 90 },
+        { key: 'name', label: 'Name', width: 200 },
+        { key: 'email', label: 'Email', width: 260 },
+        { key: 'role', label: 'Role', width: 110 },
+        { key: 'status', label: 'Status', width: 110 },
+        { key: 'score', label: 'Score', width: 90 }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      columnFilters
+      globalFilter
+      rowSelection
+    />
+  )
+}
+```
+
+## How it works
+
+The grid measures the scroll viewport and renders only the rows that intersect
+it. Two props tune the behavior:
+
+- `rowHeight` — the estimated row height in px (default `44`) the virtualizer
+  uses to size the scroll area and decide how many rows fit.
+- `overscan` — extra rows rendered above and below the visible window (default
+  `10`) to smooth fast scrolling. Raise it if you see blank rows while flinging;
+  lower it to shave DOM nodes.
+
+Rows are a fixed `rowHeight` by default; turn on
+[auto row height](#auto-row-height) below when they must grow with their
+content. For datasets larger than browser memory, hand paging to your backend
+with [server-side data](https://coreui.io/data-grid/react/docs/features/server-side-data/).
+
+See the [Performance guide](https://coreui.io/data-grid/react/docs/guides/performance/) for tuning advice.
+
+## Auto row height
+
+Rows are a fixed `rowHeight` by default, and cells truncate with an ellipsis
+rather than wrap — that is what lets the virtualizer place 100,000 rows
+without measuring any of them.
+
+Set `autoRowHeight` when rows must grow with their content instead. Cells wrap,
+and the virtualizer measures each row as it renders:
+
+```jsx
+<CDataGrid columns={columns} items={items} autoRowHeight rowHeight={44} />
+```
+
+`rowHeight` keeps its job as the *estimate*: it sizes the scrollbar for rows
+that have not been rendered yet, so a value close to the real average keeps
+scrolling smooth. Measuring costs a layout read per rendered row, so leave it
+off when every row is the same height.
+
+Measurements are cached per row index and dropped whenever sorting, filtering,
+paging or a data swap puts a different row at the same index.
+
+Auto row height requires virtualization; it is ignored in pagination mode,
+where the browser lays out every row anyway.
+
+
+---
+
+# React Data Grid Sorting
+
+> Sort the React Data Grid by clicking a header, add multi-column sorting with shift+click, and opt individual columns out.
+
+Sorting is **on by default**. Click a header to toggle ascending ↔ descending
+(set `resetable: true` for a third click that clears the sort); the sort runs
+across the whole dataset, not just the visible window. Shift+click a second
+header to sort by more than one column at once.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const roles = ['admin', 'editor', 'viewer']
+
+export const DataGridSortingExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => {
+        const name = `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`
+        return {
+          id: i + 1,
+          name,
+          email: `${name.toLowerCase().replace(' ', '.')}${i}@example.com`,
+          role: roles[i % roles.length],
+          score: (i * 37) % 1000
+        }
+      }),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        { key: 'id', label: '#', width: 90 },
+        { key: 'name', label: 'Name' },
+        {
+ key: 'email', label: 'Email', style: { width: '30%' }, sortable: false
+},
+        { key: 'role', label: 'Role', width: 110 },
+        { key: 'score', label: 'Score', width: 110 }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      sorting={{ multiple: true }}
+      pagination={{ pageSize: 10 }}
+    />
+  )
+}
+```
+
+## Usage
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  sorting // the default — pass an object to configure it
+/>
+```
+
+Pass an object to tune the behavior:
+
+| Key | Type | Default | Description |
+| --- | --- | --- | --- |
+| `multiple` | `boolean` | `true` | Allow sorting by more than one column with shift+click. |
+| `resetable` | `boolean` | `false` | Allow a third click to clear the column's sort. |
+
+Disable sorting for a single column with `sortable: false` in its
+[definition](https://coreui.io/data-grid/react/docs/api/columns/), or turn it off entirely with `sorting={false}`.
+
+## Sort icon visibility
+
+Only the **active** sort direction (the ascending/descending arrow) shows by
+default — the neutral, unsorted indicator stays hidden to keep headers clean.
+Set `sorterVisibility` to surface it on every sortable column:
+
+| Value | Behavior |
+| --- | --- |
+| `'always'` | The neutral icon is always visible (dimmed) on sortable columns. |
+| `'hover'` | The neutral icon appears when the header is hovered or focused. |
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  sorterVisibility="hover"
+/>
+```
+
+## Multi-column sorting
+
+With `multiple` enabled (the default), **shift+click** a second header to add it
+to the sort instead of replacing the first. The sort priority follows click
+order. Below, click **Department**, then shift+click **Salary** — the readout
+shows the active sort and its priority.
+
+```html
+import { CDataGrid, type SortingState } from '@coreui/react-data-grid'
+import { useMemo, useState } from 'react'
+
+const departments = ['Engineering', 'Design', 'Sales']
+const labels: Record<string, string> = { name: 'Name', department: 'Department', salary: 'Salary' }
+
+export const DataGridSortingMultiExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => ({
+        id: i + 1,
+        name: `User ${i + 1}`,
+        department: departments[i % departments.length],
+        salary: 40000 + ((i * 137) % 60000)
+      })),
+    []
+  )
+
+  const [sorting, setSorting] = useState<SortingState>([])
+
+  return (
+    <>
+      <CDataGrid
+        columns={[
+          {
+ key: 'id', label: '#', width: 90, sortable: false
+},
+          { key: 'name', label: 'Name' },
+          { key: 'department', label: 'Department', width: 160 },
+          { key: 'salary', label: 'Salary', width: 140 }
+        ]}
+        items={items}
+        itemKey={item => String(item.id)}
+        sorting={{ multiple: true }}
+        pagination={{ pageSize: 10 }}
+        onSortingChange={setSorting}
+      />
+      <p className="text-body-secondary small mt-2">
+        {sorting.length ?
+          `Sorted by: ${sorting
+              .map((sort, index) => `${index + 1}. ${labels[sort.id]} ${sort.desc ? '↓' : '↑'}`)
+              .join('   ')}` :
+          'Click a header, then shift+click another to sort by multiple columns.'}
+      </p>
+    </>
+  )
+}
+```
+
+## Reacting to sort changes
+
+Each change calls `onSortingChange` with the grid's `sorting` state:
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  onSortingChange={(sorting) => {
+    console.log(sorting) // [{ id: 'name', desc: false }]
+  }}
+/>
+```
+
+In [server-side mode](https://coreui.io/data-grid/react/docs/features/server-side-data/) the same `sorting` state is
+handed to your `dataProvider` so your API does the ordering.
+
+
+---
+
+# React Data Grid Filtering
+
+> Filter the React Data Grid with a per-column filter row, a global search input, custom filter components and custom matching predicates.
+
+The Data Grid filters on two levels. `columnFilters` renders a filter row
+in the header with one input per filterable column; `globalFilter` adds a
+single search input above the grid that matches across every column. Both narrow
+the rows client-side (or feed your [`dataProvider`](https://coreui.io/data-grid/react/docs/features/server-side-data/)
+in server-side mode). Opt a column out with `filterable: false`.
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  columnFilters // per-column filter row
+  globalFilter // single cross-column search input
+/>
+```
+
+## Filter menu
+
+With `columnFilters` enabled every filterable column gets a **filter button**
+(funnel icon, configurable via `filterIcon`) in its header, opening a filter
+dialog. The dialog offers typed operators driven by `column.filterType` —
+`text` (default), `number` and `date` get operator conditions (up to two,
+joined **AND**/**OR**), while `select` renders a faceted checkbox list of the
+column's actual values. An active filter marks the button with a dot; the
+structured value travels inside the grid's `columnFilters` state, so a
+[`dataProvider`](https://coreui.io/data-grid/react/docs/features/server-side-data/) receives it verbatim.
+
+Try it below: filter *Salary* with `Between`, *Department* with the set
+filter, or combine two conditions on *Hired*.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const departments = ['Engineering', 'Design', 'Sales', 'Support']
+
+export const DataGridFilterMenuExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 200 }, (_, i) => ({
+        name: `Employee ${String(i + 1).padStart(3, '0')}`,
+        department: departments[i % departments.length],
+        salary: 40_000 + ((i * 977) % 60_000),
+        hired: new Date(2020, i % 60, (i % 27) + 1).toISOString().slice(0, 10)
+      })),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        { key: 'name', label: 'Name' },
+        { key: 'department', label: 'Department', filterType: 'select' },
+        { key: 'salary', label: 'Salary', filterType: 'number' },
+        { key: 'hired', label: 'Hired', filterType: 'date' }
+      ]}
+      items={items}
+      columnFilters
+      columnMenu
+      pagination={{ pageSize: 8 }}
+      sorting={false}
+      virtualization={false}
+    />
+  )
+}
+```
+
+## Custom column filters
+
+Two per-column hooks extend the built-in filter row. `filter` replaces the text
+input with your own component receiving `{ column, table, labels }` — the
+`column` hands you `setFilterValue()`, `getFilterValue()` and
+`column.getFacetedUniqueValues()` for building selects from the actual data.
+`filterFn` swaps the matching logic (default: case-insensitive contains, or the
+[filter dialog](https://coreui.io/data-grid/react/docs/features/filtering/#filter-menu)'s structured value) for your
+own predicate `(value, filterValue, item) => boolean` — with a custom UI it
+receives exactly what that UI committed. Here Role pairs a faceted select with
+an exact-match predicate, while Score just declares `filterType: 'number'` and
+gets the built-in numeric dialog.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import type { CDataGridColumnFilterProps } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const roles = ['admin', 'editor', 'viewer']
+
+// Custom filter UI — a component receiving { column, table, labels }
+const RoleFilter = ({ column }: CDataGridColumnFilterProps) => (
+  <select
+    className="form-select form-select-sm"
+    value={(column.getFilterValue() as string) ?? ''}
+    onChange={event => column.setFilterValue(event.target.value === '' ? undefined : event.target.value)}
+  >
+    <option value="">All</option>
+    {[...column.getFacetedUniqueValues().keys()].map(String).toSorted().map(value => (
+      <option key={value} value={value}>
+        {value}
+      </option>
+    ))}
+  </select>
+)
+
+export const DataGridCustomFiltersExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => {
+        const name = `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`
+        return {
+          id: i + 1,
+          name,
+          email: `${name.toLowerCase().replace(' ', '.')}${i}@example.com`,
+          role: roles[i % roles.length],
+          score: (i * 37) % 1000
+        }
+      }),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columnFilters
+      columns={[
+        { key: 'name', label: 'Name' },
+        { key: 'email', label: 'Email', style: { width: '30%' } },
+        {
+          key: 'role',
+          label: 'Role',
+          width: 160,
+          filter: RoleFilter,
+          // Exact match - the default contains would also match partial values.
+          filterFn: (value, filterValue) => value === filterValue
+        },
+        {
+ key: 'score', label: 'Score', width: 140, filterType: 'number'
+}
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      pagination={{ pageSize: 10 }}
+    />
+  )
+}
+```
+
+## Custom filter API
+
+| Column key | Type | Description |
+| --- | --- | --- |
+| `filterable` | `boolean` | Set `false` to remove the column's filter button. |
+| `filter` | `ComponentType<{ column, table, labels }>` | Custom filter component replacing the default text input (requires `columnFilters`). |
+| `filterFn` | `(value, filterValue, item) => boolean` | Custom predicate replacing the built-in matching; with the filter dialog it receives the structured value. |
+
+Every filter change calls `onFilterChange` with
+`(columnFilters, globalFilter)`. A custom [toolbar slot](https://coreui.io/data-grid/react/docs/features/slots/) that
+hosts its own search box still needs `globalFilter` for the query to reach the
+grid.
+
+
+---
+
+# React Data Grid Row Reordering
+
+> Let users drag rows into a new order with a per-row grip — the React Data Grid hands you the reordered array and never mutates your data.
+
+Some lists have an order that only a person can decide: a task backlog, a
+playlist, the steps of a workflow. `rowOrder` gives each row a grip, and the
+grid tells you where the row was dropped — you own the data, so you own the
+new order.
+
+## Row reordering
+
+`rowOrder` adds a narrow handle column before the data columns. Only the
+grip starts a drag: a row is full of interactive content — checkboxes, editors,
+custom cells — that a whole-row handle would swallow.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useState } from 'react'
+
+const initialItems = [
+  {
+ id: 1, task: 'Draft the release notes', owner: 'Alice', status: 'In progress'
+},
+  {
+ id: 2, task: 'Review the API surface', owner: 'Bob', status: 'Blocked'
+},
+  {
+ id: 3, task: 'Ship the beta', owner: 'Carol', status: 'Todo'
+},
+  {
+ id: 4, task: 'Update the changelog', owner: 'Dave', status: 'Todo'
+}
+]
+
+export const DataGridRowOrderExample = () => {
+  const [items, setItems] = useState(initialItems)
+
+  return (
+    <CDataGrid
+      columns={[
+        { key: 'task', label: 'Task' },
+        { key: 'owner', label: 'Owner' },
+        { key: 'status', label: 'Status' }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      rowOrder
+      sorting={false}
+      virtualization={false}
+      onRowOrderChange={event => setItems(event.items as typeof initialItems)}
+    />
+  )
+}
+```
+
+## The contract
+
+The grid **never mutates `items`**. Dropping a row fires ``onRowOrderChange`` with
+everything needed to apply the move — the same contract
+[inline editing](https://coreui.io/data-grid/react/docs/features/editing/) uses:
+
+| Payload | Description |
+| --- | --- |
+| `items` | The full array in its new order, ready to assign or send to your API. |
+| `item` | The row that moved. |
+| `oldIndex` | Its index in `items` before the move. |
+| `newIndex` | Its index after it. |
+
+Until you apply it, nothing changes on screen. That is deliberate: the order is
+usually persisted, and a row that snaps back when the request fails is better
+than one that lies.
+
+The indexes are positions in `items`, not in the rendered window — in
+[pagination](https://coreui.io/data-grid/react/docs/features/pagination/) mode the page offset is already added, so
+dragging the first row of page 2 reports `oldIndex: 10`, not `0`.
+
+## The drag interaction
+
+Row dragging is the same pointer-based controller as
+[column dragging](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/#the-drag-interaction), turned
+on its side: a ghost with the row's first cell, a live preview where the rows
+it passes slide aside and it slides into the gap, edge auto-scroll for long
+lists, and Escape to cancel. It works the same with a mouse, a pen and a
+finger, and honours `prefers-reduced-motion`.
+
+## Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `rowOrder` | `boolean` | `false` | Adds a drag handle per row for reordering. |
+| `rowHandleIcon` | `ReactNode` | grip | Custom handle icon replacing the default one. |
+
+The handle's accessible name comes from `labels.reorderRow` — see
+[localization](https://coreui.io/data-grid/react/docs/customization/localization/).
+
+
+---
+
+# React Data Grid Row Selection
+
+> Add a checkbox column to the React Data Grid with select-all and shift+click range selection, keyed to a stable row id so selection survives sorting, filtering and paging.
+
+`rowSelection` adds a checkbox column with a select-all header and shift+click
+range selection. Selection is keyed by [`itemKey`](https://coreui.io/data-grid/react/docs/api/options/), so a selected
+row stays selected as the user sorts, filters or pages — set `itemKey` whenever
+you enable selection. Select a few rows below, then page or sort — the selection
+holds.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useMemo, useState } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const roles = ['admin', 'editor', 'viewer']
+
+export const DataGridRowSelectionExample = () => {
+  const [selectedCount, setSelectedCount] = useState(0)
+
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => {
+        const name = `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`
+        return {
+          id: i + 1,
+          name,
+          email: `${name.toLowerCase().replace(' ', '.')}${i}@example.com`,
+          role: roles[i % roles.length]
+        }
+      }),
+    []
+  )
+
+  return (
+    <>
+      <CDataGrid
+        columns={[
+          { key: 'id', label: '#', width: 90 },
+          { key: 'name', label: 'Name' },
+          { key: 'email', label: 'Email', style: { width: '30%' } },
+          { key: 'role', label: 'Role', width: 110 }
+        ]}
+        items={items}
+        itemKey={item => String(item.id)}
+        rowSelection
+        pagination={{ pageSize: 10 }}
+        onSelectionChange={rowSelection => setSelectedCount(Object.keys(rowSelection).length)}
+      />
+      <p className="text-body-secondary mt-2 mb-0">
+        {selectedCount ? `${selectedCount} rows selected` : 'No rows selected'}
+      </p>
+    </>
+  )
+}
+```
+
+## Usage
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  itemKey={(item) => String(item.id)} // required for stable selection
+  rowSelection
+/>
+```
+
+Pass an object to configure it:
+
+| Key | Type | Default | Description |
+| --- | --- | --- | --- |
+| `selectAll` | `boolean` | `true` | Show the select-all checkbox in the header. |
+
+The [pagination demo](https://coreui.io/data-grid/react/docs/features/pagination/) shows selection in action alongside
+a custom actions column.
+
+## Reading the selection
+
+Listen for changes with `onSelectionChange` — it receives the row-selection
+state and the selected item objects:
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  itemKey={(item) => String(item.id)}
+  rowSelection
+  onSelectionChange={(rowSelection, selectedItems) => {
+    console.log(selectedItems)
+    console.log(rowSelection) // row-selection state
+  }}
+/>
+```
+
+## With pinning and server-side data
+
+When a column is pinned to the start and selection is on, the checkbox column travels
+with it — see [Column pinning](https://coreui.io/data-grid/react/docs/columns/pinning/). In
+[server-side mode](https://coreui.io/data-grid/react/docs/features/server-side-data/), selection is id-keyed so it
+survives page changes, but `selectedItems` contains only the items present in
+the current page's data.
+
+
+---
+
+# React Data Grid Cell Selection
+
+> Spreadsheet-style cell ranges in the React Data Grid — shift-click, drag and shift+arrows, with Ctrl/Cmd+C copying the range as tab-separated text ready to paste into Excel.
+
+People who work with tabular data reach for a spreadsheet's muscle memory:
+drag across a block of numbers, hit Ctrl+C, paste it somewhere else.
+`cellSelection` gives the grid that, on top of the same active-cell substrate
+[keyboard navigation](https://coreui.io/data-grid/react/docs/features/keyboard-navigation/) already provides.
+
+## Cell selection
+
+Select the way you would in a spreadsheet — click a cell, drag across a block,
+shift-click a far corner, or hold Shift and press an arrow. Ctrl/Cmd+A selects
+everything, and **Ctrl/Cmd+C copies the range**: try it and paste into a
+spreadsheet.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+
+export const DataGridCellSelectionExample = () => (
+  <CDataGrid
+    columns={[
+      { key: 'quarter', label: 'Quarter' },
+      { key: 'emea', label: 'EMEA' },
+      { key: 'amer', label: 'AMER' },
+      { key: 'apac', label: 'APAC' }
+    ]}
+    items={[
+      {
+ quarter: 'Q1', emea: 128400, amer: 214900, apac: 96300
+},
+      {
+ quarter: 'Q2', emea: 141200, amer: 208700, apac: 104800
+},
+      {
+ quarter: 'Q3', emea: 152900, amer: 226400, apac: 118200
+},
+      {
+ quarter: 'Q4', emea: 167300, amer: 241800, apac: 129600
+}
+    ]}
+    cellSelection
+    sorting={false}
+    virtualization={false}
+  />
+)
+```
+
+## Interactions
+
+| Input | Result |
+| --- | --- |
+| Click / drag | Starts a range and extends it while dragging. |
+| Shift + click | Extends the range to the clicked cell, keeping the anchor. |
+| Shift + arrow | Extends the range one cell, keeping the anchor. |
+| Arrow | Moves the active cell and collapses the range to it. |
+| Ctrl/Cmd + click | Adds or subtracts a second rectangle. |
+| Ctrl/Cmd + A | Selects every cell. |
+| Ctrl/Cmd + C | Copies the selection to the clipboard. |
+
+`cellSelection` implies `cellNavigation`: the active cell is the grid's single focus owner, and
+the selection anchors on it rather than tracking a second one.
+
+## The clipboard format
+
+The copy is **tab-separated** — the format spreadsheets read back as columns.
+Rows are separated by newlines, and disjoint rectangles by a blank line. A value
+containing a tab, a newline or a quote is quoted the way TSV consumers expect.
+
+Cells copy as they are **displayed**: a column's `formatter` runs first, so a
+formatted date pastes as the date on screen rather than its underlying value.
+
+Each copy fires ``onCellCopy`` with the exact text written, so you can mirror it
+somewhere else or count it.
+
+The grid uses the async clipboard API and falls back to a hidden textarea where
+that is unavailable or denied — both work because the copy runs inside the key
+press that asked for it.
+
+## Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `cellSelection` | `boolean` | `false` | Enables cell ranges, clipboard copy and select-all. Implies `cellNavigation`. |
+
+## Bundle cost
+
+Cell selection is the largest single feature in the grid: `cellSelectionFeature`
+adds about **4 KB gzipped** to the TanStack core. A grid that does not need it
+can drop that by naming a smaller
+[feature set](https://coreui.io/data-grid/react/docs/customization/feature-sets/) — which is exactly what the lite
+build does.
+
+
+---
+
+# React Data Grid Keyboard Navigation
+
+> APG grid keyboard navigation for the React Data Grid — role="grid", a roving-tabindex active cell and arrow-key movement across header and data cells.
+
+`cellNavigation` switches the grid to the ARIA
+[grid pattern](https://www.w3.org/WAI/ARIA/apg/patterns/grid/): the table gains
+`role="grid"`, exactly one cell is tabbable at a time (a roving tabindex), and
+the arrow keys move a visible active cell across header and data cells. Click a
+cell below, then navigate with the keyboard.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const roles = ['admin', 'editor', 'viewer']
+
+export const DataGridKeyboardNavigationExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 200 }, (_, i) => ({
+        id: i + 1,
+        name: `User ${i + 1}`,
+        email: `user${i + 1}@example.com`,
+        role: roles[i % roles.length]
+      })),
+    []
+  )
+
+  return (
+    <CDataGrid
+      cellNavigation
+      columns={[
+        { key: 'id', label: '#', width: 90 },
+        { key: 'name', label: 'Name' },
+        { key: 'email', label: 'Email', style: { width: '30%' } },
+        { key: 'role', label: 'Role', width: 110 }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      rowSelection
+    />
+  )
+}
+```
+
+## Usage
+
+```tsx
+<CDataGrid columns={columns} items={items} cellNavigation />
+```
+
+`cellNavigation` is off by default — without it the grid keeps native table
+semantics and the [accessible chrome](https://coreui.io/data-grid/react/docs/guides/accessibility/) it always had.
+[Inline editing](https://coreui.io/data-grid/react/docs/features/editing/) requires the active-cell model, so
+`editing` enables `cellNavigation` automatically.
+
+## Keys
+
+| Key | Action |
+| --- | --- |
+| Arrow keys | Move one cell; stop at the edges (no wrap). The header label row is row one — Arrow Up from the first data row reaches it. |
+| Home / End | First / last cell in the row. |
+| Ctrl+Home / Ctrl+End | First / last data cell of the grid. |
+| PageUp / PageDown | Move one viewport when virtualized; move one page (and flip it) under pagination. |
+| Tab / Shift+Tab | Leave the grid — the whole grid is a single tab stop. |
+| Enter | Toggle sort on a sortable header cell; descend into a data cell's interactive content (links, buttons); start [editing](https://coreui.io/data-grid/react/docs/features/editing/) an editable cell. |
+| Escape | Ascend from cell content back to the cell. |
+| Space | Toggle [row selection](https://coreui.io/data-grid/react/docs/features/row-selection/) on the active row. |
+
+## Focus and virtualization
+
+The active cell is state, not DOM: with
+[virtualization](https://coreui.io/data-grid/react/docs/features/virtualization/) on, navigating to an off-window row
+scrolls it into view first and focuses it once it renders. If the focused row is
+recycled out of the window while you scroll, focus parks on the viewport and the
+next navigation key brings the active cell back into view.
+
+## Styling
+
+The active cell shows an inset focus ring driven by two component tokens:
+
+```css
+.data-grid {
+  --cui-data-grid-focus-ring-width: 2px;
+  --cui-data-grid-focus-ring-color: var(--cui-primary);
+}
+```
+
+
+---
+
+# React Data Grid Inline Editing
+
+> Inline cell editing for the React Data Grid — built-in text, number and select editors, validation, and a popup contract for rich editors like date pickers and multi-selects.
+
+`editing` turns cells editable in place. Press <kbd>Enter</kbd> or <kbd>F2</kbd>
+on the active cell — or double-click any cell — to start; <kbd>Enter</kbd>
+commits, <kbd>Escape</kbd> cancels, <kbd>Tab</kbd> commits and moves to the next
+editable cell. Editing builds on
+[keyboard navigation](https://coreui.io/data-grid/react/docs/features/keyboard-navigation/), so `editing` enables
+`cellNavigation` automatically.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useState } from 'react'
+
+const roles = ['admin', 'editor', 'viewer']
+
+const initialItems = Array.from({ length: 200 }, (_, i) => ({
+  id: i + 1,
+  name: `User ${i + 1}`,
+  age: 20 + (i % 40),
+  role: roles[i % roles.length]
+}))
+
+export const DataGridEditingExample = () => {
+  const [items, setItems] = useState(initialItems)
+
+  return (
+    <CDataGrid
+      columns={[
+        { key: 'id', label: '#', width: 90 },
+        {
+          key: 'name',
+          label: 'Name',
+          editable: true,
+          editValidate: value => (value === '' ? 'Name is required' : true)
+        },
+        {
+ key: 'age', label: 'Age', width: 110, editable: { type: 'number', min: 0, max: 120 }
+},
+        {
+ key: 'role', label: 'Role', width: 130, editable: { type: 'select', options: roles }
+}
+      ]}
+      editing
+      items={items}
+      itemKey={item => String(item.id)}
+      onEditCommit={({ item, columnId, value }) =>
+        // The grid never mutates items - apply the committed change yourself.
+        setItems(current =>
+          current.map(row => (row.id === item.id ? { ...row, [columnId]: value } : row))
+        )
+      }
+    />
+  )
+}
+```
+
+## Usage
+
+Editing is opt-in per column — `editable` picks a built-in editor, a custom
+`editor` component is itself the opt-in:
+
+```tsx
+<CDataGrid
+  editing
+  columns={[
+    { key: 'name', editable: true },                                   // text input
+    { key: 'age', editable: { type: 'number', min: 0 } },              // number input
+    { key: 'role', editable: { type: 'select', options: ['admin', 'user'] } },
+  ]}
+  items={items}
+/>
+```
+
+## The app owns the data
+
+The grid never mutates `items`. A commit calls `onEditCommit` with
+`{ item, columnId, value, previousValue }` — apply the change to your state and
+the grid re-renders (server-side, PATCH and refetch):
+
+```tsx
+<CDataGrid
+  editing
+  columns={columns}
+  items={items}
+  onEditCommit={({ item, columnId, value }) =>
+    setItems((current) =>
+      current.map((row) => (row.id === item.id ? { ...row, [columnId]: value } : row))
+    )
+  }
+/>
+```
+
+`onEditStart` and `onEditCancel` fire around it with `(item, columnId)`.
+
+## Validation
+
+`editValidate` gates the commit. Return `true` to accept, or a message to block
+it — the editor gets `aria-invalid`, the `is-invalid` class and an
+`aria-errormessage` pointing at the message:
+
+```tsx
+{ key: 'name', editable: true, editValidate: (value, item) => value !== '' || 'Name is required' }
+```
+
+An invalid value keeps the editor open; <kbd>Escape</kbd> still cancels.
+
+## Custom editors
+
+`editor` replaces the built-in input with your own component. It renders with
+the editing context and registers the imperative bits of the contract through
+`handleRef`:
+
+```tsx
+import type { CDataGridEditorProps } from '@coreui/react-data-grid'
+import { useEffect, useRef } from 'react'
+
+const NoteEditor = ({ value, handleRef }: CDataGridEditorProps) => {
+  const inputRef = useRef<HTMLInputElement | null>(null)
+
+  useEffect(() => {
+    const input = inputRef.current
+    handleRef({
+      focus: () => input?.select(),
+      getValue: () => input?.value,
+    })
+    return () => handleRef(null)
+  }, [])
+
+  return <input className="form-control form-control-sm" defaultValue={String(value ?? '')} ref={inputRef} />
+}
+
+// columns: [{ key: 'note', editor: NoteEditor }]
+```
+
+The component receives `{ item, column, value, invalid, labels, commit, cancel, handleRef }`;
+the handle can provide `getValue` (feeds Enter/Tab/blur/outside commits),
+`focus`, and `contains` (extends the edit scope to overlays portaled outside the
+cell).
+
+## Rich editors — date pickers, autocompletes, multi-selects
+
+Editors whose UI extends beyond the cell — a date range picker's calendar, a
+multi-select's listbox — set `editorPopup: true` on the column. The grid renders
+them in a `.data-grid-editor-popup` layer anchored to the cell (min-width = cell
+width), so a tall editor never reflows the row, and the cell keeps its content
+underneath.
+
+Three rules make components like `@coreui/react-pro`'s
+`CDateRangePicker`, `CTimePicker`, `CAutocomplete` and `CMultiSelect` work as
+editors:
+
+- **Commit on outside, not on blur alone.** Picking a date in a calendar blurs
+  the input mid-edit — so the grid commits on pointerdown *outside the edit
+  scope* (cell + popup + anything `contains()` claims). Keep the component's
+  overlay inside the popup (its `container` prop), or claim a portaled overlay
+  via the handle's `contains()`.
+- **One Escape, one layer.** An Escape the editor consumed (calling
+  `preventDefault()` to close its own overlay) never cancels the edit — only
+  the next, unconsumed Escape does.
+- **Values are not scalars.** `getValue()` can return anything — a range
+  picker commits `{ startDate, endDate }`, a multi-select commits an array;
+  `onEditCommit` passes it through untouched.
+
+```tsx
+const PeriodEditor = ({ value, handleRef }: CDataGridEditorProps) => {
+  const range = useRef(value as { startDate?: string; endDate?: string } | undefined)
+
+  useEffect(() => {
+    handleRef({ getValue: () => range.current })
+    return () => handleRef(null)
+  }, [])
+
+  return (
+    <CDateRangePicker
+      startDate={range.current?.startDate}
+      endDate={range.current?.endDate}
+      onStartDateChange={(startDate) => (range.current = { ...range.current, startDate })}
+      onEndDateChange={(endDate) => (range.current = { ...range.current, endDate })}
+    />
+  )
+}
+
+// columns: [{ key: 'period', editor: PeriodEditor, editorPopup: true }]
+```
+
+## Interaction details
+
+- Scrolling the editing row out of the
+  [virtualized](https://coreui.io/data-grid/react/docs/features/virtualization/) window commits the draft; so do
+  sort, filter and page transitions.
+- Replacing `items` and [server-side](https://coreui.io/data-grid/react/docs/features/server-side-data/) data loads
+  cancel an in-flight edit — the incoming data owns the cell.
+- <kbd>Shift</kbd>+<kbd>Tab</kbd> commits and moves to the previous editable
+  cell.
+
+
+---
+
+# React Data Grid Undo & Redo
+
+> Undo and redo inline-edit commits in the React Data Grid — toolbar buttons and Ctrl+Z / Ctrl+Shift+Z / Ctrl+Y, with the app staying the single source of truth.
+
+`history` keeps an undo/redo stack of [inline editing](https://coreui.io/data-grid/react/docs/features/editing/)
+commits. Undo with the toolbar button or <kbd>Ctrl</kbd>+<kbd>Z</kbd>
+(<kbd>⌘Z</kbd> on macOS), redo with <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd>
+or <kbd>Ctrl</kbd>+<kbd>Y</kbd>. Edit a few cells below, then undo your way
+back.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useState } from 'react'
+
+const roles = ['admin', 'editor', 'viewer']
+
+const initialItems = Array.from({ length: 200 }, (_, i) => ({
+  id: i + 1,
+  name: `User ${i + 1}`,
+  age: 20 + (i % 40),
+  role: roles[i % roles.length]
+}))
+
+export const DataGridHistoryExample = () => {
+  const [items, setItems] = useState(initialItems)
+
+  return (
+    <CDataGrid
+      columns={[
+        { key: 'id', label: '#', width: 90 },
+        { key: 'name', label: 'Name', editable: true },
+        {
+ key: 'age', label: 'Age', width: 110, editable: { type: 'number', min: 0, max: 120 }
+},
+        {
+ key: 'role', label: 'Role', width: 130, editable: { type: 'select', options: roles }
+}
+      ]}
+      editing
+      history
+      items={items}
+      itemKey={item => String(item.id)}
+      toolbar={{ history: true }}
+      onEditCommit={({ item, columnId, value }) =>
+        // Undo/redo re-call onEditCommit with the values swapped, so the
+        // handler that applies an edit also reverts it.
+        setItems(current =>
+          current.map(row => (row.id === item.id ? { ...row, [columnId]: value } : row))
+        )
+      }
+    />
+  )
+}
+```
+
+## Usage
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  editing
+  history                     // track edit commits
+  toolbar={{ history: true }} // undo/redo buttons
+  onEditCommit={applyCommit}
+/>
+```
+
+The buttons stay disabled while their stack is empty; each undo/redo announces
+through the ARIA live region (`undoneAnnouncement`/`redoneAnnouncement`
+labels).
+
+## How undo works — the app stays in charge
+
+The grid never mutates `items`. An undo **re-calls `onEditCommit`** with
+`value` and `previousValue` swapped (redo re-calls the original), so the same
+handler that applied the edit reverts it — no second code path:
+
+```tsx
+onEditCommit={({ item, columnId, value }) =>
+  setItems((current) =>
+    current.map((row) => (row.id === item.id ? { ...row, [columnId]: value } : row))
+  )
+}
+```
+
+History entries reference rows by id, so they survive the immutable updates
+this pattern produces. If a row disappears from the data entirely, its entries
+are dropped. New commits clear the redo stack; the stack holds the last 100
+edits. Following MUI and AG Grid, undo/redo covers **data edits** — view
+changes (sorting, filters, column layout) are not tracked; persist those with
+[`stateKey`](https://coreui.io/data-grid/react/docs/features/state/) instead.
+
+
+---
+
+# React Data Grid Save & Restore State
+
+> Persist the React Data Grid view — sorting, filters, column order, sizing, visibility, pinning, selection and page — to localStorage with a single prop.
+
+`stateKey` makes the grid's view persistent: every user-adjustable state slice
+— sorting, column filters and the global search, column order, sizing,
+visibility and pinning, row selection and the page — **autosaves to
+`localStorage`** under the key (debounced) and **restores automatically on the
+next mount**. No buttons, nothing to wire up. Sort or resize below, reload the
+page — the grid comes back as you left it.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const roles = ['admin', 'editor', 'viewer']
+
+export const DataGridStateExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 200 }, (_, i) => ({
+        id: i + 1,
+        name: `User ${i + 1}`,
+        email: `user${i + 1}@example.com`,
+        role: roles[i % roles.length]
+      })),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        { key: 'id', label: '#', width: 90 },
+        { key: 'name', label: 'Name' },
+        { key: 'email', label: 'Email', style: { width: '30%' } },
+        { key: 'role', label: 'Role', width: 110 }
+      ]}
+      columnSizing
+      columnVisibility
+      globalFilter
+      items={items}
+      itemKey={item => String(item.id)}
+      stateKey="docs-state-demo-react"
+      toolbar
+    />
+  )
+}
+```
+
+## Usage
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  itemKey={(item) => String(item.id)} // keeps restored selection meaningful
+  stateKey="users-grid"               // localStorage identity — that's it
+/>
+```
+
+Every state change writes the snapshot (debounced at 250 ms) to
+`localStorage` under `coreui-data-grid:<stateKey>`; the next grid mounted with
+the same key restores it before first render.
+
+## Reading the snapshot
+
+The saved snapshot is
+`{ sorting, columnFilters, globalFilter, columnOrder, columnPinning, columnSizing, columnVisibility, pagination, rowSelection }`
+(the `DataGridState` type). For your own storage, collect the slices from the
+`onXxxChange` callbacks — or read them off the exposed
+[`tableRef`](https://coreui.io/data-grid/react/docs/api/options/) — and hand a saved snapshot back by mounting the
+grid with `stateKey` pointing at it.
+
+## What is (and isn't) state
+
+- Row selection restores by row id — set [`itemKey`](https://coreui.io/data-grid/react/docs/api/options/) or the
+  restored ids point at positions, not rows.
+- In [server-side mode](https://coreui.io/data-grid/react/docs/features/server-side-data/) the restored
+  sorting/filters/page are applied **before the first request**, so the grid
+  loads straight into the saved view.
+- Scroll position and an in-flight [edit](https://coreui.io/data-grid/react/docs/features/editing/) draft are not
+  state. Data edits aren't either — undoing those is what
+  [undo & redo](https://coreui.io/data-grid/react/docs/features/history/) is for.
+- Restoring calls the matching `onXxxChange` callbacks for every slice that
+  changed — your app sees a restore exactly like user interaction.
+
+
+---
+
+# React Data Grid Pagination
+
+> Page through the React Data Grid with a page-size selector, range info and CoreUI pagination controls instead of virtualized scrolling.
+
+Pagination breaks the dataset into fixed-size pages with familiar
+Previous/Next controls. Use it when users expect discrete pages, when you want a
+predictable page height on the screen, or as the client-side counterpart to
+[server-side data](https://coreui.io/data-grid/react/docs/features/server-side-data/) (which always paginates).
+Pagination is **mutually exclusive with [virtualization](https://coreui.io/data-grid/react/docs/features/virtualization/)** —
+turning it on switches the grid out of windowed scrolling.
+
+## Pagination mode
+
+Instead of virtualization the grid can paginate — with a page-size selector,
+range info and CoreUI `.pagination` controls. This demo also shows a custom
+`formatter`, an actions column built with `render`, and row selection.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const roles = ['admin', 'editor', 'viewer']
+
+export const DataGridPaginationExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => {
+        const name = `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`
+        return {
+          id: i + 1,
+          name,
+          email: `${name.toLowerCase().replace(' ', '.')}${i}@example.com`,
+          role: roles[i % roles.length]
+        }
+      }),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        { key: 'id', label: '#', width: 90 },
+        { key: 'name', label: 'Name' },
+        { key: 'email', label: 'Email', style: { width: '30%' } },
+        {
+          key: 'role',
+          label: 'Role',
+          width: 110,
+          formatter: value => String(value).toUpperCase()
+        },
+        {
+          key: 'actions',
+          label: '',
+          sortable: false,
+          filterable: false,
+          width: 120,
+          render: item => (
+            <button
+              type="button"
+              className="btn btn-sm btn-outline-primary"
+              onClick={() => alert(`Edit ${item.name} (#${item.id})`)}
+            >
+              Edit
+            </button>
+          )
+        }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      pagination={{ pageSize: 10 }}
+      rowSelection
+    />
+  )
+}
+```
+
+## Options
+
+Pass `pagination` for the defaults, or an object to configure it:
+
+| Key | Type | Default | Description |
+| --- | --- | --- | --- |
+| `pageSize` | `number` | `10` | Rows per page. |
+| `pageSizeOptions` | `number[]` | `[5, 10, 20, 50]` | Choices in the page-size selector. |
+| `position` | `'top' \| 'bottom' \| 'both'` | `'bottom'` | Where the pagination bar renders. |
+| `info` | `boolean` | `true` | Shows the `Showing X–Y of Z` range summary. |
+
+Every page change calls `onPaginationChange` with the grid's `pagination` state. Drive
+paging yourself through the [headless table](https://coreui.io/data-grid/react/docs/api/headless/) — e.g.
+`tableRef.current?.setPageIndex(3)`.
+
+
+---
+
+# React Data Grid Server-Side Data
+
+> Delegate sorting, filtering and pagination to your API with a single dataProvider prop — the React Data Grid fetches one debounced request per state change and drops stale responses.
+
+Client-side mode ends where the browser's memory does. When your dataset lives
+in a database with tens of thousands of rows or more, hand the work to your
+backend: set `dataProvider` and the grid stops computing row models locally and
+asks your API for each page instead. This is the single biggest adoption
+unlocker for large data.
+
+## Server-side data
+
+Set `dataProvider` and the grid switches to server-side mode — every sorting,
+filtering or pagination change triggers one debounced request (stale responses
+are dropped automatically), a loading overlay covers the viewport and totals
+come from your `totalRows`. Server-side mode implies pagination. This live demo
+hits CoreUI's public demo API (`apitest.coreui.io/demos/users`) — 10,000+
+records sorted, filtered and paged server-side.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import type { DataGridDataRequest } from '@coreui/react-data-grid'
+import { useCallback } from 'react'
+
+const fetchUsers = async ({ sorting, columnFilters, pagination }: DataGridDataRequest) => {
+  const params = new URLSearchParams({
+    offset: String(pagination.pageIndex * pagination.pageSize),
+    limit: String(pagination.pageSize)
+  })
+
+  for (const { id, value } of columnFilters) {
+    params.append(id, String(value))
+  }
+
+  const [sort] = sorting
+  if (sort) {
+    params.append('sort', `${sort.id}%${sort.desc ? 'desc' : 'asc'}`)
+  }
+
+  const response = await fetch(`https://apitest.coreui.io/demos/users?${params}`)
+  const result = await response.json()
+  const totalRows = Number(result.number_of_matching_records)
+
+  return { items: totalRows ? result.records : [], totalRows }
+}
+
+export const DataGridServerExample = () => {
+  const dataProvider = useCallback(fetchUsers, [])
+
+  return (
+    <CDataGrid
+      columns={[
+        { key: 'first_name', label: 'First name' },
+        { key: 'last_name', label: 'Last name' },
+        { key: 'email', label: 'Email' },
+        { key: 'country', label: 'Country' },
+        { key: 'ip_address', label: 'IP' }
+      ]}
+      itemKey={item => String(item.id)}
+      columnFilters
+      dataProvider={dataProvider}
+    />
+  )
+}
+```
+
+## The dataProvider contract
+
+```tsx
+<CDataGrid
+  columns={columns}
+  dataProvider={async ({ sorting, columnFilters, globalFilter, pagination }) => {
+    // fetch from your API and return the matching page
+    return { items, totalRows }
+  }}
+  pagination // server-side mode implies pagination
+/>
+```
+
+- **One request per state change.** `sorting`, `columnFilters`, `globalFilter`
+  and `pagination` arrive as structured state; return the page of `items` plus the
+  full `totalRows` count so the pager can render.
+- **Debounced & race-safe.** Rapid changes coalesce into one request and only
+  the latest response is applied — stale ones are dropped by request id.
+- **Loading UX.** A `.data-grid-loading` overlay with a spinner covers the
+  viewport and `aria-busy` is set while a request is in flight
+  (`labels.loading`).
+- **Errors.** A rejected fetch calls `onDataError` with the `error`, shows the
+  empty state (`labels.loadError`) and leaves the grid interactive.
+- **Success.** Each load calls `onDataLoad` with `{ items, totalRows }`.
+
+## Selection semantics
+
+`rowSelection` is keyed by [`itemKey`](https://coreui.io/data-grid/react/docs/api/options/), so a selection survives
+page changes by design. `onSelectionChange`'s `selectedItems` contains only the
+items present in the current page's data — the grid does not cache full objects
+for pages it has scrolled past.
+
+The same page-bound rule applies to [CSV export](https://coreui.io/data-grid/react/docs/features/csv-export/): in
+server-side mode every scope (`filtered`, `all`, `selected`) exports the
+currently loaded page only.
+
+When the [filter menu](https://coreui.io/data-grid/react/docs/features/filtering/) is used, a column's entry in
+`columnFilters` carries the structured value — `{ conditions: [{ operator,
+value, value2? }], join: 'and' | 'or' }` for typed operators or `{ operator:
+'in', value: [...] }` for the set filter — instead of a plain string. Servers
+should handle both shapes.
+
+
+---
+
+# React Data Grid Infinite Scroll
+
+> Load a server-side dataset page by page as the user scrolls — the React Data Grid appends each page to the rows already in view and keeps virtualization on instead of switching to a pager.
+
+[Server-side data](https://coreui.io/data-grid/react/docs/features/server-side-data/) normally replaces the rows on
+every page change: you get a pager, and page 2 makes page 1 disappear. Infinite
+scroll keeps them. Each request appends to a growing buffer behind the
+[virtualizer](https://coreui.io/data-grid/react/docs/features/virtualization/), so the user scrolls one continuous
+list while the grid quietly fetches what is below the fold.
+
+## Infinite scroll
+
+Set `infiniteScroll` alongside `dataProvider`. There is no pager: the grid
+requests the next page when the last rendered row comes within `threshold` rows
+of the end of what is loaded, and stops once `totalRows` is reached. This live
+demo hits CoreUI's public demo API (`apitest.coreui.io/demos/users`) — scroll to
+pull in the next 50 records.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import type { DataGridDataRequest } from '@coreui/react-data-grid'
+import { useCallback, type CSSProperties } from 'react'
+
+const fetchUsers = async ({ sorting, pagination }: DataGridDataRequest) => {
+  const params = new URLSearchParams({
+    offset: String(pagination.pageIndex * pagination.pageSize),
+    limit: String(pagination.pageSize)
+  })
+
+  const [sort] = sorting
+  if (sort) {
+    params.append('sort', `${sort.id}%${sort.desc ? 'desc' : 'asc'}`)
+  }
+
+  const response = await fetch(`https://apitest.coreui.io/demos/users?${params}`)
+  const result = await response.json()
+  const totalRows = Number(result.number_of_matching_records)
+
+  return { items: totalRows ? result.records : [], totalRows }
+}
+
+export const DataGridInfiniteExample = () => {
+  const dataProvider = useCallback(fetchUsers, [])
+
+  return (
+    // The token is inherited, so it reaches the grid from any ancestor.
+    <div style={{ '--cui-data-grid-viewport-max-height': '400px' } as CSSProperties}>
+      <CDataGrid
+        columns={[
+          { key: 'first_name', label: 'First name' },
+          { key: 'last_name', label: 'Last name' },
+          { key: 'email', label: 'Email' },
+          { key: 'country', label: 'Country' },
+          { key: 'ip_address', label: 'IP' }
+        ]}
+        itemKey={item => String(item.id)}
+        infiniteScroll={{ pageSize: 50 }}
+        dataProvider={dataProvider}
+      />
+    </div>
+  )
+}
+```
+
+## Options
+
+```tsx
+<CDataGrid
+  columns={columns}
+  dataProvider={dataProvider}
+  infiniteScroll={{
+    pageSize: 50, // rows per request (default 50)
+    threshold: 10 // rows left below the last rendered one (defaults to overscan)
+  }}
+/>
+```
+
+`infiniteScroll` takes both defaults. `pageSize` is what the grid sends
+as `pagination.pageSize`, so your `dataProvider` contract does not change — the
+same offset/limit handler serves both modes.
+
+## Requirements
+
+Infinite scroll is a mode, not a modifier, and the grid throws on a
+contradictory setup rather than silently picking one:
+
+- **`dataProvider` is required.** A local `items` array is already fully
+  rendered by virtualization; there is nothing to fetch.
+- **`pagination` cannot be combined with it.** Both own the page index, so the
+  grid rejects the pair.
+- **`virtualization` is required** (it is on by default). The trigger is a row
+  index in the rendered window, which is what makes it work with
+  [auto row height](https://coreui.io/data-grid/react/docs/features/virtualization/#auto-row-height).
+
+## Behavior
+
+- **The buffer only grows.** `pageIndex` 0 replaces it; every later page
+  appends. Rows already on screen keep their index, their measured height, their
+  selection and the keyboard focus.
+- **Sorting, filters and search reset it.** Any of them returns to page 0,
+  replaces the buffer and scrolls back to the top — the old rows no longer
+  describe the new query.
+- **Loading UX.** The first page shows the usual `.data-grid-loading` overlay.
+  Every later page shows `.data-grid-loading-more`, a sticky strip at the bottom
+  of the viewport, so the rows already loaded stay readable.
+- **Events.** Each page emits `onDataLoad(response)` with that page's items.
+  `onPaginationChange` does **not** fire: pagination is internal here, with
+  no widget and nothing for the user to set.
+- **`aria-rowcount`** is the full `totalRows`, and each row's `aria-rowindex` is
+  its absolute position — assistive technology announces "row 60 of 10,000"
+  while only 60 rows exist in the DOM.
+
+## Selection and export
+
+Both stay page-bound, exactly as in [server-side
+mode](https://coreui.io/data-grid/react/docs/features/server-side-data/#selection-semantics): `getSelectedItems()` and
+every [CSV](https://coreui.io/data-grid/react/docs/features/csv-export/) or [Excel](https://coreui.io/data-grid/react/docs/features/excel-export/) scope see
+the rows currently in the buffer. With infinite scroll that buffer is everything
+scrolled so far rather than a single page, so it grows as the user goes.
+
+
+---
+
+# React Data Grid Toolbar
+
+> Add a built-in React Data Grid toolbar with a column chooser, CSV export button and global search — enabled with a single prop or configured granularly.
+
+The `toolbar` prop adds a built-in chrome row above the grid with a
+**column chooser**, a **CSV export** button, **Undo/Redo** buttons (with
+[`history`](https://coreui.io/data-grid/react/docs/features/history/)) and a **global search** input. Each action drives an existing feature, so the toolbar is the ready-made
+UI you would otherwise build with the [`toolbar` slot](https://coreui.io/data-grid/react/docs/features/slots/).
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  columnVisibility // required for the column chooser
+  toolbar // every action whose feature is enabled
+/>
+```
+
+`toolbar` (boolean `true`) enables each action whose underlying feature is on:
+**columns** needs [`columnVisibility`](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/), **export**
+is always available, **undo/redo** needs [`history`](https://coreui.io/data-grid/react/docs/features/history/), and
+**search** turns on the global filter. Pass a granular
+object to pick actions individually — `search: true` is the same input as
+[`globalFilter`](https://coreui.io/data-grid/react/docs/features/filtering/), so keep using whichever reads better.
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  columnVisibility
+  toolbar={{
+    columns: true, // column chooser popup
+    export: { filename: 'users.csv' }, // CsvDownloadOptions pass-through
+    history: true, // undo/redo buttons (needs the history prop)
+    search: true, // global search input
+  }}
+/>
+```
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const roles = ['admin', 'editor', 'viewer']
+
+export const DataGridToolbarExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => ({
+        id: i + 1,
+        name: `User ${i + 1}`,
+        email: `user${i + 1}@example.com`,
+        role: roles[i % roles.length]
+      })),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        {
+ key: 'id', label: '#', width: 90, hideable: false
+},
+        { key: 'name', label: 'Name' },
+        { key: 'email', label: 'Email', style: { width: '30%' } },
+        { key: 'role', label: 'Role', width: 110 }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      columnVisibility
+      pagination={{ pageSize: 10 }}
+      toolbar={{
+        columns: true,
+        export: { filename: 'users.csv' },
+        search: true
+      }}
+    />
+  )
+}
+```
+
+## Column chooser
+
+With `toolbar.columns` enabled the columns button opens a popup listing every
+leaf column in visual order with a checkbox. Toggling a checkbox calls
+`column.toggleVisibility()` live — there is no Apply step. Columns marked
+`hideable: false` stay checked and disabled. The footer offers **Show all** and
+**Reset** (Reset restores the initial `columnVisibility` object). Visibility
+changes call `onVisibilityChange` just like the [column menu](https://coreui.io/data-grid/react/docs/columns/menu/).
+
+## Export
+
+The export button downloads the current view as CSV by calling
+[`downloadCsv(table, { scope: 'filtered' })`](https://coreui.io/data-grid/react/docs/features/csv-export/). Pass a
+[`CsvDownloadOptions`](https://coreui.io/data-grid/react/docs/features/csv-export/) object as `toolbar.export` to set
+`filename`, `delimiter`, `bom`, `sanitize` or `scope`.
+
+## Icons
+
+The toolbar buttons use the CoreUI icon set, overridable per-instance with the
+`toolbarColumnsIcon`, `toolbarExportIcon`, `toolbarUndoIcon` and
+`toolbarRedoIcon` props (any `ReactNode`, like every
+other icon prop).
+
+## Custom toolbar
+
+The `toolbar` slot still **replaces** the whole toolbar; the built-in buttons are
+not composable into a custom slot. For a fully custom toolbar — including a
+hand-built column chooser — use the [`toolbar` slot](https://coreui.io/data-grid/react/docs/features/slots/) with the
+headless `table` and public helpers (`downloadCsv`, `column.toggleVisibility`).
+See the [column ordering & visibility](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/) page for a
+slot-based chooser.
+
+
+---
+
+# React Data Grid Slots & Custom Rendering
+
+> Replace the React Data Grid's toolbar, pagination and empty-state chrome with your own components through the slots prop.
+
+Slots let you swap the grid's built-in chrome — `toolbar`, `pagination` and
+`empty` — for your own UI while the grid keeps driving state through the
+headless table. Reach for a slot when the default control isn't enough: a custom
+toolbar with extra actions, a bespoke pager, or a richer empty state. For custom
+*cell* content, use a column's [`formatter` or `render`](https://coreui.io/data-grid/react/docs/columns/overview/)
+instead.
+
+## Custom slots
+
+Replace the grid's chrome — `toolbar`, `pagination` and `empty` — with your own
+components. Each slot is a component that receives `{ table, labels }` and renders
+in place of the built-in module; it re-renders with the grid, so it always
+reflects current state. This demo swaps the built-in pagination for a minimal
+Previous/Next control driven through the headless `table`.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import type { CDataGridSlotProps } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const roles = ['admin', 'editor', 'viewer']
+
+const Pagination = ({ table }: CDataGridSlotProps) => {
+  const { pageIndex } = table.state.pagination
+  return (
+    <div className="d-flex gap-2 align-items-center mt-2">
+      <button
+        type="button"
+        className="btn btn-sm btn-outline-secondary"
+        disabled={!table.getCanPreviousPage()}
+        onClick={() => table.previousPage()}
+      >
+        Previous
+      </button>
+      <span className="text-body-secondary">
+        Page {pageIndex + 1} of {table.getPageCount()} · {table.getRowCount()} items
+      </span>
+      <button
+        type="button"
+        className="btn btn-sm btn-outline-secondary"
+        disabled={!table.getCanNextPage()}
+        onClick={() => table.nextPage()}
+      >
+        Next
+      </button>
+    </div>
+  )
+}
+
+export const DataGridSlotsExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => {
+        const name = `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`
+        return {
+          id: i + 1,
+          name,
+          email: `${name.toLowerCase().replace(' ', '.')}${i}@example.com`,
+          role: roles[i % roles.length]
+        }
+      }),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        { key: 'id', label: '#', width: 90 },
+        { key: 'name', label: 'Name' },
+        { key: 'email', label: 'Email', style: { width: '30%' } },
+        { key: 'role', label: 'Role', width: 110 }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      pagination={{ pageSize: 10 }}
+      slots={{ pagination: Pagination }}
+    />
+  )
+}
+```
+
+With `pagination={{ position: 'both' }}` the slot component renders once per
+position. A custom toolbar that hosts its own global search still needs
+`globalFilter` for the query to reach the grid. The `empty` slot also renders
+when a server load fails; use the `onDataError` callback to tell the two apart.
+
+## Slot contract
+
+| Slot | Replaces | Signature |
+| --- | --- | --- |
+| `toolbar` | The toolbar above the grid | `ComponentType<{ table, labels }>` |
+| `pagination` | The pagination bar | same |
+| `empty` | The no-rows / load-error state | same |
+
+- `table` — the headless [`table`](https://coreui.io/data-grid/react/docs/api/headless/) instance; read current state
+  and call its methods to drive the grid.
+- `labels` — the resolved [localization](https://coreui.io/data-grid/react/docs/customization/localization/) strings.
+- The component re-renders on every grid render, so it always reflects current
+  state — no manual update or teardown hooks needed.
+
+
+---
+
+# React Data Grid Print
+
+> Print the whole React Data Grid — every sorted and filtered row, not the twenty the virtualizer has on screen or the page the user happens to be on.
+
+Printing a virtualized grid straight from the browser prints the twenty rows
+that happen to be in the DOM, and a paginated one prints the current page.
+Neither is what anyone means by "print this table", so the grid renders a
+plain, complete table, prints that, and throws it away.
+
+## Print
+
+Enable the toolbar action with `toolbar={{ print: true }}`, or call ``printGrid()` from `@coreui/data-grid/print`` from your own
+button. Search the grid below, then print: the printout carries every matching
+row, not just the visible ones.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+
+const items = Array.from({ length: 60 }, (_, index) => ({
+  name: `Person ${index + 1}`,
+  role: index % 3 === 0 ? 'admin' : 'user',
+  country: ['Poland', 'Germany', 'Spain', 'Italy'][index % 4]
+}))
+
+export const DataGridPrintExample = () => (
+  <CDataGrid
+    columns={[
+      { key: 'name', label: 'Name' },
+      { key: 'role', label: 'Role' },
+      { key: 'country', label: 'Country' }
+    ]}
+    items={items}
+    globalFilter
+    printTitle="Team roster"
+    toolbar={{ print: true, search: true }}
+  />
+)
+```
+
+## What gets printed
+
+- **Every sorted and filtered row.** Pagination and virtualization are display
+  concerns; the printout is the whole result set the user's sorting, filters and
+  search produced.
+- **The visible columns**, in their current order — hidden and reordered
+  columns follow what is on screen.
+- **Values as displayed.** A column's `formatter` runs first, so a formatted
+  date prints as the date on screen.
+- **The `printTitle`** as a heading above the table, when set.
+
+Custom cell renderers are *not* carried into the printout: it is built from
+values as text, never from markup, so the printed page can never become an
+injection surface for the data.
+
+## Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `toolbar.print` | `boolean` | `false` | Adds the print button to the built-in toolbar. |
+| `printTitle` | `string` | — | Heading printed above the table. |
+| `toolbarPrintIcon` | `ReactNode` | printer | Custom print icon replacing the default one. |
+
+## Styling the printout
+
+The clone is a `.data-grid-print-root` element appended to the document, and the
+print stylesheet hides everything else on the page while it is there. Restyle it
+like any other markup:
+
+```css
+@media print {
+  .data-grid-print-root h1 { font-size: 1rem; }
+  .data-grid-print-root :is(th, td) { border-color: #999; }
+}
+```
+
+
+---
+
+# React Data Grid CSV Export
+
+> Export React Data Grid rows to an RFC-4180 CSV string or file, with scope, delimiter, BOM and formula-injection sanitization options.
+
+Give users a one-click download of what they're looking at. `exportCsv(table, options)`
+returns a spec-compliant CSV string and `downloadCsv(table, options)` saves it as
+a file, both respecting the grid's current layout and filters. The pure CSV
+helper also ships standalone for server-side or headless use with no runtime
+dependencies.
+
+## CSV export
+
+`exportCsv(table, options)` returns an RFC-4180 string; `downloadCsv(table, options)`
+saves it as a file — both take the headless `table` (via `tableRef`). Exported
+columns follow the rendered layout (pinning, order, visibility). Values use
+each column's `formatter` (never `render`); `scope` picks `'filtered'` (default,
+all matching rows), `'all'` (ignores filters) or `'selected'`; `delimiter` and
+`bom` (Excel-friendly UTF-8) are configurable. Set `sanitize: true` to guard
+against CSV formula injection (prefixes fields starting with `=`, `+`, `-` or
+`@` with an apostrophe) when exporting untrusted data. Server-side grids export
+the rows currently in memory. Both helpers are published at
+`@coreui/data-grid/csv` — no runtime dependencies — and re-exported from
+`@coreui/react-data-grid`.
+
+```html
+import { CDataGrid, downloadCsv } from '@coreui/react-data-grid'
+import { useMemo, useRef } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const roles = ['admin', 'editor', 'viewer']
+
+export const DataGridCsvExample = () => {
+  const tableRef = useRef<Parameters<typeof downloadCsv>[0]>(null)
+
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => {
+        const name = `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`
+        return {
+          id: i + 1,
+          name,
+          email: `${name.toLowerCase().replace(' ', '.')}${i}@example.com`,
+          role: roles[i % roles.length]
+        }
+      }),
+    []
+  )
+
+  return (
+    <>
+      <div className="mb-3">
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => tableRef.current && downloadCsv(tableRef.current, { filename: 'users.csv', bom: true })}
+        >
+          Export CSV
+        </button>
+      </div>
+      <CDataGrid
+        columns={[
+          { key: 'id', label: '#', width: 90 },
+          { key: 'name', label: 'Name' },
+          { key: 'email', label: 'Email', style: { width: '30%' } },
+          {
+            key: 'role',
+            label: 'Role',
+            width: 110,
+            formatter: value => String(value).toUpperCase()
+          }
+        ]}
+        items={items}
+        itemKey={item => String(item.id)}
+        columnFilters
+        pagination={{ pageSize: 10 }}
+        rowSelection
+        tableRef={tableRef}
+      />
+    </>
+  )
+}
+```
+
+## Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `scope` | `'filtered' \| 'all' \| 'selected'` | `'filtered'` | Which rows to export. |
+| `delimiter` | `string` | `','` | Field delimiter. |
+| `bom` | `boolean` | `false` | Prepend a UTF-8 BOM for Excel. |
+| `sanitize` | `boolean` | `false` | Prefix formula-triggering fields (`= + - @`) with `'` to prevent CSV injection. |
+| `filename` | `string` | `'export.csv'` | `downloadCsv` only — the download filename. |
+
+
+---
+
+# React Data Grid Excel Export
+
+> Export React Data Grid rows to a real .xlsx workbook — typed cells, a bold header row and column widths — from a dependency-free 3 KB subpath.
+
+`@coreui/data-grid/xlsx` writes a real Excel workbook: numbers arrive as
+numbers, the header row is bold, and declared column widths carry over. It is
+a **separate subpath** with no runtime dependencies, so the writer only ships
+to apps that import it.
+
+## Excel export
+
+`exportXlsx(table, options)` returns the workbook as a `Uint8Array`;
+`downloadXlsx(table, options)` saves it as a file — both take the headless `table` (via `tableRef`).
+Exported columns follow the rendered layout (pinning, order, visibility), and
+`scope` picks `'filtered'` (the default — every row matching the current
+filters, in the current sort order), `'all'` (ignores filters) or
+`'selected'`. Server-side grids export the rows currently in memory.
+
+```jsx
+import { CDataGrid } from '@coreui/react-data-grid'
+import { downloadXlsx } from '@coreui/data-grid/xlsx'
+
+const tableRef = useRef(null)
+
+<button onClick={() => downloadXlsx(tableRef.current, { filename: 'users.xlsx', sheetName: 'Users' })}>
+  Export Excel
+</button>
+<CDataGrid columns={columns} items={items} tableRef={tableRef} />
+```
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { downloadXlsx } from '@coreui/data-grid/xlsx'
+import { useMemo, useRef } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const roles = ['admin', 'editor', 'viewer']
+
+export const DataGridXlsxExample = () => {
+  const tableRef = useRef<Parameters<typeof downloadXlsx>[0]>(null)
+
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => {
+        const name = `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`
+        return {
+          id: i + 1,
+          name,
+          email: `${name.toLowerCase().replace(' ', '.')}${i}@example.com`,
+          role: roles[i % roles.length],
+          score: (i % 97) + 1
+        }
+      }),
+    []
+  )
+
+  return (
+    <>
+      <div className="mb-3">
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() =>
+            tableRef.current && downloadXlsx(tableRef.current, { filename: 'users.xlsx', sheetName: 'Users' })
+          }
+        >
+          Export Excel
+        </button>
+      </div>
+      <CDataGrid
+        columns={[
+          { key: 'id', label: '#', width: 90 },
+          { key: 'name', label: 'Name' },
+          { key: 'email', label: 'Email', width: 260 },
+          { key: 'score', label: 'Score', width: 110 },
+          {
+            key: 'role',
+            label: 'Role',
+            width: 110,
+            formatter: value => String(value).toUpperCase()
+          }
+        ]}
+        items={items}
+        itemKey={item => String(item.id)}
+        columnFilters
+        pagination={{ pageSize: 10 }}
+        rowSelection
+        tableRef={tableRef}
+      />
+    </>
+  )
+}
+```
+
+## Toolbar button
+
+The built-in toolbar export button writes CSV by default. Give it the Excel
+writer through the `exporter` option — the button, its tooltip and its
+placement stay the same:
+
+```jsx
+import { downloadXlsx } from '@coreui/data-grid/xlsx'
+
+<CDataGrid
+  columns={columns}
+  items={items}
+  toolbar={{ export: { exporter: downloadXlsx, filename: 'users.xlsx', sheetName: 'Users' } }}
+/>
+```
+
+The writer is *injected* rather than imported by the grid, which is what keeps
+it out of the main bundle. Any function with the same shape works, so this is
+also the hook for a custom exporter (PDF, a server round-trip, your own
+format).
+
+## Cell types and formatting
+
+| Grid value | Excel cell |
+| --- | --- |
+| `number` (finite) | numeric — sorts and sums in Excel |
+| `boolean` | boolean |
+| anything else | inline string |
+| column has a `formatter` | the formatter's output, as text |
+
+A column `formatter` is author intent and matches what the grid renders, so
+the export honors it — which also means a formatted number leaves as text.
+Drop the formatter on columns you want Excel to treat as numbers.
+
+Cell text is never a formula: values are written as inline strings, so a
+leading `=` stays literal data and no formula-injection guard is needed
+(unlike [CSV export](https://coreui.io/data-grid/react/docs/features/csv-export/), where `sanitize` exists for
+exactly that).
+
+Column widths come from the column's declared `width` (px, converted to
+Excel's character units). Columns without one keep Excel's default width;
+an interactive resize is not carried into the export.
+
+## Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `scope` | `'filtered' \| 'all' \| 'selected'` | `'filtered'` | Which rows to export. |
+| `sheetName` | `string` | `'Sheet1'` | Worksheet name; invalid characters are replaced and the name is capped at Excel's 31-character limit. |
+| `filename` | `string` | `'export.xlsx'` | `downloadXlsx` only. |
+
+## Size
+
+The subpath is around 3 KB gzipped and pulls in nothing else: the workbook is
+assembled as SpreadsheetML XML inside a ZIP container written by hand. It is
+imported from `@coreui/data-grid/xlsx` rather than re-exported by this package
+on purpose — that is what keeps the writer out of every app that does not use
+it.
+
+
+---
+
+# React Data Grid Columns Overview
+
+> Define React Data Grid columns — keys, labels, cheap value formatting with formatter, and rich cell content with render.
+
+Columns are defined by the [`columns`](https://coreui.io/data-grid/react/docs/api/options/) prop. Each entry maps a
+`key` in your data to a header and a cell. This page covers the essentials;
+per-column features live on their own pages:
+[sizing](https://coreui.io/data-grid/react/docs/columns/sizing/), [pinning](https://coreui.io/data-grid/react/docs/columns/pinning/),
+[ordering & visibility](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/) and the
+[column menu](https://coreui.io/data-grid/react/docs/columns/menu/).
+
+## Defining columns
+
+```tsx
+<CDataGrid
+  columns={[
+    { key: 'name', label: 'Name' },
+    { key: 'email', label: 'Email' },
+    { key: 'role', label: 'Role' },
+  ]}
+  items={items}
+/>
+```
+
+`key` is the property read from each item and doubles as the column id. `label`
+is the header text — it falls back to `key` when omitted.
+
+## Formatting values
+
+Use `formatter` to transform the displayed value. It's cheap and stays on the
+scroll hot path, so it's the right tool for dates, numbers and currency:
+
+```tsx
+{
+  key: 'createdAt',
+  label: 'Created',
+  formatter: (value) => new Date(value).toLocaleDateString(),
+}
+```
+
+`formatter` output is also what [CSV export](https://coreui.io/data-grid/react/docs/features/csv-export/) writes.
+
+## Rich cell content
+
+Use `render` for full custom cell content — action buttons, badges, links.
+`render` returns JSX and is **never** used for CSV export:
+
+```tsx
+{
+  key: 'actions',
+  label: '',
+  render: (item) => (
+    <button type="button" className="btn btn-sm btn-primary" onClick={() => edit(item)}>
+      Edit
+    </button>
+  ),
+}
+```
+
+Use `formatter` **or** `render` per column — `formatter` for values on the hot
+path, `render` for interactive content. See the [column API](https://coreui.io/data-grid/react/docs/api/columns/) for
+every key.
+
+
+---
+
+# React Data Grid Column Sizing
+
+> Add drag-to-resize handles to React Data Grid header cells, with live or on-release width updates and per-column opt-out.
+
+Let users widen a column to read long values or shrink one they don't care
+about. `columnSizing` adds a drag handle to every resizable header cell; widths
+persist in the grid's state and can be committed live or on release.
+
+## Column resizing
+
+Set `columnSizing` to add a drag handle to the right edge of every header cell.
+Widths follow the pointer live (`columnSizing={{ mode: 'onEnd' }}` commits them
+on release instead), the grid scrolls horizontally once the columns outgrow the
+viewport, and `column.width` seeds the starting width. Opt a column out with
+`resizable: false` — here the `#` column stays fixed.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const roles = ['admin', 'editor', 'viewer']
+
+export const DataGridResizingExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => {
+        const name = `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`
+        return {
+          id: i + 1,
+          name,
+          email: `${name.toLowerCase().replace(' ', '.')}${i}@example.com`,
+          role: roles[i % roles.length]
+        }
+      }),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        {
+ key: 'id', label: '#', width: 90, resizable: false
+},
+        { key: 'name', label: 'Name', width: 220 },
+        { key: 'email', label: 'Email', width: 280 },
+        { key: 'role', label: 'Role', width: 160 }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      columnSizing
+      pagination={{ pageSize: 10 }}
+    />
+  )
+}
+```
+
+## Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `columnSizing` | `boolean \| { mode?: 'onChange' \| 'onEnd' }` | `false` | Enables resize handles. `mode` controls whether widths update while dragging (`'onChange'`, the default) or on release (`'onEnd'`). |
+| `resizable` (column) | `boolean` | `true` | Set `false` to drop the resize handle for a column. |
+| `width` (column) | `number` | — | Seeds the starting width in pixels, e.g. `200`. |
+
+Resizing calls `onSizingChange` with the grid's `columnSizing` state.
+
+
+---
+
+# React Data Grid Column Pinning
+
+> Freeze React Data Grid columns to the start or end edge so they stay visible while the rest of the grid scrolls horizontally.
+
+Keep an identifier or an actions column in view while users scroll a wide grid
+sideways. Pinning freezes columns against the start or end edge with sticky
+positioning; everything else scrolls between them.
+
+## Column pinning
+
+Freeze columns against the start or end edge with
+`columnPinning={{ start, end }}` — they stay put while the rest of the grid
+scrolls horizontally. Pass `columnPinning` on its own to enable the feature and
+pin later through the headless table (`tableRef.current?.setColumnPinning(...)`).
+When a column is pinned to the start and selection is on, the checkbox column
+travels with it. The last start-pinned and first end-pinned column cast a shadow
+over the scrolling content.
+
+The regions are logical, not physical: `start` is the left edge in LTR and the
+right edge in RTL (the sticky offsets use `inset-inline-start`/`inset-inline-end`).
+Pinning moves the column to its edge — the rendered order is always
+start-pinned, center, end-pinned.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const countries = ['Poland', 'Germany', 'France', 'Spain', 'Italy']
+
+export const DataGridPinningExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => ({
+        id: i + 1,
+        firstName: firstNames[i % firstNames.length],
+        lastName: lastNames[i % lastNames.length],
+        email: `${firstNames[i % firstNames.length].toLowerCase()}${i}@example.com`,
+        country: countries[i % countries.length]
+      })),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        { key: 'id', label: '#', width: 80 },
+        { key: 'firstName', label: 'First name', width: 160 },
+        { key: 'lastName', label: 'Last name', width: 160 },
+        { key: 'email', label: 'Email', width: 260 },
+        { key: 'country', label: 'Country', width: 200 },
+        {
+          key: 'actions',
+          label: '',
+          sortable: false,
+          width: 120,
+          render: item => (
+            <button
+              type="button"
+              className="btn btn-sm btn-outline-primary"
+              onClick={() => alert(`Edit ${item.firstName} (#${item.id})`)}
+            >
+              Edit
+            </button>
+          )
+        }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      columnPinning={{ start: ['id'], end: ['actions'] }}
+      rowSelection
+      pagination={{ pageSize: 10 }}
+    />
+  )
+}
+```
+
+## Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `columnPinning` | `boolean \| { start?: string[], end?: string[] }` | `false` | Freezes columns (by `key`) to the start/end edge. `true` enables the feature with no initial pins. |
+
+Pinning calls `onPinningChange` with the grid's `columnPinning` state.
+Reordering via [column ordering](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/) never crosses a
+pinning boundary.
+
+
+---
+
+# React Data Grid Column Ordering & Visibility
+
+> Let users reorder React Data Grid columns by drag-and-drop and hide or show columns through a column chooser.
+
+Give users control over the layout: drag headers to reorder columns and toggle
+columns on and off to focus on what matters. Both features are driven through
+the headless table, so you can wire them into your own toolbar — as the column
+chooser in this demo does.
+
+## Column ordering & visibility
+
+`columnOrder` makes headers draggable — drop one onto another to reorder
+(dragging never crosses a pinning boundary); pass an array for an initial order.
+`columnVisibility` enables hiding and showing columns through the headless table
+(`column.toggleVisibility()`, `column.getIsVisible()`); pass an object like
+`{ email: false }` to start with a column hidden. Opt a column out with
+`movable: false` / `hideable: false`. This demo adds a column chooser built
+entirely with the `toolbar` slot.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import type { CDataGridSlotProps } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const roles = ['admin', 'editor', 'viewer']
+
+// Column chooser built with the toolbar slot and the headless table
+const ColumnChooser = ({ table }: CDataGridSlotProps) => (
+  <div className="d-flex gap-3 mb-2">
+    {table.getAllLeafColumns().map(column =>
+      column.getCanHide() ?
+(
+        <label key={column.id} className="form-check form-check-inline m-0">
+          <input
+            type="checkbox"
+            className="form-check-input me-1"
+            checked={column.getIsVisible()}
+            onChange={event => column.toggleVisibility(event.target.checked)}
+          />
+          {column.id}
+        </label>
+      ) :
+null
+    )}
+  </div>
+)
+
+export const DataGridOrderVisibilityExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => {
+        const name = `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`
+        return {
+          id: i + 1,
+          name,
+          email: `${name.toLowerCase().replace(' ', '.')}${i}@example.com`,
+          role: roles[i % roles.length]
+        }
+      }),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        // movable/hideable: false keeps the key column in place
+        {
+          key: 'id', label: '#', width: 90, movable: false, hideable: false
+        },
+        { key: 'name', label: 'Name' },
+        { key: 'email', label: 'Email', style: { width: '30%' } },
+        { key: 'role', label: 'Role', width: 110 }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      columnOrder
+      columnVisibility
+      pagination={{ pageSize: 10 }}
+      slots={{ toolbar: ColumnChooser }}
+    />
+  )
+}
+```
+
+## The drag interaction
+
+Dragging is pointer-based, not HTML5 drag-and-drop, which is what makes the
+following possible at all — and makes it behave the same with a mouse, a pen and
+a finger:
+
+- **A ghost** follows the pointer with the column's label, and the source header
+  dims while it travels.
+- **A live preview** — the columns the dragged one passes slide aside, and it
+  slides into the gap, so the grid shows the layout the drop will produce
+  instead of pointing at it with a line. A swap fires the moment the pointer
+  crosses into a neighbour — at its edge, not its midpoint — and the release
+  commits whatever the preview shows. Nothing reflows: it is `transform` only,
+  and the real order still changes once, on drop. Where a drop is not allowed
+  (another pinned region), nothing slides — and a release past either end of
+  the axis lands the column at that end.
+- **Auto-scroll** at the viewport's edges, ramping with how far into the edge the
+  pointer sits, so a column can cross a grid wider than the screen.
+- **The ghost settles** — on release it flies from wherever you let go to the
+  slot the column landed in and fades out there; on Escape it flies back home.
+- **Escape cancels** mid-drag, and the click that follows a drag never toggles
+  the sort of the header it started from.
+
+A press only becomes a drag after it travels a few pixels, so clicking a sortable
+header still sorts it.
+
+The slide honours `prefers-reduced-motion`: someone who asked the OS to stop
+moving things still sees the preview, snapped to the final layout instead of
+gliding there. Retime it with the `--cui-data-grid-drag-transition` token.
+
+## Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `columnOrder` | `boolean \| string[]` | `false` | Drag-and-drop reordering; an array sets the initial order. Never crosses a pinning boundary. |
+| `columnVisibility` | `boolean \| Record<string, boolean>` | `false` | Enables hiding/showing columns; an object sets the initial visibility. |
+| `movable` (column) | `boolean` | `true` | Set `false` to exclude a column from reordering. |
+| `hideable` (column) | `boolean` | `true` | Set `false` to prevent hiding a column. |
+
+Reordering calls `onOrderChange` with the `columnOrder` state; toggling
+visibility calls `onVisibilityChange` with the `columnVisibility` state. The
+[column menu](https://coreui.io/data-grid/react/docs/columns/menu/) offers a keyboard-accessible Move to start/end as an
+alternative to drag-and-drop.
+
+
+---
+
+# React Data Grid Column Menu
+
+> Add a per-column header menu to the React Data Grid that gathers sort, pin, move and hide actions behind one accessible ⋮ button, and customize its items with a builder.
+
+The column menu collects a column's actions — sort, pin, move, hide — behind a
+single ⋮ button in the header, so users don't have to discover drag-and-drop. It
+is the keyboard-accessible path to sorting, reordering and pinning, and it only
+shows the actions you've actually enabled.
+
+## Column header menu
+
+`columnMenu` adds a ⋮ button to each header cell with the column's actions in
+one place — Sort ascending/descending/Unsort, Pin to start/end/Unpin, Move to
+start/end and Hide column. Items appear only for enabled features
+(`sorting`, `columnPinning`, `columnOrder`, `columnVisibility`) and respect
+per-column `sortable`/`movable`/`hideable` opt-outs; a column with no available
+action gets no button. Related actions are separated into groups by a divider.
+The menu follows the ARIA menu pattern (arrow keys, Home/End, Escape restores
+focus) — Move to start/end is the keyboard-accessible way to reorder columns,
+complementing drag & drop. All labels are translatable via `labels`.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const roles = ['admin', 'editor', 'viewer']
+
+export const DataGridColumnMenuExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => {
+        const name = `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`
+        return {
+          id: i + 1,
+          name,
+          email: `${name.toLowerCase().replace(' ', '.')}${i}@example.com`,
+          role: roles[i % roles.length]
+        }
+      }),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        {
+          key: 'id', label: '#', width: 90, movable: false, hideable: false
+        },
+        { key: 'name', label: 'Name' },
+        { key: 'email', label: 'Email', style: { width: '30%' } },
+        { key: 'role', label: 'Role', width: 140 }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      columnMenu
+      columnOrder
+      columnPinning
+      columnVisibility
+      pagination={{ pageSize: 10 }}
+    />
+  )
+}
+```
+
+## Customize the menu
+
+Pass a **builder function** to `columnMenu` to take full control of the items.
+It receives the column and the built-in actions for that column, and returns the
+final list — so you can reorder, drop or add items, per column:
+
+```tsx
+columnMenu={({ column, defaultActions }) => CDataGridMenuAction[]}
+```
+
+- **Reorder** — return `defaultActions` in a different order.
+- **Hide an item** — filter it out by `key` (`'sort-asc'`, `'sort-desc'`,
+  `'clear-sort'`, `'pin-start'`, `'pin-end'`, `'unpin'`, `'move-start'`,
+  `'move-end'`, `'hide'`).
+- **Add your own** — push a new action object.
+- **Per column** — branch on `column` (the [column definition](https://coreui.io/data-grid/react/docs/api/options/)).
+
+A column whose builder returns at least one action shows the ⋮ button, even with
+no built-in feature enabled. Each action has this shape:
+
+```tsx
+interface CDataGridMenuAction {
+  key: string        // unique id, also used to filter built-ins
+  label: string      // menu item text
+  icon?: ReactNode   // any React node — no sanitization needed
+  disabled?: boolean // render but don't run
+  group?: string     // items with different groups get a divider between them
+  run: () => void    // invoked on click; the menu closes first
+}
+```
+
+Icons are plain React nodes (`ReactNode`), so you can pass any JSX — an inline
+`<svg>`, a `<CIcon>`, or any component. There is no `sanitize` option: React
+renders the nodes directly.
+
+```html
+import { CDataGrid } from '@coreui/react-data-grid'
+import type { CDataGridColumnMenuContext, CDataGridMenuAction } from '@coreui/react-data-grid'
+import { useMemo } from 'react'
+
+const firstNames = ['Alice', 'Bob', 'Carol', 'Dave', 'Eve', 'Frank', 'Grace', 'Heidi', 'Ivan', 'Judy']
+const lastNames = ['Smith', 'Jones', 'Brown', 'Taylor', 'Wilson', 'Davies', 'Evans', 'Thomas']
+const roles = ['admin', 'editor', 'viewer']
+
+const copyIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+    <path
+      fill="currentColor"
+      d="M472 16H160a24.027 24.027 0 0 0-24 24v312a24.027 24.027 0 0 0 24 24h312a24.027 24.027 0 0 0 24-24V40a24.027 24.027 0 0 0-24-24m-8 328H168V48h296Z"
+    />
+    <path
+      fill="currentColor"
+      d="M344 464H48V168h56v-32H40a24.027 24.027 0 0 0-24 24v312a24.027 24.027 0 0 0 24 24h312a24.027 24.027 0 0 0 24-24v-64h-32Z"
+    />
+  </svg>
+)
+
+export const DataGridColumnMenuCustomExample = () => {
+  const items = useMemo(
+    () =>
+      Array.from({ length: 1000 }, (_, i) => {
+        const name = `${firstNames[i % firstNames.length]} ${lastNames[i % lastNames.length]}`
+        return {
+          id: i + 1,
+          name,
+          email: `${name.toLowerCase().replace(' ', '.')}${i}@example.com`,
+          role: roles[i % roles.length]
+        }
+      }),
+    []
+  )
+
+  return (
+    <CDataGrid
+      columns={[
+        {
+          key: 'id', label: '#', width: 90, movable: false, hideable: false
+        },
+        { key: 'name', label: 'Name' },
+        { key: 'email', label: 'Email', style: { width: '30%' } },
+        { key: 'role', label: 'Role', width: 140 }
+      ]}
+      items={items}
+      itemKey={item => String(item.id)}
+      // A builder receives the built-in actions plus the column, and returns the
+      // final list — filter items, reorder them, or add your own.
+      columnMenu={({ column, defaultActions }: CDataGridColumnMenuContext): CDataGridMenuAction[] => [
+        ...defaultActions,
+        {
+          key: 'copy-header',
+          label: 'Copy header',
+          group: 'custom',
+          icon: copyIcon,
+          run: () => navigator.clipboard?.writeText(column.label ?? column.key)
+        }
+      ]}
+      columnOrder
+      columnPinning
+      columnVisibility
+      pagination={{ pageSize: 10 }}
+    />
+  )
+}
+```
+
+## Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `columnMenu` | `boolean \| ((ctx) => CDataGridMenuAction[])` | `false` | Adds a per-column header menu. `true` builds it from the enabled features (sort/pin/move/hide); a builder `({ column, defaultActions }) => actions` returns the final item list (see [Customize the menu](#customize-the-menu)). |
+
+Every menu and header icon is overridable with its own `ReactNode` prop:
+`columnMenuIcon`, `sortAscendingIcon`, `sortDescendingIcon`, `sortNeutralIcon`,
+`pinStartIcon`, `pinEndIcon`, `unpinIcon`, `moveStartIcon`, `moveEndIcon` and
+`hideColumnIcon`. They default to the CoreUI icon set.
+
+The default menu's items depend on which features are on
+([sorting](https://coreui.io/data-grid/react/docs/features/sorting/), [pinning](https://coreui.io/data-grid/react/docs/columns/pinning/),
+[ordering & visibility](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/)). Its labels come from
+[`labels`](https://coreui.io/data-grid/react/docs/customization/localization/); see
+[Accessibility](https://coreui.io/data-grid/react/docs/guides/accessibility/) for the keyboard model.
+
+
+---
+
+# React Data Grid Styling & Theming
+
+> Theme the React Data Grid with --cui-data-grid-* CSS variables that resolve through CoreUI semantic tokens, so light and dark modes work with no extra CSS.
+
+The Data Grid is styled entirely with CSS custom properties. Every knob is a
+`--cui-data-grid-*` variable that resolves through CoreUI's semantic tokens
+(`--cui-body-bg`, `--cui-border-color`, …), so the grid inherits your theme —
+including `data-coreui-theme="dark"` — with no extra rules.
+
+## Light & dark mode
+
+Because the tokens resolve through CoreUI semantic variables, dark mode works out
+of the box:
+
+```tsx
+<div data-coreui-theme="dark">
+  <CDataGrid columns={columns} items={items} />
+</div>
+```
+
+No grid-specific dark styles are needed — the semantic tokens flip and the grid
+follows.
+
+## Overriding tokens
+
+Set any variable on the grid element (or an ancestor) to retheme it:
+
+```css
+.my-grid {
+  --cui-data-grid-spacing: 0.75rem;
+  --cui-data-grid-header-bg: var(--cui-tertiary-bg);
+  --cui-data-grid-viewport-max-height: 40rem;
+}
+```
+
+```tsx
+<CDataGrid className="my-grid" columns={columns} items={items} />
+```
+
+## CSS variables
+
+| Variable | Default | Controls |
+| --- | --- | --- |
+| `--cui-data-grid-viewport-max-height` | `30rem` | Max height of the scroll viewport — the usual way to size the grid. Setting a `height` on the grid element works too: the viewport takes whatever the toolbar and pagination leave. |
+| `--cui-data-grid-header-bg` | `var(--cui-body-bg, #fff)` | Header row background. |
+| `--cui-data-grid-header-shadow` | `inset 0 calc(-1 * var(--cui-border-width, 1px)) 0 var(--cui-border-color, #dee2e6)` | Header bottom border. |
+| `--cui-data-grid-cell-selected-bg` | `rgba(var(--cui-primary-rgb, 50, 31, 219), .12)` | Fill of a selected cell. |
+| `--cui-data-grid-cell-selected-border-color` | `var(--cui-primary, #321fdb)` | Outline drawn on the edges of a selected range. |
+| `--cui-data-grid-cell-selected-border-width` | `1px` | Width of that outline. |
+| `--cui-data-grid-row-handle-width` | `2rem` | Width of the row-reorder handle column. |
+| `--cui-data-grid-select-cell-width` | `2.5rem` | Width of the selection checkbox column. |
+| `--cui-data-grid-sorter-margin` | `.25rem` | Gap before the sort indicator. |
+| `--cui-data-grid-sorter-opacity` | `.3` | Resting opacity of the sort indicator. |
+| `--cui-data-grid-spacing` | `.5rem` | Padding and gap of the toolbar and pagination bars. |
+| `--cui-data-grid-resizer-width` | `.625rem` | Hit area of the resize handle. |
+| `--cui-data-grid-resizer-grip-height` | `60%` | Height of the resize grip. |
+| `--cui-data-grid-resizer-grip-color` | `var(--cui-border-color, #dee2e6)` | Resize grip color. |
+| `--cui-data-grid-resizer-grip-color-hover` | `var(--cui-secondary-color, #6c757d)` | Resize grip color on hover. |
+| `--cui-data-grid-pinned-border-width` | `var(--cui-border-width)` | Width of the divider at the pinned-column edge. |
+| `--cui-data-grid-pinned-border-color` | `var(--cui-border-color, #dee2e6)` | Color of that divider. |
+| `--cui-data-grid-pinned-bg` | `var(--cui-body-bg, #fff)` | Background of pinned cells. |
+| `--cui-data-grid-drop-indicator` | `var(--cui-primary, #321fdb)` | Accent of the drag ghost while reordering (and the indicator line shown when the live preview is off). |
+| `--cui-data-grid-drag-transition` | `.15s ease` | Timing of the live reorder preview and the settling ghost. Ignored under `prefers-reduced-motion`. |
+| `--cui-data-grid-menu-bg` | `var(--cui-body-bg, #fff)` | Column menu background. |
+| `--cui-data-grid-menu-border-color` | `var(--cui-border-color, #dee2e6)` | Column menu border. |
+| `--cui-data-grid-menu-shadow` | `var(--cui-box-shadow, 0 .5rem 1rem rgba(0, 0, 0, .15))` | Column menu shadow. |
+| `--cui-data-grid-menu-min-width` | `10rem` | Column menu minimum width. |
+| `--cui-data-grid-menu-item-hover-bg` | `var(--cui-tertiary-bg, #f8f9fa)` | Column menu item hover background. |
+| `--cui-data-grid-loading-bg` | `rgba(var(--cui-body-bg-rgb, 255, 255, 255), .6)` | Background of the loading overlay (server-side mode). |
+| `--cui-data-grid-focus-ring-width` | `2px` | Width of the focus ring on the active cell. |
+| `--cui-data-grid-focus-ring-color` | `var(--cui-primary, #321fdb)` | Color of that focus ring. |
+
+The grid also inherits the `.table` styles (striping, borders) from
+`@coreui/coreui(-pro)`, so table-level CSS variables like
+`--cui-table-striped-bg` apply too.
+
+## Sass
+
+The stylesheet is a Sass module, so the same knobs are available at build time.
+Every CSS variable above is backed by a Sass variable of the same name without
+the `--cui-` prefix, and configuring one changes the emitted token:
+
+```scss
+@use "@coreui/data-grid/scss/data-grid" with (
+  $data-grid-spacing: .75rem,
+  $data-grid-viewport-max-height: 40rem
+);
+```
+
+A token map is available too. It merges over the defaults, so you can add or
+retarget individual custom properties — and a `null` value removes one:
+
+```scss
+@use "@coreui/data-grid/scss/data-grid" with (
+  $data-grid-tokens: (
+    --cui-data-grid-header-bg: var(--cui-tertiary-bg),
+    --cui-data-grid-menu-shadow: none
+  )
+);
+```
+
+A few layout values have no runtime token and are configurable at build time
+only — the toolbar/header bar height, the popup max-width, and the shared
+border, radius and muted-color references the grid chrome reuses. They are the
+`data-grid-layout-variables` block in `scss/components/_data-grid.scss`.
+
+`$prefix` is configurable as well (`cui-` by default), for the case where the
+surrounding CoreUI build uses a different one.
+
+## Without the CoreUI stylesheet
+
+The grid's markup uses `.table`, `.btn`, the form controls, `.pagination`,
+`.spinner-border` and `.visually-hidden` from `@coreui/coreui(-pro)`. If that
+stylesheet is not on the page, load `data-grid.standalone.css` instead of
+`data-grid.css` — it carries those base styles itself for ~2.7 kB gzip. See
+[Installation](https://coreui.io/data-grid/react/docs/getting-started/installation/).
+
+Two properties make it safe to drop in:
+
+- every base rule is **scoped to `.data-grid`**, so the sheet never restyles the
+  rest of your page;
+- every base rule sits in the **`data-grid-base` cascade layer**, while the grid's
+  own rules stay unlayered. A layered declaration always loses to an unlayered
+  one, so if CoreUI (or your own CSS) is loaded after all, it wins on every
+  property it declares and the two can coexist.
+
+That second point assumes the surrounding stylesheet is unlayered, which is true
+of CoreUI 5. Against a stylesheet that uses cascade layers itself, the outcome
+becomes ordinary layer order — rename the layer to place it where you need:
+
+```scss
+@use "@coreui/data-grid/scss/data-grid.standalone" with (
+  $base-layer: vendor
+);
+```
+
+The base styles are configurable the same way as the grid. Their variables are
+prefixed `$base-` and cover the palette, the control sizing and the icons:
+
+```scss
+@use "@coreui/data-grid/scss/data-grid.standalone" with (
+  $base-primary: #0d6efd,
+  $base-border-color: #d0d7de,
+  $base-btn-font-size-sm: .8125rem
+);
+```
+
+
+---
+
+# React Data Grid Localization
+
+> Translate every React Data Grid UI string through the labels prop, with {token} interpolation for dynamic values.
+
+Every UI string the grid renders — menu items, pagination labels, ARIA
+announcements — comes from the `labels` prop. Pass your own strings and they're
+merged over the defaults, so you only override what you need.
+
+## Usage
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  labels={{
+    globalFilterPlaceholder: 'Szukaj…',
+    pageSizeLabel: 'Wierszy na stronę',
+    itemsInfo: '{first}–{last} z {total}',
+  }}
+/>
+```
+
+## Interpolation
+
+Labels with `{token}` placeholders are interpolated at render time — unknown
+tokens are left untouched. Available tokens: `{column}` (column label),
+`{first}`, `{last}`, `{total}` (pagination range) and `{count}` (results
+announcement).
+
+## Default labels
+
+| Key | Default | Used by |
+| --- | --- | --- |
+| `addCondition` | `Add condition` | [Filter menu](https://coreui.io/data-grid/react/docs/features/filtering/) |
+| `applyFilter` | `Apply` | [Filter menu](https://coreui.io/data-grid/react/docs/features/filtering/) |
+| `clearFilter` | `Clear filter` | [Filter menu](https://coreui.io/data-grid/react/docs/features/filtering/) + quick-input clear |
+| `clearSort` | `Unsort` | [Column menu](https://coreui.io/data-grid/react/docs/columns/menu/) sort actions |
+| `columnMenu` | `Column options for {column}` | [Column menu](https://coreui.io/data-grid/react/docs/columns/menu/) button |
+| `filterAction` | `Filter…` | [Column menu](https://coreui.io/data-grid/react/docs/columns/menu/) action |
+| `filterColumn` | `Filter {column}` | [Filter](https://coreui.io/data-grid/react/docs/features/filtering/) input |
+| `filterSummaryConditions` | `{count} conditions` | Quick-input summary |
+| `filterSummarySelected` | `{count} selected` | Quick-input summary |
+| `firstPage` | `First page` | [Pagination](https://coreui.io/data-grid/react/docs/features/pagination/) |
+| `globalFilterLabel` | `Search` | Global search accessible label |
+| `globalFilterPlaceholder` | `Search` | Global search placeholder |
+| `hideColumn` | `Hide column` | Column menu |
+| `itemsInfo` | `{first}–{last} of {total}` | Pagination range summary |
+| `joinAnd` | `AND` | [Filter menu](https://coreui.io/data-grid/react/docs/features/filtering/) |
+| `joinOr` | `OR` | [Filter menu](https://coreui.io/data-grid/react/docs/features/filtering/) |
+| `lastPage` | `Last page` | Pagination |
+| `loadError` | `Failed to load data` | [Server-side](https://coreui.io/data-grid/react/docs/features/server-side-data/) error state |
+| `loading` | `Loading…` | Server-side loading overlay |
+| `moveEnd` | `Move to end` | Column menu |
+| `moveStart` | `Move to start` | Column menu |
+| `nextPage` | `Next page` | Pagination |
+| `operatorBetween` | `Between` | Filter menu operators |
+| `operatorBlank` | `Blank` | Filter menu operators |
+| `operatorContains` | `Contains` | Filter menu operators |
+| `operatorEndsWith` | `Ends with` | Filter menu operators |
+| `operatorEquals` | `Equals` | Filter menu operators |
+| `operatorGreaterThan` | `Greater than` | Filter menu operators |
+| `operatorGreaterThanOrEqual` | `Greater than or equal` | Filter menu operators |
+| `operatorLessThan` | `Less than` | Filter menu operators |
+| `operatorLessThanOrEqual` | `Less than or equal` | Filter menu operators |
+| `operatorNotBlank` | `Not blank` | Filter menu operators |
+| `operatorNotContains` | `Does not contain` | Filter menu operators |
+| `operatorNotEquals` | `Not equals` | Filter menu operators |
+| `operatorStartsWith` | `Starts with` | Filter menu operators |
+| `pageSizeLabel` | `Rows per page` | Pagination page-size selector |
+| `paginationLabel` | `Pagination` | Pagination nav accessible label |
+| `pinEnd` | `Pin to end` | Column menu |
+| `pinStart` | `Pin to start` | Column menu |
+| `previousPage` | `Previous page` | Pagination |
+| `redoneAnnouncement` | `Change redone` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) ARIA live announcement |
+| `reorderRow` | `Reorder row` | [Row reordering](https://coreui.io/data-grid/react/docs/features/row-reordering/) drag-handle label |
+| `resetColumns` | `Reset` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) column chooser |
+| `resultsAnnouncement` | `{count} results` | ARIA live announcement |
+| `searchValues` | `Search values` | Set filter search box |
+| `selectAllRows` | `Select all rows` | [Selection](https://coreui.io/data-grid/react/docs/features/row-selection/) header checkbox |
+| `selectAllValues` | `Select all` | Set filter |
+| `selectRow` | `Select row` | Selection row checkbox |
+| `showAllColumns` | `Show all` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) column chooser |
+| `sortAscending` | `Sort ascending` | [Column menu](https://coreui.io/data-grid/react/docs/columns/menu/) sort actions |
+| `sortDescending` | `Sort descending` | [Column menu](https://coreui.io/data-grid/react/docs/columns/menu/) sort actions |
+| `toolbarColumns` | `Columns` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) columns button |
+| `toolbarExport` | `Export` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) export button |
+| `toolbarPrint` | `Print` | [Print](https://coreui.io/data-grid/react/docs/features/print/) toolbar button |
+| `toolbarRedo` | `Redo` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) redo button |
+| `toolbarUndo` | `Undo` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) undo button |
+| `undoneAnnouncement` | `Change undone` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) ARIA live announcement |
+| `unpin` | `Unpin` | Column menu |
+
+The defaults are exported as `DEFAULT_LABELS` from `@coreui/react-data-grid` if
+you want to extend rather than replace them.
+
+
+---
+
+# React Data Grid Feature Sets & Bundle Size
+
+> Pick the TanStack feature set your grid actually uses — pass dataGridLiteFeatures and your bundler drops the features you never registered.
+
+The grid registers a set of TanStack Table features at construction. Options
+gate *behavior*; the feature set gates *registration* — an API only exists on
+the table when its feature is registered. Because `@tanstack/react-table` is
+a regular dependency of your app bundle, the feature set you pass is what
+your bundler ships: with `dataGridLiteFeatures` the unregistered features are
+tree-shaken away.
+
+| Preset | Covers |
+| --- | --- |
+| `dataGridFeatures` (default) | everything: sorting, filtering, faceted set filters, global search, pagination, selection, visibility, ordering, pinning, sizing/resizing |
+| `dataGridLiteFeatures` | sorting, filtering (incl. the toolbar search) and pagination — the TanStack core shrinks from ~25 KB to ~14 KB gzip |
+
+```jsx
+import { CDataGrid, dataGridLiteFeatures } from '@coreui/react-data-grid'
+
+<CDataGrid
+  columns={columns}
+  features={dataGridLiteFeatures}
+  items={items}
+  pagination={{ pageSize: 20 }}
+  toolbar={{ search: true }}
+/>
+```
+
+The set is static per table instance — change it together with a remount, not
+on the fly. You can also compose your own set with `tableFeatures({...})`
+from `@tanstack/react-table`; the option-coverage check below tells you when
+a config needs more than the set provides.
+
+## What a lite grid can and cannot do
+
+Everything driven by sorting, column filters, the global search and
+pagination works exactly like the full set — `dataGridLiteFeatures` keeps the
+same sort and filter functions. Props whose feature is missing from the set
+throw at construction with the pair spelled out, instead of failing somewhere
+mid-render:
+
+```
+DATA-GRID: Option "columnPinning" requires feature "columnPinningFeature" in "features".
+```
+
+That covers `columnPinning`, `columnSizing`, `columnVisibility`,
+`columnOrder`, `rowSelection` and `filterType: 'select'` columns (the faceted
+value list needs faceting). CSV export and [state persistence](https://coreui.io/data-grid/react/docs/features/state/)
+degrade gracefully: the export follows whatever layout the registered
+features track, and a state snapshot taken on one feature set restores into a
+grid running another — absent slices are skipped.
+
+TypeScript keeps the surface honest: `tableRef`, slot props and custom filter
+props carry the grid's feature set as a type parameter, so a lite table never
+claims APIs its runtime did not register.
+
+
+---
+
+# React Data Grid Accessibility
+
+> How the React Data Grid supports keyboard interaction, ARIA roles and screen-reader announcements, and where the current limits are.
+
+The Data Grid ships accessible controls for its interactive chrome and exposes
+every string for translation. This page documents what's supported today and
+what's still on the [roadmap](https://coreui.io/data-grid/react/docs/resources/roadmap/).
+
+## Grid keyboard navigation
+
+With [`cellNavigation`](https://coreui.io/data-grid/react/docs/features/keyboard-navigation/) on, the grid implements
+the full ARIA [grid pattern](https://www.w3.org/WAI/ARIA/apg/patterns/grid/):
+`role="grid"`, `aria-colcount`/`aria-colindex` alongside the absolute
+`aria-rowcount`/`aria-rowindex`, a single tab stop with a roving-tabindex
+active cell, and arrow-key movement across header and data cells. The option is
+opt-in — claiming `role="grid"` without the full keyboard contract would be
+worse than the native table semantics the grid keeps by default.
+
+## Column menu
+
+The [column menu](https://coreui.io/data-grid/react/docs/columns/menu/) follows the ARIA menu pattern:
+
+- **Arrow keys** move between items; **Home/End** jump to the first/last item.
+- **Escape** closes the menu and restores focus to the ⋮ trigger.
+- **Move to start / Move to end** give a keyboard-accessible alternative to
+  drag-and-drop [column reordering](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/).
+
+All menu labels come from [`labels`](https://coreui.io/data-grid/react/docs/customization/localization/), so the menu
+is fully translatable.
+
+## Selection
+
+The [selection](https://coreui.io/data-grid/react/docs/features/row-selection/) checkboxes are real form controls with
+accessible labels (`selectRow`, `selectAllRows`) — reachable and toggleable by
+keyboard.
+
+## Server-side loading
+
+In [server-side mode](https://coreui.io/data-grid/react/docs/features/server-side-data/) the grid sets `aria-busy`
+while a request is in flight and exposes the `loading` label, so assistive tech
+announces the pending state.
+
+## Live announcements
+
+Result counts are announced through an ARIA live region using the
+`resultsAnnouncement` label (`{count} results`) as filters change.
+
+## Current limits
+
+`cellNavigation` (and the [inline editing](https://coreui.io/data-grid/react/docs/features/editing/) built on it) is
+opt-in in this release. Screen-reader-verified defaults — flipping
+`role="grid"` on out of the box — are a separate decision planned after NVDA
+and VoiceOver testing.
+
+
+---
+
+# React Data Grid Performance
+
+> How the React Data Grid stays fast at 100,000 rows, the props that tune rendering, and when to move paging to your backend.
+
+The Data Grid is built to stay responsive on large datasets. This page explains
+how it does that and the levers you have when you need to tune it.
+
+## Why it's fast
+
+- **Row virtualization.** Only the rows in the scroll viewport (plus a buffer)
+  exist in the DOM — see [Virtualization](https://coreui.io/data-grid/react/docs/features/virtualization/). A 100,000-row
+  grid renders a few dozen `<tr>` elements, not 100,000.
+- **Cheap cell values.** Column [`formatter`](https://coreui.io/data-grid/react/docs/columns/overview/) runs on the
+  scroll hot path and returns a string, so it stays cheap. Reserve `render`
+  (which builds JSX) for the columns that truly need interactive content.
+- **Debounced, race-safe fetches.** In
+  [server-side mode](https://coreui.io/data-grid/react/docs/features/server-side-data/), rapid state changes coalesce
+  into one request and stale responses are dropped.
+
+## Tuning levers
+
+| Lever | Effect |
+| --- | --- |
+| `rowHeight` | The estimated row height (default `44`). Set it close to your real height so the virtualizer sizes the scroll area accurately. |
+| `overscan` | Extra rows rendered above/below the viewport (default `10`). Raise it if you see blank rows during fast scrolling; lower it to shave DOM nodes. |
+| `formatter` vs `render` | Prefer `formatter` for values on the hot path; `render` allocates elements per visible cell. |
+| Stable props | Memoize `items` and `columns` (e.g. `useMemo`) so the grid doesn't recompute row models on every parent render. |
+
+## When to go server-side
+
+Client-side mode keeps the whole dataset in memory. That's fine for tens of
+thousands of rows, but past what the browser can hold — or when the data lives in
+a database you don't want to ship whole — move sorting, filtering and paging to
+your API with [server-side data](https://coreui.io/data-grid/react/docs/features/server-side-data/). The grid then
+holds only the current page.
+
+## Rules of thumb
+
+- A few thousand to ~100k rows in the browser → client-side with virtualization.
+- Beyond that, or data behind an API → server-side mode.
+- Keep `formatter` pure and cheap; it runs for every visible cell on every
+  render.
+
+
+---
+
+# React Data Grid RTL Support
+
+> How CoreUI Data Grid behaves in right-to-left layouts — column order, reordering, resizing, keyboard direction and logical-property styling.
+
+The Data Grid works in right-to-left layouts. Set `dir="rtl"` on the grid or on
+any ancestor — the grid reads its own computed direction, so a single RTL
+subtree inside an LTR page works as well as a whole RTL document.
+
+```html
+<html dir="rtl">
+```
+
+Nothing else is required: there is no RTL option, no separate stylesheet and no
+mirrored build.
+
+## What follows the writing direction
+
+- **Column layout.** The first column sits on the right, and every logical
+  position follows from there. Pinned columns pin to the inline edges, so
+  `start` is the right edge and `end` the left one.
+- **Column reordering.** Dragging a header runs on a logical axis, so the live
+  preview, the drop slot and the emitted `orderChange` describe positions in
+  column order, not in pixels. The same gesture produces the same result it
+  would in LTR, travelling the other way on screen.
+- **Column resizing.** The handle sits on each column's inline end, which under
+  RTL is its left edge. Dragging it outward widens the column.
+- **Row reordering.** Unaffected: rows move on the vertical axis.
+- **Keyboard navigation.** Arrow keys are physical, column order is logical, so
+  the two horizontal keys trade places: <kbd>→</kbd> moves toward the first
+  column and <kbd>←</kbd> toward the last. Shift+arrow grows a cell selection
+  the same way. Vertical keys, <kbd>Home</kbd>/<kbd>End</kbd> and
+  <kbd>PageUp</kbd>/<kbd>PageDown</kbd> are unchanged.
+- **Chrome.** The toolbar, pagination, column menu, filter dialogs and the
+  column chooser lay out from the inline start and stay inside the grid.
+
+## Exports and print
+
+CSV, Excel and print output carry values, not layout, so they are written in
+logical column order regardless of direction. A spreadsheet opening the file
+applies its own direction.
+
+## Switching direction at runtime
+
+Flipping `dir` on a live grid is supported — an app with a language switcher
+does not need to re-create the grid. The direction is re-read where it matters:
+at the start of each drag and each resize.
+
+## Styling
+
+The stylesheet uses logical properties throughout (`inset-inline-*`,
+`margin-inline-*`, `text-align: start`), so custom CSS built on the
+[design tokens](https://coreui.io/data-grid/react/docs/customization/styling/) mirrors with it. Reach for logical
+properties in your own overrides too — a hard-coded `left` or `margin-right`
+is what breaks an otherwise direction-agnostic grid.
+
+
+---
+
+# React Data Grid Options
+
+> Full reference of CDataGrid props — columns, data, features and behavior of the React Data Grid.
+
+Pass props to the component: ``.
+There is no imperative update call — change a prop and the grid re-renders.
+
+### CDataGrid
+
+```jsx
+import { CDataGrid } from '@coreui/react-data-grid'
+```
+
+### Props
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| `autoRowHeight` | `boolean \| undefined` | - | Measures each rendered row instead of trusting `rowHeight`, so rows grow with their content (wrapping cells, custom renderers). `rowHeight` stays the estimate for rows that have not been rendered yet. Requires virtualization. |
+| `cellNavigation` | `boolean \| undefined` | - | APG grid keyboard navigation — `role="grid"`, a roving-tabindex active cell, and arrow-key movement across header and data cells. |
+| `cellSelection` | `boolean \| undefined` | - | Spreadsheet-style cell ranges — shift-click, drag and shift+arrows, with Ctrl/Cmd+C copying the range as TSV and Ctrl/Cmd+A selecting everything. Implies `cellNavigation`. |
+| `columnFilters` | `boolean \| undefined` | - | Renders a filter row in the header with an input per filterable column. |
+| `columnMenu` | `boolean \| CDataGridColumnMenuBuilder \| undefined` | - | Adds a per-column header menu — `true` builds it from the enabled features (sort/pin/move/hide); a builder `({ column, defaultActions }) => actions` returns the final item list. |
+| `columnMenuIcon` | `ReactNode` | - | Custom column menu button icon (ReactNode) replacing the default one. |
+| `columnOrder` | `boolean \| ColumnOrderState \| undefined` | - | Enables drag-and-drop column reordering; an array sets the initial order. |
+| `columnPinning` | `boolean \| Partial<ColumnPinningState> \| undefined` | - | Freezes columns (by `key`) to the start/end edge with sticky positioning; `true` enables the feature with no initial pins. |
+| `columns` | `CDataGridColumn<TFeatures>[]` | - | Column definitions. |
+| `columnSizing` | `boolean \| DataGridColumnSizingOptions \| undefined` | - | Enables column resize handles; `mode` controls whether widths update while dragging (`'onChange'`, the default) or on release (`'onEnd'`). |
+| `columnVisibility` | `boolean \| ColumnVisibilityState \| undefined` | - | Enables hiding/showing columns via `column.toggleVisibility()`; an object sets the initial visibility. |
+| `dataProvider` | `((request: DataGridDataRequest) => Promise<DataGridDataResponse>) \| undefined` | - | Server-side mode: the grid requests data on every sorting/filter/page change; implies pagination. |
+| `editing` | `boolean \| undefined` | - | Inline cell editing on Enter/F2/double-click for columns opting in via `editable`/`editor`; implies `cellNavigation`. |
+| `empty` | `ReactNode` | - | Content (ReactNode) shown when no rows match. |
+| `features` | `TableFeatures \| undefined` | - | The registered TanStack feature set — pass `dataGridLiteFeatures` (or a custom `tableFeatures({...})` set) so the app bundle only carries the features it uses; defaults to the full `dataGridFeatures`. |
+| `filterIcon` | `ReactNode` | - | Icon for the per-column filter button. |
+| `globalFilter` | `boolean \| undefined` | - | Renders a search input above the grid that filters across all columns. |
+| `hideColumnIcon` | `ReactNode` | - | Custom hide-column menu action icon (ReactNode) replacing the default one. |
+| `history` | `boolean \| undefined` | - | Undo/redo history of edit commits — Ctrl/Cmd+Z and Ctrl+Shift+Z/Ctrl+Y plus toolbar buttons; requires `editing`. |
+| `infiniteScroll` | `boolean \| DataGridInfiniteScrollOptions \| undefined` | - | Appends each loaded page to the rows already in view instead of replacing them; requires `dataProvider` and `virtualization`, cannot be combined with `pagination`. |
+| `itemKey` | `((item: DataGridItem, index: number) => string) \| undefined` | - | Stable row id — required for selection to survive sorting and filtering. |
+| `items` | `DataGridItem[] \| undefined` | - | Row data. |
+| `labels` | `Partial<DataGridLabels> \| undefined` | - | UI strings (i18n), merged over the defaults; supports `{token}` interpolation. |
+| `moveEndIcon` | `ReactNode` | - | Custom move-right menu action icon (ReactNode) replacing the default one. |
+| `moveStartIcon` | `ReactNode` | - | Custom move-left menu action icon (ReactNode) replacing the default one. |
+| `onCellCopy` | `((event: { text: string; }) => void) \| undefined` | - | Fires after Ctrl/Cmd+C copies a cell selection, with the text written to the clipboard. |
+| `onDataError` | `((error: unknown) => void) \| undefined` | - | Fires when the data provider rejects, with the error (server-side mode). |
+| `onDataLoad` | `((response: DataGridDataResponse) => void) \| undefined` | - | Fires when the data provider resolves, with the `{ items, totalRows }` response (server-side mode). |
+| `onEditCancel` | `((item: DataGridItem, columnId: string) => void) \| undefined` | - | Fires when an edit is cancelled, with the item and column key. |
+| `onEditCommit` | `((event: DataGridEditCommitEvent) => void) \| undefined` | - | Fires when an edit commits, with `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change and re-render. |
+| `onEditStart` | `((item: DataGridItem, columnId: string) => void) \| undefined` | - | Fires when a cell enters edit mode, with the item and column key. |
+| `onFilterChange` | `((columnFilters: ColumnFiltersState, globalFilter: string) => void) \| undefined` | - | Fires when column filters or the global filter change, with both filter states. |
+| `onOrderChange` | `((columnOrder: ColumnOrderState) => void) \| undefined` | - | Fires when columns are reordered, with the TanStack columnOrder state. |
+| `onPaginationChange` | `((pagination: PaginationState) => void) \| undefined` | - | Fires when the page or page size changes, with the TanStack pagination state. |
+| `onPinningChange` | `((columnPinning: ColumnPinningState) => void) \| undefined` | - | Fires when column pinning changes, with the TanStack columnPinning state. |
+| `onRowOrderChange` | `((event: CDataGridRowOrderEvent) => void) \| undefined` | - |  |
+| `onSelectionChange` | `((rowSelection: RowSelectionState, selectedItems: DataGridItem[]) => void) \| undefined` | - | Fires when the row selection changes, with the TanStack rowSelection state and the selected items. |
+| `onSizingChange` | `((columnSizing: ColumnSizingState) => void) \| undefined` | - |  |
+| `onSortingChange` | `((sorting: SortingState) => void) \| undefined` | - | Fires when sorting changes, with the TanStack sorting state. |
+| `onVisibilityChange` | `((columnVisibility: ColumnVisibilityState) => void) \| undefined` | - | Fires when column visibility changes, with the TanStack columnVisibility state. |
+| `overscan` | `number \| undefined` | - | Extra rows rendered above and below the visible window. |
+| `pagination` | `boolean \| DataGridPaginationOptions \| undefined` | - | Pagination mode — mutually exclusive with virtualization. |
+| `pinEndIcon` | `ReactNode` | - | Custom pin-right menu action icon (ReactNode) replacing the default one. |
+| `pinStartIcon` | `ReactNode` | - | Custom pin-left menu action icon (ReactNode) replacing the default one. |
+| `printTitle` | `string \| undefined` | - | Heading printed above the table when the print action runs; omitted when unset. |
+| `ref` | `Ref<HTMLDivElement> \| undefined` | - |  |
+| `rowHandleIcon` | `ReactNode` | - | Custom row drag-handle icon (ReactNode) replacing the default grip. |
+| `rowHeight` | `number \| undefined` | - | Estimated row height in px used by the virtualizer. |
+| `rowOrder` | `boolean \| undefined` | - | Adds a drag handle per row for reordering; the grid emits `onRowOrderChange` with the reordered array instead of mutating `items`. |
+| `rowSelection` | `boolean \| DataGridRowSelectionOptions \| undefined` | - | Checkbox selection with select-all and shift+click ranges. |
+| `slots` | `Partial<CDataGridSlots<TFeatures>> \| undefined` | - | Replaces built-in chrome — each slot is a component rendered with `{ table, labels }`. |
+| `sortAscendingIcon` | `ReactNode` | - | Custom ascending sort indicator icon (ReactNode) replacing the default one. |
+| `sortDescendingIcon` | `ReactNode` | - | Custom descending sort indicator icon (ReactNode) replacing the default one. |
+| `sorterVisibility` | `"always" \| "hover" \| undefined` | - | Controls when the neutral (unsorted) sort icon is shown on sortable columns: `'always'` keeps it visible, `'hover'` reveals it on header hover/focus. Omit to hide it until the column is sorted. |
+| `sorting` | `boolean \| DataGridSortingOptions \| undefined` | - | Column sorting; shift+click adds columns to the sort. |
+| `sortNeutralIcon` | `ReactNode` | - | Custom unsorted sort indicator icon (ReactNode) replacing the default one. |
+| `stateKey` | `string \| undefined` | - | Persists the grid state (sorting, filters, order, sizing, visibility, pinning, selection, page) to localStorage under this key — autosaved on every change and restored on mount. |
+| `tableRef` | `Ref<CDataGridTable<TFeatures>> \| undefined` | - | Ref that receives the TanStack table instance. |
+| `toolbar` | `boolean \| CDataGridToolbarOptions \| undefined` | - | Adds a built-in toolbar above the grid — `true` enables every action whose feature is on (column chooser, CSV export, global search); an object picks each individually. |
+| `toolbarColumnsIcon` | `ReactNode` | - | Custom toolbar column-chooser button icon (ReactNode) replacing the default one. |
+| `toolbarExportIcon` | `ReactNode` | - | Custom toolbar export button icon (ReactNode) replacing the default one. |
+| `toolbarPrintIcon` | `ReactNode` | - | Icon for the toolbar's print button. |
+| `toolbarRedoIcon` | `ReactNode` | - | Custom toolbar redo button icon (ReactNode) replacing the default one. |
+| `toolbarUndoIcon` | `ReactNode` | - | Custom toolbar undo button icon (ReactNode) replacing the default one. |
+| `unpinIcon` | `ReactNode` | - | Custom unpin menu action icon (ReactNode) replacing the default one. |
+| `virtualization` | `boolean \| undefined` | - | Windowed rendering for large datasets. |
+
+
+---
+
+# React Data Grid Column API
+
+> Full reference of React Data Grid column definition keys — labels, sorting, filtering, formatting and custom rendering.
+
+Each entry in the [`columns`](https://coreui.io/data-grid/react/docs/api/options/) prop describes one column. `key` is
+the only required field. See [Columns overview](https://coreui.io/data-grid/react/docs/columns/overview/) for a guided
+tour.
+
+| Key | Type | Description |
+| --- | --- | --- |
+| `key` | `string` | Property name in the item object (also the column id). |
+| `label` | `string` | Header label; falls back to `key`. |
+| `editable` | `boolean \| { type?, min?, max?, step?, options? }` | Opts the column into [inline editing](https://coreui.io/data-grid/react/docs/features/editing/) with a built-in `text`, `number` or `select` editor. |
+| `editor` | `ComponentType<CDataGridEditorProps>` | Custom editor component — renders with `{ item, column, value, invalid, labels, commit, cancel, handleRef }`. Its presence opts the column in. |
+| `editorPopup` | `boolean` | Renders the editor in an overlay anchored to the cell instead of inline — for rich editors whose UI extends beyond the cell. |
+| `editValidate` | `(value, item) => true \| string` | Gates the commit — a returned message blocks it and marks the editor invalid. |
+| `sortable` | `boolean` | Set `false` to disable sorting for this column. |
+| `filterable` | `boolean` | Set `false` to remove the column's filter button. |
+| `filter` | `ComponentType<{ column, table, labels }>` | Custom filter component replacing the default text input (requires `columnFilters`). |
+| `filterFn` | `(value, filterValue, item) => boolean` | Custom predicate replacing the default case-insensitive contains. |
+| `filterType` | `'text' \| 'number' \| 'date' \| 'select'` | Operator set for the built-in [filter menu](https://coreui.io/data-grid/react/docs/features/filtering/); `select` renders the faceted set filter. Defaults to `text`. |
+| `resizable` | `boolean` | Set `false` to drop the resize handle for this column (when `columnSizing` is on). |
+| `movable` | `boolean` | Set `false` to exclude the column from drag-and-drop reordering. |
+| `hideable` | `boolean` | Set `false` to prevent hiding the column. |
+| `formatter` | `(value, item) => string` | Formats the cell value — cheap, stays on the scroll hot path. |
+| `render` | `(item, index) => ReactNode` | Full custom cell content (e.g. action buttons) — returns JSX. |
+| `width` | `number` | Initial column width in pixels - seeds `columnSizing` and drives the layout. |
+| `style` | `CSSProperties` | Inline styles for the header cell (cosmetic; e.g. percentage widths are visual-only). |
+
+`formatter` runs on the scroll hot path and its output is used for
+[CSV export](https://coreui.io/data-grid/react/docs/features/csv-export/); `render` is for rich cell content and is
+never exported. Use one or the other per column.
+
+
+---
+
+# React Data Grid Events
+
+> React Data Grid callback props — onXxx handlers, each receiving structured state as plain arguments.
+
+Every state change calls the matching `onXxx` prop with structured state as
+plain arguments:
+
+```tsx
+<CDataGrid
+  columns={columns}
+  items={items}
+  onSortingChange={(sorting) => console.log(sorting)}
+/>
+```
+
+| Prop | Payload |
+| --- | --- |
+| `onSortingChange` | `sorting: SortingState` |
+| `onFilterChange` | `columnFilters: ColumnFiltersState, globalFilter: string` |
+| `onSelectionChange` | `rowSelection: RowSelectionState, selectedItems: object[]` |
+| `onPaginationChange` | `pagination: PaginationState` |
+| `onEditStart` | `item: object, columnId: string` |
+| `onEditCommit` | `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change yourself. [Undo/redo](https://coreui.io/data-grid/react/docs/features/history/) re-calls it with the values swapped |
+| `onEditCancel` | `item: object, columnId: string` |
+| `onSizingChange` | `columnSizing: ColumnSizingState` |
+| `onPinningChange` | `columnPinning: ColumnPinningState` |
+| `onOrderChange` | `columnOrder: ColumnOrderState` |
+| `onVisibilityChange` | `columnVisibility: ColumnVisibilityState` |
+| `onDataLoad` | `{ items, totalRows }` (server-side mode) |
+| `onDataError` | `error: unknown` (server-side mode) |
+
+The state types (`SortingState`, `ColumnFiltersState`, …) are exported from
+`@coreui/react-data-grid`. Callbacks fire for changes driven through the
+[headless table](https://coreui.io/data-grid/react/docs/api/headless/) too.
+
+
+---
+
+# React Data Grid Methods
+
+> React Data Grid helpers — CSV export functions, the default labels export and the tableRef escape hatch.
+
+`<CDataGrid>` has no imperative instance methods — React re-renders the grid
+when a prop changes, and unmounting cleans it up. What the vanilla grid exposes
+as methods maps to exports and props instead:
+
+| Export / prop | Description |
+| --- | --- |
+| `exportCsv(table, options?)` | Returns the rows as an RFC-4180 CSV string. Options: `scope`, `delimiter`, `bom`, `sanitize`. See [CSV export](https://coreui.io/data-grid/react/docs/features/csv-export/). |
+| `downloadCsv(table, options?)` | Downloads the CSV as a file. Same options plus `filename`. |
+| `DEFAULT_LABELS` | The default UI strings — extend rather than replace them. See [Localization](https://coreui.io/data-grid/react/docs/customization/localization/). |
+| `tableRef` (prop) | A ref to the underlying headless table instance — the [headless escape hatch](https://coreui.io/data-grid/react/docs/api/headless/) for building custom UI. |
+
+```tsx
+import { CDataGrid, downloadCsv } from '@coreui/react-data-grid'
+
+const tableRef = useRef<Parameters<typeof downloadCsv>[0]>(null)
+
+<CDataGrid columns={columns} items={items} tableRef={tableRef} />
+
+// later, e.g. in a button handler:
+tableRef.current && downloadCsv(tableRef.current, { filename: 'users.csv' })
+```
+
+Selected rows arrive through the `onSelectionChange` callback (its
+`selectedItems` argument) — see [Row selection](https://coreui.io/data-grid/react/docs/features/row-selection/). To
+refresh data, pass a new `items` array; the grid re-renders on prop change.
+
+
+---
+
+# React Data Grid Headless Table
+
+> Drop down to the underlying headless table instance via tableRef to build custom React Data Grid UI and drive state imperatively.
+
+The Data Grid is a thin, styled layer over a headless table engine. When the
+built-in chrome isn't enough, turn it off and drive the grid from your own UI
+through the `tableRef` prop — the same instance the grid renders from.
+
+```tsx
+import { CDataGrid } from '@coreui/react-data-grid'
+import { useRef } from 'react'
+
+const tableRef = useRef(null)
+
+<CDataGrid
+  columns={columns}
+  items={items}
+  pagination={false} // turn off built-in chrome you want to replace
+  tableRef={tableRef}
+/>
+
+// Drive state imperatively through the underlying table instance:
+tableRef.current?.setPageIndex(3)
+tableRef.current?.getFilteredRowModel()
+tableRef.current?.setColumnPinning({ left: ['name'] })
+tableRef.current?.state.sorting
+```
+
+## When to reach for it
+
+- **Custom chrome.** Build your own toolbar, pager or column chooser and wire it
+  to `tableRef.current`. The [slots](https://coreui.io/data-grid/react/docs/features/slots/) API hands you the same
+  `table` scoped to a mount point — prefer slots when you only need to replace
+  one module.
+- **Reading state.** `tableRef.current?.state` exposes sorting, filters,
+  selection, pagination, pinning, order and visibility as structured state.
+- **Imperative actions.** Set the page, toggle a column, change pinning or apply
+  a filter without waiting for user interaction.
+
+## Notes
+
+Everything the built-in UI does routes through this same table, so your
+imperative calls and the built-in controls stay in sync. The grid's
+[callbacks](https://coreui.io/data-grid/react/docs/api/events/) fire for headless-driven changes too.
+
+
+---
+
+# React Data Grid Roadmap
+
+> What CoreUI Data Grid for React ships today and what is planned next — tree data, master-detail panels, a summary row, grouping and aggregation, and multi-level headers.
+
+The Data Grid is under active development. Everything documented here works
+today — this page is about what comes next.
+
+## Shipped
+
+The 0.1.0 line built the grid's core; 0.2.0 made it interactive.
+
+- **Data at scale** — [virtualization](https://coreui.io/data-grid/react/docs/features/virtualization/) for 100,000
+  rows with DOM recycling, [pagination](https://coreui.io/data-grid/react/docs/features/pagination/) as the
+  alternative mode, [server-side data](https://coreui.io/data-grid/react/docs/features/server-side-data/) behind a
+  single `dataProvider`, and [infinite scroll](https://coreui.io/data-grid/react/docs/features/infinite-scroll/)
+  that appends each page instead of replacing it.
+- **Querying** — multi-column [sorting](https://coreui.io/data-grid/react/docs/features/sorting/), per-column
+  [filter dialogs](https://coreui.io/data-grid/react/docs/features/filtering/) with typed operators, faceted set
+  filters and custom predicates, plus global search.
+- **Columns** — [resizing](https://coreui.io/data-grid/react/docs/columns/sizing/), [pinning](https://coreui.io/data-grid/react/docs/columns/pinning/),
+  [reordering and visibility](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/) with a live
+  drag preview, and a keyboard-accessible [header menu](https://coreui.io/data-grid/react/docs/columns/menu/).
+- **Rows** — [row selection](https://coreui.io/data-grid/react/docs/features/row-selection/),
+  [row reordering](https://coreui.io/data-grid/react/docs/features/row-reordering/) by drag handle, and
+  [auto row height](https://coreui.io/data-grid/react/docs/features/virtualization/#auto-row-height) for rows that
+  grow with their content.
+- **Cells** — [keyboard navigation](https://coreui.io/data-grid/react/docs/features/keyboard-navigation/) on the full
+  ARIA grid pattern, [cell selection](https://coreui.io/data-grid/react/docs/features/cell-selection/) with
+  spreadsheet-style ranges and clipboard copy,
+  [inline editing](https://coreui.io/data-grid/react/docs/features/editing/) with a popup editor contract, and
+  [undo & redo](https://coreui.io/data-grid/react/docs/features/history/).
+- **Output** — [Excel export](https://coreui.io/data-grid/react/docs/features/excel-export/) through a real `.xlsx`
+  writer with no runtime dependencies, [CSV export](https://coreui.io/data-grid/react/docs/features/csv-export/) as a
+  dependency-free subpath, and [print](https://coreui.io/data-grid/react/docs/features/print/) past virtualization
+  and pagination.
+- **Fit and finish** — [save & restore state](https://coreui.io/data-grid/react/docs/features/state/) for the whole
+  view, [feature sets](https://coreui.io/data-grid/react/docs/customization/feature-sets/) that drop what you do not
+  use from the bundle, [theming](https://coreui.io/data-grid/react/docs/customization/styling/) through design tokens
+  with automatic dark mode, a complete
+  [localization](https://coreui.io/data-grid/react/docs/customization/localization/) surface, and
+  [accessibility](https://coreui.io/data-grid/react/docs/guides/accessibility/) documented down to its current limits.
+
+## Planned
+
+Roughly in the order we expect to reach them, with no dates attached:
+
+- **Tree data** — hierarchical, expandable rows with tree-aware sorting and
+  filtering.
+- **Master-detail panels** — an expandable panel per row for detail views.
+- **Summary row** — totals, averages and custom aggregates in a footer under the
+  table.
+- **Row grouping & aggregation** — group rows by column values, with aggregates
+  per group.
+- **Column grouping** — multi-level headers spanning related columns.
+- **Row pinning** — sticky rows at the top or bottom, the row-wise counterpart
+  of column pinning.
+- **Cell & row spanning** — merged cells that keyboard navigation understands.
+- **Column autosizing** — fit a column to its content from the resize handle or
+  the header menu.
+- **Clipboard paste** — writing a copied range back through the editing
+  pipeline, with validation and rollback.

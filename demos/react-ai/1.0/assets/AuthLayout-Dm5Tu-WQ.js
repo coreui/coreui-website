@@ -1,0 +1,1 @@
+import{j as t,O as e}from"./index-qFWY1Oeu.js";import{C as r}from"./CContainer-DTqMQhfe.js";const a=()=>t.jsx("div",{className:"bg-body-tertiary min-vh-100 d-flex flex-row align-items-center",children:t.jsx(r,{fluid:!0,children:t.jsx(e,{})})});export{a as default};

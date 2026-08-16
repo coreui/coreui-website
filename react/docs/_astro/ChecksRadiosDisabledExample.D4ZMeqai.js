@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime.C6cmW1Aq.js";import{t}from"./CFormCheck._eDRK3AX.js";var n=e(),r=()=>(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(t,{label:`Disabled checkbox`,disabled:!0}),(0,n.jsx)(t,{label:`Disabled checked checkbox`,defaultChecked:!0,disabled:!0})]});export{r as ChecksRadiosDisabledExample};

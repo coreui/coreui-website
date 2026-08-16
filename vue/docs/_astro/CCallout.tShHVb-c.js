@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.CA1CYuze.js";import{t as n}from"./props.iJK6YHEN.js";var r=e({name:`CCallout`,props:{color:n},setup(e,{slots:n}){return()=>t(`div`,{class:[`callout`,{[`callout-${e.color}`]:e.color}]},n.default&&n.default())}});export{r as t};

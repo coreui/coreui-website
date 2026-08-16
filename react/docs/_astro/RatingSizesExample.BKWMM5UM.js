@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CRating.CzdLm2ax.js";e();var r=t(),i=()=>(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n,{size:`sm`,value:3}),(0,r.jsx)(n,{value:3}),(0,r.jsx)(n,{size:`lg`,value:3})]});export{i as RatingSizesExample};

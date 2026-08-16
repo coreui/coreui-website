@@ -1,0 +1,1 @@
+import{r as l,_ as n,R as m,h as p,P as a}from"./index-CoI4h29g.js";const e=l.forwardRef((s,r)=>{var{children:t,className:o}=s,c=n(s,["children","className"]);return m.createElement("div",Object.assign({className:p("btn-toolbar",o)},c,{ref:r}),t)});e.propTypes={children:a.node,className:a.string};e.displayName="CButtonToolbar";export{e as C};

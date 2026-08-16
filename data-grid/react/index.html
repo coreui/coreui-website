@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Language" content="en"><meta name="description" content="High-performance React data grid with sorting, filtering, virtualization, inline editing and Excel export. One licence covers React, Vue, Angular and JS. Try the demo."><meta name="author" content="">
+<meta name="generator" content="Hugo 0.152.2"><title>React Data Grid Component — Fast, Editable | CoreUI</title><link rel="canonical" href="https://coreui.io/data-grid/react/"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--cui-framework-25:#bfe7ff;--cui-framework-50:#80d0ff;--cui-framework-base:#00a1ff;--cui-framework-color:#fff;--cui-framework-gradient-start:#00a1ff;--cui-framework-gradient-stop:rgb(76.5, 189.2, 255);--cui-framework-page-header-bg:url("/images/bgs/kv_dark.webp") no-repeat center center/cover}
+</style>
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.720564ad0981e70ec3533fd50f227c74b6c6ecd1714bf28f5ae1b37ed96b72a6.css"><link rel="stylesheet" href="https://coreui.io/scss/data-grid.min.346fdbd246e39d33caa425a4aa8bed6872e17b7c50402dfa5bfbd3195744b36e.css">
+
+
+<link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/images/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/images/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+<link rel="manifest" href="/images/favicons/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/images/favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@core_ui">
+<meta name="twitter:creator" content="@core_ui">
+<meta name="twitter:title" content="React Data Grid Component — Fast, Editable | CoreUI · CoreUI">
+<meta name="twitter:description" content="High-performance React data grid with sorting, filtering, virtualization, inline editing and Excel export. One licence covers React, Vue, Angular and JS. Try the demo.">
+<meta name="twitter:image" content="https://coreui.io/images/ogimages/react_1200_630.jpg">
+
+<!-- Facebook -->
+<meta property="og:url" content="https://coreui.io/data-grid/react/">
+<meta property="og:title" content="React Data Grid Component — Fast, Editable | CoreUI · CoreUI">
+<meta property="og:description" content="High-performance React data grid with sorting, filtering, virtualization, inline editing and Excel export. One licence covers React, Vue, Angular and JS. Try the demo.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://coreui.io/images/ogimages/react_1200_630.jpg">
+<meta property="og:image:secure_url" content="https://coreui.io/images/ogimages/react_1200_630.jpg">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KX4JH47');</script>
+
+
+<style>
+   
+  :root {
+    --dg-accent: var(--cui-framework-base, #321fdb);
+  }
+
+  .page-header-data-grid .container-lg {
+    min-height: 520px;
+  }
+
+  .page-header-data-grid .page-description {
+    text-align: left;
+  }
+
+  .dg-eyebrow {
+    font-family: "Cousine", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 400;
+  }
+
+  .dg-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .page-header-data-grid .page-title h1 em {
+    font-style: normal;
+    color: #8f9dff;
+  }
+
+  .page-header-data-grid .hero-note {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: "Cousine", monospace;
+    margin-top: 1.5rem;
+  }
+
+   
+  .dg-mock {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    text-align: left;
+    color: #212529;
+    font-family: "Barlow", -apple-system, system-ui, sans-serif;
+  }
+
+  .dg-mock-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e3e6ea;
+    background: #fbfbfc;
+  }
+
+  .dg-mock-search {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 260px;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid #dfe3e8;
+    border-radius: 6px;
+    color: #8a93a0;
+    font-size: 0.8125rem;
+    background: #fff;
+  }
+
+  .dg-mock-search svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  .dg-mock-tool {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid #dfe3e8;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    color: #495057;
+    background: #fff;
+    white-space: nowrap;
+  }
+
+  .dg-mock-tool.is-accent { color: var(--dg-accent); border-color: var(--dg-accent); }
+  .dg-mock-tool svg { width: 14px; height: 14px; }
+
+  .dg-mock-scroll { overflow-x: auto; }
+
+  table.dg-mock-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+    white-space: nowrap;
+  }
+
+  .dg-mock-table th {
+    text-align: left;
+    font-weight: 600;
+    color: #6c757d;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid #e3e6ea;
+    background: #f6f7f9;
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    position: relative;
+    user-select: none;
+  }
+
+  .dg-mock-table th .dg-th {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .dg-mock-table th.is-sorted { color: var(--dg-accent); }
+  .dg-mock-table th .dg-sort { font-size: 0.625rem; line-height: 1; }
+
+  .dg-mock-table td {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid #eef0f3;
+    color: #343a40;
+    vertical-align: middle;
+  }
+
+  .dg-mock-table tbody-placeholder {}
+  .dg-mock-table tr:hover td { background: #f8f9fb; }
+
+  .dg-pin {
+    position: sticky;
+    left: 0;
+    background: #fff;
+    z-index: 1;
+    box-shadow: 2px 0 0 #eef0f3;
+  }
+  th.dg-pin { background: #f6f7f9; box-shadow: 2px 0 0 #e3e6ea; }
+  .dg-mock-table tr:hover td.dg-pin { background: #f8f9fb; }
+
+  .dg-check {
+    width: 15px; height: 15px;
+    border: 1.5px solid #c2c8d0;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .dg-check.is-on {
+    background: var(--dg-accent);
+    border-color: var(--dg-accent);
+    position: relative;
+  }
+  .dg-check.is-on::after {
+    content: '';
+    position: absolute;
+    left: 4px; top: 1px;
+    width: 4px; height: 8px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .dg-avatar {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: #fff;
+    margin-right: 0.55rem;
+    vertical-align: middle;
+  }
+
+  .dg-name { font-weight: 600; color: #212529; }
+
+  .dg-badge {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    border-radius: 100px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .dg-badge.ok { background: #e5f6ed; color: #1b7f4b; }
+  .dg-badge.warn { background: #fdf1dc; color: #a5701a; }
+  .dg-badge.off { background: #f0f1f3; color: #6c757d; }
+
+  .dg-mono { font-family: "Cousine", monospace; font-size: 0.75rem; color: #6c757d; }
+
+  .dg-mock-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 1rem;
+    border-top: 1px solid #e3e6ea;
+    background: #fbfbfc;
+    font-size: 0.75rem;
+    color: #6c757d;
+  }
+
+  .dg-pager { display: inline-flex; gap: 0.25rem; }
+  .dg-pager span {
+    width: 24px; height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dfe3e8;
+    border-radius: 5px;
+    background: #fff;
+  }
+  .dg-pager span.is-active { background: var(--dg-accent); color: #fff; border-color: var(--dg-accent); }
+
+   
+  .section-light { background: #fff; }
+  .section-lighter { background: #f8f9fa; border-top: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6; }
+  .section-dark { background: #0f1117; color: #e9ecef; }
+
+  .section-label {
+    font-family: "Cousine", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6c757d;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--dg-accent);
+  }
+  .section-dark .section-label { color: #9aa2b1; }
+
+  .dg-lead-title {
+    font-family: "Barlow", sans-serif;
+    font-size: clamp(2rem, 4vw, 2.25rem);
+    line-height: 1.25;
+    font-weight: 700;
+    color: #212529;
+  }
+  .dg-lead-title em { font-style: normal; color: var(--dg-accent); }
+  .section-dark .dg-lead-title { color: #fff; }
+  .section-dark .dg-lead-title em { color: #8f9dff; }
+
+  .dg-lead-desc {
+    font-family: "Barlow", sans-serif;
+    font-size: 1.125rem;
+    color: #495057;
+    line-height: 1.75;
+    font-weight: 500;
+  }
+  .section-dark .dg-lead-desc { color: #adb5bd; }
+
+   
+  .tech-strip { background: #f8f9fa; border-top: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6; padding: 2.5rem 0; }
+  .tech-label {
+    font-family: "Cousine", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+  }
+  .tech-badges { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; }
+  .tech-badge {
+    font-family: "Barlow", sans-serif;
+    font-size: 1rem;
+    color: #495057;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+  }
+  .tech-badge .tech-icon { width: 20px; height: 20px; flex-shrink: 0; }
+  .tech-badge .tech-icon svg { width: 100%; height: 100%; display: block; }
+  .tech-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dg-accent); }
+
+   
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: #dee2e6;
+    border: 1px solid #dee2e6;
+  }
+  .pain-item { background: #fff; padding: 2.5rem; }
+  .pain-item .number { font-family: "Cousine", monospace; font-size: 0.75rem; color: var(--dg-accent); margin-bottom: 1rem; letter-spacing: 0.1em; font-weight: 600; }
+  .pain-item p { font-family: "Barlow", sans-serif; font-size: 1rem; color: #495057; line-height: 1.6; margin: 0; }
+  .pain-item p strong { color: #212529; font-weight: 700; }
+
+   
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #dee2e6;
+    border: 1px solid #dee2e6;
+  }
+  @media (max-width: 991px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 575px) { .features-grid { grid-template-columns: 1fr; } }
+
+  .feature-item { background: #f8f9fa; padding: 2.25rem; position: relative; }
+  .feature-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: transparent;
+    transition: background 0.25s;
+  }
+  .feature-item:hover::before { background: var(--dg-accent); }
+  .feature-icon { color: var(--dg-accent); margin-bottom: 1.25rem; }
+  .feature-icon svg { width: 26px; height: 26px; }
+  .feature-title { font-family: "Barlow", sans-serif; font-size: 1.0625rem; font-weight: 700; margin-bottom: 0.6rem; color: #212529; }
+  .feature-desc { font-family: "Barlow", sans-serif; font-size: 0.9375rem; color: #6c757d; line-height: 1.65; margin: 0; }
+
+   
+  .dg-fw-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .dg-fw-tab {
+    font-family: "Barlow", sans-serif;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    padding: 0.55rem 1.1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 100px;
+    background: #fff;
+    color: #495057;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.15s;
+  }
+  .dg-fw-tab .tech-icon { width: 18px; height: 18px; }
+  .dg-fw-tab .tech-icon svg { width: 100%; height: 100%; vertical-align: top }
+  .dg-fw-tab:hover { border-color: #adb5bd; }
+  .dg-fw-tab.is-active { background: var(--dg-accent); border-color: var(--dg-accent); color: #fff; }
+
+  .dg-code-window { background: #0f1117; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.25); }
+  .dg-code-titlebar { display: flex; align-items: center; gap: 8px; padding: 0.7rem 1rem; border-bottom: 1px solid #23262f; }
+  .dg-code-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dg-code-dot.r { background: #ff5f57; }
+  .dg-code-dot.y { background: #ffbd2e; }
+  .dg-code-dot.g { background: #28ca41; }
+  .dg-code-file { font-family: "Cousine", monospace; font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-left: 8px; }
+  .dg-code-body { margin: 0; padding: 1.5rem; font-family: "Cousine", monospace; font-size: 0.8125rem; line-height: 1.75; overflow-x: auto; color: #c8ccd6; }
+  .dg-code-body .k { color: #c792ea; }
+  .dg-code-body .s { color: #47ffb8; }
+  .dg-code-body .t { color: #82aaff; }
+  .dg-code-body .c { color: rgba(255,255,255,0.35); }
+  .dg-fw-panel { display: none; }
+  .dg-fw-panel.is-active { display: block; }
+
+   
+  .inside-list { list-style: none; padding: 0; margin: 0; }
+  .inside-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #dee2e6;
+    font-family: "Barlow", sans-serif;
+    font-size: 0.9375rem;
+    color: #495057;
+  }
+  .inside-list li:first-child { border-top: 1px solid #dee2e6; }
+  .inside-list li svg { width: 16px; height: 16px; color: var(--dg-accent); margin-top: 3px; flex-shrink: 0; }
+  .inside-list li strong { color: #212529; font-weight: 700; }
+
+   
+  .dg-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #23262f; border: 1px solid #23262f; border-radius: 8px; overflow: hidden; }
+  @media (max-width: 767px) { .dg-stats { grid-template-columns: 1fr; } }
+  .dg-stat { background: #0f1117; padding: 2rem; }
+  .dg-stat .num { font-family: "Barlow", sans-serif; font-size: 2rem; font-weight: 800; color: #fff; line-height: 1.1; }
+  .dg-stat .num span { color: #8f9dff; }
+  .dg-stat .cap { font-family: "Barlow", sans-serif; font-size: 0.9375rem; color: #9aa2b1; margin-top: 0.5rem; }
+
+   
+  .faq-item { padding: 2rem 0; border-bottom: 1px solid #dee2e6; }
+  .faq-item:first-child { border-top: 1px solid #dee2e6; }
+  .faq-q { font-family: "Barlow", sans-serif; font-size: 1.0625rem; font-weight: 700; margin-bottom: 0.65rem; color: #212529; }
+  .faq-a { font-family: "Barlow", sans-serif; font-size: 0.9375rem; color: #6c757d; line-height: 1.7; margin: 0; }
+
+   
+  .dg-price-wrap { max-width: 520px; margin: 0 auto; }
+  .dg-price-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(15, 17, 23, 0.08);
+  }
+  .dg-price-flag {
+    display: inline-block;
+    font-family: "Cousine", monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #fff;
+    background: var(--dg-accent);
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+  }
+  .dg-price-name { font-family: "Barlow", sans-serif; font-size: 1.5rem; font-weight: 800; color: #212529; }
+  .dg-price-sub { font-family: "Barlow", sans-serif; font-size: 0.9375rem; color: #6c757d; margin-top: 0.35rem; }
+  .dg-price-amount { display: flex; align-items: baseline; justify-content: center; gap: 0.6rem; margin: 1.5rem 0 0.35rem; }
+  .dg-price-was { font-family: "Barlow", sans-serif; font-size: 1.5rem; font-weight: 600; color: #adb5bd; text-decoration: line-through; }
+  .dg-price-now { font-family: "Barlow", sans-serif; font-size: 3.25rem; font-weight: 800; color: #212529; line-height: 1; }
+  .dg-price-unit { font-family: "Barlow", sans-serif; font-size: 0.9375rem; color: #6c757d; }
+  .dg-price-hint { font-family: "Cousine", monospace; font-size: 0.8125rem; color: var(--dg-accent); margin-bottom: 1.75rem; }
+  .dg-price-terms { list-style: none; padding: 0; margin: 1.75rem 0 0; text-align: left; }
+  .dg-price-terms li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 0.7rem 0;
+    border-top: 1px solid #eef0f3;
+    font-family: "Barlow", sans-serif;
+    font-size: 0.9375rem;
+    color: #495057;
+  }
+  .dg-price-terms li:first-child { border-top: 0; }
+  .dg-price-terms li svg { width: 16px; height: 16px; color: var(--dg-accent); margin-top: 2px; flex-shrink: 0; }
+  .dg-price-terms li strong { color: #212529; font-weight: 700; }
+  .dg-price-foot { font-family: "Barlow", sans-serif; font-size: 0.8125rem; color: #6c757d; margin-top: 1.5rem; }
+  .dg-price-docs {
+    display: block;
+    margin-top: 0.9rem;
+    font-family: "Barlow", sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--dg-accent);
+    text-decoration: none;
+  }
+  .dg-price-docs:hover { text-decoration: underline; }
+  .dg-price-version {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #eef0f3;
+    font-family: "Barlow", sans-serif;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    color: #6c757d;
+  }
+  .dg-price-version strong { color: #495057; font-weight: 700; }
+
+   
+  .dg-hero-shell {
+    --cui-body-color: #212529;
+    --cui-body-bg: #fff;
+    --cui-body-font-family: var(--cui-font-sans-serif);
+    color: #212529;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+  .dg-hero-shell .data-grid { --cui-data-grid-viewport-max-height: 22rem; }
+
+   
+  .dg-demo-shell {
+    --cui-body-font-family: var(--cui-font-sans-serif);
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(15, 17, 23, 0.08);
+    overflow: hidden;
+  }
+  .dg-demo-shell .data-grid { --cui-data-grid-viewport-max-height: 26rem; }
+
+   
+  .dg-hero-shell,
+  .dg-demo-shell {
+    font-family: var(--cui-font-sans-serif);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .dg-demo-note {
+    font-family: "Cousine", monospace;
+    font-size: 0.8125rem;
+    color: #6c757d;
+    text-align: center;
+    margin: 1.25rem 0 0;
+  }
+  .dg-demo-note code { color: var(--dg-accent); }
+</style>
+<style>
+   
+  .dg-table-wrap { overflow-x: auto; border: 1px solid #dee2e6; border-radius: 8px; background: #fff; }
+  table.dg-table { width: 100%; border-collapse: collapse; font-family: "Barlow", sans-serif; font-size: 0.9375rem; }
+  .dg-table th {
+    text-align: left;
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6c757d;
+    background: #f6f7f9;
+    padding: 0.8rem 1.25rem;
+    border-bottom: 1px solid #e3e6ea;
+    white-space: nowrap;
+  }
+  .dg-table td { padding: 0.85rem 1.25rem; border-bottom: 1px solid #eef0f3; color: #495057; vertical-align: top; line-height: 1.6; }
+  .dg-table tr:last-child td { border-bottom: 0; }
+  .dg-table td a { color: #212529; font-weight: 600; text-decoration: none; }
+  .dg-table td a:hover { color: var(--dg-accent); text-decoration: underline; }
+  .dg-table .dg-yes { color: var(--dg-accent); font-weight: 700; white-space: nowrap; }
+  .dg-table-note { font-family: "Barlow", sans-serif; font-size: 0.875rem; color: #6c757d; margin-top: 1rem; }
+
+  .dg-kbd {
+    font-family: "Cousine", monospace;
+    font-size: 0.75rem;
+    color: #212529;
+    background: #f0f1f3;
+    border: 1px solid #dee2e6;
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    padding: 0.1rem 0.45rem;
+    white-space: nowrap;
+  }
+
+  .dg-fw-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: #dee2e6;
+    border: 1px solid #dee2e6;
+  }
+  .dg-fw-link {
+    display: block;
+    background: #fff;
+    padding: 1.75rem 2rem;
+    text-decoration: none;
+    position: relative;
+  }
+  .dg-fw-link::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: transparent;
+    transition: background 0.25s;
+  }
+  .dg-fw-link:hover::before { background: var(--dg-accent); }
+  .dg-fw-link .tech-icon { width: 22px; height: 22px; margin-bottom: 0.9rem; }
+  .dg-fw-link .tech-icon svg { width: 100%; height: 100%; display: block; }
+  .dg-fw-link-name { font-family: "Barlow", sans-serif; font-size: 1rem; font-weight: 700; color: #212529; margin-bottom: 0.3rem; }
+  .dg-fw-link:hover .dg-fw-link-name { color: var(--dg-accent); }
+  .dg-fw-link-desc { font-family: "Barlow", sans-serif; font-size: 0.875rem; color: #6c757d; line-height: 1.55; margin: 0; }
+
+  .dg-updates { list-style: none; padding: 0; margin: 0; }
+  .dg-updates li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.25rem;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: 1px solid #dee2e6;
+    font-family: "Barlow", sans-serif;
+    font-size: 0.9375rem;
+    color: #495057;
+  }
+  .dg-updates li:first-child { border-top: 1px solid #dee2e6; }
+  .dg-updates .dg-update-version { font-family: "Cousine", monospace; font-size: 0.8125rem; color: var(--dg-accent); font-weight: 600; white-space: nowrap; }
+  .dg-updates .dg-update-date { font-family: "Cousine", monospace; font-size: 0.75rem; color: #adb5bd; white-space: nowrap; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https:\/\/coreui.io\/data-grid\/react\/#software",
+      "name": "CoreUI React Data Grid",
+      "description": "High-performance React data grid with sorting, filtering, virtualization, inline editing and Excel export. One licence covers React, Vue, Angular and JS. Try the demo.",
+      "url": "https:\/\/coreui.io\/data-grid\/react\/",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "Data Grid Component",
+      "operatingSystem": "Web browser",
+      "softwareVersion": "0.3.0-rc.0",
+      "softwareHelp": {
+        "@type": "CreativeWork",
+        "url": "https:\/\/coreui.io\/data-grid\/react\/docs/getting-started/introduction/"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "199",
+        "priceCurrency": "USD",
+        "url": "https:\/\/coreui.io\/data-grid\/react\/#pricing",
+        "availability": "https://schema.org/InStock"
+      },
+      "provider": { "@id": "https://coreui.io/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https:\/\/coreui.io\/data-grid\/react\/#webpage",
+      "url": "https:\/\/coreui.io\/data-grid\/react\/",
+      "name": "React Data Grid Component — Fast, Editable | CoreUI",
+      "description": "High-performance React data grid with sorting, filtering, virtualization, inline editing and Excel export. One licence covers React, Vue, Angular and JS. Try the demo.",
+      "datePublished": "2026-07-23",
+      "dateModified": "2026-08-09",
+      "breadcrumb": { "@id": "https:\/\/coreui.io\/data-grid\/react\/#breadcrumb" },
+      "publisher": { "@id": "https://coreui.io/#organization" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https:\/\/coreui.io\/data-grid\/react\/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "CoreUI",
+          "item": "https://coreui.io/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Data Grid",
+          "item": "https://coreui.io/data-grid/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "React Data Grid",
+          "item": "https:\/\/coreui.io\/data-grid\/react\/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https:\/\/coreui.io\/data-grid\/react\/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does CoreUI Data Grid compare to AG Grid React and MUI X Data Grid?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both are excellent grids with a different trade-off. AG Grid keeps its most-wanted features in a separate Enterprise tier, and MUI X splits features across Pro and Premium plans and only exists for React. CoreUI Data Grid ships every feature in one edition and one licence that also covers Vue, Angular, and vanilla JavaScript — Excel export, cell selection with clipboard copy, print, inline editing, and row reordering included, not held back for a higher tier. It covers less surface than AG Grid Enterprise today; tree data, master-detail panels, row grouping with aggregation, and a summary row are next on the roadmap. See the full breakdown in AG Grid alternatives: 8 data grids compared."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it support React 19?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. @coreui/react-data-grid supports React 17, 18, and 19 from a single package — hooks-based, with no deprecated lifecycles and no legacy context."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work with Next.js and the App Router?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The grid is an interactive client component, so mark the file with \u0026lsquo;use client\u0026rsquo; and use it anywhere in the App Router or the Pages Router. Server-side sorting, filtering, and paging work through the data provider exactly as in any other React app."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How large a dataset can the React grid handle?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Client-side, row virtualization keeps the grid fast at 100,000 rows — the docs include a live demo running on exactly that. Beyond that scale, switch to server-side mode and let your backend drive paging, sorting, and filtering; the grid emits the state changes and invalidates stale responses automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I render my own cells and toolbar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — per-column custom cells are regular React render functions, and the toolbar, pagination, and empty state are replaceable slots. If you outgrow the styled grid entirely, the headless API exposes the underlying table instance for full \u0026ldquo;bring your own UI\u0026rdquo; control."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the React data grid accessible?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "With cellNavigation enabled it implements the W3C WAI-ARIA grid pattern — a single tab stop with a roving-tabindex active cell, arrow-key navigation, and correct ARIA row and column indices even while virtualized. The accessibility guide documents exactly what is supported today and what is planned."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need the CoreUI component library to use it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The grid needs the table styles from the @coreui/coreui or @coreui/coreui-pro stylesheet (v5+) on the page, but your app doesn\u0026rsquo;t have to be built with CoreUI components — it drops into any React application."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does \"early access\" mean?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Data Grid is at version 0.3.0 — stable enough to build on, with 1.0.0 planned for early September 2026. Until then, occasional small breaking changes land with documented migration notes, and the $199 early-access price is the lowest the grid will ever have (it rises to $349 at launch)."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://coreui.io/#organization",
+      "name": "CoreUI",
+      "url": "https://coreui.io",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https:\/\/coreui.io\/images/brand/coreui-logo.svg"
+      },
+      "sameAs": [
+        "https://github.com/coreui",
+        "https://x.com/core_ui",
+        "https://www.linkedin.com/company/coreui"
+      ]
+    }
+  ]
+}
+</script>
+
+
+  </head>
+  <body class="color-scheme-react-pro color-scheme-pro d-flex flex-column min-vh-100">
+    <a class="d-block bg-primary text-white text-center p-3 text-decoration-none" href="/data-grid/">One data grid for JavaScript, React, Vue &amp; Angular. Sorting, filtering, virtualization, pinning, and CSV export included. Early access $199 <del>$349</del> → [Get it now]</a>
+    <div class="page-header">
+      <svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg"  height="70" class="cui-logo d-none" viewBox="0 0 312 115">
+  <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
+        <g id="coreui-base" fill="currentColor" fill-rule="nonzero">
+            <g id="Group">
+                <path d="M96,24.1244 L57,1.6077 C53.2871871,-0.535893539 48.7128129,-0.535893539 45,1.6077 L6,24.1243 C2.29226017,26.2730089 0.00693260339,30.2313486 0,34.5167 L0,79.55 C0.0068453397,83.8353487 2.29220098,87.7936989 6,89.9423 L45,112.459 C48.7128129,114.602594 53.2871871,114.602594 57,112.459 L96,89.9423 C99.707799,87.7936989 101.993155,83.8353487 102,79.55 L102,34.5167 C101.993093,30.2313678 99.707754,26.273046 96,24.1244 Z M94,79.55 C94,80.9790618 93.2376038,82.2995691 92,83.0141 L53,105.5308 C51.7623957,106.245331 50.2376043,106.245331 49,105.5308 L10,83.0141 C8.76239619,82.2995691 8,80.9790618 8,79.55 L8,34.5167 C8,33.0876382 8.76239619,31.7671309 10,31.0526 L49,8.5359 C50.2376043,7.82136882 51.7623957,7.82136882 53,8.5359 L92,31.0526 C93.2376038,31.7671309 94,33.0876382 94,34.5167 L94,79.55 Z" id="Shape"></path>
+                <path d="M74.0216,70.0713 L71.1556,70.0713 C70.4827679,70.0712861 69.8208069,70.2410241 69.231,70.5648 L51.95,80.05 L32,68.5315 L32,45.554 L51.95,34.0354 L69.2394,43.4904 C69.8278903,43.8122245 70.4878603,43.9808965 71.1586,43.9809 L74.0218,43.9809 C75.1263695,43.9809 76.0218,43.0854695 76.0218,41.9809 L76.0218,39.2691 C76.0218,38.5380907 75.6230914,37.8652844 74.9818,37.5144 L55.793,27.0188 C53.3404536,25.684951 50.3714915,25.7190213 47.9502,27.1088 L28,38.6262 C25.5283249,40.0590349 24.0048565,42.6979488 24,45.5549 L24,68.5309 C24,71.3890593 25.5247614,74.0301204 28,75.4592 L47.95,86.9778 C50.3719859,88.3663725 53.3408028,88.399644 55.7933,87.0657 L74.9833,76.5345 C75.6233016,76.1832775 76.0210885,75.5112406 76.0211,74.7812 L76.0211,72.0712 C76.0210448,70.9668648 75.1259352,70.0715761 74.0216,70.0713 Z" id="Path"></path>
+            </g>
+            <g id="Group" transform="translate(117.000000, 33.000000)" >
+                <path d="M51.7447,0.4285 C43.4644161,0.437648027 36.754124,7.14771643 36.7447,15.428 L36.7447,32.7054 C36.7447,40.9896712 43.4604288,47.7054 51.7447,47.7054 C60.0289712,47.7054 66.7447,40.9896712 66.7447,32.7054 L66.7447,15.428 C66.735276,7.14771643 60.0249839,0.437648027 51.7447,0.4285 L51.7447,0.4285 Z M58.7447,32.7054 C58.7447,36.5713932 55.6106932,39.7054 51.7447,39.7054 C47.8787068,39.7054 44.7447,36.5713932 44.7447,32.7054 L44.7447,15.428 C44.7447,11.5620068 47.8787068,8.428 51.7447,8.428 C55.6106932,8.428 58.7447,11.5620068 58.7447,15.428 L58.7447,32.7054 Z" id="Shape"></path>
+                <path d="M15.0788,8.4878 C16.9286881,8.24481332 18.799121,8.74931526 20.2759097,9.88958885 C21.7526984,11.0298624 22.7139842,12.7118169 22.9469,14.563 C23.0096446,15.0584416 23.4318031,15.4294333 23.9312,15.428 L29.9617,15.428 C30.2433078,15.4256279 30.5111615,15.3058932 30.700737,15.0976392 C30.8903124,14.8893852 30.9844237,14.6114912 30.9604,14.3309 C30.3547728,6.2061693 23.38159,0.0460556878 15.2442,0.4472 C7.16132117,0.999887718 0.913134758,7.76221317 1,15.8635 L1,32.27 C0.913131523,40.3712508 7.16126073,47.1335618 15.2441,47.6863 C23.3813933,48.08722 30.3543741,41.9271229 30.96,33.8025 C30.9840545,33.5219017 30.8899539,33.2439902 30.7003719,33.035729 C30.5107899,32.8274679 30.2429178,32.7077421 29.9613,32.7054 L23.9308,32.7054 C23.4314031,32.7039667 23.0092446,33.0749584 22.9465,33.5704 C22.7137048,35.4216544 21.7524848,37.1037177 20.2757044,38.2440932 C18.7989241,39.3844687 16.9284489,39.8890513 15.0785,39.6461 C11.5427997,39.1044016 8.94840923,36.0377838 9,32.4612 L9,15.6724 C8.94840694,12.0957688 11.543004,9.02918626 15.0788,8.4878 L15.0788,8.4878 Z" id="Path"></path>
+                <path d="M97.9222,27.9944 C102.287745,26.0370903 105.09962,21.7015444 105.1064,16.9173 L105.1064,13.2161 C105.1064,6.50617166 99.6669283,1.0667 92.957,1.0667 L76,1.0667 C75.4477153,1.0667 75,1.51441525 75,2.0667 L75,46.0667 C75,46.6189847 75.4477153,47.0667 76,47.0667 L82,47.0667 C82.5522847,47.0667 83,46.6189847 83,46.0667 L83,29.0667 L89.6215,29.0667 L97.5369,46.4805 C97.6991143,46.8373746 98.0548886,47.0667 98.4469,47.0667 L105.038,47.0667 C105.377933,47.0667 105.694523,46.8937728 105.878505,46.6079325 C106.062488,46.3220923 106.088664,45.9623638 105.948,45.6529 L97.9222,27.9944 Z M97.1064,16.9173 C97.1039754,19.2077501 95.2479498,21.0639994 92.9575,21.0667 L83.1064,21.0667 L83.1064,9.0667 L92.9575,9.0667 C95.2479498,9.06940063 97.1039754,10.9256499 97.1064,13.2161 L97.1064,16.9173 Z" id="Shape"></path>
+                <path d="M140,1.0667 L114,1.0667 C113.447715,1.0667 113,1.51441525 113,2.0667 L113,46.0667 C113,46.6189847 113.447715,47.0667 114,47.0667 L140,47.0667 C140.552285,47.0667 141,46.6189847 141,46.0667 L141,40.0667 C141,39.5144153 140.552285,39.0667 140,39.0667 L121,39.0667 L121,27.0667 L134,27.0667 C134.552285,27.0667 135,26.6189847 135,26.0667 L135,20.0667 C135,19.5144153 134.552285,19.0667 134,19.0667 L121,19.0667 L121,9.0667 L140,9.0667 C140.552285,9.0667 141,8.61898475 141,8.0667 L141,2.0667 C141,1.51441525 140.552285,1.0667 140,1.0667 Z" id="Path"></path>
+                <path d="M178,1.0667 L172,1.0667 C171.447715,1.0667 171,1.51441525 171,2.0667 L171,24.7142 C171.111775,27.2875721 169.802567,29.7147754 167.590728,31.0348154 C165.378889,32.3548553 162.621111,32.3548553 160.409272,31.0348154 C158.197433,29.7147754 156.888225,27.2875721 157,24.7142 L157,2.0667 C157,1.51441525 156.552285,1.0667 156,1.0667 L150,1.0667 C149.447715,1.0667 149,1.51441525 149,2.0667 L149,24.7142 C148.889565,30.1458781 151.72415,35.2128902 156.410578,37.96111 C161.097007,40.7093297 166.902993,40.7093297 171.589422,37.96111 C176.27585,35.2128902 179.110435,30.1458781 179,24.7142 L179,2.0667 C179,1.51441525 178.552285,1.0667 178,1.0667 Z" id="Path"></path>
+                <rect id="Rectangle" x="187" y="1.0667" width="8" height="38" rx="1"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
+
+
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand me-lg-2 me-xl-3 me-xxl-5" href="/">
+      <svg class="navbar-brand-coreui" height="70" viewbox="0 0 312 115">
+        <use class="coreui-base" xlink:href="#Page-1"/>
+      </svg>
+      
+      <div class="navbar-brand-framework">
+        Data Grid
+      </div>
+      
+      
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"  width="42" height="24" class="navbar-brand-pro-badge" viewBox="0 0 48 27">
+  <g id="Page-1" stroke="none" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd">
+    <g id="core-pro" fill="#000000" fill-rule="nonzero">
+      <rect id="Rectangle" fill="#FFFFFF" x="1.74074074" y="1" width="43.5185185" height="25" rx="2"></rect>
+      <path id="badge-pro-1" d="M11.894,9.767 C11.685,9.641 11.434,9.567 11.164,9.567 C11.153,9.567 11.141,9.567 11.13,9.567 L8.381,9.567 L8.381,12.784 L11.132,12.784 C11.14,12.784 11.15,12.784 11.16,12.784 C11.428,12.784 11.678,12.71 11.891,12.58 L11.885,12.584 C12.105,12.447 12.279,12.255 12.391,12.028 L12.395,12.02 C12.511,11.786 12.578,11.511 12.578,11.22 C12.578,11.208 12.578,11.195 12.578,11.183 L12.578,11.185 C12.578,11.174 12.578,11.16 12.578,11.147 C12.578,10.853 12.512,10.574 12.394,10.325 L12.399,10.337 C12.287,10.099 12.114,9.906 11.9,9.772 L11.894,9.769 L11.894,9.767 Z" id="Path"></path>
+      <path id="badge-pro-2" d="M46,0 L2,0 C0.895,0 0,0.895 0,2 L0,2 L0,25 C0,26.105 0.895,27 2,27 L2,27 L46,27 C47.105,27 48,26.105 48,25 L48,25 L48,2 C48,0.895 47.105,0 46,0 L46,0 Z M14.553,13.259 C14.226,13.848 13.749,14.319 13.174,14.632 L13.156,14.641 C12.577,14.95 11.891,15.131 11.162,15.131 C11.13,15.131 11.098,15.131 11.066,15.13 L11.071,15.13 L8.381,15.13 L8.381,20.142 L5.996,20.142 L5.996,7.221 L11.071,7.221 C11.098,7.22 11.13,7.22 11.161,7.22 C11.891,7.22 12.578,7.403 13.179,7.725 L13.156,7.714 C13.75,8.039 14.226,8.513 14.544,9.087 L14.553,9.105 C14.866,9.709 15.049,10.424 15.049,11.182 C15.049,11.94 14.866,12.655 14.541,13.285 L14.553,13.259 L14.553,13.259 Z M26.143,20.142 L23.289,14.943 L21.842,14.943 L21.842,20.142 L19.457,20.142 L19.457,7.212 L25.002,7.212 C25.024,7.212 25.05,7.211 25.075,7.211 C25.725,7.211 26.334,7.39 26.854,7.7 L26.838,7.691 C27.369,8.018 27.788,8.479 28.057,9.027 L28.065,9.046 C28.34,9.643 28.5,10.341 28.5,11.077 C28.5,11.813 28.34,12.511 28.052,13.138 L28.065,13.107 C27.658,13.943 26.921,14.564 26.028,14.808 L26.006,14.813 L29.032,20.14 L26.143,20.142 Z M42.265,15.512 C42.266,15.545 42.266,15.585 42.266,15.624 C42.266,16.496 42.053,17.319 41.676,18.043 L41.69,18.014 C41.315,18.722 40.761,19.292 40.087,19.674 L40.067,19.685 C39.363,20.057 38.528,20.276 37.642,20.276 C36.756,20.276 35.921,20.057 35.189,19.671 L35.218,19.685 C34.523,19.292 33.969,18.722 33.605,18.036 L33.594,18.014 C33.231,17.319 33.018,16.497 33.018,15.625 C33.018,15.586 33.018,15.546 33.019,15.507 L33.019,15.513 L33.019,11.852 C33.018,11.819 33.018,11.779 33.018,11.74 C33.018,10.868 33.231,10.045 33.608,9.321 L33.594,9.35 C33.969,8.642 34.523,8.072 35.197,7.69 L35.217,7.679 C35.921,7.307 36.756,7.088 37.641,7.088 C38.526,7.088 39.362,7.307 40.094,7.693 L40.065,7.679 C40.759,8.072 41.314,8.642 41.678,9.328 L41.689,9.35 C42.052,10.045 42.265,10.867 42.265,11.74 C42.265,11.779 42.265,11.819 42.264,11.858 L42.264,11.852 L42.265,15.512 Z" id="Shape"></path>
+      <path id="badge-pro-3" d="M38.774,9.802 C38.446,9.626 38.056,9.522 37.642,9.522 C37.228,9.522 36.838,9.626 36.497,9.808 L36.51,9.802 C36.186,9.99 35.928,10.261 35.762,10.587 L35.757,10.598 C35.589,10.93 35.491,11.321 35.491,11.735 C35.491,11.754 35.491,11.773 35.492,11.791 L35.492,11.788 L35.492,15.574 C35.492,15.59 35.491,15.609 35.491,15.628 C35.491,16.042 35.589,16.434 35.764,16.78 L35.757,16.765 C35.928,17.101 36.186,17.373 36.501,17.556 L36.51,17.561 C36.838,17.737 37.228,17.841 37.642,17.841 C38.056,17.841 38.446,17.737 38.787,17.555 L38.774,17.561 C39.098,17.373 39.356,17.102 39.522,16.776 L39.527,16.765 C39.695,16.433 39.793,16.042 39.793,15.627 C39.793,15.608 39.793,15.59 39.792,15.571 L39.792,15.574 L39.792,11.788 C39.792,11.772 39.793,11.754 39.793,11.735 C39.793,11.321 39.695,10.929 39.52,10.583 L39.527,10.598 C39.356,10.262 39.098,9.991 38.783,9.807 L38.774,9.802 L38.774,9.802 Z" id="Path"></path>
+      <path id="badge-pro-4" d="M25.456,12.41 C25.646,12.278 25.795,12.097 25.884,11.885 L25.887,11.877 C25.989,11.641 26.048,11.366 26.048,11.077 L26.048,11.077 C26.048,11.065 26.048,11.052 26.048,11.038 C26.048,10.763 25.992,10.502 25.89,10.264 L25.895,10.277 C25.803,10.057 25.655,9.876 25.468,9.746 L25.464,9.743 C25.287,9.626 25.07,9.556 24.837,9.556 C24.828,9.556 24.819,9.556 24.81,9.556 L21.843,9.556 L21.843,12.595 L24.811,12.595 C24.817,12.595 24.825,12.595 24.833,12.595 C25.065,12.595 25.28,12.525 25.46,12.406 L25.456,12.409 L25.456,12.41 Z" id="Path"></path>
+    </g>
+  </g>
+</svg>
+
+      
+    </a>
+    <button class="navbar-toggler" type="button" data-coreui-toggle="offcanvas" data-coreui-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header px-4 pb-0">
+        <svg class="offcanvas-brand-coreui" height="70" viewbox="0 0 312 115">
+          <use class="coreui-base" xlink:href="#Page-1"/>
+        </svg>
+        <button type="button" class="btn-close text-reset ms-auto" data-coreui-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body p-4 pt-0 p-lg-0">
+        <hr class="d-lg-none text-white-50">
+        <ul class="navbar-nav align-items-lg-center justify-content-lg-end flex-grow-1"><li class="nav-item dropdown px-lg-2">
+              <a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Docs</a>
+              <div class="dropdown-menu border-0"><a class="dropdown-item" href="/data-grid/angular/docs/getting-started/introduction/">Angular</a><a class="dropdown-item" href="/data-grid/docs/getting-started/introduction/">Javascript</a><a class="dropdown-item" href="/data-grid/react/docs/getting-started/introduction/">React</a><a class="dropdown-item" href="/data-grid/vue/docs/getting-started/introduction/">Vue</a></div>
+            </li><li class="nav-item dropdown px-lg-2">
+            <a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+              Components
+            </a>
+            <div class="dropdown-menu border-0">
+              <a class="dropdown-item d-flex align-items-center ps-0" href="/">
+                <svg xmlns="http://www.w3.org/2000/svg"  width="64" height="64" class="d-block"  viewBox="0 0 160 160">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-1" d="M125,47.091,86,24.5743a12,12,0,0,0-12,0L35,47.091a12.0336,12.0336,0,0,0-6,10.3923v45.0334a12.0335,12.0335,0,0,0,6,10.3923l39,22.5166a11.9993,11.9993,0,0,0,12,0l39-22.5166a12.0335,12.0335,0,0,0,6-10.3923V57.4833A12.0336,12.0336,0,0,0,125,47.091Zm-2,55.4257a4,4,0,0,1-2,3.464L82,128.4974a4,4,0,0,1-4,0L39,105.9807a4,4,0,0,1-2-3.464V57.4833a4,4,0,0,1,2-3.4641L78,31.5025a4,4,0,0,1,4,0l39,22.5167a4,4,0,0,1,2,3.4641Z"/>
+    <path class="cls-1" d="M103.0216,93.0379h-2.866a4,4,0,0,0-1.9246.4935L80.95,103.0167,61,91.4981V68.5206L80.95,57.002l17.2894,9.455a4,4,0,0,0,1.9192.4905h2.8632a2,2,0,0,0,2-2V62.2357a2,2,0,0,0-1.04-1.7547L84.793,49.9854a8.0391,8.0391,0,0,0-7.8428.09L57,61.5929A8.0243,8.0243,0,0,0,53,68.5216v22.976a8,8,0,0,0,4,6.9283l19.95,11.5185a8.0422,8.0422,0,0,0,7.8433.0879l19.19-10.5311a2,2,0,0,0,1.0378-1.7534v-2.71A2,2,0,0,0,103.0216,93.0379Z"/>
+  </g>
+</svg>
+
+                <div>
+                  <div class="fw-semibold">CoreUI</div>
+                  <div>UI Components</div>
+                </div>
+              </a>
+              <a class="dropdown-item d-flex align-items-center ps-0" href="/angular/">
+                <svg xmlns="http://www.w3.org/2000/svg"  width="64" height="64" class="float-left text-angular"  viewBox="0 0 160 160">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-1" d="M125,47.091,86,24.5743a12,12,0,0,0-12,0L35,47.091a12.0336,12.0336,0,0,0-6,10.3923v45.0334a12.0335,12.0335,0,0,0,6,10.3923l39,22.5166a11.9993,11.9993,0,0,0,12,0l39-22.5166a12.0335,12.0335,0,0,0,6-10.3923V57.4833A12.0336,12.0336,0,0,0,125,47.091Zm-2,55.4257a4,4,0,0,1-2,3.464L82,128.4974a4,4,0,0,1-4,0L39,105.9807a4,4,0,0,1-2-3.464V57.4833a4,4,0,0,1,2-3.4641L78,31.5025a4,4,0,0,1,4,0l39,22.5167a4,4,0,0,1,2,3.4641Z"/>
+    <path class="cls-1" d="M103.0216,93.0379h-2.866a4,4,0,0,0-1.9246.4935L80.95,103.0167,61,91.4981V68.5206L80.95,57.002l17.2894,9.455a4,4,0,0,0,1.9192.4905h2.8632a2,2,0,0,0,2-2V62.2357a2,2,0,0,0-1.04-1.7547L84.793,49.9854a8.0391,8.0391,0,0,0-7.8428.09L57,61.5929A8.0243,8.0243,0,0,0,53,68.5216v22.976a8,8,0,0,0,4,6.9283l19.95,11.5185a8.0422,8.0422,0,0,0,7.8433.0879l19.19-10.5311a2,2,0,0,0,1.0378-1.7534v-2.71A2,2,0,0,0,103.0216,93.0379Z"/>
+  </g>
+</svg>
+
+                <div>
+                  <div class="fw-semibold">CoreUI for&nbsp;<span class="text-angular">Angular</span></div>
+                  <div>UI Components for Angular</div>
+                </div>
+              </a>
+              <a class="dropdown-item d-flex align-items-center ps-0" href="/bootstrap/">
+                <svg xmlns="http://www.w3.org/2000/svg"  width="64" height="64" class="float-left text-bootstrap"  viewBox="0 0 160 160">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-1" d="M125,47.091,86,24.5743a12,12,0,0,0-12,0L35,47.091a12.0336,12.0336,0,0,0-6,10.3923v45.0334a12.0335,12.0335,0,0,0,6,10.3923l39,22.5166a11.9993,11.9993,0,0,0,12,0l39-22.5166a12.0335,12.0335,0,0,0,6-10.3923V57.4833A12.0336,12.0336,0,0,0,125,47.091Zm-2,55.4257a4,4,0,0,1-2,3.464L82,128.4974a4,4,0,0,1-4,0L39,105.9807a4,4,0,0,1-2-3.464V57.4833a4,4,0,0,1,2-3.4641L78,31.5025a4,4,0,0,1,4,0l39,22.5167a4,4,0,0,1,2,3.4641Z"/>
+    <path class="cls-1" d="M103.0216,93.0379h-2.866a4,4,0,0,0-1.9246.4935L80.95,103.0167,61,91.4981V68.5206L80.95,57.002l17.2894,9.455a4,4,0,0,0,1.9192.4905h2.8632a2,2,0,0,0,2-2V62.2357a2,2,0,0,0-1.04-1.7547L84.793,49.9854a8.0391,8.0391,0,0,0-7.8428.09L57,61.5929A8.0243,8.0243,0,0,0,53,68.5216v22.976a8,8,0,0,0,4,6.9283l19.95,11.5185a8.0422,8.0422,0,0,0,7.8433.0879l19.19-10.5311a2,2,0,0,0,1.0378-1.7534v-2.71A2,2,0,0,0,103.0216,93.0379Z"/>
+  </g>
+</svg>
+
+                <div>
+                  <div class="fw-semibold">CoreUI for&nbsp;<span class="text-bootstrap">Bootstrap</span></div>
+                  <div>UI Components for Bootstrap</div>
+                </div>
+              </a>
+              <a class="dropdown-item d-flex align-items-center ps-0" href="/react/">
+                <svg xmlns="http://www.w3.org/2000/svg"  width="64" height="64" class="float-left text-react"  viewBox="0 0 160 160">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-1" d="M125,47.091,86,24.5743a12,12,0,0,0-12,0L35,47.091a12.0336,12.0336,0,0,0-6,10.3923v45.0334a12.0335,12.0335,0,0,0,6,10.3923l39,22.5166a11.9993,11.9993,0,0,0,12,0l39-22.5166a12.0335,12.0335,0,0,0,6-10.3923V57.4833A12.0336,12.0336,0,0,0,125,47.091Zm-2,55.4257a4,4,0,0,1-2,3.464L82,128.4974a4,4,0,0,1-4,0L39,105.9807a4,4,0,0,1-2-3.464V57.4833a4,4,0,0,1,2-3.4641L78,31.5025a4,4,0,0,1,4,0l39,22.5167a4,4,0,0,1,2,3.4641Z"/>
+    <path class="cls-1" d="M103.0216,93.0379h-2.866a4,4,0,0,0-1.9246.4935L80.95,103.0167,61,91.4981V68.5206L80.95,57.002l17.2894,9.455a4,4,0,0,0,1.9192.4905h2.8632a2,2,0,0,0,2-2V62.2357a2,2,0,0,0-1.04-1.7547L84.793,49.9854a8.0391,8.0391,0,0,0-7.8428.09L57,61.5929A8.0243,8.0243,0,0,0,53,68.5216v22.976a8,8,0,0,0,4,6.9283l19.95,11.5185a8.0422,8.0422,0,0,0,7.8433.0879l19.19-10.5311a2,2,0,0,0,1.0378-1.7534v-2.71A2,2,0,0,0,103.0216,93.0379Z"/>
+  </g>
+</svg>
+
+                <div>
+                  <div class="fw-semibold">CoreUI for&nbsp;<span class="text-react">React.js</span></div>
+                  <div>UI Components for React.js</div>
+                </div>
+              </a>
+              <a class="dropdown-item d-flex align-items-center ps-0" href="/vue/">
+                <svg xmlns="http://www.w3.org/2000/svg"  width="64" height="64" class="float-left text-vue"  viewBox="0 0 160 160">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: currentColor;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-1" d="M125,47.091,86,24.5743a12,12,0,0,0-12,0L35,47.091a12.0336,12.0336,0,0,0-6,10.3923v45.0334a12.0335,12.0335,0,0,0,6,10.3923l39,22.5166a11.9993,11.9993,0,0,0,12,0l39-22.5166a12.0335,12.0335,0,0,0,6-10.3923V57.4833A12.0336,12.0336,0,0,0,125,47.091Zm-2,55.4257a4,4,0,0,1-2,3.464L82,128.4974a4,4,0,0,1-4,0L39,105.9807a4,4,0,0,1-2-3.464V57.4833a4,4,0,0,1,2-3.4641L78,31.5025a4,4,0,0,1,4,0l39,22.5167a4,4,0,0,1,2,3.4641Z"/>
+    <path class="cls-1" d="M103.0216,93.0379h-2.866a4,4,0,0,0-1.9246.4935L80.95,103.0167,61,91.4981V68.5206L80.95,57.002l17.2894,9.455a4,4,0,0,0,1.9192.4905h2.8632a2,2,0,0,0,2-2V62.2357a2,2,0,0,0-1.04-1.7547L84.793,49.9854a8.0391,8.0391,0,0,0-7.8428.09L57,61.5929A8.0243,8.0243,0,0,0,53,68.5216v22.976a8,8,0,0,0,4,6.9283l19.95,11.5185a8.0422,8.0422,0,0,0,7.8433.0879l19.19-10.5311a2,2,0,0,0,1.0378-1.7534v-2.71A2,2,0,0,0,103.0216,93.0379Z"/>
+  </g>
+</svg>
+
+                <div>
+                  <div class="fw-semibold">CoreUI for&nbsp;<span class="text-vue">Vue.js</span></div>
+                  <div>UI Components for Vue.js</div>
+                </div>
+              </a>
+            </div>
+          </li><li class="nav-item dropdown px-lg-2">
+            <a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+              Templates
+            </a>
+            <div class="dropdown-menu border-0">
+              <a class="dropdown-item py-2" href="/themes-templates/admin-dashboard/angular/">
+                <span class="framework-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 188 200">
+  <g fill="none" fill-rule="nonzero">
+    <path fill="#DD0031" d="M94 0 .9 33.2l14.2 123.1L94 200l78.9-43.7 14.2-123.1z"/>
+    <path fill="#C3002F" d="M94 0v22.2-.1V200l78.9-43.7 14.2-123.1z"/>
+    <path fill="#FFF" d="M94 22.1 35.8 152.6h21.7l11.7-29.2h49.4l11.7 29.2H152L94 22.1Zm17 83.3H77l17-40.9 17 40.9Z"/>
+  </g>
+</svg></span>
+                <span class="text-angular">Angular</span> Admin Templates
+              </a>
+              <a class="dropdown-item py-2" href="/themes-templates/admin-dashboard/bootstrap/">
+                <span class="framework-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 408">
+  <defs>
+    <linearGradient id="bootstrap2-a" x1="14.859%" x2="102.242%" y1="19.93%" y2="75.205%">
+      <stop offset="0%" stop-color="#9013FE"/>
+      <stop offset="100%" stop-color="#6610F2"/>
+    </linearGradient>
+    <linearGradient id="bootstrap2-b" x1="26.561%" x2="61.603%" y1="6.582%" y2="84.523%">
+      <stop offset="0%" stop-color="#FFF"/>
+      <stop offset="100%" stop-color="#F1E5FC"/>
+    </linearGradient>
+  </defs>
+  <g fill="none">
+    <path fill="url(#bootstrap2-a)" d="M56.481 53.32C55.515 25.58 77.128 0 106.342 0h299.353c29.214 0 50.827 25.58 49.861 53.32-.928 26.647.277 61.165 8.964 89.31 8.715 28.232 23.411 46.077 47.48 48.37v26c-24.069 2.293-38.765 20.138-47.48 48.37-8.687 28.145-9.892 62.663-8.964 89.311.966 27.739-20.647 53.319-49.861 53.319H106.342c-29.214 0-50.827-25.58-49.86-53.319.927-26.648-.278-61.166-8.966-89.311C38.802 237.138 24.07 219.293 0 217v-26c24.069-2.293 38.802-20.138 47.516-48.37 8.688-28.145 9.893-62.663 8.965-89.31Z"/>
+    <path fill="url(#bootstrap2-b)" stroke="#FFF" d="M267.103 312.457c47.297 0 75.798-23.158 75.798-61.355 0-28.873-20.336-49.776-50.532-53.085v-1.203c22.185-3.609 39.594-24.211 39.594-47.219 0-32.783-25.882-54.138-65.322-54.138h-88.74v217h89.202Zm-54.692-189.48h45.911c24.958 0 39.131 11.128 39.131 31.279 0 21.505-16.484 33.535-46.372 33.535h-38.67v-64.814Zm0 161.961v-71.431h45.602c32.661 0 49.608 12.03 49.608 35.49 0 23.459-16.484 35.941-47.605 35.941h-47.605Z"/>
+  </g>
+</svg></span>
+                <span class="text-bootstrap">Bootstrap</span> Admin Templates
+              </a>
+              <a class="dropdown-item py-2" href="/themes-templates/admin-dashboard/next-js/">
+                <span class="framework-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 40 40">
+  <defs>
+    <linearGradient id="next2-c" x1="55.633%" x2="83.228%" y1="56.385%" y2="96.08%">
+      <stop offset="0%" stop-color="#FFF"/>
+      <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="next2-d" x1="50%" x2="49.953%" y1="0%" y2="73.438%">
+      <stop offset="0%" stop-color="#FFF"/>
+      <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
+    </linearGradient>
+    <circle id="next2-a" cx="20" cy="20" r="20"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <mask id="next2-b" fill="#fff">
+      <use xlink:href="#next2-a"/>
+    </mask>
+    <g fill-rule="nonzero" mask="url(#next2-b)">
+      <circle cx="20" cy="20" r="20" fill="#000"/>
+      <path fill="url(#next2-c)" d="M33.224 35.004 15.364 12H12v15.993h2.692V15.42L31.11 36.632c.74-.496 1.447-1.04 2.113-1.628Z"/>
+      <path fill="url(#next2-d)" d="M25.556 12h2.667v16h-2.667z"/>
+    </g>
+  </g>
+</svg></span>
+                <span class="text-next-js">Next.js</span> Admin Templates
+              </a>
+              <a class="dropdown-item py-2" href="/themes-templates/admin-dashboard/react/">
+                <span class="framework-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.5 -10.23174 23 20.46348">
+  <title>React Logo</title>
+  <circle cx="0" cy="0" r="2.05" fill="#61dafb"/>
+  <g stroke="#61dafb" stroke-width="1" fill="none">
+    <ellipse rx="11" ry="4.2"/>
+    <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
+    <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+  </g>
+</svg>
+</span>
+                <span class="text-react">React.js</span> Admin Templates
+              </a>
+              <a class="dropdown-item py-2" href="/themes-templates/admin-dashboard/vue/">
+                <span class="framework-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.76 226.69">
+  <path fill="#41b883" d="m161.096.001-30.224 52.35L100.647.002H-.005L130.872 226.69 261.749 0z"/>
+  <path fill="#34495e" d="m161.096.001-30.224 52.35L100.647.002H52.346l78.526 136.01L209.398.001z"/>
+</svg></span>
+                <span class="text-vue">Vue.js</span> Admin Templates
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown px-lg-2">
+            <a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+              Data Grid
+            </a>
+            <div class="dropdown-menu border-0">
+              <a class="dropdown-item py-2" href="/data-grid/">
+                <span class="framework-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 102 115">
+  <g style="fill: currentColor">
+    <path d="M96 24.124 57 1.608a12 12 0 0 0-12 0L6 24.124a12.034 12.034 0 0 0-6 10.393V79.55a12.033 12.033 0 0 0 6 10.392l39 22.517a12 12 0 0 0 12 0l39-22.517a12.033 12.033 0 0 0 6-10.392V34.517a12.034 12.034 0 0 0-6-10.393ZM94 79.55a4 4 0 0 1-2 3.464l-39 22.517a4 4 0 0 1-4 0L10 83.014a4 4 0 0 1-2-3.464V34.517a4 4 0 0 1 2-3.464L49 8.536a4 4 0 0 1 4 0l39 22.517a4 4 0 0 1 2 3.464V79.55Z"/>
+    <path d="M74.022 70.071h-2.866a4 4 0 0 0-1.925.494L51.95 80.05 32 68.531V45.554l19.95-11.519 17.29 9.455a4 4 0 0 0 1.919.49h2.863a2 2 0 0 0 2-2v-2.71a2 2 0 0 0-1.04-1.756L55.793 27.02a8.04 8.04 0 0 0-7.843.09L28 38.626a8.025 8.025 0 0 0-4 6.929V68.53a8 8 0 0 0 4 6.928l19.95 11.519a8.043 8.043 0 0 0 7.843.088l19.19-10.532a2 2 0 0 0 1.038-1.753v-2.71a2 2 0 0 0-2-2Z"/>
+  </g>
+</svg>
+</span>
+                Data Grid Overview
+              </a>
+              <a class="dropdown-item py-2" href="/data-grid/angular/">
+                <span class="framework-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 188 200">
+  <g fill="none" fill-rule="nonzero">
+    <path fill="#DD0031" d="M94 0 .9 33.2l14.2 123.1L94 200l78.9-43.7 14.2-123.1z"/>
+    <path fill="#C3002F" d="M94 0v22.2-.1V200l78.9-43.7 14.2-123.1z"/>
+    <path fill="#FFF" d="M94 22.1 35.8 152.6h21.7l11.7-29.2h49.4l11.7 29.2H152L94 22.1Zm17 83.3H77l17-40.9 17 40.9Z"/>
+  </g>
+</svg></span>
+                <span class="text-angular">Angular</span> Data Grid
+              </a>
+              <a class="dropdown-item py-2" href="/data-grid/javascript/">
+                <span class="framework-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 630">
+  <path fill="#f7df1e" d="M0 0h630v630H0z"/>
+  <path d="M423.2 492.19c12.69 20.72 29.2 35.95 58.4 35.95 24.53 0 40.2-12.26 40.2-29.2 0-20.3-16.1-27.49-43.1-39.3l-14.8-6.35c-42.72-18.2-71.1-41-71.1-89.2 0-44.4 33.83-78.2 86.7-78.2 37.64 0 64.7 13.1 84.2 47.4l-46.1 29.6c-10.15-18.2-21.1-25.37-38.1-25.37-17.34 0-28.33 11-28.33 25.37 0 17.76 11 24.95 36.4 35.95l14.8 6.34c50.3 21.57 78.7 43.56 78.7 93 0 53.3-41.87 82.5-98.1 82.5-54.98 0-90.5-26.2-107.88-60.54zm-209.13 5.13c9.3 16.5 17.76 30.45 38.1 30.45 19.45 0 31.72-7.61 31.72-37.2v-201.3h59.2v202.1c0 61.3-35.94 89.2-88.4 89.2-47.4 0-74.85-24.53-88.81-54.075z"/>
+</svg></span>
+                JavaScript Data Grid
+              </a>
+              <a class="dropdown-item py-2" href="/data-grid/react/">
+                <span class="framework-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.5 -10.23174 23 20.46348">
+  <title>React Logo</title>
+  <circle cx="0" cy="0" r="2.05" fill="#61dafb"/>
+  <g stroke="#61dafb" stroke-width="1" fill="none">
+    <ellipse rx="11" ry="4.2"/>
+    <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
+    <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+  </g>
+</svg>
+</span>
+                <span class="text-react">React.js</span> Data Grid
+              </a>
+              <a class="dropdown-item py-2" href="/data-grid/vue/">
+                <span class="framework-icon me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.76 226.69">
+  <path fill="#41b883" d="m161.096.001-30.224 52.35L100.647.002H-.005L130.872 226.69 261.749 0z"/>
+  <path fill="#34495e" d="m161.096.001-30.224 52.35L100.647.002H52.346l78.526 136.01L209.398.001z"/>
+</svg></span>
+                <span class="text-vue">Vue.js</span> Data Grid
+              </a>
+            </div>
+          </li>
+          <li class="nav-item px-lg-2">
+            <a href="/scheduler/" class="nav-link">
+              Scheduler
+            </a>
+          </li><li class="nav-item px-lg-2">
+            <a href="/product/next-js-boilerplate/" class="nav-link">
+              Boilerplate
+            </a>
+          </li>
+          <li class="nav-item dropdown me-auto px-lg-2">
+            <a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+              Contact & Support
+            </a>
+            <div class="dropdown-menu border-0">
+              <a class="dropdown-item" href="/contact/sales/">
+                <svg id="cil-people" viewBox="0 0 512 512" width="22px" class="d-lg-down-none">
+                  <path fill="var(--ci-primary-color, currentColor)" d="M462.541,316.3l-64.344-42.1,24.774-45.418A79.124,79.124,0,0,0,432.093,192V120A103.941,103.941,0,0,0,257.484,43.523L279.232,67a71.989,71.989,0,0,1,120.861,53v72a46.809,46.809,0,0,1-5.215,21.452L355.962,284.8l89.058,58.274a42.16,42.16,0,0,1,19.073,35.421V432h-72v32h104V378.494A74.061,74.061,0,0,0,462.541,316.3Z" class="ci-primary"></path><path fill="var(--ci-primary-color, currentColor)" d="M318.541,348.3l-64.343-42.1,24.773-45.418A79.124,79.124,0,0,0,288.093,224V152A104.212,104.212,0,0,0,184.04,47.866C126.723,47.866,80.093,94.581,80.093,152v72a78,78,0,0,0,9.015,36.775l24.908,45.664L50.047,348.3A74.022,74.022,0,0,0,16.5,410.4L16,496H352.093V410.494A74.061,74.061,0,0,0,318.541,348.3ZM320.093,464H48.186l.31-53.506a42.158,42.158,0,0,1,19.073-35.421l88.682-58.029L117.2,245.452A46.838,46.838,0,0,1,112.093,224V152a72,72,0,1,1,144,0v72a46.809,46.809,0,0,1-5.215,21.452L211.962,316.8l89.058,58.274a42.16,42.16,0,0,1,19.073,35.421Z" class="ci-primary"></path>
+                </svg>
+                <span class="ms-2">Contact sales</span>
+              </a>
+              <a class="dropdown-item" href="/about/services/">
+                <svg id="cil-people" viewBox="0 0 512 512" width="22px" class="d-lg-down-none">
+                  <path fill="var(--ci-primary-color, currentcolor)" d="M262.254 128h103.463l67.933 64H496v-32h-49.65l-67.934-64H120.829a25.24 25.24 0 0 0-18.177 7.786l-61.285 64.361L16.093 168l-.186 32 39.1.227L123.782 128H217l-74.341 74.333a58.153 58.153 0 0 0 82.237 82.245l24.065-24.062 95.413 95.414-19.244 20.194a11.337 11.337 0 0 1-16.224.195l-54.16-54.16-22.627 22.628 39.988 39.987-18.649 19.057a11.335 11.335 0 0 1-16.118.086L182.916 349.5l-22.627 22.628 24.67 24.669-14.786 15.656a11.34 11.34 0 0 1-16.219.271L70.71 328H16v32h41.29l73.9 75.208.1.1A42.98 42.98 0 0 0 161.911 448h.639a43 43 0 0 0 30.887-13.576l14.163-14.996 7.117 7.117a43.02 43.02 0 0 0 30.636 12.693h.24a43.03 43.03 0 0 0 30.739-13.025l19.572-20a43 43 0 0 0 21.006 5.427h.539A43 43 0 0 0 348.3 398.2l20.382-21.39h62.044l40-40.809H496V304h-38.722l-40 40.809H378.5L271.586 237.89l30.695-30.69-22.627-22.63-77.388 77.379a26.153 26.153 0 0 1-36.983-36.988Z" class="ci-primary"/>                </svg>
+                <span class="ms-2">Hire us</span>
+              </a>
+              <a class="dropdown-item" href="/support/">
+                <svg id="cil-headphones-mic" viewBox="0 0 512 512" width="22px">
+                  <path fill="var(--ci-primary-color, currentColor)" d="M448,184H400V160c0-79.4-64.6-144-144-144S112,80.6,112,160v24H64a48.055,48.055,0,0,0-48,48V360a48.055,48.055,0,0,0,48,48h48a32.036,32.036,0,0,0,32-32V160a112,112,0,0,1,224,0V446.532A17.488,17.488,0,0,1,350.532,464H224v32H350.532A49.524,49.524,0,0,0,400,446.532V408h48a48.055,48.055,0,0,0,48-48V232A48.055,48.055,0,0,0,448,184ZM112,376H64a16.019,16.019,0,0,1-16-16V232a16.019,16.019,0,0,1,16-16h48v56h.008l.012,104Zm352-16a16.019,16.019,0,0,1-16,16H400V216h48a16.019,16.019,0,0,1,16,16Z" class="ci-primary"></path>
+                </svg>
+                <span class="ms-2">Technical support</span>
+                <span class="ms-2 badge-pro badge-pro-coreui"></span>
+              </a>
+              <a class="dropdown-item" href="/download/">
+                <svg id="cil-cart-arrow-down" viewBox="0 0 512 512" width="22px">
+                  <polygon fill="var(--ci-primary-color, currentColor)" points="160 72 160 104 464 104 464 191.382 428.5 304.039 149.932 304.039 109.932 16 16 16 16 48 82.068 48 122.068 336.039 451.968 336.039 496 196.305 496 72 160 72" class="ci-primary"></polygon><path fill="var(--ci-primary-color, currentColor)" d="M176.984,368.344a64,64,0,1,0,64,64A64.073,64.073,0,0,0,176.984,368.344Zm0,96a32,32,0,1,1,32-32A32.036,32.036,0,0,1,176.984,464.344Z" class="ci-primary"></path><path fill="var(--ci-primary-color, currentColor)" d="M400.984,368.344a64,64,0,1,0,64,64A64.073,64.073,0,0,0,400.984,368.344Zm0,96a32,32,0,1,1,32-32A32.036,32.036,0,0,1,400.984,464.344Z" class="ci-primary"></path><polygon fill="var(--ci-primary-color, currentColor)" points="280 136 280 213.471 237.265 170.735 214.637 193.362 295.196 273.921 376.559 192.559 353.932 169.931 312 211.862 312 136 280 136" class="ci-primary"></polygon>
+                </svg>
+                <span class="ms-2">Redownload your product</span>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+            <hr class="d-lg-none my-2 text-white-50">
+          </li><li class="nav-item px-1">
+            <a href="#pricing" class="btn btn-border btn-border-cta-framework btn-sm">
+              Get Data Grid — $199 →
+            </a>
+          </li></ul>
+      </div>
+    </div>
+  </div>
+</nav>
+      
+<div class="page-header-data-grid">
+  <div class="container-lg">
+    <div class="row align-items-center py-5 g-5">
+      <div class="col-lg-6"><div class="dg-eyebrow">CoreUI PRO · Data Grid · React</div><div class="page-title">
+          <h1>React Data Grid Component</h1>
+        </div>
+        <div class="page-description my-4"><p>A <strong>React data grid</strong> component for data-heavy applications: sorting, filtering, pagination, row virtualization, infinite scroll, column pinning, inline editing, row selection and reordering, spreadsheet-style cell selection, Excel and CSV export, and printing — as a native <code>&lt;CDataGrid&gt;</code> component that supports React 17, 18, and 19.</p> <p>One commercial licence ($199 early access) covers the React edition together with the Vue, Angular, and vanilla JavaScript editions of the same grid.</p></div>
+        <div class="buttons my-3">
+          <a href="#pricing" class="btn btn-cta btn-framework btn-xl">Get early access — $199</a>
+          <a href="#demo" class="btn btn-cta btn-white btn-xl">Live demo</a>
+        </div><div class="hero-note">React 19-ready · Virtualized for 100,000 rows · W3C ARIA grid pattern</div></div>
+      <div class="col-lg-6">
+        <div class="dg-hero-shell">
+          <div data-dg-demo="hero"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="main flex-grow-1">
+      
+<section class="section-lighter py-6" id="demo">
+  <div class="container-lg">
+    <div class="section-label">See it in action</div>
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <h2 class="dg-lead-title mb-4">A React grid that feels<br><em>like a real application.</em></h2>
+      </div>
+      <div class="col-lg-6">
+        <p class="dg-lead-desc">Sort, filter, search, pin, resize, reorder, select, and export — every interaction below runs on the same core your React app ships. No mockups, no video: this is the grid itself.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11 mx-auto">
+        <div class="dg-demo-shell">
+          <div data-dg-demo="full"></div>
+        </div>
+        <p class="dg-demo-note">A live <code>@coreui/data-grid</code> instance running on this page · <a href="/data-grid/#demo">open the full-page demo →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-light py-6" id="install">
+  <div class="container-lg">
+    <div class="section-label">Install and render your first grid</div>
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <h2 class="dg-lead-title mb-4">From <em>npm install</em><br>to a working grid.</h2>
+<p class="dg-lead-desc mb-4">Install the React data grid package, import <code>CDataGrid</code>, and pass <code>columns</code> and <code>items</code> — the sample on the right is a complete, runnable component. Every feature after that is a single prop: <code>columnFilters</code>, <code>rowSelection</code>, <code>pagination</code>.</p>
+<p class="dg-lead-desc mb-4"><strong>React 19-ready.</strong> The package supports React 17, 18, and 19 — one codebase, hooks-friendly, no legacy context or deprecated lifecycles.</p>
+<p class="dg-lead-desc"><strong>Using Next.js?</strong> The grid is an interactive client component: add <code>'use client'</code> at the top of the file and it drops straight into the App Router. Everything else — server-side data included — works the same. Full setup in the <a href="/data-grid/react/docs/getting-started/installation/">installation docs</a>.</p>
+      </div>
+      <div class="col-lg-7">
+        <div class="dg-code-window mb-4">
+  <div class="dg-code-titlebar"><span class="dg-code-dot r"></span><span class="dg-code-dot y"></span><span class="dg-code-dot g"></span><span class="dg-code-file">Terminal</span></div>
+<pre class="dg-code-body">npm install <span class="s">@coreui/react-data-grid</span></pre>
+</div>
+<div class="dg-code-window">
+  <div class="dg-code-titlebar"><span class="dg-code-dot r"></span><span class="dg-code-dot y"></span><span class="dg-code-dot g"></span><span class="dg-code-file">UsersGrid.tsx</span></div>
+<pre class="dg-code-body"><span class="s">'use client'</span> <span class="c">// Next.js App Router only</span>
+
+<span class="k">import</span> { CDataGrid } <span class="k">from</span> <span class="s">'@coreui/react-data-grid'</span>
+<span class="k">import</span> <span class="s">'@coreui/data-grid/dist/css/data-grid.css'</span>
+
+<span class="k">const</span> columns = [
+  { key: <span class="s">'name'</span>, label: <span class="s">'Name'</span> },
+  { key: <span class="s">'role'</span>, label: <span class="s">'Role'</span> },
+]
+
+<span class="k">export function</span> <span class="t">UsersGrid</span>({ items }) {
+  <span class="k">return</span> (
+    &lt;<span class="t">CDataGrid</span>
+      columns={columns}
+      items={items}
+      itemKey={(item) =&gt; <span class="t">String</span>(item.id)}
+      columnFilters
+      rowSelection
+      pagination
+    /&gt;
+  )
+}</pre>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-lighter py-6" id="features">
+  <div class="container-lg">
+    <div class="section-label">Every feature, one table</div>
+    <div class="row mb-5">
+      <div class="col-lg-6">
+        <h2 class="dg-lead-title mb-4">No enterprise tier.<br><em>Everything is included.</em></h2>
+      </div>
+      <div class="col-lg-6">
+        <p class="dg-lead-desc">Most commercial grids split sorting from "advanced" sorting and hold pinning, export, or server-side data behind an enterprise SKU. The CoreUI React data grid ships one edition: every feature below is in the single licence, documented, and TypeScript-typed.</p>
+      </div>
+    </div><div class="dg-table-wrap">
+      <table class="dg-table">
+        <thead>
+          <tr><th>Feature</th><th>What you get</th><th>React edition</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="/data-grid/react/docs/features/sorting/">Sorting</a></td>
+            <td>Single and multi-column sorting with custom comparators, plus a sorting-change event for server-side sorting.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/features/filtering/">Filtering</a></td>
+            <td>Global search and a per-column filter row with a full operator set — or bring your own filter UI per column.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/features/pagination/">Pagination</a></td>
+            <td>Client-side paging out of the box; server-driven paging through a data provider.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/features/virtualization/">Row virtualization</a></td>
+            <td>A recycling row model that stays fast at 100,000 rows and beyond — only visible rows exist in the DOM.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/columns/pinning/">Column pinning</a></td>
+            <td>Pin columns left or right with correct sticky offsets and edge shadows.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/columns/sizing/">Column sizing &amp; ordering</a></td>
+            <td>Drag to resize, drag headers to reorder, show and hide columns — all controllable state.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/features/editing/">Inline editing</a></td>
+            <td>Keyboard-first cell editing built on the grid navigation model.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/features/row-selection/">Row selection</a></td>
+            <td>Single, multi, and shift-click range selection that survives sorting, filtering, and paging.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/features/csv-export/">CSV export</a></td>
+            <td>Export the current view as a string or a download — formatters apply, so exports match the screen.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/features/server-side-data/">Server-side data</a></td>
+            <td>A debounced data provider flips sorting, filtering, and paging to your backend; stale responses are invalidated automatically.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/features/keyboard-navigation/">Keyboard navigation</a></td>
+            <td>The W3C ARIA grid pattern: a roving-tabindex active cell with arrow-key movement across the whole grid.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/features/slots/">Toolbar, slots &amp; custom cells</a></td>
+            <td>Replace the toolbar, pagination, and empty state; render any content per column in your framework&#39;s idiom.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/features/state/">State &amp; history</a></td>
+            <td>Read, persist, and restore the full grid state — sorting, filters, column layout, selection.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+          <tr>
+            <td><a href="/data-grid/react/docs/customization/localization/">Localization</a></td>
+            <td>Every built-in string is a label you can translate.</td>
+            <td class="dg-yes">✓ Included</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="dg-table-note">Every row links to its documentation page with runnable React examples. The full option, event, and method reference lives in the <a href="/data-grid/react/docs/api/options/">API docs</a>.</p>
+  </div>
+</section>
+
+
+<section class="section-dark py-6" id="performance">
+  <div class="container-lg">
+    <div class="section-label">Performance, measured honestly</div>
+    <div class="row mb-5 align-items-end">
+      <div class="col-lg-7">
+        <h2 class="dg-lead-title mb-0">Fast at 100,000 rows.<br><em>Small enough to not matter.</em></h2>
+      </div>
+      <div class="col-lg-5">
+        <p class="dg-lead-desc mt-4 mt-lg-0">Row virtualization keeps the DOM small: a 100,000-row grid renders a few dozen <code>&lt;tr&gt;</code> elements, not 100,000. Rows recycle as you scroll, so formatters stay off the hot path.</p>
+      </div>
+    </div>
+    <div class="dg-stats mb-5">
+      <div class="dg-stat">
+        <div class="num"><span>100,000</span> rows</div>
+        <div class="cap">The virtualization demo in the docs runs on 100,000 generated rows, client-side — sort, filter, and scroll it yourself.</div>
+      </div>
+      <div class="dg-stat">
+        <div class="num">~<span>48</span> KB</div>
+        <div class="cap">The minified JavaScript core, gzipped — measured on the published bundle. The stylesheet adds ~2.4 KB.</div>
+      </div>
+      <div class="dg-stat">
+        <div class="num">100% <span>typed</span></div>
+        <div class="cap">TypeScript-first API with typed columns, options, and events across every edition.</div>
+      </div>
+    </div>
+    <p class="dg-lead-desc" style="font-size:1rem">Beyond ~100k client-side rows, the honest answer is <a href="/data-grid/react/docs/features/server-side-data/" style="color:#8f9dff">server-side mode</a> — the grid hands sorting, filtering, and paging to your backend instead of pretending the browser is a database. How the virtualizer works, what <code>overscan</code> tunes, and when to switch modes is documented in the <a href="/data-grid/react/docs/guides/performance/" style="color:#8f9dff">performance guide</a>.</p>
+  </div>
+</section>
+
+
+<section class="section-light py-6" id="licence">
+  <div class="container-lg">
+    <div class="section-label">One licence, four frameworks</div>
+    <div class="row mb-5">
+      <div class="col-lg-6">
+        <h2 class="dg-lead-title mb-4">Buy one grid.<br><em>Get all four editions.</em></h2>
+      </div>
+      <div class="col-lg-6">
+        <p class="dg-lead-desc">MUI X is React-only. Most enterprise suites sell each framework as a separate product or bundle the grid into a 90-component platform. One CoreUI Data Grid licence covers the JavaScript core and the React, Vue, and Angular editions — with identical markup and one shared stylesheet, so multi-framework teams learn the grid once.</p>
+      </div>
+    </div>
+    <div class="tech-badges justify-content-center mb-5"><div class="tech-badge"><div class="tech-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 630">
+  <path fill="#f7df1e" d="M0 0h630v630H0z"/>
+  <path d="M423.2 492.19c12.69 20.72 29.2 35.95 58.4 35.95 24.53 0 40.2-12.26 40.2-29.2 0-20.3-16.1-27.49-43.1-39.3l-14.8-6.35c-42.72-18.2-71.1-41-71.1-89.2 0-44.4 33.83-78.2 86.7-78.2 37.64 0 64.7 13.1 84.2 47.4l-46.1 29.6c-10.15-18.2-21.1-25.37-38.1-25.37-17.34 0-28.33 11-28.33 25.37 0 17.76 11 24.95 36.4 35.95l14.8 6.34c50.3 21.57 78.7 43.56 78.7 93 0 53.3-41.87 82.5-98.1 82.5-54.98 0-90.5-26.2-107.88-60.54zm-209.13 5.13c9.3 16.5 17.76 30.45 38.1 30.45 19.45 0 31.72-7.61 31.72-37.2v-201.3h59.2v202.1c0 61.3-35.94 89.2-88.4 89.2-47.4 0-74.85-24.53-88.81-54.075z"/>
+</svg></div>JavaScript</div><div class="tech-badge"><div class="tech-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-11.5 -10.23174 23 20.46348">
+  <title>React Logo</title>
+  <circle cx="0" cy="0" r="2.05" fill="#61dafb"/>
+  <g stroke="#61dafb" stroke-width="1" fill="none">
+    <ellipse rx="11" ry="4.2"/>
+    <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
+    <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+  </g>
+</svg>
+</div>React</div><div class="tech-badge"><div class="tech-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.76 226.69">
+  <path fill="#41b883" d="m161.096.001-30.224 52.35L100.647.002H-.005L130.872 226.69 261.749 0z"/>
+  <path fill="#34495e" d="m161.096.001-30.224 52.35L100.647.002H52.346l78.526 136.01L209.398.001z"/>
+</svg></div>Vue</div><div class="tech-badge"><div class="tech-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 188 200">
+  <g fill="none" fill-rule="nonzero">
+    <path fill="#DD0031" d="M94 0 .9 33.2l14.2 123.1L94 200l78.9-43.7 14.2-123.1z"/>
+    <path fill="#C3002F" d="M94 0v22.2-.1V200l78.9-43.7 14.2-123.1z"/>
+    <path fill="#FFF" d="M94 22.1 35.8 152.6h21.7l11.7-29.2h49.4l11.7 29.2H152L94 22.1Zm17 83.3H77l17-40.9 17 40.9Z"/>
+  </g>
+</svg></div>Angular</div></div>
+    <div class="dg-table-wrap">
+      <table class="dg-table">
+        <thead>
+          <tr><th>A team using two frameworks</th><th>CoreUI Data Grid</th><th>Per-framework vendors</th><th>MUI X</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Frameworks covered</td>
+            <td class="dg-yes">JavaScript, React, Vue &amp; Angular</td>
+            <td>One product per framework</td>
+            <td>React only</td>
+          </tr>
+          <tr>
+            <td>Licences to buy</td>
+            <td class="dg-yes">One</td>
+            <td>One per framework, per developer</td>
+            <td>One — plus a second vendor for the other framework</td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td class="dg-yes">$199 per developer early access ($349 after launch), all editions included</td>
+            <td>Per-developer subscription per product, typically renewed yearly</td>
+            <td>Per-developer plan, React only</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-lighter py-6" id="ai-tools">
+  <div class="container-lg">
+    <div class="section-label">Works with your AI tooling</div>
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <h2 class="dg-lead-title mb-4">Your coding agent<br><em>already knows this grid.</em></h2>
+        <p class="dg-lead-desc mb-4">Teams increasingly evaluate a library by whether Claude, Copilot, or Cursor can drive it. CoreUI Data Grid ships an official <a href="/data-grid/react/docs/ai-tools/mcp/">MCP server</a> that gives your assistant live access to the current documentation — options, events, methods, and examples — instead of stale training data.</p>
+        <p class="dg-lead-desc">The docs also publish <a href="/data-grid/react/docs/ai-tools/llms-txt/"><code>llms.txt</code> and <code>llms-full.txt</code></a>, and every documentation page has a Markdown version — append <code>.md</code> to its URL.</p>
+      </div>
+      <div class="col-lg-7">
+        <div class="dg-code-window">
+          <div class="dg-code-titlebar"><span class="dg-code-dot r"></span><span class="dg-code-dot y"></span><span class="dg-code-dot g"></span><span class="dg-code-file">Claude Code</span></div>
+<pre class="dg-code-body">claude mcp add coreui-data-grid -s user -- \
+  npx -y <span class="s">@coreui/docs-mcp</span> \
+  --framework <span class="s">react</span> \
+  --base-path <span class="s">/data-grid/react/docs</span></pre>
+        </div>
+        <p class="dg-demo-note text-start">Configs for Cursor, VS Code, Windsurf, and Claude Desktop are in the <a href="/data-grid/react/docs/ai-tools/mcp/">MCP docs</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-light py-6" id="headless">
+  <div class="container-lg">
+    <div class="section-label">Headless or styled — your call</div>
+    <div class="row g-5">
+      <div class="col-md-6">
+        <div class="feature-title">The styled grid, out of the box</div>
+        <p class="dg-lead-desc" style="font-size:1rem">Drop it in and ship: toolbar, filters, pagination, and theming through CSS custom properties that follow your CoreUI theme — dark mode included. Custom cell rendering per column, in React's native idiom, without leaving the component.</p>
+      </div>
+      <div class="col-md-6">
+        <div class="feature-title">The headless core, when you outgrow it</div>
+        <p class="dg-lead-desc" style="font-size:1rem">Reach past the rendered grid to the underlying table instance — the same "bring your own UI" control a headless library gives you, with a styled grid to fall back on. Custom row models, derived state, and integrations are covered in the <a href="/data-grid/react/docs/api/headless/">headless API docs</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-lighter py-6" id="accessibility">
+  <div class="container-lg">
+    <div class="section-label">Accessibility and keyboard support</div>
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <h2 class="dg-lead-title mb-4">An accessible data grid,<br><em>to a named standard.</em></h2>
+        <p class="dg-lead-desc">With <code>cellNavigation</code> on, the grid implements the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/grid/">W3C WAI-ARIA grid pattern</a> — not a vague "accessible" checkbox. Without it, the grid deliberately keeps native table semantics rather than claiming <code>role="grid"</code> without the full keyboard contract.</p>
+      </div>
+      <div class="col-lg-7">
+        <ul class="inside-list">
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="icon-check">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="425.373 89.373 196 318.745 86.627 209.373 41.373 254.627 196 409.255 470.627 134.627 425.373 89.373" class="ci-primary"/>
+</svg><span><strong>One tab stop, roving focus</strong> — <span class="dg-kbd">Tab</span> enters the grid once; <span class="dg-kbd">←→↑↓</span> move the active cell, <span class="dg-kbd">Home</span>/<span class="dg-kbd">End</span> jump within a row, <span class="dg-kbd">Ctrl+Home</span>/<span class="dg-kbd">Ctrl+End</span> across the grid</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="icon-check">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="425.373 89.373 196 318.745 86.627 209.373 41.373 254.627 196 409.255 470.627 134.627 425.373 89.373" class="ci-primary"/>
+</svg><span><strong>Actions on the keyboard</strong> — <span class="dg-kbd">Enter</span> sorts a header or starts editing, <span class="dg-kbd">Space</span> toggles row selection, <span class="dg-kbd">Escape</span> steps back out of cell content</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="icon-check">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="425.373 89.373 196 318.745 86.627 209.373 41.373 254.627 196 409.255 470.627 134.627 425.373 89.373" class="ci-primary"/>
+</svg><span><strong>Screen-reader signals</strong> — correct <code>aria-rowcount</code>/<code>aria-rowindex</code> and <code>aria-colcount</code>/<code>aria-colindex</code> even while virtualized, <code>aria-busy</code> during server loads, and live-region announcements of result counts as filters change</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="icon-check">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="425.373 89.373 196 318.745 86.627 209.373 41.373 254.627 196 409.255 470.627 134.627 425.373 89.373" class="ci-primary"/>
+</svg><span><strong>Keyboard-accessible chrome</strong> — the column menu follows the ARIA menu pattern, with "Move left / Move right" as a keyboard alternative to drag-and-drop reordering</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="icon-check">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="425.373 89.373 196 318.745 86.627 209.373 41.373 254.627 196 409.255 470.627 134.627 425.373 89.373" class="ci-primary"/>
+</svg><span><strong>Documented limits</strong> — <code>cellNavigation</code> is opt-in in this release; the <a href="/data-grid/react/docs/guides/accessibility/">accessibility guide</a> states exactly what is supported today and what ships after NVDA and VoiceOver verification</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-light py-6" id="ecosystem">
+  <div class="container-lg">
+    <div class="section-label">Part of the CoreUI system</div>
+    <div class="row mb-5">
+      <div class="col-lg-6">
+        <h2 class="dg-lead-title mb-4">Built by a team<br><em>you already depend on.</em></h2>
+      </div>
+      <div class="col-lg-6">
+        <p class="dg-lead-desc">CoreUI has shipped open-source and commercial UI components since 2013: more than <strong>43,000 GitHub repositories</strong> depend on <code>coreui/coreui</code>, and the libraries see roughly <strong>490,000 npm downloads a week</strong>. The Data Grid is built and supported by the same team — alongside the <a href="/react/">CoreUI for React component library</a> it pairs with.</p>
+      </div>
+    </div>
+    <div class="text-center">
+<div class="row customers-grid"><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#accenture"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#adobe"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#apple"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#bankofamerica"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#bosch"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#canon"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#capgemini"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#cisco"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#citi"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#cybex"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#dell"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#deloitte"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#dhl"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#diesel"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#ea"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#emc"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#gsk"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#hearst"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#hitachi"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#intel"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#ironman"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#panasonic"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#saint-gobain"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#maersk"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#NBCUni"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#ncr"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#nvidia"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#olx"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#paypal"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#philips"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#plus500"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#princeton"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#raiffeisen"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#rakuten"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#rockstar"></use>
+			</svg>
+		</div><div class="col-2 col-md-1 py-3">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<use xlink:href="/sprites/customers.svg#samsung"></use>
+			</svg>
+		</div></div></div>
+  </div>
+</section>
+
+
+<section class="section-lighter py-6" id="faq">
+  <div class="container-lg">
+    <div class="section-label">Frequently asked questions</div>
+    <div class="row"><div class="col-lg-6">
+        <div class="faq-item">
+          <div class="faq-q">How does CoreUI Data Grid compare to AG Grid React and MUI X Data Grid?</div>
+          <p class="faq-a">Both are excellent grids with a different trade-off. AG Grid keeps its most-wanted features in a separate Enterprise tier, and MUI X splits features across Pro and Premium plans and only exists for React. CoreUI Data Grid ships every feature in one edition and one licence that also covers Vue, Angular, and vanilla JavaScript — Excel export, cell selection with clipboard copy, print, inline editing, and row reordering included, not held back for a higher tier. It covers less surface than AG Grid Enterprise today; tree data, master-detail panels, row grouping with aggregation, and a summary row are next on the <a href="/data-grid/docs/resources/roadmap/">roadmap</a>. See the full breakdown in <a href="/compare/ag-grid-alternative/">AG Grid alternatives: 8 data grids compared</a>.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Does it support React 19?</div>
+          <p class="faq-a">Yes. <code>@coreui/react-data-grid</code> supports React 17, 18, and 19 from a single package — hooks-based, with no deprecated lifecycles and no legacy context.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Does it work with Next.js and the App Router?</div>
+          <p class="faq-a">Yes. The grid is an interactive client component, so mark the file with <code>'use client'</code> and use it anywhere in the App Router or the Pages Router. Server-side sorting, filtering, and paging work through the data provider exactly as in any other React app.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How large a dataset can the React grid handle?</div>
+          <p class="faq-a">Client-side, row virtualization keeps the grid fast at 100,000 rows — the docs include a live demo running on exactly that. Beyond that scale, switch to server-side mode and let your backend drive paging, sorting, and filtering; the grid emits the state changes and invalidates stale responses automatically.</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="faq-item">
+          <div class="faq-q">Can I render my own cells and toolbar?</div>
+          <p class="faq-a">Yes — per-column custom cells are regular React render functions, and the toolbar, pagination, and empty state are replaceable slots. If you outgrow the styled grid entirely, the headless API exposes the underlying table instance for full "bring your own UI" control.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Is the React data grid accessible?</div>
+          <p class="faq-a">With <code>cellNavigation</code> enabled it implements the W3C WAI-ARIA grid pattern — a single tab stop with a roving-tabindex active cell, arrow-key navigation, and correct ARIA row and column indices even while virtualized. The accessibility guide documents exactly what is supported today and what is planned.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do I need the CoreUI component library to use it?</div>
+          <p class="faq-a">No. The grid needs the table styles from the <code>@coreui/coreui</code> or <code>@coreui/coreui-pro</code> stylesheet (v5+) on the page, but your app doesn't have to be built with CoreUI components — it drops into any React application.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What does &#34;early access&#34; mean?</div>
+          <p class="faq-a">The Data Grid is at version 0.3.0 — stable enough to build on, with 1.0.0 planned for early September 2026. Until then, occasional small breaking changes land with documented migration notes, and the $199 early-access price is the lowest the grid will ever have (it rises to $349 at launch).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-light py-6" id="updates">
+  <div class="container-lg">
+    <div class="section-label">Latest updates</div>
+    <div class="row">
+      <div class="col-lg-8">
+        <ul class="dg-updates">
+          <li><span class="dg-update-version">0.3.0-rc.0</span><span>Current early-access release — every feature on this page is shipped and documented.</span></li>
+          <li><span class="dg-update-version">1.0.0</span><span>Planned for early September 2026. Until then, occasional small breaking changes land with migration notes in the changelog.</span></li>
+        </ul>
+        <p class="dg-table-note">Page last updated August 9, 2026 · Roadmap: <a href="/data-grid/react/docs/resources/roadmap/">what's next for the Data Grid</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-lighter py-6">
+  <div class="container-lg">
+    <div class="section-label">The same grid in your other stacks</div>
+    <div class="dg-fw-links">
+  <a class="dg-fw-link" href="/data-grid/javascript/">
+    <div class="tech-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 630">
+  <path fill="#f7df1e" d="M0 0h630v630H0z"/>
+  <path d="M423.2 492.19c12.69 20.72 29.2 35.95 58.4 35.95 24.53 0 40.2-12.26 40.2-29.2 0-20.3-16.1-27.49-43.1-39.3l-14.8-6.35c-42.72-18.2-71.1-41-71.1-89.2 0-44.4 33.83-78.2 86.7-78.2 37.64 0 64.7 13.1 84.2 47.4l-46.1 29.6c-10.15-18.2-21.1-25.37-38.1-25.37-17.34 0-28.33 11-28.33 25.37 0 17.76 11 24.95 36.4 35.95l14.8 6.34c50.3 21.57 78.7 43.56 78.7 93 0 53.3-41.87 82.5-98.1 82.5-54.98 0-90.5-26.2-107.88-60.54zm-209.13 5.13c9.3 16.5 17.76 30.45 38.1 30.45 19.45 0 31.72-7.61 31.72-37.2v-201.3h59.2v202.1c0 61.3-35.94 89.2-88.4 89.2-47.4 0-74.85-24.53-88.81-54.075z"/>
+</svg></div>
+    <div class="dg-fw-link-name">JavaScript Data Grid</div>
+    <p class="dg-fw-link-desc">The vanilla core — ES modules or a UMD bundle, no framework and no build step required.</p>
+  </a>
+  <a class="dg-fw-link" href="/data-grid/vue/">
+    <div class="tech-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.76 226.69">
+  <path fill="#41b883" d="m161.096.001-30.224 52.35L100.647.002H-.005L130.872 226.69 261.749 0z"/>
+  <path fill="#34495e" d="m161.096.001-30.224 52.35L100.647.002H52.346l78.526 136.01L209.398.001z"/>
+</svg></div>
+    <div class="dg-fw-link-name">Vue Data Grid</div>
+    <p class="dg-fw-link-desc">A Vue 3 component built for the Composition API, with scoped slots for custom cells.</p>
+  </a>
+  <a class="dg-fw-link" href="/data-grid/angular/">
+    <div class="tech-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 188 200">
+  <g fill="none" fill-rule="nonzero">
+    <path fill="#DD0031" d="M94 0 .9 33.2l14.2 123.1L94 200l78.9-43.7 14.2-123.1z"/>
+    <path fill="#C3002F" d="M94 0v22.2-.1V200l78.9-43.7 14.2-123.1z"/>
+    <path fill="#FFF" d="M94 22.1 35.8 152.6h21.7l11.7-29.2h49.4l11.7 29.2H152L94 22.1Zm17 83.3H77l17-40.9 17 40.9Z"/>
+  </g>
+</svg></div>
+    <div class="dg-fw-link-name">Angular Data Grid</div>
+    <p class="dg-fw-link-desc">A standalone &lt;c-data-grid&gt; component for current Angular, typed end to end.</p>
+  </a>
+  <a class="dg-fw-link" href="/data-grid/">
+    <div class="tech-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 102 115">
+  <g style="fill: currentColor">
+    <path d="M96 24.124 57 1.608a12 12 0 0 0-12 0L6 24.124a12.034 12.034 0 0 0-6 10.393V79.55a12.033 12.033 0 0 0 6 10.392l39 22.517a12 12 0 0 0 12 0l39-22.517a12.033 12.033 0 0 0 6-10.392V34.517a12.034 12.034 0 0 0-6-10.393ZM94 79.55a4 4 0 0 1-2 3.464l-39 22.517a4 4 0 0 1-4 0L10 83.014a4 4 0 0 1-2-3.464V34.517a4 4 0 0 1 2-3.464L49 8.536a4 4 0 0 1 4 0l39 22.517a4 4 0 0 1 2 3.464V79.55Z"/>
+    <path d="M74.022 70.071h-2.866a4 4 0 0 0-1.925.494L51.95 80.05 32 68.531V45.554l19.95-11.519 17.29 9.455a4 4 0 0 0 1.919.49h2.863a2 2 0 0 0 2-2v-2.71a2 2 0 0 0-1.04-1.756L55.793 27.02a8.04 8.04 0 0 0-7.843.09L28 38.626a8.025 8.025 0 0 0-4 6.929V68.53a8 8 0 0 0 4 6.928l19.95 11.519a8.043 8.043 0 0 0 7.843.088l19.19-10.532a2 2 0 0 0 1.038-1.753v-2.71a2 2 0 0 0-2-2Z"/>
+  </g>
+</svg>
+</div>
+    <div class="dg-fw-link-name">Data Grid overview</div>
+    <p class="dg-fw-link-desc">One grid, four editions — features, live demo, and pricing on a single page.</p>
+  </a>
+</div>
+
+  </div>
+</section>
+
+
+<section class="section-light py-6" id="pricing">
+  <div class="container-lg">
+    <div class="section-label justify-content-center">Pricing</div>
+    <div class="text-center mb-5">
+      <h2 class="dg-lead-title mb-3">One license. <em>Every framework.</em></h2>
+      <p class="dg-lead-desc mx-auto" style="max-width: 640px;">Buy once and build with the JavaScript core and the React, Vue, and Angular editions — no per-framework lock-in. Get early access at the lowest price the Data Grid will ever have.</p>
+    </div>
+    <div class="dg-price-wrap">
+      <div class="dg-price-card">
+        <div class="dg-price-flag">Early access</div>
+        <div class="dg-price-name">CoreUI Data Grid</div>
+        <div class="dg-price-sub">One license · JavaScript, React, Vue &amp; Angular</div>
+        <div class="dg-price-amount">
+          <span class="dg-price-was">$349</span>
+          <span class="dg-price-now">$199</span>
+          <span class="dg-price-unit">per developer</span>
+        </div>
+        <div class="dg-price-hint">Early access price — increases to $349 after launch.</div>
+        <a href="https://secure.2checkout.com/order/checkout.php?PRODS=54048321&QTY=1&CART=1&CARD=2&CURRENCY=USD" class="btn btn-cta btn-framework btn-xl w-100 product-buy-button" data-product-code="coreui-data-grid">Get early access — $199</a><a href="/data-grid/react/docs/getting-started/introduction/" class="dg-price-docs">Explore the React documentation first →</a><ul class="dg-price-terms">
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="icon-check">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="425.373 89.373 196 318.745 86.627 209.373 41.373 254.627 196 409.255 470.627 134.627 425.373 89.373" class="ci-primary"/>
+</svg><span><strong>All four editions</strong> — JavaScript, React, Vue, and Angular under one license</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="icon-check">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="425.373 89.373 196 318.745 86.627 209.373 41.373 254.627 196 409.255 470.627 134.627 425.373 89.373" class="ci-primary"/>
+</svg><span><strong>Unlimited projects</strong> — build unlimited commercial and personal apps, no per-project fees</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="icon-check">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="425.373 89.373 196 318.745 86.627 209.373 41.373 254.627 196 409.255 470.627 134.627 425.373 89.373" class="ci-primary"/>
+</svg><span><strong>Every feature</strong> — sorting, filtering, pagination, virtualization, pinning, resize, reorder, selection, and CSV export</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="icon-check">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="425.373 89.373 196 318.745 86.627 209.373 41.373 254.627 196 409.255 470.627 134.627 425.373 89.373" class="ci-primary"/>
+</svg><span><strong>TypeScript definitions</strong> — full typings for columns, options, and events</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="icon-check">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="425.373 89.373 196 318.745 86.627 209.373 41.373 254.627 196 409.255 470.627 134.627 425.373 89.373" class="ci-primary"/>
+</svg><span><strong>Documentation &amp; examples</strong> — a dedicated docs site per framework with runnable examples</span></li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="icon-check">
+  <polygon fill="var(--ci-primary-color, currentColor)" points="425.373 89.373 196 318.745 86.627 209.373 41.373 254.627 196 409.255 470.627 134.627 425.373 89.373" class="ci-primary"/>
+</svg><span><strong>Updates &amp; support</strong> — one year of updates and email support</span></li>
+        </ul>
+        <div class="dg-price-version">Version 0.3.0 today — production-ready, with <strong>1.0.0 planned for early September 2026</strong>. Expect frequent updates and occasional small breaking changes until then, always documented with migration notes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    </div><footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col d-sm-down-none">
+<svg width="102px" height="116px" viewBox="0 0 102 116" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="signet" fill="#3C4B64" fill-rule="nonzero">
+            <path d="M96,25.091 L57,2.5743 C53.2871871,0.430706461 48.7128129,0.430706461 45,2.5743 L6,25.091 C2.292246,27.239646 0.00690676667,31.1979678 7.10542736e-15,35.4833 L7.10542736e-15,80.5167 C0.00688629146,84.8020377 2.29223099,88.760369 6,90.909 L45,113.4256 C48.7127742,115.569338 53.2872258,115.569338 57,113.4256 L96,90.909 C99.707769,88.760369 101.993114,84.8020377 102,80.5167 L102,35.4833 C101.993093,31.1979678 99.707754,27.239646 96,25.091 Z M94,80.5167 C94,81.9457261 93.2375729,83.266187 92,83.9807 L53,106.4974 C51.7623957,107.211931 50.2376043,107.211931 49,106.4974 L10,83.9807 C8.76242713,83.266187 8,81.9457261 8,80.5167 L8,35.4833 C8,34.0542382 8.76239619,32.7337309 10,32.0192 L49,9.5025 C50.2376043,8.78796882 51.7623957,8.78796882 53,9.5025 L92,32.0192 C93.2376038,32.7337309 94,34.0542382 94,35.4833 L94,80.5167 Z" id="Shape"></path>
+            <path d="M74.0216,71.0379 L71.1556,71.0379 C70.4827717,71.0379163 69.8208181,71.2076524 69.231,71.5314 L51.95,81.0167 L32,69.4981 L32,46.5206 L51.95,35.002 L69.2394,44.457 C69.8278903,44.7788245 70.4878603,44.9474965 71.1586,44.9475 L74.0218,44.9475 C75.1263695,44.9475 76.0218,44.0520695 76.0218,42.9475 L76.0218,40.2357 C76.0218,39.5046907 75.6230914,38.8318844 74.9818,38.481 L55.793,27.9854 C53.3404536,26.651551 50.3714915,26.6856213 47.9502,28.0754 L28,39.5929 C25.5282949,41.025705 24.0048155,43.6646378 24,46.5216 L24,69.4976 C24,72.3557593 25.5247614,74.9968204 28,76.4259 L47.95,87.9444 C50.3719491,89.3331078 53.3408366,89.3663802 55.7933,88.0323 L74.9833,77.5012 C75.623333,77.1499602 76.021125,76.4778764 76.0211,75.7478 L76.0211,73.0378 C76.0210448,71.9334648 75.1259352,71.0381761 74.0216,71.0379 L74.0216,71.0379 Z" id="Path"></path>
+        </g>
+    </g>
+</svg></div>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="h5">Quick links</div>
+            <ul class="list-unstyled">
+              <li><a href="/changelog/">Changelog</a></li>
+              <li><a href="/support/">Technical support</a></li>
+              <li><a href="/download/">Download your product</a></li>
+              <li><a href="/affiliate-program/">Affiliate Program</a></li>
+            </ul>
+            <div class="h5">Products</div>
+            <ul class="list-unstyled">
+              <li><a href="/angular/">CoreUI for Angular</a></li>
+              <li><a href="/bootstrap/">CoreUI for Bootstrap</a></li>
+              <li><a href="/react/">CoreUI for React.js</a></li>
+              <li><a href="/vue/">CoreUI for Vue.js</a></li>
+              <li><a href="/boilerplate/">CoreUI Boilerplate</a></li>
+              <li><a href="/data-grid/">CoreUI Data Grid</a></li>
+              <li><a href="/icons/">CoreUI Icons</a></li>
+              <li><a href="/scheduler/">Scheduler</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <div class="h5">Github</div>
+            <ul class="list-unstyled">
+              <li><a href="https://github.com/coreui/coreui.git" target="_blank">CoreUI</a></li>
+              <li><a href="https://github.com/coreui/coreui-angular.git" target="_blank">CoreUI for <span class="text-angular">Angular</span></a></li>
+              <li><a href="https://github.com/coreui/coreui.git" target="_blank">CoreUI for <span class="text-bootstrap">Bootstrap</span></a></li>
+              <li><a href="https://github.com/coreui/coreui-react.git" target="_blank">CoreUI for <span class="text-react">React.js</span></a></li>
+              <li><a href="https://github.com/coreui/coreui-vue.git" target="_blank">CoreUI for <span class="text-vue">Vue.js</span></a></li>
+            </ul>
+            <ul class="list-unstyled">
+              <li><a href="https://github.com/coreui/coreui-free-angular-admin-template.git" target="_blank"><span class="text-angular">Angular</span> Admin &amp; Dashboard Template</a></li>
+              <li><a href="https://github.com/coreui/coreui-free-bootstrap-admin-template.git" target="_blank"><span class="text-bootstrap">Bootstrap</span> Admin &amp; Dashboard Template</a></li>
+              <li><a href="https://github.com/coreui/coreui-free-react-admin-template.git" target="_blank"><span class="text-react">React</span> Admin &amp; Dashboard Template</a></li>
+              <li><a href="https://github.com/coreui/coreui-free-vue-admin-template.git" target="_blank"><span class="text-vue">Vue</span> Admin &amp; Dashboard Template</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <div class="h5">About Us</div>
+            <ul class="list-unstyled">
+              <li><a href="/answers/">Answers</a></li>
+              <li><a href="/blog/">Blog</a></li>
+              <li><a href="/about/hire-us/">Hire Us</a></li>
+              <li><a href="/about/sponsors-backers/">Sponsors & Backers</a></li>
+              <li><a href="/about/legal/cookies/">Cookie Policy</a></li>
+              <li><a href="/about/legal/privacy/">Privacy Policy</a></li>
+            </ul>
+            <div class="h5">Compare</div>
+            <ul class="list-unstyled">
+              <li><a href="/compare/bootstrap-alternative/">CoreUI vs Bootstrap</a></li>
+              <li><a href="/compare/bootstrapvue-alternative/">CoreUI for Vue vs BootstrapVue</a></li>
+              <li><a href="/compare/ng-bootstrap-alternative/">CoreUI for Angular vs ng-bootstrap</a></li>
+              <li><a href="/compare/ngx-bootstrap-alternative/">CoreUI for Angular vs ngx-bootstrap</a></li>
+              <li><a href="/compare/react-bootstrap-alternative/">CoreUI for React vs React-Bootstrap</a></li>
+              <li><a href="/compare/reactstrap-alternative/">CoreUI for React vs Reactstrap</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.86529e1c9ca2497157fd4192dd0d650209413d03b68f6625816ba726b137632744c4d35484d0d039f585d12ebafc22a91ecf5e84e8f6e60b0beaeb22b1b05401.js"></script><script type="text/javascript" src="https://coreui.io/js/src/data-grid-demo.4a65f3dc6c37fb86147042e8cd278918626b3f9b812e6b1580624ec45e3d257f44106bf02b53d6393b8156e310534bc23a37848d74ac6b9d10bda1bb9da86499.js"></script><script type="text/javascript" src="https://coreui.io/js/src/product-buy-tracking.9d227918d482ced5ba17f64331e5ae4971c553f87b16232c6088d0c07fc7492949abbeeb8f86335816b9291826e410ae01a59fbe41ea49a5822aa0ac7e96bb6f.js"></script>
+
+  </body>
+</html>

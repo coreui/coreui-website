@@ -1,0 +1,20 @@
+<c-row>
+  <c-col lg="5">
+    <c-date-range-picker
+      #dateRangePicker="cDateRangePicker"
+      [(endDate)]="endDate"
+      [(startDate)]="startDate"
+      [calendarDate]="calendarDate"
+    >
+      <ng-template cTemplateId="datePickerFooter" let-dropdown>
+        <button (click)="onToday()" cButton class="me-auto" color="danger" size="sm" variant="ghost">Today</button>
+        <button (click)="onClear()" [dropdownComponent]="dropdown" cButton color="primary" size="sm">Clear</button>
+        <button [disabled]="!endDate" [dropdownComponent]="dropdown" cButton cDropdownClose color="primary"size="sm">OK</button>
+      </ng-template>
+    </c-date-range-picker>
+  </c-col>
+  <c-col class="d-flex align-items-center">
+    {{startDate | date}} {{ startDate ? '->' : ''}} {{endDate | date}}
+  </c-col>
+</c-row>
+

@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CSpinner.Cr3OXvSk.js";e();var r=t(),i=()=>(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n,{style:{width:`3rem`,height:`3rem`}}),(0,r.jsx)(n,{variant:`grow`,style:{width:`3rem`,height:`3rem`}})]});export{i as SpinnerSizeCustomExample};

@@ -1,0 +1,26 @@
+<c-smart-table
+  [columnFilter]="true"
+  [(columnFilterValue)]="columnFilterValue"
+  [columnSorter]="true"
+  [columns]="columns"
+  header
+  itemsPerPage="10"
+  [itemsPerPageSelect]="true"
+  [items]="newData"
+  pagination
+  [sorterValue]="{ column: 'registered', state: 'asc' }"
+  [tableProps]="{ hover: true, striped: true, responsive: true }"
+>
+  <ng-template cTemplateId="columnFilter_registered">
+    <c-date-range-picker
+      [(calendarDate)]="calendarDate"
+      [(startDate)]="startDate"
+      [(endDate)]="endDate"
+      calendars="2"
+      closeOnSelect
+      locale="en-CA"
+      size="sm"
+    >
+    </c-date-range-picker>
+  </ng-template>
+</c-smart-table>

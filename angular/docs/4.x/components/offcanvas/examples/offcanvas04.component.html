@@ -1,0 +1,23 @@
+<button cButton [cOffcanvasToggle]="offcanvasStatic.id">Toggle static offcanvas</button>
+
+<c-offcanvas
+  id="OffcanvasStatic"
+  backdrop="static"
+  placement="start"
+  #offcanvasStatic
+>
+  <c-offcanvas-header>
+    <h5 cOffcanvasTitle>Offcanvas Header</h5>
+    <button
+      aria-label="Close"
+      cButtonClose
+      [cOffcanvasToggle]="offcanvasStatic.id"
+      class="text-reset"
+    ></button>
+  </c-offcanvas-header>
+  <c-offcanvas-body>
+    <p>
+      I will not close if you try to click outside of me or to press escape key.
+    </p>
+  </c-offcanvas-body>
+</c-offcanvas>

@@ -1,0 +1,283 @@
+<c-row>
+  <c-col [md]="6">
+    <form (ngSubmit)="onSubmit()" [formGroup]="simpleForm" cForm novalidate>
+      <c-row class="mb-1">
+        <label [sm]="4" cCol cLabel="col" for="firstName">First name</label>
+        @if (simpleForm.controls['firstName']; as ctrl) {
+          <c-col [sm]="8">
+            <input
+              [valid]="isValid(ctrl)"
+              autocomplete="off"
+              cFormControl
+              formControlName="firstName"
+              id="firstName"
+              placeholder="First name"
+              required
+            />
+            @if (submitted() || ctrl.invalid) {
+              <c-form-feedback [valid]="!(submitted() || ctrl.invalid)">
+                @if (ctrl.hasError('required')) {
+                  <div>First Name is required</div>
+                }
+              </c-form-feedback>
+            }
+          </c-col>
+        }
+      </c-row>
+      <c-row class="mb-1">
+        <label [sm]="4" cCol cLabel="col" for="lastName">Last name</label>
+        @if (simpleForm.controls['lastName']; as ctrl) {
+          <c-col [sm]="8">
+            <input
+              [valid]="isValid(ctrl)"
+              autocomplete="off"
+              cFormControl
+              formControlName="lastName"
+              id="lastName"
+              placeholder="Last name"
+              required
+            />
+            @if (submitted() || ctrl.invalid) {
+              <c-form-feedback [valid]="!(submitted() || ctrl.invalid)">
+                @if (ctrl.hasError('required')) {
+                  <div>Last Name is required</div>
+                }
+              </c-form-feedback>
+            }
+          </c-col>
+        }
+      </c-row>
+      <c-row class="mb-1">
+        <label [sm]="4" cCol cLabel="col" for="username">Username</label>
+        @if (simpleForm.controls['username']; as ctrl) {
+          <c-col [sm]="8">
+            <input
+              [valid]="isValid(ctrl)"
+              autocomplete="off"
+              cFormControl
+              formControlName="username"
+              id="username"
+              placeholder="Username"
+              required
+            />
+            @if (submitted() || ctrl.invalid) {
+              <c-form-feedback [valid]="!(submitted() || ctrl.invalid)">
+                @if (ctrl.hasError('required')) {
+                  <div>Username is required</div>
+                } @else if (ctrl.hasError('minlength')) {
+                  <div>
+                    {{ formErrors['username'].minLength }}
+                  </div>
+                } @else if (ctrl.hasError('pattern')) {
+                  <div>
+                    {{ formErrors['username'].pattern }}
+                  </div>
+                }
+              </c-form-feedback>
+            }
+          </c-col>
+        }
+      </c-row>
+      <c-row class="mb-1">
+        <label [sm]="4" cCol cLabel="col" for="email">Email</label>
+        @if (simpleForm.controls['email']; as ctrl) {
+          <c-col [sm]="8">
+            <input
+              [valid]="isValid(ctrl)"
+              autocomplete="off"
+              cFormControl
+              formControlName="email"
+              id="email"
+              placeholder="Email"
+              required
+              type="email"
+            />
+            @if (submitted() || ctrl.invalid) {
+              <c-form-feedback [valid]="!(submitted() || ctrl.invalid)">
+                @if (ctrl.hasError('required')) {
+                  <div>Email is required</div>
+                } @else if (ctrl.hasError('email')) {
+                  <div>
+                    {{ formErrors['email']?.email }}
+                  </div>
+                }
+              </c-form-feedback>
+            }
+          </c-col>
+        }
+      </c-row>
+      <c-row class="mb-1">
+        <label [sm]="4" cCol cLabel="col" for="password">Password</label>
+        @if (simpleForm.controls['password']; as ctrl) {
+          <c-col [sm]="8">
+            <input
+              [valid]="isValid(ctrl)"
+              autocomplete="new-password"
+              cFormPassword
+              formControlName="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+            @if (submitted() || ctrl.invalid) {
+              <c-form-feedback [valid]="!(submitted() || ctrl.invalid)">
+                @if (ctrl.hasError('required')) {
+                  <div>Password is required</div>
+                } @else if (ctrl.hasError('minlength')) {
+                  <div>{{ formErrors['password'].minLength }}</div>
+                } @else if (ctrl.hasError('pattern')) {
+                  <div>{{ formErrors['password'].pattern }}</div>
+                }
+              </c-form-feedback>
+            }
+          </c-col>
+        }
+      </c-row>
+      <c-row class="mb-1">
+        <label [sm]="4" cCol cLabel="col" for="confirmPassword">Confirm password</label>
+        @if (simpleForm.controls['confirmPassword']; as ctrl) {
+          <c-col [sm]="8">
+            <input
+              [valid]="isValid(ctrl)"
+              autocomplete="off"
+              cFormPassword
+              formControlName="confirmPassword"
+              id="confirmPassword"
+              placeholder="Confirm password"
+              required
+            />
+            @if (submitted() || ctrl.invalid) {
+              <c-form-feedback [valid]="!(submitted() || ctrl.invalid)">
+                @if (ctrl.hasError('required')) {
+                  <div>Confirmation is required</div>
+                } @else if (simpleForm.hasError('passwordMismatch')) {
+                  <div>
+                    {{ formErrors['confirmPassword'].passwordMismatch }}
+                  </div>
+                }
+              </c-form-feedback>
+            }
+          </c-col>
+        }
+      </c-row>
+      <c-row class="mb-1">
+        <label [sm]="4" cCol cLabel="col" for="birthday">Date of Birth</label>
+        @if (simpleForm.controls['birthday']; as ctrl) {
+          <c-col [sm]="8">
+            <c-date-picker
+              [valid]="(!ctrl.untouched && ctrl.valid) ? true : (submitted() || !ctrl.untouched) && ctrl.invalid ? false : undefined"
+              formControlName="birthday"
+              id="birthday"
+              required
+            />
+            @if (submitted() || ctrl.invalid) {
+              <c-form-feedback [valid]="!(submitted() || ctrl.invalid)">
+                @if (ctrl.hasError('required')) {
+                  <div>Birthday date required</div>
+                }
+              </c-form-feedback>
+            }
+          </c-col>
+        }
+      </c-row>
+      <c-row class="mb-1">
+        <label [sm]="4" cCol cLabel="col" for="framework">Framework</label>
+        @if (simpleForm.controls['framework']; as ctrl) {
+          <c-col [sm]="8">
+            <c-multi-select
+              [valid]="(ctrl.touched && ctrl.valid) ? true : (submitted() || ctrl.touched) && ctrl.invalid ? false : undefined"
+              formControlName="framework"
+              id="framework"
+              required
+            >
+              <c-multi-select-option>Angular</c-multi-select-option>
+              <c-multi-select-option>Bootstrap</c-multi-select-option>
+              <c-multi-select-option>React.js</c-multi-select-option>
+              <c-multi-select-option>Vue.js</c-multi-select-option>
+            </c-multi-select>
+            @if (submitted() || ctrl.invalid) {
+              <c-form-feedback [valid]="!(submitted() || ctrl.invalid)">
+                @if (ctrl.hasError('required')) {
+                  <div>Framework is required</div>
+                }
+              </c-form-feedback>
+            }
+          </c-col>
+        }
+      </c-row>
+      <c-row class="mb-1">
+        @if (simpleForm.controls['accept']; as ctrl) {
+          <c-col>
+            <c-form-check>
+              <input
+                [valid]="isValid(ctrl)"
+                cFormCheckInput
+                formControlName="accept"
+                id="accept"
+                required
+                type="checkbox"
+              />
+              <label cFormCheckLabel for="accept">I accept the terms of use</label>
+              <c-form-feedback [valid]="false">
+                @if (ctrl.hasError('required')) {
+                  <div>You have to accept our Terms and Conditions</div>
+                }
+              </c-form-feedback>
+            </c-form-check>
+          </c-col>
+        }
+      </c-row>
+      <hr />
+      <c-button-group>
+        <button
+          [disabled]="simpleForm.pristine || simpleForm.invalid"
+          [tabindex]="'0'"
+          cButton
+          color="primary"
+          type="submit"
+        >
+          Submit
+        </button>
+        <button
+          (click)="onValidate()"
+          [disabled]="simpleForm.valid"
+          [tabindex]="'0'"
+          cButton
+          color="success"
+        >
+          Validate
+        </button>
+        <button (click)="onReset()" [tabindex]="'0'" cButton color="danger" type="reset">
+          Reset
+        </button>
+      </c-button-group>
+    </form>
+  </c-col>
+  <c-col [md]="6">
+    <c-card [ngClass]="{ 'bg-info': simpleForm.valid, 'bg-dark': simpleForm.invalid}">
+      <c-card-body class="text-white">
+        <pre>Value: <code>{{ simpleForm.value | json }}</code></pre>
+        <ul>
+          <li>Status: {{ simpleForm.status }}</li>
+          <li>Valid: {{ simpleForm.valid }}</li>
+          <li>Pristine: {{ simpleForm.pristine }}</li>
+          <li>Errors: {{ simpleForm.errors | json }}</li>
+        </ul>
+        <ul>
+          @for (ctrl of formControls; track ctrl) {
+            <li>
+              {{ ctrl }}
+              <ul>
+                <li>Invalid: {{ simpleForm.controls[ctrl].invalid | json }}</li>
+                <li>Pristine: {{ simpleForm.controls[ctrl].pristine | json }}</li>
+                <li>Status: {{ simpleForm.controls[ctrl].status | json }}</li>
+                <li>Touched: {{ simpleForm.controls[ctrl].touched | json }}</li>
+                <li>Errors: {{ simpleForm.controls[ctrl].errors | json }}</li>
+              </ul>
+            </li>
+          }
+        </ul>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>

@@ -1,0 +1,1 @@
+const t=(n,i)=>{let e=n.nextElementSibling;if(!i)return e;for(;e;){if(e.matches(i))return e;e=e.nextElementSibling}},l=(n,i)=>{let e=n.previousElementSibling;if(!i)return e;for(;e;){if(e.matches(i))return e;e=e.previousElementSibling}};export{l as a,t as g};

@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime.C6cmW1Aq.js";import{t}from"./CRating.CzdLm2ax.js";import{C as n}from"./esm.Cl8JL4xH.js";import{t as r}from"./index.esm.C4_t7A_o.js";var i=e(),a=()=>(0,i.jsx)(i.Fragment,{children:(0,i.jsx)(t,{activeIcon:(0,i.jsx)(r,{icon:n,customClassName:`text-danger`}),icon:(0,i.jsx)(r,{icon:n,customClassName:` `}),value:3})});export{a as RatingDemo1};

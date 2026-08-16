@@ -1,0 +1,1 @@
+var e=function(a){if(!a)return 0;var i=window.getComputedStyle(a),t=i.transitionDuration,r=i.transitionDelay,n=Number.parseFloat(t),o=Number.parseFloat(r);return!n&&!o?0:(t=t.split(",")[0],r=r.split(",")[0],(Number.parseFloat(t)+Number.parseFloat(r))*1e3)};export{e as g};

@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.CA1CYuze.js";var n=[`xxl`,`xl`,`lg`,`md`,`sm`,`fluid`],r=e({name:`CContainer`,props:{sm:Boolean,md:Boolean,lg:Boolean,xl:Boolean,xxl:Boolean,fluid:Boolean},setup(e,{slots:r}){let i=[];return n.forEach(t=>{e[t]&&i.push(`container-${t}`)}),()=>t(`div`,{class:[i.length>0?i:`container`]},r.default&&r.default())}});export{r as t};

@@ -1,0 +1,1 @@
+import{A as e,D as t}from"./index-WXA455MI.js";var n=e(t());function r(...e){return(0,n.useMemo)(()=>e.every(e=>e==null)?null:t=>{e.forEach(e=>{i(e,t)})},e)}function i(e,t){if(e!=null){if(a(e))e(t);else try{e.current=t}catch{throw Error(`Cannot assign value "${t}" to ref "${e}"`)}}}function a(e){return typeof e==`function`}export{r as t};

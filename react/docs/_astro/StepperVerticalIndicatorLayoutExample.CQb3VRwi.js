@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CStepper.Ci9p4Qr_.js";e();var r=t(),i=()=>(0,r.jsx)(n,{steps:[`Step 1`,`Step 2`,`Step 3`],stepButtonLayout:`vertical`});export{i as StepperVerticalIndicatorLayoutExample};

@@ -1,0 +1,1 @@
+import{r as e}from"./rolldown-runtime.QTnfLwEv.js";import{t}from"./react.Vu5Exw5S.js";import{t as n}from"./jsx-runtime.C6cmW1Aq.js";import{t as r}from"./CSmartPagination.DAqVf4j0.js";var i=e(t(),1),a=n(),o=()=>{let[e,t]=(0,i.useState)(1);return(0,a.jsx)(r,{size:`sm`,activePage:e,pages:10,onActivePageChange:t})};export{o as SmartPaginationSizingSmallExample};

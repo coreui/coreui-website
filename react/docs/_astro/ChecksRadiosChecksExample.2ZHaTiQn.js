@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime.C6cmW1Aq.js";import{t}from"./CFormCheck._eDRK3AX.js";var n=e(),r=()=>(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(t,{id:`flexCheckDefault`,label:`Default checkbox`}),(0,n.jsx)(t,{id:`flexCheckChecked`,label:`Checked checkbox`,defaultChecked:!0})]});export{r as ChecksRadiosChecksExample};

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Version-Control on CoreUI</title>
+    <link>https://coreui.io/tags/version-control/</link>
+    <description>Recent content in Version-Control on CoreUI</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Jul 2026 22:54:06 +0200</lastBuildDate>
+    <atom:link href="https://coreui.io/tags/version-control/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to mirror push in Git</title>
+      <link>https://coreui.io/answers/how-to-mirror-push-in-git/</link>
+      <pubDate>Thu, 12 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-mirror-push-in-git/</guid>
+      <description>&lt;p&gt;Mirror pushing copies all refs - branches, tags, and notes - from one repository to another, keeping them in perfect sync.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used mirror pushes for backup strategies, repository migrations, and maintaining read-only mirrors for different teams.&#xA;The standard approach adds a secondary remote and pushes with &lt;code&gt;--mirror&lt;/code&gt; to replicate everything exactly.&#xA;This ensures the destination is an exact copy of the source.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to backup a Git repository</title>
+      <link>https://coreui.io/answers/how-to-backup-a-git-repository/</link>
+      <pubDate>Wed, 11 Mar 2026 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-backup-a-git-repository/</guid>
+      <description>&lt;p&gt;Backing up Git repositories protects against data loss, accidental deletions, and hosting outages.&#xA;As the creator of CoreUI, I&amp;rsquo;ve maintained backup strategies for codebases with years of history and hundreds of contributors.&#xA;The most reliable approach uses &lt;code&gt;git bundle&lt;/code&gt; for portable backups or bare clones for full mirrors, both capturing all branches, tags, and history.&#xA;A good backup strategy runs automatically on a schedule.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to subtree split in Git</title>
+      <link>https://coreui.io/answers/how-to-subtree-split-in-git/</link>
+      <pubDate>Wed, 11 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-subtree-split-in-git/</guid>
+      <description>&lt;p&gt;Git subtree split extracts a subdirectory into a new branch containing only the commits that touched that path.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used subtree split to extract reusable libraries from monorepos without losing history.&#xA;The standard approach runs &lt;code&gt;git subtree split --prefix&lt;/code&gt; to create a new branch, then optionally pushes it to a separate repository.&#xA;This preserves the complete commit history of the extracted code.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to split submodules in Git</title>
+      <link>https://coreui.io/answers/how-to-split-submodules-in-git/</link>
+      <pubDate>Fri, 06 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-split-submodules-in-git/</guid>
+      <description>&lt;p&gt;Splitting a Git submodule into multiple smaller submodules helps organize large codebases and manage dependencies more granularly.&#xA;As the creator of CoreUI, I&amp;rsquo;ve restructured numerous projects where monolithic submodules needed division for better maintainability.&#xA;The recommended approach uses git filter-branch or git subtree to extract subdirectories into new repositories, then replaces the original submodule with multiple smaller ones.&#xA;This preserves commit history while improving project organization.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to sync submodules in Git</title>
+      <link>https://coreui.io/answers/how-to-sync-submodules-in-git/</link>
+      <pubDate>Thu, 05 Mar 2026 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-sync-submodules-in-git/</guid>
+      <description>&lt;p&gt;Keeping Git submodules synchronized with their remote repositories is essential when working on projects with external dependencies.&#xA;As the creator of CoreUI, I&amp;rsquo;ve managed complex projects where submodules need frequent updates from upstream changes.&#xA;The standard approach uses &lt;code&gt;git submodule update --remote&lt;/code&gt; to fetch the latest changes from submodule remotes and update local references.&#xA;This ensures all team members work with the same submodule versions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to clone repository with submodules in Git</title>
+      <link>https://coreui.io/answers/how-to-clone-repository-with-submodules-in-git/</link>
+      <pubDate>Thu, 05 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-clone-repository-with-submodules-in-git/</guid>
+      <description>&lt;p&gt;Cloning repositories that contain Git submodules requires special handling to also clone the nested repositories.&#xA;As the creator of CoreUI, I&amp;rsquo;ve managed projects with complex submodule structures and understand the importance of proper cloning.&#xA;The most efficient approach uses &lt;code&gt;git clone --recurse-submodules&lt;/code&gt; to clone the main repository and all submodules in a single command.&#xA;This ensures the complete project structure is ready immediately without additional commands.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to remove submodules in Git</title>
+      <link>https://coreui.io/answers/how-to-remove-submodules-in-git/</link>
+      <pubDate>Tue, 03 Mar 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-remove-submodules-in-git/</guid>
+      <description>&lt;p&gt;Removing Git submodules requires careful steps to clean up the submodule registration, working directory, and Git configuration files.&#xA;As the creator of CoreUI, I&amp;rsquo;ve managed submodules in complex projects and understand the importance of proper removal.&#xA;The recommended approach uses &lt;code&gt;git submodule deinit&lt;/code&gt; to unregister the submodule, followed by removing the submodule directory and cleaning up &lt;code&gt;.gitmodules&lt;/code&gt;.&#xA;This ensures complete removal without leaving orphaned references.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to update submodules in Git</title>
+      <link>https://coreui.io/answers/how-to-update-submodules-in-git/</link>
+      <pubDate>Mon, 02 Mar 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-update-submodules-in-git/</guid>
+      <description>&lt;p&gt;Managing submodules in Git projects requires regular updates to keep external dependencies in sync with their remote repositories.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve managed countless projects with complex submodule structures.&#xA;The most reliable approach is to use the &lt;code&gt;git submodule update&lt;/code&gt; command with appropriate flags to fetch and checkout the correct commits.&#xA;This method ensures your submodules stay synchronized with their parent repository while maintaining version control integrity.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to add a submodule in Git</title>
+      <link>https://coreui.io/answers/how-to-add-a-submodule-in-git/</link>
+      <pubDate>Thu, 26 Feb 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-add-a-submodule-in-git/</guid>
+      <description>&lt;p&gt;Managing shared code across multiple projects often leads to code duplication and synchronization issues, especially when working with libraries or components used in several repositories.&#xA;As the creator of CoreUI, I&amp;rsquo;ve managed complex multi-repository setups for component libraries, documentation sites, and enterprise applications.&#xA;From my expertise, Git submodules provide the most reliable solution for including external repositories within your project while maintaining independent version control.&#xA;This approach allows you to track specific commits of external code, ensuring consistency and reproducibility across your development workflow.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to work with submodules in Git</title>
+      <link>https://coreui.io/answers/how-to-work-with-submodules-in-git/</link>
+      <pubDate>Wed, 25 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-work-with-submodules-in-git/</guid>
+      <description>&lt;p&gt;Managing dependencies on external Git repositories requires a way to include them in your project while keeping their history separate.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used Git submodules in numerous projects to manage shared libraries, themes, and component packages.&#xA;From my expertise, the most reliable approach is to use Git&amp;rsquo;s built-in submodule feature, which allows you to keep a Git repository as a subdirectory of another repository.&#xA;This method maintains separate version control for each component while integrating them into your main project.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to push specific branch in Git</title>
+      <link>https://coreui.io/answers/how-to-push-specific-branch-in-git/</link>
+      <pubDate>Wed, 18 Feb 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-push-specific-branch-in-git/</guid>
+      <description>&lt;p&gt;Pushing a specific branch in Git uploads your local commits to the remote repository for that branch. As the creator of CoreUI, I&amp;rsquo;ve managed Git workflows across hundreds of repositories, using targeted branch pushes to maintain clean deployment pipelines and prevent accidental updates to protected branches.&lt;/p&gt;&#xA;&lt;p&gt;The fastest way is using &lt;code&gt;git push&lt;/code&gt; with the branch name specified.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to remove a remote in Git</title>
+      <link>https://coreui.io/answers/how-to-remove-a-remote-in-git/</link>
+      <pubDate>Wed, 18 Feb 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-remove-a-remote-in-git/</guid>
+      <description>&lt;p&gt;Removing a Git remote disconnects your local repository from a remote URL, useful for cleaning up unused remotes or changing repository configuration. As the creator of CoreUI, I&amp;rsquo;ve managed Git remotes across hundreds of repositories, removing outdated deployment targets and reorganizing remote configurations for optimal workflows.&lt;/p&gt;&#xA;&lt;p&gt;The fastest way is using &lt;code&gt;git remote remove&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to rename a remote in Git</title>
+      <link>https://coreui.io/answers/how-to-rename-a-remote-in-git/</link>
+      <pubDate>Mon, 16 Feb 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-rename-a-remote-in-git/</guid>
+      <description>&lt;p&gt;Renaming a Git remote changes its local reference name without affecting the actual remote repository URL. As the creator of CoreUI, I&amp;rsquo;ve renamed Git remotes across hundreds of repositories to maintain clear naming conventions and improve team workflow organization.&lt;/p&gt;&#xA;&lt;p&gt;The fastest way is using &lt;code&gt;git remote rename&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to fetch specific branch in Git</title>
+      <link>https://coreui.io/answers/how-to-fetch-specific-branch-in-git/</link>
+      <pubDate>Fri, 13 Feb 2026 16:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-fetch-specific-branch-in-git/</guid>
+      <description>&lt;p&gt;Fetching a specific branch in Git downloads only that branch&amp;rsquo;s commits from the remote repository without affecting your working directory. As the creator of CoreUI, I&amp;rsquo;ve optimized Git workflows across hundreds of repositories by fetching only needed branches, reducing bandwidth usage and speeding up synchronization in large projects with many feature branches.&lt;/p&gt;&#xA;&lt;p&gt;The fastest way is using &lt;code&gt;git fetch&lt;/code&gt; with the branch name specified.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to add Git remote</title>
+      <link>https://coreui.io/answers/how-to-add-git-remote/</link>
+      <pubDate>Fri, 13 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-add-git-remote/</guid>
+      <description>&lt;p&gt;Adding a Git remote connects your local repository to a remote URL for pushing and pulling changes. As the creator of CoreUI, I&amp;rsquo;ve configured Git remotes across hundreds of open-source and enterprise projects for collaboration and multi-environment deployments.&lt;/p&gt;&#xA;&lt;p&gt;The fastest way is using &lt;code&gt;git remote add&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to rename Git remote</title>
+      <link>https://coreui.io/answers/how-to-rename-git-remote/</link>
+      <pubDate>Thu, 12 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-rename-git-remote/</guid>
+      <description>&lt;p&gt;Renaming a Git remote updates the local reference name while preserving the remote URL and tracking branches. As the creator of CoreUI, I&amp;rsquo;ve managed Git remotes across hundreds of repositories where clear naming conventions improved team collaboration.&lt;/p&gt;&#xA;&lt;p&gt;The fastest way is using &lt;code&gt;git remote rename&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to remove Git remote</title>
+      <link>https://coreui.io/answers/how-to-remove-git-remote/</link>
+      <pubDate>Wed, 11 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-remove-git-remote/</guid>
+      <description>&lt;p&gt;Removing a Git remote disconnects your local repository from a remote URL, useful when changing hosting providers or cleaning up old connections. As the creator of CoreUI, I&amp;rsquo;ve managed Git remotes across hundreds of open-source and enterprise projects.&lt;/p&gt;&#xA;&lt;p&gt;The fastest way is using &lt;code&gt;git remote remove&lt;/code&gt; or its alias &lt;code&gt;git remote rm&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to track remote branch in Git</title>
+      <link>https://coreui.io/answers/how-to-track-remote-branch-in-git/</link>
+      <pubDate>Fri, 06 Feb 2026 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-track-remote-branch-in-git/</guid>
+      <description>&lt;p&gt;Branch tracking in Git creates a link between your local branch and a remote branch, enabling simple push/pull operations without specifying the remote each time. As the creator of CoreUI, I&amp;rsquo;ve configured branch tracking across hundreds of repositories to streamline team collaboration and automate deployment workflows.&lt;/p&gt;&#xA;&lt;p&gt;The fastest way is using &lt;code&gt;git branch --set-upstream-to&lt;/code&gt; or the &lt;code&gt;-u&lt;/code&gt; flag when pushing.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to migrate from Mercurial to Git</title>
+      <link>https://coreui.io/answers/how-to-migrate-from-mercurial-to-git/</link>
+      <pubDate>Wed, 21 Jan 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-migrate-from-mercurial-to-git/</guid>
+      <description>&lt;p&gt;Migrating from Mercurial to Git preserves complete repository history including branches, tags, and commit metadata during transition.&#xA;As the creator of CoreUI, I&amp;rsquo;ve migrated legacy Mercurial repositories to Git for modern workflows.&#xA;Git&amp;rsquo;s fast-export and Mercurial&amp;rsquo;s hg-fast-export tools enable conversion with full history preservation and author attribution.&#xA;This approach ensures seamless transition from Mercurial to Git with complete audit trail and repository integrity.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to migrate from SVN to Git</title>
+      <link>https://coreui.io/answers/how-to-migrate-from-svn-to-git/</link>
+      <pubDate>Tue, 20 Jan 2026 14:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-migrate-from-svn-to-git/</guid>
+      <description>&lt;p&gt;Migrating from Subversion to Git preserves complete repository history, branches, tags, and author information while transitioning to distributed version control.&#xA;As the creator of CoreUI, I&amp;rsquo;ve migrated numerous legacy SVN repositories to Git.&#xA;Git&amp;rsquo;s git-svn tool enables bidirectional communication with SVN repositories and full migration with history preservation.&#xA;This approach ensures seamless transition from centralized to distributed version control with complete audit trail.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to show Git diff</title>
+      <link>https://coreui.io/answers/how-to-show-git-diff/</link>
+      <pubDate>Fri, 28 Nov 2025 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-show-git-diff/</guid>
+      <description>&lt;p&gt;Viewing differences between files and commits is essential for understanding what changes have been made in your codebase.&#xA;As the creator of CoreUI, I use git diff daily to review modifications before committing and to understand code evolution.&#xA;The basic &lt;code&gt;git diff&lt;/code&gt; command shows unstaged changes, providing a clear view of what has been modified in your working directory.&#xA;This command is fundamental for code review and maintaining code quality in any project.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to push tags to remote in Git</title>
+      <link>https://coreui.io/answers/how-to-push-tags-to-remote-in-git/</link>
+      <pubDate>Fri, 21 Nov 2025 11:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-push-tags-to-remote-in-git/</guid>
+      <description>&lt;p&gt;Pushing tags to remote repositories is essential for sharing version releases and ensuring all team members have access to the same tag references.&#xA;As the creator of CoreUI, I use tag pushing extensively for coordinating releases across development teams.&#xA;The most important aspect is understanding that Git tags are not automatically pushed with regular commits and require explicit pushing.&#xA;This ensures deliberate version management and prevents accidental tag sharing during development.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to delete a tag in Git</title>
+      <link>https://coreui.io/answers/how-to-delete-a-tag-in-git/</link>
+      <pubDate>Thu, 20 Nov 2025 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-delete-a-tag-in-git/</guid>
+      <description>&lt;p&gt;Deleting Git tags is necessary when fixing versioning mistakes, removing test releases, or cleaning up incorrect tags in your repository.&#xA;As the creator of CoreUI, I&amp;rsquo;ve had to clean up tags during release processes and version management.&#xA;The most important aspect is understanding the difference between deleting local tags and remote tags, as they require separate commands.&#xA;Always delete both local and remote tags to maintain consistency across all repository copies.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to list tags in Git</title>
+      <link>https://coreui.io/answers/how-to-list-tags-in-git/</link>
+      <pubDate>Thu, 20 Nov 2025 11:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-list-tags-in-git/</guid>
+      <description>&lt;p&gt;Listing Git tags is essential for version management, release tracking, and understanding the release history of your project.&#xA;As the creator of CoreUI, I use Git tags extensively for managing releases across all our open-source projects.&#xA;The most straightforward approach is using the &lt;code&gt;git tag&lt;/code&gt; command which displays all tags in alphabetical order.&#xA;This provides quick access to version information and helps coordinate releases across development teams.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to tag a commit in Git</title>
+      <link>https://coreui.io/answers/how-to-tag-a-commit-in-git/</link>
+      <pubDate>Wed, 19 Nov 2025 14:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-tag-a-commit-in-git/</guid>
+      <description>&lt;p&gt;Tagging commits in Git provides a way to mark important milestones like releases, version numbers, and significant checkpoints in your project history.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve tagged countless releases and versions across multiple CoreUI repositories to track release history and enable easy rollbacks.&#xA;From my experience, the most effective approach is to use annotated tags with &lt;code&gt;git tag -a&lt;/code&gt; for releases and lightweight tags for temporary markers.&#xA;This method provides clear version management and release tracking.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to rename a branch in Git</title>
+      <link>https://coreui.io/answers/how-to-rename-a-branch-in-git/</link>
+      <pubDate>Mon, 17 Nov 2025 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-rename-a-branch-in-git/</guid>
+      <description>&lt;p&gt;Renaming Git branches is a common task when you need to correct typos, follow naming conventions, or better describe the branch purpose in your development workflow.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve managed thousands of Git branches across multiple repositories and enterprise projects.&#xA;From my experience, the most straightforward approach is to use the &lt;code&gt;git branch -m&lt;/code&gt; command for local branch renaming.&#xA;This method provides clean branch management without losing commit history.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to resolve merge conflicts in Git</title>
+      <link>https://coreui.io/answers/how-to-resolve-merge-conflicts-in-git/</link>
+      <pubDate>Fri, 14 Nov 2025 09:02:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-resolve-merge-conflicts-in-git/</guid>
+      <description>&lt;p&gt;Resolving merge conflicts in Git enables collaborative development by handling competing changes when multiple developers modify the same code sections.&#xA;As the creator of CoreUI, I&amp;rsquo;ve resolved countless merge conflicts in enterprise projects and open-source repositories.&#xA;From my expertise, the most systematic approach is understanding conflict markers, carefully reviewing changes, and using merge tools for complex conflicts to maintain code quality.&#xA;This process ensures all developer contributions are properly integrated while preserving the intended functionality of both change sets.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to pop stash in Git</title>
+      <link>https://coreui.io/answers/how-to-pop-stash-in-git/</link>
+      <pubDate>Sat, 08 Nov 2025 09:11:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-pop-stash-in-git/</guid>
+      <description>&lt;p&gt;Popping stash in Git restores stashed changes to the working directory and automatically removes them from the stash list in a single operation.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used stash pop extensively when temporarily storing changes for quick branch switches and feature development.&#xA;From my expertise, the most efficient approach is using &lt;code&gt;git stash pop&lt;/code&gt; when you&amp;rsquo;re confident the stashed changes should be permanently restored and removed from the stash.&#xA;This command combines apply and drop operations for streamlined workflow management.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to apply stashed changes in Git</title>
+      <link>https://coreui.io/answers/how-to-apply-stashed-changes-in-git/</link>
+      <pubDate>Sat, 08 Nov 2025 09:10:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-apply-stashed-changes-in-git/</guid>
+      <description>&lt;p&gt;Applying stashed changes in Git restores previously saved work to the working directory while preserving the stash for potential future use.&#xA;As the creator of CoreUI, I&amp;rsquo;ve applied stashed changes countless times when switching between features and managing multiple work streams.&#xA;From my expertise, the most reliable approach is using &lt;code&gt;git stash apply&lt;/code&gt; to restore changes without removing them from the stash list.&#xA;This command provides safe change restoration that allows reverting if the applied changes conflict with current work.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to stash specific files in Git</title>
+      <link>https://coreui.io/answers/how-to-stash-specific-files-in-git/</link>
+      <pubDate>Fri, 07 Nov 2025 12:03:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-stash-specific-files-in-git/</guid>
+      <description>&lt;p&gt;Stashing specific files in Git allows selective temporary storage of changes while preserving other modifications in the working directory.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used selective stashing extensively when managing multiple feature developments and experimental changes simultaneously.&#xA;From my expertise, the most effective approach is using &lt;code&gt;git stash push&lt;/code&gt; with specific file paths to stash only the desired files.&#xA;This technique provides granular control over which changes to temporarily store while continuing work on other modifications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to abort a rebase in Git</title>
+      <link>https://coreui.io/answers/how-to-abort-a-rebase-in-git/</link>
+      <pubDate>Fri, 07 Nov 2025 12:02:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-abort-a-rebase-in-git/</guid>
+      <description>&lt;p&gt;Aborting a Git rebase safely returns the repository to its original state when conflicts or issues arise during the rebase process.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used rebase abort countless times when resolving complicated merge conflicts and branch management.&#xA;From my expertise, the most reliable approach is using &lt;code&gt;git rebase --abort&lt;/code&gt; which immediately cancels the current rebase and restores the branch to its pre-rebase state.&#xA;This command is essential for recovering from problematic rebases without losing work or corrupting repository history.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to push tags in Git</title>
+      <link>https://coreui.io/answers/how-to-push-tags-in-git/</link>
+      <pubDate>Mon, 03 Nov 2025 15:36:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-push-tags-in-git/</guid>
+      <description>&lt;p&gt;Pushing tags to remote repositories is essential for version control and release management in collaborative development environments.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve managed countless releases across multiple repositories where proper tag management is crucial.&#xA;The most effective approach is using &lt;code&gt;git push&lt;/code&gt; with specific tag options to ensure your version tags are shared with the team and available for deployment pipelines.&#xA;This practice maintains consistency across distributed development workflows.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Push a Specific Branch in Git</title>
+      <link>https://coreui.io/answers/how-to-push-a-specific-branch-in-git/</link>
+      <pubDate>Sun, 02 Nov 2025 16:05:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-push-a-specific-branch-in-git/</guid>
+      <description>&lt;p&gt;Pushing specific branches in Git allows you to control exactly which branches are shared with remote repositories, avoiding accidental pushes of work-in-progress branches. As the creator of CoreUI, I regularly push feature branches individually when preparing pull requests and managing multiple parallel development streams. Explicitly naming branches prevents pushing unintended changes and gives you precise control over what gets shared.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Force Push in Git</title>
+      <link>https://coreui.io/answers/how-to-force-push-in-git/</link>
+      <pubDate>Sun, 02 Nov 2025 16:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-force-push-in-git/</guid>
+      <description>&lt;p&gt;Force pushing in Git overwrites the remote repository history with your local changes, which can be necessary after operations like rebasing or amending commits. As the creator of CoreUI, I use force push carefully when cleaning up commit history before merging feature branches. The safer approach is using &lt;code&gt;--force-with-lease&lt;/code&gt; instead of &lt;code&gt;--force&lt;/code&gt; to prevent accidentally overwriting other developers&amp;rsquo; work.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Mixed Reset in Git</title>
+      <link>https://coreui.io/answers/how-to-mixed-reset-in-git/</link>
+      <pubDate>Fri, 31 Oct 2025 11:05:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-mixed-reset-in-git/</guid>
+      <description>&lt;p&gt;A mixed reset in Git moves the HEAD pointer and resets the staging area while preserving changes in your working directory. As the creator of CoreUI, I use mixed resets frequently to reorganize commits and unstage files while keeping my changes intact. This is the default behavior of &lt;code&gt;git reset&lt;/code&gt; and provides a safe way to modify commit history.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Hard Reset in Git</title>
+      <link>https://coreui.io/answers/how-to-hard-reset-in-git/</link>
+      <pubDate>Fri, 31 Oct 2025 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-hard-reset-in-git/</guid>
+      <description>&lt;p&gt;A hard reset in Git completely discards all changes in your working directory and staging area, reverting everything to a specific commit state. As the creator of CoreUI, I use hard resets carefully when I need to completely abandon current changes and return to a clean state. This operation is destructive and cannot be easily undone, so use it with caution.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Stash Changes in Git</title>
+      <link>https://coreui.io/answers/how-to-stash-changes-in-git/</link>
+      <pubDate>Thu, 30 Oct 2025 15:05:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-stash-changes-in-git/</guid>
+      <description>&lt;p&gt;As the creator of CoreUI, I&amp;rsquo;ll show you how to effectively use Git stash to temporarily save and manage uncommitted changes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Write Good Commit Messages in Git</title>
+      <link>https://coreui.io/answers/how-to-write-good-commit-messages-in-git/</link>
+      <pubDate>Thu, 30 Oct 2025 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-write-good-commit-messages-in-git/</guid>
+      <description>&lt;p&gt;As the creator of CoreUI, I&amp;rsquo;ll show you how to write effective commit messages that improve project maintainability and team collaboration.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to initialize a Git repository</title>
+      <link>https://coreui.io/answers/how-to-initialize-a-git-repository/</link>
+      <pubDate>Sun, 26 Oct 2025 17:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-initialize-a-git-repository/</guid>
+      <description>&lt;p&gt;Starting version control for a new project is the foundation of professional software development and collaborative coding.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve initialized countless Git repositories across various projects.&#xA;From my expertise, the most straightforward approach is using the &lt;code&gt;git init&lt;/code&gt; command in your project directory to create a new local repository.&#xA;This sets up the essential &lt;code&gt;.git&lt;/code&gt; directory structure for tracking your project&amp;rsquo;s history.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to commit changes in Git</title>
+      <link>https://coreui.io/answers/how-to-commit-changes-in-git/</link>
+      <pubDate>Thu, 02 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-commit-changes-in-git/</guid>
+      <description>&lt;p&gt;Committing changes properly is fundamental to version control and collaborative development, ensuring code history is clear and trackable.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve made thousands of commits across multiple repositories and understand the importance of clear commit practices for team collaboration.&#xA;From my expertise, the most standard approach is to use &lt;code&gt;git commit&lt;/code&gt; with descriptive messages after staging changes.&#xA;This method creates a permanent record of your changes with context that helps teammates understand the purpose and scope of modifications.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

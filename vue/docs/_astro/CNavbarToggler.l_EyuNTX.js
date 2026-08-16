@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.CA1CYuze.js";var n=e({name:`CNavbarToggler`,setup(e,{slots:n}){return()=>t(`button`,{class:`navbar-toggler`},n.default?n.default():t(`span`,{class:[`navbar-toggler-icon`]}))}});export{n as t};

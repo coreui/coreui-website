@@ -1,0 +1,1 @@
+import{a as o,b as t}from"./chunk-MQBD4EFB.js";import"./chunk-FPPZ4BUR.js";import"./chunk-H7BDVHMQ.js";import"./chunk-ZOGHMS73.js";var r=[{path:"",loadComponent:()=>import("./chunk-RF66ZMPB.js").then(p=>p.GoogleMapsComponent),data:{title:"Google Maps"},providers:[o(t())]}];export{r as routes};

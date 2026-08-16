@@ -1,0 +1,1 @@
+import{A as e,D as t,h as n,m as r,p as i}from"./index-WXA455MI.js";var a=e(r()),o=e(t()),s=(0,o.forwardRef)((e,t)=>{var{children:r,className:a}=e,s=n(e,[`children`,`className`]);return o.createElement(`div`,Object.assign({className:i(`card-footer`,a)},s,{ref:t}),r)});s.propTypes={children:a.default.node,className:a.default.string},s.displayName=`CCardFooter`;export{s as t};

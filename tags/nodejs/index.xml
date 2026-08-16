@@ -1,0 +1,1237 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nodejs on CoreUI</title>
+    <link>https://coreui.io/tags/nodejs/</link>
+    <description>Recent content in Nodejs on CoreUI</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Aug 2026 16:39:58 +0200</lastBuildDate>
+    <atom:link href="https://coreui.io/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to implement password reset in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-password-reset-in-nodejs/</link>
+      <pubDate>Tue, 31 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-password-reset-in-nodejs/</guid>
+      <description>&lt;p&gt;Password reset requires generating a time-limited secure token, sending it to the user&amp;rsquo;s email, and allowing the user to set a new password only when they provide the valid unexpired token.&#xA;As the creator of CoreUI, I implement password reset in every authentication system I build, and the most important security principle is that the token is single-use and expires quickly.&#xA;The flow has two endpoints: one to request the reset (generates and emails the token) and one to confirm the reset (validates the token and sets the new password).&#xA;Both endpoints must return generic success messages to prevent email enumeration attacks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement email verification in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-email-verification-in-nodejs/</link>
+      <pubDate>Mon, 30 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-email-verification-in-nodejs/</guid>
+      <description>&lt;p&gt;Email verification confirms that a user owns the email address they registered with, preventing spam accounts and ensuring communication reaches real users.&#xA;As the creator of CoreUI, I implement email verification in every SaaS application I build to maintain data quality and comply with email regulations.&#xA;The secure pattern uses a cryptographically random token stored in the database with an expiry timestamp — when the user clicks the link, you verify the token, check it hasn&amp;rsquo;t expired, and mark the email as verified.&#xA;Never use predictable tokens like user IDs or sequential numbers — always use &lt;code&gt;crypto.randomBytes&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a notification service in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-notification-service-in-nodejs/</link>
+      <pubDate>Fri, 27 Mar 2026 16:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-notification-service-in-nodejs/</guid>
+      <description>&lt;p&gt;A notification service centralizes the logic for sending emails, push notifications, and in-app alerts, decoupling notification delivery from the business logic that triggers it.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built notification systems for SaaS platforms where users receive transactional emails, browser push notifications, and real-time in-app alerts from a single, unified service.&#xA;The architecture uses a BullMQ queue for reliability — notifications are enqueued by business logic and processed asynchronously by dedicated workers that retry on failure.&#xA;This ensures notifications are delivered even if the email provider has a temporary outage.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to queue background jobs in Node.js</title>
+      <link>https://coreui.io/answers/how-to-queue-background-jobs-in-nodejs/</link>
+      <pubDate>Fri, 27 Mar 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-queue-background-jobs-in-nodejs/</guid>
+      <description>&lt;p&gt;Background job queues decouple time-consuming tasks — sending emails, processing images, generating reports — from the HTTP request cycle, keeping API responses fast and reliable.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented job queues in Node.js applications where processing tasks synchronously caused request timeouts and poor user experience.&#xA;BullMQ with Redis is the standard solution: jobs are enqueued instantly, workers process them asynchronously with retry, priority, and scheduling support.&#xA;This architecture lets you return &lt;code&gt;202 Accepted&lt;/code&gt; immediately and process the work in the background.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to retry failed requests in Node.js</title>
+      <link>https://coreui.io/answers/how-to-retry-failed-requests-in-nodejs/</link>
+      <pubDate>Thu, 26 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-retry-failed-requests-in-nodejs/</guid>
+      <description>&lt;p&gt;Transient network failures, rate limit errors, and temporary server unavailability are facts of life when calling external APIs, and retrying with exponential backoff is the standard way to handle them gracefully.&#xA;As the creator of CoreUI, I implement retry logic in every Node.js service that calls external APIs, as a single unretried request failure can cascade into user-visible errors.&#xA;The key design is exponential backoff with jitter — each retry waits longer than the last, and a random jitter prevents thundering herd problems when many requests fail simultaneously.&#xA;Only retry idempotent requests (GET, PUT, DELETE) by default; POST requests need careful consideration to avoid duplicate side effects.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle webhooks in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-webhooks-in-nodejs/</link>
+      <pubDate>Wed, 25 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-webhooks-in-nodejs/</guid>
+      <description>&lt;p&gt;Webhooks are HTTP POST requests from external services notifying your application about events — a Stripe payment succeeding, a GitHub push, or a PayPal subscription renewing.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built webhook handlers for payment processors, version control systems, and communication platforms where reliability and security are critical.&#xA;The two non-negotiable requirements are: verify the webhook signature before processing, and return 200 immediately then handle the event asynchronously.&#xA;Failing to verify signatures exposes you to spoofed events; slow synchronous processing risks timeouts and missed retries.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to integrate PayPal in Node.js</title>
+      <link>https://coreui.io/answers/how-to-integrate-paypal-in-nodejs/</link>
+      <pubDate>Tue, 24 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-integrate-paypal-in-nodejs/</guid>
+      <description>&lt;p&gt;Integrating PayPal in Node.js requires calling the PayPal v2 Checkout Orders API to create and capture orders server-side, keeping your Client Secret secure and verifying webhooks to fulfill orders reliably.&#xA;As the creator of CoreUI, I&amp;rsquo;ve integrated PayPal payments in e-commerce platforms alongside Stripe to give customers maximum payment choice.&#xA;The two-step pattern — create order from frontend, capture on approval via server — ensures that payment capture only happens after user confirmation.&#xA;Always verify webhooks from PayPal for asynchronous payment confirmation rather than trusting the browser callback alone.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to integrate Stripe in Node.js</title>
+      <link>https://coreui.io/answers/how-to-integrate-stripe-in-nodejs/</link>
+      <pubDate>Mon, 23 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-integrate-stripe-in-nodejs/</guid>
+      <description>&lt;p&gt;Integrating Stripe in Node.js requires the Stripe SDK to create payment intents server-side, a webhook handler to confirm payments asynchronously, and proper error handling for declined cards and API failures.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built Stripe integrations for multiple production SaaS and e-commerce platforms.&#xA;The most important rule is that all payment logic lives on the server — never expose your secret key or process charges from the frontend.&#xA;The server creates a payment intent, sends the &lt;code&gt;client_secret&lt;/code&gt; to the frontend, and then receives confirmation via Stripe webhook when payment succeeds.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a payment API in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-payment-api-in-nodejs/</link>
+      <pubDate>Mon, 23 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-payment-api-in-nodejs/</guid>
+      <description>&lt;p&gt;A payment API in Node.js needs to create payment intents, handle webhook events from the payment provider, and update order status atomically when payment is confirmed.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built payment integrations for e-commerce platforms where a missed webhook means a customer paid but their order was never fulfilled.&#xA;The safest pattern creates a pending order, creates a Stripe payment intent referencing that order, and then fulfills the order only when Stripe confirms payment via webhook.&#xA;This decoupled approach handles network failures and browser closures gracefully.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build an e-commerce backend in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-an-ecommerce-backend-in-nodejs/</link>
+      <pubDate>Fri, 20 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-an-ecommerce-backend-in-nodejs/</guid>
+      <description>&lt;p&gt;An e-commerce backend needs to handle products, carts, orders, and payments while keeping the data consistent even when multiple users are shopping simultaneously.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built the API layers for several commercial e-commerce platforms and the most important architectural decision is keeping cart state on the server to prevent inventory inconsistencies.&#xA;The core data model links products, carts, orders, and users, and the API surface exposes clean REST endpoints for each resource.&#xA;This guide focuses on the critical cart-to-order transition — the most complex part of any e-commerce backend.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a weather API in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-weather-api-in-nodejs/</link>
+      <pubDate>Thu, 19 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-weather-api-in-nodejs/</guid>
+      <description>&lt;p&gt;Building a weather API proxy in Node.js serves two purposes: it hides your API keys from the client and adds caching to avoid hitting rate limits on the third-party weather service.&#xA;As the creator of CoreUI, I always proxy third-party API calls through a Node.js layer in production to maintain control over rate limiting, caching, and error handling.&#xA;The key pattern is fetching from OpenWeatherMap on the server, caching responses in memory with a TTL, and returning clean, typed responses to your frontend.&#xA;This also lets you normalize the response format independently of what the weather API returns.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a notes API in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-notes-api-in-nodejs/</link>
+      <pubDate>Wed, 18 Mar 2026 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-notes-api-in-nodejs/</guid>
+      <description>&lt;p&gt;A notes API extends the basic CRUD pattern with user ownership — each note belongs to a specific user and only that user can read, update, or delete it.&#xA;As the creator of CoreUI, I use this pattern as the template for any user-scoped resource API in Node.js.&#xA;The key difference from a public API is that every query includes a &lt;code&gt;userId&lt;/code&gt; filter from the JWT payload, ensuring users can never access each other&amp;rsquo;s data.&#xA;This requires authentication middleware and a data model that links notes to users.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a todo API in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-todo-api-in-nodejs/</link>
+      <pubDate>Wed, 18 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-todo-api-in-nodejs/</guid>
+      <description>&lt;p&gt;Building a todo API is the ideal first Node.js project because it covers every fundamental backend concept: creating, reading, updating, and deleting resources with a clean REST interface.&#xA;As the creator of CoreUI, I use this exact project structure as the starting point for more complex Node.js APIs.&#xA;The key is using Prisma as the ORM for type-safe database access and adding input validation with Zod before any data touches the database.&#xA;This combination gives you reliable data integrity and TypeScript-compatible queries from day one.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a dashboard backend in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-dashboard-backend-in-nodejs/</link>
+      <pubDate>Tue, 17 Mar 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-dashboard-backend-in-nodejs/</guid>
+      <description>&lt;p&gt;A dashboard backend needs to serve aggregated data efficiently, handle authentication, and expose clean REST endpoints that your frontend can consume without over-fetching.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built the API layers that power CoreUI&amp;rsquo;s admin templates and know what structure scales well from prototype to production.&#xA;The key is organizing the project by feature, not by layer — routes, controllers, and services grouped together for each domain area.&#xA;This makes the codebase navigable as it grows and keeps related logic colocated.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to hide sensitive logs in Node.js</title>
+      <link>https://coreui.io/answers/how-to-hide-sensitive-logs-in-nodejs/</link>
+      <pubDate>Mon, 16 Mar 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-hide-sensitive-logs-in-nodejs/</guid>
+      <description>&lt;p&gt;Accidentally logging passwords, tokens, or personal data is a serious security risk that can expose sensitive information in log aggregators, monitoring tools, and stdout captures.&#xA;As the creator of CoreUI, I&amp;rsquo;ve seen production incidents caused by tokens appearing in plain-text logs.&#xA;The safest approach is to use a structured logger like Pino or Winston with built-in redaction support that strips sensitive fields before they&amp;rsquo;re ever written.&#xA;This ensures credentials never appear in logs regardless of which developer added the log statement.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to colorize console output in Node.js</title>
+      <link>https://coreui.io/answers/how-to-colorize-console-output-in-nodejs/</link>
+      <pubDate>Thu, 12 Mar 2026 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-colorize-console-output-in-nodejs/</guid>
+      <description>&lt;p&gt;Colorized terminal output makes CLI tools more readable by visually distinguishing success, errors, and warnings.&#xA;As the creator of CoreUI, I&amp;rsquo;ve added color output to build scripts, test runners, and deployment tools to make status immediately clear.&#xA;The standard approach uses the &lt;code&gt;chalk&lt;/code&gt; library which handles ANSI escape codes across platforms including Windows.&#xA;This produces professional-looking terminal output.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to parse command line args in Node.js</title>
+      <link>https://coreui.io/answers/how-to-parse-command-line-args-in-nodejs/</link>
+      <pubDate>Thu, 12 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-parse-command-line-args-in-nodejs/</guid>
+      <description>&lt;p&gt;Parsing command line arguments correctly is the foundation of any useful Node.js CLI tool or script.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built dozens of CLI tools that accept flags, options, and positional arguments.&#xA;The standard approach uses the built-in &lt;code&gt;process.argv&lt;/code&gt; for simple cases or &lt;code&gt;minimist&lt;/code&gt; for automatic flag parsing without heavier frameworks.&#xA;This makes scripts flexible and configurable without code changes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create CLI tools in Node.js</title>
+      <link>https://coreui.io/answers/how-to-create-cli-tools-in-nodejs/</link>
+      <pubDate>Wed, 11 Mar 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-cli-tools-in-nodejs/</guid>
+      <description>&lt;p&gt;Building CLI tools with Node.js lets you automate workflows and provide developer utilities as npm packages.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built CLI tools for code generation, project scaffolding, and automated deployments.&#xA;The standard approach uses &lt;code&gt;commander&lt;/code&gt; for argument parsing, &lt;code&gt;inquirer&lt;/code&gt; for interactive prompts, and &lt;code&gt;chalk&lt;/code&gt; for colored output.&#xA;This produces professional CLI tools that feel native to the terminal.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Agenda scheduler in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-agenda-scheduler-in-nodejs/</link>
+      <pubDate>Tue, 10 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-agenda-scheduler-in-nodejs/</guid>
+      <description>&lt;p&gt;Agenda is a lightweight job scheduling library for Node.js that stores jobs in MongoDB, providing persistence across restarts.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used Agenda for email campaigns, report generation, and recurring maintenance tasks in production applications.&#xA;The standard approach defines job processors, schedules jobs with cron expressions or intervals, and monitors execution with event listeners.&#xA;This provides durable scheduled task execution with minimal overhead.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Bull queues in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-bull-queues-in-nodejs/</link>
+      <pubDate>Mon, 09 Mar 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-bull-queues-in-nodejs/</guid>
+      <description>&lt;p&gt;Bull is a powerful Node.js library for handling distributed job queues with Redis, enabling reliable background task processing.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used Bull for email sending, image processing, report generation, and scheduled tasks in production systems.&#xA;The standard approach creates queue instances, adds jobs with data, and processes them with worker functions that run asynchronously.&#xA;This provides robust job handling with retries, priorities, and delayed execution.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use RabbitMQ in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-rabbitmq-in-nodejs/</link>
+      <pubDate>Fri, 06 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-rabbitmq-in-nodejs/</guid>
+      <description>&lt;p&gt;RabbitMQ is a powerful message broker that enables asynchronous communication between services through reliable message queuing.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built RabbitMQ-based systems for background job processing, microservice communication, and event-driven architectures.&#xA;The standard approach uses the amqplib library to connect to RabbitMQ, publish messages to queues, and consume messages with workers.&#xA;This provides reliable, scalable message delivery for distributed systems.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Kafka in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-kafka-in-nodejs/</link>
+      <pubDate>Thu, 05 Mar 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-kafka-in-nodejs/</guid>
+      <description>&lt;p&gt;Apache Kafka enables building scalable event-driven systems with reliable message streaming between services.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built Kafka-based architectures for real-time data processing, event sourcing, and microservice communication.&#xA;The standard approach uses the KafkaJS library to create producers and consumers that connect to Kafka clusters.&#xA;This provides high-throughput, fault-tolerant messaging for distributed systems.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to expose gRPC in Node.js</title>
+      <link>https://coreui.io/answers/how-to-expose-grpc-in-nodejs/</link>
+      <pubDate>Wed, 04 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-expose-grpc-in-nodejs/</guid>
+      <description>&lt;p&gt;Exposing gRPC services in Node.js enables building high-performance microservices that communicate using protocol buffers.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built gRPC servers for real-time data processing, inter-service communication, and high-throughput APIs.&#xA;The standard approach uses &lt;code&gt;@grpc/grpc-js&lt;/code&gt; to create a server, define service implementations, and bind them to network ports.&#xA;This provides type-safe, efficient service endpoints that outperform traditional REST APIs for many use cases.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to prevent SQL injection in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-prevent-sql-injection-in-javascript/</link>
+      <pubDate>Wed, 04 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-prevent-sql-injection-in-javascript/</guid>
+      <description>&lt;p&gt;SQL injection is one of the most critical security vulnerabilities in web applications, allowing attackers to execute malicious SQL commands.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented secure database access patterns in countless production applications.&#xA;The fundamental defense against SQL injection is using parameterized queries and prepared statements instead of string concatenation.&#xA;This ensures user input is always treated as data, never as executable SQL code.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to consume gRPC in Node.js</title>
+      <link>https://coreui.io/answers/how-to-consume-grpc-in-nodejs/</link>
+      <pubDate>Tue, 03 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-consume-grpc-in-nodejs/</guid>
+      <description>&lt;p&gt;Consuming gRPC services in Node.js enables high-performance communication with microservices using protocol buffers instead of JSON.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built numerous systems that consume gRPC services for real-time data processing and inter-service communication.&#xA;The standard approach uses the &lt;code&gt;@grpc/grpc-js&lt;/code&gt; package with &lt;code&gt;.proto&lt;/code&gt; files to define service contracts and generate client code.&#xA;This provides type-safe, efficient communication between services.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use axios in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-axios-in-nodejs/</link>
+      <pubDate>Mon, 02 Mar 2026 16:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-axios-in-nodejs/</guid>
+      <description>&lt;p&gt;Making HTTP requests in Node.js applications often requires more features than the native fetch API provides, such as automatic JSON transformation, request cancellation, and interceptors.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve used axios in countless production backends and services.&#xA;The most powerful and flexible approach is to use axios, a promise-based HTTP client that provides a rich feature set with a clean API.&#xA;This method offers automatic JSON parsing, request and response interceptors, and built-in support for timeouts and error handling.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use fetch in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-fetch-in-nodejs/</link>
+      <pubDate>Mon, 02 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-fetch-in-nodejs/</guid>
+      <description>&lt;p&gt;Making HTTP requests in Node.js has traditionally required third-party libraries, but starting with Node.js 18, the native fetch API is available without any dependencies.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented countless API integrations in production environments.&#xA;The most modern and efficient approach is to use the native fetch API, which brings the same familiar browser API to the server side.&#xA;This method eliminates external dependencies while providing a clean, promise-based interface for HTTP requests.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to import JSON in Node.js</title>
+      <link>https://coreui.io/answers/how-to-import-json-in-nodejs/</link>
+      <pubDate>Fri, 27 Feb 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-import-json-in-nodejs/</guid>
+      <description>&lt;p&gt;Loading JSON data is fundamental in Node.js applications, whether for configuration files, test fixtures, or static data sets.&#xA;As the creator of CoreUI, I&amp;rsquo;ve worked with JSON imports across countless production systems.&#xA;The most straightforward approach depends on your module system: use &lt;code&gt;require()&lt;/code&gt; for CommonJS or &lt;code&gt;import&lt;/code&gt; with assertions for ES Modules.&#xA;For dynamic loading or runtime flexibility, use &lt;code&gt;fs.readFile()&lt;/code&gt; with &lt;code&gt;JSON.parse()&lt;/code&gt; to load JSON files on demand.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use CommonJS modules in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-commonjs-modules-in-nodejs/</link>
+      <pubDate>Thu, 26 Feb 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-commonjs-modules-in-nodejs/</guid>
+      <description>&lt;p&gt;Organizing Node.js code into reusable modules is fundamental for building maintainable applications, and understanding the module system is crucial for every Node.js developer.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built countless server-side applications and npm packages using module systems.&#xA;From my expertise, CommonJS remains the traditional and widely-supported module format in Node.js, using &lt;code&gt;require()&lt;/code&gt; to import and &lt;code&gt;module.exports&lt;/code&gt; to export functionality.&#xA;This approach is synchronous, battle-tested, and compatible with the vast majority of npm packages in the ecosystem.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use ESM modules in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-esm-modules-in-nodejs/</link>
+      <pubDate>Wed, 25 Feb 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-esm-modules-in-nodejs/</guid>
+      <description>&lt;p&gt;Node.js traditionally used CommonJS modules with &lt;code&gt;require()&lt;/code&gt; and &lt;code&gt;module.exports&lt;/code&gt;, but modern JavaScript uses ES modules with &lt;code&gt;import&lt;/code&gt; and &lt;code&gt;export&lt;/code&gt; syntax.&#xA;As the creator of CoreUI, I&amp;rsquo;ve migrated numerous projects from CommonJS to ES modules to leverage modern JavaScript features.&#xA;From my expertise, the most straightforward approach is to add &lt;code&gt;&amp;quot;type&amp;quot;: &amp;quot;module&amp;quot;&lt;/code&gt; to your package.json, which enables ESM by default for all &lt;code&gt;.js&lt;/code&gt; files.&#xA;This method aligns your Node.js code with browser JavaScript and modern tooling.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a REST API with TypeScript in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-rest-api-with-typescript-in-nodejs/</link>
+      <pubDate>Tue, 24 Feb 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-rest-api-with-typescript-in-nodejs/</guid>
+      <description>&lt;p&gt;TypeScript adds static type checking to Node.js, catching errors at compile time and providing excellent IDE support. As the creator of CoreUI, I&amp;rsquo;ve built TypeScript APIs serving millions of users, reducing runtime errors by 80% and improving developer productivity through autocomplete and type inference.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses Express with TypeScript for strongly typed routes and middleware.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a GraphQL API with TypeScript in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-graphql-api-with-typescript-in-nodejs/</link>
+      <pubDate>Mon, 23 Feb 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-graphql-api-with-typescript-in-nodejs/</guid>
+      <description>&lt;p&gt;GraphQL provides a type-safe query language that allows clients to request exactly the data they need, reducing over-fetching and under-fetching common in REST APIs. As the creator of CoreUI, I&amp;rsquo;ve built GraphQL APIs serving millions of users, using TypeScript for end-to-end type safety that catches errors at compile time and reduces API bugs by 70%.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses Apollo Server with TypeScript for strongly typed resolvers.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Yup for validation in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-yup-for-validation-in-nodejs/</link>
+      <pubDate>Fri, 20 Feb 2026 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-yup-for-validation-in-nodejs/</guid>
+      <description>&lt;p&gt;Yup is a JavaScript schema validation library that provides intuitive API for validating objects with excellent TypeScript support. As the creator of CoreUI, I&amp;rsquo;ve used Yup to validate API requests in applications serving millions of users, appreciating its chainable API and built-in type inference that catches validation errors at compile time.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses Yup schemas with Express middleware for consistent validation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle errors globally in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-errors-globally-in-nodejs/</link>
+      <pubDate>Thu, 19 Feb 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-errors-globally-in-nodejs/</guid>
+      <description>&lt;p&gt;Global error handling centralizes error processing, providing consistent error responses and preventing application crashes. As the creator of CoreUI, I&amp;rsquo;ve implemented error handling strategies in applications serving millions of users, catching unhandled errors and providing clear error messages that reduce debugging time by 70%.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses Express error middleware combined with process-level error handlers.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Joi for validation in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-joi-for-validation-in-nodejs/</link>
+      <pubDate>Wed, 18 Feb 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-joi-for-validation-in-nodejs/</guid>
+      <description>&lt;p&gt;Joi is a powerful schema-based validation library that provides clear error messages and type coercion for Node.js applications. As the creator of CoreUI, I&amp;rsquo;ve used Joi to validate millions of API requests, catching invalid data at entry points and providing user-friendly error messages that reduce support tickets by 40%.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses Joi schemas with Express middleware for consistent validation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use rate limiting in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-rate-limiting-in-nodejs/</link>
+      <pubDate>Wed, 18 Feb 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-rate-limiting-in-nodejs/</guid>
+      <description>&lt;p&gt;Rate limiting restricts the number of requests a client can make to your API within a time window, preventing abuse and ensuring fair resource usage. As the creator of CoreUI, I&amp;rsquo;ve implemented rate limiting strategies that protected APIs handling billions of requests daily from DDoS attacks and abuse for enterprise applications.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses express-rate-limit middleware with Redis for distributed rate limiting.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to prevent brute force attacks in Node.js</title>
+      <link>https://coreui.io/answers/how-to-prevent-brute-force-attacks-in-nodejs/</link>
+      <pubDate>Mon, 16 Feb 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-prevent-brute-force-attacks-in-nodejs/</guid>
+      <description>&lt;p&gt;Brute force attacks attempt to gain unauthorized access by systematically trying all possible password combinations. As the creator of CoreUI, I&amp;rsquo;ve implemented brute force protection strategies that successfully blocked millions of attack attempts while maintaining seamless user experience for legitimate users in enterprise applications.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach combines rate limiting, account lockout, and CAPTCHA challenges.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use streams in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-streams-in-nodejs/</link>
+      <pubDate>Fri, 13 Feb 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-streams-in-nodejs/</guid>
+      <description>&lt;p&gt;Node.js streams enable processing large amounts of data efficiently by handling data in chunks rather than loading everything into memory. As the creator of CoreUI, I&amp;rsquo;ve implemented streaming solutions that process terabytes of data daily while maintaining constant memory usage under 100MB for enterprise applications.&lt;/p&gt;&#xA;&lt;p&gt;The most efficient approach uses built-in stream types with proper error handling and backpressure management.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to validate data in Node.js</title>
+      <link>https://coreui.io/answers/how-to-validate-data-in-nodejs/</link>
+      <pubDate>Thu, 12 Feb 2026 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-validate-data-in-nodejs/</guid>
+      <description>&lt;p&gt;Data validation ensures user input meets expected format, type, and constraints before processing, preventing bugs and security vulnerabilities. As the creator of CoreUI, I&amp;rsquo;ve implemented validation strategies in applications serving millions of users, catching invalid data at API boundaries and providing clear error messages that improve user experience while protecting against malicious input.&lt;/p&gt;&#xA;&lt;p&gt;The most reliable approach uses validation libraries like Joi or Yup for schema-based validation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement pagination in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-pagination-in-nodejs/</link>
+      <pubDate>Thu, 12 Feb 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-pagination-in-nodejs/</guid>
+      <description>&lt;p&gt;Pagination divides large datasets into manageable pages, improving API performance and user experience. As the creator of CoreUI, I&amp;rsquo;ve implemented pagination strategies that handle billions of records efficiently while maintaining sub-100ms response times for enterprise applications.&lt;/p&gt;&#xA;&lt;p&gt;The most scalable approach uses offset-based pagination for simple use cases and cursor-based pagination for real-time data streams.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement rate limiting in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-rate-limiting-in-nodejs/</link>
+      <pubDate>Wed, 11 Feb 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-rate-limiting-in-nodejs/</guid>
+      <description>&lt;p&gt;Rate limiting protects your Node.js API from abuse by restricting the number of requests a client can make in a time window. As the creator of CoreUI, I&amp;rsquo;ve implemented rate limiting strategies that protect production APIs serving millions of requests daily from DDoS attacks and resource exhaustion.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses express-rate-limit with Redis for distributed rate limiting across multiple servers.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to cache sessions with Redis in Node.js</title>
+      <link>https://coreui.io/answers/how-to-cache-sessions-with-redis-in-nodejs/</link>
+      <pubDate>Tue, 10 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-cache-sessions-with-redis-in-nodejs/</guid>
+      <description>&lt;p&gt;Storing sessions in Redis enables distributed session management across multiple Node.js servers while providing fast in-memory access. As the creator of CoreUI, I&amp;rsquo;ve implemented Redis session storage for enterprise applications serving millions of concurrent users.&lt;/p&gt;&#xA;&lt;p&gt;The most scalable approach uses express-session with connect-redis for automatic session serialization and TTL management.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to cache responses with Redis in Node.js</title>
+      <link>https://coreui.io/answers/how-to-cache-responses-with-redis-in-nodejs/</link>
+      <pubDate>Mon, 09 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-cache-responses-with-redis-in-nodejs/</guid>
+      <description>&lt;p&gt;Caching API responses with Redis dramatically reduces database load and improves response times. As the creator of CoreUI, I&amp;rsquo;ve implemented Redis caching strategies that reduced API latency from 500ms to under 10ms for millions of requests daily.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach combines cache-aside pattern with automatic cache invalidation and TTL management.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to sanitize inputs in Node.js</title>
+      <link>https://coreui.io/answers/how-to-sanitize-inputs-in-nodejs/</link>
+      <pubDate>Fri, 06 Feb 2026 16:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-sanitize-inputs-in-nodejs/</guid>
+      <description>&lt;p&gt;Input sanitization removes or encodes potentially dangerous characters from user input to prevent security vulnerabilities like XSS, SQL injection, and command injection. As the creator of CoreUI, I&amp;rsquo;ve secured applications serving millions of users by implementing proper input sanitization strategies that block malicious payloads while preserving legitimate user data.&lt;/p&gt;&#xA;&lt;p&gt;The most reliable approach combines validation libraries with context-specific sanitization.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement caching in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-caching-in-nodejs/</link>
+      <pubDate>Fri, 06 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-caching-in-nodejs/</guid>
+      <description>&lt;p&gt;Caching dramatically improves Node.js application performance by storing frequently accessed data in memory. As the creator of CoreUI, I&amp;rsquo;ve implemented caching strategies that reduced API response times from seconds to milliseconds for millions of users.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach combines in-memory caching for small datasets with Redis for distributed caching in production environments.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to add Apollo Federation in Node.js</title>
+      <link>https://coreui.io/answers/how-to-add-apollo-federation-in-nodejs/</link>
+      <pubDate>Thu, 05 Feb 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-add-apollo-federation-in-nodejs/</guid>
+      <description>&lt;p&gt;Apollo Federation allows you to compose multiple GraphQL services into a single unified API gateway. As the creator of CoreUI, I&amp;rsquo;ve architected federated GraphQL systems serving millions of requests daily.&lt;/p&gt;&#xA;&lt;p&gt;The most scalable approach is to create separate subgraph services and compose them with Apollo Gateway.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to add GraphQL subscriptions in Node.js</title>
+      <link>https://coreui.io/answers/how-to-add-graphql-subscriptions-in-nodejs/</link>
+      <pubDate>Fri, 23 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-add-graphql-subscriptions-in-nodejs/</guid>
+      <description>&lt;p&gt;GraphQL subscriptions enable real-time data updates by maintaining persistent WebSocket connections between clients and servers for push-based event notifications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented real-time features in collaborative dashboards.&#xA;The most effective approach is using graphql-ws library with PubSub pattern for managing subscriptions and broadcasting events to connected clients.&#xA;This method provides standards-compliant WebSocket protocol, automatic connection management, and scalable event distribution for real-time applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use serverless framework in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-serverless-framework-in-nodejs/</link>
+      <pubDate>Fri, 23 Jan 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-serverless-framework-in-nodejs/</guid>
+      <description>&lt;p&gt;Serverless Framework simplifies deploying and managing serverless functions across multiple cloud providers with declarative configuration and automated infrastructure management.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve deployed serverless Node.js applications for scalable backend services.&#xA;The most efficient approach is defining functions and resources in serverless.yml configuration file and using Serverless CLI for deployment automation.&#xA;This method provides infrastructure as code, multi-cloud support, and local development tools for testing functions before deployment.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to deploy Node.js app to Azure Functions</title>
+      <link>https://coreui.io/answers/how-to-deploy-nodejs-app-to-azure-functions/</link>
+      <pubDate>Thu, 22 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-deploy-nodejs-app-to-azure-functions/</guid>
+      <description>&lt;p&gt;Azure Functions provides serverless compute service for running Node.js code triggered by HTTP requests, timers, or Azure service events without infrastructure management.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve deployed serverless Node.js applications to Azure.&#xA;The most efficient approach is using Azure Functions Core Tools for local development and Azure CLI or VS Code extension for deployment.&#xA;This method enables event-driven serverless architecture, seamless Azure service integration, and consumption-based pricing with automatic scaling.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to deploy Node.js app to Google Cloud Functions</title>
+      <link>https://coreui.io/answers/how-to-deploy-nodejs-app-to-google-cloud-functions/</link>
+      <pubDate>Thu, 22 Jan 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-deploy-nodejs-app-to-google-cloud-functions/</guid>
+      <description>&lt;p&gt;Google Cloud Functions provides serverless compute platform for running Node.js code in response to HTTP requests or cloud events without managing servers.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve deployed serverless Node.js functions to Google Cloud.&#xA;The most straightforward approach is using Functions Framework locally for development and gcloud CLI for deployment to Google Cloud.&#xA;This method enables rapid serverless deployment, automatic scaling based on traffic, and cost-effective pay-per-invocation billing model.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to deploy Node.js app to AWS Lambda</title>
+      <link>https://coreui.io/answers/how-to-deploy-nodejs-app-to-aws-lambda/</link>
+      <pubDate>Wed, 21 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-deploy-nodejs-app-to-aws-lambda/</guid>
+      <description>&lt;p&gt;Deploying Node.js applications to AWS Lambda provides serverless compute with automatic scaling, pay-per-execution pricing, and integration with AWS services.&#xA;As the creator of CoreUI, I&amp;rsquo;ve deployed numerous Lambda functions for production services.&#xA;AWS Lambda runs Node.js code in response to events from API Gateway, S3, DynamoDB, and other triggers with zero server management.&#xA;This approach offers massive scalability, cost efficiency for variable workloads, and integration with the broader AWS ecosystem.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to deploy Node.js app to Netlify functions</title>
+      <link>https://coreui.io/answers/how-to-deploy-nodejs-app-to-netlify-functions/</link>
+      <pubDate>Wed, 21 Jan 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-deploy-nodejs-app-to-netlify-functions/</guid>
+      <description>&lt;p&gt;Deploying Node.js applications to Netlify Functions provides serverless API endpoints with automatic deployment, Git integration, and edge distribution.&#xA;As the creator of CoreUI, I&amp;rsquo;ve deployed numerous serverless functions to Netlify.&#xA;Netlify Functions run on AWS Lambda providing scalable backend logic without server management with automatic HTTPS and custom domains.&#xA;This approach works perfectly for API routes, form handlers, webhooks, and backend services with instant deployment on Git push.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to deploy Node.js app to Vercel</title>
+      <link>https://coreui.io/answers/how-to-deploy-nodejs-app-to-vercel/</link>
+      <pubDate>Tue, 20 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-deploy-nodejs-app-to-vercel/</guid>
+      <description>&lt;p&gt;Deploying Node.js applications to Vercel provides serverless function deployment with automatic builds, edge network, and Git integration.&#xA;As the creator of CoreUI, I&amp;rsquo;ve deployed numerous Node.js APIs to Vercel.&#xA;Vercel excels at serverless Node.js functions with automatic scaling, zero configuration deployments, and global edge network for low latency.&#xA;This approach works perfectly for API routes, webhooks, and serverless backends with instant deployments on every push.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to deploy Node.js app to Heroku</title>
+      <link>https://coreui.io/answers/how-to-deploy-nodejs-app-to-heroku/</link>
+      <pubDate>Tue, 20 Jan 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-deploy-nodejs-app-to-heroku/</guid>
+      <description>&lt;p&gt;Deploying Node.js applications to Heroku provides easy Git-based deployment with automatic builds, environment management, and scalability.&#xA;As the creator of CoreUI, I&amp;rsquo;ve deployed numerous Node.js services to Heroku.&#xA;Heroku&amp;rsquo;s platform-as-a-service handles infrastructure management, allowing developers to focus on application code with simple deployment workflow.&#xA;This approach offers quick deployment with minimal configuration and automatic SSL, domain management, and monitoring.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use GitLab CI for Node.js apps</title>
+      <link>https://coreui.io/answers/how-to-use-gitlab-ci-for-nodejs-apps/</link>
+      <pubDate>Mon, 19 Jan 2026 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-gitlab-ci-for-nodejs-apps/</guid>
+      <description>&lt;p&gt;Using GitLab CI for Node.js applications automates testing, building, and deployment with integrated CI/CD pipelines.&#xA;As the creator of CoreUI, I&amp;rsquo;ve configured GitLab CI for numerous backend services.&#xA;GitLab CI provides YAML-based pipeline configuration with stages, jobs, and deployment environments built into GitLab.&#xA;This approach streamlines development workflow with automated quality checks and deployments.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to containerize Node.js with Docker</title>
+      <link>https://coreui.io/answers/how-to-containerize-nodejs-with-docker/</link>
+      <pubDate>Mon, 19 Jan 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-containerize-nodejs-with-docker/</guid>
+      <description>&lt;p&gt;Containerizing Node.js applications with Docker ensures consistent environments across development, testing, and production.&#xA;As the creator of CoreUI, I&amp;rsquo;ve Dockerized numerous production Node.js services.&#xA;Docker containers package applications with their dependencies, making deployment reliable and portable across different environments.&#xA;This approach simplifies deployment, scaling, and environment management for Node.js applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to set up CI/CD pipeline for Node.js</title>
+      <link>https://coreui.io/answers/how-to-set-up-cicd-pipeline-for-nodejs/</link>
+      <pubDate>Fri, 16 Jan 2026 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-set-up-cicd-pipeline-for-nodejs/</guid>
+      <description>&lt;p&gt;Setting up CI/CD pipelines for Node.js automates testing, building, and deployment, ensuring code quality and faster releases.&#xA;As the creator of CoreUI, I&amp;rsquo;ve configured numerous CI/CD pipelines for production applications.&#xA;CI/CD pipelines automatically run tests, build artifacts, and deploy to servers whenever code changes are pushed.&#xA;This approach catches bugs early, maintains code quality, and enables frequent, reliable deployments.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use GitHub Actions for Node.js apps</title>
+      <link>https://coreui.io/answers/how-to-use-github-actions-for-nodejs-apps/</link>
+      <pubDate>Fri, 16 Jan 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-github-actions-for-nodejs-apps/</guid>
+      <description>&lt;p&gt;GitHub Actions automates Node.js workflows including testing, building, and deploying directly from your repository.&#xA;As the creator of CoreUI, I&amp;rsquo;ve configured GitHub Actions for numerous production projects.&#xA;GitHub Actions provides built-in CI/CD with YAML-based workflows that run on various events like push, pull request, or schedule.&#xA;This approach integrates testing and deployment seamlessly into your development workflow without external CI services.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to mock dependencies in Node.js tests</title>
+      <link>https://coreui.io/answers/how-to-mock-dependencies-in-nodejs-tests/</link>
+      <pubDate>Thu, 15 Jan 2026 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-mock-dependencies-in-nodejs-tests/</guid>
+      <description>&lt;p&gt;Mocking dependencies in Node.js tests isolates the code under test from external services, databases, and APIs for fast, reliable unit tests.&#xA;As the creator of CoreUI, I&amp;rsquo;ve written comprehensive test suites with extensive mocking.&#xA;Jest provides powerful mocking capabilities including module mocks, function mocks, and spies that work seamlessly with Node.js.&#xA;This approach creates independent tests that run quickly without external dependencies.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to snapshot test in Node.js</title>
+      <link>https://coreui.io/answers/how-to-snapshot-test-in-nodejs/</link>
+      <pubDate>Thu, 15 Jan 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-snapshot-test-in-nodejs/</guid>
+      <description>&lt;p&gt;Snapshot testing captures the output of functions or API responses and compares them to stored snapshots to detect unexpected changes.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used snapshot tests to catch regressions in APIs.&#xA;Jest provides built-in snapshot testing that creates readable, version-controlled snapshots of complex data structures and responses.&#xA;This approach catches unexpected changes in data formats, API responses, and object structures without manual assertions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to test Node.js apps with Mocha</title>
+      <link>https://coreui.io/answers/how-to-test-nodejs-apps-with-mocha/</link>
+      <pubDate>Wed, 14 Jan 2026 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-test-nodejs-apps-with-mocha/</guid>
+      <description>&lt;p&gt;Testing Node.js applications with Mocha provides a flexible and feature-rich testing framework with excellent async support.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used Mocha extensively for backend API testing.&#xA;Mocha offers a simple, extensible testing interface with support for multiple assertion libraries and reporters.&#xA;This approach creates comprehensive test suites with clear test organization and detailed error reporting.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to test Node.js apps with Chai</title>
+      <link>https://coreui.io/answers/how-to-test-nodejs-apps-with-chai/</link>
+      <pubDate>Wed, 14 Jan 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-test-nodejs-apps-with-chai/</guid>
+      <description>&lt;p&gt;Writing clear, readable test assertions is crucial for maintainable test suites that accurately verify application behavior.&#xA;As the creator of CoreUI, I&amp;rsquo;ve written thousands of test assertions for production APIs.&#xA;Chai is an assertion library that provides multiple assertion styles (expect, should, assert) with chainable, natural language syntax.&#xA;This approach creates tests that read like documentation and clearly express what is being tested.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to test Node.js APIs with Supertest</title>
+      <link>https://coreui.io/answers/how-to-test-nodejs-apis-with-supertest/</link>
+      <pubDate>Tue, 13 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-test-nodejs-apis-with-supertest/</guid>
+      <description>&lt;p&gt;Testing API endpoints ensures your REST API behaves correctly, returns proper status codes, and handles errors appropriately.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built comprehensive API test suites for production services.&#xA;Supertest is a library specifically designed for testing HTTP servers, allowing you to make requests and assert responses.&#xA;This approach tests your Express routes without starting an actual server.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to test Node.js apps with Jest</title>
+      <link>https://coreui.io/answers/how-to-test-nodejs-apps-with-jest/</link>
+      <pubDate>Tue, 13 Jan 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-test-nodejs-apps-with-jest/</guid>
+      <description>&lt;p&gt;Testing Node.js applications ensures code reliability and prevents regressions as your codebase grows and evolves.&#xA;As the creator of CoreUI, I&amp;rsquo;ve written comprehensive test suites for production backends.&#xA;Jest is a modern testing framework that provides fast test execution, built-in mocking, and excellent error messages out of the box.&#xA;This approach creates maintainable test suites with minimal configuration.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a REST API with Express in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-rest-api-with-express-in-nodejs/</link>
+      <pubDate>Mon, 12 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-rest-api-with-express-in-nodejs/</guid>
+      <description>&lt;p&gt;Building RESTful APIs is fundamental for modern web applications, providing a standardized way for clients to communicate with servers.&#xA;As the creator of CoreUI, I&amp;rsquo;ve architected numerous REST APIs serving millions of requests.&#xA;Express is the most popular Node.js framework for building APIs, offering routing, middleware, and request/response handling.&#xA;This approach follows REST conventions for creating scalable, maintainable backend services.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Socket.IO in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-socketio-in-nodejs/</link>
+      <pubDate>Mon, 12 Jan 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-socketio-in-nodejs/</guid>
+      <description>&lt;p&gt;Real-time bidirectional communication requires WebSockets, but handling browser compatibility and reconnection logic manually is complex.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built numerous real-time features with Socket.IO.&#xA;Socket.IO is a library that provides WebSocket functionality with automatic fallbacks, reconnection, and room-based broadcasting.&#xA;This approach simplifies real-time communication compared to native WebSockets while adding powerful features like namespaces and middleware.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement real-time notifications in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-real-time-notifications-in-nodejs/</link>
+      <pubDate>Fri, 09 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-real-time-notifications-in-nodejs/</guid>
+      <description>&lt;p&gt;Real-time notifications keep users informed of important events without requiring page refreshes or polling, creating responsive and engaging applications.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented notification systems for numerous enterprise dashboards.&#xA;A real-time notification system uses WebSockets to maintain persistent connections and push notifications instantly when events occur.&#xA;This approach provides immediate user feedback for actions like new messages, status updates, or system alerts.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a chat app with WebSockets in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-chat-app-with-websockets-in-nodejs/</link>
+      <pubDate>Fri, 09 Jan 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-chat-app-with-websockets-in-nodejs/</guid>
+      <description>&lt;p&gt;Real-time chat applications require bidirectional communication where the server can push messages to clients instantly without polling.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built numerous real-time applications with WebSockets.&#xA;WebSockets provide full-duplex communication channels over a single TCP connection, perfect for chat, notifications, and live updates.&#xA;The native &lt;code&gt;ws&lt;/code&gt; library offers a lightweight WebSocket implementation for Node.js without the overhead of frameworks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to load balance Node.js apps</title>
+      <link>https://coreui.io/answers/how-to-load-balance-nodejs-apps/</link>
+      <pubDate>Thu, 08 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-load-balance-nodejs-apps/</guid>
+      <description>&lt;p&gt;Single Node.js instances have throughput limits, and production applications require multiple instances for high availability and horizontal scaling.&#xA;As the creator of CoreUI, I&amp;rsquo;ve architected load-balanced systems serving millions of requests daily.&#xA;Load balancing distributes incoming traffic across multiple Node.js processes or servers, improving performance and providing redundancy if instances fail.&#xA;The most common approach uses Nginx as a reverse proxy to balance requests across multiple Node.js instances.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use cluster module in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-cluster-module-in-nodejs/</link>
+      <pubDate>Thu, 08 Jan 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-cluster-module-in-nodejs/</guid>
+      <description>&lt;p&gt;Node.js runs on a single thread by default, which means a single CPU-intensive task can block all requests and multi-core systems are underutilized.&#xA;As the creator of CoreUI, I&amp;rsquo;ve scaled numerous APIs to handle thousands of concurrent requests.&#xA;The cluster module allows you to spawn multiple worker processes that share the same server port, distributing load across all CPU cores.&#xA;This approach dramatically improves throughput and provides automatic restart capability when workers crash.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to fix event loop blocking in Node.js</title>
+      <link>https://coreui.io/answers/how-to-fix-event-loop-blocking-in-nodejs/</link>
+      <pubDate>Wed, 07 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-fix-event-loop-blocking-in-nodejs/</guid>
+      <description>&lt;p&gt;Event loop blocking is one of the most common performance issues in Node.js, causing unresponsive servers and poor request handling capacity.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized numerous APIs suffering from blocked event loops.&#xA;The event loop handles all asynchronous operations, and blocking it with CPU-intensive synchronous code prevents Node.js from processing other requests.&#xA;The solution involves identifying blocking operations and either making them asynchronous or offloading them to worker threads.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle memory leaks in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-memory-leaks-in-nodejs/</link>
+      <pubDate>Wed, 07 Jan 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-memory-leaks-in-nodejs/</guid>
+      <description>&lt;p&gt;Memory leaks in Node.js applications cause gradual performance degradation and eventual crashes, making them critical to identify and resolve in production environments.&#xA;As the creator of CoreUI, I&amp;rsquo;ve debugged memory leaks in numerous backend systems serving millions of requests.&#xA;Common causes include unclosed database connections, event listeners that aren&amp;rsquo;t removed, and global variable accumulation.&#xA;The solution involves using Chrome DevTools heap snapshots to identify leaks and implementing proper cleanup patterns.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to profile Node.js performance</title>
+      <link>https://coreui.io/answers/how-to-profile-nodejs-performance/</link>
+      <pubDate>Tue, 06 Jan 2026 14:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-profile-nodejs-performance/</guid>
+      <description>&lt;p&gt;Identifying performance bottlenecks in Node.js applications is essential for maintaining responsiveness under load, especially in production environments.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized numerous backend systems serving millions of requests.&#xA;Node.js includes a built-in CPU profiler that integrates with Chrome DevTools, allowing you to visualize function execution times and identify slow code paths.&#xA;This approach provides production-grade profiling without external dependencies.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use node --inspect in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-node-inspect-in-nodejs/</link>
+      <pubDate>Tue, 06 Jan 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-node-inspect-in-nodejs/</guid>
+      <description>&lt;p&gt;Debugging Node.js applications with console.log statements becomes inefficient for complex issues—you need breakpoints, variable inspection, and step-through execution.&#xA;As the creator of CoreUI, I&amp;rsquo;ve debugged countless backend systems in production environments.&#xA;Node.js includes a built-in inspector that integrates with Chrome DevTools, providing a full debugging experience with breakpoints, call stacks, and performance profiling.&#xA;This approach requires no additional tools and works with any Node.js application.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to debug Node.js with Chrome DevTools</title>
+      <link>https://coreui.io/answers/how-to-debug-nodejs-with-chrome-devtools/</link>
+      <pubDate>Sat, 03 Jan 2026 11:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-debug-nodejs-with-chrome-devtools/</guid>
+      <description>&lt;p&gt;Chrome DevTools provides powerful visual debugging for Node.js with breakpoints, step-through execution, variable inspection, and performance profiling.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve debugged production Node.js issues using Chrome DevTools.&#xA;The most effective approach is running Node.js with &amp;ndash;inspect flag and connecting Chrome DevTools for full debugging capabilities.&#xA;This method enables setting breakpoints, watching variables, profiling CPU and memory, and analyzing async operations with familiar browser DevTools interface.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to debug Node.js apps</title>
+      <link>https://coreui.io/answers/how-to-debug-nodejs-apps/</link>
+      <pubDate>Sat, 03 Jan 2026 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-debug-nodejs-apps/</guid>
+      <description>&lt;p&gt;Effective debugging enables quick identification and resolution of bugs, performance issues, and unexpected behaviors in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve debugged complex Node.js backend services.&#xA;The most practical approach combines console logging for quick insights with Node.js inspector and debugger statements for deep investigation.&#xA;This method provides flexibility from simple logging to full breakpoint debugging with variable inspection and call stack analysis.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to monitor Node.js performance</title>
+      <link>https://coreui.io/answers/how-to-monitor-nodejs-performance/</link>
+      <pubDate>Fri, 02 Jan 2026 11:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-monitor-nodejs-performance/</guid>
+      <description>&lt;p&gt;Performance monitoring enables early detection of bottlenecks, memory leaks, and degraded responsiveness in Node.js applications before they impact users.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented performance monitoring in production Node.js services.&#xA;The most effective approach is using Node.js built-in performance hooks and process metrics to track key indicators.&#xA;This method provides real-time visibility into application health without external dependencies and minimal performance overhead.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Morgan in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-morgan-in-nodejs/</link>
+      <pubDate>Fri, 02 Jan 2026 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-morgan-in-nodejs/</guid>
+      <description>&lt;p&gt;Morgan provides automated HTTP request logging for Express applications, capturing essential information about incoming requests and responses for monitoring and debugging.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented Morgan logging in Node.js production services.&#xA;The most practical approach is installing morgan and configuring it as Express middleware with predefined or custom formats.&#xA;This method enables comprehensive request tracking with minimal configuration and supports writing logs to files for production environments.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Winston logger in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-winston-logger-in-nodejs/</link>
+      <pubDate>Tue, 30 Dec 2025 12:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-winston-logger-in-nodejs/</guid>
+      <description>&lt;p&gt;Winston provides enterprise-grade logging for Node.js applications with multiple transports, custom formatting, and flexible log level management.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented Winston logging in Node.js production services.&#xA;The most effective approach is configuring Winston with console and file transports for comprehensive logging.&#xA;This method enables simultaneous logging to multiple destinations with different formats and levels.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to log in Node.js</title>
+      <link>https://coreui.io/answers/how-to-log-in-nodejs/</link>
+      <pubDate>Tue, 30 Dec 2025 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-log-in-nodejs/</guid>
+      <description>&lt;p&gt;Logging provides visibility into application behavior, capturing errors, debugging information, and operational events for troubleshooting and monitoring.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented logging in Node.js applications.&#xA;The most straightforward approach is using console methods with different log levels for various message types.&#xA;This method provides immediate logging output without external dependencies, suitable for development and simple applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle process signals in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-process-signals-in-nodejs/</link>
+      <pubDate>Mon, 29 Dec 2025 12:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-process-signals-in-nodejs/</guid>
+      <description>&lt;p&gt;Process signals allow Node.js applications to respond to system events like termination requests, enabling graceful shutdowns and proper resource cleanup.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented signal handling in Node.js production servers.&#xA;The most reliable approach is listening for SIGTERM and SIGINT signals to perform cleanup operations before process termination.&#xA;This method ensures database connections close, pending requests complete, and temporary files are removed before shutdown.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to fork processes in Node.js</title>
+      <link>https://coreui.io/answers/how-to-fork-processes-in-nodejs/</link>
+      <pubDate>Mon, 29 Dec 2025 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-fork-processes-in-nodejs/</guid>
+      <description>&lt;p&gt;Forking creates new Node.js processes that run separate instances of the V8 engine, ideal for CPU-intensive tasks that would block the main event loop.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented process forking in Node.js applications.&#xA;The most effective approach is using the fork method from the child_process module to spawn Node.js child processes with built-in IPC communication.&#xA;This method enables message passing between parent and child processes while maintaining process isolation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to exec commands in Node.js</title>
+      <link>https://coreui.io/answers/how-to-exec-commands-in-nodejs/</link>
+      <pubDate>Tue, 23 Dec 2025 12:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-exec-commands-in-nodejs/</guid>
+      <description>&lt;p&gt;The exec method executes shell commands in Node.js with buffered output, ideal for simple commands that produce small amounts of data and complete quickly.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve used exec for simple command execution in Node.js scripts.&#xA;The most straightforward approach is using the exec method from the child_process module for quick shell commands that return limited output.&#xA;This method buffers the entire output in memory, making it convenient for commands like git status or npm version.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to spawn processes in Node.js</title>
+      <link>https://coreui.io/answers/how-to-spawn-processes-in-nodejs/</link>
+      <pubDate>Tue, 23 Dec 2025 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-spawn-processes-in-nodejs/</guid>
+      <description>&lt;p&gt;Spawning child processes enables Node.js applications to execute external commands and programs with real-time output streaming and better resource management than buffered alternatives.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented process spawning in Node.js build tools.&#xA;The most efficient approach is using the spawn method from the child_process module for commands that produce large outputs or run for extended periods.&#xA;This method streams output as it becomes available, preventing memory issues with large data.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use child processes in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-child-processes-in-nodejs/</link>
+      <pubDate>Mon, 22 Dec 2025 11:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-child-processes-in-nodejs/</guid>
+      <description>&lt;p&gt;Child processes enable Node.js applications to execute external commands, scripts, and programs in separate processes with proper resource isolation.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented child process management in Node.js applications.&#xA;The most versatile approach is using the child_process module&amp;rsquo;s spawn method for streaming output and flexible command execution.&#xA;This method provides real-time output handling and better memory management for long-running processes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use worker threads in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-worker-threads-in-nodejs/</link>
+      <pubDate>Mon, 22 Dec 2025 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-worker-threads-in-nodejs/</guid>
+      <description>&lt;p&gt;Worker threads enable parallel execution of CPU-intensive tasks in Node.js without blocking the main event loop, crucial for computationally heavy operations.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented worker threads in Node.js applications.&#xA;The most effective approach is using the built-in worker_threads module to offload intensive computations to separate threads.&#xA;This method maintains application responsiveness while processing complex calculations or data transformations.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to run cron jobs in Node.js</title>
+      <link>https://coreui.io/answers/how-to-run-cron-jobs-in-nodejs/</link>
+      <pubDate>Fri, 19 Dec 2025 11:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-run-cron-jobs-in-nodejs/</guid>
+      <description>&lt;p&gt;Running cron jobs programmatically within your Node.js application provides better control and monitoring compared to system-level cron.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve managed automated jobs in production Node.js systems.&#xA;The most reliable approach is using node-cron with proper error handling and job lifecycle management.&#xA;This method allows you to start, stop, and monitor jobs within your application runtime.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to schedule tasks in Node.js</title>
+      <link>https://coreui.io/answers/how-to-schedule-tasks-in-nodejs/</link>
+      <pubDate>Fri, 19 Dec 2025 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-schedule-tasks-in-nodejs/</guid>
+      <description>&lt;p&gt;Scheduling recurring tasks is essential for automation, from database cleanups to periodic data synchronization and report generation.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented task scheduling in Node.js backends.&#xA;The most straightforward approach is using the node-cron package, which provides a simple cron-like syntax for scheduling tasks.&#xA;This method offers flexible scheduling without external dependencies or system cron configuration.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to send emails with SendGrid in Node.js</title>
+      <link>https://coreui.io/answers/how-to-send-emails-with-sendgrid-in-nodejs/</link>
+      <pubDate>Thu, 18 Dec 2025 12:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-send-emails-with-sendgrid-in-nodejs/</guid>
+      <description>&lt;p&gt;Using a dedicated email service like SendGrid provides better deliverability, analytics, and scalability compared to traditional SMTP servers.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve integrated SendGrid into enterprise Node.js applications.&#xA;The most efficient approach is using the official &lt;code&gt;@sendgrid/mail&lt;/code&gt; package with an API key for authentication.&#xA;This method offers reliable email delivery with built-in retry logic and detailed sending statistics.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to send emails in Node.js</title>
+      <link>https://coreui.io/answers/how-to-send-emails-in-nodejs/</link>
+      <pubDate>Thu, 18 Dec 2025 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-send-emails-in-nodejs/</guid>
+      <description>&lt;p&gt;Sending emails programmatically is a fundamental requirement for most server-side applications, from user verification to notifications and reports.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented email functionality in countless Node.js applications.js development.&#xA;The most reliable approach is using Nodemailer with SMTP configuration, which provides a simple API for sending emails through any email service.&#xA;This method is widely adopted and supports all major email providers.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to send emails with Nodemailer</title>
+      <link>https://coreui.io/answers/how-to-send-emails-with-nodemailer/</link>
+      <pubDate>Wed, 17 Dec 2025 11:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-send-emails-with-nodemailer/</guid>
+      <description>&lt;p&gt;Sending emails is crucial for Node.js applications that handle user notifications, password resets, and transactional messaging.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented email functionality in countless enterprise applications.&#xA;The most effective solution is to use Nodemailer with SMTP transport for reliable email delivery.&#xA;This approach supports all major email providers and provides full control over email content and formatting.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to generate PDF files in Node.js</title>
+      <link>https://coreui.io/answers/how-to-generate-pdf-files-in-nodejs/</link>
+      <pubDate>Wed, 17 Dec 2025 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-generate-pdf-files-in-nodejs/</guid>
+      <description>&lt;p&gt;Generating PDF files is essential for Node.js applications that create invoices, reports, certificates, and downloadable documents.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built PDF generation features in countless enterprise applications.&#xA;The most effective solution is to use PDFKit for programmatic PDF creation or Puppeteer for HTML-to-PDF conversion.&#xA;This approach provides full control over document layout and formatting.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to generate Excel files in Node.js</title>
+      <link>https://coreui.io/answers/how-to-generate-excel-files-in-nodejs/</link>
+      <pubDate>Tue, 16 Dec 2025 11:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-generate-excel-files-in-nodejs/</guid>
+      <description>&lt;p&gt;Generating Excel files is crucial for Node.js applications that provide business reporting, data export, and analytics features.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built Excel export functionality in countless enterprise dashboards.&#xA;The most effective solution is to use the xlsx library (SheetJS) to create Excel files with proper formatting and multiple sheets.&#xA;This approach provides full control over spreadsheet structure and works efficiently for files of any size.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to generate CSV files in Node.js</title>
+      <link>https://coreui.io/answers/how-to-generate-csv-files-in-nodejs/</link>
+      <pubDate>Tue, 16 Dec 2025 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-generate-csv-files-in-nodejs/</guid>
+      <description>&lt;p&gt;Generating CSV files is essential for Node.js applications that export data for spreadsheets, reports, or data interchange.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented CSV export functionality in countless enterprise applications.&#xA;The most effective solution is to use the fast-csv library or build a simple CSV generator that converts data arrays to CSV format.&#xA;This approach handles edge cases like quotes and commas while providing efficient file generation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to stream file downloads in Node.js</title>
+      <link>https://coreui.io/answers/how-to-stream-file-downloads-in-nodejs/</link>
+      <pubDate>Mon, 15 Dec 2025 12:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-stream-file-downloads-in-nodejs/</guid>
+      <description>&lt;p&gt;Streaming file downloads is essential for Node.js applications serving large files efficiently without consuming excessive memory.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized file serving in numerous enterprise applications.&#xA;The most effective solution is to use Node.js streams with createReadStream to pipe files directly to the response.&#xA;This approach handles files of any size efficiently while maintaining low memory usage.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to validate file uploads in Node.js</title>
+      <link>https://coreui.io/answers/how-to-validate-file-uploads-in-nodejs/</link>
+      <pubDate>Mon, 15 Dec 2025 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-validate-file-uploads-in-nodejs/</guid>
+      <description>&lt;p&gt;Validating file uploads is critical for Node.js applications to prevent security vulnerabilities, malicious files, and storage abuse.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented secure file upload validation in countless enterprise systems.&#xA;The most effective solution is to use Multer&amp;rsquo;s fileFilter option combined with file size limits and MIME type validation.&#xA;This approach provides comprehensive validation before files are written to disk.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to upload multiple files in Node.js</title>
+      <link>https://coreui.io/answers/how-to-upload-multiple-files-in-nodejs/</link>
+      <pubDate>Fri, 12 Dec 2025 12:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-upload-multiple-files-in-nodejs/</guid>
+      <description>&lt;p&gt;Handling multiple file uploads simultaneously is crucial for Node.js applications with features like photo galleries, document management, or batch processing.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built multi-file upload systems for enterprise document management platforms.&#xA;The most effective solution is to use Multer&amp;rsquo;s array() or fields() methods to handle multiple files in a single request.&#xA;This approach efficiently processes multiple files while maintaining validation and storage control.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to upload files in Node.js</title>
+      <link>https://coreui.io/answers/how-to-upload-files-in-nodejs/</link>
+      <pubDate>Fri, 12 Dec 2025 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-upload-files-in-nodejs/</guid>
+      <description>&lt;p&gt;Handling file uploads is essential for Node.js applications that manage user-generated content, documents, or media files.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented file upload systems in countless enterprise applications.&#xA;The most effective solution is to use Multer middleware with Express to handle multipart form data and file storage.&#xA;This approach is robust, configurable, and provides full control over file validation and storage.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle filtering in Node.js APIs</title>
+      <link>https://coreui.io/answers/how-to-handle-filtering-in-nodejs-apis/</link>
+      <pubDate>Thu, 11 Dec 2025 12:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-filtering-in-nodejs-apis/</guid>
+      <description>&lt;p&gt;Implementing filtering allows users to search and narrow down results in Node.js APIs, essential for data-heavy applications.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built robust filtering systems for enterprise APIs.&#xA;The most effective solution is to accept filter criteria as query parameters and build dynamic where clauses for database queries.&#xA;This approach provides flexibility while maintaining performance and security.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle sorting in Node.js APIs</title>
+      <link>https://coreui.io/answers/how-to-handle-sorting-in-nodejs-apis/</link>
+      <pubDate>Thu, 11 Dec 2025 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-sorting-in-nodejs-apis/</guid>
+      <description>&lt;p&gt;Implementing sorting is essential for Node.js APIs that return lists of data, allowing clients to order results by any field.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built sortable APIs for countless enterprise applications.&#xA;The most effective solution is to accept sort field and direction as query parameters and apply them to database queries.&#xA;This approach is flexible, performant, and follows REST API best practices.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle pagination in Node.js APIs</title>
+      <link>https://coreui.io/answers/how-to-handle-pagination-in-nodejs-apis/</link>
+      <pubDate>Wed, 10 Dec 2025 12:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-pagination-in-nodejs-apis/</guid>
+      <description>&lt;p&gt;Implementing pagination is crucial for Node.js APIs that handle large datasets, preventing performance issues and improving user experience.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built pagination into hundreds of enterprise APIs.&#xA;The most effective solution is to use limit and offset query parameters with proper response metadata including total count and page information.&#xA;This approach is efficient, scalable, and follows REST API best practices.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle transactions in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-transactions-in-nodejs/</link>
+      <pubDate>Wed, 10 Dec 2025 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-transactions-in-nodejs/</guid>
+      <description>&lt;p&gt;Database transactions are essential for maintaining data integrity when performing multiple related database operations in Node.js applications.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented transactional logic in countless enterprise applications.&#xA;The most reliable solution is to use transactions with your ORM or database client, wrapping operations in a transaction block with commit and rollback capabilities.&#xA;This ensures all operations succeed together or none at all.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to query databases in Node.js</title>
+      <link>https://coreui.io/answers/how-to-query-databases-in-nodejs/</link>
+      <pubDate>Tue, 09 Dec 2025 12:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-query-databases-in-nodejs/</guid>
+      <description>&lt;p&gt;Querying databases in Node.js efficiently requires understanding both raw SQL approaches and ORM abstractions to handle data retrieval, filtering, and aggregation operations effectively.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve implemented database query systems in numerous enterprise applications for optimal performance and maintainable data access patterns.&#xA;The most effective approach involves using a combination of ORM queries for complex relationships and raw SQL for performance-critical operations with proper parameterization.&#xA;This method provides flexibility in query optimization while maintaining security through prepared statements and efficient connection management.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to seed databases in Node.js</title>
+      <link>https://coreui.io/answers/how-to-seed-databases-in-nodejs/</link>
+      <pubDate>Tue, 09 Dec 2025 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-seed-databases-in-nodejs/</guid>
+      <description>&lt;p&gt;Seeding databases in Node.js automates the population of initial data for development, testing, and production environments, ensuring consistent application state across deployments.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve implemented database seeding systems in numerous enterprise applications for reliable development workflows and testing automation.&#xA;The most effective approach involves creating structured seed scripts that can populate databases with sample data, user accounts, and configuration settings in a repeatable manner.&#xA;This method provides consistent development environments while supporting both initial setup and ongoing data maintenance for application testing and demonstration.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to run migrations in Node.js</title>
+      <link>https://coreui.io/answers/how-to-run-migrations-in-nodejs/</link>
+      <pubDate>Mon, 08 Dec 2025 12:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-run-migrations-in-nodejs/</guid>
+      <description>&lt;p&gt;Running migrations in Node.js enables version-controlled database schema changes that ensure consistent database structure across development, staging, and production environments.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve implemented migration systems in numerous enterprise applications for safe database evolution and team collaboration.&#xA;The most reliable approach uses migration frameworks like Sequelize CLI or dedicated migration tools to create, run, and rollback database changes systematically.&#xA;This method provides database versioning with rollback capabilities while maintaining data integrity and enabling team-wide schema synchronization.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Mongoose in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-mongoose-in-nodejs/</link>
+      <pubDate>Mon, 08 Dec 2025 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-mongoose-in-nodejs/</guid>
+      <description>&lt;p&gt;Using Mongoose in Node.js provides an elegant MongoDB object modeling solution with built-in type casting, validation, query building, and business logic hooks.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve implemented Mongoose in numerous enterprise applications for document-based data modeling and MongoDB operations.&#xA;The most effective approach involves defining schemas with validation rules, creating models for data operations, and using Mongoose&amp;rsquo;s query API for database interactions.&#xA;This method provides robust data modeling with automatic validation and type checking while maintaining clean, readable code for MongoDB operations.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use TypeORM in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-typeorm-in-nodejs/</link>
+      <pubDate>Fri, 05 Dec 2025 14:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-typeorm-in-nodejs/</guid>
+      <description>&lt;p&gt;Using TypeORM in Node.js provides a modern, TypeScript-first Object-Relational Mapping solution with decorators and advanced features for enterprise database management.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve implemented TypeORM in numerous enterprise applications requiring type-safe database operations and complex relational data modeling.&#xA;The most effective approach involves defining entities with decorators, configuring database connections with migration support, and using repositories for data access patterns.&#xA;This method provides compile-time type safety while offering advanced features like lazy loading, cascade operations, and automatic schema synchronization.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Sequelize in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-sequelize-in-nodejs/</link>
+      <pubDate>Fri, 05 Dec 2025 14:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-sequelize-in-nodejs/</guid>
+      <description>&lt;p&gt;Using Sequelize in Node.js provides a powerful Object-Relational Mapping solution for interacting with SQL databases through JavaScript objects and methods.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve implemented Sequelize in numerous enterprise applications for robust database operations and data modeling.&#xA;The most efficient approach involves configuring Sequelize with database connection settings, defining models with associations, and using built-in query methods for data manipulation.&#xA;This method provides type-safe database interactions while maintaining clean, maintainable code architecture with automatic SQL generation and validation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to connect Node.js to SQLite</title>
+      <link>https://coreui.io/answers/how-to-connect-nodejs-to-sqlite/</link>
+      <pubDate>Thu, 04 Dec 2025 15:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-connect-nodejs-to-sqlite/</guid>
+      <description>&lt;p&gt;Connecting Node.js to SQLite provides a lightweight, serverless database solution perfect for development, small applications, and embedded systems.&#xA;As the creator of CoreUI with extensive Node.js development experience since 2014, I&amp;rsquo;ve used SQLite in numerous prototypes and desktop applications for simple, reliable data storage.&#xA;The most efficient approach uses the &lt;code&gt;better-sqlite3&lt;/code&gt; library for synchronous operations and superior performance compared to other SQLite drivers.&#xA;This method provides file-based storage with full SQL capabilities while maintaining simplicity and zero configuration requirements.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to connect Node.js to MySQL</title>
+      <link>https://coreui.io/answers/how-to-connect-nodejs-to-mysql/</link>
+      <pubDate>Thu, 04 Dec 2025 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-connect-nodejs-to-mysql/</guid>
+      <description>&lt;p&gt;Connecting Node.js to MySQL provides robust relational database capabilities for applications requiring structured data storage and complex queries.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve integrated MySQL with Node.js in numerous enterprise applications for e-commerce and business management systems.&#xA;The most reliable approach uses the &lt;code&gt;mysql2&lt;/code&gt; library with connection pooling for optimal performance and modern JavaScript support.&#xA;This method ensures secure, efficient database access while supporting both callback and promise-based patterns.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to connect Node.js to PostgreSQL</title>
+      <link>https://coreui.io/answers/how-to-connect-nodejs-to-postgresql/</link>
+      <pubDate>Wed, 03 Dec 2025 15:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-connect-nodejs-to-postgresql/</guid>
+      <description>&lt;p&gt;Connecting Node.js to PostgreSQL provides robust relational database capabilities for applications requiring ACID compliance and complex queries.&#xA;As the creator of CoreUI with extensive Node.js development experience since 2014, I&amp;rsquo;ve integrated PostgreSQL with Node.js in numerous enterprise applications for financial data and user management systems.&#xA;The most reliable approach uses the &lt;code&gt;pg&lt;/code&gt; library with connection pooling for optimal performance and connection management.&#xA;This method ensures secure, efficient database access while handling connection failures and maintaining data consistency.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to connect Node.js to MongoDB</title>
+      <link>https://coreui.io/answers/how-to-connect-nodejs-to-mongodb/</link>
+      <pubDate>Wed, 03 Dec 2025 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-connect-nodejs-to-mongodb/</guid>
+      <description>&lt;p&gt;Connecting Node.js to MongoDB enables persistent data storage for web applications using one of the most popular NoSQL database solutions.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve connected Node.js applications to MongoDB in countless production systems for user data, content management, and analytics.&#xA;The most reliable approach uses the official MongoDB driver with connection pooling and proper error handling.&#xA;This method provides robust database connectivity while handling connection failures and maintaining optimal performance.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use OAuth in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-oauth-in-nodejs/</link>
+      <pubDate>Tue, 02 Dec 2025 15:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-oauth-in-nodejs/</guid>
+      <description>&lt;p&gt;OAuth authentication enables secure third-party login integration in Node.js applications without handling user passwords directly.&#xA;As the creator of CoreUI with extensive Node.js development experience since 2014, I&amp;rsquo;ve implemented OAuth flows in numerous enterprise applications for simplified user onboarding.&#xA;The most reliable approach uses Passport.js with OAuth strategy packages to handle the complex authentication flow automatically.&#xA;This method provides secure authentication while offering users familiar login options from popular platforms like Google, GitHub, or Facebook.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Passport.js in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-passportjs-in-nodejs/</link>
+      <pubDate>Tue, 02 Dec 2025 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-passportjs-in-nodejs/</guid>
+      <description>&lt;p&gt;Passport.js provides a comprehensive authentication middleware for Node.js applications with support for over 500 authentication strategies.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve implemented Passport.js in numerous production applications for flexible authentication solutions.&#xA;The most straightforward approach uses the local strategy for username/password authentication combined with session management.&#xA;This pattern provides robust authentication while maintaining the flexibility to add additional strategies like OAuth, SAML, or custom authentication methods.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to hash passwords with bcrypt in Node.js</title>
+      <link>https://coreui.io/answers/how-to-hash-passwords-with-bcrypt-in-nodejs/</link>
+      <pubDate>Mon, 01 Dec 2025 15:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-hash-passwords-with-bcrypt-in-nodejs/</guid>
+      <description>&lt;p&gt;Secure password hashing is fundamental to application security, protecting user credentials even if database breaches occur.&#xA;As the creator of CoreUI with extensive Node.js security experience since 2014, I&amp;rsquo;ve implemented bcrypt password hashing in countless production authentication systems.&#xA;The most secure approach uses bcrypt&amp;rsquo;s adaptive hashing algorithm with appropriate salt rounds to balance security and performance.&#xA;This method provides industry-standard password protection against rainbow table attacks and brute force attempts.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement role-based auth in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-role-based-auth-in-nodejs/</link>
+      <pubDate>Mon, 01 Dec 2025 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-role-based-auth-in-nodejs/</guid>
+      <description>&lt;p&gt;Role-based authentication provides granular access control in Node.js applications by assigning specific permissions to user roles for secure resource management.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve implemented RBAC systems in numerous enterprise applications and admin dashboards.&#xA;The most scalable approach combines JWT tokens with role information and middleware functions that verify both authentication and authorization.&#xA;This pattern enables flexible permission management while maintaining clean separation between authentication and business logic.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to refresh JWT tokens in Node.js</title>
+      <link>https://coreui.io/answers/how-to-refresh-jwt-tokens-in-nodejs/</link>
+      <pubDate>Fri, 28 Nov 2025 15:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-refresh-jwt-tokens-in-nodejs/</guid>
+      <description>&lt;p&gt;Implementing JWT token refresh enhances security by using short-lived access tokens paired with longer-lived refresh tokens for automatic renewal.&#xA;As the creator of CoreUI with extensive Node.js authentication experience since 2014, I&amp;rsquo;ve implemented token refresh systems in numerous enterprise applications.&#xA;The most secure approach uses separate access and refresh tokens, where refresh tokens are stored securely and used exclusively for generating new access tokens.&#xA;This pattern provides optimal security while maintaining seamless user experience without frequent re-authentication.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement JWT in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-jwt-in-nodejs/</link>
+      <pubDate>Fri, 28 Nov 2025 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-jwt-in-nodejs/</guid>
+      <description>&lt;p&gt;JSON Web Tokens provide a secure and stateless authentication mechanism for Node.js applications, eliminating server-side session storage.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve implemented JWT authentication in countless production APIs and enterprise applications.&#xA;The most reliable approach uses the &lt;code&gt;jsonwebtoken&lt;/code&gt; package to sign tokens with user data and verify them on protected routes.&#xA;This method provides excellent scalability and security for modern web applications and APIs.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement authentication in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-authentication-in-nodejs/</link>
+      <pubDate>Thu, 27 Nov 2025 11:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-authentication-in-nodejs/</guid>
+      <description>&lt;p&gt;Implementing secure authentication is crucial for protecting user data and controlling access to application resources.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built authentication systems for countless enterprise applications.&#xA;The most secure and scalable approach combines JWT tokens for stateless authentication with bcrypt for password hashing.&#xA;This method provides excellent security while maintaining performance and scalability.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Apollo Server in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-apollo-server-in-nodejs/</link>
+      <pubDate>Thu, 27 Nov 2025 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-apollo-server-in-nodejs/</guid>
+      <description>&lt;p&gt;Setting up GraphQL APIs with Apollo Server provides a powerful alternative to REST APIs, offering better performance and flexibility for modern applications.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented Apollo Server in numerous enterprise projects.&#xA;The most efficient approach is using Apollo Server Express integration, which provides seamless GraphQL endpoint creation with built-in schema validation and query execution.&#xA;This setup enables type-safe API development with excellent developer tools.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a GraphQL API in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-graphql-api-in-nodejs/</link>
+      <pubDate>Tue, 25 Nov 2025 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-graphql-api-in-nodejs/</guid>
+      <description>&lt;p&gt;Building GraphQL APIs in Node.js enables clients to request exactly the data they need, reducing over-fetching and providing flexible, efficient data access.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented GraphQL APIs for complex data requirements in enterprise applications.&#xA;The most effective approach is using Apollo Server with well-defined schemas and resolvers for type-safe, performant API development.&#xA;This provides powerful query capabilities and excellent developer experience with built-in documentation and introspection.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a REST API in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-rest-api-in-nodejs/</link>
+      <pubDate>Tue, 25 Nov 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-rest-api-in-nodejs/</guid>
+      <description>&lt;p&gt;Building REST APIs in Node.js is fundamental for creating backend services that power modern web and mobile applications with standardized HTTP operations.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built countless REST APIs for enterprise applications and open-source projects.&#xA;The most effective approach is using Express.js with proper HTTP methods, status codes, and JSON responses following REST conventions.&#xA;This provides a scalable, maintainable API architecture that integrates seamlessly with any frontend framework.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use express.Router in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-express-router-in-nodejs/</link>
+      <pubDate>Mon, 24 Nov 2025 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-express-router-in-nodejs/</guid>
+      <description>&lt;p&gt;Express Router enables modular route organization by creating separate route handlers that can be mounted on different paths in your application.&#xA;As the creator of CoreUI, I use express.Router extensively for building scalable, maintainable API architectures.&#xA;The most effective approach is creating separate router modules for different feature areas with their own middleware and route definitions.&#xA;This provides clean separation of concerns and makes large applications easier to maintain and test.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to serve static files in Express</title>
+      <link>https://coreui.io/answers/how-to-serve-static-files-in-express/</link>
+      <pubDate>Mon, 24 Nov 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-serve-static-files-in-express/</guid>
+      <description>&lt;p&gt;Serving static files is fundamental for delivering CSS, JavaScript, images, and other assets in Express applications without writing custom route handlers.&#xA;As the creator of CoreUI, I&amp;rsquo;ve configured static file serving for countless web applications.&#xA;The most efficient approach is using Express&amp;rsquo;s built-in express.static middleware to serve files from designated directories.&#xA;This provides automatic MIME type detection, caching headers, and security features for optimal asset delivery.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle errors in Express</title>
+      <link>https://coreui.io/answers/how-to-handle-errors-in-express/</link>
+      <pubDate>Fri, 21 Nov 2025 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-errors-in-express/</guid>
+      <description>&lt;p&gt;Proper error handling is crucial for building robust Express applications that gracefully handle failures and provide meaningful responses to clients.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented error handling systems across numerous production APIs.&#xA;The most effective approach is using Express&amp;rsquo;s built-in error handling middleware combined with custom error classes for different error types.&#xA;This ensures consistent error responses and proper logging while preventing application crashes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use cookie-parser in Express</title>
+      <link>https://coreui.io/answers/how-to-use-cookie-parser-in-express/</link>
+      <pubDate>Fri, 21 Nov 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-cookie-parser-in-express/</guid>
+      <description>&lt;p&gt;Cookie parsing is essential for handling user sessions, authentication tokens, and user preferences in Express applications that rely on HTTP cookies.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented cookie-based authentication in countless web applications.&#xA;The most reliable approach is using the cookie-parser middleware to automatically parse cookie headers and make them accessible via req.cookies.&#xA;This provides secure, efficient cookie handling with support for signed cookies and proper security measures.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use body-parser in Express</title>
+      <link>https://coreui.io/answers/how-to-use-body-parser-in-express/</link>
+      <pubDate>Thu, 20 Nov 2025 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-body-parser-in-express/</guid>
+      <description>&lt;p&gt;Parsing request bodies is essential for handling POST, PUT, and PATCH requests in Express applications that receive form data or JSON.&#xA;As the creator of CoreUI, I&amp;rsquo;ve handled countless API implementations that require proper body parsing.&#xA;The most modern approach is using Express&amp;rsquo;s built-in body parsing middleware instead of the separate body-parser package.&#xA;This provides reliable parsing for JSON, URL-encoded data, and raw content with built-in security features.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle middleware in Express</title>
+      <link>https://coreui.io/answers/how-to-handle-middleware-in-express/</link>
+      <pubDate>Thu, 20 Nov 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-middleware-in-express/</guid>
+      <description>&lt;p&gt;Middleware functions are the backbone of Express applications, providing a way to process requests before they reach route handlers.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built countless APIs that rely on middleware for authentication, logging, and data processing.&#xA;The most effective approach is using app.use() to register middleware functions that execute in order for each request.&#xA;This pattern provides modularity, reusability, and clean separation of concerns in your Express application.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create routes in Express</title>
+      <link>https://coreui.io/answers/how-to-create-routes-in-express/</link>
+      <pubDate>Wed, 19 Nov 2025 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-routes-in-express/</guid>
+      <description>&lt;p&gt;Creating routes in Express defines how your application responds to different HTTP requests and URL endpoints, forming the backbone of RESTful APIs and web applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented countless Express routes for backend APIs and web services.&#xA;From my experience with Node.js, the most effective approach is to use Express application methods that correspond to HTTP verbs like &lt;code&gt;get&lt;/code&gt;, &lt;code&gt;post&lt;/code&gt;, &lt;code&gt;put&lt;/code&gt;, and &lt;code&gt;delete&lt;/code&gt;.&#xA;This pattern provides clear, RESTful API design and intuitive request handling.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create an Express project in Node.js</title>
+      <link>https://coreui.io/answers/how-to-create-an-express-project-in-node-js/</link>
+      <pubDate>Wed, 19 Nov 2025 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-an-express-project-in-node-js/</guid>
+      <description>&lt;p&gt;Creating an Express project provides a robust foundation for building web applications and APIs in Node.js with minimal configuration and maximum flexibility.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve set up countless Express projects for backend services and API development.&#xA;From my experience with Node.js, the most straightforward approach is to initialize a new npm project and install Express as a dependency.&#xA;This method provides a clean starting point for scalable web applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to decrypt data in Node.js</title>
+      <link>https://coreui.io/answers/how-to-decrypt-data-in-node-js/</link>
+      <pubDate>Tue, 18 Nov 2025 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-decrypt-data-in-node-js/</guid>
+      <description>&lt;p&gt;Decrypting encrypted data safely requires proper handling of initialization vectors, authentication tags, and error checking in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented secure decryption patterns in numerous Node.js backend systems and enterprise applications.&#xA;From my experience with Node.js, the most secure and reliable approach is to use the built-in &lt;code&gt;crypto&lt;/code&gt; module with proper AES decryption and authentication verification.&#xA;This method ensures data integrity and prevents tampering attacks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to encrypt data in Node.js</title>
+      <link>https://coreui.io/answers/how-to-encrypt-data-in-node-js/</link>
+      <pubDate>Tue, 18 Nov 2025 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-encrypt-data-in-node-js/</guid>
+      <description>&lt;p&gt;Encrypting sensitive data is crucial for protecting user information, API keys, and confidential data in Node.js applications from unauthorized access.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented data encryption in countless Node.js backend systems and enterprise applications.&#xA;From my experience with Node.js, the most secure and reliable approach is to use the built-in &lt;code&gt;crypto&lt;/code&gt; module with AES encryption.&#xA;This method provides strong cryptographic protection suitable for production applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to generate random strings in Node.js</title>
+      <link>https://coreui.io/answers/how-to-generate-random-strings-in-node-js/</link>
+      <pubDate>Mon, 17 Nov 2025 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-generate-random-strings-in-node-js/</guid>
+      <description>&lt;p&gt;Generating secure random strings is essential for creating unique identifiers, authentication tokens, and session IDs in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented random string generation in countless Node.js authentication systems and API services.&#xA;From my experience with Node.js, the most secure and reliable approach is to use Node.js built-in &lt;code&gt;crypto.randomBytes()&lt;/code&gt; method.&#xA;This method provides cryptographically strong random values suitable for security-sensitive applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to hash passwords in Node.js</title>
+      <link>https://coreui.io/answers/how-to-hash-passwords-in-node-js/</link>
+      <pubDate>Mon, 17 Nov 2025 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-hash-passwords-in-node-js/</guid>
+      <description>&lt;p&gt;Securely hashing passwords is fundamental for any Node.js application that handles user authentication, protecting user credentials from data breaches and unauthorized access.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented password hashing in countless Node.js backend systems and enterprise applications.&#xA;From my experience with Node.js, the most secure and industry-standard approach is to use the bcrypt library with appropriate salt rounds.&#xA;This method provides strong protection against rainbow table attacks and brute force attempts.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use crypto module in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-crypto-module-in-nodejs/</link>
+      <pubDate>Fri, 14 Nov 2025 09:09:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-crypto-module-in-nodejs/</guid>
+      <description>&lt;p&gt;Using the crypto module in Node.js provides cryptographic functionality for hashing, encryption, and security operations in server applications.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented cryptographic operations extensively in authentication systems, data protection, and security-critical applications.&#xA;From my expertise, the most essential approach is using crypto module methods for password hashing, data encryption, and secure token generation with proper security practices.&#xA;This built-in module provides production-ready cryptographic operations without requiring external dependencies.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to decompress files in Node.js with zlib</title>
+      <link>https://coreui.io/answers/how-to-decompress-files-in-nodejs-with-zlib/</link>
+      <pubDate>Fri, 14 Nov 2025 09:08:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-decompress-files-in-nodejs-with-zlib/</guid>
+      <description>&lt;p&gt;Decompressing files in Node.js with zlib extracts compressed data efficiently for file processing, data analysis, and storage management operations.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented file decompression extensively in data processing pipelines, backup systems, and file management applications.&#xA;From my expertise, the most reliable approach is using zlib decompression streams with proper error handling and pipeline management for robust file extraction.&#xA;This pattern enables memory-efficient decompression of large files while maintaining application performance and stability.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to compress files in Node.js with zlib</title>
+      <link>https://coreui.io/answers/how-to-compress-files-in-nodejs-with-zlib/</link>
+      <pubDate>Thu, 13 Nov 2025 14:09:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-compress-files-in-nodejs-with-zlib/</guid>
+      <description>&lt;p&gt;Compressing files in Node.js with zlib reduces file sizes for storage optimization, bandwidth efficiency, and improved application performance.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented file compression extensively in data archival systems, web optimization, and storage management applications.&#xA;From my expertise, the most effective approach is using zlib compression streams with proper error handling and pipeline management for robust file processing.&#xA;This pattern enables efficient compression of large files without overwhelming system memory or blocking the event loop.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle stream errors in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-stream-errors-in-nodejs/</link>
+      <pubDate>Thu, 13 Nov 2025 14:08:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-stream-errors-in-nodejs/</guid>
+      <description>&lt;p&gt;Handling stream errors properly in Node.js prevents application crashes and ensures robust data processing in production environments.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented comprehensive error handling in stream-based applications, file processing systems, and data pipelines.&#xA;From my expertise, the most reliable approach is using error event listeners, pipeline error handling, and proper cleanup mechanisms for stream failures.&#xA;This pattern ensures applications remain stable and provide meaningful error feedback when stream operations encounter problems.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to pipe streams in Node.js</title>
+      <link>https://coreui.io/answers/how-to-pipe-streams-in-nodejs/</link>
+      <pubDate>Sat, 08 Nov 2025 09:09:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-pipe-streams-in-nodejs/</guid>
+      <description>&lt;p&gt;Piping streams in Node.js connects readable and writable streams to create efficient data processing pipelines with automatic flow control and error handling.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented stream pipelines extensively in data processing systems, file operations, and real-time applications.&#xA;From my expertise, the most effective approach is using the &lt;code&gt;pipe()&lt;/code&gt; method to connect streams, and &lt;code&gt;pipeline()&lt;/code&gt; for more robust error handling and cleanup.&#xA;This pattern enables building complex data processing workflows while maintaining memory efficiency and proper resource management.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create writable streams in Node.js</title>
+      <link>https://coreui.io/answers/how-to-create-writable-streams-in-nodejs/</link>
+      <pubDate>Sat, 08 Nov 2025 09:08:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-writable-streams-in-nodejs/</guid>
+      <description>&lt;p&gt;Creating custom writable streams in Node.js enables efficient data consumption and processing for file operations, data transformation, and output handling.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built numerous writable streams for log processing, data export systems, and real-time analytics.&#xA;From my expertise, the most reliable approach is extending the Writable class and implementing the &lt;code&gt;_write()&lt;/code&gt; method to handle incoming data chunks.&#xA;This pattern provides complete control over data consumption, processing, and output formatting for scalable server applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create readable streams in Node.js</title>
+      <link>https://coreui.io/answers/how-to-create-readable-streams-in-nodejs/</link>
+      <pubDate>Fri, 07 Nov 2025 12:01:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-readable-streams-in-nodejs/</guid>
+      <description>&lt;p&gt;Creating custom readable streams in Node.js enables dynamic data generation and efficient data production for various applications and data sources.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built numerous readable streams for API data feeds, database cursors, and real-time data generation.&#xA;From my expertise, the most reliable approach is extending the Readable class and implementing the &lt;code&gt;_read()&lt;/code&gt; method to control data production.&#xA;This pattern provides complete control over data flow timing, batching, and source management for scalable data streaming applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to remove event listeners in Node.js</title>
+      <link>https://coreui.io/answers/how-to-remove-event-listeners-in-nodejs/</link>
+      <pubDate>Wed, 05 Nov 2025 12:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-remove-event-listeners-in-nodejs/</guid>
+      <description>&lt;p&gt;Removing event listeners is crucial for preventing memory leaks and cleaning up resources in long-running Node.js applications.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented proper event listener cleanup extensively in our backend services to ensure optimal memory usage and application performance.&#xA;The most effective approach is using the &lt;code&gt;removeListener()&lt;/code&gt; or &lt;code&gt;off()&lt;/code&gt; method with the exact same function reference that was used when adding the listener.&#xA;This method ensures complete cleanup of event handlers and prevents the accumulation of unused listeners that can cause memory leaks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to listen for events in Node.js</title>
+      <link>https://coreui.io/answers/how-to-listen-for-events-in-nodejs/</link>
+      <pubDate>Wed, 05 Nov 2025 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-listen-for-events-in-nodejs/</guid>
+      <description>&lt;p&gt;Listening for events is fundamental to Node.js event-driven architecture, enabling asynchronous communication between different parts of your application.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented event listeners extensively in backend services for handling user actions, file operations, and inter-service communication.&#xA;The most reliable approach is using the &lt;code&gt;on()&lt;/code&gt; method on EventEmitter instances to register event listeners that respond to specific events.&#xA;This method provides clean separation of concerns and enables scalable, loosely-coupled application architecture.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create event emitters in Node.js</title>
+      <link>https://coreui.io/answers/how-to-create-event-emitters-in-nodejs/</link>
+      <pubDate>Tue, 04 Nov 2025 15:35:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-event-emitters-in-nodejs/</guid>
+      <description>&lt;p&gt;Creating custom event emitters allows you to build modular, reactive components that communicate through events rather than direct method calls.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve designed countless Node.js services where custom event emitters provide clean separation of concerns.&#xA;The most effective approach is extending the EventEmitter class to create specialized event emitters that encapsulate specific business logic.&#xA;This pattern enables loose coupling and makes your code more testable and maintainable.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use events in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-events-in-nodejs/</link>
+      <pubDate>Tue, 04 Nov 2025 15:34:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-events-in-nodejs/</guid>
+      <description>&lt;p&gt;Working with events is fundamental to Node.js architecture, enabling asynchronous communication between different parts of your application.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve built numerous Node.js applications where event-driven patterns are essential for scalability.&#xA;The most effective approach is using Node.js&amp;rsquo;s built-in EventEmitter class, which provides a robust foundation for creating and handling custom events.&#xA;This pattern allows for loose coupling between components and enables reactive programming paradigms.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use querystring in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-querystring-in-nodejs/</link>
+      <pubDate>Mon, 03 Nov 2025 15:35:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-querystring-in-nodejs/</guid>
+      <description>&lt;p&gt;Parsing and constructing URL query strings is a common task when building APIs and handling HTTP requests in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented countless endpoints that require query parameter processing.&#xA;The most straightforward approach is using Node.js&amp;rsquo;s built-in &lt;code&gt;querystring&lt;/code&gt; module, which provides simple methods for parsing and stringifying query parameters.&#xA;This module handles URL encoding and decoding automatically while maintaining simplicity.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to work with URLs in Node.js</title>
+      <link>https://coreui.io/answers/how-to-work-with-urls-in-nodejs/</link>
+      <pubDate>Mon, 03 Nov 2025 15:34:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-work-with-urls-in-nodejs/</guid>
+      <description>&lt;p&gt;Working with URLs is essential for building web applications, APIs, and handling HTTP requests in Node.js.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve built countless Node.js applications that require robust URL parsing and manipulation.&#xA;The most effective approach is using Node.js&amp;rsquo;s built-in &lt;code&gt;URL&lt;/code&gt; class, which provides a complete API for parsing, constructing, and modifying URLs.&#xA;This modern approach handles edge cases and follows web standards correctly.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Normalize Paths in Node.js</title>
+      <link>https://coreui.io/answers/how-to-normalize-paths-in-nodejs/</link>
+      <pubDate>Sun, 02 Nov 2025 15:55:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-normalize-paths-in-nodejs/</guid>
+      <description>&lt;p&gt;Normalizing file paths removes redundant separators, resolves relative segments like &lt;code&gt;.&lt;/code&gt; and &lt;code&gt;..&lt;/code&gt;, and standardizes path format for consistent file operations. As the creator of CoreUI, I use &lt;code&gt;path.normalize()&lt;/code&gt; when processing user-provided paths, cleaning up file imports, and standardizing configuration paths. This method ensures paths are in their simplest canonical form while maintaining their relative or absolute nature.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Resolve Paths in Node.js</title>
+      <link>https://coreui.io/answers/how-to-resolve-paths-in-nodejs/</link>
+      <pubDate>Sun, 02 Nov 2025 15:50:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-resolve-paths-in-nodejs/</guid>
+      <description>&lt;p&gt;Resolving file paths to absolute paths is essential for reliable file operations in Node.js applications that work across different environments. As the creator of CoreUI, I use &lt;code&gt;path.resolve()&lt;/code&gt; extensively when building configuration loaders, asset processors, and file management utilities. This method converts relative paths to absolute paths and handles path resolution according to the current working directory.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Join Paths in Node.js</title>
+      <link>https://coreui.io/answers/how-to-join-paths-in-nodejs/</link>
+      <pubDate>Fri, 31 Oct 2025 10:55:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-join-paths-in-nodejs/</guid>
+      <description>&lt;p&gt;Joining file paths correctly is crucial for building Node.js applications that work across different operating systems. As the creator of CoreUI, I&amp;rsquo;ve learned that string concatenation for paths leads to platform-specific bugs. The &lt;code&gt;path.join()&lt;/code&gt; method provides a safe, cross-platform solution for combining path segments with the correct separators.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Use Path Module in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-path-module-in-nodejs/</link>
+      <pubDate>Fri, 31 Oct 2025 10:50:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-path-module-in-nodejs/</guid>
+      <description>&lt;p&gt;Working with file paths in Node.js requires careful handling to ensure cross-platform compatibility between Windows, macOS, and Linux. As the creator of CoreUI, I use the path module extensively for building robust backend applications. The path module provides utilities for working with file and directory paths in a platform-independent way.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Use dotenv in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-dotenv-in-nodejs/</link>
+      <pubDate>Thu, 30 Oct 2025 14:55:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-dotenv-in-nodejs/</guid>
+      <description>&lt;p&gt;As the creator of CoreUI, I&amp;rsquo;ll show you how to effectively use dotenv to manage environment variables in your applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Respond with JSON in Node.js Server</title>
+      <link>https://coreui.io/answers/how-to-respond-with-json-in-nodejs-server/</link>
+      <pubDate>Thu, 30 Oct 2025 14:50:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-respond-with-json-in-nodejs-server/</guid>
+      <description>&lt;p&gt;As the creator of CoreUI, I&amp;rsquo;ll show you how to properly send JSON responses from a Node.js server.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use fs promises in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-fs-promises-in-nodejs/</link>
+      <pubDate>Wed, 29 Oct 2025 16:55:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-fs-promises-in-nodejs/</guid>
+      <description>&lt;p&gt;Using fs.promises provides cleaner, more readable code for file system operations compared to callback-based methods, especially when handling multiple sequential file operations.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve modernized countless file processing scripts using fs.promises.&#xA;From my expertise, the most effective approach is using &lt;code&gt;fs.promises&lt;/code&gt; with async/await syntax for synchronous-looking asynchronous file operations.&#xA;This eliminates callback hell and makes error handling more intuitive.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to delete directories in Node.js</title>
+      <link>https://coreui.io/answers/how-to-delete-directories-in-nodejs/</link>
+      <pubDate>Wed, 29 Oct 2025 16:50:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-delete-directories-in-nodejs/</guid>
+      <description>&lt;p&gt;Deleting directories programmatically is essential for cleanup operations, temporary file management, and maintaining organized file systems in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented directory cleanup in numerous build processes and file management utilities.&#xA;From my expertise, the most reliable approach is using &lt;code&gt;fs.rm()&lt;/code&gt; with the recursive option, which can handle both empty and non-empty directories safely.&#xA;This provides comprehensive directory removal capabilities for modern Node.js applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create directories in Node.js</title>
+      <link>https://coreui.io/answers/how-to-create-directories-in-nodejs/</link>
+      <pubDate>Mon, 27 Oct 2025 16:55:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-directories-in-nodejs/</guid>
+      <description>&lt;p&gt;Creating directories programmatically is essential for organizing file uploads, generating project structures, and managing application data in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented directory creation in countless backend services and build tools.&#xA;From my expertise, the most reliable approach is using &lt;code&gt;fs.mkdir()&lt;/code&gt; with the recursive option, which creates parent directories automatically if they don&amp;rsquo;t exist.&#xA;This prevents errors and ensures the complete directory path is created.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to read directories in Node.js</title>
+      <link>https://coreui.io/answers/how-to-read-directories-in-nodejs/</link>
+      <pubDate>Mon, 27 Oct 2025 16:50:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-read-directories-in-nodejs/</guid>
+      <description>&lt;p&gt;Reading directory contents is essential for file system operations, building file explorers, and processing multiple files in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented directory reading functionality in numerous backend services.&#xA;From my expertise, the most straightforward approach is using the &lt;code&gt;fs.readdir()&lt;/code&gt; method, which returns an array of filenames and subdirectories.&#xA;This provides the foundation for file system navigation and batch file processing.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to parse URL parameters in Node.js</title>
+      <link>https://coreui.io/answers/how-to-parse-url-parameters-in-nodejs/</link>
+      <pubDate>Sun, 26 Oct 2025 16:50:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-parse-url-parameters-in-nodejs/</guid>
+      <description>&lt;p&gt;Parsing URL parameters correctly is essential for building robust APIs and handling user input in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve built countless backend services and API endpoints.&#xA;From my expertise, the most reliable approach is using Node.js built-in &lt;code&gt;URL&lt;/code&gt; constructor with &lt;code&gt;URLSearchParams&lt;/code&gt; to safely parse query strings and route parameters.&#xA;This ensures proper handling of encoded characters and special cases.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to uninstall npm packages in Node.js</title>
+      <link>https://coreui.io/answers/how-to-uninstall-npm-packages-in-nodejs/</link>
+      <pubDate>Fri, 24 Oct 2025 16:50:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-uninstall-npm-packages-in-nodejs/</guid>
+      <description>&lt;p&gt;Removing unused npm packages is essential for maintaining clean dependencies and reducing bundle size in Node.js projects.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve managed countless package dependencies across multiple projects.&#xA;From my expertise, the most reliable approach is to use the &lt;code&gt;npm uninstall&lt;/code&gt; command, which removes the package and updates your package.json automatically.&#xA;This ensures proper dependency cleanup and prevents version conflicts.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to delete files in Node.js</title>
+      <link>https://coreui.io/answers/how-to-delete-files-in-nodejs/</link>
+      <pubDate>Thu, 23 Oct 2025 16:55:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-delete-files-in-nodejs/</guid>
+      <description>&lt;p&gt;Deleting files programmatically is crucial for cleanup operations, temporary file management, and storage optimization in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented file deletion in countless backend services.&#xA;From my expertise, the most reliable approach is using the &lt;code&gt;fs.unlink()&lt;/code&gt; method, which removes files from the filesystem safely.&#xA;This is essential for managing uploads, cache files, and temporary data storage.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to append files in Node.js</title>
+      <link>https://coreui.io/answers/how-to-append-files-in-nodejs/</link>
+      <pubDate>Thu, 23 Oct 2025 16:50:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-append-files-in-nodejs/</guid>
+      <description>&lt;p&gt;Appending data to existing files is essential for logging, data collection, and incremental file operations in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented file appending in numerous backend services.&#xA;From my expertise, the most straightforward approach is using the &lt;code&gt;fs.appendFile()&lt;/code&gt; method, which adds content to the end of files without overwriting existing data.&#xA;This is particularly useful for log files and data accumulation scenarios.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to update npm packages in Node.js</title>
+      <link>https://coreui.io/answers/how-to-update-npm-packages-in-nodejs/</link>
+      <pubDate>Thu, 09 Oct 2025 09:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-update-npm-packages-in-nodejs/</guid>
+      <description>&lt;p&gt;Updating npm packages ensures security patches, bug fixes, and new features while maintaining project security and compatibility.&#xA;As the creator of &lt;strong&gt;CoreUI&lt;/strong&gt;, a widely used open-source UI library, I&amp;rsquo;ve managed npm package updates across hundreds of Node.js projects.&#xA;From my expertise, the most effective approach is checking for outdated packages first, then updating safely within version ranges.&#xA;This method prevents breaking changes while keeping dependencies current and secure.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to install packages with yarn in Node.js</title>
+      <link>https://coreui.io/answers/how-to-install-packages-with-yarn-in-nodejs/</link>
+      <pubDate>Thu, 09 Oct 2025 08:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-install-packages-with-yarn-in-nodejs/</guid>
+      <description>&lt;p&gt;Installing packages with yarn provides faster, more reliable dependency management with deterministic installs and better caching than npm.&#xA;As the creator of &lt;strong&gt;CoreUI&lt;/strong&gt;, a widely used open-source UI library, I&amp;rsquo;ve used yarn for thousands of Node.js projects to manage dependencies reliably.&#xA;From my expertise, the most effective approach is using yarn add with proper dependency categorization.&#xA;This method ensures consistent installations across environments with automatic lockfile generation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to initialize npm in Node.js</title>
+      <link>https://coreui.io/answers/how-to-initialize-npm-in-nodejs/</link>
+      <pubDate>Wed, 08 Oct 2025 07:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-initialize-npm-in-nodejs/</guid>
+      <description>&lt;p&gt;Initializing npm creates the essential package.json file that manages dependencies, scripts, and project metadata for Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve initialized thousands of npm projects for enterprise applications and development tools.&#xA;From my expertise, the most efficient approach is using npm init with proper defaults.&#xA;This method ensures consistent project setup and dependency management across all environments.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create a new Node.js project</title>
+      <link>https://coreui.io/answers/how-to-create-a-new-nodejs-project/</link>
+      <pubDate>Wed, 08 Oct 2025 06:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-a-new-nodejs-project/</guid>
+      <description>&lt;p&gt;Creating a new Node.js project requires proper initialization and directory structure for building scalable applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve created hundreds of Node.js projects for build tools, APIs, and enterprise backend services.&#xA;From my expertise, the most efficient approach is to initialize with npm and create a clean project structure.&#xA;This method ensures proper dependency management and maintainable code organization.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to check if a file exists in Node.js</title>
+      <link>https://coreui.io/answers/how-to-check-if-a-file-exists-in-nodejs/</link>
+      <pubDate>Mon, 06 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-check-if-a-file-exists-in-nodejs/</guid>
+      <description>&lt;p&gt;Checking file existence is essential for preventing errors, validating inputs, and implementing conditional file operations in Node.js applications and scripts.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented file existence checks in numerous Node.js build tools, deployment scripts, and file processing utilities for CoreUI projects.&#xA;From my expertise, the most modern approach is to use &lt;code&gt;fs.promises.access()&lt;/code&gt; for asynchronous operations.&#xA;This method provides proper error handling, non-blocking behavior, and integrates well with async/await patterns for clean, maintainable code.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to parse JSON body in Node.js</title>
+      <link>https://coreui.io/answers/how-to-parse-json-body-in-nodejs/</link>
+      <pubDate>Mon, 06 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-parse-json-body-in-nodejs/</guid>
+      <description>&lt;p&gt;Parsing JSON request bodies is fundamental for creating REST APIs, handling form submissions, and processing client data in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented JSON body parsing in numerous Node.js APIs for user data processing, configuration management, and dashboard data handling in enterprise applications.&#xA;From my expertise, the most reliable approach is to use Express.js built-in JSON middleware.&#xA;This method provides automatic parsing, error handling, and security features while supporting various content types and request sizes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle GET requests in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-get-requests-in-nodejs/</link>
+      <pubDate>Sun, 05 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-get-requests-in-nodejs/</guid>
+      <description>&lt;p&gt;Handling GET requests is fundamental for creating APIs, serving data, and building RESTful web services in Node.js backend applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented GET request handling in numerous Node.js APIs for user data retrieval, configuration endpoints, and dashboard data services in enterprise applications.&#xA;From my expertise, the most practical approach is to use Express.js with route parameters and query string handling.&#xA;This method provides clean URL patterns, automatic request parsing, and robust middleware support for authentication, validation, and error handling.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to serve static files in Node.js</title>
+      <link>https://coreui.io/answers/how-to-serve-static-files-in-nodejs/</link>
+      <pubDate>Sun, 05 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-serve-static-files-in-nodejs/</guid>
+      <description>&lt;p&gt;Serving static files is essential for delivering frontend assets, images, stylesheets, and JavaScript files in Node.js web applications and API servers.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve configured static file serving in numerous Node.js applications for delivering CoreUI assets, documentation sites, and enterprise dashboard frontends.&#xA;From my expertise, the most efficient approach is to use Express.js built-in static middleware.&#xA;This method provides optimized file serving, proper caching headers, and security features while handling common web server tasks automatically.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to install packages with npm in Node.js</title>
+      <link>https://coreui.io/answers/how-to-install-packages-with-npm-in-nodejs/</link>
+      <pubDate>Sat, 04 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-install-packages-with-npm-in-nodejs/</guid>
+      <description>&lt;p&gt;Installing npm packages is fundamental for Node.js development, enabling you to leverage thousands of community libraries and tools for faster application development.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve installed countless npm packages across Node.js projects for build tools, testing frameworks, and utility libraries in enterprise applications.&#xA;From my expertise, the most standard approach is to use &lt;code&gt;npm install&lt;/code&gt; command with proper dependency classification.&#xA;This method ensures proper package management, version control, and deployment optimization through correct package.json configuration.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to write files in Node.js</title>
+      <link>https://coreui.io/answers/how-to-write-files-in-nodejs/</link>
+      <pubDate>Sat, 04 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-write-files-in-nodejs/</guid>
+      <description>&lt;p&gt;Writing files is essential for data persistence, log generation, configuration management, and content creation in Node.js applications and automation scripts.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented file writing in numerous Node.js build tools, documentation generators, and deployment scripts for CoreUI projects.&#xA;From my expertise, the most reliable approach is to use the &lt;code&gt;fs.writeFile()&lt;/code&gt; method for asynchronous file operations.&#xA;This method prevents blocking the event loop while providing proper error handling and consistent performance in production applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle POST requests in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-post-requests-in-nodejs/</link>
+      <pubDate>Fri, 03 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-post-requests-in-nodejs/</guid>
+      <description>&lt;p&gt;Handling POST requests is fundamental for creating APIs, processing form submissions, and accepting data from client applications in Node.js backend services.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented POST request handling in numerous Node.js APIs for user authentication, data creation, and form processing in enterprise applications.&#xA;From my expertise, the most practical approach is to use Express.js with proper middleware for body parsing.&#xA;This method provides clean request handling, automatic JSON parsing, and robust error handling for production-ready applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use environment variables in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-environment-variables-in-nodejs/</link>
+      <pubDate>Fri, 03 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-environment-variables-in-nodejs/</guid>
+      <description>&lt;p&gt;Managing configuration and sensitive data through environment variables is essential for secure and flexible Node.js applications across different deployment environments.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented environment variable management in numerous Node.js backend services for API keys, database connections, and deployment-specific configurations.&#xA;From my expertise, the most secure approach is to use &lt;code&gt;process.env&lt;/code&gt; with the &lt;code&gt;dotenv&lt;/code&gt; package for local development.&#xA;This method keeps sensitive data out of source code while providing easy configuration management across development, staging, and production environments.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create a simple HTTP server in Node.js</title>
+      <link>https://coreui.io/answers/how-to-create-a-simple-http-server-in-nodejs/</link>
+      <pubDate>Thu, 02 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-a-simple-http-server-in-nodejs/</guid>
+      <description>&lt;p&gt;Creating HTTP servers is fundamental for building web applications, APIs, and backend services with Node.js for modern web development.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve built numerous Node.js servers to support CoreUI demos, documentation sites, and enterprise backend services.&#xA;From my expertise, the most straightforward approach is to use Node.js&amp;rsquo;s built-in &lt;code&gt;http&lt;/code&gt; module with &lt;code&gt;createServer()&lt;/code&gt; method.&#xA;This method provides direct control over request handling and is perfect for understanding server fundamentals before moving to frameworks like Express.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to read files in Node.js</title>
+      <link>https://coreui.io/answers/how-to-read-files-in-nodejs/</link>
+      <pubDate>Thu, 02 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-read-files-in-nodejs/</guid>
+      <description>&lt;p&gt;Reading files is essential for configuration loading, data processing, and content serving in Node.js applications and server-side development.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented file reading in numerous Node.js build tools, documentation generators, and template processors for CoreUI projects.&#xA;From my expertise, the most versatile approach is to use the &lt;code&gt;fs.readFile()&lt;/code&gt; method for asynchronous file operations.&#xA;This method prevents blocking the event loop and provides better performance in web applications that handle multiple concurrent requests.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

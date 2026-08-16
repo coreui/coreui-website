@@ -1,0 +1,1 @@
+var e=(e,t)=>{let n=e.nextElementSibling;if(!t)return n;for(;n;){if(n.matches(t))return n;n=n.nextElementSibling}},t=(e,t)=>{let n=e.previousElementSibling;if(!t)return n;for(;n;){if(n.matches(t))return n;n=n.previousElementSibling}};export{e as n,t};

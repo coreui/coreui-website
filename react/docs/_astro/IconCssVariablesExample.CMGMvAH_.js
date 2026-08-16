@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime.C6cmW1Aq.js";import{b as t}from"./esm.Cl8JL4xH.js";import{n}from"./src.B9Zzdxai.js";var r=e(),i=()=>(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n,{icon:t,size:`xl`,style:{"--ci-primary-color":`red`}}),(0,r.jsx)(n,{icon:t,size:`xl`,style:{"--ci-primary-color":`green`}})]});export{i as IconCssVariablesExample};

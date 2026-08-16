@@ -1,0 +1,35 @@
+<c-smart-table
+  [columnFilter]="true"
+  [columnSorter]="true"
+  [columns]="columns"
+  header
+  itemsPerPage="10"
+  [itemsPerPageSelect]="true"
+  [items]="newData"
+  pagination
+  [tableProps]="{ hover: true, striped: true, responsive: true }"
+>
+
+  <ng-template cTemplateId="columnLabel_all" let-column>
+    <div class="d-inline">
+      {{ column.label }}
+      <ng-container *ngTemplateOutlet="icon; context: {$implicit: column}"></ng-container>
+    </div>
+  </ng-template>
+
+  <ng-template cTemplateId="columnLabel_registered" let-column>
+    <ng-container *ngTemplateOutlet="icon; context: {$implicit: column}"></ng-container>
+  </ng-template>
+
+</c-smart-table>
+
+<ng-template #icon let-column>
+  <div class="d-inline"
+       *ngIf="column?._data?.tooltip"
+       [cTooltipTrigger]="'hover'"
+       [cTooltip]="column?._data?.tooltip"
+       cTooltipPlacement="top"
+  >
+    <svg [cIcon]="icons[column?._data?.icon]" size="sm" title="Info Icon" class="ms-1"></svg>
+  </div>
+</ng-template>

@@ -1,0 +1,24 @@
+<c-stepper>
+  <c-stepper-step [indicatorCtx]="{ icon: 'cilUser' }" [indicator]="indicatorTpl" label="User" />
+  <c-stepper-step [label]="labelTpl2" />
+  <c-stepper-step
+    [indicatorCtx]="{ icon: 'cilSend' }"
+    [indicator]="indicatorTpl"
+    [labelCtx]="{ icon: 'cilExitToApp', caption: 'Send' }"
+    [label]="labelTpl"
+  />
+</c-stepper>
+
+<ng-template #indicatorTpl let-icon="icon">
+  <svg [name]="icon" cIcon title="Icon"></svg>
+</ng-template>
+
+<ng-template #labelTpl let-caption="caption" let-icon="icon">
+  <span class="text-danger">
+    {{ caption }} <svg [name]="icon" cIcon title="Icon"></svg>
+  </span>
+</ng-template>
+
+<ng-template #labelTpl2>
+  <span> Sign <svg cIcon name="cilPen" title="Icon"></svg></span>
+</ng-template>

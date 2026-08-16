@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.CA1CYuze.js";var n=e({name:`CCardHeader`,props:{as:{type:String,default:`div`}},setup(e,{slots:n}){return()=>t(e.as,{class:`card-header`},n.default&&n.default())}});export{n as t};

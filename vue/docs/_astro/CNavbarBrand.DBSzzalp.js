@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.CA1CYuze.js";var n=e({name:`CNavbarBrand`,props:{as:{type:String,default:`a`},href:String},setup(e,{slots:n}){return()=>t(e.as??(e.href?`a`:`span`),{class:`navbar-brand`,href:e.href},n.default&&n.default())}});export{n as t};

@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.CA1CYuze.js";import{t as n}from"./CToastClose.DV-Vxkv3.js";var r=e({name:`CToastHeader`,props:{ariaCloseLabel:String,closeButton:Boolean},setup(e,{slots:r}){return()=>t(`div`,{class:`toast-header`},[r.default&&r.default(),e.closeButton&&t(n,{ariaLabel:e.ariaCloseLabel})])}});export{r as t};

@@ -1,0 +1,1 @@
+import{r as m,_ as o,R as p,f as i,P as e}from"./index-B5TvTkEF.js";const a=m.forwardRef((s,r)=>{var{children:t,as:c="h5",className:l}=s,n=o(s,["children","as","className"]);return p.createElement(c,Object.assign({className:i("card-title",l)},n,{ref:r}),t)});a.propTypes={as:e.elementType,children:e.node,className:e.string};a.displayName="CCardTitle";export{a as C};

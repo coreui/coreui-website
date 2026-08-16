@@ -1,0 +1,21 @@
+<c-multi-select multiple>
+  @for (option of frontend; track option.value) {
+    <c-multi-select-option
+      [value]="option.value"
+      [selected]="option.selected ?? false"
+      [disabled]="option.disabled"
+    >
+      {{ option.value }}
+    </c-multi-select-option>
+  }
+  <c-multi-select-optgroup label="Backend">
+    @for (option of backend; track option.value) {
+      <c-multi-select-option
+        [value]="option.value"
+        [selected]="option.selected ?? false"
+      >
+        {{ option.label }}
+      </c-multi-select-option>
+    }
+  </c-multi-select-optgroup>
+</c-multi-select>

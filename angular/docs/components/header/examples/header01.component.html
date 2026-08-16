@@ -1,0 +1,31 @@
+<c-header>
+  <c-container fluid>
+    <c-header-brand [routerLink]>Brand</c-header-brand>
+    <c-header-nav class="ms-auto">
+      <c-nav-item>
+        <a [active]="true" [routerLink] cNavLink>Home</a>
+      </c-nav-item>
+      <c-nav-item>
+        <a cNavLink routerLink="/components/alert">Link</a>
+      </c-nav-item>
+      <c-nav-item>
+        <a cNavLink disabled routerLink="/components/alert">Disabled</a>
+      </c-nav-item>
+      <c-dropdown alignment="end">
+        <a cDropdownToggle cNavLink>Dropdown</a>
+        <ul cDropdownMenu>
+          <li><a [routerLink]="[]" cDropdownItem>Action</a></li>
+          <li><a [routerLink]="[]" cDropdownItem>Another action</a></li>
+          <li>
+            <hr cDropdownDivider>
+          </li>
+          <li><a [routerLink]="[]" cDropdownItem>Something else</a></li>
+        </ul>
+      </c-dropdown>
+    </c-header-nav>
+  </c-container>
+  <c-header-divider />
+  <c-container fluid>
+    <c-header-text>Additional text</c-header-text>
+  </c-container>
+</c-header>

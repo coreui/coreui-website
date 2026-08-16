@@ -1,0 +1,9 @@
+# Vue Chip Set Component Accessibility
+
+> Detailed overview of the accessibility features implemented in CoreUI Vue Chip Set, ensuring compliance with WAI-ARIA guidelines.
+
+## Accessibility
+
+- The chip set manages roving focus, so the arrow keys move focus between chips rather than relying on the browser's default tab order.
+- Add a descriptive `aria-label` to the chip set when the group has a meaningful role (e.g., "Applied filters").
+- Selection state is reflected on each chip via `aria-selected`; see the [Chip](https://coreui.io/vue/docs/components/chip/) accessibility notes.

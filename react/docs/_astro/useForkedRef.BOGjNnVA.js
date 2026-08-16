@@ -1,0 +1,1 @@
+import{r as e}from"./rolldown-runtime.QTnfLwEv.js";import{t}from"./react.Vu5Exw5S.js";var n=e(t());function r(...e){return(0,n.useMemo)(()=>e.every(e=>e==null)?null:t=>{e.forEach(e=>{i(e,t)})},e)}function i(e,t){if(e!=null)if(a(e))e(t);else try{e.current=t}catch{throw Error(`Cannot assign value "${t}" to ref "${e}"`)}}function a(e){return typeof e==`function`}export{r as t};

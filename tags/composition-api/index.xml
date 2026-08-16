@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Composition-Api on CoreUI</title>
+    <link>https://coreui.io/tags/composition-api/</link>
+    <description>Recent content in Composition-Api on CoreUI</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Jul 2026 22:54:06 +0200</lastBuildDate>
+    <atom:link href="https://coreui.io/tags/composition-api/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to define emits in Vue 3 with defineEmits</title>
+      <link>https://coreui.io/answers/how-to-define-emits-in-vue-3-with-defineemits/</link>
+      <pubDate>Fri, 27 Mar 2026 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-define-emits-in-vue-3-with-defineemits/</guid>
+      <description>&lt;p&gt;&lt;code&gt;defineEmits&lt;/code&gt; is the &lt;code&gt;&amp;lt;script setup&amp;gt;&lt;/code&gt; macro for declaring custom events that a component can emit, replacing the &lt;code&gt;emits&lt;/code&gt; option and giving you type-safe &lt;code&gt;emit&lt;/code&gt; functions with IDE autocompletion.&#xA;As the creator of CoreUI with Vue development experience since 2014, I use &lt;code&gt;defineEmits&lt;/code&gt; in every component that communicates with its parent through events, from simple click callbacks to complex form submission payloads.&#xA;Declaring emits explicitly serves two purposes: it documents the component&amp;rsquo;s event API, and it enables Vue to distinguish between custom events and native DOM events on the root element.&#xA;The TypeScript generic syntax provides the best developer experience with full type inference on the emitted payload.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to define props in Vue 3 with defineProps</title>
+      <link>https://coreui.io/answers/how-to-define-props-in-vue-3-with-defineprops/</link>
+      <pubDate>Fri, 27 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-define-props-in-vue-3-with-defineprops/</guid>
+      <description>&lt;p&gt;&lt;code&gt;defineProps&lt;/code&gt; is the &lt;code&gt;&amp;lt;script setup&amp;gt;&lt;/code&gt; compiler macro for declaring component props in Vue 3, replacing the &lt;code&gt;props&lt;/code&gt; option from the Options API with a more concise and TypeScript-friendly syntax.&#xA;As the creator of CoreUI with Vue development experience since 2014, I use &lt;code&gt;defineProps&lt;/code&gt; in every &lt;code&gt;&amp;lt;script setup&amp;gt;&lt;/code&gt; component because it gives both runtime validation and full TypeScript type inference without any extra configuration.&#xA;Choosing between the runtime syntax and the TypeScript generic syntax depends on whether you need complex default values — the TypeScript syntax offers better type safety but requires &lt;code&gt;withDefaults&lt;/code&gt; for defaults.&#xA;Both approaches are idiomatic and supported — choose the one that fits your project&amp;rsquo;s TypeScript configuration.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to expose methods in Vue 3 with defineExpose</title>
+      <link>https://coreui.io/answers/how-to-expose-methods-in-vue-3-with-defineexpose/</link>
+      <pubDate>Thu, 26 Mar 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-expose-methods-in-vue-3-with-defineexpose/</guid>
+      <description>&lt;p&gt;In Vue 3 &lt;code&gt;&amp;lt;script setup&amp;gt;&lt;/code&gt;, all bindings are private by default — parent components cannot access child component methods or data using template refs unless you explicitly expose them with &lt;code&gt;defineExpose&lt;/code&gt;.&#xA;As the creator of CoreUI with Vue development experience since 2014, I use &lt;code&gt;defineExpose&lt;/code&gt; in CoreUI Vue components that need to provide imperative APIs, such as dialog &lt;code&gt;open()&lt;/code&gt; and &lt;code&gt;close()&lt;/code&gt; methods or form &lt;code&gt;reset()&lt;/code&gt; and &lt;code&gt;validate()&lt;/code&gt; methods.&#xA;Without &lt;code&gt;defineExpose&lt;/code&gt;, a parent&amp;rsquo;s &lt;code&gt;childRef.value.open()&lt;/code&gt; call fails silently because the method is not exposed.&#xA;This is intentional — &lt;code&gt;&amp;lt;script setup&amp;gt;&lt;/code&gt; components are encapsulated by default, and &lt;code&gt;defineExpose&lt;/code&gt; is an explicit contract of the public API.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use watchEffect() in Vue 3</title>
+      <link>https://coreui.io/answers/how-to-use-watcheffect-in-vue-3/</link>
+      <pubDate>Wed, 25 Mar 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-watcheffect-in-vue-3/</guid>
+      <description>&lt;p&gt;&lt;code&gt;watchEffect()&lt;/code&gt; automatically tracks all reactive dependencies used inside it and re-runs whenever any of them change — without you having to specify which values to watch.&#xA;As the creator of CoreUI with Vue development experience since 2014, I use &lt;code&gt;watchEffect()&lt;/code&gt; when a side effect depends on several reactive values and I don&amp;rsquo;t want to manually maintain a list of dependencies.&#xA;The key difference from &lt;code&gt;watch()&lt;/code&gt; is that &lt;code&gt;watchEffect&lt;/code&gt; runs immediately on first call and doesn&amp;rsquo;t provide old values — it&amp;rsquo;s ideal for synchronization effects rather than reactive comparisons.&#xA;Understanding when to choose &lt;code&gt;watchEffect&lt;/code&gt; vs &lt;code&gt;watch&lt;/code&gt; makes your Vue code cleaner and more maintainable.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use watch() in Vue 3</title>
+      <link>https://coreui.io/answers/how-to-use-watch-in-vue-3/</link>
+      <pubDate>Wed, 25 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-watch-in-vue-3/</guid>
+      <description>&lt;p&gt;&lt;code&gt;watch()&lt;/code&gt; in Vue 3 runs a side effect in response to reactive state changes — fetching data when a filter changes, saving state to localStorage, or triggering animations when a value updates.&#xA;As the creator of CoreUI with Vue development experience since 2014, I use &lt;code&gt;watch()&lt;/code&gt; whenever I need to react to a change with a side effect, and &lt;code&gt;computed()&lt;/code&gt; when I just need a derived value.&#xA;The key difference from &lt;code&gt;watchEffect()&lt;/code&gt; is that &lt;code&gt;watch()&lt;/code&gt; is explicit — you declare exactly what to watch and receive the old and new values in the callback.&#xA;This makes it easier to understand what triggers the watcher and to compare values before and after.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use computed() in Vue 3</title>
+      <link>https://coreui.io/answers/how-to-use-computed-in-vue-3/</link>
+      <pubDate>Tue, 24 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-computed-in-vue-3/</guid>
+      <description>&lt;p&gt;&lt;code&gt;computed()&lt;/code&gt; creates a cached reactive value derived from other reactive state — it recalculates only when its dependencies change, making it more efficient than calling a method in the template on every render.&#xA;As the creator of CoreUI with Vue development experience since 2014, I use &lt;code&gt;computed()&lt;/code&gt; extensively in CoreUI Vue components for filtering, sorting, and formatting data that depends on reactive state.&#xA;The most important distinction from a regular method is caching — if the dependencies haven&amp;rsquo;t changed, Vue returns the cached result instantly without re-running the function.&#xA;This makes &lt;code&gt;computed&lt;/code&gt; the right choice for any derived value accessed in a template.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use ref() in Vue 3</title>
+      <link>https://coreui.io/answers/how-to-use-ref-in-vue-3/</link>
+      <pubDate>Mon, 23 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-ref-in-vue-3/</guid>
+      <description>&lt;p&gt;&lt;code&gt;ref()&lt;/code&gt; is the foundational reactivity primitive in Vue 3&amp;rsquo;s Composition API, wrapping any value — string, number, boolean, object, or array — in a reactive container that Vue can track.&#xA;As the creator of CoreUI with Vue development experience since 2014, I use &lt;code&gt;ref()&lt;/code&gt; as the default choice for reactive state in every Vue 3 component because it works consistently with all value types.&#xA;The one thing to remember is that &lt;code&gt;ref&lt;/code&gt; values must be accessed with &lt;code&gt;.value&lt;/code&gt; in JavaScript, while Vue templates automatically unwrap refs so you write &lt;code&gt;{{ count }}&lt;/code&gt; not &lt;code&gt;{{ count.value }}&lt;/code&gt;.&#xA;This distinction catches new Vue 3 developers by surprise but becomes second nature quickly.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use reactive() in Vue 3</title>
+      <link>https://coreui.io/answers/how-to-use-reactive-in-vue-3/</link>
+      <pubDate>Thu, 19 Mar 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-reactive-in-vue-3/</guid>
+      <description>&lt;p&gt;&lt;code&gt;reactive()&lt;/code&gt; creates a deeply reactive proxy of a plain object, making Vue track all nested property changes automatically — unlike &lt;code&gt;ref()&lt;/code&gt; which wraps a single value.&#xA;As the creator of CoreUI with Vue development experience since 2014, I use &lt;code&gt;reactive()&lt;/code&gt; when managing objects with multiple related properties that should be kept together, such as form state or a user profile.&#xA;The key difference from &lt;code&gt;ref()&lt;/code&gt; is that &lt;code&gt;reactive()&lt;/code&gt; returns the object directly — no &lt;code&gt;.value&lt;/code&gt; wrapper — making it feel more natural for complex objects.&#xA;Understanding when to use &lt;code&gt;reactive()&lt;/code&gt; vs &lt;code&gt;ref()&lt;/code&gt; is one of the most important decisions in Vue 3 Composition API code.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use setup() in Vue 3</title>
+      <link>https://coreui.io/answers/how-to-use-setup-in-vue-3/</link>
+      <pubDate>Wed, 18 Mar 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-setup-in-vue-3/</guid>
+      <description>&lt;p&gt;The &lt;code&gt;setup()&lt;/code&gt; function is the entry point for the Composition API in Vue 3, replacing the scattered &lt;code&gt;data&lt;/code&gt;, &lt;code&gt;computed&lt;/code&gt;, &lt;code&gt;methods&lt;/code&gt;, and lifecycle options of the Options API with a single, cohesive function.&#xA;As the creator of CoreUI with Vue development experience since 2014, I&amp;rsquo;ve migrated dozens of complex components from Options API to &lt;code&gt;setup()&lt;/code&gt; and the result is consistently more readable and testable code.&#xA;Everything you return from &lt;code&gt;setup()&lt;/code&gt; becomes available in the template — reactive references, computed properties, and methods alike.&#xA;Understanding &lt;code&gt;setup()&lt;/code&gt; is the foundation for all other Composition API features.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use defineComponent in Vue 3</title>
+      <link>https://coreui.io/answers/how-to-use-definecomponent-in-vue-3/</link>
+      <pubDate>Wed, 18 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-definecomponent-in-vue-3/</guid>
+      <description>&lt;p&gt;&lt;code&gt;defineComponent&lt;/code&gt; is a Vue 3 utility function that enables full TypeScript support by providing proper type inference for component options and the &lt;code&gt;setup&lt;/code&gt; function.&#xA;As the creator of CoreUI with Vue development experience since 2014, I use &lt;code&gt;defineComponent&lt;/code&gt; in every TypeScript Vue component because it makes IDEs correctly infer prop types, emitted events, and the return value of &lt;code&gt;setup&lt;/code&gt;.&#xA;Without it, TypeScript treats the component object as a plain object and loses the Vue-specific type information.&#xA;For &lt;code&gt;&amp;lt;script setup&amp;gt;&lt;/code&gt; components you don&amp;rsquo;t need it — it&amp;rsquo;s most valuable when writing components with explicit &lt;code&gt;setup&lt;/code&gt; functions or Options API in TypeScript files.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to migrate Options API to Composition API in Vue</title>
+      <link>https://coreui.io/answers/how-to-migrate-options-api-to-composition-api-in-vue/</link>
+      <pubDate>Thu, 12 Mar 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-migrate-options-api-to-composition-api-in-vue/</guid>
+      <description>&lt;p&gt;Migrating from Options API to Composition API improves code organization, TypeScript support, and logic reusability across components.&#xA;As the creator of CoreUI, I&amp;rsquo;ve led migrations for large Vue 2 codebases to the Composition API.&#xA;The key is mapping each Options API section - &lt;code&gt;data&lt;/code&gt;, &lt;code&gt;computed&lt;/code&gt;, &lt;code&gt;methods&lt;/code&gt;, &lt;code&gt;watch&lt;/code&gt;, and lifecycle hooks - to their Composition API equivalents.&#xA;The logic becomes more collocated and easier to extract into reusable composables.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Vue Composables</title>
+      <link>https://coreui.io/answers/how-to-use-vue-composables/</link>
+      <pubDate>Fri, 13 Feb 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-vue-composables/</guid>
+      <description>&lt;p&gt;Vue composables enable logic reuse across components by extracting reactive functionality into standalone functions. As the creator of CoreUI, I&amp;rsquo;ve built composable libraries for production Vue applications that reduced code duplication by 60% while improving maintainability for enterprise teams.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach creates focused composables that encapsulate a single piece of reusable logic with reactive state and lifecycle hooks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use onBeforeUpdate in Vue</title>
+      <link>https://coreui.io/answers/how-to-use-onbeforeupdate-in-vue/</link>
+      <pubDate>Mon, 03 Nov 2025 15:41:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-onbeforeupdate-in-vue/</guid>
+      <description>&lt;p&gt;Executing code before reactive data changes trigger component re-renders is crucial for performance optimization and state preparation in Vue applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve optimized countless components where pre-update logic is essential for smooth user experiences.&#xA;The most effective approach is using the &lt;code&gt;onBeforeUpdate&lt;/code&gt; lifecycle hook in Vue 3&amp;rsquo;s Composition API, which provides the perfect timing to capture current state before changes are applied.&#xA;This hook is ideal for comparing previous and current values or preparing for expensive operations.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use onBeforeMount in Vue</title>
+      <link>https://coreui.io/answers/how-to-use-onbeforemount-in-vue/</link>
+      <pubDate>Mon, 03 Nov 2025 15:40:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-onbeforemount-in-vue/</guid>
+      <description>&lt;p&gt;Executing code right before a component is mounted to the DOM is essential for last-minute setup and preparation tasks in Vue applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented countless components that require pre-mounting configuration.&#xA;The most effective approach is using the &lt;code&gt;onBeforeMount&lt;/code&gt; lifecycle hook in Vue 3&amp;rsquo;s Composition API, which provides the perfect timing for final preparations before DOM creation.&#xA;This hook is ideal for tasks that need to happen after reactive setup but before the component becomes visible.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Use onUpdated in Vue</title>
+      <link>https://coreui.io/answers/how-to-use-onupdated-in-vue/</link>
+      <pubDate>Sun, 02 Nov 2025 16:25:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-onupdated-in-vue/</guid>
+      <description>&lt;p&gt;The onUpdated lifecycle hook in Vue 3 Composition API is called after the component has been re-rendered due to reactive data changes. As the creator of CoreUI, I use onUpdated for DOM measurements, scroll position adjustments, and third-party library updates that need to happen after Vue updates the DOM. This hook is useful when you need to access the updated DOM or perform actions based on data changes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Use onUnmounted in Vue</title>
+      <link>https://coreui.io/answers/how-to-use-onunmounted-in-vue/</link>
+      <pubDate>Sun, 02 Nov 2025 16:20:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-onunmounted-in-vue/</guid>
+      <description>&lt;p&gt;The onUnmounted lifecycle hook in Vue 3 Composition API is essential for cleaning up resources when components are destroyed to prevent memory leaks and ensure optimal performance. As the creator of CoreUI, I implement onUnmounted in every component that creates timers, event listeners, or external subscriptions. This hook is called when the component is unmounted from the DOM, making it perfect for cleanup operations.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Use onMounted in Vue</title>
+      <link>https://coreui.io/answers/how-to-use-onmounted-in-vue/</link>
+      <pubDate>Fri, 31 Oct 2025 11:25:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-onmounted-in-vue/</guid>
+      <description>&lt;p&gt;The onMounted lifecycle hook in Vue 3 Composition API is called after the component has been mounted to the DOM. As the creator of CoreUI, I use onMounted for DOM manipulation, API calls, and third-party library initialization that requires the component to be fully rendered. This hook is the Composition API equivalent of the mounted lifecycle hook in Options API.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

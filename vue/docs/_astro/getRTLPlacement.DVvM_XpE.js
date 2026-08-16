@@ -1,0 +1,1 @@
+import{t as e}from"./isRTL.BNqy-IkJ.js";var t=(t,n)=>{switch(t){case`right`:return e(n)?`left`:`right`;case`left`:return e(n)?`right`:`left`;default:return t}};export{t};

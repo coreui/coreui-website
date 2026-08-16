@@ -1,0 +1,39 @@
+import{$t as Uv,Br as kw,Fi as v,Nt as Rs,T as D_,kt as RM,nt as KM,qn as cv,qr as lv,ur as gd}from"./chunk-D4QfcjgQ.js";import"./chunk-BwrHBgAX.js";import"./chunk-CUBvct6a.js";import{Ui as nr,Xi as y,k as Fu,pr as nn}from"./main-CRW2IFLY.js";import{t as ie}from"./chunk-DPjinjjK.js";import{t as f$1}from"./chunk-CircK-BE.js";import"./chunk-PIxlJhxX.js";var f=class a{static{this.ɵfac=function(o){return new(o||a)}}static{this.ɵcmp=D_({type:a,selectors:[[`docs-badge05-example`]],decls:25,vars:0,consts:[[`cButton`,``,`color`,`primary`,1,`position-relative`,`m-1`],[`color`,`danger`,`position`,`top-start`,`shape`,`rounded-pill`],[1,`visually-hidden`],[`color`,`danger`,`position`,`top-end`,`shape`,`rounded-pill`],[`color`,`danger`,`position`,`bottom-start`,`shape`,`rounded-pill`],[`color`,`danger`,`position`,`bottom-end`,`shape`,`rounded-pill`]],template:function(o,i){o&1&&(Rs(0,`button`,0),RM(1,` Profile `),Rs(2,`c-badge`,1),RM(3,`99+`),gd(),Rs(4,`span`,2),RM(5,`unread messages`),gd()(),Rs(6,`button`,0),RM(7,` Profile `),Rs(8,`c-badge`,3),RM(9,`99+`),gd(),Rs(10,`span`,2),RM(11,`unread messages`),gd()(),lv(12,`br`),Rs(13,`button`,0),RM(14,` Profile `),Rs(15,`c-badge`,4),RM(16,`99+`),gd(),Rs(17,`span`,2),RM(18,`unread messages`),gd()(),Rs(19,`button`,0),RM(20,` Profile `),Rs(21,`c-badge`,5),RM(22,`99+`),gd(),Rs(23,`span`,2),RM(24,`unread messages`),gd()())},dependencies:[nn,Fu],encapsulation:2})}};var x=class a{static{this.ɵfac=function(o){return new(o||a)}}static{this.ɵcmp=D_({type:a,selectors:[[`docs-badge04-example`]],decls:14,vars:0,consts:[[`color`,`primary`,`shape`,`rounded-pill`],[`color`,`success`,`shape`,`rounded-pill`],[`color`,`danger`,`shape`,`rounded-pill`],[`color`,`warning`,`shape`,`rounded-pill`],[`color`,`info`,`shape`,`rounded-pill`],[`color`,`light`,`shape`,`rounded-pill`],[`color`,`dark`,`shape`,`rounded-pill`]],template:function(o,i){o&1&&(Rs(0,`c-badge`,0),RM(1,`primary`),gd(),Rs(2,`c-badge`,1),RM(3,`success`),gd(),Rs(4,`c-badge`,2),RM(5,`danger`),gd(),Rs(6,`c-badge`,3),RM(7,`warning`),gd(),Rs(8,`c-badge`,4),RM(9,`info`),gd(),Rs(10,`c-badge`,5),RM(11,`light`),gd(),Rs(12,`c-badge`,6),RM(13,`dark`),gd())},dependencies:[Fu],encapsulation:2})}};var h=class a{static{this.ɵfac=function(o){return new(o||a)}}static{this.ɵcmp=D_({type:a,selectors:[[`docs-badge03-example`]],decls:14,vars:0,consts:[[`color`,`primary`],[`color`,`success`],[`color`,`danger`],[`color`,`warning`],[`color`,`info`],[`color`,`light`],[`color`,`dark`]],template:function(o,i){o&1&&(Rs(0,`c-badge`,0),RM(1,`primary`),gd(),Rs(2,`c-badge`,1),RM(3,`success`),gd(),Rs(4,`c-badge`,2),RM(5,`danger`),gd(),Rs(6,`c-badge`,3),RM(7,`warning`),gd(),Rs(8,`c-badge`,4),RM(9,`info`),gd(),Rs(10,`c-badge`,5),RM(11,`light`),gd(),Rs(12,`c-badge`,6),RM(13,`dark`),gd())},dependencies:[Fu],encapsulation:2})}};var S=class a{static{this.ɵfac=function(o){return new(o||a)}}static{this.ɵcmp=D_({type:a,selectors:[[`docs-badge02-example`]],decls:6,vars:0,consts:[[`cButton`,``,`color`,`primary`],[`color`,`secondary`],[1,`visually-hidden`]],template:function(o,i){o&1&&(Rs(0,`button`,0),RM(1,` Profile `),Rs(2,`c-badge`,1),RM(3,`9`),gd(),Rs(4,`span`,2),RM(5,`unread messages`),gd()())},dependencies:[nn,Fu],encapsulation:2})}};var C=class a{static{this.ɵfac=function(o){return new(o||a)}}static{this.ɵcmp=D_({type:a,selectors:[[`docs-badge01-example`]],decls:24,vars:0,consts:[[`color`,`secondary`]],template:function(o,i){o&1&&(Rs(0,`h1`),RM(1,`Example heading `),Rs(2,`c-badge`,0),RM(3,`New`),gd()(),Rs(4,`h2`),RM(5,`Example heading `),Rs(6,`c-badge`,0),RM(7,`New`),gd()(),Rs(8,`h3`),RM(9,`Example heading `),Rs(10,`c-badge`,0),RM(11,`New`),gd()(),Rs(12,`h4`),RM(13,`Example heading `),Rs(14,`c-badge`,0),RM(15,`New`),gd()(),Rs(16,`h5`),RM(17,`Example heading `),Rs(18,`c-badge`,0),RM(19,`New`),gd()(),Rs(20,`h6`),RM(21,`Example heading `),Rs(22,`c-badge`,0),RM(23,`New`),gd()())},dependencies:[Fu],encapsulation:2})}};var k=`import { BadgeModule } from '@coreui/angular';
+
+@NgModule({
+  imports: [BadgeModule,]
+})
+export class AppModule(){}
+`;var P=()=>[`components/badge/examples/badge01.component.html`,`components/badge/examples/badge01.component.ts`];var I=()=>[`components/badge/examples/badge02.component.html`,`components/badge/examples/badge02.component.ts`];var F=()=>[`components/badge/examples/badge03.component.html`,`components/badge/examples/badge03.component.ts`];var z=()=>[`components/badge/examples/badge04.component.html`,`components/badge/examples/badge04.component.ts`];var _=()=>[`components/badge/examples/badge05.component.html`,`components/badge/examples/badge05.component.ts`];var D=class a{constructor(){this.usage=k;this.headService=v(y);this.name=`Badge`;this.title=`Angular Badge Component`;this.description=`Angular badge component is small count and labeling component.`}ngOnInit(){this.headService.updateHeader({title:this.title,name:this.name,description:this.description})}static{this.ɵfac=function(o){return new(o||a)}}static{this.ɵcmp=D_({type:a,selectors:[[`ng-component`]],decls:34,vars:17,consts:[[`id`,`getting-started`],[1,`docs-lead`,`fs-4`,`fw-light`],[`stackblitz`,``,`componentName`,`Badge01Component`,3,`files`,`name`],[`stackblitz`,``,`componentName`,`Badge02Component`,3,`files`,`name`],[`stackblitz`,``,`componentName`,`Badge03Component`,3,`files`,`name`],[`stackblitz`,``,`componentName`,`Badge04Component`,3,`files`,`name`],[`stackblitz`,``,`componentName`,`Badge05Component`,3,`files`,`name`],[`markdown`,``,`src`,`components/badge/examples/custom-app.module.ts`,`lineNumbers`,``,1,`highlight`],[`markdown`,``,`src`,`components/badge/examples/custom-app.component.ts`,`lineNumbers`,``,1,`highlight`],[1,`api-table`]],template:function(o,i){o&1&&(Rs(0,`h1`,0),RM(1),gd(),Rs(2,`p`,1),RM(3),gd(),lv(4,`docs-ads-carbon-loader`),Rs(5,`markdown`),RM(6,`
+
+## Example
+
+Badge component scales to suit the size of the parent element by using relative font sizing and \`em\` units.
+`),gd(),Rs(7,`docs-example`,2),lv(8,`docs-badge01-example`),gd(),Rs(9,`docs-example`,3),lv(10,`docs-badge02-example`),gd(),Rs(11,`markdown`),RM(12,`
+  ## Contextual variations
+
+  Add any of the below-mentioned \`color\` props to modify the presentation of a badge.
+`),gd(),Rs(13,`docs-example`,4),lv(14,`docs-badge03-example`),gd(),Rs(15,`markdown`),RM(16,`
+  ## Pill badges
+
+  Apply the \`shape="rounded-pill"\` prop to make badges rounded.
+`),gd(),Rs(17,`docs-example`,5),lv(18,`docs-badge04-example`),gd(),Rs(19,`markdown`),RM(20,`
+  ## Positioned badges
+
+  Use \`position\` prop to place a \`c-badge\` component it in the corner of a link or button.
+`),gd(),Rs(21,`docs-example`,6),lv(22,`docs-badge05-example`),gd(),Rs(23,`markdown`),RM(24,`
+  ## API
+
+  ### Badge Module
+`),gd(),lv(25,`div`,7),Rs(26,`markdown`),RM(27,`
+  ### Badge Standalone
+`),gd(),lv(28,`div`,8),Rs(29,`markdown`),RM(30,`
+  ---
+
+  ### c-badge
+  _component_
+
+  #### Inputs
+
+  `),Rs(31,`div`,9),RM(32,"\n\n    | name | description | type | default |\n    | ---- | ----------- | ---- | ------- |\n    | `color` | Sets the color context of the component to one of CoreUI’s themed colors.| [`ColorsGradient`](../types/coreui_types.ColorsGradient.md) |  |\n    | `position` | Position badge in one of the corners of a link or button. | [`BadgePositions`](../types/coreui_types.BadgePositions.md) |  |\n    | `shape` | Select the shape of the component. | `string` |  |\n    | `size` | Size the component small. | `sm` |  |\n    | `textColor` | Sets the text color of the component to one of CoreUI’s themed colors. | `TextColors` |  |\n\n  "),gd(),RM(33,`
+`),gd()),o&2&&(kw(),Uv(i.title),kw(2),Uv(i.description),kw(4),cv(`files`,KM(12,P))(`name`,i.title),kw(2),cv(`files`,KM(13,I))(`name`,i.title),kw(4),cv(`files`,KM(14,F))(`name`,i.title),kw(4),cv(`files`,KM(15,z))(`name`,i.title),kw(4),cv(`files`,KM(16,_))(`name`,i.title))},dependencies:[f$1,nr,ie,C,S,h,x,f],encapsulation:2})}};export{D as BadgeComponent};

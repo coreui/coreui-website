@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-1330b927","path":"/api/button/CButton.api.html","title":"","lang":"en-US","frontmatter":{"head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/api/button/CButton.api.html"}]]},"headers":[{"level":3,"title":"CButton","slug":"cbutton","link":"#cbutton","children":[]}],"filePathRelative":"api/button/CButton.api.md"}');export{t as data};

@@ -1,0 +1,1 @@
+import{D as e,d as t,f as n,u as r,w as i}from"./index-CKOVwNx4.js";var a=e(t()),o=e(i()),s=(0,o.forwardRef)((e,t)=>{var{children:i,className:a}=e,s=n(e,[`children`,`className`]);return o.createElement(`div`,Object.assign({className:r(`card-footer`,a)},s,{ref:t}),i)});s.propTypes={children:a.default.node,className:a.default.string},s.displayName=`CCardFooter`;export{s as t};

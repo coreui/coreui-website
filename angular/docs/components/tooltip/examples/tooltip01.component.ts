@@ -1,0 +1,10 @@
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { TooltipDirective } from '@coreui/angular';
+
+@Component({
+  selector: 'docs-tooltip01',
+  templateUrl: './tooltip01.component.html',
+  imports: [TooltipDirective, RouterLink]
+})
+export class Tooltip01Component {}

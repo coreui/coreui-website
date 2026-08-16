@@ -1,0 +1,27 @@
+# LLMs.txt
+
+> LLM-optimized documentation endpoints for CoreUI for Vue — llms.txt, llms-full.txt, and a Markdown version of every page.
+
+## Introduction
+
+[llms.txt](https://llmstxt.org) is an emerging standard that helps AI models understand and navigate documentation. The CoreUI for Vue docs expose three LLM-friendly endpoints so assistants can retrieve accurate, up-to-date content straight from the source.
+
+For a richer, tool-based integration, see [MCP Server](https://coreui.io/vue/docs/ai-tools/mcp/).
+
+## /llms.txt
+
+A structured index of the documentation — every page as a titled, described link, grouped by section. It gives an LLM a compact map of what exists and where.
+
+[Open llms.txt](https://coreui.io/vue/docs/llms.txt)
+
+## /llms-full.txt
+
+The entire documentation concatenated into a single Markdown file, so a model can ingest the whole set in one request.
+
+[Open llms-full.txt](https://coreui.io/vue/docs/llms-full.txt)
+
+## Markdown version of any page
+
+Append `.md` to any documentation page URL to get its clean Markdown version, without the site chrome.
+
+For example: [/vue/docs/components/accordion.md](https://coreui.io/vue/docs/components/accordion.md)

@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CButton.Blr4tCFr.js";e();var r=t(),i=()=>(0,r.jsxs)(`div`,{className:`d-grid gap-2`,children:[(0,r.jsx)(n,{color:`primary`,children:`Button`}),(0,r.jsx)(n,{color:`primary`,children:`Button`})]});export{i as ButtonBlockExample};

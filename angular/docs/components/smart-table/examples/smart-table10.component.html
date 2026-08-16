@@ -1,0 +1,52 @@
+@if (props$ | async; as props) {
+  <c-smart-table
+    #smartTable="cSmartTable"
+    (columnFilterValueChange)="handleColumnFilterValueChange($event)"
+    (filteredItemsChange)="handleFilteredItemsChange($event)"
+    (itemsPerPageChange)="handleItemsPerPageChange($event)"
+    (sorterValueChange)="handleSorterValueChange($event)"
+    [columnFilterValue]="props.columnFilterValue"
+    [columnFilter]="{ external: true, lazy: false }"
+    [columnSorter]="{ external: true, resettable: true }"
+    [columns]="columns"
+    [itemsPerPageOptions]="[5,10,20]"
+    [itemsPerPageSelect]="true"
+    [itemsPerPage]="props.itemsPerPage"
+    [items]="(usersData$ | async) ?? []"
+    [loading]="props.loadingData"
+    [sorterValue]="props.sorterValue"
+    [tableProps]="{ hover: true, striped: true, responsive: true }"
+    cleaner
+    header
+  >
+    <ng-template cTemplateId="tableData" let-column="column" let-columnName="columnName" let-item="item" let-tdContent="tdContent">
+      <td
+        [cAlign]="smartTable.getTableDataCellProps(column, item)?.['align']"
+        [cTableActive]="smartTable.getTableDataCellProps(column, item)?.['active']"
+        [cTableColor]="smartTable.getTableDataCellProps(column, item)?.['color']"
+        [ngClass]="smartTable.getTableDataCellClass(column, item)"
+      >
+        @switch (columnName) {
+          @case ('customer') {
+            {{ item['last_name'] }}
+            {{ item['first_name'] }}
+          }
+          @default {
+            {{ tdContent }}
+          }
+        }
+      </td>
+    </ng-template>
+  </c-smart-table>
+  @if (props.totalPages) {
+    <c-smart-pagination
+      [activePage]="props.activePage"
+      (activePageChange)="handleActivePageChange($event)"
+      [pages]="props.totalPages"
+    />
+  }
+}
+@if (errorMessage$ | async; as errorMessage) {
+  <hr>
+  <c-alert>{{ errorMessage }}</c-alert>
+}

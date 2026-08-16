@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-4c813090","path":"/api/tabs/CTabPane.api.html","title":"","lang":"en-US","frontmatter":{"head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/api/tabs/CTabPane.api.html"}]]},"headers":[{"level":3,"title":"CTabPane","slug":"ctabpane","link":"#ctabpane","children":[]}],"filePathRelative":"api/tabs/CTabPane.api.md"}');export{a as data};

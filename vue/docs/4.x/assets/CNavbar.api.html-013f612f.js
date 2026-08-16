@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-3dfa00eb","path":"/api/navbar/CNavbar.api.html","title":"","lang":"en-US","frontmatter":{"head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/api/navbar/CNavbar.api.html"}]]},"headers":[{"level":3,"title":"CNavbar","slug":"cnavbar","link":"#cnavbar","children":[]}],"filePathRelative":"api/navbar/CNavbar.api.md"}');export{a as data};

@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CFormRange.B0MhO6Dx.js";e();var r=t(),i=()=>(0,r.jsx)(n,{id:`disabledRange`,label:`Disabled range`,disabled:!0});export{i as FormRangeDisabledExample};

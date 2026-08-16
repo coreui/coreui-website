@@ -1,0 +1,24 @@
+<c-row>
+  <c-col>
+    <label cLabel for="ac-15-1">Country</label>
+    <input (optionChange)="handleOptionChange($event)" [optionTemplate]="optionTpl" [options]="countries" cAutocomplete id="ac-15-1" placeholder="Select country" showHints />
+  </c-col>
+  <c-col>
+    <label cLabel for="ac-15-2">City</label>
+    <input [optionGroupTemplate]="groupTpl" [options]="filteredCities()" cAutocomplete id="ac-15-2" placeholder="Select city" showHints resetSelectionOnOptionsChange />
+  </c-col>
+</c-row>
+
+<ng-template #optionTpl let-idx="idx" let-option>
+  <div class="d-flex">
+    <svg [cIcon]="flags[option.value]" class="me-3" size="xl"></svg>
+    {{ option.label }}
+  </div>
+</ng-template>
+
+<ng-template #groupTpl let-option>
+  <div class="d-flex align-items-center">
+    <svg [cIcon]="flags[option.value]" class="me-2" size="lg"></svg>
+    {{ option.label }}
+  </div>
+</ng-template>

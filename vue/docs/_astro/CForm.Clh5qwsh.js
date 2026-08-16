@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.CA1CYuze.js";var n=e({name:`CForm`,props:{validated:Boolean},setup(e,{slots:n}){return()=>t(`form`,{class:[{"was-validated":e.validated}]},n.default&&n.default())}});export{n as t};

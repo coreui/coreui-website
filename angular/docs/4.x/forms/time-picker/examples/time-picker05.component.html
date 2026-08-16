@@ -1,0 +1,15 @@
+<c-row>
+  <c-col lg="4">
+    <c-time-picker
+      (timeChange)="handleTimeChange($event)"
+      [filterHours]="filterHours"
+      [filterMinutes]="filterMinutes"
+      [filterSeconds]="filterSeconds"
+      [time]="time"
+      seconds
+    ></c-time-picker>
+  </c-col>
+  <c-col class="d-flex align-items-center">
+    {{time | date:'shortTime'}}
+  </c-col>
+</c-row>

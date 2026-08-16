@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.CA1CYuze.js";var n=e({name:`CCardImage`,props:{as:{type:String,default:`img`},orientation:{type:String,validator:e=>[`top`,`bottom`].includes(e)}},setup(e,{slots:n}){return()=>t(e.as,{class:`card-img${e.orientation?`-${e.orientation}`:``}`},n.default&&n.default())}});export{n as t};

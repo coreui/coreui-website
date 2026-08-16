@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CImage.C_B3O4s-.js";e();var r=t(),i=()=>(0,r.jsx)(`div`,{className:`text-center`,children:(0,r.jsx)(n,{rounded:!0,src:`/react/docs/assets/img/react400.jpg`,width:200,height:200})});export{i as ImageAligning3Example};

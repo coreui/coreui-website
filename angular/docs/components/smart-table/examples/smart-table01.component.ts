@@ -1,0 +1,88 @@
+import { NgClass } from '@angular/common';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import usersData from './data';
+import {
+  AlignDirective,
+  BadgeComponent,
+  ButtonDirective,
+  CardBodyComponent,
+  CardComponent,
+  CardFooterComponent,
+  ColDirective,
+  CollapseDirective,
+  IColumn,
+  IItem,
+  SmartTableComponent,
+  TableActiveDirective,
+  TableColorDirective,
+  TemplateIdDirective
+} from '@coreui/angular';
+
+@Component({
+  selector: 'docs-smart-table01',
+  templateUrl: './smart-table01.component.html',
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    AlignDirective,
+    BadgeComponent,
+    ButtonDirective,
+    CardBodyComponent,
+    CardComponent,
+    CardFooterComponent,
+    ColDirective,
+    CollapseDirective,
+    NgClass,
+    SmartTableComponent,
+    TableActiveDirective,
+    TableColorDirective,
+    TemplateIdDirective
+  ]
+})
+export class SmartTable01Component {
+  usersData: IItem[] = usersData;
+
+  columns: (IColumn | string)[] = [
+    {
+      key: 'name',
+      _style: { width: '40%' },
+      _props: { color: 'danger', class: 'fw-bold' },
+      _colClass: 'text-center fw-bold'
+    },
+    'registered',
+    { key: 'role', filter: false, sorter: false, _style: { width: '15%' }, _classes: 'text-muted small' },
+    { key: 'status', _style: { width: '15%' } },
+    {
+      key: 'show',
+      label: '',
+      _style: { width: '5%' },
+      filter: false,
+      sorter: false
+    }
+  ];
+
+  getBadge(status: string) {
+    switch (status) {
+      case 'Active':
+        return 'success';
+      case 'Inactive':
+        return 'secondary';
+      case 'Pending':
+        return 'warning';
+      case 'Banned':
+        return 'danger';
+      default:
+        return 'primary';
+    }
+  }
+
+  getItem(item: any) {
+    return Object.keys(item);
+  }
+
+  details_visible = Object.create({});
+
+  toggleDetails(item: any) {
+    this.details_visible[item] = !this.details_visible[item];
+  }
+}

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>History on CoreUI</title>
+    <link>https://coreui.io/tags/history/</link>
+    <description>Recent content in History on CoreUI</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Jul 2026 22:54:06 +0200</lastBuildDate>
+    <atom:link href="https://coreui.io/tags/history/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to combine repositories in Git</title>
+      <link>https://coreui.io/answers/how-to-combine-repositories-in-git/</link>
+      <pubDate>Thu, 26 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-combine-repositories-in-git/</guid>
+      <description>&lt;p&gt;Combining multiple Git repositories into one — often called a monorepo migration — requires merging their histories while preserving every commit, author, and date from each source repository.&#xA;As the creator of CoreUI, I&amp;rsquo;ve combined separate framework-specific packages into unified repositories and the process requires care to avoid history loss or path conflicts.&#xA;The standard approach is to add each source repository as a remote, fetch its history, move its files into a subdirectory, and merge the histories with &lt;code&gt;--allow-unrelated-histories&lt;/code&gt;.&#xA;Each source repository ends up in its own subdirectory so their files don&amp;rsquo;t collide.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to anonymize commits in Git</title>
+      <link>https://coreui.io/answers/how-to-anonymize-commits-in-git/</link>
+      <pubDate>Tue, 24 Mar 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-anonymize-commits-in-git/</guid>
+      <description>&lt;p&gt;Anonymizing Git commits is useful when open-sourcing an internal project, when contributors want to remove personal information, or when team members need to be credited under pseudonyms.&#xA;As the creator of CoreUI, I&amp;rsquo;ve helped contributors anonymize their history before submitting patches to public repositories.&#xA;The most flexible approach is &lt;code&gt;git filter-repo&lt;/code&gt; with an email or commit callback that replaces names and emails according to a mapping.&#xA;This rewrites all matching commits permanently and requires force-pushing to update the remote.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to remove sensitive data from Git history</title>
+      <link>https://coreui.io/answers/how-to-remove-sensitive-data-from-git-history/</link>
+      <pubDate>Tue, 24 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-remove-sensitive-data-from-git-history/</guid>
+      <description>&lt;p&gt;Accidentally committing API keys, passwords, or private certificates to a Git repository is a common security incident, and simply deleting the file in a new commit does not remove the credentials from history — they remain visible in every previous commit.&#xA;As the creator of CoreUI, I&amp;rsquo;ve dealt with this exact scenario in public repositories and the fix requires rewriting the entire repository history.&#xA;The fastest modern tool is &lt;code&gt;git filter-repo&lt;/code&gt;, which rewrites all commits to remove the sensitive file in seconds.&#xA;Immediately rotate any exposed credentials after cleaning history — assume they have been compromised from the moment they were pushed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to rewrite Git history with git filter-repo</title>
+      <link>https://coreui.io/answers/how-to-rewrite-git-history-with-git-filter-repo/</link>
+      <pubDate>Thu, 19 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-rewrite-git-history-with-git-filter-repo/</guid>
+      <description>&lt;p&gt;&lt;code&gt;git filter-repo&lt;/code&gt; is the modern replacement for &lt;code&gt;git filter-branch&lt;/code&gt;, rewriting repository history up to 50 times faster while providing a cleaner, safer interface with better defaults.&#xA;As the creator of CoreUI, I switched all projects to &lt;code&gt;git filter-repo&lt;/code&gt; the moment it became the officially recommended tool in Git documentation.&#xA;It is not bundled with Git — install it separately — but its performance and safety features make it the clear choice for any history rewriting task.&#xA;Always work on a fresh clone before running it, as the operation cannot be undone once complete.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to rewrite Git history with filter-branch</title>
+      <link>https://coreui.io/answers/how-to-rewrite-git-history-with-filter-branch/</link>
+      <pubDate>Wed, 18 Mar 2026 16:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-rewrite-git-history-with-filter-branch/</guid>
+      <description>&lt;p&gt;&lt;code&gt;git filter-branch&lt;/code&gt; rewrites every commit in your repository&amp;rsquo;s history according to filters you define, which is necessary when you need to remove a large file, scrub sensitive data, or correct commit author information across all commits.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used this tool to purge accidentally committed credentials and remove build artifacts that bloated repository size.&#xA;Note that &lt;code&gt;git filter-branch&lt;/code&gt; is the legacy approach — &lt;code&gt;git filter-repo&lt;/code&gt; is faster and safer for most use cases — but understanding filter-branch is still valuable for environments where installing additional tools is restricted.&#xA;Both tools permanently rewrite history and require all collaborators to re-clone or re-base after the operation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to clean Git history</title>
+      <link>https://coreui.io/answers/how-to-clean-git-history/</link>
+      <pubDate>Wed, 18 Mar 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-clean-git-history/</guid>
+      <description>&lt;p&gt;A clean Git history makes it easier to understand what changed and why, to &lt;code&gt;git bisect&lt;/code&gt; for regressions, and to review pull requests.&#xA;As the creator of CoreUI, I review history quality as part of every pull request and use interactive rebase to clean branches before merging.&#xA;The primary tool is &lt;code&gt;git rebase -i&lt;/code&gt; (interactive rebase), which lets you squash, reword, drop, and reorder commits with a text editor.&#xA;The result is a polished history that reads as a coherent narrative rather than a stream of &amp;ldquo;WIP&amp;rdquo; and &amp;ldquo;fix typo&amp;rdquo; commits.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to squash commits in Git</title>
+      <link>https://coreui.io/answers/how-to-squash-commits-in-git/</link>
+      <pubDate>Tue, 17 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-squash-commits-in-git/</guid>
+      <description>&lt;p&gt;Squashing commits combines multiple small commits into a single, meaningful commit before merging a feature branch, making the project history clean and easy to navigate.&#xA;As the creator of CoreUI, I review pull requests daily and always ask contributors to squash work-in-progress commits before merging.&#xA;The most straightforward method is interactive rebase with &lt;code&gt;git rebase -i&lt;/code&gt;, which gives you full control over which commits to squash and what message to use.&#xA;Clean commit history makes &lt;code&gt;git log&lt;/code&gt;, &lt;code&gt;git bisect&lt;/code&gt;, and &lt;code&gt;git blame&lt;/code&gt; significantly more useful.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to clone with depth in Git</title>
+      <link>https://coreui.io/answers/how-to-clone-with-depth-in-git/</link>
+      <pubDate>Thu, 22 Jan 2026 14:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-clone-with-depth-in-git/</guid>
+      <description>&lt;p&gt;The &amp;ndash;depth parameter controls how many commits to download during clone, providing flexible balance between history access and clone performance.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve optimized Git operations for various use cases.&#xA;The most versatile approach is choosing appropriate depth value based on requirements: depth 1 for CI/CD, deeper values for development with recent history.&#xA;This method enables customizable clone performance, preserves recent history for debugging, and allows incremental history deepening when needed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to filter commits by file in Git</title>
+      <link>https://coreui.io/answers/how-to-filter-commits-by-file-in-git/</link>
+      <pubDate>Mon, 12 Jan 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-filter-commits-by-file-in-git/</guid>
+      <description>&lt;p&gt;Understanding the complete history of a specific file or directory is essential for debugging, code review, and tracking feature development.&#xA;As the creator of CoreUI, I regularly investigate file histories to understand code evolution.&#xA;Git log accepts file paths as arguments to filter commits that modified those specific files or directories.&#xA;This approach reveals who changed a file, when, and why, making file-level archaeology straightforward.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to search authors in Git history</title>
+      <link>https://coreui.io/answers/how-to-search-authors-in-git-history/</link>
+      <pubDate>Fri, 09 Jan 2026 14:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-search-authors-in-git-history/</guid>
+      <description>&lt;p&gt;Tracking individual developer contributions, reviewing specific author&amp;rsquo;s work, or finding who made certain changes requires filtering commits by author.&#xA;As the creator of CoreUI, I regularly search Git history to track contributions across team members.&#xA;Git log provides the &lt;code&gt;--author&lt;/code&gt; flag to filter commits by author name or email using pattern matching.&#xA;This approach helps identify who worked on specific features, review coding patterns, or analyze contribution frequency.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to search file content in Git history</title>
+      <link>https://coreui.io/answers/how-to-search-file-content-in-git-history/</link>
+      <pubDate>Fri, 09 Jan 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-search-file-content-in-git-history/</guid>
+      <description>&lt;p&gt;Understanding when and why specific code was introduced or removed is essential for debugging, code review, and understanding project evolution.&#xA;As the creator of CoreUI, I&amp;rsquo;ve traced countless code changes through Git history.&#xA;Git&amp;rsquo;s pickaxe options (&lt;code&gt;-S&lt;/code&gt; and &lt;code&gt;-G&lt;/code&gt;) search through commit diffs to find when specific strings or patterns were added or removed.&#xA;This approach helps you discover which commits changed specific functionality, making code archaeology much easier.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to search commit messages in Git</title>
+      <link>https://coreui.io/answers/how-to-search-commit-messages-in-git/</link>
+      <pubDate>Thu, 08 Jan 2026 14:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-search-commit-messages-in-git/</guid>
+      <description>&lt;p&gt;Finding commits related to specific features, bugs, or changes becomes challenging as your repository history grows to hundreds or thousands of commits.&#xA;As the creator of CoreUI, I regularly search through extensive commit histories to track down changes.&#xA;Git log provides powerful filtering options to search commit messages for specific keywords, patterns, or ticket numbers.&#xA;This approach quickly identifies relevant commits without manually reviewing the entire history.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to remove a file from Git history</title>
+      <link>https://coreui.io/answers/how-to-remove-a-file-from-git-history/</link>
+      <pubDate>Wed, 10 Dec 2025 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-remove-a-file-from-git-history/</guid>
+      <description>&lt;p&gt;Removing sensitive files like passwords or API keys from Git history is critical for security when they&amp;rsquo;re accidentally committed.&#xA;As the creator of CoreUI, I&amp;rsquo;ve helped teams clean repositories after accidental credential commits many times.&#xA;The most effective modern solution is to use &lt;code&gt;git filter-repo&lt;/code&gt;, which is faster and safer than the older &lt;code&gt;filter-branch&lt;/code&gt; command.&#xA;This tool completely rewrites history to remove all traces of the file.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to view file history in Git</title>
+      <link>https://coreui.io/answers/how-to-view-file-history-in-git/</link>
+      <pubDate>Tue, 02 Dec 2025 12:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-view-file-history-in-git/</guid>
+      <description>&lt;p&gt;Viewing file history in Git helps understand how a specific file has evolved over time, showing all commits that modified it.&#xA;As the creator of CoreUI with extensive Git experience across numerous projects, I frequently track file histories to understand feature development and debug changes.&#xA;The most effective approach uses &lt;code&gt;git log&lt;/code&gt; with the filename parameter to see all commits that touched a specific file.&#xA;This command provides chronological insight into file modifications, helping with code reviews and understanding implementation decisions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to blame a file in Git</title>
+      <link>https://coreui.io/answers/how-to-blame-a-file-in-git/</link>
+      <pubDate>Tue, 02 Dec 2025 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-blame-a-file-in-git/</guid>
+      <description>&lt;p&gt;Git blame shows line-by-line authorship information for files, helping track down when and who made specific changes for debugging and code review.&#xA;As the creator of CoreUI, I use git blame regularly to understand code history and track down the source of bugs or features.&#xA;The most straightforward approach is using &lt;code&gt;git blame filename&lt;/code&gt; to see author, commit hash, and timestamp for every line in a file.&#xA;This command is invaluable for collaborative development and understanding code evolution over time.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to show Git diff between commits</title>
+      <link>https://coreui.io/answers/how-to-show-git-diff-between-commits/</link>
+      <pubDate>Mon, 01 Dec 2025 12:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-show-git-diff-between-commits/</guid>
+      <description>&lt;p&gt;Comparing differences between specific commits helps analyze code evolution, debug issues, and understand what changed between any two points in project history.&#xA;As the creator of CoreUI with extensive Git experience across numerous projects, I frequently compare commits to track down bugs or understand feature implementations.&#xA;The most precise method is using &lt;code&gt;git diff commit1 commit2&lt;/code&gt; with specific commit hashes or references.&#xA;This approach provides exact comparison between any two commits regardless of branch or timeline.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to view Git log with one line</title>
+      <link>https://coreui.io/answers/how-to-view-git-log-with-one-line/</link>
+      <pubDate>Tue, 25 Nov 2025 11:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-view-git-log-with-one-line/</guid>
+      <description>&lt;p&gt;Viewing Git log in one-line format provides a compact, scannable overview of commit history that&amp;rsquo;s perfect for quick reviews and branch analysis.&#xA;As the creator of CoreUI, I use the one-line log format daily for efficient code review and project analysis.&#xA;The most effective approach is using the &lt;code&gt;--oneline&lt;/code&gt; flag which shows abbreviated commit hashes and the first line of commit messages.&#xA;This provides maximum information density while maintaining readability for fast repository analysis.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to view Git log</title>
+      <link>https://coreui.io/answers/how-to-view-git-log/</link>
+      <pubDate>Mon, 24 Nov 2025 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-view-git-log/</guid>
+      <description>&lt;p&gt;Viewing Git log is essential for understanding project history, tracking changes, and debugging issues by examining commit messages and authorship.&#xA;As the creator of CoreUI, I use git log extensively for code reviews, debugging, and project analysis.&#xA;The most fundamental approach is using the &lt;code&gt;git log&lt;/code&gt; command which displays commit history in reverse chronological order.&#xA;This provides complete visibility into project evolution with detailed commit information and flexible formatting options.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to checkout a commit in Git</title>
+      <link>https://coreui.io/answers/how-to-checkout-a-commit-in-git/</link>
+      <pubDate>Tue, 18 Nov 2025 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-checkout-a-commit-in-git/</guid>
+      <description>&lt;p&gt;Checking out specific commits allows you to examine code at particular points in history, useful for debugging, code review, and understanding changes in your Git repository.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve performed countless commit checkouts for debugging issues and reviewing historical changes across multiple repositories.&#xA;From my experience, the most straightforward approach is to use &lt;code&gt;git checkout&lt;/code&gt; with the commit hash.&#xA;This method provides safe examination of historical code states without affecting your current work.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to rebase in Git</title>
+      <link>https://coreui.io/answers/how-to-rebase-in-git/</link>
+      <pubDate>Tue, 04 Nov 2025 15:37:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-rebase-in-git/</guid>
+      <description>&lt;p&gt;Rebasing allows you to integrate changes from one branch into another while maintaining a linear commit history without merge commits.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve used rebasing extensively to keep feature branches up-to-date with main branch developments.&#xA;The most effective approach is using &lt;code&gt;git rebase&lt;/code&gt; to replay your commits on top of the latest changes from the target branch.&#xA;This method creates a cleaner project history compared to merge commits and makes it easier to track the evolution of features.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to reset a commit in Git</title>
+      <link>https://coreui.io/answers/how-to-reset-a-commit-in-git/</link>
+      <pubDate>Wed, 29 Oct 2025 17:05:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-reset-a-commit-in-git/</guid>
+      <description>&lt;p&gt;Resetting commits is crucial for cleaning up local repository history before sharing changes, allowing you to reorganize commits and remove unwanted changes.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve used git reset extensively for local history cleanup.&#xA;From my expertise, the most versatile approach is using &lt;code&gt;git reset&lt;/code&gt; with different modes depending on whether you want to preserve or discard changes.&#xA;This provides precise control over how commits are undone and what happens to the affected files.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

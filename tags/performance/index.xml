@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Performance on CoreUI</title>
+    <link>https://coreui.io/tags/performance/</link>
+    <description>Recent content in Performance on CoreUI</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Jul 2026 22:54:06 +0200</lastBuildDate>
+    <atom:link href="https://coreui.io/tags/performance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to optimize Git performance</title>
+      <link>https://coreui.io/answers/how-to-optimize-git-performance/</link>
+      <pubDate>Tue, 31 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-optimize-git-performance/</guid>
+      <description>&lt;p&gt;Git performance degrades over time in large repositories with thousands of commits, large files, and many contributors — slow &lt;code&gt;git status&lt;/code&gt;, &lt;code&gt;git fetch&lt;/code&gt;, and &lt;code&gt;git log&lt;/code&gt; operations indicate the repository needs maintenance.&#xA;As the creator of CoreUI, I regularly optimize the CoreUI repository and contributor workflows to keep Git operations fast as the codebase grows.&#xA;The primary tools are &lt;code&gt;git maintenance&lt;/code&gt; for automated upkeep, &lt;code&gt;git gc&lt;/code&gt; for manual cleanup, and repository configuration settings that enable performance optimizations.&#xA;Most optimizations are one-time setup or periodic maintenance commands that dramatically improve day-to-day performance.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to optimize large lists in React</title>
+      <link>https://coreui.io/answers/how-to-optimize-large-lists-in-react/</link>
+      <pubDate>Fri, 27 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-optimize-large-lists-in-react/</guid>
+      <description>&lt;p&gt;Rendering thousands of DOM nodes in a React list causes severe performance degradation — slow initial render, janky scrolling, and high memory usage.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized data-heavy tables and lists in CoreUI dashboards that display thousands of rows, and virtualization is the single most impactful technique.&#xA;The approach with &lt;code&gt;react-window&lt;/code&gt; renders only the rows visible in the viewport, keeping the DOM node count constant regardless of data size.&#xA;A list with 10,000 items renders the same ~20 DOM nodes as a list with 10 items when virtualized.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to prevent unnecessary re-renders in React</title>
+      <link>https://coreui.io/answers/how-to-prevent-unnecessary-re-renders-in-react/</link>
+      <pubDate>Fri, 13 Mar 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-prevent-unnecessary-re-renders-in-react/</guid>
+      <description>&lt;p&gt;Unnecessary re-renders are one of the most common performance bottlenecks in React applications, causing sluggish UIs and poor user experience.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized dozens of complex React dashboards and component libraries where re-render control was critical.&#xA;The most effective solution is wrapping components with &lt;code&gt;React.memo&lt;/code&gt; and stabilizing function references with &lt;code&gt;useCallback&lt;/code&gt; and values with &lt;code&gt;useMemo&lt;/code&gt;.&#xA;This prevents child components from re-rendering when their props haven&amp;rsquo;t actually changed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to fix memory leaks in React</title>
+      <link>https://coreui.io/answers/how-to-fix-memory-leaks-in-react/</link>
+      <pubDate>Fri, 13 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-fix-memory-leaks-in-react/</guid>
+      <description>&lt;p&gt;Memory leaks in React occur when components are unmounted but still hold references to timers, subscriptions, or callbacks.&#xA;As the creator of CoreUI, I&amp;rsquo;ve debugged memory leaks that caused applications to slow down and eventually crash after extended use.&#xA;The primary fix is returning cleanup functions from &lt;code&gt;useEffect&lt;/code&gt; to cancel ongoing operations before the component unmounts.&#xA;This prevents the classic &amp;ldquo;Can&amp;rsquo;t perform a React state update on an unmounted component&amp;rdquo; warning.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Web Workers in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-use-web-workers-in-javascript/</link>
+      <pubDate>Wed, 11 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-web-workers-in-javascript/</guid>
+      <description>&lt;p&gt;Web Workers run JavaScript in background threads, keeping the UI responsive during heavy computation.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used Web Workers for data processing, image manipulation, and encryption in applications where blocking the main thread caused visible lag.&#xA;The standard approach creates a worker script, posts messages to it, and receives results via event listeners.&#xA;This enables true parallel execution in the browser.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement code splitting in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-implement-code-splitting-in-javascript/</link>
+      <pubDate>Tue, 10 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-code-splitting-in-javascript/</guid>
+      <description>&lt;p&gt;Code splitting divides your JavaScript bundle into smaller chunks that load on demand, reducing initial page load time.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented code splitting across large applications to dramatically improve first contentful paint times.&#xA;The standard approach uses dynamic &lt;code&gt;import()&lt;/code&gt; to create split points, letting bundlers like webpack or Vite generate separate chunks automatically.&#xA;This allows users to download only the code they actually need.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to avoid memory leaks in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-avoid-memory-leaks-in-javascript/</link>
+      <pubDate>Mon, 09 Mar 2026 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-avoid-memory-leaks-in-javascript/</guid>
+      <description>&lt;p&gt;Memory leaks cause applications to consume increasing amounts of memory over time, leading to poor performance and crashes.&#xA;As the creator of CoreUI, I&amp;rsquo;ve debugged memory leaks in long-running single-page applications serving millions of users.&#xA;The most common causes are forgotten event listeners, unclosed timers, and circular references in closures.&#xA;Proper cleanup in component lifecycles prevents these issues.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to reduce bundle size in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-reduce-bundle-size-in-javascript/</link>
+      <pubDate>Mon, 09 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-reduce-bundle-size-in-javascript/</guid>
+      <description>&lt;p&gt;Large JavaScript bundles slow page load times and hurt user experience, especially on mobile devices.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized bundles for frameworks serving millions of users worldwide.&#xA;The most effective approach combines tree shaking to remove unused code, code splitting to load only what&amp;rsquo;s needed, and proper minification.&#xA;These techniques can reduce bundle sizes by 50-80% in typical applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to optimize DOM manipulation in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-optimize-dom-manipulation-in-javascript/</link>
+      <pubDate>Mon, 09 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-optimize-dom-manipulation-in-javascript/</guid>
+      <description>&lt;p&gt;DOM manipulation is one of the slowest operations in web applications, causing layout recalculations and repaints that impact performance.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized DOM operations in complex UI frameworks to maintain 60fps interactions.&#xA;The most effective approach batches DOM updates using DocumentFragment, minimizes layout thrashing by reading then writing, and caches DOM references.&#xA;These techniques can improve rendering performance by orders of magnitude.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement virtual scrolling in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-implement-virtual-scrolling-in-javascript/</link>
+      <pubDate>Fri, 06 Mar 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-virtual-scrolling-in-javascript/</guid>
+      <description>&lt;p&gt;Virtual scrolling is essential for rendering large lists without performance degradation by only rendering items currently visible in the viewport.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented virtual scrolling for data tables, feeds, and lists with millions of items.&#xA;The core technique calculates which items are visible based on scroll position, renders only those items, and adjusts spacing to maintain correct scroll height.&#xA;This provides smooth scrolling even with massive datasets.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use requestAnimationFrame in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-use-requestanimationframe-in-javascript/</link>
+      <pubDate>Thu, 05 Mar 2026 16:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-requestanimationframe-in-javascript/</guid>
+      <description>&lt;p&gt;Creating smooth animations in JavaScript requires synchronizing with the browser&amp;rsquo;s refresh rate for optimal performance.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built countless animated UI components and interactive visualizations using proper animation techniques.&#xA;The standard approach uses &lt;code&gt;requestAnimationFrame()&lt;/code&gt; which schedules animation updates to match the display refresh rate, typically 60 frames per second.&#xA;This provides smoother animations than setInterval or setTimeout while being more battery-efficient.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to optimize loop performance in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-optimize-loop-performance-in-javascript/</link>
+      <pubDate>Thu, 05 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-optimize-loop-performance-in-javascript/</guid>
+      <description>&lt;p&gt;Loop performance is critical in JavaScript applications that process large datasets or perform frequent iterations.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized countless loops in production applications handling millions of data points.&#xA;The most effective optimization combines caching array length, using appropriate loop types, and avoiding unnecessary operations inside loops.&#xA;These techniques can improve performance by orders of magnitude for large datasets.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement rate limiting in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-implement-rate-limiting-in-javascript/</link>
+      <pubDate>Mon, 02 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-rate-limiting-in-javascript/</guid>
+      <description>&lt;p&gt;Rate limiting is crucial for protecting APIs from abuse, preventing denial-of-service attacks, and ensuring fair resource usage among users.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented rate limiting in countless production applications.&#xA;The most effective and flexible approach is to use the token bucket algorithm, which allows burst traffic while maintaining average rate limits.&#xA;This method provides smooth rate limiting behavior and is easy to implement both on the client and server side.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use virtual scrolling in Angular</title>
+      <link>https://coreui.io/answers/how-to-use-virtual-scrolling-in-angular/</link>
+      <pubDate>Thu, 26 Feb 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-virtual-scrolling-in-angular/</guid>
+      <description>&lt;p&gt;Rendering thousands of items in a list can severely impact application performance, causing slow rendering and sluggish scrolling.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized data-heavy admin panels and dashboards where performance is critical.&#xA;From my expertise, the most effective solution is Angular CDK&amp;rsquo;s virtual scrolling, which renders only visible items and dramatically improves performance for large datasets.&#xA;This method can handle lists with tens of thousands of items while maintaining smooth 60fps scrolling.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to optimize array operations in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-optimize-array-operations-in-javascript/</link>
+      <pubDate>Thu, 19 Feb 2026 18:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-optimize-array-operations-in-javascript/</guid>
+      <description>&lt;p&gt;Array operations can become performance bottlenecks when working with large datasets, especially when using inefficient methods or creating unnecessary copies. As the creator of CoreUI, I&amp;rsquo;ve optimized array-heavy applications serving millions of users, reducing processing time from seconds to milliseconds by choosing the right methods and avoiding common performance traps.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses native methods wisely and avoids creating intermediate arrays.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to profile React rendering</title>
+      <link>https://coreui.io/answers/how-to-profile-react-rendering/</link>
+      <pubDate>Mon, 16 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-profile-react-rendering/</guid>
+      <description>&lt;p&gt;React Profiler measures component render times and identifies performance bottlenecks in your application. As the creator of CoreUI, I&amp;rsquo;ve used React Profiler to optimize applications serving millions of users, reducing render times by up to 80% by identifying and eliminating unnecessary re-renders.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach combines React DevTools Profiler with the Profiler API for production monitoring.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use streams in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-streams-in-nodejs/</link>
+      <pubDate>Fri, 13 Feb 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-streams-in-nodejs/</guid>
+      <description>&lt;p&gt;Node.js streams enable processing large amounts of data efficiently by handling data in chunks rather than loading everything into memory. As the creator of CoreUI, I&amp;rsquo;ve implemented streaming solutions that process terabytes of data daily while maintaining constant memory usage under 100MB for enterprise applications.&lt;/p&gt;&#xA;&lt;p&gt;The most efficient approach uses built-in stream types with proper error handling and backpressure management.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement lazy loading in React</title>
+      <link>https://coreui.io/answers/how-to-implement-lazy-loading-in-react/</link>
+      <pubDate>Fri, 13 Feb 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-lazy-loading-in-react/</guid>
+      <description>&lt;p&gt;Lazy loading defers component loading until they&amp;rsquo;re needed, reducing initial bundle size and improving load times. As the creator of CoreUI, I&amp;rsquo;ve implemented lazy loading strategies that reduced initial bundle sizes by 70% and improved Time to Interactive by 3 seconds for production applications serving millions of users.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses React.lazy() with Suspense for automatic code splitting at the component level.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement throttle with leading edge in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-implement-throttle-with-leading-edge-in-javascript/</link>
+      <pubDate>Fri, 13 Feb 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-throttle-with-leading-edge-in-javascript/</guid>
+      <description>&lt;p&gt;Throttle with leading edge executes a function immediately on the first call, then enforces a cooldown period before allowing subsequent executions. As the creator of CoreUI, I&amp;rsquo;ve implemented throttle with leading edge for scroll handlers and button clicks that reduced event processing by 90% while maintaining immediate user feedback.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach executes immediately on the first call with configurable trailing edge behavior.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement pagination in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-pagination-in-nodejs/</link>
+      <pubDate>Thu, 12 Feb 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-pagination-in-nodejs/</guid>
+      <description>&lt;p&gt;Pagination divides large datasets into manageable pages, improving API performance and user experience. As the creator of CoreUI, I&amp;rsquo;ve implemented pagination strategies that handle billions of records efficiently while maintaining sub-100ms response times for enterprise applications.&lt;/p&gt;&#xA;&lt;p&gt;The most scalable approach uses offset-based pagination for simple use cases and cursor-based pagination for real-time data streams.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Angular Signals</title>
+      <link>https://coreui.io/answers/how-to-use-angular-signals/</link>
+      <pubDate>Thu, 12 Feb 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-angular-signals/</guid>
+      <description>&lt;p&gt;Angular Signals provide fine-grained reactivity with automatic change detection, offering better performance than traditional Zone.js-based change detection. As the creator of CoreUI, I&amp;rsquo;ve implemented Signals in production Angular applications that reduced change detection cycles by 70% while simplifying state management for millions of users.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses Signals for component state and computed values with effects for side effects.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement debounce with abort in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-implement-debounce-with-abort-in-javascript/</link>
+      <pubDate>Thu, 12 Feb 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-debounce-with-abort-in-javascript/</guid>
+      <description>&lt;p&gt;Debounce with abort capability combines delayed function execution with the ability to cancel pending operations, perfect for API calls that may become obsolete. As the creator of CoreUI, I&amp;rsquo;ve implemented debounce with abort in production applications to optimize search and autocomplete features for millions of users.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach combines traditional debounce with AbortController for async operation cancellation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement lazy evaluation in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-implement-lazy-evaluation-in-javascript/</link>
+      <pubDate>Tue, 10 Feb 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-lazy-evaluation-in-javascript/</guid>
+      <description>&lt;p&gt;Lazy evaluation defers computation until values are actually needed, reducing memory usage and improving performance for large datasets. As the creator of CoreUI, I&amp;rsquo;ve used lazy evaluation to process massive datasets without loading everything into memory.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses JavaScript generators to create lazy iterables that compute values on demand.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to cache responses with Redis in Node.js</title>
+      <link>https://coreui.io/answers/how-to-cache-responses-with-redis-in-nodejs/</link>
+      <pubDate>Mon, 09 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-cache-responses-with-redis-in-nodejs/</guid>
+      <description>&lt;p&gt;Caching API responses with Redis dramatically reduces database load and improves response times. As the creator of CoreUI, I&amp;rsquo;ve implemented Redis caching strategies that reduced API latency from 500ms to under 10ms for millions of requests daily.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach combines cache-aside pattern with automatic cache invalidation and TTL management.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create a memoization function in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-create-a-memoization-function-in-javascript/</link>
+      <pubDate>Mon, 09 Feb 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-a-memoization-function-in-javascript/</guid>
+      <description>&lt;p&gt;Memoization caches function results based on input arguments, dramatically improving performance for expensive computations. As the creator of CoreUI, I&amp;rsquo;ve used memoization to reduce calculation times from seconds to milliseconds in production applications.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach creates a higher-order function that wraps the target function with a caching layer.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement caching in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-caching-in-nodejs/</link>
+      <pubDate>Fri, 06 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-caching-in-nodejs/</guid>
+      <description>&lt;p&gt;Caching dramatically improves Node.js application performance by storing frequently accessed data in memory. As the creator of CoreUI, I&amp;rsquo;ve implemented caching strategies that reduced API response times from seconds to milliseconds for millions of users.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach combines in-memory caching for small datasets with Redis for distributed caching in production environments.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to measure performance in React</title>
+      <link>https://coreui.io/answers/how-to-measure-performance-in-react/</link>
+      <pubDate>Fri, 06 Feb 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-measure-performance-in-react/</guid>
+      <description>&lt;p&gt;Measuring React performance is essential for identifying bottlenecks and optimizing render times. As the creator of CoreUI, I&amp;rsquo;ve profiled React applications handling millions of interactions to ensure sub-100ms response times.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach combines React DevTools Profiler for component-level analysis with the Performance API for precise timing measurements.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use WeakSet in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-use-weakset-in-javascript/</link>
+      <pubDate>Wed, 04 Feb 2026 16:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-weakset-in-javascript/</guid>
+      <description>&lt;p&gt;WeakSet is a collection of objects that holds weak references, allowing garbage collection when objects are no longer needed elsewhere. As the creator of CoreUI, I&amp;rsquo;ve used WeakSet in large-scale applications to track visited nodes, marked elements, and processed items without causing memory leaks.&lt;/p&gt;&#xA;&lt;p&gt;The most practical approach uses WeakSet to track objects without preventing their garbage collection.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement virtual scroll in Vue</title>
+      <link>https://coreui.io/answers/how-to-implement-virtual-scroll-in-vue/</link>
+      <pubDate>Fri, 23 Jan 2026 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-virtual-scroll-in-vue/</guid>
+      <description>&lt;p&gt;Virtual scrolling renders only visible items in large lists, dramatically improving performance by reducing DOM nodes from thousands to dozens regardless of total dataset size.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented virtual scrolling in data-intensive dashboards.&#xA;The most reliable approach is using vue-virtual-scroller library which handles viewport calculations, item positioning, and dynamic sizing automatically.&#xA;This method provides smooth scrolling performance, supports variable item heights, and maintains accessibility without complex manual calculations.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to optimize large lists in Vue</title>
+      <link>https://coreui.io/answers/how-to-optimize-large-lists-in-vue/</link>
+      <pubDate>Fri, 23 Jan 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-optimize-large-lists-in-vue/</guid>
+      <description>&lt;p&gt;Large lists cause performance issues through excessive DOM nodes, re-rendering overhead, and memory consumption when displaying thousands of items simultaneously.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve optimized large data tables and lists.&#xA;The most effective approach is combining pagination, virtual scrolling, computed property caching, and v-memo directive to minimize rendering and reactivity overhead.&#xA;This method reduces DOM size, prevents unnecessary re-renders, and maintains smooth scrolling performance even with massive datasets.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to lazy load images in React</title>
+      <link>https://coreui.io/answers/how-to-lazy-load-images-in-react/</link>
+      <pubDate>Fri, 23 Jan 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-lazy-load-images-in-react/</guid>
+      <description>&lt;p&gt;Lazy loading defers image loading until they enter the viewport, dramatically improving initial page load times and reducing bandwidth consumption for users.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented lazy loading in media-heavy applications.&#xA;The most efficient approach is combining native HTML loading=&amp;lsquo;lazy&amp;rsquo; attribute with Intersection Observer API for browsers that need polyfill support.&#xA;This method provides optimal performance, progressive enhancement, and graceful degradation across different browser capabilities.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to clone with depth in Git</title>
+      <link>https://coreui.io/answers/how-to-clone-with-depth-in-git/</link>
+      <pubDate>Thu, 22 Jan 2026 14:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-clone-with-depth-in-git/</guid>
+      <description>&lt;p&gt;The &amp;ndash;depth parameter controls how many commits to download during clone, providing flexible balance between history access and clone performance.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve optimized Git operations for various use cases.&#xA;The most versatile approach is choosing appropriate depth value based on requirements: depth 1 for CI/CD, deeper values for development with recent history.&#xA;This method enables customizable clone performance, preserves recent history for debugging, and allows incremental history deepening when needed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to shallow clone in Git</title>
+      <link>https://coreui.io/answers/how-to-shallow-clone-in-git/</link>
+      <pubDate>Thu, 22 Jan 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-shallow-clone-in-git/</guid>
+      <description>&lt;p&gt;Shallow cloning downloads only recent commits instead of entire repository history, dramatically reducing clone time and disk space for large repositories.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve optimized Git workflows for large codebases.&#xA;The most practical approach is using git clone &amp;ndash;depth parameter to limit history depth, ideal for CI/CD pipelines and quick repository access.&#xA;This method reduces network bandwidth consumption, speeds up clones by up to 10x for large repositories, and minimizes local storage requirements.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to prevent unnecessary re-renders in Vue</title>
+      <link>https://coreui.io/answers/how-to-prevent-unnecessary-re-renders-in-vue/</link>
+      <pubDate>Thu, 22 Jan 2026 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-prevent-unnecessary-re-renders-in-vue/</guid>
+      <description>&lt;p&gt;Unnecessary re-renders waste CPU cycles rendering unchanged components, degrading application performance especially with large lists or complex component trees.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve optimized Vue rendering performance in enterprise applications.&#xA;The most effective approach combines computed properties for derived state, v-memo directive for conditional rendering, and shallowRef for large immutable data.&#xA;This method minimizes reactivity overhead, skips unchanged component updates, and reduces JavaScript execution time during render cycles.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to fix memory leaks in Vue</title>
+      <link>https://coreui.io/answers/how-to-fix-memory-leaks-in-vue/</link>
+      <pubDate>Thu, 22 Jan 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-fix-memory-leaks-in-vue/</guid>
+      <description>&lt;p&gt;Memory leaks occur when components retain references to objects after unmounting, causing memory consumption to grow and application performance to degrade over time.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve debugged and prevented memory leaks in Vue applications.&#xA;The most systematic approach is properly cleaning up event listeners, timers, watchers, and subscriptions in onBeforeUnmount lifecycle hook.&#xA;This method ensures components release resources when destroyed, preventing memory accumulation during navigation and preventing browser slowdowns in long-running applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to code split in React</title>
+      <link>https://coreui.io/answers/how-to-code-split-in-react/</link>
+      <pubDate>Thu, 22 Jan 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-code-split-in-react/</guid>
+      <description>&lt;p&gt;Code splitting in React reduces initial bundle size by loading components on-demand, improving application performance and load times.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented code splitting in numerous production applications.&#xA;React&amp;rsquo;s React.lazy and Suspense enable component-level code splitting with dynamic imports creating separate bundles loaded when needed.&#xA;This approach significantly reduces initial JavaScript payload while maintaining smooth user experience with lazy-loaded features.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to profile Vue performance</title>
+      <link>https://coreui.io/answers/how-to-profile-vue-performance/</link>
+      <pubDate>Wed, 21 Jan 2026 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-profile-vue-performance/</guid>
+      <description>&lt;p&gt;Profiling Vue application performance identifies rendering bottlenecks, slow components, and unnecessary re-renders for targeted optimization.&#xA;As the creator of CoreUI, I&amp;rsquo;ve profiled and optimized numerous production Vue applications.&#xA;Vue DevTools combined with browser Performance API provides detailed insights into component render times, lifecycle hooks, and reactive updates.&#xA;This approach reveals performance issues enabling data-driven optimization decisions for faster user experiences.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle memory leaks in Angular</title>
+      <link>https://coreui.io/answers/how-to-handle-memory-leaks-in-angular/</link>
+      <pubDate>Wed, 21 Jan 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-memory-leaks-in-angular/</guid>
+      <description>&lt;p&gt;Handling memory leaks in Angular requires proper subscription management, event listener cleanup, and component lifecycle awareness.&#xA;As the creator of CoreUI, I&amp;rsquo;ve identified and fixed memory leaks in numerous enterprise applications.&#xA;Angular memory leaks commonly occur from unsubscribed observables, unremoved event listeners, and retained component references.&#xA;This approach ensures applications remain performant with stable memory usage even during extended sessions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to optimize images in React</title>
+      <link>https://coreui.io/answers/how-to-optimize-images-in-react/</link>
+      <pubDate>Wed, 21 Jan 2026 10:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-optimize-images-in-react/</guid>
+      <description>&lt;p&gt;Optimizing images in React applications reduces load times and improves performance through lazy loading, responsive images, and modern formats.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized images in numerous production applications.&#xA;Image optimization includes lazy loading, responsive images with srcset, modern formats like WebP and AVIF, and proper compression strategies.&#xA;This approach significantly reduces bundle size and improves perceived performance with faster initial page loads.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to optimize Angular performance</title>
+      <link>https://coreui.io/answers/how-to-optimize-angular-performance/</link>
+      <pubDate>Tue, 20 Jan 2026 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-optimize-angular-performance/</guid>
+      <description>&lt;p&gt;Optimizing Angular performance involves change detection strategies, lazy loading, bundle optimization, and runtime performance improvements.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized numerous enterprise applications for production performance.&#xA;Angular provides powerful optimization tools including OnPush change detection, lazy loading, and AOT compilation for faster applications.&#xA;This approach ensures smooth user experience even in complex, data-heavy applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use trackBy with ngFor in Angular</title>
+      <link>https://coreui.io/answers/how-to-use-trackby-with-ngfor-in-angular/</link>
+      <pubDate>Tue, 20 Jan 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-trackby-with-ngfor-in-angular/</guid>
+      <description>&lt;p&gt;Using trackBy with ngFor in Angular dramatically improves list rendering performance by tracking items by unique identifier instead of object reference.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized countless lists with trackBy in enterprise applications.&#xA;Angular&amp;rsquo;s trackBy function prevents unnecessary DOM manipulation when list items change, reducing re-renders and improving application responsiveness.&#xA;This approach is essential for lists that update frequently or contain complex templates.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to bundle a React app with Vite</title>
+      <link>https://coreui.io/answers/how-to-bundle-a-react-app-with-vite/</link>
+      <pubDate>Tue, 20 Jan 2026 10:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-bundle-a-react-app-with-vite/</guid>
+      <description>&lt;p&gt;Bundling React applications with Vite provides extremely fast development builds and optimized production bundles with minimal configuration.&#xA;As the creator of CoreUI, I&amp;rsquo;ve migrated numerous projects to Vite for improved developer experience.&#xA;Vite uses native ES modules during development and Rollup for production, delivering instant server start and lightning-fast hot module replacement.&#xA;This approach dramatically improves development speed while maintaining excellent production build optimization.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use OnPush change detection in Angular</title>
+      <link>https://coreui.io/answers/how-to-use-onpush-change-detection-in-angular/</link>
+      <pubDate>Mon, 19 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-onpush-change-detection-in-angular/</guid>
+      <description>&lt;p&gt;OnPush change detection in Angular dramatically improves performance by skipping change detection when input references don&amp;rsquo;t change.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used OnPush to optimize performance in enterprise dashboards.&#xA;OnPush strategy runs change detection only when input properties change reference, events fire, or Observables emit new values.&#xA;This approach reduces unnecessary checks and makes applications faster, especially with large component trees.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to profile Angular performance</title>
+      <link>https://coreui.io/answers/how-to-profile-angular-performance/</link>
+      <pubDate>Fri, 16 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-profile-angular-performance/</guid>
+      <description>&lt;p&gt;Profiling Angular applications identifies performance bottlenecks in rendering, change detection, and component initialization.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized numerous slow Angular applications.&#xA;Chrome DevTools and Angular DevTools provide profiling capabilities to measure component render times and change detection cycles.&#xA;This approach helps you identify and fix performance issues before they impact users.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to fix change detection issues in Angular</title>
+      <link>https://coreui.io/answers/how-to-fix-change-detection-issues-in-angular/</link>
+      <pubDate>Fri, 16 Jan 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-fix-change-detection-issues-in-angular/</guid>
+      <description>&lt;p&gt;Change detection issues in Angular cause errors, performance problems, and unexpected UI behavior requiring specific debugging techniques.&#xA;As the creator of CoreUI, I&amp;rsquo;ve fixed countless change detection bugs.&#xA;Angular&amp;rsquo;s change detection system runs checks to update the view when data changes, but improper usage causes common issues.&#xA;This approach identifies and resolves change detection errors and performance bottlenecks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to debounce API calls in Vue</title>
+      <link>https://coreui.io/answers/how-to-debounce-api-calls-in-vue/</link>
+      <pubDate>Fri, 16 Jan 2026 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-debounce-api-calls-in-vue/</guid>
+      <description>&lt;p&gt;Debouncing API calls in Vue prevents excessive requests during rapid user input like typing in search boxes.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented debouncing in countless search interfaces.&#xA;Debouncing delays function execution until after a specified time has passed since the last invocation.&#xA;This approach reduces API calls, improves performance, and provides better user experience.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to throttle API calls in Vue</title>
+      <link>https://coreui.io/answers/how-to-throttle-api-calls-in-vue/</link>
+      <pubDate>Fri, 16 Jan 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-throttle-api-calls-in-vue/</guid>
+      <description>&lt;p&gt;Throttling API calls in Vue limits execution frequency for high-frequency events like scroll, resize, and mouse movement.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized performance with throttling in data-heavy dashboards.&#xA;Throttling ensures a function executes at most once per specified time interval, unlike debouncing which delays execution.&#xA;This approach prevents excessive API calls during continuous events while maintaining responsiveness.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to load balance Node.js apps</title>
+      <link>https://coreui.io/answers/how-to-load-balance-nodejs-apps/</link>
+      <pubDate>Thu, 08 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-load-balance-nodejs-apps/</guid>
+      <description>&lt;p&gt;Single Node.js instances have throughput limits, and production applications require multiple instances for high availability and horizontal scaling.&#xA;As the creator of CoreUI, I&amp;rsquo;ve architected load-balanced systems serving millions of requests daily.&#xA;Load balancing distributes incoming traffic across multiple Node.js processes or servers, improving performance and providing redundancy if instances fail.&#xA;The most common approach uses Nginx as a reverse proxy to balance requests across multiple Node.js instances.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use cluster module in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-cluster-module-in-nodejs/</link>
+      <pubDate>Thu, 08 Jan 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-cluster-module-in-nodejs/</guid>
+      <description>&lt;p&gt;Node.js runs on a single thread by default, which means a single CPU-intensive task can block all requests and multi-core systems are underutilized.&#xA;As the creator of CoreUI, I&amp;rsquo;ve scaled numerous APIs to handle thousands of concurrent requests.&#xA;The cluster module allows you to spawn multiple worker processes that share the same server port, distributing load across all CPU cores.&#xA;This approach dramatically improves throughput and provides automatic restart capability when workers crash.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to fix event loop blocking in Node.js</title>
+      <link>https://coreui.io/answers/how-to-fix-event-loop-blocking-in-nodejs/</link>
+      <pubDate>Wed, 07 Jan 2026 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-fix-event-loop-blocking-in-nodejs/</guid>
+      <description>&lt;p&gt;Event loop blocking is one of the most common performance issues in Node.js, causing unresponsive servers and poor request handling capacity.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized numerous APIs suffering from blocked event loops.&#xA;The event loop handles all asynchronous operations, and blocking it with CPU-intensive synchronous code prevents Node.js from processing other requests.&#xA;The solution involves identifying blocking operations and either making them asynchronous or offloading them to worker threads.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle memory leaks in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-memory-leaks-in-nodejs/</link>
+      <pubDate>Wed, 07 Jan 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-memory-leaks-in-nodejs/</guid>
+      <description>&lt;p&gt;Memory leaks in Node.js applications cause gradual performance degradation and eventual crashes, making them critical to identify and resolve in production environments.&#xA;As the creator of CoreUI, I&amp;rsquo;ve debugged memory leaks in numerous backend systems serving millions of requests.&#xA;Common causes include unclosed database connections, event listeners that aren&amp;rsquo;t removed, and global variable accumulation.&#xA;The solution involves using Chrome DevTools heap snapshots to identify leaks and implementing proper cleanup patterns.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to profile Node.js performance</title>
+      <link>https://coreui.io/answers/how-to-profile-nodejs-performance/</link>
+      <pubDate>Tue, 06 Jan 2026 14:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-profile-nodejs-performance/</guid>
+      <description>&lt;p&gt;Identifying performance bottlenecks in Node.js applications is essential for maintaining responsiveness under load, especially in production environments.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized numerous backend systems serving millions of requests.&#xA;Node.js includes a built-in CPU profiler that integrates with Chrome DevTools, allowing you to visualize function execution times and identify slow code paths.&#xA;This approach provides production-grade profiling without external dependencies.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to monitor Node.js performance</title>
+      <link>https://coreui.io/answers/how-to-monitor-nodejs-performance/</link>
+      <pubDate>Fri, 02 Jan 2026 11:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-monitor-nodejs-performance/</guid>
+      <description>&lt;p&gt;Performance monitoring enables early detection of bottlenecks, memory leaks, and degraded responsiveness in Node.js applications before they impact users.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented performance monitoring in production Node.js services.&#xA;The most effective approach is using Node.js built-in performance hooks and process metrics to track key indicators.&#xA;This method provides real-time visibility into application health without external dependencies and minimal performance overhead.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to prefetch queries in React Query</title>
+      <link>https://coreui.io/answers/how-to-prefetch-queries-in-react-query/</link>
+      <pubDate>Mon, 29 Dec 2025 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-prefetch-queries-in-react-query/</guid>
+      <description>&lt;p&gt;Prefetching queries in React Query loads data in advance before users navigate to a page or trigger an action, creating a seamless experience with instant data display.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented prefetching strategies in data-heavy admin dashboards.&#xA;The most effective approach is using queryClient.prefetchQuery in event handlers or navigation logic to load data proactively.&#xA;This method populates the cache before components mount, eliminating loading states for better user experience.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use worker threads in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-worker-threads-in-nodejs/</link>
+      <pubDate>Mon, 22 Dec 2025 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-worker-threads-in-nodejs/</guid>
+      <description>&lt;p&gt;Worker threads enable parallel execution of CPU-intensive tasks in Node.js without blocking the main event loop, crucial for computationally heavy operations.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented worker threads in Node.js applications.&#xA;The most effective approach is using the built-in worker_threads module to offload intensive computations to separate threads.&#xA;This method maintains application responsiveness while processing complex calculations or data transformations.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to pre-render Angular pages</title>
+      <link>https://coreui.io/answers/how-to-pre-render-angular-pages/</link>
+      <pubDate>Mon, 22 Dec 2025 10:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-pre-render-angular-pages/</guid>
+      <description>&lt;p&gt;Pre-rendering generates static HTML for your Angular pages at build time, providing instant page loads and perfect SEO without requiring a Node.js server.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented prerendering for Angular applications.&#xA;The most efficient approach is using Angular Universal&amp;rsquo;s built-in prerender builder to generate static pages during the build process.&#xA;This method combines the benefits of SSR with the simplicity of static hosting.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to cache API data in React</title>
+      <link>https://coreui.io/answers/how-to-cache-api-data-in-react/</link>
+      <pubDate>Mon, 22 Dec 2025 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-cache-api-data-in-react/</guid>
+      <description>&lt;p&gt;Caching API data prevents redundant network requests, improves application performance, and provides better user experience during navigation.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented data caching strategies in React applications.&#xA;The most effective approach is creating a custom hook that stores responses in memory using a Map or localStorage for persistent caching.&#xA;This method provides automatic cache management with minimal code changes in your components.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use Angular Universal for SSR</title>
+      <link>https://coreui.io/answers/how-to-use-angular-universal-for-ssr/</link>
+      <pubDate>Fri, 19 Dec 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-angular-universal-for-ssr/</guid>
+      <description>&lt;p&gt;Server-side rendering improves SEO, initial page load performance, and enables proper social media preview cards for Angular applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented SSR in production Angular applications.&#xA;The most reliable approach is using Angular Universal, which renders your application on the server before sending it to the client.&#xA;This method provides the benefits of SSR while maintaining the full functionality of your Angular app.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement virtualized list in React</title>
+      <link>https://coreui.io/answers/how-to-implement-virtualized-list-in-react/</link>
+      <pubDate>Thu, 18 Dec 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-virtualized-list-in-react/</guid>
+      <description>&lt;p&gt;Rendering large lists with thousands of items can severely impact performance and cause lag in React applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve optimized list rendering for enterprise applications.&#xA;The most effective solution is using virtualization libraries like react-window, which render only the visible items in the viewport.&#xA;This approach dramatically improves performance by minimizing DOM nodes and reducing memory consumption.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement infinite scroll in React</title>
+      <link>https://coreui.io/answers/how-to-implement-infinite-scroll-in-react/</link>
+      <pubDate>Wed, 17 Dec 2025 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-infinite-scroll-in-react/</guid>
+      <description>&lt;p&gt;Implementing infinite scroll provides a seamless browsing experience for React applications with large datasets by loading content automatically.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built infinite scroll features in countless social feeds and product listings.&#xA;The most effective solution is to use the Intersection Observer API to detect when users reach the bottom and load more data.&#xA;This approach is performant, doesn&amp;rsquo;t require scroll event listeners, and provides smooth user experience.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to optimize Angular build size</title>
+      <link>https://coreui.io/answers/how-to-optimize-angular-build-size/</link>
+      <pubDate>Tue, 16 Dec 2025 10:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-optimize-angular-build-size/</guid>
+      <description>&lt;p&gt;Optimizing Angular build size is crucial for improving load times and performance, especially for users on slower connections.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized builds for countless enterprise applications.&#xA;The most effective solution is to use production builds with lazy loading, tree-shaking, and proper bundle optimization.&#xA;This approach can reduce build size by 50-80% compared to development builds.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to stream file downloads in Node.js</title>
+      <link>https://coreui.io/answers/how-to-stream-file-downloads-in-nodejs/</link>
+      <pubDate>Mon, 15 Dec 2025 12:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-stream-file-downloads-in-nodejs/</guid>
+      <description>&lt;p&gt;Streaming file downloads is essential for Node.js applications serving large files efficiently without consuming excessive memory.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized file serving in numerous enterprise applications.&#xA;The most effective solution is to use Node.js streams with createReadStream to pipe files directly to the response.&#xA;This approach handles files of any size efficiently while maintaining low memory usage.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to measure execution time in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-measure-execution-time-in-javascript/</link>
+      <pubDate>Wed, 10 Dec 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-measure-execution-time-in-javascript/</guid>
+      <description>&lt;p&gt;Measuring execution time is essential for optimizing code and identifying performance bottlenecks in your JavaScript applications.&#xA;As the creator of CoreUI, I&amp;rsquo;ve measured and optimized thousands of functions across various projects.&#xA;The most straightforward and accurate solution is to use &lt;code&gt;console.time()&lt;/code&gt; for quick measurements or &lt;code&gt;performance.now()&lt;/code&gt; for high-precision timing.&#xA;Both methods are built into modern browsers and provide reliable results.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to profile performance in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-profile-performance-in-javascript/</link>
+      <pubDate>Wed, 10 Dec 2025 10:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-profile-performance-in-javascript/</guid>
+      <description>&lt;p&gt;Understanding performance bottlenecks is crucial for building fast, responsive web applications that provide excellent user experience.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized countless applications and components for maximum performance.&#xA;The most effective solution for profiling JavaScript performance is to use Chrome DevTools Performance tab combined with the Performance API.&#xA;These tools provide detailed insights into execution time, rendering, and resource usage.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use React Hook Form</title>
+      <link>https://coreui.io/answers/how-to-use-react-hook-form/</link>
+      <pubDate>Mon, 08 Dec 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-react-hook-form/</guid>
+      <description>&lt;p&gt;Using React Hook Form provides highly performant form handling with minimal re-renders and excellent TypeScript support for modern React applications.&#xA;As the creator of CoreUI with extensive React experience since 2014, I&amp;rsquo;ve implemented React Hook Form in performance-critical enterprise applications for optimal user experience and developer productivity.&#xA;The most effective approach uses the &lt;code&gt;useForm&lt;/code&gt; hook with register method for input handling and built-in validation rules for comprehensive form management.&#xA;This method delivers superior performance through uncontrolled components while maintaining clean, declarative form logic with minimal boilerplate code.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to preload modules in Angular</title>
+      <link>https://coreui.io/answers/how-to-preload-modules-in-angular/</link>
+      <pubDate>Thu, 04 Dec 2025 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-preload-modules-in-angular/</guid>
+      <description>&lt;p&gt;Module preloading in Angular optimizes application performance by loading feature modules in the background after initial application load.&#xA;As the creator of CoreUI with extensive Angular experience since 2014, I&amp;rsquo;ve implemented preloading strategies in numerous enterprise applications to balance initial load speed with navigation performance.&#xA;The most effective approach uses Angular&amp;rsquo;s built-in preloading strategies or custom preloading logic with RouterModule configuration.&#xA;This pattern ensures fast initial loads while preparing subsequent modules for instant navigation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to lazy load modules in Angular</title>
+      <link>https://coreui.io/answers/how-to-lazy-load-modules-in-angular/</link>
+      <pubDate>Wed, 03 Dec 2025 13:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-lazy-load-modules-in-angular/</guid>
+      <description>&lt;p&gt;Lazy loading in Angular improves application performance by loading feature modules only when users navigate to specific routes.&#xA;As the creator of CoreUI with extensive Angular development experience since 2014, I&amp;rsquo;ve implemented lazy loading in numerous large-scale applications to reduce initial bundle sizes.&#xA;The most effective approach uses dynamic imports in route configurations to load modules on demand.&#xA;This pattern dramatically improves initial load times while maintaining full functionality for all application features.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to lazy load routes in Vue</title>
+      <link>https://coreui.io/answers/how-to-lazy-load-routes-in-vue/</link>
+      <pubDate>Wed, 19 Nov 2025 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-lazy-load-routes-in-vue/</guid>
+      <description>&lt;p&gt;Lazy loading routes in Vue applications significantly improves initial load performance by loading route components only when they&amp;rsquo;re needed.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented lazy loading in numerous Vue admin dashboards and large-scale applications.&#xA;From my experience with Vue, the most effective approach is to use dynamic imports with arrow functions in route definitions.&#xA;This pattern enables automatic code splitting and optimizes bundle size for better user experience.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement lazy loading in React Router</title>
+      <link>https://coreui.io/answers/how-to-implement-lazy-loading-in-react-router/</link>
+      <pubDate>Tue, 18 Nov 2025 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-lazy-loading-in-react-router/</guid>
+      <description>&lt;p&gt;Lazy loading routes in React applications reduces initial bundle size and improves performance by loading components only when they&amp;rsquo;re needed.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented lazy loading in countless React admin dashboards and large-scale applications.&#xA;From my experience with React, the most effective approach is to use &lt;code&gt;React.lazy()&lt;/code&gt; with &lt;code&gt;Suspense&lt;/code&gt; for dynamic imports.&#xA;This pattern provides automatic code splitting and seamless loading states.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to throttle input in React</title>
+      <link>https://coreui.io/answers/how-to-throttle-input-in-react/</link>
+      <pubDate>Thu, 13 Nov 2025 14:03:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-throttle-input-in-react/</guid>
+      <description>&lt;p&gt;Throttling input in React limits function execution frequency during continuous user interactions, ensuring consistent performance while maintaining regular updates.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented input throttling in real-time dashboards, live data feeds, and interactive visualizations.&#xA;From my expertise, the most reliable approach is using useRef to track execution timing and useState to manage throttled values with controlled update intervals.&#xA;This technique prevents performance degradation during rapid input while providing regular feedback for smooth user experiences.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to debounce input in React</title>
+      <link>https://coreui.io/answers/how-to-debounce-input-in-react/</link>
+      <pubDate>Thu, 13 Nov 2025 14:02:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-debounce-input-in-react/</guid>
+      <description>&lt;p&gt;Debouncing input in React prevents excessive API calls and improves performance by delaying action execution until user input activity stops.&#xA;As the creator of CoreUI with extensive React development experience since its early versions, I&amp;rsquo;ve implemented input debouncing in countless search interfaces, real-time validation, and data-driven components.&#xA;From my expertise, the most effective approach is using useEffect with setTimeout to create debounced behavior that integrates seamlessly with React&amp;rsquo;s lifecycle.&#xA;This pattern dramatically reduces server load while maintaining responsive user interactions in modern React applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to throttle input in Vue</title>
+      <link>https://coreui.io/answers/how-to-throttle-input-in-vue/</link>
+      <pubDate>Sat, 08 Nov 2025 09:06:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-throttle-input-in-vue/</guid>
+      <description>&lt;p&gt;Throttling input in Vue limits function execution frequency during continuous user interactions, ensuring consistent performance while maintaining responsiveness.&#xA;As the creator of CoreUI with extensive Vue.js development experience, I&amp;rsquo;ve implemented input throttling in real-time search interfaces, live validation systems, and data visualization components.&#xA;From my expertise, the most effective approach is using throttling functions with Vue&amp;rsquo;s reactive system to control execution frequency while preserving user experience.&#xA;This technique prevents performance degradation during rapid input events while ensuring regular updates for smooth user interactions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to debounce input in Vue</title>
+      <link>https://coreui.io/answers/how-to-debounce-input-in-vue/</link>
+      <pubDate>Fri, 07 Nov 2025 11:05:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-debounce-input-in-vue/</guid>
+      <description>&lt;p&gt;Debouncing input in Vue prevents excessive API calls and improves performance by delaying action execution until user input activity stops.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented input debouncing extensively in search interfaces, live validation, and real-time data applications.&#xA;From my expertise, the most effective approach is using Vue&amp;rsquo;s watch function with a debounce utility to delay reactive updates.&#xA;This technique dramatically reduces server load while maintaining responsive user interactions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to throttle resize event in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-throttle-resize-event-in-javascript/</link>
+      <pubDate>Fri, 07 Nov 2025 10:05:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-throttle-resize-event-in-javascript/</guid>
+      <description>&lt;p&gt;Throttling resize events prevents performance degradation during window resizing by limiting function execution frequency to manageable intervals.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented resize event optimization in responsive layouts and adaptive components.&#xA;From my expertise, the most practical approach is using throttling to execute resize handlers at regular intervals rather than on every resize event.&#xA;This technique maintains UI responsiveness while preventing excessive recalculations during continuous resizing.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to debounce scroll event in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-debounce-scroll-event-in-javascript/</link>
+      <pubDate>Fri, 07 Nov 2025 10:04:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-debounce-scroll-event-in-javascript/</guid>
+      <description>&lt;p&gt;Debouncing scroll events is crucial for preventing performance issues caused by the high frequency of scroll event firing during user scrolling.&#xA;As the creator of CoreUI, I&amp;rsquo;ve optimized scroll event handling in numerous interactive components and infinite scroll implementations.&#xA;From my expertise, the most effective approach is creating a debounced function that delays scroll handler execution until scrolling activity stops.&#xA;This technique dramatically reduces CPU usage while maintaining responsive user interactions.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to throttle a function in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-throttle-a-function-in-javascript/</link>
+      <pubDate>Fri, 07 Nov 2025 10:01:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-throttle-a-function-in-javascript/</guid>
+      <description>&lt;p&gt;Throttling limits function execution to occur at most once per specified time interval, preventing performance issues during continuous events.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used throttling extensively for scroll handlers, mouse movement, and animation callbacks.&#xA;From my expertise, the most reliable approach is tracking the last execution time and only allowing subsequent calls after the specified interval.&#xA;This technique ensures consistent performance while maintaining responsiveness during high-frequency events.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to debounce a function in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-debounce-a-function-in-javascript/</link>
+      <pubDate>Fri, 07 Nov 2025 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-debounce-a-function-in-javascript/</guid>
+      <description>&lt;p&gt;Debouncing prevents excessive function calls by delaying execution until after a specified period of inactivity.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented debouncing extensively in search inputs, resize handlers, and user interaction events.&#xA;From my expertise, the most effective approach is creating a closure that manages a timer, clearing previous timeouts when new calls occur.&#xA;This technique dramatically improves performance by ensuring functions execute only after user activity stops.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Use ngDoCheck in Angular</title>
+      <link>https://coreui.io/answers/how-to-use-ngdocheck-in-angular/</link>
+      <pubDate>Sun, 02 Nov 2025 16:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-ngdocheck-in-angular/</guid>
+      <description>&lt;p&gt;The ngDoCheck lifecycle hook in Angular allows you to implement custom change detection logic for cases where Angular&amp;rsquo;s default change detection isn&amp;rsquo;t sufficient. As the creator of CoreUI, I use ngDoCheck for components that need to detect changes in complex objects, arrays, or when working with immutable data structures. This hook runs on every change detection cycle, so it requires careful implementation to avoid performance issues.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Create Async Components in Vue</title>
+      <link>https://coreui.io/answers/how-to-create-async-components-in-vue/</link>
+      <pubDate>Fri, 31 Oct 2025 11:20:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-async-components-in-vue/</guid>
+      <description>&lt;p&gt;Async components in Vue.js allow you to load components on-demand, reducing initial bundle size and improving application performance. As the creator of CoreUI, I use async components extensively for code splitting and lazy loading in large applications. Async components are particularly useful for routes, modals, and heavy components that aren&amp;rsquo;t needed immediately.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Use useCallback in React</title>
+      <link>https://coreui.io/answers/how-to-use-usecallback-in-react/</link>
+      <pubDate>Thu, 30 Oct 2025 14:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-usecallback-in-react/</guid>
+      <description>&lt;p&gt;As the creator of CoreUI, I&amp;rsquo;ll demonstrate how to use the useCallback hook to optimize function references and component performance.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Use useMemo in React</title>
+      <link>https://coreui.io/answers/how-to-use-usememo-in-react/</link>
+      <pubDate>Thu, 30 Oct 2025 14:40:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-usememo-in-react/</guid>
+      <description>&lt;p&gt;As the creator of CoreUI, I&amp;rsquo;ll show you how to effectively use the useMemo hook for performance optimization.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use the key prop in React lists</title>
+      <link>https://coreui.io/answers/how-to-use-the-key-prop-in-react-lists/</link>
+      <pubDate>Sun, 05 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-the-key-prop-in-react-lists/</guid>
+      <description>&lt;p&gt;Using the key prop correctly in React lists is crucial for optimal performance, proper component state management, and avoiding rendering bugs during list updates.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented key props in countless React components including data tables, navigation menus, and dynamic content lists in enterprise applications.&#xA;From my expertise, the most important approach is to use stable, unique identifiers from your data as key values.&#xA;This method enables React&amp;rsquo;s reconciliation algorithm to efficiently track changes, preserve component state, and minimize DOM manipulations during list updates.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

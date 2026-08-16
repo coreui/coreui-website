@@ -1,0 +1,18 @@
+<p>Form value: {{ form.value | json }}</p>
+<p>ngModel value: {{ selectedOptions() | json }}</p>
+<p> value: {{ selectedOptions() | json }}</p>
+<hr />
+
+<form #form="ngForm">
+  <c-multi-select
+    multiple
+    name="multiSelect"
+    [(ngModel)]="selectedOptions"
+  >
+    @for (option of filter(); track option.value) {
+      <c-multi-select-option [value]="option.value" [label]="option.label">
+        {{ option.label }}
+      </c-multi-select-option>
+    }
+  </c-multi-select>
+</form>

@@ -1,0 +1,16 @@
+<c-dropdown
+  *ngFor="let color of colors; index as i"
+  placement="bottom-start"
+  variant="btn-group">
+  <button [color]="color" cButton>
+    {{ color }}
+  </button>
+  <button [color]="color" cButton cDropdownToggle split>
+    <span class="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul cDropdownMenu>
+    <li><button [routerLink]="[]" cDropdownItem>Action</button></li>
+    <li><button cDropdownItem>Another action</button></li>
+    <li><button cDropdownItem>Something else here</button></li>
+  </ul>
+</c-dropdown>

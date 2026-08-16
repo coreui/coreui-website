@@ -1,0 +1,27 @@
+<form [formGroup]="formGroup">
+  <c-row>
+    <c-col>
+      <input
+        (inputChange)="handleInputChange($event)"
+        (optionChange)="handleOptionChange($event)"
+        (valueChange)="handleValueChange($event)"
+        [options]="['Angular', 'Bootstrap', 'Next.js', 'React.js', 'Vue.js']"
+        cAutocomplete
+        cleaner
+        formControlName="framework"
+        showHints
+      />
+    </c-col>
+    <c-col>
+      <span> Form value: {{ formGroup.value | json }}</span>
+      <ul>
+        <li> dirty: {{ formGroup.get('framework')?.dirty }}</li>
+        <li> pristine: {{ formGroup.get('framework')?.pristine }}</li>
+        <li> touched: {{ formGroup.get('framework')?.touched }}</li>
+      </ul>
+    </c-col>
+  </c-row>
+</form>
+<br>
+<button (click)="changeValue()" cButton class="me-1">Change</button>
+<button (click)="resetForm()" cButton>Reset</button>

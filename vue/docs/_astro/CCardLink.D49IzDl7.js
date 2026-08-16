@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.CA1CYuze.js";import{t as n}from"./CLink.dD6cw6tr.js";var r=e({name:`CCardLink`,props:{href:{type:String,default:`#`}},setup(e,{slots:r}){return()=>t(n,{class:`card-link`,href:e.href},{default:()=>r.default&&r.default()})}});export{r as t};

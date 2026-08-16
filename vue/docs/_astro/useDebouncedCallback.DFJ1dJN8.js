@@ -1,0 +1,1 @@
+import{R as e,V as t,z as n}from"./runtime-core.esm-bundler.CA1CYuze.js";var r=(r,i)=>{let a=t();return e()&&n(()=>clearTimeout(a.value)),(...e)=>{clearTimeout(a.value),a.value=setTimeout(()=>{clearTimeout(a.value),r(...e)},i)}};export{r as t};

@@ -1,0 +1,1 @@
+const e=a=>{if(!a)return 0;let{transitionDuration:t,transitionDelay:r}=window.getComputedStyle(a);const o=Number.parseFloat(t),n=Number.parseFloat(r);return!o&&!n?0:(t=t.split(",")[0],r=r.split(",")[0],(Number.parseFloat(t)+Number.parseFloat(r))*1e3)};export{e as g};

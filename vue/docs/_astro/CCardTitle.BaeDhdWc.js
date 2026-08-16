@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.CA1CYuze.js";var n=e({name:`CCardTitle`,props:{as:{type:String,default:`h5`}},setup(e,{slots:n}){return()=>t(e.as,{class:`card-title`},n.default&&n.default())}});export{n as t};

@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-3706649a","path":"/404.html","title":"","lang":"en-US","frontmatter":{"layout":"NotFound","head":[["link",{"rel":"canonical","href":"https://coreui.io/vue/docs/404.html"}]]},"headers":[],"filePathRelative":null}');export{t as data};

@@ -1,0 +1,1240 @@
+# CoreUI Scheduler JavaScript documentation
+
+> Resource and time scheduler for CoreUI — day, week, month, agenda and resource views with drag & drop, RFC 5545 recurrence and full keyboard support.
+
+
+---
+
+# CoreUI Scheduler
+
+> Resource and time scheduler — day, week, month, agenda and resource views with drag & drop, RFC 5545 recurrence, DST-safe time handling and full keyboard support, around 62 KB gzipped.
+
+CoreUI Scheduler is a resource and time scheduler for planning events across
+days, weeks, months and resources. Drag to reschedule, resize to adjust,
+select a range to create — with a full keyboard equivalent for every
+operation.
+
+```html
+<div id="schedulerOverview"></div>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() - ((date.getDay() + 6) % 7) + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+new coreui.Scheduler(document.getElementById('schedulerOverview'), {
+  dayStartHour: 7,
+  dayEndHour: 20,
+  businessHours: { daysOfWeek: [1, 2, 3, 4, 5], startHour: 9, endHour: 17 },
+  events: [
+    {
+      id: 'standup', title: 'Standup', start: `${day(0)}T09:00`, end: `${day(0)}T09:15`, rrule: 'FREQ=DAILY;COUNT=5'
+    },
+    {
+      id: 'design', title: 'Design review', start: `${day(1)}T10:00`, end: `${day(1)}T11:30`, color: '#2eb85c'
+    },
+    {
+      id: 'sync', title: 'Team sync', start: `${day(1)}T10:30`, end: `${day(1)}T11:00`
+    },
+    {
+      id: 'lunch', title: 'Lunch & learn', start: `${day(2)}T12:00`, end: `${day(2)}T13:00`, color: '#f9b115'
+    },
+    {
+      id: 'retro', title: 'Retro', start: `${day(4)}T15:00`, end: `${day(4)}T16:00`
+    },
+    {
+      id: 'conf', title: 'CoreUI Conf', start: day(4), end: day(6), allDay: true
+    }
+  ],
+  expandToFit: true
+})
+```
+
+## Why CoreUI Scheduler
+
+- **Six views.** [Day & week](https://coreui.io/scheduler/docs/views/day-week/), [month](https://coreui.io/scheduler/docs/views/month/),
+  [agenda](https://coreui.io/scheduler/docs/views/agenda/), a [resource view](https://coreui.io/scheduler/docs/views/resources/) with columns
+  per room, person or machine — virtualized past a dozen resources — and a
+  horizontal [timeline](https://coreui.io/scheduler/docs/views/timeline/).
+- **Real recurrence.** Events carry raw
+  [RFC 5545 RRULE strings](https://coreui.io/scheduler/docs/features/recurrence/); expansion is windowed and
+  DST-correct in any IANA time zone, powered by the Temporal API.
+- **Accessible by design.** Every drag operation has a keyboard equivalent
+  (grab → arrows → confirm) and operations are announced to assistive
+  technologies. See [Keyboard & accessibility](https://coreui.io/scheduler/docs/features/keyboard-accessibility/).
+- **Themeable.** Every knob is a `--cui-scheduler-*` CSS variable resolving
+  through CoreUI semantic tokens, so light/dark theming works with no extra
+  CSS. See [Styling & theming](https://coreui.io/scheduler/docs/customization/styling/).
+- **Small.** Around 62 KB gzipped with the date engine, recurrence engine and
+  virtualization included — no extra date library to ship.
+
+## How it's built
+
+All scheduling logic — the time model, recurrence expansion, event layout,
+and the drag/keyboard interaction state machine — lives in a headless,
+framework-free core. The component you install is a thin rendering layer over
+it, and every interactive element carries a stable `data-part` attribute you
+can target from tests or CSS.
+
+## Get started
+
+Head to [Installation](https://coreui.io/scheduler/docs/getting-started/installation/) and the
+[Quickstart](https://coreui.io/scheduler/docs/getting-started/quickstart/), or explore the views from the
+sidebar.
+
+
+---
+
+# Scheduler Installation
+
+> Install CoreUI Scheduler with npm and load its stylesheet and script.
+
+## npm
+
+```sh
+npm install @coreui/scheduler
+```
+
+The package ships UMD and ESM builds plus a compiled stylesheet:
+
+```js
+import { Scheduler } from '@coreui/scheduler'
+import '@coreui/scheduler/dist/css/scheduler.css'
+```
+
+## Script tag
+
+The UMD build registers the component on the `coreui` global — the same
+namespace as `@coreui/coreui`:
+
+```html
+<link rel="stylesheet" href="node_modules/@coreui/scheduler/dist/css/scheduler.css" />
+<script src="node_modules/@coreui/scheduler/dist/js/scheduler.js"></script>
+<script>
+  new coreui.Scheduler(document.getElementById('scheduler'), { events: [] })
+</script>
+```
+
+## Sass
+
+Prefer building from source? The stylesheet is a standard Sass module with
+every token exposed as a `!default` variable:
+
+```scss
+@use "@coreui/scheduler/scss/scheduler" with (
+  $scheduler-max-height: 50rem
+);
+```
+
+## Base styles
+
+The Scheduler is self-contained: it resolves its colors through CoreUI
+semantic CSS variables when `@coreui/coreui` or `@coreui/coreui-pro` is
+present, and falls back to built-in defaults when it is not. Light and dark
+mode follow the `data-coreui-theme` attribute automatically.
+
+
+---
+
+# Scheduler Quickstart
+
+> Create your first scheduler: a container element, an events array, and one constructor call.
+
+A scheduler needs a container element and an array of events. Dates are ISO
+8601 strings — with or without an explicit UTC offset:
+
+```html
+<div id="schedulerDayWeek"></div>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() - ((date.getDay() + 6) % 7) + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+new coreui.Scheduler(document.getElementById('schedulerDayWeek'), {
+  view: 'week',
+  dayStartHour: 8,
+  dayEndHour: 18,
+  events: [
+    {
+      id: 'kickoff', title: 'Kickoff', start: `${day(0)}T09:00`, end: `${day(0)}T10:00`
+    },
+    {
+      id: 'design', title: 'Design review', start: `${day(1)}T10:00`, end: `${day(1)}T11:30`, color: '#2eb85c'
+    },
+    {
+      id: 'pairing', title: 'Pairing', start: `${day(1)}T10:30`, end: `${day(1)}T12:00`
+    },
+    {
+      id: 'demo', title: 'Sprint demo', start: `${day(3)}T14:00`, end: `${day(3)}T15:00`
+    }
+  ]
+})
+```
+
+## Reacting to changes
+
+The scheduler owns its state after initialization. Every change — drag,
+resize, create, delete, repeat-rule edit — emits a namespaced DOM event with
+the changed event and a `revert` callback:
+
+```js
+element.addEventListener('eventChange.coreui.scheduler', event => {
+  console.log(event.action, event.event)
+  // persist to your API; call event.revert() if the server rejects it
+})
+```
+
+See [Options & events](https://coreui.io/scheduler/docs/api/options/) for the full surface.
+
+## Time zones
+
+Pass an IANA zone to pin the scheduler to it; otherwise the browser's zone is
+used. All wall-clock math — including DST transitions — happens in that zone:
+
+```js
+new coreui.Scheduler(element, { timeZone: 'Europe/Warsaw', events })
+```
+
+
+---
+
+# Day & Week Views
+
+> The time-grid views: hours on the vertical axis, one column per day, with a configurable visible-hours window.
+
+The `week` view (the default) renders seven day columns on a vertical time
+axis; `day` renders one. Events that overlap share the column width, events
+crossing midnight continue into the next column, and all-day events collect
+in the lane below the header.
+
+```html
+<div id="schedulerDayWeek"></div>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() - ((date.getDay() + 6) % 7) + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+new coreui.Scheduler(document.getElementById('schedulerDayWeek'), {
+  view: 'week',
+  dayStartHour: 8,
+  dayEndHour: 18,
+  events: [
+    {
+      id: 'kickoff', title: 'Kickoff', start: `${day(0)}T09:00`, end: `${day(0)}T10:00`
+    },
+    {
+      id: 'design', title: 'Design review', start: `${day(1)}T10:00`, end: `${day(1)}T11:30`, color: '#2eb85c'
+    },
+    {
+      id: 'pairing', title: 'Pairing', start: `${day(1)}T10:30`, end: `${day(1)}T12:00`
+    },
+    {
+      id: 'demo', title: 'Sprint demo', start: `${day(3)}T14:00`, end: `${day(3)}T15:00`
+    }
+  ]
+})
+```
+
+## Visible hours
+
+`dayStartHour` and `dayEndHour` (whole hours, 0–24) clamp the grid to the
+hours that matter. Events outside the window are clipped; events entirely
+outside are hidden:
+
+```js
+new coreui.Scheduler(element, {
+  dayStartHour: 8,
+  dayEndHour: 18,
+})
+```
+
+## Layout options
+
+- `hourHeight` — pixels per hour (default `48`).
+- `expandToFit` — let events widen over free space next to them instead of
+  keeping strict per-overlap columns.
+- `firstDayOfWeek` — ISO weekday number the week starts on (default `1`,
+  Monday).
+
+
+---
+
+# Month View
+
+> A full-month grid with per-day event chips, overflow links, and drag by day.
+
+The `month` view lays the whole month out as a week-aligned grid.
+**Multi-day events render as bars spanning their days** — clipped at week
+edges with continuation styling and stacked into lanes when they overlap —
+while single-day events list as chips below them, all-day first. Days
+outside the current month are dimmed.
+
+```html
+<div id="schedulerMonth"></div>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() - ((date.getDay() + 6) % 7) + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+new coreui.Scheduler(document.getElementById('schedulerMonth'), {
+  view: 'month',
+  monthMaxEventsPerDay: 3,
+  events: [
+    {
+      id: 'standup', title: 'Standup', start: `${day(0)}T09:00`, end: `${day(0)}T09:15`, rrule: 'FREQ=DAILY;COUNT=10'
+    },
+    {
+      id: 'design', title: 'Design review', start: `${day(1)}T10:00`, end: `${day(1)}T11:30`, color: '#2eb85c'
+    },
+    {
+      id: 'sync', title: 'Team sync', start: `${day(1)}T10:30`, end: `${day(1)}T11:00`
+    },
+    {
+      id: 'one', title: '1:1', start: `${day(1)}T13:00`, end: `${day(1)}T13:30`, color: '#e55353'
+    },
+    {
+      id: 'conf', title: 'CoreUI Conf', start: day(4), end: day(6), allDay: true
+    },
+    {
+      id: 'planning', title: 'Planning', start: `${day(7)}T10:00`, end: `${day(7)}T12:00`
+    }
+  ]
+})
+```
+
+## Overflow
+
+`monthMaxEventsPerDay` (default `4`) caps the single-day chips per day; the
+remainder collapses into a **+N more** link that jumps straight to that
+day's day view. Bars always render.
+
+## Interactions
+
+- **Drag a chip or a bar** to another day to move the event — times (and,
+  for all-day events, the day span) are preserved, only the dates change.
+- **Drag across empty days** to create an all-day event spanning them.
+- **Keyboard:** focus a chip or bar, press <kbd>Enter</kbd> to grab it, move
+  with <kbd>←</kbd>/<kbd>→</kbd> (±1 day) and <kbd>↑</kbd>/<kbd>↓</kbd>
+  (±1 week), then <kbd>Enter</kbd> to confirm or <kbd>Escape</kbd> to
+  cancel.
+
+
+---
+
+# Agenda View
+
+> A chronological list of upcoming events grouped by day.
+
+The `agenda` view lists events chronologically, grouped by day, over a
+rolling window of `agendaDays` days (default `14`) from the anchor date.
+Days without events are hidden.
+
+```html
+<div id="schedulerAgenda"></div>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() - ((date.getDay() + 6) % 7) + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+new coreui.Scheduler(document.getElementById('schedulerAgenda'), {
+  view: 'agenda',
+  agendaDays: 14,
+  events: [
+    {
+      id: 'standup', title: 'Standup', start: `${day(0)}T09:00`, end: `${day(0)}T09:15`, rrule: 'FREQ=DAILY;COUNT=10'
+    },
+    {
+      id: 'design', title: 'Design review', start: `${day(1)}T10:00`, end: `${day(1)}T11:30`, color: '#2eb85c'
+    },
+    {
+      id: 'conf', title: 'CoreUI Conf', start: day(4), end: day(6), allDay: true
+    },
+    {
+      id: 'planning', title: 'Planning', start: `${day(7)}T10:00`, end: `${day(7)}T12:00`
+    }
+  ]
+})
+```
+
+Rows are selectable and respond to <kbd>Delete</kbd>; the prev/next buttons
+step by the same `agendaDays` window. A range with no events shows the
+localizable `agendaEmpty` placeholder instead of an empty list.
+
+
+---
+
+# Resource View
+
+> One column per room, person or machine — with automatic column virtualization past a dozen resources.
+
+The `resource` view shows a single day with one column per resource. Events
+are routed to their column by `resourceId`, and dragging an event into
+another column reassigns it.
+
+```html
+<div id="schedulerResources"></div>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+new coreui.Scheduler(document.getElementById('schedulerResources'), {
+  view: 'resource',
+  dayStartHour: 8,
+  dayEndHour: 18,
+  resources: [
+    { id: 'room-1', label: 'Room 1' },
+    { id: 'room-2', label: 'Room 2', color: '#2eb85c' },
+    { id: 'room-3', label: 'Room 3', color: '#e55353' }
+  ],
+  events: [
+    {
+      id: 'a', title: 'Board meeting', resourceId: 'room-1', start: `${day(0)}T09:00`, end: `${day(0)}T11:00`
+    },
+    {
+      id: 'b', title: 'Workshop', resourceId: 'room-2', start: `${day(0)}T09:30`, end: `${day(0)}T12:00`
+    },
+    {
+      id: 'c', title: 'Interview', resourceId: 'room-3', start: `${day(0)}T10:00`, end: `${day(0)}T10:45`
+    },
+    {
+      id: 'd', title: 'All hands', resourceId: 'room-1', start: `${day(0)}T14:00`, end: `${day(0)}T15:00`
+    }
+  ]
+})
+```
+
+## Resources
+
+```js
+new coreui.Scheduler(element, {
+  view: 'resource',
+  resources: [
+    { id: 'room-1', label: 'Room 1' },
+    { id: 'room-2', label: 'Room 2', color: '#2eb85c' },
+  ],
+  events, // events reference resources via resourceId
+})
+```
+
+A resource `color` becomes the default color for its events — an event's own
+`color` still wins. Events without a `resourceId` are not shown in this view.
+
+## Virtualization
+
+Past 12 resources the columns render through a horizontal virtualizer: only
+the visible window plus a small overscan exists in the DOM, the header and
+all-day rows scroll in sync, and the time axis stays pinned. Column width is
+controlled by `resourceColumnWidth` (default `160`).
+
+
+---
+
+# Timeline View
+
+> A horizontal resource timeline: one row per resource, bars across a continuous multi-day axis, overlaps stacked into lanes.
+
+The `timeline` view turns the scheduler sideways: resources become rows and
+time runs horizontally across a continuous multi-day axis — bars are not
+split at midnight. Overlapping bars in a row stack into sub-lanes and the
+row grows to fit.
+
+```html
+<div id="schedulerTimeline"></div>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+new coreui.Scheduler(document.getElementById('schedulerTimeline'), {
+  view: 'timeline',
+  timelineDays: 5,
+  timelineHourWidth: 40,
+  resources: [
+    { id: 'room-1', label: 'Room 1' },
+    { id: 'room-2', label: 'Room 2', color: '#2eb85c' },
+    { id: 'room-3', label: 'Room 3', color: '#e55353' }
+  ],
+  events: [
+    {
+      id: 'board', title: 'Board meeting', resourceId: 'room-1', start: `${day(0)}T09:00`, end: `${day(0)}T11:00`
+    },
+    {
+      id: 'sprint', title: 'Sprint', resourceId: 'room-1', start: `${day(0)}T10:00`, end: `${day(1)}T16:00`
+    },
+    {
+      id: 'workshop', title: 'Workshop', resourceId: 'room-2', start: `${day(1)}T09:00`, end: `${day(2)}T12:00`
+    },
+    {
+      id: 'audit', title: 'Audit', resourceId: 'room-3', start: day(2), end: day(4), allDay: true
+    }
+  ]
+})
+```
+
+## Configuration
+
+| Option | Default | Description |
+| --- | --- | --- |
+| `timelineDays` | `7` | Days covered (and stepped by prev/next). |
+| `timelineHourWidth` | `48` | Pixels per hour — the horizontal zoom. |
+
+The resource label column width is the
+`--cui-scheduler-timeline-label-width` token (default `10rem`).
+
+## Interactions
+
+- **Drag a bar** horizontally to move it in time (snapped), or into another
+  row to reassign its resource.
+- **Drag a bar edge** to resize; all-day bars snap to whole days.
+- **Drag across empty space** in a row to create an event there.
+- **Keyboard:** grab with <kbd>Enter</kbd>, move in time with
+  <kbd>←</kbd>/<kbd>→</kbd>, between resources with
+  <kbd>↑</kbd>/<kbd>↓</kbd>, confirm with <kbd>Enter</kbd>. <kbd>F2</kbd>
+  opens the edit dialog. Creating by keyboard is currently available in the
+  time-grid views only.
+
+
+---
+
+# Scheduler Drag and Drop
+
+> Move and resize events with the pointer — snapped to a configurable step, previewed live, cancellable with Escape.
+
+Drag an event to move it; drag its top or bottom edge to resize. Both
+operations snap to the `snap` step (default `15` minutes), render a live
+preview, and can be abandoned with <kbd>Escape</kbd> before release.
+
+```html
+<div id="schedulerDnd"></div><p id="schedulerDndLog" class="mt-2 mb-0 text-body-secondary"></p>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() - ((date.getDay() + 6) % 7) + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+const element = document.getElementById('schedulerDnd')
+const log = document.getElementById('schedulerDndLog')
+
+new coreui.Scheduler(element, {
+  dayStartHour: 8,
+  dayEndHour: 18,
+  snap: 30,
+  events: [
+    {
+      id: 'kickoff', title: 'Kickoff', start: `${day(0)}T09:00`, end: `${day(0)}T10:00`
+    },
+    {
+      id: 'review', title: 'Review', start: `${day(2)}T13:00`, end: `${day(2)}T14:30`, color: '#2eb85c'
+    }
+  ]
+})
+
+element.addEventListener('eventChange.coreui.scheduler', event => {
+  log.textContent = `${event.action}: ${event.event.title} → ${event.event.start}`
+})
+```
+
+## Touch
+
+On touch devices the grids pan natively — a drag starts from a **long
+press** (~300 ms): hold an event until it engages, then move; page
+scrolling is suppressed for the rest of the gesture and <kbd>Escape</kbd>
+still cancels. A quick tap keeps its click semantics (selection + edit
+dialog), and moving your finger right away simply scrolls.
+
+## The eventChange payload
+
+Every committed operation emits `eventChange.coreui.scheduler`:
+
+| Property | Description |
+| --- | --- |
+| `action` | `'create'`, `'move'`, `'resize'`, `'update'` or `'delete'`. |
+| `event` | The event with its updated ISO dates. |
+| `occurrence` | The affected occurrence (`key`, `start`, `end`), or `null` for `create`. |
+| `revert` | Call to restore the previous state — e.g. when your API rejects the change. |
+| `scope` | For recurring events: `'occurrence'`, `'future'` or `'all'`. |
+
+Moving or resizing a single occurrence of a recurring event detaches it by
+default: the series gains an exception date and the change materializes as a
+standalone event. See [Recurrence](https://coreui.io/scheduler/docs/features/recurrence/) for the other
+scopes.
+
+
+---
+
+# Scheduler Remote Data
+
+> Load events on demand as users navigate, and persist every change back to your server.
+
+Instead of passing `events` up front, hand the scheduler a `dataSource`:
+`getEvents(start, end)` runs whenever the visible range changes, and
+`persistEvents` runs after every committed change.
+
+```js
+new coreui.Scheduler(element, {
+  dataSource: {
+    getEvents: async (start, end) =>
+      (await fetch(`/api/events?from=${start}&to=${end}`)).json(),
+
+    persistEvents: async ({ action, event, occurrence, scope }) => {
+      const response = await fetch('/api/events', {
+        method: 'POST',
+        body: JSON.stringify({ action, event, occurrence, scope }),
+      })
+      return { success: response.ok } // success: false reverts the change
+    },
+  },
+})
+```
+
+## Behavior
+
+- `getEvents` receives the visible window as ISO strings (end exclusive) and
+  fires on init and whenever navigation, view switches or `update()` change
+  the range — never twice for the same range. A spinner
+  (`data-part="loading"`) shows while a request is in flight, and stale
+  responses from superseded requests are discarded.
+- A failed load keeps the current events and announces the localizable
+  `loadFailed` message.
+- `persistEvents` gets the same payload as the `eventChange` DOM event
+  (minus `revert`). Returning `{ success: false }` — or throwing — reverts
+  the change and announces `saveFailed`. The `eventChange` event still fires
+  first, so analytics and optimistic UI keep working.
+- `getVisibleRange()` returns the current window (`{ start, end }`) if you
+  prefer wiring fetches yourself through `dateChange`/`viewChange`.
+
+## Manual wiring
+
+Everything above is also possible without `dataSource` — listen to
+`dateChange`, fetch, call `setEvents()`, and call `revert()` from your
+`eventChange` listener when the server rejects a change. `dataSource` is the
+packaged version of exactly that pattern.
+
+
+---
+
+# Creating Events
+
+> Create events by dragging across empty slots — or entirely from the keyboard.
+
+Press on an empty slot and drag to select a range — releasing creates an
+event and emits `eventChange` with `action: 'create'`. In the month view the
+same gesture spans days and creates an all-day event.
+
+```html
+<div id="schedulerCreate"></div><p id="schedulerCreateLog" class="mt-2 mb-0 text-body-secondary"></p>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() - ((date.getDay() + 6) % 7) + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+const element = document.getElementById('schedulerCreate')
+const log = document.getElementById('schedulerCreateLog')
+
+new coreui.Scheduler(element, {
+  dayStartHour: 8,
+  dayEndHour: 18,
+  snap: 15,
+  events: [
+    {
+      id: 'busy', title: 'Busy', start: `${day(1)}T10:00`, end: `${day(1)}T11:00`
+    }
+  ]
+})
+
+element.addEventListener('eventChange.coreui.scheduler', event => {
+  if (event.action === 'create') {
+    log.textContent = `Created: ${event.event.start} → ${event.event.end}`
+  }
+})
+```
+
+Set `selectable: false` to turn range selection (and click selection) off.
+
+## From the keyboard
+
+The time grid is keyboard-navigable: <kbd>Tab</kbd> into it, move between
+slots with the arrow keys, press <kbd>Enter</kbd> to anchor a selection,
+extend it with <kbd>↑</kbd>/<kbd>↓</kbd> (by `snap`) and
+<kbd>←</kbd>/<kbd>→</kbd> (by day), then <kbd>Enter</kbd> to create —
+or <kbd>Escape</kbd> to cancel.
+
+
+---
+
+# Scheduler Recurrence
+
+> RFC 5545 RRULE recurrence with windowed, DST-safe expansion, exception dates, and per-occurrence editing.
+
+Events repeat through the `rrule` property — a raw
+[RFC 5545 RRULE](https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10)
+string. Any rule the standard allows is valid in the data model; the built-in
+editing UI exposes daily/weekly/monthly presets.
+
+```html
+<div id="schedulerRecurrence"></div>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() - ((date.getDay() + 6) % 7) + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+new coreui.Scheduler(document.getElementById('schedulerRecurrence'), {
+  dayStartHour: 7,
+  dayEndHour: 19,
+  events: [
+    {
+      id: 'standup', title: 'Daily standup', start: `${day(0)}T09:00`, end: `${day(0)}T09:15`, rrule: 'FREQ=DAILY;COUNT=5'
+    },
+    {
+      id: 'yoga', title: 'Yoga', start: `${day(0)}T07:30`, end: `${day(0)}T08:15`, rrule: 'FREQ=DAILY;INTERVAL=2', color: '#2eb85c'
+    },
+    {
+      id: 'grooming', title: 'Backlog grooming', start: `${day(2)}T11:00`, end: `${day(2)}T12:00`, rrule: 'FREQ=WEEKLY', exdates: [`${day(9)}T11:00`]
+    }
+  ]
+})
+```
+
+## How expansion works
+
+Occurrences are computed only for the visible range — never "the whole
+series ahead" — and each occurrence keeps the series' wall-clock time across
+DST transitions in the scheduler's time zone. An occurrence that would land
+on a nonexistent time (the spring-forward gap) shifts forward with the gap;
+durations stay real elapsed time.
+
+`exdates` lists wall-clock exception dates excluded from the series.
+
+## Editing occurrences
+
+Clicking any event opens the edit dialog — title, start, end, color, and a
+repeat preset. For recurring events the dialog adds an **Applies to** scope
+that governs how the edit lands:
+
+| Scope | Effect of a move/resize/delete |
+| --- | --- |
+| `occurrence` *(default)* | The occurrence detaches: the series gains an `exdate`, the change becomes a standalone event. |
+| `future` | The series ends just before this occurrence; the remainder becomes a new series at the edited time. `COUNT` rules are dropped on split. |
+| `all` | The whole series shifts by the edit's delta. |
+
+The initial scope comes from the `recurringEditScope` option. With the
+`occurrence` scope, repeat changes are not carried onto the detached copy —
+switch the scope to `future` or `all` to change the rule itself.
+
+
+---
+
+# Business Hours & Now Indicator
+
+> Shade non-working hours and days, and mark the current time in today's column.
+
+`businessHours` shades everything outside the given hours — and whole days
+not listed in `daysOfWeek` (ISO weekday numbers, Monday = 1). By default the
+shading is visual only.
+
+```html
+<div id="schedulerBusinessHours"></div>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() - ((date.getDay() + 6) % 7) + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+new coreui.Scheduler(document.getElementById('schedulerBusinessHours'), {
+  businessHours: { daysOfWeek: [1, 2, 3, 4, 5], startHour: 9, endHour: 17 },
+  dayStartHour: 6,
+  dayEndHour: 22,
+  events: [
+    {
+      id: 'kickoff', title: 'Kickoff', start: `${day(0)}T09:00`, end: `${day(0)}T10:00`
+    },
+    {
+      id: 'late', title: 'After hours deploy', start: `${day(3)}T19:00`, end: `${day(3)}T20:00`, color: '#e55353'
+    }
+  ]
+})
+```
+
+## Enforcing business hours
+
+Add `enforce: true` to reject moves, resizes and creations that would land
+outside the working hours or on a non-working day — the operation simply
+does not commit, and the rejection is announced through the live region
+(localizable `outsideBusinessHours` label). All-day events are exempt.
+
+```js
+new coreui.Scheduler(element, {
+  businessHours: {
+    daysOfWeek: [1, 2, 3, 4, 5],
+    startHour: 9,
+    endHour: 17,
+    enforce: true,
+  },
+})
+```
+
+## Now indicator
+
+Whenever today is visible in a time-grid view, a line marks the current time
+in its column and follows it minute by minute. Style it through the
+`--cui-scheduler-now-color` token.
+
+
+---
+
+# Overlap Control
+
+> Reject drops, resizes and creations that would collide with another event.
+
+With `eventOverlap: false` a move, resize or creation whose time range
+intersects another event is rejected: the operation simply does not commit,
+and the rejection is announced to assistive technologies. In the resource
+view only events of the same resource collide.
+
+```html
+<div id="schedulerOverlap"></div>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() - ((date.getDay() + 6) % 7) + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+const element = document.getElementById('schedulerOverlap')
+
+new coreui.Scheduler(element, {
+  dayStartHour: 8,
+  dayEndHour: 16,
+  eventOverlap: false,
+  events: [
+    {
+      id: 'a', title: 'Fixed meeting', start: `${day(1)}T09:00`, end: `${day(1)}T10:30`
+    },
+    {
+      id: 'b', title: 'Try to drop me on it', start: `${day(1)}T12:00`, end: `${day(1)}T13:00`, color: '#f9b115'
+    }
+  ]
+})
+```
+
+All-day events never participate in collision checks.
+
+
+---
+
+# Keyboard & Accessibility
+
+> Every pointer operation has a keyboard equivalent, and every operation is announced — WCAG 2.2 dragging movements, built in.
+
+Every drag operation in the Scheduler can be performed without a pointer —
+the WCAG 2.2 *dragging movements* criterion is part of the component's
+contract, not an add-on.
+
+## Keyboard reference
+
+| Keys | Context | Action |
+| --- | --- | --- |
+| <kbd>Tab</kbd> | — | Move between toolbar, events, and the slot grid. |
+| <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> | Slot grid | Move the roving slot focus (hour / day). |
+| <kbd>Enter</kbd> / <kbd>Space</kbd> | Empty slot | Anchor a range selection; arrows extend it; <kbd>Enter</kbd> creates the event. |
+| <kbd>Enter</kbd> / <kbd>Space</kbd> | Event | Grab the event; arrows move it by `snap` / day; <kbd>Enter</kbd> confirms. |
+| <kbd>Shift</kbd>+<kbd>Enter</kbd> | Event | Grab the end edge instead — arrows resize. |
+| <kbd>F2</kbd> | Event | Open the [edit dialog](https://coreui.io/scheduler/docs/features/recurrence/#editing-occurrences) (title, times, color, repeat). |
+| <kbd>Escape</kbd> | Anywhere | Close the dialog, or cancel the active drag, selection or grab (pointer drags too). |
+| <kbd>Delete</kbd> / <kbd>Backspace</kbd> | Event | Delete the event (or occurrence, per the active scope). |
+
+In the month view the arrows move by ±1 day and ±1 week; in the timeline
+<kbd>←</kbd>/<kbd>→</kbd> move in time and <kbd>↑</kbd>/<kbd>↓</kbd> between
+resources.
+
+The edit dialog is a native `<dialog>` opened with `showModal()`, so it renders
+in the top layer — above surrounding app chrome whatever its `z-index`, and
+outside any ancestor's clipping — while the browser keeps focus inside it and
+the rest of the page inert. It opens focused on the title field, saves on
+<kbd>Enter</kbd> (form submit), and closes on <kbd>Escape</kbd> returning focus
+to the event.
+
+## Announcements
+
+State changes are announced through a polite live region: grabbing an event,
+moving it ("moved to …"), resizing, creating, deleting, cancelling, and
+rejected drops when [overlap control](https://coreui.io/scheduler/docs/features/overlap/) is on. Every
+message is localizable through the [labels](https://coreui.io/scheduler/docs/customization/localization/)
+system.
+
+## Semantics
+
+The time grid exposes `role="grid"` with labeled `gridcell` slots and a
+roving tabindex; events are focusable with descriptive labels (title plus
+localized time range); the toolbar's view switch reports the active view via
+`aria-pressed`.
+
+## Conformance & known limitations
+
+The component targets WCAG 2.2 AA. What ships today: full keyboard
+equivalence for dragging (§2.5.7), status messages for every operation
+(§4.1.3), visible focus and token-based contrast, a focus-contained modal
+edit dialog, and grid semantics with `aria-rowcount`/`aria-colcount` and
+indexed rows/cells across the time grid, month, and timeline views.
+
+Known limitations, deliberately documented rather than hidden:
+
+- In time-grid views the event boxes are an absolutely-positioned layer
+  *inside* the grid container but not children of a `gridcell` — the
+  keyboard contract does not depend on this, and a fully APG-conformant
+  restructuring is planned.
+- Creating events with the keyboard is available in the time-grid views;
+  in month and timeline, keyboard users create via the time-grid views or
+  your own UI on top of `eventChange`.
+
+## Testing hook
+
+Every meaningful element carries a stable `data-part` attribute (`event`,
+`time-slot`, `month-day`, `drag-preview`, `live-region`, …). Target these in
+your end-to-end tests — they are a supported contract, class names are not.
+
+
+---
+
+# Scheduler Styling & Theming
+
+> Every visual knob is a --cui-scheduler-* CSS variable resolving through CoreUI semantic tokens.
+
+The Scheduler is styled entirely through CSS custom properties declared on
+`.scheduler`. Each resolves through a CoreUI semantic variable with a
+built-in fallback, so light/dark theming via `data-coreui-theme` works
+automatically — with or without the CoreUI stylesheet.
+
+## Event colors
+
+Set colors per event or per resource in data — no CSS required:
+
+```js
+events: [{ id: 'a', title: 'Design', color: '#2eb85c', /* … */ }],
+resources: [{ id: 'room-2', label: 'Room 2', color: '#e55353' }],
+```
+
+An event's `color` wins over its resource's `color`; both override the
+`--cui-scheduler-event-bg` token for that element only.
+
+## CSS variables
+
+| Variable | Purpose |
+| --- | --- |
+| `--cui-scheduler-bg`, `--cui-scheduler-color` | Component surface and text. |
+| `--cui-scheduler-border-color`, `--cui-scheduler-border-radius` | Frame and radius. |
+| `--cui-scheduler-hour-line-color` | Hour gridlines. |
+| `--cui-scheduler-event-bg`, `--cui-scheduler-event-color`, `--cui-scheduler-event-border-radius` | Event boxes and chips. |
+| `--cui-scheduler-event-selected-ring` | Selection ring. |
+| `--cui-scheduler-focus-ring-width`, `--cui-scheduler-focus-ring-color` | Keyboard focus ring. |
+| `--cui-scheduler-drag-preview-bg`, `--cui-scheduler-drag-preview-border` | Drag preview. |
+| `--cui-scheduler-selection-bg` | Range-selection overlay. |
+| `--cui-scheduler-non-working-bg` | Business-hours shading. |
+| `--cui-scheduler-now-color` | Now indicator. |
+| `--cui-scheduler-all-day-bg` | All-day lane and outside-month days. |
+| `--cui-scheduler-header-bg` | Header rows. |
+| `--cui-scheduler-muted-color` | Secondary text (axis, labels). |
+| `--cui-scheduler-gutter-width` | Time-axis width. |
+| `--cui-scheduler-max-height` | Scroll container height. |
+| `--cui-scheduler-button-hover-bg`, `--cui-scheduler-button-active-bg`, `--cui-scheduler-button-active-color` | Toolbar buttons. |
+
+```css
+.my-calendar .scheduler {
+  --cui-scheduler-event-bg: #2eb85c;
+  --cui-scheduler-max-height: 50rem;
+}
+```
+
+## SASS variables
+
+Every CSS variable above has a `$scheduler-*` Sass counterpart declared
+`!default`, so you can retheme at build time:
+
+```scss
+@use "@coreui/scheduler/scss/scheduler" with (
+  $scheduler-event-bg: var(--cui-info),
+  $scheduler-max-height: 50rem
+);
+```
+
+
+---
+
+# Scheduler Localization
+
+> Localize every label and announcement, and let Intl format the dates.
+
+Dates, times and ranges are formatted with the `Intl` API — pass `locale` to
+override the browser default. Every string the component renders or announces
+comes from the `labels` map.
+
+```html
+<div id="schedulerLocalization"></div>
+```
+
+```js
+const pad = n => String(n).padStart(2, '0')
+const day = offset => {
+  const date = new Date()
+  date.setDate(date.getDate() - ((date.getDay() + 6) % 7) + offset)
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
+new coreui.Scheduler(document.getElementById('schedulerLocalization'), {
+  dayStartHour: 8,
+  dayEndHour: 17,
+  locale: 'pl-PL',
+  labels: {
+    allDay: 'Cały dzień',
+    day: 'Dzień',
+    month: 'Miesiąc',
+    agenda: 'Agenda',
+    today: 'Dziś',
+    week: 'Tydzień',
+    newEvent: 'Nowe wydarzenie'
+  },
+  events: [
+    {
+      id: 'spotkanie', title: 'Spotkanie zespołu', start: `${day(1)}T10:00`, end: `${day(1)}T11:00`
+    }
+  ]
+})
+```
+
+## Locale packs
+
+Ready-made translations of the full label set ship as a tree-shakeable
+subpath — currently `de`, `es`, `fr`, `it`, `nl`, `pl`, `pt`:
+
+```js
+import { Scheduler } from '@coreui/scheduler'
+import { pl } from '@coreui/scheduler/locales'
+
+new Scheduler(element, { locale: 'pl-PL', labels: pl })
+```
+
+Each pack covers every key below; anything you pass in `labels` still wins
+over the pack, so partial overrides compose naturally.
+
+## Labels
+
+Messages support `{token}` interpolation. The full set with defaults:
+
+| Key | Default |
+| --- | --- |
+| `agenda` | `Agenda` |
+| `agendaEmpty` | `No events in this range` |
+| `allDay` | `All-day` |
+| `cancel` | `Cancel` |
+| `colorLabel` | `Color` |
+| `day` | `Day` |
+| `deleteEvent` | `Delete` |
+| `editEvent` | `Edit event` |
+| `editScope` | `Applies to` |
+| `endLabel` | `End` |
+| `eventCancelled` | `Cancelled` |
+| `eventCreated` | `Created {title}, {date} {start} to {end}` |
+| `eventDeleted` | `{title} deleted` |
+| `eventGrabbed` | `{title} grabbed. Use the arrow keys to move, Enter to confirm, Escape to cancel` |
+| `eventMoved` | `{title} moved to {date} {start}` |
+| `eventResized` | `{title} now lasts from {start} to {end}` |
+| `eventUpdated` | `{title} updated` |
+| `loadFailed` | `Failed to load events` |
+| `month` | `Month` |
+| `more` | `+{count} more` |
+| `newEvent` | `New event` |
+| `next` | `Next` |
+| `outsideBusinessHours` | `Outside business hours` |
+| `overlapBlocked` | `That time is already occupied` |
+| `prev` | `Previous` |
+| `repeat` | `Repeat` |
+| `repeatDaily` | `Daily` |
+| `repeatMonthly` | `Monthly` |
+| `repeatNone` | `Does not repeat` |
+| `repeatWeekly` | `Weekly` |
+| `resource` | `Resources` |
+| `save` | `Save` |
+| `saveFailed` | `The change could not be saved` |
+| `scopeAll` | `All events` |
+| `scopeFuture` | `This and following events` |
+| `scopeOccurrence` | `This event` |
+| `startLabel` | `Start` |
+| `timeline` | `Timeline` |
+| `titleLabel` | `Title` |
+| `today` | `Today` |
+| `views` | `Views` |
+| `week` | `Week` |
+
+
+---
+
+# Scheduler Options & Events
+
+> The full constructor options, DOM events, and instance methods.
+
+## Options
+
+```js
+new coreui.Scheduler(element, options)
+```
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `agendaDays` | `number` | `14` | Days shown (and stepped) by the agenda view. |
+| `businessHours` | `object \| null` | `null` | `{ daysOfWeek?, startHour, endHour, enforce? }` — shades non-working time; `enforce: true` also rejects operations outside it. |
+| `dataSource` | `object \| null` | `null` | `{ getEvents(start, end), persistEvents? }` — [remote data](https://coreui.io/scheduler/docs/features/remote-data/). |
+| `date` | `string \| Date \| null` | today | Anchor date of the visible range. |
+| `dayStartHour` | `number` | `0` | First visible hour of the time grid. |
+| `dayEndHour` | `number` | `24` | Hour the time grid ends at (exclusive). |
+| `events` | `array` | `[]` | The events — see the [event model](https://coreui.io/scheduler/docs/api/event-model/). |
+| `eventOverlap` | `boolean` | `true` | `false` rejects operations that would collide. |
+| `expandToFit` | `boolean` | `false` | Widen events over adjacent free space. |
+| `firstDayOfWeek` | `number` | `1` | ISO weekday the week starts on. |
+| `hourHeight` | `number` | `48` | Pixels per hour in time-grid views. |
+| `labels` | `object` | `{}` | Overrides for the [label set](https://coreui.io/scheduler/docs/customization/localization/). |
+| `locale` | `string \| null` | browser | BCP 47 locale for date/time formatting. |
+| `monthMaxEventsPerDay` | `number` | `4` | Chips per month cell before "+N more". |
+| `recurringEditScope` | `string` | `'occurrence'` | Initial scope for recurring edits: `'occurrence'`, `'future'` or `'all'`. |
+| `resourceColumnWidth` | `number` | `160` | Column width when the resource view virtualizes. |
+| `resources` | `array` | `[]` | `{ id, label?, color? }` — columns of the resource view. |
+| `selectable` | `boolean` | `true` | Allow range-select creation and click selection. |
+| `snap` | `number` | `15` | Drag/resize/create step in minutes. |
+| `timeZone` | `string \| null` | browser | IANA zone all wall-clock math happens in. |
+| `timelineDays` | `number` | `7` | Days covered by the timeline view. |
+| `timelineHourWidth` | `number` | `48` | Timeline horizontal zoom in pixels per hour. |
+| `view` | `string` | `'week'` | `'day'`, `'week'`, `'month'`, `'agenda'`, `'resource'` or `'timeline'`. |
+
+## Events
+
+All events are namespaced `*.coreui.scheduler` and fire on the scheduler
+element:
+
+| Event | Payload | Fires on |
+| --- | --- | --- |
+| `dateChange` | `date` | Navigation (prev/next/today, more-link jumps). |
+| `eventChange` | `action`, `event`, `occurrence`, `revert`, `scope` | Create, move, resize, update, delete. |
+| `selectionChange` | `selection` | Click selection changes. |
+| `viewChange` | `view` | View switch. |
+
+## Methods
+
+| Method | Description |
+| --- | --- |
+| `getEvents()` | Current events array (post-edits). |
+| `getSelection()` | Selected occurrence keys. |
+| `getVisibleRange()` | The visible window as `{ start, end }` ISO strings. |
+| `navigate(direction)` | `'prev'`, `'next'` or `'today'`. |
+| `setDate(date)` | Move the anchor date. |
+| `setEvents(events)` | Replace the events. |
+| `setView(view)` | Switch the view. |
+| `update(options)` | Merge new options and re-render. |
+| `dispose()` | Tear down listeners, timers and DOM. |
+
+Plus the standard CoreUI statics: `Scheduler.getInstance(element)` and
+`Scheduler.getOrCreateInstance(element, options)`.
+
+
+---
+
+# Scheduler Event Model
+
+> The SchedulerEvent shape: ISO dates, all-day flags, colors, and RFC 5545 recurrence.
+
+## SchedulerEvent
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `id` | `string` | Stable identifier — required. |
+| `title` | `string` | Rendered and announced name. |
+| `start` | `string` | ISO 8601 start — `'2026-08-11T09:00'` (scheduler zone) or with an explicit offset. Date-only for all-day events. |
+| `end` | `string` | ISO 8601 end, exclusive. |
+| `allDay` | `boolean` | Renders in the all-day lane / as a date-spanning chip. |
+| `color` | `string` | Any CSS color; overrides the resource color and the theme token. |
+| `resourceId` | `string` | Routes the event to a resource-view column. |
+| `rrule` | `string` | Raw RFC 5545 RRULE — `'FREQ=WEEKLY;INTERVAL=2;BYDAY=TH'`. |
+| `exdates` | `string[]` | Wall-clock occurrence starts excluded from the series. |
+| `meta` | `object` | Your own data — carried through untouched. |
+
+```js
+{
+  id: 'standup',
+  title: 'Daily standup',
+  start: '2026-08-10T09:00',
+  end: '2026-08-10T09:15',
+  rrule: 'FREQ=DAILY;COUNT=20',
+  exdates: ['2026-08-14T09:00'],
+  color: '#2eb85c',
+  meta: { calendarId: 'team' },
+}
+```
+
+## Dates and zones
+
+Strings without an offset are wall-clock times in the scheduler's
+`timeZone`; strings with `Z` or an offset are absolute instants converted
+into it. Whatever you pass in, `eventChange` payloads always carry ISO
+strings with an explicit offset.
+
+## Recurring series
+
+A recurring event is ONE entry in `events`; its occurrences are expanded for
+the visible range only. Edits detach, split or shift the series according to
+the [edit scope](https://coreui.io/scheduler/docs/features/recurrence/), and everything the scheduler does to
+your data goes through `eventChange` — the arrays you get from `getEvents()`
+are always plain, serializable objects.

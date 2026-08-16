@@ -1,0 +1,34 @@
+import{$t as Uv,Br as kw,Fi as v$1,Nt as Rs,T as D_,Ut as Td,kt as RM,nt as KM,qn as cv,qr as lv,ur as gd}from"./chunk-D4QfcjgQ.js";import"./chunk-BwrHBgAX.js";import"./chunk-CUBvct6a.js";import{Ui as nr,Wr as vm,Xi as y}from"./main-CRW2IFLY.js";import{t as ie}from"./chunk-DPjinjjK.js";import{t as f}from"./chunk-CircK-BE.js";import"./chunk-PIxlJhxX.js";var u=class m{static{this.ɵfac=function(e){return new(e||m)}}static{this.ɵcmp=D_({type:m,selectors:[[`docs-image05-example`]],decls:2,vars:0,consts:[[1,`text-center`],[`cImg`,``,`height`,`200`,`src`,`./assets/img/angular400.jpg`,`width`,`200`]],template:function(e,a){e&1&&(Rs(0,`div`,0),lv(1,`img`,1),gd())},dependencies:[vm],encapsulation:2})}};var I=class m{static{this.ɵfac=function(e){return new(e||m)}}static{this.ɵcmp=D_({type:m,selectors:[[`docs-image04-example`]],decls:2,vars:0,consts:[[1,`clearfix`],[`cImg`,``,`align`,`center`,`height`,`200`,`rounded`,``,`src`,`./assets/img/angular400.jpg`,`width`,`200`]],template:function(e,a){e&1&&(Rs(0,`div`,0),lv(1,`img`,1),gd())},dependencies:[vm],encapsulation:2})}};var h=class m{static{this.ɵfac=function(e){return new(e||m)}}static{this.ɵcmp=D_({type:m,selectors:[[`docs-image03-example`]],decls:3,vars:1,consts:[[1,`clearfix`],[`cImg`,``,`align`,`start`,`height`,`200`,`rounded`,``,`src`,`./assets/img/angular400.jpg`,`width`,`200`],[`cImg`,``,`align`,`end`,`src`,`./assets/img/angular400.jpg`,`width`,`200`,3,`rounded`]],template:function(e,a){e&1&&(Rs(0,`div`,0),lv(1,`img`,1)(2,`img`,2),gd()),e&2&&(kw(2),cv(`rounded`,!0))},dependencies:[vm],encapsulation:2})}};var x=class m{static{this.ɵfac=function(e){return new(e||m)}}static{this.ɵcmp=D_({type:m,selectors:[[`docs-image06-example`]],decls:2,vars:0,consts:[[`cImg`,``,`rounded`,``,`src`,`./assets/img/angular400.jpg`,`height`,`200`],[`cImg`,``,`src`,`./assets/img/angular400.jpg`,`height`,`200`]],template:function(e,a){e&1&&lv(0,`img`,0)(1,`img`,1)},dependencies:[vm],encapsulation:2})}};var C=class m{static{this.ɵfac=function(e){return new(e||m)}}static{this.ɵcmp=D_({type:m,selectors:[[`docs-image02-example`]],decls:1,vars:0,consts:[[`cImg`,``,`height`,`200`,`rounded`,``,`src`,`./assets/img/angular400.jpg`,`thumbnail`,``,`width`,`200`]],template:function(e,a){e&1&&lv(0,`img`,0)},dependencies:[vm],encapsulation:2})}};var v=class m{static{this.ɵfac=function(e){return new(e||m)}}static{this.ɵcmp=D_({type:m,selectors:[[`docs-image01-example`]],decls:1,vars:0,consts:[[`cImg`,``,`fluid`,``,`src`,`./assets/img/angular.jpg`]],template:function(e,a){e&1&&lv(0,`img`,0)},dependencies:[vm],encapsulation:2})}};var N=`\`\`\`typescript
+import { ImgModule } from '@coreui/angular';
+
+@NgModule({
+    imports: [ImgModule,]
+})
+export class AppModule(){}
+\`\`\`
+`;var F=()=>[`components/image/examples/image01.component.html`,`components/image/examples/image01.component.ts`];var j=()=>[`components/image/examples/image02.component.html`,`components/image/examples/image02.component.ts`];var A=()=>[`components/image/examples/image06.component.html`,`components/image/examples/image06.component.ts`];var P=()=>[`components/image/examples/image03.component.html`,`components/image/examples/image03.component.ts`];var T=()=>[`components/image/examples/image04.component.html`,`components/image/examples/image04.component.ts`];var z=()=>[`components/image/examples/image05.component.html`,`components/image/examples/image05.component.ts`];var k=class m{constructor(){this.usage=N;this.headService=v$1(y);this.name=`Image`;this.title=`Angular Image Component`;this.description=`Angular image directive with responsive behavior (so it never becomes larger than their parent element) and special styles.`}ngOnInit(){this.headService.updateHeader({title:this.title,name:this.name,description:this.description})}static{this.ɵfac=function(e){return new(e||m)}}static{this.ɵcmp=D_({type:m,selectors:[[`ng-component`]],decls:34,vars:21,consts:[[`id`,`getting-started`],[1,`docs-lead`,`fs-4`,`fw-light`],[`stackblitz`,``,`componentName`,`Image01Component`,3,`files`,`name`],[`stackblitz`,``,`componentName`,`Image02Component`,3,`files`,`name`],[`stackblitz`,``,`componentName`,`Image06Component`,3,`files`,`name`],[`stackblitz`,``,`componentName`,`Image03Component`,3,`files`,`name`],[`stackblitz`,``,`componentName`,`Image04Component`,3,`files`,`name`],[`stackblitz`,``,`componentName`,`Image05Component`,3,`files`,`name`],[`markdown`,``,1,`highlight`],[1,`api-table`]],template:function(e,a){e&1&&(Rs(0,`h1`,0),RM(1),gd(),Rs(2,`p`,1),RM(3),gd(),lv(4,`docs-ads-carbon-loader`),Rs(5,`markdown`),RM(6,"\n  ## Examples\n  ### Responsive images\n\nImages in CoreUI for Angular are made responsive with `fluid` property. This applies `max-width: 100%;` and `height: auto;` to the image so that it scales with the parent element.\n"),gd(),Rs(7,`docs-example`,2),lv(8,`docs-image01-example`),gd(),Rs(9,`markdown`),RM(10,`
+  ### Image thumbnails
+
+In addition to our [border-radius utilities](https://coreui.io/docs/utilities/borders), you can use prop \`thumbnail\` to give an image a rounded 1px border appearance.
+`),gd(),Rs(11,`docs-example`,3),lv(12,`docs-image02-example`),gd(),Rs(13,`markdown`),RM(14,`
+  ### Rounded Image
+
+  Give an image a \`rounded\` border appearance.
+`),gd(),Rs(15,`docs-example`,4),lv(16,`docs-image06-example`),gd(),Rs(17,`markdown`),RM(18,`
+  ### Aligning images
+
+Align images with the \`align\` property.
+`),gd(),Rs(19,`docs-example`,5),lv(20,`docs-image03-example`),gd(),Rs(21,`docs-example`,6),lv(22,`docs-image04-example`),gd(),Rs(23,`docs-example`,7),lv(24,`docs-image05-example`),gd(),Rs(25,`markdown`),RM(26,`
+  ---
+
+  ## API reference
+
+  ### Image Module
+
+`),gd(),Rs(27,`div`,8),RM(28),gd(),Rs(29,`markdown`),RM(30,`
+  ### cImg
+  _directive_
+
+  `),Rs(31,`div`,9),RM(32,'\n\n    | name | description | type | default |\n    | ---- | ----------- | ---- | ------- |\n    | `align` | Set the horizontal aligment. | ``""`` \\| ``"start"`` \\| ``"end"`` \\| ``"center"`` | `""` |\n    | `fluid` | Make image responsive. | `boolean` | _false_ |\n    | `rounded` | Make image rounded. | `boolean` |_false_|\n    | `thumbnail` | Give an image a rounded 1px border appearance. | `boolean` | _false_ |\n\n  '),gd(),RM(33,`
+`),gd()),e&2&&(kw(),Uv(a.title),kw(2),Uv(a.description),kw(4),cv(`files`,KM(15,F))(`name`,a.title),kw(4),cv(`files`,KM(16,j))(`name`,a.title),kw(4),cv(`files`,KM(17,A))(`name`,a.title),kw(4),cv(`files`,KM(18,P))(`name`,a.title),kw(2),cv(`files`,KM(19,T))(`name`,a.title),kw(2),cv(`files`,KM(20,z))(`name`,a.title),kw(5),Td(` `,a.usage,`
+`))},dependencies:[f,nr,ie,v,C,x,h,I,u],encapsulation:2})}};export{k as ImageComponent};

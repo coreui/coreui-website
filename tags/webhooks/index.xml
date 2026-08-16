@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Webhooks on CoreUI</title>
+    <link>https://coreui.io/tags/webhooks/</link>
+    <description>Recent content in Webhooks on CoreUI</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Jul 2026 22:54:06 +0200</lastBuildDate>
+    <atom:link href="https://coreui.io/tags/webhooks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to handle webhooks in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-webhooks-in-nodejs/</link>
+      <pubDate>Wed, 25 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-webhooks-in-nodejs/</guid>
+      <description>&lt;p&gt;Webhooks are HTTP POST requests from external services notifying your application about events — a Stripe payment succeeding, a GitHub push, or a PayPal subscription renewing.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built webhook handlers for payment processors, version control systems, and communication platforms where reliability and security are critical.&#xA;The two non-negotiable requirements are: verify the webhook signature before processing, and return 200 immediately then handle the event asynchronously.&#xA;Failing to verify signatures exposes you to spoofed events; slow synchronous processing risks timeouts and missed retries.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to build a payment API in Node.js</title>
+      <link>https://coreui.io/answers/how-to-build-a-payment-api-in-nodejs/</link>
+      <pubDate>Mon, 23 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-build-a-payment-api-in-nodejs/</guid>
+      <description>&lt;p&gt;A payment API in Node.js needs to create payment intents, handle webhook events from the payment provider, and update order status atomically when payment is confirmed.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built payment integrations for e-commerce platforms where a missed webhook means a customer paid but their order was never fulfilled.&#xA;The safest pattern creates a pending order, creates a Stripe payment intent referencing that order, and then fulfills the order only when Stripe confirms payment via webhook.&#xA;This decoupled approach handles network failures and browser closures gracefully.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

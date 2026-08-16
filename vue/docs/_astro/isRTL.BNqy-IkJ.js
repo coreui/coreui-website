@@ -1,0 +1,1 @@
+var e=e=>typeof document<`u`&&document.documentElement.dir===`rtl`?!0:e?e.closest(`[dir="rtl"]`)!==null:!1;export{e as t};

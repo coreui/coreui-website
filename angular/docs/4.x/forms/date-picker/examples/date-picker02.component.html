@@ -1,0 +1,19 @@
+<c-row>
+  <c-col lg="4">
+    <c-date-picker
+      [(date)]="date"
+      #datePicker="cDatePicker"
+      [calendarDate]="calendarDate"
+    >
+      <ng-template cTemplateId="datePickerFooter" let-dropdown>
+        <button cButton color="danger" variant="ghost" size="sm" (click)="onToday();" class="me-auto">Today</button>
+        <button cButton color="primary" size="sm" (click)="onCancel()" cDropdownClose [dropdownComponent]="dropdown">Cancel</button>
+        <button cButton color="primary" size="sm" [disabled]="!date" cDropdownClose [dropdownComponent]="dropdown">OK
+        </button>
+      </ng-template>
+    </c-date-picker>
+  </c-col>
+  <c-col class="d-flex align-items-center">
+    {{date | date}}
+  </c-col>
+</c-row>

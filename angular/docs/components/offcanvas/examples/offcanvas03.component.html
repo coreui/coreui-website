@@ -1,0 +1,50 @@
+<button cButton [cOffcanvasToggle]="offcanvasScroll.id()" class="me-1">Enable body scrolling</button>
+<button cButton [cOffcanvasToggle]="offcanvasNoBackdrop.id()" class="me-1">Disable backdrop</button>
+
+<c-offcanvas
+  id="OffcanvasScroll"
+  [scroll]="true"
+  placement="start"
+  #offcanvasScroll
+>
+  <c-offcanvas-header>
+    <h5 cOffcanvasTitle>Offcanvas Header</h5>
+    <button
+      aria-label="Close"
+      cButtonClose
+      [cOffcanvasToggle]="offcanvasScroll.id()"
+      class="text-reset ms-auto"
+    ></button>
+  </c-offcanvas-header>
+  <c-offcanvas-body>
+    <p>
+      Try scrolling the rest of the page to see this option in action.
+    </p>
+  </c-offcanvas-body>
+</c-offcanvas>
+
+<c-offcanvas
+  id="OffcanvasNoBackdrop"
+  [backdrop]="false"
+  [scroll]="true"
+  placement="end"
+  #offcanvasNoBackdrop
+>
+  <c-offcanvas-header>
+    <h5 cOffcanvasTitle>Offcanvas Header</h5>
+    <button
+      aria-label="Close"
+      cButtonClose
+      [cOffcanvasToggle]="offcanvasNoBackdrop.id()"
+      class="text-reset ms-auto"
+    ></button>
+  </c-offcanvas-header>
+  <c-offcanvas-body>
+    <p>
+      Try scrolling the rest of the page to see this option in action.
+    </p>
+  </c-offcanvas-body>
+</c-offcanvas>
+
+
+

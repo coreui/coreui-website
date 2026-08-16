@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.CA1CYuze.js";import{r as n,t as r}from"./props.iJK6YHEN.js";var i=e({name:`CCard`,props:{color:r,textBgColor:r,textColor:n},setup(e,{slots:n}){return()=>t(`div`,{class:[`card`,{[`bg-${e.color}`]:e.color,[`text-${e.textColor}`]:e.textColor,[`text-bg-${e.textBgColor}`]:e.textBgColor}]},n.default&&n.default())}});export{i as t};

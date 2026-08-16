@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime.C6cmW1Aq.js";import{t}from"./CFormCheck._eDRK3AX.js";var n=e(),r=()=>(0,n.jsx)(t,{button:{color:`primary`},id:`btn-check`,autoComplete:`off`,label:`Single toggle`});export{r as ChecksRadiosCheckboxToggleButtonsExample};

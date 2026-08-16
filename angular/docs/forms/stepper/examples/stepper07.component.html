@@ -1,0 +1,177 @@
+<form [formGroup]="stepperForm">
+  <c-stepper
+    #stepper
+    (finished)="handleFinish($event)"
+    (onReset)="handleReset()"
+    [(activeStepIndex)]="currentStep"
+    validation
+  >
+    <c-stepper-step [valid]="group_0.valid" label="Step 1">
+      <ng-container *ngTemplateOutlet="step0" />
+    </c-stepper-step>
+    <c-stepper-step [valid]="group_1.valid" label="Step 2">
+      <ng-container *ngTemplateOutlet="step1" />
+    </c-stepper-step>
+    <c-stepper-step [valid]="group_2.valid" label="Step 2">
+      <ng-container *ngTemplateOutlet="step2" />
+    </c-stepper-step>
+  </c-stepper>
+</form>
+
+<span>
+  @if (stepper.finishing()) {
+    <p>All steps have been completed.</p>
+    @for (form of formGroups; track $index) {
+      <div class="mb-0">
+        <code>{{ form.value | json }}</code>
+      </div>
+    }
+
+    @let disableReset = !stepper.finishing();
+    <hr />
+    <button (click)="stepper.reset()" [disabled]="disableReset" cButton color="danger">Reset</button>
+  } @else {
+    <ng-container *ngTemplateOutlet="navButtons" />
+  }
+</span>
+
+<ng-template #navButtons>
+  <hr />
+  @let disablePrev = stepper.activeStepIndex() === 0 || stepper.finishing();
+  <button (click)="stepper.prev()" [disabled]="disablePrev" cButton color="info">Prev</button>
+
+  @let finished = stepper.finishing();
+  @let nextCaption = stepper.activeStepIndex() === stepper.stepsCount() - 1 && !finished ? 'Finish' : 'Next';
+  <button (click)="handleNext(stepper)" [disabled]="finished" cButton color="primary">{{ nextCaption }}</button>
+
+  @let step = formGroups[stepper.activeStepIndex()];
+  current step: {{ stepper.activeStepIndex() + 1 }} / {{ stepper.stepsCount() }}
+  <c-badge [color]="step.valid ? 'success' : 'danger'">{{ step.status }}</c-badge>
+</ng-template>
+
+<ng-template #step0>
+  @let group = group_0;
+  @let firstName = group.get('firstName');
+  @let lastName = group.get('lastName');
+  @let userName = group.get('userName');
+  <!--  @let ctrl = group.controls;-->
+  <c-row [formGroup]="group" class="g-3 pb-5">
+    <c-col [md]="4">
+      <label cLabel for="userFirstName-07">First name</label>
+      <input
+        [valid]="firstName?.touched ? $safeNavigationMigration(firstName?.valid) : undefined"
+        cFormControl
+        formControlName="firstName"
+        id="userFirstName-07"
+      />
+    </c-col>
+    <c-col [md]="4">
+      <label cLabel for="userLastName-07">Last name</label>
+      <input
+        [valid]="lastName?.touched ? $safeNavigationMigration(lastName?.valid) : undefined"
+        cFormControl
+        formControlName="lastName"
+        id="userLastName-07"
+      />
+    </c-col>
+    <c-col [md]="4">
+      <label cLabel for="userName-07">Username</label>
+      <c-input-group>
+        <span cInputGroupText id="basic-addon1">&#64;</span>
+        <input
+          [valid]="userName?.touched ? $safeNavigationMigration(userName?.valid) : undefined"
+          aria-describedby="basic-addon1"
+          aria-label="Username"
+          autocomplete="off"
+          cFormControl
+          formControlName="userName"
+          id="userName-07"
+          required
+        />
+      </c-input-group>
+    </c-col>
+  </c-row>
+</ng-template>
+
+<ng-template #step1>
+  @let group = group_1;
+  @let address = group.get('address');
+  @let state = group.get('state');
+  @let zip = group.get('zip');
+  <c-row [formGroup]="group" class="g-3 pb-5">
+    <c-col [md]="6">
+      <label cLabel for="userAddress-07">City</label>
+      <input
+        [valid]="address?.touched ? $safeNavigationMigration(address?.valid) : undefined"
+        cFormControl
+        formControlName="address"
+        id="userAddress-07"
+      />
+    </c-col>
+    <c-col [md]="3">
+      <label cLabel for="userState-07">State</label>
+      <select
+        [valid]="state?.touched ? $safeNavigationMigration(state?.valid) : undefined"
+        aria-label="State select"
+        cSelect
+        formControlName="state"
+        id="userState-07"
+      >
+        <option disabled>Choose...</option>
+        @for (state of states; track state.code) {
+          <option [ngValue]="state.code">{{ state.name }}</option>
+        }
+      </select>
+    </c-col>
+    <c-col [md]="3">
+      <label cLabel for="userZip-07">Zip</label>
+      <input
+        [valid]="zip?.touched ? $safeNavigationMigration(zip?.valid) : undefined"
+        cFormControl
+        formControlName="zip"
+        id="userZip-07"
+      />
+    </c-col>
+  </c-row>
+</ng-template>
+
+<ng-template #step2>
+  @let group = group_2;
+  @let email = group.get('email');
+  @let password = group.get('password');
+  @let terms = group.get('terms');
+  <c-row [formGroup]="group" class="g-3 pb-1">
+    <c-col [md]="6">
+      <label cLabel for="userEmail-07">Email</label>
+      <input
+        [valid]="email?.touched ? $safeNavigationMigration(email?.valid) : undefined"
+        cFormControl
+        formControlName="email"
+        id="userEmail-07"
+        type="email"
+      />
+    </c-col>
+    <c-col [md]="6">
+      <label cLabel for="userPassword-07">Password</label>
+      <input
+        [valid]="password?.touched ? $safeNavigationMigration(password?.valid) : undefined"
+        autocomplete="new-password"
+        cFormPassword
+        formControlName="password"
+        id="userPassword-07"
+      />
+    </c-col>
+    <c-col>
+      <c-form-check>
+        <input
+          [valid]="terms?.touched ? $safeNavigationMigration(terms?.valid) : undefined"
+          cFormCheckInput
+          formControlName="terms"
+          id="userTerms-07"
+          type="checkbox"
+        />
+        <label cFormCheckLabel for="userTerms-07">Agree to terms and conditions</label>
+      </c-form-check>
+    </c-col>
+  </c-row>
+</ng-template>

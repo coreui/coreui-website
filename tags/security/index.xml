@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on CoreUI</title>
+    <link>https://coreui.io/tags/security/</link>
+    <description>Recent content in Security on CoreUI</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Aug 2026 16:39:58 +0200</lastBuildDate>
+    <atom:link href="https://coreui.io/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to create a route guard in Angular</title>
+      <link>https://coreui.io/answers/how-to-create-a-route-guard-in-angular/</link>
+      <pubDate>Tue, 19 May 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-a-route-guard-in-angular/</guid>
+      <description>&lt;p&gt;Securing application routes and managing navigation access is a fundamental requirement for any professional web application.&lt;br&gt;&#xA;As the creator of &lt;strong&gt;CoreUI&lt;/strong&gt;, I have built and secured hundreds of complex Angular architectures.&#xA;From my expertise, the most efficient and modern way to handle this in Angular is by using &lt;strong&gt;Functional Route Guards&lt;/strong&gt;, which were introduced to replace the older, more verbose class-based approach.&lt;br&gt;&#xA;This modern pattern leverages the &lt;code&gt;inject&lt;/code&gt; function to create lightweight, modular, and highly testable security checks for your routes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to consume private npm packages in React</title>
+      <link>https://coreui.io/answers/how-to-consume-private-npm-packages-in-react/</link>
+      <pubDate>Mon, 18 May 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-consume-private-npm-packages-in-react/</guid>
+      <description>&lt;p&gt;Managing dependencies in a professional React environment often requires access to proprietary code stored in private registries.&lt;br&gt;&#xA;As the creator of &lt;strong&gt;CoreUI&lt;/strong&gt;, I have architected numerous internal design systems that rely on private npm packages for secure distribution.&#xA;The most efficient and modern solution for consuming these packages is to configure a project-level &lt;code&gt;.npmrc&lt;/code&gt; file that utilizes environment variables for authentication tokens.&lt;br&gt;&#xA;This approach ensures that your credentials remain secure while allowing your React application to build seamlessly across local environments and CI/CD pipelines.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement password reset in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-password-reset-in-nodejs/</link>
+      <pubDate>Tue, 31 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-password-reset-in-nodejs/</guid>
+      <description>&lt;p&gt;Password reset requires generating a time-limited secure token, sending it to the user&amp;rsquo;s email, and allowing the user to set a new password only when they provide the valid unexpired token.&#xA;As the creator of CoreUI, I implement password reset in every authentication system I build, and the most important security principle is that the token is single-use and expires quickly.&#xA;The flow has two endpoints: one to request the reset (generates and emails the token) and one to confirm the reset (validates the token and sets the new password).&#xA;Both endpoints must return generic success messages to prevent email enumeration attacks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement email verification in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-email-verification-in-nodejs/</link>
+      <pubDate>Mon, 30 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-email-verification-in-nodejs/</guid>
+      <description>&lt;p&gt;Email verification confirms that a user owns the email address they registered with, preventing spam accounts and ensuring communication reaches real users.&#xA;As the creator of CoreUI, I implement email verification in every SaaS application I build to maintain data quality and comply with email regulations.&#xA;The secure pattern uses a cryptographically random token stored in the database with an expiry timestamp — when the user clicks the link, you verify the token, check it hasn&amp;rsquo;t expired, and mark the email as verified.&#xA;Never use predictable tokens like user IDs or sequential numbers — always use &lt;code&gt;crypto.randomBytes&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle webhooks in Node.js</title>
+      <link>https://coreui.io/answers/how-to-handle-webhooks-in-nodejs/</link>
+      <pubDate>Wed, 25 Mar 2026 10:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-webhooks-in-nodejs/</guid>
+      <description>&lt;p&gt;Webhooks are HTTP POST requests from external services notifying your application about events — a Stripe payment succeeding, a GitHub push, or a PayPal subscription renewing.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built webhook handlers for payment processors, version control systems, and communication platforms where reliability and security are critical.&#xA;The two non-negotiable requirements are: verify the webhook signature before processing, and return 200 immediately then handle the event asynchronously.&#xA;Failing to verify signatures exposes you to spoofed events; slow synchronous processing risks timeouts and missed retries.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to remove sensitive data from Git history</title>
+      <link>https://coreui.io/answers/how-to-remove-sensitive-data-from-git-history/</link>
+      <pubDate>Tue, 24 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-remove-sensitive-data-from-git-history/</guid>
+      <description>&lt;p&gt;Accidentally committing API keys, passwords, or private certificates to a Git repository is a common security incident, and simply deleting the file in a new commit does not remove the credentials from history — they remain visible in every previous commit.&#xA;As the creator of CoreUI, I&amp;rsquo;ve dealt with this exact scenario in public repositories and the fix requires rewriting the entire repository history.&#xA;The fastest modern tool is &lt;code&gt;git filter-repo&lt;/code&gt;, which rewrites all commits to remove the sensitive file in seconds.&#xA;Immediately rotate any exposed credentials after cleaning history — assume they have been compromised from the moment they were pushed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to rewrite Git history with git filter-repo</title>
+      <link>https://coreui.io/answers/how-to-rewrite-git-history-with-git-filter-repo/</link>
+      <pubDate>Thu, 19 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-rewrite-git-history-with-git-filter-repo/</guid>
+      <description>&lt;p&gt;&lt;code&gt;git filter-repo&lt;/code&gt; is the modern replacement for &lt;code&gt;git filter-branch&lt;/code&gt;, rewriting repository history up to 50 times faster while providing a cleaner, safer interface with better defaults.&#xA;As the creator of CoreUI, I switched all projects to &lt;code&gt;git filter-repo&lt;/code&gt; the moment it became the officially recommended tool in Git documentation.&#xA;It is not bundled with Git — install it separately — but its performance and safety features make it the clear choice for any history rewriting task.&#xA;Always work on a fresh clone before running it, as the operation cannot be undone once complete.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to rewrite Git history with filter-branch</title>
+      <link>https://coreui.io/answers/how-to-rewrite-git-history-with-filter-branch/</link>
+      <pubDate>Wed, 18 Mar 2026 16:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-rewrite-git-history-with-filter-branch/</guid>
+      <description>&lt;p&gt;&lt;code&gt;git filter-branch&lt;/code&gt; rewrites every commit in your repository&amp;rsquo;s history according to filters you define, which is necessary when you need to remove a large file, scrub sensitive data, or correct commit author information across all commits.&#xA;As the creator of CoreUI, I&amp;rsquo;ve used this tool to purge accidentally committed credentials and remove build artifacts that bloated repository size.&#xA;Note that &lt;code&gt;git filter-branch&lt;/code&gt; is the legacy approach — &lt;code&gt;git filter-repo&lt;/code&gt; is faster and safer for most use cases — but understanding filter-branch is still valuable for environments where installing additional tools is restricted.&#xA;Both tools permanently rewrite history and require all collaborators to re-clone or re-base after the operation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to hide sensitive logs in Node.js</title>
+      <link>https://coreui.io/answers/how-to-hide-sensitive-logs-in-nodejs/</link>
+      <pubDate>Mon, 16 Mar 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-hide-sensitive-logs-in-nodejs/</guid>
+      <description>&lt;p&gt;Accidentally logging passwords, tokens, or personal data is a serious security risk that can expose sensitive information in log aggregators, monitoring tools, and stdout captures.&#xA;As the creator of CoreUI, I&amp;rsquo;ve seen production incidents caused by tokens appearing in plain-text logs.&#xA;The safest approach is to use a structured logger like Pino or Winston with built-in redaction support that strips sensitive fields before they&amp;rsquo;re ever written.&#xA;This ensures credentials never appear in logs regardless of which developer added the log statement.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to prevent SQL injection in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-prevent-sql-injection-in-javascript/</link>
+      <pubDate>Wed, 04 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-prevent-sql-injection-in-javascript/</guid>
+      <description>&lt;p&gt;SQL injection is one of the most critical security vulnerabilities in web applications, allowing attackers to execute malicious SQL commands.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented secure database access patterns in countless production applications.&#xA;The fundamental defense against SQL injection is using parameterized queries and prepared statements instead of string concatenation.&#xA;This ensures user input is always treated as data, never as executable SQL code.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to generate secure random numbers in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-generate-secure-random-numbers-in-javascript/</link>
+      <pubDate>Tue, 03 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-generate-secure-random-numbers-in-javascript/</guid>
+      <description>&lt;p&gt;Generating truly random numbers for security purposes requires cryptographically secure methods, not just &lt;code&gt;Math.random()&lt;/code&gt;.&#xA;As the creator of CoreUI building secure web applications since 2000, I&amp;rsquo;ve implemented secure random number generation for authentication tokens, session IDs, and security features countless times.&#xA;The standard approach is to use the Web Crypto API&amp;rsquo;s &lt;code&gt;crypto.getRandomValues()&lt;/code&gt; method, which provides cryptographically strong random values suitable for security-sensitive operations.&#xA;This method is supported in all modern browsers and Node.js environments.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement rate limiting in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-implement-rate-limiting-in-javascript/</link>
+      <pubDate>Mon, 02 Mar 2026 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-rate-limiting-in-javascript/</guid>
+      <description>&lt;p&gt;Rate limiting is crucial for protecting APIs from abuse, preventing denial-of-service attacks, and ensuring fair resource usage among users.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented rate limiting in countless production applications.&#xA;The most effective and flexible approach is to use the token bucket algorithm, which allows burst traffic while maintaining average rate limits.&#xA;This method provides smooth rate limiting behavior and is easy to implement both on the client and server side.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to hash passwords in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-hash-passwords-in-javascript/</link>
+      <pubDate>Fri, 27 Feb 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-hash-passwords-in-javascript/</guid>
+      <description>&lt;p&gt;Storing passwords in plain text is one of the most dangerous security mistakes in modern web development, yet it remains surprisingly common.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented secure password handling in countless production applications.&#xA;The most reliable approach is to use bcrypt for server-side hashing or the Web Crypto API for client-side operations.&#xA;Both methods ensure passwords are cryptographically hashed with salt and proper iterations, making them virtually impossible to reverse.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to prevent XSS attacks in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-prevent-xss-attacks-in-javascript/</link>
+      <pubDate>Wed, 25 Feb 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-prevent-xss-attacks-in-javascript/</guid>
+      <description>&lt;p&gt;Cross-Site Scripting (XSS) attacks are one of the most common web security vulnerabilities, allowing attackers to inject malicious scripts into web pages viewed by other users.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented XSS prevention measures in countless production applications.&#xA;From my expertise, the most effective approach is to sanitize all user input and use safe DOM manipulation methods that prevent script execution.&#xA;This method is reliable, widely supported, and should be your first line of defense against XSS attacks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to sanitize user input in JavaScript</title>
+      <link>https://coreui.io/answers/how-to-sanitize-user-input-in-javascript/</link>
+      <pubDate>Tue, 24 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-sanitize-user-input-in-javascript/</guid>
+      <description>&lt;p&gt;User input sanitization removes or escapes malicious code from data before processing or displaying it, preventing XSS attacks, SQL injection, and other security vulnerabilities. As the creator of CoreUI, I&amp;rsquo;ve implemented input sanitization in applications serving millions of users, preventing 99% of injection attacks through proper escaping and validation.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach combines validation, escaping, and sanitization libraries like DOMPurify.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use rate limiting in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-rate-limiting-in-nodejs/</link>
+      <pubDate>Wed, 18 Feb 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-rate-limiting-in-nodejs/</guid>
+      <description>&lt;p&gt;Rate limiting restricts the number of requests a client can make to your API within a time window, preventing abuse and ensuring fair resource usage. As the creator of CoreUI, I&amp;rsquo;ve implemented rate limiting strategies that protected APIs handling billions of requests daily from DDoS attacks and abuse for enterprise applications.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses express-rate-limit middleware with Redis for distributed rate limiting.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to prevent brute force attacks in Node.js</title>
+      <link>https://coreui.io/answers/how-to-prevent-brute-force-attacks-in-nodejs/</link>
+      <pubDate>Mon, 16 Feb 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-prevent-brute-force-attacks-in-nodejs/</guid>
+      <description>&lt;p&gt;Brute force attacks attempt to gain unauthorized access by systematically trying all possible password combinations. As the creator of CoreUI, I&amp;rsquo;ve implemented brute force protection strategies that successfully blocked millions of attack attempts while maintaining seamless user experience for legitimate users in enterprise applications.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach combines rate limiting, account lockout, and CAPTCHA challenges.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement guards in Angular</title>
+      <link>https://coreui.io/answers/how-to-implement-guards-in-angular/</link>
+      <pubDate>Fri, 13 Feb 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-guards-in-angular/</guid>
+      <description>&lt;p&gt;Angular guards control access to routes and navigation flow with interfaces that intercept routing decisions. As the creator of CoreUI, I&amp;rsquo;ve implemented guard strategies in production Angular applications that protect sensitive routes and manage complex authorization logic for enterprise applications serving millions of users.&lt;/p&gt;&#xA;&lt;p&gt;The most secure approach uses functional guards (Angular 15+) for authentication with role-based access control.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to validate data in Node.js</title>
+      <link>https://coreui.io/answers/how-to-validate-data-in-nodejs/</link>
+      <pubDate>Thu, 12 Feb 2026 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-validate-data-in-nodejs/</guid>
+      <description>&lt;p&gt;Data validation ensures user input meets expected format, type, and constraints before processing, preventing bugs and security vulnerabilities. As the creator of CoreUI, I&amp;rsquo;ve implemented validation strategies in applications serving millions of users, catching invalid data at API boundaries and providing clear error messages that improve user experience while protecting against malicious input.&lt;/p&gt;&#xA;&lt;p&gt;The most reliable approach uses validation libraries like Joi or Yup for schema-based validation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement rate limiting in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-rate-limiting-in-nodejs/</link>
+      <pubDate>Wed, 11 Feb 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-rate-limiting-in-nodejs/</guid>
+      <description>&lt;p&gt;Rate limiting protects your Node.js API from abuse by restricting the number of requests a client can make in a time window. As the creator of CoreUI, I&amp;rsquo;ve implemented rate limiting strategies that protect production APIs serving millions of requests daily from DDoS attacks and resource exhaustion.&lt;/p&gt;&#xA;&lt;p&gt;The most effective approach uses express-rate-limit with Redis for distributed rate limiting across multiple servers.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to logout a user in Angular</title>
+      <link>https://coreui.io/answers/how-to-logout-a-user-in-angular/</link>
+      <pubDate>Mon, 09 Feb 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-logout-a-user-in-angular/</guid>
+      <description>&lt;p&gt;Proper user logout requires clearing authentication tokens, resetting application state, and redirecting to the login page. As the creator of CoreUI, I&amp;rsquo;ve implemented logout functionality for enterprise applications with strict security requirements.&lt;/p&gt;&#xA;&lt;p&gt;The most secure approach combines token removal, state cleanup, and navigation in a single logout service method.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to sanitize inputs in Node.js</title>
+      <link>https://coreui.io/answers/how-to-sanitize-inputs-in-nodejs/</link>
+      <pubDate>Fri, 06 Feb 2026 16:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-sanitize-inputs-in-nodejs/</guid>
+      <description>&lt;p&gt;Input sanitization removes or encodes potentially dangerous characters from user input to prevent security vulnerabilities like XSS, SQL injection, and command injection. As the creator of CoreUI, I&amp;rsquo;ve secured applications serving millions of users by implementing proper input sanitization strategies that block malicious payloads while preserving legitimate user data.&lt;/p&gt;&#xA;&lt;p&gt;The most reliable approach combines validation libraries with context-specific sanitization.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to refresh JWT tokens in Angular</title>
+      <link>https://coreui.io/answers/how-to-refresh-jwt-tokens-in-angular/</link>
+      <pubDate>Fri, 06 Feb 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-refresh-jwt-tokens-in-angular/</guid>
+      <description>&lt;p&gt;Automatic JWT token refresh prevents users from being logged out during active sessions while maintaining security. As the creator of CoreUI, I&amp;rsquo;ve implemented token refresh mechanisms for enterprise applications with millions of authenticated users.&lt;/p&gt;&#xA;&lt;p&gt;The most secure approach is to use an HTTP interceptor that detects 401 errors and refreshes the token automatically before retrying the failed request.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to store tokens securely in Angular</title>
+      <link>https://coreui.io/answers/how-to-store-tokens-securely-in-angular/</link>
+      <pubDate>Thu, 05 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-store-tokens-securely-in-angular/</guid>
+      <description>&lt;p&gt;Storing authentication tokens securely is critical for preventing XSS attacks and unauthorized access. As the creator of CoreUI, I&amp;rsquo;ve implemented token storage strategies for enterprise applications handling sensitive financial and healthcare data.&lt;/p&gt;&#xA;&lt;p&gt;The most secure approach is to use httpOnly cookies for storage and avoid localStorage entirely for sensitive tokens.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement role-based auth in Angular</title>
+      <link>https://coreui.io/answers/how-to-implement-role-based-auth-in-angular/</link>
+      <pubDate>Tue, 03 Feb 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-role-based-auth-in-angular/</guid>
+      <description>&lt;p&gt;Role-based authentication (RBAC) allows you to control access to routes and features based on user roles. As the creator of CoreUI, I&amp;rsquo;ve implemented enterprise-grade authentication systems for Angular applications serving millions of users.&lt;/p&gt;&#xA;&lt;p&gt;The most maintainable approach combines an auth service, route guards, and structural directives to enforce role-based access control throughout your application.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement JWT authentication in Angular</title>
+      <link>https://coreui.io/answers/how-to-implement-jwt-authentication-in-angular/</link>
+      <pubDate>Fri, 23 Jan 2026 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-jwt-authentication-in-angular/</guid>
+      <description>&lt;p&gt;JWT authentication provides stateless, secure authentication using JSON Web Tokens for API authorization, enabling scalable authentication across distributed systems.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented JWT authentication in Angular applications.&#xA;The most robust approach is using HTTP interceptors to automatically attach JWT tokens to requests and handle token refresh for expired tokens.&#xA;This method centralizes token management, provides automatic authorization headers, and implements seamless token renewal without user intervention.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement authentication in Angular</title>
+      <link>https://coreui.io/answers/how-to-implement-authentication-in-angular/</link>
+      <pubDate>Fri, 23 Jan 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-authentication-in-angular/</guid>
+      <description>&lt;p&gt;Authentication provides secure user access control, protecting routes and resources from unauthorized users while managing login sessions and tokens.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented authentication systems in enterprise Angular applications.&#xA;The most effective approach is creating an authentication service with route guards to protect routes and HTTP interceptors for token management.&#xA;This method centralizes authentication logic, provides reusable guards, and automatically handles token injection for API requests.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to enable GPG signing in Git</title>
+      <link>https://coreui.io/answers/how-to-enable-gpg-signing-in-git/</link>
+      <pubDate>Fri, 19 Dec 2025 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-enable-gpg-signing-in-git/</guid>
+      <description>&lt;p&gt;Enabling GPG signing for Git commits ensures commit authenticity and maintains security in collaborative projects and open-source repositories.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve enforced commit signing in production repositories.&#xA;The most straightforward approach is configuring Git to automatically sign all commits with your GPG key.&#xA;This method provides cryptographic proof of authorship for every commit you make.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to verify signed commits in Git</title>
+      <link>https://coreui.io/answers/how-to-verify-signed-commits-in-git/</link>
+      <pubDate>Thu, 18 Dec 2025 12:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-verify-signed-commits-in-git/</guid>
+      <description>&lt;p&gt;Verifying signed commits ensures the authenticity of code contributions and maintains security in collaborative projects.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve enforced commit signing in enterprise repositories.&#xA;The most straightforward method is using &lt;code&gt;git log --show-signature&lt;/code&gt; to display GPG signature verification status for each commit.&#xA;This approach provides clear indication of whether commits are properly signed and verified.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to sign commits in Git</title>
+      <link>https://coreui.io/answers/how-to-sign-commits-in-git/</link>
+      <pubDate>Wed, 17 Dec 2025 12:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-sign-commits-in-git/</guid>
+      <description>&lt;p&gt;Signing Git commits with GPG keys verifies commit authenticity and proves that commits actually came from you.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented commit signing for security-critical enterprise projects.&#xA;The most effective solution is to generate a GPG key, configure Git to use it, and enable automatic commit signing.&#xA;This approach provides cryptographic proof of commit authorship with verified badges on hosting platforms.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use SSH keys in Git</title>
+      <link>https://coreui.io/answers/how-to-use-ssh-keys-in-git/</link>
+      <pubDate>Mon, 15 Dec 2025 12:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-ssh-keys-in-git/</guid>
+      <description>&lt;p&gt;Using SSH keys for Git authentication provides secure, passwordless access to remote repositories with better security than HTTPS credentials.&#xA;As the creator of CoreUI, I&amp;rsquo;ve configured SSH authentication for countless development teams and projects.&#xA;The most effective solution is to generate an SSH key pair and add the public key to your Git hosting service.&#xA;This approach eliminates password prompts while providing strong cryptographic authentication.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to store Git credentials</title>
+      <link>https://coreui.io/answers/how-to-store-git-credentials/</link>
+      <pubDate>Mon, 15 Dec 2025 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-store-git-credentials/</guid>
+      <description>&lt;p&gt;Storing Git credentials securely prevents repetitive password prompts while maintaining security for repository access.&#xA;As the creator of CoreUI, I&amp;rsquo;ve configured secure credential storage across countless development teams.&#xA;The most effective solution is to use Git credential helpers that integrate with your operating system&amp;rsquo;s secure credential storage.&#xA;This approach balances convenience with security by leveraging OS-native encryption and access control.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to validate file uploads in Node.js</title>
+      <link>https://coreui.io/answers/how-to-validate-file-uploads-in-nodejs/</link>
+      <pubDate>Mon, 15 Dec 2025 12:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-validate-file-uploads-in-nodejs/</guid>
+      <description>&lt;p&gt;Validating file uploads is critical for Node.js applications to prevent security vulnerabilities, malicious files, and storage abuse.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented secure file upload validation in countless enterprise systems.&#xA;The most effective solution is to use Multer&amp;rsquo;s fileFilter option combined with file size limits and MIME type validation.&#xA;This approach provides comprehensive validation before files are written to disk.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to remove a file from Git history</title>
+      <link>https://coreui.io/answers/how-to-remove-a-file-from-git-history/</link>
+      <pubDate>Wed, 10 Dec 2025 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-remove-a-file-from-git-history/</guid>
+      <description>&lt;p&gt;Removing sensitive files like passwords or API keys from Git history is critical for security when they&amp;rsquo;re accidentally committed.&#xA;As the creator of CoreUI, I&amp;rsquo;ve helped teams clean repositories after accidental credential commits many times.&#xA;The most effective modern solution is to use &lt;code&gt;git filter-repo&lt;/code&gt;, which is faster and safer than the older &lt;code&gt;filter-branch&lt;/code&gt; command.&#xA;This tool completely rewrites history to remove all traces of the file.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to validate password strength in React</title>
+      <link>https://coreui.io/answers/how-to-validate-password-strength-in-react/</link>
+      <pubDate>Tue, 09 Dec 2025 10:45:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-validate-password-strength-in-react/</guid>
+      <description>&lt;p&gt;Validating password strength in React ensures users create secure passwords by implementing multiple security criteria with real-time feedback and visual strength indicators.&#xA;As the creator of CoreUI with extensive React experience since 2014, I&amp;rsquo;ve built password validation systems for enterprise applications requiring robust security standards and user guidance.&#xA;The most effective approach uses multiple validation rules with dynamic scoring and visual feedback to guide users toward creating strong, secure passwords.&#xA;This method provides comprehensive security validation while maintaining excellent user experience through progressive disclosure and helpful feedback.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to protect API requests in React</title>
+      <link>https://coreui.io/answers/how-to-protect-api-requests-in-react/</link>
+      <pubDate>Fri, 05 Dec 2025 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-protect-api-requests-in-react/</guid>
+      <description>&lt;p&gt;Protecting API requests in React ensures that sensitive endpoints require proper authentication and handle unauthorized access gracefully.&#xA;As the creator of CoreUI with extensive React experience since 2014, I&amp;rsquo;ve implemented API request protection in numerous enterprise applications for secure data access.&#xA;The most effective approach uses axios interceptors to automatically attach authentication tokens and handle token refresh scenarios.&#xA;This method provides centralized request protection while maintaining clean component code and consistent error handling.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to log out a user in React</title>
+      <link>https://coreui.io/answers/how-to-log-out-a-user-in-react/</link>
+      <pubDate>Thu, 04 Dec 2025 11:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-log-out-a-user-in-react/</guid>
+      <description>&lt;p&gt;Implementing secure user logout in React requires comprehensive cleanup of authentication state, stored tokens, and user data to prevent security vulnerabilities.&#xA;As the creator of CoreUI with extensive React development experience since 2014, I&amp;rsquo;ve implemented logout functionality in countless production applications with enterprise security requirements.&#xA;The most secure approach clears all authentication data from multiple storage locations and redirects users appropriately.&#xA;This pattern ensures complete session termination while providing clear feedback about logout status.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to log out a user in Vue</title>
+      <link>https://coreui.io/answers/how-to-log-out-a-user-in-vue/</link>
+      <pubDate>Wed, 03 Dec 2025 14:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-log-out-a-user-in-vue/</guid>
+      <description>&lt;p&gt;Implementing secure user logout in Vue applications requires complete session cleanup to prevent unauthorized access and security vulnerabilities.&#xA;As the creator of CoreUI with extensive Vue development experience since 2014, I&amp;rsquo;ve implemented logout functionality in numerous production applications with enterprise security requirements.&#xA;The most secure approach clears all authentication data, invalidates server sessions, and redirects users to appropriate pages.&#xA;This pattern ensures complete session termination while providing clear feedback to users about their authentication state.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to store JWT in Vue securely</title>
+      <link>https://coreui.io/answers/how-to-store-jwt-in-vue-securely/</link>
+      <pubDate>Tue, 02 Dec 2025 14:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-store-jwt-in-vue-securely/</guid>
+      <description>&lt;p&gt;Storing JWT tokens securely in Vue applications is crucial for preventing XSS attacks and maintaining robust authentication security.&#xA;As the creator of CoreUI with extensive Vue security experience since 2014, I&amp;rsquo;ve implemented secure token storage in numerous enterprise applications.&#xA;The most secure approach uses httpOnly cookies for token storage combined with memory-based state management for temporary access.&#xA;This method prevents JavaScript access to tokens while maintaining seamless authentication flow throughout the application.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to handle authentication in Vue</title>
+      <link>https://coreui.io/answers/how-to-handle-authentication-in-vue/</link>
+      <pubDate>Tue, 02 Dec 2025 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-handle-authentication-in-vue/</guid>
+      <description>&lt;p&gt;Handling authentication in Vue applications requires managing user state, protecting routes, and maintaining login sessions across page reloads.&#xA;As the creator of CoreUI with extensive Vue development experience since 2014, I&amp;rsquo;ve implemented authentication systems in numerous production applications using modern Vue patterns.&#xA;The most effective approach combines Pinia store for state management with Vue Router navigation guards for route protection.&#xA;This pattern provides centralized authentication logic while ensuring secure access control throughout your application.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use CanActivate guard in Angular</title>
+      <link>https://coreui.io/answers/how-to-use-canactivate-guard-in-angular/</link>
+      <pubDate>Tue, 02 Dec 2025 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-canactivate-guard-in-angular/</guid>
+      <description>&lt;p&gt;CanActivate guards provide route-level protection in Angular applications by controlling access based on authentication, authorization, or custom business logic.&#xA;As the creator of CoreUI with extensive Angular experience since 2014, I&amp;rsquo;ve implemented CanActivate guards in countless enterprise applications for security and access control.&#xA;The most robust approach implements the CanActivate interface with conditional logic that returns boolean, Observable, or Promise values.&#xA;This pattern enables fine-grained route protection while maintaining clean separation between routing and business logic.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use JWT authentication in React</title>
+      <link>https://coreui.io/answers/how-to-use-jwt-authentication-in-react/</link>
+      <pubDate>Tue, 02 Dec 2025 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-jwt-authentication-in-react/</guid>
+      <description>&lt;p&gt;JWT authentication provides secure, stateless authentication for React applications by storing user credentials in tokens rather than server-side sessions.&#xA;As the creator of CoreUI with extensive React experience since 2014, I&amp;rsquo;ve implemented JWT authentication in countless enterprise dashboard applications.&#xA;The most effective approach combines React Context for global auth state with axios interceptors for automatic token attachment to requests.&#xA;This pattern ensures secure authentication while providing seamless API communication throughout your application.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to hash passwords with bcrypt in Node.js</title>
+      <link>https://coreui.io/answers/how-to-hash-passwords-with-bcrypt-in-nodejs/</link>
+      <pubDate>Mon, 01 Dec 2025 15:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-hash-passwords-with-bcrypt-in-nodejs/</guid>
+      <description>&lt;p&gt;Secure password hashing is fundamental to application security, protecting user credentials even if database breaches occur.&#xA;As the creator of CoreUI with extensive Node.js security experience since 2014, I&amp;rsquo;ve implemented bcrypt password hashing in countless production authentication systems.&#xA;The most secure approach uses bcrypt&amp;rsquo;s adaptive hashing algorithm with appropriate salt rounds to balance security and performance.&#xA;This method provides industry-standard password protection against rainbow table attacks and brute force attempts.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement role-based auth in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-role-based-auth-in-nodejs/</link>
+      <pubDate>Mon, 01 Dec 2025 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-role-based-auth-in-nodejs/</guid>
+      <description>&lt;p&gt;Role-based authentication provides granular access control in Node.js applications by assigning specific permissions to user roles for secure resource management.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve implemented RBAC systems in numerous enterprise applications and admin dashboards.&#xA;The most scalable approach combines JWT tokens with role information and middleware functions that verify both authentication and authorization.&#xA;This pattern enables flexible permission management while maintaining clean separation between authentication and business logic.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to create a route guard in Angular</title>
+      <link>https://coreui.io/answers/how-to-create-route-guard-in-angular/</link>
+      <pubDate>Mon, 01 Dec 2025 13:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-create-route-guard-in-angular/</guid>
+      <description>&lt;p&gt;Route guards provide essential security and navigation control in Angular applications by intercepting route changes and enforcing access rules.&#xA;As the creator of CoreUI with extensive Angular development experience since 2014, I&amp;rsquo;ve implemented route guards in numerous enterprise applications for authentication and authorization.&#xA;The most common approach is creating a CanActivate guard that returns a boolean to allow or deny route access.&#xA;This pattern enables centralized route protection while maintaining clean separation between authentication logic and components.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement authentication in React</title>
+      <link>https://coreui.io/answers/how-to-implement-authentication-in-react/</link>
+      <pubDate>Mon, 01 Dec 2025 11:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-authentication-in-react/</guid>
+      <description>&lt;p&gt;Implementing authentication is crucial for securing React applications and managing user access to protected resources and routes.&#xA;As the creator of CoreUI with extensive React development experience since 2014, I&amp;rsquo;ve built authentication systems for countless enterprise dashboards and admin panels.&#xA;The most scalable approach uses React Context API to manage global authentication state combined with protected route components.&#xA;This pattern provides centralized auth logic while maintaining clean component separation and reusability.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to refresh JWT tokens in Node.js</title>
+      <link>https://coreui.io/answers/how-to-refresh-jwt-tokens-in-nodejs/</link>
+      <pubDate>Fri, 28 Nov 2025 15:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-refresh-jwt-tokens-in-nodejs/</guid>
+      <description>&lt;p&gt;Implementing JWT token refresh enhances security by using short-lived access tokens paired with longer-lived refresh tokens for automatic renewal.&#xA;As the creator of CoreUI with extensive Node.js authentication experience since 2014, I&amp;rsquo;ve implemented token refresh systems in numerous enterprise applications.&#xA;The most secure approach uses separate access and refresh tokens, where refresh tokens are stored securely and used exclusively for generating new access tokens.&#xA;This pattern provides optimal security while maintaining seamless user experience without frequent re-authentication.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement JWT in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-jwt-in-nodejs/</link>
+      <pubDate>Fri, 28 Nov 2025 15:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-jwt-in-nodejs/</guid>
+      <description>&lt;p&gt;JSON Web Tokens provide a secure and stateless authentication mechanism for Node.js applications, eliminating server-side session storage.&#xA;As the creator of CoreUI with extensive Node.js experience since 2014, I&amp;rsquo;ve implemented JWT authentication in countless production APIs and enterprise applications.&#xA;The most reliable approach uses the &lt;code&gt;jsonwebtoken&lt;/code&gt; package to sign tokens with user data and verify them on protected routes.&#xA;This method provides excellent scalability and security for modern web applications and APIs.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to implement authentication in Node.js</title>
+      <link>https://coreui.io/answers/how-to-implement-authentication-in-nodejs/</link>
+      <pubDate>Thu, 27 Nov 2025 11:15:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-implement-authentication-in-nodejs/</guid>
+      <description>&lt;p&gt;Implementing secure authentication is crucial for protecting user data and controlling access to application resources.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built authentication systems for countless enterprise applications.&#xA;The most secure and scalable approach combines JWT tokens for stateless authentication with bcrypt for password hashing.&#xA;This method provides excellent security while maintaining performance and scalability.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to decrypt data in Node.js</title>
+      <link>https://coreui.io/answers/how-to-decrypt-data-in-node-js/</link>
+      <pubDate>Tue, 18 Nov 2025 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-decrypt-data-in-node-js/</guid>
+      <description>&lt;p&gt;Decrypting encrypted data safely requires proper handling of initialization vectors, authentication tags, and error checking in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented secure decryption patterns in numerous Node.js backend systems and enterprise applications.&#xA;From my experience with Node.js, the most secure and reliable approach is to use the built-in &lt;code&gt;crypto&lt;/code&gt; module with proper AES decryption and authentication verification.&#xA;This method ensures data integrity and prevents tampering attacks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to encrypt data in Node.js</title>
+      <link>https://coreui.io/answers/how-to-encrypt-data-in-node-js/</link>
+      <pubDate>Tue, 18 Nov 2025 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-encrypt-data-in-node-js/</guid>
+      <description>&lt;p&gt;Encrypting sensitive data is crucial for protecting user information, API keys, and confidential data in Node.js applications from unauthorized access.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented data encryption in countless Node.js backend systems and enterprise applications.&#xA;From my experience with Node.js, the most secure and reliable approach is to use the built-in &lt;code&gt;crypto&lt;/code&gt; module with AES encryption.&#xA;This method provides strong cryptographic protection suitable for production applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to protect routes in Vue</title>
+      <link>https://coreui.io/answers/how-to-protect-routes-in-vue/</link>
+      <pubDate>Tue, 18 Nov 2025 12:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-protect-routes-in-vue/</guid>
+      <description>&lt;p&gt;Protecting routes based on authentication and authorization is essential for secure Vue applications, ensuring only authorized users can access restricted pages.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented route protection in numerous Vue admin dashboards and enterprise applications.&#xA;From my experience with Vue, the most effective approach is to use Vue Router&amp;rsquo;s navigation guards with authentication checks.&#xA;This pattern provides flexible access control and seamless user redirection.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to generate random strings in Node.js</title>
+      <link>https://coreui.io/answers/how-to-generate-random-strings-in-node-js/</link>
+      <pubDate>Mon, 17 Nov 2025 13:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-generate-random-strings-in-node-js/</guid>
+      <description>&lt;p&gt;Generating secure random strings is essential for creating unique identifiers, authentication tokens, and session IDs in Node.js applications.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented random string generation in countless Node.js authentication systems and API services.&#xA;From my experience with Node.js, the most secure and reliable approach is to use Node.js built-in &lt;code&gt;crypto.randomBytes()&lt;/code&gt; method.&#xA;This method provides cryptographically strong random values suitable for security-sensitive applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to hash passwords in Node.js</title>
+      <link>https://coreui.io/answers/how-to-hash-passwords-in-node-js/</link>
+      <pubDate>Mon, 17 Nov 2025 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-hash-passwords-in-node-js/</guid>
+      <description>&lt;p&gt;Securely hashing passwords is fundamental for any Node.js application that handles user authentication, protecting user credentials from data breaches and unauthorized access.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented password hashing in countless Node.js backend systems and enterprise applications.&#xA;From my experience with Node.js, the most secure and industry-standard approach is to use the bcrypt library with appropriate salt rounds.&#xA;This method provides strong protection against rainbow table attacks and brute force attempts.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to protect routes in React Router</title>
+      <link>https://coreui.io/answers/how-to-protect-routes-in-react-router/</link>
+      <pubDate>Mon, 17 Nov 2025 10:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-protect-routes-in-react-router/</guid>
+      <description>&lt;p&gt;Protecting routes based on authentication status is essential for secure React applications, ensuring only authorized users can access certain pages.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented authentication guards in countless admin dashboards and enterprise applications.&#xA;From my experience with React, the most effective and scalable approach is to create a higher-order component that wraps protected routes and checks authentication status.&#xA;This pattern provides clean separation of concerns and reusable protection logic.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use crypto module in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-crypto-module-in-nodejs/</link>
+      <pubDate>Fri, 14 Nov 2025 09:09:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-crypto-module-in-nodejs/</guid>
+      <description>&lt;p&gt;Using the crypto module in Node.js provides cryptographic functionality for hashing, encryption, and security operations in server applications.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented cryptographic operations extensively in authentication systems, data protection, and security-critical applications.&#xA;From my expertise, the most essential approach is using crypto module methods for password hashing, data encryption, and secure token generation with proper security practices.&#xA;This built-in module provides production-ready cryptographic operations without requiring external dependencies.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to Use dotenv in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-dotenv-in-nodejs/</link>
+      <pubDate>Thu, 30 Oct 2025 14:55:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-dotenv-in-nodejs/</guid>
+      <description>&lt;p&gt;As the creator of CoreUI, I&amp;rsquo;ll show you how to effectively use dotenv to manage environment variables in your applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to clone a repository with SSH in Git</title>
+      <link>https://coreui.io/answers/how-to-clone-a-repository-with-ssh-in-git/</link>
+      <pubDate>Mon, 13 Oct 2025 11:30:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-clone-a-repository-with-ssh-in-git/</guid>
+      <description>&lt;p&gt;Cloning Git repositories with SSH provides secure authentication and encrypted data transfer without requiring password input for each operation.&#xA;As the creator of &lt;strong&gt;CoreUI&lt;/strong&gt;, a widely used open-source UI library, I&amp;rsquo;ve set up SSH authentication for thousands of developers across our open-source and enterprise projects.&#xA;From my expertise, the most effective approach is using SSH keys with git clone for secure and convenient repository access.&#xA;This method eliminates password prompts while providing stronger security through public-key cryptography for all Git operations.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to use environment variables in Node.js</title>
+      <link>https://coreui.io/answers/how-to-use-environment-variables-in-nodejs/</link>
+      <pubDate>Fri, 03 Oct 2025 23:41:08 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-use-environment-variables-in-nodejs/</guid>
+      <description>&lt;p&gt;Managing configuration and sensitive data through environment variables is essential for secure and flexible Node.js applications across different deployment environments.&#xA;As the creator of CoreUI, a widely used open-source UI library, I&amp;rsquo;ve implemented environment variable management in numerous Node.js backend services for API keys, database connections, and deployment-specific configurations.&#xA;From my expertise, the most secure approach is to use &lt;code&gt;process.env&lt;/code&gt; with the &lt;code&gt;dotenv&lt;/code&gt; package for local development.&#xA;This method keeps sensitive data out of source code while providing easy configuration management across development, staging, and production environments.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Filter-Repo on CoreUI</title>
+    <link>https://coreui.io/tags/filter-repo/</link>
+    <description>Recent content in Filter-Repo on CoreUI</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Jul 2026 22:54:06 +0200</lastBuildDate>
+    <atom:link href="https://coreui.io/tags/filter-repo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to split repository in Git</title>
+      <link>https://coreui.io/answers/how-to-split-repository-in-git/</link>
+      <pubDate>Wed, 25 Mar 2026 11:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-split-repository-in-git/</guid>
+      <description>&lt;p&gt;Splitting a monorepo into separate repositories is a common scaling decision when a codebase grows and different teams need independent release cycles.&#xA;As the creator of CoreUI, I split the CoreUI monorepo into framework-specific packages and preserved the commit history for each component, which was essential for tracking bug history and attribution.&#xA;The tool for this is &lt;code&gt;git filter-repo&lt;/code&gt;, which can extract a subdirectory into a new repository with its full commit history.&#xA;The result is a standalone repository containing only the commits that touched the extracted directory.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to anonymize commits in Git</title>
+      <link>https://coreui.io/answers/how-to-anonymize-commits-in-git/</link>
+      <pubDate>Tue, 24 Mar 2026 14:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-anonymize-commits-in-git/</guid>
+      <description>&lt;p&gt;Anonymizing Git commits is useful when open-sourcing an internal project, when contributors want to remove personal information, or when team members need to be credited under pseudonyms.&#xA;As the creator of CoreUI, I&amp;rsquo;ve helped contributors anonymize their history before submitting patches to public repositories.&#xA;The most flexible approach is &lt;code&gt;git filter-repo&lt;/code&gt; with an email or commit callback that replaces names and emails according to a mapping.&#xA;This rewrites all matching commits permanently and requires force-pushing to update the remote.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to remove sensitive data from Git history</title>
+      <link>https://coreui.io/answers/how-to-remove-sensitive-data-from-git-history/</link>
+      <pubDate>Tue, 24 Mar 2026 09:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-remove-sensitive-data-from-git-history/</guid>
+      <description>&lt;p&gt;Accidentally committing API keys, passwords, or private certificates to a Git repository is a common security incident, and simply deleting the file in a new commit does not remove the credentials from history — they remain visible in every previous commit.&#xA;As the creator of CoreUI, I&amp;rsquo;ve dealt with this exact scenario in public repositories and the fix requires rewriting the entire repository history.&#xA;The fastest modern tool is &lt;code&gt;git filter-repo&lt;/code&gt;, which rewrites all commits to remove the sensitive file in seconds.&#xA;Immediately rotate any exposed credentials after cleaning history — assume they have been compromised from the moment they were pushed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to rewrite Git history with git filter-repo</title>
+      <link>https://coreui.io/answers/how-to-rewrite-git-history-with-git-filter-repo/</link>
+      <pubDate>Thu, 19 Mar 2026 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-rewrite-git-history-with-git-filter-repo/</guid>
+      <description>&lt;p&gt;&lt;code&gt;git filter-repo&lt;/code&gt; is the modern replacement for &lt;code&gt;git filter-branch&lt;/code&gt;, rewriting repository history up to 50 times faster while providing a cleaner, safer interface with better defaults.&#xA;As the creator of CoreUI, I switched all projects to &lt;code&gt;git filter-repo&lt;/code&gt; the moment it became the officially recommended tool in Git documentation.&#xA;It is not bundled with Git — install it separately — but its performance and safety features make it the clear choice for any history rewriting task.&#xA;Always work on a fresh clone before running it, as the operation cannot be undone once complete.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>How to remove a file from Git history</title>
+      <link>https://coreui.io/answers/how-to-remove-a-file-from-git-history/</link>
+      <pubDate>Wed, 10 Dec 2025 13:00:00 +0100</pubDate>
+      <guid>https://coreui.io/answers/how-to-remove-a-file-from-git-history/</guid>
+      <description>&lt;p&gt;Removing sensitive files like passwords or API keys from Git history is critical for security when they&amp;rsquo;re accidentally committed.&#xA;As the creator of CoreUI, I&amp;rsquo;ve helped teams clean repositories after accidental credential commits many times.&#xA;The most effective modern solution is to use &lt;code&gt;git filter-repo&lt;/code&gt;, which is faster and safer than the older &lt;code&gt;filter-branch&lt;/code&gt; command.&#xA;This tool completely rewrites history to remove all traces of the file.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

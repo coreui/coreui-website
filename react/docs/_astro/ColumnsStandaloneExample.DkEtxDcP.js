@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime.C6cmW1Aq.js";import{t}from"./CCol.AIk3VqR8.js";var n=e(),r=()=>(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(t,{xs:3,className:`bg-light p-3 border`,children:`.col-3: width of 25%`}),(0,n.jsx)(t,{sm:9,className:`bg-light p-3 border`,children:`.col-sm-9: width of 75% above sm breakpoint`})]});export{r as ColumnsStandaloneExample};

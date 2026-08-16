@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CChipSet.BJkgNMSl.js";e();var r=t(),i=()=>(0,r.jsx)(n,{selectable:!0,selectionMode:`single`,chips:[`Small`,`Medium`,`Large`],defaultSelected:[`Small`]});export{i as ChipSetSingleExample};

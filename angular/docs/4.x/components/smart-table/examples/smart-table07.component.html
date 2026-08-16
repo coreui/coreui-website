@@ -1,0 +1,19 @@
+<c-smart-table
+  [itemsPerPage]="5"
+  [items]="usersData"
+  [tableProps]="{ hover: true, striped: true, responsive: true }"
+  header
+  pagination
+  selectable
+  (selectedItemsChange)="onSelectedItemsChange($event)"
+  #table="cSmartTable"
+>
+  <ng-template cTemplateId="tableSummaryRow">
+    <tr cTableColor="info">
+      <th style="width: 15%;">Selected: {{selectedItemsCount()}}.</th>
+      <th [attr.colspan]="table.columns?.length">
+        Items count: {{usersData?.length ?? 0}}.
+      </th>
+    </tr>
+  </ng-template>
+</c-smart-table>
