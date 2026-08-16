@@ -59,32 +59,6 @@
   gap: 0.25rem;
 }
 
-.scheduler-nav-button,
-.scheduler-view-button {
-  padding: 0.25rem 0.625rem;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-  background: transparent;
-  border: 1px solid var(--cui-scheduler-border-color);
-  border-radius: var(--cui-scheduler-event-border-radius);
-}
-.scheduler-nav-button:hover,
-.scheduler-view-button:hover {
-  background: var(--cui-scheduler-button-hover-bg);
-}
-.scheduler-nav-button:focus-visible,
-.scheduler-view-button:focus-visible {
-  outline: var(--cui-scheduler-focus-ring-width) solid var(--cui-scheduler-focus-ring-color);
-  outline-offset: 1px;
-}
-.scheduler-nav-button[aria-pressed=true],
-.scheduler-view-button[aria-pressed=true] {
-  color: var(--cui-scheduler-button-active-color);
-  background: var(--cui-scheduler-button-active-bg);
-  border-color: currentcolor;
-}
-
 .scheduler-title {
   font-weight: 600;
 }
@@ -573,23 +547,10 @@ html:has(.scheduler-dialog-host[open]) {
   color: var(--cui-scheduler-muted-color);
 }
 
-.scheduler-dialog-input,
-.scheduler-dialog-field .scheduler-popover-select {
-  padding: 0.25rem 0.5rem;
-  font: inherit;
-  color: inherit;
-  background: var(--cui-scheduler-bg);
-  border: 1px solid var(--cui-scheduler-border-color);
-  border-radius: var(--cui-scheduler-event-border-radius);
-}
-
 .scheduler-dialog-color {
   width: 3rem;
-  height: 2rem;
+  height: calc(1.5em + var(--cui-btn-input-sm-padding-y, 0.25rem) * 2 + 2px);
   padding: 0.125rem;
-  background: var(--cui-scheduler-bg);
-  border: 1px solid var(--cui-scheduler-border-color);
-  border-radius: var(--cui-scheduler-event-border-radius);
 }
 
 .scheduler-dialog-footer {
@@ -598,18 +559,8 @@ html:has(.scheduler-dialog-host[open]) {
   justify-content: flex-end;
   margin-top: 0.25rem;
 }
-.scheduler-dialog-footer .scheduler-popover-delete {
+.scheduler-dialog-footer .scheduler-delete-button {
   margin-inline-end: auto;
-}
-
-.scheduler-dialog-save {
-  padding: 0.25rem 0.75rem;
-  font: inherit;
-  color: var(--cui-scheduler-event-color);
-  cursor: pointer;
-  background: var(--cui-scheduler-event-bg);
-  border: 1px solid transparent;
-  border-radius: var(--cui-scheduler-event-border-radius);
 }
 
 .scheduler-event-popover {
@@ -636,25 +587,10 @@ html:has(.scheduler-dialog-host[open]) {
   color: var(--cui-scheduler-muted-color);
 }
 
-.scheduler-popover-select {
-  font: inherit;
-  color: inherit;
-  background: var(--cui-scheduler-bg);
-  border: 1px solid var(--cui-scheduler-border-color);
-  border-radius: var(--cui-scheduler-event-border-radius);
-}
-
-.scheduler-popover-delete {
-  padding: 0.125rem 0.5rem;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-  background: transparent;
-  border: 1px solid var(--cui-scheduler-border-color);
-  border-radius: var(--cui-scheduler-event-border-radius);
-}
-.scheduler-popover-delete:hover {
-  background: var(--cui-scheduler-button-hover-bg);
+.scheduler-delete-button {
+  --cui-btn-color: var(--cui-danger);
+  --cui-btn-hover-color: var(--cui-danger);
+  --cui-btn-active-color: var(--cui-danger);
 }
 
 .scheduler-time-slot:focus-visible {

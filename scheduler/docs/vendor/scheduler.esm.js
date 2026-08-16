@@ -9150,9 +9150,9 @@ function createRenderer(element, callbacks) {
 	element.dataset.part = "root";
 	const toolbar = el("div", "scheduler-toolbar", "toolbar");
 	const nav = el("div", "scheduler-toolbar-nav");
-	const prevButton = el("button", "scheduler-nav-button", "nav-prev");
-	const todayButton = el("button", "scheduler-nav-button scheduler-nav-today", "nav-today");
-	const nextButton = el("button", "scheduler-nav-button", "nav-next");
+	const prevButton = el("button", "btn btn-ghost btn-sm", "nav-prev");
+	const todayButton = el("button", "btn btn-ghost btn-sm", "nav-today");
+	const nextButton = el("button", "btn btn-ghost btn-sm", "nav-next");
 	const title = el("div", "scheduler-title", "title");
 	const viewSwitch = el("div", "scheduler-view-switch", "view-switch");
 	prevButton.type = "button";
@@ -9301,11 +9301,12 @@ function createRenderer(element, callbacks) {
 		];
 		viewSwitch.setAttribute("aria-label", labels.views);
 		viewSwitch.replaceChildren(...views.map(({ view, label }) => {
-			const button = el("button", "scheduler-view-button", "view-button");
+			const button = el("button", "btn btn-ghost btn-sm", "view-button");
 			button.type = "button";
 			button.dataset.coreuiView = view;
 			button.textContent = label;
 			button.setAttribute("aria-pressed", String(view === ctx.view));
+			button.classList.toggle("active", view === ctx.view);
 			return button;
 		}));
 	};
@@ -9731,7 +9732,7 @@ function createRenderer(element, callbacks) {
 		return wrap;
 	};
 	const selectField = (part, labelText, options, value) => {
-		const select = el("select", "scheduler-popover-select", part);
+		const select = el("select", "form-select form-select-sm", part);
 		const known = options.some(([optionValue]) => optionValue === value);
 		for (const [optionValue, text] of known ? options : [...options, [value, value]]) {
 			const option = document.createElement("option");
@@ -9758,12 +9759,12 @@ function createRenderer(element, callbacks) {
 		const heading = el("div", "scheduler-dialog-title");
 		heading.textContent = labels.editEvent;
 		card.append(heading);
-		const titleInput = el("input", "scheduler-dialog-input", "title-input");
+		const titleInput = el("input", "form-control form-control-sm", "title-input");
 		titleInput.type = "text";
 		titleInput.value = occurrence.event.title ?? "";
 		card.append(field(labels.titleLabel, titleInput));
-		const startInput = el("input", "scheduler-dialog-input", "start-input");
-		const endInput = el("input", "scheduler-dialog-input", "end-input");
+		const startInput = el("input", "form-control form-control-sm", "start-input");
+		const endInput = el("input", "form-control form-control-sm", "end-input");
 		if (occurrence.allDay) {
 			startInput.type = "date";
 			startInput.value = occurrence.start.toPlainDate().toString();
@@ -9776,7 +9777,7 @@ function createRenderer(element, callbacks) {
 			endInput.value = localDateTimeValue(occurrence.end);
 		}
 		card.append(field(labels.startLabel, startInput), field(labels.endLabel, endInput));
-		const colorInput = el("input", "scheduler-dialog-color", "color-input");
+		const colorInput = el("input", "form-control form-control-sm scheduler-dialog-color", "color-input");
 		colorInput.type = "color";
 		colorInput.value = /^#[0-9a-f]{6}$/i.test(occurrence.event.color ?? "") ? occurrence.event.color : "#321fdb";
 		colorInput.dataset.coreuiInitial = colorInput.value;
@@ -9793,13 +9794,13 @@ function createRenderer(element, callbacks) {
 			["all", labels.scopeAll]
 		], ctx.recurringEditScope));
 		const footer = el("div", "scheduler-dialog-footer");
-		const deleteButton = el("button", "scheduler-popover-delete", "delete-button");
+		const deleteButton = el("button", "btn btn-ghost btn-sm scheduler-delete-button", "delete-button");
 		deleteButton.type = "button";
 		deleteButton.textContent = labels.deleteEvent;
-		const cancelButton = el("button", "scheduler-view-button", "dialog-cancel");
+		const cancelButton = el("button", "btn btn-ghost btn-sm", "dialog-cancel");
 		cancelButton.type = "button";
 		cancelButton.textContent = labels.cancel;
-		const saveButton = el("button", "scheduler-dialog-save", "dialog-save");
+		const saveButton = el("button", "btn btn-primary btn-sm", "dialog-save");
 		saveButton.type = "submit";
 		saveButton.textContent = labels.save;
 		footer.append(deleteButton, cancelButton, saveButton);
