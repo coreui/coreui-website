@@ -12,4 +12,4 @@ import { CFormFloating } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
+| `className` | `string` | - | A string of all className you want applied to the component. |

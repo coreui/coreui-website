@@ -12,8 +12,8 @@ import { CCloseButton } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `aria-label` | `string \| undefined` | `Close` | Sets the `aria-label` attribute of the close button. |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
-| `dark` | `boolean \| undefined` | - | Invert the default color. |
-| `disabled` | `boolean \| undefined` | - | Toggle the disabled state for the component. |
-| `white` | `boolean \| undefined` | - | Change the default color to white. |
+| `aria-label` | `string` | `Close` | Sets the `aria-label` attribute of the close button. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
+| `dark` | `boolean` | - | Invert the default color. |
+| `disabled` | `boolean` | - | Toggle the disabled state for the component. |
+| `white` | `boolean` | - | Change the default color to white. |

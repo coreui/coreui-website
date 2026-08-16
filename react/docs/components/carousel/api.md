@@ -12,18 +12,18 @@ import { CCarousel } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `activeIndex` | `number \| undefined` | `0` | index of the active item. |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
-| `controls` | `boolean \| undefined` | - | Adding in the previous and next controls. |
-| `dark` | `boolean \| undefined` | - | Add darker controls, indicators, and captions. |
-| `indicators` | `boolean \| undefined` | - | Adding indicators at the bottom of the carousel for each item. |
-| `interval` | `number \| boolean \| undefined` | `5000` | The amount of time to delay between automatically cycling an item. If false, carousel will not automatically cycle. |
-| `onSlid` | `((active: number, direction: string) => void) \| undefined` | - | Callback fired when a slide transition end. |
-| `onSlide` | `((active: number, direction: string) => void) \| undefined` | - | Callback fired when a slide transition starts. |
-| `pause` | `boolean \| "hover" \| undefined` | `hover` | If set to 'hover', pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave. If set to false, hovering over the carousel won't pause it. |
-| `touch` | `boolean \| undefined` | `true` | Set whether the carousel should support left/right swipe interactions on touchscreen devices. |
-| `transition` | `"slide" \| "crossfade" \| undefined` | - | Set type of the transition. |
-| `wrap` | `boolean \| undefined` | `true` | Set whether the carousel should cycle continuously or have hard stops. |
+| `activeIndex` | `number` | `0` | index of the active item. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
+| `controls` | `boolean` | - | Adding in the previous and next controls. |
+| `dark` | `boolean` | - | Add darker controls, indicators, and captions. |
+| `indicators` | `boolean` | - | Adding indicators at the bottom of the carousel for each item. |
+| `interval` | `number \| boolean` | `5000` | The amount of time to delay between automatically cycling an item. If false, carousel will not automatically cycle. |
+| `onSlid` | `((active: number, direction: string) => void)` | - | Callback fired when a slide transition end. |
+| `onSlide` | `((active: number, direction: string) => void)` | - | Callback fired when a slide transition starts. |
+| `pause` | `boolean \| "hover"` | `hover` | If set to 'hover', pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave. If set to false, hovering over the carousel won't pause it. |
+| `touch` | `boolean` | `true` | Set whether the carousel should support left/right swipe interactions on touchscreen devices. |
+| `transition` | `"slide" \| "crossfade"` | - | Set type of the transition. |
+| `wrap` | `boolean` | `true` | Set whether the carousel should cycle continuously or have hard stops. |
 
 ## CCarouselCaption
 
@@ -35,7 +35,7 @@ import { CCarouselCaption } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
 
 ## CCarouselItem
 
@@ -47,5 +47,5 @@ import { CCarouselItem } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
-| `interval` | `number \| boolean \| undefined` | `false` | The amount of time to delay between automatically cycling an item. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
+| `interval` | `number \| boolean` | `false` | The amount of time to delay between automatically cycling an item. |

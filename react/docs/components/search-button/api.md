@@ -13,9 +13,9 @@ import { CSearchButton } from '@coreui/react'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `children` | `ReactNode` | - | Content to customize the full button body. |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
 | `icon` | `ReactNode` | - | Custom icon displayed before the placeholder text. |
-| `onTrigger` | `(() => void) \| undefined` | - | Callback fired when the component is activated by click or keyboard shortcut. |
+| `onTrigger` | `(() => void)` | - | Callback fired when the component is activated by click or keyboard shortcut. |
 | `placeholder` | `ReactNode` | `Search` | Placeholder content rendered inside `.search-button-placeholder`. |
-| `preventDefault` | `boolean \| undefined` | `true` | Prevent the browser's default behavior when the configured shortcut matches. |
-| `shortcut` | `string \| undefined` | `meta+/,ctrl+/` | Comma-separated shortcut list. The component matches all configured shortcuts and renders the platform-preferred one. |
+| `preventDefault` | `boolean` | `true` | Prevent the browser's default behavior when the configured shortcut matches. |
+| `shortcut` | `string` | `meta+/,ctrl+/` | Comma-separated shortcut list. The component matches all configured shortcuts and renders the platform-preferred one. |

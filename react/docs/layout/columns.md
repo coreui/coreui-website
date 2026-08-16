@@ -323,7 +323,7 @@ import { CCol } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
 | `lg` | `{ 'auto' \| number \| string \| boolean \| { span: 'auto' \| number \| string \| boolean } \| { offset: number \| string } \| { order: 'first' \| 'last' \| number \| string }}` | - | The number of columns/offset/order on large devices (<1200px). |
 | `md` | `{ 'auto' \| number \| string \| boolean \| { span: 'auto' \| number \| string \| boolean } \| { offset: number \| string } \| { order: 'first' \| 'last' \| number \| string }}` | - | The number of columns/offset/order on medium devices (<992px). |
 | `sm` | `{ 'auto' \| number \| string \| boolean \| { span: 'auto' \| number \| string \| boolean } \| { offset: number \| string } \| { order: 'first' \| 'last' \| number \| string }}` | - | The number of columns/offset/order on small devices (<768px). |

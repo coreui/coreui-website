@@ -12,8 +12,8 @@ import { CImage } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `align` | `"start" \| "center" \| "end" \| undefined` | - | Set the horizontal aligment. |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
-| `fluid` | `boolean \| undefined` | - | Make image responsive. |
-| `rounded` | `boolean \| undefined` | - | Make image rounded. |
-| `thumbnail` | `boolean \| undefined` | - | Give an image a rounded 1px border appearance. |
+| `align` | `"start" \| "center" \| "end"` | - | Set the horizontal aligment. |
+| `className` | `string` | - | A string of all className you want applied to the component. |
+| `fluid` | `boolean` | - | Make image responsive. |
+| `rounded` | `boolean` | - | Make image rounded. |
+| `thumbnail` | `boolean` | - | Give an image a rounded 1px border appearance. |

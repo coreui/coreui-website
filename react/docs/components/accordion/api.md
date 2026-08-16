@@ -12,10 +12,10 @@ import { CAccordion } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `activeItemKey` | `string \| number \| undefined` | - | The active item key. |
-| `alwaysOpen` | `boolean \| undefined` | `false` | Make accordion items stay open when another item is opened |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
-| `flush` | `boolean \| undefined` | - | Removes the default background-color, some borders, and some rounded corners to render accordions edge-to-edge with their parent container. |
+| `activeItemKey` | `string \| number` | - | The active item key. |
+| `alwaysOpen` | `boolean` | `false` | Make accordion items stay open when another item is opened |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
+| `flush` | `boolean` | - | Removes the default background-color, some borders, and some rounded corners to render accordions edge-to-edge with their parent container. |
 
 ## CAccordionBody
 
@@ -27,7 +27,7 @@ import { CAccordionBody } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
 
 ## CAccordionHeader
 
@@ -39,7 +39,7 @@ import { CAccordionHeader } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
 
 ## CAccordionItem
 
@@ -51,6 +51,6 @@ import { CAccordionItem } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
-| `id` | `string \| undefined` | - | The id global attribute defines an identifier (ID) that must be unique in the whole document. |
-| `itemKey` | `string \| number \| undefined` | - | Item key. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
+| `id` | `string` | - | The id global attribute defines an identifier (ID) that must be unique in the whole document. |
+| `itemKey` | `string \| number` | - | Item key. |

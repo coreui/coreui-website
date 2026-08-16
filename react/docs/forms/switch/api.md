@@ -12,11 +12,11 @@ import { CFormSwitch } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
-| `id` | `string \| undefined` | - | The id global attribute defines an identifier (ID) that must be unique in the whole document. |
-| `invalid` | `boolean \| undefined` | - | Set component validation state to invalid. |
+| `className` | `string` | - | A string of all className you want applied to the component. |
+| `id` | `string` | - | The id global attribute defines an identifier (ID) that must be unique in the whole document. |
+| `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | The element represents a caption for a component. |
-| `reverse` | `boolean \| undefined` | - | Put switch on the opposite side. |
-| `size` | `"lg" \| "xl" \| undefined` | - | Size the component large or extra large. Works only with `switch`. |
-| `type` | `"checkbox" \| "radio" \| undefined` | `checkbox` | Specifies the type of component. |
-| `valid` | `boolean \| undefined` | - | Set component validation state to valid. |
+| `reverse` | `boolean` | - | Put switch on the opposite side. |
+| `size` | `"lg" \| "xl"` | - | Size the component large or extra large. Works only with `switch`. |
+| `type` | `"checkbox" \| "radio"` | `checkbox` | Specifies the type of component. |
+| `valid` | `boolean` | - | Set component validation state to valid. |

@@ -239,38 +239,38 @@ So if you need more icons our PRO package will be a great choice for you.
 ### CIcon
 
 ```jsx
-import { CIcon } from '@coreui/react'
+import { CIcon } from '@coreui/icons-react'
 ```
 
 ### Props
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
-| `content` | `string \| string[] \| undefined` | - | Use `icon={...}` instead of |
-| `customClassName` | `string \| string[] \| undefined` | - | Use for replacing default CIcon component classes. Prop is overriding the 'size' prop. |
-| `height` | `number \| undefined` | - | The height attribute defines the vertical length of an icon. |
-| `icon` | `string \| string[] \| undefined` | - | Name of the icon placed in React object or SVG content. |
-| `name` | `string \| undefined` | - | Use `icon="..."` instead of |
-| `size` | `"custom" \| "custom-size" \| "sm" \| "lg" \| "xl" \| "xxl" \| "3xl" \| "4xl" \| "5xl" \| "6xl" \| "7xl" \| "8xl" \| "9xl" \| undefined` | - | Size of the icon. Available sizes: 'sm', 'lg', 'xl', 'xxl', '3xl...9xl', 'custom', 'custom-size'. |
-| `title` | `string \| undefined` | - | Title tag content. |
-| `use` | `string \| undefined` | - | If defined component will be rendered using 'use' tag. |
-| `viewBox` | `string \| undefined` | - | The viewBox attribute defines the position and dimension of an SVG viewport. |
-| `width` | `number \| undefined` | - | The width attribute defines the horizontal length of an icon. |
+| `className` | `string` | - | A string of all className you want applied to the component. |
+| `content` | `string \| string[]` | - | Use `icon={...}` instead of |
+| `customClassName` | `string \| string[]` | - | Use for replacing default CIcon component classes. Prop is overriding the 'size' prop. |
+| `height` | `number` | - | The height attribute defines the vertical length of an icon. |
+| `icon` | `string \| string[]` | - | Name of the icon placed in React object or SVG content. |
+| `name` | `string` | - | Use `icon="..."` instead of |
+| `size` | `"custom" \| "custom-size" \| "sm" \| "lg" \| "xl" \| "xxl" \| "3xl" \| "4xl" \| "5xl" \| "6xl" \| "7xl" \| "8xl" \| "9xl"` | - | Size of the icon. Available sizes: 'sm', 'lg', 'xl', 'xxl', '3xl...9xl', 'custom', 'custom-size'. |
+| `title` | `string` | - | Title tag content. |
+| `use` | `string` | - | If defined component will be rendered using 'use' tag. |
+| `viewBox` | `string` | - | The viewBox attribute defines the position and dimension of an SVG viewport. |
+| `width` | `number` | - | The width attribute defines the horizontal length of an icon. |
 
 ### CIconSvg
 
 ```jsx
-import { CIconSvg } from '@coreui/react'
+import { CIconSvg } from '@coreui/icons-react'
 ```
 
 ### Props
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
-| `customClassName` | `string \| string[] \| undefined` | - | Use for replacing default CIcon component classes. Prop is overriding the 'size' prop. |
-| `height` | `number \| undefined` | - | The height attribute defines the vertical length of an icon. |
-| `size` | `"custom" \| "custom-size" \| "sm" \| "lg" \| "xl" \| "xxl" \| "3xl" \| "4xl" \| "5xl" \| "6xl" \| "7xl" \| "8xl" \| "9xl" \| undefined` | - | Size of the icon. Available sizes: 'sm', 'lg', 'xl', 'xxl', '3xl...9xl', 'custom', 'custom-size'. |
-| `title` | `string \| undefined` | - | Title tag content. |
-| `width` | `number \| undefined` | - | The width attribute defines the horizontal length of an icon. |
+| `className` | `string` | - | A string of all className you want applied to the component. |
+| `customClassName` | `string \| string[]` | - | Use for replacing default CIcon component classes. Prop is overriding the 'size' prop. |
+| `height` | `number` | - | The height attribute defines the vertical length of an icon. |
+| `size` | `"custom" \| "custom-size" \| "sm" \| "lg" \| "xl" \| "xxl" \| "3xl" \| "4xl" \| "5xl" \| "6xl" \| "7xl" \| "8xl" \| "9xl"` | - | Size of the icon. Available sizes: 'sm', 'lg', 'xl', 'xxl', '3xl...9xl', 'custom', 'custom-size'. |
+| `title` | `string` | - | Title tag content. |
+| `width` | `number` | - | The width attribute defines the horizontal length of an icon. |

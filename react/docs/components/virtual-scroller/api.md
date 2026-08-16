@@ -12,6 +12,6 @@ import { CVirtualScroller } from '@coreui/react-pro'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
-| `onScroll` | `((currentItemIndex: number) => void) \| undefined` | - | Event fires when the component has been scrolled. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
+| `onScroll` | `((currentItemIndex: number) => void)` | - | Event fires when the component has been scrolled. |
 | `visibleItems` | `number` | - | Amount of visible items |

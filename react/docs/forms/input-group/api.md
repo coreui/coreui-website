@@ -12,8 +12,8 @@ import { CInputGroup } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
-| `size` | `"sm" \| "lg" \| undefined` | - | Size the component small or large. |
+| `className` | `string` | - | A string of all className you want applied to the component. |
+| `size` | `"sm" \| "lg"` | - | Size the component small or large. |
 
 ## CInputGroupText
 
@@ -25,5 +25,5 @@ import { CInputGroupText } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `as` | `(ElementType & "symbol") \| (ElementType & "object") \| (ElementType & "span") \| (ElementType & "form") \| (ElementType & "slot") \| ... 175 more ... \| undefined` | `span` | Component used for the root node. Either a string to use a HTML element or a component. |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
+| `as` | `(ElementType & "symbol") \| (ElementType & "object") \| (ElementType & "span") \| (ElementType & "form") \| (ElementType & "slot") \| ... 175 more ...` | `span` | Component used for the root node. Either a string to use a HTML element or a component. |
+| `className` | `string` | - | A string of all className you want applied to the component. |

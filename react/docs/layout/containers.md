@@ -68,10 +68,10 @@ import { CContainer } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
-| `fluid` | `boolean \| undefined` | - | Set container 100% wide, spanning the entire width of the viewport. |
-| `lg` | `boolean \| undefined` | - | Set container 100% wide until large breakpoint. |
-| `md` | `boolean \| undefined` | - | Set container 100% wide until medium breakpoint. |
-| `sm` | `boolean \| undefined` | - | Set container 100% wide until small breakpoint. |
-| `xl` | `boolean \| undefined` | - | Set container 100% wide until X-large breakpoint. |
-| `xxl` | `boolean \| undefined` | - | Set container 100% wide until XX-large breakpoint. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
+| `fluid` | `boolean` | - | Set container 100% wide, spanning the entire width of the viewport. |
+| `lg` | `boolean` | - | Set container 100% wide until large breakpoint. |
+| `md` | `boolean` | - | Set container 100% wide until medium breakpoint. |
+| `sm` | `boolean` | - | Set container 100% wide until small breakpoint. |
+| `xl` | `boolean` | - | Set container 100% wide until X-large breakpoint. |
+| `xxl` | `boolean` | - | Set container 100% wide until XX-large breakpoint. |

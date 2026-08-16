@@ -208,25 +208,25 @@ import { CFormInput } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
-| `delay` | `number \| boolean \| undefined` | `false` | Delay onChange event while typing. If set to true onChange event will be delayed 500ms, you can also provide the number of milliseconds you want to delay the onChange event. |
-| `disabled` | `boolean \| undefined` | - | Toggle the disabled state for the component. |
+| `className` | `string` | - | A string of all className you want applied to the component. |
+| `delay` | `number \| boolean` | `false` | Delay onChange event while typing. If set to true onChange event will be delayed 500ms, you can also provide the number of milliseconds you want to delay the onChange event. |
+| `disabled` | `boolean` | - | Toggle the disabled state for the component. |
 | `feedback` | `ReactNode` | - | Provide valuable, actionable feedback. |
 | `feedbackInvalid` | `ReactNode` | - | Provide valuable, actionable feedback. |
 | `feedbackValid` | `ReactNode` | - | Provide valuable, actionable invalid feedback when using standard HTML form validation which applied two CSS pseudo-classes, `:invalid` and `:valid`. |
-| `floatingClassName` | `string \| undefined` | - | A string of all className you want applied to the floating label wrapper. |
+| `floatingClassName` | `string` | - | A string of all className you want applied to the floating label wrapper. |
 | `floatingLabel` | `ReactNode` | - | Provide valuable, actionable valid feedback when using standard HTML form validation which applied two CSS pseudo-classes, `:invalid` and `:valid`. |
-| `invalid` | `boolean \| undefined` | - | Set component validation state to invalid. |
+| `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
-| `onChange` | `ChangeEventHandler<HTMLInputElement> \| undefined` | - | Method called immediately after the `value` prop changes. |
-| `plainText` | `boolean \| undefined` | - | Render the component styled as plain text. Removes the default form field styling and preserve the correct margin and padding. Recommend to use only along side `readonly`. |
-| `readOnly` | `boolean \| undefined` | - | Toggle the readonly state for the component. |
-| `size` | `"sm" \| "lg" \| undefined` | - | Size the component small or large. |
+| `onChange` | `ChangeEventHandler<HTMLInputElement>` | - | Method called immediately after the `value` prop changes. |
+| `plainText` | `boolean` | - | Render the component styled as plain text. Removes the default form field styling and preserve the correct margin and padding. Recommend to use only along side `readonly`. |
+| `readOnly` | `boolean` | - | Toggle the readonly state for the component. |
+| `size` | `"sm" \| "lg"` | - | Size the component small or large. |
 | `text` | `ReactNode` | - | Add helper text to the component. |
-| `tooltipFeedback` | `boolean \| undefined` | - | Display validation feedback in a styled tooltip. |
-| `type` | `string \| undefined` | `text` | Specifies the type of component. |
-| `valid` | `boolean \| undefined` | - | Set component validation state to valid. |
-| `value` | `string \| number \| string[] \| undefined` | - | The `value` attribute of component. |
+| `tooltipFeedback` | `boolean` | - | Display validation feedback in a styled tooltip. |
+| `type` | `string` | `text` | Specifies the type of component. |
+| `valid` | `boolean` | - | Set component validation state to valid. |
+| `value` | `string \| number \| string[]` | - | The `value` attribute of component. |
 
 ### CFormTextarea
 
@@ -238,19 +238,19 @@ import { CFormTextarea } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
-| `disabled` | `boolean \| undefined` | - | Toggle the disabled state for the component. |
+| `className` | `string` | - | A string of all className you want applied to the component. |
+| `disabled` | `boolean` | - | Toggle the disabled state for the component. |
 | `feedback` | `ReactNode` | - | Provide valuable, actionable feedback. |
 | `feedbackInvalid` | `ReactNode` | - | Provide valuable, actionable feedback. |
 | `feedbackValid` | `ReactNode` | - | Provide valuable, actionable invalid feedback when using standard HTML form validation which applied two CSS pseudo-classes, `:invalid` and `:valid`. |
-| `floatingClassName` | `string \| undefined` | - | A string of all className you want applied to the floating label wrapper. |
+| `floatingClassName` | `string` | - | A string of all className you want applied to the floating label wrapper. |
 | `floatingLabel` | `ReactNode` | - | Provide valuable, actionable valid feedback when using standard HTML form validation which applied two CSS pseudo-classes, `:invalid` and `:valid`. |
-| `invalid` | `boolean \| undefined` | - | Set component validation state to invalid. |
+| `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
-| `onChange` | `ChangeEventHandler<HTMLTextAreaElement> \| undefined` | - | Method called immediately after the `value` prop changes. |
-| `plainText` | `boolean \| undefined` | - | Render the component styled as plain text. Removes the default form field styling and preserve the correct margin and padding. Recommend to use only along side `readonly`. |
-| `readOnly` | `boolean \| undefined` | - | Toggle the readonly state for the component. |
+| `onChange` | `ChangeEventHandler<HTMLTextAreaElement>` | - | Method called immediately after the `value` prop changes. |
+| `plainText` | `boolean` | - | Render the component styled as plain text. Removes the default form field styling and preserve the correct margin and padding. Recommend to use only along side `readonly`. |
+| `readOnly` | `boolean` | - | Toggle the readonly state for the component. |
 | `text` | `ReactNode` | - | Add helper text to the component. |
-| `tooltipFeedback` | `boolean \| undefined` | - | Display validation feedback in a styled tooltip. |
-| `valid` | `boolean \| undefined` | - | Set component validation state to valid. |
-| `value` | `string \| number \| string[] \| undefined` | - | The `value` attribute of component. |
+| `tooltipFeedback` | `boolean` | - | Display validation feedback in a styled tooltip. |
+| `valid` | `boolean` | - | Set component validation state to valid. |
+| `value` | `string \| number \| string[]` | - | The `value` attribute of component. |

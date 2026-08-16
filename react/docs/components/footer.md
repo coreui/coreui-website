@@ -72,5 +72,5 @@ import { CFooter } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
-| `position` | `"fixed" \| "sticky" \| undefined` | - | Place footer in non-static positions. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
+| `position` | `"fixed" \| "sticky"` | - | Place footer in non-static positions. |

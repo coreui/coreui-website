@@ -162,9 +162,9 @@ import { CHeader } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
-| `container` | `boolean \| "sm" \| "md" \| "lg" \| "xl" \| "xxl" \| "fluid" \| undefined` | - | Defines optional container wrapping children elements. |
-| `position` | `"fixed" \| "sticky" \| undefined` | - | Place header in non-static positions. |
+| `className` | `string` | - | A string of all className you want applied to the component. |
+| `container` | `boolean \| "sm" \| "md" \| "lg" \| "xl" \| "xxl" \| "fluid"` | - | Defines optional container wrapping children elements. |
+| `position` | `"fixed" \| "sticky"` | - | Place header in non-static positions. |
 
 ### CHeaderBrand
 
@@ -176,8 +176,8 @@ import { CHeaderBrand } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `as` | `(ElementType & "symbol") \| (ElementType & "object") \| (ElementType & "a") \| (ElementType & "slot") \| (ElementType & "style") \| ... 175 more ... \| undefined` | `a` | Component used for the root node. Either a string to use a HTML element or a component. |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
+| `as` | `(ElementType & "symbol") \| (ElementType & "object") \| (ElementType & "a") \| (ElementType & "slot") \| (ElementType & "style") \| ... 175 more ...` | `a` | Component used for the root node. Either a string to use a HTML element or a component. |
+| `className` | `string` | - | A string of all className you want applied to the component. |
 
 ### CHeaderDivider
 
@@ -189,7 +189,7 @@ import { CHeaderDivider } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
+| `className` | `string` | - | A string of all className you want applied to the component. |
 
 ### CHeaderNav
 
@@ -201,8 +201,8 @@ import { CHeaderNav } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `as` | `(ElementType & "symbol") \| (ElementType & "object") \| (ElementType & "ul") \| (ElementType & "slot") \| (ElementType & "style") \| ... 175 more ... \| undefined` | `ul` | Component used for the root node. Either a string to use a HTML element or a component. |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the component. |
+| `as` | `(ElementType & "symbol") \| (ElementType & "object") \| (ElementType & "ul") \| (ElementType & "slot") \| (ElementType & "style") \| ... 175 more ...` | `ul` | Component used for the root node. Either a string to use a HTML element or a component. |
+| `className` | `string` | - | A string of all className you want applied to the component. |
 
 ### CHeaderText
 
@@ -214,7 +214,7 @@ import { CHeaderText } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
 
 ### CHeaderToggler
 
@@ -226,4 +226,4 @@ import { CHeaderToggler } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |

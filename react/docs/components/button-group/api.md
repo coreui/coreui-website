@@ -12,9 +12,9 @@ import { CButtonGroup } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
-| `size` | `"sm" \| "lg" \| undefined` | - | Size the component small or large. |
-| `vertical` | `boolean \| undefined` | - | Create a set of buttons that appear vertically stacked rather than horizontally. Split button dropdowns are not supported here. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
+| `size` | `"sm" \| "lg"` | - | Size the component small or large. |
+| `vertical` | `boolean` | - | Create a set of buttons that appear vertically stacked rather than horizontally. Split button dropdowns are not supported here. |
 
 ## CButtonToolbar
 
@@ -26,4 +26,4 @@ import { CButtonToolbar } from '@coreui/react'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `className` | `string \| undefined` | - | A string of all className you want applied to the base component. |
+| `className` | `string` | - | A string of all className you want applied to the base component. |
