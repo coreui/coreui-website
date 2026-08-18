@@ -1,0 +1,1 @@
+var e=[{path:``,data:{title:`Error pages`},children:[{path:``,redirectTo:`404`,pathMatch:`full`},{path:`404`,loadComponent:()=>import(`./chunk-DxF6r3nD.js`).then(t=>t.Page404Component),data:{title:`Page 404`}},{path:`500`,loadComponent:()=>import(`./chunk-4C9kOpCc2.js`).then(t=>t.Page500Component),data:{title:`Page 500`}}]}];export{e as routes};
