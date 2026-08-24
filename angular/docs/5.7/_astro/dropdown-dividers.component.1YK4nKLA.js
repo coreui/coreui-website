@@ -1,6 +1,0 @@
-import{$n as e,Dn as t,En as n,Et as r,Ut as i,cn as a,in as o,ln as s}from"./common.B_57c5kQ.js";import{c,i as l,t as u}from"./_router_module-chunk.CjMjjFG-.js";import{Y as d,q as f}from"./coreui-angular-pro.MOnL-wpr.js";var p=()=>[],m=class c{static{this.ɵfac=function(e){return new(e||c)}}static{this.ɵcmp=i({type:c,selectors:[[`docs-dropdown-dividers`]],decls:15,vars:6,consts:[[1,`dropdown-menu`],[`cDropdownItem`,``,3,`routerLink`],[`cDropdownDivider`,``],[`cDropdownItem`,``]],template:function(i,c){i&1&&(s(0,`ul`,0)(1,`li`)(2,`a`,1),e(3,`Action`),a()(),s(4,`li`)(5,`a`,1),e(6,`Another action`),a()(),s(7,`li`)(8,`a`,1),e(9,`Something else here`),a()(),s(10,`li`),o(11,`hr`,2),a(),s(12,`li`)(13,`button`,3),e(14,`Separated link`),a()()()),i&2&&(r(2),n(`routerLink`,t(3,p)),r(3),n(`routerLink`,t(4,p)),r(3),n(`routerLink`,t(5,p)))},dependencies:[d,u,f],styles:[`[_nghost-%COMP%] {
-      .dropdown-menu {
-        display: block;
-        position: static;
-      }
-    }`]})}};m.clientProviders=[c(),l([])];export{m as DropdownDividersComponent};

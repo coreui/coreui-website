@@ -1,6 +1,0 @@
-import{$n as e,Ut as t,cn as n,in as r,ln as i}from"./common.B_57c5kQ.js";import{c as a,i as o}from"./_router_module-chunk.CjMjjFG-.js";import{A as s,E as c,S as l,g as u,j as d,x as f}from"./coreui-angular-pro.MOnL-wpr.js";var p=class a{static{this.ɵfac=function(e){return new(e||a)}}static{this.ɵcmp=t({type:a,selectors:[[`docs-card-base`]],decls:9,vars:0,consts:[[`cCardImg`,`top`,`src`,`/angular/docs/5.7/assets/img/angular.jpg`],[`cCardTitle`,``],[`cCardText`,``],[`cButton`,``,`color`,`light`]],template:function(t,a){t&1&&(i(0,`c-card`),r(1,`img`,0),i(2,`c-card-body`)(3,`h5`,1),e(4,`Card title`),n(),i(5,`p`,2),e(6,` Some quick example text to build on the card title and make up the bulk of the card's content. `),n(),i(7,`button`,3),e(8,`Go somewhere`),n()()())},dependencies:[l,c,f,d,s,u],styles:[`[_nghost-%COMP%]   c-card[_ngcontent-%COMP%] {
-  min-width: 9rem;
-}
-[_nghost-%COMP%]   c-card[_ngcontent-%COMP%]   .list-group[_ngcontent-%COMP%] {
-  max-width: 100%;
-}`]})}};p.clientProviders=[a(),o([])];export{p as CardBaseComponent};

@@ -1,3 +1,0 @@
-import{Dn as e,En as t,Ut as n,in as r}from"./common.B_57c5kQ.js";import{c as i,i as a}from"./_router_module-chunk.CjMjjFG-.js";import{an as o}from"./coreui-angular-pro.MOnL-wpr.js";var s=()=>[`Low`,`Medium`,`High`],c=()=>[25,80],l=class i{static{this.ɵfac=function(e){return new(e||i)}}static{this.ɵcmp=n({type:i,selectors:[[`docs-range-slider-clickable-labels`]],decls:1,vars:5,consts:[[3,`labels`,`value`,`clickableLabels`]],template:function(n,i){n&1&&r(0,`c-range-slider`,0),n&2&&t(`labels`,e(3,s))(`value`,e(4,c))(`clickableLabels`,!1)},dependencies:[o],styles:[`[_nghost-%COMP%]   .range-slider[_ngcontent-%COMP%] {
-  margin-bottom: 1rem !important;
-}`]})}};l.clientProviders=[i(),a([])];export{l as RangeSliderClickableLabelsComponent};

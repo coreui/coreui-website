@@ -1,0 +1,3 @@
+import{Dn as e,En as t,Et as n,Ut as r,in as i}from"./common.B_57c5kQ.js";import{c as a,i as o}from"./_router_module-chunk.CjMjjFG-.js";import{an as s}from"./coreui-angular-pro.BRnqnQqQ.js";var c=()=>[50,75],l=class a{static{this.ɵfac=function(e){return new(e||a)}}static{this.ɵcmp=r({type:a,selectors:[[`docs-range-slider-steps`]],decls:2,vars:3,consts:[[`step`,`.25`,3,`value`],[`step`,`5`,3,`value`]],template:function(r,a){r&1&&i(0,`c-range-slider`,0)(1,`c-range-slider`,1),r&2&&(t(`value`,50),n(),t(`value`,e(2,c)))},dependencies:[s],styles:[`[_nghost-%COMP%]   .range-slider[_ngcontent-%COMP%]:not(:last-child) {
+  margin-bottom: 1rem !important;
+}`]})}};l.clientProviders=[a(),o([])];export{l as RangeSliderStepsComponent};

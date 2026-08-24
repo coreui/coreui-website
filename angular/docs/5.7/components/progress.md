@@ -6,13 +6,13 @@
 
 Progress components are built with two HTML elements, some CSS to set the width, and a few attributes. We don't use [the HTML5 `<progress>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress), ensuring you can stack progress bars, animate them, and place text labels over them.
 
-<c-callout class="docs-callout docs-callout-info">
-    <h5>New markup in CoreUI v5</h5>
-    <p>
-      We’ve simplified the HTML structure for progress bars to improve accessibility while still maintaining backward
-      compatibility with the previous structure.
-    </p>
-</c-callout>
+<div class="callout callout-info">
+  <h5>New markup in CoreUI v5</h5>
+  <p>
+    We’ve simplified the HTML structure for progress bars to improve accessibility while still maintaining backward
+    compatibility with the previous structure.
+  </p>
+</div>
 
 ### Basic usage
 
@@ -34,12 +34,12 @@ It is important to choose an appropriate text color when incorporating labels in
 
 ### Multiple bars
 
-<c-callout class="docs-callout docs-callout-info">
-<h5>New markup in CoreUI v5</h5>
-<p>
-    We added a new stacked component to group multiple progress bars into a single stacked progress bar.
-</p>
-</c-callout>
+<div class="callout callout-info">
+  <h5>New markup in CoreUI v5</h5>
+  <p>
+      We added a new stacked component to group multiple progress bars into a single stacked progress bar.
+  </p>
+</div>
 
 Include multiple progress bars in a `<c-progress-stacked>` component to create a single stacked progress bar.
 

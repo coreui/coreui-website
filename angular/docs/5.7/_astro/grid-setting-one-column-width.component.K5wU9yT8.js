@@ -1,0 +1,9 @@
+import{$n as e,Ut as t,cn as n,ln as r}from"./common.B_57c5kQ.js";import{c as i,i as a}from"./_router_module-chunk.CjMjjFG-.js";import{H as o,sn as s,z as c}from"./coreui-angular-pro.BRnqnQqQ.js";var l=class i{static{this.ɵfac=function(e){return new(e||i)}}static{this.ɵcmp=t({type:i,selectors:[[`docs-grid-setting-one-column-width`]],decls:15,vars:0,consts:[[`xs`,`6`]],template:function(t,i){t&1&&(r(0,`c-container`)(1,`c-row`)(2,`c-col`),e(3,`1 of 3`),n(),r(4,`c-col`,0),e(5,`2 of 3 (wider)`),n(),r(6,`c-col`),e(7,`3 of 3`),n()(),r(8,`c-row`)(9,`c-col`),e(10,`1 of 3`),n(),r(11,`c-col`,0),e(12,`2 of 3 (wider)`),n(),r(13,`c-col`),e(14,`3 of 3`),n()()())},dependencies:[o,s,c],styles:[`[_nghost-%COMP%]   .row[_ngcontent-%COMP%]    + .row[_ngcontent-%COMP%] {
+  margin-top: 1rem;
+}
+[_nghost-%COMP%]   .row[_ngcontent-%COMP%]    > .col[_ngcontent-%COMP%], [_nghost-%COMP%]   .row[_ngcontent-%COMP%]    > [class^=col-][_ngcontent-%COMP%] {
+  background-color: rgba(39, 41, 43, 0.03);
+  border: 1px solid var(--%NS%cui-border-color-translucent);
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
+}`]})}};l.clientProviders=[i(),a([])];export{l as GridSettingOneColumnWidthComponent};

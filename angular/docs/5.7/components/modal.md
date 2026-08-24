@@ -16,6 +16,10 @@ Toggle a working modal demo by clicking the button below. It will slide down and
 
 If you set a `backdrop` to `static`, your modal will behave as though the backdrop is static, meaning it will not close when clicking outside it. Click the button below to try it.
 
+### Portal
+
+By default, `c-modal` renders in place in the DOM, moved on top of everything else purely through `position: fixed` and stacking. When an ancestor establishes its own containing block (e.g. via `transform`, `filter`, or `perspective`), it traps that fixed positioning and clips the modal. Set the `portal` input to move the modal's host element into `container` (an `Element`, a function returning one, or `document.body` by default) while it's visible, and restore it to its original position on close.
+
 ### Scrolling long content
 
 When modals become too long for the user's viewport or device, they scroll independent of the page itself. Try the demo below to see what we mean.
@@ -90,9 +94,11 @@ import { ModalComponent } from '@coreui/angular'
 | `alignment` | `'top' \| 'center'` | `'top'` | Align the modal in the center or top of the screen. |
 | `ariaModal` | `boolean` | `null` | Set aria-modal html attr for modal |
 | `backdrop` | `boolean \| 'static'` | `true` | Apply a backdrop on the body while the modal is open. |
+| `container` | `Element \| object \| null` | `document.body` | Appends the angular modal to a specific element. You can pass an HTML element or function that returns a single element. By default, `document.body`. |
 | `fullscreen` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl'` | `undefined` | Set modal to cover the entire user viewport. |
-| `id` | `string` | `undefined` | Html id attribute, required for programmatic visibility change. |
+| `id` | `string` | `undefined` | HTML id attribute, required for programmatic visibility change. |
 | `keyboard` | `boolean` | `true` | Closes the modal when the escape key is pressed. |
+| `portal` | `boolean` | `false` | Generates modal using a portal |
 | `role` | `string` | `'dialog'` | Default role for modal |
 | `scrollable` | `boolean` | `false` | Create a scrollable modal that allows scrolling the modal body. |
 | `size` | `'sm' \| 'lg' \| 'xl'` | `undefined` | Size the component small, large, or extra large. |

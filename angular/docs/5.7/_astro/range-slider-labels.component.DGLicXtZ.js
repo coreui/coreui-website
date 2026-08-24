@@ -1,0 +1,3 @@
+import{Dn as e,En as t,Ut as n,in as r}from"./common.B_57c5kQ.js";import{c as i,i as a}from"./_router_module-chunk.CjMjjFG-.js";import{an as o}from"./coreui-angular-pro.BRnqnQqQ.js";var s=()=>[`Start`,`Middle`,`End`],c=()=>[30,70],l=class i{static{this.ɵfac=function(e){return new(e||i)}}static{this.ɵcmp=n({type:i,selectors:[[`docs-range-slider-labels`]],decls:1,vars:4,consts:[[3,`labels`,`value`]],template:function(n,i){n&1&&r(0,`c-range-slider`,0),n&2&&t(`labels`,e(2,s))(`value`,e(3,c))},dependencies:[o],styles:[`[_nghost-%COMP%]   .range-slider[_ngcontent-%COMP%] {
+  margin-bottom: 1rem !important;
+}`]})}};l.clientProviders=[i(),a([])];export{l as RangeSliderLabelsComponent};
