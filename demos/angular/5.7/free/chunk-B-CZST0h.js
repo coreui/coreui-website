@@ -1,1 +1,0 @@
-var t=[{path:``,loadComponent:()=>import(`./chunk-CMtlIztc2.js`).then(o=>o.DashboardComponent),data:{title:$localize`Dashboard`}}];export{t as routes};
