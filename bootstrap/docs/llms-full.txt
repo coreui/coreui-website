@@ -3601,19 +3601,19 @@ For example, you can create a "blue theme" with the selector `data-coreui-theme=
   --cui-body-color-rgb: #{to-rgb($white)};
   --cui-body-bg: var(--cui-blue);
   --cui-body-bg-rgb: #{to-rgb($blue)};
-  --cui-tertiary-bg: #{$blue-600};
+  --cui-tertiary-bg: #{$cd-blue-600};
 
   .dropdown-menu {
-    --cui-dropdown-bg: #{color.mix($blue-500, $blue-600)};
-    --cui-dropdown-link-active-bg: #{$blue-700};
+    --cui-dropdown-bg: #{color.mix($cd-blue-500, $cd-blue-600)};
+    --cui-dropdown-link-active-bg: #{$cd-blue-700};
   }
 
   .btn-secondary {
-    --cui-btn-bg: #{color.mix($gray-600, $blue-400, 50%)};
+    --cui-btn-bg: #{color.mix($gray-600, $cd-blue-400, 50%)};
     --cui-btn-border-color: #{rgba($white, .25)};
-    --cui-btn-hover-bg: #{color.scale(color.mix($gray-600, $blue-400, 50%), $lightness: -8%)}; // stylelint-disable-line scss/at-function-named-arguments
+    --cui-btn-hover-bg: #{color.scale(color.mix($gray-600, $cd-blue-400, 50%), $lightness: -8%)}; // stylelint-disable-line scss/at-function-named-arguments
     --cui-btn-hover-border-color: #{rgba($white, .25)};
-    --cui-btn-active-bg: #{color.scale(color.mix($gray-600, $blue-400, 50%), $lightness: -16%)}; // stylelint-disable-line scss/at-function-named-arguments
+    --cui-btn-active-bg: #{color.scale(color.mix($gray-600, $cd-blue-400, 50%), $lightness: -16%)}; // stylelint-disable-line scss/at-function-named-arguments
     --cui-btn-active-border-color: #{rgba($white, .5)};
     --cui-btn-focus-border-color: #{rgba($white, .5)};
     --cui-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
@@ -7276,6 +7276,33 @@ $thumbnail-box-shadow:              var(--cui-box-shadow-sm) !default;
 # Bootstrap 5 Tables
 
 > Documentation and examples for opt-in styling of tables (given their prevalent use in JavaScript plugins) with Bootstrap.
+
+<tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>`
 
 ## Overview
 
@@ -17937,7 +17964,9 @@ Here's an example of building a custom `.btn-*` modifier class like we do for th
   --cui-btn-hover-color: var(--cui-white);
   --cui-btn-hover-bg: #{shade-color($cd-violet, 10%)};
   --cui-btn-hover-border-color: #{shade-color($cd-violet, 10%)};
+  // v5 reads the channel triplet, v6 the colour; the engine serves both majors.
   --cui-btn-focus-shadow-rgb: var(--cd-violet-rgb);
+  --cui-btn-focus-shadow: var(--cd-violet);
   --cui-btn-active-color: var(--cui-btn-hover-color);
   --cui-btn-active-bg: #{shade-color($cd-violet, 20%)};
   --cui-btn-active-border-color: #{shade-color($cd-violet, 20%)};

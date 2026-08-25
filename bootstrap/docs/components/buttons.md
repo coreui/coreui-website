@@ -291,7 +291,9 @@ Here's an example of building a custom `.btn-*` modifier class like we do for th
   --cui-btn-hover-color: var(--cui-white);
   --cui-btn-hover-bg: #{shade-color($cd-violet, 10%)};
   --cui-btn-hover-border-color: #{shade-color($cd-violet, 10%)};
+  // v5 reads the channel triplet, v6 the colour; the engine serves both majors.
   --cui-btn-focus-shadow-rgb: var(--cd-violet-rgb);
+  --cui-btn-focus-shadow: var(--cd-violet);
   --cui-btn-active-color: var(--cui-btn-hover-color);
   --cui-btn-active-bg: #{shade-color($cd-violet, 20%)};
   --cui-btn-active-border-color: #{shade-color($cd-violet, 20%)};
