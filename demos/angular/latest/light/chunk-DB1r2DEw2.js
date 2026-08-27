@@ -1,0 +1,1 @@
+var o=[{path:``,loadComponent:()=>import(`./chunk-du2bnWv9.js`).then(t=>t.SmartTablesComponent),data:{title:`Smart Table`}}];export{o as routes};

@@ -1,0 +1,1 @@
+var o=[{path:``,loadComponent:()=>import(`./chunk-5j9e1eFk2.js`).then(t=>t.WidgetsComponent),data:{title:`Widgets`}}];export{o as routes};

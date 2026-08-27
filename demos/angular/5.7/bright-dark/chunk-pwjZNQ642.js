@@ -1,0 +1,1 @@
+var r=function(t,e){if(!(typeof window>`u`)&&!(typeof document>`u`)){var o=e??document.body;return window.getComputedStyle(o,null).getPropertyValue(t).replace(/^\s/,``)}};export{r as t};

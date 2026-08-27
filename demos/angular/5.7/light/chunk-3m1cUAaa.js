@@ -1,0 +1,1 @@
+var o=[{path:``,loadComponent:()=>import(`./chunk-tJQJdX1u.js`).then(t=>t.FullCalendarNgComponent),data:{title:`FullCalendar`}}];export{o as routes};

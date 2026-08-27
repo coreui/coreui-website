@@ -1,0 +1,1 @@
+var o=[{path:``,data:{title:`Apps`},children:[{path:`email`,loadChildren:()=>import(`./chunk-CcWzr4DR2.js`).then(t=>t.routes)},{path:`invoicing`,loadChildren:()=>import(`./chunk-DBOsPnKe2.js`).then(t=>t.routes)}]}];export{o as routes};

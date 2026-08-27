@@ -1,0 +1,1 @@
+var t=[{path:`invoice`,loadComponent:()=>import(`./chunk-CmQSaXqq.js`).then(o=>o.InvoiceComponent),data:{title:`Invoice`}}];export{t as routes};
