@@ -1,1 +1,0 @@
-var o=[{path:``,loadComponent:()=>import(`./chunk-DEAG-5kg2.js`).then(t=>t.WidgetsComponent),data:{title:`Widgets`}}];export{o as routes};
