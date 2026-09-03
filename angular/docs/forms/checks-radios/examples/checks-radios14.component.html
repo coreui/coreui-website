@@ -1,8 +1,0 @@
-<c-button-group [formGroup]="btnRadioGroup">
-  @for (option of radioOptions; track option.value) {
-    <input class="btn-check" formControlName="radioToggle" [id]="option.value" type="radio" [value]="option.value" [attr.disabled]="option.disabled" />
-    <label (click)="setRadioValue(option.value)" cButton cFormCheckLabel [for]="option.value" variant="ghost">{{option.label}}</label>
-  }
-</c-button-group>
-<hr>
-{{btnRadioGroup.value | json}}

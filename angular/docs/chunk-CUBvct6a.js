@@ -1,1 +1,0 @@
-import{pt as No}from"./chunk-D4QfcjgQ.js";function u(r,n=0){return t(r)?Number(r):arguments.length===2?n:0}function t(r){return!isNaN(parseFloat(r))&&!isNaN(Number(r))}function i(r){return r instanceof No?r.nativeElement:r}export{u as n,i as t};

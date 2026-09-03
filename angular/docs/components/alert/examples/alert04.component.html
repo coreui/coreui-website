@@ -1,9 +1,0 @@
-@let isVisible = visible();
-@if (isVisible) {
-  <c-alert [(visible)]="visible" [dismissible]="dismissible()" color="light" fade>
-    <strong>Go right ahead</strong> and click that dismiss over there on the right.
-  </c-alert>
-}
-<hr>
-<button cButton (click)="visible.update(value=> !value)">{{ isVisible ? 'Hide' : 'Show' }}</button>
-<button (click)="dismissible.update(value=> !value)" cButton class="me-1" color="secondary">Toggle</button>

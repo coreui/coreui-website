@@ -1,0 +1,4 @@
+import{Wt as e,er as t,ln as n,un as r}from"./common.RNrjipFp.js";import{i}from"./_router_module-chunk.D9vpBBB4.js";import{H as a}from"./coreui-angular-pro.BM9W57l3.js";var o=class i{static{this.ɵfac=function(e){return new(e||i)}}static{this.ɵcmp=e({type:i,selectors:[[`docs-containers-default`]],decls:2,vars:0,template:function(e,i){e&1&&(r(0,`c-container`),t(1,` Content here...
+`),n())},dependencies:[a],styles:[`[_nghost-%COMP%]   c-container[_ngcontent-%COMP%] {
+  background-color: var(--%NS%cui-light);
+}`]})}};o.clientProviders=[i([])];export{o as ContainersDefaultComponent};
