@@ -1,0 +1,9 @@
+import{Wt as e,er as t,ln as n,un as r}from"./common.RNrjipFp.js";import{i}from"./_router_module-chunk.D9vpBBB4.js";import{b as a}from"./coreui-angular-pro._Y-t36RO.js";var o=class i{static{this.ɵfac=function(e){return new(e||i)}}static{this.ɵcmp=e({type:i,selectors:[[`docs-callout-example`]],decls:16,vars:0,consts:[[`color`,`primary`],[`color`,`secondary`],[`color`,`success`],[`color`,`danger`],[`color`,`warning`],[`color`,`info`],[`color`,`light`],[`color`,`dark`]],template:function(e,i){e&1&&(r(0,`c-callout`,0),t(1,` New to or unfamiliar with flexbox? Read this CSS Tricks flexbox guide for background, terminology, guidelines, and code snippets.
+`),n(),r(2,`c-callout`,1),t(3,` New to or unfamiliar with flexbox? Read this CSS Tricks flexbox guide for background, terminology, guidelines, and code snippets.
+`),n(),r(4,`c-callout`,2),t(5,` New to or unfamiliar with flexbox? Read this CSS Tricks flexbox guide for background, terminology, guidelines, and code snippets.
+`),n(),r(6,`c-callout`,3),t(7,` New to or unfamiliar with flexbox? Read this CSS Tricks flexbox guide for background, terminology, guidelines, and code snippets.
+`),n(),r(8,`c-callout`,4),t(9,` New to or unfamiliar with flexbox? Read this CSS Tricks flexbox guide for background, terminology, guidelines, and code snippets.
+`),n(),r(10,`c-callout`,5),t(11,` New to or unfamiliar with flexbox? Read this CSS Tricks flexbox guide for background, terminology, guidelines, and code snippets.
+`),n(),r(12,`c-callout`,6),t(13,` New to or unfamiliar with flexbox? Read this CSS Tricks flexbox guide for background, terminology, guidelines, and code snippets.
+`),n(),r(14,`c-callout`,7),t(15,` New to or unfamiliar with flexbox? Read this CSS Tricks flexbox guide for background, terminology, guidelines, and code snippets.
+`),n())},dependencies:[a],encapsulation:2})}};o.clientProviders=[i([])];export{o as CalloutExampleComponent};

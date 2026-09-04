@@ -1,0 +1,7 @@
+import{Bt as e,Dn as t,Et as n,Rr as r,Wt as i,an as a,ar as o,er as s,kn as c,ln as l,or as u,sr as d,tr as f,un as p,zt as m}from"./common.RNrjipFp.js";import{h,i as g}from"./_router_module-chunk.D9vpBBB4.js";import{cr as _,ct as v,gr as y,it as b,ln as x,nr as S,pr as C,xr as w,z as T}from"./coreui-angular-pro._Y-t36RO.js";var E=e=>({backgroundColor:e}),D=class g{constructor(){this.favoriteColor=r(`#26ab3c`)}static{this.ɵfac=function(e){return new(e||g)}}static{this.ɵcmp=i({type:g,selectors:[[`docs-form-control-color`]],decls:11,vars:5,consts:[[1,`align-items-center`,`g-2`],[`xs`,`auto`],[`cLabel`,`col`,`for`,`exampleColorInput`],[`cFormControl`,``,`id`,`exampleColorInput`,`title`,`Choose your color`,`type`,`color`,3,`ngModelChange`,`ngModel`],[1,`color-box`,`p-1`,`m-1`,3,`ngStyle`]],template:function(r,i){r&1&&(p(0,`c-row`,0)(1,`c-col`,1)(2,`label`,2),s(3,`Color picker`),l()(),p(4,`c-col`,1)(5,`input`,3),u(`ngModelChange`,function(e){return o(i.favoriteColor,e)||(i.favoriteColor=e),e}),l(),e(),l(),p(6,`c-col`,1),a(7,`div`,4),l(),p(8,`c-col`,1)(9,`strong`),s(10),l()()()),r&2&&(n(5),d(`ngModel`,i.favoriteColor),m(),n(2),t(`ngStyle`,c(3,E,i.favoriteColor())),n(3),f(i.favoriteColor()))},dependencies:[x,T,v,b,w,S,C,_,y,h],styles:[`[_nghost-%COMP%]   #exampleColorInput[_ngcontent-%COMP%] {
+  min-width: 2.5rem;
+}
+[_nghost-%COMP%]   .color-box[_ngcontent-%COMP%] {
+  min-width: 2rem;
+  min-height: 2rem;
+}`]})}};D.clientProviders=[g([])];export{D as FormControlColorComponent};

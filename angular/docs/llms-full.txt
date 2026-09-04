@@ -8349,15 +8349,57 @@ Also - SmartTableComponent has exportAs: `cSmartTable` that you can use as a tem
 
 > Angular Sidebar is a powerful and customizable responsive navigation component for any type of vertical navigation. Sidebar comes with built-in support for branding, navigation, and more.
 
+## How it works
+
+Here's what you need to know before getting started with the Angular Sidebar component:
+
+- `c-sidebar` renders the `.sidebar` container.
+- On mobile devices, the sidebar is hidden by default. Control it with the `visible` input.
+- On desktop devices, the sidebar is shown by default. Hide it with `[visible]="false"`.
+- Use `narrow` to switch the sidebar to the narrow variant.
+- Use `unfoldable` to switch the sidebar to the narrow-unfoldable variant.
+- `c-sidebar-nav` renders `.sidebar-nav` and supports nested groups through `c-nav-group`.
+- `c-sidebar-nav` sets `role="navigation"` for you; override it with the `role` input when the nav is not the page's
+  main navigation.
+
 ## Supported content
 
-Sidebar come with built-in support for a handful of sub-components. Choose from the following as needed:
+Sidebar comes with built-in support for a handful of sub-components. Choose from the following as needed:
 
-- `c-sidebar-header` for optional header.
+- `c-sidebar-header` for an optional header.
 - `c-sidebar-brand` for your company, product, or project name.
-- `c-sidebar-nav` for a full-height and lightweight navigation (including support for dropdowns).
-- `c-sidebar-footer` for optional footer.
-- `c-sidebar-toggler` for use with our minimizer.
+- `c-sidebar-nav` for a full-height and lightweight navigation, including nested groups.
+- `c-sidebar-footer` for an optional footer.
+- `cSidebarToggler` for toggling the sidebar state.
+
+## Examples
+
+Below is a more complete sidebar example shown by default on desktop devices. It combines several optional features in
+a single demo, including narrow visibility helpers, tree navigation, nested groups, a custom group indicator, badges,
+and a footer toggler.
+
+### Narrow sidebar
+
+Add the `narrow` input to make the sidebar narrow.
+
+Use `.d-sidebar-narrow` to show content only in the narrow state and `.d-sidebar-narrow-none` to hide content in the
+narrow state.
+
+### Unfoldable sidebar
+
+Add the `unfoldable` input to make the sidebar narrow and expand it on hover.
+
+Use `.d-sidebar-narrow-unfoldable` and `.d-sidebar-narrow-unfoldable-none` to control content visibility for unfoldable
+sidebars.
+
+### Narrow visibility helpers
+
+Use the sidebar visibility helpers to swap content between regular, narrow, and narrow-unfoldable variants:
+
+- `.d-sidebar-narrow` shows content only in the narrow state.
+- `.d-sidebar-narrow-none` hides content in the narrow state.
+- `.d-sidebar-narrow-unfoldable` shows content only when the sidebar uses the unfoldable variant.
+- `.d-sidebar-narrow-unfoldable-none` hides content when the sidebar uses the unfoldable variant.
 
 ## Navigation
 
@@ -8382,7 +8424,7 @@ items. Set `visible` for a group that starts expanded, and `compact` to halve th
 Groups behave as an accordion within their level: opening one collapses its siblings. `c-sidebar-nav` is the top
 level, every `c-nav-group` opens a level for its own children, and a collapsed group keeps the state of its
 subgroups — reopening it brings them back as they were. A link that becomes `active` expands the whole branch above
-it, which is what makes `routerLinkActive` reveal the current route on load.
+it, which is what makes `routerLinkActive` reveal the current route on load; `dropdownMode="none"` turns that off.
 
 Outside `c-sidebar-nav` a group falls back to its own state, so siblings no longer collapse each other. Provide
 `NavGroupService` on the container to get the accordion back:
@@ -8397,96 +8439,152 @@ Outside `c-sidebar-nav` a group falls back to its own state, so siblings no long
 export class MenuComponent {}
 ```
 
+### Compact navigation
+
+_Added in 5.7.28._
+
+Set `compact` on `c-sidebar-nav` to halve the vertical padding of every link in the navigation, or on a single
+`c-nav-group` to compact just that section.
+
+### Tree navigation
+
+_Added in 5.7.28._
+
+Set `variant="tree"` on `c-sidebar-nav` to draw nested groups as a tree: each level gets a guide line and its items
+line up under the group they belong to.
+
+### Group indicator
+
+`c-nav-group` renders the default indicator through the `.nav-group-toggle` styles, so a plain toggler needs no extra
+markup.
+
 ### Custom group indicator
 
 _Added in 5.7.24._
 
-`c-nav-group` renders the default indicator through the `.nav-group-toggle` styles. To replace it, pass a template to
-`togglerTemplate` — it receives the visible state, so the icon can follow the group.
+To replace the default indicator, pass a template to `togglerTemplate` — it receives the visible state, so the icon can
+follow the group. Put the icon in a `.nav-group-toggle-indicator` element.
 
-### Controlled navigation group
+### Data-driven navigation
 
-_Added in 5.7.24._
+Instead of declaring the navigation, hand `c-sidebar-nav` an `INavData` array through `navItems` and it renders the
+titles, links, badges and groups for you. Both ways can be combined: projected content is rendered after the items
+built from the array.
 
-A group toggles itself by default. Bind `visible` two-way to drive it from the parent, or listen to `visibleChange`
-alone to keep the decision — the group follows whatever the parent sets, so a section can stay open even when the
-user clicks to collapse it.
+`dropdownMode` decides how much the router drives these groups:
+
+- `path` (default) opens the group whose item matches the active route and closes it when the route no longer matches.
+- `close` does the same, and additionally closes a group when another one is clicked.
+- `none` leaves the group alone — it neither opens under a matching route nor closes on navigation, so the user's
+  clicks are the only thing that moves it.
+
+> Until 5.7.28 a group matching the active route was expanded on load under every `dropdownMode`, `none` included.
+> Set `dropdownMode="none"` if you relied on that and want no route-driven expansion at all.
+
+## Dark sidebar
+
+Change the appearance of sidebars with `colorScheme="dark"`.
+
+## Placement
+
+By default, placement for sidebar components is on the left side of the viewport, but you can change it with the
+`placement` input:
+
+- `placement="start"` places the sidebar on the left side of the viewport.
+- `placement="end"` places the sidebar on the right side of the viewport.
 
 ## Customizing
 
 ### CSS variables
-Angular sidebars use local CSS variables on `.sidebar` and `.sidebar-backdrop` for enhanced real-time customization. Values for the CSS variables are set via Sass.
+
+Angular sidebars use local CSS variables on `.sidebar` and `.sidebar-backdrop` for enhanced real-time customization.
+Values for the CSS variables are set via Sass.
 
 ```scss
+--cui-sidebar-zindex: #{$zindex-sidebar};
 --cui-sidebar-width: #{$sidebar-width};
 --cui-sidebar-bg: #{$sidebar-bg};
 --cui-sidebar-padding-x: #{$sidebar-padding-x};
 --cui-sidebar-padding-y: #{$sidebar-padding-y};
 --cui-sidebar-color: #{$sidebar-color};
---cui-sidebar-border-width: #{$sidebar-border-width};
---cui-sidebar-border-color: #{$sidebar-border-color};
 --cui-sidebar-brand-color: #{$sidebar-brand-color};
---cui-sidebar-brand-height: #{$sidebar-brand-height};
 --cui-sidebar-brand-bg: #{$sidebar-brand-bg};
---cui-sidebar-header-height: #{$sidebar-header-height};
---cui-sidebar-header-bg: #{$sidebar-header-bg};
---cui-sidebar-header-padding-x: #{$sidebar-header-padding-x};
---cui-sidebar-header-padding-y: #{$sidebar-header-padding-y};
---cui-sidebar-footer-bg: #{$sidebar-footer-bg};
---cui-sidebar-footer-height: #{$sidebar-footer-height};
---cui-sidebar-footer-padding-x: #{$sidebar-footer-padding-x};
---cui-sidebar-footer-padding-y: #{$sidebar-footer-padding-y};
---cui-sidebar-toggler-bg: #{$sidebar-toggler-bg};
---cui-sidebar-toggler-height: #{$sidebar-toggler-height};
---cui-sidebar-toggler-indicator: #{escape-svg($sidebar-toggler-indicator-icon)};
---cui-sidebar-toggler-indicator-width: #{$sidebar-toggler-indicator-width};
---cui-sidebar-toggler-indicator-height: #{$sidebar-toggler-indicator-height};
---cui-sidebar-toggler-hover-bg: #{$sidebar-toggler-hover-bg};
---cui-sidebar-toggler-indicator-hover: #{escape-svg($sidebar-toggler-indicator-hover-icon)}
+```
+
+The narrow variants add their own:
+
+```scss
 --cui-sidebar-narrow-width: #{$sidebar-narrow-width};
+--cui-sidebar-padding-x: #{$sidebar-narrow-padding-x};
+```
+
+The navigation carries its own set:
+
+```scss
+--cui-sidebar-nav-padding-x: #{$sidebar-nav-padding-x};
+--cui-sidebar-nav-padding-y: #{$sidebar-nav-padding-y};
+--cui-sidebar-nav-gap: #{$sidebar-nav-gap};
+
 --cui-sidebar-nav-title-padding-x: #{$sidebar-nav-title-padding-x};
 --cui-sidebar-nav-title-padding-y: #{$sidebar-nav-title-padding-y};
 --cui-sidebar-nav-title-margin-top: #{$sidebar-nav-title-margin-top};
 --cui-sidebar-nav-title-color: #{$sidebar-nav-title-color};
+
 --cui-sidebar-nav-link-padding-x: #{$sidebar-nav-link-padding-x};
 --cui-sidebar-nav-link-padding-y: #{$sidebar-nav-link-padding-y};
 --cui-sidebar-nav-link-color: #{$sidebar-nav-link-color};
 --cui-sidebar-nav-link-bg: #{$sidebar-nav-link-bg};
 --cui-sidebar-nav-link-border-color: #{$sidebar-nav-link-border-color};
---cui-sidebar-nav-link-border: #{$sidebar-nav-link-border-width} solid var(--cui-sidebar-nav-link-border-color);
 --cui-sidebar-nav-link-border-radius: #{$sidebar-nav-link-border-radius};
+--cui-sidebar-nav-link-border-width: #{$sidebar-nav-link-border-width};
+
 --cui-sidebar-nav-link-active-color: #{$sidebar-nav-link-active-color};
 --cui-sidebar-nav-link-active-bg: #{$sidebar-nav-link-active-bg};
---cui-sidebar-nav-link-active-icon-color: #{$sidebar-nav-link-active-icon-color};
 --cui-sidebar-nav-link-disabled-color: #{$sidebar-nav-link-disabled-color};
---cui-sidebar-nav-link-disabled-icon-color: #{$sidebar-nav-link-disabled-icon-color};
 --cui-sidebar-nav-link-hover-color: #{$sidebar-nav-link-hover-color};
 --cui-sidebar-nav-link-hover-bg: #{$sidebar-nav-link-hover-bg};
---cui-sidebar-nav-link-hover-icon-color: #{$sidebar-nav-link-hover-icon-color};
---cui-sidebar-nav-icon-width: #{$sidebar-nav-icon-width};
---cui-sidebar-nav-icon-height: #{$sidebar-nav-icon-height};
---cui-sidebar-nav-icon-font-size: #{$sidebar-nav-icon-font-size};
+
+--cui-sidebar-nav-link-icon-margin: #{$sidebar-nav-link-icon-margin};
 --cui-sidebar-nav-link-icon-color: #{$sidebar-nav-link-icon-color};
+--cui-sidebar-nav-link-icon-width: #{$sidebar-nav-link-icon-width};
+--cui-sidebar-nav-link-icon-height: #{$sidebar-nav-link-icon-height};
+--cui-sidebar-nav-link-icon-font-size: #{$sidebar-nav-link-icon-font-size};
+--cui-sidebar-nav-link-active-icon-color: #{$sidebar-nav-link-active-icon-color};
+--cui-sidebar-nav-link-disabled-icon-color: #{$sidebar-nav-link-disabled-icon-color};
+--cui-sidebar-nav-link-hover-icon-color: #{$sidebar-nav-link-hover-icon-color};
+
+--cui-sidebar-nav-link-icon-bullet-size: #{$sidebar-nav-link-icon-bullet-size};
+--cui-sidebar-nav-link-icon-bullet-bg: #{$sidebar-nav-link-icon-bullet-bg};
+--cui-sidebar-nav-link-icon-bullet-border-width: #{$sidebar-nav-link-icon-bullet-border-width};
+--cui-sidebar-nav-link-icon-bullet-border-radius: #{$sidebar-nav-link-icon-bullet-border-radius};
+--cui-sidebar-nav-link-icon-bullet-border-color: #{$sidebar-nav-link-icon-bullet-border-color};
+--cui-sidebar-nav-link-active-icon-bullet-bg: #{$sidebar-nav-link-active-icon-bullet-bg};
+--cui-sidebar-nav-link-active-icon-bullet-border-color: #{$sidebar-nav-link-active-icon-bullet-border-color};
+--cui-sidebar-nav-link-disabled-icon-bullet-bg: #{$sidebar-nav-link-disabled-icon-bullet-bg};
+--cui-sidebar-nav-link-disabled-icon-bullet-border-color: #{$sidebar-nav-link-disabled-icon-bullet-border-color};
+--cui-sidebar-nav-link-hover-icon-bullet-bg: #{$sidebar-nav-link-hover-icon-bullet-bg};
+--cui-sidebar-nav-link-hover-icon-bullet-border-color: #{$sidebar-nav-link-hover-icon-bullet-border-color};
+
 --cui-sidebar-nav-group-bg: #{$sidebar-nav-group-bg};
+--cui-sidebar-nav-group-border-width: #{$sidebar-nav-group-border-width};
+--cui-sidebar-nav-group-border-radius: #{$sidebar-nav-group-border-radius};
+--cui-sidebar-nav-group-border-color: #{$sidebar-nav-group-border-color};
 --cui-sidebar-nav-group-items-padding-y: #{$sidebar-nav-group-items-padding-y};
 --cui-sidebar-nav-group-items-padding-x: #{$sidebar-nav-group-items-padding-x};
---cui-sidebar-nav-group-indicator: #{escape-svg($sidebar-nav-group-indicator-icon)};
---cui-sidebar-nav-group-indicator-hover: #{escape-svg($sidebar-nav-group-indicator-hover-icon)};
+--cui-sidebar-nav-group-indicator-color: #{$sidebar-nav-group-indicator-color};
+--cui-sidebar-nav-group-indicator-icon: #{escape-svg($sidebar-nav-group-indicator-icon)};
+--cui-sidebar-nav-group-indicator-hover-color: #{$sidebar-nav-group-indicator-hover-color};
+--cui-sidebar-nav-group-indicator-hover-icon: #{escape-svg($sidebar-nav-group-indicator-hover-icon)};
 --cui-sidebar-nav-group-toggle-show-color: #{$sidebar-nav-group-toggle-show-color};
 ```
 
-Some additional CSS variables are also present on `.sidebar-backdrop`:
+And the tree variant adds:
 
-```css
---cui-backdrop-zindex: #{$zindex-sidebar-backdrop};
---cui-backdrop-bg: #{$sidebar-backdrop-bg};
---cui-backdrop-opacity: #{$sidebar-backdrop-opacity};
-```
-
-<br />
-
-```css
---cui-mobile-breakpoint: #{$mobile-breakpoint};
+```scss
+--cui-sidebar-nav-tree-group-border-color: #{$sidebar-nav-tree-group-border-color};
+--cui-sidebar-nav-link-icon-bullet-bg: #{$sidebar-nav-tree-link-icon-bullet-bg};
+--cui-sidebar-nav-link-hover-icon-bullet-bg: #{$sidebar-nav-tree-link-hover-icon-bullet-bg};
+--cui-sidebar-nav-link-active-icon-bullet-bg: #{$sidebar-nav-tree-link-active-icon-bullet-bg};
 ```
 
 #### How to use CSS variables
@@ -8502,151 +8600,29 @@ const vars = {
 <div [ngStyle]="vars"></div>
 ```
 
-### SASS variables
+### Sass variables
 
 ```scss
-$sidebar-width:                            16rem;
+$sidebar-width:                            16rem !default;
 $sidebar-widths: (
   sm: 12rem,
   lg: 20rem,
   xl: 24rem
-);
-$sidebar-padding-y:                        0;
-$sidebar-padding-x:                        0;
-$sidebar-color:                            $high-emphasis-inverse;
-$sidebar-bg:                               $gray-base;
-$sidebar-border-width:                     0;
-$sidebar-border-color:                     transparent;
-$sidebar-transition:                       margin-left .15s, margin-right .15s, box-shadow .075s, transform .15s, width .15s, z-index 0s ease .15s;
+) !default;
+$sidebar-padding-y:                        $spacer !default;
+$sidebar-padding-x:                        $spacer !default;
+$sidebar-color:                            var(--cui-body-color) !default;
+$sidebar-bg:                               var(--cui-body-bg) !default;
+$sidebar-transition:                       margin-left .15s, margin-right .15s, box-shadow .075s, transform .15s, width .15s, z-index 0s ease .15s !default;
+$sidebar-brand-color:                      var(--cui-body-color) !default;
+$sidebar-brand-bg:                         rgba($black, .2) !default;
+$sidebar-backdrop-bg:                      $black !default;
+$sidebar-backdrop-opacity:                 .5 !default;
+$sidebar-overlaid-box-shadow:              var(--cui-box-shadow) !default;
 
-$sidebar-brand-height:                     4rem;
-$sidebar-brand-color:                      $high-emphasis-inverse;
-$sidebar-brand-bg:                         rgba($black, .2);
-
-$sidebar-header-height:                    4rem;
-$sidebar-header-padding-y:                 .75rem;
-$sidebar-header-padding-x:                 1rem;
-$sidebar-header-bg:                        rgba($black, .2);
-$sidebar-header-height-transition:         height .15s, padding .15s;
-
-$sidebar-narrow-width:                     4rem;
-
-$sidebar-backdrop-bg:                      $black;
-$sidebar-backdrop-opacity:                 .5;
-
-$sidebar-nav-title-padding-y:              .75rem;
-$sidebar-nav-title-padding-x:              1rem;
-$sidebar-nav-title-margin-top:             1rem;
-$sidebar-nav-title-color:                  $medium-emphasis-inverse;
-$sidebar-nav-title-transition:             height .15s, margin .15s;
-
-$sidebar-nav-link-padding-y:               .8445rem;
-$sidebar-nav-link-padding-x:               1rem;
-$sidebar-nav-link-color:                   $medium-emphasis-inverse;
-$sidebar-nav-link-bg:                      transparent;
-$sidebar-nav-link-border-width:            0;
-$sidebar-nav-link-border-color:            transparent;
-$sidebar-nav-link-border-radius:           0;
-$sidebar-nav-link-transition:              background .15s ease, color .15s ease;
-$sidebar-nav-link-icon-color:              $medium-emphasis-inverse;
-
-$sidebar-nav-link-hover-color:             $high-emphasis-inverse;
-$sidebar-nav-link-hover-bg:                rgba($white, .05);
-$sidebar-nav-link-hover-icon-color:        $high-emphasis-inverse;
-
-$sidebar-nav-link-active-color:            $high-emphasis-inverse;
-$sidebar-nav-link-active-bg:               rgba($white, .05);
-$sidebar-nav-link-active-icon-color:       $high-emphasis-inverse;
-
-$sidebar-nav-link-disabled-color:          $disabled-inverse;
-$sidebar-nav-link-disabled-icon-color:     $sidebar-nav-link-icon-color;
-
-$sidebar-nav-icon-width:                   4rem;
-$sidebar-nav-icon-height:                  1.25rem;
-$sidebar-nav-icon-font-size:               $sidebar-nav-icon-height;
-
-$sidebar-nav-group-bg:                     rgba(0, 0, 0, .2);
-$sidebar-nav-group-transition:             background .15s ease-in-out;
-$sidebar-nav-group-toggle-show-color:      $sidebar-nav-link-color;
-
-$sidebar-nav-group-items-padding-y:        0;
-$sidebar-nav-group-items-padding-x:        0;
-$sidebar-nav-group-items-transition:       height .15s ease;
-
-$sidebar-nav-group-indicator-color:        $medium-emphasis-inverse;
-$sidebar-nav-group-indicator-icon:         url("data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$sidebar-nav-group-indicator-color}'>&lt;path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/>&lt;/svg>");
-$sidebar-nav-group-indicator-hover-color:  $sidebar-nav-link-hover-color;
-$sidebar-nav-group-indicator-hover-icon:   url("data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$sidebar-nav-group-indicator-hover-color}'>&lt;path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/>&lt;/svg>");
-$sidebar-nav-group-indicator-transition:   transform .15s;
-
-$sidebar-footer-height:                    auto;
-$sidebar-footer-padding-y:                 .75rem;
-$sidebar-footer-padding-x:                 1rem;
-$sidebar-footer-bg:                        rgba($black, .2);
-$sidebar-footer-height-transition:         height .15s, padding .15s;
-
-$sidebar-toggler-height:                   3rem;
-$sidebar-toggler-bg:                       rgba($black, .2);
-$sidebar-toggler-transition:               transform .15s;
-
-$sidebar-toggler-indicator-width:          4rem;
-$sidebar-toggler-indicator-height:         3rem;
-$sidebar-toggler-indicator-color:          $gray-600;
-$sidebar-toggler-indicator-icon:           url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'&gt;%3Cpath fill='#{$sidebar-toggler-indicator-color}' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/&gt;&lt;/svg&gt;");
-$sidebar-toggler-hover-bg:                 rgba(0, 0, 0, .3);
-
-$sidebar-toggler-indicator-hover-color:    $sidebar-nav-link-hover-color;
-$sidebar-toggler-indicator-hover-icon:     url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'&gt;%3Cpath fill='#{$sidebar-toggler-indicator-hover-color}' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/&gt;&lt;/svg&gt;");
-
-$sidebar-light-color:    $body-color;
-$sidebar-light-bg:       $white;
-$sidebar-light-border-width:                     0;
-$sidebar-light-border-color:                     transparent;
-
-$sidebar-light-brand-color:  $white;
-$sidebar-light-brand-bg:     $primary;
-
-$sidebar-light-header-bg: rgba($black, .2);
-
-$sidebar-light-nav-title-color:                  $medium-emphasis;
-
-$sidebar-light-nav-link-color:                   $medium-emphasis;
-$sidebar-light-nav-link-bg:                      transparent;
-$sidebar-light-nav-link-icon-color:              $medium-emphasis;
-
-$sidebar-light-nav-link-hover-color:             $high-emphasis;
-$sidebar-light-nav-link-hover-bg:                theme-color("primary");
-$sidebar-light-nav-link-hover-icon-color:        $high-emphasis;
-
-$sidebar-light-nav-link-active-color:            $high-emphasis;
-$sidebar-light-nav-link-active-bg:               rgba($white, .05);
-$sidebar-light-nav-link-active-icon-color:       $high-emphasis;
-
-$sidebar-light-nav-link-disabled-color:          $disabled;
-$sidebar-light-nav-link-disabled-icon-color:     $sidebar-light-nav-link-icon-color;
-
-$sidebar-light-nav-group-bg:                     rgba(0, 0, 0, .05);
-$sidebar-light-nav-group-toggle-show-color:      $sidebar-light-nav-link-color;
-
-$sidebar-light-nav-group-indicator-color:        $medium-emphasis;
-$sidebar-light-nav-group-indicator-icon:         url("data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$sidebar-light-nav-group-indicator-color}'>&lt;path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/>&lt;/svg>");
-$sidebar-light-nav-group-indicator-hover-color:  $sidebar-light-nav-link-hover-color;
-$sidebar-light-nav-group-indicator-hover-icon:   url("data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$sidebar-light-nav-group-indicator-hover-color}'>&lt;path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/>&lt;/svg>");
-
-$sidebar-light-footer-bg:                        rgba($black, .1);
-
-$sidebar-light-toggler-bg:                       rgba($black, .1);
-$sidebar-light-toggler-hover-bg:                 rgba(0, 0, 0, .2);
-$sidebar-light-toggler-indicator-color:          $medium-emphasis;
-$sidebar-light-toggler-indicator-icon:           url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'&gt;%3Cpath fill='#{$sidebar-light-toggler-indicator-color}' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/&gt;&lt;/svg&gt;");
-$sidebar-light-toggler-indicator-hover-color:    $sidebar-light-nav-link-hover-color;
-$sidebar-light-toggler-indicator-hover-icon:     url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'&gt;%3Cpath fill='#{$sidebar-light-toggler-indicator-hover-color}' d='M9.148 2.352l-4.148 4.148 4.148 4.148q0.148 0.148 0.148 0.352t-0.148 0.352l-1.297 1.297q-0.148 0.148-0.352 0.148t-0.352-0.148l-5.797-5.797q-0.148-0.148-0.148-0.352t0.148-0.352l5.797-5.797q0.148-0.148 0.352-0.148t0.352 0.148l1.297 1.297q0.148 0.148 0.148 0.352t-0.148 0.352z'/&gt;&lt;/svg&gt;");
-```
-
-<br />
-
-```scss
-$mobile-breakpoint: md;
+$sidebar-narrow-width:                     4rem !default;
+$sidebar-narrow-padding-x:                 .5rem !default;
+$sidebar-narrow-unfoldable-box-shadow:     var(--cui-box-shadow) !default;
 ```
 
 ## API reference
@@ -8776,10 +8752,11 @@ import { SidebarNavComponent } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `compact` | `boolean` | `undefined` | Renders the nav in compact mode. |
-| `dropdownMode` | `'path' \| 'none' \| 'close'` | `'path'` | Determines when an inactive `c-sidebar-nav-group` closes. - `path`: on an active route change only - `close`: when another group is clicked - `none`: never, the group stays open |
+| `dropdownMode` | `'path' \| 'none' \| 'close'` | `'path'` | Determines when an inactive `c-sidebar-nav-group` closes. - `path`: on an active route change only - `close`: when another group is clicked - `none`: never, the group stays open — it stops reacting to the route altogether, so a matching route neither opens it on init nor on a later navigation |
 | `groupItems` | `boolean` | `undefined` | Renders `c-sidebar-nav` as a nested group's item list rather than the top-level sidebar nav. |
 | `navItems` | `INavData[]` | `[]` | Configuration object for sidebar-nav. |
 | `role` | `string` | `'navigation'` | Default role for sidebar nav. |
+| `variant` | `'tree'` | `undefined` | Set the sidebar nav variant to tree. |
 
 The building blocks of a declared navigation — `c-nav-group`, `c-nav-group-items`, `c-nav-item`, `c-nav-title` and
 `cNavLink` — are documented on the [Nav](../nav/) page.
