@@ -38,6 +38,30 @@ In the following example, the `clearSearchOnSelect` property is set to `true`. T
 
 ### Text
 
+## Select all
+
+_Added in 5.7.29._
+
+With `multiple` enabled, a **select all** button is rendered in the dropdown header (turn it off with the `selectAll` property). The button works as a toggle: it selects every option and its label switches to `deselectAllLabel`, then deselects everything on the next click.
+
+With the default `selectAllStyle="checkbox"` the button shows a tri-state indicator that mirrors the overall selection — `none` when nothing is selected, `all` when everything is, and `indeterminate` in between. Set `selectAllStyle="text"` for a plain text toggle instead.
+
+### Acting on filtered options
+
+By default (`selectAllMode="all"`) the button acts on the full list, ignoring the current search. Set `selectAllMode="filtered"` to scope it to the options matched by the search filter. The label and the checkbox then answer "are all *filtered* options selected?". With no active search every option matches, so this behaves exactly like `"all"`.
+
+To avoid a misleading "Select all" while a search is active, the label switches to `selectFilteredLabel` / `deselectFilteredLabel` (default `Select filtered` / `Deselect filtered`) whenever the search actually narrows the list — and falls back to `selectAllLabel` / `deselectAllLabel` when nothing is hidden.
+
+Type into the search box below, then use select all — only the matching options are selected.
+
+Because the scope follows the search, a side effect is worth knowing: select all while a search is active (so the checkbox reads `all`), then clear the search — the checkbox drops to `indeterminate`, since the options that were hidden are back in the list and not selected.
+
+## Selection limit
+
+_Added in 5.7.29._
+
+Use the `selectionLimit` property to limit how many options can be selected. Selecting further options is blocked once the limit is reached, while deselecting always works. The select all button stays enabled and selects options up to the limit, then reads as fully selected and toggles to deselect all. The `selectionLimitReached` output fires whenever a user tries to select more options than allowed — use it to show feedback.
+
 ## Single selection
 
 Set the `multiple` boolean property to `false` and allow select only one element.
@@ -385,6 +409,8 @@ import { MultiSelectComponent } from '@coreui/angular-pro'
 | `ariaIndicatorLabel` | `string` | `'Toggle visibility of options menu'` | Sets the accessible label (`aria-label`) for the indicator button that toggles the options menu. This label is read by screen readers. |
 | `cleaner` | `boolean \| 'active'` | `true` | Enables selection cleaner element |
 | `clearSearchOnSelect` | `boolean` | `false` | Clear current search on selecting an item |
+| `deselectAllLabel` | `string` | `'Deselect all'` | Sets the select all button label shown once everything is selected. The button is a toggle: it shows `selectAllLabel` and selects all options, then shows `deselectAllLabel` and deselects them. |
+| `deselectFilteredLabel` | `string` | `'Deselect filtered'` | Sets the deselect filtered button label, used with `selectAllMode="filtered"`. |
 | `disabled` | `boolean` | `false` | Disables multi-select component |
 | `itemMinWidth` | `number` | `196` | Min width of the options list (in pixels). |
 | `itemSize` | `number` | `40` | The size of the option item in the list (in pixels). |
@@ -400,7 +426,11 @@ import { MultiSelectComponent } from '@coreui/angular-pro'
 | `searchNoResultsLabel` | `string` | `'no items'` | Sets the label for no results when filtering |
 | `searchValue` | `string` | `''` | Sets initial search string |
 | `selectAll` | `boolean` | `true` | Enables select all button |
-| `selectAllLabel` | `string` | `'Select all options'` | Sets the select all button label |
+| `selectAllLabel` | `string` | `'Select all'` | Sets the select all button label |
+| `selectAllMode` | `'all' \| 'filtered'` | `'all'` | Determines what the select all button operates on: all options (`'all'`) or only the ones matched by the current search (`'filtered'`). |
+| `selectAllStyle` | `'checkbox' \| 'text'` | `'checkbox'` | Sets the select all button style. With `'checkbox'` the button shows a tri-state indicator (none / all / indeterminate). |
+| `selectFilteredLabel` | `string` | `'Select filtered'` | Sets the select filtered button label, used with `selectAllMode="filtered"`. |
+| `selectionLimit` | `number` | `undefined` | Sets the maximum number of options that can be selected. The select all button stays enabled and selects options up to the limit. Selecting more options is blocked and emits `selectionLimitReached`. |
 | `selectionType` | `'text' \| 'counter' \| 'tags'` | `'tags'` | Selection type |
 | `selectionTypeCounterText` | `string` | `'item(s) selected'` | Counter selection label value |
 | `selectionTypeCounterTextPluralMap` | `IPluralMap` | `{ '=1': 'item selected', 'other': 'items selected' }` | Counter selection label plural map for I18nPluralPipe |
@@ -416,6 +446,7 @@ import { MultiSelectComponent } from '@coreui/angular-pro'
 | Name | Description |
 | --- | --- |
 | `searchValueChange` | Emits searchValue string for external filtering |
+| `selectionLimitReached` | Emits when the user tries to select more options than allowed by `selectionLimit`. |
 | `valueChange` | Emits valueChange |
 | `visibleChange` | Emits visibleChange |
 
