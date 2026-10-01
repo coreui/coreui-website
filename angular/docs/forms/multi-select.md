@@ -56,11 +56,45 @@ Type into the search box below, then use select all — only the matching option
 
 Because the scope follows the search, a side effect is worth knowing: select all while a search is active (so the checkbox reads `all`), then clear the search — the checkbox drops to `indeterminate`, since the options that were hidden are back in the list and not selected.
 
+### Hiding select all when search has no results
+
+_Added in 5.7.32._
+
+When `search` is enabled and the user types a query that matches no options, there is nothing left to select — so leaving the select all button visible above the empty "No results found" message is misleading. By default the component hides the whole dropdown header in that case, and brings it back as soon as the search matches at least one option again.
+
+Type a query that matches nothing (for example `xyz`) into the example below — the select all button disappears together with the options, then returns when you clear or change the search.
+
+Set `[hideSelectAllOnSearchNoResults]="false"` to keep the header (and the select all button) visible even when the search returns no results.
+
+This option only affects the built-in select all button. A [custom dropdown header](#custom-dropdown-header) is always rendered, since it may contain controls unrelated to the options list.
+
 ## Selection limit
 
 _Added in 5.7.29._
 
 Use the `selectionLimit` property to limit how many options can be selected. Selecting further options is blocked once the limit is reached, while deselecting always works. The select all button stays enabled and selects options up to the limit, then reads as fully selected and toggles to deselect all. The `selectionLimitReached` output fires whenever a user tries to select more options than allowed — use it to show feedback.
+
+## Selectable groups
+
+_Added in 5.7.32._
+
+Enable `optionsGroupsSelectable` to turn each options group label into its own tri-state checkbox that toggles the whole group. Because the indicator is rendered with CSS, it supports a third, `indeterminate` state — shown when only some of a group's options are selected — without any real `<input>` element. Each section's indicator follows its own `*Style` property (`optionsStyle`, `optionsGroupsStyle`, `selectAllStyle`, all defaulting to `'checkbox'`). Selectable groups and the select all button require `multiple`, and a group label is a toggle only with `optionsGroupsStyle="checkbox"` — with `'text'` it stays a plain label.
+
+Disabled options are skipped, and a disabled group label is inert. The toggle covers the enabled options of the group that match the current search, the indicator counts the same options, and the toggle respects `selectionLimit`.
+
+Groups are selectable only when they are written as `c-multi-select-optgroup` content — the `options` input renders a flat list.
+
+A selectable group label is a tab stop with `role="checkbox"` and `aria-checked` set to `false`, `mixed` or `true`. <kbd>Space</kbd> and <kbd>Enter</kbd> toggle the group, <kbd>↓</kbd> and <kbd>Home</kbd> move to its first option, <kbd>↑</kbd> and <kbd>End</kbd> to its last.
+
+Put your own markup inside `c-multi-select-optgroup-label` instead of using the `label` input to render a custom group label — it keeps the checkbox styling and the toggle behaviour.
+
+## Custom dropdown header
+
+_Added in 5.7.32._
+
+Pass an `ng-template` with `cTemplateId="multiSelectHeaderTemplate"` to fully customize the dropdown header — the area above the options list — including rendering several action buttons. It replaces the built-in select all button and renders independently of `selectAll`.
+
+The template context carries a `state` object (`selected`, `total`, `filtered`, `filteredSelected`) and an `actions` object (`selectAll`, `deselectAll`, `selectFiltered`, `deselectFiltered`) with the component's selection methods, so you can wire your own controls. It re-renders on every selection change and search filter, so labels and `disabled` states stay up to date.
 
 ## Single selection
 
@@ -405,25 +439,30 @@ import { MultiSelectComponent } from '@coreui/angular-pro'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `allowCreateOptions` | `boolean` | `false` | Allow users to create options if they are not in the list of options. |
-| `ariaCleanerLabel` | `string` | `'Clear selection'` | Sets the accessible label (`aria-label`) for the button that clears the current selection. This label is read by screen readers. |
+| `ariaCleanerLabel` | `string` | `'Clear all selections'` | Sets the accessible label (`aria-label`) for the button that clears the current selection. This label is read by screen readers. |
 | `ariaIndicatorLabel` | `string` | `'Toggle visibility of options menu'` | Sets the accessible label (`aria-label`) for the indicator button that toggles the options menu. This label is read by screen readers. |
+| `ariaSearchLabel` | `string` | `'Search options'` | Sets the accessible label (`aria-label`) for the search input. This label is read by screen readers. |
+| `ariaTagDeleteLabel` | `string` | `'Remove'` | Sets the prefix of the accessible label (`aria-label`) for a tag delete button. The option label is appended to it. |
 | `cleaner` | `boolean \| 'active'` | `true` | Enables selection cleaner element |
 | `clearSearchOnSelect` | `boolean` | `false` | Clear current search on selecting an item |
 | `deselectAllLabel` | `string` | `'Deselect all'` | Sets the select all button label shown once everything is selected. The button is a toggle: it shows `selectAllLabel` and selects all options, then shows `deselectAllLabel` and deselects them. |
 | `deselectFilteredLabel` | `string` | `'Deselect filtered'` | Sets the deselect filtered button label, used with `selectAllMode="filtered"`. |
 | `disabled` | `boolean` | `false` | Disables multi-select component |
+| `hideSelectAllOnSearchNoResults` | `boolean` | `true` | Hides the select all button when the search yields no results. |
 | `itemMinWidth` | `number` | `196` | Min width of the options list (in pixels). |
 | `itemSize` | `number` | `40` | The size of the option item in the list (in pixels). |
 | `loading` | `boolean` | `false` | Add loading spinner and reduced opacity. |
 | `multiple` | `boolean` | `false` | Specifies that multiple options can be selected at once |
 | `options` | `IOption[]` | `[]` | List of option elements |
+| `optionsGroupsSelectable` | `boolean` | `false` | With `multiple` and `optionsGroupsStyle="checkbox"`, makes each options group label a toggle that selects or deselects the group's enabled options matching the search, with a tri-state checkbox indicator (`none` / `all` / `indeterminate`) reflecting their selection. |
+| `optionsGroupsStyle` | `'checkbox' \| 'text'` | `'checkbox'` | Sets the options group label style when `optionsGroupsSelectable` is enabled: `'checkbox'` makes the label a toggle with a tri-state indicator, `'text'` keeps it a plain, non-interactive label. |
 | `optionsMaxHeight` | `string \| number` | `'auto'` | Sets maxHeight of options list in px |
 | `optionsStyle` | `'checkbox' \| 'text'` | `'checkbox'` | Sets option style |
 | `placeholder` | `string` | `'Select...'` | Specifies a short hint that is visible in the search input |
 | `popperOptions` | `Partial<Options>` | `defaultPopperOptions` | Optional popper Options object |
 | `resetSelectionOnOptionsChange` | `boolean` | `false` | Resets selection when options are changed When set to true, any previously selected options will be reset whenever the options list undergoes a change. This ensures that outdated selections are not retained when new options are provided. |
 | `search` | `boolean \| SearchFn \| 'external'` | `true` | Enables search input element |
-| `searchNoResultsLabel` | `string` | `'no items'` | Sets the label for no results when filtering |
+| `searchNoResultsLabel` | `string` | `'No results found'` | Sets the label for no results when filtering |
 | `searchValue` | `string` | `''` | Sets initial search string |
 | `selectAll` | `boolean` | `true` | Enables select all button |
 | `selectAllLabel` | `string` | `'Select all'` | Sets the select all button label |
@@ -446,7 +485,7 @@ import { MultiSelectComponent } from '@coreui/angular-pro'
 | Name | Description |
 | --- | --- |
 | `searchValueChange` | Emits searchValue string for external filtering |
-| `selectionLimitReached` | Emits when the user tries to select more options than allowed by `selectionLimit`. |
+| `selectionLimitReached` | Emits the active `selectionLimit` when the user tries to select more options than allowed by it. |
 | `valueChange` | Emits valueChange |
 | `visibleChange` | Emits visibleChange |
 

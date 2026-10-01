@@ -1,0 +1,3 @@
+import{Mn as e,Nn as t,Yt as n,jt as r,un as i}from"./common.B4dfOdHu.js";import{sn as a}from"./coreui-angular-pro.Da7qYJZa.js";import{i as o}from"./_router_module-chunk.Jh0oV1rm.js";var s=()=>[50,75],c=class o{static{this.ɵfac=function(e){return new(e||o)}}static{this.ɵcmp=n({type:o,selectors:[[`docs-range-slider-disabled`]],decls:2,vars:3,consts:[[`disabled`,``,3,`value`]],template:function(n,a){n&1&&i(0,`c-range-slider`,0)(1,`c-range-slider`,0),n&2&&(e(`value`,50),r(),e(`value`,t(2,s)))},dependencies:[a],styles:[`[_nghost-%COMP%]   .range-slider[_ngcontent-%COMP%]:not(:last-child) {
+  margin-bottom: 1rem !important;
+}`]})}};c.clientProviders=[o([])];export{c as RangeSliderDisabledComponent};

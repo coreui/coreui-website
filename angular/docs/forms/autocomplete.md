@@ -17,9 +17,6 @@ Key features of this Angular Autocomplete include:
 - Custom styles
 - Customizable templates
 
-Soon:
-- _Performance optimization with virtual scrolling_
-
 ## Basic Example
 
 This straightforward demonstration provides a clear guide on how to implement a basic autocomplete input field, emphasizing the essential attributes and configurations required for its functionality.
@@ -36,7 +33,7 @@ Configure the search behavior to match your application's needs. The `search` pr
 By default, search operates only when the input field is focused and filters options internally:
 
 ### Global search
-Enable global search functionality that allows users to start typing from anywhere within the component to begin searching:
+Typing anywhere within the component, for example on the cleaner or indicator button, always continues in the search input, so no configuration is needed. `search="global"` and `{ global: true }` are deprecated and have no effect.
 
 ### External search
 When external search is enabled `search="external"`, the component delegates search operations to your custom logic or external API. This is perfect for server-side filtering, complex search algorithms, or third-party search services:
@@ -46,16 +43,6 @@ When external search is enabled `search="external"`, the component delegates sea
        [options]="filteredOptions"
        (inputChange)="handleSearch($event)"
        search="external"
->
-```
-
-You can combine external search with global keyboard navigation:
-
-```html
-<input cAutocomplete
-       [options]="filteredOptions"
-       (inputChange)="handleSearch($event)"
-       [search]="{ external: true, global: true }"
 >
 ```
 
@@ -97,9 +84,17 @@ One of the most powerful features of the Angular Autocomplete component is its a
 ### Implementation example
 Here's how to implement external data loading with proper debouncing to optimize API calls:
 
+## Performance optimization
+
+_Added in 5.7.32._
+
+For large datasets, enable `virtualScroller` to render only the options that fit in the dropdown. Only the visible rows and a buffer around them are in the DOM, and keyboard navigation (<kbd>Arrow Up</kbd>, <kbd>Arrow Down</kbd>, <kbd>Home</kbd>, <kbd>End</kbd>, <kbd>Page Up</kbd>, <kbd>Page Down</kbd>) still reaches every option. `visibleItems` sets the height of the list in rows; `itemSize` is the initial row height in pixels, replaced by the measured height of a rendered option.
+
+The virtual scroller is loaded on demand, so an application that does not use it does not ship `@angular/cdk/scrolling` in its initial bundle.
+
 ## Forms
 
-Angular handles user input through reactive and template-driven forms. CoreUI Autocomplete supports both approaches.
+Angular handles user input through reactive, template-driven and signal forms. CoreUI Autocomplete supports all three approaches.
 
 ### Reactive
 
@@ -116,22 +111,25 @@ The Angular Autocomplete component works with signal forms. **(preview)**
 ## Accessibility
 The Autocomplete component includes several accessibility features:
 
-- _ARIA attributes_: Proper `role`, `aria-expanded`, `aria-haspopup`, and `aria-autocomplete` attributes
+- _ARIA attributes_: The input is a `combobox` that controls a `listbox` of `option` elements, with `aria-expanded`, `aria-controls`, `aria-haspopup`, `aria-autocomplete` and `aria-selected` kept in sync. Built on [Angular Aria](https://angular.dev/guide/aria/autocomplete).
 - _Screen reader_ support: Descriptive labels and announcements for state changes
-- _Keyboard navigation_: Full keyboard support with arrow keys, Enter, Escape, and Tab
-- _Focus management_: Proper focus handling and visual focus indicators
+- _Keyboard navigation_: Full keyboard support with arrow keys, Home, End, Page Up, Page Down, Enter, Escape, and Tab
+- _Focus management_: Focus stays in the input while navigating; the highlighted option is announced through `aria-activedescendant`
+- _Option groups_: Grouped options are rendered inside a `group` named by its label, so screen readers announce the group of the highlighted option. With `virtualScroller`, each option references its group labels through `aria-describedby` instead.
 - _Semantic markup_: Uses appropriate HTML elements and structure
 
 ### Keyboard shortcuts
 
 | Key | Action |
 | --- | --- |
-|<kbd>Arrow Down</kbd> |  Navigate to the next option or open dropdown |
-|<kbd>Arrow Up</kbd>  | Navigate to the previous option |
-|<kbd>Enter</kbd>  | Select the highlighted option |
-|<kbd>Escape</kbd>  | Close the dropdown and clear focus |
-|<kbd>Tab</kbd>  | Accept hint completion (when hints are enabled) |
-|<kbd>Backspace</kbd> <kbd>Delete</kbd>  | Clear input and trigger search |
+|<kbd>Arrow&nbsp;Down</kbd> |  Navigate to the next option or open dropdown |
+|<kbd>Arrow&nbsp;Up</kbd>  | Navigate to the previous option |
+|<kbd>Page&nbsp;Down</kbd>&nbsp;<kbd>Page&nbsp;Up</kbd>  | Move the highlight by `visibleItems` options |
+|<kbd>Home</kbd>&nbsp;<kbd>End</kbd>  | Move the highlight to the first or last option while the dropdown is open |
+|<kbd>Enter</kbd>  | Select the highlighted option, or the typed text when no option is highlighted (with `allowOnlyDefinedOptions` only text matching an option label is accepted) |
+|<kbd>Escape</kbd>  | Close the dropdown |
+|<kbd>Tab</kbd>  | Accept hint completion (when hints are enabled), or select the highlighted option and move focus |
+|<kbd>Backspace</kbd>&nbsp;<kbd>Delete</kbd>  | Clear input and trigger search |
 
 ## Customizing
 ### CSS variables
@@ -355,38 +353,6 @@ export class CustomAppComponent {}
 ### cAutocomplete
 _directive_
 
-<br />
-
-##### Inputs
-  
-| name | description | type | default |
-    | ---- | ----------- | ---- | ------- |
-    | `allowOnlyDefinedOptions` | Only allow selection of predefined options. When `true`, users cannot enter custom values that are not in the options list. When false, users can enter and select custom values. | `boolean` | `false` |
-    | `cleaner` | Enables selection cleaner element. When `true`, displays a clear button that allows users to reset the selection. The cleaner button is only shown when there is a selection and the component is not disabled or read-only. | `boolean` | `false` |
-    | `clearSearchOnSelect` | Whether to clear the internal search state after selecting an option. When set to `true`, the internal search value used for filtering options is cleared after a selection is made. This affects only the component's internal logic. Note: This does *not* clear the visible input field if the component is using external search or is controlled via the searchValue prop. In such cases, clearing must be handled externally. | `boolean` | `true` |
-    | `disabled` | Toggle the disabled state for the component. When true, the Angular autocomplete is non-interactive and appears visually disabled. Users cannot type, select options, or trigger the dropdown. | `boolean` | `undefined` |
-    | `highlightOptionsOnSearch` | Highlight options that match the search criteria. When true, matching portions of option labels are visually highlighted based on the current search input value. | `boolean` | `false` |
-    | `indicator` | Show dropdown indicator/arrow button. When `true`, displays a dropdown arrow button that can be clicked to manually show or hide the options dropdown. | `boolean` | `false` |
-    | `loading` | When set, the options list will have a loading style: loading spinner and reduced opacity. Use this to indicate that options are being fetched asynchronously. The dropdown remains functional but shows visual loading indicators. | `boolean` | `false` |
-    | `options` | List of option elements. Can contain Option objects, OptionsGroup objects, or plain strings. Plain strings are converted to simple Option objects internally. This is a required prop - the Angular Autocomplete needs options to function. | `AutocompleteOption[]` | `[]` |
-    | `optionsMaxHeight` | Sets maxHeight of options list. Controls the maximum height of the dropdown options container. Can be a number (pixels) or a CSS length string (e.g., '200px', '10rem'). When content exceeds this height, a scrollbar will appear. | `string \| number` | `auto` |
-    | `optionGroupTemplate` | Custom template for rendering option groups. Allows customization of how option group headers appear in the dropdown.  | `TemplateRef` | `undefined` |
-    | `optionTemplate` | Custom template for rendering individual options. Allows complete customization of how each option appears in the dropdown. | `TemplateRef` | `undefined` |
-    | `placeholder` | Specifies a short hint that is visible in the search input. Displayed when the input is empty to guide user interaction. Standard HTML input placeholder behavior. | `string` | `undefined` |
-    | `readOnly` | Toggle the readonly state for the component. When true, users can view and interact with the dropdown but cannot type in the search input or modify the selection through typing. Selection via clicking options may still be possible. | `boolean` | `false` |
-    | `resetSelectionOnOptionsChange` | Determines whether the selected options should be cleared when the options list is updated. When true, any previously selected options will be reset whenever the options list undergoes a change. This ensures that outdated selections are not retained when new options are provided. | `boolean` | `false` |
-    | `search` | Enables and configures search functionality. <br /> `{ global: boolean, external: boolean }` | `'global' \| 'external' ` | `undefined` |
-    | `searchNoResultsLabel` | Sets the label for no results when filtering - `false`: Don't show any message when no results found, `true`: Show default _No results found_ message, `string`: Show custom text message | `string \| boolean` | `undefined` |
-    | `showHints` | Show hint options based on the current input value. When true, displays a preview/hint of the first matching option as semi-transparent text in the input field, similar to browser autocomplete. | `boolean` | `false` |
-    | `sizing` | Size the component small, large, or default. | `sm \| lg` | `undefined` |
-    | `valid` | Set component validation state. | `boolean \| undefined` | `undefined` |
-    | `value` | Sets the initially selected value for the Angular Autocomplete component. Can be a string (matched against option labels) or number (matched against option values). The component will attempt to find and select the matching option on mount. | `string \| number` | `` |
-    | `visible` | Toggle the visibility of autocomplete dropdown. Controls whether the dropdown is initially visible. The dropdown visibility can still be toggled through user interaction. | `boolean` | `false` |
-    {/*    | `virtualScroller` | Not yet implemented | `boolean` | `false` |*/}
-{/*    | `visibleItems` | Amount of visible items when virtualScroller is enabled. Determines how many option items are rendered at once when virtual scrolling is active. Higher values show more items but use more memory. Lower values improve performance. | `number` | `10` |*/}
-
-<br />
-
 ```jsx
 import { AutocompleteDirective } from '@coreui/angular-pro'
 ```
@@ -405,7 +371,7 @@ import { AutocompleteDirective } from '@coreui/angular-pro'
 | `highlightOptionsOnSearch` | `boolean` | `false` | Highlight options that match the search criteria. When `true`, matching portions of option labels are visually highlighted based on the current search input value. |
 | `id` | `string` | `'autocomplete-<nextId>'` | Unique identifier for the Autocomplete component. If not provided, a default ID will be generated. |
 | `indicator` | `boolean` | `false` | Show dropdown indicator/arrow button. When `true`, displays a dropdown arrow button that can be clicked to manually show or hide options dropdown. |
-| `itemSize` | `number` | `40` | The size of the option item in the list (in pixels). |
+| `itemSize` | `number` | `40` | Initial height of an option row in pixels for the virtual scroller, replaced by the measured row height once options render. |
 | `loading` | `boolean` | `false` | When set, the options list will have a loading style: loading spinner and reduced opacity. Use this to indicate that options are being fetched asynchronously. The dropdown remains functional but shows visual loading indicators. |
 | `optionGroupTemplate` | `TemplateRef<any>` | - | Custom template for rendering option groups. Allows customization of how option group headers appear in the dropdown. |
 | `options` | `AutocompleteOption[]` | - | List of option elements. Can contain Option objects, OptionsGroup objects, or plain strings. Plain strings are converted to simple Option objects internally. This is a required prop - the Angular autocomplete needs options to function. |
@@ -415,15 +381,15 @@ import { AutocompleteDirective } from '@coreui/angular-pro'
 | `popperOptions` | `Partial<Options>` | `defaultPopperOptions` | Optional popper Options object |
 | `readOnly` | `boolean` | `false` | Toggle the readonly state for the component. When `true`, users can view and interact with the dropdown but cannot type in the search input or modify the selection through typing. Selection via clicking options may still be possible. |
 | `resetSelectionOnOptionsChange` | `boolean` | `false` | Determines whether the selected options should be cleared when the options list is updated. When `true`, any previously selected options will be reset whenever the options list undergoes a change. This ensures that outdated selections are not retained when new options are provided. |
-| `search` | `Search` | - | Enables and configures search functionality. - `'external'`: Search is handled externally, filtering is not applied internally - `'global'`: Enables global keyboard search when dropdown is closed - Object with `external` and `global` boolean properties for fine-grained control |
+| `search` | `Search` | - | Enables and configures search functionality. - `'external'`: Search is handled externally, filtering is not applied internally - Object with an `external` boolean property `'global'` and `{ global: true }` are deprecated and have no effect: typing anywhere in the component always continues in the search input. |
 | `searchNoResultsLabel` | `string \| boolean \| TemplateRef<any>` | `false` | Sets the label for no results when filtering. - `false`: Don't show any message when no results found - `true`: Show default "No results found" message - `string`: Show custom text message - `TemplateRef`: Show custom component/element |
 | `showHints` | `boolean` | `false` | Show hint options based on the current input value. When `true`, displays a preview/hint of the first matching option as semi-transparent text in the input field, similar to browser autocomplete. |
 | `sizing` | `'' \| 'sm' \| 'lg'` | - | Size the component small or large. - `'sm'`: Small size variant - `'lg'`: Large size variant - `undefined`: Default/medium size |
 | `valid` | `boolean` | `undefined` | Set form input validation state to valid. |
-| `value` | `string \| number` | `undefined` | Sets the initially selected value for the Angular autocomplete component. Can be a string (matched against option labels) or number (matched against option values). The component will attempt to find and select the matching option on mount. |
-| `virtualScroller` | `boolean` | `false` | Enable virtual scroller for the options list. When `true`, only visible options are rendered in the DOM for better performance with large option lists. Works in conjunction with `visibleItems` prop. |
+| `value` | `string \| number \| null` | `undefined` | Sets the selected value for the Angular autocomplete component, two-way bindable with `[(value)]`. Matched against option values first, then against option labels. Selecting an option writes its `value`, or its label when it has none; typed text that matches no option is written as is, unless `allowOnlyDefinedOptions` is set. |
+| `virtualScroller` | `boolean` | `false` | Enable virtual scroller for the options list. When `true`, only visible options are rendered in the DOM for better performance with large option lists. Works in conjunction with `visibleItems` and `itemSize`. |
 | `visible` | `boolean` | `false` | Toggle the visibility of autocomplete dropdown. Controls whether the dropdown is initially visible. The dropdown visibility can still be toggled through user interaction. |
-| `visibleItems` | `number` | `8` | Amount of visible items when virtualScroller is enabled. Determines how many option items are rendered at once when virtual scrolling is active. Higher values show more items but use more memory. Lower values improve performance. |
+| `visibleItems` | `number` | `8` | Number of options visible without scrolling. With `virtualScroller` it sets the viewport height, and only these rows plus a buffer around them are rendered. <kbd>Page Up</kbd> and <kbd>Page Down</kbd> move the highlight by this many options. |
 
 ### Events
 
@@ -431,7 +397,6 @@ import { AutocompleteDirective } from '@coreui/angular-pro'
 | --- | --- |
 | `inputChange` | Emits an event when the filter/search value changes. Called whenever the user types in the search input. Useful for implementing external search functionality or analytics. |
 | `optionChange` | Emits an event when a user changes the selected option. Called with the selected option object or `undefined` when cleared. This is the primary callback for handling selection changes. |
-| `valueChange` | Event emitted on `value` change. |
+| `touch` | Emits when the user finishes interacting with the control (blur), marking a bound form field as touched. |
+| `valueChange` | Emitted when `value` changes. |
 | `visibleChange` | The callback is fired when the dropdown requests to be hidden. Called when the dropdown closes due to user interaction, clicks outside, escape key, or programmatic changes. |
-
-<br />
