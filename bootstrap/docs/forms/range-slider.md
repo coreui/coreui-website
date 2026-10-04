@@ -257,7 +257,7 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | `labels` | array, boolean, string | `false` | Adds labels to the slider. Can be an array of label objects, a comma-separated string, or false.|
 | `max` | number | `100` | Defines the maximum value of the slider. |
 | `min` | number | `0` | Defines the minimum value of the slider. |
-| `name` | array, string, null | `null` | Sets the name attribute for each slider input. |
+| `name` | array, string, null | `null` | Sets the name attribute for the slider inputs. A string is suffixed with the handle index, so `price` submits `price-0` and `price-1`; a comma-separated string and an array give one name per handle, and a handle the array has no entry for is left unnamed and out of the form. Without a name the handles are not submitted at all. |
 | `step` | number, string | `1` | Specifies the increment step for slider values. |
 | `tooltips` | boolean | `true` | Enables or disables tooltips that display current slider values. |
 | `tooltipsFormat` | function, null | `null` | Provides a custom formatting function for tooltip values. |
@@ -272,7 +272,7 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | Method | Description |
 | --- | --- |
 | `update` | Updates the configuration of the Range Slider Component. |
-| `dispose` | Destroys a component. (Removes stored data on the DOM element) |
+| `dispose` | Destroys a component: removes the controls it built, the classes it added and its window listener, and clears the data stored on the DOM element. |
 | `getInstance` | Static method which allows you to get the Range Slider instance associated to a DOM element, you can use it like this: `coreui.RangeSlider.getInstance(element)` |
 | `getOrCreateInstance` | Static method which returns a Range Slider instance associated to a DOM element or create a new one in case it wasn't initialized. You can use it like this: `coreui.RangeSlider.getOrCreateInstance(element)` |
 

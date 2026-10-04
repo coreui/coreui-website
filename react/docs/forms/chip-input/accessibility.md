@@ -12,7 +12,7 @@ Chip inputs are commonly used for tags, labels, recipients, and tokenized multi-
 
 - **Chip list pattern**: Existing values are rendered as chips before the inline input, making the field readable as a tokenized sequence of values.
 
-- **Form compatibility**: When `name` is provided, a hidden input is rendered so chip values can participate in traditional form submission.
+- **Form compatibility**: a hidden input carries the chip values; give it a `name` and they participate in traditional form submission.
 
 ### ARIA Attributes
 
@@ -22,7 +22,7 @@ CoreUI React Chip Input supports accessible labeling and chip state communicatio
 
 - **Chip selection state**: Selectable chips expose `aria-selected` through the underlying `CChip` component.
 
-- **Disabled and readonly states**: Disabled and readonly states are reflected so assistive technologies can identify interaction constraints.
+- **Disabled and readonly states**: Carried by the native `disabled` and `readonly` attributes on the inner input, which is what assistive technologies read.
 
 ### Focus Management
 

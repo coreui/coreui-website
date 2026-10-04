@@ -1,0 +1,1 @@
+import"./rolldown-runtime.hePW80VL.js";import{t as e}from"./react.ekHMiR2c.js";import{t}from"./jsx-runtime.CWLBoBiw.js";import{t as n}from"./CChipInput.BCH_8GiD.js";e();var r=t(),i=()=>(0,r.jsx)(n,{defaultValue:[`Read only`,`Locked`],disabled:!0,removable:!1,placeholder:`Input disabled`});export{i as ChipInputDisabledExample};

@@ -2480,6 +2480,8 @@ import { CAutocomplete } from '@coreui/vue-pro'
 
 Disable the component to prevent user interaction:
 
+`disabled` also works on a single option object and on a group object, where it disables every option inside the group. Such an option is greyed out and cannot be reached by the mouse, by the arrow keys, by the hint completion, or by typing its label in full.
+
 ```html
 <template>
   <CAutocomplete
@@ -3370,7 +3372,7 @@ const handleSelect = (selected) => {
 
 ## Form integration
 
-When `name` is provided, a hidden input is rendered for standard form submission.
+A hidden input always carries the values; give it a `name` and it is submitted with the form.
 
 ```html
 <template>
@@ -3686,6 +3688,33 @@ In addition to supporting date selection, our Vue DatePicker component also incl
     </div>
     <div class="col-sm-6 col-lg-5">
       <CDatePicker date="2023/03/15 02:22:13 PM" locale="en-US" timepicker />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { CDatePicker } from '@coreui/vue-pro'
+</script>
+```
+
+#### Time granularity
+
+The time selection shows hours, minutes, and seconds. Turn a unit off with `:minutes="false"` or `:seconds="false"`, or narrow the choices by passing an array of allowed values to `hours`, `minutes`, or `seconds`. Seconds need minutes, so turning minutes off drops both. The input value follows the units you keep.
+
+```html
+<template>
+  <div class="row">
+    <div class="col-sm-6 col-lg-5 mb-3 mb-sm-0">
+      <CDatePicker date="2023/03/15 02:22:00 PM" locale="en-US" :seconds="false" timepicker />
+    </div>
+    <div class="col-sm-6 col-lg-5">
+      <CDatePicker
+        date="2023/03/15 02:00:00 PM"
+        locale="en-US"
+        :minutes="false"
+        :seconds="false"
+        timepicker
+      />
     </div>
   </div>
 </template>
@@ -4377,6 +4406,30 @@ Our Vue DateRangePicker component not only supports date selection but also incl
         start-date="2022/08/03 02:34:17 AM"
         end-date="2022/09/17 11:29:41 PM"
         locale="en-US"
+        timepicker
+      />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { CDateRangePicker } from '@coreui/vue-pro'
+</script>
+```
+
+#### Time granularity
+
+The time selection shows hours, minutes, and seconds. Turn a unit off with `:minutes="false"` or `:seconds="false"`, or narrow the choices by passing an array of allowed values to `hours`, `minutes`, or `seconds`. Seconds need minutes, so turning minutes off drops both. The input value follows the units you keep.
+
+```html
+<template>
+  <div class="row">
+    <div class="col-lg-7">
+      <CDateRangePicker
+        start-date="2022/08/03 02:34:00 AM"
+        end-date="2022/09/17 11:29:00 PM"
+        locale="en-US"
+        :seconds="false"
         timepicker
       />
     </div>
@@ -7045,6 +7098,8 @@ const setCities = (cities) => {
 
 Add the `disabled` boolean property to give it a grayed out appearance, remove pointer events, and prevent focusing.
 
+`disabled` also works on a single option object and on a group object, where it disables every option inside the group. Disabled options are greyed out, skipped by the mouse and the arrow keys, and left out of select all; the group label is greyed out with them.
+
 ```html
 <template>
   <CMultiSelect :options="options2" disabled />
@@ -7579,6 +7634,7 @@ Automatically submit the form when all OTP fields are completed:
     <COneTimePassword
       v-model="otpValue"
       label="Auto-submit OTP (fill all 6 digits)"
+      name="autoSubmitOTP"
       :auto-submit="true"
       @complete="onComplete"
     >
@@ -14522,7 +14578,7 @@ $card-border-width:                 var(--cui-border-width) !default;
 $card-border-color:                 var(--cui-border-color-translucent) !default;
 $card-border-radius:                var(--cui-border-radius) !default;
 $card-box-shadow:                   null !default;
-$card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
+$card-inner-border-radius:          calc(var(--cui-card-border-radius) - var(--cui-card-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $card-cap-padding-y:                $card-spacer-y * .5 !default;
 $card-cap-padding-x:                $card-spacer-x !default;
 $card-cap-bg:                       rgba(var(--cui-body-color-rgb), .03) !default;
@@ -16958,13 +17014,13 @@ import {
 
 ### Responsive alignment
 
-If you use responsive alignment, dynamic positioning is disabled.
+If you use responsive alignment, dynamic positioning is disabled — the classes place the menu themselves. Set `variant="btn-group"` so that the dropdown wraps just the toggle; with the default variant it is a full-width block, and the menu aligns to the edge of the container instead of the button.
 
-To align **right** the dropdown menu with the given breakpoint or larger, add `aligment="xs|sm|md|lg|xl|xxl: end"`.
+To align **right** the dropdown menu with the given breakpoint or larger, add `:alignment="{ lg: 'end' }"`, replacing `lg` with any of `xs`, `sm`, `md`, `lg`, `xl`, `xxl`.
 
 ```html
 <template>
-  <CDropdown color="secondary" :alignment="{ lg: 'end' }">
+  <CDropdown :alignment="{ lg: 'end' }" variant="btn-group">
     <CDropdownToggle color="secondary"
       >Left-aligned but right aligned when large screen</CDropdownToggle
     >
@@ -16989,11 +17045,11 @@ import {
 </script>
 ```
 
-To align **left** the dropdown menu with the given breakpoint or larger, add `aligment="xs|sm|md|lg|xl|xxl: start"`.
+To align **left** the dropdown menu with the given breakpoint or larger, add `:alignment="{ xs: 'end', lg: 'start' }"`. Every entry of the map adds its own class, so this one is right aligned by default and left aligned from `lg` up.
 
 ```html
 <template>
-  <CDropdown color="secondary" :alignment="{ xs: 'end', lg: 'start' }">
+  <CDropdown :alignment="{ xs: 'end', lg: 'start' }" variant="btn-group">
     <CDropdownToggle color="secondary"
       >Right-aligned but left aligned when large screen</CDropdownToggle
     >
@@ -29980,7 +30036,7 @@ $accordion-bg:                            var(--cui-body-bg) !default;
 $accordion-border-width:                  var(--cui-border-width) !default;
 $accordion-border-color:                  var(--cui-border-color) !default;
 $accordion-border-radius:                 var(--cui-border-radius) !default;
-$accordion-inner-border-radius:           subtract($accordion-border-radius, $accordion-border-width) !default;
+$accordion-inner-border-radius:           calc(var(--cui-accordion-border-radius) - var(--cui-accordion-border-width)) !default; // stylelint-disable-line function-disallowed-list
 
 $accordion-body-padding-y:                $accordion-padding-y !default;
 $accordion-body-padding-x:                $accordion-padding-x !default;
@@ -31992,8 +32048,6 @@ The Vue Calendar uses local CSS variables on `.calendar` for real-time customiza
 --cui-calendar-cell-selected-color: #{$calendar-cell-selected-color};
 --cui-calendar-cell-selected-bg: #{$calendar-cell-selected-bg};
 --cui-calendar-cell-range-bg: #{$calendar-cell-range-bg};
---cui-calendar-cell-range-hover-bg: #{$calendar-cell-range-hover-bg};
---cui-calendar-cell-range-hover-border-color: #{$calendar-cell-range-hover-border-color};
 --cui-calendar-cell-today-color: #{$calendar-cell-today-color};
 --cui-calendar-cell-week-number-color: #{$calendar-cell-week-number-color};
 ```
@@ -32064,8 +32118,6 @@ $calendar-cell-selected-color:               $white !default;
 $calendar-cell-selected-bg:                  var(--cui-primary) !default;
 
 $calendar-cell-range-bg:                     rgba(var(--cui-primary-rgb), .125) !default;
-$calendar-cell-range-hover-bg:               rgba(var(--cui-primary-rgb), .25) !default;
-$calendar-cell-range-hover-border-color:     var(--cui-primary) !default;
 
 $calendar-cell-today-color:                  var(--cui-danger) !default;
 
@@ -33436,7 +33488,7 @@ $card-border-width:                 var(--cui-border-width) !default;
 $card-border-color:                 var(--cui-border-color-translucent) !default;
 $card-border-radius:                var(--cui-border-radius) !default;
 $card-box-shadow:                   null !default;
-$card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
+$card-inner-border-radius:          calc(var(--cui-card-border-radius) - var(--cui-card-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $card-cap-padding-y:                $card-spacer-y * .5 !default;
 $card-cap-padding-x:                $card-spacer-x !default;
 $card-cap-bg:                       rgba(var(--cui-body-color-rgb), .03) !default;
@@ -35151,7 +35203,7 @@ To align **right** the dropdown menu with the given breakpoint or larger, add `a
 
 ```html
 <template>
-  <CDropdown color="secondary" :alignment="{ lg: 'end' }">
+  <CDropdown :alignment="{ lg: 'end' }" variant="btn-group">
     <CDropdownToggle color="secondary"
       >Left-aligned but right aligned when large screen</CDropdownToggle
     >
@@ -35180,7 +35232,7 @@ To align **left** the dropdown menu with the given breakpoint or larger, add `al
 
 ```html
 <template>
-  <CDropdown color="secondary" :alignment="{ xs: 'end', lg: 'start' }">
+  <CDropdown :alignment="{ xs: 'end', lg: 'start' }" variant="btn-group">
     <CDropdownToggle color="secondary"
       >Right-aligned but left aligned when large screen</CDropdownToggle
     >
@@ -35482,7 +35534,7 @@ $dropdown-bg:                       var(--cui-body-bg) !default;
 $dropdown-border-color:             var(--cui-border-color-translucent) !default;
 $dropdown-border-radius:            var(--cui-border-radius) !default;
 $dropdown-border-width:             var(--cui-border-width) !default;
-$dropdown-inner-border-radius:      calc(#{$dropdown-border-radius} - #{$dropdown-border-width}) !default; // stylelint-disable-line function-disallowed-list
+$dropdown-inner-border-radius:      calc(var(--cui-dropdown-border-radius) - var(--cui-dropdown-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $dropdown-divider-bg:               $dropdown-border-color !default;
 $dropdown-divider-margin-y:         $spacer * .5 !default;
 $dropdown-box-shadow:               var(--cui-box-shadow) !default;
@@ -37501,7 +37553,7 @@ $modal-content-bg:                  var(--cui-body-bg) !default;
 $modal-content-border-color:        var(--cui-border-color-translucent) !default;
 $modal-content-border-width:        var(--cui-border-width) !default;
 $modal-content-border-radius:       var(--cui-border-radius-lg) !default;
-$modal-content-inner-border-radius: subtract($modal-content-border-radius, $modal-content-border-width) !default;
+$modal-content-inner-border-radius: calc(var(--cui-modal-border-radius) - var(--cui-modal-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $modal-content-box-shadow-xs:       var(--cui-box-shadow-sm) !default;
 $modal-content-box-shadow-sm-up:    var(--cui-box-shadow) !default;
 
@@ -41030,7 +41082,7 @@ $popover-max-width:                 276px !default;
 $popover-border-width:              var(--cui-border-width) !default;
 $popover-border-color:              var(--cui-border-color-translucent) !default;
 $popover-border-radius:             var(--cui-border-radius-lg) !default;
-$popover-inner-border-radius:       calc(#{$popover-border-radius} - #{$popover-border-width}) !default; // stylelint-disable-line function-disallowed-list
+$popover-inner-border-radius:       calc(var(--cui-popover-border-radius) - var(--cui-popover-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $popover-box-shadow:                var(--cui-box-shadow) !default;
 
 $popover-header-font-size:          $font-size-base !default;
@@ -42449,6 +42501,7 @@ Vue sidebars use local CSS variables on `.sidebar` and `.sidebar-backdrop` for e
 --cui-sidebar-color: #{$sidebar-color};
 --cui-sidebar-brand-color: #{$sidebar-brand-color};
 --cui-sidebar-brand-bg: #{$sidebar-brand-bg};
+--cui-sidebar-toggler-height: #{$sidebar-toggler-height};
 ```
 
 ```scss
@@ -42520,7 +42573,6 @@ Vue sidebars use local CSS variables on `.sidebar` and `.sidebar-backdrop` for e
 
 ```scss
 --cui-sidebar-toggler-width: #{$sidebar-toggler-width};
---cui-sidebar-toggler-height: #{$sidebar-toggler-height};
 --cui-sidebar-toggler-bg: #{$sidebar-toggler-bg};
 --cui-sidebar-toggler-color: #{$sidebar-toggler-color};
 --cui-sidebar-toggler-icon: #{escape-svg($sidebar-toggler-icon)};
@@ -46326,7 +46378,7 @@ import { CAutocomplete } from '@coreui/vue-pro'
 | `label` | `string` | - | Add a caption for a component. |
 | `loading` | `boolean` | - | When set, the options list will have a loading style: loading spinner and reduced opacity. Use this to indicate that options are being fetched asynchronously. The dropdown remains functional but shows visual loading indicators. |
 | `modelValue` | - | - | The model value for v-model support. Can be a string (matched against option labels) or number (matched against option values). Used for two-way data binding with v-model. |
-| `name` | `string` | - | The name attribute for the input element. Used for form submission and identification in form data. Important for proper form handling and accessibility. |
+| `name` | `string` | - | The name attribute for the input element. Without it the field is not submitted with the form. Used for form submission and identification in form data. Important for proper form handling and accessibility. |
 | `options` | `(Option \| OptionsGroup \| string)[]` | - | List of option elements. Can contain Option objects, OptionsGroup objects, or plain strings. Plain strings are converted to simple Option objects internally. This is a required prop - the Vue.js autocomplete needs options to function. |
 | `optionsMaxHeight` | `number \| string` | `'auto'` | Sets maxHeight of options list. Controls the maximum height of the dropdown options container. Can be a number (pixels) or a CSS length string (e.g., '200px', '10rem'). When content exceeds this height, a scrollbar will appear. |
 | `placeholder` | `string` | - | Specifies a short hint that is visible in the search input. Displayed when the input is empty to guide user interaction. Standard HTML input placeholder behavior. |
@@ -47359,7 +47411,7 @@ import { CFormSwitch } from '@coreui/vue'
 
 The Vue Chip Input component follows WAI-ARIA authoring practices:
 
-- `aria-disabled` and `aria-readonly` attributes for state indication
+- Disabled and read-only states carried by the native `disabled` and `readonly` attributes on the inner input
 - Label association via `for` and `id` attributes
 - Proper keyboard focus management
 - Screen reader friendly chip removal announcements
@@ -47391,7 +47443,7 @@ import { CChipInput } from '@coreui/vue'
 | `label` | `string\|object` | - | Renders an inline label inside the component container. |
 | `maxChips` | `number` | `null` | Sets the maximum number of chips that can be created in the component. |
 | `modelValue` | `string[]` | `undefined` | The default name for a value passed using v-model. |
-| `name` | `string` | - | Sets the name of the hidden input used by the component for form submission. |
+| `name` | `string` | - | Sets the name of the hidden input the component renders. Without it the hidden input carries the values but is not submitted with the form. |
 | `placeholder` | `string` | `''` | Sets placeholder text for the internal input of the component. |
 | `readOnly` | `boolean` | - | Toggle the readonly state for the component. |
 | `removable` | `boolean` | `true` | Displays remove buttons on chips managed by the component. |
@@ -47714,7 +47766,7 @@ const handleSelect = (selected) => {
 
 ## Form integration
 
-When `name` is provided, a hidden input is rendered for standard form submission.
+A hidden input always carries the values; give it a `name` and it is submitted with the form.
 
 ```html
 <template>
@@ -48052,6 +48104,7 @@ import { CDatePicker } from '@coreui/vue-pro'
 | `firstDayOfWeek` | `number` | `1` | Sets the day of start week. - 0 - Sunday, - 1 - Monday, - 2 - Tuesday, - 3 - Wednesday, - 4 - Thursday, - 5 - Friday, - 6 - Saturday, |
 | `footer` | `boolean` | - | Toggle visibility of footer element or set the content of footer. |
 | `format` | `string` | - | Set date format. We use date-fns to format dates. Visit https://date-fns.org/v2.28.0/docs/format to check accepted patterns. |
+| `hours` | `number[] \| ((hour: number) => boolean)` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. Requires the `timepicker` property. |
 | `id` | `string` | - | The id global attribute defines an identifier (ID) that must be unique in the whole document. **[Deprecated since v5.3.0]** The name attributes for input element is generated based on this property until you define name prop ex.: - \{id\}-date |
 | `indicator` | `boolean` | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputDateFormat` | `func` | - | Custom function to format the selected date into a string according to a custom format. |
@@ -48061,12 +48114,14 @@ import { CDatePicker } from '@coreui/vue-pro'
 | `locale` | `string` | `'default'` | Sets the default locale for components. If not set, it is inherited from the navigator.language. |
 | `maxDate` | `date\|string` | - | Max selectable date. |
 | `minDate` | `date\|string` | - | Min selectable date. |
+| `minutes` | `number[] \| ((minute: number) => boolean) \| boolean` | `true` | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. Requires the `timepicker` property. |
 | `monthFormat` | `string` | `'short'` | Sets the format for month names. |
 | `name` | `string` | - | The name attribute for the input element. |
 | `navigation` | `boolean` | `true` | Show arrows navigation. |
 | `navYearFirst` | `boolean` | - | Reorder year-month navigation, and render year first. |
 | `placeholder` | `string` | `'Select date'` | Specifies a short hint that is visible in the input. |
 | `previewDateOnHover` | `boolean` | `true` | Enable live preview of dates in input fields when hovering over calendar cells. |
+| `seconds` | `number[] \| ((second: number) => boolean) \| boolean` | `true` | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. Requires the `timepicker` property. |
 | `selectAdjacementDays` | `boolean` | - | Set whether days in adjacent months shown before or after the current month are selectable. This only applies if the `showAdjacementDays` option is set to true. |
 | `selectionType` | `string` | `'day'` | Specify the type of date selection as day, week, month, quarter, or year. |
 | `showAdjacementDays` | `boolean` | `true` | Set whether to display dates in adjacent months (non-selectable) at the start and end of the current month. |
@@ -48188,8 +48243,6 @@ Vue date pickers use local CSS variables on `.date-picker` and `.calendar` for e
 --cui-calendar-cell-selected-color: #{$calendar-cell-selected-color};
 --cui-calendar-cell-selected-bg: #{$calendar-cell-selected-bg};
 --cui-calendar-cell-range-bg: #{$calendar-cell-range-bg};
---cui-calendar-cell-range-hover-bg: #{$calendar-cell-range-hover-bg};
---cui-calendar-cell-range-hover-border-color: #{$calendar-cell-range-hover-border-color};
 --cui-calendar-cell-today-color: #{$calendar-cell-today-color};
 --cui-calendar-cell-week-number-color: #{$calendar-cell-week-number-color};
 ```
@@ -48360,8 +48413,6 @@ $calendar-cell-selected-color:               $white !default;
 $calendar-cell-selected-bg:                  var(--cui-primary) !default;
 
 $calendar-cell-range-bg:                     rgba(var(--cui-primary-rgb), .125) !default;
-$calendar-cell-range-hover-bg:               rgba(var(--cui-primary-rgb), .25) !default;
-$calendar-cell-range-hover-border-color:     var(--cui-primary) !default;
 
 $calendar-cell-today-color:                  var(--cui-danger) !default;
 
@@ -48413,6 +48464,7 @@ import { CDateRangePicker } from '@coreui/vue-pro'
 | `firstDayOfWeek` | `number` | `1` | Sets the day of start week. - 0 - Sunday, - 1 - Monday, - 2 - Tuesday, - 3 - Wednesday, - 4 - Thursday, - 5 - Friday, - 6 - Saturday, |
 | `footer` | `boolean` | - | Toggle visibility of footer element or set the content of footer. |
 | `format` | `string` | - | Set date format. We use date-fns to format dates. Visit https://date-fns.org/v2.28.0/docs/format to check accepted patterns. |
+| `hours` | `number[] \| ((hour: number) => boolean)` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. Requires the `timepicker` property. |
 | `id` | `string \| [string, string]` | - | The id attribute for the input elements. It can be a single string for both the start and end dates. If a single string is used, the postfix "-start-date" and "-end-date" will be automatically added to make the IDs unique. Alternatively, you can use an array of two strings for start and end dates separately. **[Deprecated since v5.3.0]** If the property is a type of string, the name attributes for input elements are generated based on this property until you define name prop ex.: - \{id\}-start-date - \{id\}-end-date |
 | `indicator` | `boolean` | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputDateFormat` | `func` | - | Custom function to format the selected date into a string according to a custom format. |
@@ -48424,15 +48476,16 @@ import { CDateRangePicker } from '@coreui/vue-pro'
 | `locale` | `string` | `'default'` | Sets the default locale for components. If not set, it is inherited from the navigator.language. |
 | `maxDate` | `date\|string` | - | Max selectable date. |
 | `minDate` | `date\|string` | - | Min selectable date. |
+| `minutes` | `number[] \| ((minute: number) => boolean) \| boolean` | `true` | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. Requires the `timepicker` property. |
 | `monthFormat` | `string` | `'short'` | Sets the format for month names. |
 | `name` | `string \| [string, string]` | - | The name attribute for the input elements. It can be a single string for both the start and end dates. If a single string is used, the postfix "-start-date" and "-end-date" will be automatically added to make the names unique. Alternatively, you can use an array of two strings for start and end dates separately. Example for single string: 'date-input' Result: 'date-input-start-date', 'date-input-end-date' Example for array: ['start-date-input', 'end-date-input'] Result: 'start-date-input', 'end-date-input' |
 | `navigation` | `boolean` | `true` | Show arrows navigation. |
 | `navYearFirst` | `boolean` | - | Reorder year-month navigation, and render year first. |
 | `placeholder` | `string \| [string, string]` | `() => ['Start date', 'End date']` | Specifies a short hint that is visible in the input. |
 | `previewDateOnHover` | `boolean` | `true` | Enable live preview of dates in input fields when hovering over calendar cells. |
-| `range` | `boolean` | `true` |  |
 | `ranges` | `object` | - | Predefined date ranges the user can select from. |
 | `required` | `boolean` | - | When present, it specifies that must be filled out before submitting the form. |
+| `seconds` | `number[] \| ((second: number) => boolean) \| boolean` | `true` | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. Requires the `timepicker` property. |
 | `selectAdjacementDays` | `boolean` | - | Set whether days in adjacent months shown before or after the current month are selectable. This only applies if the `showAdjacementDays` option is set to true. |
 | `selectEndDate` | `boolean` | - | Toggle select mode between start and end date. |
 | `selectionType` | `string` | `'day'` | Specify the type of date selection as day, week, month, quarter, or year. |
@@ -48569,8 +48622,6 @@ Vue date range pickers use local CSS variables on `.date-picker` and `.calendar`
 --cui-calendar-cell-selected-color: #{$calendar-cell-selected-color};
 --cui-calendar-cell-selected-bg: #{$calendar-cell-selected-bg};
 --cui-calendar-cell-range-bg: #{$calendar-cell-range-bg};
---cui-calendar-cell-range-hover-bg: #{$calendar-cell-range-hover-bg};
---cui-calendar-cell-range-hover-border-color: #{$calendar-cell-range-hover-border-color};
 --cui-calendar-cell-today-color: #{$calendar-cell-today-color};
 --cui-calendar-cell-week-number-color: #{$calendar-cell-week-number-color};
 ```
@@ -48741,8 +48792,6 @@ $calendar-cell-selected-color:               $white !default;
 $calendar-cell-selected-bg:                  var(--cui-primary) !default;
 
 $calendar-cell-range-bg:                     rgba(var(--cui-primary-rgb), .125) !default;
-$calendar-cell-range-hover-bg:               rgba(var(--cui-primary-rgb), .25) !default;
-$calendar-cell-range-hover-border-color:     var(--cui-primary) !default;
 
 $calendar-cell-today-color:                  var(--cui-danger) !default;
 
@@ -50488,6 +50537,21 @@ import {
 
 The Vue Multi Select component is designed with accessibility in mind, implementing WAI-ARIA standards to ensure compatibility with screen readers and assistive technologies.
 
+### Naming the control
+
+The component renders its own combobox and keeps a hidden `<select>` for form submission, which is also what native `required` validation focuses and anchors to. Name the combobox with the `label` prop, with `aria-label` or `aria-labelledby` on `CMultiSelect`, or with a `<label for>` pointing at the component's `id`.
+
+With `search` enabled the field the user tabs to is the search input, not the combobox, and it keeps a name of its own because what it holds is a filter rather than the value. That name is `ariaSearchLabel`, `Search options` by default. Set it per control on a page with more than one multi select, or every one of them announces the same thing:
+
+```vue
+<CMultiSelect id="frameworks" aria-search-label="Search frameworks" :options="options" search />
+```
+
+```vue
+<label for="frameworks">Frameworks</label>
+<CMultiSelect id="frameworks" :options="options" />
+```
+
 ### ARIA Attributes
 
 The component automatically includes the following ARIA attributes:
@@ -50562,7 +50626,7 @@ import { CMultiSelect } from '@coreui/vue-pro'
 | `allowCreateOptions` | `boolean` | - | Allow users to create options if they are not in the list of options. |
 | `ariaCleanerLabel` | `string` | `'Clear all selections'` | A string that provides an accessible label for the cleaner button. This label is read by screen readers to describe the action associated with the button. |
 | `ariaIndicatorLabel` | `string` | `'Toggle dropdown'` | A string that provides an accessible label for the indicator button. This label is read by screen readers to describe the action associated with the button. |
-| `ariaSearchLabel` | `string` | `'Search'` | Accessible label for the search input (when `search` is enabled). |
+| `ariaSearchLabel` | `string` | `'Search options'` | Accessible label for the search input (when `search` is enabled). |
 | `ariaTagDeleteLabel` | `string` | `'Remove'` | Accessible label prefix for a tag's delete button (selection type `tags`). The selected option's label is appended, so screen readers announce e.g. "Remove Angular". |
 | `cleaner` | `boolean` | `true` | Enables selection cleaner element. |
 | `clearSearchOnSelect` | `boolean` | - | Clear current search on selecting an item. |
@@ -50574,7 +50638,7 @@ import { CMultiSelect } from '@coreui/vue-pro'
 | `feedbackInvalid` | `string` | - | Provide valuable, actionable feedback. |
 | `feedbackValid` | `string` | - | Provide valuable, actionable invalid feedback when using standard HTML form validation which applied two CSS pseudo-classes, `:invalid` and `:valid`. |
 | `hideSelectAllOnSearchNoResults` | `boolean` | `true` | Hide the dropdown header with the built-in select all button when a search filter leaves no matching options. Set to `false` to keep the select all button visible even when there are no results. |
-| `id` | `string` | - | Set the id attribute for the native select element. **[Deprecated since v5.3.0]** The name attribute for the native select element is generated based on the `id` property: - `<select name="\{id\}-multi-select" />` |
+| `id` | `string` | - | Set the id attribute for the native select element. |
 | `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `string` | - | Add a caption for a component. |
 | `loading` | `boolean` | - | When set, the options list will have a loading style: loading spinner and reduced opacity. |
@@ -50990,7 +51054,7 @@ import { COneTimePassword } from '@coreui/vue-pro'
 | `linear` | `boolean` | `true` | Enforce sequential input (users must fill fields in order). |
 | `masked` | `boolean` | `false` | Show input as password (masked characters). |
 | `modelValue` | `string\|number` | - | The default name for a value passed using v-model. |
-| `name` | `string` | - | Name attribute for the hidden input field. |
+| `name` | `string` | - | Name attribute for the hidden input field. The visible slots are not named, so the code is submitted once, under this name; without it the component is not submitted at all. |
 | `placeholder` | `string` | - | Placeholder text for input fields. Single character applies to all fields, longer strings apply character-by-character. |
 | `readonly` | `boolean` | `false` | Make Vue.js OTP input component read-only. |
 | `required` | `boolean` | `false` | Makes the input field required for form validation. |
@@ -52874,10 +52938,10 @@ import { CTimePicker } from '@coreui/vue-pro'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `ampm` | `boolean \| 'auto'` | `'auto'` | Set if the component should use the 12/24 hour format. If `true` forces the interface to a 12-hour format. If `false` forces the interface into a 24-hour format. If `auto` the current locale will determine the 12 or 24-hour interface by default locales. |
-| `ariaSelectHoursLabel` | `string` | - | Accessible label for the hours selection element. |
-| `ariaSelectMeridiemLabel` | `string` | - | Accessible label for the AM/PM selection element. |
-| `ariaSelectMinutesLabel` | `string` | - | Accessible label for the minutes selection element. |
-| `ariaSelectSecondsLabel` | `string` | - | Accessible label for the seconds selection element. |
+| `ariaSelectHoursLabel` | `string` | `'Select hours'` | Accessible label for the hours selection element. |
+| `ariaSelectMeridiemLabel` | `string` | `'Select AM/PM'` | Accessible label for the AM/PM selection element. |
+| `ariaSelectMinutesLabel` | `string` | `'Select minutes'` | Accessible label for the minutes selection element. |
+| `ariaSelectSecondsLabel` | `string` | `'Select seconds'` | Accessible label for the seconds selection element. |
 | `cancelButton` | `boolean\|string` | `'Cancel'` | Toggle visibility or set the content of cancel button. |
 | `cancelButtonColor` | `string` | `'primary'` | Sets the color context of the cancel button to one of CoreUI’s themed colors. |
 | `cancelButtonSize` | `string` | `'sm'` | Size the cancel button small or large. |
@@ -52892,7 +52956,7 @@ import { CTimePicker } from '@coreui/vue-pro'
 | `feedback` | `string` | - | Provide valuable, actionable feedback. |
 | `feedbackInvalid` | `string` | - | Provide valuable, actionable feedback. |
 | `feedbackValid` | `string` | - | Provide valuable, actionable invalid feedback when using standard HTML form validation which applied two CSS pseudo-classes, `:invalid` and `:valid`. |
-| `hours` | `number[] \| ((hour: number) => number[])` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. |
+| `hours` | `number[] \| ((hour: number) => boolean)` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. |
 | `id` | `string` | - | The id global attribute defines an identifier (ID) that must be unique in the whole document. |
 | `indicator` | `boolean` | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputOnChangeDelay` | `number` | `750` | Defines the delay (in milliseconds) for the input field's onChange event. |
@@ -52900,11 +52964,11 @@ import { CTimePicker } from '@coreui/vue-pro'
 | `invalid` | `boolean` | `undefined` | Set component validation state to invalid. |
 | `label` | `string` | - | Add a caption for a component. |
 | `locale` | `string` | `'default'` | Sets the default locale for components. If not set, it is inherited from the navigator.language. |
-| `minutes` | `number[] \| ((hour: number) => number[]) \| boolean` | `true` | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. |
+| `minutes` | `number[] \| ((minute: number) => boolean) \| boolean` | `true` | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. |
 | `name` | `string` | - | Set the name attribute for the input element. |
 | `placeholder` | `string` | `'Select time'` | Specifies a short hint that is visible in the input. |
 | `required` | `boolean` | - | When present, it specifies that must be filled out before submitting the form. |
-| `seconds` | `number[] \| ((hour: number) => number[]) \| boolean` | `true` | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. |
+| `seconds` | `number[] \| ((second: number) => boolean) \| boolean` | `true` | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. |
 | `size` | `string` | `undefined` | Size the component small or large. |
 | `teleport` | `boolean` | `false` | Generates dropdown menu using Teleport. |
 | `text` | `string` | - | Add helper text to the component. |

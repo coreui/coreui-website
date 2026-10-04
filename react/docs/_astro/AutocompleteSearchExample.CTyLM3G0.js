@@ -1,0 +1,1 @@
+import"./rolldown-runtime.hePW80VL.js";import{t as e}from"./react.ekHMiR2c.js";import{t}from"./jsx-runtime.CWLBoBiw.js";import{t as n}from"./CAutocomplete.DNP9MIEs.js";e();var r=t(),i=()=>(0,r.jsx)(n,{options:[`Angular`,`Bootstrap`,`Next.js`,`React.js`,`Vue.js`],placeholder:`Search technologies...`});export{i as AutocompleteSearchExample};

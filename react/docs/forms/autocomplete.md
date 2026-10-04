@@ -256,6 +256,8 @@ export const AutocompleteValidationExample = () => {
 
 Disable the component to prevent user interaction:
 
+`disabled` also works on a single option object and on a group object, where it disables every option inside the group. Such an option is greyed out and cannot be reached by the mouse, by the arrow keys, by the hint completion, or by typing its label in full.
+
 ```html
 import React from 'react'
 import { CAutocomplete } from '@coreui/react-pro'

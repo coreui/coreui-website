@@ -1,0 +1,1 @@
+import{r as e}from"./rolldown-runtime.hePW80VL.js";import{t}from"./react.ekHMiR2c.js";import{t as n}from"./jsx-runtime.CWLBoBiw.js";import{t as r}from"./CSmartPagination.DTKpCsrV.js";var i=e(t(),1),a=n(),o=()=>{let[e,t]=(0,i.useState)(1);return(0,a.jsx)(r,{align:`end`,activePage:e,pages:10,onActivePageChange:t})};export{o as SmartPaginationAlignmentEndExample};

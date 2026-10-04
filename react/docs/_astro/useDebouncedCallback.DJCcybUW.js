@@ -1,0 +1,1 @@
+import{r as e}from"./rolldown-runtime.hePW80VL.js";import{t}from"./react.ekHMiR2c.js";var n=e(t()),r=(e,t)=>{let r=(0,n.useRef)(void 0);return(0,n.useEffect)(()=>()=>clearTimeout(r.current),[]),(0,n.useCallback)((...n)=>{clearTimeout(r.current),r.current=setTimeout(()=>{clearTimeout(r.current),e(...n)},t)},[e,t])};export{r as t};

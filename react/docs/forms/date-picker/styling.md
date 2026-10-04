@@ -98,8 +98,6 @@ CoreUI React Date Picker supports CSS variables for easy customization. These va
 --cui-calendar-cell-selected-color: #{$calendar-cell-selected-color};
 --cui-calendar-cell-selected-bg: #{$calendar-cell-selected-bg};
 --cui-calendar-cell-range-bg: #{$calendar-cell-range-bg};
---cui-calendar-cell-range-hover-bg: #{$calendar-cell-range-hover-bg};
---cui-calendar-cell-range-hover-border-color: #{$calendar-cell-range-hover-border-color};
 --cui-calendar-cell-today-color: #{$calendar-cell-today-color};
 --cui-calendar-cell-week-number-color: #{$calendar-cell-week-number-color};
 ```
@@ -266,8 +264,6 @@ $calendar-cell-selected-color:               $white !default;
 $calendar-cell-selected-bg:                  var(--cui-primary) !default;
 
 $calendar-cell-range-bg:                     rgba(var(--cui-primary-rgb), .125) !default;
-$calendar-cell-range-hover-bg:               rgba(var(--cui-primary-rgb), .25) !default;
-$calendar-cell-range-hover-border-color:     var(--cui-primary) !default;
 
 $calendar-cell-today-color:                  var(--cui-danger) !default;
 

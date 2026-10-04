@@ -6,7 +6,7 @@
 
 The Vue Chip Input component follows WAI-ARIA authoring practices:
 
-- `aria-disabled` and `aria-readonly` attributes for state indication
+- Disabled and read-only states carried by the native `disabled` and `readonly` attributes on the inner input
 - Label association via `for` and `id` attributes
 - Proper keyboard focus management
 - Screen reader friendly chip removal announcements

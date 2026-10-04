@@ -1,0 +1,1 @@
+import"./rolldown-runtime.hePW80VL.js";import{t as e}from"./react.ekHMiR2c.js";import{t}from"./jsx-runtime.CWLBoBiw.js";import{t as n}from"./CRangeSlider.CGOt8GM8.js";e();var r=t(),i=()=>(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n,{className:`mb-3`,step:.25,value:50}),(0,r.jsx)(n,{step:.25,value:[50,75]})]});export{i as RangeSliderStepsExample};

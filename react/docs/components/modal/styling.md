@@ -64,7 +64,7 @@ $modal-content-bg:                  var(--cui-body-bg) !default;
 $modal-content-border-color:        var(--cui-border-color-translucent) !default;
 $modal-content-border-width:        var(--cui-border-width) !default;
 $modal-content-border-radius:       var(--cui-border-radius-lg) !default;
-$modal-content-inner-border-radius: subtract($modal-content-border-radius, $modal-content-border-width) !default;
+$modal-content-inner-border-radius: calc(var(--cui-modal-border-radius) - var(--cui-modal-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $modal-content-box-shadow-xs:       var(--cui-box-shadow-sm) !default;
 $modal-content-box-shadow-sm-up:    var(--cui-box-shadow) !default;
 

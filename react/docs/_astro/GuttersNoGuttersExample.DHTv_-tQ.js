@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime.CWLBoBiw.js";import{t}from"./CCol.D2AwrMh4.js";import{t as n}from"./CRow.m0iOMMNQ.js";var r=e(),i=()=>(0,r.jsxs)(n,{xs:{gutter:0},children:[(0,r.jsx)(t,{sm:6,md:8,children:`.col-sm-6 .col-md-8`}),(0,r.jsx)(t,{xs:6,md:4,children:`.col-6 .col-md-4`})]});export{i as GuttersNoGuttersExample};

@@ -243,6 +243,7 @@ Automatically submit the form when all OTP fields are completed:
     <COneTimePassword
       v-model="otpValue"
       label="Auto-submit OTP (fill all 6 digits)"
+      name="autoSubmitOTP"
       :auto-submit="true"
       @complete="onComplete"
     >

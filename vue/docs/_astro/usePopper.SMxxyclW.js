@@ -1,0 +1,1 @@
+import{t as e}from"./popper.C7RqE5b0.js";import{V as t}from"./runtime-core.esm-bundler.CUfIAeUI.js";var n=()=>{let n=t();return{popper:n.value,initPopper:(t,r,i)=>{n.value=e(t,r,i)},destroyPopper:()=>{n.value&&n.value.destroy(),n.value=void 0}}};export{n as t};

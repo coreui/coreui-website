@@ -51,7 +51,7 @@ $card-border-width:                 var(--cui-border-width) !default;
 $card-border-color:                 var(--cui-border-color-translucent) !default;
 $card-border-radius:                var(--cui-border-radius) !default;
 $card-box-shadow:                   null !default;
-$card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
+$card-inner-border-radius:          calc(var(--cui-card-border-radius) - var(--cui-card-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $card-cap-padding-y:                $card-spacer-y * .5 !default;
 $card-cap-padding-x:                $card-spacer-x !default;
 $card-cap-bg:                       rgba(var(--cui-body-color-rgb), .03) !default;

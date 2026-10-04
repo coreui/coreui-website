@@ -1,0 +1,1 @@
+import"./rolldown-runtime.hePW80VL.js";import{t as e}from"./react.ekHMiR2c.js";import{t}from"./jsx-runtime.CWLBoBiw.js";import{t as n}from"./CStepper.D_F6CRBF.js";e();var r=t(),i=()=>(0,r.jsx)(n,{steps:[`Step 1`,`Step 2`,`Step 3`]});export{i as StepperLinearExample};

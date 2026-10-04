@@ -1200,6 +1200,8 @@ export const MultiSelectCoordinatedSelectionExample = () => {
 
 Add the `disabled` boolean property to give it a grayed out appearance, remove pointer events, and prevent focusing.
 
+`disabled` also works on a single option object and on a group object, where it disables every option inside the group. Disabled options are greyed out, skipped by the mouse and the arrow keys, and left out of select all; the group label is greyed out with them.
+
 ```html
 import React from 'react'
 import { CMultiSelect } from '@coreui/react-pro'
@@ -5430,6 +5432,21 @@ You can customize the accessibility labels for better user experience:
   ariaIndicatorLabel="Open options menu"
   placeholder="Choose your options..."
 />
+```
+
+### Naming the control
+
+The component renders its own combobox and keeps a hidden `<select>` for form submission, which is also what native `required` validation focuses and anchors to. Name the combobox with the `label` prop, with `aria-label` or `aria-labelledby` on `CMultiSelect`, or with a `<label htmlFor>` pointing at the component's `id`.
+
+With `search` enabled the field the user tabs to is the search input, not the combobox, and it keeps a name of its own because what it holds is a filter rather than the value. That name is `ariaSearchLabel`, `Search options` by default. Set it per control on a page with more than one multi select, or every one of them announces the same thing:
+
+```jsx
+<CMultiSelect id="frameworks" ariaSearchLabel="Search frameworks" options={options} search />
+```
+
+```jsx
+<label htmlFor="frameworks">Frameworks</label>
+<CMultiSelect id="frameworks" options={options} />
 ```
 
 ### ARIA Attributes

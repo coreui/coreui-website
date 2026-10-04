@@ -1,0 +1,1 @@
+import"./rolldown-runtime.hePW80VL.js";import{t as e}from"./react.ekHMiR2c.js";import{t}from"./jsx-runtime.CWLBoBiw.js";import{t as n}from"./CPlaceholder.CIkz8rHP.js";e();var r=t(),i=()=>(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n,{xs:12,size:`lg`}),(0,r.jsx)(n,{xs:12}),(0,r.jsx)(n,{xs:12,size:`sm`}),(0,r.jsx)(n,{xs:12,size:`xs`})]});export{i as PlaceholderSizingExample};

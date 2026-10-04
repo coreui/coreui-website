@@ -600,6 +600,7 @@ Sidebars use local CSS variables on `.sidebar`, `.sidebar-backdrop`, `.sidebar-n
 --cui-sidebar-color: #{$sidebar-color};
 --cui-sidebar-brand-color: #{$sidebar-brand-color};
 --cui-sidebar-brand-bg: #{$sidebar-brand-bg};
+--cui-sidebar-toggler-height: #{$sidebar-toggler-height};
 ```
 
 ```scss
@@ -682,7 +683,6 @@ Sidebars use local CSS variables on `.sidebar`, `.sidebar-backdrop`, `.sidebar-n
 
 ```scss
 --cui-sidebar-toggler-width: #{$sidebar-toggler-width};
---cui-sidebar-toggler-height: #{$sidebar-toggler-height};
 --cui-sidebar-toggler-bg: #{$sidebar-toggler-bg};
 --cui-sidebar-toggler-color: #{$sidebar-toggler-color};
 --cui-sidebar-toggler-icon: #{escape-svg($sidebar-toggler-icon)};

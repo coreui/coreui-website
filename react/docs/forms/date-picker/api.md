@@ -41,6 +41,7 @@ import { CDatePicker } from '@coreui/react-pro'
 | `floatingClassName` | `string` | - | A string of all className you want applied to the floating label wrapper. |
 | `footer` | `boolean` | - | Toggle visibility of footer element. |
 | `footerContent` | `ReactNode` | - | Add custom elements to the footer. |
+| `hours` | `number[] \| ((hour: number) => boolean)` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. Requires the `timepicker` property. |
 | `id` | `string` | - | The id global attribute defines an identifier (ID) that must be unique in the whole document. **[Deprecated since v5.3.0]** The name attributes for input element is generated based on this property until you define name prop ex.: - `{id}-date` |
 | `indicator` | `ReactNode` | - | Toggle visibility or set the content of the input indicator. |
 | `inputDateFormat` | `((date: Date) => string)` | - | Custom function to format the selected date into a string according to a custom format. |
@@ -52,6 +53,7 @@ import { CDatePicker } from '@coreui/react-pro'
 | `locale` | `string` | `'default'` | Indicates the locale for the React Calendar component. If not explicitly provided, it inherits the locale settings from the browser. |
 | `maxDate` | `string \| Date \| null` | - | The maximum date that can be selected. Any date beyond this value will be disabled within the calendar. This is often used to restrict future selections. |
 | `minDate` | `string \| Date \| null` | - | The minimum date that can be selected. Any date before this value will be disabled in the calendar. Useful for preventing selection of past dates or creating limited booking windows. |
+| `minutes` | `boolean \| number[] \| ((minute: number) => boolean)` | - | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. Requires the `timepicker` property. |
 | `monthFormat` | `"numeric" \| "2-digit" \| "long" \| "narrow" \| "short"` | `'short'` | Sets the format for month names. Accepts built-in formats ('long', 'narrow', 'short', 'numeric', '2-digit'). |
 | `name` | `string` | - | The name attribute for the input element. |
 | `navigation` | `boolean` | - | Toggles display of arrow-based navigation (previous/next controls) in the React Calendar component. If set to `false`, you can build custom navigation or handle the navigation programmatically. |
@@ -77,6 +79,7 @@ import { CDatePicker } from '@coreui/react-pro'
 | `renderQuarterCell` | `((date: Date, meta: { isDisabled: boolean; isInRange: boolean; isSelected: boolean; }) => ReactNode)` | - | A function that allows you to customize the rendering of individual quarter cells within the calendar. This function receives the date and metadata (like selection and disabled status) as arguments, enabling you to apply custom styles or include additional content in each quarter cell. |
 | `renderYearCell` | `((date: Date, meta: { isDisabled: boolean; isInRange: boolean; isSelected: boolean; }) => ReactNode)` | - | A function that allows you to customize the rendering of individual year cells within the calendar. This function receives the date and metadata (like selection and disabled status) as arguments, enabling you to apply custom styles or include additional content in each year cell. |
 | `required` | `boolean` | - | When present, it specifies that date must be filled out before submitting the form. |
+| `seconds` | `boolean \| number[] \| ((second: number) => boolean)` | - | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. Requires the `timepicker` property. |
 | `selectAdjacementDays` | `boolean` | `false` | Sets whether days from adjacent months (shown at the start/end of the current view) are selectable. This only applies if `showAdjacementDays` is set to `true`. |
 | `selectionType` | `SelectionTypes` | `'day'` | Specifies the selection type for the React Calendar component. Supports: - `day`: Regular day selection (default) - `week`: Select an entire week - `month`: Select an entire month - `year`: Select an entire year |
 | `separator` | `ReactNode` | - | Default icon or character character that separates two dates. |

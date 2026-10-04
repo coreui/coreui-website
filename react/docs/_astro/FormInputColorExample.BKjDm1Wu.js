@@ -1,0 +1,1 @@
+import"./rolldown-runtime.hePW80VL.js";import{t as e}from"./react.ekHMiR2c.js";import{t}from"./jsx-runtime.CWLBoBiw.js";import{t as n}from"./CFormInput.Bblz_U61.js";e();var r=t(),i=()=>(0,r.jsx)(n,{type:`color`,id:`exampleColorInput`,defaultValue:`#563d7c`,label:`Color picker`,title:`Choose your color`});export{i as FormInputColorExample};

@@ -39,6 +39,7 @@ import { CDateRangePicker } from '@coreui/vue-pro'
 | `firstDayOfWeek` | `number` | `1` | Sets the day of start week. - 0 - Sunday, - 1 - Monday, - 2 - Tuesday, - 3 - Wednesday, - 4 - Thursday, - 5 - Friday, - 6 - Saturday, |
 | `footer` | `boolean` | - | Toggle visibility of footer element or set the content of footer. |
 | `format` | `string` | - | Set date format. We use date-fns to format dates. Visit https://date-fns.org/v2.28.0/docs/format to check accepted patterns. |
+| `hours` | `number[] \| ((hour: number) => boolean)` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. Requires the `timepicker` property. |
 | `id` | `string \| [string, string]` | - | The id attribute for the input elements. It can be a single string for both the start and end dates. If a single string is used, the postfix "-start-date" and "-end-date" will be automatically added to make the IDs unique. Alternatively, you can use an array of two strings for start and end dates separately. **[Deprecated since v5.3.0]** If the property is a type of string, the name attributes for input elements are generated based on this property until you define name prop ex.: - \{id\}-start-date - \{id\}-end-date |
 | `indicator` | `boolean` | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputDateFormat` | `func` | - | Custom function to format the selected date into a string according to a custom format. |
@@ -50,15 +51,16 @@ import { CDateRangePicker } from '@coreui/vue-pro'
 | `locale` | `string` | `'default'` | Sets the default locale for components. If not set, it is inherited from the navigator.language. |
 | `maxDate` | `date\|string` | - | Max selectable date. |
 | `minDate` | `date\|string` | - | Min selectable date. |
+| `minutes` | `number[] \| ((minute: number) => boolean) \| boolean` | `true` | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. Requires the `timepicker` property. |
 | `monthFormat` | `string` | `'short'` | Sets the format for month names. |
 | `name` | `string \| [string, string]` | - | The name attribute for the input elements. It can be a single string for both the start and end dates. If a single string is used, the postfix "-start-date" and "-end-date" will be automatically added to make the names unique. Alternatively, you can use an array of two strings for start and end dates separately. Example for single string: 'date-input' Result: 'date-input-start-date', 'date-input-end-date' Example for array: ['start-date-input', 'end-date-input'] Result: 'start-date-input', 'end-date-input' |
 | `navigation` | `boolean` | `true` | Show arrows navigation. |
 | `navYearFirst` | `boolean` | - | Reorder year-month navigation, and render year first. |
 | `placeholder` | `string \| [string, string]` | `() => ['Start date', 'End date']` | Specifies a short hint that is visible in the input. |
 | `previewDateOnHover` | `boolean` | `true` | Enable live preview of dates in input fields when hovering over calendar cells. |
-| `range` | `boolean` | `true` |  |
 | `ranges` | `object` | - | Predefined date ranges the user can select from. |
 | `required` | `boolean` | - | When present, it specifies that must be filled out before submitting the form. |
+| `seconds` | `number[] \| ((second: number) => boolean) \| boolean` | `true` | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. Requires the `timepicker` property. |
 | `selectAdjacementDays` | `boolean` | - | Set whether days in adjacent months shown before or after the current month are selectable. This only applies if the `showAdjacementDays` option is set to true. |
 | `selectEndDate` | `boolean` | - | Toggle select mode between start and end date. |
 | `selectionType` | `string` | `'day'` | Specify the type of date selection as day, week, month, quarter, or year. |

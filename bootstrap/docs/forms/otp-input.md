@@ -150,7 +150,7 @@ Enable automatic form submission when all one-time password fields are completed
 ```html
 <form>
   <label class="form-label">Auto-submit OTP</label>
-  <div class="form-otp" data-coreui-toggle="otp" data-coreui-auto-submit="true">
+  <div class="form-otp" data-coreui-toggle="otp" data-coreui-name="autoSubmitOTP" data-coreui-auto-submit="true">
     <input class="form-otp-control">
     <input class="form-otp-control">
     <input class="form-otp-control">
@@ -354,7 +354,7 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 | `id` | string, null | `null` | ID attribute for the hidden input field |
 | `linear` | boolean | `true` | Enforce sequential input (users must fill fields in order) |
 | `masked` | boolean | `false` | Show input as password (masked characters) |
-| `name` | string, null | `null` | Name attribute for the hidden input field |
+| `name` | string, null | `null` | Name attribute for the hidden input field. The component does not name the visible slots, so the code is submitted once, under this name; without it the component is not submitted at all. A name your own markup puts on a slot is left alone and submitted as you wrote it. |
 | `placeholder` | string, null | `null` | Placeholder text for input fields. Single character applies to all fields, longer strings apply character-by-character |
 | `readonly` | boolean | `false` | Make OTP input read-only |
 | `required` | boolean | `false` | Makes the input field required for form validation. |
@@ -367,6 +367,7 @@ Options can be passed via data attributes or JavaScript. For data attributes, ap
 | --- | --- |
 | `clear` | Clear all OTP input fields |
 | `reset` | Reset OTP input to its initial value |
+| `dispose` | Destroys the component instance and removes the hidden input it created. |
 | `update` | Update the OTP input configuration |
 
 ```javascript

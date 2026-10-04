@@ -34,6 +34,7 @@ import { CDatePicker } from '@coreui/vue-pro'
 | `firstDayOfWeek` | `number` | `1` | Sets the day of start week. - 0 - Sunday, - 1 - Monday, - 2 - Tuesday, - 3 - Wednesday, - 4 - Thursday, - 5 - Friday, - 6 - Saturday, |
 | `footer` | `boolean` | - | Toggle visibility of footer element or set the content of footer. |
 | `format` | `string` | - | Set date format. We use date-fns to format dates. Visit https://date-fns.org/v2.28.0/docs/format to check accepted patterns. |
+| `hours` | `number[] \| ((hour: number) => boolean)` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. Requires the `timepicker` property. |
 | `id` | `string` | - | The id global attribute defines an identifier (ID) that must be unique in the whole document. **[Deprecated since v5.3.0]** The name attributes for input element is generated based on this property until you define name prop ex.: - \{id\}-date |
 | `indicator` | `boolean` | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputDateFormat` | `func` | - | Custom function to format the selected date into a string according to a custom format. |
@@ -43,12 +44,14 @@ import { CDatePicker } from '@coreui/vue-pro'
 | `locale` | `string` | `'default'` | Sets the default locale for components. If not set, it is inherited from the navigator.language. |
 | `maxDate` | `date\|string` | - | Max selectable date. |
 | `minDate` | `date\|string` | - | Min selectable date. |
+| `minutes` | `number[] \| ((minute: number) => boolean) \| boolean` | `true` | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. Requires the `timepicker` property. |
 | `monthFormat` | `string` | `'short'` | Sets the format for month names. |
 | `name` | `string` | - | The name attribute for the input element. |
 | `navigation` | `boolean` | `true` | Show arrows navigation. |
 | `navYearFirst` | `boolean` | - | Reorder year-month navigation, and render year first. |
 | `placeholder` | `string` | `'Select date'` | Specifies a short hint that is visible in the input. |
 | `previewDateOnHover` | `boolean` | `true` | Enable live preview of dates in input fields when hovering over calendar cells. |
+| `seconds` | `number[] \| ((second: number) => boolean) \| boolean` | `true` | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. Requires the `timepicker` property. |
 | `selectAdjacementDays` | `boolean` | - | Set whether days in adjacent months shown before or after the current month are selectable. This only applies if the `showAdjacementDays` option is set to true. |
 | `selectionType` | `string` | `'day'` | Specify the type of date selection as day, week, month, quarter, or year. |
 | `showAdjacementDays` | `boolean` | `true` | Set whether to display dates in adjacent months (non-selectable) at the start and end of the current month. |

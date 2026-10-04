@@ -27,7 +27,7 @@ import { COneTimePassword } from '@coreui/vue-pro'
 | `linear` | `boolean` | `true` | Enforce sequential input (users must fill fields in order). |
 | `masked` | `boolean` | `false` | Show input as password (masked characters). |
 | `modelValue` | `string\|number` | - | The default name for a value passed using v-model. |
-| `name` | `string` | - | Name attribute for the hidden input field. |
+| `name` | `string` | - | Name attribute for the hidden input field. The visible slots are not named, so the code is submitted once, under this name; without it the component is not submitted at all. |
 | `placeholder` | `string` | - | Placeholder text for input fields. Single character applies to all fields, longer strings apply character-by-character. |
 | `readonly` | `boolean` | `false` | Make Vue.js OTP input component read-only. |
 | `required` | `boolean` | `false` | Makes the input field required for form validation. |

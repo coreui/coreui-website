@@ -612,8 +612,10 @@ import {
 
 export const DropdownResponsiveAlignmentExample = () => {
   return (
-    <CDropdown alignment="end">
-      <CDropdownToggle color="secondary">Right-aligned menu example</CDropdownToggle>
+    <CDropdown alignment={{ lg: 'end' }} variant="btn-group">
+      <CDropdownToggle color="secondary">
+        Left-aligned but right aligned when large screen
+      </CDropdownToggle>
       <CDropdownMenu>
         <CDropdownItem href="#">Action</CDropdownItem>
         <CDropdownItem href="#">Another action</CDropdownItem>
@@ -640,7 +642,7 @@ import {
 
 export const DropdownResponsiveAlignment2Example = () => {
   return (
-    <CDropdown alignment={{ xs: 'end', lg: 'start' }}>
+    <CDropdown alignment={{ xs: 'end', lg: 'start' }} variant="btn-group">
       <CDropdownToggle color="secondary">
         Right-aligned but left aligned when large screen
       </CDropdownToggle>

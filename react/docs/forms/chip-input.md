@@ -41,7 +41,7 @@ export const ChipInputExample = () => {
 }
 ```
 
-> Note: `CChipInput` renders the inline text input automatically. When `name` is provided, it also renders a hidden input so chip values can participate in standard form submission.
+> Note: `CChipInput` renders the inline text input automatically, alongside a hidden input carrying the chip values. Give that input a `name` and the values participate in standard form submission.
 
 ## Variants
 

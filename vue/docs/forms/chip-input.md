@@ -298,7 +298,7 @@ const handleSelect = (selected) => {
 
 ## Form integration
 
-When `name` is provided, a hidden input is rendered for standard form submission.
+A hidden input always carries the values; give it a `name` and it is submitted with the form.
 
 ```html
 <template>

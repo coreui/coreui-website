@@ -36,7 +36,7 @@ import { CTimePicker } from '@coreui/react-pro'
 | `floatingClassName` | `string` | - | A string of all className you want applied to the floating label wrapper. |
 | `footer` | `boolean` | `true` | Toggle visibility of footer element. |
 | `footerContent` | `ReactNode` | - | Add custom elements to the footer. |
-| `hours` | `number[] \| ((hour: number) => number[])` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. |
+| `hours` | `number[] \| ((hour: number) => boolean)` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. |
 | `id` | `string` | - | Set the id attribute for the input element. |
 | `indicator` | `ReactNode` | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputOnChangeDelay` | `number` | `750` | Defines the delay (in milliseconds) for the input field's onChange event. |
@@ -44,7 +44,7 @@ import { CTimePicker } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `locale` | `string` | `default` | Sets the default locale for components. If not set, it is inherited from the browser. |
-| `minutes` | `boolean \| number[] \| ((minute: number) => number[])` | `true` | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. |
+| `minutes` | `boolean \| number[] \| ((minute: number) => boolean)` | `true` | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. |
 | `name` | `string` | - | Set the name attribute for the input element. |
 | `onHide` | `(() => void)` | - | Callback fired when the component requests to be hidden. |
 | `onShow` | `(() => void)` | - | Callback fired when the component requests to be shown. |
@@ -52,7 +52,7 @@ import { CTimePicker } from '@coreui/react-pro'
 | `placeholder` | `string` | `Select time` | Specifies a short hint that is visible in the input. |
 | `portal` | `boolean` | `false` | Generates dropdown menu using createPortal. |
 | `required` | `boolean` | - | When present, it specifies that time must be filled out before submitting the form. |
-| `seconds` | `boolean \| number[] \| ((second: number) => number[])` | `true` | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. |
+| `seconds` | `boolean \| number[] \| ((second: number) => boolean)` | `true` | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. |
 | `size` | `"sm" \| "lg"` | - | Size the component small or large. |
 | `text` | `ReactNode` | - | Add helper text to the component. |
 | `time` | `string \| Date \| null` | - | Initial selected time. |

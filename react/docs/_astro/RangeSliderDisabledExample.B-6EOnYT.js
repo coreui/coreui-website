@@ -1,0 +1,1 @@
+import"./rolldown-runtime.hePW80VL.js";import{t as e}from"./react.ekHMiR2c.js";import{t}from"./jsx-runtime.CWLBoBiw.js";import{t as n}from"./CRangeSlider.CGOt8GM8.js";e();var r=t(),i=()=>(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n,{className:`mb-3`,value:50,disabled:!0}),(0,r.jsx)(n,{value:[50,75],disabled:!0})]});export{i as RangeSliderDisabledExample};

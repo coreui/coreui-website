@@ -85,6 +85,33 @@ import { CDatePicker } from '@coreui/vue-pro'
 </script>
 ```
 
+#### Time granularity
+
+The time selection shows hours, minutes, and seconds. Turn a unit off with `:minutes="false"` or `:seconds="false"`, or narrow the choices by passing an array of allowed values to `hours`, `minutes`, or `seconds`. Seconds need minutes, so turning minutes off drops both. The input value follows the units you keep.
+
+```html
+<template>
+  <div class="row">
+    <div class="col-sm-6 col-lg-5 mb-3 mb-sm-0">
+      <CDatePicker date="2023/03/15 02:22:00 PM" locale="en-US" :seconds="false" timepicker />
+    </div>
+    <div class="col-sm-6 col-lg-5">
+      <CDatePicker
+        date="2023/03/15 02:00:00 PM"
+        locale="en-US"
+        :minutes="false"
+        :seconds="false"
+        timepicker
+      />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { CDatePicker } from '@coreui/vue-pro'
+</script>
+```
+
 #### With footer
 
 Here is an example with the additional footer. The footer can be useful for displaying additional information or actions related to the selected date, such as "Today" or "Clear" buttons. The footer component is fully customizable and can be styled to match the rest of the application.

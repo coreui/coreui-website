@@ -99,6 +99,8 @@ Animate Bootstrap placeholders using `.placeholder-glow` or `.placeholder-wave` 
 </p>
 ```
 
+> Both animations rely on the `prefers-reduced-motion` media query and stop for readers who ask for less motion. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+
 ## Customization
 
 ### SASS variables

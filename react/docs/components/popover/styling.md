@@ -49,7 +49,7 @@ $popover-max-width:                 276px !default;
 $popover-border-width:              var(--cui-border-width) !default;
 $popover-border-color:              var(--cui-border-color-translucent) !default;
 $popover-border-radius:             var(--cui-border-radius-lg) !default;
-$popover-inner-border-radius:       calc(#{$popover-border-radius} - #{$popover-border-width}) !default; // stylelint-disable-line function-disallowed-list
+$popover-inner-border-radius:       calc(var(--cui-popover-border-radius) - var(--cui-popover-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $popover-box-shadow:                var(--cui-box-shadow) !default;
 
 $popover-header-font-size:          $font-size-base !default;

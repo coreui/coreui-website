@@ -1,0 +1,1 @@
+import"./rolldown-runtime.hePW80VL.js";import{t as e}from"./react.ekHMiR2c.js";import{t}from"./jsx-runtime.CWLBoBiw.js";import{t as n}from"./CBadge.ZXIumMHH.js";import{t as r}from"./CButton.BbzVGTnk.js";e();var i=t(),a=()=>(0,i.jsxs)(r,{color:`primary`,children:[`Notifications `,(0,i.jsx)(n,{color:`secondary`,children:`4`})]});export{a as Badge2Example};

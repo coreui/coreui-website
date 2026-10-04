@@ -445,7 +445,7 @@ To align **right** the dropdown menu with the given breakpoint or larger, add `a
 
 ```html
 <template>
-  <CDropdown color="secondary" :alignment="{ lg: 'end' }">
+  <CDropdown :alignment="{ lg: 'end' }" variant="btn-group">
     <CDropdownToggle color="secondary"
       >Left-aligned but right aligned when large screen</CDropdownToggle
     >
@@ -474,7 +474,7 @@ To align **left** the dropdown menu with the given breakpoint or larger, add `al
 
 ```html
 <template>
-  <CDropdown color="secondary" :alignment="{ xs: 'end', lg: 'start' }">
+  <CDropdown :alignment="{ xs: 'end', lg: 'start' }" variant="btn-group">
     <CDropdownToggle color="secondary"
       >Right-aligned but left aligned when large screen</CDropdownToggle
     >

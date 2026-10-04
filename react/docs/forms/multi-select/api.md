@@ -15,7 +15,7 @@ import { CMultiSelect } from '@coreui/react-pro'
 | `allowCreateOptions` | `boolean` | - | Allow users to create options if they are not in the list of options. |
 | `ariaCleanerLabel` | `string` | `Clear all selections` | A string that provides an accessible label for the cleaner button. This label is read by screen readers to describe the action associated with the button. |
 | `ariaIndicatorLabel` | `string` | `Toggle visibility of options menu` | A string that provides an accessible label for the indicator button. This label is read by screen readers to describe the action associated with the button. |
-| `ariaSearchLabel` | `string` | `Search` | Accessible label for the search input (when `search` is enabled). |
+| `ariaSearchLabel` | `string` | `Search options` | Accessible label for the search input (when `search` is enabled). |
 | `ariaTagDeleteLabel` | `string` | `Remove` | Accessible label prefix for a tag's delete button (selection type `tags`). The selected option's label is appended, so screen readers announce e.g. "Remove Angular". |
 | `className` | `string` | - | A string of all className you want applied to the base component. |
 | `cleaner` | `boolean` | `true` | Enables selection cleaner element. |
@@ -29,7 +29,7 @@ import { CMultiSelect } from '@coreui/react-pro'
 | `feedbackValid` | `ReactNode` | - | Provide valuable, actionable invalid feedback when using standard HTML form validation which applied two CSS pseudo-classes, `:invalid` and `:valid`. |
 | `headerTemplate` | `((state: SelectionState, actions: SelectionActions) => ReactNode)` | - | Render a custom dropdown header (the area above the options list), replacing the built-in select all button. Receives a `state` object (`{ selected, total, filtered, filteredSelected }`) and an `actions` object (`{ selectAll, deselectAll, selectFiltered, deselectFiltered }`) so you can wire your own controls. Renders independently of `selectAll`. |
 | `hideSelectAllOnSearchNoResults` | `boolean` | `true` | Hide the dropdown header with the built-in select all button when a search filter leaves no matching options. Set to `false` to keep the select all button visible even when there are no results. |
-| `id` | `string` | - | Set the id attribute for the native select element. **[Deprecated since v5.3.0]** The name attribute for the native select element is generated based on the `id` property: - `<select name="\{id\}-multi-select" />` |
+| `id` | `string` | - | Set the id attribute for the native select element. |
 | `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `loading` | `boolean` | - | When set, the options list will have a loading style: loading spinner and reduced opacity. |

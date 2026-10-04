@@ -201,7 +201,11 @@ export const OneTimePasswordAutoSubmitExample = () => {
   return (
     <CForm onSubmit={handleSubmit}>
       <div className="mb-3">
-        <COneTimePassword label="Auto-submit OTP (fill all 6 digits)" autoSubmit>
+        <COneTimePassword
+          label="Auto-submit OTP (fill all 6 digits)"
+          name="autoSubmitOTP"
+          autoSubmit
+        >
           <COneTimePasswordInput />
           <COneTimePasswordInput />
           <COneTimePasswordInput />

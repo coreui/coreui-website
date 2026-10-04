@@ -22,7 +22,7 @@ import { CChipInput } from '@coreui/react'
 | `id` | `string` | - | Sets the `id` of the internal text input rendered by the React Chip Input component. |
 | `label` | `ReactNode` | - | Renders an inline label inside the React Chip Input component container. |
 | `maxChips` | `number \| null` | - | Sets the maximum number of chips that can be created in the React Chip Input component. |
-| `name` | `string` | - | Sets the name of the hidden input used by the React Chip Input component for form submission. |
+| `name` | `string` | - | Sets the name of the hidden input the component renders. Without it the hidden input carries the values but is not submitted with the form. |
 | `onAdd` | `((value: string) => void)` | - | Callback fired when the React Chip Input component adds a new chip. |
 | `onChange` | `((values: string[]) => void)` | - | Callback fired when the value list of the React Chip Input component changes. |
 | `onInput` | `((value: string) => void)` | - | Callback fired when the internal text input value changes in the React Chip Input component. |

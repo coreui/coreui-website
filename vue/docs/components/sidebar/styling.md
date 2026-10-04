@@ -15,6 +15,7 @@ Vue sidebars use local CSS variables on `.sidebar` and `.sidebar-backdrop` for e
 --cui-sidebar-color: #{$sidebar-color};
 --cui-sidebar-brand-color: #{$sidebar-brand-color};
 --cui-sidebar-brand-bg: #{$sidebar-brand-bg};
+--cui-sidebar-toggler-height: #{$sidebar-toggler-height};
 ```
 
 ```scss
@@ -86,7 +87,6 @@ Vue sidebars use local CSS variables on `.sidebar` and `.sidebar-backdrop` for e
 
 ```scss
 --cui-sidebar-toggler-width: #{$sidebar-toggler-width};
---cui-sidebar-toggler-height: #{$sidebar-toggler-height};
 --cui-sidebar-toggler-bg: #{$sidebar-toggler-bg};
 --cui-sidebar-toggler-color: #{$sidebar-toggler-color};
 --cui-sidebar-toggler-icon: #{escape-svg($sidebar-toggler-icon)};

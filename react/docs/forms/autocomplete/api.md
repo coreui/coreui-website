@@ -29,7 +29,7 @@ import { CAutocomplete } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `loading` | `boolean` | - | When set, the options list will have a loading style: loading spinner and reduced opacity. Use this to indicate that options are being fetched asynchronously. The dropdown remains functional but shows visual loading indicators. |
-| `name` | `string` | - | The name attribute for the input element. Used for form submission and identification in form data. Important for proper form handling and accessibility. |
+| `name` | `string` | - | The name attribute for the input element. Without it the field is not submitted with the form. Used for form submission and identification in form data. Important for proper form handling and accessibility. |
 | `onChange` | `((option: Option \| null) => void)` | - | Execute a function when a user changes the selected option. Called with the selected option object or `undefined` when cleared. This is the primary callback for handling selection changes. |
 | `onHide` | `(() => void)` | - | The callback is fired when the dropdown requests to be hidden. Called when the dropdown closes due to user interaction, clicks outside, escape key, or programmatic changes. |
 | `onInput` | `((value: string) => void)` | - | Execute a function when the filter/search value changes. Called whenever the user types in the search input. Useful for implementing external search functionality or analytics. |

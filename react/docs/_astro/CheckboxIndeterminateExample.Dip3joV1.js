@@ -1,0 +1,1 @@
+import"./rolldown-runtime.hePW80VL.js";import{t as e}from"./react.ekHMiR2c.js";import{t}from"./jsx-runtime.CWLBoBiw.js";import{t as n}from"./CFormCheck.B43BdzDe.js";e();var r=t(),i=()=>(0,r.jsx)(n,{id:`flexCheckIndeterminate`,label:`Indeterminate checkbox`,indeterminate:!0});export{i as CheckboxIndeterminateExample};

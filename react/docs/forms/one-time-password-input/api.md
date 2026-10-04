@@ -27,7 +27,7 @@ import { COneTimePassword } from '@coreui/react-pro'
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `linear` | `boolean` | `true` | Enforce sequential input (users must fill fields in order). |
 | `masked` | `boolean` | `false` | Show input as password (masked characters). |
-| `name` | `string` | - | Name attribute for the hidden input field. |
+| `name` | `string` | - | Name attribute for the hidden input field. The visible slots are not named, so the code is submitted once, under this name; without it the component is not submitted at all. |
 | `onChange` | `((value: string) => void)` | - | Callback triggered when the React.js one time password (OTP) value changes. |
 | `onComplete` | `((value: string) => void)` | - | Callback triggered when all React.js one time password (OTP) fields are filled. |
 | `placeholder` | `string` | - | Placeholder text for input fields. Single character applies to all fields, longer strings apply character-by-character. |

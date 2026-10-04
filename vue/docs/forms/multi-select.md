@@ -1162,6 +1162,8 @@ const setCities = (cities) => {
 
 Add the `disabled` boolean property to give it a grayed out appearance, remove pointer events, and prevent focusing.
 
+`disabled` also works on a single option object and on a group object, where it disables every option inside the group. Disabled options are greyed out, skipped by the mouse and the arrow keys, and left out of select all; the group label is greyed out with them.
+
 ```html
 <template>
   <CMultiSelect :options="options2" disabled />

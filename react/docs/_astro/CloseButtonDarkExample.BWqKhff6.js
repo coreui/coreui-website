@@ -1,0 +1,1 @@
+import"./rolldown-runtime.hePW80VL.js";import{t as e}from"./react.ekHMiR2c.js";import{t}from"./jsx-runtime.CWLBoBiw.js";import{t as n}from"./CCloseButton.ctPUBqUn.js";e();var r=t(),i=()=>(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n,{dark:!0}),(0,r.jsx)(n,{dark:!0,disabled:!0})]});export{i as CloseButtonDarkExample};

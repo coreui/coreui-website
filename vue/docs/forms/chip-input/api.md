@@ -21,7 +21,7 @@ import { CChipInput } from '@coreui/vue'
 | `label` | `string\|object` | - | Renders an inline label inside the component container. |
 | `maxChips` | `number` | `null` | Sets the maximum number of chips that can be created in the component. |
 | `modelValue` | `string[]` | `undefined` | The default name for a value passed using v-model. |
-| `name` | `string` | - | Sets the name of the hidden input used by the component for form submission. |
+| `name` | `string` | - | Sets the name of the hidden input the component renders. Without it the hidden input carries the values but is not submitted with the form. |
 | `placeholder` | `string` | `''` | Sets placeholder text for the internal input of the component. |
 | `readOnly` | `boolean` | - | Toggle the readonly state for the component. |
 | `removable` | `boolean` | `true` | Displays remove buttons on chips managed by the component. |

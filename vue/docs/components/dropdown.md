@@ -439,13 +439,13 @@ import {
 
 ### Responsive alignment
 
-If you use responsive alignment, dynamic positioning is disabled.
+If you use responsive alignment, dynamic positioning is disabled — the classes place the menu themselves. Set `variant="btn-group"` so that the dropdown wraps just the toggle; with the default variant it is a full-width block, and the menu aligns to the edge of the container instead of the button.
 
-To align **right** the dropdown menu with the given breakpoint or larger, add `aligment="xs|sm|md|lg|xl|xxl: end"`.
+To align **right** the dropdown menu with the given breakpoint or larger, add `:alignment="{ lg: 'end' }"`, replacing `lg` with any of `xs`, `sm`, `md`, `lg`, `xl`, `xxl`.
 
 ```html
 <template>
-  <CDropdown color="secondary" :alignment="{ lg: 'end' }">
+  <CDropdown :alignment="{ lg: 'end' }" variant="btn-group">
     <CDropdownToggle color="secondary"
       >Left-aligned but right aligned when large screen</CDropdownToggle
     >
@@ -470,11 +470,11 @@ import {
 </script>
 ```
 
-To align **left** the dropdown menu with the given breakpoint or larger, add `aligment="xs|sm|md|lg|xl|xxl: start"`.
+To align **left** the dropdown menu with the given breakpoint or larger, add `:alignment="{ xs: 'end', lg: 'start' }"`. Every entry of the map adds its own class, so this one is right aligned by default and left aligned from `lg` up.
 
 ```html
 <template>
-  <CDropdown color="secondary" :alignment="{ xs: 'end', lg: 'start' }">
+  <CDropdown :alignment="{ xs: 'end', lg: 'start' }" variant="btn-group">
     <CDropdownToggle color="secondary"
       >Right-aligned but left aligned when large screen</CDropdownToggle
     >

@@ -2378,6 +2378,8 @@ export const AutocompleteValidationExample = () => {
 
 Disable the component to prevent user interaction:
 
+`disabled` also works on a single option object and on a group object, where it disables every option inside the group. Such an option is greyed out and cannot be reached by the mouse, by the arrow keys, by the hint completion, or by typing its label in full.
+
 ```html
 import React from 'react'
 import { CAutocomplete } from '@coreui/react-pro'
@@ -2953,7 +2955,7 @@ export const ChipInputExample = () => {
 }
 ```
 
-> Note: `CChipInput` renders the inline text input automatically. When `name` is provided, it also renders a hidden input so chip values can participate in standard form submission.
+> Note: `CChipInput` renders the inline text input automatically, alongside a hidden input carrying the chip values. Give that input a `name` and the values participate in standard form submission.
 
 ## Variants
 
@@ -3222,6 +3224,35 @@ export const DatePickerDaysWithTimePickerExample = () => {
       </CCol>
       <CCol sm={6} lg={5}>
         <CDatePicker date="2023/03/15 02:22:13 PM" locale="en-US" timepicker />
+      </CCol>
+    </CRow>
+  )
+}
+```
+
+#### Time granularity
+
+The time selection shows hours, minutes, and seconds. Turn a unit off with `minutes={false}` or `seconds={false}`, or narrow the choices by passing an array of allowed values to `hours`, `minutes`, or `seconds`. Seconds need minutes, so turning minutes off drops both. The input value follows the units you keep.
+
+```html
+import React from 'react'
+import { CCol, CRow } from '@coreui/react'
+import { CDatePicker } from '@coreui/react-pro'
+
+export const DatePickerTimeGranularityExample = () => {
+  return (
+    <CRow>
+      <CCol className="mb-3 mb-sm-0" sm={6} lg={5}>
+        <CDatePicker date="2023/03/15 02:22:00 PM" locale="en-US" seconds={false} timepicker />
+      </CCol>
+      <CCol sm={6} lg={5}>
+        <CDatePicker
+          date="2023/03/15 02:00:00 PM"
+          locale="en-US"
+          minutes={false}
+          seconds={false}
+          timepicker
+        />
       </CCol>
     </CRow>
   )
@@ -3935,6 +3966,32 @@ export const DateRangePickerDaysWithTimePickerExample = () => {
           startDate="2022/08/03 02:34:17 AM"
           endDate="2022/09/17 11:29:41 PM"
           locale="en-US"
+          timepicker
+        />
+      </CCol>
+    </CRow>
+  )
+}
+```
+
+#### Time granularity
+
+The time selection shows hours, minutes, and seconds. Turn a unit off with `minutes={false}` or `seconds={false}`, or narrow the choices by passing an array of allowed values to `hours`, `minutes`, or `seconds`. Seconds need minutes, so turning minutes off drops both. The input value follows the units you keep.
+
+```html
+import React from 'react'
+import { CCol, CRow } from '@coreui/react'
+import { CDateRangePicker } from '@coreui/react-pro'
+
+export const DateRangePickerTimeGranularityExample = () => {
+  return (
+    <CRow>
+      <CCol sm={7}>
+        <CDateRangePicker
+          startDate="2022/08/03 02:34:00 AM"
+          endDate="2022/09/17 11:29:00 PM"
+          locale="en-US"
+          seconds={false}
           timepicker
         />
       </CCol>
@@ -6950,6 +7007,8 @@ export const MultiSelectCoordinatedSelectionExample = () => {
 ## Disabled
 
 Add the `disabled` boolean property to give it a grayed out appearance, remove pointer events, and prevent focusing.
+
+`disabled` also works on a single option object and on a group object, where it disables every option inside the group. Disabled options are greyed out, skipped by the mouse and the arrow keys, and left out of select all; the group label is greyed out with them.
 
 ```html
 import React from 'react'
@@ -11183,6 +11242,21 @@ You can customize the accessibility labels for better user experience:
 />
 ```
 
+### Naming the control
+
+The component renders its own combobox and keeps a hidden `<select>` for form submission, which is also what native `required` validation focuses and anchors to. Name the combobox with the `label` prop, with `aria-label` or `aria-labelledby` on `CMultiSelect`, or with a `<label htmlFor>` pointing at the component's `id`.
+
+With `search` enabled the field the user tabs to is the search input, not the combobox, and it keeps a name of its own because what it holds is a filter rather than the value. That name is `ariaSearchLabel`, `Search options` by default. Set it per control on a page with more than one multi select, or every one of them announces the same thing:
+
+```jsx
+<CMultiSelect id="frameworks" ariaSearchLabel="Search frameworks" options={options} search />
+```
+
+```jsx
+<label htmlFor="frameworks">Frameworks</label>
+<CMultiSelect id="frameworks" options={options} />
+```
+
 ### ARIA Attributes
 
 The component automatically handles these ARIA attributes:
@@ -11444,7 +11518,11 @@ export const OneTimePasswordAutoSubmitExample = () => {
   return (
     <CForm onSubmit={handleSubmit}>
       <div className="mb-3">
-        <COneTimePassword label="Auto-submit OTP (fill all 6 digits)" autoSubmit>
+        <COneTimePassword
+          label="Auto-submit OTP (fill all 6 digits)"
+          name="autoSubmitOTP"
+          autoSubmit
+        >
           <COneTimePasswordInput />
           <COneTimePasswordInput />
           <COneTimePasswordInput />
@@ -21204,9 +21282,9 @@ export const DropdownMenuAlignmentExample = () => {
 
 ### Responsive alignment
 
-If you use responsive alignment, dynamic positioning is disabled.
+If you use responsive alignment, dynamic positioning is disabled — the classes place the menu themselves. Set `variant="btn-group"` so that the dropdown wraps just the toggle; with the default variant it is a full-width block, and the menu aligns to the edge of the container instead of the button.
 
-To align **right** the dropdown menu with the given breakpoint or larger, add `aligment="xs|sm|md|lg|xl|xxl: end"`.
+To align **right** the dropdown menu with the given breakpoint or larger, add `alignment={{ lg: 'end' }}`, replacing `lg` with any of `xs`, `sm`, `md`, `lg`, `xl`, `xxl`.
 
 ```html
 import React from 'react'
@@ -21220,8 +21298,10 @@ import {
 
 export const DropdownResponsiveAlignmentExample = () => {
   return (
-    <CDropdown alignment="end">
-      <CDropdownToggle color="secondary">Right-aligned menu example</CDropdownToggle>
+    <CDropdown alignment={{ lg: 'end' }} variant="btn-group">
+      <CDropdownToggle color="secondary">
+        Left-aligned but right aligned when large screen
+      </CDropdownToggle>
       <CDropdownMenu>
         <CDropdownItem href="#">Action</CDropdownItem>
         <CDropdownItem href="#">Another action</CDropdownItem>
@@ -21234,7 +21314,7 @@ export const DropdownResponsiveAlignmentExample = () => {
 }
 ```
 
-To align **left** the dropdown menu with the given breakpoint or larger, add `aligment="xs|sm|md|lg|xl|xxl: start"`.
+To align **left** the dropdown menu with the given breakpoint or larger, add `alignment={{ xs: 'end', lg: 'start' }}`. Every entry of the map adds its own class, so this one is right aligned by default and left aligned from `lg` up.
 
 ```html
 import React from 'react'
@@ -21248,7 +21328,7 @@ import {
 
 export const DropdownResponsiveAlignment2Example = () => {
   return (
-    <CDropdown alignment={{ xs: 'end', lg: 'start' }}>
+    <CDropdown alignment={{ xs: 'end', lg: 'start' }} variant="btn-group">
       <CDropdownToggle color="secondary">
         Right-aligned but left aligned when large screen
       </CDropdownToggle>
@@ -33841,7 +33921,7 @@ $accordion-bg:                            var(--cui-body-bg) !default;
 $accordion-border-width:                  var(--cui-border-width) !default;
 $accordion-border-color:                  var(--cui-border-color) !default;
 $accordion-border-radius:                 var(--cui-border-radius) !default;
-$accordion-inner-border-radius:           subtract($accordion-border-radius, $accordion-border-width) !default;
+$accordion-inner-border-radius:           calc(var(--cui-accordion-border-radius) - var(--cui-accordion-border-width)) !default; // stylelint-disable-line function-disallowed-list
 
 $accordion-body-padding-y:                $accordion-padding-y !default;
 $accordion-body-padding-x:                $accordion-padding-x !default;
@@ -36192,8 +36272,6 @@ CoreUI React Calendar supports CSS variables for easy customization. These varia
 --cui-calendar-cell-selected-color: #{$calendar-cell-selected-color};
 --cui-calendar-cell-selected-bg: #{$calendar-cell-selected-bg};
 --cui-calendar-cell-range-bg: #{$calendar-cell-range-bg};
---cui-calendar-cell-range-hover-bg: #{$calendar-cell-range-hover-bg};
---cui-calendar-cell-range-hover-border-color: #{$calendar-cell-range-hover-border-color};
 --cui-calendar-cell-today-color: #{$calendar-cell-today-color};
 --cui-calendar-cell-week-number-color: #{$calendar-cell-week-number-color};
 ```
@@ -36260,8 +36338,6 @@ $calendar-cell-selected-color:               $white !default;
 $calendar-cell-selected-bg:                  var(--cui-primary) !default;
 
 $calendar-cell-range-bg:                     rgba(var(--cui-primary-rgb), .125) !default;
-$calendar-cell-range-hover-bg:               rgba(var(--cui-primary-rgb), .25) !default;
-$calendar-cell-range-hover-border-color:     var(--cui-primary) !default;
 
 $calendar-cell-today-color:                  var(--cui-danger) !default;
 
@@ -37756,7 +37832,7 @@ $card-border-width:                 var(--cui-border-width) !default;
 $card-border-color:                 var(--cui-border-color-translucent) !default;
 $card-border-radius:                var(--cui-border-radius) !default;
 $card-box-shadow:                   null !default;
-$card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
+$card-inner-border-radius:          calc(var(--cui-card-border-radius) - var(--cui-card-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $card-cap-padding-y:                $card-spacer-y * .5 !default;
 $card-cap-padding-x:                $card-spacer-x !default;
 $card-cap-bg:                       rgba(var(--cui-body-color-rgb), .03) !default;
@@ -39774,8 +39850,10 @@ import {
 
 export const DropdownResponsiveAlignmentExample = () => {
   return (
-    <CDropdown alignment="end">
-      <CDropdownToggle color="secondary">Right-aligned menu example</CDropdownToggle>
+    <CDropdown alignment={{ lg: 'end' }} variant="btn-group">
+      <CDropdownToggle color="secondary">
+        Left-aligned but right aligned when large screen
+      </CDropdownToggle>
       <CDropdownMenu>
         <CDropdownItem href="#">Action</CDropdownItem>
         <CDropdownItem href="#">Another action</CDropdownItem>
@@ -39802,7 +39880,7 @@ import {
 
 export const DropdownResponsiveAlignment2Example = () => {
   return (
-    <CDropdown alignment={{ xs: 'end', lg: 'start' }}>
+    <CDropdown alignment={{ xs: 'end', lg: 'start' }} variant="btn-group">
       <CDropdownToggle color="secondary">
         Right-aligned but left aligned when large screen
       </CDropdownToggle>
@@ -40007,7 +40085,7 @@ $dropdown-bg:                       var(--cui-body-bg) !default;
 $dropdown-border-color:             var(--cui-border-color-translucent) !default;
 $dropdown-border-radius:            var(--cui-border-radius) !default;
 $dropdown-border-width:             var(--cui-border-width) !default;
-$dropdown-inner-border-radius:      calc(#{$dropdown-border-radius} - #{$dropdown-border-width}) !default; // stylelint-disable-line function-disallowed-list
+$dropdown-inner-border-radius:      calc(var(--cui-dropdown-border-radius) - var(--cui-dropdown-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $dropdown-divider-bg:               $dropdown-border-color !default;
 $dropdown-divider-margin-y:         $spacer * .5 !default;
 $dropdown-box-shadow:               var(--cui-box-shadow) !default;
@@ -41858,7 +41936,7 @@ $modal-content-bg:                  var(--cui-body-bg) !default;
 $modal-content-border-color:        var(--cui-border-color-translucent) !default;
 $modal-content-border-width:        var(--cui-border-width) !default;
 $modal-content-border-radius:       var(--cui-border-radius-lg) !default;
-$modal-content-inner-border-radius: subtract($modal-content-border-radius, $modal-content-border-width) !default;
+$modal-content-inner-border-radius: calc(var(--cui-modal-border-radius) - var(--cui-modal-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $modal-content-box-shadow-xs:       var(--cui-box-shadow-sm) !default;
 $modal-content-box-shadow-sm-up:    var(--cui-box-shadow) !default;
 
@@ -45338,7 +45416,7 @@ $popover-max-width:                 276px !default;
 $popover-border-width:              var(--cui-border-width) !default;
 $popover-border-color:              var(--cui-border-color-translucent) !default;
 $popover-border-radius:             var(--cui-border-radius-lg) !default;
-$popover-inner-border-radius:       calc(#{$popover-border-radius} - #{$popover-border-width}) !default; // stylelint-disable-line function-disallowed-list
+$popover-inner-border-radius:       calc(var(--cui-popover-border-radius) - var(--cui-popover-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $popover-box-shadow:                var(--cui-box-shadow) !default;
 
 $popover-header-font-size:          $font-size-base !default;
@@ -46631,6 +46709,7 @@ React sidebars use local CSS variables on `.sidebar` and `.sidebar-backdrop` for
 --cui-sidebar-color: #{$sidebar-color};
 --cui-sidebar-brand-color: #{$sidebar-brand-color};
 --cui-sidebar-brand-bg: #{$sidebar-brand-bg};
+--cui-sidebar-toggler-height: #{$sidebar-toggler-height};
 ```
 
 ```scss
@@ -46702,7 +46781,6 @@ React sidebars use local CSS variables on `.sidebar` and `.sidebar-backdrop` for
 
 ```scss
 --cui-sidebar-toggler-width: #{$sidebar-toggler-width};
---cui-sidebar-toggler-height: #{$sidebar-toggler-height};
 --cui-sidebar-toggler-bg: #{$sidebar-toggler-bg};
 --cui-sidebar-toggler-color: #{$sidebar-toggler-color};
 --cui-sidebar-toggler-icon: #{escape-svg($sidebar-toggler-icon)};
@@ -49647,7 +49725,7 @@ import { CAutocomplete } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `loading` | `boolean` | - | When set, the options list will have a loading style: loading spinner and reduced opacity. Use this to indicate that options are being fetched asynchronously. The dropdown remains functional but shows visual loading indicators. |
-| `name` | `string` | - | The name attribute for the input element. Used for form submission and identification in form data. Important for proper form handling and accessibility. |
+| `name` | `string` | - | The name attribute for the input element. Without it the field is not submitted with the form. Used for form submission and identification in form data. Important for proper form handling and accessibility. |
 | `onChange` | `((option: Option \| null) => void)` | - | Execute a function when a user changes the selected option. Called with the selected option object or `undefined` when cleared. This is the primary callback for handling selection changes. |
 | `onHide` | `(() => void)` | - | The callback is fired when the dropdown requests to be hidden. Called when the dropdown closes due to user interaction, clicks outside, escape key, or programmatic changes. |
 | `onInput` | `((value: string) => void)` | - | Execute a function when the filter/search value changes. Called whenever the user types in the search input. Useful for implementing external search functionality or analytics. |
@@ -50630,7 +50708,7 @@ Chip inputs are commonly used for tags, labels, recipients, and tokenized multi-
 
 - **Chip list pattern**: Existing values are rendered as chips before the inline input, making the field readable as a tokenized sequence of values.
 
-- **Form compatibility**: When `name` is provided, a hidden input is rendered so chip values can participate in traditional form submission.
+- **Form compatibility**: a hidden input carries the chip values; give it a `name` and they participate in traditional form submission.
 
 ### ARIA Attributes
 
@@ -50640,7 +50718,7 @@ CoreUI React Chip Input supports accessible labeling and chip state communicatio
 
 - **Chip selection state**: Selectable chips expose `aria-selected` through the underlying `CChip` component.
 
-- **Disabled and readonly states**: Disabled and readonly states are reflected so assistive technologies can identify interaction constraints.
+- **Disabled and readonly states**: Carried by the native `disabled` and `readonly` attributes on the inner input, which is what assistive technologies read.
 
 ### Focus Management
 
@@ -50738,7 +50816,7 @@ import { CChipInput } from '@coreui/react'
 | `id` | `string` | - | Sets the `id` of the internal text input rendered by the React Chip Input component. |
 | `label` | `ReactNode` | - | Renders an inline label inside the React Chip Input component container. |
 | `maxChips` | `number \| null` | - | Sets the maximum number of chips that can be created in the React Chip Input component. |
-| `name` | `string` | - | Sets the name of the hidden input used by the React Chip Input component for form submission. |
+| `name` | `string` | - | Sets the name of the hidden input the component renders. Without it the hidden input carries the values but is not submitted with the form. |
 | `onAdd` | `((value: string) => void)` | - | Callback fired when the React Chip Input component adds a new chip. |
 | `onChange` | `((values: string[]) => void)` | - | Callback fired when the value list of the React Chip Input component changes. |
 | `onInput` | `((value: string) => void)` | - | Callback fired when the internal text input value changes in the React Chip Input component. |
@@ -51097,6 +51175,7 @@ import { CDatePicker } from '@coreui/react-pro'
 | `floatingClassName` | `string` | - | A string of all className you want applied to the floating label wrapper. |
 | `footer` | `boolean` | - | Toggle visibility of footer element. |
 | `footerContent` | `ReactNode` | - | Add custom elements to the footer. |
+| `hours` | `number[] \| ((hour: number) => boolean)` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. Requires the `timepicker` property. |
 | `id` | `string` | - | The id global attribute defines an identifier (ID) that must be unique in the whole document. **[Deprecated since v5.3.0]** The name attributes for input element is generated based on this property until you define name prop ex.: - `{id}-date` |
 | `indicator` | `ReactNode` | - | Toggle visibility or set the content of the input indicator. |
 | `inputDateFormat` | `((date: Date) => string)` | - | Custom function to format the selected date into a string according to a custom format. |
@@ -51108,6 +51187,7 @@ import { CDatePicker } from '@coreui/react-pro'
 | `locale` | `string` | `'default'` | Indicates the locale for the React Calendar component. If not explicitly provided, it inherits the locale settings from the browser. |
 | `maxDate` | `string \| Date \| null` | - | The maximum date that can be selected. Any date beyond this value will be disabled within the calendar. This is often used to restrict future selections. |
 | `minDate` | `string \| Date \| null` | - | The minimum date that can be selected. Any date before this value will be disabled in the calendar. Useful for preventing selection of past dates or creating limited booking windows. |
+| `minutes` | `boolean \| number[] \| ((minute: number) => boolean)` | - | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. Requires the `timepicker` property. |
 | `monthFormat` | `"numeric" \| "2-digit" \| "long" \| "narrow" \| "short"` | `'short'` | Sets the format for month names. Accepts built-in formats ('long', 'narrow', 'short', 'numeric', '2-digit'). |
 | `name` | `string` | - | The name attribute for the input element. |
 | `navigation` | `boolean` | - | Toggles display of arrow-based navigation (previous/next controls) in the React Calendar component. If set to `false`, you can build custom navigation or handle the navigation programmatically. |
@@ -51133,6 +51213,7 @@ import { CDatePicker } from '@coreui/react-pro'
 | `renderQuarterCell` | `((date: Date, meta: { isDisabled: boolean; isInRange: boolean; isSelected: boolean; }) => ReactNode)` | - | A function that allows you to customize the rendering of individual quarter cells within the calendar. This function receives the date and metadata (like selection and disabled status) as arguments, enabling you to apply custom styles or include additional content in each quarter cell. |
 | `renderYearCell` | `((date: Date, meta: { isDisabled: boolean; isInRange: boolean; isSelected: boolean; }) => ReactNode)` | - | A function that allows you to customize the rendering of individual year cells within the calendar. This function receives the date and metadata (like selection and disabled status) as arguments, enabling you to apply custom styles or include additional content in each year cell. |
 | `required` | `boolean` | - | When present, it specifies that date must be filled out before submitting the form. |
+| `seconds` | `boolean \| number[] \| ((second: number) => boolean)` | - | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. Requires the `timepicker` property. |
 | `selectAdjacementDays` | `boolean` | `false` | Sets whether days from adjacent months (shown at the start/end of the current view) are selectable. This only applies if `showAdjacementDays` is set to `true`. |
 | `selectionType` | `SelectionTypes` | `'day'` | Specifies the selection type for the React Calendar component. Supports: - `day`: Regular day selection (default) - `week`: Select an entire week - `month`: Select an entire month - `year`: Select an entire year |
 | `separator` | `ReactNode` | - | Default icon or character character that separates two dates. |
@@ -51256,8 +51337,6 @@ CoreUI React Date Picker supports CSS variables for easy customization. These va
 --cui-calendar-cell-selected-color: #{$calendar-cell-selected-color};
 --cui-calendar-cell-selected-bg: #{$calendar-cell-selected-bg};
 --cui-calendar-cell-range-bg: #{$calendar-cell-range-bg};
---cui-calendar-cell-range-hover-bg: #{$calendar-cell-range-hover-bg};
---cui-calendar-cell-range-hover-border-color: #{$calendar-cell-range-hover-border-color};
 --cui-calendar-cell-today-color: #{$calendar-cell-today-color};
 --cui-calendar-cell-week-number-color: #{$calendar-cell-week-number-color};
 ```
@@ -51424,8 +51503,6 @@ $calendar-cell-selected-color:               $white !default;
 $calendar-cell-selected-bg:                  var(--cui-primary) !default;
 
 $calendar-cell-range-bg:                     rgba(var(--cui-primary-rgb), .125) !default;
-$calendar-cell-range-hover-bg:               rgba(var(--cui-primary-rgb), .25) !default;
-$calendar-cell-range-hover-border-color:     var(--cui-primary) !default;
 
 $calendar-cell-today-color:                  var(--cui-danger) !default;
 
@@ -51480,6 +51557,7 @@ import { CDateRangePicker } from '@coreui/react-pro'
 | `floatingClassName` | `string` | - | A string of all className you want applied to the floating label wrapper. |
 | `footer` | `boolean` | - | Toggle visibility of footer element. |
 | `footerContent` | `ReactNode` | - | Add custom elements to the footer. |
+| `hours` | `number[] \| ((hour: number) => boolean)` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. Requires the `timepicker` property. |
 | `id` | `string \| [string, string]` | - | The id attribute for the input elements. It can be a single string for both the start and end dates. If a single string is used, the postfix "-start-date" and "-end-date" will be automatically added to make the IDs unique. Alternatively, you can use an array of two strings for start and end dates separately. **[Deprecated since v5.3.0]** If the property is a type of string, the name attributes for input elements are generated based on this property until you define name prop ex.: - `{id}-start-date` - `{id}-end-date` |
 | `indicator` | `ReactNode` | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputDateFormat` | `((date: Date) => string)` | - | Custom function to format the selected date into a string according to a custom format. |
@@ -51491,6 +51569,7 @@ import { CDateRangePicker } from '@coreui/react-pro'
 | `locale` | `string` | `default` | Indicates the locale for the React Calendar component. If not explicitly provided, it inherits the locale settings from the browser. |
 | `maxDate` | `string \| Date \| null` | - | The maximum date that can be selected. Any date beyond this value will be disabled within the calendar. This is often used to restrict future selections. |
 | `minDate` | `string \| Date \| null` | - | The minimum date that can be selected. Any date before this value will be disabled in the calendar. Useful for preventing selection of past dates or creating limited booking windows. |
+| `minutes` | `boolean \| number[] \| ((minute: number) => boolean)` | `true` | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. Requires the `timepicker` property. |
 | `monthFormat` | `"numeric" \| "2-digit" \| "long" \| "narrow" \| "short"` | `'short'` | Sets the format for month names. Accepts built-in formats ('long', 'narrow', 'short', 'numeric', '2-digit'). |
 | `name` | `string \| [string, string]` | - | The name attribute for the input elements. It can be a single string for both the start and end dates. If a single string is used, the postfix "-start-date" and "-end-date" will be automatically added to make the names unique. Alternatively, you can use an array of two strings for start and end dates separately. Example for single string: 'date-input' Result: 'date-input-start-date', 'date-input-end-date' Example for array: ['start-date-input', 'end-date-input'] Result: 'start-date-input', 'end-date-input' |
 | `navigation` | `boolean` | - | Toggles display of arrow-based navigation (previous/next controls) in the React Calendar component. If set to `false`, you can build custom navigation or handle the navigation programmatically. |
@@ -51518,6 +51597,7 @@ import { CDateRangePicker } from '@coreui/react-pro'
 | `renderQuarterCell` | `((date: Date, meta: { isDisabled: boolean; isInRange: boolean; isSelected: boolean; }) => ReactNode)` | - | A function that allows you to customize the rendering of individual quarter cells within the calendar. This function receives the date and metadata (like selection and disabled status) as arguments, enabling you to apply custom styles or include additional content in each quarter cell. |
 | `renderYearCell` | `((date: Date, meta: { isDisabled: boolean; isInRange: boolean; isSelected: boolean; }) => ReactNode)` | - | A function that allows you to customize the rendering of individual year cells within the calendar. This function receives the date and metadata (like selection and disabled status) as arguments, enabling you to apply custom styles or include additional content in each year cell. |
 | `required` | `boolean` | - | When present, it specifies that date must be filled out before submitting the form. |
+| `seconds` | `boolean \| number[] \| ((second: number) => boolean)` | `true` | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. Requires the `timepicker` property. |
 | `selectAdjacementDays` | `boolean` | `false` | Sets whether days from adjacent months (shown at the start/end of the current view) are selectable. This only applies if `showAdjacementDays` is set to `true`. |
 | `selectEndDate` | `boolean` | - | Indicates if the user's current selection is targeting the end date in range selection mode. Primarily used for controlled components where you need to manage which date (start or end) is currently active. |
 | `selectionType` | `SelectionTypes` | `day` | Specifies the selection type for the React Calendar component. Supports: - `day`: Regular day selection (default) - `week`: Select an entire week - `month`: Select an entire month - `year`: Select an entire year |
@@ -51643,8 +51723,6 @@ CoreUI React DateRange Picker supports CSS variables for easy customization. The
 --cui-calendar-cell-selected-color: #{$calendar-cell-selected-color};
 --cui-calendar-cell-selected-bg: #{$calendar-cell-selected-bg};
 --cui-calendar-cell-range-bg: #{$calendar-cell-range-bg};
---cui-calendar-cell-range-hover-bg: #{$calendar-cell-range-hover-bg};
---cui-calendar-cell-range-hover-border-color: #{$calendar-cell-range-hover-border-color};
 --cui-calendar-cell-today-color: #{$calendar-cell-today-color};
 --cui-calendar-cell-week-number-color: #{$calendar-cell-week-number-color};
 ```
@@ -51811,8 +51889,6 @@ $calendar-cell-selected-color:               $white !default;
 $calendar-cell-selected-bg:                  var(--cui-primary) !default;
 
 $calendar-cell-range-bg:                     rgba(var(--cui-primary-rgb), .125) !default;
-$calendar-cell-range-hover-bg:               rgba(var(--cui-primary-rgb), .25) !default;
-$calendar-cell-range-hover-border-color:     var(--cui-primary) !default;
 
 $calendar-cell-today-color:                  var(--cui-danger) !default;
 
@@ -53802,7 +53878,7 @@ import { CMultiSelect } from '@coreui/react-pro'
 | `allowCreateOptions` | `boolean` | - | Allow users to create options if they are not in the list of options. |
 | `ariaCleanerLabel` | `string` | `Clear all selections` | A string that provides an accessible label for the cleaner button. This label is read by screen readers to describe the action associated with the button. |
 | `ariaIndicatorLabel` | `string` | `Toggle visibility of options menu` | A string that provides an accessible label for the indicator button. This label is read by screen readers to describe the action associated with the button. |
-| `ariaSearchLabel` | `string` | `Search` | Accessible label for the search input (when `search` is enabled). |
+| `ariaSearchLabel` | `string` | `Search options` | Accessible label for the search input (when `search` is enabled). |
 | `ariaTagDeleteLabel` | `string` | `Remove` | Accessible label prefix for a tag's delete button (selection type `tags`). The selected option's label is appended, so screen readers announce e.g. "Remove Angular". |
 | `className` | `string` | - | A string of all className you want applied to the base component. |
 | `cleaner` | `boolean` | `true` | Enables selection cleaner element. |
@@ -53816,7 +53892,7 @@ import { CMultiSelect } from '@coreui/react-pro'
 | `feedbackValid` | `ReactNode` | - | Provide valuable, actionable invalid feedback when using standard HTML form validation which applied two CSS pseudo-classes, `:invalid` and `:valid`. |
 | `headerTemplate` | `((state: SelectionState, actions: SelectionActions) => ReactNode)` | - | Render a custom dropdown header (the area above the options list), replacing the built-in select all button. Receives a `state` object (`{ selected, total, filtered, filteredSelected }`) and an `actions` object (`{ selectAll, deselectAll, selectFiltered, deselectFiltered }`) so you can wire your own controls. Renders independently of `selectAll`. |
 | `hideSelectAllOnSearchNoResults` | `boolean` | `true` | Hide the dropdown header with the built-in select all button when a search filter leaves no matching options. Set to `false` to keep the select all button visible even when there are no results. |
-| `id` | `string` | - | Set the id attribute for the native select element. **[Deprecated since v5.3.0]** The name attribute for the native select element is generated based on the `id` property: - `<select name="\{id\}-multi-select" />` |
+| `id` | `string` | - | Set the id attribute for the native select element. |
 | `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `loading` | `boolean` | - | When set, the options list will have a loading style: loading spinner and reduced opacity. |
@@ -54179,7 +54255,7 @@ import { COneTimePassword } from '@coreui/react-pro'
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `linear` | `boolean` | `true` | Enforce sequential input (users must fill fields in order). |
 | `masked` | `boolean` | `false` | Show input as password (masked characters). |
-| `name` | `string` | - | Name attribute for the hidden input field. |
+| `name` | `string` | - | Name attribute for the hidden input field. The visible slots are not named, so the code is submitted once, under this name; without it the component is not submitted at all. |
 | `onChange` | `((value: string) => void)` | - | Callback triggered when the React.js one time password (OTP) value changes. |
 | `onComplete` | `((value: string) => void)` | - | Callback triggered when all React.js one time password (OTP) fields are filled. |
 | `placeholder` | `string` | - | Placeholder text for input fields. Single character applies to all fields, longer strings apply character-by-character. |
@@ -56008,7 +56084,7 @@ import { CTimePicker } from '@coreui/react-pro'
 | `floatingClassName` | `string` | - | A string of all className you want applied to the floating label wrapper. |
 | `footer` | `boolean` | `true` | Toggle visibility of footer element. |
 | `footerContent` | `ReactNode` | - | Add custom elements to the footer. |
-| `hours` | `number[] \| ((hour: number) => number[])` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. |
+| `hours` | `number[] \| ((hour: number) => boolean)` | - | Specify a list of available hours using an array, or customize the filtering of hours through a function. |
 | `id` | `string` | - | Set the id attribute for the input element. |
 | `indicator` | `ReactNode` | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputOnChangeDelay` | `number` | `750` | Defines the delay (in milliseconds) for the input field's onChange event. |
@@ -56016,7 +56092,7 @@ import { CTimePicker } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `locale` | `string` | `default` | Sets the default locale for components. If not set, it is inherited from the browser. |
-| `minutes` | `boolean \| number[] \| ((minute: number) => number[])` | `true` | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. |
+| `minutes` | `boolean \| number[] \| ((minute: number) => boolean)` | `true` | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. |
 | `name` | `string` | - | Set the name attribute for the input element. |
 | `onHide` | `(() => void)` | - | Callback fired when the component requests to be hidden. |
 | `onShow` | `(() => void)` | - | Callback fired when the component requests to be shown. |
@@ -56024,7 +56100,7 @@ import { CTimePicker } from '@coreui/react-pro'
 | `placeholder` | `string` | `Select time` | Specifies a short hint that is visible in the input. |
 | `portal` | `boolean` | `false` | Generates dropdown menu using createPortal. |
 | `required` | `boolean` | - | When present, it specifies that time must be filled out before submitting the form. |
-| `seconds` | `boolean \| number[] \| ((second: number) => number[])` | `true` | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. |
+| `seconds` | `boolean \| number[] \| ((second: number) => boolean)` | `true` | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. |
 | `size` | `"sm" \| "lg"` | - | Size the component small or large. |
 | `text` | `ReactNode` | - | Add helper text to the component. |
 | `time` | `string \| Date \| null` | - | Initial selected time. |

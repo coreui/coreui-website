@@ -1,0 +1,1 @@
+import"./rolldown-runtime.hePW80VL.js";import{t as e}from"./react.ekHMiR2c.js";import{t}from"./jsx-runtime.CWLBoBiw.js";import{t as n}from"./CRangeSlider.CGOt8GM8.js";e();var r=t(),i=()=>(0,r.jsx)(n,{clickableLabels:!1,labels:[`Low`,`Medium`,`High`],value:[20,80]});export{i as RangeSliderLabelsClickableExample};

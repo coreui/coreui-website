@@ -6,6 +6,21 @@
 
 The Vue Multi Select component is designed with accessibility in mind, implementing WAI-ARIA standards to ensure compatibility with screen readers and assistive technologies.
 
+### Naming the control
+
+The component renders its own combobox and keeps a hidden `<select>` for form submission, which is also what native `required` validation focuses and anchors to. Name the combobox with the `label` prop, with `aria-label` or `aria-labelledby` on `CMultiSelect`, or with a `<label for>` pointing at the component's `id`.
+
+With `search` enabled the field the user tabs to is the search input, not the combobox, and it keeps a name of its own because what it holds is a filter rather than the value. That name is `ariaSearchLabel`, `Search options` by default. Set it per control on a page with more than one multi select, or every one of them announces the same thing:
+
+```vue
+<CMultiSelect id="frameworks" aria-search-label="Search frameworks" :options="options" search />
+```
+
+```vue
+<label for="frameworks">Frameworks</label>
+<CMultiSelect id="frameworks" :options="options" />
+```
+
 ### ARIA Attributes
 
 The component automatically includes the following ARIA attributes:

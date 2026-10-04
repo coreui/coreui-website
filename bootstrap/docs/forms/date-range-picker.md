@@ -53,6 +53,25 @@ In addition to supporting date selection, our Bootstrap Date Range Picker compon
 </div>
 ```
 
+#### Time granularity
+
+The time selection shows hours, minutes, and seconds. Turn a unit off with `data-coreui-minutes="false"` or `data-coreui-seconds="false"`, or narrow the choices by passing an array of allowed values to `hours`, `minutes`, or `seconds`. Seconds need minutes, so turning minutes off drops both. The input value follows the units you keep.
+
+```html
+  <div class="row">
+  <div class="col-lg-7">
+    <div
+      data-coreui-start-date="2022/08/03 02:34:00 AM"
+      data-coreui-end-date="2022/09/17 11:29:00 PM"
+      data-coreui-locale="en-US"
+      data-coreui-seconds="false"
+      data-coreui-timepicker="true"
+      data-coreui-toggle="date-range-picker">
+    </div>
+  </div>
+</div>
+```
+
 #### With footer
 
 To add a footer, use `data-coreui-footer="true"`. The footer can display extra information or actions related to the selected date, such as buttons for "Today" or "Clear".
@@ -550,6 +569,7 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | `endName` | string, null | `null` | Set the name attribute for the end date input element. |
 | `firstDayOfWeek` | number | `1` | <p>Sets the day of start week.</p>  <ul><li>`0` - Sunday</li><li>`1` - Monday</li><li>`2` - Tuesday</li><li>`3` - Wednesday</li><li>`4` - Thursday</li><li>`5` - Friday</li><li>`6` - Saturday</li></ul> |
 | `footer` | boolean | `false` | Toggle visibility of footer element. |
+| `hours` | array, function, null | `null` | Specify a list of available hours using an array, or customize the filtering of hours through a function. Requires the `timepicker` option. |
 | `indicator` | boolean | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputDateFormat` | function, null | `null` | Custom function to format the selected date into a string according to a custom format. |
 | `inputDateParse` | function, null | `null` | Custom function to parse the input value into a valid Date object. |
@@ -559,6 +579,7 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | `locale` | string | `'default'` | Sets the default locale for components. If not set, it is inherited from the navigator.language. |
 | `maxDate` | date, number, string, null | `null` | Max selectable date. |
 | `minDate` | date, number, string, null | `null` | Min selectable date. |
+| `minutes` | array, boolean, function | `true` | Toggle the display of minutes, specify a list of available minutes using an array, or customize the filtering of minutes through a function. Requires the `timepicker` option. |
 | `monthFormat` | `'long'`, `'narrow'`, `'short'`, `'numeric'`, `'2-digit'` | `'short'` | Sets the format for month names. Accepts built-in formats (`'long'`, `'narrow'`, `'short'`, `'numeric'`, `'2-digit'`). |
 | `placeholder` | string | `['Start date', 'End date']` | Specifies a short hint that is visible in the input. |
 | `previewDateOnHover` | boolean | `true` | Enable live preview of dates in input fields when hovering over calendar cells. |
@@ -570,6 +591,7 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | `renderYearCell` | function, null | `null` | Custom function to render year cells. Receives `date` and `meta` object (with `isDisabled`, `isInRange`, `isSelected`) as parameters and should return HTML string. |
 | `sanitize` | boolean | `true` | Enable or disable the sanitization. If activated `renderDayCell`, `renderMonthCell`, `renderQuarterCell`, and `renderYearCell` options will be sanitized. |
 | `sanitizeFn` | null, function | `null` | Here you can supply your own sanitize function. This can be useful if you prefer to use a dedicated library to perform sanitization. |
+| `seconds` | array, boolean, function | `true` | Toggle the display of seconds, specify a list of available seconds using an array, or customize the filtering of seconds through a function. Requires the `timepicker` option, and is ignored when `minutes` is `false`. |
 | `selectAdjacementDays` | boolean | `false` | Set whether days in adjacent months shown before or after the current month are selectable. This only applies if the `showAdjacementDays` option is set to true. |
 | `selectionType` | `'day'`, `'week'`, `'month'`, `'quarter'`, `'year'` | `day` | Specify the type of date selection as day, week, month, quarter, or year. |
 | `separator` | boolean | `true` | Toggle visibility or set the content of the inputs separator. |
@@ -593,7 +615,7 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | `clear` | Clear selection of the date range picker. |
 | `reset` | Reset selection of the date range picker to the initial value. |
 | `update` | Updates the configuration of the date range picker. |
-| `dispose` | Destroys a component. (Removes stored data on the DOM element) |
+| `dispose` | Destroys a component: removes the controls it built, the classes it added and its window listener, and clears the data stored on the DOM element. |
 | `getInstance` | Static method which allows you to get the date range picker instance associated to a DOM element, you can use it like this: `coreui.DateRangePicker.getInstance(element)` |
 | `getOrCreateInstance` | Static method which returns a date range picker instance associated to a DOM element or create a new one in case it wasn't initialized. You can use it like this: `coreui.DateRangePicker.getOrCreateInstance(element)` |
 
@@ -713,8 +735,6 @@ DateRangePickers use local CSS variables on `.date-picker` and `.calendar` for e
 --cui-calendar-cell-selected-color: #{$calendar-cell-selected-color};
 --cui-calendar-cell-selected-bg: #{$calendar-cell-selected-bg};
 --cui-calendar-cell-range-bg: #{$calendar-cell-range-bg};
---cui-calendar-cell-range-hover-bg: #{$calendar-cell-range-hover-bg};
---cui-calendar-cell-range-hover-border-color: #{$calendar-cell-range-hover-border-color};
 --cui-calendar-cell-today-color: #{$calendar-cell-today-color};
 --cui-calendar-cell-week-number-color: #{$calendar-cell-week-number-color};
 ```
@@ -870,8 +890,6 @@ $calendar-cell-selected-color:               $white !default;
 $calendar-cell-selected-bg:                  var(--cui-primary) !default;
 
 $calendar-cell-range-bg:                     rgba(var(--cui-primary-rgb), .125) !default;
-$calendar-cell-range-hover-bg:               rgba(var(--cui-primary-rgb), .25) !default;
-$calendar-cell-range-hover-border-color:     var(--cui-primary) !default;
 
 $calendar-cell-today-color:                  var(--cui-danger) !default;
 

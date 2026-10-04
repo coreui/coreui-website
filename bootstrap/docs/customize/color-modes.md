@@ -72,11 +72,11 @@ Enable the built in dark color mode across your entire project by adding the `da
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CoreUI for Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-9DZ6o3pJWcTwBR8W196XizUEf2kNMD35tkeyWqOB0yzml+nZrEe/13PMCpAIrT4r" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hLBsN3gpx96kCbLUCbANpmr8cdCNM1sH85tJfeZT61uxTNIvelafstACefvdVnuP" crossorigin="anonymous">
   </head>
   <body>
     <h1>Hello, world!</h1>
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.0/dist/js/coreui.bundle.min.js" integrity="sha384-FTek6QoTuxz6Bb078pS0kYQ0qH2LZVB5LWwZl8944mluH+TCk0q3OP4PqA+dHJRl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/js/coreui.bundle.min.js" integrity="sha384-yW+X2pqDqevsUW8M2p1APhb8cm2i5jneCZe2pkEvKVATzd6517WyXz6ElE46++OE" crossorigin="anonymous"></script>
   </body>
 </html>
 ```
@@ -145,21 +145,21 @@ For example, you can create a "blue theme" with the selector `data-coreui-theme=
 [data-coreui-theme="blue"] {
   --cui-body-color: var(--cui-white);
   --cui-body-color-rgb: #{to-rgb($white)};
-  --cui-body-bg: var(--cui-blue);
-  --cui-body-bg-rgb: #{to-rgb($blue)};
+  --cui-body-bg: #{$cd-blue-500};
+  --cui-body-bg-rgb: #{to-rgb($cd-blue-500)};
   --cui-tertiary-bg: #{$cd-blue-600};
 
   .dropdown-menu {
-    --cui-dropdown-bg: #{color.mix($cd-blue-500, $cd-blue-600)};
+    --cui-dropdown-bg: #{color.mix($cd-blue-500, $cd-blue-600, 50%, rgb)};
     --cui-dropdown-link-active-bg: #{$cd-blue-700};
   }
 
   .btn-secondary {
-    --cui-btn-bg: #{color.mix($gray-600, $cd-blue-400, 50%)};
+    --cui-btn-bg: #{color.mix($gray-600, $cd-blue-400, 50%, rgb)};
     --cui-btn-border-color: #{rgba($white, .25)};
-    --cui-btn-hover-bg: #{color.scale(color.mix($gray-600, $cd-blue-400, 50%), $lightness: -8%)}; // stylelint-disable-line scss/at-function-named-arguments
+    --cui-btn-hover-bg: #{color.scale(color.mix($gray-600, $cd-blue-400, 50%, rgb), $lightness: -8%)}; // stylelint-disable-line scss/at-function-named-arguments
     --cui-btn-hover-border-color: #{rgba($white, .25)};
-    --cui-btn-active-bg: #{color.scale(color.mix($gray-600, $cd-blue-400, 50%), $lightness: -16%)}; // stylelint-disable-line scss/at-function-named-arguments
+    --cui-btn-active-bg: #{color.scale(color.mix($gray-600, $cd-blue-400, 50%, rgb), $lightness: -16%)}; // stylelint-disable-line scss/at-function-named-arguments
     --cui-btn-active-border-color: #{rgba($white, .5)};
     --cui-btn-focus-border-color: #{rgba($white, .5)};
     --cui-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);

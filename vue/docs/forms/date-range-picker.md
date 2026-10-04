@@ -94,6 +94,30 @@ import { CDateRangePicker } from '@coreui/vue-pro'
 </script>
 ```
 
+#### Time granularity
+
+The time selection shows hours, minutes, and seconds. Turn a unit off with `:minutes="false"` or `:seconds="false"`, or narrow the choices by passing an array of allowed values to `hours`, `minutes`, or `seconds`. Seconds need minutes, so turning minutes off drops both. The input value follows the units you keep.
+
+```html
+<template>
+  <div class="row">
+    <div class="col-lg-7">
+      <CDateRangePicker
+        start-date="2022/08/03 02:34:00 AM"
+        end-date="2022/09/17 11:29:00 PM"
+        locale="en-US"
+        :seconds="false"
+        timepicker
+      />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { CDateRangePicker } from '@coreui/vue-pro'
+</script>
+```
+
 #### With footer
 
 Here's an example with an additional footer. The footer is useful for displaying extra information or actions related to the selected date, such as "Today" or "Clear" buttons. The footer component is fully customizable and can be styled to match the rest of the application.

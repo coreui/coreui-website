@@ -29,7 +29,7 @@ import { CAutocomplete } from '@coreui/vue-pro'
 | `label` | `string` | - | Add a caption for a component. |
 | `loading` | `boolean` | - | When set, the options list will have a loading style: loading spinner and reduced opacity. Use this to indicate that options are being fetched asynchronously. The dropdown remains functional but shows visual loading indicators. |
 | `modelValue` | - | - | The model value for v-model support. Can be a string (matched against option labels) or number (matched against option values). Used for two-way data binding with v-model. |
-| `name` | `string` | - | The name attribute for the input element. Used for form submission and identification in form data. Important for proper form handling and accessibility. |
+| `name` | `string` | - | The name attribute for the input element. Without it the field is not submitted with the form. Used for form submission and identification in form data. Important for proper form handling and accessibility. |
 | `options` | `(Option \| OptionsGroup \| string)[]` | - | List of option elements. Can contain Option objects, OptionsGroup objects, or plain strings. Plain strings are converted to simple Option objects internally. This is a required prop - the Vue.js autocomplete needs options to function. |
 | `optionsMaxHeight` | `number \| string` | `'auto'` | Sets maxHeight of options list. Controls the maximum height of the dropdown options container. Can be a number (pixels) or a CSS length string (e.g., '200px', '10rem'). When content exceeds this height, a scrollbar will appear. |
 | `placeholder` | `string` | - | Specifies a short hint that is visible in the search input. Displayed when the input is empty to guide user interaction. Standard HTML input placeholder behavior. |

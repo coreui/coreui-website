@@ -142,6 +142,33 @@ myAutoCompleteValues.addEventListener('changed.coreui.autocomplete', event => {
 > - Internal storage: `{ label: 'Product A', value: '42' }`
 > - Event output: `event.value.value === '42'` (string)
 
+### Disabled options
+
+Set `disabled: true` on an option object to keep it in the list but out of reach. The option is rendered greyed out and skipped by the mouse, by the arrow keys, by the hint completion, and by typing its label in full — so a label the user cannot pick from the list cannot be picked by typing it either.
+
+```html
+<div id="myAutoCompleteDisabled"></div>
+```
+
+```js
+const myAutoCompleteDisabled = document.getElementById('myAutoCompleteDisabled')
+
+new coreui.Autocomplete(myAutoCompleteDisabled, {
+  name: 'autocomplete-disabled-options',
+  options: [
+    { label: 'Angular', value: 'angular' },
+    { label: 'React.js', value: 'react' },
+    { label: 'Vue.js', value: 'vue', disabled: true }
+  ],
+  placeholder: 'Select framework...',
+  showHints: true
+})
+```
+
+`disabled: true` on a group object does the same to every option inside it, and greys out the group label with them.
+
+A disabled option that the configuration also marks `selected` (or that `value` points at) is still shown as the current value — the restriction is on what the user can choose, not on what the page can set.
+
 ### External data
 
 You can configure CoreUI's AutoComplete component to fetch and display options dynamically from an external API. This is useful when you need to autocomplete data that changes frequently or is too large to preload. 
@@ -251,7 +278,7 @@ Apply validation styling to indicate input validity.
 Add the `data-coreui-disabled="true"` attribute to disable the component:
 
 ```html
-<div data-coreui-toggle="autocomplete" data-coreui-disabled="true" data-coreui-options="" data-coreui-placeholder="Disabled autocomplete..." ></div>
+<div data-coreui-toggle="autocomplete" data-coreui-disabled="true" data-coreui-placeholder="Disabled autocomplete..." ></div>
 ```
 
 ## Sizing
@@ -428,10 +455,10 @@ new coreui.Autocomplete(myAutocompleteCountriesAndCities, {
 
 ### Via data attributes
 
-Add `autocomplete` class to a container element with an input field:
+Add the `data-coreui-toggle="autocomplete"` attribute to a container element:
 
 ```html
-<div data-coreui-toggle="autocomplete" data-coreui-search="true"></div>
+<div data-coreui-toggle="autocomplete" data-coreui-options="JavaScript, TypeScript, React, Vue.js, Angular" data-coreui-search="global"></div>
 ```
 
 ### Via JavaScript
@@ -439,7 +466,7 @@ Add `autocomplete` class to a container element with an input field:
 Initialize the autocomplete component via JavaScript:
 
 ```html
-<div data-coreui-toggle="autocomplete"></div>
+<div class="autocomplete"></div>
 ```
 
 ```js
@@ -478,8 +505,8 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | `id` | string, null | `null` | Sets a custom ID for the component. If not provided, a unique ID is auto-generated. |
 | `indicator` | boolean | `false` | Enables the selection indicator button. |
 | `invalid` | boolean | `false` | Applies invalid styling to the component. |
-| `name` | string, null | `null` | Sets the name attribute for the input element. |
-| `options` | boolean, array | `false` | Array of options or option objects to populate the dropdown. |
+| `name` | string, null | `null` | Sets the name attribute for the input element. Without it the field is not submitted with the form. |
+| `options` | array, string, null | `[]` | Array of options or option objects to populate the dropdown. An option object takes `label`, `value`, `disabled` and `selected`, and a group takes `label`, `disabled` and a nested `options` array; a disabled group disables everything inside it. A string is read as a comma-separated list of labels, which is what `data-coreui-options="Angular, React, Vue.js"` relies on. |
 | `optionsGroupsTemplate` | function, null | `null` | Custom template function for rendering option group labels. Receives the group object as parameter. |
 | `optionsMaxHeight` | number, string | `'auto'` | Sets the maximum height of the options dropdown. |
 | `optionsTemplate` | function, null | `null` | Custom template function for rendering individual options. Receives the option object as parameter. |
@@ -488,7 +515,7 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | `sanitize` | boolean | `true` | Enables HTML sanitization for custom templates to prevent XSS attacks. |
 | `sanitizeFn` | function, null | `null` | Custom sanitization function. If provided, it will be used instead of the built-in sanitizer. |
 | `search` | array, string, null | `null` | Enables search functionality. Use `'global'` for global search across the component and `'external'` when options are provided from external sources. |
-| `searchNoResultsLabel` | string | `false` | Text displayed when no search results are found. |
+| `searchNoResultsLabel` | boolean, string | `false` | Text displayed when no search results are found. With `false` the dropdown shows no such message and does not open while nothing matches. |
 | `showHints` | boolean | `false` | Shows completion hints as users type. |
 | `valid` | boolean | `false` | Applies valid styling to the component. |
 | `value` | number, string, null | `null` | Sets the initial value of the component. |
@@ -503,7 +530,7 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | `search` | Performs a search with the provided text parameter. |
 | `update` | Updates the component configuration and rebuilds the interface. |
 | `deselectAll` | Deselects all currently selected options. |
-| `dispose` | Destroys the component instance and removes stored data. |
+| `dispose` | Destroys the component instance, removes the markup it generated and the class names it added, and removes stored data. Class names already present in your markup are left alone. |
 | `getInstance` | Static method to get the Bootstrap autocomplete instance associated with a DOM element. |
 
 ### Events

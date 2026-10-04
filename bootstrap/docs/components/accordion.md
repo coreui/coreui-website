@@ -183,7 +183,7 @@ $accordion-bg:                            var(--cui-body-bg) !default;
 $accordion-border-width:                  var(--cui-border-width) !default;
 $accordion-border-color:                  var(--cui-border-color) !default;
 $accordion-border-radius:                 var(--cui-border-radius) !default;
-$accordion-inner-border-radius:           subtract($accordion-border-radius, $accordion-border-width) !default;
+$accordion-inner-border-radius:           calc(var(--cui-accordion-border-radius) - var(--cui-accordion-border-width)) !default; // stylelint-disable-line function-disallowed-list
 
 $accordion-body-padding-y:                $accordion-padding-y !default;
 $accordion-body-padding-x:                $accordion-padding-x !default;

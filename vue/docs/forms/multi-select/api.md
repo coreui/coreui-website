@@ -15,7 +15,7 @@ import { CMultiSelect } from '@coreui/vue-pro'
 | `allowCreateOptions` | `boolean` | - | Allow users to create options if they are not in the list of options. |
 | `ariaCleanerLabel` | `string` | `'Clear all selections'` | A string that provides an accessible label for the cleaner button. This label is read by screen readers to describe the action associated with the button. |
 | `ariaIndicatorLabel` | `string` | `'Toggle dropdown'` | A string that provides an accessible label for the indicator button. This label is read by screen readers to describe the action associated with the button. |
-| `ariaSearchLabel` | `string` | `'Search'` | Accessible label for the search input (when `search` is enabled). |
+| `ariaSearchLabel` | `string` | `'Search options'` | Accessible label for the search input (when `search` is enabled). |
 | `ariaTagDeleteLabel` | `string` | `'Remove'` | Accessible label prefix for a tag's delete button (selection type `tags`). The selected option's label is appended, so screen readers announce e.g. "Remove Angular". |
 | `cleaner` | `boolean` | `true` | Enables selection cleaner element. |
 | `clearSearchOnSelect` | `boolean` | - | Clear current search on selecting an item. |
@@ -27,7 +27,7 @@ import { CMultiSelect } from '@coreui/vue-pro'
 | `feedbackInvalid` | `string` | - | Provide valuable, actionable feedback. |
 | `feedbackValid` | `string` | - | Provide valuable, actionable invalid feedback when using standard HTML form validation which applied two CSS pseudo-classes, `:invalid` and `:valid`. |
 | `hideSelectAllOnSearchNoResults` | `boolean` | `true` | Hide the dropdown header with the built-in select all button when a search filter leaves no matching options. Set to `false` to keep the select all button visible even when there are no results. |
-| `id` | `string` | - | Set the id attribute for the native select element. **[Deprecated since v5.3.0]** The name attribute for the native select element is generated based on the `id` property: - `<select name="\{id\}-multi-select" />` |
+| `id` | `string` | - | Set the id attribute for the native select element. |
 | `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `string` | - | Add a caption for a component. |
 | `loading` | `boolean` | - | When set, the options list will have a loading style: loading spinner and reduced opacity. |

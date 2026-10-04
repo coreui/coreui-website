@@ -56,6 +56,21 @@ If you want to create a multi-select dropdown with predefined options, use the `
 </select>
 ```
 
+### Disabled options and groups
+
+Put `disabled` on an `<option>` to keep it in the list but out of reach, and on an `<optgroup>` to do the same to everything inside it. Disabled options are greyed out, skipped by the mouse and the arrow keys, and left out of select all; the group label is greyed out with them. The array form takes `disabled: true` on an option object or on a group object.
+
+```html
+<select data-coreui-multi-select multiple>
+  <option value="0">Angular</option>
+  <option value="1" disabled>Bootstrap</option>
+  <optgroup label="backend" disabled>
+    <option value="2">Django</option>
+    <option value="3">Laravel</option>
+  </optgroup>
+</select>
+```
+
 ### Array data
 
 To dynamically populate a multi-select dropdown with options from an array, start with an empty `<select>` element. Use JavaScript to add options programmatically. This allows for more flexible and dynamic content management.
@@ -782,7 +797,7 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | --- | --- | --- | --- |
 | `allowList` | object | `DefaultAllowlist` | Object containing allowed tags and attributes for HTML sanitization when using custom templates. |
 | `ariaCleanerLabel`| string | `Clear all selections` | A string that provides an accessible label for the cleaner button. This label is read by screen readers to describe the action associated with the button. |
-| `ariaSearchLabel`| string | `Search` | Accessible label for the search input (when `search` is enabled). |
+| `ariaSearchLabel`| string | `Search options` | Accessible label for the search input (when `search` is enabled). |
 | `ariaTagDeleteLabel`| string | `Remove` | Accessible label prefix for a tag's delete button (selection type `tags`). The selected option's text is appended, so screen readers announce e.g. "Remove Angular". |
 | `cleaner`| boolean | `true` | Enables selection cleaner element. |
 | `clearSearchOnSelect`| boolean | `false` | Clear current search on selecting an item. |
@@ -794,8 +809,8 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | `hideSelectAllOnSearchNoResults` | boolean | `true` | Hides the dropdown header with the built-in select all button when a search filter leaves no matching options. Set to `false` to keep the select all button visible even when there are no results. |
 | `invalid` | boolean | `false` | Toggle the invalid state for the component. |
 | `multiple` | boolean | `true` | It specifies that multiple options can be selected at once. |
-| `name` | string, null | `null` | Set the name attribute for the native select element. |
-| `options` | boolean, array | `false` | List of option elements. |
+| `name` | string, null | `null` | Set the name attribute for the native select element. Without it, and without a `name` in your own markup, the select is not submitted with the form. |
+| `options` | boolean, array | `false` | List of option elements. An option object takes `value`, `text`, `disabled` and `selected`, and a group takes `label`, `disabled` and a nested `options` array; a disabled group disables everything inside it. |
 | `optionsGroupsSelectable` | boolean | `false` | When enabled (with `optionsGroupsStyle: 'checkbox'` and `multiple`), each option group label becomes a tri-state checkbox: clicking it toggles the whole group, and it reflects `none` / `all` / `indeterminate` based on the group's selected options. |
 | `optionsGroupsStyle` | string | `'checkbox'` | Sets the option group label style: `'checkbox'` or `'text'`. Controls the checkbox appearance used by `optionsGroupsSelectable`. |
 | `optionsGroupsTemplate` | function, null | `null` | Custom template function for rendering option group labels. Receives the group object as parameter. |
@@ -856,6 +871,26 @@ myMutliSelect.addEventListener('changed.coreui.multi-select', event => {
 ```
 
 ## Accessibility
+
+### Naming the control
+
+The plugin replaces the `<select>` with its own combobox and keeps the original as an invisible overlay, which is what native `required` validation focuses and anchors to. The combobox takes its name from whatever the page already gave the `<select>`: a `<label for>` pointing at it, an `aria-labelledby`, or an `aria-label`. Give the `<select>` one of those, or it has no name.
+
+With `search` enabled the field the user tabs to is the search input, not the combobox, and it keeps a name of its own because what it holds is a filter rather than the value. That name is `ariaSearchLabel`, `Search options` by default. **Set it per control on a page with more than one multi select**, or every one of them announces the same thing:
+
+```html
+<label for="frameworks">Frameworks</label>
+<select id="frameworks" data-coreui-multi-select multiple
+        data-coreui-search="true"
+        data-coreui-aria-search-label="Search frameworks"></select>
+```
+
+```html
+<label for="frameworks">Frameworks</label>
+<select id="frameworks" data-coreui-multi-select multiple>
+  <option value="0">Angular</option>
+</select>
+```
 
 ### Keyboard shortcuts
 

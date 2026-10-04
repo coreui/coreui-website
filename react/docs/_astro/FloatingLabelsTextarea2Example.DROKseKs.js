@@ -1,0 +1,1 @@
+import"./rolldown-runtime.hePW80VL.js";import{t as e}from"./react.ekHMiR2c.js";import{t}from"./jsx-runtime.CWLBoBiw.js";import{t as n}from"./CFormTextarea.Cl-lReS4.js";e();var r=t(),i=()=>(0,r.jsx)(n,{placeholder:`Leave a comment here`,id:`floatingTextarea2`,floatingLabel:`Comments`,style:{height:`100px`}});export{i as FloatingLabelsTextarea2Example};

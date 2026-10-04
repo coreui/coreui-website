@@ -62,6 +62,35 @@ export const DatePickerDaysWithTimePickerExample = () => {
 }
 ```
 
+#### Time granularity
+
+The time selection shows hours, minutes, and seconds. Turn a unit off with `minutes={false}` or `seconds={false}`, or narrow the choices by passing an array of allowed values to `hours`, `minutes`, or `seconds`. Seconds need minutes, so turning minutes off drops both. The input value follows the units you keep.
+
+```html
+import React from 'react'
+import { CCol, CRow } from '@coreui/react'
+import { CDatePicker } from '@coreui/react-pro'
+
+export const DatePickerTimeGranularityExample = () => {
+  return (
+    <CRow>
+      <CCol className="mb-3 mb-sm-0" sm={6} lg={5}>
+        <CDatePicker date="2023/03/15 02:22:00 PM" locale="en-US" seconds={false} timepicker />
+      </CCol>
+      <CCol sm={6} lg={5}>
+        <CDatePicker
+          date="2023/03/15 02:00:00 PM"
+          locale="en-US"
+          minutes={false}
+          seconds={false}
+          timepicker
+        />
+      </CCol>
+    </CRow>
+  )
+}
+```
+
 #### With footer
 
 Here is an example with the additional footer. The footer can be useful for displaying additional information or actions related to the selected date, such as "Today" or "Clear" buttons. The footer component is fully customizable and can be styled to match the rest of the application.

@@ -35,15 +35,15 @@ Wrap chips and add `data-coreui-chip-input` to enable behavior.
 </div>
 ```
 
-> **Note:** The `` is created automatically by the component when initialized. You can also add it manually in the markup if preferred. Additionally, a hidden input is generated automatically to submit chip values with the form. The `name` attribute of this hidden input is taken from the `data-coreui-name` attribute (e.g., `data-coreui-name="chipInputBasicExample"`).
+> **Note:** The `` is created automatically by the component when initialized. You can also add it manually in the markup if preferred. Additionally, a hidden input is generated automatically to carry the chip values. It is submitted with the form only when you give it a name through `data-coreui-name` (e.g., `data-coreui-name="chipInputBasicExample"`); without one the component stays out of the payload.
 
 ```html
-<div class="chip-input" data-coreui-chip-input data-coreui-placeholder="Add a skill...">
+<div class="chip-input" data-coreui-chip-input data-coreui-name="chipInputBasicExample" data-coreui-placeholder="Add a skill...">
   <label class="chip-input-label" for="skillsInputBasic">Skills:</label>
   <span class="chip">JavaScript</span>
   <span class="chip">TypeScript</span>
   <span class="chip">Accessibility</span>
-  <input type="text" class="chip-input-field" name="skillsInputBasic" placeholder="Add a skill...">
+  <input type="text" class="chip-input-field" id="skillsInputBasic" placeholder="Add a skill...">
 </div>
 ```
 
@@ -184,8 +184,8 @@ Add `data-coreui-chip-input` to initialize the chip input component. Options can
 <div class="chip-input" data-coreui-chip-input data-coreui-name="skills" data-coreui-placeholder="Add tags..." data-coreui-separator=","></div>
 ```
 
-When initialized, Chip Input creates a hidden input to submit values with the form.  
-Use `name` (or `data-coreui-name`) to control the submitted field name.
+When initialized, Chip Input creates a hidden input carrying the chip values.  
+Use `name` (or `data-coreui-name`) to name it; without a name it is not submitted with the form.
 
 ### Via JavaScript
 
@@ -209,7 +209,7 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | `disabled` | boolean | `false` | Disables the input and marks managed chips as non-interactive. |
 | `readonly` | boolean | `false` | Prevents adding and removing chips while keeping input focus behavior. |
 | `id` | string \| null | auto-generated | Custom id for the generated hidden input. |
-| `name` | string \| null | auto-generated | Name for the generated hidden input used in form submission. |
+| `name` | string \| null | `null` | Name for the generated hidden input. Without it the hidden input carries the values but is not submitted. |
 | `separator` | string \| null | `','` | Character that triggers chip creation when typed. Set to `null` to disable. |
 | `maxChips` | number \| null | `null` | Maximum number of chips allowed. `null` for unlimited. |
 | `placeholder` | string | `''` | Placeholder text for dynamically created inputs. |

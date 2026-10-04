@@ -847,7 +847,7 @@ $dropdown-bg:                       var(--cui-body-bg) !default;
 $dropdown-border-color:             var(--cui-border-color-translucent) !default;
 $dropdown-border-radius:            var(--cui-border-radius) !default;
 $dropdown-border-width:             var(--cui-border-width) !default;
-$dropdown-inner-border-radius:      calc(#{$dropdown-border-radius} - #{$dropdown-border-width}) !default; // stylelint-disable-line function-disallowed-list
+$dropdown-inner-border-radius:      calc(var(--cui-dropdown-border-radius) - var(--cui-dropdown-border-width)) !default; // stylelint-disable-line function-disallowed-list
 $dropdown-divider-bg:               $dropdown-border-color !default;
 $dropdown-divider-margin-y:         $spacer * .5 !default;
 $dropdown-box-shadow:               var(--cui-box-shadow) !default;
