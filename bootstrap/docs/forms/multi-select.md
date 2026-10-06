@@ -189,6 +189,79 @@ To enable the global search functionality within the Multi Select component, ple
 </select>
 ```
 
+### External search
+
+_Added in 5.29.0._
+
+Set `search` to `'external'` to fetch the options from a server or an API. The component stops filtering the list itself and passes the typed text in the `search.coreui.multi-select` event, so your code can request matching options and hand them over with `update({ options })`. Combine both modes with `['external', 'global']` (or `data-coreui-search="external, global"`) to keep the global search behavior.
+
+```html
+<select id="myMultiSelectExternalData"></select>
+```
+
+We use the following JavaScript to set up our multi-select:
+
+```js
+const myMultiSelectExternalData = document.getElementById('myMultiSelectExternalData')
+
+const getUsers = async (name = '') => {
+  try {
+    const response = await fetch(`https://apitest.coreui.io/demos/users?first_name=${encodeURIComponent(name)}&limit=10`)
+    const users = await response.json()
+
+    return users.records.map(user => ({
+      value: user.id,
+      text: user.first_name
+    }))
+  } catch (error) {
+    console.error('Error fetching users:', error)
+    return []
+  }
+}
+
+const multiSelect = new coreui.MultiSelect(myMultiSelectExternalData, {
+  name: 'multi-select-external',
+  options: [],
+  placeholder: 'Search names...',
+  search: ['external', 'global'] // 🔴 'external' is required for external search
+})
+
+let lastQuery = null
+let debounceTimer = null
+
+const loadUsers = async query => {
+  const users = await getUsers(query)
+
+  // Skip responses that arrive after a newer query
+  if (query === lastQuery) {
+    multiSelect.update({ options: users })
+  }
+}
+
+myMultiSelectExternalData.addEventListener('show.coreui.multi-select', () => {
+  lastQuery = ''
+  loadUsers('')
+})
+
+myMultiSelectExternalData.addEventListener('search.coreui.multi-select', event => {
+  const query = event.value
+
+  if (query === lastQuery) {
+    return
+  }
+
+  lastQuery = query
+
+  clearTimeout(debounceTimer)
+
+  debounceTimer = setTimeout(() => {
+    loadUsers(query)
+  }, 200)
+})
+```
+
+> In external search mode, `update({ options })` replaces only the list: the dropdown stays open and keeps the typed text. Selected options that are missing from the new results stay selected, keep their tags and are still submitted with the form. `deselectAll()` and the cleaner clear them as well, while the select all button selects and deselects only the loaded results.
+
 ## Selection types
 
 Explore different selection modes, including single and multiple selections, allowing customization based on user requirements.
@@ -821,7 +894,7 @@ Starting with CoreUI 4.2.6, all components support an **experimental** reserved 
 | `required` | boolean | `false` | Makes the input field required for form validation. |
 | `sanitize` | boolean | `true` | Enables HTML sanitization for custom templates to prevent XSS attacks. |
 | `sanitizeFn` | function, null | `null` | Custom sanitization function. If provided, it will be used instead of the built-in sanitizer. |
-| `search` | boolean, string | `false` | Enables search input element. When set to `'global'`, the user can perform searches across the entire component, regardless of where their focus is within the component. |
+| `search` | array, boolean, string | `false` | Enables search input element. When set to `'global'`, the user can perform searches across the entire component, regardless of where their focus is within the component. When set to `'external'`, the component does not filter the options and leaves the search to your code (see [External search](#external-search)). Combine the modes with `['external', 'global']` or `'external, global'`. |
 | `searchNoResultsLabel` | string | `'No results found'` | Sets the label for no results when filtering.	|
 | `selectAll` | boolean | `true` | Enables select all button.|
 | `selectAllLabel` | string | `'Select all'` | Sets the select all button label shown until everything is selected. The button is a toggle: it shows `selectAllLabel` (and selects all) until everything is selected, then shows `deselectAllLabel` (and deselects all). |
@@ -861,6 +934,7 @@ Multi Select component exposes a few events for hooking into multi select functi
 | `shown.coreui.multi-select` | Fired when the multi select options have been made visible to the user and CSS transitions have completed. |
 | `hide.coreui.multi-select` | Fires immediately when the hide instance method has been called. |
 | `hidden.coreui.multi-select` | Fired when the multi select options have finished being hidden from the user and CSS transitions have completed. |
+| `search.coreui.multi-select` | Fires when the search text changes. The typed text is available as `event.value`. |
 
 ```js
 const myMutliSelect = document.getElementById('myMutliSelect')
