@@ -1,0 +1,9 @@
+import{Jt as e,ir as t,mn as n,pn as r}from"./common.Prn_XNFS.js";import{i,o as a}from"./coreui-angular-pro.CWvppfgA.js";import{i as o,t as s}from"./_router_module-chunk.BTG5unCn.js";var c=class o{static{this.ɵfac=function(e){return new(e||o)}}static{this.ɵcmp=e({type:o,selectors:[[`docs-alert-link-color`]],decls:40,vars:0,consts:[[`color`,`primary`],[`cAlertLink`,``,3,`routerLink`],[`color`,`secondary`],[`color`,`success`],[`color`,`danger`],[`color`,`warning`],[`color`,`info`],[`color`,`light`],[`color`,`dark`]],template:function(e,i){e&1&&(n(0,`c-alert`,0),t(1,` A simple primary alert with `),n(2,`a`,1),t(3,`an example link`),r(),t(4,`. Give it a click if you like.
+`),r(),n(5,`c-alert`,2),t(6,` A simple secondary alert with `),n(7,`a`,1),t(8,`an example link`),r(),t(9,`. Give it a click if you like.
+`),r(),n(10,`c-alert`,3),t(11,` A simple success alert with `),n(12,`a`,1),t(13,`an example link`),r(),t(14,`. Give it a click if you like.
+`),r(),n(15,`c-alert`,4),t(16,` A simple danger alert with `),n(17,`a`,1),t(18,`an example link`),r(),t(19,`. Give it a click if you like.
+`),r(),n(20,`c-alert`,5),t(21,` A simple warning alert with `),n(22,`a`,1),t(23,`an example link`),r(),t(24,`. Give it a click if you like.
+`),r(),n(25,`c-alert`,6),t(26,` A simple info alert with `),n(27,`a`,1),t(28,`an example link`),r(),t(29,`. Give it a click if you like.
+`),r(),n(30,`c-alert`,7),t(31,` A simple light alert with `),n(32,`a`,1),t(33,`an example link`),r(),t(34,`. Give it a click if you like.
+`),r(),n(35,`c-alert`,8),t(36,` A simple dark alert with `),n(37,`a`,1),t(38,`an example link`),r(),t(39,`. Give it a click if you like.
+`),r())},dependencies:[i,a,s],encapsulation:2})}};c.clientProviders=[o([])];export{c as AlertLinkColorComponent};

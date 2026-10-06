@@ -162,6 +162,7 @@ Values for the CSS variables are set via Sass.
 --cui-sidebar-color: #{$sidebar-color};
 --cui-sidebar-brand-color: #{$sidebar-brand-color};
 --cui-sidebar-brand-bg: #{$sidebar-brand-bg};
+--cui-sidebar-toggler-height: #{$sidebar-toggler-height};
 ```
 
 The narrow variants add their own:
