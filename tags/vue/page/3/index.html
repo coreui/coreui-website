@@ -405,6 +405,42 @@
       
   <div class="blog container py-6">
     <div class="blog-content"><div class="post mb-6">
+        <h2 class="post-title mb-3"><a href="https://coreui.io/answers/how-to-expose-methods-in-vue-3-with-defineexpose/">How to expose methods in Vue 3 with defineExpose</h2>
+        <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+          <div class="post-date">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+<title>calendar</title>
+<path d="M59 12h-11v-7h-4v7h-24v-7h-4v7h-11c-1.656 0.002-2.998 1.344-3 3v42c0.002 1.656 1.344 2.998 3 3h54c1.656-0.002 2.998-1.344 3-3v-42c-0.002-1.656-1.344-2.998-3-3h-0zM58 56h-52v-40h10v5h4v-5h24v5h4v-5h10z"></path>
+<path d="M14 28h4v4h-4v-4z"></path>
+<path d="M25 28h4v4h-4v-4z"></path>
+<path d="M35 28h4v4h-4v-4z"></path>
+<path d="M46 28h4v4h-4v-4z"></path>
+<path d="M14 37h4v4h-4v-4z"></path>
+<path d="M25 37h4v4h-4v-4z"></path>
+<path d="M35 37h4v4h-4v-4z"></path>
+<path d="M46 37h4v4h-4v-4z"></path>
+<path d="M14 46h4v4h-4v-4z"></path>
+<path d="M25 46h4v4h-4v-4z"></path>
+<path d="M35 46h4v4h-4v-4z"></path>
+<path d="M46 46h4v4h-4v-4z"></path>
+</svg>
+Thursday, March 26, 2026
+</div><div class="post-tags"><a href="/tags/vue/">#vue</a>
+    <a href="/tags/composition-api/">#composition-api</a>
+    <a href="/tags/defineexpose/">#defineexpose</a>
+    <a href="/tags/vue3/">#vue3</a>
+    </div></div>
+         
+        <div>
+          <p><p>In Vue 3 <code>&lt;script setup&gt;</code>, all bindings are private by default — parent components cannot access child component methods or data using template refs unless you explicitly expose them with <code>defineExpose</code>.
+As the creator of CoreUI with Vue development experience since 2014, I use <code>defineExpose</code> in CoreUI Vue components that need to provide imperative APIs, such as dialog <code>open()</code> and <code>close()</code> methods or form <code>reset()</code> and <code>validate()</code> methods.
+Without <code>defineExpose</code>, a parent&rsquo;s <code>childRef.value.open()</code> call fails silently because the method is not exposed.
+This is intentional — <code>&lt;script setup&gt;</code> components are encapsulated by default, and <code>defineExpose</code> is an explicit contract of the public API.</p></p>
+        </div>
+        <div>
+          <a href="https://coreui.io/answers/how-to-expose-methods-in-vue-3-with-defineexpose/" class="btn btn-border btn-border-grey btn-xl">Read More…</a>
+        </div>
+      </div><div class="post mb-6">
         <h2 class="post-title mb-3"><a href="https://coreui.io/answers/how-to-use-watcheffect-in-vue-3/">How to use watchEffect() in Vue 3</h2>
         <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
           <div class="post-date">
@@ -728,42 +764,6 @@ This incremental strategy avoids a big-bang rewrite.</p></p>
         </div>
         <div>
           <a href="https://coreui.io/answers/how-to-migrate-vue-2-to-vue-3/" class="btn btn-border btn-border-grey btn-xl">Read More…</a>
-        </div>
-      </div><div class="post mb-6">
-        <h2 class="post-title mb-3"><a href="https://coreui.io/answers/how-to-migrate-options-api-to-composition-api-in-vue/">How to migrate Options API to Composition API in Vue</h2>
-        <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
-          <div class="post-date">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-<title>calendar</title>
-<path d="M59 12h-11v-7h-4v7h-24v-7h-4v7h-11c-1.656 0.002-2.998 1.344-3 3v42c0.002 1.656 1.344 2.998 3 3h54c1.656-0.002 2.998-1.344 3-3v-42c-0.002-1.656-1.344-2.998-3-3h-0zM58 56h-52v-40h10v5h4v-5h24v5h4v-5h10z"></path>
-<path d="M14 28h4v4h-4v-4z"></path>
-<path d="M25 28h4v4h-4v-4z"></path>
-<path d="M35 28h4v4h-4v-4z"></path>
-<path d="M46 28h4v4h-4v-4z"></path>
-<path d="M14 37h4v4h-4v-4z"></path>
-<path d="M25 37h4v4h-4v-4z"></path>
-<path d="M35 37h4v4h-4v-4z"></path>
-<path d="M46 37h4v4h-4v-4z"></path>
-<path d="M14 46h4v4h-4v-4z"></path>
-<path d="M25 46h4v4h-4v-4z"></path>
-<path d="M35 46h4v4h-4v-4z"></path>
-<path d="M46 46h4v4h-4v-4z"></path>
-</svg>
-Thursday, March 12, 2026
-</div><div class="post-tags"><a href="/tags/vue/">#vue</a>
-    <a href="/tags/composition-api/">#composition-api</a>
-    <a href="/tags/migration/">#migration</a>
-    <a href="/tags/vue3/">#vue3</a>
-    </div></div>
-         
-        <div>
-          <p><p>Migrating from Options API to Composition API improves code organization, TypeScript support, and logic reusability across components.
-As the creator of CoreUI, I&rsquo;ve led migrations for large Vue 2 codebases to the Composition API.
-The key is mapping each Options API section - <code>data</code>, <code>computed</code>, <code>methods</code>, <code>watch</code>, and lifecycle hooks - to their Composition API equivalents.
-The logic becomes more collocated and easier to extract into reusable composables.</p></p>
-        </div>
-        <div>
-          <a href="https://coreui.io/answers/how-to-migrate-options-api-to-composition-api-in-vue/" class="btn btn-border btn-border-grey btn-xl">Read More…</a>
         </div>
       </div>
     <ul class="pagination pagination-default">
