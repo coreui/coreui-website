@@ -160,6 +160,8 @@ The React Calendar component includes functionality to disable specific dates, s
 - A function or an array of functions that take a `Date` object as an argument and return a boolean indicating whether the date should be disabled.
 - A mixed array of `Date` objects and functions.
 
+Without a `calendarDate`, `startDate` or `endDate`, the calendar opens on today, or on the `minDate` or `maxDate` that today falls outside of; `disabledDates` play no part in that choice.
+
 To disable certain dates, you can provide them in an array. For date ranges, use nested arrays, where each inner array indicates a start date and an end date for that range:
 
 ```html
