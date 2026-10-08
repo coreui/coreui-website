@@ -9,6 +9,21 @@ Dropdowns are built on a third party library, [Popper.js](https://popper.js.org/
 and viewport detection. Popper.js isn't used to position dropdowns in navbars though as dynamic positioning isn't
 required.
 
+## Accessibility
+
+The [<abbr title="Web Accessibility Initiative">WAI</abbr> <abbr title="Accessible Rich Internet Applications">ARIA</abbr>](https://www.w3.org/TR/wai-aria/) standard defines an actual [`role="menu"` widget](https://www.w3.org/TR/wai-aria/#menu), but this is specific to application-like menus which trigger actions or functions. <abbr title="Accessible Rich Internet Applications">ARIA</abbr> menus can only contain menu items, checkbox menu items, radio button menu items, radio button groups, and sub-menus.
+
+CoreUI for Angular's dropdowns, on the other hand, are designed to be generic and applicable to a variety of situations and markup structures. For instance, it is possible to create dropdowns that contain additional inputs and form controls, such as search fields or login forms. For this reason, CoreUI for Angular does not expect (nor automatically add) any of the `role` and `aria-` attributes required for true <abbr title="Accessible Rich Internet Applications">ARIA</abbr> menus. Authors will have to include these more specific attributes themselves.
+
+However, CoreUI for Angular does add built-in support for most standard keyboard menu interactions:
+
+- <kbd>Enter</kbd>, <kbd>Space</kbd> or a click on the toggle opens and closes the menu. <kbd>ArrowDown</kbd> opens it and moves focus to the first item, <kbd>ArrowUp</kbd> to the last one.
+- <kbd>ArrowDown</kbd> and <kbd>ArrowUp</kbd> move between `cDropdownItem` elements and wrap at the ends; <kbd>Home</kbd> and <kbd>End</kbd> jump to the first and last item. <kbd>Tab</kbd> moves through the menu natively.
+- <kbd>Esc</kbd> closes the menu and returns focus to the toggle, and <kbd>Tab</kbd> leaving the menu closes it; with `autoClose` set to `false` neither does.
+- Keys other than <kbd>Esc</kbd> pressed inside an input other than a button, a select, a textarea or a contenteditable in the menu are left to that control.
+
+An `a` element used as the toggle gets `role="button"`. Give it an `href` so it is focusable and reachable with <kbd>Tab</kbd>, and keep its content non-interactive: a button exposes its children as plain text.
+
 ## Examples
 Bind the dropdown toggle and the dropdown menu inside `c-dropdown`, or different element that declares `position: relative;`. Dropdowns can be triggered from `a` or `button` elements to better fit your possible requirements.
 
@@ -192,7 +207,7 @@ import { DropdownItemDirective } from '@coreui/angular'
 | `active` | `boolean` | `undefined` | Set active state to a dropdown-item. |
 | `autoClose` | `boolean` | `true` | Configure dropdown-item close dropdown behavior. |
 | `disabled` | `boolean` | `false` | Disables a dropdown-item. |
-| `role` | `string` | `'list-item'` | Default role for dropdown-item. |
+| `role` | `string` | `undefined` | Role for dropdown-item. |
 | `tabIndex` | `string \| number \| null` | `'0'` | Tab index of the dropdown-item. |
 
 ### cDropdownItemPlain

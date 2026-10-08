@@ -38,7 +38,9 @@ With `.text-bg-dark` utility class you can change the appearance of your offcanv
 
 ## Accessibility
 
-Since the offcanvas panel is conceptually a modal dialog, be sure to add `aria-labelledby="..."` —referencing the offcanvas title— to `c-offcanvas`>. Note that you don’t need to add `role="dialog"` since we already add it automatically.
+Since the offcanvas panel is conceptually a modal dialog, be sure to add `aria-labelledby="..."` —referencing the offcanvas title— to `c-offcanvas`. Note that you don’t need to add `role="dialog"` since we already add it automatically while the offcanvas is open.
+
+When the offcanvas closes, focus returns to the `cOffcanvasToggle` that opened it. Without such a toggle, or when it is hidden or disabled, focus returns to the element that had it when the offcanvas opened. Focus moved to another element outside the offcanvas before it closes stays there.
 
 ## API reference
 
@@ -64,7 +66,7 @@ import { OffcanvasComponent } from '@coreui/angular'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `ariaModal` | `boolean` | `true` | Set aria-modal html attr for offcanvas |
+| `ariaModal` | `boolean` | `true` | aria-modal attribute rendered while the offcanvas is open |
 | `backdrop` | `boolean \| 'static'` | `true` | Apply a backdrop on the body while offcanvas is open. |
 | `container` | `Element \| object \| null` | `document.body` | Appends the offcanvas to a specific element. You can pass an HTML element or function that returns a single element. By default, `document.body`. |
 | `dark` | `boolean` | `false` | Sets a darker color scheme. If the colorScheme is set to 'dark', the dark theme will be applied. |
@@ -73,7 +75,7 @@ import { OffcanvasComponent } from '@coreui/angular'
 | `placement` | `string` | `'start'` | Offcanvas placement |
 | `portal` | `boolean` | `false` | Generates offcanvas using a portal |
 | `responsive` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl'` | `true` | Responsive offcanvas property hides content outside the viewport from a specified breakpoint and down. |
-| `role` | `string` | `'dialog'` | Default role for offcanvas |
+| `role` | `string` | `'dialog'` | Role attribute rendered while the offcanvas is open |
 | `scroll` | `boolean` | `false` | Allow body scrolling while offcanvas is visible. |
 | `visible` | `boolean` | `false` | Toggle the visibility of offcanvas component. |
 
