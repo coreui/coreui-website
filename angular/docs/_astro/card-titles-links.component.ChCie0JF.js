@@ -1,0 +1,6 @@
+import{Jt as e,ir as t,mn as n,pn as r}from"./common.eV0hsZHx.js";import{A as i,O as a,S as o,j as s,k as c,x as l}from"./coreui-angular-pro.NqZ1e6J1.js";import{i as u,t as d}from"./_router_module-chunk.DkpmeSAt.js";var f=class u{static{this.ɵfac=function(e){return new(e||u)}}static{this.ɵcmp=e({type:u,selectors:[[`docs-card-titles-links`]],decls:12,vars:0,consts:[[`cCardTitle`,``],[`cCardSubtitle`,``,1,`mb-2`,`text-medium-emphasis`],[`cCardText`,``],[`cCardLink`,``,3,`routerLink`]],template:function(e,i){e&1&&(n(0,`c-card`)(1,`c-card-body`)(2,`h5`,0),t(3,`Card title`),r(),n(4,`h6`,1),t(5,` Card subtitle `),r(),n(6,`p`,2),t(7,` Some quick example text to build on the card title and make up the bulk of the card content. `),r(),n(8,`a`,3),t(9,`Card link`),r(),n(10,`a`,3),t(11,`Another link`),r()()())},dependencies:[o,l,s,c,i,a,d],styles:[`[_nghost-%COMP%]   c-card[_ngcontent-%COMP%] {
+  min-width: 9rem;
+}
+[_nghost-%COMP%]   c-card[_ngcontent-%COMP%]   .list-group[_ngcontent-%COMP%] {
+  max-width: 100%;
+}`]})}};f.clientProviders=[u([])];export{f as CardTitlesLinksComponent};
