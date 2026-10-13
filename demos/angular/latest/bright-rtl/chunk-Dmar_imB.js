@@ -1,0 +1,1 @@
+var o=[{path:``,loadComponent:()=>import(`./chunk-CKOpCc9X.js`).then(t=>t.WidgetsComponent),data:{title:`Widgets`}}];export{o as routes};

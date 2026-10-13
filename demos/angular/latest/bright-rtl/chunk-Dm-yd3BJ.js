@@ -1,0 +1,1 @@
+var e=[{path:``,data:{title:`Plugins`},children:[{path:``,redirectTo:`full-calendar`,pathMatch:`full`},{path:`full-calendar`,loadChildren:()=>import(`./chunk-C6_5xojc.js`).then(t=>t.routes)},{path:`google-maps`,loadChildren:()=>import(`./chunk-kSo2F5WR.js`).then(t=>t.routes)}]}];export{e as routes};

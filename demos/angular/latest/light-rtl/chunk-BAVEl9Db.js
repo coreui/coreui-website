@@ -1,0 +1,1 @@
+var e=[{path:``,loadComponent:()=>import(`./chunk-Dtl4ieLC.js`).then(t=>t.SchedulerViewComponent),data:{title:`Scheduler`}}];export{e as routes};

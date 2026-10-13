@@ -1,0 +1,1 @@
+var e=[{path:``,loadComponent:()=>import(`./chunk-QAf5h_Z7.js`).then(t=>t.SchedulerViewComponent),data:{title:`Scheduler`}}];export{e as routes};

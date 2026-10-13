@@ -1,1 +1,0 @@
-var o=[{path:``,loadComponent:()=>import(`./chunk-OsF11c8n2.js`).then(t=>t.ChartsComponent),data:{title:`Charts`}}];export{o as routes};

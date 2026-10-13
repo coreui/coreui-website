@@ -1,0 +1,1 @@
+var o=[{path:``,loadComponent:()=>import(`./chunk-CRy3Ye1J.js`).then(t=>t.DataGridViewComponent),data:{title:`Data Grid`}}];export{o as routes};
