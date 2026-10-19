@@ -19,7 +19,7 @@ However, CoreUI for Angular does add built-in support for most standard keyboard
 
 - <kbd>Enter</kbd>, <kbd>Space</kbd> or a click on the toggle opens and closes the menu. <kbd>ArrowDown</kbd> opens it and moves focus to the first item, <kbd>ArrowUp</kbd> to the last one.
 - <kbd>ArrowDown</kbd> and <kbd>ArrowUp</kbd> move between `cDropdownItem` elements and wrap at the ends; <kbd>Home</kbd> and <kbd>End</kbd> jump to the first and last item. <kbd>Tab</kbd> moves through the menu natively.
-- <kbd>Esc</kbd> closes the menu and returns focus to the toggle, and <kbd>Tab</kbd> leaving the menu closes it; with `autoClose` set to `false` neither does.
+- <kbd>Esc</kbd> closes the menu and returns focus to the toggle, leaving an enclosing modal or offcanvas open; an <kbd>Esc</kbd> a control in the menu already handled with `preventDefault()` is left to it. <kbd>Tab</kbd> leaving the menu closes it. With `autoClose` set to `false` neither does.
 - Keys other than <kbd>Esc</kbd> pressed inside an input other than a button, a select, a textarea or a contenteditable in the menu are left to that control.
 
 An `a` element used as the toggle gets `role="button"`. Give it an `href` so it is focusable and reachable with <kbd>Tab</kbd>, and keep its content non-interactive: a button exposes its children as plain text.
@@ -54,7 +54,7 @@ And putting it to use in a navbar:
 
 ## Directions
 
-> RTL  Directions are mirrored when using CoreUI in RTL, meaning `dropstart` will appear on the right side.
+> RTL  Directions are mirrored when using CoreUI in RTL, meaning `dropstart` will appear on the right side. The default placement and a menu aligned to the end are mirrored too; a `placement` set on `c-dropdown` is used as given, ahead of `direction` and the alignment.
 
 ### Centered
 
@@ -90,7 +90,7 @@ Add `disabled` boolean property to items in the dropdown to style them as disabl
 
 ## Menu alignment
 
-By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent, which is what `alignment="start"` sets explicitly. Add `alignment="end"` to right align the dropdown menu.
+By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent, which is what `alignment="start"` sets explicitly. Add `alignment="end"` to right align the dropdown menu. In a right-to-left context both are mirrored: the menu starts at the right side and `alignment="end"` aligns it to the left.
 
 > Heads up! Dropdowns are positioned thanks to Popper.js.
 
@@ -148,13 +148,13 @@ import { DropdownComponent } from '@coreui/angular'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `alignment` | `DropdownAlignment` | - | Set alignment of dropdown menu. |
+| `alignment` | `DropdownAlignment` | - | Set alignment of dropdown menu. A `placement` set on the dropdown takes precedence for the menu position. |
 | `autoClose` | `boolean \| 'inside' \| 'outside'` | `true` | Configure the auto close behavior: - `true` closes the dropdown on a click inside or outside the menu, - `false` only on the toggle button or an explicit hide/toggle call and not on the `Esc` key, - `inside` only on a click inside the menu, - `outside` only on a click outside it. |
-| `dark` | `boolean` | `false` | Sets a darker color scheme. If the colorScheme is set to 'dark', the dark theme will be applied. |
-| `direction` | `'center' \| 'dropup' \| 'dropup-center' \| 'dropend' \| 'dropstart'` | - | Sets a specified  direction and location of the dropdown menu. |
-| `placement` | `Placement` | `'bottom-start'` | Describes the placement of your component after Popper.js has applied all the modifiers that may have flipped or altered the originally provided placement property. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
+| `direction` | `'center' \| 'dropup' \| 'dropup-center' \| 'dropend' \| 'dropstart'` | - | Sets a specified  direction and location of the dropdown menu. A `placement` set on the dropdown takes precedence for the menu position. |
+| `placement` | `Placement` | `undefined` | Placement of the menu positioned by Popper, used as given. Without it the placement follows `direction` and the alignment of the menu (its own, else this one), mirrored in a right-to-left context: `bottom-start`, or `bottom-end` right to left. |
 | `popper` | `boolean` | `true` | If you want to disable dynamic positioning set this property to `false`. |
-| `popperOptions` | `Partial<Options>` | `{}` | Optional Popper.js options object; the `placement` prop takes precedence over the placement set here. See https://popper.js.org/docs/v2/constructors/#options |
+| `popperOptions` | `Partial<Options>` | `{}` | Optional Popper.js options object; a `placement` set here is ignored, the menu placement comes from `placement`, `direction` and `alignment`. See https://popper.js.org/docs/v2/constructors/#options |
 | `variant` | `'btn-group' \| 'dropdown' \| 'input-group' \| 'nav-item'` | `'dropdown'` | Set the dropdown variant to a btn-group, dropdown, input-group, and nav-item. |
 | `visible` | `boolean` | `false` | Toggle the visibility of dropdown menu component. |
 
@@ -229,7 +229,7 @@ import { DropdownMenuDirective } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `alignment` | `DropdownAlignment` | - | Set alignment of dropdown menu. |
-| `dark` | `boolean` | `false` | Sets a darker color scheme. If the colorScheme is set to 'dark', the dark theme will be applied. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
 | `visible` | `boolean` | `false` | Toggle the visibility of dropdown menu component. |
 
 ### cDropdownToggle

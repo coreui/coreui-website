@@ -110,7 +110,7 @@ import { TableDirective } from '@coreui/angular'
 | `caption` | `'top'` | - | Put the `<caption>` on the top of the table. |
 | `color` | `string` | - | Sets the color context of the component to one of CoreUI’s themed colors. |
 | `hover` | `boolean` | `false` | Enable a hover state on table rows within table body. |
-| `responsive` | `boolean \| Omit<string, 'xs'>` | - | Make table responsive across all viewports or pick a maximum breakpoint with which to have a responsive table up to. |
+| `responsive` | `boolean \| Omit<string, 'xs'>` | `undefined` | Make table responsive across all viewports or pick a maximum breakpoint with which to have a responsive table up to. |
 | `small` | `boolean` | `false` | Make table more compact by cutting all cell `padding` in half. |
 | `striped` | `boolean` | `false` | Add zebra-striping to any table row within the table body. |
 | `stripedColumns` | `boolean` | `false` | Add zebra-striping to any table column. |

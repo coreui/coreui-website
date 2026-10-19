@@ -469,7 +469,7 @@ import { MultiSelectComponent } from '@coreui/angular-pro'
 | `selectAllMode` | `'all' \| 'filtered'` | `'all'` | Determines what the select all button operates on: all options (`'all'`) or only the ones matched by the current search (`'filtered'`). |
 | `selectAllStyle` | `'checkbox' \| 'text'` | `'checkbox'` | Sets the select all button style. With `'checkbox'` the button shows a tri-state indicator (none / all / indeterminate). |
 | `selectFilteredLabel` | `string` | `'Select filtered'` | Sets the select filtered button label, used with `selectAllMode="filtered"`. |
-| `selectionLimit` | `number` | `undefined` | Sets the maximum number of options that can be selected. The select all button stays enabled and selects options up to the limit. Selecting more options is blocked and emits `selectionLimitReached`. |
+| `selectionLimit` | `number` | `undefined` | Sets the maximum number of options that can be selected. The select all button stays enabled and selects options up to the limit. Selecting more options is blocked and emits `selectionLimitReached`. Without a numeric value there is no limit. |
 | `selectionType` | `'text' \| 'counter' \| 'tags'` | `'tags'` | Selection type |
 | `selectionTypeCounterText` | `string` | `'item(s) selected'` | Counter selection label value |
 | `selectionTypeCounterTextPluralMap` | `IPluralMap` | `{ '=1': 'item selected', 'other': 'items selected' }` | Counter selection label plural map for I18nPluralPipe |

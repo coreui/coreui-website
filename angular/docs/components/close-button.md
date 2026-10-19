@@ -42,7 +42,7 @@ import { ButtonCloseDirective } from '@coreui/angular'
 | --- | --- | --- | --- |
 | `active` | `boolean` | `false` | Toggle the active state for the component |
 | `color` | `string` | `'primary'` | Sets the color context of the component to one of CoreUI’s themed colors |
-| `dark` | `boolean` | `false` | Sets a darker color scheme. If the colorScheme is set to 'dark', the dark theme will be applied. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
 | `disabled` | `boolean` | `false` | Toggle the disabled state for the component. |
 | `shape` | `string` | - | Select the shape of the component. |
 | `size` | `'' \| 'sm' \| 'lg'` | `''` | Size the component small or large. |

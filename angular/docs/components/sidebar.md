@@ -69,7 +69,7 @@ Building blocks to declare inside `c-sidebar-nav`:
 
 ### Navigation groups
 
-_Added in 5.7.24._
+_Added in 5.7.25._
 
 `c-nav-group` is an expandable section: `toggler` is the clickable label, the projected content becomes the group
 items. Set `visible` for a group that starts expanded, and `compact` to halve the padding of that one group.
@@ -113,7 +113,7 @@ markup.
 
 ### Custom group indicator
 
-_Added in 5.7.24._
+_Added in 5.7.25._
 
 To replace the default indicator, pass a template to `togglerTemplate` — it receives the visible state, so the icon can
 follow the group. Put the icon in a `.nav-group-toggle-indicator` element.
@@ -391,7 +391,11 @@ import { SidebarTogglerDirective } from '@coreui/angular'
 Composes `cSidebarToggle`, so the button carries the target sidebar id itself:
 
 ```html
-<button cSidebarToggler="sidebar1" toggle="unfoldable"></button>
+<c-sidebar id="sidebar1" visible>
+  <c-sidebar-footer>
+    <button cSidebarToggler="sidebar1" toggle="unfoldable" aria-label="Toggle sidebar fold"></button>
+  </c-sidebar-footer>
+</c-sidebar>
 ```
 
 ### c-sidebar-nav

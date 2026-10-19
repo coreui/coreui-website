@@ -77,7 +77,7 @@ import { CarouselComponent } from '@coreui/angular'
 | --- | --- | --- | --- |
 | `activeIndex` | `number` | `0` | Index of the active item. |
 | `animate` | `boolean` | `true` | Carousel automatically starts cycle items. |
-| `dark` | `boolean` | `false` | Sets a darker color scheme. If the colorScheme is set to 'dark', the dark theme will be applied. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
 | `direction` | `'next' \| 'prev'` | `'next'` | Carousel direction |
 | `interval` | `number` | `-1` | The amount of time to delay between automatically cycling an item. If -1, carousel will not automatically cycle. |
 | `pause` | `false \| Triggers \| Triggers[]` | `'hover'` | Sets which event handlers you’d like provided to your pause prop. You can specify one trigger or an array of them. |

@@ -26,13 +26,13 @@ Use the same code again, with `variant="underline-border"`:
 
 ### Enclosed
 
-_Added in 5.7.24._
+_Added in 5.7.25._
 
 Use `variant="enclosed"` to give the tabs a subtle border and rounded styling.
 
 ### Enclosed pills
 
-_Added in 5.7.24._
+_Added in 5.7.25._
 
 Use `variant="enclosed-pills"` for a pill-style appearance of each tab, with pill-shaped borders and smoother
 outlines.

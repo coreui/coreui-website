@@ -42,6 +42,8 @@ Since the offcanvas panel is conceptually a modal dialog, be sure to add `aria-l
 
 When the offcanvas closes, focus returns to the `cOffcanvasToggle` that opened it. Without such a toggle, or when it is hidden or disabled, focus returns to the element that had it when the offcanvas opened. Focus moved to another element outside the offcanvas before it closes stays there.
 
+An <kbd>Escape</kbd> that another component already handled with `preventDefault()`, such as an open dropdown inside the offcanvas, is ignored by the offcanvas.
+
 ## API reference
 
 ### Offcanvas Module
@@ -69,9 +71,9 @@ import { OffcanvasComponent } from '@coreui/angular'
 | `ariaModal` | `boolean` | `true` | aria-modal attribute rendered while the offcanvas is open |
 | `backdrop` | `boolean \| 'static'` | `true` | Apply a backdrop on the body while offcanvas is open. |
 | `container` | `Element \| object \| null` | `document.body` | Appends the offcanvas to a specific element. You can pass an HTML element or function that returns a single element. By default, `document.body`. |
-| `dark` | `boolean` | `false` | Sets a darker color scheme. If the colorScheme is set to 'dark', the dark theme will be applied. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
 | `id` | `string` | ``offcanvas-${this.placement()}-${nextId++}`` | Html id attribute, required for programmatic visibility change. |
-| `keyboard` | `boolean` | `true` | Closes the offcanvas when the escape key is pressed |
+| `keyboard` | `boolean` | `true` | Closes the offcanvas when the escape key is pressed, unless another handler already prevented its default. |
 | `placement` | `string` | `'start'` | Offcanvas placement |
 | `portal` | `boolean` | `false` | Generates offcanvas using a portal |
 | `responsive` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl'` | `true` | Responsive offcanvas property hides content outside the viewport from a specified breakpoint and down. |

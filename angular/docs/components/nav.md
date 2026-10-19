@@ -46,20 +46,20 @@ Take that same HTML, but use `variant`="underline":
 
 ### Enclosed
 
-_Added in 5.7.24._
+_Added in 5.7.25._
 
 Use `variant="enclosed"` to give your navigation items a subtle border and rounded styling.
 
 ### Enclosed pills
 
-_Added in 5.7.24._
+_Added in 5.7.25._
 
 Use `variant="enclosed-pills"` for a pill-style appearance of each nav item. It adds the `.nav-enclosed` styling on
 top of the pill-shaped item borders.
 
 ### Link items
 
-_Added in 5.7.24._
+_Added in 5.7.25._
 
 Set `href` on `c-nav-item` and it renders the `cNavLink` anchor for you, forwarding `active`, `disabled` and
 `tabindex`. Without `href` the item projects its content as is, so a router link keeps its own markup.

@@ -73,6 +73,8 @@ Be sure to add `aria-labelledby="..."`, referencing the modal title, to `c-modal
 
 When the modal opens, focus moves to the element marked with `cdkFocusInitial`, otherwise to the first tabbable element in the modal, or to the modal itself when it has none. When it closes, focus returns to the `cModalToggle` that opened it. Without such a toggle, or when it is hidden or disabled, focus returns to the element that had it when the modal opened. When a modal opens from a toggle inside another modal, which closes, focus returns through that chain: closing the second modal, or switching back to the first one and closing it, returns focus to the element that opened the first modal. Focus moved to another element outside the modal before it closes stays there.
 
+An <kbd>Escape</kbd> that another component already handled with `preventDefault()`, such as an open dropdown inside the modal, is ignored by the modal.
+
 ## API reference
 
 ### Modal Module
@@ -103,7 +105,7 @@ import { ModalComponent } from '@coreui/angular'
 | `container` | `Element \| object \| null` | `document.body` | Appends the angular modal to a specific element. You can pass an HTML element or function that returns a single element. By default, `document.body`. |
 | `fullscreen` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl'` | `undefined` | Set modal to cover the entire user viewport. |
 | `id` | `string` | `undefined` | HTML id attribute, required for programmatic visibility change. |
-| `keyboard` | `boolean` | `true` | Closes the modal when the escape key is pressed. |
+| `keyboard` | `boolean` | `true` | Closes the modal when the escape key is pressed, unless another handler already prevented its default. |
 | `portal` | `boolean` | `false` | Generates modal using a portal |
 | `role` | `string` | `'dialog'` | Default role for modal |
 | `scrollable` | `boolean` | `false` | Create a scrollable modal that allows scrolling the modal body. |
