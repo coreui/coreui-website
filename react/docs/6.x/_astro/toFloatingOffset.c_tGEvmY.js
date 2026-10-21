@@ -1,0 +1,1 @@
+var e=e=>Array.isArray(e)?{crossAxis:e[0]||0,mainAxis:e[1]||0}:e;export{e as t};

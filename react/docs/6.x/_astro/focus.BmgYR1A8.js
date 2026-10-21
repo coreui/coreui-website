@@ -1,0 +1,1 @@
+var e=e=>!!e?.contains(e.getRootNode().activeElement),t=e=>{if(e.hasAttribute(`tabindex`)){e.focus();return}let t=()=>{e.getRootNode().activeElement!==e&&(e.removeEventListener(`blur`,t),e.removeAttribute(`tabindex`))};e.setAttribute(`tabindex`,`-1`),e.addEventListener(`blur`,t),e.focus(),t()};export{t as n,e as t};

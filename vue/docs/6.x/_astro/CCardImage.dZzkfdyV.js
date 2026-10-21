@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.D3LSWf06.js";import"./CCard.D-AFplLr.js";var n=t({name:`CCardImage`,props:{as:{type:String,default:`img`},orientation:{type:String,validator:e=>[`top`,`bottom`,`start`,`end`].includes(e)}},setup(t,{slots:n}){return()=>e(t.as,{class:`card-img${t.orientation?`-${t.orientation}`:``}`},n.default&&n.default())}});export{n as t};

@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.D3LSWf06.js";/* empty css                                  */var n=t({name:`CDropdownHeader`,props:{as:{type:String,default:`h6`}},setup(t,{slots:n}){return()=>e(t.as,{class:`dropdown-header`},n.default&&n.default())}});export{n as t};

@@ -1,0 +1,36 @@
+# React Pointer events Utilities
+
+> Prevent or add element interactions with our pointer events utilities.
+
+## Pointer events
+
+CoreUI for React provides `.pe-none` and `.pe-auto` classes to prevent or add element interactions.
+
+```html
+<p><a href="#" className="pe-none" tabIndex="-1" aria-disabled="true">This link</a> can not be clicked.</p>
+<p><a href="#" className="pe-auto">This link</a> can be clicked (this is default behavior).</p>
+<p className="pe-none"><a href="#" tabIndex="-1" aria-disabled="true">This link</a> can not be clicked because the <code>pointer-events</code> property is inherited from its parent. However, <a href="#" className="pe-auto">this link</a> has a <code>pe-auto</code> class and can be clicked.</p>
+```
+
+## Accessibility
+
+The `.pe-none` class (and the `pointer-events` CSS property it sets) only prevents interactions with a pointer (mouse, stylus, touch). Links and controls with `.pe-none` are, by default, still focusable and actionable for keyboard users. To ensure that they are completely neutralized even for keyboard users, you may need to add further attributes such as `tabindex="-1"` (to prevent them from receiving keyboard focus) and `aria-disabled="true"` (to convey the fact they are effectively disabled to assistive technologies), and possibly use JavaScript to completely prevent them from being actionable.
+
+If possible, the simpler solution is:
+
+- For form controls, add the `disabled` HTML attribute.
+* For links, remove the `href` attribute, making it a non-interactive anchor or placeholder link.
+
+## Customizing
+
+### Sass variables
+
+Pointer events utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.](https://coreui.io/react/docs/utilities/api/#using-the-api)
+
+```scss
+"pointer-events": (
+  property: pointer-events,
+  class: pe,
+  values: none auto,
+),
+```

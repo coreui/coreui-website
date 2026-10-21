@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.D3LSWf06.js";import"./CCard.D-AFplLr.js";var n=t({name:`CCardBody`,setup(t,{slots:n}){return()=>e(`div`,{class:`card-body`},n.default&&n.default())}});export{n as t};

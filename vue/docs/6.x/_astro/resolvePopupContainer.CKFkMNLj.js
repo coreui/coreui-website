@@ -1,0 +1,1 @@
+var e=(e,t)=>{let n=typeof t==`function`?t():t,r=e?.closest(`dialog[open]`);if(t){if(!n||!r?.matches(`:modal`))return n;let e=typeof n==`string`?document.querySelector(n):n;return e&&!r.contains(e)?r:n}return r??`body`};export{e as t};

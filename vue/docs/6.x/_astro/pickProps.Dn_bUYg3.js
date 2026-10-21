@@ -1,0 +1,1 @@
+var e=(e,t)=>Object.fromEntries(t.map(t=>[t,e[t]]));export{e as t};

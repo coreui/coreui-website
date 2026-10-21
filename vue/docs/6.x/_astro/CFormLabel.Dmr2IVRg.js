@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.D3LSWf06.js";var n=t({name:`CFormLabel`,setup(t,{slots:n}){return()=>e(`label`,{class:`form-label`},n.default&&n.default())}});export{n as t};

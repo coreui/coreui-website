@@ -1,0 +1,1 @@
+var e=(e,t)=>{let n=typeof t==`function`?t():t,r=e?.closest(`dialog[open]`);if(t){if(!n||!r?.matches(`:modal`))return n??null;let e=n instanceof ShadowRoot?n.host:n;return r.contains(e)?n:r}return r??document.body};export{e as t};

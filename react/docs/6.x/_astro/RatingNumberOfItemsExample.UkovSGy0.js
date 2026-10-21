@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CRating.CmwP2Wtg.js";e();var r=t(),i=()=>(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n,{itemCount:20,defaultValue:5}),(0,r.jsx)(n,{itemCount:3,defaultValue:1})]});export{i as RatingNumberOfItemsExample};

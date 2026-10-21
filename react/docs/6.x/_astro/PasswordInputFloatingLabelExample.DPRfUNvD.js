@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CPasswordInput.ClkgvtU-.js";e();var r=t(),i=()=>(0,r.jsx)(n,{floatingLabel:`Password`,id:`floatingPasswordInput`});export{i as PasswordInputFloatingLabelExample};

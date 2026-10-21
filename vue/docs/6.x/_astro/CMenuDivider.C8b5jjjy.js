@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.D3LSWf06.js";import"./CMenuContent.BevSzCaz.js";var n=t({name:`CMenuDivider`,setup(){return()=>e(`hr`,{class:`menu-divider`})}});export{n as t};

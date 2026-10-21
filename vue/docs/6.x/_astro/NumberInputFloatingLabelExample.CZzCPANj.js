@@ -1,0 +1,1 @@
+import{P as e,d as t,j as n}from"./runtime-core.esm-bundler.D3LSWf06.js";import{t as r}from"./_plugin-vue_export-helper.BDNMzG2s.js";var i={};function a(r,i){let a=e(`CNumberInput`);return n(),t(a,{id:`floatingNumberInput`,"floating-label":`Quantity`,value:42})}var o=r(i,[[`render`,a]]);export{o as default};

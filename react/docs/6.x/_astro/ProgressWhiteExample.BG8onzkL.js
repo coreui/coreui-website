@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CProgress.BYQglDwC.js";e();var r=t(),i=()=>(0,r.jsx)(n,{white:!0,value:50});export{i as ProgressWhiteExample};

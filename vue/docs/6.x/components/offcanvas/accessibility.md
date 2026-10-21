@@ -1,0 +1,7 @@
+# Vue Offcanvas Component Accessibility
+
+> Detailed overview of the accessibility features implemented in CoreUI Vue Offcanvas, ensuring compliance with WAI-ARIA guidelines.
+
+## Accessibility
+
+Since the offcanvas panel is conceptually a modal dialog, be sure to add `aria-labelledby="..."`—referencing the offcanvas title—to `<COffcanvas>`. Note that you don’t need to add `role="dialog"` since we already add it automatically.

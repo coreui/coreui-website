@@ -1,0 +1,1 @@
+var e={type:String,validator:e=>[`rounded`,`rounded-top`,`rounded-end`,`rounded-bottom`,`rounded-start`,`rounded-circle`,`rounded-pill`,`rounded-0`,`rounded-1`,`rounded-2`,`rounded-3`].includes(e)},t={type:String,validator:e=>[`primary`,`secondary`,`success`,`danger`,`warning`,`info`,`inverse`].includes(e)};export{e as n,t};

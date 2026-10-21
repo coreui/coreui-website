@@ -1,0 +1,7 @@
+# Vue Templates
+
+> Develop modern, beautiful, and responsive applications in half the time with high-performing and easy-to-customize Vue admin panels to cover any requirement.
+
+## Vue Admin & Dashboard Templates
+
+Check out the fully-featured, ready-to-use admin dashboard templates built using CoreUI for Vue.js, and CoreUI PRO for Vue.js

@@ -1,0 +1,1 @@
+import{r as e}from"./rolldown-runtime.QTnfLwEv.js";import{t}from"./react.Vu5Exw5S.js";var n=e(t()),r=(e,t)=>{let r=(0,n.useRef)(!1);return()=>{e===void 0||r.current||(r.current=!0,queueMicrotask(()=>{r.current=!1}),t?.(void 0))}};export{r as t};

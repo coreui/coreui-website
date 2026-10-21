@@ -1,0 +1,1 @@
+var e=(e,t)=>{let n=!1;return()=>{e.value===void 0||n||(n=!0,queueMicrotask(()=>{n=!1}),t())}};export{e as t};

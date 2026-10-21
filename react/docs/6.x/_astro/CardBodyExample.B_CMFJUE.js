@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CCard.C9J2IbRM.js";import{t as r}from"./CCardBody.DdSzeJyv.js";e();var i=t(),a=()=>(0,i.jsx)(n,{children:(0,i.jsx)(r,{children:`This is some text within a card body.`})});export{a as CardBodyExample};

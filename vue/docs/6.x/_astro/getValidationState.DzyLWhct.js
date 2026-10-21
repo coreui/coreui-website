@@ -1,0 +1,1 @@
+var e=(e,t,n)=>e??(n?`invalid`:t?`valid`:void 0);export{e as t};

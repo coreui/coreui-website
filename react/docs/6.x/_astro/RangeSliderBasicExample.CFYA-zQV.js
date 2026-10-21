@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";import{t as n}from"./CRangeSlider.0_Hts2q3.js";e();var r=t(),i=()=>(0,r.jsx)(n,{defaultValue:50,ariaLabel:[`Volume`]});export{i as RangeSliderBasicExample};

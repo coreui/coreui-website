@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.D3LSWf06.js";import"./CDialogTitle.plUsKefj.js";var n=t({name:`CDialogFooter`,setup(t,{slots:n}){return()=>e(`div`,{class:`dialog-footer`},n.default&&n.default())}});export{n as t};

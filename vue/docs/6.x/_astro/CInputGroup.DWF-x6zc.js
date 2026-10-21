@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.D3LSWf06.js";var n=t({name:`CInputGroup`,props:{size:{type:String,validator:e=>[`sm`,`lg`].includes(e)}},setup(t,{slots:n}){return()=>e(`div`,{class:[`input-group`,{[`input-group-${t.size}`]:t.size}]},n.default&&n.default())}});export{n as t};

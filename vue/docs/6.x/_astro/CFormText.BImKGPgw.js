@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.D3LSWf06.js";var n=t({name:`CFormText`,props:{as:{type:String,default:`div`}},setup(t,{slots:n}){return()=>e(t.as,{class:`form-text`},n.default&&n.default())}});export{n as t};

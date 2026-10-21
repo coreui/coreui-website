@@ -1,0 +1,1 @@
+var e=()=>typeof CSS<`u`&&typeof CSS.supports==`function`&&CSS.supports(`interpolate-size`,`allow-keywords`),t=(e,t,n,r)=>{e.style.transition=`none`,e.style[t]=`${n}px`,e.offsetHeight,e.style.transition=``,e.style[t]=`${r}px`},n=(e,t)=>{e.style[t]=``};export{t as n,e as r,n as t};

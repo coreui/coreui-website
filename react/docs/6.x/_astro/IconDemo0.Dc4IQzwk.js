@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime.C6cmW1Aq.js";import{l as t,x as n}from"./esm.B8ThoBsu.js";import{n as r}from"./src.CvOC2PVN.js";var i=e(),a=()=>(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(r,{icon:n,size:`xl`}),(0,i.jsx)(r,{icon:t,size:`xl`})]});export{a as IconDemo0};

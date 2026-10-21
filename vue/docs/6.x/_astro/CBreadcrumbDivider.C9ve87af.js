@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.D3LSWf06.js";import"./CBreadcrumbItem.CubOYfSD.js";var n=t({name:`CBreadcrumbDivider`,setup(t,{slots:n}){return()=>e(`li`,{class:`breadcrumb-divider`,"aria-hidden":`true`},n.default&&n.default())}});export{n as t};

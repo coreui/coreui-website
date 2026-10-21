@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.D3LSWf06.js";import"./CMenuContent.BevSzCaz.js";var n=t({name:`CMenuHeader`,props:{as:{type:String,default:`h6`}},setup(t,{slots:n}){return()=>e(t.as,{class:`menu-header`},n.default&&n.default())}});export{n as t};

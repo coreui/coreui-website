@@ -1,0 +1,1 @@
+var e=(e,...t)=>{let n=[...t,[]].map(()=>({}));for(let[r,i]of Object.entries(e)){let e=t.findIndex(e=>e.includes(r));n[e===-1?t.length:e][r]=i}return n};export{e as t};

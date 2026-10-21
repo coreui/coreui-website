@@ -1,0 +1,165 @@
+# Bootstrap 6 Border Color
+
+> Change the border color of an element with utilities built on our theme colors, and fade it with the opacity utilities.
+
+## Color
+
+Change the border color using utilities built on our theme colors.
+
+```html
+<span class="border border-${c.name}"></span>
+  <span class="border border-subtle-${c.name}"></span>
+
+<span class="border border-black"></span>
+  <span class="border border-white"></span>
+```
+
+## Neutral
+
+Four weights sit between the page and a themed border, for lines that separate content without naming a color. `.border-emphasized` is the strongest, `.border-body` is the default weight a plain `.border` already draws, and `.border-subtle` is the faintest.
+
+```html
+<span class="border border-emphasized"></span>
+<span class="border border-body"></span>
+<span class="border border-muted"></span>
+<span class="border border-subtle"></span>
+```
+
+Each is a `light-dark()` pair, so the ladder keeps its order in both color schemes rather than fading out in one of them.
+
+Naming the default is what lets you return to it. Dropping `.border-primary` gets you there when the class is yours to remove, but not when the color arrives from a component's own rule, a breakpoint or a `.theme-*` block — there, `.border-body` is the way back.
+
+`.border-bg` is the odd one out: it paints the line in the page background color, so the border holds its space without being seen. Reach for it when a visible border appears on hover or on a state, and the element would otherwise shift by the width of the line.
+
+```html
+<span class="border border-bg"></span>
+<span class="border border-body"></span>
+```
+
+## Sides
+
+Using utilities you can change the border on one side only, or you can change all borders to make them different colors.
+
+```html
+<span class="border-top border-top-primary"></span>
+<span class="border-end border-end-primary"></span>
+<span class="border-bottom border-bottom-primary"></span>
+<span class="border-start border-start-primary"></span>
+<span class="border-start border-start-primary border-end border-end-danger"></span>
+<span class="border-top border-top-primary border-end border-end-danger border-bottom border-bottom-success"></span>
+<span class="border border-top-primary border-end-danger border-bottom-success border-start-info"></span>
+```
+
+## Recoloring a component
+
+The same utilities repaint the border a component ships with:
+
+```html
+<div class="mb-5">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input type="email" class="form-control border-success" id="exampleFormControlInput1" placeholder="name@example.com">
+</div>
+
+<div class="h4 pb-3 mb-5 fg-danger border-bottom border-danger">
+  Dangerous heading
+</div>
+
+<div class="p-4 bg-info bg-10 border border-info border-start-0 rounded-end">
+  Changing border color and width
+</div>
+```
+
+## Opacity
+
+Every `.border-{color}` utility writes its colour into `--cui-border` and reads it back, so a companion `.border-{percentage}` class can mix that colour with `transparent` through `color-mix()`, in the browser, without recompiling Sass.
+
+```css
+.border-success {
+  --cui-border: var(--cui-success-bg);
+  border-color: var(--cui-border);
+}
+
+.border-50 {
+  border-color: color-mix(in oklch, var(--cui-border) 50%, transparent);
+}
+```
+
+Override `--cui-border` to repaint the utility with another colour; the opacity class keeps working, because it reads whatever the token holds.
+
+```html
+<div class="border border-success p-3 mb-3">This is default success border</div>
+<div class="border border-success p-3 mb-3 border-70">This is 70% opacity success border</div>
+<div class="border border-success p-3 mb-3 border-50">This is 50% opacity success border</div>
+<div class="border border-success p-3 mb-3 border-30">This is 30% opacity success border</div>
+<div class="border border-success p-3 border-10">This is 10% opacity success border</div>
+```
+
+`.border-opacity-{10|25|50|75|100}` and `.border-{color}-subtle` are the deprecated v5 spellings of `.border-{percentage}` and `.border-subtle-{color}`; they still render and are removed in v7.
+
+## Customizing
+
+### Utilities API
+
+Border color utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.](https://coreui.io/bootstrap/docs/utilities/api/#using-the-api)
+
+```scss
+"border-color": (
+  property: (
+    --cui-border: null,
+    border-color: var(--cui-border),
+  ),
+  class: border,
+  values: $utilities-border-colors
+),
+"border-top-color": (
+  property: border-top-color,
+  class: border-top,
+  values: map.merge(theme-color-refs("bg"), ("white": var(--cui-white)))
+),
+"border-end-color": (
+  property: border-inline-end-color,
+  class: border-end,
+  values: map.merge(theme-color-refs("bg"), ("white": var(--cui-white)))
+),
+"border-bottom-color": (
+  property: border-bottom-color,
+  class: border-bottom,
+  values: map.merge(theme-color-refs("bg"), ("white": var(--cui-white)))
+),
+"border-start-color": (
+  property: border-inline-start-color,
+  class: border-start,
+  values: map.merge(theme-color-refs("bg"), ("white": var(--cui-white)))
+),
+```
+
+```scss
+"border-color-subtle": (
+  property: (
+    --cui-border: null,
+    border-color: var(--cui-border),
+  ),
+  class: border-subtle,
+  values: theme-color-refs("border")
+),
+"border-opacity": (
+  class: border,
+  property: border-color,
+  values: theme-opacity-values(--cui-border)
+),
+// deprecated
+"border-color-subtle-legacy": (
+  property: (
+    --cui-border: null,
+    border-color: var(--cui-border),
+  ),
+  class: border,
+  values: $utilities-border-subtle
+),
+// deprecated
+"border-opacity-legacy": (
+  class: border-opacity,
+  property: border-color,
+  values: theme-opacity-values(--cui-border, null, (10: .1, 25: .25, 50: .5, 75: .75, 100: 1))
+),
+```

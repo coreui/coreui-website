@@ -1,0 +1,1 @@
+import{$ as e,mt as t}from"./runtime-core.esm-bundler.D3LSWf06.js";var n=e=>e.replaceAll(/\B([A-Z])/g,`-$1`).toLowerCase(),r=(r,i,a=[])=>{let o=r?.vnode.props;if(!o)return!1;let s=n(i),c=[`onUpdate:${i}`,`onUpdate:${s}`,...a.map(n=>t(e(n)))];return(i in o||s in o)&&c.some(e=>e in o)};export{r as t};

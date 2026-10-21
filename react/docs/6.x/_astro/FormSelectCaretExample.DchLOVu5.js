@@ -1,0 +1,1 @@
+import"./rolldown-runtime.QTnfLwEv.js";import{t as e}from"./react.Vu5Exw5S.js";import{t}from"./jsx-runtime.C6cmW1Aq.js";e();var n=t(),r=()=>(0,n.jsx)(`button`,{className:`form-control form-control-caret text-start`,type:`button`,children:`Open this menu`});export{r as FormSelectCaretExample};
