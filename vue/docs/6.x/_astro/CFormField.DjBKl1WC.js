@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.DT-hBGUv.js";var n=t({name:`CFormField`,setup(t,{slots:n}){return()=>e(`div`,{class:`form-field`},n.default&&n.default())}});export{n as t};

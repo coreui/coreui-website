@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.DT-hBGUv.js";import"./CCard.CpTAldnt.js";var n=t({name:`CCardText`,props:{as:{type:String,default:`p`}},setup(t,{slots:n}){return()=>e(t.as,{class:`card-text`},n.default&&n.default())}});export{n as t};

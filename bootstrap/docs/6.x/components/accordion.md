@@ -12,7 +12,7 @@ The accordion is built on the native `<details>` and `<summary>` elements, so it
 
 To render an item that's expanded by default, add the `open` attribute to its `<details>` element.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 Click the accordions below to expand/collapse the accordion content.
 

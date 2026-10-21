@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CCallout.zbSjH68J.js";e();var r=t(),i=()=>(0,r.jsx)(n,{children:`New to or unfamiliar with flexbox? Read this CSS Tricks flexbox guide for background, terminology, guidelines, and code snippets.`});export{i as CalloutDefaultExample};

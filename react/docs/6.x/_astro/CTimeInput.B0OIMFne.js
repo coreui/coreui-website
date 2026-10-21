@@ -1,0 +1,1 @@
+import{r as e}from"./rolldown-runtime.XKyaHtl9.js";import{t}from"./react.BBYxYG-3.js";import{t as n}from"./jsx-runtime.CpoXNhZb.js";import{t as r}from"./CDateInput.DAX5CHU9.js";var i=e(t()),a=n(),o=(0,i.forwardRef)(({defaultTime:e,onTimeChange:t,time:n,...i},o)=>(0,a.jsx)(r,{...i,date:n,defaultDate:e,onDateChange:t,ref:o,type:`time`}));o.displayName=`CTimeInput`;export{o as t};

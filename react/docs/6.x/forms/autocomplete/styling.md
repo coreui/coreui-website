@@ -2,6 +2,8 @@
 
 > Learn how to customize the React Autocomplete component with CSS classes, variables, and Sass for flexible styling and seamless integration into your design.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ### CSS variables
 
 Autocomplete has no variables of its own: the field is a [`.form-control-group`](https://coreui.io/react/docs/forms/form-control-group/styling/#css-variables), so its frame, the cleaner and the toggle read the `--cui-control-*` and `--cui-control-group-*` tokens. `className` and `style` on `CAutocomplete` land on that frame, the `.autocomplete` element, so the tokens can be set on a single Autocomplete. The panel is rendered next to the field, or into `document.body` with `portal`, so `style` does not reach it; set its tokens with a rule on `.combobox-popup`. The panel is the shared combobox surface, which Multi Select renders too, so both read the same set.

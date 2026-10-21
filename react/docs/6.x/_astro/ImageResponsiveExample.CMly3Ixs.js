@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CImage.CEzcX4lZ.js";e();var r=t(),i=()=>(0,r.jsx)(n,{fluid:!0,src:`/react/docs/6.x/assets/img/react.jpg`});export{i as ImageResponsiveExample};

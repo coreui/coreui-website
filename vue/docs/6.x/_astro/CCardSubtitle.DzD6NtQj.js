@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.DT-hBGUv.js";import"./CCard.CpTAldnt.js";var n=t({name:`CCardSubtitle`,props:{as:{type:String,default:`h6`}},setup(t,{slots:n}){return()=>e(t.as,{class:`card-subtitle`},n.default&&n.default())}});export{n as t};

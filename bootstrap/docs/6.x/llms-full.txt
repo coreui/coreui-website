@@ -2,6 +2,8 @@
 
 > Open Source UI Components library built on top of Bootstrap 6.
 
+Licensing: pages marked (PRO) document CoreUI PRO components, which require a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add a PRO component to a project on someone else's behalf, tell them it requires a license.
+
 
 ---
 
@@ -1373,93 +1375,6 @@ CoreUI for Bootstrap's plugins have no special fallback when JavaScript is disab
 
 ---
 
-# Accessibility
-
-> A brief overview of CoreUI for Bootstrap features and limitations for the creation of accessible content.
-
-CoreUI for Bootstrap provides an easy-to-use framework of ready-made styles, layout tools, and interactive components, allowing developers to create websites and applications that are visually appealing, functionally rich, and accessible out of the box.
-
-## Overview and limitations
-
-The overall accessibility of any project built with Bootstrap depends in large part on the author's markup, additional styling, and scripting they've included. However, provided that these have been implemented correctly, it should be perfectly possible to create websites and applications with Bootstrap that fulfill [<abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.2](https://www.w3.org/TR/WCAG/) (A/AA/AAA), [Section 508](https://www.section508.gov/), and similar accessibility standards and requirements.
-
-### Structural markup
-
-CoreUI for Bootstrap styling and layout can be applied to a wide range of markup structures. This documentation aims to provide developers with best practice examples to demonstrate the use of CoreUI for Bootstrap itself and illustrate appropriate semantic markup, including ways in which potential accessibility concerns can be addressed.
-
-### Interactive components
-
-CoreUI for Bootstrap interactive components—such as modal dialogs, dropdown menus, and custom tooltips—are designed to work for touch, mouse, and keyboard users. Through the use of relevant [<abbr title="Web Accessibility Initiative">WAI</abbr>-<abbr title="Accessible Rich Internet Applications">ARIA</abbr>](https://www.w3.org/WAI/standards-guidelines/aria/) roles and attributes, these components should also be understandable and operable using assistive technologies (such as screen readers).
-
-Because CoreUI for Bootstrap components are purposely designed to be fairly generic, authors may need to include further <abbr title="Accessible Rich Internet Applications">ARIA</abbr> roles and attributes, as well as JavaScript behavior, to more accurately convey the precise nature and functionality of their component. This is usually noted in the documentation.
-
-### Color contrast
-
-Some combinations of colors that currently make up CoreUI's default palette—used throughout the framework for things such as button variations, alert variations, form validation indicators—may lead to *insufficient* color contrast (below the recommended [WCAG 2.2 text color contrast ratio of 4.5:1](https://www.w3.org/TR/WCAG/#contrast-minimum) and the [WCAG 2.2 non-text color contrast ratio of 3:1](https://www.w3.org/TR/WCAG/#non-text-contrast)), particularly when used against a light background. Authors are encouraged to test their specific uses of color and, where necessary, manually modify/extend these default colors to ensure adequate color contrast ratios.
-
-### Visually hidden content
-
-Content which should be visually hidden, but remain accessible to assistive technologies such as screen readers, can be styled using the `.visually-hidden` class. This can be useful in situations where additional visual information or cues (such as meaning denoted through the use of color) need to also be conveyed to non-visual users.
-
-```html
-<p class="fg-danger">
-  <span class="visually-hidden">Danger: </span>
-  This action is not reversible
-</p>
-```
-
-For visually hidden interactive controls, such as traditional "skip" links, use the `.visually-hidden-focusable` class. This will ensure that the control becomes visible once focused (for sighted keyboard users). **Watch out, compared to the equivalent `.sr-only` and `.sr-only-focusable` classes in past versions, CoreUI's `.visually-hidden-focusable` is a standalone class, and must not be used in combination with the `.visually-hidden` class.**
-
-```html
-<a class="visually-hidden-focusable" href="#content">Skip to main content</a>
-```
-
-### Announcing messages
-
-`announce()` reads a short message to screen reader users without moving focus, for a change the page shows but does not focus, such as a saved form or a filtered list. The Toaster announces every toast through it.
-
-```js
-import { announce } from '@coreui/coreui-pro'
-
-announce('3 results')
-announce('The connection was lost', { priority: 'high' })
-```
-
-Messages go through live regions in every browser: `role="log"` with `aria-live` lets assistive technology tell them apart as status messages, as [WCAG 2.2 Success Criterion 4.1.3 Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html) asks. The options follow [`ariaNotify()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/ariaNotify) from WAI-ARIA 1.3, which `announce()` does not call yet: Chromium's source shows Chrome exposing it on ChromeOS and Android without passing it to ChromeVox or TalkBack, and the screen readers on Windows have not been measured with it.
-
-The first call adds a visually hidden live region at the start of `<body>`. Every call adds a message of its own to it one task later, or 100 ms after a new region was created, so messages sent together each get read, in the order they were sent, and the same text is read again. Messages that are added together, those sent in one task and those that a wait releases at once (the first 100 ms of a region, or one of the waits below), go to the assertive region of their page or dialog when one of them is `'high'`, the `'high'` ones first: with one message in each of the two regions, VoiceOver in Safari read only one of them. While a modal dialog is open the rest of the page is inert and screen readers ignore it, so the message goes to a region inside the dialog instead: the one holding focus, then the one around `context`, then the last one open in the document. A modal dialog is a native `<dialog>` opened with `showModal()`, or a shown element with `aria-modal="true"`, such as the panel of a date picker, whose region leaves with it when the panel is removed. The dialog is picked when the message is added, so one opened right after the call still gets it, and its region leaves with it when it closes. A modal built without a native modal dialog, which hides the rest of the page with `aria-hidden` or `inert`, hides these regions as well.
-
-Messages wait while the modal dialog they would go to, or the dialog holding focus, plays its closing transition, and until half a second after Modal, Offcanvas, Dialog or Drawer has closed its dialog. When a modal dialog closes, the rest of the page comes back to screen readers, and VoiceOver dropped a message added at that moment in Chrome, Safari and Firefox. With the wait, VoiceOver in Chrome and Firefox read a toast sent from `hidden.coreui.modal` or during the closing transition; after a dialog opened without a button to return to, focus fell to the page and Chrome still skipped it. A `<dialog>` the page opens and closes itself is not waited for, so send a message meant for the page about half a second after closing it. A message added to a dialog right before it starts closing is lost with it. Safari also skipped a message sent while the page was still loading, and read one sent a second later.
-
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `context` | element | `null` | The element the message comes from. When focus is in no modal dialog, the dialog around it gets the message, which is how a dialog inside a shadow root, where the page cannot look, is found. |
-| `priority` | `'normal'` \| `'high'` | `'normal'` | `'normal'` adds the message to the polite region, which waits until the screen reader is idle, unless it is added together with a `'high'` one; `'high'` adds it to the assertive region, which interrupts; keep it for the few messages that cannot wait. Some screen readers read both as polite. |
-| `timeout` | number | `7000` | Time (ms) the message stays in the region once added; `0` keeps it until it is removed. |
-
-`announce()` returns a function that removes the message, or cancels it before it is added, for a status that a newer one replaces. The bundle exposes it as `coreui.announce()`, and `@coreui/coreui-pro/utils/announce` loads it on its own; two copies on one page, such as the bundle next to the React package, add to the same regions, each with its own queue, and a dialog component holds only the queue of the copy it comes with.
-
-### Reduced motion
-
-CoreUI for Bootstrap includes support for the [`prefers-reduced-motion` media feature](https://www.w3.org/TR/mediaqueries-5/#prefers-reduced-motion). In browsers/environments that allow the user to specify their preference for reduced motion, most CSS transition effects in CoreUI for Bootstrap (for instance, when a modal dialog is opened or closed, or the sliding animation in carousels) will be disabled, and meaningful animations (such as spinners) will be slowed down.
-
-On browsers that support `prefers-reduced-motion`, and where the user has *not* explicitly signaled that they'd prefer reduced motion (i.e. where `prefers-reduced-motion: no-preference`), CoreUI for Bootstrap enables smooth scrolling using the `scroll-behavior` property.
-
-## Additional resources
-
-- [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG/)
-- [The A11Y Project](https://www.a11yproject.com/)
-- [Introduction to Web Accessibility](https://www.w3.org/WAI/fundamentals/accessibility-intro/)
-- [MDN accessibility documentation](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
-- [Tenon.io Accessibility Checker](https://tenon.io/)
-- [Color Contrast Analyser (CCA)](https://www.tpgi.com/color-contrast-checker/)
-- ["HTML Codesniffer" bookmarklet for identifying accessibility issues](https://github.com/squizlabs/HTML_CodeSniffer)
-- [Microsoft Accessibility Insights](https://accessibilityinsights.io/)
-- [Deque Axe testing tools](https://www.deque.com/axe/)
-
-
----
-
 # RTL
 
 > Learn how to enable support for right-to-left text in CoreUI for Bootstrap across our layout, components, and utilities.
@@ -1582,6 +1497,248 @@ right-to-left.
 ## Additional resources
 
 - [RTL Styling 101](https://rtlstyling.com/posts/rtl-styling)
+
+
+---
+
+# Accessibility
+
+> The accessibility standards CoreUI for Bootstrap targets, what its components take care of, what stays with your markup, and how we test it.
+
+CoreUI for Bootstrap provides an easy-to-use framework of ready-made styles, layout tools, and interactive components, allowing developers to create websites and applications that are visually appealing, functionally rich, and accessible out of the box.
+
+## Standards
+
+The components target [<abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.2](https://www.w3.org/TR/WCAG22/) level AA, the level that [Section 508](https://www.section508.gov/) in the United States and EN 301 549 in the European Union build on. Interactive components use [<abbr title="Web Accessibility Initiative">WAI</abbr>-<abbr title="Accessible Rich Internet Applications">ARIA</abbr>](https://www.w3.org/WAI/standards-guidelines/aria/) roles, states and properties, and follow the keyboard models of the [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/).
+
+Conformance belongs to a page, not to a library: WCAG judges the page a user meets, with its content, labels, colors and flow. The [compliance](https://coreui.io/bootstrap/docs/accessibility/compliance/) page lists, for each tested component, which success criteria it meets on its own, which it covers in part, and which your markup has to meet.
+
+## What the components take care of
+
+- **Roles, states and properties.** A component writes its roles and `aria-*` states from its options and keeps them in sync while it runs: `aria-expanded` on a toggle, `aria-selected` on an option, `aria-invalid` on a field in an invalid state.
+- **Keyboard.** Interactive components are operated with the keyboard as well as with a pointer. The [keyboard](https://coreui.io/bootstrap/docs/accessibility/keyboard/) page covers the shared conventions and links each component's own key table.
+- **Focus.** Dialogs and pickers move focus in when they open, keep it inside while they are modal, and give it back when they close. A menu leaves focus on its toggle until the arrow keys move it to the items.
+- **Status messages.** Changes the page shows without moving focus, such as a toast, a loading button or a chip being added, reach screen readers through [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages).
+- **Motion.** Transitions respect the user's [reduced motion](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/) preference.
+
+## What stays with your markup
+
+- **Names.** Give every control a visible `<label>`, or an `aria-label` where there is no room for one. Components that render controls of their own take their texts from options named `aria…Label`, which you translate along with the rest of the page.
+- **Text alternatives.** Images, icons that carry meaning and charts need a text alternative; decorative ones need `alt=""` or `aria-hidden="true"`.
+- **Structure.** Headings, landmarks and lists come from your markup. The components work on a wide range of structures, so they cannot add them for you.
+- **Color.** Check the [contrast](https://coreui.io/bootstrap/docs/accessibility/color-contrast/) of the colors you use, especially custom theme colors.
+- **Content and timing.** Clear link and button texts, error messages that say how to fix the input, and time limits long enough to finish a task.
+
+### Structural markup
+
+CoreUI for Bootstrap styling and layout can be applied to a wide range of markup structures. This documentation aims to provide developers with best practice examples to demonstrate the use of CoreUI for Bootstrap itself and illustrate appropriate semantic markup, including ways in which potential accessibility concerns can be addressed.
+
+### Interactive components
+
+CoreUI for Bootstrap interactive components—such as modal dialogs, dropdown menus, and custom tooltips—are designed to work for touch, mouse, and keyboard users. Through the use of relevant <abbr title="Web Accessibility Initiative">WAI</abbr>-<abbr title="Accessible Rich Internet Applications">ARIA</abbr> roles and attributes, these components should also be understandable and operable using assistive technologies (such as screen readers).
+
+Because CoreUI for Bootstrap components are purposely designed to be fairly generic, authors may need to include further <abbr title="Accessible Rich Internet Applications">ARIA</abbr> roles and attributes, as well as JavaScript behavior, to more accurately convey the precise nature and functionality of their component. This is noted in the Accessibility section of each component's page.
+
+### Visually hidden content
+
+Content which should be visually hidden, but remain accessible to assistive technologies such as screen readers, can be styled using the `.visually-hidden` class. This can be useful in situations where additional visual information or cues (such as meaning denoted through the use of color) need to also be conveyed to non-visual users.
+
+```html
+<p class="fg-danger">
+  <span class="visually-hidden">Danger: </span>
+  This action is not reversible
+</p>
+```
+
+For visually hidden interactive controls, such as traditional "skip" links, use the `.visually-hidden-focusable` class. This will ensure that the control becomes visible once focused (for sighted keyboard users). **Watch out, compared to the equivalent `.sr-only` and `.sr-only-focusable` classes in past versions, CoreUI's `.visually-hidden-focusable` is a standalone class, and must not be used in combination with the `.visually-hidden` class.**
+
+```html
+<a class="visually-hidden-focusable" href="#content">Skip to main content</a>
+```
+
+More in the [visually hidden helper](https://coreui.io/bootstrap/docs/helpers/visually-hidden/).
+
+## How we test
+
+- **Automated conformance suite.** On every change, the documented examples of each tested component are rendered in Chromium against the built stylesheet and scripts. [axe-core](https://github.com/dequelabs/axe-core) checks the success criteria it has rules for, and scripted steps check some of what axe cannot see, such as keyboard operation, focus order and focus return. A regression in a criterion checked this way fails the build; the rest are reviewed by hand, and the compliance page says which is which. The [compliance](https://coreui.io/bootstrap/docs/accessibility/compliance/) page is generated from the same configuration.
+- **Unit tests.** The specs of each component cover its keyboard handling, focus management and the ARIA states it writes.
+- **Screen readers.** We test announcements and component behavior with screen readers by hand. The [screen readers](https://coreui.io/bootstrap/docs/accessibility/screen-readers/) page lists what has been measured.
+
+## Additional resources
+
+- [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/)
+- [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/)
+- [The A11Y Project](https://www.a11yproject.com/)
+- [Introduction to Web Accessibility](https://www.w3.org/WAI/fundamentals/accessibility-intro/)
+- [MDN accessibility documentation](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
+- [Tenon.io Accessibility Checker](https://tenon.io/)
+- [Color Contrast Analyser (CCA)](https://www.tpgi.com/color-contrast-checker/)
+- ["HTML Codesniffer" bookmarklet for identifying accessibility issues](https://github.com/squizlabs/HTML_CodeSniffer)
+- [Microsoft Accessibility Insights](https://accessibilityinsights.io/)
+- [Deque Axe testing tools](https://www.deque.com/axe/)
+
+
+---
+
+# Compliance
+
+> The WCAG 2.2 success criteria each CoreUI for Bootstrap component is tested against, whether the component meets them on its own, and how they are checked.
+
+Each component below is tested against the WCAG 2.2 success criteria that apply to it. The list comes from the configuration of our automated conformance suite, which runs on every change: it renders the component's documented examples in Chromium, checks the criteria with [axe-core](https://github.com/dequelabs/axe-core) where a rule exists, and some of the others with scripted keyboard and focus steps. A criterion the component meets fully or in part fails the build when it regresses, where axe-core or a scripted step checks it; criteria marked Manual review are checked by hand.
+
+Conformance is a property of a whole page. A component that meets a criterion keeps meeting it only with the markup and texts its documentation asks for, and criteria marked as your responsibility depend on how you use the component. See the [overview](https://coreui.io/bootstrap/docs/accessibility/overview/) for what the components take care of and what stays with your markup.
+
+## Statuses
+
+The check column says how a criterion is verified: **axe-core** runs the rules mapped to it, **Scripted** drives the component with the keyboard and checks focus and state, and **Manual review** marks a criterion no automated check covers.
+
+## Summary
+
+Components missing from this list have not been added to the conformance suite yet. Their pages still describe their accessibility.
+
+## Components
+
+
+---
+
+# Keyboard
+
+> The keyboard conventions CoreUI for Bootstrap components share, and an index of each component's keyboard table.
+
+Interactive components are built to be operated with the keyboard alone. The components follow the keyboard models of the [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/), so a user who knows how a native control or another accessible widget behaves can predict how ours behave.
+
+## Conventions
+
+| Key | Action |
+| --- | --- |
+| <kbd>Tab</kbd> / <kbd>Shift</kbd> + <kbd>Tab</kbd> | Move to the next or previous component. A composite component, such as tabs, a chip set, a list box or a calendar grid, is a single stop; the arrow keys move inside it. |
+| <kbd>Arrow</kbd> keys | Move between the items of a composite component: tabs, options, chips, days. In an open menu, move focus to the items and between them. |
+| <kbd>Home</kbd> / <kbd>End</kbd> | Move to the first or last item, where the component has a list of them. |
+| <kbd>Enter</kbd> / <kbd>Space</kbd> | Activate the focused button, link or item, select an option, or open a popup. |
+| <kbd>Escape</kbd> | Close the open menu, picker panel, tooltip, popover or dialog. Dropdowns, pickers and dialogs return focus to the element that opened them. |
+
+Where a component differs, its own keyboard table says so.
+
+## Focus in dialogs
+
+A modal dialog, such as the [modal](https://coreui.io/bootstrap/docs/components/modal/) or the [offcanvas](https://coreui.io/bootstrap/docs/components/offcanvas/), moves focus inside when it opens and keeps <kbd>Tab</kbd> inside while it is open. When it closes, focus returns to the element that opened it. An offcanvas opened with `backdrop: false` and `scroll: true` is not modal: <kbd>Tab</kbd> moves on to the page.
+
+## Visible focus
+
+The element that has focus always shows it. Buttons and other controls you click to act show the focus ring only for keyboard focus, so a mouse click does not leave one behind; fields you type into show it on any focus. See [color contrast](https://coreui.io/bootstrap/docs/accessibility/color-contrast/#focus-indicators) for its contrast.
+
+## Component keyboard tables
+
+These components document their own keys:
+
+
+---
+
+# Screen readers
+
+> How CoreUI for Bootstrap components reach screen readers, how to announce status messages with announce(), and which screen readers they have been measured with.
+
+A screen reader reads what the browser exposes in its accessibility tree: each element's role, name, state and value. CoreUI for Bootstrap components write those from their options, so a screen reader hears a combobox that is expanded, an option that is selected, or a field that is invalid, without extra markup from the page. The Accessibility section of each component's page lists what the component exposes and what the page has to add, usually a name.
+
+## Measured with
+
+Behavior a screen reader decides is measured by hand, with the screen reader running. The table lists what has been measured so far; the [compliance](https://coreui.io/bootstrap/docs/accessibility/compliance/) page covers what is checked automatically.
+
+| Screen reader | Browser | Platform | Measured |
+| --- | --- | --- | --- |
+| VoiceOver | Safari 17.6 | macOS 14.8 | Status messages from `announce()` and the Toaster: messages sent together, both regions at once, a page still loading, open dialogs and the wait after a dialog closes; the loading button |
+| VoiceOver | Chrome 154 | macOS 14.8 | The same cases |
+| VoiceOver | Firefox 157 | macOS 14.8 | The wait after a dialog closes |
+
+Results for other screen readers are added to this table once measured.
+
+## Announcing messages
+
+`announce()` reads a short message to screen reader users without moving focus, for a change the page shows but does not focus, such as a saved form or a filtered list. The Toaster announces the text of every toast through it.
+
+```js
+import { announce } from '@coreui/coreui-pro'
+
+announce('3 results')
+announce('The connection was lost', { priority: 'high' })
+```
+
+Messages go through live regions in every browser: `role="log"` with `aria-live` lets assistive technology tell them apart as status messages, as [WCAG 2.2 Success Criterion 4.1.3 Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html) asks. The options follow [`ariaNotify()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/ariaNotify) from WAI-ARIA 1.3, which `announce()` does not call yet: Chromium's source shows Chrome exposing it on ChromeOS and Android without passing it to ChromeVox or TalkBack, and the screen readers on Windows have not been measured with it.
+
+The first call adds a visually hidden live region at the start of `<body>`. Every call adds a message of its own to it one task later, or 100 ms after a new region was created, so messages sent together each get read, in the order they were sent, and the same text is read again. Messages that are added together, those sent in one task and those that a wait releases at once (the first 100 ms of a region, or one of the waits below), go to the assertive region of their page or dialog when one of them is `'high'`, the `'high'` ones first: with one message in each of the two regions, VoiceOver in Safari read only one of them. While a modal dialog is open the rest of the page is inert and screen readers ignore it, so the message goes to a region inside the dialog instead: the one holding focus, then the one around `context`, then the last one open in the document. A modal dialog is a native `<dialog>` opened with `showModal()`, or a shown element with `aria-modal="true"`, such as the panel of a date picker, whose region leaves with it when the panel is removed. The dialog is picked when the message is added, so one opened right after the call still gets it, and its region leaves with it when it closes. A modal built without a native modal dialog, which hides the rest of the page with `aria-hidden` or `inert`, hides these regions as well.
+
+Messages wait while the modal dialog they would go to, or the dialog holding focus, plays its closing transition, and until half a second after Modal, Offcanvas, Dialog or Drawer has closed its dialog. When a modal dialog closes, the rest of the page comes back to screen readers, and VoiceOver dropped a message added at that moment in Chrome, Safari and Firefox. With the wait, VoiceOver in Chrome and Firefox read a toast sent from `hidden.coreui.modal` or during the closing transition; after a dialog opened without a button to return to, focus fell to the page and Chrome still skipped it. A `<dialog>` the page opens and closes itself is not waited for, so send a message meant for the page about half a second after closing it. A message added to a dialog right before it starts closing is lost with it. Safari also skipped a message sent while the page was still loading, and read one sent a second later.
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `context` | element | `null` | The element the message comes from. When focus is in no modal dialog, the dialog around it gets the message, which is how a dialog inside a shadow root, where the page cannot look, is found. |
+| `priority` | `'normal'` \| `'high'` | `'normal'` | `'normal'` adds the message to the polite region, which waits until the screen reader is idle, unless it is added together with a `'high'` one; `'high'` adds it to the assertive region, which interrupts; keep it for the few messages that cannot wait. Some screen readers read both as polite. |
+| `timeout` | number | `7000` | Time (ms) the message stays in the region once added; `0` keeps it until it is removed. |
+
+`announce()` returns a function that removes the message, or cancels it before it is added, for a status that a newer one replaces. The bundle exposes it as `coreui.announce()`, and `@coreui/coreui-pro/utils/announce` loads it on its own; two copies on one page, such as the bundle next to the React package, add to the same regions, each with its own queue, and a dialog component holds only the queue of the copy it comes with.
+
+
+---
+
+# Color contrast
+
+> Contrast requirements for text, controls and focus indicators, and how to keep the CoreUI for Bootstrap palette and themes within them.
+
+WCAG asks for a [contrast ratio of 4.5:1 for text](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) (3:1 for large text), and 3:1 for the parts of a control and the graphics a user needs to see, such as a field's border, a checkbox or a focus indicator ([non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)).
+
+## Default palette
+
+Some combinations of colors that currently make up CoreUI's default palette—used throughout the framework for things such as button variations, alert variations, form validation indicators—may lead to *insufficient* color contrast (below the recommended [WCAG 2.2 text color contrast ratio of 4.5:1](https://www.w3.org/TR/WCAG22/#contrast-minimum) and the [WCAG 2.2 non-text color contrast ratio of 3:1](https://www.w3.org/TR/WCAG22/#non-text-contrast)), particularly when used against a light background. Authors are encouraged to test their specific uses of color and, where necessary, manually modify/extend these default colors to ensure adequate color contrast ratios.
+
+The [color](https://coreui.io/bootstrap/docs/customize/color/#all-colors) page shows the contrast ratio of each palette color against white and black.
+
+## Theme colors
+
+Each theme color comes as a family of slots, and every foreground slot is tuned against one background slot: `contrast` on `bg`, `fg` on `bg-subtle`, `fg-emphasis` on `bg-muted`. Components pair them that way. When you build your own surfaces, use the same [pairings](https://coreui.io/bootstrap/docs/customize/theme/#pairings); a foreground read against another background is where contrast falls apart. When you add a theme color or change one, check every pairing again, in both [color modes](https://coreui.io/bootstrap/docs/customize/color-modes/).
+
+Fading a color lowers its contrast as well: the [link opacity](https://coreui.io/bootstrap/docs/utilities/link/#link-opacity) and [opacity](https://coreui.io/bootstrap/docs/utilities/opacity/) utilities can take a link or a text below 4.5:1.
+
+## Focus indicators
+
+Focusable components draw a focus ring from the `--cui-focus-ring-*` tokens, in the color of their theme. Controls you click to act, such as buttons, checkboxes and pagination links, show it on keyboard focus; fields you type into show it on any focus. If you change the ring's color, width or offset, keep it at 3:1 against the colors around it. The [focus ring](https://coreui.io/bootstrap/docs/helpers/focus-ring/) helper gives your own elements the same ring.
+
+## Color alone
+
+Color must not be the only way a meaning is conveyed ([use of color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)). A red border on an invalid field needs a message that says what is wrong, a danger alert needs words that say it is one, and a link inside a paragraph needs an underline or another cue besides its color. Where the text cannot carry it, add it with [visually hidden content](https://coreui.io/bootstrap/docs/accessibility/overview/#visually-hidden-content).
+
+
+---
+
+# Reduced motion
+
+> How CoreUI for Bootstrap honours the prefers-reduced-motion setting in its transitions, animations and scrolling.
+
+CoreUI for Bootstrap includes support for the [`prefers-reduced-motion` media feature](https://www.w3.org/TR/mediaqueries-5/#prefers-reduced-motion). In browsers/environments that allow the user to specify their preference for reduced motion, most CSS transition effects in CoreUI for Bootstrap (for instance, when a modal dialog is opened or closed, or the sliding animation in carousels) will be disabled, and meaningful animations (such as spinners) will be slowed down.
+
+On browsers that support `prefers-reduced-motion`, and where the user has *not* explicitly signaled that they'd prefer reduced motion (i.e. where `prefers-reduced-motion: no-preference`), CoreUI for Bootstrap enables smooth scrolling using the `scroll-behavior` property.
+
+## Options
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `$enable-reduced-motion` | `true` | Wraps every component transition in `prefers-reduced-motion: no-preference`, so the transition runs only for users who have not asked for less motion. |
+| `$enable-smooth-scroll` | `true` | Applies `scroll-behavior: smooth`, except for users asking for reduced motion. |
+
+See [options](https://coreui.io/bootstrap/docs/customize/options/) for the other global switches, and [transitions](https://coreui.io/bootstrap/docs/customize/transitions/) for how components run their transitions.
+
+## Your own animations
+
+Wrap the animations and transitions you add in the same query, so they run only for users who have not asked for less motion:
+
+```css
+@media (prefers-reduced-motion: no-preference) {
+  .banner {
+    animation: slide-in .3s ease-out;
+  }
+}
+```
+
+An animation that starts by itself and lasts longer than five seconds also needs a way to pause or stop it ([pause, stop, hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html)), whatever the user's setting. The [carousel](https://coreui.io/bootstrap/docs/components/carousel/) has one.
 
 
 ---
@@ -3985,14 +4142,14 @@ You can find and customize these variables for key global options in CoreUI for 
 | `$enable-shadows`              | `true` or `false` (default)        | Enables predefined decorative `box-shadow` styles on various components. The `--cui-*-box-shadow` component tokens are always declared, but they render only with this option on. Does not affect `box-shadow`s used for focus states. |
 | `$enable-gradients`            | `true` or `false` (default)        | Enables predefined gradients via `background-image` styles on various components. |
 | `$enable-transitions`          | `true` (default) or `false`        | Enables predefined `transition`s on various components. |
-| `$enable-reduced-motion`       | `true` (default) or `false`        | Enables the [`prefers-reduced-motion` media query](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion), which suppresses certain animations/transitions based on the users' browser/operating system preferences. |
+| `$enable-reduced-motion`       | `true` (default) or `false`        | Enables the [`prefers-reduced-motion` media query](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/), which suppresses certain animations/transitions based on the users' browser/operating system preferences. |
 | `$enable-grid-classes`         | `true` (default) or `false`        | Enables the generation of CSS classes for the grid system (e.g. `.row`, `.col-md-1`, etc.). |
 | `$enable-container-classes`    | `true` (default) or `false`        | Enables the generation of CSS classes for layout containers. |
 | `$enable-cssgrid`              | `true` (default) or `false`        | Enables the generation of the [CSS Grid layout](https://coreui.io/bootstrap/docs/layout/css-grid/) classes (e.g. `.grid`, `.g-col-6`). |
 | `$enable-caret`                | `true` (default) or `false`        | Enables pseudo element caret on `.dropdown-toggle`. |
 | `$enable-button-pointers`      | `true` (default) or `false`        | Add "hand" cursor to non-disabled button elements. |
 | `$enable-deprecation-messages` | `true` (default) or `false`        | Set to `false` to hide warnings when using any of the deprecated variables, mixins and functions that are planned to be removed in the next major. |
-| `$enable-smooth-scroll`        | `true` (default) or `false`        | Applies `scroll-behavior: smooth` globally, except for users asking for reduced motion through [`prefers-reduced-motion` media query](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion) |
+| `$enable-smooth-scroll`        | `true` (default) or `false`        | Applies `scroll-behavior: smooth` globally, except for users asking for reduced motion through [`prefers-reduced-motion` media query](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/) |
 | `$enable-ltr`                  | `true` (default) or `false`        | Enables Left-to-Right |
 | `$enable-rtl`                  | `true` (default) or `false`        | Enables Right-to-Left |
 
@@ -5757,7 +5914,7 @@ Five options, from the narrowest to the widest:
 2. Add the [`.transition-none` utility](https://coreui.io/bootstrap/docs/utilities/motion/) to one element, which removes every transition on it rather than just the component's own.
 3. Set a `-duration` variable to `0s` for one component or a whole subtree.
 4. Set `$enable-transitions` to `false` to remove every transition at build time.
-5. Leave it to the reader: with `$enable-reduced-motion` on, which is the default, every transition is wrapped in `prefers-reduced-motion: no-preference`, so anyone who asks their system for less motion already gets instant state changes. See [reduced motion](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+5. Leave it to the reader: with `$enable-reduced-motion` on, which is the default, every transition is wrapped in `prefers-reduced-motion: no-preference`, so anyone who asks their system for less motion already gets instant state changes. See [reduced motion](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 Whichever you use, JavaScript reads the element's computed `transition-duration` before it waits. A duration of `0s` resolves events and promises on the next tick rather than hanging for a transition that never runs.
 
@@ -9264,6 +9421,8 @@ Buttons and form controls share the size and type of one frame, declared once on
 
 > Create intelligent, responsive input fields using the Bootstrap Autocomplete plugin. This component enhances user input with dynamic dropdown suggestions, flexible data providers, and callback support.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 The **Bootstrap Autocomplete Dropdown** component is a powerful autocomplete dropdown plugin that enhances form control usability by suggesting completions as the user types. Whether you're integrating with local JavaScript arrays or fetching live server responses via AJAX, this plugin enables rich, dynamic user interactions.
@@ -10565,7 +10724,7 @@ The Bootstrap Chip Input component follows WAI-ARIA patterns to ensure the chip 
 - Associate a `<label>` with the ghost input for screen readers.
 - Chips are focusable and keyboard navigable when initialized by the plugin.
 - Each remove button the component creates is named with `ariaRemoveLabel` and the chip's label, `Remove <label>` by default.
-- Adding and removing chips is announced through [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages) in the live region of the page, or of the modal dialog around the set, one message per update: the values the set did not hold before, or else the values it no longer holds, joined with commas as in `Vue, Svelte added`, and nothing while the set is hidden; customize the wording with the `ariaAddedAnnouncement` and `ariaRemovedAnnouncement` options. A function in place of the word receives the values and returns the whole message, so a page can put the word first, agree it with the number of chips or give a count for a long list, as in `(values) => values.length > 3 ? values.length + ' chips added' : values.join(', ') + ' added'`.
+- Adding and removing chips is announced through [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages) in the live region of the page, or of the modal dialog around the set, one message per update: the values the set did not hold before, or else the values it no longer holds, joined with commas as in `Vue, Svelte added`, and nothing while the set is hidden; customize the wording with the `ariaAddedAnnouncement` and `ariaRemovedAnnouncement` options. A function in place of the word receives the values and returns the whole message, so a page can put the word first, agree it with the number of chips or give a count for a long list, as in `(values) => values.length > 3 ? values.length + ' chips added' : values.join(', ') + ' added'`.
 - Use a descriptive `aria-label` or `<label>` on the chip input container to communicate its purpose (e.g., "Add skills" or "Recipients").
 - An `aria-describedby` on the chip input element moves to the text field, after the field's own ids, and the element gets it back on dispose; while the state is `'invalid'` the error message follows it.
 
@@ -11317,6 +11476,8 @@ Everything inside it — options, section labels and the checkbox indicator — 
 
 > Create date fields with a section-based input mask. Users type the day, month, and year in separate sections with automatic navigation and validation — like the native date input, but with full control over the format.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 _Added in 6.0.0._
@@ -11824,6 +11985,8 @@ $form-date-time-tokens: defaults(
 # Bootstrap 6 Date Picker
 
 > Create a date field with a calendar popup. Users type the date into a section-based mask or pick it from the calendar, and the two stay in sync.
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Example
 
@@ -12565,6 +12728,8 @@ $calendar-tokens: defaults(
 
 > Create a start and end date field in one frame. Both ends use the section-based mask of the date input, and the range is validated as a whole.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 _Added in 6.0.0._
@@ -13039,6 +13204,8 @@ $form-date-time-tokens: defaults(
 # Bootstrap 6 Date Range Picker
 
 > Create a start and end date field with a multi-month calendar popup. Users type both dates into section-based masks or pick the range from the calendar, with optional predefined ranges.
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Example
 
@@ -14987,6 +15154,8 @@ $input-group-sizes: defaults(
 # Bootstrap 6 Multi Select
 
 > Customize the native `<select>`s with a powerful Bootstrap Multi-Select component that changes the element's initial appearance and brings some new functionalities.
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Basic example
 
@@ -18013,6 +18182,8 @@ Two mixins generate the vendor-specific styles for the range's track and thumb. 
 
 > Enhance your forms with our customizable Bootstrap 6 Range Slider component for advanced range selection.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 The **Bootstrap 6 Range Slider** component allows users to select a value or range of values within a predefined range. It builds the markup of the [range](https://coreui.io/bootstrap/docs/forms/range/) from its options: a `<div class="form-range">` inside the element, with one native `.form-range-input` per handle, so it looks like a range and takes its tokens. The slider adds what the range does not have: several handles kept in order and `distance` apart on one track, a press on the track that moves the nearest handle, clickable ticks and a vertical orientation. Its options are one place to configure the handles, ticks, tooltips and orientation.
@@ -18462,6 +18633,8 @@ $form-range-vertical-tokens: defaults(
 # Bootstrap 6 Rating
 
 > The Rating component allows users to provide feedback on content or services by selecting a rating value. It is customizable, supports various sizes and icons, and can be made interactive or read-only.
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## How to use Rating Component.
 
@@ -19008,6 +19181,8 @@ $form-control-select-tokens: defaults(
 
 > Build responsive, accessible multi-step forms and form wizards using CoreUI's Bootstrap 6 Stepper Component. Vertical and horizontal layouts, built-in validation, full customization.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 # Stepper
 
 The Bootstrap Stepper component allows you to easily create multi-step form wizards, perfect for guiding users through long forms, registrations, or checkout flows.
@@ -19431,7 +19606,7 @@ This example shows a stepper with native browser validation enabled:
 
 ### Custom styles
 
-To disable native browser styles validation and turn on custom styles, add the `novalidate` attribute to your forms. Each time it validates a step, the stepper then marks the invalid controls with `.is-invalid` and `aria-invalid="true"` and takes that state off the controls that pass, moves focus to the first invalid control when the step fails, and from then on keeps the state updated as the user changes the controls, until the form or the stepper is reset (a form reset a listener cancels keeps it); add `data-coreui-validate="valid"` to a form to also mark the valid controls with `.is-valid`. A [multi select](https://coreui.io/bootstrap/docs/forms/multi-select/#validation), a [chip input](https://coreui.io/bootstrap/docs/forms/chip-input/#validation), a [combobox](https://coreui.io/bootstrap/docs/forms/combobox/#validation), an [OTP input](https://coreui.io/bootstrap/docs/forms/otp-input/#validation), a [date input](https://coreui.io/bootstrap/docs/forms/date-input/#validation), a time input, the pickers, an [autocomplete](https://coreui.io/bootstrap/docs/forms/autocomplete/#validation), a [range slider](https://coreui.io/bootstrap/docs/forms/range-slider/#validation) and a [rating](https://coreui.io/bootstrap/docs/forms/rating/#validation) show that state on their own controls. If a handler of `stepValidationComplete.coreui.stepper` moves focus itself, for example to an error summary, the stepper leaves it there. While a control is invalid, the stepper adds its `.invalid-feedback` to its `aria-describedby` and takes it out once the control is valid, so the message is read together with the field: the `.invalid-feedback` and `.invalid-tooltip` the stylesheet shows for the control, that is the ones after it or after its `.form-control-group`, and, for a check, a radio, a switch, a `.form-control` or `.form-select` in an input group, or a control placed directly in a frame, the ones of each `.form-field` around it. Name a message placed anywhere else in `data-coreui-invalid-feedback`. A message that changes while the user types is not read again; announce it with [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages) when it has to be:
+To disable native browser styles validation and turn on custom styles, add the `novalidate` attribute to your forms. Each time it validates a step, the stepper then marks the invalid controls with `.is-invalid` and `aria-invalid="true"` and takes that state off the controls that pass, moves focus to the first invalid control when the step fails, and from then on keeps the state updated as the user changes the controls, until the form or the stepper is reset (a form reset a listener cancels keeps it); add `data-coreui-validate="valid"` to a form to also mark the valid controls with `.is-valid`. A [multi select](https://coreui.io/bootstrap/docs/forms/multi-select/#validation), a [chip input](https://coreui.io/bootstrap/docs/forms/chip-input/#validation), a [combobox](https://coreui.io/bootstrap/docs/forms/combobox/#validation), an [OTP input](https://coreui.io/bootstrap/docs/forms/otp-input/#validation), a [date input](https://coreui.io/bootstrap/docs/forms/date-input/#validation), a time input, the pickers, an [autocomplete](https://coreui.io/bootstrap/docs/forms/autocomplete/#validation), a [range slider](https://coreui.io/bootstrap/docs/forms/range-slider/#validation) and a [rating](https://coreui.io/bootstrap/docs/forms/rating/#validation) show that state on their own controls. If a handler of `stepValidationComplete.coreui.stepper` moves focus itself, for example to an error summary, the stepper leaves it there. While a control is invalid, the stepper adds its `.invalid-feedback` to its `aria-describedby` and takes it out once the control is valid, so the message is read together with the field: the `.invalid-feedback` and `.invalid-tooltip` the stylesheet shows for the control, that is the ones after it or after its `.form-control-group`, and, for a check, a radio, a switch, a `.form-control` or `.form-select` in an input group, or a control placed directly in a frame, the ones of each `.form-field` around it. Name a message placed anywhere else in `data-coreui-invalid-feedback`. A message that changes while the user types is not read again; announce it with [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages) when it has to be:
 
 ```html
 <div class="stepper" data-coreui-stepper id="novalidateStepper">
@@ -19569,7 +19744,7 @@ The CoreUI Stepper Component is built with accessibility in mind:
 - Step contents (`stepper-pane`) use `role="tabpanel"` and are properly linked to their trigger buttons.
 - When the step changes while focus is inside the stepper, for example on a **Next** button in the pane, focus moves to the new step's button, so a screen reader reads which step the user is on. A step changed from outside the stepper leaves focus where it is.
 - When a step whose form has `novalidate` fails validation, the invalid controls get `aria-invalid="true"` and focus moves to the first of them that can take focus, as the browser does for a form without `novalidate`.
-- While the stepper marks a control invalid, its invalid feedback is added to its `aria-describedby`, the elements named in `data-coreui-invalid-feedback` or else the `.invalid-feedback` and `.invalid-tooltip` the stylesheet shows for it, so the validation message is read with the field when focus moves to it. When focus is already on the first invalid control, or no invalid control can take focus, the message is announced through [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages) instead, or the browser's validation message when the control has none. The stepper does not rely on `aria-errormessage`, which VoiceOver does not read, and the panes are not live regions, so they do not repeat the message.
+- While the stepper marks a control invalid, its invalid feedback is added to its `aria-describedby`, the elements named in `data-coreui-invalid-feedback` or else the `.invalid-feedback` and `.invalid-tooltip` the stylesheet shows for it, so the validation message is read with the field when focus moves to it. When focus is already on the first invalid control, or no invalid control can take focus, the message is announced through [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages) instead, or the browser's validation message when the control has none. The stepper does not rely on `aria-errormessage`, which VoiceOver does not read, and the panes are not live regions, so they do not repeat the message.
 - Keyboard navigation is fully supported
 
 Thanks to these features, your form wizard will be fully compliant with WCAG and modern accessibility standards without additional work.
@@ -20006,6 +20181,8 @@ A textarea reads the [form control](https://coreui.io/bootstrap/docs/forms/form-
 
 > Create time fields with a section-based input mask. Users type the hour, minutes, and seconds in separate sections with automatic navigation and validation — like the native time input, but with full control over the format.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 _Added in 6.0.0._
@@ -20305,6 +20482,8 @@ $form-date-time-tokens: defaults(
 # Bootstrap 6 Time Picker
 
 > Create a time field with a popup. Users type the time into a section-based mask or pick it from the rolls, and the two stay in sync.
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Example
 
@@ -21924,7 +22103,7 @@ The accordion is built on the native `<details>` and `<summary>` elements, so it
 
 To render an item that's expanded by default, add the `open` attribute to its `<details>` element.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 Click the accordions below to expand/collapse the accordion content.
 
@@ -24376,6 +24555,8 @@ Make a set of buttons appear vertically stacked rather than horizontally. **Spli
 
 > The Bootstrap Calendar Component is a versatile, customizable tool for creating responsive calendars in Bootstrap, supporting day, month, and year selection, and global locales.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 Explore the Bootstrap 6 Calendar component's basic usage through sample code snippets demonstrating its core functionality.
@@ -24923,7 +25104,7 @@ initCalendar()
 
 Keyboard navigation in the grid follows the [date picker dialog pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/examples/datepicker-dialog/). The table is a `grid` of `gridcell` cells, which is what lets a cell report itself as selected: selected cells carry `aria-selected` (in week selection, the row), today carries `aria-current="date"`, a cell that cannot be picked carries `aria-disabled="true"` (a day outside `minDate` / `maxDate`, before year 1 or in `disabledDates`, a day among an adjacent month's days without `selectAdjacentDays`, and in week selection the row rather than its days), every day cell announces its full date with the weekday (`Wednesday, August 12, 2026`), and month, quarter and year cells are named by their text. With `range`, the grid of the view that picks the range is `aria-multiselectable`, and every day, week row or period between the two ends that can be picked carries `aria-selected` as well, so the ones in between are announced as selected; the months and years views of a day range only navigate, so there only the ends carry it. A cell drawn by a render function is named by its content; see [Render functions](#render-functions). In week selection the row that takes focus is named by the days it spans (`August 10 – 16, 2026`), after its week number when week numbers are shown (`Week 33, August 10 – 16, 2026`). Each grid is a composite with a single tab stop: <kbd>Tab</kbd> enters it once and leaves it, the keys below move inside it, and `tabindex="0"` sits on the selected date (in a range, an end the grid shows), else on the cell closest to the date the grid opens on, else wherever focus went last. Every cell that reaches into the days from the day of `minDate` to the day of `maxDate` can take the focus, times of day aside, also one that cannot be picked: the keys stop on it instead of skipping it, a screen reader announces it as unavailable, and <kbd>Enter</kbd> and <kbd>Space</kbd> do nothing there. Cells wholly outside those days, and in day selection the days of an adjacent month without `selectAdjacentDays`, carry no `tabindex`; a month, quarter or year counts as inside while any of its days is, and a week row while any day of the week it stands for is. Selectable cells and week rows are marked with `data-coreui-selectable`, which is the hook to use in your own CSS or scripts. The months, quarters, and years views answer to the same keys, with arrows moving by cell and row and <kbd>Home</kbd> / <kbd>End</kbd> to the first / last cell of the row, and no jump ever lands outside `minDate` / `maxDate` or before year 1 — focus stops on the last date inside them. A month, quarter or year counts as inside while any of its days is, and a week row while any day of the week it stands for is. When no panel has a cell that can take the focus, as when the calendar is given a page that lies wholly outside the limits, every grid itself takes the tab stop and the arrows move to the limit they point toward; a panel wholly outside the limits beside one that reaches into them has no tab stop of its own. A grid in which nothing can be picked, such as a page wholly outside the limits or one that `disabledDates` covers, points `aria-describedby` at a hidden element holding `ariaNothingToPickLabel` (`'Nothing on this page can be picked'`). The navigation buttons stay enabled at the limits: a page outside them can be shown, and it says so.
 
-The month and year between the navigation arrows name the page the calendar shows, followed by a visually hidden `ariaNothingToPickLabel` when nothing on it can be picked. Turning a page is announced through [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages) in the polite live region of the page, or of the modal dialog around the calendar, such as the panel of a date picker: one message per panel that turned, naming the page, followed by `ariaNothingToPickLabel` when nothing on that page can be picked (`September 2026, Nothing on this page can be picked`). A day or a week row that holds focus already names its month and year, so a key that moves from it to another page names no page, and announces `ariaNothingToPickLabel` alone when nothing on the new page can be picked; another panel left with nothing to pick, by a turn or by a pick, is announced with its name. A month, quarter or year names only itself, so the page is announced from it as from a button. Nothing is announced while the calendar is hidden, and a newer turn cancels the messages of the previous one. In the years view the page is the range of years it shows, the same text as the grid's label. A pick is announced the same way, because focus stays on the cell and a screen reader does not read its `aria-selected` turning on: as `ariaSelectedDateAnnouncement` with the full name of what was picked (`Selected date: Wednesday, August 12, 2026`), and with `range` as `ariaSelectedRangeAnnouncement` whenever both ends are set after a pick, or as a date when they fall on the same day. The first pick of a range announces nothing. A date picker turns both messages off for the pick that closes its panel and names its toggle with the picked date instead, because a message added while focus goes back to the toggle is dropped by VoiceOver in Safari; a newer pick cancels a message that was not read yet. Activating the month or year button while it has focus opens the months or years view and moves focus to the month or year that panel showed, also when it cannot be picked, or to the panel's tab stop when it lies outside `minDate` / `maxDate`; holding <kbd>Enter</kbd> does not go on to pick it. In the years view the year button goes back to the view that picks the date; while it has focus, focus moves to the day, week, month or quarter that holds the start of the month the panel shows there, or to the panel's tab stop when that lies outside `minDate` / `maxDate`. The button is disabled when the years view is the one that picks (`selectionType: 'year'`). Picking a month or year in those views, with a click or with <kbd>Enter</kbd> / <kbd>Space</kbd>, opens the next view on that period, unless nothing in it can be picked, and moves focus to the first date of that panel inside `minDate` / `maxDate`, also when that date cannot be picked; when the panel lies wholly outside the limits, focus goes to the calendar's tab stop.
+The month and year between the navigation arrows name the page the calendar shows, followed by a visually hidden `ariaNothingToPickLabel` when nothing on it can be picked. Turning a page is announced through [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages) in the polite live region of the page, or of the modal dialog around the calendar, such as the panel of a date picker: one message per panel that turned, naming the page, followed by `ariaNothingToPickLabel` when nothing on that page can be picked (`September 2026, Nothing on this page can be picked`). A day or a week row that holds focus already names its month and year, so a key that moves from it to another page names no page, and announces `ariaNothingToPickLabel` alone when nothing on the new page can be picked; another panel left with nothing to pick, by a turn or by a pick, is announced with its name. A month, quarter or year names only itself, so the page is announced from it as from a button. Nothing is announced while the calendar is hidden, and a newer turn cancels the messages of the previous one. In the years view the page is the range of years it shows, the same text as the grid's label. A pick is announced the same way, because focus stays on the cell and a screen reader does not read its `aria-selected` turning on: as `ariaSelectedDateAnnouncement` with the full name of what was picked (`Selected date: Wednesday, August 12, 2026`), and with `range` as `ariaSelectedRangeAnnouncement` whenever both ends are set after a pick, or as a date when they fall on the same day. The first pick of a range announces nothing. A date picker turns both messages off for the pick that closes its panel and names its toggle with the picked date instead, because a message added while focus goes back to the toggle is dropped by VoiceOver in Safari; a newer pick cancels a message that was not read yet. Activating the month or year button while it has focus opens the months or years view and moves focus to the month or year that panel showed, also when it cannot be picked, or to the panel's tab stop when it lies outside `minDate` / `maxDate`; holding <kbd>Enter</kbd> does not go on to pick it. In the years view the year button goes back to the view that picks the date; while it has focus, focus moves to the day, week, month or quarter that holds the start of the month the panel shows there, or to the panel's tab stop when that lies outside `minDate` / `maxDate`. The button is disabled when the years view is the one that picks (`selectionType: 'year'`). Picking a month or year in those views, with a click or with <kbd>Enter</kbd> / <kbd>Space</kbd>, opens the next view on that period, unless nothing in it can be picked, and moves focus to the first date of that panel inside `minDate` / `maxDate`, also when that date cannot be picked; when the panel lies wholly outside the limits, focus goes to the calendar's tab stop.
 
 With `showWeekNumber`, each week number is a row header named with the locale's word for week and the number (`Week 36`, `Tydzień 36`), and the column header is that word, read by screen readers only unless `weekNumbersLabel` sets a visible one. In week selection the focused row's name starts with the same name, `Week 36, August 31 – September 6, 2026`. To name the week numbers yourself, give `ariaWeekNumberLabel` a function that takes the week number and returns its name (returning nothing keeps the default); keep the number in it, so a voice-control user can say what they see. The default puts the word before the number in every locale, so for a locale that writes it the other way round, such as `第36週`, pass the function.
 
@@ -25983,7 +26164,7 @@ The carousel is a slideshow built on native CSS scroll snapping: the track is a 
 
 In browsers where the [Page Visibility API](https://www.w3.org/TR/page-visibility/) is supported, the carousel will avoid sliding when the webpage is not visible to the user (such as when the browser tab is inactive, the browser window is minimized, etc.).
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 Please be informed that nested carousels are not supported, and carousels are frequently not compliant with accessibility rules.
 
@@ -27144,7 +27325,7 @@ Disabled chips (`data-coreui-disabled="true"` on the chip, or the set's `disable
 - Add a descriptive `aria-label` to the chip set element when the group has a meaningful role (e.g., "Applied filters").
 - A selectable set is exposed as a horizontal `role="listbox"` (with `aria-multiselectable` in multiple mode) and each chip becomes a `role="option"` with `aria-selected`; a non-selectable set is a `role="group"`.
 - A chip with a role — an option in a selectable set, or a selectable chip, which is a toggle button — gets a `<span aria-hidden="true">` as its remove affordance rather than a button: a control inside an option or a button cannot be reached in their interaction model, would be announced and never operable, and its label would join the chip's name. Removing stays on <kbd>Backspace</kbd> / <kbd>Delete</kbd> for the keyboard and on the affordance itself for the pointer. A chip without a role keeps a real `<button>` labelled with `ariaRemoveLabel`.
-- Adding and removing chips is announced through [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages) in the live region of the page, or of the modal dialog around the set, one message per update: the values the set did not hold before, or else the values it no longer holds, joined with commas as in `Vue, Svelte added`, and nothing while the set is hidden; customize the wording with the `ariaAddedAnnouncement` and `ariaRemovedAnnouncement` options. A function in place of the word receives the values and returns the whole message, so a page can put the word first, agree it with the number of chips or give a count for a long list, as in `(values) => values.length > 3 ? values.length + ' chips added' : values.join(', ') + ' added'`.
+- Adding and removing chips is announced through [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages) in the live region of the page, or of the modal dialog around the set, one message per update: the values the set did not hold before, or else the values it no longer holds, joined with commas as in `Vue, Svelte added`, and nothing while the set is hidden; customize the wording with the `ariaAddedAnnouncement` and `ariaRemovedAnnouncement` options. A function in place of the word receives the values and returns the whole message, so a page can put the word first, agree it with the number of chips or give a count for a long list, as in `(values) => values.length > 3 ? values.length + ' chips added' : values.join(', ') + ' added'`.
 
 ## Customizing
 
@@ -27234,7 +27415,7 @@ Point `--cui-btn-close-icon` at any SVG to replace the glyph. The mask uses its 
 
 The collapse JavaScript plugin is used to show and hide content. Buttons or anchors are used as triggers that are mapped to specific elements you toggle. Collapsing an element animates its `height` between `0` and the natural size of the content — the browser interpolates the size itself through [`interpolate-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/interpolate-size), and where that is not supported JavaScript measures the two sizes and the stylesheet still times the move. Given how CSS handles animations, you cannot use `padding` on a `.collapse` element. Instead, use the class as an independent wrapping element.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 ## Example
 
@@ -27545,6 +27726,8 @@ Collapse transition classes can be found in `scss/_transitions.scss` as these ar
 # Bootstrap 6 Context Menu
 
 > The Context Menu component opens a menu at the pointer on right-click, long-press or the keyboard's Menu key - built on the Menu engine with the same items, submenus, keyboard navigation and dismissal.
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Overview
 
@@ -29648,7 +29831,7 @@ Here's what you need to know before getting started with the header component:
 - Headers are hidden by default when printing. Force them to be printed by adding `.d-print` to the `.header`. See the [display](https://coreui.io/bootstrap/docs/utilities/display/) utility class.
 - Ensure accessibility by using a `<header>` element or, if using a more generic element such as a `<div>`, add a `role="navigation"` to every header to explicitly identify it as a landmark region for users of assistive technologies.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 Read on for an example and list of supported sub-components.
 
@@ -31233,6 +31416,8 @@ not in `coreui.css`.
 
 > Bootstrap loading buttons are interactive elements that provide visual feedback to users, indicating that an action is being processed. These buttons typically display a loading spinner or animation.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Basic example
 
 Create basic Bootstrap Loading Buttons with different styles: primary, outline, and ghost. These buttons show a loading state when clicked.
@@ -31339,7 +31524,7 @@ myBtnLoading.addEventListener('stop.coreui.loading-button', () => {
 
 - While the button loads with `disabledOnLoading`, it keeps focus. It gets `aria-disabled="true"` and the `.disabled` class rather than the `disabled` attribute, and activating it does nothing until it stops; a disabled state the page set itself is left alone.
 - While it loads, the spinner is named by `ariaLoadingLabel`, so the button reads as "Loading Save" to anyone who reaches it.
-- When the button has focus, the start of loading is announced through [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages) as its name followed by `ariaLoadingLabel` ("Save, Loading"), and the end, politely, as its name again. Nothing is announced while focus is elsewhere.
+- When the button has focus, the start of loading is announced through [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages) as its name followed by `ariaLoadingLabel` ("Save, Loading"), and the end, politely, as its name again. Nothing is announced while focus is elsewhere.
 
 
 ---
@@ -32132,7 +32317,7 @@ myModal.addEventListener('shown.coreui.modal', () => {
 })
 ```
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 > ### Migrating from v5
 > 
@@ -33426,7 +33611,7 @@ Here's what you need to know before getting started with the navbar:
 - Indicate the current item by using `aria-current="page"` for the current page or `aria-current="true"` for the current item in a set.
 - Navbars can be themed with CSS variables that are scoped to the `.navbar` base class. `.navbar-dark` overrides those variables rather than adding styles of its own.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 ## Supported content
 
@@ -34344,7 +34529,7 @@ The Bootstrap Offcanvas component serves as a sidebar element that can be activa
 
 **Attention!** Due to CSS animation handling, `margin` or `translate` cannot be applied to an `.offcanvas` element. Instead, utilize the class as a separate wrapping element.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 > #### Migrating from v5
 > 
@@ -35091,7 +35276,7 @@ Things to know when using the popover plugin:
 
 > By default, this component utilizes the built-in content sanitizer, which removes any HTML elements that are not explicitly allowed. Refer to the [sanitizer section in our JavaScript documentation](https://coreui.io/bootstrap/docs/getting-started/javascript/#sanitizer) for more details.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 Keep reading to see how popovers work with some examples.
 
@@ -37215,7 +37400,7 @@ Bootstrap "spinners" can be used to show the loading state in your projects. The
 
 For accessibility purposes, each loader here includes `role="status"` and a nested `<span class="visually-hidden">Loading...</span>`. When a spinner sits next to text that says what is loading, as in the [buttons](#buttons) below, give the spinner `aria-hidden="true"` and put `role="status"` on that text instead, so a screen reader reads the message once.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 ## Border spinner
 
@@ -37723,7 +37908,7 @@ Things to know when using the toast plugin:
 - Toasts are opt-in for performance reasons, so **you must initialize them yourself**.
 - Toasts will automatically hide if you do not specify `autohide: false`.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 ## Examples
 
@@ -38048,7 +38233,7 @@ You can also get fancy with flexbox utilities to align toasts horizontally and/o
 
 ## Toaster
 
-Toasts you create at runtime — from a form submission, a request that settled, a background job — come from the [Toaster](https://coreui.io/bootstrap/docs/components/toaster/): a store keyed by id with `add()`, `update()`, `close()` and `promise()`, its own placed container, announcements through [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages), a visible-toasts limit and screen-reader priority. The markup and classes on this page are what it renders.
+Toasts you create at runtime — from a form submission, a request that settled, a background job — come from the [Toaster](https://coreui.io/bootstrap/docs/components/toaster/): a store keyed by id with `add()`, `update()`, `close()` and `promise()`, its own placed container, announcements through [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages), a visible-toasts limit and screen-reader priority. The markup and classes on this page are what it renders.
 
 ## Accessibility
 
@@ -38529,7 +38714,7 @@ const inline = new coreui.Toaster('#notifications')
 
 ## Accessibility
 
-The container is a `region` landmark named by `ariaLabel` (`Notifications` by default), so screen-reader users can jump to it through landmark navigation. Every toast is read through [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages) when it is added or updated: its `title` and `description` go to the polite live region of the page, or to the assertive one with `priority: 'high'`, as a message of their own, so toasts raised together are each announced instead of the last one overwriting the others. The message is sent once and belongs to the page, not to the container, so it still reaches the region when the toaster is disposed right after, and while a modal dialog is open it goes to a region inside that dialog, the one the toaster sits in included. Updating or removing a toast takes its message out of the region. Only that text is announced, never the close button or the action, and the toast element itself carries no live role. A toast added while a modal dialog plays its closing transition, or from `hidden.coreui.modal`, is announced on the page half a second after the dialog has closed, once the page is back for the screen reader; [Announcing messages](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages) has the measurements. The close button is named by `ariaCloseLabel` (`Close` by default); set it once for the whole toaster in a translated interface. `normal`, the default, waits until the user is idle, unless the toast is added together with a `high` one, which takes both to the assertive region; keep `high` for the few messages that should interrupt, such as a failed save (WCAG 4.1.3 Status Messages).
+The container is a `region` landmark named by `ariaLabel` (`Notifications` by default), so screen-reader users can jump to it through landmark navigation. Every toast is read through [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages) when it is added or updated: its `title` and `description` go to the polite live region of the page, or to the assertive one with `priority: 'high'`, as a message of their own, so toasts raised together are each announced instead of the last one overwriting the others. The message is sent once and belongs to the page, not to the container, so it still reaches the region when the toaster is disposed right after, and while a modal dialog is open it goes to a region inside that dialog, the one the toaster sits in included. Updating or removing a toast takes its message out of the region. Only that text is announced, never the close button or the action, and the toast element itself carries no live role. A toast added while a modal dialog plays its closing transition, or from `hidden.coreui.modal`, is announced on the page half a second after the dialog has closed, once the page is back for the screen reader; [Announcing messages](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages) has the measurements. The close button is named by `ariaCloseLabel` (`Close` by default); set it once for the whole toaster in a translated interface. `normal`, the default, waits until the user is idle, unless the toast is added together with a `high` one, which takes both to the assertive region; keep `high` for the few messages that should interrupt, such as a failed save (WCAG 4.1.3 Status Messages).
 
 Auto-hiding is a time limit on reading, which WCAG 2.2.1 Timing Adjustable asks you to let the user turn off, adjust or extend. Timers stop while the pointer or focus is inside the container (`pauseOnHover`), so a spread stack or a toast being read does not disappear mid-way, and the default `timeout` is the toaster's to set for the whole page. A toast with an action, or one the user must act on, should not hide on its own: give it `timeout: 0`, so keyboard and screen-reader users can reach the button. Toasts never take focus.
 
@@ -38574,7 +38759,7 @@ const id = toaster.add({ title: 'Saved', description: 'Your changes are live.', 
 | `instant` | boolean | `false` | Skip the fade (`.toast-instant`). |
 | `onClose` | function | — | Called when the toast starts hiding, with the toast object. |
 | `onRemove` | function | — | Called after the toast left the DOM, with the toast object. |
-| `priority` | string | `'normal'` | Which live region announces the toast, as in [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages): `'normal'` the polite one, `'high'` the assertive one, which also takes the normal toasts added together with it. |
+| `priority` | string | `'normal'` | Which live region announces the toast, as in [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages): `'normal'` the polite one, `'high'` the assertive one, which also takes the normal toasts added together with it. |
 | `theme` | string | — | Adds `theme-{color}`. |
 | `timeout` | number | toaster's `timeout` | Time (ms) before this toast hides; `0` keeps it. |
 | `title` | string, element, function | — | Header of the toast, with the close button next to it. |
@@ -38753,7 +38938,7 @@ Got all that? Awesome! Now, let's explore how they work through some examples.
 
 > By default, this component utilizes the built-in content sanitizer, which removes any HTML elements that are not explicitly allowed. Refer to the [sanitizer section in our JavaScript documentation](https://coreui.io/bootstrap/docs/getting-started/javascript/#sanitizer) for more details.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 Got all that? Great, let's see how they work with some examples.
 
@@ -39442,7 +39627,7 @@ What the transfer adds is the crossing. Each move button is named — `ariaMoveT
 
 The move happens away from the focus, and the button that did it usually turns off in the process — a list with nothing selected left. Rather than dropping the focus on the document, the plugin puts it on the first option that just arrived.
 
-Every move, either way, adds a message of its own to the live region of the page through [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages), the same move made twice included: `ariaMovedAnnouncement` is `'{count} moved to {title}'` by default, with `{title}` the destination's title. `{count}` and `{title}` are replaced wherever they appear, so the sentence can be reordered for a translation.
+Every move, either way, adds a message of its own to the live region of the page through [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages), the same move made twice included: `ariaMovedAnnouncement` is `'{count} moved to {title}'` by default, with `{title}` the destination's title. `{count}` and `{title}` are replaced wherever they appear, so the sentence can be reordered for a translation.
 
 | Key | Action |
 | --- | --- |
@@ -40005,7 +40190,7 @@ Focus ring utilities are declared in our utilities API in `scss/_utilities.scss`
 
 Add `.hover-lift` to any element to translate it upward and deepen its `box-shadow` on `:hover` and `:focus-visible`. It is a lightweight way to signal that a card, tile or other surface is interactive.
 
-The effect sets only `transform` and `box-shadow`, so it composes with anything — cards, buttons, list items, plain containers — and it honours [`prefers-reduced-motion`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion): a reader who asks for reduced motion still gets the raised shadow and offset, without the animation.
+The effect sets only `transform` and `box-shadow`, so it composes with anything — cards, buttons, list items, plain containers — and it honours [`prefers-reduced-motion`](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/): a reader who asks for reduced motion still gets the raised shadow and offset, without the animation.
 
 ## Example
 
@@ -44708,7 +44893,7 @@ Line height utilities are declared in our utilities API in `scss/_utilities.scss
 
 ## Link opacity
 
-Change the alpha opacity of the link colour with `.link-{percentage}` utilities — `color-mix()` fades `--cui-link-color` towards `transparent`. Please be aware that changes to a color's opacity can lead to links with [*insufficient* contrast](https://coreui.io/bootstrap/docs/getting-started/accessibility/#color-contrast).
+Change the alpha opacity of the link colour with `.link-{percentage}` utilities — `color-mix()` fades `--cui-link-color` towards `transparent`. Please be aware that changes to a color's opacity can lead to links with [*insufficient* contrast](https://coreui.io/bootstrap/docs/accessibility/color-contrast/).
 
 ```html
 <p><a class="link-10" href="#">Link opacity 10</a></p>
@@ -45113,7 +45298,7 @@ Both stand down under `prefers-reduced-motion: reduce` while `$enable-reduced-mo
 
 `.transition-none` and `.animation-none` apply whatever the reader's motion preference is. Reach for them when the motion has to go in every case.
 
-You do not need it to honour that preference: with `$enable-reduced-motion` on, which is the default, every component transition is already wrapped in `prefers-reduced-motion: no-preference`. See [reduced motion](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+You do not need it to honour that preference: with `$enable-reduced-motion` on, which is the default, every component transition is already wrapped in `prefers-reduced-motion: no-preference`. See [reduced motion](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 To remove every transition at build time instead, set the `$enable-transitions` Sass option to `false`.
 
@@ -48527,7 +48712,7 @@ modal dialog, native or marked with `aria-modal="true"` like the panel of a
 date picker, since a modal dialog leaves the rest of the page inert. `priority`
 takes the values of `ariaNotify()`, `'normal'` and `'high'`. Toaster
 announces its toasts through it. See
-[Accessibility](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages).
+[Accessibility](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages).
 
 ### Components
 
@@ -49949,7 +50134,7 @@ the one the stylesheet shows for it (after it, or in the `.form-field` around
 the controls the [field page](https://coreui.io/bootstrap/docs/forms/field/) lists) or the one named in
 `data-coreui-invalid-feedback`, so the message is read with the field. The panes used to read out every message that appeared in them;
 a message that changes while the user types is now silent, so pass the ones
-that have to be heard to [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages).
+that have to be heard to [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages).
 Going back to an earlier step no longer validates the current one.
 `stepValidationComplete.coreui.stepper` now fires before the stepper decides,
 as `validate.coreui.form` does, so a validity its handler sets with

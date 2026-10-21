@@ -2,6 +2,8 @@
 
 > Create a start and end date field with a multi-month calendar popup. Users type both dates into section-based masks or pick the range from the calendar, with optional predefined ranges.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 ### Days

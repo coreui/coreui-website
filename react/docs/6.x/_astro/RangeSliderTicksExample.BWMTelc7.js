@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CRangeSlider.C4V7uyK7.js";e();var r=t(),i=()=>(0,r.jsx)(n,{ticks:[`Start`,`Middle`,`End`],defaultValue:[30,70],ariaLabel:[`Minimum progress`,`Maximum progress`]});export{i as RangeSliderTicksExample};

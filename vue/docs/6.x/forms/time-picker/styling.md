@@ -2,6 +2,8 @@
 
 > Learn how to customize the Vue Time Picker component with CSS classes, variables, and Sass for flexible styling and seamless integration into your design.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ### CSS variables
 
 The field is a [`.form-control-group`](https://coreui.io/vue/docs/forms/form-control-group/styling/#css-variables) on the picker element itself, so its frame, the cleaner and the toggle read the `--cui-control-*` and `--cui-control-group-*` tokens. `class` and `style` on `<CTimePicker>` land on that element; set the tokens there to restyle one field.

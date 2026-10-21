@@ -11,7 +11,7 @@ Things to know when using the toast plugin:
 - Toasts are opt-in for performance reasons, so **you must initialize them yourself**.
 - Toasts will automatically hide if you do not specify `autohide: false`.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 ## Examples
 
@@ -336,7 +336,7 @@ You can also get fancy with flexbox utilities to align toasts horizontally and/o
 
 ## Toaster
 
-Toasts you create at runtime — from a form submission, a request that settled, a background job — come from the [Toaster](https://coreui.io/bootstrap/docs/components/toaster/): a store keyed by id with `add()`, `update()`, `close()` and `promise()`, its own placed container, announcements through [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages), a visible-toasts limit and screen-reader priority. The markup and classes on this page are what it renders.
+Toasts you create at runtime — from a form submission, a request that settled, a background job — come from the [Toaster](https://coreui.io/bootstrap/docs/components/toaster/): a store keyed by id with `add()`, `update()`, `close()` and `promise()`, its own placed container, announcements through [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages), a visible-toasts limit and screen-reader priority. The markup and classes on this page are what it renders.
 
 ## Accessibility
 

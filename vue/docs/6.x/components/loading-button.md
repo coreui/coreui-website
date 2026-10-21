@@ -2,6 +2,8 @@
 
 > Vue loading buttons are interactive elements that provide visual feedback to users, indicating that an action is being processed. These buttons typically display a loading spinner or animation.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 Create basic Vue Loading Buttons with different styles: primary, outline, and ghost. These buttons show a loading state when clicked.
@@ -60,7 +62,7 @@ import { CLoadingButton } from '@coreui/vue-pro'
 
 - While the button loads with `disabledOnLoading`, it keeps focus. It gets `aria-disabled="true"` and the `.disabled` class rather than the `disabled` attribute, and activating it does nothing until it stops.
 - While it loads, the spinner is named by `ariaLoadingLabel`, so the button reads as "Loading Save" to anyone who reaches it.
-- When the button has focus, the start of loading is announced through [`announce()`](https://coreui.io/vue/docs/getting-started/accessibility/#announcing-messages) as its name followed by `ariaLoadingLabel` ("Save, Loading"), and the end, politely, as its name again. Nothing is announced while focus is elsewhere.
+- When the button has focus, the start of loading is announced through [`announce()`](https://coreui.io/vue/docs/accessibility/screen-readers/#announcing-messages) as its name followed by `ariaLoadingLabel` ("Save, Loading"), and the end, politely, as its name again. Nothing is announced while focus is elsewhere.
 
 ## API
 

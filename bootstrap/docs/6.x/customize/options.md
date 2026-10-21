@@ -15,13 +15,13 @@ You can find and customize these variables for key global options in CoreUI for 
 | `$enable-shadows`              | `true` or `false` (default)        | Enables predefined decorative `box-shadow` styles on various components. The `--cui-*-box-shadow` component tokens are always declared, but they render only with this option on. Does not affect `box-shadow`s used for focus states. |
 | `$enable-gradients`            | `true` or `false` (default)        | Enables predefined gradients via `background-image` styles on various components. |
 | `$enable-transitions`          | `true` (default) or `false`        | Enables predefined `transition`s on various components. |
-| `$enable-reduced-motion`       | `true` (default) or `false`        | Enables the [`prefers-reduced-motion` media query](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion), which suppresses certain animations/transitions based on the users' browser/operating system preferences. |
+| `$enable-reduced-motion`       | `true` (default) or `false`        | Enables the [`prefers-reduced-motion` media query](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/), which suppresses certain animations/transitions based on the users' browser/operating system preferences. |
 | `$enable-grid-classes`         | `true` (default) or `false`        | Enables the generation of CSS classes for the grid system (e.g. `.row`, `.col-md-1`, etc.). |
 | `$enable-container-classes`    | `true` (default) or `false`        | Enables the generation of CSS classes for layout containers. |
 | `$enable-cssgrid`              | `true` (default) or `false`        | Enables the generation of the [CSS Grid layout](https://coreui.io/bootstrap/docs/layout/css-grid/) classes (e.g. `.grid`, `.g-col-6`). |
 | `$enable-caret`                | `true` (default) or `false`        | Enables pseudo element caret on `.dropdown-toggle`. |
 | `$enable-button-pointers`      | `true` (default) or `false`        | Add "hand" cursor to non-disabled button elements. |
 | `$enable-deprecation-messages` | `true` (default) or `false`        | Set to `false` to hide warnings when using any of the deprecated variables, mixins and functions that are planned to be removed in the next major. |
-| `$enable-smooth-scroll`        | `true` (default) or `false`        | Applies `scroll-behavior: smooth` globally, except for users asking for reduced motion through [`prefers-reduced-motion` media query](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion) |
+| `$enable-smooth-scroll`        | `true` (default) or `false`        | Applies `scroll-behavior: smooth` globally, except for users asking for reduced motion through [`prefers-reduced-motion` media query](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/) |
 | `$enable-ltr`                  | `true` (default) or `false`        | Enables Left-to-Right |
 | `$enable-rtl`                  | `true` (default) or `false`        | Enables Right-to-Left |

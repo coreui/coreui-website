@@ -14,7 +14,7 @@ Here's what you need to know before getting started with the navbar:
 - Indicate the current item by using `aria-current="page"` for the current page or `aria-current="true"` for the current item in a set.
 - Navbars can be themed with CSS variables that are scoped to the `.navbar` base class. `.navbar-dark` overrides those variables rather than adding styles of its own.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 ## Supported content
 

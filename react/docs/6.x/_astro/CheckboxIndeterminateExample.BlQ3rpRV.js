@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CCheckbox.DyUlQQNa.js";import{t as r}from"./CFormField.wln2sYZ9.js";e();var i=t(),a=()=>(0,i.jsx)(r,{children:(0,i.jsx)(n,{id:`checkIndeterminate`,label:`Indeterminate checkbox`,indeterminate:!0})});export{a as CheckboxIndeterminateExample};

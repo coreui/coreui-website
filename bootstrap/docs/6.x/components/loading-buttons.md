@@ -2,6 +2,8 @@
 
 > Bootstrap loading buttons are interactive elements that provide visual feedback to users, indicating that an action is being processed. These buttons typically display a loading spinner or animation.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Basic example
 
 Create basic Bootstrap Loading Buttons with different styles: primary, outline, and ghost. These buttons show a loading state when clicked.
@@ -108,4 +110,4 @@ myBtnLoading.addEventListener('stop.coreui.loading-button', () => {
 
 - While the button loads with `disabledOnLoading`, it keeps focus. It gets `aria-disabled="true"` and the `.disabled` class rather than the `disabled` attribute, and activating it does nothing until it stops; a disabled state the page set itself is left alone.
 - While it loads, the spinner is named by `ariaLoadingLabel`, so the button reads as "Loading Save" to anyone who reaches it.
-- When the button has focus, the start of loading is announced through [`announce()`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#announcing-messages) as its name followed by `ariaLoadingLabel` ("Save, Loading"), and the end, politely, as its name again. Nothing is announced while focus is elsewhere.
+- When the button has focus, the start of loading is announced through [`announce()`](https://coreui.io/bootstrap/docs/accessibility/screen-readers/#announcing-messages) as its name followed by `ariaLoadingLabel` ("Save, Loading"), and the end, politely, as its name again. Nothing is announced while focus is elsewhere.

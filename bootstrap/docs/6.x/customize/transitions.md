@@ -113,7 +113,7 @@ Five options, from the narrowest to the widest:
 2. Add the [`.transition-none` utility](https://coreui.io/bootstrap/docs/utilities/motion/) to one element, which removes every transition on it rather than just the component's own.
 3. Set a `-duration` variable to `0s` for one component or a whole subtree.
 4. Set `$enable-transitions` to `false` to remove every transition at build time.
-5. Leave it to the reader: with `$enable-reduced-motion` on, which is the default, every transition is wrapped in `prefers-reduced-motion: no-preference`, so anyone who asks their system for less motion already gets instant state changes. See [reduced motion](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+5. Leave it to the reader: with `$enable-reduced-motion` on, which is the default, every transition is wrapped in `prefers-reduced-motion: no-preference`, so anyone who asks their system for less motion already gets instant state changes. See [reduced motion](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 Whichever you use, JavaScript reads the element's computed `transition-duration` before it waits. A duration of `0s` resolves events and promises on the next tick rather than hanging for a transition that never runs.
 

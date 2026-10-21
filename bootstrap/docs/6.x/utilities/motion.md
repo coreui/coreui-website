@@ -44,7 +44,7 @@ Both stand down under `prefers-reduced-motion: reduce` while `$enable-reduced-mo
 
 `.transition-none` and `.animation-none` apply whatever the reader's motion preference is. Reach for them when the motion has to go in every case.
 
-You do not need it to honour that preference: with `$enable-reduced-motion` on, which is the default, every component transition is already wrapped in `prefers-reduced-motion: no-preference`. See [reduced motion](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+You do not need it to honour that preference: with `$enable-reduced-motion` on, which is the default, every component transition is already wrapped in `prefers-reduced-motion: no-preference`. See [reduced motion](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 To remove every transition at build time instead, set the `$enable-transitions` Sass option to `false`.
 

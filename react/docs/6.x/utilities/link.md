@@ -4,7 +4,7 @@
 
 ## Link opacity
 
-Change the alpha opacity of the link colour with `.link-{percentage}` utilities — `color-mix()` fades `--cui-link-color` towards `transparent`. Please be aware that changes to a color's opacity can lead to links with [*insufficient* contrast](https://coreui.io/react/docs/getting-started/accessibility/#color-contrast).
+Change the alpha opacity of the link colour with `.link-{percentage}` utilities — `color-mix()` fades `--cui-link-color` towards `transparent`. Please be aware that changes to a color's opacity can lead to links with [*insufficient* contrast](https://coreui.io/react/docs/accessibility/color-contrast/).
 
 ```html
 <p><a className="link-10" href="#">Link opacity 10</a></p>

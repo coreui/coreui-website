@@ -2,6 +2,8 @@
 
 > The Vue Time Picker Component offers a seamless way for users to select time values in any Vue-based application.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 To create a basic Vue Time Picker, use:

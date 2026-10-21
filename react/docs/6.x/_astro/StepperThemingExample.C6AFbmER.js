@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CStepper.CvSyjZAf.js";e();var r=t(),i=()=>(0,r.jsx)(n,{theme:`success`,defaultActiveStepNumber:3,steps:[{label:`Account`},{label:`Profile`},{label:`Confirmation`}]});export{i as StepperThemingExample};

@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.DT-hBGUv.js";import"./CMenuContent.Dl9Bp9Sa.js";var n=t({name:`CMenuHeader`,props:{as:{type:String,default:`h6`}},setup(t,{slots:n}){return()=>e(t.as,{class:`menu-header`},n.default&&n.default())}});export{n as t};

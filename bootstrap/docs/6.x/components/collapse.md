@@ -6,7 +6,7 @@
 
 The collapse JavaScript plugin is used to show and hide content. Buttons or anchors are used as triggers that are mapped to specific elements you toggle. Collapsing an element animates its `height` between `0` and the natural size of the content — the browser interpolates the size itself through [`interpolate-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/interpolate-size), and where that is not supported JavaScript measures the two sizes and the stylesheet still times the move. Given how CSS handles animations, you cannot use `padding` on a `.collapse` element. Instead, use the class as an independent wrapping element.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 ## Example
 

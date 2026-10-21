@@ -2,6 +2,8 @@
 
 > Vue Context Menu opens a menu at the pointer on right-click or the keyboard's Menu key - built on the Menu component with the same items, submenus, keyboard navigation and dismissal.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 _Added in 6.0.0._

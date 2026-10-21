@@ -19,7 +19,7 @@ Things to know when using the popover plugin:
 
 > By default, this component utilizes the built-in content sanitizer, which removes any HTML elements that are not explicitly allowed. Refer to the [sanitizer section in our JavaScript documentation](https://coreui.io/bootstrap/docs/getting-started/javascript/#sanitizer) for more details.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 Keep reading to see how popovers work with some examples.
 

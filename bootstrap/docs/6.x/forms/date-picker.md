@@ -2,6 +2,8 @@
 
 > Create a date field with a calendar popup. Users type the date into a section-based mask or pick it from the calendar, and the two stay in sync.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 Below is an example of a basic Date Picker.

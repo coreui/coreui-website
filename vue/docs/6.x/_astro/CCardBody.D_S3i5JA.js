@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.DT-hBGUv.js";import"./CCard.CpTAldnt.js";var n=t({name:`CCardBody`,setup(t,{slots:n}){return()=>e(`div`,{class:`card-body`},n.default&&n.default())}});export{n as t};

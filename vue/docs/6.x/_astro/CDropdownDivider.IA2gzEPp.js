@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.DT-hBGUv.js";/* empty css                                  */var n=t({name:`CDropdownDivider`,setup(){return()=>e(`hr`,{class:`dropdown-divider`})}});export{n as t};

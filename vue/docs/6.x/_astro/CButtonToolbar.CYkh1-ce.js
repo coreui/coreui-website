@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.DT-hBGUv.js";/* empty css                                  */var n=t({name:`CButtonToolbar`,setup(t,{slots:n}){return()=>e(`div`,{class:`btn-toolbar`},n.default&&n.default())}});export{n as t};

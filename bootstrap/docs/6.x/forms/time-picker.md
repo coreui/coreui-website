@@ -2,6 +2,8 @@
 
 > Create a time field with a popup. Users type the time into a section-based mask or pick it from the rolls, and the two stay in sync.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 Type into the masked field or pick from the roll. The two halves share one

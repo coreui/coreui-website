@@ -1,0 +1,1 @@
+import{x as e}from"./runtime-core.esm-bundler.DT-hBGUv.js";import{t}from"./CChip.DD7iom71.js";var n=(n=[])=>n.map(n=>{if(typeof n==`string`)return e(t,{value:n,key:n},{default:()=>n});let{value:r,label:i,...a}=n;return e(t,{value:r,key:r,...a},{default:()=>i??r})});export{n as t};

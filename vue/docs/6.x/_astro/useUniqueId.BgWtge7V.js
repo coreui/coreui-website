@@ -1,0 +1,1 @@
+import{Y as e}from"./runtime-core.esm-bundler.DT-hBGUv.js";var t=(t=``)=>{let n=e([]);return{getUID:()=>{let e;do e=`${t}${Math.floor(Math.random()*1e6)}`;while(n.value.includes(e));return n.value.push(e),e}}};export{t};

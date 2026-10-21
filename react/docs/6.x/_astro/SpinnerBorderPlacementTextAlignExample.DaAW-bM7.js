@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CSpinner.DmbsU9PH.js";e();var r=t(),i=()=>(0,r.jsx)(`div`,{className:`text-center`,children:(0,r.jsx)(n,{})});export{i as SpinnerBorderPlacementTextAlignExample};

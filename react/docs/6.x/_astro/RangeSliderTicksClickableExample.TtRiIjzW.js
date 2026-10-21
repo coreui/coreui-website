@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CRangeSlider.C4V7uyK7.js";e();var r=t(),i=()=>(0,r.jsx)(n,{clickableTicks:!1,ticks:[`Low`,`Medium`,`High`],defaultValue:[20,80],ariaLabel:[`Minimum level`,`Maximum level`]});export{i as RangeSliderTicksClickableExample};

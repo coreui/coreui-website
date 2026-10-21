@@ -2,6 +2,8 @@
 
 > Learn how to customize the Vue Autocomplete component with CSS classes, variables, and Sass for flexible styling and seamless integration into your design.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ### CSS variables
 
 Autocomplete has no variables of its own: the field is a [`.form-control-group`](https://coreui.io/vue/docs/forms/form-control-group/styling/#css-variables) and takes the `--cui-control-*` properties, while the options panel is the shared combobox surface, which only sizes itself.

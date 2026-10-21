@@ -2,6 +2,8 @@
 
 > Enhance your forms with our customizable Vue Range Slider component for advanced range selection.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 The **Vue Range Slider** component allows users to select a value or range of values within a predefined range. It renders the markup of the [range](https://coreui.io/vue/docs/forms/range/): a `<div class="form-range">` with one native `<input type="range">` per handle, so it looks like a range and reads its tokens, and adds what the range does not have: several handles on one track, `distance` between them, a press on the track that moves the nearest handle, clickable ticks and a vertical orientation. `class`, `style`, `theme`, `dir`, `hidden` and `role` land on the `.form-range`, which is a group named by a string in `aria-label` or by `aria-labelledby`; other input attributes, such as `aria-describedby`, reach every handle, and `id` and `autofocus` the first one.

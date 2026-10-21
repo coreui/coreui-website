@@ -1,0 +1,5 @@
+import{H as e,_ as t,i as n,j as r,p as i,v as a}from"./runtime-core.esm-bundler.DT-hBGUv.js";import{t as o}from"./CProgress.CziyWrNP.js";import{t as s}from"./_plugin-vue_export-helper.BDNMzG2s.js";var c={__name:`ProgressGradientExample`,setup(e,{expose:t}){t();let n={get CProgress(){return o}};return Object.defineProperty(n,"__isScriptSetup",{enumerable:!1,value:!0}),n}};function l(o,s,c,l,u,d){return r(),i(n,null,[a(l.CProgress,{value:45,style:{"--cui-progress-bar-bg-image":`linear-gradient(to right, #e6412c, #ffb400, #ffe25a)`}}),a(l.CProgress,{value:70,style:{"--cui-progress-bar-bg-image":`linear-gradient(
+        to right,
+        var(--cui-info-base),
+        var(--cui-success-base)
+      )`}},{default:e(()=>[...s[0]||=[t(` 70% `,-1)]]),_:1})],64)}var u=s(c,[[`render`,l]]);export{u as default};

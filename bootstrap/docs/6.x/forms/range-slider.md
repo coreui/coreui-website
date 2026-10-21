@@ -2,6 +2,8 @@
 
 > Enhance your forms with our customizable Bootstrap 6 Range Slider component for advanced range selection.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 The **Bootstrap 6 Range Slider** component allows users to select a value or range of values within a predefined range. It builds the markup of the [range](https://coreui.io/bootstrap/docs/forms/range/) from its options: a `<div class="form-range">` inside the element, with one native `.form-range-input` per handle, so it looks like a range and takes its tokens. The slider adds what the range does not have: several handles kept in order and `distance` apart on one track, a press on the track that moves the nearest handle, clickable ticks and a vertical orientation. Its options are one place to configure the handles, ticks, tooltips and orientation.

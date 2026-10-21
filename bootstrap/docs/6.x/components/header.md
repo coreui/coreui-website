@@ -12,7 +12,7 @@ Here's what you need to know before getting started with the header component:
 - Headers are hidden by default when printing. Force them to be printed by adding `.d-print` to the `.header`. See the [display](https://coreui.io/bootstrap/docs/utilities/display/) utility class.
 - Ensure accessibility by using a `<header>` element or, if using a more generic element such as a `<div>`, add a `role="navigation"` to every header to explicitly identify it as a landmark region for users of assistive technologies.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/).
 
 Read on for an example and list of supported sub-components.
 

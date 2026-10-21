@@ -2,6 +2,8 @@
 
 > Build multi-step forms and wizards easily with the Vue Stepper component. Create advanced Vue form flows with custom indicators, validation, and flexible layouts using Vue 3.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 The **Vue Stepper** component helps you build intuitive, multi-step form experiences (Vue Form Wizards) for your Vue.js applications. It supports horizontal and vertical layouts, built-in form validation, customizable indicators, and full slot-based control over step content.
 
 If you're looking for a Vue Form Wizard or a fully flexible Vue Stepper, this component offers a robust and accessible solution.
@@ -738,7 +740,7 @@ The CoreUI Stepper Component is built with accessibility in mind:
 - **The vertical layout is a list of expandable steps.** Each step holds its own content, and a tablist cannot own the form controls of the open step, so none of the tab roles are written there: the list stays a list, each step stays a list item, and the buttons carry `aria-expanded` rather than `aria-selected`.
 - When the step changes while focus is inside the stepper, or the change takes focus away (for example when the **Next** or **Reset** button that triggered it is no longer rendered), focus moves to the button of the new step, so a screen reader reads which step the user is on. A step changed from a control that stays outside the stepper leaves focus where it is.
 - When a step whose form has `novalidate` fails validation, the invalid controls get `aria-invalid="true"` and focus moves to the first of them that can take focus, as the browser does for a form without `novalidate`.
-- While the stepper marks a control invalid, its invalid feedback is added to its `aria-describedby`, the elements named in `data-coreui-invalid-feedback` or else the `.invalid-feedback` and `.invalid-tooltip` that follow it, which covers `feedback-invalid`, so the validation message is read with the field when focus moves to it. When focus is already on the first invalid control, or no invalid control can take focus, the message is announced through [`announce()`](https://coreui.io/vue/docs/getting-started/accessibility/#announcing-messages) instead, or the browser's validation message when the control has none. The stepper does not rely on `aria-errormessage`, which VoiceOver does not read, and the panes are not live regions, so they do not repeat the message.
+- While the stepper marks a control invalid, its invalid feedback is added to its `aria-describedby`, the elements named in `data-coreui-invalid-feedback` or else the `.invalid-feedback` and `.invalid-tooltip` that follow it, which covers `feedback-invalid`, so the validation message is read with the field when focus moves to it. When focus is already on the first invalid control, or no invalid control can take focus, the message is announced through [`announce()`](https://coreui.io/vue/docs/accessibility/screen-readers/#announcing-messages) instead, or the browser's validation message when the control has none. The stepper does not rely on `aria-errormessage`, which VoiceOver does not read, and the panes are not live regions, so they do not repeat the message.
 - Keyboard navigation is fully supported.
 
 Thanks to these features, your form wizard will be fully compliant with WCAG and modern accessibility standards without additional work.

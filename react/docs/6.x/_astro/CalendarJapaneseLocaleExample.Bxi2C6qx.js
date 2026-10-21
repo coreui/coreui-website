@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{n}from"./CCalendar.TxFC3S4z.js";e();var r=t(),i=()=>(0,r.jsx)(`div`,{className:`d-flex justify-content-center`,children:(0,r.jsx)(n,{className:`border rounded`,locale:`ja`})});export{i as CalendarJapaneseLocaleExample};

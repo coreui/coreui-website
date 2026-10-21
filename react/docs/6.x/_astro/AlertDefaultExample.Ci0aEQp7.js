@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CAlert.BjZcNprn.js";e();var r=t(),i=()=>(0,r.jsx)(n,{children:`A simple alert—check it out!`});export{i as AlertDefaultExample};

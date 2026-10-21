@@ -2,6 +2,8 @@
 
 > Learn how to customize the Vue Context Menu component with CSS classes, variables, and Sass for flexible styling and seamless integration into your design.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 The menu a context menu opens is a regular menu, so it is styled by the [Menu](https://coreui.io/vue/docs/components/menu/styling/) tokens.
 
 ## CSS variables

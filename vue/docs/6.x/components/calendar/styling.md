@@ -2,6 +2,8 @@
 
 > Learn how to customize the Vue Calendar component with CSS classes, variables, and Sass for flexible styling and seamless integration into your design.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 Each panel is a `.calendar` element carrying its position in `data-coreui-calendar-index`, counted from `0`, and the content of every cell names the view it belongs to: `.calendar-cell-inner.day`, `.month`, `.quarter` or `.year`. The navigation buttons carry the class of their action: `.btn-double-prev`, `.btn-prev`, `.btn-month`, `.btn-year`, `.btn-next` and `.btn-double-next`. The vanilla, React and Vue calendars carry the same hooks, so a stylesheet written against one fits the others.
 
 ## CSS variables

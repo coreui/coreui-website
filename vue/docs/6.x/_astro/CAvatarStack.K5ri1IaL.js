@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.DT-hBGUv.js";import"./CAvatar.2meUi9gq.js";var n=t({name:`CAvatarStack`,props:{size:{type:String,validator:e=>[`xs`,`sm`,`md`,`lg`,`xl`].includes(e)}},setup(t,{slots:n}){return()=>e(`div`,{class:[`avatar-stack`,{[`avatar-stack-${t.size}`]:t.size}]},n.default&&n.default())}});export{n as t};

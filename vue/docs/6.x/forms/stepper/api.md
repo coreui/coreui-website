@@ -2,6 +2,8 @@
 
 > Explore the API reference for the Vue Stepper component and discover how to effectively utilize its props for customization.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 Full API documentation for the CStepper component, including all available props, customization options, and integration tips for building advanced multi-step forms and wizards in Vue.
 
 ## CStepper

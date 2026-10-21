@@ -6,7 +6,7 @@
 
 Add `.hover-lift` to any element to translate it upward and deepen its `box-shadow` on `:hover` and `:focus-visible`. It is a lightweight way to signal that a card, tile or other surface is interactive.
 
-The effect sets only `transform` and `box-shadow`, so it composes with anything — cards, buttons, list items, plain containers — and it honours [`prefers-reduced-motion`](https://coreui.io/bootstrap/docs/getting-started/accessibility/#reduced-motion): a reader who asks for reduced motion still gets the raised shadow and offset, without the animation.
+The effect sets only `transform` and `box-shadow`, so it composes with anything — cards, buttons, list items, plain containers — and it honours [`prefers-reduced-motion`](https://coreui.io/bootstrap/docs/accessibility/reduced-motion/): a reader who asks for reduced motion still gets the raised shadow and offset, without the animation.
 
 ## Example
 

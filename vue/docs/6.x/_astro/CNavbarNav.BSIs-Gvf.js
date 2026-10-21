@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.DT-hBGUv.js";/* empty css                                  */var n=t({name:`CNavbarNav`,props:{as:{type:String,default:`ul`},scroll:Boolean},setup(t,{slots:n}){return()=>e(t.as,{class:[`navbar-nav`,{"navbar-nav-scroll":t.scroll}],role:`navigation`},n.default&&n.default())}});export{n as t};

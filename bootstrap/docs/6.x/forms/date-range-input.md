@@ -2,6 +2,8 @@
 
 > Create a start and end date field in one frame. Both ends use the section-based mask of the date input, and the range is validated as a whole.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 _Added in 6.0.0._

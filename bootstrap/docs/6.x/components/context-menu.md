@@ -2,6 +2,8 @@
 
 > The Context Menu component opens a menu at the pointer on right-click, long-press or the keyboard's Menu key - built on the Menu engine with the same items, submenus, keyboard navigation and dismissal.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 _Added in 6.0.0._

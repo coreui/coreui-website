@@ -2,6 +2,8 @@
 
 > Detailed overview of the accessibility features implemented in CoreUI React Stepper, ensuring compliance with WAI-ARIA guidelines.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Accessibility
 
 The React Stepper component is fully accessible out of the box:

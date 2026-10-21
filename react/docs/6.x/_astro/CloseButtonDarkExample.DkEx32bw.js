@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CCloseButton.tXHP08oD.js";e();var r=t(),i=()=>(0,r.jsxs)(`div`,{"data-coreui-theme":`dark`,className:`bg-body fg-body p-4`,children:[(0,r.jsx)(n,{}),(0,r.jsx)(n,{disabled:!0})]});export{i as CloseButtonDarkExample};

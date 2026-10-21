@@ -256,7 +256,7 @@ What the transfer adds is the crossing. Each move button is named — `ariaMoveT
 
 The move happens away from the focus, and the button that did it usually turns off in the process — a list with nothing selected left. Rather than dropping the focus on the document, the component puts it on the first option that just arrived.
 
-Every move, either way, adds a message of its own to the live region of the page through [`announce()`](https://coreui.io/vue/docs/getting-started/accessibility/#announcing-messages) once it is applied, so a move that a controlled `value` refuses is not announced and the same move made twice is announced twice: `ariaMovedAnnouncement` is `'{count} moved to {title}'` by default, with `{title}` the destination's title. `{count}` and `{title}` are replaced wherever they appear, so the sentence can be reordered for a translation.
+Every move, either way, adds a message of its own to the live region of the page through [`announce()`](https://coreui.io/vue/docs/accessibility/screen-readers/#announcing-messages) once it is applied, so a move that a controlled `value` refuses is not announced and the same move made twice is announced twice: `ariaMovedAnnouncement` is `'{count} moved to {title}'` by default, with `{title}` the destination's title. `{count}` and `{title}` are replaced wherever they appear, so the sentence can be reordered for a translation.
 
 | Key | Action |
 | --- | --- |

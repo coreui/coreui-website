@@ -2,6 +2,8 @@
 
 > Enhance your forms with our customizable React Range Slider component for advanced range selection.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 The **React Range Slider** component allows users to select a value or range of values within a predefined range. It renders the markup of the [range](https://coreui.io/react/docs/forms/range/): a `<div class="form-range">` with one native `<input type="range">` per handle, so it looks like a range and reads its tokens, and adds what the range does not have: several handles on one track, `distance` between them, a press on the track that moves the nearest handle, clickable ticks and a vertical orientation. `className`, `style`, `theme`, `dir`, `hidden`, `role` and the `ref` land on the `.form-range`, which is a group named by `aria-label` or `aria-labelledby`; other input attributes, such as `id` (on the first handle) and `aria-describedby`, reach the handles.

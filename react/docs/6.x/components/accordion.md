@@ -12,7 +12,7 @@ The accordion is built on the native `<details>` and `<summary>` elements, so it
 
 Set `defaultOpenItemKeys` on `<CAccordion>` to open items at mount and let the accordion manage them from there — it takes a single key as well as an array. To drive the open items from your own state instead, pass `openItemKeys` together with `onChange`. Without `alwaysOpen` every item shares a `name`, which is what makes the browser close the others when one opens.
 
-> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/react/docs/getting-started/accessibility/#reduced-motion).
+> This component's animation effect relies on the `prefers-reduced-motion` media query. For more information, refer to the [reduced motion section of our accessibility documentation](https://coreui.io/react/docs/accessibility/reduced-motion/).
 
 Click the accordions below to expand/collapse the accordion content.
 

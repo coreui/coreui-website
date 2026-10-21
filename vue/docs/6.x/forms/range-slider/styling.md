@@ -2,6 +2,8 @@
 
 > Learn how to customize the Vue Range Slider component with CSS classes, variables, and Sass for flexible styling and seamless integration into your design.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ### CSS variables
 
 The slider renders a [range](https://coreui.io/vue/docs/forms/range/styling/), so it reads the range's tokens, declared on the `.form-range` that `class` and `style` land on: one setting styles both controls. `--cui-range-track-fill-bg` colours the band between the handles and `--cui-range-tick-*` the tick marks and their labels.

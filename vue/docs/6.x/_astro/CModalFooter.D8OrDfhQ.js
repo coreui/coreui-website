@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.DT-hBGUv.js";import"./CModalTitle.CWgMygpB.js";var n=t({name:`CModalFooter`,setup(t,{slots:n}){return()=>e(`div`,{class:`modal-footer`},n.default&&n.default())}});export{n as t};

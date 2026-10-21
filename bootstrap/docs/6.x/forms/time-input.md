@@ -2,6 +2,8 @@
 
 > Create time fields with a section-based input mask. Users type the hour, minutes, and seconds in separate sections with automatic navigation and validation — like the native time input, but with full control over the format.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 _Added in 6.0.0._

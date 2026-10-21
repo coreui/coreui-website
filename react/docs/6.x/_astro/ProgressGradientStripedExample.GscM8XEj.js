@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CProgress.fmKu0RlC.js";e();var r=t(),i=()=>(0,r.jsx)(n,{animated:!0,value:65,variant:`striped`,style:{"--cui-progress-bar-bg-image":`linear-gradient(to right, #e6412c, #ffb400, #ffe25a)`}});export{i as ProgressGradientStripedExample};

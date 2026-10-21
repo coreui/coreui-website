@@ -2,6 +2,8 @@
 
 > Learn how to customize the React Date Range Input component with CSS classes, variables, and Sass for flexible styling and seamless integration into your design.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ### CSS variables
 
 The two ends are date inputs, so they carry the `form-date-time` tokens, and the frame around them carries the [form control group](https://coreui.io/react/docs/forms/form-control-group/) ones. The range adds no tokens of its own.
