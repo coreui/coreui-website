@@ -2,6 +2,8 @@
 
 > Customize the native <select>s with a powerful Vue Multi Select component that changes the element’s initial appearance and brings some new functionalities.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Examples
 
 A clear demonstration of implementing a basic Vue Multi Select dropdown, highlighting essential options and configurations.

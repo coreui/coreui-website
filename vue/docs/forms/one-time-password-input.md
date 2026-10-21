@@ -2,6 +2,8 @@
 
 > Create secure and user-friendly Vue.js one-time password input fields with automatic navigation, paste support, validation, and customizable options for modern authentication flows.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 The Vue One-Time Password (OTP) Component is a powerful, user-friendly solution for implementing secure authentication flows in your Vue.js applications. Whether you're building two-factor authentication, email verification, or SMS confirmation systems, this OTP component provides an intuitive interface with advanced features like auto-navigation between fields, intelligent paste handling, and comprehensive keyboard support.

@@ -2,6 +2,8 @@
 
 > Build multi-step forms and wizards easily with the React Stepper component. Create advanced form flows with custom indicators, validation, and flexible layouts for your React applications.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 The React Stepper component helps you build intuitive, multi-step form experiences (Form Wizards) for your React applications. It supports horizontal and vertical layouts, built-in form validation, custom indicators, and seamless integration with any React form library.
 
 If you need a Form Wizard in React, or a fully customizable React Stepper, this component is a perfect solution.

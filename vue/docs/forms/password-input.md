@@ -2,6 +2,8 @@
 
 > A fully featured Vue password input component with Bootstrap styling. Includes show/hide visibility toggle, validation states, sizing, and full accessibility support.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 The `` is a fully customizable **Vue password input field** designed for security-focused forms. It includes a **toggle to show or hide password visibility**, Bootstrap-based **sizing options**, and full support for `v-model`, validation, `readonly`, and `disabled` states. Ideal for login forms, registration pages, and secure input screens in Vue 3 apps.

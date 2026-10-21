@@ -1,5 +1,7 @@
 # React Date Range Picker Component
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 Explore basic usage of the Date Range Picker through sample code snippets that demonstrate its core functionality.

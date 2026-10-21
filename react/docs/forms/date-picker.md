@@ -2,6 +2,8 @@
 
 > The React Date Picker Component is an essential tool for any React-based application that requires date selection functionality.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## About
 
 This component, provided by CoreUI for React.js, offers a user-friendly interface and various customization options to ensure an excellent user experience.

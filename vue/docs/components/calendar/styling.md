@@ -2,6 +2,8 @@
 
 > Learn how to customize the Vue Calendar component with CSS classes, variables, and SASS for flexible styling and seamless integration into your design.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ### CSS variables
 
 The Vue Calendar uses local CSS variables on `.calendar` for real-time customization. Values for these CSS variables are set via Sass, but they can also be overridden directly in the component for dynamic styling.

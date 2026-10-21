@@ -2,6 +2,8 @@
 
 > Build powerful Vue Autocomplete components with dynamic search, dropdown suggestions, and external data integration. The ultimate Vue.js Autocomplete solution for modern web applications.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 The Vue Autocomplete Component is a powerful, feature-rich autocomplete solution that enhances form usability by providing intelligent suggestions as users type. Whether you're building a Vue.js autocomplete with static array data, fetching data from APIs, or implementing complex search logic, this autocomplete component delivers a smooth, accessible user experience with extensive customization options.

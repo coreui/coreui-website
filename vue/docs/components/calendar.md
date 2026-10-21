@@ -2,6 +2,8 @@
 
 > The Vue Calendar Component is a versatile, customizable tool for creating responsive calendars in Vue, supporting day, month, and year selection, and global locales.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 Explore the Vue Calendar component's basic usage through sample code snippets demonstrating its core functionality.

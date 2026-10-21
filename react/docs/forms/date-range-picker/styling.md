@@ -2,6 +2,8 @@
 
 > Learn how to customize the React Date Range Picker component with CSS classes, variables, and SASS for flexible styling and seamless integration into your design.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ### CSS variables
 
 CoreUI React DateRange Picker supports CSS variables for easy customization. These variables are set via SASS but allow direct overrides in your stylesheets or inline styles.

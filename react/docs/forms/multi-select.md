@@ -2,6 +2,8 @@
 
 > Customize the native <select>s with a powerful React Multi Select component that changes the element’s initial appearance and brings some new functionalities.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Basic example
 
 A clear demonstration of implementing a basic React Multi Select dropdown, highlighting essential options and configurations.

@@ -2,6 +2,8 @@
 
 > Build multi-step forms and wizards easily with the Vue Stepper component. Create advanced Vue form flows with custom indicators, validation, and flexible layouts using Vue 3.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 The **Vue Stepper** component helps you build intuitive, multi-step form experiences (Vue Form Wizards) for your Vue.js applications. It supports horizontal and vertical layouts, built-in form validation, customizable indicators, and full slot-based control over step content.
 
 If you're looking for a Vue Form Wizard or a fully flexible Vue Stepper, this component offers a robust and accessible solution.

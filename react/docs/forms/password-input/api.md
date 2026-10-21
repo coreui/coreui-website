@@ -2,6 +2,8 @@
 
 > Explore the API reference for the React Password Input component and discover how to effectively utilize its props for customization.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## CPasswordInput
 
 ```jsx

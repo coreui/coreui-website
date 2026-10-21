@@ -2,6 +2,8 @@
 
 > A fully customizable React password input component with Bootstrap styling. Includes toggle visibility, validation, sizing options, and accessibility support.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 The `` is a fully featured **React password input field** built with Bootstrap and CoreUI. It includes built-in **password visibility toggling**, `sm` / `lg` **sizing options**, and support for `disabled`, `readOnly`, and form validation states. Ideal for login forms, signup screens, and any secure input in your React app.

@@ -2,6 +2,8 @@
 
 > Learn how to customize the React Password Input component with CSS classes, variables, and SASS for flexible styling and seamless integration into your design.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ### SASS variables
 
 `$input-*` are shared across most of our form controls (and not buttons).

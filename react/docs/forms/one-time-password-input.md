@@ -2,6 +2,8 @@
 
 > Create secure and user-friendly React.js one-time password input fields with automatic navigation, paste support, validation, and customizable options for modern authentication flows.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 The `` and `` components create secure **React OTP input fields** with automatic character navigation and validation. Perfect for two-factor authentication, SMS verification codes, and secure login flows.

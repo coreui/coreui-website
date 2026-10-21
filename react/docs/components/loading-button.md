@@ -2,6 +2,8 @@
 
 > React loading buttons are interactive elements that provide visual feedback to users, indicating that an action is being processed. These buttons typically display a loading spinner or animation.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 Create basic React Loading Buttons with different styles: primary, outline, and ghost. These buttons show a loading state when clicked.

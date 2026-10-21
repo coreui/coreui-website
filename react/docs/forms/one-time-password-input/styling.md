@@ -2,6 +2,8 @@
 
 > Learn how to customize the appearance of React One Time Password Input components using CSS classes and CSS variables.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ### CSS Classes
 
 The One Time Password Input components use the following CSS classes:

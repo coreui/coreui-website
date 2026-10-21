@@ -2,6 +2,8 @@
 
 > The Vue Date Range Picker component by CoreUI is a versatile tool for selecting date ranges. It is designed for compatibility across various browsers and devices, making it a reliable choice for diverse applications.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 Explore basic usage of the Vue Date Range Picker through sample code snippets that demonstrate its core functionality.

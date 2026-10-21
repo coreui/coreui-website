@@ -2,6 +2,8 @@
 
 > Learn how to customize the Vue One-Time Password Input component with CSS classes, variables, and SASS for flexible styling and seamless integration into your design.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ### CSS Classes
 
 The One Time Password Input components use the following CSS classes:
