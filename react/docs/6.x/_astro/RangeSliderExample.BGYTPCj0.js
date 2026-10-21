@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CRangeSlider.UEZHwSct.js";e();var r=t(),i=()=>(0,r.jsx)(n,{defaultValue:[25,75],ticks:[`Low`,`Medium`,`High`],ariaLabel:[`Minimum intensity`,`Maximum intensity`]});export{i as RangeSliderExample};

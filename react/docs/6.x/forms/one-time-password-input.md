@@ -271,13 +271,13 @@ import React from 'react'
 import { CButton, CForm } from '@coreui/react'
 import { COneTimePassword, COneTimePasswordInput } from '@coreui/react-pro'
 
-export const OneTimePasswordAutoSubmitExample = () => {
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault()
-    console.log('Form submitted!')
-    alert('Form submitted automatically!')
-  }
+const handleSubmit = (event: React.FormEvent) => {
+  event.preventDefault()
+  console.log('Form submitted!')
+  alert('Form submitted automatically!')
+}
 
+export const OneTimePasswordAutoSubmitExample = () => {
   return (
     <CForm onSubmit={handleSubmit}>
       <div className="mb-4">

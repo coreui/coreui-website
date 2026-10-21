@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.gibm4mjC.js";import{a as n}from"./CListBox.46fpRBsf.js";var r=t({name:`CListBoxEmpty`,setup(t,{slots:r}){let i=n(`CListBoxEmpty`);return()=>e(`div`,{class:`list-box-empty`,hidden:i.loading.value||i.navigableItems.value.length>0},r.default&&r.default())}});export{r as t};

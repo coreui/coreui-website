@@ -1,0 +1,1 @@
+import{P as e,d as t,j as n}from"./runtime-core.esm-bundler.gibm4mjC.js";import{t as r}from"./_plugin-vue_export-helper.BDNMzG2s.js";var i={};function a(r,i){let a=e(`CDateRangePicker`);return n(),t(a,{"floating-labels":[`Check-in`,`Check-out`],locale:`en-US`})}var o=r(i,[[`render`,a]]);export{o as default};

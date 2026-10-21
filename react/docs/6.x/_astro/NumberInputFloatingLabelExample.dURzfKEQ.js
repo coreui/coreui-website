@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CNumberInput.DfnrE9OU.js";e();var r=t(),i=()=>(0,r.jsx)(n,{defaultValue:42,floatingLabel:`Quantity`,id:`floatingNumberInput`});export{i as NumberInputFloatingLabelExample};

@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CTransfer.S0sRG1iu.js";e();var r=t(),i=[{label:`List item 1`,value:`1`},{label:`List item 2`,value:`2`},{label:`List item 3`,value:`3`}],a=()=>(0,r.jsx)(n,{items:i,oneWay:!0});export{a as TransferOneWayExample};

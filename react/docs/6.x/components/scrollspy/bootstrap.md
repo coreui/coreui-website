@@ -26,7 +26,7 @@ const copy =
 
 export const ScrollspyNavbarExample = () => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const dropdownIds = ['spyNavHeading3', 'spyNavHeading4', 'spyNavHeading5']
+  const dropdownIds = new Set(['spyNavHeading3', 'spyNavHeading4', 'spyNavHeading5'])
 
   return (
     <CScrollspy
@@ -51,7 +51,7 @@ export const ScrollspyNavbarExample = () => {
               <CDropdown variant="nav-item">
                 <CDropdownToggle
                   link
-                  className={activeId && dropdownIds.includes(activeId) ? 'active' : undefined}
+                  className={activeId && dropdownIds.has(activeId) ? 'active' : undefined}
                 >
                   Dropdown
                 </CDropdownToggle>

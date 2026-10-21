@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.gibm4mjC.js";import"./CCarouselItem.DhZr6jbf.js";var n=t({name:`CCarouselCaption`,setup(t,{slots:n}){return()=>e(`div`,{class:`carousel-caption`},n.default&&n.default())}});export{n as t};

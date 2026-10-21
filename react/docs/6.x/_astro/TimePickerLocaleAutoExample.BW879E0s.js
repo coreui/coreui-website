@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CTimePicker.CkH_Y8H4.js";import{t as r}from"./CCol.BmzitSvp.js";import{t as i}from"./CRow.CruEqsRB.js";e();var a=t(),o=()=>(0,a.jsx)(i,{children:(0,a.jsx)(r,{sm:6,lg:4,children:(0,a.jsx)(n,{})})});export{o as TimePickerLocaleAutoExample};

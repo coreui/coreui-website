@@ -1,0 +1,1 @@
+import{P as e,d as t,j as n}from"./runtime-core.esm-bundler.gibm4mjC.js";import{t as r}from"./_plugin-vue_export-helper.BDNMzG2s.js";var i={};function a(r,i){let a=e(`CPasswordInput`);return n(),t(a,{id:`floatingPasswordInput`,"floating-label":`Password`})}var o=r(i,[[`render`,a]]);export{o as default};

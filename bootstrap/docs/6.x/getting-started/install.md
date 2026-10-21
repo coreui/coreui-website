@@ -107,14 +107,14 @@ If you're using our compiled JavaScript and prefer to include Floating UI separa
 **If you use CoreUI PRO please use following links**
 
 ```html
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-F+g1XwaEoDdMLXEPnahfRloRsSoftl2vWK4JeoGKKifs3GH9R3Ng2lRb3pq55HTS" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.bundle.min.js" integrity="sha384-5EIITWrYmdJ/lLrIJ/CAkKMbEDQmQ2tbtKex02fTpIPGDke4Gk/2ypdWo43vOvfj" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-t6XvzdaSKwWiXlIt37TCu6mfRbZKMmw0dOV7/9md0KPAzPqAaIB9vEGG61vovfPd" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.bundle.min.js" integrity="sha384-Lfg2VpFc1rTjT2KnFUnfPVR7QsBPjRnTTQbSeGCIgEETQgxoBJTPipJFB3rQ+OqC" crossorigin="anonymous"></script>
 ```
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.8.0/dist/floating-ui.core.umd.min.js" integrity="sha384-HNCdK6HYLs4EKIDg2Ml3NdfNMVD/LcFbGXnagRABpWmpJjiEuhrtSIckScRnqDOD" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.8.0/dist/floating-ui.dom.umd.min.js" integrity="sha384-h02fHnOrZRtL8NvKyMkr2vfTxUr0lTnQdZexzrbPfME4nd74qGfOZ97tbiroJo1Y" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.min.js" integrity="sha384-kUpSKa20uGjMrb8XIUCECbcTGyZ7WO4FUM9/Dad7olwxxV6JFZqNSNCwAb7OzSYc" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.min.js" integrity="sha384-BQStKoRKknw5iuD+FsEleDFrdJImta4fZsjRE0/MrkSBr4z2RskRs35SRXUP0BJ+" crossorigin="anonymous"></script>
 ```
 
 ### Using ES modules
@@ -142,7 +142,7 @@ Our ES module build imports Floating UI by its bare specifier, so a `<script typ
   }
 }
 </script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.esm.min.js" integrity="sha384-PsF+4u61iMi60YqmimN6qPBfr/4L1S96Yvb21YpB/JVqn6r7LboSAsIyANHzxmOi" crossorigin="anonymous"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.esm.min.js" integrity="sha384-hbV6Ml0BQ0HSZ+kvTgl8IkNOSzlB0+23b2QAODrtZ3lhIUr7Hbaj9EnQYPeyD+hl" crossorigin="anonymous"></script>
 ```
 
 An import map has to be declared before the first module script that relies on it, and only one is applied per document.

@@ -22990,13 +22990,13 @@ import React from 'react'
 import { CButton, CForm } from '@coreui/react'
 import { COneTimePassword, COneTimePasswordInput } from '@coreui/react-pro'
 
-export const OneTimePasswordAutoSubmitExample = () => {
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault()
-    console.log('Form submitted!')
-    alert('Form submitted automatically!')
-  }
+const handleSubmit = (event: React.FormEvent) => {
+  event.preventDefault()
+  console.log('Form submitted!')
+  alert('Form submitted automatically!')
+}
 
+export const OneTimePasswordAutoSubmitExample = () => {
   return (
     <CForm onSubmit={handleSubmit}>
       <div className="mb-4">
@@ -26166,18 +26166,16 @@ export const RatingCustomFeedbackExample = () => {
   const [label, setLabel] = useState<string>(RATING_LABELS[currentValue - 1])
 
   const handleChange = (value: number | null) => {
-    if (value) {
-      setCurrentValue(value)
-      setLabel(RATING_LABELS[value - 1])
+    if (!value) {
+      return
     }
+
+    setCurrentValue(value)
+    setLabel(RATING_LABELS[value - 1])
   }
 
   const handleHover = (value: number | null) => {
-    if (value) {
-      setLabel(RATING_LABELS[value - 1])
-    } else {
-      setLabel(RATING_LABELS[currentValue - 1])
-    }
+    setLabel(RATING_LABELS[(value || currentValue) - 1])
   }
 
   return (
@@ -42623,33 +42621,35 @@ export const ChartLineExample = () => {
   useEffect(() => {
     const handleColorSchemeChange = () => {
       const chartInstance = chartRef.current
-      if (chartInstance) {
-        const { options } = chartInstance
-
-        if (options.plugins?.legend?.labels) {
-          options.plugins.legend.labels.color = getStyle('--cui-body-color')
-        }
-
-        if (options.scales?.x) {
-          if (options.scales.x.grid) {
-            options.scales.x.grid.color = getStyle('--cui-border-color-translucent')
-          }
-          if (options.scales.x.ticks) {
-            options.scales.x.ticks.color = getStyle('--cui-body-color')
-          }
-        }
-
-        if (options.scales?.y) {
-          if (options.scales.y.grid) {
-            options.scales.y.grid.color = getStyle('--cui-border-color-translucent')
-          }
-          if (options.scales.y.ticks) {
-            options.scales.y.ticks.color = getStyle('--cui-body-color')
-          }
-        }
-
-        chartInstance.update()
+      if (!chartInstance) {
+        return
       }
+
+      const { options } = chartInstance
+
+      if (options.plugins?.legend?.labels) {
+        options.plugins.legend.labels.color = getStyle('--cui-body-color')
+      }
+
+      if (options.scales?.x) {
+        if (options.scales.x.grid) {
+          options.scales.x.grid.color = getStyle('--cui-border-color-translucent')
+        }
+        if (options.scales.x.ticks) {
+          options.scales.x.ticks.color = getStyle('--cui-body-color')
+        }
+      }
+
+      if (options.scales?.y) {
+        if (options.scales.y.grid) {
+          options.scales.y.grid.color = getStyle('--cui-border-color-translucent')
+        }
+        if (options.scales.y.ticks) {
+          options.scales.y.ticks.color = getStyle('--cui-body-color')
+        }
+      }
+
+      chartInstance.update()
     }
 
     document.documentElement.addEventListener('ColorSchemeChange', handleColorSchemeChange)
@@ -42734,33 +42734,35 @@ export const ChartBarExample = () => {
   useEffect(() => {
     const handleColorSchemeChange = () => {
       const chartInstance = chartRef.current
-      if (chartInstance) {
-        const { options } = chartInstance
-
-        if (options.plugins?.legend?.labels) {
-          options.plugins.legend.labels.color = getStyle('--cui-body-color')
-        }
-
-        if (options.scales?.x) {
-          if (options.scales.x.grid) {
-            options.scales.x.grid.color = getStyle('--cui-border-color-translucent')
-          }
-          if (options.scales.x.ticks) {
-            options.scales.x.ticks.color = getStyle('--cui-body-color')
-          }
-        }
-
-        if (options.scales?.y) {
-          if (options.scales.y.grid) {
-            options.scales.y.grid.color = getStyle('--cui-border-color-translucent')
-          }
-          if (options.scales.y.ticks) {
-            options.scales.y.ticks.color = getStyle('--cui-body-color')
-          }
-        }
-
-        chartInstance.update()
+      if (!chartInstance) {
+        return
       }
+
+      const { options } = chartInstance
+
+      if (options.plugins?.legend?.labels) {
+        options.plugins.legend.labels.color = getStyle('--cui-body-color')
+      }
+
+      if (options.scales?.x) {
+        if (options.scales.x.grid) {
+          options.scales.x.grid.color = getStyle('--cui-border-color-translucent')
+        }
+        if (options.scales.x.ticks) {
+          options.scales.x.ticks.color = getStyle('--cui-body-color')
+        }
+      }
+
+      if (options.scales?.y) {
+        if (options.scales.y.grid) {
+          options.scales.y.grid.color = getStyle('--cui-border-color-translucent')
+        }
+        if (options.scales.y.ticks) {
+          options.scales.y.ticks.color = getStyle('--cui-body-color')
+        }
+      }
+
+      chartInstance.update()
     }
 
     document.documentElement.addEventListener('ColorSchemeChange', handleColorSchemeChange)
@@ -42833,24 +42835,26 @@ export const ChartRadarExample = () => {
   useEffect(() => {
     const handleColorSchemeChange = () => {
       const chartInstance = chartRef.current
-      if (chartInstance) {
-        const { options } = chartInstance
-
-        if (options.plugins?.legend?.labels) {
-          options.plugins.legend.labels.color = getStyle('--cui-body-color')
-        }
-
-        if (options.scales?.r) {
-          if (options.scales.r.grid) {
-            options.scales.r.grid.color = getStyle('--cui-border-color-translucent')
-          }
-          if (options.scales.r.ticks) {
-            options.scales.r.ticks.color = getStyle('--cui-body-color')
-          }
-        }
-
-        chartInstance.update()
+      if (!chartInstance) {
+        return
       }
+
+      const { options } = chartInstance
+
+      if (options.plugins?.legend?.labels) {
+        options.plugins.legend.labels.color = getStyle('--cui-body-color')
+      }
+
+      if (options.scales?.r) {
+        if (options.scales.r.grid) {
+          options.scales.r.grid.color = getStyle('--cui-border-color-translucent')
+        }
+        if (options.scales.r.ticks) {
+          options.scales.r.ticks.color = getStyle('--cui-body-color')
+        }
+      }
+
+      chartInstance.update()
     }
 
     document.documentElement.addEventListener('ColorSchemeChange', handleColorSchemeChange)
@@ -42936,15 +42940,17 @@ export const ChartDoughnutAndPieExample = () => {
   useEffect(() => {
     const handleColorSchemeChange = () => {
       const chartInstance = chartRef.current
-      if (chartInstance) {
-        const { options } = chartInstance
-
-        if (options.plugins?.legend?.labels) {
-          options.plugins.legend.labels.color = getStyle('--cui-body-color')
-        }
-
-        chartInstance.update()
+      if (!chartInstance) {
+        return
       }
+
+      const { options } = chartInstance
+
+      if (options.plugins?.legend?.labels) {
+        options.plugins.legend.labels.color = getStyle('--cui-body-color')
+      }
+
+      chartInstance.update()
     }
 
     document.documentElement.addEventListener('ColorSchemeChange', handleColorSchemeChange)
@@ -42995,19 +43001,21 @@ export const ChartPolarAreaExample = () => {
   useEffect(() => {
     const handleColorSchemeChange = () => {
       const chartInstance = chartRef.current
-      if (chartInstance) {
-        const { options } = chartInstance
-
-        if (options.plugins?.legend?.labels) {
-          options.plugins.legend.labels.color = getStyle('--cui-body-color')
-        }
-
-        if (options.scales?.r?.grid) {
-          options.scales.r.grid.color = getStyle('--cui-border-color-translucent')
-        }
-
-        chartInstance.update()
+      if (!chartInstance) {
+        return
       }
+
+      const { options } = chartInstance
+
+      if (options.plugins?.legend?.labels) {
+        options.plugins.legend.labels.color = getStyle('--cui-body-color')
+      }
+
+      if (options.scales?.r?.grid) {
+        options.scales.r.grid.color = getStyle('--cui-border-color-translucent')
+      }
+
+      chartInstance.update()
     }
 
     document.documentElement.addEventListener('ColorSchemeChange', handleColorSchemeChange)
@@ -43075,33 +43083,35 @@ export const ChartBubbleExample = () => {
   useEffect(() => {
     const handleColorSchemeChange = () => {
       const chartInstance = chartRef.current
-      if (chartInstance) {
-        const { options } = chartInstance
-
-        if (options.plugins?.legend?.labels) {
-          options.plugins.legend.labels.color = getStyle('--cui-body-color')
-        }
-
-        if (options.scales?.x) {
-          if (options.scales.x.grid) {
-            options.scales.x.grid.color = getStyle('--cui-border-color-translucent')
-          }
-          if (options.scales.x.ticks) {
-            options.scales.x.ticks.color = getStyle('--cui-body-color')
-          }
-        }
-
-        if (options.scales?.y) {
-          if (options.scales.y.grid) {
-            options.scales.y.grid.color = getStyle('--cui-border-color-translucent')
-          }
-          if (options.scales.y.ticks) {
-            options.scales.y.ticks.color = getStyle('--cui-body-color')
-          }
-        }
-
-        chartInstance.update()
+      if (!chartInstance) {
+        return
       }
+
+      const { options } = chartInstance
+
+      if (options.plugins?.legend?.labels) {
+        options.plugins.legend.labels.color = getStyle('--cui-body-color')
+      }
+
+      if (options.scales?.x) {
+        if (options.scales.x.grid) {
+          options.scales.x.grid.color = getStyle('--cui-border-color-translucent')
+        }
+        if (options.scales.x.ticks) {
+          options.scales.x.ticks.color = getStyle('--cui-body-color')
+        }
+      }
+
+      if (options.scales?.y) {
+        if (options.scales.y.grid) {
+          options.scales.y.grid.color = getStyle('--cui-border-color-translucent')
+        }
+        if (options.scales.y.ticks) {
+          options.scales.y.ticks.color = getStyle('--cui-body-color')
+        }
+      }
+
+      chartInstance.update()
     }
 
     document.documentElement.addEventListener('ColorSchemeChange', handleColorSchemeChange)
@@ -43176,29 +43186,31 @@ export const ChartScatterExample = () => {
   useEffect(() => {
     const handleColorSchemeChange = () => {
       const chartInstance = chartRef.current
-      if (chartInstance) {
-        const { options } = chartInstance
-        if (options.plugins?.legend?.labels) {
-          options.plugins.legend.labels.color = getStyle('--cui-body-color')
-        }
-
-        if (options.scales) {
-          const xAxis = options.scales.x
-          const yAxis = options.scales.y
-
-          if (xAxis?.grid && xAxis?.ticks) {
-            xAxis.grid.color = getStyle('--cui-border-color-translucent')
-            xAxis.ticks.color = getStyle('--cui-body-color')
-          }
-
-          if (yAxis?.grid && yAxis?.ticks) {
-            yAxis.grid.color = getStyle('--cui-border-color-translucent')
-            yAxis.ticks.color = getStyle('--cui-body-color')
-          }
-        }
-
-        chartInstance.update()
+      if (!chartInstance) {
+        return
       }
+
+      const { options } = chartInstance
+      if (options.plugins?.legend?.labels) {
+        options.plugins.legend.labels.color = getStyle('--cui-body-color')
+      }
+
+      if (options.scales) {
+        const xAxis = options.scales.x
+        const yAxis = options.scales.y
+
+        if (xAxis?.grid && xAxis.ticks) {
+          xAxis.grid.color = getStyle('--cui-border-color-translucent')
+          xAxis.ticks.color = getStyle('--cui-body-color')
+        }
+
+        if (yAxis?.grid && yAxis.ticks) {
+          yAxis.grid.color = getStyle('--cui-border-color-translucent')
+          yAxis.ticks.color = getStyle('--cui-body-color')
+        }
+      }
+
+      chartInstance.update()
     }
 
     document.documentElement.addEventListener('ColorSchemeChange', handleColorSchemeChange)
@@ -62649,7 +62661,7 @@ const copy =
 
 export const ScrollspyNavbarExample = () => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const dropdownIds = ['spyNavHeading3', 'spyNavHeading4', 'spyNavHeading5']
+  const dropdownIds = new Set(['spyNavHeading3', 'spyNavHeading4', 'spyNavHeading5'])
 
   return (
     <CScrollspy
@@ -62674,7 +62686,7 @@ export const ScrollspyNavbarExample = () => {
               <CDropdown variant="nav-item">
                 <CDropdownToggle
                   link
-                  className={activeId && dropdownIds.includes(activeId) ? 'active' : undefined}
+                  className={activeId && dropdownIds.has(activeId) ? 'active' : undefined}
                 >
                   Dropdown
                 </CDropdownToggle>
@@ -62963,7 +62975,7 @@ const copy =
 
 export const ScrollspyNavbarExample = () => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const dropdownIds = ['spyNavHeading3', 'spyNavHeading4', 'spyNavHeading5']
+  const dropdownIds = new Set(['spyNavHeading3', 'spyNavHeading4', 'spyNavHeading5'])
 
   return (
     <CScrollspy
@@ -62988,7 +63000,7 @@ export const ScrollspyNavbarExample = () => {
               <CDropdown variant="nav-item">
                 <CDropdownToggle
                   link
-                  className={activeId && dropdownIds.includes(activeId) ? 'active' : undefined}
+                  className={activeId && dropdownIds.has(activeId) ? 'active' : undefined}
                 >
                   Dropdown
                 </CDropdownToggle>
@@ -72406,10 +72418,12 @@ export const ToasterUpdateExample = () => {
       progress += 25
       toaster.update(id, { description: `${progress} %` })
 
-      if (progress === 100) {
-        clearInterval(interval)
-        toaster.update(id, { title: 'Uploaded', theme: 'success' })
+      if (progress !== 100) {
+        return
       }
+
+      clearInterval(interval)
+      toaster.update(id, { title: 'Uploaded', theme: 'success' })
     }, 500)
   }
 

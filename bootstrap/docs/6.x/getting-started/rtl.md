@@ -33,7 +33,7 @@ You can see the above requirements reflected in this modified RTL starter templa
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.0/dist/css/coreui.min.css" integrity="sha384-9DZ6o3pJWcTwBR8W196XizUEf2kNMD35tkeyWqOB0yzml+nZrEe/13PMCpAIrT4r" crossorigin="anonymous">
 
     <!-- Option 2: CoreUI PRO for Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/css/coreui.min.css" integrity="sha384-F+g1XwaEoDdMLXEPnahfRloRsSoftl2vWK4JeoGKKifs3GH9R3Ng2lRb3pq55HTS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/css/coreui.min.css" integrity="sha384-t6XvzdaSKwWiXlIt37TCu6mfRbZKMmw0dOV7/9md0KPAzPqAaIB9vEGG61vovfPd" crossorigin="anonymous">
 
     <title>مرحبا بالعالم!</title>
   </head>
@@ -47,7 +47,7 @@ You can see the above requirements reflected in this modified RTL starter templa
 
     <!-- Option 2: CoreUI PRO for Bootstrap Bundle with Floating UI -->
     <!--
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.bundle.min.js" integrity="sha384-5EIITWrYmdJ/lLrIJ/CAkKMbEDQmQ2tbtKex02fTpIPGDke4Gk/2ypdWo43vOvfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.bundle.min.js" integrity="sha384-Lfg2VpFc1rTjT2KnFUnfPVR7QsBPjRnTTQbSeGCIgEETQgxoBJTPipJFB3rQ+OqC" crossorigin="anonymous"></script>
     -->
 
     <!-- Option 3: Separate Floating UI and CoreUI for Bootstrap JS -->

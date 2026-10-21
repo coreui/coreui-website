@@ -154,10 +154,12 @@ export const ToasterUpdateExample = () => {
       progress += 25
       toaster.update(id, { description: `${progress} %` })
 
-      if (progress === 100) {
-        clearInterval(interval)
-        toaster.update(id, { title: 'Uploaded', theme: 'success' })
+      if (progress !== 100) {
+        return
       }
+
+      clearInterval(interval)
+      toaster.update(id, { title: 'Uploaded', theme: 'success' })
     }, 500)
   }
 

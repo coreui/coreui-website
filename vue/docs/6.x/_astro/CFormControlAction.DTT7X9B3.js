@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.gibm4mjC.js";/* empty css                           */var n=t({name:`CFormControlAction`,setup(t,{attrs:n,slots:r}){return()=>e(`button`,{type:`button`,...n,class:[`form-control-action`,n.class]},r.default&&r.default())}});export{n as t};

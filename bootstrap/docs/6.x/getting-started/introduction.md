@@ -32,7 +32,7 @@ Copy-paste the stylesheet `<link />` into your `<head>` before all other stylesh
 ```
 
 ```html tab={"label":"CoreUI PRO"}
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-F+g1XwaEoDdMLXEPnahfRloRsSoftl2vWK4JeoGKKifs3GH9R3Ng2lRb3pq55HTS" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-t6XvzdaSKwWiXlIt37TCu6mfRbZKMmw0dOV7/9md0KPAzPqAaIB9vEGG61vovfPd" crossorigin="anonymous">
 ```
 
 ### JS
@@ -48,7 +48,7 @@ Include every CoreUI for Bootstrap JavaScript plugin and dependency with one of 
 ```
 
 ```html tab={"label":"CoreUI PRO"}
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.bundle.min.js" integrity="sha384-5EIITWrYmdJ/lLrIJ/CAkKMbEDQmQ2tbtKex02fTpIPGDke4Gk/2ypdWo43vOvfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.bundle.min.js" integrity="sha384-Lfg2VpFc1rTjT2KnFUnfPVR7QsBPjRnTTQbSeGCIgEETQgxoBJTPipJFB3rQ+OqC" crossorigin="anonymous"></script>
 ```
 
 #### Separate
@@ -64,7 +64,7 @@ If you decide to go with the separate scripts solution, Floating UI must come fi
 ```html tab={"label":"CoreUI PRO"}
 <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.8.0/dist/floating-ui.core.umd.min.js" integrity="sha384-HNCdK6HYLs4EKIDg2Ml3NdfNMVD/LcFbGXnagRABpWmpJjiEuhrtSIckScRnqDOD" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.8.0/dist/floating-ui.dom.umd.min.js" integrity="sha384-h02fHnOrZRtL8NvKyMkr2vfTxUr0lTnQdZexzrbPfME4nd74qGfOZ97tbiroJo1Y" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.min.js" integrity="sha384-kUpSKa20uGjMrb8XIUCECbcTGyZ7WO4FUM9/Dad7olwxxV6JFZqNSNCwAb7OzSYc" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.min.js" integrity="sha384-BQStKoRKknw5iuD+FsEleDFrdJImta4fZsjRE0/MrkSBr4z2RskRs35SRXUP0BJ+" crossorigin="anonymous"></script>
 ```
 
 #### Modules
@@ -110,7 +110,7 @@ Be sure to have your pages set up with the latest design and development standar
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CoreUI PRO for Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-F+g1XwaEoDdMLXEPnahfRloRsSoftl2vWK4JeoGKKifs3GH9R3Ng2lRb3pq55HTS" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-t6XvzdaSKwWiXlIt37TCu6mfRbZKMmw0dOV7/9md0KPAzPqAaIB9vEGG61vovfPd" crossorigin="anonymous">
 
     <title>Hello, world!</title>
   </head>
@@ -118,7 +118,7 @@ Be sure to have your pages set up with the latest design and development standar
     <h1>Hello, world!</h1>
 
     <!-- CoreUI PRO for Bootstrap Bundle with Floating UI -->
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.bundle.min.js" integrity="sha384-5EIITWrYmdJ/lLrIJ/CAkKMbEDQmQ2tbtKex02fTpIPGDke4Gk/2ypdWo43vOvfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@6.0.0-alpha.0/dist/js/coreui.bundle.min.js" integrity="sha384-Lfg2VpFc1rTjT2KnFUnfPVR7QsBPjRnTTQbSeGCIgEETQgxoBJTPipJFB3rQ+OqC" crossorigin="anonymous"></script>
   </body>
 </html>
 ```

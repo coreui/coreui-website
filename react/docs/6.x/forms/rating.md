@@ -336,18 +336,16 @@ export const RatingCustomFeedbackExample = () => {
   const [label, setLabel] = useState<string>(RATING_LABELS[currentValue - 1])
 
   const handleChange = (value: number | null) => {
-    if (value) {
-      setCurrentValue(value)
-      setLabel(RATING_LABELS[value - 1])
+    if (!value) {
+      return
     }
+
+    setCurrentValue(value)
+    setLabel(RATING_LABELS[value - 1])
   }
 
   const handleHover = (value: number | null) => {
-    if (value) {
-      setLabel(RATING_LABELS[value - 1])
-    } else {
-      setLabel(RATING_LABELS[currentValue - 1])
-    }
+    setLabel(RATING_LABELS[(value || currentValue) - 1])
   }
 
   return (

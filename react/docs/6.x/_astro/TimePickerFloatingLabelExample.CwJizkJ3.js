@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CTimePicker.CkH_Y8H4.js";e();var r=t(),i=()=>(0,r.jsx)(n,{floatingLabel:`Meeting time`,locale:`en-US`});export{i as TimePickerFloatingLabelExample};

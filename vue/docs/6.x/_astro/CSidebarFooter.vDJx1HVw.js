@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.gibm4mjC.js";/* empty css                                  */var n=t({name:`CSidebarFooter`,setup(t,{slots:n}){return()=>e(`div`,{class:`sidebar-footer`},n.default&&n.default())}});export{n as t};

@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.gibm4mjC.js";import"./CMenuContent.C50kSG6g.js";var n=t({name:`CMenuText`,props:{as:{type:String,default:`div`}},setup(t,{slots:n}){return()=>e(t.as,{class:`menu-text`},n.default&&n.default())}});export{n as t};

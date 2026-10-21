@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.gibm4mjC.js";import"./CInputGroup.1luXJTK9.js";var n=t({name:`CInputGroupText`,props:{as:{type:String,default:`span`}},setup(t,{slots:n}){return()=>e(t.as,{class:`input-group-text`},n.default&&n.default())}});export{n as t};

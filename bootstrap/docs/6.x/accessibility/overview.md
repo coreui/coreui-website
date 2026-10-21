@@ -57,7 +57,7 @@ More in the [visually hidden helper](https://coreui.io/bootstrap/docs/helpers/vi
 
 ## How we test
 
-- **Automated conformance suite.** On every change, the documented examples of each tested component are rendered in Chromium against the built stylesheet and scripts. [axe-core](https://github.com/dequelabs/axe-core) checks the success criteria it has rules for, and scripted steps check some of what axe cannot see, such as keyboard operation, focus order and focus return. A regression in a criterion checked this way fails the build; the rest are reviewed by hand, and the compliance page says which is which. The [compliance](https://coreui.io/bootstrap/docs/accessibility/compliance/) page is generated from the same configuration.
+- **Automated conformance suite.** On every change, the documented examples of each tested component are rendered in Chromium against the built stylesheet and scripts. [axe-core](https://github.com/dequelabs/axe-core) checks the success criteria it has rules for, and scripted steps check some of what axe cannot see, such as keyboard operation, focus order and focus return. A regression in a criterion checked this way fails the build; the rest are reviewed by hand. The [compliance](https://coreui.io/bootstrap/docs/accessibility/compliance/) page is generated from the same configuration.
 - **Unit tests.** The specs of each component cover its keyboard handling, focus management and the ARIA states it writes.
 - **Screen readers.** We test announcements and component behavior with screen readers by hand. The [screen readers](https://coreui.io/bootstrap/docs/accessibility/screen-readers/) page lists what has been measured.
 

@@ -1,0 +1,1 @@
+import{x as e,y as t}from"./runtime-core.esm-bundler.gibm4mjC.js";/* empty css                                  */var n=t({name:`CNavbarToggler`,setup(t,{slots:n}){return()=>e(`button`,{class:`navbar-toggler`},n.default?n.default():e(`span`,{class:[`navbar-toggler-icon`]}))}});export{n as t};

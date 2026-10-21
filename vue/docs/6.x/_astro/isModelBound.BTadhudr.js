@@ -1,0 +1,1 @@
+import{$ as e,mt as t}from"./runtime-core.esm-bundler.gibm4mjC.js";var n=e=>e.replaceAll(/\B([A-Z])/g,`-$1`).toLowerCase(),r=(r,i,a=[])=>{let o=r?.vnode.props;if(!o)return!1;let s=n(i),c=[`onUpdate:${i}`,`onUpdate:${s}`,...a.map(n=>t(e(n)))];return(Object.hasOwn(o,i)||Object.hasOwn(o,s))&&c.some(e=>Object.hasOwn(o,e))};export{r as t};
