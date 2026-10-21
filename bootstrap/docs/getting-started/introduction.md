@@ -32,7 +32,7 @@ Copy-paste the stylesheet `<link />` into your `<head>` before all other stylesh
 ```
 
 ```html tab={"label":"CoreUI PRO"}
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-UP+4FO2HYEW4ZGry1P/mvAVY8EZAXMn8YViV33OnRhhKta/OXf6RoeXwNONwtmYz" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-j9VY5BIArie+zC9pDKyKQV8qOHeUFX8ewh6JDWndDBhZ2jQ48mwU5uq3m9LY0QF9" crossorigin="anonymous">
 ```
 
 ### JS
@@ -48,7 +48,7 @@ Include every CoreUI for Bootstrap JavaScript plugin and dependency with one of 
 ```
 
 ```html tab={"label":"CoreUI PRO"}
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/js/coreui.bundle.min.js" integrity="sha384-FpAeYtCNjf3C16gHs0Fdq06FUiBkQ9E6nvMr/VG1O5bhx9AvaA8njeB8BHWa5REO" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/coreui.bundle.min.js" integrity="sha384-Buu2Jao34Smgb3KcJa7Y7R11mQC19gApQWpRQjV5ywbSf0sTd0fTPennNmTOxlxc" crossorigin="anonymous"></script>
 ```
 
 #### Separate
@@ -62,7 +62,7 @@ If you decide to go with the separate scripts solution, Popper must come first (
 
 ```html tab={"label":"CoreUI PRO"}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/js/coreui.min.js" integrity="sha384-H29ZNBJ1tKSNNtJeDjAbc/FfS9tuvy6S+9LYLFfvQNnRDtsKrZQP2tJs4V3/rDAk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/coreui.min.js" integrity="sha384-ZiOVNyY66TegWfTaCS1zYFSeytQr+C2YG2YeYxwj0WBvIFnv5L4zLVKI9JIjuuxe" crossorigin="anonymous"></script>
 ```
 
 #### Modules
@@ -106,7 +106,7 @@ Copy-paste the stylesheet `<link />` into your `<head>` before all other stylesh
 ```
 
 ```html tab={"label":"CoreUI PRO"}
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/css/themes/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-6IXjHaTYpmmUgZYvmDD1u6Jm4uJsW+G42j06CEsf/0PXeOXNoJJR299z/XZ/dJTo" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/css/themes/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-t8yucguo98gUFMfhTPKbclEYpq8MyJ0wuUmYkgvBvF6qTz3/yBEbCgPtftvDno4e" crossorigin="anonymous">
 ```
 
 ### JS
@@ -122,7 +122,7 @@ Include every CoreUI for Bootstrap JavaScript plugin and dependency with one of 
 ```
 
 ```html tab={"label":"CoreUI PRO"}
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fUgIBGl/IaiRGE9vwhC3s8d6ZvQAGxxQ6R1Hl7/y8Q9VIhws7uFJWxXjc7UnIW6o" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-6uPblc7fi1luNZT4pLBY5ypgIVS/L6HLahEkPUlD4xIhP2TocnXg8hfW6lIikrTk" crossorigin="anonymous"></script>
 ```
 
 #### Separate
@@ -136,7 +136,7 @@ If you decide to go with the separate scripts solution, Popper must come first (
 
 ```html tab={"label":"CoreUI PRO"}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/js/bootstrap.min.js" integrity="sha384-hTTHS3iZ4f76TuWMMK6moEITMVuDPeagaC8wEXGCSCqSRTcq2XFrk48OWV3ASBhs" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/bootstrap.min.js" integrity="sha384-KxuXwcKexNqj6m1EVM8i4Ev7xGAO88SLIQy4AKfIEbqzdshmxj4KbiYf5XIsA5TH" crossorigin="anonymous"></script>
 ```
 
 ## Starter template
@@ -174,7 +174,7 @@ Be sure to have your pages set up with the latest design and development standar
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CoreUI PRO for Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-UP+4FO2HYEW4ZGry1P/mvAVY8EZAXMn8YViV33OnRhhKta/OXf6RoeXwNONwtmYz" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-j9VY5BIArie+zC9pDKyKQV8qOHeUFX8ewh6JDWndDBhZ2jQ48mwU5uq3m9LY0QF9" crossorigin="anonymous">
 
     <title>Hello, world!</title>
   </head>
@@ -182,7 +182,7 @@ Be sure to have your pages set up with the latest design and development standar
     <h1>Hello, world!</h1>
 
     <!-- CoreUI PRO for Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/js/coreui.bundle.min.js" integrity="sha384-FpAeYtCNjf3C16gHs0Fdq06FUiBkQ9E6nvMr/VG1O5bhx9AvaA8njeB8BHWa5REO" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/coreui.bundle.min.js" integrity="sha384-Buu2Jao34Smgb3KcJa7Y7R11mQC19gApQWpRQjV5ywbSf0sTd0fTPennNmTOxlxc" crossorigin="anonymous"></script>
   </body>
 </html>
 ```

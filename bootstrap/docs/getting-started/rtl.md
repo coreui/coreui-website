@@ -20,7 +20,7 @@ From there, you'll need to include an RTL version of our CSS. For example, here'
 ```
 
 ```html tab={"label":"CoreUI PRO"}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/css/coreui.rtl.min.css" integrity="sha384-0K8FE0RyZTnrKJEnnNilnG/2PP4VY6mO+C3R0DpEpCUNXuJf3hqmPYyFarc3AX+b" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/css/coreui.rtl.min.css" integrity="sha384-y29Gm+EVieWaAKDhBu9jj04pSGC7vaTXvDyRc6lUcxofvNd/Unhj6rC/a3Aca40a" crossorigin="anonymous">
 ```
 
 ### Starter template
@@ -39,7 +39,7 @@ You can see the above requirements reflected in this modified RTL starter templa
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/css/coreui.rtl.min.css" integrity="sha384-C4caVLlVfJWhlQjURwZ3BXTeybMvADXPbfafrJsjloVCp39FRoX9p6saPvcEzup8" crossorigin="anonymous">
 
     <!-- Option 2: CoreUI PRO for Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/css/coreui.rtl.min.css" integrity="sha384-0K8FE0RyZTnrKJEnnNilnG/2PP4VY6mO+C3R0DpEpCUNXuJf3hqmPYyFarc3AX+b" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/css/coreui.rtl.min.css" integrity="sha384-y29Gm+EVieWaAKDhBu9jj04pSGC7vaTXvDyRc6lUcxofvNd/Unhj6rC/a3Aca40a" crossorigin="anonymous">
 
     <title>مرحبا بالعالم!</title>
   </head>
@@ -53,7 +53,7 @@ You can see the above requirements reflected in this modified RTL starter templa
 
     <!-- Option 2: CoreUI PRO for Bootstrap Bundle with Popper -->
     <!--
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/js/coreui.bundle.min.js" integrity="sha384-FpAeYtCNjf3C16gHs0Fdq06FUiBkQ9E6nvMr/VG1O5bhx9AvaA8njeB8BHWa5REO" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/coreui.bundle.min.js" integrity="sha384-Buu2Jao34Smgb3KcJa7Y7R11mQC19gApQWpRQjV5ywbSf0sTd0fTPennNmTOxlxc" crossorigin="anonymous"></script>
     -->
 
     <!-- Option 3: Separate Popper and CoreUI for Bootstrap JS -->

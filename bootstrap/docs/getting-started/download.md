@@ -43,13 +43,13 @@ If you're using our compiled JavaScript and prefer to include Popper separately,
 **If you use CoreUI PRO please use following links**
 
 ```html
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-UP+4FO2HYEW4ZGry1P/mvAVY8EZAXMn8YViV33OnRhhKta/OXf6RoeXwNONwtmYz" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/js/coreui.bundle.min.js" integrity="sha384-FpAeYtCNjf3C16gHs0Fdq06FUiBkQ9E6nvMr/VG1O5bhx9AvaA8njeB8BHWa5REO" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-j9VY5BIArie+zC9pDKyKQV8qOHeUFX8ewh6JDWndDBhZ2jQ48mwU5uq3m9LY0QF9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/coreui.bundle.min.js" integrity="sha384-Buu2Jao34Smgb3KcJa7Y7R11mQC19gApQWpRQjV5ywbSf0sTd0fTPennNmTOxlxc" crossorigin="anonymous"></script>
 ```
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.1/dist/js/coreui.min.js" integrity="sha384-H29ZNBJ1tKSNNtJeDjAbc/FfS9tuvy6S+9LYLFfvQNnRDtsKrZQP2tJs4V3/rDAk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/coreui.min.js" integrity="sha384-ZiOVNyY66TegWfTaCS1zYFSeytQr+C2YG2YeYxwj0WBvIFnv5L4zLVKI9JIjuuxe" crossorigin="anonymous"></script>
 ```
 
 ## Package managers
