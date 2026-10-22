@@ -20,7 +20,7 @@ const day = (offset: number) => {
 
 export const SchedulerMonthExample = () => (
   <CScheduler
-    view="month"
+    defaultView="month"
     monthMaxEventsPerDay={3}
     events={[
       {

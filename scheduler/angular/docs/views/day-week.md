@@ -22,7 +22,7 @@ const day = (offset: number) => {
   selector: 'docs-scheduler-day-week-example',
   imports: [SchedulerComponent],
   template: `
-    <c-scheduler view="week" [dayStartHour]="8" [dayEndHour]="18" [events]="events" />
+    <c-scheduler defaultView="week" [dayStartHour]="8" [dayEndHour]="18" [events]="events" />
   `
 })
 export class SchedulerDayWeekExample {

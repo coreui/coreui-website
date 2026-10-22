@@ -27,7 +27,7 @@ const events = [
 </script>
 
 <template>
-  <CScheduler view="week" :day-start-hour="8" :day-end-hour="18" :events="events" />
+  <CScheduler default-view="week" :day-start-hour="8" :day-end-hour="18" :events="events" />
 </template>
 ```
 

@@ -43,7 +43,8 @@ field) — a new object clears the fetched-range cache and refetches.
   and optimistic UI keep working.
 - The `getVisibleRange()` method on the component instance returns the
   current window (`{ start, end }`) if you prefer wiring fetches yourself
-  through `dateChange`/`viewChange`.
+  through `dateChange`/`viewChange`. With a controlled `date` or `view`, read it once
+  the new value comes back: the event fires before the scheduler moves.
 
 ## Manual wiring
 

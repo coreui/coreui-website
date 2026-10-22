@@ -6,6 +6,24 @@ Dates, times and ranges are formatted with the `Intl` API — pass `locale` to
 override the browser default. Every string the component renders or announces
 comes from the `labels` map.
 
+The grid is Gregorian. When the calendar of a locale has other months (Persian,
+Islamic, Hebrew or Chinese, as the default of the locale or asked for with
+`-u-ca-`), titles, column headers and day numbers are written in the Gregorian
+calendar, in the language and digits of the locale. A locale on the Buddhist,
+Japanese or Republic of China calendar (`th-TH`, `ja-JP-u-ca-japanese`) keeps
+its own year numbering. The hour axis is a 24-hour clock written the way the
+locale writes one (`09:00`, `09.00` in `fi-FI`, `۰۹:۰۰` in `fa-IR`), and the
+more link count uses the digits of the locale. Screen reader announcements name
+the date with its weekday and year ("Wednesday, August 12, 2026") and the time
+in the locale's own time format, so `en-US` hears `09:00 AM`.
+
+With `locale` set, the root gets `lang` with the language Intl resolves it to
+(`fa-IR-u-ca-persian` gives `fa-IR`), which tells assistive technology what
+language the scheduler is in. It replaces a `lang` you put on the scheduler
+element and covers `labels` and event titles too, so pass `labels` in the same
+language as `locale`. Without `locale`, your own `lang` stays, and with neither
+the scheduler follows the page.
+
 ```html
 <div id="schedulerLocalization"></div>
 ```

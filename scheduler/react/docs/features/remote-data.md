@@ -42,7 +42,8 @@ refetches.
   and optimistic UI keep working.
 - The `getVisibleRange()` ref method returns the current window
   (`{ start, end }`) if you prefer wiring fetches yourself through
-  `onDateChange`/`onViewChange`.
+  `onDateChange`/`onViewChange`. With a controlled `date` or `view`, read it once
+  the new value comes back: the event fires before the scheduler moves.
 
 ## Manual wiring
 

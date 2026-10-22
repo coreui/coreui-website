@@ -23,7 +23,7 @@ const day = (offset: number) => {
   imports: [SchedulerComponent],
   template: `
     <c-scheduler
-      view="timeline"
+      defaultView="timeline"
       [timelineDays]="5"
       [timelineHourWidth]="40"
       [resources]="resources"

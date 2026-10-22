@@ -1,22 +1,20 @@
 /*!
-* CoreUI PRO scheduler v0.1.0-rc.0 (https://coreui.io)
+* CoreUI PRO scheduler v0.2.0 (https://coreui.io)
 * Copyright 2026 The CoreUI Team (https://github.com/orgs/coreui/people)
 * License (https://coreui.io/pro/license/)
 * Bundles rrule (BSD-3-Clause), temporal-polyfill, @tanstack/store and
 * @tanstack/virtual-core (MIT) — see THIRD-PARTY-NOTICES.md in this package
 */
-//#region ../../node_modules/temporal-polyfill/chunks/root.js
+// ../../node_modules/temporal-polyfill/chunks/root.js
 const NativeTemporal = globalThis.Temporal;
-//#endregion
-//#region ../../node_modules/temporal-utils/dist/errorMessages.js
+// ../../node_modules/temporal-utils/dist/errorMessages.js
 const expectedPositive = (entityName, num) => `Non-positive ${entityName}: ${num}`;
 const expectedFinite = (entityName, num) => `Non-finite ${entityName}: ${num}`;
 const forbiddenBigIntToNumber = (entityName) => `Cannot convert bigint to ${entityName}`;
 const invalidObject = "Invalid object";
 const numberOutOfRange = (entityName, val, min, max) => invalidEntity$1(entityName, val) + `; must be between ${min}-${max}`;
 const invalidEntity$1 = (fieldName, val) => `Invalid ${fieldName}: ${val}`;
-//#endregion
-//#region ../../node_modules/temporal-utils/dist/utils.js
+// ../../node_modules/temporal-utils/dist/utils.js
 const nanoInMicro$1 = 1e3;
 const nanoInMilli$1 = 1e6;
 const nanoInSec$1 = 1e9;
@@ -52,8 +50,7 @@ function requireObjectLike(arg) {
 	if (!isObjectLike$1(arg)) throw new TypeError(invalidObject);
 	return arg;
 }
-//#endregion
-//#region ../../node_modules/temporal-polyfill/chunks/internal.js
+// ../../node_modules/temporal-polyfill/chunks/internal.js
 const invalidEntity = invalidEntity$1;
 const missingField = (fieldName) => `Missing ${fieldName}`;
 const noValidFields = (validFields) => "No valid fields: " + validFields.join();
@@ -343,6 +340,9 @@ function epochNanoToSecMod(epochNano) {
 	const [epochSec, nano] = divModFloorBigInt(epochNano, bigNanoInSec);
 	return [Number(epochSec), Number(nano)];
 }
+function epochNanoToMilli(epochNano) {
+	return Number(divFloorBigInt(epochNano, bigNanoInMilli));
+}
 function isoDateTimeToEpochNano(isoDateTime) {
 	return isoDateToEpochNano(isoDateTime) + BigInt(timeFieldsToNano(isoDateTime));
 }
@@ -356,9 +356,9 @@ function isoDateToEpochMilli(isoDate) {
 	return 864e5 * isoDateToEpochDays(isoDate);
 }
 function isoDateToEpochDays(isoDate) {
-	return isoArgsToEpochDays(isoDate.year, isoDate.month, isoDate.day);
+	return isoPartsToEpochDays(isoDate.year, isoDate.month, isoDate.day);
 }
-function isoArgsToEpochDays(isoYear, isoMonth = 1, isoDay = 1) {
+function isoPartsToEpochDays(isoYear, isoMonth = 1, isoDay = 1) {
 	const monthIndex = isoMonth - 1;
 	return isoYear += Math.floor(monthIndex / 12), isoMonth = modFloor(monthIndex, 12), Date.UTC(isoYear % 400 - 400, isoMonth, 0) / 864e5 + 146097 * (divTrunc(isoYear, 400) + 1) + isoDay;
 }
@@ -418,20 +418,20 @@ function addIsoMonths(year, month, monthDelta) {
 function diffIsoMonthSlots(year0, month0, year1, month1) {
 	return 12 * (year1 - year0) + month1 - month0;
 }
-function computeIsoDayOfWeek(isoDateFields) {
-	return modFloor(isoArgsToEpochDays(isoDateFields.year, isoDateFields.month, isoDateFields.day) + 4, 7) || 7;
+function computeIsoDayOfWeek(isoDate) {
+	return modFloor(isoPartsToEpochDays(isoDate.year, isoDate.month, isoDate.day) + 4, 7) || 7;
 }
-function computeIsoDayOfYear(isoDateFields) {
-	return isoArgsToEpochDays(isoDateFields.year, isoDateFields.month, isoDateFields.day) - isoArgsToEpochDays(isoDateFields.year) + 1;
+function computeIsoDayOfYear(isoDate) {
+	return isoPartsToEpochDays(isoDate.year, isoDate.month, isoDate.day) - isoPartsToEpochDays(isoDate.year) + 1;
 }
-function computeIsoWeekFields(isoDateFields) {
-	let yearOfWeek = isoDateFields.year;
-	let weekOfYear = Math.floor((computeIsoDayOfYear(isoDateFields) - computeIsoDayOfWeek(isoDateFields) + 10) / 7);
+function computeIsoWeekFields(isoDate) {
+	let yearOfWeek = isoDate.year;
+	let weekOfYear = Math.floor((computeIsoDayOfYear(isoDate) - computeIsoDayOfWeek(isoDate) + 10) / 7);
 	let weeksInYear = computeIsoWeeksInYear(yearOfWeek);
 	return weekOfYear < 1 ? weekOfYear = weeksInYear = computeIsoWeeksInYear(--yearOfWeek) : weekOfYear > weeksInYear && (weekOfYear = 1, weeksInYear = computeIsoWeeksInYear(++yearOfWeek)), {
 		weekOfYear,
 		yearOfWeek,
-		Be: weeksInYear
+		De: weeksInYear
 	};
 }
 function computeIsoWeeksInYear(year) {
@@ -470,16 +470,16 @@ function constrainIsoDateFields(isoDate, overflow) {
 	};
 }
 function computeCalendarDateFields(calendar, isoDate) {
-	return calendar ? calendar.ae(isoDate) : isoDate;
+	return calendar ? calendar.de(isoDate) : isoDate;
 }
 function computeCalendarMonthCodeParts(calendar, year, month) {
-	return calendar ? calendar.L(year, month) : computeIsoMonthCodeParts(month);
+	return calendar ? calendar.N(year, month) : computeIsoMonthCodeParts(month);
 }
 function computeCalendarEraFields(calendar, isoDate) {
 	return 0 === calendar ? computeGregoryEraFields(isoDate) : calendar && calendar.h?.(isoDate) || {};
 }
 function computeCalendarIsoFieldsFromParts(calendar, year, month, day) {
-	return calendar ? calendar.de(year, month, day) : computeIsoFieldsFromParts(year, month, day);
+	return calendar ? calendar.fe(year, month, day) : computeIsoFieldsFromParts(year, month, day);
 }
 function computeCalendarMonthsInYearForYear(calendar, year) {
 	return calendar ? calendar.j(year) : 12;
@@ -542,20 +542,21 @@ function requireNumberIsInteger(num, entityName = "number") {
 function toString(arg) {
 	return "symbol" == typeof arg && throwTypeError("Cannot convert Symbol to string"), String(arg);
 }
-function toStringViaPrimitive(arg, entityName) {
-	return isObjectLike$1(arg) ? String(arg) : requireString(arg, entityName);
+function toPrimitiveWithStringHint(arg) {
+	if (!isObjectLike$1(arg)) return arg;
+	const exoticToPrimitive = arg[Symbol.toPrimitive];
+	if (null != exoticToPrimitive) {
+		"function" != typeof exoticToPrimitive && throwTypeError();
+		const primitive = Reflect.apply(exoticToPrimitive, arg, ["string"]);
+		return isObjectLike$1(primitive) && throwTypeError(), primitive;
+	}
+	return Date.prototype[Symbol.toPrimitive].call(arg, "string");
 }
 function toBigInt(bi) {
 	return "boolean" == typeof bi ? BigInt(bi ? 1 : 0) : "string" == typeof bi ? BigInt(bi) : ("bigint" != typeof bi && throwTypeError(`Invalid bigint: ${bi}`), bi);
 }
 function toStrictInteger(arg, entityName) {
 	return requireNumberIsInteger(toFiniteNumber(arg, entityName), entityName);
-}
-function normalizeOptionsOrString(options, optionName) {
-	return "string" == typeof options ? ((optionName, optionVal) => {
-		const res = Object.create(null);
-		return res[optionName] = optionVal, res;
-	})(optionName, options) : requireObjectLike(options);
 }
 const smallestUnitStr = "smallestUnit";
 const overflowMap = {
@@ -655,6 +656,12 @@ const coerceTimeZoneDisplay = /*@__PURE__*/ bindArgs(coerceChoiceOption, "timeZo
 const coerceOffsetDisplay = /*@__PURE__*/ bindArgs(coerceChoiceOption, "offset", offsetDisplayMap);
 const coerceRoundingMode = /*@__PURE__*/ bindArgs(coerceChoiceOption, "roundingMode", roundingModeMap);
 const coerceDirection = /*@__PURE__*/ bindArgs(coerceChoiceOption, "direction", directionMap);
+function normalizeOptionsOrString(options, optionName) {
+	return "string" == typeof options ? ((optionName, optionVal) => {
+		const res = Object.create(null);
+		return res[optionName] = optionVal, res;
+	})(optionName, options) : requireObjectLike(options);
+}
 function validateRoundingInc(roundingInc, smallestUnit, allowManyLargeUnits, solarMode) {
 	const upUnitNano = solarMode ? nanoInUtcDay : unitNanoMap[smallestUnit + 1];
 	if (upUnitNano) {
@@ -695,19 +702,6 @@ function refineRoundingOptions(options, maxUnit = 6, solarMode) {
 function combineDateAndTime(isoDate, time) {
 	return pluckProps(calendarDateFieldNamesAsc, isoDate, pluckProps(timeFieldNamesAsc, time));
 }
-function refineOverflowOptions(options) {
-	return void 0 === options ? 0 : coerceOverflow(requireObjectLike(options));
-}
-function refineZonedFieldOptions(options, defaultOffsetDisambig = 0) {
-	options = normalizeOptions(options);
-	const epochDisambig = coerceEpochDisambig(options);
-	const offsetDisambig = coerceOffsetDisambig(options, defaultOffsetDisambig);
-	return [
-		coerceOverflow(options),
-		offsetDisambig,
-		epochDisambig
-	];
-}
 const epochNanoMax = /*@__PURE__*/ BigInt(1e8) * bigNanoInUtcDay;
 const epochNanoMin = /*@__PURE__*/ BigInt(-1e8) * bigNanoInUtcDay;
 const plainDateEpochNanoMin = epochNanoMin - bigNanoInUtcDay;
@@ -717,20 +711,58 @@ function checkIsoYearMonthInBounds(isoDate) {
 	return (isoYearMonthIndex < isoYearMonthIndexMin || isoYearMonthIndex > 3309129) && throwRangeError("Out-of-bounds date"), isoDate;
 }
 function checkIsoDateInBounds(isoDate, allowPlainDateLowerEdge = 1) {
-	return checkIsoDateEpochNanoInBounds(isoDateToEpochNano(isoDate), allowPlainDateLowerEdge), isoDate;
+	const epochNano = isoDateToEpochNano(isoDate);
+	return (epochNano < (allowPlainDateLowerEdge ? plainDateEpochNanoMin : epochNanoMin) || epochNano > epochNanoMax) && throwRangeError("Out-of-bounds date"), isoDate;
 }
 function checkIsoDateTimeInBounds(isoDateTime) {
-	const epochNano = isoDateToEpochNano(isoDateTime);
-	return checkIsoDateEpochNanoInBounds(epochNano), epochNano !== plainDateEpochNanoMin || timeFieldsToNano(isoDateTime) || throwRangeError("Out-of-bounds date"), isoDateTime;
+	return checkIsoDateTimeEpochNanoInBounds(isoDateTimeToEpochNano(isoDateTime)), isoDateTime;
 }
-function checkIsoDateEpochNanoInBounds(epochNano, allowPlainDateLowerEdge = 1) {
-	(epochNano < (allowPlainDateLowerEdge ? plainDateEpochNanoMin : epochNanoMin) || epochNano > epochNanoMax) && throwRangeError("Out-of-bounds date");
+function checkIsoDateTimeEpochNanoInBounds(epochNano) {
+	return (epochNano <= plainDateEpochNanoMin || epochNano >= epochNanoMax + bigNanoInUtcDay) && throwRangeError("Out-of-bounds date"), epochNano;
 }
 function checkEpochNanoInBounds(epochNano) {
 	return (epochNano < epochNanoMin || epochNano > epochNanoMax) && throwRangeError("Out-of-bounds date"), epochNano;
 }
 function isoDateTimeAndOffsetToEpochNano(isoDateTime, offsetNano) {
 	return checkEpochNanoInBounds(isoDateToEpochNano(isoDateTime) + BigInt(timeFieldsToNano(isoDateTime) - offsetNano));
+}
+function roundNumberToInc(num, roundingInc, roundingMode) {
+	return roundWithMode(num / roundingInc, roundingMode) * roundingInc;
+}
+function roundWithMode(num, roundingMode) {
+	return roundingModeFuncs[roundingMode](num);
+}
+function totalRelativeUnit(wholeValue, sign, endEpochNano, moveValueToEpochNano) {
+	const unitWindow = clampRelativeUnitValue(wholeValue, sign, moveValueToEpochNano, endEpochNano);
+	return interpolateRelativeUnitWindow(unitWindow, Number(endEpochNano - unitWindow.I) / Number(unitWindow.O - unitWindow.I));
+}
+function roundRelativeUnitWindow(unitWindow, endEpochNano, roundingInc, roundingMode) {
+	return roundNumberToInc(interpolateRelativeUnitWindow(unitWindow, computeEpochNanoFrac(endEpochNano, unitWindow.I, unitWindow.O)), roundingInc, roundingMode);
+}
+function clampRelativeUnitValue(startValue, valueDelta, moveValueToEpochNano, epochNanoProgress) {
+	let unitWindow = computeRelativeUnitWindow(startValue, valueDelta, moveValueToEpochNano);
+	return ((epochNanoProgress, epochNano0, epochNano1, sign) => sign > 0 ? epochNano0 <= epochNanoProgress && epochNanoProgress <= epochNano1 : epochNano1 <= epochNanoProgress && epochNanoProgress <= epochNano0)(epochNanoProgress, unitWindow.I, unitWindow.O, Math.sign(valueDelta)) || (unitWindow = computeRelativeUnitWindow(startValue + valueDelta, valueDelta, moveValueToEpochNano)), unitWindow;
+}
+function computeRelativeUnitWindow(startValue, valueDelta, moveValueToEpochNano) {
+	const endValue = startValue + valueDelta;
+	return {
+		ve: startValue,
+		qe: endValue,
+		I: moveValueToEpochNano(startValue),
+		O: moveValueToEpochNano(endValue)
+	};
+}
+function interpolateRelativeUnitWindow(unitWindow, fraction) {
+	return unitWindow.ve + fraction * (unitWindow.qe - unitWindow.ve);
+}
+function computeEpochNanoFrac(epochNanoProgress, epochNano0, epochNano1) {
+	const denomBig = epochNano1 - epochNano0;
+	const numeratorBig = epochNanoProgress - epochNano0;
+	if (!numeratorBig) return 0;
+	const absNumerator = numeratorBig < 0n ? -numeratorBig : numeratorBig;
+	const absDenom = denomBig < 0n ? -denomBig : denomBig;
+	const fracSign = compareBigInts(numeratorBig, 0n) === compareBigInts(denomBig, 0n) ? 1 : -1;
+	return compareBigInts(absNumerator, absDenom) <= 0 ? absNumerator === absDenom ? fracSign : fabricateNearHalfFraction(compareBigInts(2n * absNumerator, absDenom), fracSign) : Number(numeratorBig) / Number(denomBig);
 }
 function createEpochNanoSlots(epochNano) {
 	return { epochNanoseconds: epochNano };
@@ -754,132 +786,16 @@ function createTimeSlots(time) {
 function createDurationSlots(durationFields) {
 	return pluckProps(durationFieldNamesAsc, durationFields, { sign: computeDurationSign(durationFields) });
 }
-function getEpochMilli(slots) {
-	return epochNano = slots.epochNanoseconds, Number(divFloorBigInt(epochNano, bigNanoInMilli));
-	var epochNano;
-}
-function getEpochNano(slots) {
-	return slots.epochNanoseconds;
-}
-function totalDuration(refineRelativeTo, slots, options) {
-	const maxDurationUnit = getMaxDurationUnit(slots);
-	const [totalUnit, relativeToSlots] = ((options, refineRelativeTo) => {
-		const relativeToInternals = refineRelativeTo((options = normalizeOptionsOrString(options, "unit")).relativeTo);
-		let totalUnit = coerceTotalUnit(options);
-		return totalUnit = requirePropDefined("unit", totalUnit), [totalUnit, relativeToInternals];
-	})(options, refineRelativeTo);
-	const maxUnit = Math.max(totalUnit, maxDurationUnit);
-	const isZoned = relativeToSlots && isZonedEpochSlots(relativeToSlots);
-	if (!relativeToSlots && isUniformUnit(maxUnit, isZoned)) return totalDayTimeDuration(slots, totalUnit);
-	if (relativeToSlots || throwRangeError("Missing relativeTo"), !slots.sign && isUniformUnit(totalUnit, isZoned)) return 0;
-	const [balancedDuration, endEpochNano, relativeOps] = spanRelativeDuration(relativeToSlots, slots, totalUnit);
-	return isUniformUnit(totalUnit, isZoned) ? totalDayTimeDuration(balancedDuration, totalUnit) : totalRelativeDuration(balancedDuration, endEpochNano, totalUnit, relativeOps);
-}
-function totalRelativeDuration(durationFields, endEpochNano, totalUnit, relativeOps) {
-	const sign = computeDurationSign(durationFields) || 1;
-	const nudgeWindow = clampRelativeDuration(clearDurationFields(totalUnit, durationFields), totalUnit, sign, relativeOps, endEpochNano);
-	const epochNano0 = nudgeWindow.ee;
-	const epochNano1 = nudgeWindow.te;
-	const denom = Number(epochNano1 - epochNano0);
-	const numerator = Number(endEpochNano - epochNano0);
-	return nudgeWindow.pe[durationFieldNamesAsc[totalUnit]] + numerator / denom * sign;
-}
-function totalDayTimeDuration(durationFields, totalUnit) {
-	return divideBigNanoToExactNumber(durationDayTimeToBigNano(durationFields), unitNanoMap[totalUnit]);
-}
-function clampRelativeDuration(durationFields, clampUnit, clampDistance, relativeOps, epochNanoProgress) {
-	const unitName = durationFieldNamesAsc[clampUnit];
-	let startDurationFields = durationFields;
-	let shifted = 0;
-	let window = computeRelativeDurationWindow(startDurationFields, unitName, clampDistance, relativeOps);
-	return epochNanoProgress && !((epochNanoProgress, epochNano0, epochNano1, sign) => sign > 0 ? compareBigInts(epochNano0, epochNanoProgress) <= 0 && compareBigInts(epochNanoProgress, epochNano1) <= 0 : compareBigInts(epochNano1, epochNanoProgress) <= 0 && compareBigInts(epochNanoProgress, epochNano0) <= 0)(epochNanoProgress, window.ee, window.te, Math.sign(clampDistance)) && (startDurationFields = {
-		...durationFields,
-		[unitName]: durationFields[unitName] + clampDistance
-	}, shifted = 1, window = computeRelativeDurationWindow(startDurationFields, unitName, clampDistance, relativeOps)), {
-		...window,
-		pe: startDurationFields,
-		Ae: shifted
-	};
-}
-function computeRelativeDurationWindow(startDurationFields, unitName, clampDistance, relativeOps) {
-	const endDurationFields = {
-		...startDurationFields,
-		[unitName]: startDurationFields[unitName] + clampDistance
-	};
-	return {
-		ee: moveRelativeToEpochNano(relativeOps, startDurationFields),
-		te: moveRelativeToEpochNano(relativeOps, endDurationFields),
-		se: endDurationFields
-	};
-}
-function computeEpochNanoFrac(epochNanoProgress, epochNano0, epochNano1) {
-	const denomBig = epochNano1 - epochNano0;
-	const numeratorBig = epochNanoProgress - epochNano0;
-	if (!numeratorBig) return 0;
-	const absNumerator = numeratorBig < 0n ? -numeratorBig : numeratorBig;
-	const absDenom = denomBig < 0n ? -denomBig : denomBig;
-	const fracSign = compareBigInts(numeratorBig, 0n) === compareBigInts(denomBig, 0n) ? 1 : -1;
-	return compareBigInts(absNumerator, absDenom) <= 0 ? absNumerator === absDenom ? fracSign : fabricateNearHalfFraction(compareBigInts(2n * absNumerator, absDenom), fracSign) : Number(numeratorBig) / Number(denomBig);
-}
 function roundZonedEpochSlotsToUnit(slots, smallestUnit, roundingInc, roundingMode) {
-	let { epochNanoseconds } = slots;
-	const { timeZone, calendar } = slots;
-	if (0 === smallestUnit && 1 === roundingInc) return {
-		epochNanoseconds,
-		timeZone,
-		calendar
-	};
-	if (6 === smallestUnit) {
-		const isoFields0 = combineDateAndTime(zonedEpochSlotsToIso(slots), timeFieldDefaults);
-		const isoFields1 = combineDateAndTime(moveByDays(isoFields0, 1), timeFieldDefaults);
-		const epochNano0 = getStartOfDayInstantFor(timeZone, isoFields0);
-		const epochNano1 = getStartOfDayInstantFor(timeZone, isoFields1);
-		epochNanoseconds = roundWithMode(computeZonedDayRoundFrac(epochNanoseconds, epochNano0, epochNano1), roundingMode) ? epochNano1 : epochNano0;
-	} else {
-		const isoDateTime = zonedEpochSlotsToIso(slots);
-		const offsetNano = isoDateTime.offsetNanoseconds;
-		epochNanoseconds = getMatchingInstantFor(timeZone, roundDateTimeToNano(isoDateTime, computeNanoInc(smallestUnit, roundingInc), roundingMode), offsetNano, 2, 0, 1);
-	}
-	return {
-		epochNanoseconds,
-		timeZone,
-		calendar
-	};
+	return createZonedEpochNanoSlots(6 === smallestUnit ? roundZonedEpochToDay(slots, roundingMode) : roundZonedEpochToTime(slots, smallestUnit, roundingInc, roundingMode), slots.timeZone, slots.calendar);
 }
 function computeZonedHoursInDay(slots) {
-	const { timeZone } = slots;
-	const isoFields0 = combineDateAndTime(zonedEpochSlotsToIso(slots), timeFieldDefaults);
-	const isoFields1 = combineDateAndTime(moveByDays(isoFields0, 1), timeFieldDefaults);
-	const epochNano0 = getStartOfDayInstantFor(timeZone, isoFields0);
-	return divideBigNanoToExactNumber(getStartOfDayInstantFor(timeZone, isoFields1) - epochNano0, nanoInHour);
+	const [epochNano0, epochNano1] = computeZonedDayEpochInterval(slots);
+	return divideBigNanoToExactNumber(epochNano1 - epochNano0, nanoInHour);
 }
 function computeZonedStartOfDay(slots) {
 	const { timeZone, calendar } = slots;
 	return createZonedEpochNanoSlots(getStartOfDayInstantFor(timeZone, combineDateAndTime(zonedEpochSlotsToIso(slots), timeFieldDefaults)), timeZone, calendar);
-}
-function computeZonedDayRoundFrac(epochNano, epochNano0, epochNano1) {
-	return computeEpochNanoFrac(epochNano < epochNano1 ? epochNano : epochNano1 - 1n, epochNano0, epochNano1);
-}
-function roundDateTimeToNano(isoDateTime, nanoInc, roundingMode) {
-	const [roundedTimeFields, dayDelta] = roundTimeToNano(isoDateTime, nanoInc, roundingMode);
-	const roundedIsoDateTime = combineDateAndTime(moveByDays(isoDateTime, dayDelta), roundedTimeFields);
-	return checkIsoDateTimeInBounds(roundedIsoDateTime), roundedIsoDateTime;
-}
-function roundTimeToNano(timeFields, nanoInc, roundingMode) {
-	return nanoToTimeAndDay(roundNumberToInc(timeFieldsToNano(timeFields), nanoInc, roundingMode));
-}
-function roundToMinute(offsetNano) {
-	return roundNumberToInc(offsetNano, nanoInMinute, 7);
-}
-function computeNanoInc(smallestUnit, roundingInc) {
-	return unitNanoMap[smallestUnit] * roundingInc;
-}
-function computeBigNanoInc(smallestUnit, roundingInc) {
-	return BigInt(unitNanoMap[smallestUnit]) * BigInt(roundingInc);
-}
-function roundDayTimeDurationByInc(durationFields, nanoInc, roundingMode) {
-	const maxUnit = Math.min(getMaxDurationUnit(durationFields), 6);
-	return nanoToDurationDayTimeFields(roundBigNanoToInc(durationDayTimeToBigNano(durationFields), BigInt(nanoInc), roundingMode), maxUnit);
 }
 function roundRelativeDuration(durationFields, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode, relativeOps, isZoned) {
 	if (0 === smallestUnit && 1 === roundingInc) return durationFields;
@@ -890,12 +806,101 @@ function roundRelativeDuration(durationFields, endEpochNano, largestUnit, smalle
 			if (7 === currentUnit && 7 !== largestUnit) continue;
 			const baseDurationFields = clearDurationFields(currentUnit, durationFields);
 			baseDurationFields[durationFieldNamesAsc[currentUnit]] += sign;
-			const thresholdCompare = compareBigInts(endEpochNano, moveRelativeToEpochNano(relativeOps, baseDurationFields));
+			const thresholdCompare = compareBigInts(endEpochNano, moveRelativeMarkerToEpochNano(relativeOps, baseDurationFields));
 			if (thresholdCompare && thresholdCompare !== sign) break;
 			durationFields = baseDurationFields;
 		}
 		return durationFields;
 	})(roundedDurationFields, roundedEpochNano, largestUnit, Math.max(6, smallestUnit), sign, relativeOps)), roundedDurationFields;
+}
+function roundDayTimeDurationByInc(durationFields, nanoInc, roundingMode) {
+	const maxUnit = Math.min(getMaxDurationUnit(durationFields), 6);
+	return nanoToDurationDayTimeFields(roundBigNanoToInc(durationDayTimeToBigNano(durationFields), BigInt(nanoInc), roundingMode), maxUnit);
+}
+function roundZonedEpochToDay(slots, roundingMode) {
+	const [epochNano0, epochNano1] = computeZonedDayEpochInterval(slots);
+	return roundZonedEpochToBounds(slots.epochNanoseconds, epochNano0, epochNano1, roundingMode);
+}
+function roundZonedEpochToTime(slots, smallestUnit, roundingInc, roundingMode) {
+	if (0 === smallestUnit && 1 === roundingInc) return slots.epochNanoseconds;
+	const isoDateTime = zonedEpochSlotsToIso(slots);
+	return getMatchingInstantFor(slots.timeZone, roundDateTimeToInc(isoDateTime, computeNanoInc(smallestUnit, roundingInc), roundingMode), isoDateTime.offsetNanoseconds, 2, 0, 1);
+}
+function roundDateTimeToInc(isoDateTime, nanoInc, roundingMode) {
+	const [roundedTimeFields, dayDelta] = roundTimeToInc(isoDateTime, nanoInc, roundingMode);
+	const roundedIsoDateTime = combineDateAndTime(moveDateByDays(isoDateTime, dayDelta), roundedTimeFields);
+	return checkIsoDateTimeInBounds(roundedIsoDateTime), roundedIsoDateTime;
+}
+function roundTimeToInc(timeFields, nanoInc, roundingMode) {
+	return nanoToTimeAndDay(roundNumberToInc(timeFieldsToNano(timeFields), nanoInc, roundingMode));
+}
+function nudgeRelativeDuration(sign, durationFields, endEpochNano, _largestUnit, smallestUnit, roundingInc, roundingMode, relativeOps) {
+	const smallestUnitFieldName = durationFieldNamesAsc[smallestUnit];
+	const baseDurationFields = clearDurationFields(smallestUnit, durationFields);
+	7 === smallestUnit && (durationFields = {
+		...durationFields,
+		weeks: durationFields.weeks + Math.trunc(durationFields.days / 7)
+	});
+	const truncedVal = divTrunc(durationFields[smallestUnitFieldName], roundingInc) * roundingInc;
+	const nudgeWindow = clampRelativeUnitValue(truncedVal, roundingInc * sign, (value) => (baseDurationFields[smallestUnitFieldName] = value, moveRelativeMarkerToEpochNano(relativeOps, baseDurationFields)), endEpochNano);
+	const roundedVal = roundRelativeUnitWindow(nudgeWindow, endEpochNano, roundingInc, roundingMode);
+	return baseDurationFields[smallestUnitFieldName] = roundedVal, [
+		baseDurationFields,
+		roundedVal === nudgeWindow.qe ? nudgeWindow.O : nudgeWindow.I,
+		roundedVal !== truncedVal
+	];
+}
+function nudgeZonedTimeDuration(sign, durationFields, endEpochNano, _largestUnit, smallestUnit, roundingInc, roundingMode, relativeOps) {
+	const timeNano = Number(durationTimeToBigNano(durationFields));
+	const nanoInc = computeNanoInc(smallestUnit, roundingInc);
+	let roundedTimeNano = roundNumberToInc(timeNano, nanoInc, roundingMode);
+	const dateDurationFields = {
+		...durationFields,
+		...durationTimeFieldDefaults
+	};
+	const dayWindow = clampRelativeUnitValue(dateDurationFields.days, sign, (days) => (dateDurationFields.days = days, moveRelativeMarkerToEpochNano(relativeOps, dateDurationFields)), endEpochNano);
+	const dayEpochNano0 = dayWindow.I;
+	const dayEpochNano1 = dayWindow.O;
+	const beyondDayNano = roundedTimeNano - Number(dayEpochNano1 - dayEpochNano0);
+	let dayDelta = 0;
+	beyondDayNano && Math.sign(beyondDayNano) !== sign ? endEpochNano = dayEpochNano0 + BigInt(roundedTimeNano) : (dayDelta += sign, roundedTimeNano = roundNumberToInc(beyondDayNano, nanoInc, roundingMode), endEpochNano = dayEpochNano1 + BigInt(roundedTimeNano));
+	const durationTimeFields = nanoToDurationTimeFields(roundedTimeNano);
+	return [
+		{
+			...durationFields,
+			...durationTimeFields,
+			days: durationFields.days + dayDelta
+		},
+		endEpochNano,
+		Boolean(dayDelta)
+	];
+}
+function nudgeDayTimeDuration(sign, durationFields, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode) {
+	const bigNano = durationDayTimeToBigNano(durationFields);
+	const roundedBigNano = roundBigNanoToInc(bigNano, computeBigNanoInc(smallestUnit, roundingInc), roundingMode);
+	const nanoDiff = roundedBigNano - bigNano;
+	const expandedBigUnit = Math.sign(Number(roundedBigNano / bigNanoInUtcDay) - Number(bigNano / bigNanoInUtcDay)) === sign;
+	const roundedDayTimeFields = nanoToDurationDayTimeFields(roundedBigNano, Math.min(largestUnit, 6));
+	return [
+		{
+			...durationFields,
+			...roundedDayTimeFields
+		},
+		endEpochNano + nanoDiff,
+		expandedBigUnit
+	];
+}
+function computeZonedDayEpochInterval(slots) {
+	const { timeZone } = slots;
+	const isoDateTime0 = combineDateAndTime(zonedEpochSlotsToIso(slots), timeFieldDefaults);
+	const isoDateTime1 = combineDateAndTime(moveDateByDays(isoDateTime0, 1), timeFieldDefaults);
+	return [getStartOfDayInstantFor(timeZone, isoDateTime0), getStartOfDayInstantFor(timeZone, isoDateTime1)];
+}
+function roundZonedEpochToBounds(epochNano, epochNano0, epochNano1, roundingMode) {
+	return roundWithMode(computeEpochNanoFrac(epochNano < epochNano1 ? epochNano : epochNano1 - 1n, epochNano0, epochNano1), roundingMode) ? epochNano1 : epochNano0;
+}
+function roundToMinute(offsetNano) {
+	return roundNumberToInc(offsetNano, nanoInMinute, 7);
 }
 function roundBigNanoToInc(bigNano, bigNanoInc, roundingMode) {
 	return roundBigNanoToIncWithTail(bigNano, bigNanoInc, roundingMode, bigNano / bigNanoInc % 2n);
@@ -913,79 +918,11 @@ function roundBigNanoToIncWithTail(bigNano, bigNanoInc, roundingMode, quotientTa
 	const roundedTail = roundWithMode(Number(quotientTail) + fraction, roundingMode);
 	return (quotient - quotientTail + BigInt(roundedTail)) * bigNanoInc;
 }
-function roundNumberToInc(num, roundingInc, roundingMode) {
-	return roundWithMode(num / roundingInc, roundingMode) * roundingInc;
+function computeNanoInc(smallestUnit, roundingInc) {
+	return unitNanoMap[smallestUnit] * roundingInc;
 }
-function roundWithMode(num, roundingMode) {
-	return roundingModeFuncs[roundingMode](num);
-}
-function nudgeDayTimeDuration(sign, durationFields, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode) {
-	const bigNano = durationDayTimeToBigNano(durationFields);
-	const roundedBigNano = roundBigNanoToInc(bigNano, computeBigNanoInc(smallestUnit, roundingInc), roundingMode);
-	const nanoDiff = roundedBigNano - bigNano;
-	const expandedBigUnit = Math.sign(Number(roundedBigNano / bigNanoInUtcDay) - Number(bigNano / bigNanoInUtcDay)) === sign;
-	const roundedDayTimeFields = nanoToDurationDayTimeFields(roundedBigNano, Math.min(largestUnit, 6));
-	return [
-		{
-			...durationFields,
-			...roundedDayTimeFields
-		},
-		endEpochNano + nanoDiff,
-		expandedBigUnit
-	];
-}
-function nudgeZonedTimeDuration(sign, durationFields, endEpochNano, _largestUnit, smallestUnit, roundingInc, roundingMode, relativeOps) {
-	const timeNano = Number(durationTimeToBigNano(durationFields));
-	const nanoInc = computeNanoInc(smallestUnit, roundingInc);
-	let roundedTimeNano = roundNumberToInc(timeNano, nanoInc, roundingMode);
-	const dayWindow = clampRelativeDuration({
-		...durationFields,
-		...durationTimeFieldDefaults
-	}, 6, sign, relativeOps, endEpochNano);
-	const dayEpochNano0 = dayWindow.ee;
-	const dayEpochNano1 = dayWindow.te;
-	const beyondDayNano = roundedTimeNano - Number(dayEpochNano1 - dayEpochNano0);
-	let dayDelta = 0;
-	beyondDayNano && Math.sign(beyondDayNano) !== sign ? endEpochNano = dayEpochNano0 + BigInt(roundedTimeNano) : (dayDelta += sign, roundedTimeNano = roundNumberToInc(beyondDayNano, nanoInc, roundingMode), endEpochNano = dayEpochNano1 + BigInt(roundedTimeNano));
-	const durationTimeFields = nanoToDurationTimeFields(roundedTimeNano);
-	return [
-		{
-			...durationFields,
-			...durationTimeFields,
-			days: durationFields.days + dayDelta
-		},
-		endEpochNano,
-		Boolean(dayDelta)
-	];
-}
-function nudgeRelativeDuration(sign, durationFields, endEpochNano, _largestUnit, smallestUnit, roundingInc, roundingMode, relativeOps) {
-	const smallestUnitFieldName = durationFieldNamesAsc[smallestUnit];
-	const baseDurationFields = clearDurationFields(smallestUnit, durationFields);
-	7 === smallestUnit && (durationFields = {
-		...durationFields,
-		weeks: durationFields.weeks + Math.trunc(durationFields.days / 7)
-	});
-	baseDurationFields[smallestUnitFieldName] = divTrunc(durationFields[smallestUnitFieldName], roundingInc) * roundingInc;
-	const nudgeWindow = clampRelativeDuration(baseDurationFields, smallestUnit, roundingInc * sign, relativeOps, endEpochNano);
-	const epochNano0 = nudgeWindow.ee;
-	const epochNano1 = nudgeWindow.te;
-	const frac = computeEpochNanoFrac(endEpochNano, epochNano0, epochNano1);
-	const windowStartVal = nudgeWindow.pe[smallestUnitFieldName];
-	const windowEndVal = nudgeWindow.se[smallestUnitFieldName];
-	const roundedVal = roundNumberToInc(windowStartVal + frac * sign * roundingInc, roundingInc, roundingMode);
-	const roundedToEnd = roundedVal === windowEndVal;
-	return baseDurationFields[smallestUnitFieldName] = roundedVal, [
-		baseDurationFields,
-		roundedToEnd ? epochNano1 : epochNano0,
-		nudgeWindow.Ae || roundedToEnd
-	];
-}
-function getTimeZoneTransitionEpochNanoseconds(slots, options) {
-	return slots.timeZone.O(slots.epochNanoseconds, ((options) => {
-		const normalizedOptions = normalizeOptionsOrString(options, "direction");
-		const res = coerceDirection(normalizedOptions, 0);
-		return res || throwRangeError(invalidEntity("direction", res)), res;
-	})(options));
+function computeBigNanoInc(smallestUnit, roundingInc) {
+	return BigInt(unitNanoMap[smallestUnit]) * BigInt(roundingInc);
 }
 const zonedEpochSlotsToIso = /*@__PURE__*/ memoize(_zonedEpochSlotsToIso, WeakMap);
 function _zonedEpochSlotsToIso(slots) {
@@ -999,7 +936,7 @@ function _zonedEpochSlotsToIso(slots) {
 function getMatchingInstantFor(timeZone, isoDateTime, offsetNano, offsetDisambig = 0, epochDisambig = 0, epochFuzzy, hasZ) {
 	if (void 0 !== offsetNano && 1 === offsetDisambig && (1 === offsetDisambig || hasZ)) return isoDateTimeAndOffsetToEpochNano(isoDateTime, offsetNano);
 	2 !== offsetDisambig && 0 !== offsetDisambig || checkIsoDateInBounds(isoDateTime, 0);
-	const possibleEpochNanos = timeZone.N(isoDateTime);
+	const possibleEpochNanos = timeZone.R(isoDateTime);
 	if (void 0 !== offsetNano && 3 !== offsetDisambig) {
 		const matchingEpochNano = ((possibleEpochNanos, isoDateTime, offsetNano, fuzzy) => {
 			const zonedEpochNano = isoDateTimeToEpochNano(isoDateTime);
@@ -1014,33 +951,28 @@ function getMatchingInstantFor(timeZone, isoDateTime, offsetNano, offsetDisambig
 	}
 	return hasZ ? isoDateTimeToEpochNano(isoDateTime) : getSingleInstantFor(timeZone, isoDateTime, epochDisambig, possibleEpochNanos);
 }
-function getSingleInstantFor(timeZone, isoDateTime, disambig = 0, possibleEpochNanos = timeZone.N(isoDateTime)) {
+function getSingleInstantFor(timeZone, isoDateTime, disambig = 0, possibleEpochNanos = timeZone.R(isoDateTime)) {
 	if (1 === possibleEpochNanos.length) return possibleEpochNanos[0];
 	if (1 === disambig && throwRangeError("Ambiguous offset"), possibleEpochNanos.length) return possibleEpochNanos[3 === disambig ? 1 : 0];
 	const zonedEpochNano = isoDateTimeToEpochNano(isoDateTime);
 	const gapNano = ((timeZone, zonedEpochNano) => {
 		const startOffsetNano = timeZone.B(zonedEpochNano - bigNanoInUtcDay);
-		return ((gapNano) => (gapNano > 864e11 && throwRangeError("Out-of-bounds TimeZone gap"), gapNano))(timeZone.B(zonedEpochNano + bigNanoInUtcDay) - startOffsetNano);
+		return ((gapNano) => (gapNano > nanoInUtcDay && throwRangeError("Out-of-bounds TimeZone gap"), gapNano))(timeZone.B(zonedEpochNano + bigNanoInUtcDay) - startOffsetNano);
 	})(timeZone, zonedEpochNano);
 	const shiftedIsoDateTime = epochNanoToIsoDateTime(zonedEpochNano + BigInt(gapNano * (2 === disambig ? -1 : 1)));
-	return (possibleEpochNanos = timeZone.N(shiftedIsoDateTime))[2 === disambig ? 0 : possibleEpochNanos.length - 1];
+	return (possibleEpochNanos = timeZone.R(shiftedIsoDateTime))[2 === disambig ? 0 : possibleEpochNanos.length - 1];
 }
 function getStartOfDayInstantFor(timeZone, isoDateTime) {
-	const possibleEpochNanos = timeZone.N(isoDateTime);
+	const possibleEpochNanos = timeZone.R(isoDateTime);
 	if (possibleEpochNanos.length) return possibleEpochNanos[0];
 	const zonedEpochNanoDayBefore = isoDateTimeToEpochNano(isoDateTime) - bigNanoInUtcDay;
-	return timeZone.O(zonedEpochNanoDayBefore, 1);
+	return timeZone.C(zonedEpochNanoDayBefore, 1);
 }
-function moveYearMonth(doSubtract, calendar, isoDateFields, durationSlots, options) {
-	const overflow = refineOverflowOptions(options);
-	durationSlots.sign && getMaxDurationUnit(durationSlots) < 8 && throwRangeError("Cannot use small units");
-	return moveToStartOfMonth(calendar, dateAddWithOverflow(calendar, checkIsoDateInBounds(moveToStartOfMonth(calendar, isoDateFields)), doSubtract ? negateDurationFields(durationSlots) : durationSlots, overflow));
+function moveYearMonth(calendar, isoDate, durationSlots, overflow = 0) {
+	computeDurationSign(durationSlots) && clampEntity("unit", getMaxDurationUnit(durationSlots), 8, 9, 1, durationFieldNamesAsc);
+	return moveToStartOfMonth(calendar, moveDate(calendar, checkIsoDateInBounds(moveToStartOfMonth(calendar, isoDate)), durationSlots, overflow));
 }
-function moveEpochNano(epochNano, durationFields) {
-	return checkEpochNanoInBounds(epochNano + (durationHasDateParts(fields = durationFields) && throwRangeError("Cannot use large units"), durationTimeToBigNano(fields)));
-	var fields;
-}
-function moveZonedEpochSlots(slots, durationFields, options) {
+function moveZonedEpochSlots(slots, durationFields, overflow = 0) {
 	const { calendar, epochNanoseconds: epochNano, timeZone } = slots;
 	const timeOnlyNano = durationTimeToBigNano(durationFields);
 	let movedEpochNano = epochNano;
@@ -1049,68 +981,74 @@ function moveZonedEpochSlots(slots, durationFields, options) {
 		movedEpochNano = getSingleInstantFor(timeZone, combineDateAndTime(moveDate(calendar, isoDateTime, {
 			...durationFields,
 			...durationTimeFieldDefaults
-		}, options), isoDateTime)) + timeOnlyNano;
-	} else movedEpochNano += timeOnlyNano, refineOverflowOptions(options);
+		}, overflow), isoDateTime)) + timeOnlyNano;
+	} else movedEpochNano += timeOnlyNano;
 	return {
 		...slots,
 		epochNanoseconds: checkEpochNanoInBounds(movedEpochNano)
 	};
 }
-function moveDateTime(calendar, isoDateTimeFields, durationFields, options) {
-	const [movedTimeFields, dayDelta] = moveTime(isoDateTimeFields, durationFields);
-	return checkIsoDateTimeInBounds(combineDateAndTime(moveDate(calendar, isoDateTimeFields, {
+function moveDateTime(calendar, isoDateTime, durationFields, overflow = 0) {
+	const [movedTimeFields, dayDelta] = moveTime(isoDateTime, durationFields);
+	return checkIsoDateTimeInBounds(combineDateAndTime(moveDate(calendar, isoDateTime, {
 		...durationFields,
 		...durationTimeFieldDefaults,
 		days: durationFields.days + dayDelta
-	}, options), movedTimeFields));
-}
-function moveDate(calendar, isoDateFields, durationFields, options) {
-	if (durationFields.years || durationFields.months || durationFields.weeks) return dateAddWithOverflow(calendar, isoDateFields, durationFields, refineOverflowOptions(options));
-	refineOverflowOptions(options);
-	const days = durationFields.days + Number(durationTimeToBigNano(durationFields) / bigNanoInUtcDay);
-	return days ? checkIsoDateInBounds(moveByDays(isoDateFields, days)) : isoDateFields;
-}
-function moveToStartOfMonth(calendar, isoDateFields) {
-	return moveByDays(isoDateFields, 1 - computeCalendarDateFields(calendar, isoDateFields).day);
+	}, overflow), movedTimeFields));
 }
 function moveTime(timeFields, durationFields) {
-	const durationBigNano = durationTimeToBigNano(durationFields);
-	const durDays = Number(durationBigNano / bigNanoInUtcDay);
-	const durTimeNano = Number(durationBigNano % bigNanoInUtcDay);
-	const [newTimeFields, overflowDays] = nanoToTimeAndDay(timeFieldsToNano(timeFields) + durTimeNano);
-	return [newTimeFields, durDays + overflowDays];
+	return moveTimeByNano(timeFields, durationTimeToBigNano(durationFields));
 }
-function moveByDays(isoDate, days) {
-	return days ? epochDaysToIsoDate(isoDateToEpochDays(isoDate) + days) : isoDate;
+function moveEpochNano(epochNano, durationFields) {
+	return moveEpochNanoByNano(epochNano, (clampEntity("unit", getMaxDurationUnit(fields = durationFields), 0, 5, 1, durationFieldNamesAsc), durationTimeToBigNano(fields)));
+	var fields;
 }
-function dateAddWithOverflow(calendar, isoDateFields, durationFields, overflow) {
+function moveDate(calendar, isoDate, durationFields, overflow = 0) {
 	let { years, months, weeks, days } = durationFields;
-	let isoDate;
-	if (days += Number(durationTimeToBigNano(durationFields) / bigNanoInUtcDay), years || months) isoDate = addDateMonths(calendar, isoDateFields, years, months, overflow);
+	let movedIsoDate;
+	if (days += Number(durationTimeToBigNano(durationFields) / bigNanoInUtcDay), years || months) movedIsoDate = moveDateByCalendarUnits(calendar, isoDate, years, months, overflow);
 	else {
-		if (!weeks && !days) return isoDateFields;
-		isoDate = isoDateFields;
+		if (!weeks && !days) return isoDate;
+		movedIsoDate = isoDate;
 	}
-	return (weeks || days) && (isoDate = moveByDays(isoDate, 7 * weeks + days)), checkIsoDateInBounds(isoDate);
+	return (weeks || days) && (movedIsoDate = moveDateByDays(movedIsoDate, 7 * weeks + days)), checkIsoDateInBounds(movedIsoDate);
 }
-function addDateMonths(calendar, isoDateFields, years, months, overflow) {
-	let { year, month, day } = computeCalendarDateFields(calendar, isoDateFields);
+function moveToStartOfMonth(calendar, isoDate) {
+	return moveDateByDays(isoDate, 1 - computeCalendarDateFields(calendar, isoDate).day);
+}
+function moveDateByCalendarUnits(calendar, isoDate, years, months, overflow) {
+	let { year, month, day } = computeCalendarDateFields(calendar, isoDate);
 	if (years) {
 		const [monthCodeNumber, isLeapMonth] = computeCalendarMonthCodeParts(calendar, year, month);
-		year += years, month = computeYearMovedMonth(calendar, monthCodeNumber, isLeapMonth, calendar ? calendar.p(year) : void 0, overflow), month = clampEntity("month", month, 1, computeCalendarMonthsInYearForYear(calendar, year), overflow);
+		year += years, month = resolveMonthInMovedYear(calendar, monthCodeNumber, isLeapMonth, calendar ? calendar.p(year) : void 0, overflow), month = clampEntity("month", month, 1, computeCalendarMonthsInYearForYear(calendar, year), overflow);
 	}
 	if (months) {
-		const yearMonthParts = calendar ? calendar.K(year, month, months) : addIsoMonths(year, month, months);
+		const yearMonthParts = addCalendarMonths(calendar, year, month, months);
 		({year: year, month: month} = yearMonthParts);
 	}
 	return day = clampEntity("day", day, 1, computeCalendarDaysInMonthForYearMonth(calendar, year, month), overflow), computeCalendarIsoFieldsFromParts(calendar, year, month, day);
 }
-function computeYearMovedMonth(calendar, monthCodeNumber, isLeapMonth, targetLeapMonth, overflow) {
+function addCalendarMonths(calendar, year, month, monthDelta) {
+	return calendar ? calendar.ae(year, month, monthDelta) : addIsoMonths(year, month, monthDelta);
+}
+function resolveMonthInMovedYear(calendar, monthCodeNumber, isLeapMonth, targetLeapMonth, overflow) {
 	if (isLeapMonth) {
 		const leapMonthMeta = calendar ? calendar.l : void 0;
 		return void 0 !== targetLeapMonth && (leapMonthMeta < 0 || targetLeapMonth === monthCodeNumber + 1) ? targetLeapMonth : (1 === overflow && throwRangeError(invalidLeapMonth), leapMonthMeta < 0 ? -leapMonthMeta : monthCodeNumber);
 	}
 	return monthCodeNumberToMonth(monthCodeNumber, 0, targetLeapMonth);
+}
+function moveTimeByNano(timeFields, durationBigNano) {
+	const durDays = Number(durationBigNano / bigNanoInUtcDay);
+	const durTimeNano = Number(durationBigNano % bigNanoInUtcDay);
+	const [newTimeFields, overflowDays] = nanoToTimeAndDay(timeFieldsToNano(timeFields) + durTimeNano);
+	return [newTimeFields, durDays + overflowDays];
+}
+function moveEpochNanoByNano(epochNano, deltaNano) {
+	return checkEpochNanoInBounds(epochNano + deltaNano);
+}
+function moveDateByDays(isoDate, days) {
+	return days ? epochDaysToIsoDate(isoDateToEpochDays(isoDate) + days) : isoDate;
 }
 function getCommonCalendar(a, b) {
 	return getCalendarSlotId(a) !== getCalendarSlotId(b) && throwRangeError("Mismatching Calendars"), a;
@@ -1121,77 +1059,72 @@ function getCommonTimeZone(a, b) {
 function getZonedTimeZoneId(slots) {
 	return slots.timeZone.id;
 }
-function diffInstants(invert, instantSlots0, instantSlots1, options) {
-	const [largestUnit, smallestUnit, roundingInc, roundingMode] = refineDiffOptions(invert, options, 3, 5);
-	const durationFields = diffEpochNanos(instantSlots0.epochNanoseconds, instantSlots1.epochNanoseconds, largestUnit, smallestUnit, roundingInc, roundingMode);
-	return createDurationSlots(invert ? negateDurationFields(durationFields) : durationFields);
+function diffZonedDateTimesRounded(calendar, startZoned, endZoned, largestUnit, smallestUnit, roundingInc, roundingMode) {
+	return largestUnit < 6 ? diffEpochNanosRounded(startZoned.epochNanoseconds, endZoned.epochNanoseconds, largestUnit, smallestUnit, roundingInc, roundingMode) : ((calendar, startZoned, endZoned, largestUnit, smallestUnit, roundingInc, roundingMode) => {
+		const endEpochNano = endZoned.epochNanoseconds;
+		if (endEpochNano === startZoned.epochNanoseconds) return durationFieldDefaults;
+		let durationFields;
+		const timeZone = getCommonTimeZone(startZoned.timeZone, endZoned.timeZone);
+		return durationFields = diffZonedEpochsExact(timeZone, calendar, startZoned, endZoned, largestUnit), durationFields = roundRelativeDuration(durationFields, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode, createZonedRelativeOps(calendar, timeZone, startZoned), 1), durationFields;
+	})(calendar, startZoned, endZoned, largestUnit, smallestUnit, roundingInc, roundingMode);
 }
-function diffZonedDateTimes(invert, calendar, slots0, slots1, options) {
-	const [largestUnit, smallestUnit, roundingInc, roundingMode] = refineDiffOptions(invert, options, 5);
-	const epochNano0 = slots0.epochNanoseconds;
-	const epochNano1 = slots1.epochNanoseconds;
-	let durationFields;
-	if (compareBigInts(epochNano1, epochNano0)) {
-		if (largestUnit < 6) durationFields = diffEpochNanos(epochNano0, epochNano1, largestUnit, smallestUnit, roundingInc, roundingMode);
-		else {
-			const timeZone = getCommonTimeZone(slots0.timeZone, slots1.timeZone);
-			durationFields = diffZonedEpochsExact(timeZone, calendar, slots0, slots1, largestUnit), durationFields = roundRelativeDuration(durationFields, epochNano1, largestUnit, smallestUnit, roundingInc, roundingMode, createZonedRelativeOps(calendar, timeZone, slots0), 1);
-		}
-	} else durationFields = durationFieldDefaults;
-	return createDurationSlots(invert ? negateDurationFields(durationFields) : durationFields);
+function diffDateTimesRounded(calendar, startIsoDateTime, endIsoDateTime, largestUnit, smallestUnit, roundingInc, roundingMode) {
+	return largestUnit <= 6 ? diffEpochNanosRounded(isoDateTimeToEpochNano(startIsoDateTime), isoDateTimeToEpochNano(endIsoDateTime), largestUnit, smallestUnit, roundingInc, roundingMode) : ((calendar, startIsoDateTime, endIsoDateTime, largestUnit, smallestUnit, roundingInc, roundingMode) => {
+		const endEpochNano = isoDateTimeToEpochNano(endIsoDateTime);
+		const sign = compareBigInts(endEpochNano, isoDateTimeToEpochNano(startIsoDateTime));
+		if (!sign) return durationFieldDefaults;
+		let durationFields;
+		return durationFields = diffDateTimesBig(calendar, startIsoDateTime, endIsoDateTime, sign, largestUnit), durationFields = roundRelativeDuration(durationFields, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode, ((calendar, origin) => ({
+			ne: isoDateTimeToEpochNano(origin),
+			ke: (duration) => isoDateTimeToEpochNano(combineDateAndTime(moveDate(calendar, origin, duration), origin))
+		}))(calendar, startIsoDateTime)), durationFields;
+	})(calendar, startIsoDateTime, endIsoDateTime, largestUnit, smallestUnit, roundingInc, roundingMode);
 }
-function diffPlainDateTimes(invert, calendar, plainDateTimeSlots0, plainDateTimeSlots1, options) {
-	const [largestUnit, smallestUnit, roundingInc, roundingMode] = refineDiffOptions(invert, options, 6);
-	const startEpochNano = isoDateTimeToEpochNano(plainDateTimeSlots0);
-	const endEpochNano = isoDateTimeToEpochNano(plainDateTimeSlots1);
-	const sign = compareBigInts(endEpochNano, startEpochNano);
-	let durationFields;
-	return sign ? largestUnit <= 6 ? durationFields = diffEpochNanos(startEpochNano, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode) : (durationFields = diffDateTimesBig(calendar, plainDateTimeSlots0, plainDateTimeSlots1, sign, largestUnit), durationFields = roundRelativeDuration(durationFields, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode, createDateTimeRelativeOps(calendar, plainDateTimeSlots0))) : durationFields = durationFieldDefaults, createDurationSlots(invert ? negateDurationFields(durationFields) : durationFields);
+function diffYearMonthsRounded(calendar, startIsoDate, endIsoDate, largestUnit, smallestUnit, roundingInc, roundingMode) {
+	const firstOfMonth0 = moveToStartOfMonth(calendar, startIsoDate);
+	const firstOfMonth1 = moveToStartOfMonth(calendar, endIsoDate);
+	return compareIsoDates(firstOfMonth0, firstOfMonth1) ? diffDateCalendarUnitsRounded(calendar, checkIsoDateInBounds(firstOfMonth0), checkIsoDateInBounds(firstOfMonth1), largestUnit, smallestUnit, roundingInc, roundingMode, 8) : durationFieldDefaults;
 }
-function diffPlainDates(invert, calendar, plainDateSlots0, plainDateSlots1, options) {
-	const [largestUnit, smallestUnit, roundingInc, roundingMode] = refineDiffOptions(invert, options, 6, 9, 6);
-	return diffDateLike(invert, calendar, plainDateSlots0, plainDateSlots1, largestUnit, smallestUnit, roundingInc, roundingMode);
+function diffDatesRounded(calendar, startIsoDate, endIsoDate, largestUnit, smallestUnit, roundingInc, roundingMode, smallestPrecision = 6) {
+	return 6 === largestUnit ? diffEpochNanosRounded(isoDateToEpochNano(startIsoDate), isoDateToEpochNano(endIsoDate), largestUnit, smallestUnit, roundingInc, roundingMode) : diffDateCalendarUnitsRounded(calendar, startIsoDate, endIsoDate, largestUnit, smallestUnit, roundingInc, roundingMode, smallestPrecision);
 }
-function diffPlainYearMonth(invert, calendar, plainYearMonthSlots0, plainYearMonthSlots1, options) {
-	const [largestUnit, smallestUnit, roundingInc, roundingMode] = refineDiffOptions(invert, options, 9, 9, 8);
-	const firstOfMonth0 = moveToStartOfMonth(calendar, plainYearMonthSlots0);
-	const firstOfMonth1 = moveToStartOfMonth(calendar, plainYearMonthSlots1);
-	return compareIsoDate(firstOfMonth0, firstOfMonth1) ? diffDateLike(invert, calendar, checkIsoDateInBounds(firstOfMonth0), checkIsoDateInBounds(firstOfMonth1), largestUnit, smallestUnit, roundingInc, roundingMode, 8) : createDurationSlots(durationFieldDefaults);
-}
-function diffDateLike(invert, calendar, startIsoDate, endIsoDate, largestUnit, smallestUnit, roundingInc, roundingMode, smallestPrecision = 6) {
-	const startEpochNano = isoDateToEpochNano(startIsoDate);
-	const endEpochNano = isoDateToEpochNano(endIsoDate);
-	let durationFields;
-	return compareBigInts(endEpochNano, startEpochNano) ? 6 === largestUnit ? durationFields = diffEpochNanos(startEpochNano, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode) : (durationFields = diffCalendarDates(calendar, startIsoDate, endIsoDate, largestUnit), smallestUnit === smallestPrecision && 1 === roundingInc || (durationFields = roundRelativeDuration(durationFields, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode, createDateRelativeOps(calendar, startIsoDate)))) : durationFields = durationFieldDefaults, createDurationSlots(invert ? negateDurationFields(durationFields) : durationFields);
-}
-function diffPlainTimes(invert, plainTimeSlots0, plainTimeSlots1, options) {
-	const [largestUnit, smallestUnit, roundingInc, roundingMode] = refineDiffOptions(invert, options, 5, 5);
+function diffTimesRounded(plainTimeSlots0, plainTimeSlots1, largestUnit, smallestUnit, roundingInc, roundingMode) {
 	const timeDiffNano = roundNumberToInc(timeFieldsToNano(plainTimeSlots1) - timeFieldsToNano(plainTimeSlots0), computeNanoInc(smallestUnit, roundingInc), roundingMode);
-	const durationFields = {
+	return {
 		...durationFieldDefaults,
 		...nanoToDurationTimeFields(timeDiffNano, largestUnit)
 	};
-	return createDurationSlots(invert ? negateDurationFields(durationFields) : durationFields);
 }
-function diffZonedEpochsExact(timeZone, calendar, slots0, slots1, largestUnit) {
-	const sign = compareBigInts(slots1.epochNanoseconds, slots0.epochNanoseconds);
-	if (!sign) return durationFieldDefaults;
-	if (largestUnit < 6) return {
-		...durationFieldDefaults,
-		...nanoToDurationDayTimeFields(slots1.epochNanoseconds - slots0.epochNanoseconds, largestUnit)
-	};
-	if (!compareIsoDate(zonedEpochSlotsToIso(slots0), zonedEpochSlotsToIso(slots1))) return {
-		...durationFieldDefaults,
-		...nanoToDurationDayTimeFields(slots1.epochNanoseconds - slots0.epochNanoseconds, 5)
-	};
-	const [isoFields0, isoFields1, remainderNano] = prepareZonedEpochDiff(timeZone, slots0, slots1, sign);
+function diffDateCalendarUnitsRounded(calendar, startIsoDate, endIsoDate, largestUnit, smallestUnit, roundingInc, roundingMode, smallestPrecision = 6) {
+	const endEpochNano = isoDateToEpochNano(endIsoDate);
+	if (!compareIsoDates(startIsoDate, endIsoDate)) return durationFieldDefaults;
+	let durationFields;
+	return durationFields = diffCalendarDates(calendar, startIsoDate, endIsoDate, largestUnit), smallestUnit === smallestPrecision && 1 === roundingInc || (durationFields = roundRelativeDuration(durationFields, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode, createDateRelativeOps(calendar, startIsoDate))), durationFields;
+}
+function diffEpochNanosRounded(startEpochNano, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode) {
 	return {
-		...6 === largestUnit ? {
-			...durationFieldDefaults,
-			days: diffDays(isoFields0, isoFields1)
-		} : diffCalendarDates(calendar, isoFields0, isoFields1, largestUnit),
-		...nanoToDurationTimeFields(remainderNano)
+		...durationFieldDefaults,
+		...nanoToDurationDayTimeFields(roundBigNanoToInc(endEpochNano - startEpochNano, computeBigNanoInc(smallestUnit, roundingInc), roundingMode), largestUnit)
 	};
+}
+function diffZonedEpochsExact(timeZone, calendar, startZoned, endZoned, largestUnit) {
+	return largestUnit < 6 ? {
+		...durationFieldDefaults,
+		...nanoToDurationDayTimeFields(endZoned.epochNanoseconds - startZoned.epochNanoseconds, largestUnit)
+	} : ((timeZone, startZoned, endZoned) => {
+		const sign = compareBigInts(endZoned.epochNanoseconds, startZoned.epochNanoseconds);
+		if (!sign) return durationFieldDefaults;
+		if (!compareIsoDates(zonedEpochSlotsToIso(startZoned), zonedEpochSlotsToIso(endZoned))) return {
+			...durationFieldDefaults,
+			...nanoToDurationDayTimeFields(endZoned.epochNanoseconds - startZoned.epochNanoseconds, 5)
+		};
+		const [startIsoDateTime, endIsoDate, remainderNano] = prepareZonedEpochDiff(timeZone, startZoned, endZoned, sign);
+		return {
+			...(start = startIsoDateTime, end = endIsoDate, diffCalendarDates(calendar, start, end, largestUnit)),
+			...nanoToDurationTimeFields(remainderNano)
+		};
+		var start, end;
+	})(timeZone, startZoned, endZoned);
 }
 function diffDateTimesExact(calendar, startIsoDateTime, endIsoDateTime, largestUnit) {
 	const startEpochNano = isoDateTimeToEpochNano(startIsoDateTime);
@@ -1205,15 +1138,33 @@ function diffDateTimesExact(calendar, startIsoDateTime, endIsoDateTime, largestU
 function diffDateTimesBig(calendar, startIsoDateTime, endIsoDateTime, sign, largestUnit) {
 	let diffEndDate = endIsoDateTime;
 	let timeNano = timeFieldsToNano(endIsoDateTime) - timeFieldsToNano(startIsoDateTime);
-	return Math.sign(timeNano) === -sign && (diffEndDate = moveByDays(endIsoDateTime, -sign), timeNano += 864e11 * sign), {
+	return Math.sign(timeNano) === -sign && (diffEndDate = moveDateByDays(endIsoDateTime, -sign), timeNano += nanoInUtcDay * sign), {
 		...diffCalendarDates(calendar, startIsoDateTime, diffEndDate, largestUnit),
 		...nanoToDurationTimeFields(timeNano)
 	};
 }
+function prepareZonedEpochDiff(timeZone, startZoned, endZoned, sign) {
+	const startIsoDate = zonedEpochSlotsToIso(startZoned);
+	const endIsoDate = zonedEpochSlotsToIso(endZoned);
+	const endEpochNano = endZoned.epochNanoseconds;
+	let dayCorrection = 0;
+	const timeDiffNano = timeFieldsToNano(endIsoDate) - timeFieldsToNano(startIsoDate);
+	Math.sign(timeDiffNano) === -sign && dayCorrection++;
+	const maxDayCorrection = dayCorrection + (sign > 0 ? 1 : 0);
+	for (;; dayCorrection++) {
+		const midIsoDate = moveDateByDays(endIsoDate, dayCorrection * -sign);
+		const midEpochNano = getSingleInstantFor(timeZone, combineDateAndTime(midIsoDate, startIsoDate));
+		if (dayCorrection === maxDayCorrection || compareBigInts(endEpochNano, midEpochNano) !== -sign) return [
+			startIsoDate,
+			midIsoDate,
+			Number(endEpochNano - midEpochNano)
+		];
+	}
+}
 function diffCalendarDates(calendar, startIsoDate, endIsoDate, largestUnit) {
-	if (largestUnit <= 7) {
-		const days = diffDays(startIsoDate, endIsoDate);
-		return 7 === largestUnit ? {
+	if (largestUnit <= 7) return ((asWeeks, start, end) => {
+		const days = countIsoDays(start, end);
+		return asWeeks ? {
 			...durationFieldDefaults,
 			weeks: divTrunc(days, 7),
 			days: modTrunc(days, 7)
@@ -1221,19 +1172,19 @@ function diffCalendarDates(calendar, startIsoDate, endIsoDate, largestUnit) {
 			...durationFieldDefaults,
 			days
 		};
-	}
+	})(7 === largestUnit, startIsoDate, endIsoDate);
 	const yearMonthDayStart = computeCalendarDateFields(calendar, startIsoDate);
 	const yearMonthDayEnd = computeCalendarDateFields(calendar, endIsoDate);
 	if (8 === largestUnit) {
 		const { year: year0, month: month0, day: day0 } = yearMonthDayStart;
 		const { year: year1, month: month1, day: day1 } = yearMonthDayEnd;
-		const sign = Math.sign(compareNumbers(year1, year0) || compareNumbers(month1, month0) || diffDays(startIsoDate, endIsoDate));
+		const sign = Math.sign(compareNumbers(year1, year0) || compareNumbers(month1, month0) || countIsoDays(startIsoDate, endIsoDate));
 		let months = 0;
 		let days = 0;
 		if (sign) {
-			months = calendar ? calendar._(year0, month0, year1, month1) : diffIsoMonthSlots(year0, month0, year1, month1);
-			let anchorIsoDate = addDateMonths(calendar, startIsoDate, 0, months, 0);
-			sign * compareNumbers(day0, day1) > 0 && (months -= sign, anchorIsoDate = addDateMonths(calendar, startIsoDate, 0, months, 0)), days = diffDays(anchorIsoDate, endIsoDate);
+			months = calendar ? calendar.ee(year0, month0, year1, month1) : diffIsoMonthSlots(year0, month0, year1, month1);
+			let anchorIsoDate = moveDateByCalendarUnits(calendar, startIsoDate, 0, months, 0);
+			sign * compareNumbers(day0, day1) > 0 && (months -= sign, anchorIsoDate = moveDateByCalendarUnits(calendar, startIsoDate, 0, months, 0)), days = countIsoDays(anchorIsoDate, endIsoDate);
 		}
 		return {
 			...durationFieldDefaults,
@@ -1252,7 +1203,7 @@ function diffCalendarDates(calendar, startIsoDate, endIsoDate, largestUnit) {
 		let dayCorrect = 0;
 		if (Math.sign(day1 - day0) === -sign) {
 			const origDaysInMonth1 = daysInMonth1;
-			const yearMonthParts = calendar ? calendar.K(year1, month1, -sign) : addIsoMonths(year1, month1, -sign);
+			const yearMonthParts = addCalendarMonths(calendar, year1, month1, -sign);
 			({year: year1, month: month1} = yearMonthParts), yearDiff = year1 - year0, monthDiff = month1 - month0, daysInMonth1 = computeCalendarDaysInMonthForYearMonth(calendar, year1, month1), dayCorrect = sign < 0 ? -origDaysInMonth1 : daysInMonth1;
 		}
 		if (dayDiff = day1 - Math.min(day0, daysInMonth1) + dayCorrect, yearDiff) {
@@ -1261,10 +1212,10 @@ function diffCalendarDates(calendar, startIsoDate, endIsoDate, largestUnit) {
 			const leapMonthMeta = calendar ? calendar.l : void 0;
 			if (monthDiff = void 0 !== leapMonthMeta && isLeapMonth0 && !isLeapMonth1 && (leapMonthMeta < 0 ? sign > 0 && monthCodeNumber1 === -leapMonthMeta : sign < 0 && monthCodeNumber1 === monthCodeNumber0) ? 0 : monthCodeNumber1 - monthCodeNumber0 || Number(isLeapMonth1) - Number(isLeapMonth0), Math.sign(monthDiff) === -sign) {
 				const monthCorrect = sign < 0 && -computeCalendarMonthsInYearForYear(calendar, year1);
-				year1 -= sign, yearDiff = year1 - year0, monthDiff = month1 - computeYearMovedMonth(calendar, monthCodeNumber0, isLeapMonth0, calendar ? calendar.p(year1) : void 0, 0) + (monthCorrect || computeCalendarMonthsInYearForYear(calendar, year1));
+				year1 -= sign, yearDiff = year1 - year0, monthDiff = month1 - resolveMonthInMovedYear(calendar, monthCodeNumber0, isLeapMonth0, calendar ? calendar.p(year1) : void 0, 0) + (monthCorrect || computeCalendarMonthsInYearForYear(calendar, year1));
 			} else if (calendar) {
-				const month0Projected = computeYearMovedMonth(calendar, monthCodeNumber0, isLeapMonth0, calendar.p(year1), 0);
-				monthDiff = calendar._(year1, month0Projected, year1, month1);
+				const month0Projected = resolveMonthInMovedYear(calendar, monthCodeNumber0, isLeapMonth0, calendar.p(year1), 0);
+				monthDiff = calendar.ee(year1, month0Projected, year1, month1);
 			}
 		}
 	}
@@ -1275,85 +1226,50 @@ function diffCalendarDates(calendar, startIsoDate, endIsoDate, largestUnit) {
 		days: dayDiff
 	};
 }
-function compareIsoDate(isoDate0, isoDate1) {
+function compareIsoDates(isoDate0, isoDate1) {
 	return compareNumbers(isoDate0.year, isoDate1.year) || compareNumbers(isoDate0.month, isoDate1.month) || compareNumbers(isoDate0.day, isoDate1.day);
 }
-function prepareZonedEpochDiff(timeZone, slots0, slots1, sign) {
-	const startIsoDate = zonedEpochSlotsToIso(slots0);
-	const endIsoDate = zonedEpochSlotsToIso(slots1);
-	const endEpochNano = slots1.epochNanoseconds;
-	let dayCorrection = 0;
-	const timeDiffNano = timeFieldsToNano(endIsoDate) - timeFieldsToNano(startIsoDate);
-	Math.sign(timeDiffNano) === -sign && dayCorrection++;
-	const maxDayCorrection = dayCorrection + (sign > 0 ? 1 : 0);
-	for (; dayCorrection <= maxDayCorrection; dayCorrection++) {
-		const midIsoDate = moveByDays(endIsoDate, dayCorrection * -sign);
-		const midEpochNano = getSingleInstantFor(timeZone, combineDateAndTime(midIsoDate, startIsoDate));
-		if (compareBigInts(endEpochNano, midEpochNano) !== -sign) return [
-			startIsoDate,
-			midIsoDate,
-			Number(endEpochNano - midEpochNano)
-		];
-	}
-}
-function diffEpochNanos(startEpochNano, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode) {
-	return {
-		...durationFieldDefaults,
-		...nanoToDurationDayTimeFields(roundBigNanoToInc(endEpochNano - startEpochNano, computeBigNanoInc(smallestUnit, roundingInc), roundingMode), largestUnit)
-	};
-}
-function diffDays(startIsoDate, endIsoDate) {
+function countIsoDays(startIsoDate, endIsoDate) {
 	return isoDateToEpochDays(endIsoDate) - isoDateToEpochDays(startIsoDate);
 }
-function createDateRelativeOps(calendar, origin) {
-	return {
-		origin,
-		ie: isoDateToEpochNano(origin),
-		calendar,
-		he: isoDateToEpochNano
-	};
-}
-function createDateTimeRelativeOps(calendar, origin) {
-	return {
-		origin,
-		ie: isoDateTimeToEpochNano(origin),
-		calendar,
-		he: (movedIsoDate) => isoDateTimeToEpochNano(combineDateAndTime(movedIsoDate, origin))
-	};
-}
-function createZonedRelativeOps(calendar, timeZone, slots) {
-	const origin = zonedEpochSlotsToIso(slots);
-	return {
-		origin,
-		ie: slots.epochNanoseconds,
-		calendar,
-		he: (movedIsoDate) => getSingleInstantFor(timeZone, combineDateAndTime(movedIsoDate, origin))
-	};
-}
-function moveRelativeToEpochNano(relativeOps, dateDuration) {
-	return durationHasDateParts(dateDuration) ? relativeOps.he(moveDate(relativeOps.calendar, relativeOps.origin, dateDuration)) : relativeOps.ie;
-}
 function spanRelativeDuration(relativeToSlots, durationFields, largestUnit) {
-	const { calendar } = relativeToSlots;
-	if (isZonedEpochSlots(relativeToSlots)) {
-		const { timeZone } = relativeToSlots;
+	return isZonedEpochSlots(relativeToSlots) ? ((relativeToSlots, durationFields, largestUnit) => {
+		const { calendar, timeZone } = relativeToSlots;
 		const endSlots = moveZonedEpochSlots(relativeToSlots, durationFields);
 		return [
 			diffZonedEpochsExact(timeZone, calendar, relativeToSlots, endSlots, largestUnit),
 			endSlots.epochNanoseconds,
 			createZonedRelativeOps(calendar, timeZone, relativeToSlots)
 		];
-	}
-	const origin = checkIsoDateTimeInBounds(combineDateAndTime(relativeToSlots, timeFieldDefaults));
-	const end = moveDateTime(calendar, origin, durationFields);
-	return [
-		diffDateTimesExact(calendar, origin, end, largestUnit),
-		isoDateTimeToEpochNano(end),
-		createDateRelativeOps(calendar, relativeToSlots)
-	];
+	})(relativeToSlots, durationFields, largestUnit) : ((relativeToSlots, durationFields, largestUnit) => {
+		const { calendar } = relativeToSlots;
+		const origin = checkIsoDateTimeInBounds(combineDateAndTime(relativeToSlots, timeFieldDefaults));
+		const end = moveDateTime(calendar, origin, durationFields);
+		return [
+			diffDateTimesExact(calendar, origin, end, largestUnit),
+			isoDateTimeToEpochNano(end),
+			createDateRelativeOps(calendar, relativeToSlots)
+		];
+	})(relativeToSlots, durationFields, largestUnit);
 }
 function moveRelativeEndpointToEpochNano(relativeToSlots, durationFields) {
 	return isZonedEpochSlots(relativeToSlots) ? moveZonedEpochSlots(relativeToSlots, durationFields).epochNanoseconds : isoDateTimeToEpochNano(moveDateTime(relativeToSlots.calendar, combineDateAndTime(relativeToSlots, timeFieldDefaults), durationFields));
+}
+function moveRelativeMarkerToEpochNano(relativeOps, dateDuration) {
+	return durationHasDateParts(dateDuration) ? relativeOps.ke(dateDuration) : relativeOps.ne;
+}
+function createZonedRelativeOps(calendar, timeZone, slots) {
+	const origin = zonedEpochSlotsToIso(slots);
+	return {
+		ne: slots.epochNanoseconds,
+		ke: (duration) => getSingleInstantFor(timeZone, combineDateAndTime(moveDate(calendar, origin, duration), origin))
+	};
+}
+function createDateRelativeOps(calendar, origin) {
+	return {
+		ne: isoDateToEpochNano(origin),
+		ke: (duration) => isoDateToEpochNano(moveDate(calendar, origin, duration))
+	};
 }
 function isZonedEpochSlots(slots) {
 	return "timeZone" in slots;
@@ -1370,27 +1286,15 @@ function nanoToGivenFields(nano, largestUnit, fieldNames) {
 	return fields;
 }
 const maxDurationSeconds = 2 ** 53;
-function addDurations(refineRelativeTo, doSubtract, slots, otherSlots, options) {
-	const relativeToSlots = refineRelativeTo(normalizeOptions(options).relativeTo);
+function addDurationsWithoutRelativeTo(doSubtract, slots, otherSlots) {
 	const maxUnit = Math.max(getMaxDurationUnit(slots), getMaxDurationUnit(otherSlots));
-	return isUniformUnit(maxUnit, relativeToSlots && isZonedEpochSlots(relativeToSlots)) ? addDayTimeDurationsChecked(doSubtract, slots, otherSlots, maxUnit) : (relativeToSlots || throwRangeError("Missing relativeTo"), doSubtract && (otherSlots = negateDurationFields(otherSlots)), createDurationSlots(((relativeToSlots, durationFields0, durationFields1, largestUnit) => {
-		const { calendar } = relativeToSlots;
-		if (isZonedEpochSlots(relativeToSlots)) {
-			const { timeZone } = relativeToSlots;
-			return diffZonedEpochsExact(timeZone, calendar, relativeToSlots, moveZonedEpochSlots(moveZonedEpochSlots(relativeToSlots, durationFields0), durationFields1), largestUnit);
-		}
-		const origin = combineDateAndTime(relativeToSlots, timeFieldDefaults);
-		return diffDateTimesExact(calendar, origin, moveDateTime(calendar, moveDateTime(calendar, origin, durationFields0), durationFields1), largestUnit);
-	})(relativeToSlots, slots, otherSlots, maxUnit)));
-}
-function addDayTimeDurationsChecked(doSubtract, slots, otherSlots, maxUnit) {
-	return createDurationSlots(validateDurationFields(((a, b, largestUnit, doSubtract) => {
+	return clampEntity("unit", maxUnit, 0, 6, 1, durationFieldNamesAsc), ((doSubtract, slots, otherSlots, maxUnit) => createDurationSlots(validateDurationFields(((a, b, largestUnit, doSubtract) => {
 		const combined = durationDayTimeToBigNano(a) + durationDayTimeToBigNano(b) * BigInt(doSubtract ? -1 : 1);
 		return Number.isFinite(Number(combined / bigNanoInUtcDay)) || throwRangeError("Out-of-bounds date"), {
 			...durationFieldDefaults,
 			...nanoToDurationDayTimeFields(combined, largestUnit)
 		};
-	})(slots, otherSlots, maxUnit, doSubtract)));
+	})(slots, otherSlots, maxUnit, doSubtract))))(doSubtract, slots, otherSlots, maxUnit);
 }
 function roundDuration(refineRelativeTo, slots, options) {
 	const durationLargestUnit = getMaxDurationUnit(slots);
@@ -1416,10 +1320,9 @@ function roundDuration(refineRelativeTo, slots, options) {
 			...nanoToDurationDayTimeFields(roundedBigNano, largestUnit)
 		};
 	})(slots, largestUnit, smallestUnit, roundingInc, roundingMode)));
-	const isZoned = relativeToSlots && isZonedEpochSlots(relativeToSlots);
-	const needsZonedDayLength = isZoned && largestUnit >= 6 && smallestUnit < 6;
-	if (!slots.sign && !needsZonedDayLength) return slots;
 	relativeToSlots || throwRangeError("Missing relativeTo");
+	const isZoned = isZonedEpochSlots(relativeToSlots);
+	if (!slots.sign && (!isZoned || largestUnit < 6)) return slots;
 	const [balancedDuration, endEpochNano, relativeOps] = spanRelativeDuration(relativeToSlots, slots, largestUnit);
 	return createDurationSlots(roundRelativeDuration(balancedDuration, endEpochNano, largestUnit, smallestUnit, roundingInc, roundingMode, relativeOps, isZoned));
 }
@@ -1443,9 +1346,12 @@ function computeDurationSign(fields, fieldNames = durationFieldNamesAsc) {
 	return sign;
 }
 function validateDurationFields(fields) {
-	for (const calendarUnit of durationCalendarFieldNamesAsc) clampEntity(calendarUnit, fields[calendarUnit], -4294967295, 4294967295, 1);
+	for (const calendarUnit of durationCalendarFieldNamesAsc) validateDurationCalendarUnit(calendarUnit, fields[calendarUnit]);
 	const bigNano = durationDayTimeToBigNano(fields);
 	return validateDurationTimeUnit(Number(bigNano / bigNanoInSec)), fields;
+}
+function validateDurationCalendarUnit(unit, value) {
+	return clampEntity(unit, value, -4294967295, 4294967295, 1);
 }
 function validateDurationTimeUnit(n) {
 	Number.isSafeInteger(n) || throwRangeError("Out-of-bounds duration");
@@ -1490,11 +1396,11 @@ function compareDurations(refineRelativeTo, durationSlots0, durationSlots1, opti
 function compareIsoDateTimeFields(isoDateTime0, isoDateTime1) {
 	return compareIsoDateFields(isoDateTime0, isoDateTime1) || compareTimeFields(isoDateTime0, isoDateTime1);
 }
-function compareIsoDateFields(isoFields0, isoFields1) {
-	return compareNumbers(isoDateToEpochDays(isoFields0), isoDateToEpochDays(isoFields1));
+function compareIsoDateFields(isoDate0, isoDate1) {
+	return compareNumbers(isoDateToEpochDays(isoDate0), isoDateToEpochDays(isoDate1));
 }
-function compareTimeFields(isoFields0, isoFields1) {
-	return compareNumbers(timeFieldsToNano(isoFields0), timeFieldsToNano(isoFields1));
+function compareTimeFields(timeFields0, timeFields1) {
+	return compareNumbers(timeFieldsToNano(timeFields0), timeFieldsToNano(timeFields1));
 }
 function instantsEqual(instantSlots0, instantSlots1) {
 	return !compareZonedEpochSlots(instantSlots0, instantSlots1);
@@ -1523,7 +1429,7 @@ function getCalendarEraOrigins(calendar) {
 function getCalendarFieldNames(calendar, fieldNames, fieldNamesWithEra = fieldNames) {
 	return getCalendarEraOrigins(calendar) ? fieldNamesWithEra : fieldNames;
 }
-function resolveCalendarYear(calendar, fields) {
+function resolveCalendarYear(fields, calendar) {
 	const exoticCalendar = calendar || void 0;
 	const eraOrigins = getCalendarEraOrigins(calendar);
 	let { era, eraYear, year } = fields;
@@ -1532,12 +1438,12 @@ function resolveCalendarYear(calendar, fields) {
 		const normalizedEra = normalizeEraName(era);
 		const eraOrigin = eraOrigins[normalizedEra];
 		void 0 === eraOrigin && throwRangeError(((era) => `Invalid era: ${era}`)(era));
-		const yearByEra = exoticCalendar?.$ ? exoticCalendar.$(eraYear, normalizedEra, eraOrigin) : eraYearToYear(eraYear, eraOrigin);
+		const yearByEra = exoticCalendar?._ ? exoticCalendar._(eraYear, normalizedEra, eraOrigin) : eraYearToYear(eraYear, eraOrigin);
 		void 0 !== year && year !== yearByEra && throwRangeError("Mismatching year/eraYear"), year = yearByEra;
 	} else void 0 === year && throwTypeError(missingYear(eraOrigins));
 	return year;
 }
-function resolveCalendarMonth(calendar, fields, year, overflow, monthCodeParts) {
+function resolveCalendarMonth(fields, calendar, year, monthCodeParts, overflow) {
 	let { month, monthCode } = fields;
 	if (void 0 !== monthCode) {
 		const monthByCode = ((calendar, monthCode, year, overflow, monthCodeParts = parseMonthCode(monthCode)) => {
@@ -1554,7 +1460,7 @@ function resolveCalendarMonth(calendar, fields, year, overflow, monthCodeParts) 
 	} else void 0 === month && throwTypeError("Missing month/monthCode");
 	return clampEntity("month", month, 1, computeCalendarMonthsInYearForYear(calendar, year), overflow);
 }
-function resolveCalendarDay(calendar, fields, month, year, overflow) {
+function resolveCalendarDay(fields, calendar, year, month, overflow) {
 	return clampProp(fields, "day", 1, computeCalendarDaysInMonthForYearMonth(calendar, year, month), overflow);
 }
 function eraYearToYear(eraYear, eraOrigin) {
@@ -1582,20 +1488,15 @@ function parseOffsetNanoMaybe(s, onlyHourMinute) {
 	})(s.slice(1)))(parts[0])) return ((parts, onlyHourMinute) => {
 		const firstSubMinutePart = parts[4] || parts[5];
 		onlyHourMinute && firstSubMinutePart && throwRangeError(invalidSubstring(firstSubMinutePart));
-		return offsetNano = (parseInt0(parts[2]) * nanoInHour + parseInt0(parts[3]) * nanoInMinute + parseInt0(parts[4]) * nanoInSec + parseSubsecNano(parts[5] || "")) * parseSign(parts[1]), Math.abs(offsetNano) >= 864e11 && throwRangeError("Out-of-bounds offset"), offsetNano;
+		return offsetNano = (parseInt0(parts[2]) * nanoInHour + parseInt0(parts[3]) * nanoInMinute + parseInt0(parts[4]) * nanoInSec + parseSubsecNano(parts[5] || "")) * parseSign(parts[1]), Math.abs(offsetNano) >= nanoInUtcDay && throwRangeError("Out-of-bounds offset"), offsetNano;
 		var offsetNano;
 	})(parts, onlyHourMinute);
 }
 const dateFieldRefiners = {
-	era: toStringViaPrimitive,
+	era: toString,
 	month: toPositiveIntegerWithTruncation,
-	monthCode(monthCode, entityName) {
-		if ("string" == typeof monthCode) return monthCode;
-		if (monthCode && "object" == typeof monthCode) {
-			const monthCodeToString = monthCode.toString;
-			if ("function" == typeof monthCodeToString) return requireString(monthCodeToString.call(monthCode), entityName);
-		}
-		return requireString(monthCode, entityName);
+	monthCode(monthCode, fieldName) {
+		return requireString(toPrimitiveWithStringHint(monthCode), fieldName);
 	},
 	day: toPositiveIntegerWithTruncation
 };
@@ -1604,7 +1505,7 @@ const durationFieldRefiners = /*@__PURE__*/ zipPropsConst(durationFieldNamesAsc,
 const dateTimeFieldRefiners = /*@__PURE__*/ Object.assign({}, dateFieldRefiners, timeFieldRefiners);
 const zonedDateTimeFieldRefiners = {
 	offset(offsetString) {
-		return parseOffsetNano(toStringViaPrimitive(offsetString));
+		return parseOffsetNano(requireString(toPrimitiveWithStringHint(offsetString)));
 	},
 	...dateTimeFieldRefiners
 };
@@ -1621,66 +1522,81 @@ function readAndRefineBagFields(bag, validFieldNames, fieldRefiners, requiredFie
 	}
 	return disallowEmpty && !anyMatching && throwTypeError(noValidFields(validFieldNames)), res;
 }
-function createPlainDateTimeFromRefinedFields(isoDate, time = timeFieldDefaults, calendar) {
-	const isoDateTime = combineDateAndTime(isoDate, time);
-	return checkIsoDateTimeInBounds(isoDateTime), createDateTimeSlots(isoDateTime, calendar);
+function refineOverflowOptions(options) {
+	return void 0 === options ? 0 : coerceOverflow(requireObjectLike(options));
 }
-function createPlainDateFromFields(calendar, fields, options) {
-	return createPlainDateFromPreparedFields(calendar, fields, prepareDateFields(calendar, fields), refineOverflowOptions(options));
+function refineZonedFieldOptions(options, defaultOffsetDisambig = 0) {
+	options = normalizeOptions(options);
+	const epochDisambig = coerceEpochDisambig(options);
+	const offsetDisambig = coerceOffsetDisambig(options, defaultOffsetDisambig);
+	return [
+		coerceOverflow(options),
+		offsetDisambig,
+		epochDisambig
+	];
 }
-function createPlainDateFromFieldsWithOptionsRefiner(calendar, fields, refineOptions) {
-	const prepared = prepareDateFields(calendar, fields);
-	const refinedOptions = refineOptions();
-	return [createPlainDateFromPreparedFields(calendar, fields, prepared, refinedOptions[0]), ...refinedOptions];
+function refineEpochDisambigOptions(options) {
+	return coerceEpochDisambig(normalizeOptions(options));
 }
-function createPlainDateFromPreparedFields(calendar, fields, prepared, overflow) {
-	const year = prepared[1];
-	const month = resolveCalendarMonth(calendar, fields, year, overflow, prepared[0]);
-	return createDateSlots(checkIsoDateInBounds(computeCalendarIsoFieldsFromParts(calendar, year, month, resolveCalendarDay(calendar, fields, month, year, overflow))), calendar);
-}
-function parseMonthCodeField(fields) {
-	if (void 0 !== fields.monthCode) return parseMonthCode(fields.monthCode);
-}
-function prepareDateFields(calendar, fields) {
+function refineCalendarDateFields(fields, calendar, allowMissingDay) {
 	const eraOrigins = getCalendarEraOrigins(calendar);
-	return void 0 !== fields.year || void 0 !== fields.era && void 0 !== fields.eraYear || throwTypeError(missingYear(eraOrigins)), void 0 === fields.monthCode && void 0 === fields.month && throwTypeError("Missing month/monthCode"), void 0 === fields.day && throwTypeError(missingField("day")), [parseMonthCodeField(fields), resolveCalendarYear(calendar, fields)];
-}
-function createPlainYearMonthFromFields(calendar, fields, options) {
-	const eraOrigins = getCalendarEraOrigins(calendar);
-	void 0 !== fields.year || void 0 !== fields.era && void 0 !== fields.eraYear || throwTypeError(missingYear(eraOrigins)), void 0 === fields.monthCode && void 0 === fields.month && throwTypeError("Missing month/monthCode");
+	void 0 !== fields.year || void 0 !== fields.era && void 0 !== fields.eraYear || throwTypeError(missingYear(eraOrigins)), void 0 === fields.monthCode && void 0 === fields.month && throwTypeError("Missing month/monthCode"), allowMissingDay || void 0 !== fields.day || throwTypeError(missingField("day"));
 	const monthCodeParts = parseMonthCodeField(fields);
-	const year = resolveCalendarYear(calendar, fields);
-	return createDateSlots(checkIsoYearMonthInBounds(computeCalendarIsoFieldsFromParts(calendar, year, resolveCalendarMonth(calendar, fields, year, refineOverflowOptions(options), monthCodeParts), 1)), calendar);
+	return [resolveCalendarYear(fields, calendar), monthCodeParts];
 }
-function createPlainMonthDayFromFields(calendar, fields, options) {
+function refineMonthDayFields(fields, calendar) {
 	const isIso = calendar === void 0;
 	const eraOrigins = getCalendarEraOrigins(calendar);
 	void 0 === fields.day && throwTypeError(missingField("day")), isIso || void 0 === fields.month || void 0 !== fields.year || void 0 !== fields.era && void 0 !== fields.eraYear || throwTypeError(missingYear(eraOrigins));
 	const monthCodeParts = parseMonthCodeField(fields);
-	let yearMaybe = void 0 !== fields.eraYear || void 0 !== fields.year ? resolveCalendarYear(calendar, fields) : void 0;
-	const overflow = refineOverflowOptions(options);
+	return [void 0 !== fields.eraYear || void 0 !== fields.year ? resolveCalendarYear(fields, calendar) : void 0, monthCodeParts];
+}
+function createDateTimeFromRefinedFields(isoDate, timeFields = timeFieldDefaults, calendar) {
+	const isoDateTime = combineDateAndTime(isoDate, timeFields);
+	return checkIsoDateTimeInBounds(isoDateTime), createDateTimeSlots(isoDateTime, calendar);
+}
+function createDateFromRefinedFields(fields, calendar, year, monthCodeParts, overflow) {
+	const month = resolveCalendarMonth(fields, calendar, year, monthCodeParts, overflow);
+	return createDateSlots(checkIsoDateInBounds(computeCalendarIsoFieldsFromParts(calendar, year, month, resolveCalendarDay(fields, calendar, year, month, overflow))), calendar);
+}
+function createYearMonthFromRefinedFields(fields, calendar, year, monthCodeParts, overflow) {
+	return createYearMonthFromCalendarParts(calendar, year, resolveCalendarMonth(fields, calendar, year, monthCodeParts, overflow));
+}
+function createMonthDayFromRefinedFields(fields, calendar, year, monthCodeParts, overflow) {
+	const isIso = calendar === void 0;
+	let yearMaybe = year;
 	let day;
 	let monthCodeNumber;
 	let isLeapMonth;
 	if (void 0 === yearMaybe && isIso && (yearMaybe = 1972), void 0 !== yearMaybe) {
 		isIso || checkIsoDateInBounds(computeCalendarIsoFieldsFromParts(calendar, yearMaybe, 1, 1));
-		const month = resolveCalendarMonth(calendar, fields, yearMaybe, overflow, monthCodeParts);
-		day = resolveCalendarDay(calendar, fields, month, yearMaybe, overflow), [monthCodeNumber, isLeapMonth] = computeCalendarMonthCodeParts(calendar, yearMaybe, month);
+		const month = resolveCalendarMonth(fields, calendar, yearMaybe, monthCodeParts, overflow);
+		day = resolveCalendarDay(fields, calendar, yearMaybe, month, overflow), [monthCodeNumber, isLeapMonth] = computeCalendarMonthCodeParts(calendar, yearMaybe, month);
 	} else {
 		void 0 === fields.monthCode && throwTypeError("Missing month/monthCode"), [monthCodeNumber, isLeapMonth] = monthCodeParts;
-		const referenceYear = calendar ? calendar.ne : 1972;
-		if (void 0 !== referenceYear) day = resolveCalendarDay(calendar, fields, resolveCalendarMonth(calendar, fields, referenceYear, overflow, monthCodeParts), referenceYear, overflow);
+		const referenceYear = calendar ? calendar.re : 1972;
+		if (void 0 !== referenceYear) day = resolveCalendarDay(fields, calendar, referenceYear, resolveCalendarMonth(fields, calendar, referenceYear, monthCodeParts, overflow), overflow);
 		else {
-			const constrainedDay = 0 === overflow && calendar ? calendar.fe?.(monthCodeNumber, isLeapMonth, fields.day) : void 0;
+			const constrainedDay = 0 === overflow && calendar ? calendar.ge?.(monthCodeNumber, isLeapMonth, fields.day) : void 0;
 			day = void 0 !== constrainedDay ? constrainedDay : fields.day;
 		}
 	}
-	isLeapMonth && ((calendar && calendar.U?.[monthCodeNumber]) ?? 1 / 0) < fields.day && (1 === overflow && throwRangeError(invalidLeapMonth), isLeapMonth = 0, day = constrainToRange(fields.day, 1, (calendar && calendar.R) ?? 1 / 0));
+	return createMonthDayFromMonthCodeParts(calendar, monthCodeNumber, isLeapMonth, day, fields.day, overflow);
+}
+function createYearMonthFromCalendarParts(calendar, year, month) {
+	return createDateSlots(checkIsoYearMonthInBounds(computeCalendarIsoFieldsFromParts(calendar, year, month, 1)), calendar);
+}
+function createMonthDayFromMonthCodeParts(calendar, monthCodeNumber, isLeapMonthArg, day, requestedDay, overflow) {
+	let isLeapMonth = isLeapMonthArg;
+	isLeapMonth && ((calendar && calendar.V?.[monthCodeNumber]) ?? 1 / 0) < requestedDay && (1 === overflow && throwRangeError(invalidLeapMonth), isLeapMonth = 0, day = constrainToRange(requestedDay, 1, (calendar && calendar.U) ?? 1 / 0));
 	let res = calendar ? calendar.u(monthCodeNumber, Boolean(isLeapMonth), day) : computeIsoYearMonthFieldsForMonthDay(monthCodeNumber, Boolean(isLeapMonth));
 	for (; !res && 0 === overflow && day > 1;) day--, res = calendar ? calendar.u(monthCodeNumber, Boolean(isLeapMonth), day) : computeIsoYearMonthFieldsForMonthDay(monthCodeNumber, Boolean(isLeapMonth));
 	res || throwRangeError("Cannot guess year");
 	const { year: finalYear, month: finalMonth } = res;
 	return createDateSlots(checkIsoDateInBounds(computeCalendarIsoFieldsFromParts(calendar, finalYear, finalMonth, day)), calendar);
+}
+function parseMonthCodeField(fields) {
+	if (void 0 !== fields.monthCode) return parseMonthCode(fields.monthCode);
 }
 const RawDateTimeFormat = Intl.DateTimeFormat;
 function formatEpochMilliToPartsRecord(intlFormat, epochMilli) {
@@ -1765,7 +1681,7 @@ function formatZonedDateTimeIso(zonedDateTimeSlots0, options) {
 }
 function formatPlainDateTimeIso(plainDateTimeSlots0, options) {
 	const displayOptions = ((options) => (options = normalizeOptions(options), [coerceCalendarDisplay(options), ...refineTimeDisplayTuple(options)]))(options);
-	return ((calendar, isoDateTime, calendarDisplay, roundingMode, nanoInc, subsecDigits) => formatIsoDateTimeFields(roundDateTimeToNano(isoDateTime, nanoInc, roundingMode), subsecDigits) + formatCalendar(calendar, calendarDisplay))(plainDateTimeSlots0.calendar, plainDateTimeSlots0, ...displayOptions);
+	return ((calendar, isoDateTime, calendarDisplay, roundingMode, nanoInc, subsecDigits) => formatIsoDateTimeFields(roundDateTimeToInc(isoDateTime, nanoInc, roundingMode), subsecDigits) + formatCalendar(calendar, calendarDisplay))(plainDateTimeSlots0.calendar, plainDateTimeSlots0, ...displayOptions);
 }
 function formatPlainDateIso(plainDateSlots, options) {
 	return calendar = plainDateSlots.calendar, isoDate = plainDateSlots, calendarDisplay = refineDateDisplayOptions(options), formatIsoDateFields(isoDate) + formatCalendar(calendar, calendarDisplay);
@@ -1781,7 +1697,7 @@ function formatDateLikeIso(calendar, formatSimple, isoDate, calendarDisplay) {
 	return 1 === calendarDisplay ? calendar === void 0 ? formatSimple(isoDate) : formatIsoDateFields(isoDate) : calendarDisplay > 1 || 0 === calendarDisplay && calendar !== void 0 ? formatIsoDateFields(isoDate) + formatCalendarId(getCalendarSlotId(calendar), 2 === calendarDisplay) : formatSimple(isoDate);
 }
 function formatPlainTimeIso(slots, options) {
-	return ((fields, roundingMode, nanoInc, subsecDigits) => formatTimeFields(roundTimeToNano(fields, nanoInc, roundingMode)[0], subsecDigits))(slots, ...refineTimeDisplayOptions(options));
+	return ((fields, roundingMode, nanoInc, subsecDigits) => formatTimeFields(roundTimeToInc(fields, nanoInc, roundingMode)[0], subsecDigits))(slots, ...refineTimeDisplayOptions(options));
 }
 function formatDurationIso(slots, options) {
 	const [roundingMode, nanoInc, subsecDigits] = refineTimeDisplayOptions(options, 3);
@@ -1827,15 +1743,15 @@ function formatDurationNumber(n, force) {
 function formatIsoDateTimeFields(isoDateTime, subsecDigits) {
 	return formatIsoDateFields(isoDateTime) + "T" + formatTimeFields(isoDateTime, subsecDigits);
 }
-function formatIsoDateFields(isoDateFields) {
-	return formatIsoYearMonthFields(isoDateFields) + "-" + padNumber2(isoDateFields.day);
+function formatIsoDateFields(isoDate) {
+	return formatIsoYearMonthFields(isoDate) + "-" + padNumber2(isoDate.day);
 }
-function formatIsoYearMonthFields(isoDateFields) {
-	const { year } = isoDateFields;
-	return (year < 0 || year > 9999 ? getSignStr(year) + padNumber(6, Math.abs(year)) : padNumber(4, year)) + "-" + padNumber2(isoDateFields.month);
+function formatIsoYearMonthFields(isoDate) {
+	const { year } = isoDate;
+	return (year < 0 || year > 9999 ? getSignStr(year) + padNumber(6, Math.abs(year)) : padNumber(4, year)) + "-" + padNumber2(isoDate.month);
 }
-function formatIsoMonthDayFields(isoDateFields) {
-	return padNumber2(isoDateFields.month) + "-" + padNumber2(isoDateFields.day);
+function formatIsoMonthDayFields(isoDate) {
+	return padNumber2(isoDate.month) + "-" + padNumber2(isoDate.day);
 }
 function formatTimeFields(timeFields, subsecDigits) {
 	const parts = [padNumber2(timeFields.hour), padNumber2(timeFields.minute)];
@@ -1879,7 +1795,7 @@ function resolveTimeZoneRecord(rawId) {
 		const offsetNano = parseOffsetNanoMaybe(upperRawId, 1);
 		if (void 0 !== offsetNano) return {
 			id: formatOffsetNano(offsetNano),
-			X: offsetNano,
+			Z: offsetNano,
 			m: offsetNano
 		};
 	})(upperRawId);
@@ -1920,22 +1836,22 @@ function queryTimeZone(rawTimeZoneId) {
 	const record = resolveTimeZoneRecord(rawTimeZoneId);
 	return queryTimeZoneRecord(record.id, record);
 }
-const queryTimeZoneRecord = /*@__PURE__*/ memoize((normTimeZoneId, record) => "named" === record.kind ? new IntlTimeZone(normTimeZoneId, record.m, record.format) : new FixedTimeZone(normTimeZoneId, record.m, "fixed" === record.kind ? record.X : 0));
+const queryTimeZoneRecord = /*@__PURE__*/ memoize((normTimeZoneId, record) => "named" === record.kind ? new IntlTimeZone(normTimeZoneId, record.m, record.format) : new FixedTimeZone(normTimeZoneId, record.m, "fixed" === record.kind ? record.Z : 0));
 var FixedTimeZone = class {
 	constructor(id, compareKey, offsetNano) {
-		this.id = id, this.m = compareKey, this.X = offsetNano;
+		this.id = id, this.m = compareKey, this.Z = offsetNano;
 	}
 	B() {
-		return this.X;
+		return this.Z;
 	}
-	N(isoDateTime) {
-		return [isoDateTimeAndOffsetToEpochNano(isoDateTime, this.X)];
+	R(isoDateTime) {
+		return [isoDateTimeAndOffsetToEpochNano(isoDateTime, this.Z)];
 	}
-	O() {}
+	C() {}
 };
 var IntlTimeZone = class {
 	constructor(id, compareKey, format) {
-		this.id = id, this.m = compareKey, this.ke = ((computeOffsetSec, periodDays) => {
+		this.id = id, this.m = compareKey, this.oe = ((computeOffsetSec, periodDays) => {
 			const getSample = memoize(computeOffsetSec);
 			const getSplit = memoize(createSplitTuple);
 			const periodSec = 86400 * periodDays;
@@ -1957,7 +1873,7 @@ var IntlTimeZone = class {
 				return offsetSec;
 			}
 			return {
-				xe(zonedEpochSec) {
+				Ae(zonedEpochSec) {
 					const wideOffsetSec0 = getOffsetSec(zonedEpochSec - 86400);
 					const wideOffsetSec1 = getOffsetSec(zonedEpochSec + 86400);
 					const wideUtcEpochSec0 = zonedEpochSec - wideOffsetSec0;
@@ -1966,8 +1882,8 @@ var IntlTimeZone = class {
 					const narrowOffsetSec0 = getOffsetSec(wideUtcEpochSec0);
 					return narrowOffsetSec0 === getOffsetSec(wideUtcEpochSec1) ? [zonedEpochSec - narrowOffsetSec0] : wideOffsetSec0 > wideOffsetSec1 ? [wideUtcEpochSec0, wideUtcEpochSec1] : [];
 				},
-				we: getOffsetSec,
-				O: function getTransition(epochSec, direction) {
+				ze: getOffsetSec,
+				C: function getTransition(epochSec, direction) {
 					if (direction > 0 && epochSec >= 864e10) return;
 					if (direction < 0) {
 						if (epochSec <= minPossibleTransitionSec) return;
@@ -1995,7 +1911,7 @@ var IntlTimeZone = class {
 			};
 		})(((format) => (epochSec) => {
 			const intlParts = formatEpochMilliToPartsRecord(format, 1e3 * epochSec);
-			return 86400 * isoArgsToEpochDays(((intlParts) => {
+			return 86400 * isoPartsToEpochDays(((intlParts) => {
 				const relatedYear = intlParts.relatedYear;
 				if (void 0 !== relatedYear) return parseInt(relatedYear);
 				const year = parseInt(intlParts.year);
@@ -2007,16 +1923,16 @@ var IntlTimeZone = class {
 		})(id));
 	}
 	B(epochNano) {
-		return this.ke.we(((epochNano) => epochNanoToSecMod(epochNano)[0])(epochNano)) * nanoInSec;
+		return this.oe.ze(((epochNano) => epochNanoToSecMod(epochNano)[0])(epochNano)) * nanoInSec;
 	}
-	N(isoDateTime) {
+	R(isoDateTime) {
 		const zonedEpochSec = 86400 * isoDateToEpochDays(isoDateTime) + timeFieldsToSec(isoDateTime);
 		const subsecNano = timeFieldsToSubsecNano(isoDateTime);
-		return this.ke.xe(zonedEpochSec).map((epochSec) => checkEpochNanoInBounds(BigInt(epochSec) * bigNanoInSec + BigInt(subsecNano)));
+		return this.oe.Ae(zonedEpochSec).map((epochSec) => checkEpochNanoInBounds(BigInt(epochSec) * bigNanoInSec + BigInt(subsecNano)));
 	}
-	O(epochNano, direction) {
+	C(epochNano, direction) {
 		const [epochSec, subsecNano] = epochNanoToSecMod(epochNano);
-		const resEpochSec = this.ke.O(epochSec + (direction > 0 || subsecNano ? 1 : 0), direction);
+		const resEpochSec = this.oe.C(epochSec + (direction > 0 || subsecNano ? 1 : 0), direction);
 		if (void 0 !== resEpochSec) return BigInt(resEpochSec) * bigNanoInSec;
 	}
 };
@@ -2035,40 +1951,51 @@ function clampIntlSampleEpochSec(epochSec) {
 }
 function refineMaybeZonedDateTimeObjectLike(refineTimeZoneString, calendar, bag) {
 	const fields = readAndRefineBagFields(bag, getCalendarFieldNames(calendar, dateTimeAndZoneFieldNamesAlpha, dateTimeAndZoneFieldNamesWithEraAlpha), zonedDateTimeFieldRefiners, [], 0);
-	if (void 0 !== fields.timeZone) {
-		const isoDateFields = createPlainDateFromFields(calendar, fields);
+	const isZoned = void 0 !== fields.timeZone;
+	const [year, monthCodeParts] = refineCalendarDateFields(fields, calendar);
+	const isoDate = createDateFromRefinedFields(fields, calendar, year, monthCodeParts, 0);
+	if (isZoned) {
 		const timeFields = resolveTimeFields(fields);
 		const timeZone = queryTimeZone(refineTimeZoneString(fields.timeZone));
 		return {
-			epochNanoseconds: getMatchingInstantFor(timeZone, combineDateAndTime(isoDateFields, timeFields), fields.offset),
+			epochNanoseconds: getMatchingInstantFor(timeZone, combineDateAndTime(isoDate, timeFields), fields.offset),
 			timeZone,
 			calendar
 		};
 	}
-	return createPlainDateFromFields(calendar, fields);
+	return isoDate;
 }
 function refineZonedDateTimeObjectLike(refineTimeZoneString, calendar, bag, options) {
 	const fields = readAndRefineBagFields(bag, getCalendarFieldNames(calendar, dateTimeAndZoneFieldNamesAlpha, dateTimeAndZoneFieldNamesWithEraAlpha), zonedDateTimeFieldRefiners, timeZoneFieldNames, 0);
 	const timeZoneId = refineTimeZoneString(fields.timeZone);
-	const [isoDateFields, overflow, offsetDisambig, epochDisambig] = createPlainDateFromFieldsWithOptionsRefiner(calendar, fields, () => refineZonedFieldOptions(options));
+	const [year, monthCodeParts] = refineCalendarDateFields(fields, calendar);
+	const [overflow, offsetDisambig, epochDisambig] = refineZonedFieldOptions(options);
+	const isoDate = createDateFromRefinedFields(fields, calendar, year, monthCodeParts, overflow);
 	const timeFields = resolveTimeFields(fields, overflow);
 	const timeZone = queryTimeZone(timeZoneId);
-	return createZonedEpochNanoSlots(getMatchingInstantFor(timeZone, combineDateAndTime(isoDateFields, timeFields), fields.offset, offsetDisambig, epochDisambig), timeZone, calendar);
+	return createZonedEpochNanoSlots(getMatchingInstantFor(timeZone, combineDateAndTime(isoDate, timeFields), fields.offset, offsetDisambig, epochDisambig), timeZone, calendar);
 }
 function refinePlainDateTimeObjectLike(calendar, bag, options) {
 	const fields = readAndRefineBagFields(bag, getCalendarFieldNames(calendar, dateTimeFieldNamesAlpha, dateTimeFieldNamesWithEraAlpha), dateTimeFieldRefiners, [], 0);
-	const [isoDateInternals, overflow] = createPlainDateFromFieldsWithOptionsRefiner(calendar, fields, () => [refineOverflowOptions(options)]);
-	return createPlainDateTimeFromRefinedFields(isoDateInternals, resolveTimeFields(fields, overflow), calendar);
+	const [year, monthCodeParts] = refineCalendarDateFields(fields, calendar);
+	const overflow = refineOverflowOptions(options);
+	return createDateTimeFromRefinedFields(createDateFromRefinedFields(fields, calendar, year, monthCodeParts, overflow), resolveTimeFields(fields, overflow), calendar);
 }
 function refinePlainDateObjectLike(calendar, bag, options, requireFields = []) {
-	return createPlainDateFromFields(calendar, readAndRefineBagFields(bag, getCalendarFieldNames(calendar, dateFieldNamesAlpha, dateFieldNamesWithEraAlpha), dateFieldRefiners, requireFields), options);
+	const fields = readAndRefineBagFields(bag, getCalendarFieldNames(calendar, dateFieldNamesAlpha, dateFieldNamesWithEraAlpha), dateFieldRefiners, requireFields);
+	const [year, monthCodeParts] = refineCalendarDateFields(fields, calendar);
+	return createDateFromRefinedFields(fields, calendar, year, monthCodeParts, refineOverflowOptions(options));
 }
 function refinePlainYearMonthObjectLike(calendar, bag, options, requireFields) {
-	return createPlainYearMonthFromFields(calendar, readAndRefineBagFields(bag, getCalendarFieldNames(calendar, yearMonthFieldNamesAlpha, yearMonthFieldNamesWithEraAlpha), dateFieldRefiners, requireFields), options);
+	const fields = readAndRefineBagFields(bag, getCalendarFieldNames(calendar, yearMonthFieldNamesAlpha, yearMonthFieldNamesWithEraAlpha), dateFieldRefiners, requireFields);
+	const [year, monthCodeParts] = refineCalendarDateFields(fields, calendar, 1);
+	return createYearMonthFromRefinedFields(fields, calendar, year, monthCodeParts, refineOverflowOptions(options));
 }
 function refinePlainMonthDayObjectLike(calendar, calendarAbsent, bag, options) {
 	const fields = readAndRefineBagFields(bag, getCalendarFieldNames(calendar, dateFieldNamesAlpha, dateFieldNamesWithEraAlpha), dateFieldRefiners, dayFieldNamesAsc, 0);
-	return calendarAbsent && void 0 !== fields.month && void 0 === fields.monthCode && void 0 === fields.year && (fields.year = 1972), createPlainMonthDayFromFields(calendar, fields, options);
+	calendarAbsent && void 0 !== fields.month && void 0 === fields.monthCode && void 0 === fields.year && (fields.year = 1972);
+	const [year, monthCodeParts] = refineMonthDayFields(fields, calendar);
+	return createMonthDayFromRefinedFields(fields, calendar, year, monthCodeParts, refineOverflowOptions(options));
 }
 function refinePlainTimeObjectLike(bag, options) {
 	return resolveTimeFields(readAndRefineBagFields(bag, timeFieldNamesAlpha, timeFieldRefiners, [], 1), refineOverflowOptions(options));
@@ -2084,13 +2011,13 @@ function throwFailedParse(s) {
 	throwRangeError(failedParse(s));
 }
 function parseInstant(s) {
-	const organized = parseDateTimeLike(s = toStringViaPrimitive(s));
+	const organized = parseDateTimeLike(s = requireString(toPrimitiveWithStringHint(s)));
 	let offsetNano;
-	return organized || throwFailedParse(s), organized.C ? offsetNano = 0 : organized.offset ? offsetNano = parseOffsetNano(organized.offset) : throwFailedParse(s), organized.timeZoneId && parseOffsetNanoMaybe(organized.timeZoneId, 1), validateIsoDateTimeFields(organized), createEpochNanoSlots(isoDateTimeAndOffsetToEpochNano(organized, offsetNano));
+	return organized || throwFailedParse(s), organized.F ? offsetNano = 0 : organized.offset ? offsetNano = parseOffsetNano(organized.offset) : throwFailedParse(s), organized.timeZoneId && parseOffsetNanoMaybe(organized.timeZoneId, 1), validateIsoDateTimeFields(organized), createEpochNanoSlots(isoDateTimeAndOffsetToEpochNano(organized, offsetNano));
 }
 function parseRelativeToSlots(s, resolveCalendar) {
 	const organized = parseDateTimeLike(requireString(s));
-	return organized || throwFailedParse(s), organized.timeZoneId ? finalizeZonedDateTime(organized, resolveCalendar, void 0) : (organized.C && throwFailedParse(s), finalizeDate(organized, resolveCalendar));
+	return organized || throwFailedParse(s), organized.timeZoneId ? finalizeZonedDateTime(organized, resolveCalendar, void 0) : (organized.F && throwFailedParse(s), finalizeDate(organized, resolveCalendar));
 }
 function parseZonedDateTime(s, resolveCalendar, options) {
 	const organized = parseDateTimeLike(requireString(s));
@@ -2098,7 +2025,7 @@ function parseZonedDateTime(s, resolveCalendar, options) {
 }
 function parsePlainDateTime(s, resolveCalendar) {
 	const organized = parseDateTimeLike(requireString(s));
-	return organized && !organized.C || throwFailedParse(s), finalizeDateTime(organized, resolveCalendar);
+	return organized && !organized.F || throwFailedParse(s), finalizeDateTime(organized, resolveCalendar);
 }
 function parsePlainDate(s, resolveCalendar) {
 	const slots = finalizeDateLike(parsePlainDateLike(requireString(s)), void 0, resolveCalendar);
@@ -2134,7 +2061,7 @@ function parsePlainTime(s) {
 	})(s = requireString(s));
 	if (!organized) {
 		const dateTime = parseDateTimeLike(s);
-		dateTime && dateTime.re || throwFailedParse(s), dateTime.C && throwRangeError(invalidSubstring("Z")), requireIsoCalendar(dateTime), organized = dateTime;
+		dateTime && dateTime.te || throwFailedParse(s), dateTime.F && throwRangeError(invalidSubstring("Z")), requireIsoCalendar(dateTime), organized = dateTime;
 	}
 	let altParsed;
 	return (altParsed = parseYearMonthOnly(s)) && isIsoDateFieldsValid(altParsed) && throwFailedParse(s), (altParsed = parseMonthDayOnly(s)) && isIsoDateFieldsValid(altParsed) && throwFailedParse(s), createTimeSlots(validateTimeFields(organized));
@@ -2174,14 +2101,14 @@ function parseCalendarId(s) {
 }
 function parseTimeZoneId(s) {
 	const parsed = parseDateTimeLike(s);
-	return parsed && (parsed.timeZoneId || parsed.C && "UTC" || parsed.offset) || s;
+	return parsed && (parsed.timeZoneId || parsed.F && "UTC" || parsed.offset) || s;
 }
 function parsePlainDateLike(s) {
 	const organized = parseDateTimeLike(s);
-	return organized && !organized.C || throwFailedParse(s), organized;
+	return organized && !organized.F || throwFailedParse(s), organized;
 }
 function finalizeDateLike(organized, isoDateProjector, resolveCalendar) {
-	return isoDateProjector && "iso8601" === organized.calendarId ? (validateIsoDateFields(organized), organized.re && validateTimeFields(organized), finalizeDate(isoDateProjector(organized), resolveCalendar)) : organized.re ? finalizeDateTime(organized, resolveCalendar) : finalizeDate(organized, resolveCalendar);
+	return isoDateProjector && "iso8601" === organized.calendarId ? (validateIsoDateFields(organized), organized.te && validateTimeFields(organized), finalizeDate(isoDateProjector(organized), resolveCalendar)) : organized.te ? finalizeDateTime(organized, resolveCalendar) : finalizeDate(organized, resolveCalendar);
 }
 function projectIsoYearMonthDate(organized) {
 	const day = 12 * organized.year + organized.month === isoYearMonthIndexMin ? 20 : 1;
@@ -2199,10 +2126,10 @@ function projectIsoMonthDayDate(organized) {
 function finalizeZonedDateTime(organized, resolveCalendar, options) {
 	const timeZone = queryTimeZone(resolveTimeZoneId(organized.timeZoneId));
 	let epochNano;
-	if (validateIsoDateTimeFields(organized), organized.re) {
+	if (validateIsoDateTimeFields(organized), organized.te) {
 		const offsetNano = organized.offset ? parseOffsetNano(organized.offset) : void 0;
 		const [, offsetDisambig, epochDisambig] = refineZonedFieldOptions(options);
-		epochNano = getMatchingInstantFor(timeZone, organized, offsetNano, offsetDisambig, epochDisambig, !(timeZone.X || void 0 === organized.offset || (offset = organized.offset, offset.replace(/\D/g, "").length > 4)), organized.C);
+		epochNano = getMatchingInstantFor(timeZone, organized, offsetNano, offsetDisambig, epochDisambig, !(timeZone.Z || void 0 === organized.offset || (offset = organized.offset, offset.replace(/\D/g, "").length > 4)), organized.F);
 	} else refineZonedFieldOptions(options), epochNano = getStartOfDayInstantFor(timeZone, organized);
 	var offset;
 	return checkEpochNanoInBounds(epochNano), createZonedEpochNanoSlots(epochNano, timeZone, resolveCalendar(organized.calendarId));
@@ -2242,8 +2169,8 @@ function parseDateTimeLike(s) {
 			day: parseInt(parts[6]),
 			...organizeTimeParts(parts, 7),
 			...organizeAnnotationParts(parts[19]),
-			re: Boolean(parts[7]),
-			C: hasZ,
+			te: Boolean(parts[7]),
+			F: hasZ,
 			offset: hasZ ? void 0 : zOrOffset
 		};
 	})(parts) : void 0;
@@ -2299,7 +2226,7 @@ function organizeAnnotationParts(s) {
 }
 function mergeCalendarFields(calendar, baseFields, additionalFields) {
 	const merged = Object.assign(Object.create(null), baseFields);
-	return spliceFields(merged, additionalFields, monthFieldNames), getCalendarEraOrigins(calendar) && (spliceFields(merged, additionalFields, allYearFieldNames), calendar && calendar.ge && spliceFields(merged, additionalFields, monthDayFieldNames, eraYearFieldNames)), merged;
+	return spliceFields(merged, additionalFields, monthFieldNames), getCalendarEraOrigins(calendar) && (spliceFields(merged, additionalFields, allYearFieldNames), calendar && calendar.je && spliceFields(merged, additionalFields, monthDayFieldNames, eraYearFieldNames)), merged;
 }
 function spliceFields(dest, additional, allPropNames, deletablePropNames) {
 	let anyMatching = 0;
@@ -2307,8 +2234,7 @@ function spliceFields(dest, additional, allPropNames, deletablePropNames) {
 	for (const propName of allPropNames) void 0 !== additional[propName] ? anyMatching = 1 : nonMatchingPropNames.push(propName);
 	if (Object.assign(dest, additional), anyMatching) for (const deletablePropName of deletablePropNames || nonMatchingPropNames) delete dest[deletablePropName];
 }
-function mergeZonedDateTimeFields(zonedDateTimeSlots, modFields, options) {
-	const { calendar, timeZone } = zonedDateTimeSlots;
+function mergeZonedDateTimeFields(calendar, zonedDateTimeSlots, modFields) {
 	const validFieldNames = getCalendarFieldNames(calendar, dateTimeAndOffsetFieldNamesAlpha, dateTimeAndOffsetFieldNamesWithEraAlpha);
 	const zonedSlots = zonedEpochSlotsToIso(zonedDateTimeSlots);
 	const { year, month, day } = computeCalendarDateFields(calendar, zonedSlots);
@@ -2326,15 +2252,12 @@ function mergeZonedDateTimeFields(zonedDateTimeSlots, modFields, options) {
 	};
 	const partialFields = readAndRefineBagFields(modFields, validFieldNames, zonedDateTimeFieldRefiners);
 	const mergedCalendarFields = mergeCalendarFields(calendar, origFields, partialFields);
-	const mergedAllFields = {
+	return [{
 		...origFields,
 		...partialFields
-	};
-	const [isoDateFields, overflow, offsetDisambig, epochDisambig] = createPlainDateFromFieldsWithOptionsRefiner(calendar, mergedCalendarFields, () => refineZonedFieldOptions(options, 2));
-	return createZonedEpochNanoSlots(getMatchingInstantFor(timeZone, combineDateAndTime(isoDateFields, constrainTimeFields(mergedAllFields, overflow)), mergedAllFields.offset, offsetDisambig, epochDisambig), timeZone, calendar);
+	}, mergedCalendarFields];
 }
-function mergePlainDateTimeFields(plainDateTimeSlots, modFields, options) {
-	const { calendar } = plainDateTimeSlots;
+function mergeDateTimeFields(calendar, plainDateTimeSlots, modFields) {
 	const validFieldNames = getCalendarFieldNames(calendar, dateTimeFieldNamesAlpha, dateTimeFieldNamesWithEraAlpha);
 	const { year, month, day } = computeCalendarDateFields(calendar, plainDateTimeSlots);
 	const origFields = {
@@ -2350,46 +2273,48 @@ function mergePlainDateTimeFields(plainDateTimeSlots, modFields, options) {
 	};
 	const partialFields = readAndRefineBagFields(modFields, validFieldNames, dateTimeFieldRefiners);
 	const mergedCalendarFields = mergeCalendarFields(calendar, origFields, partialFields);
-	const mergedAllFields = {
+	return [{
 		...origFields,
 		...partialFields
-	};
-	const [plainDateSlots, overflow] = createPlainDateFromFieldsWithOptionsRefiner(calendar, mergedCalendarFields, () => [refineOverflowOptions(options)]);
-	return createPlainDateTimeFromRefinedFields(plainDateSlots, constrainTimeFields(mergedAllFields, overflow), calendar);
+	}, mergedCalendarFields];
 }
-function mergePlainDateFields(plainDateSlots, modFields, options) {
-	const { calendar } = plainDateSlots;
+function mergeDateFields(calendar, plainDateSlots, modFields) {
 	const validFieldNames = getCalendarFieldNames(calendar, dateFieldNamesAlpha, dateFieldNamesWithEraAlpha);
 	const { year, month, day } = computeCalendarDateFields(calendar, plainDateSlots);
-	return createPlainDateFromFields(calendar, mergeCalendarFields(calendar, {
+	return mergeCalendarFields(calendar, {
 		year,
 		monthCode: computeMonthCode(calendar, year, month),
 		day
-	}, readAndRefineBagFields(modFields, validFieldNames, dateFieldRefiners)), options);
+	}, readAndRefineBagFields(modFields, validFieldNames, dateFieldRefiners));
 }
-function mergePlainYearMonthFields(plainYearMonthSlots, modFields, options) {
-	const { calendar } = plainYearMonthSlots;
+function mergeYearMonthFields(calendar, plainYearMonthSlots, modFields) {
 	const validFieldNames = getCalendarFieldNames(calendar, yearMonthFieldNamesAlpha, yearMonthFieldNamesWithEraAlpha);
 	const { year, month } = computeCalendarDateFields(calendar, plainYearMonthSlots);
-	return createPlainYearMonthFromFields(calendar, mergeCalendarFields(calendar, {
+	return mergeCalendarFields(calendar, {
 		year,
 		monthCode: computeMonthCode(calendar, year, month)
-	}, readAndRefineBagFields(modFields, validFieldNames, dateFieldRefiners)), options);
+	}, readAndRefineBagFields(modFields, validFieldNames, dateFieldRefiners));
 }
-function mergePlainMonthDayFields(plainMonthDaySlots, modFields, options) {
-	const { calendar } = plainMonthDaySlots;
+function mergeMonthDayFields(calendar, plainMonthDaySlots, modFields) {
 	const validFieldNames = getCalendarFieldNames(calendar, dateFieldNamesAlpha, dateFieldNamesWithEraAlpha);
 	const { year, month, day } = computeCalendarDateFields(calendar, plainMonthDaySlots);
-	return createPlainMonthDayFromFields(calendar, mergeCalendarFields(calendar, {
+	return mergeCalendarFields(calendar, {
 		monthCode: computeMonthCode(calendar, year, month),
 		day
-	}, readAndRefineBagFields(modFields, validFieldNames, dateFieldRefiners)), options);
+	}, readAndRefineBagFields(modFields, validFieldNames, dateFieldRefiners));
 }
-function mergePlainTimeFields(initialFields, mod, options) {
-	return ((initialFields, modFields, options) => resolveTimeFields({
+function createZonedDateTimeFromMergedFields(zonedDateTimeSlots, mergedAllFields, calendarFields, year, monthCodeParts, overflow, offsetDisambig, epochDisambig) {
+	const { calendar, timeZone } = zonedDateTimeSlots;
+	return createZonedEpochNanoSlots(getMatchingInstantFor(timeZone, combineDateAndTime(createDateFromRefinedFields(calendarFields, calendar, year, monthCodeParts, overflow), constrainTimeFields(mergedAllFields, overflow)), mergedAllFields.offset, offsetDisambig, epochDisambig), timeZone, calendar);
+}
+function createDateTimeFromMergedFields(mergedAllFields, calendarFields, calendar, year, monthCodeParts, overflow) {
+	return createDateTimeFromRefinedFields(createDateFromRefinedFields(calendarFields, calendar, year, monthCodeParts, overflow), constrainTimeFields(mergedAllFields, overflow), calendar);
+}
+function mergeTimeFields(initialFields, modFields) {
+	return {
 		...pluckProps(timeFieldNamesAlpha, initialFields),
 		...readAndRefineBagFields(modFields, timeFieldNamesAlpha, timeFieldRefiners)
-	}, refineOverflowOptions(options)))(initialFields, mod, options);
+	};
 }
 function mergeDurationFields(slots, fields) {
 	return createDurationSlots((initialFields = slots, modFields = fields, validateDurationFields({
@@ -2402,49 +2327,72 @@ function computeMonthCode(calendar, year, month) {
 	const [monthCodeNumber, isLeapMonth] = computeCalendarMonthCodeParts(calendar, year, month);
 	return formatMonthCode(monthCodeNumber, isLeapMonth);
 }
+function totalDuration(refineRelativeTo, slots, options) {
+	const [totalUnit, relativeToSlots] = ((options, refineRelativeTo) => {
+		const relativeToInternals = refineRelativeTo((options = normalizeOptionsOrString(options, "unit")).relativeTo);
+		let totalUnit = coerceTotalUnit(options);
+		return totalUnit = requirePropDefined("unit", totalUnit), [totalUnit, relativeToInternals];
+	})(options, refineRelativeTo);
+	const maxDurationUnit = getMaxDurationUnit(slots);
+	const maxUnit = Math.max(totalUnit, maxDurationUnit);
+	const isZoned = relativeToSlots && isZonedEpochSlots(relativeToSlots);
+	if (!relativeToSlots && isUniformUnit(maxUnit, isZoned)) return totalDayTimeDuration(slots, totalUnit);
+	if (relativeToSlots || throwRangeError("Missing relativeTo"), !slots.sign && (!isZoned || totalUnit < 6)) return 0;
+	const [balancedDuration, endEpochNano, relativeOps] = spanRelativeDuration(relativeToSlots, slots, totalUnit);
+	return isUniformUnit(totalUnit, isZoned) ? totalDayTimeDuration(balancedDuration, totalUnit) : ((durationFields, endEpochNano, totalUnit, relativeOps) => {
+		const fieldName = durationFieldNamesAsc[totalUnit];
+		const baseDurationFields = clearDurationFields(totalUnit, durationFields);
+		return totalRelativeUnit(durationFields[fieldName], computeDurationSign(durationFields) || 1, endEpochNano, (value) => (baseDurationFields[fieldName] = value, moveRelativeMarkerToEpochNano(relativeOps, baseDurationFields)));
+	})(balancedDuration, endEpochNano, totalUnit, relativeOps);
+}
+function totalDayTimeDuration(durationFields, totalUnit) {
+	return divideBigNanoToExactNumber(durationDayTimeToBigNano(durationFields), unitNanoMap[totalUnit]);
+}
 function instantToZonedDateTime(instantSlots, timeZone, calendar) {
 	return createZonedEpochNanoSlots(instantSlots.epochNanoseconds, timeZone, calendar);
 }
 function zonedDateTimeToInstant(zonedDateTimeSlots0) {
 	return createEpochNanoSlots(zonedDateTimeSlots0.epochNanoseconds);
 }
-function zonedDateTimeToPlainDateTime(zonedDateTimeSlots0) {
+function zonedDateTimeToDateTime(zonedDateTimeSlots0) {
 	return createDateTimeSlots(zonedEpochSlotsToIso(zonedDateTimeSlots0), zonedDateTimeSlots0.calendar);
 }
-function zonedDateTimeToPlainDate(zonedDateTimeSlots0) {
+function zonedDateTimeToDate(zonedDateTimeSlots0) {
 	return createDateSlots(zonedEpochSlotsToIso(zonedDateTimeSlots0), zonedDateTimeSlots0.calendar);
 }
-function zonedDateTimeToPlainTime(zonedDateTimeSlots0) {
+function zonedDateTimeToTime(zonedDateTimeSlots0) {
 	return createTimeSlots(zonedEpochSlotsToIso(zonedDateTimeSlots0));
 }
-function plainDateTimeToZonedDateTime(plainDateTimeSlots, timeZone, options) {
-	return createZonedEpochNanoSlots(checkEpochNanoInBounds(getSingleInstantFor(timeZone, plainDateTimeSlots, ((options) => coerceEpochDisambig(normalizeOptions(options)))(options))), timeZone, plainDateTimeSlots.calendar);
+function dateTimeToZonedDateTime(plainDateTimeSlots, timeZone, epochDisambig) {
+	return createZonedEpochNanoSlots(checkEpochNanoInBounds(getSingleInstantFor(timeZone, plainDateTimeSlots, epochDisambig)), timeZone, plainDateTimeSlots.calendar);
 }
-function plainDateToZonedDateTime(refineTimeZoneString, refinePlainTimeArg, plainDateSlots, options) {
-	const timeZoneId = refineTimeZoneString(options.timeZone);
-	const plainTimeArg = options.plainTime;
-	const timeFields = void 0 !== plainTimeArg ? refinePlainTimeArg(plainTimeArg) : void 0;
-	const timeZone = queryTimeZone(timeZoneId);
+function dateToZonedDateTime(plainDateSlots, timeZone, timeFields) {
 	let epochNano;
 	return epochNano = timeFields ? getSingleInstantFor(timeZone, combineDateAndTime(plainDateSlots, timeFields)) : getStartOfDayInstantFor(timeZone, combineDateAndTime(plainDateSlots, timeFieldDefaults)), createZonedEpochNanoSlots(epochNano, timeZone, plainDateSlots.calendar);
 }
-function convertPlainYearMonthToDate(calendar, input, bag) {
-	return createPlainDateFromMergedFields(calendar, pluckProps(getCalendarFieldNames(calendar, yearMonthCodeFieldNamesAlpha, yearMonthCodeFieldNamesWithEraAlpha), input), readAndRefineBagFields(requireObjectLike(bag), dayFieldNamesAsc, dateFieldRefiners, []));
+function yearMonthToDate(calendar, input, bag) {
+	return mergeFieldsIntoDate(calendar, pluckProps(getCalendarFieldNames(calendar, yearMonthCodeFieldNamesAlpha, yearMonthCodeFieldNamesWithEraAlpha), input), readAndRefineBagFields(requireObjectLike(bag), dayFieldNamesAsc, dateFieldRefiners, []));
 }
-function convertPlainMonthDayToDate(calendar, input, bag) {
+function monthDayToDate(calendar, input, bag) {
 	const extraFieldNames = getCalendarFieldNames(calendar, yearFieldNamesAsc, yearFieldNamesWithEraAlpha);
-	return createPlainDateFromMergedFields(calendar, pluckProps(monthCodeDayFieldNamesAlpha, input), readAndRefineBagFields(requireObjectLike(bag), extraFieldNames, dateFieldRefiners, []));
+	return mergeFieldsIntoDate(calendar, pluckProps(monthCodeDayFieldNamesAlpha, input), readAndRefineBagFields(requireObjectLike(bag), extraFieldNames, dateFieldRefiners, []));
 }
-function convertToPlainMonthDay(calendar, input) {
-	return createPlainMonthDayFromFields(calendar, readAndRefineBagFields(input, monthCodeDayFieldNamesAlpha, dateFieldRefiners));
+function fieldsToMonthDay(calendar, input) {
+	const refinedFields = readAndRefineBagFields(input, monthCodeDayFieldNamesAlpha, dateFieldRefiners);
+	const [year, monthCodeParts] = refineMonthDayFields(refinedFields, calendar);
+	return createMonthDayFromRefinedFields(refinedFields, calendar, year, monthCodeParts, 0);
 }
-function convertToPlainYearMonth(calendar, input, options) {
-	return createPlainYearMonthFromFields(calendar, readAndRefineBagFields(input, getCalendarFieldNames(calendar, yearMonthCodeFieldNamesAlpha, yearMonthCodeFieldNamesWithEraAlpha), dateFieldRefiners), options);
+function fieldsToYearMonth(calendar, input) {
+	const refinedFields = readAndRefineBagFields(input, getCalendarFieldNames(calendar, yearMonthCodeFieldNamesAlpha, yearMonthCodeFieldNamesWithEraAlpha), dateFieldRefiners);
+	const [year, monthCodeParts] = refineCalendarDateFields(refinedFields, calendar, 1);
+	return createYearMonthFromRefinedFields(refinedFields, calendar, year, monthCodeParts, 0);
 }
-function createPlainDateFromMergedFields(calendar, inputFields, extraFields) {
+function mergeFieldsIntoDate(calendar, inputFields, extraFields) {
 	const mergedFieldNames = getCalendarFieldNames(calendar, yearMonthCodeDayFieldNamesAlpha, yearMonthCodeDayFieldNamesWithEraAlpha);
 	let mergedFields = mergeCalendarFields(calendar, inputFields, extraFields);
-	return mergedFields = readAndRefineBagFields(mergedFields, mergedFieldNames, dateFieldRefiners, []), createPlainDateFromFields(calendar, mergedFields);
+	mergedFields = readAndRefineBagFields(mergedFields, mergedFieldNames, dateFieldRefiners, []);
+	const [year, monthCodeParts] = refineCalendarDateFields(mergedFields, calendar);
+	return createDateFromRefinedFields(mergedFields, calendar, year, monthCodeParts, 0);
 }
 function epochMilliToInstant(epochMilli) {
 	return createEpochNanoSlots(checkEpochNanoInBounds(BigInt(toStrictInteger(epochMilli)) * bigNanoInMilli));
@@ -2585,6 +2533,11 @@ function zonedDateTimeWithPlainTime(zonedDateTimeSlots, plainTimeFields) {
 	let epochNano;
 	return epochNano = plainTimeFields ? getMatchingInstantFor(timeZone, combineDateAndTime(isoDateTime, time), offsetNanoseconds, 2) : getStartOfDayInstantFor(timeZone, combineDateAndTime(isoDateTime, time)), createZonedEpochNanoSlots(epochNano, timeZone, zonedDateTimeSlots.calendar);
 }
+function refineDirectionOptions(options) {
+	const normalizedOptions = normalizeOptionsOrString(options, "direction");
+	const res = coerceDirection(normalizedOptions, 0);
+	return res || throwRangeError(invalidEntity("direction", res)), res;
+}
 function getCurrentIsoDateTime(timeZone) {
 	const epochNano = getCurrentEpochNano();
 	const offsetNano = timeZone.B(epochNano);
@@ -2596,8 +2549,7 @@ function getCurrentEpochNano() {
 function getCurrentTimeZoneId() {
 	return new RawDateTimeFormat().resolvedOptions().timeZone;
 }
-//#endregion
-//#region ../../node_modules/temporal-polyfill/chunks/apiHelpers.js
+// ../../node_modules/temporal-polyfill/chunks/apiHelpers.js
 const PlainYearMonthBranding = "PlainYearMonth";
 const PlainMonthDayBranding = "PlainMonthDay";
 const PlainDateBranding = "PlainDate";
@@ -2711,12 +2663,72 @@ const dateDerivedGetters = {
 		return computeCalendarInLeapYear(slots.calendar, slots);
 	}
 };
-function createNativeGetters(shimGetters) {
-	return createPropGetters(Object.keys(shimGetters));
+function diffInstants(invert, instantSlots0, instantSlots1, options) {
+	const [largestUnit, smallestUnit, roundingInc, roundingMode] = refineDiffOptions(invert, options, 3, 5);
+	return createDiffDurationSlots(invert, diffEpochNanosRounded(instantSlots0.epochNanoseconds, instantSlots1.epochNanoseconds, largestUnit, smallestUnit, roundingInc, roundingMode));
 }
-createNativeGetters(yearMonthDerivedGetters), createNativeGetters(dateDerivedGetters);
-//#endregion
-//#region ../../node_modules/temporal-polyfill/chunks/classApi-basic.js
+function diffZonedDateTimes(invert, slots0, slots1, options) {
+	const calendar = getCommonCalendar(slots0.calendar, slots1.calendar);
+	const [largestUnit, smallestUnit, roundingInc, roundingMode] = refineDiffOptions(invert, options, 5);
+	return createDiffDurationSlots(invert, diffZonedDateTimesRounded(calendar, slots0, slots1, largestUnit, smallestUnit, roundingInc, roundingMode));
+}
+function diffDateTimes(invert, plainDateTimeSlots0, plainDateTimeSlots1, options) {
+	const calendar = getCommonCalendar(plainDateTimeSlots0.calendar, plainDateTimeSlots1.calendar);
+	const [largestUnit, smallestUnit, roundingInc, roundingMode] = refineDiffOptions(invert, options, 6);
+	return createDiffDurationSlots(invert, diffDateTimesRounded(calendar, plainDateTimeSlots0, plainDateTimeSlots1, largestUnit, smallestUnit, roundingInc, roundingMode));
+}
+function diffDates(invert, plainDateSlots0, plainDateSlots1, options) {
+	const calendar = getCommonCalendar(plainDateSlots0.calendar, plainDateSlots1.calendar);
+	const [largestUnit, smallestUnit, roundingInc, roundingMode] = refineDiffOptions(invert, options, 6, 9, 6);
+	return createDiffDurationSlots(invert, diffDatesRounded(calendar, plainDateSlots0, plainDateSlots1, largestUnit, smallestUnit, roundingInc, roundingMode));
+}
+function diffYearMonths(invert, plainYearMonthSlots0, plainYearMonthSlots1, options) {
+	const calendar = getCommonCalendar(plainYearMonthSlots0.calendar, plainYearMonthSlots1.calendar);
+	const [largestUnit, smallestUnit, roundingInc, roundingMode] = refineDiffOptions(invert, options, 9, 9, 8);
+	return createDiffDurationSlots(invert, diffYearMonthsRounded(calendar, plainYearMonthSlots0, plainYearMonthSlots1, largestUnit, smallestUnit, roundingInc, roundingMode));
+}
+function diffTimes(invert, plainTimeSlots0, plainTimeSlots1, options) {
+	const [largestUnit, smallestUnit, roundingInc, roundingMode] = refineDiffOptions(invert, options, 5, 5);
+	return createDiffDurationSlots(invert, diffTimesRounded(plainTimeSlots0, plainTimeSlots1, largestUnit, smallestUnit, roundingInc, roundingMode));
+}
+function createDiffDurationSlots(invert, durationFields) {
+	return createDurationSlots(invert ? negateDurationFields(durationFields) : durationFields);
+}
+function withDateFields(slots, modFields, options) {
+	const { calendar } = slots;
+	const fields = mergeDateFields(calendar, slots, modFields);
+	const [year, monthCodeParts] = refineCalendarDateFields(fields, calendar);
+	return createDateFromRefinedFields(fields, calendar, year, monthCodeParts, refineOverflowOptions(options));
+}
+function withDateTimeFields(slots, modFields, options) {
+	const { calendar } = slots;
+	const [mergedFields, calendarFields] = mergeDateTimeFields(calendar, slots, modFields);
+	const [year, monthCodeParts] = refineCalendarDateFields(calendarFields, calendar);
+	return createDateTimeFromMergedFields(mergedFields, calendarFields, calendar, year, monthCodeParts, refineOverflowOptions(options));
+}
+function withYearMonthFields(slots, modFields, options) {
+	const { calendar } = slots;
+	const fields = mergeYearMonthFields(calendar, slots, modFields);
+	const [year, monthCodeParts] = refineCalendarDateFields(fields, calendar, 1);
+	return createYearMonthFromRefinedFields(fields, calendar, year, monthCodeParts, refineOverflowOptions(options));
+}
+function withMonthDayFields(slots, modFields, options) {
+	const { calendar } = slots;
+	const fields = mergeMonthDayFields(calendar, slots, modFields);
+	const [year, monthCodeParts] = refineMonthDayFields(fields, calendar);
+	return createMonthDayFromRefinedFields(fields, calendar, year, monthCodeParts, refineOverflowOptions(options));
+}
+function withTimeFields(slots, modFields, options) {
+	return resolveTimeFields(mergeTimeFields(slots, modFields), refineOverflowOptions(options));
+}
+function withZonedDateTimeFields(slots, modFields, options) {
+	const { calendar } = slots;
+	const [mergedFields, calendarFields] = mergeZonedDateTimeFields(calendar, slots, modFields);
+	const [year, monthCodeParts] = refineCalendarDateFields(calendarFields, calendar);
+	const [overflow, offsetDisambig, epochDisambig] = refineZonedFieldOptions(options, 2);
+	return createZonedDateTimeFromMergedFields(slots, mergedFields, calendarFields, year, monthCodeParts, overflow, offsetDisambig, epochDisambig);
+}
+// ../../node_modules/temporal-polyfill/chunks/classApi-basic.js
 function resolveBasicCalendarId(rawCalendarId) {
 	const lowerRawCalendarId = requireString(rawCalendarId).toLowerCase();
 	return lowerRawCalendarId === "iso8601" ? void 0 : lowerRawCalendarId === "gregory" ? 0 : void throwRangeError(exoticCalendarRequired(rawCalendarId, "temporal-polyfill/full"));
@@ -2745,10 +2757,10 @@ const ZonedDateTime = /*@__PURE__*/ defineTemporalClass(ZonedDateTimeBranding, c
 		return getZonedDateTimeSlots(this).timeZone.id;
 	}
 	get epochMilliseconds() {
-		return getEpochMilli(getZonedDateTimeSlots(this));
+		return epochNanoToMilli(getZonedDateTimeSlots(this).epochNanoseconds);
 	}
 	get epochNanoseconds() {
-		return getEpochNano(getZonedDateTimeSlots(this));
+		return getZonedDateTimeSlots(this).epochNanoseconds;
 	}
 	get offset() {
 		return formatOffsetNano(zonedEpochSlotsToIso(getZonedDateTimeSlots(this)).offsetNanoseconds);
@@ -2760,7 +2772,7 @@ const ZonedDateTime = /*@__PURE__*/ defineTemporalClass(ZonedDateTimeBranding, c
 		return computeZonedHoursInDay(getZonedDateTimeSlots(this));
 	}
 	with(mod, options = void 0) {
-		return createZonedDateTime(mergeZonedDateTimeFields(getZonedDateTimeSlots(this), validateBag(mod), options));
+		return createZonedDateTime(withZonedDateTimeFields(getZonedDateTimeSlots(this), validateBag(mod), options));
 	}
 	withCalendar(calendarArg) {
 		return createZonedDateTime({
@@ -2778,20 +2790,16 @@ const ZonedDateTime = /*@__PURE__*/ defineTemporalClass(ZonedDateTimeBranding, c
 		return createZonedDateTime(zonedDateTimeWithPlainTime(getZonedDateTimeSlots(this), optionalToPlainTimeFields(plainTimeArg)));
 	}
 	add(durationArg, options = void 0) {
-		return createZonedDateTime(moveZonedEpochSlots(getZonedDateTimeSlots(this), toDurationSlots(durationArg), options));
+		return createZonedDateTime(moveZonedEpochSlots(getZonedDateTimeSlots(this), toDurationSlots(durationArg), refineOverflowOptions(options)));
 	}
 	subtract(durationArg, options = void 0) {
-		return createZonedDateTime(moveZonedEpochSlots(getZonedDateTimeSlots(this), negateDurationFields(toDurationSlots(durationArg)), options));
+		return createZonedDateTime(moveZonedEpochSlots(getZonedDateTimeSlots(this), negateDurationFields(toDurationSlots(durationArg)), refineOverflowOptions(options)));
 	}
 	until(otherArg, options = void 0) {
-		const slots = getZonedDateTimeSlots(this);
-		const other = toZonedDateTimeSlots(otherArg);
-		return createDuration(createDurationSlots(diffZonedDateTimes(0, getCommonCalendar(slots.calendar, other.calendar), slots, other, options)));
+		return createDuration(diffZonedDateTimes(0, getZonedDateTimeSlots(this), toZonedDateTimeSlots(otherArg), options));
 	}
 	since(otherArg, options = void 0) {
-		const slots = getZonedDateTimeSlots(this);
-		const other = toZonedDateTimeSlots(otherArg);
-		return createDuration(createDurationSlots(diffZonedDateTimes(1, getCommonCalendar(slots.calendar, other.calendar), slots, other, options)));
+		return createDuration(diffZonedDateTimes(1, getZonedDateTimeSlots(this), toZonedDateTimeSlots(otherArg), options));
 	}
 	round(options) {
 		const slots = getZonedDateTimeSlots(this);
@@ -2808,18 +2816,18 @@ const ZonedDateTime = /*@__PURE__*/ defineTemporalClass(ZonedDateTimeBranding, c
 		return createInstant(zonedDateTimeToInstant(getZonedDateTimeSlots(this)));
 	}
 	toPlainDateTime() {
-		return createPlainDateTime(zonedDateTimeToPlainDateTime(getZonedDateTimeSlots(this)));
+		return createPlainDateTime(zonedDateTimeToDateTime(getZonedDateTimeSlots(this)));
 	}
 	toPlainDate() {
-		return createPlainDate(zonedDateTimeToPlainDate(getZonedDateTimeSlots(this)));
+		return createPlainDate(zonedDateTimeToDate(getZonedDateTimeSlots(this)));
 	}
 	toPlainTime() {
-		return createPlainTime(zonedDateTimeToPlainTime(getZonedDateTimeSlots(this)));
+		return createPlainTime(zonedDateTimeToTime(getZonedDateTimeSlots(this)));
 	}
 	toLocaleString(locales = void 0, options = {}) {
 		const slots = getZonedDateTimeSlots(this);
 		const format = new RawDateTimeFormat(locales, applyZonedFormatTimeZone(transformZonedOptions(options), getZonedTimeZoneId(slots)));
-		return checkResolvedCalendarCompatible(format, slots), format.format(getEpochMilli(slots));
+		return checkResolvedCalendarCompatible(format, slots), format.format(epochNanoToMilli(slots.epochNanoseconds));
 	}
 	toString(options = void 0) {
 		return formatZonedDateTimeIso(getZonedDateTimeSlots(this), options);
@@ -2829,8 +2837,8 @@ const ZonedDateTime = /*@__PURE__*/ defineTemporalClass(ZonedDateTimeBranding, c
 	}
 	getTimeZoneTransition(options) {
 		const slots = getZonedDateTimeSlots(this);
-		const newEpochNano = getTimeZoneTransitionEpochNanoseconds(slots, options);
-		return newEpochNano ? createZonedDateTime({
+		const newEpochNano = slots.timeZone.C(slots.epochNanoseconds, refineDirectionOptions(options));
+		return void 0 !== newEpochNano ? createZonedDateTime({
 			...slots,
 			epochNanoseconds: newEpochNano
 		}) : null;
@@ -2892,10 +2900,10 @@ const Instant = /*@__PURE__*/ defineTemporalClass(InstantBranding, class {
 		return compareZonedEpochSlots(toInstantSlots(a), toInstantSlots(b));
 	}
 	get epochMilliseconds() {
-		return getEpochMilli(getInstantSlots(this));
+		return epochNanoToMilli(getInstantSlots(this).epochNanoseconds);
 	}
 	get epochNanoseconds() {
-		return getEpochNano(getInstantSlots(this));
+		return getInstantSlots(this).epochNanoseconds;
 	}
 	add(durationArg) {
 		return createInstant(createEpochNanoSlots(moveEpochNano(getInstantSlots(this).epochNanoseconds, toDurationSlots(durationArg))));
@@ -2922,7 +2930,7 @@ const Instant = /*@__PURE__*/ defineTemporalClass(InstantBranding, class {
 	}
 	toLocaleString(locales = void 0, options = {}) {
 		const slots = getInstantSlots(this);
-		return new RawDateTimeFormat(locales, transformInstantOptions(options)).format(getEpochMilli(slots));
+		return new RawDateTimeFormat(locales, transformInstantOptions(options)).format(epochNanoToMilli(slots.epochNanoseconds));
 	}
 	toString(options = void 0) {
 		return formatInstantIso(refineTimeZoneArg, getInstantSlots(this), options);
@@ -2979,13 +2987,13 @@ const PlainMonthDay = /*@__PURE__*/ defineTemporalClass(PlainMonthDayBranding, c
 		return getCalendarSlotId(getPlainMonthDaySlots(this).calendar);
 	}
 	with(mod, options = void 0) {
-		return createPlainMonthDay(mergePlainMonthDayFields(getPlainMonthDaySlots(this), validateBag(mod), options));
+		return createPlainMonthDay(withMonthDayFields(getPlainMonthDaySlots(this), validateBag(mod), options));
 	}
 	equals(otherArg) {
 		return plainMonthDaysEqual(getPlainMonthDaySlots(this), toPlainMonthDaySlots(otherArg));
 	}
 	toPlainDate(bag) {
-		return createPlainDate(convertPlainMonthDayToDate(getPlainMonthDaySlots(this).calendar, this, bag));
+		return createPlainDate(monthDayToDate(getPlainMonthDaySlots(this).calendar, this, bag));
 	}
 	toLocaleString(locales = void 0, options = {}) {
 		const slots = getPlainMonthDaySlots(this);
@@ -3047,31 +3055,27 @@ const PlainYearMonth = /*@__PURE__*/ defineTemporalClass(PlainYearMonthBranding,
 		return getCalendarSlotId(getPlainYearMonthSlots(this).calendar);
 	}
 	with(mod, options = void 0) {
-		return createPlainYearMonth(mergePlainYearMonthFields(getPlainYearMonthSlots(this), validateBag(mod), options));
+		return createPlainYearMonth(withYearMonthFields(getPlainYearMonthSlots(this), validateBag(mod), options));
 	}
 	add(durationArg, options = void 0) {
 		const slots = getPlainYearMonthSlots(this);
-		return createPlainYearMonth(createDateSlots(moveYearMonth(0, slots.calendar, slots, toDurationSlots(durationArg), options), slots.calendar));
+		return createPlainYearMonth(createDateSlots(moveYearMonth(slots.calendar, slots, toDurationSlots(durationArg), refineOverflowOptions(options)), slots.calendar));
 	}
 	subtract(durationArg, options = void 0) {
 		const slots = getPlainYearMonthSlots(this);
-		return createPlainYearMonth(createDateSlots(moveYearMonth(1, slots.calendar, slots, toDurationSlots(durationArg), options), slots.calendar));
+		return createPlainYearMonth(createDateSlots(moveYearMonth(slots.calendar, slots, negateDurationFields(toDurationSlots(durationArg)), refineOverflowOptions(options)), slots.calendar));
 	}
 	until(otherArg, options = void 0) {
-		const slots = getPlainYearMonthSlots(this);
-		const other = toPlainYearMonthSlots(otherArg);
-		return createDuration(diffPlainYearMonth(0, getCommonCalendar(slots.calendar, other.calendar), slots, other, options));
+		return createDuration(diffYearMonths(0, getPlainYearMonthSlots(this), toPlainYearMonthSlots(otherArg), options));
 	}
 	since(otherArg, options = void 0) {
-		const slots = getPlainYearMonthSlots(this);
-		const other = toPlainYearMonthSlots(otherArg);
-		return createDuration(diffPlainYearMonth(1, getCommonCalendar(slots.calendar, other.calendar), slots, other, options));
+		return createDuration(diffYearMonths(1, getPlainYearMonthSlots(this), toPlainYearMonthSlots(otherArg), options));
 	}
 	equals(otherArg) {
 		return plainYearMonthsEqual(getPlainYearMonthSlots(this), toPlainYearMonthSlots(otherArg));
 	}
 	toPlainDate(bag) {
-		return createPlainDate(convertPlainYearMonthToDate(getPlainYearMonthSlots(this).calendar, this, bag));
+		return createPlainDate(yearMonthToDate(getPlainYearMonthSlots(this).calendar, this, bag));
 	}
 	toLocaleString(locales = void 0, options = {}) {
 		const slots = getPlainYearMonthSlots(this);
@@ -3137,7 +3141,7 @@ const PlainTime = /*@__PURE__*/ defineTemporalClass(PlainTimeBranding, class {
 		return compareTimeFields(toPlainTimeSlots(arg0), toPlainTimeSlots(arg1));
 	}
 	with(mod, options = void 0) {
-		return createPlainTime(mergePlainTimeFields(getPlainTimeSlots(this), validateBag(mod), options));
+		return createPlainTime(withTimeFields(getPlainTimeSlots(this), validateBag(mod), options));
 	}
 	add(durationArg) {
 		return createPlainTime(moveTime(getPlainTimeSlots(this), toDurationSlots(durationArg))[0]);
@@ -3146,15 +3150,15 @@ const PlainTime = /*@__PURE__*/ defineTemporalClass(PlainTimeBranding, class {
 		return createPlainTime(moveTime(getPlainTimeSlots(this), negateDurationFields(toDurationSlots(durationArg)))[0]);
 	}
 	until(otherArg, options = void 0) {
-		return createDuration(diffPlainTimes(0, getPlainTimeSlots(this), toPlainTimeSlots(otherArg), options));
+		return createDuration(diffTimes(0, getPlainTimeSlots(this), toPlainTimeSlots(otherArg), options));
 	}
 	since(otherArg, options = void 0) {
-		return createDuration(diffPlainTimes(1, getPlainTimeSlots(this), toPlainTimeSlots(otherArg), options));
+		return createDuration(diffTimes(1, getPlainTimeSlots(this), toPlainTimeSlots(otherArg), options));
 	}
 	round(options) {
 		const slots = getPlainTimeSlots(this);
 		const [smallestUnit, roundingInc, roundingMode] = refineRoundingOptions(options, 5);
-		return createPlainTime(roundTimeToNano(slots, computeNanoInc(smallestUnit, roundingInc), roundingMode)[0]);
+		return createPlainTime(roundTimeToInc(slots, computeNanoInc(smallestUnit, roundingInc), roundingMode)[0]);
 	}
 	equals(other) {
 		return plainTimesEqual(getPlainTimeSlots(this), toPlainTimeSlots(other));
@@ -3189,7 +3193,7 @@ function toPlainTimeSlots(arg, options) {
 		const dateTimeSlots = getPlainDateTimeSlotsIfPresent(arg);
 		if (dateTimeSlots) return refineOverflowOptions(options), createTimeSlots(dateTimeSlots);
 		const zonedDateTimeSlots = getZonedDateTimeSlotsIfPresent(arg);
-		return zonedDateTimeSlots ? (refineOverflowOptions(options), zonedDateTimeToPlainTime(zonedDateTimeSlots)) : refinePlainTimeObjectLike(arg, options);
+		return zonedDateTimeSlots ? (refineOverflowOptions(options), zonedDateTimeToTime(zonedDateTimeSlots)) : refinePlainTimeObjectLike(arg, options);
 	}
 	const timeSlots = parsePlainTime(arg);
 	return refineOverflowOptions(options), timeSlots;
@@ -3227,43 +3231,39 @@ const PlainDateTime = /*@__PURE__*/ defineTemporalClass(PlainDateTimeBranding, c
 		return getCalendarSlotId(getPlainDateTimeSlots(this).calendar);
 	}
 	with(mod, options = void 0) {
-		return createPlainDateTime(mergePlainDateTimeFields(getPlainDateTimeSlots(this), validateBag(mod), options));
+		return createPlainDateTime(withDateTimeFields(getPlainDateTimeSlots(this), validateBag(mod), options));
 	}
 	withCalendar(calendarArg) {
 		return createPlainDateTime(createDateTimeSlots(getPlainDateTimeSlots(this), refineCalendarArg(calendarArg)));
 	}
 	withPlainTime(plainTimeArg = void 0) {
 		const slots = getPlainDateTimeSlots(this);
-		return createPlainDateTime(createPlainDateTimeFromRefinedFields(slots, optionalToPlainTimeFields(plainTimeArg), slots.calendar));
+		return createPlainDateTime(createDateTimeFromRefinedFields(slots, optionalToPlainTimeFields(plainTimeArg), slots.calendar));
 	}
 	add(durationArg, options = void 0) {
 		const slots = getPlainDateTimeSlots(this);
-		return createPlainDateTime(createDateTimeSlots(moveDateTime(slots.calendar, slots, toDurationSlots(durationArg), options), slots.calendar));
+		return createPlainDateTime(createDateTimeSlots(moveDateTime(slots.calendar, slots, toDurationSlots(durationArg), refineOverflowOptions(options)), slots.calendar));
 	}
 	subtract(durationArg, options = void 0) {
 		const slots = getPlainDateTimeSlots(this);
-		return createPlainDateTime(createDateTimeSlots(moveDateTime(slots.calendar, slots, negateDurationFields(toDurationSlots(durationArg)), options), slots.calendar));
+		return createPlainDateTime(createDateTimeSlots(moveDateTime(slots.calendar, slots, negateDurationFields(toDurationSlots(durationArg)), refineOverflowOptions(options)), slots.calendar));
 	}
 	until(otherArg, options = void 0) {
-		const slots = getPlainDateTimeSlots(this);
-		const other = toPlainDateTimeSlots(otherArg);
-		return createDuration(diffPlainDateTimes(0, getCommonCalendar(slots.calendar, other.calendar), slots, other, options));
+		return createDuration(diffDateTimes(0, getPlainDateTimeSlots(this), toPlainDateTimeSlots(otherArg), options));
 	}
 	since(otherArg, options = void 0) {
-		const slots = getPlainDateTimeSlots(this);
-		const other = toPlainDateTimeSlots(otherArg);
-		return createDuration(diffPlainDateTimes(1, getCommonCalendar(slots.calendar, other.calendar), slots, other, options));
+		return createDuration(diffDateTimes(1, getPlainDateTimeSlots(this), toPlainDateTimeSlots(otherArg), options));
 	}
 	round(options) {
 		const slots = getPlainDateTimeSlots(this);
 		const [smallestUnit, roundingInc, roundingMode] = refineRoundingOptions(options);
-		return createPlainDateTime(createDateTimeSlots(roundDateTimeToNano(slots, computeNanoInc(smallestUnit, roundingInc), roundingMode), slots.calendar));
+		return createPlainDateTime(createDateTimeSlots(roundDateTimeToInc(slots, computeNanoInc(smallestUnit, roundingInc), roundingMode), slots.calendar));
 	}
 	equals(otherArg) {
 		return plainDateTimesEqual(getPlainDateTimeSlots(this), toPlainDateTimeSlots(otherArg));
 	}
 	toZonedDateTime(timeZoneArg, options = void 0) {
-		return createZonedDateTime(plainDateTimeToZonedDateTime(getPlainDateTimeSlots(this), queryTimeZone(refineTimeZoneArg(timeZoneArg)), options));
+		return createZonedDateTime(dateTimeToZonedDateTime(getPlainDateTimeSlots(this), queryTimeZone(refineTimeZoneArg(timeZoneArg)), refineEpochDisambigOptions(options)));
 	}
 	toPlainDate() {
 		const slots = getPlainDateTimeSlots(this);
@@ -3303,7 +3303,7 @@ function toPlainDateTimeSlots(arg, options) {
 		const dateSlots = getPlainDateSlotsIfPresent(arg);
 		if (dateSlots) return refineOverflowOptions(options), createDateTimeSlots(combineDateAndTime(dateSlots, timeFieldDefaults), dateSlots.calendar);
 		const zonedDateTimeSlots = getZonedDateTimeSlotsIfPresent(arg);
-		if (zonedDateTimeSlots) return refineOverflowOptions(options), zonedDateTimeToPlainDateTime(zonedDateTimeSlots);
+		if (zonedDateTimeSlots) return refineOverflowOptions(options), zonedDateTimeToDateTime(zonedDateTimeSlots);
 		return refinePlainDateTimeObjectLike(getCalendarFromBag(arg), arg, options);
 	}
 	const res = parsePlainDateTime(arg, resolveBasicCalendarId);
@@ -3333,28 +3333,24 @@ const PlainDate = /*@__PURE__*/ defineTemporalClass(PlainDateBranding, class {
 		return getCalendarSlotId(getPlainDateSlots(this).calendar);
 	}
 	with(mod, options = void 0) {
-		return createPlainDate(mergePlainDateFields(getPlainDateSlots(this), validateBag(mod), options));
+		return createPlainDate(withDateFields(getPlainDateSlots(this), validateBag(mod), options));
 	}
 	withCalendar(calendarArg) {
 		return createPlainDate(createDateSlots(getPlainDateSlots(this), refineCalendarArg(calendarArg)));
 	}
 	add(durationArg, options = void 0) {
 		const slots = getPlainDateSlots(this);
-		return createPlainDate(createDateSlots(moveDate(slots.calendar, slots, toDurationSlots(durationArg), options), slots.calendar));
+		return createPlainDate(createDateSlots(moveDate(slots.calendar, slots, toDurationSlots(durationArg), refineOverflowOptions(options)), slots.calendar));
 	}
 	subtract(durationArg, options = void 0) {
 		const slots = getPlainDateSlots(this);
-		return createPlainDate(createDateSlots(moveDate(slots.calendar, slots, negateDurationFields(toDurationSlots(durationArg)), options), slots.calendar));
+		return createPlainDate(createDateSlots(moveDate(slots.calendar, slots, negateDurationFields(toDurationSlots(durationArg)), refineOverflowOptions(options)), slots.calendar));
 	}
 	until(otherArg, options = void 0) {
-		const slots = getPlainDateSlots(this);
-		const other = toPlainDateSlots(otherArg);
-		return createDuration(diffPlainDates(0, getCommonCalendar(slots.calendar, other.calendar), slots, other, options));
+		return createDuration(diffDates(0, getPlainDateSlots(this), toPlainDateSlots(otherArg), options));
 	}
 	since(otherArg, options = void 0) {
-		const slots = getPlainDateSlots(this);
-		const other = toPlainDateSlots(otherArg);
-		return createDuration(diffPlainDates(1, getCommonCalendar(slots.calendar, other.calendar), slots, other, options));
+		return createDuration(diffDates(1, getPlainDateSlots(this), toPlainDateSlots(otherArg), options));
 	}
 	equals(otherArg) {
 		return plainDatesEqual(getPlainDateSlots(this), toPlainDateSlots(otherArg));
@@ -3364,17 +3360,21 @@ const PlainDate = /*@__PURE__*/ defineTemporalClass(PlainDateBranding, class {
 			timeZone: options.timeZone,
 			plainTime: options.plainTime
 		} : { timeZone: options };
-		return createZonedDateTime(plainDateToZonedDateTime(refineTimeZoneArg, toPlainTimeSlots, getPlainDateSlots(this), optionsObj));
+		const slots = getPlainDateSlots(this);
+		const timeZoneId = refineTimeZoneArg(optionsObj.timeZone);
+		const plainTimeArg = optionsObj.plainTime;
+		const timeFields = void 0 !== plainTimeArg ? toPlainTimeSlots(plainTimeArg) : void 0;
+		return createZonedDateTime(dateToZonedDateTime(slots, queryTimeZone(timeZoneId), timeFields));
 	}
 	toPlainDateTime(plainTimeArg = void 0) {
 		const slots = getPlainDateSlots(this);
-		return createPlainDateTime(createPlainDateTimeFromRefinedFields(slots, optionalToPlainTimeFields(plainTimeArg), slots.calendar));
+		return createPlainDateTime(createDateTimeFromRefinedFields(slots, optionalToPlainTimeFields(plainTimeArg), slots.calendar));
 	}
 	toPlainYearMonth() {
-		return createPlainYearMonth(convertToPlainYearMonth(getPlainDateSlots(this).calendar, this));
+		return createPlainYearMonth(fieldsToYearMonth(getPlainDateSlots(this).calendar, this));
 	}
 	toPlainMonthDay() {
-		return createPlainMonthDay(convertToPlainMonthDay(getPlainDateSlots(this).calendar, this));
+		return createPlainMonthDay(fieldsToMonthDay(getPlainDateSlots(this).calendar, this));
 	}
 	toLocaleString(locales = void 0, options = {}) {
 		const slots = getPlainDateSlots(this);
@@ -3407,7 +3407,7 @@ function toPlainDateSlots(arg, options) {
 		const dateTimeSlots = getPlainDateTimeSlotsIfPresent(arg);
 		if (dateTimeSlots) return refineOverflowOptions(options), createDateSlots(dateTimeSlots, dateTimeSlots.calendar);
 		const zonedDateTimeSlots = getZonedDateTimeSlotsIfPresent(arg);
-		if (zonedDateTimeSlots) return refineOverflowOptions(options), zonedDateTimeToPlainDate(zonedDateTimeSlots);
+		if (zonedDateTimeSlots) return refineOverflowOptions(options), zonedDateTimeToDate(zonedDateTimeSlots);
 		return refinePlainDateObjectLike(getCalendarFromBag(arg), arg, options);
 	}
 	const res = parsePlainDate(arg, resolveBasicCalendarId);
@@ -3469,11 +3469,11 @@ const Duration = /*@__PURE__*/ defineTemporalClass(DurationBranding, class {
 	abs() {
 		return createDuration(absDuration(getDurationSlots(this)));
 	}
-	add(otherArg, options = void 0) {
-		return createDuration(addDurations(refinePublicRelativeTo, 0, getDurationSlots(this), toDurationSlots(otherArg), options));
+	add(otherArg) {
+		return createDuration(addDurationsWithoutRelativeTo(0, getDurationSlots(this), toDurationSlots(otherArg)));
 	}
-	subtract(otherArg, options = void 0) {
-		return createDuration(addDurations(refinePublicRelativeTo, 1, getDurationSlots(this), toDurationSlots(otherArg), options));
+	subtract(otherArg) {
+		return createDuration(addDurationsWithoutRelativeTo(1, getDurationSlots(this), toDurationSlots(otherArg)));
 	}
 	round(roundTo) {
 		return createDuration(roundDuration(refinePublicRelativeTo, getDurationSlots(this), roundTo));
@@ -3563,12 +3563,10 @@ const Temporal$1 = /*@__PURE__*/ Object.defineProperties({}, {
 		Now
 	})
 });
-//#endregion
-//#region ../../node_modules/temporal-polyfill/index.js
+// ../../node_modules/temporal-polyfill/index.js
 const Temporal = NativeTemporal || Temporal$1;
 NativeTemporal && Date.prototype.toTemporalInstant;
-//#endregion
-//#region ../../node_modules/@tanstack/store/dist/alien.js
+// ../../node_modules/@tanstack/store/dist/alien.js
 /* @__NO_SIDE_EFFECTS__ */
 function createReactiveSystem({ update, notify, unwatched }) {
 	return {
@@ -3738,8 +3736,7 @@ function createReactiveSystem({ update, notify, unwatched }) {
 		return false;
 	}
 }
-//#endregion
-//#region ../../node_modules/@tanstack/store/dist/atom.js
+// ../../node_modules/@tanstack/store/dist/atom.js
 function toObserver(nextHandler, errorHandler, completionHandler) {
 	const isObserver = typeof nextHandler === "object";
 	const self = isObserver ? nextHandler : void 0;
@@ -3804,7 +3801,10 @@ function createAtom(valueOrFn, options) {
 			const e = effect(() => {
 				atom.get();
 				if (!observed.current) observed.current = true;
-				else obs.next?.(atom._snapshot);
+				else {
+					activeSub = void 0;
+					obs.next?.(atom._snapshot);
+				}
 			});
 			return { unsubscribe: () => {
 				e.stop();
@@ -3894,8 +3894,7 @@ function effect(fn) {
 	run();
 	return effectObj;
 }
-//#endregion
-//#region ../../node_modules/@tanstack/store/dist/store.js
+// ../../node_modules/@tanstack/store/dist/store.js
 var Store = class {
 	constructor(valueOrFn, actionsFactory) {
 		this.atom = createAtom(valueOrFn);
@@ -3917,10 +3916,9 @@ var Store = class {
 		return this.atom.subscribe(toObserver(observerOrFn));
 	}
 };
-//#endregion
-//#region ../scheduler-core/dist/js/index.mjs
+// ../scheduler-core/dist/js/index.mjs
 /*!
-* CoreUI PRO scheduler-core v0.1.0-rc.0 (https://coreui.io)
+* CoreUI PRO scheduler-core v0.2.0 (https://coreui.io)
 * Copyright 2026 The CoreUI Team (https://github.com/orgs/coreui/people)
 * License (https://coreui.io/pro/license/)
 * Bundles rrule (BSD-3-Clause) — see THIRD-PARTY-NOTICES.md in this package
@@ -4361,6 +4359,55 @@ const DEFAULT_LABELS = {
 };
 function interpolate(template, values) {
 	return template.replace(/\{(\w+)\}/g, (match, token) => values[token] ?? match);
+}
+const GREGORIAN_MONTH_CALENDARS = /* @__PURE__ */ new Set([
+	"buddhist",
+	"gregory",
+	"iso8601",
+	"japanese",
+	"roc"
+]);
+function createDateTimeFormat(locale, options) {
+	const formatter = new Intl.DateTimeFormat(locale, options);
+	if (options?.calendar || GREGORIAN_MONTH_CALENDARS.has(formatter.resolvedOptions().calendar)) return formatter;
+	return new Intl.DateTimeFormat(locale, {
+		...options,
+		calendar: "gregory"
+	});
+}
+function createNumberFormat(locale, options) {
+	return new Intl.NumberFormat(locale, {
+		numberingSystem: createDateTimeFormat(locale).resolvedOptions().numberingSystem,
+		useGrouping: false,
+		...options
+	});
+}
+function createClockFormat(locale) {
+	const formatter = createDateTimeFormat(locale, {
+		hour: "2-digit",
+		hourCycle: "h23",
+		minute: "2-digit",
+		timeZone: "UTC"
+	});
+	return { format(minutes) {
+		return formatter.format(Date.UTC(1970, 0, 1, 0, Math.min(minutes, 1439)));
+	} };
+}
+function resolveLang(locale) {
+	if (!locale) return;
+	return new Intl.Locale(new Intl.DateTimeFormat(locale).resolvedOptions().locale).baseName;
+}
+function createDateLabelFormat(locale) {
+	const formatter = createDateTimeFormat(locale, {
+		day: "numeric",
+		month: "long",
+		timeZone: "UTC",
+		weekday: "long",
+		year: "numeric"
+	});
+	return { format(date) {
+		return formatter.format(Date.UTC(date.year, date.month - 1, date.day));
+	} };
 }
 var ALL_WEEKDAYS = [
 	"MO",
@@ -7163,6 +7210,14 @@ function fromFloating(value, timeZone) {
 * License (https://coreui.io/pro/license/)
 * --------------------------------------------------------------------------
 */
+function resolveNavigationDate(state, direction, stepDays) {
+	if (direction === "today") return todayISO(state.timeZone);
+	const sign = direction === "next" ? 1 : -1;
+	const anchor = toPlainDate(state.date, state.timeZone);
+	if (state.view === "month") return anchor.add({ months: sign }).toString();
+	const days = stepDays ?? (state.view === "week" ? 7 : state.view === "agenda" ? 14 : 1);
+	return anchor.add({ days: days * sign }).toString();
+}
 function createSchedulerStore(options = {}) {
 	const timeZone = options.timeZone ?? systemTimeZone();
 	const store = new Store({
@@ -7188,19 +7243,7 @@ function createSchedulerStore(options = {}) {
 			patch({ view });
 		},
 		navigate(direction, stepDays) {
-			if (direction === "today") {
-				patch({ date: todayISO(store.state.timeZone) });
-				return;
-			}
-			const { view } = store.state;
-			const sign = direction === "next" ? 1 : -1;
-			const anchor = toPlainDate(store.state.date, store.state.timeZone);
-			if (view === "month") {
-				patch({ date: anchor.add({ months: sign }).toString() });
-				return;
-			}
-			const days = stepDays ?? (view === "week" ? 7 : view === "agenda" ? 14 : 1);
-			patch({ date: anchor.add({ days: days * sign }).toString() });
+			patch({ date: resolveNavigationDate(store.state, direction, stepDays) });
 		},
 		setEvents(events) {
 			patch({ events: [...events] });
@@ -7554,8 +7597,7 @@ function computeMonthModel(state, days) {
 		occurrences
 	};
 }
-//#endregion
-//#region src/dom/data.ts
+// src/dom/data.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI dom/data.ts
@@ -7590,8 +7632,7 @@ var data_default = {
 		if (instanceMap.size === 0) elementMap.delete(element);
 	}
 };
-//#endregion
-//#region src/util/index.ts
+// src/util/index.ts
 const MILLISECONDS_MULTIPLIER = 1e3;
 const TRANSITION_END = "transitionend";
 /**
@@ -7653,8 +7694,7 @@ const executeAfterTransition = (callback, transitionElement, waitForTransition =
 		if (!called) triggerTransitionEnd(transitionElement);
 	}, emulatedDuration);
 };
-//#endregion
-//#region src/dom/event-handler.ts
+// src/dom/event-handler.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI dom/event-handler.ts
@@ -7887,8 +7927,7 @@ function hydrateObj(obj, meta = {}) {
 	}
 	return obj;
 }
-//#endregion
-//#region src/dom/manipulator.ts
+// src/dom/manipulator.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI dom/manipulator.ts
@@ -7935,8 +7974,7 @@ const Manipulator = {
 		return normalizeData(element.getAttribute(`data-coreui-${normalizeDataKey(key)}`));
 	}
 };
-//#endregion
-//#region src/util/config.ts
+// src/util/config.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI util/config.ts
@@ -7985,8 +8023,7 @@ var Config = class {
 		}
 	}
 };
-//#endregion
-//#region src/base-component.ts
+// src/base-component.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI base-component.ts
@@ -8045,10 +8082,12 @@ var BaseComponent = class extends Config {
 		return `${name}${this.EVENT_KEY}`;
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/virtual-core/dist/esm/lazy-measurements.js
-function createLazyMeasurementsView(count, flat, getItemKey) {
-	const cache = new Array(count);
+// ../../node_modules/@tanstack/virtual-core/dist/esm/lazy-measurements.js
+function getMeasurementKey(item) {
+	return typeof item === "object" ? item.key : item;
+}
+function createLazyMeasurementsView(cache, flat) {
+	const count = cache.length;
 	return new Proxy(cache, { get(target, prop, receiver) {
 		if (typeof prop === "string") {
 			const c = prop.charCodeAt(0);
@@ -8056,11 +8095,11 @@ function createLazyMeasurementsView(count, flat, getItemKey) {
 				const i = +prop;
 				if (Number.isInteger(i) && i >= 0 && i < count) {
 					let v = target[i];
-					if (!v) {
+					if (typeof v !== "object") {
 						const s = flat[i * 2];
 						v = target[i] = {
 							index: i,
-							key: getItemKey(i),
+							key: v,
 							start: s,
 							size: flat[i * 2 + 1],
 							end: s + flat[i * 2 + 1],
@@ -8075,8 +8114,7 @@ function createLazyMeasurementsView(count, flat, getItemKey) {
 		return Reflect.get(target, prop, receiver);
 	} });
 }
-//#endregion
-//#region ../../node_modules/@tanstack/virtual-core/dist/esm/utils.js
+// ../../node_modules/@tanstack/virtual-core/dist/esm/utils.js
 function memo(getDeps, fn, opts) {
 	let deps = opts.initialDeps ?? [];
 	let result;
@@ -8102,13 +8140,53 @@ function notUndefined(value, msg) {
 const approxEqual = (a, b) => Math.abs(a - b) < 1.01;
 const debounce = (targetWindow, fn, ms) => {
 	let timeoutId;
-	return function(...args) {
+	return Object.assign(function(...args) {
 		targetWindow.clearTimeout(timeoutId);
 		timeoutId = targetWindow.setTimeout(() => fn.apply(this, args), ms);
-	};
+	}, { cancel: () => {
+		targetWindow.clearTimeout(timeoutId);
+	} });
 };
-//#endregion
-//#region ../../node_modules/@tanstack/virtual-core/dist/esm/index.js
+// ../../node_modules/@tanstack/virtual-core/dist/esm/scroll-classifier.js
+function classifyScrollEvent({ offset, isScrolling, elementMax, holdOffset, scrollOffset, pendingWrite, clampedMaxAtWrite }) {
+	var _a;
+	if (isScrolling && pendingWrite === null && offset === scrollOffset) return "spurious";
+	if (pendingWrite !== null && Math.abs(offset - pendingWrite.target) < 1.5) return "readBack";
+	if (pendingWrite !== null && !pendingWrite.smooth && elementMax !== null && pendingWrite.target > elementMax + holdOffset + .5 && Math.abs(offset - (elementMax + holdOffset)) < 1.5) return "clampedReadBack";
+	if (pendingWrite !== null && !pendingWrite.smooth && ((_a = pendingWrite.lowMaxes) == null ? void 0 : _a.some((max) => Math.abs(offset - max) < 1.5))) return "clampedReadBack";
+	if (clampedMaxAtWrite !== null && Math.abs(offset - clampedMaxAtWrite) < 1.5) return "clampedEcho";
+	return "external";
+}
+const isAnimating = (phase) => phase === "smooth" || phase === "smoothFinishing";
+function externalRetiresCommand({ kind, offset, command, target }) {
+	return kind !== "spurious" && kind !== "readBack" && kind !== "clampedReadBack" && (command == null ? void 0 : command.index) != null && command.phase !== "queued" && !isAnimating(command.phase) && !approxEqual(offset, command.lastTargetOffset) && !approxEqual(offset, target()) && kind !== "clampedEcho";
+}
+const FLING_WINDOW_MS = 40;
+function flingSpedUp(samples) {
+	const last = samples[samples.length - 1];
+	if (last === void 0) return false;
+	let j = samples.length - 2;
+	while (j >= 0 && last.t - samples[j].t < FLING_WINDOW_MS) j--;
+	if (j < 0) return false;
+	const mid = samples[j];
+	let k = j - 1;
+	while (k >= 0 && mid.t - samples[k].t < FLING_WINDOW_MS) k--;
+	if (k < 0) return false;
+	const first = samples[k];
+	const recent = (last.offset - mid.offset) / (last.t - mid.t);
+	const before = (mid.offset - first.offset) / (mid.t - first.t);
+	return recent * before >= 0 && Math.abs(recent) >= 2 * Math.abs(before) && Math.abs(recent) - Math.abs(before) >= .8;
+}
+function flingCaught(samples) {
+	const last = samples[samples.length - 1];
+	if (last === void 0) return false;
+	let j = samples.length - 2;
+	while (j >= 0 && last.t - samples[j].t < FLING_WINDOW_MS) j--;
+	if (j < 0) return false;
+	const from = samples[j];
+	return Math.abs(last.offset - from.offset) / (last.t - from.t) >= .05;
+}
+// ../../node_modules/@tanstack/virtual-core/dist/esm/ios-gesture.js
 let _isIOSResult;
 const isIOSWebKit = () => {
 	if (_isIOSResult !== void 0) return _isIOSResult;
@@ -8117,17 +8195,129 @@ const isIOSWebKit = () => {
 	const mtp = navigator.maxTouchPoints;
 	return _isIOSResult = navigator.platform === "MacIntel" && mtp !== void 0 && mtp > 0;
 };
+let _iosMomentumOverridesWritesResult;
+const iosMomentumOverridesWrites = () => {
+	if (_iosMomentumOverridesWritesResult !== void 0) return _iosMomentumOverridesWritesResult;
+	return _iosMomentumOverridesWritesResult = isIOSWebKit() && typeof CSS !== "undefined" && typeof CSS.supports === "function" && CSS.supports("overflow-anchor: auto");
+};
+const touchListenerOptions = {
+	capture: true,
+	passive: true
+};
+var IosGesture = class {
+	constructor(host) {
+		this.host = host;
+		this._touch = null;
+		this.inMotion = () => this._touch !== null && this._touch.phase !== "lateFling";
+		this.dragging = () => {
+			var _a;
+			return ((_a = this._touch) == null ? void 0 : _a.phase) === "down" && this._touch.moved;
+		};
+		this.tail = () => {
+			var _a;
+			return ((_a = this._touch) == null ? void 0 : _a.phase) === "tail" ? this._touch.moved ? "fling" : "tap" : null;
+		};
+		this.onScroll = ({ isScrolling, ownReadBack, moved, external }) => {
+			var _a, _b, _c;
+			if (isScrolling && ((_a = this._touch) == null ? void 0 : _a.phase) === "tail") this._openTail(this._touch.moved || !ownReadBack, false);
+			else if (((_b = this._touch) == null ? void 0 : _b.phase) === "lateFling") {
+				if (this.host.now() > this._touch.until) this._touch = null;
+				else if (external && isScrolling && moved) this._openTail(true, false);
+			}
+			if (!ownReadBack && isScrolling && moved && ((_c = this._touch) == null ? void 0 : _c.phase) === "down") {
+				this._touch.moved = true;
+				return true;
+			}
+			return false;
+		};
+		this.touchStart = () => {
+			this.end();
+			this._touch = {
+				phase: "down",
+				moved: false
+			};
+		};
+		this.touchEnd = () => {
+			var _a;
+			const moved = ((_a = this._touch) == null ? void 0 : _a.phase) === "down" && this._touch.moved;
+			this.end();
+			this._openTail(moved, moved);
+		};
+		this.end = () => {
+			var _a;
+			const win = this.host.getWindow();
+			if (((_a = this._touch) == null ? void 0 : _a.phase) === "tail" && win != null) win.clearTimeout(this._touch.timerId);
+			this._touch = null;
+		};
+		this.listen = (target) => {
+			const onTouchStart = () => this.touchStart();
+			const onTouchEnd = () => this.touchEnd();
+			target.addEventListener("touchstart", onTouchStart, touchListenerOptions);
+			target.addEventListener("touchend", onTouchEnd, touchListenerOptions);
+			target.addEventListener("touchcancel", onTouchEnd, touchListenerOptions);
+			return () => {
+				target.removeEventListener("touchstart", onTouchStart, touchListenerOptions);
+				target.removeEventListener("touchend", onTouchEnd, touchListenerOptions);
+				target.removeEventListener("touchcancel", onTouchEnd, touchListenerOptions);
+				this.end();
+			};
+		};
+		this._openTail = (moved, awaitingFling) => {
+			const win = this.host.getWindow();
+			if (!isIOSWebKit() || win == null) return;
+			this.end();
+			const tail = {
+				phase: "tail",
+				moved,
+				awaitingFling,
+				timerId: win.setTimeout(() => {
+					if (this.host.tailStillMoving()) {
+						this._openTail(tail.moved, tail.awaitingFling);
+						return;
+					}
+					this._touch = tail.awaitingFling ? {
+						phase: "lateFling",
+						until: this.host.now() + 1e3
+					} : null;
+					this.host.onTailClosed();
+				}, 150)
+			};
+			this._touch = tail;
+		};
+	}
+	get touch() {
+		return this._touch;
+	}
+};
+// ../../node_modules/@tanstack/virtual-core/dist/esm/index.js
 const getRect = (element) => {
-	const { offsetWidth, offsetHeight } = element;
+	const { clientWidth, clientHeight } = element;
 	return {
-		width: offsetWidth,
-		height: offsetHeight
+		width: clientWidth,
+		height: clientHeight
+	};
+};
+const createFrameQueue = (targetWindow) => {
+	const ids = /* @__PURE__ */ new Set();
+	return {
+		schedule: (fn) => {
+			const id = targetWindow.requestAnimationFrame(() => {
+				ids.delete(id);
+				fn();
+			});
+			ids.add(id);
+		},
+		cancel: () => {
+			ids.forEach((id) => targetWindow.cancelAnimationFrame(id));
+			ids.clear();
+		}
 	};
 };
 const defaultKeyExtractor = (index) => index;
 const defaultRangeExtractor = (range) => {
-	const start = Math.max(range.startIndex - range.overscan, 0);
-	const len = Math.min(range.endIndex + range.overscan, range.count - 1) - start + 1;
+	const overscan = range.overscan * Math.max(range.lanes ?? 1, 1);
+	const start = Math.max(range.startIndex - overscan, 0);
+	const len = Math.min(range.endIndex + overscan, range.count - 1) - start + 1;
 	const arr = new Array(len);
 	for (let i = 0; i < len; i++) arr[i] = start + i;
 	return arr;
@@ -8146,26 +8336,17 @@ const observeElementRect = (instance, cb) => {
 	};
 	handler(getRect(element));
 	if (!targetWindow.ResizeObserver) return () => {};
-	const observer = new targetWindow.ResizeObserver((entries) => {
+	const frames = createFrameQueue(targetWindow);
+	const observer = new targetWindow.ResizeObserver(() => {
 		const run = () => {
-			const entry = entries[0];
-			if (entry == null ? void 0 : entry.borderBoxSize) {
-				const box = entry.borderBoxSize[0];
-				if (box) {
-					handler({
-						width: box.inlineSize,
-						height: box.blockSize
-					});
-					return;
-				}
-			}
 			handler(getRect(element));
 		};
-		instance.options.useAnimationFrameWithResizeObserver ? requestAnimationFrame(run) : run();
+		instance.options.useAnimationFrameWithResizeObserver ? frames.schedule(run) : run();
 	});
-	observer.observe(element, { box: "border-box" });
+	observer.observe(element, { box: "content-box" });
 	return () => {
 		observer.unobserve(element);
+		frames.cancel();
 	};
 };
 const addEventListenerOptions = { passive: true };
@@ -8177,7 +8358,7 @@ const observeOffset = (instance, cb, readOffset) => {
 	if (!targetWindow) return;
 	const registerScrollendEvent = instance.options.useScrollendEvent && supportsScrollend;
 	let offset = 0;
-	const fallback = registerScrollendEvent ? null : debounce(targetWindow, () => cb(offset, false), instance.options.isScrollingResetDelay);
+	const fallback = registerScrollendEvent ? null : debounce(targetWindow, () => cb(readOffset(element), false), instance.options.isScrollingResetDelay);
 	const createHandler = (isScrolling) => () => {
 		offset = readOffset(element);
 		fallback?.();
@@ -8190,6 +8371,7 @@ const observeOffset = (instance, cb, readOffset) => {
 	return () => {
 		element.removeEventListener("scroll", handler);
 		if (registerScrollendEvent) element.removeEventListener("scrollend", endHandler);
+		fallback?.cancel();
 	};
 };
 const observeElementOffset = (instance, cb) => observeOffset(instance, cb, (el) => {
@@ -8222,6 +8404,25 @@ const scrollWithAdjustments = (offset, { adjustments = 0, behavior }, instance) 
 	});
 };
 const elementScroll = scrollWithAdjustments;
+const initialScrollPhase = (behavior, atTarget) => behavior === "smooth" ? atTarget ? "smoothLanded" : "smooth" : "instant";
+const isSmoothScroll = (state) => (state == null ? void 0 : state.phase) === "smooth" || (state == null ? void 0 : state.phase) === "smoothLanded";
+function isAppendWithTrim(prevCount, nextCount, getPreviousKey, getNextKey) {
+	if (nextCount === 0) return false;
+	const firstKey = getNextKey(0);
+	const removedKeys = /* @__PURE__ */ new Set();
+	let removedCount = 0;
+	while (removedCount < prevCount) {
+		const key = getPreviousKey(removedCount);
+		if (key === firstKey) break;
+		removedKeys.add(key);
+		removedCount++;
+	}
+	const retainedCount = prevCount - removedCount;
+	if (retainedCount === 0 || retainedCount >= nextCount) return false;
+	for (let i = 0; i < retainedCount; i++) if (getNextKey(i) !== getPreviousKey(removedCount + i)) return false;
+	for (let i = retainedCount; i < nextCount; i++) if (removedKeys.has(getNextKey(i))) return false;
+	return true;
+}
 var Virtualizer = class {
 	constructor(opts) {
 		this.unsubs = [];
@@ -8230,7 +8431,7 @@ var Virtualizer = class {
 		this.isScrolling = false;
 		this.scrollState = null;
 		this.measurementsCache = [];
-		this._flatMeasurements = null;
+		this._singleLaneMeasurements = null;
 		this.itemSizeCache = /* @__PURE__ */ new Map();
 		this.itemSizeCacheVersion = 0;
 		this.laneAssignments = /* @__PURE__ */ new Map();
@@ -8242,46 +8443,88 @@ var Virtualizer = class {
 		this.scrollRect = null;
 		this.scrollOffset = null;
 		this.scrollDirection = null;
-		this.scrollAdjustments = 0;
-		this._iosDeferredAdjustment = 0;
-		this._iosTouching = false;
-		this._iosJustTouchEnded = false;
-		this._iosTouchEndTimerId = null;
-		this._intendedScrollOffset = null;
+		this._holdOffset = 0;
+		this._reportedOverscroll = false;
+		this._iosGesture = new IosGesture({
+			getWindow: () => this.targetWindow,
+			now: () => this.now(),
+			tailStillMoving: () => {
+				const state = this.scrollState;
+				if ((state == null ? void 0 : state.phase) !== "queued" || this.pendingWrite !== null) return false;
+				const now = this._readElementOffset();
+				if (now === null || this._lastElementOffset === null || Math.abs(now - this._lastElementOffset) < 1) return false;
+				this._lastElementOffset = now;
+				state.samples = [...state.samples ?? [], {
+					t: this.now(),
+					offset: now
+				}];
+				return true;
+			},
+			onTailClosed: () => {
+				const state = this.scrollState;
+				if ((state == null ? void 0 : state.phase) === "queued" && flingCaught(state.samples ?? [])) this.scrollState = null;
+				this._flushHoldIfReady(true);
+				this._writeAwaitingCommand();
+				this._retryClampedAdjustment();
+			}
+		});
+		this._lastElementOffset = null;
+		this.pendingWrite = null;
+		this._clampedAdjustment = null;
 		this.elementsCache = /* @__PURE__ */ new Map();
+		this._resizeBatch = null;
 		this.now = () => {
 			var _a, _b, _c;
 			return ((_c = (_b = (_a = this.targetWindow) == null ? void 0 : _a.performance) == null ? void 0 : _b.now) == null ? void 0 : _c.call(_b)) ?? Date.now();
 		};
 		this.observer = /* @__PURE__ */ (() => {
 			let _ro = null;
+			let _frames = null;
 			const get = () => {
 				if (_ro) return _ro;
-				if (!this.targetWindow || !this.targetWindow.ResizeObserver) return null;
-				return _ro = new this.targetWindow.ResizeObserver((entries) => {
-					entries.forEach((entry) => {
-						const run = () => {
-							const node = entry.target;
-							const index = this.indexFromElement(node);
-							if (!node.isConnected) {
-								this.observer.unobserve(node);
-								for (const [cacheKey, cachedNode] of this.elementsCache) if (cachedNode === node) {
-									this.elementsCache.delete(cacheKey);
-									break;
-								}
-								return;
+				const targetWindow = this.targetWindow;
+				if (!targetWindow || !targetWindow.ResizeObserver) return null;
+				const frames = _frames = createFrameQueue(targetWindow);
+				return _ro = new targetWindow.ResizeObserver((entries) => {
+					const run = () => {
+						const batch = { sync: false };
+						this._resizeBatch = batch;
+						try {
+							entries.forEach(measureEntry);
+						} finally {
+							this._resizeBatch = null;
+							if (batch.notify) {
+								this.notify(batch.sync);
+								this._noteClampMax();
+								this._flushHoldIfReady(true);
+								this._retryClampedAdjustment();
 							}
-							if (this.shouldMeasureDuringScroll(index)) this.resizeItem(index, this.options.measureElement(node, entry, this));
-						};
-						this.options.useAnimationFrameWithResizeObserver ? requestAnimationFrame(run) : run();
-					});
+						}
+					};
+					this.options.useAnimationFrameWithResizeObserver ? frames.schedule(run) : run();
 				});
+			};
+			const measureEntry = (entry) => {
+				const node = entry.target;
+				const index = this.indexFromElement(node);
+				if (!node.isConnected) {
+					this.observer.unobserve(node);
+					for (const [cacheKey, cachedNode] of this.elementsCache) if (cachedNode === node) {
+						this.elementsCache.delete(cacheKey);
+						break;
+					}
+					return;
+				}
+				if (!this.isIndexInRange(index)) return;
+				if (this.shouldMeasureDuringScroll(index)) this.resizeItem(index, this.options.measureElement(node, entry, this));
 			};
 			return {
 				disconnect: () => {
 					var _a;
 					(_a = get()) == null || _a.disconnect();
+					_frames?.cancel();
 					_ro = null;
+					_frames = null;
 				},
 				observe: (target) => {
 					var _a;
@@ -8295,7 +8538,7 @@ var Virtualizer = class {
 		})();
 		this.range = null;
 		this.setOptions = (opts2) => {
-			var _a, _b;
+			var _a;
 			const merged = {
 				debug: false,
 				initialOffset: 0,
@@ -8341,14 +8584,18 @@ var Virtualizer = class {
 				const prevCount = prevOptions.count;
 				const nextCount = merged.count;
 				const measurements = this.getMeasurements();
-				const prevFirstKey = prevCount > 0 ? ((_a = measurements[0]) == null ? void 0 : _a.key) ?? prevOptions.getItemKey(0) : null;
-				const prevLastKey = prevCount > 0 ? ((_b = measurements[prevCount - 1]) == null ? void 0 : _b.key) ?? prevOptions.getItemKey(prevCount - 1) : null;
+				const previousItems = ((_a = this._singleLaneMeasurements) == null ? void 0 : _a.items) ?? measurements;
+				const getPreviousKey = (index) => getMeasurementKey(previousItems[index]);
+				const prevFirstKey = prevCount > 0 ? getPreviousKey(0) : null;
+				const prevLastKey = prevCount > 0 ? getPreviousKey(prevCount - 1) : null;
 				if (nextCount !== prevCount || prevCount > 0 && nextCount > 0 && (merged.getItemKey(0) !== prevFirstKey || merged.getItemKey(nextCount - 1) !== prevLastKey)) {
 					edgeKeysChanged = true;
 					const item = prevCount > 0 ? this.getVirtualItemForOffset(this.getScrollOffset()) ?? measurements[0] : null;
 					if (item) anchor = [item.key, this.getScrollOffset() - item.start];
 					const behavior = merged.followOnAppend === true ? "auto" : merged.followOnAppend || null;
-					if (behavior && nextCount > prevCount && this.isAtEnd(prevOptions.scrollEndThreshold) && (prevCount === 0 || merged.getItemKey(nextCount - 1) !== prevLastKey)) followOnAppend = behavior;
+					if (behavior && nextCount > 0 && this.isAtEnd(prevOptions.scrollEndThreshold) && (prevCount === 0 || merged.getItemKey(nextCount - 1) !== prevLastKey)) {
+						if (nextCount > prevCount || isAppendWithTrim(prevCount, nextCount, getPreviousKey, merged.getItemKey)) followOnAppend = behavior;
+					}
 				}
 			}
 			this.options = merged;
@@ -8356,9 +8603,8 @@ var Virtualizer = class {
 				this.pendingMin = 0;
 				this.itemSizeCacheVersion++;
 			}
-			let anchorResolved = false;
-			let anchorDelta = 0;
-			if (anchor && this.scrollOffset !== null) {
+			let anchorDelta = null;
+			if (anchor && this.scrollOffset !== null && !this._awaitingCommandReadBack()) {
 				const [anchorKey, anchorOffset] = anchor;
 				const newMeasurements = this.getMeasurements();
 				const { count, getItemKey } = this.options;
@@ -8368,20 +8614,27 @@ var Virtualizer = class {
 					const anchorItem = newMeasurements[idx];
 					if (anchorItem) {
 						const newOffset = Math.max(0, anchorItem.start + anchorOffset);
-						if (newOffset !== this.scrollOffset) {
+						if (!followOnAppend && newOffset !== this.scrollOffset) {
 							anchorDelta = newOffset - this.scrollOffset;
 							this.scrollOffset = newOffset;
-							anchorResolved = true;
 						}
 					}
 				}
 			}
-			if (anchorResolved || followOnAppend) this.pendingScrollAnchor = [
-				anchorResolved ? anchor[0] : null,
-				anchorResolved ? anchor[1] : 0,
-				followOnAppend,
-				anchorDelta
-			];
+			if (followOnAppend) this.pendingScrollAnchor = {
+				kind: "follow",
+				behavior: followOnAppend
+			};
+			else if (anchorDelta !== null) {
+				if (this._canWriteScroll()) this.pendingScrollAnchor = {
+					kind: "anchor",
+					delta: anchorDelta
+				};
+				else {
+					this._holdOffset += anchorDelta;
+					this._followOffsetTarget(anchorDelta);
+				}
+			}
 		};
 		this.notify = (sync) => {
 			var _a, _b;
@@ -8406,6 +8659,7 @@ var Virtualizer = class {
 			]
 		});
 		this.cleanup = () => {
+			var _a;
 			this.unsubs.filter(Boolean).forEach((d) => d());
 			this.unsubs = [];
 			this.observer.disconnect();
@@ -8414,9 +8668,14 @@ var Virtualizer = class {
 				this.rafId = null;
 			}
 			this.scrollState = null;
-			this._iosDeferredAdjustment = 0;
-			this._iosTouching = false;
-			this._iosJustTouchEnded = false;
+			(_a = this._momentumStop) == null || _a.restore();
+			this._momentumStop = null;
+			this.isScrolling = false;
+			this.scrollDirection = null;
+			this._holdOffset = 0;
+			this._reportedOverscroll = false;
+			this._clampedAdjustment = null;
+			this.pendingWrite = null;
 			this.scrollElement = null;
 			this.targetWindow = null;
 		};
@@ -8445,87 +8704,131 @@ var Virtualizer = class {
 					this.maybeNotify();
 				}));
 				this.unsubs.push(this.options.observeElementOffset(this, (offset, isScrolling) => {
-					if (isScrolling && this._intendedScrollOffset === null && offset === this.scrollOffset) return;
-					if (this._intendedScrollOffset !== null && Math.abs(offset - this._intendedScrollOffset) < 1.5) offset = this._intendedScrollOffset;
-					this._intendedScrollOffset = null;
-					this.scrollAdjustments = 0;
+					var _a2, _b, _c, _d;
+					const elementMax = isScrolling ? this._elementMaxScrollOffset() : null;
+					const wasOverscrolled = this._reportedOverscroll;
+					this._reportedOverscroll = offset < 0 || elementMax !== null && offset > elementMax + 1;
+					const elementOffset = offset;
+					this._lastElementOffset = elementOffset;
+					offset = this._toLayoutOffset(offset);
+					const kind = this._classifyScrollEvent(offset, isScrolling, elementMax);
+					if (kind === "spurious") return;
+					if (kind === "readBack") offset = this.pendingWrite.target;
+					else if (kind === "clampedReadBack" && ((_a2 = this.scrollState) == null ? void 0 : _a2.index) != null && offset < this.getMaxScrollOffset() - 1.5) this.scrollState.lastTargetOffset = offset;
+					else if (externalRetiresCommand({
+						kind,
+						offset,
+						command: this.scrollState,
+						target: () => this.getScrollStateTarget(this.scrollState)
+					})) this.scrollState = null;
+					this.pendingWrite = null;
+					if (this._clampedAdjustment !== null && Math.abs(offset - this._clampedAdjustment.maxAtWrite) >= 1.5) this._clampedAdjustment = null;
 					const prevOffset = this.getScrollOffset();
+					const prevDirection = this.scrollDirection;
 					this.scrollDirection = isScrolling ? prevOffset === offset ? this.scrollDirection : prevOffset < offset ? "forward" : "backward" : null;
 					this.scrollOffset = offset;
 					this.isScrolling = isScrolling;
-					this._flushIosDeferredIfReady();
+					const queued = this.scrollState;
+					if ((queued == null ? void 0 : queued.phase) === "queued" && kind === "external" && isScrolling) {
+						if (wasOverscrolled || this._reportedOverscroll) queued.samples = [];
+						else {
+							const t = this.now();
+							queued.samples = [...(queued.samples ?? []).filter((sample) => t - sample.t <= 200), {
+								t,
+								offset: elementOffset
+							}];
+							if (prevDirection !== null && this.scrollDirection !== prevDirection || flingSpedUp(queued.samples)) this.scrollState = null;
+						}
+					}
+					if (this._iosGesture.onScroll({
+						isScrolling,
+						ownReadBack: kind === "readBack",
+						moved: offset !== prevOffset,
+						external: kind === "external" && ((_b = this.scrollState) == null ? void 0 : _b.phase) !== "smooth" && ((_c = this.scrollState) == null ? void 0 : _c.phase) !== "smoothFinishing"
+					}) && ((_d = this.scrollState) == null ? void 0 : _d.phase) === "queued") this.scrollState = null;
+					this._flushHoldIfReady(true);
 					if (this.scrollState) this.scheduleScrollReconcile();
 					this.maybeNotify();
 				}));
-				if ("addEventListener" in this.scrollElement) {
-					const scrollEl = this.scrollElement;
-					const onTouchStart = () => {
-						this._iosTouching = true;
-						this._iosJustTouchEnded = false;
-						if (this._iosTouchEndTimerId !== null && this.targetWindow != null) {
-							this.targetWindow.clearTimeout(this._iosTouchEndTimerId);
-							this._iosTouchEndTimerId = null;
-						}
-					};
-					const onTouchEnd = () => {
-						this._iosTouching = false;
-						if (!isIOSWebKit() || this.targetWindow == null) return;
-						this._iosJustTouchEnded = true;
-						this._iosTouchEndTimerId = this.targetWindow.setTimeout(() => {
-							this._iosJustTouchEnded = false;
-							this._iosTouchEndTimerId = null;
-							this._flushIosDeferredIfReady();
-						}, 150);
-					};
-					scrollEl.addEventListener("touchstart", onTouchStart, addEventListenerOptions);
-					scrollEl.addEventListener("touchend", onTouchEnd, addEventListenerOptions);
-					this.unsubs.push(() => {
-						scrollEl.removeEventListener("touchstart", onTouchStart);
-						scrollEl.removeEventListener("touchend", onTouchEnd);
-						if (this._iosTouchEndTimerId !== null && this.targetWindow != null) {
-							this.targetWindow.clearTimeout(this._iosTouchEndTimerId);
-							this._iosTouchEndTimerId = null;
-						}
-					});
-				}
-				this._scrollToOffset(this.getScrollOffset(), {
-					adjustments: void 0,
-					behavior: void 0
-				});
+				if ("addEventListener" in this.scrollElement) this.unsubs.push(this._iosGesture.listen(this.scrollElement));
+				this._scrollToOffset(this.getScrollOffset());
 			}
+			this._noteClampMax();
 			const anchor = this.pendingScrollAnchor;
 			this.pendingScrollAnchor = null;
 			if (anchor && this.scrollElement && this.options.enabled) {
-				const [key, _offset, followOnAppend, anchorDelta] = anchor;
-				if (key !== null && !followOnAppend) {
-					if (isIOSWebKit() && (this.isScrolling || this._iosTouching || this._iosJustTouchEnded)) {
-						if (anchorDelta !== 0) this._iosDeferredAdjustment += anchorDelta;
-					} else this._scrollToOffset(this.getScrollOffset(), {
-						adjustments: void 0,
-						behavior: void 0
-					});
-				}
-				if (followOnAppend) this.scrollToEnd({ behavior: followOnAppend });
+				if (anchor.kind === "anchor") {
+					if (!this._canWriteScroll()) {
+						this._holdOffset += anchor.delta;
+						this._followOffsetTarget(anchor.delta);
+						this.notify(false);
+					} else if (isSmoothScroll(this.scrollState) && !approxEqual(this.getScrollOffset() - anchor.delta, this.scrollState.lastTargetOffset));
+					else {
+						this._followOffsetTarget(anchor.delta);
+						this._scrollToOffset(this.getScrollOffset());
+					}
+				} else this.scrollToEnd({ behavior: anchor.behavior });
+			}
+			this._flushHoldIfReady(false);
+			this._retryClampedAdjustment();
+		};
+		this._classifyScrollEvent = (offset, isScrolling, elementMax) => {
+			var _a;
+			return classifyScrollEvent({
+				offset,
+				isScrolling,
+				elementMax,
+				holdOffset: this._holdOffset,
+				scrollOffset: this.scrollOffset,
+				pendingWrite: this.pendingWrite,
+				clampedMaxAtWrite: ((_a = this._clampedAdjustment) == null ? void 0 : _a.maxAtWrite) ?? null
+			});
+		};
+		this._retryClampedAdjustment = () => {
+			if (this._clampedAdjustment === null || !this.scrollElement || !this.options.enabled || !this._canWriteScroll()) return;
+			const { target, maxAtWrite } = this._clampedAdjustment;
+			const max = this.getMaxScrollOffset();
+			if (max > maxAtWrite + .5) {
+				this._clampedAdjustment = target > max + .5 ? {
+					target,
+					maxAtWrite: max
+				} : null;
+				this._scrollToOffset(target);
 			}
 		};
-		this._flushIosDeferredIfReady = () => {
-			if (this._iosDeferredAdjustment === 0) return;
-			if (this.isScrolling) return;
-			if (this._iosTouching) return;
-			if (this._iosJustTouchEnded) return;
-			const cur = this.getScrollOffset();
-			const max = this.getMaxScrollOffset();
-			if (cur < 0 || cur > max) return;
-			if (this._iosDeferredAdjustment < 0 && cur >= max - 1) {
-				this._iosDeferredAdjustment = 0;
-				return;
-			}
-			const delta = this._iosDeferredAdjustment;
-			this._iosDeferredAdjustment = 0;
-			this._scrollToOffset(cur, {
-				adjustments: this.scrollAdjustments += delta,
-				behavior: void 0
-			});
+		this._writeAwaitingCommand = () => {
+			const state = this.scrollState;
+			if (state === null || state.phase !== "queued") return;
+			const { behavior } = state;
+			this.getMeasurements();
+			const offset = this.getScrollStateTarget(state);
+			state.lastTargetOffset = offset;
+			this._clampedAdjustment = null;
+			state.phase = initialScrollPhase(behavior, state.index != null && approxEqual(offset, this.getScrollOffset()));
+			this._scrollToOffset(offset, { behavior });
+			this.scheduleScrollReconcile();
+		};
+		this._readElementOffset = () => {
+			const el = this.scrollElement;
+			if (el == null) return null;
+			const { horizontal, isRtl } = this.options;
+			if (typeof el.scrollTop === "number") return horizontal ? el.scrollLeft * (isRtl && -1 || 1) : el.scrollTop;
+			if (typeof el.scrollY === "number") return horizontal ? el.scrollX : el.scrollY;
+			return null;
+		};
+		this._canWriteScroll = () => !(isIOSWebKit() && this._iosGesture.inMotion()) && !this._reportedOverscroll;
+		this._flushHoldIfReady = (sync) => {
+			var _a;
+			if (this._holdOffset === 0) return;
+			if (!this.scrollElement || !this.options.enabled) return;
+			if (!this._canWriteScroll()) return;
+			if (((_a = this.scrollState) == null ? void 0 : _a.phase) === "smooth") return;
+			this._holdOffset = 0;
+			if (this.scrollOffset !== null && this.scrollOffset < 0) this.scrollOffset = 0;
+			this.notify(sync);
+			const target = this.getCommandWrittenOffset() ?? this.getScrollOffset();
+			this._clampedAdjustment = this._clampedBy(target);
+			this._scrollToOffset(target);
 		};
 		this.rafId = null;
 		this.getSize = () => {
@@ -8568,10 +8871,13 @@ var Virtualizer = class {
 				gap
 			};
 		}, { key: false });
+		this.isIndexInRange = (index) => index >= 0 && index < this.options.count;
 		this.getMeasurements = memo(() => [this.getMeasurementOptions(), this.itemSizeCacheVersion], ({ count, paddingStart, scrollMargin, getItemKey, enabled, lanes, laneAssignmentMode, gap }, _itemSizeCacheVersion) => {
+			var _a;
 			const itemSizeCache = this.itemSizeCache;
 			if (!enabled) {
 				this.measurementsCache = [];
+				this._singleLaneMeasurements = null;
 				this.itemSizeCache.clear();
 				this.laneAssignments.clear();
 				return [];
@@ -8583,6 +8889,7 @@ var Virtualizer = class {
 				this.lanesChangedFlag = false;
 				this.lanesSettling = true;
 				this.measurementsCache = [];
+				this._singleLaneMeasurements = null;
 				this.itemSizeCache.clear();
 				this.laneAssignments.clear();
 				this.pendingMin = null;
@@ -8598,13 +8905,13 @@ var Virtualizer = class {
 			if (this.lanesSettling && this.measurementsCache.length === count) this.lanesSettling = false;
 			if (lanes === 1) {
 				const need = count * 2;
-				let flat = this._flatMeasurements;
+				let flat = (_a = this._singleLaneMeasurements) == null ? void 0 : _a.flat;
 				if (!flat || flat.length < need) {
 					const next = new Float64Array(need);
 					if (flat && min > 0) next.set(flat.subarray(0, min * 2));
 					flat = next;
-					this._flatMeasurements = flat;
 				}
+				const items = min === 0 ? new Array(count) : this._singleLaneMeasurements.items.slice();
 				let runningStart;
 				if (min === 0) runningStart = paddingStart + scrollMargin;
 				else {
@@ -8613,13 +8920,18 @@ var Virtualizer = class {
 				}
 				for (let i = min; i < count; i++) {
 					const key = getItemKey(i);
+					items[i] = key;
 					const measuredSize = itemSizeCache.get(key);
 					const size = typeof measuredSize === "number" ? measuredSize : this.options.estimateSize(i);
 					flat[i * 2] = runningStart;
 					flat[i * 2 + 1] = size;
 					runningStart += size + gap;
 				}
-				const view = createLazyMeasurementsView(count, flat, getItemKey);
+				this._singleLaneMeasurements = {
+					flat,
+					items
+				};
+				const view = createLazyMeasurementsView(items, flat);
 				this.measurementsCache = view;
 				return view;
 			}
@@ -8697,7 +9009,7 @@ var Virtualizer = class {
 				this.range = null;
 				return null;
 			}
-			this.range = calculateRangeImpl(measurements, outerSize, scrollOffset, lanes, lanes === 1 && this._flatMeasurements != null ? this._flatMeasurements : null);
+			this.range = calculateRangeImpl(measurements, outerSize, scrollOffset, lanes, lanes === 1 && this._singleLaneMeasurements !== null ? this._singleLaneMeasurements.flat : null);
 			return this.range;
 		}, {
 			key: false,
@@ -8721,14 +9033,16 @@ var Virtualizer = class {
 				this.options.overscan,
 				this.options.count,
 				startIndex,
-				endIndex
+				endIndex,
+				this.options.lanes
 			];
-		}, (rangeExtractor, overscan, count, startIndex, endIndex) => {
+		}, (rangeExtractor, overscan, count, startIndex, endIndex, lanes) => {
 			return startIndex === null || endIndex === null ? [] : rangeExtractor({
 				startIndex,
 				endIndex,
 				overscan,
-				count
+				count,
+				lanes
 			});
 		}, {
 			key: false,
@@ -8745,7 +9059,7 @@ var Virtualizer = class {
 		};
 		this.shouldMeasureDuringScroll = (index) => {
 			var _a;
-			if (!this.scrollState || this.scrollState.behavior !== "smooth") return true;
+			if (!isSmoothScroll(this.scrollState)) return true;
 			const scrollIndex = this.scrollState.index ?? ((_a = this.getVirtualItemForOffset(this.scrollState.lastTargetOffset)) == null ? void 0 : _a.index);
 			if (scrollIndex !== void 0 && this.range) {
 				const bufferSize = Math.max(this.options.overscan, Math.ceil((this.range.endIndex - this.range.startIndex) / 2));
@@ -8766,6 +9080,7 @@ var Virtualizer = class {
 				return;
 			}
 			const index = this.indexFromElement(node);
+			if (!this.isIndexInRange(index)) return;
 			const key = this.options.getItemKey(index);
 			const prevNode = this.elementsCache.get(key);
 			if (prevNode !== node) {
@@ -8773,16 +9088,17 @@ var Virtualizer = class {
 				this.observer.observe(node);
 				this.elementsCache.set(key, node);
 			}
-			if ((!this.isScrolling || this.scrollState) && this.shouldMeasureDuringScroll(index)) this.resizeItem(index, this.options.measureElement(node, void 0, this));
+			if (node.isConnected && (!this.isScrolling || this.scrollState) && this.shouldMeasureDuringScroll(index)) this.resizeItem(index, this.options.measureElement(node, void 0, this));
 		};
 		this.resizeItem = (index, size) => {
-			var _a, _b;
-			if (index < 0 || index >= this.options.count) return;
+			var _a, _b, _c;
+			if (!this.isIndexInRange(index)) return;
+			if ((_a = this._resizeBatch) == null ? void 0 : _a.sync) this.getMeasurements();
 			let cachedSize;
 			let itemStart;
 			let key;
-			const flat = this._flatMeasurements;
-			if (this.options.lanes === 1 && flat !== null) {
+			const flat = (_b = this._singleLaneMeasurements) == null ? void 0 : _b.flat;
+			if (this.options.lanes === 1 && flat != null) {
 				key = this.options.getItemKey(index);
 				itemStart = flat[index * 2];
 				cachedSize = flat[index * 2 + 1];
@@ -8796,11 +9112,11 @@ var Virtualizer = class {
 			const itemSize = this.itemSizeCache.get(key) ?? cachedSize;
 			const delta = size - itemSize;
 			if (delta !== 0) {
-				const wasAtEnd = this.options.anchorTo === "end" && ((_a = this.scrollState) == null ? void 0 : _a.behavior) !== "smooth" && this.getVirtualDistanceFromEnd() <= this.options.scrollEndThreshold;
-				const prevTotalSize = wasAtEnd ? this.getTotalSize() : 0;
-				const scrollOffsetWithAdj = this.getScrollOffset() + this.scrollAdjustments;
-				const defaultShouldAdjust = !this.itemSizeCache.has(key) ? itemStart < scrollOffsetWithAdj : itemStart + itemSize <= scrollOffsetWithAdj && this.scrollDirection !== "backward";
-				const shouldAdjustScroll = ((_b = this.scrollState) == null ? void 0 : _b.behavior) !== "smooth" && (this.shouldAdjustScrollPositionOnItemSizeChange !== void 0 ? this.shouldAdjustScrollPositionOnItemSizeChange(this.measurementsCache[index] ?? {
+				const wasAtEnd = this.options.anchorTo === "end" && !isSmoothScroll(this.scrollState) && this.getVirtualDistanceFromEnd() <= this.options.scrollEndThreshold;
+				const prevTotalSize = wasAtEnd ? this._getLayoutTotalSize() : 0;
+				const scrollOffset = this.getScrollOffset();
+				const defaultShouldAdjust = !this.itemSizeCache.has(key) ? itemStart < scrollOffset : itemStart + itemSize <= scrollOffset && this.scrollDirection !== "backward";
+				const shouldAdjustScroll = !isSmoothScroll(this.scrollState) && (this.shouldAdjustScrollPositionOnItemSizeChange !== void 0 ? this.shouldAdjustScrollPositionOnItemSizeChange(this.measurementsCache[index] ?? {
 					index,
 					key,
 					start: itemStart,
@@ -8812,16 +9128,34 @@ var Virtualizer = class {
 				this.itemSizeCache.set(key, size);
 				this.itemSizeCacheVersion++;
 				let adjustedSync = false;
-				if (wasAtEnd) adjustedSync = this.applyScrollAdjustment(this.getTotalSize() - prevTotalSize);
-				else if (shouldAdjustScroll) adjustedSync = this.applyScrollAdjustment(delta);
+				if (!this._awaitingCommandReadBack()) {
+					if (wasAtEnd) adjustedSync = this.applyScrollAdjustment(this._getLayoutTotalSize() - prevTotalSize);
+					else if (shouldAdjustScroll) adjustedSync = this.applyScrollAdjustment(delta);
+				}
+				if (this._resizeBatch) {
+					this._resizeBatch.notify = true;
+					(_c = this._resizeBatch).sync || (_c.sync = adjustedSync);
+					return;
+				}
 				this.notify(adjustedSync);
+				this._noteClampMax();
+				this._flushHoldIfReady(true);
+				this._retryClampedAdjustment();
 			}
 		};
-		this.getVirtualItems = memo(() => [this.getVirtualIndexes(), this.getMeasurements()], (indexes, measurements) => {
+		this.getVirtualItems = memo(() => [
+			this.getVirtualIndexes(),
+			this.getMeasurements(),
+			this._holdOffset
+		], (indexes, measurements, hold) => {
 			const virtualItems = [];
 			for (let k = 0, len = indexes.length; k < len; k++) {
 				const measurement = measurements[indexes[k]];
-				virtualItems.push(measurement);
+				virtualItems.push(hold === 0 ? measurement : {
+					...measurement,
+					start: measurement.start - hold,
+					end: measurement.end - hold
+				});
 			}
 			return virtualItems;
 		}, {
@@ -8829,22 +9163,82 @@ var Virtualizer = class {
 			debug: () => this.options.debug
 		});
 		this.getVirtualItemForOffset = (offset) => {
+			var _a;
 			const measurements = this.getMeasurements();
 			if (measurements.length === 0) return;
-			const flat = this._flatMeasurements;
+			const flat = (_a = this._singleLaneMeasurements) == null ? void 0 : _a.flat;
 			const useFlat = this.options.lanes === 1 && flat != null;
 			return notUndefined(measurements[findNearestBinarySearch(0, measurements.length - 1, useFlat ? (i) => flat[i * 2] : (i) => notUndefined(measurements[i]).start, offset)]);
 		};
-		this.getMaxScrollOffset = () => {
-			if (!this.scrollElement) return 0;
-			if ("scrollHeight" in this.scrollElement) return this.options.horizontal ? this.scrollElement.scrollWidth - this.scrollElement.clientWidth : this.scrollElement.scrollHeight - this.scrollElement.clientHeight;
-			else {
-				const doc = this.scrollElement.document.documentElement;
-				return this.options.horizontal ? doc.scrollWidth - this.scrollElement.innerWidth : doc.scrollHeight - this.scrollElement.innerHeight;
+		this._noteClampMax = () => {
+			if (!this._awaitingCommandReadBack()) return;
+			const elementMax = this._elementMaxScrollOffset();
+			if (elementMax === null) return;
+			const write = this.pendingWrite;
+			const max = Math.max(elementMax, 0) + this._holdOffset;
+			if (max >= write.target) return;
+			const lowMaxes = write.lowMaxes ?? (write.lowMaxes = []);
+			if (lowMaxes[lowMaxes.length - 1] !== max) lowMaxes.push(max);
+		};
+		this.getMaxScrollOffset = () => (this._elementMaxScrollOffset() ?? 0) + this._holdOffset;
+		this._toLayoutOffset = (elementOffset) => {
+			var _a;
+			let offset = elementOffset + this._holdOffset;
+			if (((_a = this.pendingScrollAnchor) == null ? void 0 : _a.kind) === "anchor") offset += this.pendingScrollAnchor.delta;
+			return offset;
+		};
+		this._elementMaxScrollOffset = () => {
+			const el = this.scrollElement;
+			if (el === null) return null;
+			if ("scrollHeight" in el) return this.options.horizontal ? el.scrollWidth - el.clientWidth : el.scrollHeight - el.clientHeight;
+			if ("document" in el) {
+				const doc = el.document.documentElement;
+				return this.options.horizontal ? doc.scrollWidth - el.innerWidth : doc.scrollHeight - el.innerHeight;
 			}
+			return null;
+		};
+		this._momentumStop = null;
+		this._stopMomentum = (done) => {
+			const el = this.scrollElement;
+			const win = this.targetWindow;
+			if (el === null || win === null) return;
+			const scroller = "document" in el ? el.document.scrollingElement : el;
+			if (!(scroller == null ? void 0 : scroller.style)) return;
+			if (this._momentumStop) {
+				this._momentumStop.done = done;
+				return;
+			}
+			const { style } = scroller;
+			const property = this.options.horizontal ? "overflow-x" : "overflow-y";
+			const value = style.getPropertyValue(property);
+			const priority = style.getPropertyPriority(property);
+			style.setProperty(property, "hidden", "important");
+			const stop = {
+				restore: () => {
+					if (style.getPropertyValue(property) !== "hidden" || style.getPropertyPriority(property) !== "important") return false;
+					style.setProperty(property, value, priority);
+					return true;
+				},
+				done
+			};
+			this._momentumStop = stop;
+			win.requestAnimationFrame(() => win.requestAnimationFrame(() => {
+				if (this._momentumStop !== stop) return;
+				this._momentumStop = null;
+				if (stop.restore()) stop.done();
+			}));
+		};
+		this._clampedBy = (target) => {
+			const elementMax = this._elementMaxScrollOffset();
+			if (elementMax === null) return null;
+			const maxAtWrite = elementMax + this._holdOffset;
+			return target > maxAtWrite + .5 ? {
+				target,
+				maxAtWrite
+			} : null;
 		};
 		this.getVirtualDistanceFromEnd = () => {
-			return Math.max(this.getTotalSize() - this.getSize() - this.getScrollOffset(), 0);
+			return Math.max(this._getLayoutTotalSize() - this.getSize() - this.getScrollOffset(), 0);
 		};
 		this.getDistanceFromEnd = () => {
 			return Math.max(this.getMaxScrollOffset() - this.getScrollOffset(), 0);
@@ -8873,86 +9267,66 @@ var Virtualizer = class {
 				else if (item.start <= scrollOffset + this.options.scrollPaddingStart) align = "start";
 				else return [scrollOffset, align];
 			}
-			if (align === "end" && index === this.options.count - 1) return [this.getMaxScrollOffset(), align];
+			if (align === "end" && index === this.options.count - 1) {
+				const maxOffset = this.getMaxScrollOffset();
+				const toOffset2 = maxOffset - this.options.paddingEnd + this.options.scrollPaddingEnd;
+				return [Math.max(Math.min(toOffset2, maxOffset), 0), align];
+			}
 			const toOffset = align === "end" ? item.end + this.options.scrollPaddingEnd : item.start - this.options.scrollPaddingStart;
 			return [this.getOffsetForAlignment(toOffset, align, item.size), align];
 		};
 		this.scrollToOffset = (toOffset, { align = "start", behavior = "auto" } = {}) => {
-			this._iosDeferredAdjustment = 0;
-			const offset = this.getOffsetForAlignment(toOffset, align);
-			const now = this.now();
-			this.scrollState = {
+			this._startScroll({
 				index: null,
-				align,
-				behavior,
-				startedAt: now,
-				lastTargetOffset: offset,
-				stableFrames: 0
-			};
-			this._scrollToOffset(offset, {
-				adjustments: void 0,
-				behavior
-			});
-			this.scheduleScrollReconcile();
+				align
+			}, this.getOffsetForAlignment(toOffset, align), behavior, "absolute");
 		};
 		this.scrollToIndex = (index, { align: initialAlign = "auto", behavior = "auto" } = {}) => {
-			this._iosDeferredAdjustment = 0;
 			index = Math.max(0, Math.min(index, this.options.count - 1));
 			const offsetInfo = this.getOffsetForIndex(index, initialAlign);
 			if (!offsetInfo) return;
 			const [offset, align] = offsetInfo;
-			const now = this.now();
-			this.scrollState = {
+			this._startScroll({
 				index,
-				align,
-				behavior,
-				startedAt: now,
-				lastTargetOffset: offset,
-				stableFrames: 0
-			};
-			this._scrollToOffset(offset, {
-				adjustments: void 0,
-				behavior
-			});
-			this.scheduleScrollReconcile();
+				align
+			}, offset, behavior, "absolute");
 		};
 		this.scrollBy = (delta, { behavior = "auto" } = {}) => {
-			const offset = this.getScrollOffset() + delta;
-			const now = this.now();
-			this.scrollState = {
+			const offset = this.getOffsetForAlignment((this.getCommandWrittenOffset() ?? this.getScrollOffset()) + delta, "start");
+			this._startScroll({
 				index: null,
-				align: "start",
-				behavior,
-				startedAt: now,
-				lastTargetOffset: offset,
-				stableFrames: 0
-			};
-			this._scrollToOffset(offset, {
-				adjustments: void 0,
-				behavior
-			});
-			this.scheduleScrollReconcile();
+				align: "start"
+			}, offset, behavior, "relative");
 		};
 		this.scrollToEnd = ({ behavior = "auto" } = {}) => {
 			if (this.options.count > 0) {
-				this.scrollToIndex(this.options.count - 1, {
+				this._startScroll({
+					index: this.options.count - 1,
 					align: "end",
-					behavior
-				});
+					toEnd: true
+				}, Math.max(this.getMaxScrollOffset(), 0), behavior, "absolute");
 				return;
 			}
 			this.scrollToOffset(Math.max(this.getTotalSize() - this.getSize(), 0), { behavior });
 		};
-		this.getTotalSize = () => {
-			var _a;
+		this.cancelScroll = () => {
+			if (this.rafId != null && this.targetWindow) {
+				this.targetWindow.cancelAnimationFrame(this.rafId);
+				this.rafId = null;
+			}
+			this.scrollState = null;
+		};
+		this.getTotalSize = () => Math.max(this._getLayoutTotalSize() - this._holdOffset, 0);
+		this._getLayoutTotalSize = () => {
+			var _a, _b;
 			const measurements = this.getMeasurements();
 			let end;
 			if (measurements.length === 0) end = this.options.paddingStart;
 			else if (this.options.lanes === 1) {
 				const lastIdx = measurements.length - 1;
-				const flat = this._flatMeasurements;
+				const flat = (_a = this._singleLaneMeasurements) == null ? void 0 : _a.flat;
 				if (flat != null) end = flat[lastIdx * 2] + flat[lastIdx * 2 + 1];
-				else end = ((_a = measurements[lastIdx]) == null ? void 0 : _a.end) ?? 0;
+				else end = ((_b = measurements[lastIdx]) == null ? void 0 : _b.end) ?? 0;
 			} else {
 				const endByLane = Array(this.options.lanes).fill(null);
 				let endIndex = measurements.length - 1;
@@ -8979,12 +9353,25 @@ var Virtualizer = class {
 			});
 			return snapshot;
 		};
-		this._scrollToOffset = (offset, { adjustments, behavior }) => {
-			this._intendedScrollOffset = offset + (adjustments ?? 0);
-			this.options.scrollToFn(offset, {
+		this._scrollToOffset = (offset, { adjustments, behavior } = {}) => {
+			const write = {
+				target: offset + (adjustments ?? 0),
+				smooth: behavior === "smooth"
+			};
+			this.pendingWrite = write;
+			this.options.scrollToFn(offset - this._holdOffset, {
 				behavior,
 				adjustments
 			}, this);
+			return write;
+		};
+		this.getCommandWrittenOffset = () => this.scrollState !== null && this.pendingWrite !== null && !this.pendingWrite.smooth ? this.pendingWrite.target : null;
+		this._awaitingCommandReadBack = () => {
+			const writtenOffset = this.getCommandWrittenOffset();
+			return !(isIOSWebKit() && this._iosGesture.dragging()) && writtenOffset !== null && !approxEqual(writtenOffset, this.getScrollOffset());
+		};
+		this._followOffsetTarget = (delta) => {
+			if (this.scrollState !== null && this.scrollState.index == null) this.scrollState.lastTargetOffset += delta;
 		};
 		this.measure = () => {
 			this.pendingMin = null;
@@ -8995,20 +9382,31 @@ var Virtualizer = class {
 		};
 		this.setOptions(opts);
 	}
+	/**
+	* @deprecated Always 0: a scroll correction is folded into `scrollOffset`
+	* at once, so there is never an outstanding adjustment to add to it. Read
+	* `scrollOffset` alone.
+	*/
+	get scrollAdjustments() {
+		return 0;
+	}
 	applyScrollAdjustment(delta, behavior) {
 		if (delta === 0) return false;
-		if (isIOSWebKit() && (this.isScrolling || this._iosTouching || this._iosJustTouchEnded)) {
-			this._iosDeferredAdjustment += delta;
-			return false;
+		this._followOffsetTarget(delta);
+		if (!this._canWriteScroll()) {
+			this._holdOffset += delta;
+			if (this.scrollOffset !== null) this.scrollOffset += delta;
+			return true;
 		} else {
-			this._scrollToOffset(this.getScrollOffset(), {
-				adjustments: this.scrollAdjustments += delta,
+			const offset = this.getScrollOffset();
+			this._clampedAdjustment = this._clampedBy(offset + delta);
+			const write = this._scrollToOffset(offset, {
+				adjustments: delta,
 				behavior
 			});
 			if (this.scrollOffset !== null) {
-				this.scrollOffset += this.scrollAdjustments;
+				if (this.pendingWrite === write) this.scrollOffset += delta;
 				if (this.scrollOffset < 0) this.scrollOffset = 0;
-				this.scrollAdjustments = 0;
 			}
 			return true;
 		}
@@ -9024,6 +9422,10 @@ var Virtualizer = class {
 			this.reconcileScroll();
 		});
 	}
+	getScrollStateTarget(state) {
+		const offsetInfo = state.toEnd ? [Math.max(this.getMaxScrollOffset(), 0)] : state.index != null ? this.getOffsetForIndex(state.index, state.align) : void 0;
+		return offsetInfo ? offsetInfo[0] : state.lastTargetOffset;
+	}
 	reconcileScroll() {
 		if (!this.scrollState) return;
 		if (!this.scrollElement) return;
@@ -9031,17 +9433,20 @@ var Virtualizer = class {
 			this.scrollState = null;
 			return;
 		}
-		const offsetInfo = this.scrollState.index != null ? this.getOffsetForIndex(this.scrollState.index, this.scrollState.align) : void 0;
-		const targetOffset = offsetInfo ? offsetInfo[0] : this.scrollState.lastTargetOffset;
-		const STABLE_FRAMES = 1;
+		if (this.scrollState.phase === "queued") {
+			this.scheduleScrollReconcile();
+			return;
+		}
+		this.getMeasurements();
+		const targetOffset = this.getScrollStateTarget(this.scrollState);
+		const STABLE_FRAMES = this.scrollState.index == null ? 1 : this.options.useAnimationFrameWithResizeObserver ? 3 : 2;
 		const targetChanged = targetOffset !== this.scrollState.lastTargetOffset;
 		if (!targetChanged && approxEqual(targetOffset, this.getScrollOffset())) {
+			if (this.scrollState.phase === "smooth") this.scrollState.phase = "smoothLanded";
+			else if (this.scrollState.phase === "smoothFinishing") this.scrollState.phase = "instant";
 			this.scrollState.stableFrames++;
 			if (this.scrollState.stableFrames >= STABLE_FRAMES) {
-				if (this.getScrollOffset() !== targetOffset) this._scrollToOffset(targetOffset, {
-					adjustments: void 0,
-					behavior: "auto"
-				});
+				if (this.getScrollOffset() !== targetOffset) this._scrollToOffset(targetOffset, { behavior: "auto" });
 				this.scrollState = null;
 				return;
 			}
@@ -9050,15 +9455,52 @@ var Virtualizer = class {
 			if (targetChanged) {
 				const viewport = this.getSize() || 600;
 				const distance = Math.abs(targetOffset - this.getScrollOffset());
-				const keepSmooth = this.scrollState.behavior === "smooth" && distance > viewport;
+				const keepSmooth = isSmoothScroll(this.scrollState) && distance > viewport;
 				this.scrollState.lastTargetOffset = targetOffset;
-				if (!keepSmooth) this.scrollState.behavior = "auto";
-				this._scrollToOffset(targetOffset, {
-					adjustments: void 0,
-					behavior: keepSmooth ? "smooth" : "auto"
-				});
+				if (keepSmooth) this.scrollState.phase = "smooth";
+				else if (this.scrollState.phase === "smooth") this.scrollState.phase = "smoothFinishing";
+				else if (this.scrollState.phase === "smoothLanded") this.scrollState.phase = "instant";
+				this._scrollToOffset(targetOffset, { behavior: keepSmooth ? "smooth" : "auto" });
 			}
 		}
+		this.scheduleScrollReconcile();
+	}
+	_startScroll(target, offset, behavior, kind) {
+		this.pendingScrollAnchor = null;
+		this._clampedAdjustment = null;
+		const tail = this._iosGesture.tail();
+		if (kind === "absolute" && tail !== null) {
+			if (tail === "fling" && iosMomentumOverridesWrites()) {
+				this._stopMomentum(() => {
+					const state = this.scrollState;
+					if ((state == null ? void 0 : state.phase) !== "queued" || this._iosGesture.tail() !== "fling" || this._reportedOverscroll) return;
+					this._iosGesture.end();
+					this._flushHoldIfReady(true);
+					this._writeAwaitingCommand();
+				});
+				this.scrollState = {
+					...target,
+					startedAt: this.now(),
+					lastTargetOffset: offset,
+					stableFrames: 0,
+					phase: "queued",
+					behavior,
+					samples: []
+				};
+				this.scheduleScrollReconcile();
+				return;
+			}
+			this._iosGesture.end();
+		}
+		this.scrollState = {
+			...target,
+			startedAt: this.now(),
+			lastTargetOffset: offset,
+			stableFrames: 0,
+			behavior,
+			phase: initialScrollPhase(behavior, target.index != null && approxEqual(offset, this.getScrollOffset()))
+		};
+		this._scrollToOffset(offset, { behavior });
 		this.scheduleScrollReconcile();
 	}
 };
@@ -9125,17 +9567,12 @@ function calculateRangeImpl(measurements, outerSize, scrollOffset, lanes, flat) 
 		endIndex
 	};
 }
-//#endregion
-//#region src/render.ts
+// src/render.ts
 const VIRTUALIZE_MIN_COLUMNS = 12;
 const isVirtualized = (ctx) => ctx.view === "resource" && (ctx.viewModel?.columns.length ?? 0) > VIRTUALIZE_MIN_COLUMNS;
 const isTimeGridView = (view) => view === "day" || view === "week" || view === "resource";
 const TIMELINE_LANE_HEIGHT = 36;
 const MONTH_BAR_HEIGHT = 22;
-const formatMinutes = (minutes) => {
-	const clamped = Math.min(minutes, 1439);
-	return `${String(Math.floor(clamped / 60)).padStart(2, "0")}:${String(clamped % 60).padStart(2, "0")}`;
-};
 const toUTCDate = (date) => new Date(Date.UTC(date.year, date.month - 1, date.day));
 const el = (tag, className, part) => {
 	const node = document.createElement(tag);
@@ -9211,6 +9648,8 @@ function createRenderer(element, callbacks) {
 	const monthCells = [];
 	let nowIndicators = [];
 	let context = null;
+	let ownLang = null;
+	let pageLang = null;
 	let lastState = { type: "idle" };
 	let virtualizer = null;
 	let unmountVirtualizer = null;
@@ -9248,7 +9687,7 @@ function createRenderer(element, callbacks) {
 		virtualizer._willUpdate();
 		return virtualizer;
 	};
-	const timeFormatter = (ctx) => new Intl.DateTimeFormat(ctx.locale, {
+	const timeFormatter = (ctx) => createDateTimeFormat(ctx.locale, {
 		hour: "2-digit",
 		minute: "2-digit",
 		timeZone: ctx.timeZone
@@ -9262,13 +9701,13 @@ function createRenderer(element, callbacks) {
 		const days = visibleDays(ctx);
 		const first = days[0];
 		const last = days[days.length - 1];
-		if (ctx.view === "month") title.textContent = new Intl.DateTimeFormat(ctx.locale, {
+		if (ctx.view === "month") title.textContent = createDateTimeFormat(ctx.locale, {
 			month: "long",
 			year: "numeric",
 			timeZone: "UTC"
 		}).format(toUTCDate(first.add({ days: Math.floor(days.length / 2) })));
 		else {
-			const dateFormatter = new Intl.DateTimeFormat(ctx.locale, {
+			const dateFormatter = createDateTimeFormat(ctx.locale, {
 				dateStyle: "medium",
 				timeZone: "UTC"
 			});
@@ -9311,7 +9750,7 @@ function createRenderer(element, callbacks) {
 		}));
 	};
 	const renderHeader = (ctx) => {
-		const weekdayFormatter = new Intl.DateTimeFormat(ctx.locale, {
+		const weekdayFormatter = createDateTimeFormat(ctx.locale, {
 			weekday: "short",
 			day: "numeric",
 			timeZone: "UTC"
@@ -9321,7 +9760,7 @@ function createRenderer(element, callbacks) {
 		headerGutter.style.flexBasis = ctx.view === "timeline" ? "var(--cui-scheduler-timeline-label-width)" : "";
 		sizeColumnRow(headerColumns, ctx);
 		if (ctx.view === "timeline") {
-			const dayFormatter = new Intl.DateTimeFormat(ctx.locale, {
+			const dayFormatter = createDateTimeFormat(ctx.locale, {
 				weekday: "short",
 				day: "numeric",
 				month: "short",
@@ -9338,7 +9777,7 @@ function createRenderer(element, callbacks) {
 			return;
 		}
 		if (ctx.view === "month") {
-			const nameFormatter = new Intl.DateTimeFormat(ctx.locale, {
+			const nameFormatter = createDateTimeFormat(ctx.locale, {
 				weekday: "short",
 				timeZone: "UTC"
 			});
@@ -9382,11 +9821,12 @@ function createRenderer(element, callbacks) {
 		if (timeAxis.hidden) return;
 		const hours = [];
 		for (let hour = ctx.dayStartHour; hour < ctx.dayEndHour; hour++) hours.push(hour);
+		const clock = createClockFormat(ctx.locale);
 		timeAxis.replaceChildren(...hours.map((hour) => {
 			const cell = el("div", "scheduler-time-label");
 			cell.style.height = `${ctx.hourHeight}px`;
 			const label = el("span", "scheduler-time-label-text");
-			label.textContent = formatMinutes(hour * 60);
+			label.textContent = clock.format(hour * 60);
 			cell.append(label);
 			return cell;
 		}));
@@ -9487,7 +9927,8 @@ function createRenderer(element, callbacks) {
 		const startMinutes = ctx.dayStartHour * 60;
 		const endMinutes = ctx.dayEndHour * 60;
 		const formatter = timeFormatter(ctx);
-		const weekdayFormatter = new Intl.DateTimeFormat(ctx.locale, {
+		const clock = createClockFormat(ctx.locale);
+		const weekdayFormatter = createDateTimeFormat(ctx.locale, {
 			weekday: "long",
 			day: "numeric",
 			month: "long",
@@ -9521,7 +9962,7 @@ function createRenderer(element, callbacks) {
 				slot.dataset.coreuiMinutes = String(hour * 60);
 				slot.style.height = `${ctx.hourHeight}px`;
 				slot.setAttribute("role", "gridcell");
-				slot.setAttribute("aria-label", `${columnLabel}, ${formatMinutes(hour * 60)}`);
+				slot.setAttribute("aria-label", `${columnLabel}, ${clock.format(hour * 60)}`);
 				slot.tabIndex = -1;
 				column.append(slot);
 			}
@@ -9611,6 +10052,7 @@ function createRenderer(element, callbacks) {
 		grid.setAttribute("aria-rowcount", String(model.weeks.length));
 		const formatter = timeFormatter(ctx);
 		const today = ctx.now?.toPlainDate();
+		const numberFormatter = createNumberFormat(ctx.locale);
 		const anchorMonth = model.days[Math.floor(model.days.length / 2)]?.month;
 		const buildCell = (entry, dayIndex, laneCount) => {
 			const cell = el("div", "scheduler-month-day", "month-day");
@@ -9621,7 +10063,7 @@ function createRenderer(element, callbacks) {
 			monthCells.push(cell);
 			if (today && entry.date.equals(today)) cell.classList.add("scheduler-month-day-today");
 			const number = el("div", "scheduler-month-day-number");
-			number.textContent = String(entry.date.day);
+			number.textContent = numberFormatter.format(entry.date.day);
 			cell.append(number);
 			if (laneCount > 0) {
 				const spacer = el("div", "scheduler-month-bar-spacer");
@@ -9650,7 +10092,7 @@ function createRenderer(element, callbacks) {
 				const more = el("button", "scheduler-more-link", "more-link");
 				more.type = "button";
 				more.dataset.coreuiDate = entry.dateISO;
-				more.textContent = ctx.labels.more.replace("{count}", String(hidden));
+				more.textContent = ctx.labels.more.replace("{count}", numberFormatter.format(hidden));
 				cell.append(more);
 			}
 			return cell;
@@ -9697,7 +10139,7 @@ function createRenderer(element, callbacks) {
 			return;
 		}
 		const formatter = timeFormatter(ctx);
-		const dayFormatter = new Intl.DateTimeFormat(ctx.locale, {
+		const dayFormatter = createDateTimeFormat(ctx.locale, {
 			weekday: "long",
 			day: "numeric",
 			month: "long",
@@ -9879,7 +10321,8 @@ function createRenderer(element, callbacks) {
 			dragPreview.style.width = "";
 			dragPreview.style.top = `${(state.preview.startMinutes - startMinutes) * ppm}px`;
 			dragPreview.style.height = `${(state.preview.endMinutes - state.preview.startMinutes) * ppm}px`;
-			fillGhost(dragPreview, contextOccurrence(state.occurrenceKey), `${formatMinutes(state.preview.startMinutes)} – ${formatMinutes(state.preview.endMinutes)}`);
+			const clock = createClockFormat(context.locale);
+			fillGhost(dragPreview, contextOccurrence(state.occurrenceKey), `${clock.format(state.preview.startMinutes)} – ${clock.format(state.preview.endMinutes)}`);
 			layer.append(dragPreview);
 			return;
 		}
@@ -9924,6 +10367,14 @@ function createRenderer(element, callbacks) {
 		}
 		if (state.type === "select-range") for (let index = state.range.startColumn; index <= state.range.endColumn; index++) monthCells[index]?.classList.add("scheduler-month-day-target");
 	};
+	const applyLang = (lang) => {
+		const current = element.getAttribute("lang");
+		if (current !== ownLang) pageLang = current;
+		ownLang = lang ?? null;
+		const next = ownLang ?? pageLang;
+		if (next) element.setAttribute("lang", next);
+		else element.removeAttribute("lang");
+	};
 	return {
 		refs: {
 			body,
@@ -9933,6 +10384,7 @@ function createRenderer(element, callbacks) {
 			title
 		},
 		render(nextContext) {
+			if (nextContext.locale !== context?.locale) applyLang(resolveLang(nextContext.locale));
 			context = nextContext;
 			element.dataset.coreuiView = nextContext.view;
 			renderToolbar(nextContext);
@@ -9984,11 +10436,11 @@ function createRenderer(element, callbacks) {
 			}
 			unmountVirtualizer?.();
 			virtualizer = null;
+			applyLang(void 0);
 		}
 	};
 }
-//#endregion
-//#region src/scheduler.ts
+// src/scheduler.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO scheduler.ts
@@ -10143,7 +10595,7 @@ var Scheduler = class extends BaseComponent {
 			onViewSelect: (view) => this.setView(view),
 			onWindowChange: () => this._applySlotFocus(),
 			onMoreLink: (dateISO) => {
-				this._store.setDate(dateISO);
+				this._changeDate(dateISO);
 				this.setView("day");
 			},
 			onDialogDismiss: () => this._closeDialog()
@@ -10179,12 +10631,10 @@ var Scheduler = class extends BaseComponent {
 	navigate(direction) {
 		const { view } = this._store.store.state;
 		const step = view === "agenda" ? this._config.agendaDays : view === "timeline" ? this._config.timelineDays : void 0;
-		this._store.navigate(direction, step);
-		EventHandler.trigger(this._element, EVENT_DATE_CHANGE, { date: this._store.store.state.date });
+		this._changeDate(resolveNavigationDate(this._store.store.state, direction, step));
 	}
 	setDate(date) {
-		this._store.setDate(date);
-		EventHandler.trigger(this._element, EVENT_DATE_CHANGE, { date: this._store.store.state.date });
+		this._changeDate(toPlainDate(date, this._store.store.state.timeZone).toString());
 	}
 	setEvents(events) {
 		this._store.setEvents(events);
@@ -10221,6 +10671,11 @@ var Scheduler = class extends BaseComponent {
 		this._renderer.dispose();
 		EventHandler.off(this._element, EVENT_KEY);
 		super.dispose();
+	}
+	_changeDate(target) {
+		if (target === this._store.store.state.date) return;
+		this._store.setDate(target);
+		EventHandler.trigger(this._element, EVENT_DATE_CHANGE, { date: target });
 	}
 	_machineModeFor(view) {
 		if (view === "month") return "month";
@@ -10956,7 +11411,7 @@ var Scheduler = class extends BaseComponent {
 					scope
 				}, occurrence, interpolate(this._labels.eventMoved, {
 					title: occurrence.event.title ?? "",
-					date: startDate.toString(),
+					date: this._formatDay(startDate),
 					start: ""
 				}));
 				return;
@@ -10974,7 +11429,7 @@ var Scheduler = class extends BaseComponent {
 				scope
 			}, occurrence, interpolate(this._labels.eventMoved, {
 				title: occurrence.event.title ?? "",
-				date: start.toPlainDate().toString(),
+				date: this._formatDay(start.toPlainDate()),
 				start: this._formatTime(start)
 			}));
 			return;
@@ -11052,7 +11507,7 @@ var Scheduler = class extends BaseComponent {
 			scope
 		}, occurrence, commit.action === "move" ? interpolate(this._labels.eventMoved, {
 			title: occurrence.event.title ?? "",
-			date: start.toPlainDate().toString(),
+			date: this._formatDay(start.toPlainDate()),
 			start: this._formatTime(start)
 		}) : interpolate(this._labels.eventResized, {
 			title: occurrence.event.title ?? "",
@@ -11083,7 +11538,7 @@ var Scheduler = class extends BaseComponent {
 				event
 			}, void 0, interpolate(this._labels.eventCreated, {
 				title: event.title ?? "",
-				date: start.toPlainDate().toString(),
+				date: this._formatDay(start.toPlainDate()),
 				start: this._formatTime(start),
 				end: this._formatTime(end)
 			}));
@@ -11105,7 +11560,7 @@ var Scheduler = class extends BaseComponent {
 				event
 			}, void 0, interpolate(this._labels.eventCreated, {
 				title: event.title ?? "",
-				date: startDate.toString(),
+				date: this._formatDay(startDate),
 				start: "",
 				end: ""
 			}));
@@ -11129,7 +11584,7 @@ var Scheduler = class extends BaseComponent {
 			event
 		}, void 0, interpolate(this._labels.eventCreated, {
 			title: event.title ?? "",
-			date: start.toPlainDate().toString(),
+			date: this._formatDay(start.toPlainDate()),
 			start: this._formatTime(start),
 			end: this._formatTime(end)
 		}));
@@ -11169,14 +11624,16 @@ var Scheduler = class extends BaseComponent {
 		return date.toZonedDateTime({ timeZone: this._store.store.state.timeZone }).toPlainDateTime().add({ minutes }).toZonedDateTime(this._store.store.state.timeZone, { disambiguation: "compatible" });
 	}
 	_formatTime(value) {
-		return new Intl.DateTimeFormat(this._config.locale ?? void 0, {
+		return createDateTimeFormat(this._config.locale ?? void 0, {
 			hour: "2-digit",
 			minute: "2-digit",
 			timeZone: this._store.store.state.timeZone
 		}).format(new Date(value.epochMilliseconds));
 	}
+	_formatDay(value) {
+		return createDateLabelFormat(this._config.locale ?? void 0).format(value);
+	}
 };
-//#endregion
 export { DEFAULT_LABELS, Scheduler };
 
 //# sourceMappingURL=scheduler.esm.js.map

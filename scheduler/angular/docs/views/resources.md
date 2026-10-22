@@ -22,7 +22,7 @@ const day = (offset: number) => {
   imports: [SchedulerComponent],
   template: `
     <c-scheduler
-      view="resource"
+      defaultView="resource"
       [dayStartHour]="8"
       [dayEndHour]="18"
       [resources]="resources"
@@ -56,7 +56,7 @@ export class SchedulerResourcesExample {
 ## Resources
 
 ```html
-<c-scheduler view="resource" [resources]="resources" [events]="events" />
+<c-scheduler defaultView="resource" [resources]="resources" [events]="events" />
 ```
 
 A resource `color` becomes the default color for its events — an event's own

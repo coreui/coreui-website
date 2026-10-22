@@ -34,7 +34,7 @@ const events = [
 
 <template>
   <CScheduler
-    view="timeline"
+    default-view="timeline"
     :timeline-days="5"
     :timeline-hour-width="40"
     :resources="resources"

@@ -30,7 +30,7 @@ const events = [
 </script>
 
 <template>
-  <CScheduler view="month" :month-max-events-per-day="3" :events="events" />
+  <CScheduler default-view="month" :month-max-events-per-day="3" :events="events" />
 </template>
 ```
 

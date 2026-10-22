@@ -166,7 +166,7 @@ const day = (offset: number) => {
 
 export const SchedulerDayWeekExample = () => (
   <CScheduler
-    view="week"
+    defaultView="week"
     dayStartHour={8}
     dayEndHour={18}
     events={[
@@ -205,6 +205,19 @@ event and a `revert` callback:
 
 See [Props & callbacks](https://coreui.io/scheduler/react/docs/api/options/) for the full surface.
 
+## Date and view
+
+Pass `defaultDate` and `defaultView` to set where the scheduler starts; it then
+navigates on its own. Pass `date` or `view` to control them: the scheduler shows
+what you pass and asks for a change through `onDateChange` and `onViewChange`. A parent that keeps
+the old value keeps the scheduler where it is.
+
+```tsx
+const [date, setDate] = useState('2026-08-11')
+
+<CScheduler date={date} onDateChange={setDate} events={events} />
+```
+
 ## Time zones
 
 Pass an IANA zone to pin the scheduler to it; otherwise the browser's zone is
@@ -212,6 +225,18 @@ used. All wall-clock math — including DST transitions — happens in that zone
 
 ```tsx
 <CScheduler timeZone="Europe/Warsaw" events={events} />
+```
+
+## Server rendering
+
+When the scheduler is rendered on the server, pass `timeZone` and `defaultDate`:
+without them the server uses its own zone and day, the browser its own, and the
+markup no longer matches when it hydrates. The now indicator and the events of a
+`dataSource` appear once the scheduler mounts in the browser. In the Next.js App
+Router, render it from a client component (`'use client'`).
+
+```tsx
+<CScheduler timeZone="Europe/Warsaw" defaultDate="2026-08-11" events={events} />
 ```
 
 
@@ -238,7 +263,7 @@ const day = (offset: number) => {
 
 export const SchedulerDayWeekExample = () => (
   <CScheduler
-    view="week"
+    defaultView="week"
     dayStartHour={8}
     dayEndHour={18}
     events={[
@@ -302,7 +327,7 @@ const day = (offset: number) => {
 
 export const SchedulerMonthExample = () => (
   <CScheduler
-    view="month"
+    defaultView="month"
     monthMaxEventsPerDay={3}
     events={[
       {
@@ -367,7 +392,7 @@ const day = (offset: number) => {
 
 export const SchedulerAgendaExample = () => (
   <CScheduler
-    view="agenda"
+    defaultView="agenda"
     agendaDays={14}
     events={[
       {
@@ -414,7 +439,7 @@ const day = (offset: number) => {
 
 export const SchedulerResourcesExample = () => (
   <CScheduler
-    view="resource"
+    defaultView="resource"
     dayStartHour={8}
     dayEndHour={18}
     resources={[
@@ -444,7 +469,7 @@ export const SchedulerResourcesExample = () => (
 
 ```tsx
 <CScheduler
-  view="resource"
+  defaultView="resource"
   resources={[
     { id: 'room-1', label: 'Room 1' },
     { id: 'room-2', label: 'Room 2', color: '#2eb85c' },
@@ -487,7 +512,7 @@ const day = (offset: number) => {
 
 export const SchedulerTimelineExample = () => (
   <CScheduler
-    view="timeline"
+    defaultView="timeline"
     timelineDays={5}
     timelineHourWidth={40}
     resources={[
@@ -654,7 +679,8 @@ refetches.
   and optimistic UI keep working.
 - The `getVisibleRange()` ref method returns the current window
   (`{ start, end }`) if you prefer wiring fetches yourself through
-  `onDateChange`/`onViewChange`.
+  `onDateChange`/`onViewChange`. With a controlled `date` or `view`, read it once
+  the new value comes back: the event fires before the scheduler moves.
 
 ## Manual wiring
 
@@ -1042,6 +1068,24 @@ Dates, times and ranges are formatted with the `Intl` API — pass `locale` to
 override the browser default. Every string the component renders or announces
 comes from the `labels` map.
 
+The grid is Gregorian. When the calendar of a locale has other months (Persian,
+Islamic, Hebrew or Chinese, as the default of the locale or asked for with
+`-u-ca-`), titles, column headers and day numbers are written in the Gregorian
+calendar, in the language and digits of the locale. A locale on the Buddhist,
+Japanese or Republic of China calendar (`th-TH`, `ja-JP-u-ca-japanese`) keeps
+its own year numbering. The hour axis is a 24-hour clock written the way the
+locale writes one (`09:00`, `09.00` in `fi-FI`, `۰۹:۰۰` in `fa-IR`), and the
+more link count uses the digits of the locale. Screen reader announcements name
+the date with its weekday and year ("Wednesday, August 12, 2026") and the time
+in the locale's own time format, so `en-US` hears `09:00 AM`.
+
+With `locale` set, the root gets `lang` with the language Intl resolves it to
+(`fa-IR-u-ca-persian` gives `fa-IR`), which tells assistive technology what
+language the scheduler is in. It replaces a `lang` you put on the scheduler
+element and covers `labels` and event titles too, so pass `labels` in the same
+language as `locale`. Without `locale`, your own `lang` stays, and with neither
+the scheduler follows the page.
+
 ```html
 import { CScheduler } from '@coreui/react-scheduler'
 import { pl } from '@coreui/react-scheduler/locales'
@@ -1150,9 +1194,11 @@ Messages support `{token}` interpolation. The full set with defaults:
 | `agendaDays` | `number` | `14` | Days shown (and stepped) by the agenda view. |
 | `businessHours` | `object \| null` | `null` | `{ daysOfWeek?, startHour, endHour, enforce? }` — shades non-working time; `enforce: true` also rejects operations outside it. |
 | `dataSource` | `object \| null` | `null` | `{ getEvents(start, end), persistEvents? }` — [remote data](https://coreui.io/scheduler/react/docs/features/remote-data/). |
-| `date` | `string \| Date \| null` | today | Anchor date of the visible range. |
+| `date` | `string \| Date \| null` | — | Controlled date of the visible range; unset or `null` leaves it uncontrolled. The scheduler shows it and asks for a new one through `onDateChange`. |
 | `dayStartHour` | `number` | `0` | First visible hour of the time grid. |
 | `dayEndHour` | `number` | `24` | Hour the time grid ends at (exclusive). |
+| `defaultDate` | `string \| Date \| null` | today | Start date when `date` is not set; the scheduler then navigates on its own. |
+| `defaultView` | `string` | `'week'` | Start view when `view` is not set. |
 | `events` | `array` | `[]` | The events — see the [event model](https://coreui.io/scheduler/react/docs/api/event-model/). |
 | `eventOverlap` | `boolean` | `true` | `false` rejects operations that would collide. |
 | `expandToFit` | `boolean` | `false` | Widen events over adjacent free space. |
@@ -1169,16 +1215,16 @@ Messages support `{token}` interpolation. The full set with defaults:
 | `timeZone` | `string` | browser | IANA zone all wall-clock math happens in. |
 | `timelineDays` | `number` | `7` | Days covered by the timeline view. |
 | `timelineHourWidth` | `number` | `48` | Timeline horizontal zoom in pixels per hour. |
-| `view` | `string` | `'week'` | `'day'`, `'week'`, `'month'`, `'agenda'`, `'resource'` or `'timeline'`. |
+| `view` | `string` | — | Controlled view: `'day'`, `'week'`, `'month'`, `'agenda'`, `'resource'` or `'timeline'`. The scheduler asks for a new one through `onViewChange`. |
 
 ## Callbacks
 
 | Prop | Payload | Fires on |
 | --- | --- | --- |
-| `onDateChange` | `date` | Navigation (prev/next/today, more-link jumps). |
+| `onDateChange` | `date` | Navigation (prev/next/today, more-link jumps, `setDate()`). With a controlled `date` the scheduler moves once the new date comes back. |
 | `onEventChange` | `{ action, event, occurrence, revert, scope }` | Create, move, resize, update, delete. |
 | `onSelectionChange` | `selection` | Click selection changes. |
-| `onViewChange` | `view` | View switch. |
+| `onViewChange` | `view` | View switch (toolbar, more-link jumps, `setView()`). With a controlled `view` the scheduler switches once the new view comes back. |
 
 ## Ref API
 
@@ -1189,10 +1235,10 @@ Messages support `{token}` interpolation. The full set with defaults:
 | `getEvents()` | Current events array (post-edits). |
 | `getSelection()` | Selected occurrence keys. |
 | `getVisibleRange()` | The visible window as `{ start, end }` ISO strings. |
-| `navigate(direction)` | `'prev'`, `'next'` or `'today'`. |
-| `setDate(date)` | Move the anchor date. |
+| `navigate(direction)` | `'prev'`, `'next'` or `'today'`; with a controlled `date`, asks through `onDateChange`. |
+| `setDate(date)` | Move the anchor date; with a controlled `date`, ask for it as navigation does. |
 | `setEvents(events)` | Replace the events. |
-| `setView(view)` | Switch the view. |
+| `setView(view)` | Switch the view; with a controlled `view`, asks through `onViewChange`. |
 
 ```tsx
 const ref = useRef<CSchedulerRef>(null)

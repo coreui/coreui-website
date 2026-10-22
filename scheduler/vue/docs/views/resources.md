@@ -33,7 +33,7 @@ const events = [
 
 <template>
   <CScheduler
-    view="resource"
+    default-view="resource"
     :day-start-hour="8"
     :day-end-hour="18"
     :resources="resources"
@@ -46,7 +46,7 @@ const events = [
 
 ```vue
 <CScheduler
-  view="resource"
+  default-view="resource"
   :resources="[
     { id: 'room-1', label: 'Room 1' },
     { id: 'room-2', label: 'Room 2', color: '#2eb85c' },

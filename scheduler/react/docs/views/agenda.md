@@ -18,7 +18,7 @@ const day = (offset: number) => {
 
 export const SchedulerAgendaExample = () => (
   <CScheduler
-    view="agenda"
+    defaultView="agenda"
     agendaDays={14}
     events={[
       {

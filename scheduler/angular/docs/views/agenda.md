@@ -21,7 +21,7 @@ const day = (offset: number) => {
   selector: 'docs-scheduler-agenda-example',
   imports: [SchedulerComponent],
   template: `
-    <c-scheduler view="agenda" [agendaDays]="14" [events]="events" />
+    <c-scheduler defaultView="agenda" [agendaDays]="14" [events]="events" />
   `
 })
 export class SchedulerAgendaExample {

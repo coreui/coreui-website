@@ -23,7 +23,7 @@ const day = (offset: number) => {
   selector: 'docs-scheduler-month-example',
   imports: [SchedulerComponent],
   template: `
-    <c-scheduler view="month" [monthMaxEventsPerDay]="3" [events]="events" />
+    <c-scheduler defaultView="month" [monthMaxEventsPerDay]="3" [events]="events" />
   `
 })
 export class SchedulerMonthExample {

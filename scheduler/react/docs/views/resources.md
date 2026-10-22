@@ -18,7 +18,7 @@ const day = (offset: number) => {
 
 export const SchedulerResourcesExample = () => (
   <CScheduler
-    view="resource"
+    defaultView="resource"
     dayStartHour={8}
     dayEndHour={18}
     resources={[
@@ -48,7 +48,7 @@ export const SchedulerResourcesExample = () => (
 
 ```tsx
 <CScheduler
-  view="resource"
+  defaultView="resource"
   resources={[
     { id: 'room-1', label: 'Room 1' },
     { id: 'room-2', label: 'Room 2', color: '#2eb85c' },

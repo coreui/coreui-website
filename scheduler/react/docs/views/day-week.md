@@ -19,7 +19,7 @@ const day = (offset: number) => {
 
 export const SchedulerDayWeekExample = () => (
   <CScheduler
-    view="week"
+    defaultView="week"
     dayStartHour={8}
     dayEndHour={18}
     events={[

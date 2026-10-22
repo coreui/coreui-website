@@ -19,7 +19,7 @@ const day = (offset: number) => {
 
 export const SchedulerTimelineExample = () => (
   <CScheduler
-    view="timeline"
+    defaultView="timeline"
     timelineDays={5}
     timelineHourWidth={40}
     resources={[

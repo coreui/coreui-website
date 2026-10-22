@@ -17,7 +17,7 @@ const day = (offset: number) => {
 
 export const SchedulerDayWeekExample = () => (
   <CScheduler
-    view="week"
+    defaultView="week"
     dayStartHour={8}
     dayEndHour={18}
     events={[
@@ -56,6 +56,19 @@ event and a `revert` callback:
 
 See [Props & callbacks](https://coreui.io/scheduler/react/docs/api/options/) for the full surface.
 
+## Date and view
+
+Pass `defaultDate` and `defaultView` to set where the scheduler starts; it then
+navigates on its own. Pass `date` or `view` to control them: the scheduler shows
+what you pass and asks for a change through `onDateChange` and `onViewChange`. A parent that keeps
+the old value keeps the scheduler where it is.
+
+```tsx
+const [date, setDate] = useState('2026-08-11')
+
+<CScheduler date={date} onDateChange={setDate} events={events} />
+```
+
 ## Time zones
 
 Pass an IANA zone to pin the scheduler to it; otherwise the browser's zone is
@@ -63,4 +76,16 @@ used. All wall-clock math — including DST transitions — happens in that zone
 
 ```tsx
 <CScheduler timeZone="Europe/Warsaw" events={events} />
+```
+
+## Server rendering
+
+When the scheduler is rendered on the server, pass `timeZone` and `defaultDate`:
+without them the server uses its own zone and day, the browser its own, and the
+markup no longer matches when it hydrates. The now indicator and the events of a
+`dataSource` appear once the scheduler mounts in the browser. In the Next.js App
+Router, render it from a client component (`'use client'`).
+
+```tsx
+<CScheduler timeZone="Europe/Warsaw" defaultDate="2026-08-11" events={events} />
 ```
