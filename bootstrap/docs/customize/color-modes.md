@@ -144,7 +144,7 @@ For example, you can create a "blue theme" with the selector `data-coreui-theme=
 ```scss
 [data-coreui-theme="blue"] {
   --cui-body-color: var(--cui-white);
-  --cui-body-color-rgb: #{to-rgb(#fff)};
+  --cui-body-color-rgb: #{to-rgb($white)};
   --cui-body-bg: #{$cd-blue-500};
   --cui-body-bg-rgb: #{to-rgb($cd-blue-500)};
   --cui-tertiary-bg: #{$cd-blue-600};
@@ -155,13 +155,13 @@ For example, you can create a "blue theme" with the selector `data-coreui-theme=
   }
 
   .btn-secondary {
-    --cui-btn-bg: #{$cd-btn-secondary-bg};
-    --cui-btn-border-color: #{rgba(#fff, .25)};
-    --cui-btn-hover-bg: #{color.scale($cd-btn-secondary-bg, $lightness: -8%)}; // stylelint-disable-line scss/at-function-named-arguments
-    --cui-btn-hover-border-color: #{rgba(#fff, .25)};
-    --cui-btn-active-bg: #{color.scale($cd-btn-secondary-bg, $lightness: -16%)}; // stylelint-disable-line scss/at-function-named-arguments
-    --cui-btn-active-border-color: #{rgba(#fff, .5)};
-    --cui-btn-focus-border-color: #{rgba(#fff, .5)};
+    --cui-btn-bg: #{color.mix($gray-600, $cd-blue-400, 50%, rgb)};
+    --cui-btn-border-color: #{rgba($white, .25)};
+    --cui-btn-hover-bg: #{color.scale(color.mix($gray-600, $cd-blue-400, 50%, rgb), $lightness: -8%)}; // stylelint-disable-line scss/at-function-named-arguments
+    --cui-btn-hover-border-color: #{rgba($white, .25)};
+    --cui-btn-active-bg: #{color.scale(color.mix($gray-600, $cd-blue-400, 50%, rgb), $lightness: -16%)}; // stylelint-disable-line scss/at-function-named-arguments
+    --cui-btn-active-border-color: #{rgba($white, .5)};
+    --cui-btn-focus-border-color: #{rgba($white, .5)};
     --cui-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
   }
 }

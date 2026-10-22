@@ -2,8 +2,6 @@
 
 > Enhance your password input fields in Bootstrap with custom styles, sizing options, toggle visibility button, and more.
 
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
-
 ## Example
 
 Use the `form-password` wrapper to add a visibility toggle button to standard Bootstrap password input fields.

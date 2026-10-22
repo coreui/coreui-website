@@ -2,8 +2,6 @@
 
 > Open Source UI Components library built on top of Bootstrap 5.
 
-Licensing: pages marked (PRO) document CoreUI PRO components, which require a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add a PRO component to a project on someone else's behalf, tell them it requires a license.
-
 
 ---
 
@@ -3600,7 +3598,7 @@ For example, you can create a "blue theme" with the selector `data-coreui-theme=
 ```scss
 [data-coreui-theme="blue"] {
   --cui-body-color: var(--cui-white);
-  --cui-body-color-rgb: #{to-rgb(#fff)};
+  --cui-body-color-rgb: #{to-rgb($white)};
   --cui-body-bg: #{$cd-blue-500};
   --cui-body-bg-rgb: #{to-rgb($cd-blue-500)};
   --cui-tertiary-bg: #{$cd-blue-600};
@@ -3611,13 +3609,13 @@ For example, you can create a "blue theme" with the selector `data-coreui-theme=
   }
 
   .btn-secondary {
-    --cui-btn-bg: #{$cd-btn-secondary-bg};
-    --cui-btn-border-color: #{rgba(#fff, .25)};
-    --cui-btn-hover-bg: #{color.scale($cd-btn-secondary-bg, $lightness: -8%)}; // stylelint-disable-line scss/at-function-named-arguments
-    --cui-btn-hover-border-color: #{rgba(#fff, .25)};
-    --cui-btn-active-bg: #{color.scale($cd-btn-secondary-bg, $lightness: -16%)}; // stylelint-disable-line scss/at-function-named-arguments
-    --cui-btn-active-border-color: #{rgba(#fff, .5)};
-    --cui-btn-focus-border-color: #{rgba(#fff, .5)};
+    --cui-btn-bg: #{color.mix($gray-600, $cd-blue-400, 50%, rgb)};
+    --cui-btn-border-color: #{rgba($white, .25)};
+    --cui-btn-hover-bg: #{color.scale(color.mix($gray-600, $cd-blue-400, 50%, rgb), $lightness: -8%)}; // stylelint-disable-line scss/at-function-named-arguments
+    --cui-btn-hover-border-color: #{rgba($white, .25)};
+    --cui-btn-active-bg: #{color.scale(color.mix($gray-600, $cd-blue-400, 50%, rgb), $lightness: -16%)}; // stylelint-disable-line scss/at-function-named-arguments
+    --cui-btn-active-border-color: #{rgba($white, .5)};
+    --cui-btn-focus-border-color: #{rgba($white, .5)};
     --cui-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
   }
 }
@@ -7984,8 +7982,6 @@ $input-btn-border-width:      var(--cui-border-width) !default;
 
 > Create intelligent, responsive input fields using the Bootstrap Autocomplete plugin. This component enhances user input with dynamic dropdown suggestions, flexible data providers, and callback support.
 
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
-
 ## Overview
 
 The **Bootstrap Autocomplete Dropdown** component is a powerful autocomplete dropdown plugin that enhances form control usability by suggesting completions as the user types. Whether you're integrating with local JavaScript arrays or fetching live server responses via AJAX, this plugin enables rich, dynamic user interactions.
@@ -9535,8 +9531,6 @@ $chip-input-gap-lg:            .5rem !default;
 
 > Bootstrap Date Picker is a customizable, user-friendly, cross-browser calendar tool for Bootstrap forms, supporting localization and validation for accurate date selection.
 
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
-
 ## Example
 
 Below is an example of a basic Bootstrap DatePicker.
@@ -10339,8 +10333,6 @@ $calendar-cell-week-number-color:            var(--cui-secondary-color) !default
 # Bootstrap 5 Date Range Picker
 
 > Bootstrap Date Range Picker is a customizable, user-friendly calendar tool for Bootstrap forms, supporting date ranges, localization, and validation for accurate date selection.
-
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Example
 
@@ -11983,8 +11975,6 @@ $input-group-addon-border-color:        $input-border-color !default;
 
 > Customize the native `<select>`s with a powerful Bootstrap Multi-Select component that changes the element's initial appearance and brings some new functionalities.
 
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
-
 ## Basic example
 
 A straightforward demonstration of how to implement a basic Bootstrap Multi Select dropdown, highlighting essential attributes and configurations.
@@ -13242,8 +13232,6 @@ $form-multi-select-tag-padding-x-sm:             .5rem !default;
 
 > Create secure and user-friendly one-time password input fields with automatic navigation, paste support, validation, and customizable options for modern authentication flows.
 
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
-
 ## Example
 
 Use the `form-otp` wrapper with `data-coreui-toggle="otp"` to create an one-time password input field with automatic character navigation and validation.
@@ -13685,8 +13673,6 @@ $form-otp-control-border-radius-lg:    $input-border-radius-lg !default;
 
 > Enhance your password input fields in Bootstrap with custom styles, sizing options, toggle visibility button, and more.
 
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
-
 ## Example
 
 Use the `form-password` wrapper to add a visibility toggle button to standard Bootstrap password input fields.
@@ -13952,8 +13938,6 @@ $form-range-thumb-transition:              background-color .15s ease-in-out, bo
 # Bootstrap 5 Range Slider
 
 > Enhance your forms with our customizable Bootstrap 5 Range Slider component for advanced range selection.
-
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Overview
 
@@ -14363,8 +14347,6 @@ $range-slider-vertical-track-height:       10rem !default;
 # Bootstrap 5 Rating
 
 > The Rating component allows users to provide feedback on content or services by selecting a rating value. It is customizable, supports various sizes and icons, and can be made interactive or read-only.
-
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## How to use Rating Component.
 
@@ -14802,8 +14784,6 @@ $form-select-transition:          $input-transition !default;
 # Bootstrap 5 Stepper
 
 > Build responsive, accessible multi-step forms and form wizards using CoreUI's Bootstrap 5 Stepper Component. Vertical and horizontal layouts, built-in validation, full customization.
-
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 # Stepper
 
@@ -15520,8 +15500,6 @@ $stepper-step-content-transition:               height .3s ease-in-out !default;
 # Bootstrap 5 Time Picker
 
 > Bootstrap Time Picker is a customizable and user-friendly tool for selecting times in forms. It supports various locales, sizes, and states to enhance the user experience.
-
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Example
 
@@ -18628,8 +18606,6 @@ Create a set of buttons that appear vertically stacked rather than horizontally.
 # Bootstrap 5 Calendar
 
 > The Bootstrap Calendar Component is a versatile, customizable tool for creating responsive calendars in Bootstrap, supporting day, month, and year selection, and global locales.
-
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Example
 
@@ -23445,8 +23421,6 @@ Loop that generates the modifier classes with the `list-group-item-variant()` mi
 # Bootstrap 5 Loading Buttons
 
 > Bootstrap loading buttons are interactive elements that provide visual feedback to users, indicating that an action is being processed. These buttons typically display a loading spinner or animation.
-
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Basic example
 

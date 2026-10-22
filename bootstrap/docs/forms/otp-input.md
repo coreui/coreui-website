@@ -2,8 +2,6 @@
 
 > Create secure and user-friendly one-time password input fields with automatic navigation, paste support, validation, and customizable options for modern authentication flows.
 
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
-
 ## Example
 
 Use the `form-otp` wrapper with `data-coreui-toggle="otp"` to create an one-time password input field with automatic character navigation and validation.

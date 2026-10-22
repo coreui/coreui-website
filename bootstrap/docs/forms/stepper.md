@@ -2,8 +2,6 @@
 
 > Build responsive, accessible multi-step forms and form wizards using CoreUI's Bootstrap 5 Stepper Component. Vertical and horizontal layouts, built-in validation, full customization.
 
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
-
 # Stepper
 
 The Bootstrap Stepper component allows you to easily create multi-step form wizards, perfect for guiding users through long forms, registrations, or checkout flows.

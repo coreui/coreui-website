@@ -2,8 +2,6 @@
 
 > Bootstrap Date Range Picker is a customizable, user-friendly calendar tool for Bootstrap forms, supporting date ranges, localization, and validation for accurate date selection.
 
-> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
-
 ## Example
 
 Below is an example of a basic Bootstrap DateRangePicker.
