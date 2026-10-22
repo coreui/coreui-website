@@ -7,7 +7,7 @@
 
 # CoreUI Data Grid
 
-> High-performance data grid — 100,000 rows with sorting, filtering, selection, pagination, server-side data, column resizing, pinning, ordering and full theming, around 63 KB gzipped.
+> High-performance data grid — 100,000 rows with sorting, filtering, selection, pagination, server-side data, column resizing, pinning, ordering and full theming, around 66 KB gzipped.
 
 CoreUI Data Grid is a high-performance grid for displaying and interacting with
 large tabular datasets. It renders 100,000 rows in the browser with sorting,
@@ -30,7 +30,7 @@ outgrows the browser's memory.
 - **Themeable.** Every knob is a `--cui-data-grid-*` CSS variable resolving
   through CoreUI semantic tokens, so light/dark theming works with no extra CSS.
   See [Styling & theming](https://coreui.io/data-grid/docs/customization/styling/).
-- **Small.** Around 63 KB gzipped for the vanilla build — 52 KB with the [lite build](https://coreui.io/data-grid/docs/customization/feature-sets/) when sorting, filtering and pagination are all you need.
+- **Small.** Around 66 KB gzipped for the vanilla build — 55 KB with the [lite build](https://coreui.io/data-grid/docs/customization/feature-sets/) when sorting, filtering and pagination are all you need.
 
 ## How it's built
 
@@ -881,7 +881,7 @@ element.addEventListener('sortingChange.coreui.data-grid', event => {
   status.textContent = event.sorting.length ?
     `Sorted by: ${event.sorting
         .map((sort, index) => `${index + 1}. ${labels[sort.id]} ${sort.desc ? '↓' : '↑'}`)
-        .join('   ')}` :
+        .join(' '.repeat(3))}` :
     'Click a header, then shift+click another to sort by multiple columns.'
 })
 
@@ -1024,7 +1024,7 @@ new coreui.DataGrid(document.getElementById('dataGridCustomFilters'), {
       filter({ column }) {
         const select = document.createElement('select')
         select.className = 'form-select form-select-sm'
-        for (const value of ['', ...[...column.getFacetedUniqueValues().keys()].toSorted()]) {
+        for (const value of ['', ...[...column.getFacetedUniqueValues().keys()].map(String).toSorted((a, b) => a.localeCompare(b))]) {
           const option = document.createElement('option')
           option.value = value
           option.textContent = value === '' ? 'All' : value
@@ -3278,7 +3278,7 @@ want to extend rather than replace them.
 
 # Data Grid Feature Sets & Bundle Size
 
-> Pick the TanStack feature set your grid actually uses — the lite build covers sorting, filtering and pagination at 52 KB gzipped, the full build everything at 63 KB.
+> Pick the TanStack feature set your grid actually uses — the lite build covers sorting, filtering and pagination at 55 KB gzipped, the full build everything at 66 KB.
 
 The grid registers a set of TanStack Table features at construction. Options
 gate *behavior*; the feature set gates *registration* — an API only exists on
@@ -3287,8 +3287,8 @@ nothing at runtime. Two presets ship with the package:
 
 | Preset | Covers | Bundle |
 | --- | --- | --- |
-| `dataGridFeatures` (default) | everything: sorting, filtering, faceted set filters, global search, pagination, selection, visibility, ordering, pinning, sizing/resizing | `data-grid.min.js` — 55,534 B gzip |
-| `dataGridLiteFeatures` | sorting, filtering (incl. the toolbar search) and pagination | `data-grid.lite.min.js` — 48,440 B gzip |
+| `dataGridFeatures` (default) | everything: sorting, filtering, faceted set filters, global search, pagination, selection, visibility, ordering, pinning, sizing/resizing | `data-grid.min.js` — 61,758 B gzip |
+| `dataGridLiteFeatures` | sorting, filtering (incl. the toolbar search) and pagination | `data-grid.lite.min.js` — 51,794 B gzip |
 
 A grid that only sorts, filters and pages does not need the default build.
 The lite bundle pairs the same `DataGrid` with `dataGridLiteFeatures` as its

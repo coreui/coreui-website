@@ -106,7 +106,7 @@ element.addEventListener('sortingChange.coreui.data-grid', event => {
   status.textContent = event.sorting.length ?
     `Sorted by: ${event.sorting
         .map((sort, index) => `${index + 1}. ${labels[sort.id]} ${sort.desc ? '↓' : '↑'}`)
-        .join('   ')}` :
+        .join(' '.repeat(3))}` :
     'Click a header, then shift+click another to sort by multiple columns.'
 })
 

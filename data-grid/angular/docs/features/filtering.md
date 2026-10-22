@@ -145,7 +145,7 @@ readonly items: DataGridItem[] = Array.from({ length: 1000 }, (_, i) => {
 readonly itemKey = (item: DataGridItem) => String(item.id)
 
   roleOptions(column: Column<DataGridItem, unknown>): string[] {
-    return [...column.getFacetedUniqueValues().keys()].map(String).toSorted()
+    return [...column.getFacetedUniqueValues().keys()].map(String).toSorted((a, b) => a.localeCompare(b))
   }
 
   onRoleFilterChange(column: Column<DataGridItem, unknown>, event: Event) {

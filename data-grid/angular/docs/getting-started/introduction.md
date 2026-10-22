@@ -25,7 +25,7 @@ outgrows the browser's memory.
   See [Styling & theming](https://coreui.io/data-grid/angular/docs/customization/styling/).
 - **Angular-native.** A standalone component with signal-based inputs and
   outputs, `OnPush` change detection and `ng-template` customization.
-- **Small.** Around 63 KB gzipped for the underlying grid core — 52 KB with a [lite feature set](https://coreui.io/data-grid/angular/docs/customization/feature-sets/).
+- **Small.** Around 66 KB gzipped for the underlying grid core — 55 KB with a [lite feature set](https://coreui.io/data-grid/angular/docs/customization/feature-sets/).
 
 ## How it's built
 

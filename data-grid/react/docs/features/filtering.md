@@ -98,7 +98,7 @@ const RoleFilter = ({ column }: CDataGridColumnFilterProps) => (
     onChange={event => column.setFilterValue(event.target.value === '' ? undefined : event.target.value)}
   >
     <option value="">All</option>
-    {[...column.getFacetedUniqueValues().keys()].map(String).toSorted().map(value => (
+    {[...column.getFacetedUniqueValues().keys()].map(String).toSorted((a, b) => a.localeCompare(b)).map(value => (
       <option key={value} value={value}>
         {value}
       </option>

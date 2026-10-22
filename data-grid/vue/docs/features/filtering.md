@@ -137,7 +137,7 @@ const columns = [
       >
         <option value="">All</option>
         <option
-          v-for="value in [...column.getFacetedUniqueValues().keys()].map(String).toSorted()"
+          v-for="value in [...column.getFacetedUniqueValues().keys()].map(String).toSorted((a, b) => a.localeCompare(b))"
           :key="value"
           :value="value"
         >

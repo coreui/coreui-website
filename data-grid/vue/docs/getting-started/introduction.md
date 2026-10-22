@@ -25,7 +25,7 @@ outgrows the browser's memory.
   See [Styling & theming](https://coreui.io/data-grid/vue/docs/customization/styling/).
 - **Vue-native.** Reactive props, emits and scoped slots — no wrappers around a
   DOM widget.
-- **Small.** Around 63 KB gzipped for the underlying grid core — 52 KB with a [lite feature set](https://coreui.io/data-grid/vue/docs/customization/feature-sets/).
+- **Small.** Around 66 KB gzipped for the underlying grid core — 55 KB with a [lite feature set](https://coreui.io/data-grid/vue/docs/customization/feature-sets/).
 
 ## How it's built
 

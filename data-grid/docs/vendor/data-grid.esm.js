@@ -1,20 +1,10 @@
 /*!
-* CoreUI PRO data-grid v0.3.0-rc.0 (https://coreui.io)
+* CoreUI PRO data-grid v0.4.0 (https://coreui.io)
 * Copyright 2026 The CoreUI Team (https://github.com/orgs/coreui/people)
 * License (https://coreui.io/pro/license/)
 * Bundles @tanstack/table-core and @tanstack/virtual-core, MIT (https://github.com/TanStack/table/blob/main/LICENSE)
 */
-//#region ../../node_modules/@tanstack/store/dist/alien.js
-let ReactiveFlags = /* @__PURE__ */ function(ReactiveFlags) {
-	ReactiveFlags[ReactiveFlags["None"] = 0] = "None";
-	ReactiveFlags[ReactiveFlags["Mutable"] = 1] = "Mutable";
-	ReactiveFlags[ReactiveFlags["Watching"] = 2] = "Watching";
-	ReactiveFlags[ReactiveFlags["RecursedCheck"] = 4] = "RecursedCheck";
-	ReactiveFlags[ReactiveFlags["Recursed"] = 8] = "Recursed";
-	ReactiveFlags[ReactiveFlags["Dirty"] = 16] = "Dirty";
-	ReactiveFlags[ReactiveFlags["Pending"] = 32] = "Pending";
-	return ReactiveFlags;
-}({});
+// ../../node_modules/@tanstack/store/dist/alien.js
 /* @__NO_SIDE_EFFECTS__ */
 function createReactiveSystem({ update, notify, unwatched }) {
 	return {
@@ -72,15 +62,15 @@ function createReactiveSystem({ update, notify, unwatched }) {
 		top: do {
 			const sub = link.sub;
 			let flags = sub.flags;
-			if (!(flags & (ReactiveFlags.RecursedCheck | ReactiveFlags.Recursed | ReactiveFlags.Dirty | ReactiveFlags.Pending))) sub.flags = flags | ReactiveFlags.Pending;
-			else if (!(flags & (ReactiveFlags.RecursedCheck | ReactiveFlags.Recursed))) flags = ReactiveFlags.None;
-			else if (!(flags & ReactiveFlags.RecursedCheck)) sub.flags = flags & ~ReactiveFlags.Recursed | ReactiveFlags.Pending;
-			else if (!(flags & (ReactiveFlags.Dirty | ReactiveFlags.Pending)) && isValidLink(link, sub)) {
-				sub.flags = flags | (ReactiveFlags.Recursed | ReactiveFlags.Pending);
-				flags &= ReactiveFlags.Mutable;
-			} else flags = ReactiveFlags.None;
-			if (flags & ReactiveFlags.Watching) notify(sub);
-			if (flags & ReactiveFlags.Mutable) {
+			if (!(flags & 60)) sub.flags = flags | 32;
+			else if (!(flags & 12)) flags = 0;
+			else if (!(flags & 4)) sub.flags = flags & -9 | 32;
+			else if (!(flags & 48) && isValidLink(link, sub)) {
+				sub.flags = flags | 40;
+				flags &= 1;
+			} else flags = 0;
+			if (flags & 2) notify(sub);
+			if (flags & 1) {
 				const subSubs = sub.subs;
 				if (subSubs !== void 0) {
 					const nextSub = (link = subSubs).nextSub;
@@ -116,14 +106,14 @@ function createReactiveSystem({ update, notify, unwatched }) {
 		top: do {
 			const dep = link.dep;
 			const flags = dep.flags;
-			if (sub.flags & ReactiveFlags.Dirty) dirty = true;
-			else if ((flags & (ReactiveFlags.Mutable | ReactiveFlags.Dirty)) === (ReactiveFlags.Mutable | ReactiveFlags.Dirty)) {
+			if (sub.flags & 16) dirty = true;
+			else if ((flags & 17) === 17) {
 				if (update(dep)) {
 					const subs = dep.subs;
 					if (subs.nextSub !== void 0) shallowPropagate(subs);
 					dirty = true;
 				}
-			} else if ((flags & (ReactiveFlags.Mutable | ReactiveFlags.Pending)) === (ReactiveFlags.Mutable | ReactiveFlags.Pending)) {
+			} else if ((flags & 33) === 33) {
 				if (link.nextSub !== void 0 || link.prevSub !== void 0) stack = {
 					value: link,
 					prev: stack
@@ -154,7 +144,7 @@ function createReactiveSystem({ update, notify, unwatched }) {
 						continue;
 					}
 					dirty = false;
-				} else sub.flags &= ~ReactiveFlags.Pending;
+				} else sub.flags &= -33;
 				sub = link.sub;
 				const nextDep = link.nextDep;
 				if (nextDep !== void 0) {
@@ -169,9 +159,9 @@ function createReactiveSystem({ update, notify, unwatched }) {
 		do {
 			const sub = link.sub;
 			const flags = sub.flags;
-			if ((flags & (ReactiveFlags.Pending | ReactiveFlags.Dirty)) === ReactiveFlags.Pending) {
-				sub.flags = flags | ReactiveFlags.Dirty;
-				if ((flags & (ReactiveFlags.Watching | ReactiveFlags.RecursedCheck)) === ReactiveFlags.Watching) notify(sub);
+			if ((flags & 48) === 32) {
+				sub.flags = flags | 16;
+				if ((flags & 6) === 2) notify(sub);
 			}
 		} while ((link = link.nextSub) !== void 0);
 	}
@@ -184,8 +174,7 @@ function createReactiveSystem({ update, notify, unwatched }) {
 		return false;
 	}
 }
-//#endregion
-//#region ../../node_modules/@tanstack/store/dist/atom.js
+// ../../node_modules/@tanstack/store/dist/atom.js
 function toObserver(nextHandler, errorHandler, completionHandler) {
 	const isObserver = typeof nextHandler === "object";
 	const self = isObserver ? nextHandler : void 0;
@@ -203,12 +192,12 @@ const { link, unlink, propagate, checkDirty, shallowPropagate } = /* @__PURE__ *
 	},
 	notify(effect) {
 		queuedEffects[queuedEffectsLength++] = effect;
-		effect.flags &= ~ReactiveFlags.Watching;
+		effect.flags &= -3;
 	},
 	unwatched(atom) {
 		if (atom.depsTail !== void 0) {
 			atom.depsTail = void 0;
-			atom.flags = ReactiveFlags.Mutable | ReactiveFlags.Dirty;
+			atom.flags = 17;
 			purgeDeps(atom);
 		}
 	}
@@ -249,7 +238,7 @@ function createAtom(valueOrFn, options) {
 		subsTail: void 0,
 		deps: void 0,
 		depsTail: void 0,
-		flags: isComputed ? ReactiveFlags.None : ReactiveFlags.Mutable,
+		flags: isComputed ? 0 : 1,
 		get() {
 			if (activeSub !== void 0) link(atom, activeSub, cycle);
 			return atom._snapshot;
@@ -260,7 +249,10 @@ function createAtom(valueOrFn, options) {
 			const e = effect(() => {
 				atom.get();
 				if (!observed.current) observed.current = true;
-				else obs.next?.(atom._snapshot);
+				else {
+					activeSub = void 0;
+					obs.next?.(atom._snapshot);
+				}
 			});
 			return { unsubscribe: () => {
 				e.stop();
@@ -274,7 +266,7 @@ function createAtom(valueOrFn, options) {
 				++cycle;
 				atom.depsTail = void 0;
 			} else if (getValue === void 0) return false;
-			if (isComputed) atom.flags = ReactiveFlags.Mutable | ReactiveFlags.RecursedCheck;
+			if (isComputed) atom.flags = 5;
 			try {
 				const oldValue = atom._snapshot;
 				const newValue = typeof getValue === "function" ? getValue(oldValue) : getValue === void 0 && isComputed ? getter(oldValue) : getValue;
@@ -285,21 +277,21 @@ function createAtom(valueOrFn, options) {
 				return false;
 			} finally {
 				activeSub = prevSub;
-				if (isComputed) atom.flags &= ~ReactiveFlags.RecursedCheck;
+				if (isComputed) atom.flags &= -5;
 				purgeDeps(atom);
 			}
 		}
 	};
 	if (isComputed) {
-		atom.flags = ReactiveFlags.Mutable | ReactiveFlags.Dirty;
+		atom.flags = 17;
 		atom.get = function() {
 			const flags = atom.flags;
-			if (flags & ReactiveFlags.Dirty || flags & ReactiveFlags.Pending && checkDirty(atom.deps, atom)) {
+			if (flags & 16 || flags & 32 && checkDirty(atom.deps, atom)) {
 				if (atom._update()) {
 					const subs = atom.subs;
 					if (subs !== void 0) shallowPropagate(subs);
 				}
-			} else if (flags & ReactiveFlags.Pending) atom.flags = flags & ~ReactiveFlags.Pending;
+			} else if (flags & 32) atom.flags = flags & -33;
 			if (activeSub !== void 0) link(atom, activeSub, cycle);
 			return atom._snapshot;
 		};
@@ -321,12 +313,12 @@ function effect(fn) {
 		activeSub = effectObj;
 		++cycle;
 		effectObj.depsTail = void 0;
-		effectObj.flags = ReactiveFlags.Watching | ReactiveFlags.RecursedCheck;
+		effectObj.flags = 6;
 		try {
 			return fn();
 		} finally {
 			activeSub = prevSub;
-			effectObj.flags &= ~ReactiveFlags.RecursedCheck;
+			effectObj.flags &= -5;
 			purgeDeps(effectObj);
 		}
 	};
@@ -335,14 +327,14 @@ function effect(fn) {
 		depsTail: void 0,
 		subs: void 0,
 		subsTail: void 0,
-		flags: ReactiveFlags.Watching | ReactiveFlags.RecursedCheck,
+		flags: 6,
 		notify() {
 			const flags = this.flags;
-			if (flags & ReactiveFlags.Dirty || flags & ReactiveFlags.Pending && checkDirty(this.deps, this)) run();
-			else this.flags = ReactiveFlags.Watching;
+			if (flags & 16 || flags & 32 && checkDirty(this.deps, this)) run();
+			else this.flags = 2;
 		},
 		stop() {
-			this.flags = ReactiveFlags.None;
+			this.flags = 0;
 			this.depsTail = void 0;
 			purgeDeps(this);
 		}
@@ -350,8 +342,7 @@ function effect(fn) {
 	run();
 	return effectObj;
 }
-//#endregion
-//#region ../../node_modules/@tanstack/store/dist/shallow.js
+// ../../node_modules/@tanstack/store/dist/shallow.js
 function shallow(objA, objB) {
 	if (Object.is(objA, objB)) return true;
 	if (typeof objA !== "object" || objA === null || typeof objB !== "object" || objB === null) return false;
@@ -377,8 +368,7 @@ function shallow(objA, objB) {
 function getOwnKeys(obj) {
 	return Object.keys(obj).concat(Object.getOwnPropertySymbols(obj));
 }
-//#endregion
-//#region src/dom/data.ts
+// src/dom/data.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI dom/data.ts
@@ -413,8 +403,7 @@ var data_default = {
 		if (instanceMap.size === 0) elementMap.delete(element);
 	}
 };
-//#endregion
-//#region src/util/index.ts
+// src/util/index.ts
 const MILLISECONDS_MULTIPLIER = 1e3;
 const TRANSITION_END = "transitionend";
 /**
@@ -501,8 +490,7 @@ const executeAfterTransition = (callback, transitionElement, waitForTransition =
 		if (!called) triggerTransitionEnd(transitionElement);
 	}, emulatedDuration);
 };
-//#endregion
-//#region src/dom/event-handler.ts
+// src/dom/event-handler.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI dom/event-handler.ts
@@ -735,8 +723,7 @@ function hydrateObj(obj, meta = {}) {
 	}
 	return obj;
 }
-//#endregion
-//#region src/dom/manipulator.ts
+// src/dom/manipulator.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI dom/manipulator.ts
@@ -783,8 +770,7 @@ const Manipulator = {
 		return normalizeData(element.getAttribute(`data-coreui-${normalizeDataKey(key)}`));
 	}
 };
-//#endregion
-//#region src/util/config.ts
+// src/util/config.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI util/config.ts
@@ -833,8 +819,7 @@ var Config = class {
 		}
 	}
 };
-//#endregion
-//#region src/base-component.ts
+// src/base-component.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI base-component.ts
@@ -893,8 +878,7 @@ var BaseComponent = class extends Config {
 		return `${name}${this.EVENT_KEY}`;
 	}
 };
-//#endregion
-//#region src/engine/active-cell.ts
+// src/engine/active-cell.ts
 const HEADER_ROW_INDEX = -1;
 const clampColumn = (columnId, columnIds) => {
 	if (columnIds.includes(columnId)) return columnId;
@@ -926,8 +910,8 @@ const resolveNavigation = (key, ctrlKey, current, context) => {
 		columnId: columnIds[index]
 	} });
 	switch (key) {
-		case "ArrowLeft": return rtl ? cell(current.rowIndex, Math.min(columnIndex + 1, lastColumn)) : cell(current.rowIndex, Math.max(columnIndex - 1, 0));
-		case "ArrowRight": return rtl ? cell(current.rowIndex, Math.max(columnIndex - 1, 0)) : cell(current.rowIndex, Math.min(columnIndex + 1, lastColumn));
+		case "ArrowLeft": return cell(current.rowIndex, rtl ? Math.min(columnIndex + 1, lastColumn) : Math.max(columnIndex - 1, 0));
+		case "ArrowRight": return cell(current.rowIndex, rtl ? Math.max(columnIndex - 1, 0) : Math.min(columnIndex + 1, lastColumn));
 		case "ArrowUp": return cell(Math.max(current.rowIndex - 1, HEADER_ROW_INDEX), columnIndex);
 		case "ArrowDown": return cell(Math.min(current.rowIndex + 1, lastRow), columnIndex);
 		case "Home":
@@ -982,8 +966,7 @@ const createActiveCellManager = (onChange) => {
 		}
 	};
 };
-//#endregion
-//#region src/engine/data-source.ts
+// src/engine/data-source.ts
 const FETCH_DEBOUNCE_MS = 100;
 const createDataSource = (context) => {
 	let requestId = 0;
@@ -1013,8 +996,7 @@ const createDataSource = (context) => {
 		}
 	};
 };
-//#endregion
-//#region src/util/clipboard.ts
+// src/util/clipboard.ts
 const DELIMITER = "	";
 const ROW_SEPARATOR = "\n";
 const REGION_SEPARATOR = "\n\n";
@@ -1059,8 +1041,7 @@ const copyCellSelection = async (table, columns) => {
 	}
 	return text;
 };
-//#endregion
-//#region src/util/print.ts
+// src/util/print.ts
 const CLASS_NAME_PRINT_ROOT = "data-grid-print-root";
 const printRows = (table) => {
 	if (typeof table.getSortedRowModel === "function") return table.getSortedRowModel().rows;
@@ -1115,8 +1096,20 @@ const printGrid = (table, columns, options = {}) => {
 		cleanup();
 	}
 };
-//#endregion
-//#region src/util/drag.ts
+// src/util/selector.ts
+/**
+* --------------------------------------------------------------------------
+* CoreUI PRO data-grid util/selector.ts
+* License (https://coreui.io/pro/license/)
+* --------------------------------------------------------------------------
+*/
+/**
+* Escapes a column key or row index for a double-quoted CSS attribute selector value.
+* @param value The key or index interpolated into `[data-…="…"]`.
+* @returns The value as a string, with `"` and `\` backslash-escaped and line breaks as hex escapes.
+*/
+const escapeAttributeValue = (value) => String(value).replace(/["\\]/g, "\\$&").replace(/[\n\r\f]/g, (character) => `\\${character.codePointAt(0).toString(16)} `);
+// src/util/drag.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid util/drag.ts
@@ -1514,7 +1507,7 @@ const SELECTOR_PREVIEW_ROWS = "thead tr, tbody tr:not(.data-grid-spacer):not(.da
 const columnItems = (root) => ({
 	getOrderedIds: () => [...root.querySelectorAll("thead tr:first-child th[data-coreui-column]")].map((cell) => cell.dataset.coreuiColumn ?? ""),
 	getElements(id) {
-		const header = root.querySelector(`thead th[data-coreui-column="${id}"]`);
+		const header = root.querySelector(`thead th[data-coreui-column="${escapeAttributeValue(id)}"]`);
 		if (!header) return [];
 		const { cellIndex } = header;
 		const elements = [];
@@ -1539,7 +1532,7 @@ const createColumnDragController = (options) => createDragController({
 		} : null;
 	},
 	items: columnItems(options.root),
-	canDrop: (sourceId, targetId) => sourceId !== targetId && Boolean(options.root.querySelector(`th[data-coreui-column="${targetId}"][data-coreui-draggable]`)) && options.canDrop(sourceId, targetId),
+	canDrop: (sourceId, targetId) => sourceId !== targetId && Boolean(options.root.querySelector(`th[data-coreui-column="${escapeAttributeValue(targetId)}"][data-coreui-draggable]`)) && options.canDrop(sourceId, targetId),
 	preview: true,
 	onDrop: (sourceKey, drop) => options.onReorder(sourceKey, drop.id, drop.after)
 });
@@ -1548,7 +1541,7 @@ const SELECTOR_ROW = "tr[data-coreui-index]";
 const rowItems = (root) => ({
 	getOrderedIds: () => [...root.querySelectorAll(`tbody ${SELECTOR_ROW}`)].map((row) => row.dataset.coreuiIndex ?? ""),
 	getElements(id) {
-		const row = root.querySelector(`tbody tr[data-coreui-index="${id}"]`);
+		const row = root.querySelector(`tbody tr[data-coreui-index="${escapeAttributeValue(id)}"]`);
 		return row ? [row] : [];
 	}
 });
@@ -1571,8 +1564,7 @@ const createRowDragController = (options) => createDragController({
 	preview: true,
 	onDrop: (sourceId, drop) => options.onReorder(Number(sourceId), Number(drop.id), drop.after)
 });
-//#endregion
-//#region src/engine/scheduler.ts
+// src/engine/scheduler.ts
 const createScheduler = (flush) => {
 	let scheduled = false;
 	let disposed = false;
@@ -1595,8 +1587,7 @@ const createScheduler = (flush) => {
 		}
 	};
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/utils.js
+// ../../node_modules/@tanstack/table-core/dist/utils.js
 /**
 * Applies a TanStack updater to a value.
 *
@@ -1668,6 +1659,86 @@ function makeStateUpdater(key, instance) {
 	return (updater) => {
 		(instance.options.atoms?.[key] ?? instance.baseAtoms[key]).set((old) => functionalUpdate(updater, old));
 	};
+}
+/**
+* Checks whether a value is an array or a plain (or null-prototype) object.
+* Class instances, dates, and other exotic values compare by reference only,
+* mirroring the `cloneState` plain-object policy.
+*/
+function isPlainContainer(value) {
+	if (typeof value !== "object" || value === null) return false;
+	if (Array.isArray(value)) return true;
+	const proto = Object.getPrototypeOf(value);
+	return proto === Object.prototype || proto === null;
+}
+/**
+* Returns every enumerable own key, including symbols and non-index array
+* properties. Keeping key presence explicit distinguishes sparse array holes
+* from entries whose value is `undefined`.
+*/
+function getEnumerableOwnKeys(value) {
+	return Reflect.ownKeys(value).filter((key) => Object.prototype.propertyIsEnumerable.call(value, key));
+}
+const MAX_STATE_COMPARE_DEPTH = 3;
+/**
+* Structurally compares two state slice values as deeply as stock feature
+* state can nest and no deeper.
+*
+* Three container levels cover flat maps and arrays, arrays of state objects,
+* array-valued filter values, and `columnResizing.columnSizingStart` tuples.
+* Deeper containers and non-plain values compare by reference. A `false`
+* result is always safe: the state update simply proceeds.
+*/
+function stateSlicesEqual(a, b) {
+	return stateSlicesEqualAtDepth(a, b, MAX_STATE_COMPARE_DEPTH);
+}
+function stateSlicesEqualAtDepth(a, b, depth) {
+	if (Object.is(a, b)) return true;
+	if (depth <= 0 || !isPlainContainer(a) || !isPlainContainer(b)) return false;
+	if (Array.isArray(a) || Array.isArray(b)) {
+		if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) return false;
+	}
+	const keysA = getEnumerableOwnKeys(a);
+	const keysB = getEnumerableOwnKeys(b);
+	if (keysA.length !== keysB.length) return false;
+	const recordA = a;
+	const recordB = b;
+	for (let i = 0; i < keysA.length; i++) {
+		const key = keysA[i];
+		if (!Object.prototype.propertyIsEnumerable.call(b, key)) return false;
+		if (!stateSlicesEqualAtDepth(recordA[key], recordB[key], depth - 1)) return false;
+	}
+	return true;
+}
+/**
+* Routes a state slice update through the slice's `on<State>Change` handler,
+* preserving the owner's current reference for structural no-ops.
+*
+* Equality is evaluated inside the updater received by the state owner, never
+* against the table's potentially stale controlled snapshot. This keeps
+* same-tick updates composable in queued host containers such as React state,
+* evaluates the original updater only when the owner applies it, and lets atom
+* owners suppress notifications by returning their existing reference.
+*
+* A user-provided change handler is still invoked for a no-op because only that
+* handler's state container can know its latest queued value. The guarded
+* updater returns that container's previous reference, preventing a state write
+* or render in state containers with identity bailout semantics.
+*
+* Hot-path slices that skip guarding entirely (selection maps that scale with
+* row count, pointer-frequency resize state) call their change handler
+* directly instead of routing through this util. Custom feature slices with a
+* cheaper or semantic-aware comparison can pass `isEqual` to override the
+* structural default.
+*/
+function setStateSlice(instance, key, updater, isEqual = stateSlicesEqual) {
+	const onChangeKey = `on${key.charAt(0).toUpperCase()}${key.slice(1)}Change`;
+	const onChange = instance.options[onChangeKey];
+	if (!onChange) return;
+	onChange((current) => {
+		const next = functionalUpdate(updater, current);
+		return isEqual(current, next) ? current : next;
+	});
 }
 /**
 * Returns whether a value is a function.
@@ -1744,14 +1815,10 @@ function skipFirstRun(fn) {
 * This wraps `memo` with table debug options and feature metadata so row models and derived APIs can share consistent diagnostics.
 */
 function tableMemo({ feature, fnName, objectId, onAfterUpdate, table, ...memoOptions }) {
-	const onAfterUpdateHandler = () => {
-		if (!onAfterUpdate) return;
+	const debugOptions = { onAfterUpdate: onAfterUpdate ? () => {
 		const { schedule, untrack } = table._reactivity;
 		schedule(() => untrack(() => onAfterUpdate()));
-	};
-	const debugOptions = { onAfterUpdate: () => {
-		onAfterUpdateHandler();
-	} };
+	} : void 0 };
 	return memo$1({
 		...memoOptions,
 		...debugOptions
@@ -1759,9 +1826,12 @@ function tableMemo({ feature, fnName, objectId, onAfterUpdate, table, ...memoOpt
 }
 /**
 * Assumes that a function name is in the format of `parentName_fnKey` and returns the `fnKey` and `fnName` in the format of `parentName.fnKey`.
+*
+* Splits on the first separator only, so an internal API name such as
+* `table__expandRows` has the `fnKey` `_expandRows`.
 */
 function getFunctionNameInfo(staticFnName, splitBy = "_") {
-	const [parentName, fnKey] = staticFnName.split(splitBy);
+	const [parentName, fnKey] = staticFnName.replace(splitBy, " ").split(" ");
 	return {
 		fnKey,
 		fnName: `${parentName}.${fnKey}`,
@@ -1821,8 +1891,7 @@ function assignPrototypeAPIs(feature, prototype, table, apis) {
 function callMemoOrStaticFn(obj, fnKey, staticFn, ...args) {
 	return obj[fnKey]?.(...args) ?? staticFn(obj, ...args);
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/cells/coreCellsFeature.utils.js
+// ../../node_modules/@tanstack/table-core/dist/core/cells/coreCellsFeature.utils.js
 /**
 * Reads this cell's accessor value from its owning row and column.
 *
@@ -1872,8 +1941,7 @@ function cell_getContext(cell) {
 		renderValue: () => cell.renderValue()
 	};
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/cells/coreCellsFeature.js
+// ../../node_modules/@tanstack/table-core/dist/core/cells/coreCellsFeature.js
 /**
 * Core feature that adds cell value, render, and context APIs.
 */
@@ -1887,973 +1955,7 @@ const coreCellsFeature = { assignCellPrototype: (prototype, table) => {
 		}
 	});
 } };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/headers/constructHeader.js
-/**
-* Creates or retrieves the header prototype for a table.
-* The prototype is cached on the table and shared by all header instances.
-*/
-function getHeaderPrototype(table) {
-	if (!table._headerPrototype) {
-		table._headerPrototype = { table };
-		const features = Object.values(table._features);
-		for (let i = 0; i < features.length; i++) features[i].assignHeaderPrototype?.(table._headerPrototype, table);
-	}
-	return table._headerPrototype;
-}
-/**
-* Constructs a header instance from normalized table internals.
-*
-* This wires core properties, feature prototype APIs, and instance data used by table rendering and row-model operations.
-*/
-function constructHeader(table, column, options) {
-	const headerPrototype = getHeaderPrototype(table);
-	const header = Object.create(headerPrototype);
-	header.colSpan = 0;
-	header.column = column;
-	header.depth = options.depth;
-	header.headerGroup = null;
-	header.id = options.id ?? column.id;
-	header.index = options.index;
-	header.isPlaceholder = !!options.isPlaceholder;
-	header.placeholderId = options.placeholderId;
-	header.rowSpan = 0;
-	header.subHeaders = [];
-	const initFns = table._headerInstanceInitFns;
-	for (let i = 0; i < initFns.length; i++) initFns[i](header);
-	return header;
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-pinning/columnPinningFeature.utils.js
-/**
-* Creates the default column pinning state.
-*
-* Both pinning regions start empty. Reset APIs use this value when
-* `defaultState` is `true`.
-*
-* @example
-* ```ts
-* const pinning = getDefaultColumnPinningState()
-* ```
-*/
-function getDefaultColumnPinningState() {
-	return {
-		start: [],
-		end: []
-	};
-}
-/**
-* Moves this column's leaf column ids into a pinning region.
-*
-* Pinning a group column pins all of its leaves. The leaf ids are first removed
-* from both regions, then appended to the requested `'start'` or `'end'`
-* region. Passing `false` unpins them back to the center.
-*
-* `start` and `end` are logical positions. In LTR languages/layouts, `start`
-* usually corresponds to left and `end` to right. In RTL languages/layouts,
-* `start` usually corresponds to right and `end` to left.
-*
-* @example
-* ```ts
-* column_pin(column, 'start')
-* ```
-*/
-function column_pin(column, position) {
-	const leafColumns = column.getLeafColumns();
-	const columnIds = [];
-	for (let i = 0; i < leafColumns.length; i++) {
-		const id = leafColumns[i].id;
-		if (id) columnIds.push(id);
-	}
-	table_setColumnPinning(column.table, (old) => {
-		if (position === "end") return {
-			start: old.start.filter((d) => !columnIds.includes(d)),
-			end: [...old.end.filter((d) => !columnIds.includes(d)), ...columnIds]
-		};
-		if (position === "start") return {
-			start: [...old.start.filter((d) => !columnIds.includes(d)), ...columnIds],
-			end: old.end.filter((d) => !columnIds.includes(d))
-		};
-		return {
-			start: old.start.filter((d) => !columnIds.includes(d)),
-			end: old.end.filter((d) => !columnIds.includes(d))
-		};
-	});
-}
-/**
-* Checks whether this column or any of its leaf columns can be pinned.
-*
-* Column-level `enablePinning` and table `enableColumnPinning` both default to
-* `true`; at least one leaf column must allow pinning.
-*
-* @example
-* ```ts
-* const canPin = column_getCanPin(column)
-* ```
-*/
-function column_getCanPin(column) {
-	return column.getLeafColumns().some((leafColumn) => (leafColumn.columnDef.enablePinning ?? true) && (column.table.options.enableColumnPinning ?? true));
-}
-/**
-* Reads this column's current pinning region.
-*
-* Group columns report `'start'` or `'end'` when any leaf column is pinned in
-* that region. Unpinned columns return `false`.
-*
-* `start` and `end` are logical positions. In LTR languages/layouts, `start`
-* usually corresponds to left and `end` to right. In RTL languages/layouts,
-* `start` usually corresponds to right and `end` to left.
-*
-* @example
-* ```ts
-* const position = column_getIsPinned(column)
-* ```
-*/
-function column_getIsPinned(column) {
-	const leafColumns = column.getLeafColumns();
-	const { start, end } = column.table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
-	for (let i = 0; i < leafColumns.length; i++) if (start.includes(leafColumns[i].id)) return "start";
-	for (let i = 0; i < leafColumns.length; i++) if (end.includes(leafColumns[i].id)) return "end";
-	return false;
-}
-/**
-* Finds this column's index within its pinned region.
-*
-* Unpinned columns return `0`; pinned columns return their position in
-* `state.columnPinning.start` or `state.columnPinning.end`.
-*
-* @example
-* ```ts
-* const index = column_getPinnedIndex(column)
-* ```
-*/
-function column_getPinnedIndex(column) {
-	const position = column_getIsPinned(column);
-	return position ? column.table.atoms.columnPinning?.get()?.[position].indexOf(column.id) ?? -1 : 0;
-}
-/**
-* Collects visible cells whose columns are not pinned start or end.
-*
-* The result preserves the row's visible-cell order for center columns.
-*
-* @example
-* ```ts
-* const centerCells = row_getCenterVisibleCells(row)
-* ```
-*/
-function row_getCenterVisibleCells(row) {
-	const allCells = callMemoOrStaticFn(row, "getVisibleCells", row_getVisibleCells);
-	const { start, end } = row.table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
-	if (!start.length && !end.length) return allCells;
-	const startAndEnd = [...start, ...end];
-	return allCells.filter((d) => !startAndEnd.includes(d.column.id));
-}
-/**
-* Collects visible cells for columns pinned to the start region.
-*
-* Cells are returned in `state.columnPinning.start` order and are marked with
-* `cell.position = 'start'`.
-*
-* @example
-* ```ts
-* const startCells = row_getStartVisibleCells(row)
-* ```
-*/
-function row_getStartVisibleCells(row) {
-	const { start } = row.table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
-	if (!start.length) return [];
-	const allVisibleCells = callMemoOrStaticFn(row, "getVisibleCellsByColumnId", row_getVisibleCellsByColumnId);
-	const cells = [];
-	for (let i = 0; i < start.length; i++) {
-		const cell = allVisibleCells[start[i]];
-		if (cell) {
-			cell.position = "start";
-			cells.push(cell);
-		}
-	}
-	return cells;
-}
-/**
-* Collects visible cells for columns pinned to the end region.
-*
-* Cells are returned in `state.columnPinning.end` order and are marked with
-* `cell.position = 'end'`.
-*
-* @example
-* ```ts
-* const endCells = row_getEndVisibleCells(row)
-* ```
-*/
-function row_getEndVisibleCells(row) {
-	const { end } = row.table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
-	if (!end.length) return [];
-	const allVisibleCells = callMemoOrStaticFn(row, "getVisibleCellsByColumnId", row_getVisibleCellsByColumnId);
-	const cells = [];
-	for (let i = 0; i < end.length; i++) {
-		const cell = allVisibleCells[end[i]];
-		if (cell) {
-			cell.position = "end";
-			cells.push(cell);
-		}
-	}
-	return cells;
-}
-/**
-* Routes a column pinning updater through the table's pinning change handler.
-*
-* The updater may be a next `{ start, end }` state or a function of the
-* previous state, matching the instance `table.setColumnPinning` behavior.
-*
-* @example
-* ```ts
-* table_setColumnPinning(table, (old) => ({ ...old, start: ['select'] }))
-* ```
-*/
-function table_setColumnPinning(table, updater) {
-	table.options.onColumnPinningChange?.(updater);
-}
-/**
-* Resets `columnPinning` to the configured initial state or feature default.
-*
-* With no argument, the reset clones `table.initialState.columnPinning` when it
-* exists. Passing `true` ignores initial state and resets to empty start/end
-* arrays.
-*
-* @example
-* ```ts
-* table_resetColumnPinning(table)
-* table_resetColumnPinning(table, true)
-* ```
-*/
-function table_resetColumnPinning(table, defaultState) {
-	table_setColumnPinning(table, defaultState ? getDefaultColumnPinningState() : cloneState(table.initialState.columnPinning ?? getDefaultColumnPinningState()));
-}
-/**
-* Checks whether any columns are pinned.
-*
-* Omit `position` to check both sides, or pass `'start'`/`'end'` to inspect a
-* single pinning region.
-*
-* @example
-* ```ts
-* const hasPinnedColumns = table_getIsSomeColumnsPinned(table)
-* ```
-*/
-function table_getIsSomeColumnsPinned(table, position) {
-	const pinningState = table.atoms.columnPinning?.get();
-	if (!position) return Boolean(pinningState?.start.length || pinningState?.end.length);
-	return Boolean(pinningState?.[position].length);
-}
-/**
-* Builds header groups for visible columns pinned to the start region.
-*
-* The leaf columns are read in `state.columnPinning.start` order and then passed
-* through the same header-group builder as the unpinned table.
-*
-* @example
-* ```ts
-* const headerGroups = table_getStartHeaderGroups(table)
-* ```
-*/
-function table_getStartHeaderGroups(table) {
-	const allColumns = table.getAllColumns();
-	const leafColumnsById = table.getAllLeafColumnsById();
-	const { start } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
-	const orderedLeafColumns = [];
-	for (let i = 0; i < start.length; i++) {
-		const column = leafColumnsById[start[i]];
-		if (column && callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible)) orderedLeafColumns.push(column);
-	}
-	return buildHeaderGroups(allColumns, orderedLeafColumns, table, "start");
-}
-/**
-* Builds header groups for visible columns pinned to the end region.
-*
-* The leaf columns are read in `state.columnPinning.end` order and then
-* passed through the same header-group builder as the unpinned table.
-*
-* @example
-* ```ts
-* const headerGroups = table_getEndHeaderGroups(table)
-* ```
-*/
-function table_getEndHeaderGroups(table) {
-	const allColumns = table.getAllColumns();
-	const leafColumnsById = table.getAllLeafColumnsById();
-	const { end } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
-	const orderedLeafColumns = [];
-	for (let i = 0; i < end.length; i++) {
-		const column = leafColumnsById[end[i]];
-		if (column && callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible)) orderedLeafColumns.push(column);
-	}
-	return buildHeaderGroups(allColumns, orderedLeafColumns, table, "end");
-}
-/**
-* Builds header groups for visible columns that are not pinned.
-*
-* Start- and end-pinned column ids are removed from the visible leaf column
-* list before header groups are built for the center region.
-*
-* @example
-* ```ts
-* const headerGroups = table_getCenterHeaderGroups(table)
-* ```
-*/
-function table_getCenterHeaderGroups(table) {
-	const allColumns = table.getAllColumns();
-	let leafColumns = callMemoOrStaticFn(table, "getVisibleLeafColumns", table_getVisibleLeafColumns);
-	const { start, end } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
-	if (start.length || end.length) {
-		const startAndEnd = [...start, ...end];
-		leafColumns = leafColumns.filter((column) => !startAndEnd.includes(column.id));
-	}
-	return buildHeaderGroups(allColumns, leafColumns, table, "center");
-}
-/**
-* Builds footer groups for the start pinned region.
-*
-* Footer groups reuse the start header groups in reverse order.
-*
-* @example
-* ```ts
-* const footerGroups = table_getStartFooterGroups(table)
-* ```
-*/
-function table_getStartFooterGroups(table) {
-	return [...callMemoOrStaticFn(table, "getStartHeaderGroups", table_getStartHeaderGroups)].reverse();
-}
-/**
-* Builds footer groups for the end pinned region.
-*
-* Footer groups reuse the end header groups in reverse order.
-*
-* @example
-* ```ts
-* const footerGroups = table_getEndFooterGroups(table)
-* ```
-*/
-function table_getEndFooterGroups(table) {
-	return [...callMemoOrStaticFn(table, "getEndHeaderGroups", table_getEndHeaderGroups)].reverse();
-}
-/**
-* Builds footer groups for the center, unpinned region.
-*
-* Footer groups reuse the center header groups in reverse order.
-*
-* @example
-* ```ts
-* const footerGroups = table_getCenterFooterGroups(table)
-* ```
-*/
-function table_getCenterFooterGroups(table) {
-	return [...callMemoOrStaticFn(table, "getCenterHeaderGroups", table_getCenterHeaderGroups)].reverse();
-}
-/**
-* Flattens every header from the start pinned header groups.
-*
-* Parent headers and placeholder headers are included.
-*
-* @example
-* ```ts
-* const headers = table_getStartFlatHeaders(table)
-* ```
-*/
-function table_getStartFlatHeaders(table) {
-	const leftHeaderGroups = callMemoOrStaticFn(table, "getStartHeaderGroups", table_getStartHeaderGroups);
-	const result = [];
-	for (let i = 0; i < leftHeaderGroups.length; i++) {
-		const headers = leftHeaderGroups[i].headers;
-		for (let j = 0; j < headers.length; j++) result.push(headers[j]);
-	}
-	return result;
-}
-/**
-* Flattens every header from the end pinned header groups.
-*
-* Parent headers and placeholder headers are included.
-*
-* @example
-* ```ts
-* const headers = table_getEndFlatHeaders(table)
-* ```
-*/
-function table_getEndFlatHeaders(table) {
-	const rightHeaderGroups = callMemoOrStaticFn(table, "getEndHeaderGroups", table_getEndHeaderGroups);
-	const result = [];
-	for (let i = 0; i < rightHeaderGroups.length; i++) {
-		const headers = rightHeaderGroups[i].headers;
-		for (let j = 0; j < headers.length; j++) result.push(headers[j]);
-	}
-	return result;
-}
-/**
-* Flattens every header from the center header groups.
-*
-* Parent headers and placeholder headers are included.
-*
-* @example
-* ```ts
-* const headers = table_getCenterFlatHeaders(table)
-* ```
-*/
-function table_getCenterFlatHeaders(table) {
-	const centerHeaderGroups = callMemoOrStaticFn(table, "getCenterHeaderGroups", table_getCenterHeaderGroups);
-	const result = [];
-	for (let i = 0; i < centerHeaderGroups.length; i++) {
-		const headers = centerHeaderGroups[i].headers;
-		for (let j = 0; j < headers.length; j++) result.push(headers[j]);
-	}
-	return result;
-}
-/**
-* Collects leaf headers for the start pinned region.
-*
-* Parent headers are filtered out from the start flat header list.
-*
-* @example
-* ```ts
-* const headers = table_getStartLeafHeaders(table)
-* ```
-*/
-function table_getStartLeafHeaders(table) {
-	return callMemoOrStaticFn(table, "getStartFlatHeaders", table_getStartFlatHeaders).filter((header) => !header.subHeaders.length);
-}
-/**
-* Collects leaf headers for the end pinned region.
-*
-* Parent headers are filtered out from the end flat header list.
-*
-* @example
-* ```ts
-* const headers = table_getEndLeafHeaders(table)
-* ```
-*/
-function table_getEndLeafHeaders(table) {
-	return callMemoOrStaticFn(table, "getEndFlatHeaders", table_getEndFlatHeaders).filter((header) => !header.subHeaders.length);
-}
-/**
-* Collects leaf headers for the center, unpinned region.
-*
-* Parent headers are filtered out from the center flat header list.
-*
-* @example
-* ```ts
-* const headers = table_getCenterLeafHeaders(table)
-* ```
-*/
-function table_getCenterLeafHeaders(table) {
-	return callMemoOrStaticFn(table, "getCenterFlatHeaders", table_getCenterFlatHeaders).filter((header) => !header.subHeaders.length);
-}
-/**
-* Resolves leaf columns pinned to the start region.
-*
-* The result follows `state.columnPinning.start` order and skips stale ids that
-* no longer correspond to a leaf column.
-*
-* @example
-* ```ts
-* const columns = table_getStartLeafColumns(table)
-* ```
-*/
-function table_getStartLeafColumns(table) {
-	const { start } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
-	const leafColumnsById = table.getAllLeafColumnsById();
-	const result = [];
-	for (let i = 0; i < start.length; i++) {
-		const column = leafColumnsById[start[i]];
-		if (column) result.push(column);
-	}
-	return result;
-}
-/**
-* Resolves leaf columns pinned to the end region.
-*
-* The result follows `state.columnPinning.end` order and skips stale ids that
-* no longer correspond to a leaf column.
-*
-* @example
-* ```ts
-* const columns = table_getEndLeafColumns(table)
-* ```
-*/
-function table_getEndLeafColumns(table) {
-	const { end } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
-	const leafColumnsById = table.getAllLeafColumnsById();
-	const result = [];
-	for (let i = 0; i < end.length; i++) {
-		const column = leafColumnsById[end[i]];
-		if (column) result.push(column);
-	}
-	return result;
-}
-/**
-* Resolves leaf columns that are not pinned to either logical side.
-*
-* Start- and end-pinned ids are removed from `table.getAllLeafColumns()`.
-*
-* @example
-* ```ts
-* const columns = table_getCenterLeafColumns(table)
-* ```
-*/
-function table_getCenterLeafColumns(table) {
-	const { start, end } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
-	if (!start.length && !end.length) return table.getAllLeafColumns();
-	const startAndEnd = [...start, ...end];
-	return table.getAllLeafColumns().filter((d) => !startAndEnd.includes(d.id));
-}
-/**
-* Resolves leaf columns for a requested pinning region.
-*
-* Pass `'start'`, `'center'`, or `'end'` for a partition, or pass `false` to
-* read all leaf columns without partitioning.
-*
-* @example
-* ```ts
-* const columns = table_getPinnedLeafColumns(table, 'center')
-* ```
-*/
-function table_getPinnedLeafColumns(table, position) {
-	return !position ? table.getAllLeafColumns() : position === "start" ? callMemoOrStaticFn(table, "getStartLeafColumns", table_getStartLeafColumns) : position === "end" ? callMemoOrStaticFn(table, "getEndLeafColumns", table_getEndLeafColumns) : callMemoOrStaticFn(table, "getCenterLeafColumns", table_getCenterLeafColumns);
-}
-/**
-* Resolves visible leaf columns pinned to the start region.
-*
-* Hidden pinned columns are filtered out after the start pin order is applied.
-*
-* @example
-* ```ts
-* const columns = table_getStartVisibleLeafColumns(table)
-* ```
-*/
-function table_getStartVisibleLeafColumns(table) {
-	return callMemoOrStaticFn(table, "getStartLeafColumns", table_getStartLeafColumns).filter((column) => callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible));
-}
-/**
-* Resolves visible leaf columns pinned to the end region.
-*
-* Hidden pinned columns are filtered out after the end pin order is applied.
-*
-* @example
-* ```ts
-* const columns = table_getEndVisibleLeafColumns(table)
-* ```
-*/
-function table_getEndVisibleLeafColumns(table) {
-	return callMemoOrStaticFn(table, "getEndLeafColumns", table_getEndLeafColumns).filter((column) => callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible));
-}
-/**
-* Resolves visible leaf columns that are not pinned.
-*
-* This is the center partition used by layouts that render pinned columns
-* separately from the scrollable middle region.
-*
-* @example
-* ```ts
-* const columns = table_getCenterVisibleLeafColumns(table)
-* ```
-*/
-function table_getCenterVisibleLeafColumns(table) {
-	return callMemoOrStaticFn(table, "getCenterLeafColumns", table_getCenterLeafColumns).filter((column) => callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible));
-}
-/**
-* Resolves visible leaf columns for a requested pinning region.
-*
-* Omit `position` to get all visible leaf columns, or pass `'start'`, `'center'`,
-* or `'end'` to get one partition.
-*
-* @example
-* ```ts
-* const columns = table_getPinnedVisibleLeafColumns(table, 'start')
-* ```
-*/
-function table_getPinnedVisibleLeafColumns(table, position) {
-	return !position ? callMemoOrStaticFn(table, "getVisibleLeafColumns", table_getVisibleLeafColumns) : position === "start" ? callMemoOrStaticFn(table, "getStartVisibleLeafColumns", table_getStartVisibleLeafColumns) : position === "end" ? callMemoOrStaticFn(table, "getEndVisibleLeafColumns", table_getEndVisibleLeafColumns) : callMemoOrStaticFn(table, "getCenterVisibleLeafColumns", table_getCenterVisibleLeafColumns);
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-visibility/columnVisibilityFeature.utils.js
-/**
-* Creates the default column visibility state.
-*
-* The feature default is an empty object, where missing column ids are treated
-* as visible. Reset APIs use this value when `defaultState` is `true`.
-*
-* @example
-* ```ts
-* const visibility = getDefaultColumnVisibilityState()
-* ```
-*/
-function getDefaultColumnVisibilityState() {
-	return makeObjectMap();
-}
-/**
-* Updates this column's visibility when hiding is allowed.
-*
-* Passing `visible` stores that value. Omitting it flips the column's current
-* visibility state. Group columns update their hideable leaf columns because
-* visibility state is keyed by leaf column ids. Columns that cannot hide stay
-* unchanged.
-*
-* @example
-* ```ts
-* column_toggleVisibility(column)
-* ```
-*/
-function column_toggleVisibility(column, visible) {
-	if (column_getCanHide(column)) table_setColumnVisibility(column.table, (old) => {
-		const next = Object.assign(makeObjectMap(), old);
-		const nextVisible = visible ?? !callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible);
-		const leafColumns = column.getLeafColumns();
-		for (let i = 0; i < leafColumns.length; i++) {
-			const leafColumn = leafColumns[i];
-			if (column_getCanHide(leafColumn)) next[leafColumn.id] = nextVisible;
-		}
-		return next;
-	});
-}
-/**
-* Checks whether this column is visible.
-*
-* Leaf columns read `state.columnVisibility[column.id]`, where missing entries
-* default to visible. Parent columns are visible when at least one child column
-* is visible.
-*
-* @example
-* ```ts
-* const visible = column_getIsVisible(column)
-* ```
-*/
-function column_getIsVisible(column) {
-	const columnVisibility = column.table.atoms.columnVisibility?.get();
-	if (!columnVisibility) return true;
-	const childColumns = column.columns;
-	if (childColumns.length) return childColumns.some((childColumn) => callMemoOrStaticFn(childColumn, "getIsVisible", column_getIsVisible));
-	return (hasOwn(columnVisibility, column.id) ? columnVisibility[column.id] : void 0) ?? true;
-}
-/**
-* Checks whether this column is allowed to be hidden.
-*
-* Both `columnDef.enableHiding` and table `enableHiding` default to `true`.
-*
-* @example
-* ```ts
-* const canHide = column_getCanHide(column)
-* ```
-*/
-function column_getCanHide(column) {
-	return (column.columnDef.enableHiding ?? true) && (column.table.options.enableHiding ?? true);
-}
-/**
-* Creates a checkbox-style handler that writes this column's visibility.
-*
-* The handler reads `event.target.checked`, so it is intended for visibility
-* controls whose checked state means "visible".
-*
-* @example
-* ```ts
-* const onChange = column_getToggleVisibilityHandler(column)
-* ```
-*/
-function column_getToggleVisibilityHandler(column) {
-	return (e) => {
-		column_toggleVisibility(column, e.target.checked);
-	};
-}
-/**
-* Collects the cells from this row whose columns are visible.
-*
-* When column pinning is active, the result is ordered as start-pinned cells,
-* center cells, then end-pinned cells.
-*
-* @example
-* ```ts
-* const visibleCells = row_getVisibleCells(row)
-* ```
-*/
-function row_getVisibleCells(row) {
-	const allCells = row.getAllCells();
-	const visibleCells = [];
-	for (let i = 0; i < allCells.length; i++) {
-		const cell = allCells[i];
-		if (callMemoOrStaticFn(cell.column, "getIsVisible", column_getIsVisible)) visibleCells.push(cell);
-	}
-	const { start, end } = row.table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
-	if (!start.length && !end.length) return visibleCells;
-	const visibleCellsByColumnId = callMemoOrStaticFn(row, "getVisibleCellsByColumnId", row_getVisibleCellsByColumnId);
-	const startCells = [];
-	for (let i = 0; i < start.length; i++) {
-		const cell = visibleCellsByColumnId[start[i]];
-		if (cell) startCells.push(cell);
-	}
-	const endCells = [];
-	for (let i = 0; i < end.length; i++) {
-		const cell = visibleCellsByColumnId[end[i]];
-		if (cell) endCells.push(cell);
-	}
-	const centerCells = [];
-	for (let i = 0; i < visibleCells.length; i++) {
-		const cell = visibleCells[i];
-		const id = cell.column.id;
-		if (!start.includes(id) && !end.includes(id)) centerCells.push(cell);
-	}
-	return [
-		...startCells,
-		...centerCells,
-		...endCells
-	];
-}
-/**
-* Builds a lookup map of this row's visible cells keyed by column id.
-*
-* Hidden columns are omitted from the map.
-*
-* @example
-* ```ts
-* const visibleCellsById = row_getVisibleCellsByColumnId(row)
-* ```
-*/
-function row_getVisibleCellsByColumnId(row) {
-	const result = makeObjectMap();
-	const allCells = row.getAllCells();
-	for (let i = 0; i < allCells.length; i++) {
-		const cell = allCells[i];
-		if (callMemoOrStaticFn(cell.column, "getIsVisible", column_getIsVisible)) result[cell.column.id] = cell;
-	}
-	return result;
-}
-/**
-* Filters the flat column list down to visible columns.
-*
-* Parent/group columns are included when `column_getIsVisible` considers them
-* visible.
-*
-* @example
-* ```ts
-* const columns = table_getVisibleFlatColumns(table)
-* ```
-*/
-function table_getVisibleFlatColumns(table) {
-	return table.getAllFlatColumns().filter((column) => callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible));
-}
-/**
-* Filters leaf columns down to those currently visible.
-*
-* This is the column list most row rendering code uses before pinning-specific
-* partitioning.
-*
-* @example
-* ```ts
-* const columns = table_getVisibleLeafColumns(table)
-* ```
-*/
-function table_getVisibleLeafColumns(table) {
-	return table.getAllLeafColumns().filter((column) => callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible));
-}
-/**
-* Routes a column visibility updater through the table's visibility change handler.
-*
-* The updater may be a next visibility map or a function of the previous map,
-* matching the instance `table.setColumnVisibility` behavior.
-*
-* @example
-* ```ts
-* table_setColumnVisibility(table, (old) => ({ ...old, age: false }))
-* ```
-*/
-function table_setColumnVisibility(table, updater) {
-	table.options.onColumnVisibilityChange?.(updater);
-}
-/**
-* Resets `columnVisibility` to the configured initial state or feature default.
-*
-* With no argument, the reset clones `table.initialState.columnVisibility` when
-* it exists. Passing `true` ignores initial state and resets to `{}`.
-*
-* @example
-* ```ts
-* table_resetColumnVisibility(table)
-* table_resetColumnVisibility(table, true)
-* ```
-*/
-function table_resetColumnVisibility(table, defaultState) {
-	table_setColumnVisibility(table, defaultState ? makeObjectMap() : Object.assign(makeObjectMap(), cloneState(table.initialState.columnVisibility ?? {})));
-}
-/**
-* Shows or hides every hideable leaf column.
-*
-* Columns that cannot hide stay visible when toggling all columns off.
-*
-* @example
-* ```ts
-* table_toggleAllColumnsVisible(table)
-* ```
-*/
-function table_toggleAllColumnsVisible(table, value) {
-	value = value ?? !table_getIsAllColumnsVisible(table);
-	const visibility = makeObjectMap();
-	const leafColumns = table.getAllLeafColumns();
-	for (let i = 0; i < leafColumns.length; i++) {
-		const column = leafColumns[i];
-		visibility[column.id] = !value ? !column_getCanHide(column) : value;
-	}
-	table_setColumnVisibility(table, visibility);
-}
-/**
-* Checks whether every leaf column is currently visible.
-*
-* Non-hideable columns are naturally visible because missing visibility entries
-* default to `true`.
-*
-* @example
-* ```ts
-* const allVisible = table_getIsAllColumnsVisible(table)
-* ```
-*/
-function table_getIsAllColumnsVisible(table) {
-	return !table.getAllLeafColumns().some((column) => !callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible));
-}
-/**
-* Checks whether at least one leaf column is currently visible.
-*
-* This is useful for tri-state "show all columns" controls.
-*
-* @example
-* ```ts
-* const someVisible = table_getIsSomeColumnsVisible(table)
-* ```
-*/
-function table_getIsSomeColumnsVisible(table) {
-	return table.getAllLeafColumns().some((column) => callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible));
-}
-/**
-* Creates a checkbox-style handler that shows or hides all columns.
-*
-* The handler reads `event.target.checked`, so it is intended for controls whose
-* checked state means "all columns visible".
-*
-* @example
-* ```ts
-* const onChange = table_getToggleAllColumnsVisibilityHandler(table)
-* ```
-*/
-function table_getToggleAllColumnsVisibilityHandler(table) {
-	return (e) => {
-		table_toggleAllColumnsVisible(table, e.target.checked);
-	};
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/headers/buildHeaderGroups.js
-function getMaxHeaderDepth(columns, depth = 1) {
-	let maxDepth = depth;
-	for (let i = 0; i < columns.length; i++) {
-		const column = columns[i];
-		if (callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible) && column.columns.length) maxDepth = Math.max(maxDepth, getMaxHeaderDepth(column.columns, depth + 1));
-	}
-	return maxDepth;
-}
-function formatHeaderGroupId(headerFamily, depth) {
-	return headerFamily ? `${headerFamily}_${depth}` : String(depth);
-}
-function formatHeaderId(headerFamily, depth, columnId, childHeaderId) {
-	let id = headerFamily ?? "";
-	if (depth) id = id ? `${id}_${depth}` : String(depth);
-	if (columnId) id = id ? `${id}_${columnId}` : columnId;
-	if (childHeaderId) id = id ? `${id}_${childHeaderId}` : childHeaderId;
-	return id;
-}
-function countPendingHeadersForColumn(headers, column) {
-	let count = 0;
-	for (let i = 0; i < headers.length; i++) if (headers[i].column === column) count++;
-	return count;
-}
-function constructHeaderGroup(headersToGroup, depth, table, headerFamily, headerGroups, headerGroupInitFns) {
-	const headerGroup = {
-		depth,
-		id: formatHeaderGroupId(headerFamily, depth),
-		headers: []
-	};
-	const pendingParentHeaders = [];
-	for (let i = 0; i < headersToGroup.length; i++) {
-		if (!(i in headersToGroup)) continue;
-		const headerToGroup = headersToGroup[i];
-		const latestPendingParentHeader = pendingParentHeaders[pendingParentHeaders.length - 1];
-		const isLeafHeader = headerToGroup.column.depth === headerGroup.depth;
-		let column;
-		let isPlaceholder = false;
-		if (isLeafHeader && headerToGroup.column.parent) column = headerToGroup.column.parent;
-		else {
-			column = headerToGroup.column;
-			isPlaceholder = true;
-		}
-		if (latestPendingParentHeader && latestPendingParentHeader.column === column) latestPendingParentHeader.subHeaders.push(headerToGroup);
-		else {
-			const header = constructHeader(table, column, {
-				id: formatHeaderId(headerFamily, depth, column.id, headerToGroup.id),
-				isPlaceholder,
-				placeholderId: isPlaceholder ? String(countPendingHeadersForColumn(pendingParentHeaders, column)) : void 0,
-				depth,
-				index: pendingParentHeaders.length
-			});
-			header.subHeaders.push(headerToGroup);
-			pendingParentHeaders.push(header);
-		}
-		headerGroup.headers.push(headerToGroup);
-		headerToGroup.headerGroup = headerGroup;
-	}
-	for (let i = 0; i < headerGroupInitFns.length; i++) headerGroupInitFns[i](headerGroup);
-	headerGroups.push(headerGroup);
-	if (depth > 0) constructHeaderGroup(pendingParentHeaders, depth - 1, table, headerFamily, headerGroups, headerGroupInitFns);
-}
-function updateHeaderSpans(headers) {
-	for (let i = 0; i < headers.length; i++) {
-		const header = headers[i];
-		if (!callMemoOrStaticFn(header.column, "getIsVisible", column_getIsVisible)) continue;
-		let colSpan = 0;
-		if (header.subHeaders.length) {
-			updateHeaderSpans(header.subHeaders);
-			for (let j = 0; j < header.subHeaders.length; j++) {
-				const child = header.subHeaders[j];
-				if (!callMemoOrStaticFn(child.column, "getIsVisible", column_getIsVisible)) continue;
-				colSpan += child.colSpan;
-			}
-		} else colSpan = 1;
-		header.colSpan = colSpan;
-		if (header.isPlaceholder && header.subHeaders.length === 1 && header.subHeaders[0].column === header.column) {
-			let rowSpan = 1;
-			let chainChild = header.subHeaders[0];
-			while (chainChild) {
-				chainChild.rowSpan = 0;
-				rowSpan++;
-				chainChild = chainChild.subHeaders.length === 1 && chainChild.subHeaders[0].column === header.column ? chainChild.subHeaders[0] : void 0;
-			}
-			header.rowSpan = rowSpan;
-		} else header.rowSpan = 1;
-	}
-}
-/**
-* Builds the nested header group structure for a table.
-*
-* The result accounts for visible leaf columns, pinned column groups, and placeholder headers needed to render multi-level headers.
-*/
-function buildHeaderGroups(allColumns, columnsToGroup, table, headerFamily) {
-	const maxDepth = getMaxHeaderDepth(allColumns);
-	const headerGroups = [];
-	const headerGroupInitFns = table._headerGroupInstanceInitFns;
-	const bottomHeaders = new Array(columnsToGroup.length);
-	for (let i = 0; i < columnsToGroup.length; i++) {
-		if (!(i in columnsToGroup)) continue;
-		bottomHeaders[i] = constructHeader(table, columnsToGroup[i], {
-			depth: maxDepth,
-			index: i
-		});
-	}
-	constructHeaderGroup(bottomHeaders, maxDepth - 1, table, headerFamily, headerGroups, headerGroupInitFns);
-	headerGroups.reverse();
-	updateHeaderSpans(headerGroups[0]?.headers ?? []);
-	return headerGroups;
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/columns/constructColumn.js
+// ../../node_modules/@tanstack/table-core/dist/core/columns/constructColumn.js
 /**
 * Creates or retrieves the column prototype for a table.
 * The prototype is cached on the table and shared by all column instances.
@@ -2881,17 +1983,19 @@ function constructColumn(table, columnDef, depth, parent) {
 	const id = resolvedColumnDef.id ?? accessorKeyString?.replaceAll(".", "_") ?? (typeof resolvedColumnDef.header === "string" ? resolvedColumnDef.header : void 0);
 	let accessorFn;
 	if (resolvedColumnDef.accessorFn) accessorFn = resolvedColumnDef.accessorFn;
-	else if (accessorKey !== void 0) if (typeof accessorKey === "string" && accessorKey.includes(".")) {
-		const keys = accessorKey.split(".");
-		accessorFn = (originalRow) => {
-			let result = originalRow;
-			for (let i = 0; i < keys.length; i++) {
-				const key = keys[i];
-				result = result?.[key];
-			}
-			return result;
-		};
-	} else accessorFn = (originalRow) => originalRow[resolvedColumnDef.accessorKey];
+	else if (accessorKey !== void 0) {
+		if (typeof accessorKey === "string" && accessorKey.includes(".")) {
+			const keys = accessorKey.split(".");
+			accessorFn = (originalRow) => {
+				let result = originalRow;
+				for (let i = 0; i < keys.length; i++) {
+					const key = keys[i];
+					result = result?.[key];
+				}
+				return result;
+			};
+		} else accessorFn = (originalRow) => originalRow[resolvedColumnDef.accessorKey];
+	}
 	if (!id) throw new Error();
 	const columnPrototype = getColumnPrototype(table);
 	const column = Object.create(columnPrototype);
@@ -2905,186 +2009,112 @@ function constructColumn(table, columnDef, depth, parent) {
 	for (let i = 0; i < initFns.length; i++) initFns[i](column);
 	return column;
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-ordering/columnOrderingFeature.utils.js
+// ../../node_modules/@tanstack/table-core/dist/core/featureStubs.js
 /**
-* Creates the default column order state.
+* Stubs for optional features, used by the core and by any feature or row
+* model that reads another feature.
 *
-* The feature default is an empty array, meaning leaf columns keep their natural
-* definition order. Reset APIs use this value when `defaultState` is `true`.
+* Importing a feature's code from shared code would bundle that feature into
+* every table that uses the shared code, registered or not. A stub instead
+* calls a member the feature declares on its table, column, or row type and
+* assigns when it is registered, and otherwise behaves as if the feature were
+* absent. Members that only other features use are `_`-prefixed and marked
+* `@internal`, such as `table._expandRows`.
 *
-* @example
-* ```ts
-* const order = getDefaultColumnOrderState()
-* ```
+* How code in this package reaches other code:
+*
+* - Its own feature: call the static function, or `callMemoOrStaticFn` to use
+*   the feature's memoized API.
+* - The core: import it. Every table bundles the core.
+* - Another feature's state: read `table.atoms.<slice>?.get()`.
+* - Another feature's APIs: call a stub from this file, adding one if needed.
+* - A feature it requires, such as column resizing requiring column sizing:
+*   import it.
+*
+* Features assign functions, internal ones included, with `assignTableAPIs` or
+* `assignPrototypeAPIs`, and keep the `init*InstanceData` hooks for mutable
+* per-instance state. The `import/no-restricted-paths` lint rule rejects value
+* imports between feature folders outside an explicit list.
+*
+* Internal: not exported from any package entry point.
 */
-function getDefaultColumnOrderState() {
-	return [];
+/** Whether a column is visible; every column is without the feature. */
+function getIsColumnVisible(column) {
+	return column.getIsVisible?.() ?? true;
+}
+/** Visible leaf columns; all leaf columns without the feature. */
+function getVisibleLeafColumns(table) {
+	return table.getVisibleLeafColumns?.() ?? table.getAllLeafColumns();
 }
 /**
-* Builds column-id to index records for each visible pinning region.
-*
-* All four regions are built in one pass so a single memo entry serves every
-* `column_getIndex` lookup without per-column scans.
-*
-* @example
-* ```ts
-* const indexes = table_getColumnIndexes(table)
-* ```
+* A row's visible cells; all cells, in leaf column order, without the
+* feature.
 */
-function table_getColumnIndexes(table) {
-	const buildIndexes = (columns) => {
-		const indexes = makeObjectMap();
-		for (let i = 0; i < columns.length; i++) indexes[columns[i].id] = i;
-		return indexes;
-	};
-	return {
-		all: buildIndexes(table_getPinnedVisibleLeafColumns(table)),
-		center: buildIndexes(table_getPinnedVisibleLeafColumns(table, "center")),
-		start: buildIndexes(table_getPinnedVisibleLeafColumns(table, "start")),
-		end: buildIndexes(table_getPinnedVisibleLeafColumns(table, "end"))
-	};
+function getVisibleCells(row) {
+	return row.getVisibleCells?.() ?? row.getAllCells();
+}
+/** A row's visible cells by column id; all cells without the feature. */
+function getVisibleCellsByColumnId(row) {
+	return row.getVisibleCellsByColumnId?.() ?? row.getAllCellsByColumnId();
 }
 /**
-* Finds this column's index within a visible pinning region.
-*
-* Pass `'start'`, `'center'`, or `'end'` to search that region; omit the
-* position to search the full visible leaf column list.
-*
-* @example
-* ```ts
-* const index = column_getIndex(column, 'center')
-* ```
+* Orders leaf columns for display. The column ordering feature applies
+* `columnOrder` and moves grouped columns. Without it, the grouping feature
+* still moves grouped columns, and without either the order is unchanged.
 */
-function column_getIndex(column, position) {
-	return callMemoOrStaticFn(column.table, "getColumnIndexes", table_getColumnIndexes)[position === "start" ? "start" : position === "end" ? "end" : position === "center" ? "center" : "all"][column.id] ?? -1;
+function orderLeafColumns(table, columns) {
+	const orderedTable = table;
+	const leafColumns = columns;
+	return orderedTable.getOrderColumnsFn?.()(leafColumns) ?? orderedTable._orderGroupedColumns?.(leafColumns) ?? columns;
 }
 /**
-* Checks whether this column is the first visible column in a pinning region.
-*
-* The same `position` semantics as `column_getIndex` apply.
-*
-* @example
-* ```ts
-* const isFirst = column_getIsFirstColumn(column, 'start')
-* ```
+* Orders items that each belong to a leaf column, such as visible leaf columns
+* or a row's visible cells, with start-pinned items first and end-pinned items
+* last. Without the feature, nothing is pinned and the order is unchanged.
 */
-function column_getIsFirstColumn(column, position) {
-	return table_getPinnedVisibleLeafColumns(column.table, position)[0]?.id === column.id;
+function orderByColumnPinning$1(table, items, getColumnId, getItemsByColumnId) {
+	return table._orderByColumnPinning?.(items, getColumnId, getItemsByColumnId) ?? items;
 }
 /**
-* Checks whether this column is the last visible column in a pinning region.
-*
-* The same `position` semantics as `column_getIndex` apply.
-*
-* @example
-* ```ts
-* const isLast = column_getIsLastColumn(column, 'end')
-* ```
+* Visible leaf columns in a pinning region. Without the feature, nothing is
+* pinned: the start and end regions are empty, and the center region and the
+* full list (`position` omitted) hold every visible leaf column.
 */
-function column_getIsLastColumn(column, position) {
-	const columns = table_getPinnedVisibleLeafColumns(column.table, position);
-	return columns[columns.length - 1]?.id === column.id;
+function getPinnedVisibleLeafColumns(table, position) {
+	return table.getPinnedVisibleLeafColumns?.(position) ?? (position && position !== "center" ? [] : getVisibleLeafColumns(table));
+}
+/** The resolved global filter function, if the feature is registered. */
+function getGlobalFilterFn(table) {
+	return table.getGlobalFilterFn?.();
+}
+/** Whether a column takes part in global filtering; none do without the feature. */
+function getCanGlobalFilter(column) {
+	return column.getCanGlobalFilter?.() ?? false;
 }
 /**
-* Routes a column order updater through the table's column-order change handler.
-*
-* The updater may be a next ordered id array or a function of the previous
-* array, matching the instance `table.setColumnOrder` behavior.
-*
-* @example
-* ```ts
-* table_setColumnOrder(table, ['firstName', 'lastName', 'age'])
-* ```
+* Lists expanded sub-rows inline below their parents. Without the feature no
+* row is expanded, so the row model is returned as is.
 */
-function table_setColumnOrder(table, updater) {
-	table.options.onColumnOrderChange?.(updater);
+function expandRowModel(table, rowModel) {
+	return table._expandRows?.(rowModel) ?? rowModel;
 }
-/**
-* Resets `columnOrder` to the configured initial state or feature default.
-*
-* With no argument, the reset clones `table.initialState.columnOrder` when it
-* exists. Passing `true` ignores initial state and resets to `[]`.
-*
-* @example
-* ```ts
-* table_resetColumnOrder(table)
-* table_resetColumnOrder(table, true)
-* ```
-*/
-function table_resetColumnOrder(table, defaultState) {
-	table_setColumnOrder(table, defaultState ? [] : cloneState(table.initialState.columnOrder ?? []));
+/** Resets expanded state if row expanding is registered. */
+function autoResetExpanded(table) {
+	table.autoResetExpanded?.();
 }
-/**
-* Creates the ordering function used to arrange leaf columns.
-*
-* The returned function applies `state.columnOrder`, preserves unspecified
-* columns in their original order, then delegates to grouping rules.
-*
-* @example
-* ```ts
-* const orderColumnsForTable = table_getOrderColumnsFn(table)
-* ```
-*/
-function table_getOrderColumnsFn(table) {
-	const columnOrder = table.atoms.columnOrder?.get();
-	return (columns) => {
-		let orderedColumns = [];
-		if (!columnOrder?.length) orderedColumns = columns;
-		else {
-			const remaining = /* @__PURE__ */ new Map();
-			for (let i = 0; i < columns.length; i++) {
-				const column = columns[i];
-				remaining.set(column.id, column);
-			}
-			for (let i = 0; i < columnOrder.length; i++) {
-				const id = columnOrder[i];
-				const column = remaining.get(id);
-				if (column) {
-					orderedColumns.push(column);
-					remaining.delete(id);
-				}
-			}
-			for (let i = 0; i < columns.length; i++) {
-				const column = columns[i];
-				if (remaining.has(column.id)) orderedColumns.push(column);
-			}
-		}
-		return orderColumns(table, orderedColumns);
-	};
+/** Resets the page index if row pagination is registered. */
+function autoResetPageIndex(table) {
+	table.autoResetPageIndex?.();
 }
-/**
-* Applies grouped-column placement rules to an already ordered leaf-column list.
-*
-* `groupedColumnMode: 'remove'` drops grouped columns from the list.
-* `groupedColumnMode: 'reorder'` moves grouped columns to the front in grouping
-* state order.
-*
-* @example
-* ```ts
-* const orderedColumns = orderColumns(table, leafColumns)
-* ```
-*/
-function orderColumns(table, leafColumns) {
-	const grouping = table.atoms.grouping?.get() ?? [];
-	const { groupedColumnMode } = table.options;
-	if (!grouping.length || !groupedColumnMode) return leafColumns;
-	const nonGroupingColumns = leafColumns.filter((col) => !grouping.includes(col.id));
-	if (groupedColumnMode === "remove") return nonGroupingColumns;
-	const leafColumnsById = /* @__PURE__ */ new Map();
-	for (let i = 0; i < leafColumns.length; i++) {
-		const col = leafColumns[i];
-		leafColumnsById.set(col.id, col);
-	}
-	const groupingColumns = [];
-	for (let i = 0; i < grouping.length; i++) {
-		const col = leafColumnsById.get(grouping[i]);
-		if (col) groupingColumns.push(col);
-	}
-	return [...groupingColumns, ...nonGroupingColumns];
+/** Resets sorting if row sorting is registered. */
+function autoResetSorting(table) {
+	table.autoResetSorting?.();
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/columns/coreColumnsFeature.utils.js
+/** Resets cell selection if cell selection is registered. */
+function autoResetCellSelection(table) {
+	table.autoResetCellSelection?.();
+}
+// ../../node_modules/@tanstack/table-core/dist/core/columns/coreColumnsFeature.utils.js
 /**
 * Flattens this column and every descendant column into a single array.
 *
@@ -3113,7 +2143,7 @@ function column_getFlatColumns(column) {
 function column_getLeafColumns(column) {
 	if (column.columns.length) {
 		const leafColumns = column.columns.flatMap((col) => col.getLeafColumns());
-		return callMemoOrStaticFn(column.table, "getOrderColumns", table_getOrderColumnsFn)(leafColumns);
+		return orderLeafColumns(column.table, leafColumns);
 	}
 	return [column];
 }
@@ -3216,8 +2246,7 @@ function table_getAllFlatColumnsById(table) {
 * ```
 */
 function table_getAllLeafColumns(table) {
-	const leafColumns = table.getAllColumns().flatMap((c) => c.getLeafColumns());
-	return callMemoOrStaticFn(table, "getOrderColumns", table_getOrderColumnsFn)(leafColumns);
+	return orderLeafColumns(table, table.getAllColumns().flatMap((c) => c.getLeafColumns()));
 }
 /**
 * Builds an id lookup for terminal leaf columns only.
@@ -3253,8 +2282,7 @@ function table_getAllLeafColumnsById(table) {
 function table_getColumn(table, columnId) {
 	return table.getAllFlatColumnsById()[columnId];
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/columns/coreColumnsFeature.js
+// ../../node_modules/@tanstack/table-core/dist/core/columns/coreColumnsFeature.js
 /**
 * Core feature that builds the column tree and exposes table/column APIs.
 */
@@ -3311,8 +2339,152 @@ const coreColumnsFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/headers/coreHeadersFeature.utils.js
+// ../../node_modules/@tanstack/table-core/dist/core/headers/constructHeader.js
+/**
+* Creates or retrieves the header prototype for a table.
+* The prototype is cached on the table and shared by all header instances.
+*/
+function getHeaderPrototype(table) {
+	if (!table._headerPrototype) {
+		table._headerPrototype = { table };
+		const features = Object.values(table._features);
+		for (let i = 0; i < features.length; i++) features[i].assignHeaderPrototype?.(table._headerPrototype, table);
+	}
+	return table._headerPrototype;
+}
+/**
+* Constructs a header instance from normalized table internals.
+*
+* This wires core properties, feature prototype APIs, and instance data used by table rendering and row-model operations.
+*/
+function constructHeader(table, column, options) {
+	const headerPrototype = getHeaderPrototype(table);
+	const header = Object.create(headerPrototype);
+	header.colSpan = 0;
+	header.column = column;
+	header.depth = options.depth;
+	header.headerGroup = null;
+	header.id = options.id ?? column.id;
+	header.index = options.index;
+	header.isPlaceholder = !!options.isPlaceholder;
+	header.placeholderId = options.placeholderId;
+	header.rowSpan = 0;
+	header.subHeaders = [];
+	const initFns = table._headerInstanceInitFns;
+	for (let i = 0; i < initFns.length; i++) initFns[i](header);
+	return header;
+}
+// ../../node_modules/@tanstack/table-core/dist/core/headers/buildHeaderGroups.js
+function getMaxHeaderDepth(columns, depth = 1) {
+	let maxDepth = depth;
+	for (let i = 0; i < columns.length; i++) {
+		const column = columns[i];
+		if (getIsColumnVisible(column) && column.columns.length) maxDepth = Math.max(maxDepth, getMaxHeaderDepth(column.columns, depth + 1));
+	}
+	return maxDepth;
+}
+function formatHeaderGroupId(headerFamily, depth) {
+	return headerFamily ? `${headerFamily}_${depth}` : String(depth);
+}
+function formatHeaderId(headerFamily, depth, columnId, childHeaderId) {
+	let id = headerFamily ?? "";
+	if (depth) id = id ? `${id}_${depth}` : String(depth);
+	if (columnId) id = id ? `${id}_${columnId}` : columnId;
+	if (childHeaderId) id = id ? `${id}_${childHeaderId}` : childHeaderId;
+	return id;
+}
+function countPendingHeadersForColumn(headers, column) {
+	let count = 0;
+	for (let i = 0; i < headers.length; i++) if (headers[i].column === column) count++;
+	return count;
+}
+function constructHeaderGroup(headersToGroup, depth, table, headerFamily, headerGroups, headerGroupInitFns) {
+	const headerGroup = {
+		depth,
+		id: formatHeaderGroupId(headerFamily, depth),
+		headers: []
+	};
+	const pendingParentHeaders = [];
+	for (let i = 0; i < headersToGroup.length; i++) {
+		if (!(i in headersToGroup)) continue;
+		const headerToGroup = headersToGroup[i];
+		const latestPendingParentHeader = pendingParentHeaders[pendingParentHeaders.length - 1];
+		const isLeafHeader = headerToGroup.column.depth === headerGroup.depth;
+		let column;
+		let isPlaceholder = false;
+		if (isLeafHeader && headerToGroup.column.parent) column = headerToGroup.column.parent;
+		else {
+			column = headerToGroup.column;
+			isPlaceholder = true;
+		}
+		if (latestPendingParentHeader && latestPendingParentHeader.column === column) latestPendingParentHeader.subHeaders.push(headerToGroup);
+		else {
+			const header = constructHeader(table, column, {
+				id: formatHeaderId(headerFamily, depth, column.id, headerToGroup.id),
+				isPlaceholder,
+				placeholderId: isPlaceholder ? String(countPendingHeadersForColumn(pendingParentHeaders, column)) : void 0,
+				depth,
+				index: pendingParentHeaders.length
+			});
+			header.subHeaders.push(headerToGroup);
+			pendingParentHeaders.push(header);
+		}
+		headerGroup.headers.push(headerToGroup);
+		headerToGroup.headerGroup = headerGroup;
+	}
+	for (let i = 0; i < headerGroupInitFns.length; i++) headerGroupInitFns[i](headerGroup);
+	headerGroups.push(headerGroup);
+	if (depth > 0) constructHeaderGroup(pendingParentHeaders, depth - 1, table, headerFamily, headerGroups, headerGroupInitFns);
+}
+function updateHeaderSpans(headers) {
+	for (let i = 0; i < headers.length; i++) {
+		const header = headers[i];
+		if (!getIsColumnVisible(header.column)) continue;
+		let colSpan = 0;
+		if (header.subHeaders.length) {
+			updateHeaderSpans(header.subHeaders);
+			for (let j = 0; j < header.subHeaders.length; j++) {
+				const child = header.subHeaders[j];
+				if (!getIsColumnVisible(child.column)) continue;
+				colSpan += child.colSpan;
+			}
+		} else colSpan = 1;
+		header.colSpan = colSpan;
+		if (header.isPlaceholder && header.subHeaders.length === 1 && header.subHeaders[0].column === header.column) {
+			let rowSpan = 1;
+			let chainChild = header.subHeaders[0];
+			while (chainChild) {
+				chainChild.rowSpan = 0;
+				rowSpan++;
+				chainChild = chainChild.subHeaders.length === 1 && chainChild.subHeaders[0].column === header.column ? chainChild.subHeaders[0] : void 0;
+			}
+			header.rowSpan = rowSpan;
+		} else header.rowSpan = 1;
+	}
+}
+/**
+* Builds the nested header group structure for a table.
+*
+* The result accounts for visible leaf columns, pinned column groups, and placeholder headers needed to render multi-level headers.
+*/
+function buildHeaderGroups(allColumns, columnsToGroup, table, headerFamily) {
+	const maxDepth = getMaxHeaderDepth(allColumns);
+	const headerGroups = [];
+	const headerGroupInitFns = table._headerGroupInstanceInitFns;
+	const bottomHeaders = new Array(columnsToGroup.length);
+	for (let i = 0; i < columnsToGroup.length; i++) {
+		if (!(i in columnsToGroup)) continue;
+		bottomHeaders[i] = constructHeader(table, columnsToGroup[i], {
+			depth: maxDepth,
+			index: i
+		});
+	}
+	constructHeaderGroup(bottomHeaders, maxDepth - 1, table, headerFamily, headerGroups, headerGroupInitFns);
+	headerGroups.reverse();
+	updateHeaderSpans(headerGroups[0]?.headers ?? []);
+	return headerGroups;
+}
+// ../../node_modules/@tanstack/table-core/dist/core/headers/coreHeadersFeature.utils.js
 function collectLeafHeaders(header, leafHeaders) {
 	for (let i = 0; i < header.subHeaders.length; i++) collectLeafHeaders(header.subHeaders[i], leafHeaders);
 	leafHeaders.push(header);
@@ -3362,27 +2534,7 @@ function header_getContext(header) {
 * ```
 */
 function table_getHeaderGroups(table) {
-	const { start, end } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
-	const allColumns = table.getAllColumns();
-	const leafColumns = callMemoOrStaticFn(table, "getVisibleLeafColumns", table_getVisibleLeafColumns);
-	if (!start.length && !end.length) return buildHeaderGroups(allColumns, leafColumns, table);
-	const leafColumnsById = table.getAllLeafColumnsById();
-	const leftColumns = [];
-	for (let i = 0; i < start.length; i++) {
-		const column = leafColumnsById[start[i]];
-		if (column && callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible)) leftColumns.push(column);
-	}
-	const rightColumns = [];
-	for (let i = 0; i < end.length; i++) {
-		const column = leafColumnsById[end[i]];
-		if (column && callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible)) rightColumns.push(column);
-	}
-	const centerColumns = leafColumns.filter((column) => !start.includes(column.id) && !end.includes(column.id));
-	return buildHeaderGroups(allColumns, [
-		...leftColumns,
-		...centerColumns,
-		...rightColumns
-	], table);
+	return buildHeaderGroups(table.getAllColumns(), orderByColumnPinning$1(table, getVisibleLeafColumns(table), (column) => column.id), table);
 }
 /**
 * Builds footer groups by reversing the current header groups.
@@ -3438,8 +2590,7 @@ function table_getLeafHeaders(table) {
 	}
 	return result;
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/headers/coreHeadersFeature.js
+// ../../node_modules/@tanstack/table-core/dist/core/headers/coreHeadersFeature.js
 /**
 * Core feature that builds header groups and exposes header context APIs.
 */
@@ -3484,8 +2635,7 @@ const coreHeadersFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/rows/constructRow.js
+// ../../node_modules/@tanstack/table-core/dist/core/rows/constructRow.js
 /**
 * Creates or retrieves the row prototype for a table.
 * The prototype is cached on the table and shared by all row instances.
@@ -3519,191 +2669,879 @@ const constructRow = (table, id, original, rowIndex, depth, subRows, parentId) =
 	for (let i = 0; i < initFns.length; i++) initFns[i](row);
 	return row;
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/row-sorting/sortFns.js
+// ../../node_modules/@tanstack/table-core/dist/core/row-models/createCoreRowModel.js
 /**
-* Regular expression used to split mixed text and numeric chunks.
+* Creates a memoized core row model factory.
 *
-* The alphanumeric sort functions use these chunks for natural sorting of
-* strings like `item2` before `item10`.
+* The factory reads the relevant table state atoms and options, then returns a row model function used by the table row-model pipeline.
 */
-const reSplitAlphaNumeric = /([0-9]+)/gm;
+function createCoreRowModel() {
+	return (table) => {
+		return tableMemo({
+			feature: "coreRowModelsFeature",
+			table,
+			fnName: "table.getCoreRowModel",
+			memoDeps: () => [table.options.data],
+			fn: () => _createCoreRowModel(table, table.options.data),
+			onAfterUpdate: skipFirstRun(() => {
+				autoResetExpanded(table);
+				autoResetPageIndex(table);
+				autoResetSorting(table);
+				autoResetCellSelection(table);
+			})
+		});
+	};
+}
+function accessRows(table, rowModel, originalRows, depth = 0, parentRow) {
+	const rows = [];
+	for (let i = 0; i < originalRows.length; i++) {
+		const originalRow = originalRows[i];
+		const row = constructRow(table, table.getRowId(originalRow, i, parentRow), originalRow, i, depth, void 0, parentRow?.id);
+		rowModel.flatRows.push(row);
+		rowModel.rowsById[row.id] = row;
+		rows.push(row);
+		if (table.options.getSubRows) {
+			row.originalSubRows = table.options.getSubRows(originalRow, i);
+			if (row.originalSubRows?.length) row.subRows = accessRows(table, rowModel, row.originalSubRows, depth + 1, row);
+		}
+	}
+	return rows;
+}
+function _createCoreRowModel(table, data) {
+	const rowModel = {
+		rows: [],
+		flatRows: [],
+		rowsById: makeObjectMap()
+	};
+	rowModel.rows = accessRows(table, rowModel, data);
+	return rowModel;
+}
+// ../../node_modules/@tanstack/table-core/dist/core/row-models/coreRowModelsFeature.utils.js
 /**
-* Builds a `SortFn` from a value-level comparator plus an optional
-* `resolveDataValue` normalizer.
+* Resolves the table's unmodified core row model.
 *
-* The `sort` comparator receives both rows' data values, each already passed
-* through `resolveDataValue` when one is defined. Keeping normalization in the
-* resolver means a variant of an existing sorting function only has to swap
-* the resolver, not re-implement the comparison.
+* The factory is created once per table, either from the `coreRowModel` slot on the `features` option
+* or the built-in `createCoreRowModel()`, then reused for later calls.
 *
-* The definition is attached to the returned function, so a variant can be
-* created by spreading a built-in sorting function and overriding what
-* differs:
-*
+* @example
 * ```ts
-* const stripDiacritics = (value: string) =>
-*   value.normalize('NFD').replace(/\p{Diacritic}/gu, '')
-*
-* const alphanumericIgnoreDiacritics = constructSortFn({
-*   ...sortFn_alphanumeric,
-*   resolveDataValue: (value) =>
-*     stripDiacritics(sortFn_alphanumeric.resolveDataValue!(value)),
-* })
+* const coreRows = table_getCoreRowModel(table)
 * ```
 */
-function constructSortFn(def) {
-	const sortFn = Object.assign((rowA, rowB, columnId) => {
-		let dataValueA = rowA.getValue(columnId);
-		let dataValueB = rowB.getValue(columnId);
-		const resolveDataValue = sortFn.resolveDataValue;
-		if (resolveDataValue) {
-			dataValueA = resolveDataValue(dataValueA);
-			dataValueB = resolveDataValue(dataValueB);
+function table_getCoreRowModel(table) {
+	if (!table._rowModels.coreRowModel) table._rowModels.coreRowModel = table.options.features.coreRowModel?.(table) ?? createCoreRowModel()(table);
+	return table._rowModels.coreRowModel();
+}
+/**
+* Reads the row model immediately before column/global filtering.
+*
+* Filtering is the first derived row-model stage, so this currently aliases
+* `table.getCoreRowModel()`.
+*
+* @example
+* ```ts
+* const rowsBeforeFiltering = table_getPreFilteredRowModel(table)
+* ```
+*/
+function table_getPreFilteredRowModel(table) {
+	return table.getCoreRowModel();
+}
+/**
+* Resolves the row model after column and global filtering.
+*
+* When `manualFiltering` is enabled, or no filtered row-model factory was
+* registered, this returns the pre-filtered row model because filtering is
+* expected to happen outside the table.
+*
+* @example
+* ```ts
+* const filteredRows = table_getFilteredRowModel(table)
+* ```
+*/
+function table_getFilteredRowModel(table) {
+	if (!table._rowModels.filteredRowModel) table._rowModels.filteredRowModel = table.options.features.filteredRowModel?.(table);
+	if (table.options.manualFiltering || !table._rowModels.filteredRowModel) return table.getPreFilteredRowModel();
+	return table._rowModels.filteredRowModel();
+}
+/**
+* Reads the row model immediately before grouping.
+*
+* Grouping runs after filtering, so this aliases `table.getFilteredRowModel()`.
+*
+* @example
+* ```ts
+* const rowsBeforeGrouping = table_getPreGroupedRowModel(table)
+* ```
+*/
+function table_getPreGroupedRowModel(table) {
+	return table.getFilteredRowModel();
+}
+/**
+* Resolves the row model after grouping has produced grouped rows.
+*
+* When `manualGrouping` is enabled, or no grouped row-model factory was
+* registered, this returns the pre-grouped row model unchanged.
+*
+* @example
+* ```ts
+* const groupedRows = table_getGroupedRowModel(table)
+* ```
+*/
+function table_getGroupedRowModel(table) {
+	if (!table._rowModels.groupedRowModel) table._rowModels.groupedRowModel = table.options.features.groupedRowModel?.(table);
+	if (table.options.manualGrouping || !table._rowModels.groupedRowModel) return table.getPreGroupedRowModel();
+	return table._rowModels.groupedRowModel();
+}
+/**
+* Reads the row model immediately before sorting.
+*
+* Sorting runs after grouping, so this aliases `table.getGroupedRowModel()`.
+*
+* @example
+* ```ts
+* const rowsBeforeSorting = table_getPreSortedRowModel(table)
+* ```
+*/
+function table_getPreSortedRowModel(table) {
+	return table.getGroupedRowModel();
+}
+/**
+* Resolves the row model after sorting has been applied.
+*
+* When `manualSorting` is enabled, or no sorted row-model factory was
+* registered, this returns the pre-sorted row model because sorted data is
+* expected to be supplied by the caller.
+*
+* @example
+* ```ts
+* const sortedRows = table_getSortedRowModel(table)
+* ```
+*/
+function table_getSortedRowModel(table) {
+	if (!table._rowModels.sortedRowModel) table._rowModels.sortedRowModel = table.options.features.sortedRowModel?.(table);
+	if (table.options.manualSorting || !table._rowModels.sortedRowModel) return table.getPreSortedRowModel();
+	return table._rowModels.sortedRowModel();
+}
+/**
+* Reads the row model immediately before row expansion.
+*
+* Expansion runs after sorting, so this aliases `table.getSortedRowModel()`.
+*
+* @example
+* ```ts
+* const rowsBeforeExpansion = table_getPreExpandedRowModel(table)
+* ```
+*/
+function table_getPreExpandedRowModel(table) {
+	return table.getSortedRowModel();
+}
+/**
+* Resolves the row model after expanded rows have been flattened into view.
+*
+* When `manualExpanding` is enabled, or no expanded row-model factory was
+* registered, this returns the pre-expanded row model unchanged.
+*
+* @example
+* ```ts
+* const expandedRows = table_getExpandedRowModel(table)
+* ```
+*/
+function table_getExpandedRowModel(table) {
+	if (!table._rowModels.expandedRowModel) table._rowModels.expandedRowModel = table.options.features.expandedRowModel?.(table);
+	if (table.options.manualExpanding || !table._rowModels.expandedRowModel) return table.getPreExpandedRowModel();
+	return table._rowModels.expandedRowModel();
+}
+/**
+* Reads the row model immediately before pagination.
+*
+* Pagination is the final built-in row-model stage, so this aliases
+* `table.getExpandedRowModel()`.
+*
+* @example
+* ```ts
+* const rowsBeforePagination = table_getPrePaginatedRowModel(table)
+* ```
+*/
+function table_getPrePaginatedRowModel(table) {
+	return table.getExpandedRowModel();
+}
+/**
+* Resolves the row model after pagination has sliced rows for the current page.
+*
+* When `manualPagination` is enabled, or no paginated row-model factory was
+* registered, this returns the pre-paginated row model because pagination is
+* expected to happen before data reaches the table.
+*
+* @example
+* ```ts
+* const pageRows = table_getPaginatedRowModel(table)
+* ```
+*/
+function table_getPaginatedRowModel(table) {
+	if (!table._rowModels.paginatedRowModel) table._rowModels.paginatedRowModel = table.options.features.paginatedRowModel?.(table);
+	if (table.options.manualPagination || !table._rowModels.paginatedRowModel) return table.getPrePaginatedRowModel();
+	return table._rowModels.paginatedRowModel();
+}
+/**
+* Resolves the final row model consumed by renderers.
+*
+* This is the end of the built-in row-model pipeline: core -> filtering ->
+* grouping -> sorting -> expanding -> pagination.
+*
+* @example
+* ```ts
+* const visibleRows = table_getRowModel(table)
+* ```
+*/
+function table_getRowModel(table) {
+	return table.getPaginatedRowModel();
+}
+// ../../node_modules/@tanstack/table-core/dist/core/row-models/coreRowModelsFeature.js
+/**
+* Core feature that wires table row-model accessors and row-model caches.
+*/
+const coreRowModelsFeature = { constructTableAPIs: (table) => {
+	assignTableAPIs("coreRowModelsFeature", table, {
+		table_getCoreRowModel: { fn: () => table_getCoreRowModel(table) },
+		table_getPreFilteredRowModel: { fn: () => table_getPreFilteredRowModel(table) },
+		table_getFilteredRowModel: { fn: () => table_getFilteredRowModel(table) },
+		table_getPreGroupedRowModel: { fn: () => table_getPreGroupedRowModel(table) },
+		table_getGroupedRowModel: { fn: () => table_getGroupedRowModel(table) },
+		table_getPreSortedRowModel: { fn: () => table_getPreSortedRowModel(table) },
+		table_getSortedRowModel: { fn: () => table_getSortedRowModel(table) },
+		table_getPreExpandedRowModel: { fn: () => table_getPreExpandedRowModel(table) },
+		table_getExpandedRowModel: { fn: () => table_getExpandedRowModel(table) },
+		table_getPrePaginatedRowModel: { fn: () => table_getPrePaginatedRowModel(table) },
+		table_getPaginatedRowModel: { fn: () => table_getPaginatedRowModel(table) },
+		table_getRowModel: { fn: () => table_getRowModel(table) }
+	});
+} };
+// ../../node_modules/@tanstack/table-core/dist/core/cells/constructCell.js
+/**
+* Creates or retrieves the cell prototype for a table.
+* The prototype is cached on the table and shared by all cell instances.
+*/
+function getCellPrototype(table) {
+	if (!table._cellPrototype) {
+		table._cellPrototype = { table };
+		const features = Object.values(table._features);
+		for (let i = 0; i < features.length; i++) features[i].assignCellPrototype?.(table._cellPrototype, table);
+	}
+	return table._cellPrototype;
+}
+/**
+* Constructs a cell instance from normalized table internals.
+*
+* This wires core properties, feature prototype APIs, and instance data used by table rendering and row-model operations.
+*/
+function constructCell(column, row, table) {
+	const cellPrototype = getCellPrototype(table);
+	const cell = Object.create(cellPrototype);
+	cell.column = column;
+	cell.id = `${row.id}_${column.id}`;
+	cell.row = row;
+	const initFns = table._cellInstanceInitFns;
+	for (let i = 0; i < initFns.length; i++) initFns[i](cell);
+	return cell;
+}
+// ../../node_modules/@tanstack/table-core/dist/core/rows/coreRowsFeature.utils.js
+/**
+* Returns this row's zero-based position in the current pre-pagination row
+* model. Rows outside that model return `-1`.
+*/
+function row_getDisplayIndex(row) {
+	const rows = row.table.getRowsInDisplayOrder();
+	const displayIndex = row._displayIndexCache;
+	return rows[displayIndex] === row ? displayIndex : -1;
+}
+/**
+* Returns the rows in the current display order after assigning their
+* zero-based display indexes.
+*
+* When expanded rows bypass pagination, expanded descendants are inserted into
+* the returned order even though they are absent from the pre-pagination row
+* model.
+*/
+function table_getRowsInDisplayOrder(table) {
+	const rowModel = table.getPrePaginatedRowModel();
+	const rows = table.options.paginateExpandedRows === false ? expandRowModel(table, rowModel).rows : rowModel.rows;
+	for (let i = 0; i < rows.length; i++) rows[i]._displayIndexCache = i;
+	return rows;
+}
+/**
+* Reads and caches this row's value for a column.
+*
+* The value is produced by the column accessor. Missing columns or display
+* columns without an accessor return `undefined`.
+*
+* @example
+* ```ts
+* const firstName = row_getValue(row, 'firstName')
+* ```
+*/
+function row_getValue(row, columnId) {
+	if (hasOwn(row._valuesCache, columnId)) return row._valuesCache[columnId];
+	const column = row.table.getColumn(columnId);
+	if (!column?.accessorFn) return;
+	row._valuesCache[columnId] = column.accessorFn(row.original, row.index);
+	return row._valuesCache[columnId];
+}
+/**
+* Reads and caches the values used by faceting/grouping for a column.
+*
+* If the column defines `getUniqueValues`, that result is used. Otherwise the
+* row's accessor value is wrapped in a single-item array.
+*
+* @example
+* ```ts
+* const values = row_getUniqueValues(row, 'tags')
+* ```
+*/
+function row_getUniqueValues(row, columnId) {
+	if (hasOwn(row._uniqueValuesCache, columnId)) return row._uniqueValuesCache[columnId];
+	const column = row.table.getColumn(columnId);
+	if (!column?.accessorFn) return;
+	if (!column.columnDef.getUniqueValues) {
+		row._uniqueValuesCache[columnId] = [row.getValue(columnId)];
+		return row._uniqueValuesCache[columnId];
+	}
+	row._uniqueValuesCache[columnId] = column.columnDef.getUniqueValues(row.original, row.index);
+	return row._uniqueValuesCache[columnId];
+}
+/**
+* Returns a renderable row value for a column.
+*
+* If the accessor value is nullish, the table's `renderFallbackValue` is used
+* instead.
+*
+* @example
+* ```ts
+* const value = row_renderValue(row, 'firstName')
+* ```
+*/
+function row_renderValue(row, columnId) {
+	return row.getValue(columnId) ?? row.table.options.renderFallbackValue;
+}
+/**
+* Flattens this row's descendant tree into leaf rows.
+*
+* The row itself is not included; only nested `subRows` are walked.
+*
+* @example
+* ```ts
+* const descendants = row_getLeafRows(row)
+* ```
+*/
+function row_getLeafRows(row) {
+	return flattenBy(row.subRows, (d) => d.subRows);
+}
+/**
+* Returns the deepest structural row depth in the core row model.
+* Root rows are depth `0`, their direct sub-rows are depth `1`, and so on.
+*/
+function table_getMaxSubRowDepth(table) {
+	const rows = table.getCoreRowModel().flatRows;
+	let maxDepth = 0;
+	for (let i = 0; i < rows.length; i++) maxDepth = Math.max(maxDepth, rows[i].depth);
+	return maxDepth;
+}
+/**
+* Looks up this row's direct parent, if it has one.
+*
+* Parent lookup prefers the core row model for structural parents, then falls
+* back to the pre-pagination row model for generated parent rows.
+*
+* @example
+* ```ts
+* const parent = row_getParentRow(row)
+* ```
+*/
+function row_getParentRow(row) {
+	if (!row.parentId) return;
+	return row.table.getCoreRowModel().rowsById[row.parentId] ?? row.table.getRow(row.parentId, true);
+}
+/**
+* Collects this row's ancestor chain from root to direct parent.
+*
+* The current row is not included. Rows without a parent return an empty array.
+*
+* @example
+* ```ts
+* const ancestors = row_getParentRows(row)
+* ```
+*/
+function row_getParentRows(row) {
+	const parentRows = [];
+	let currentRow = row;
+	while (true) {
+		const parentRow = currentRow.getParentRow();
+		if (!parentRow) break;
+		parentRows.push(parentRow);
+		currentRow = parentRow;
+	}
+	return parentRows.reverse();
+}
+/**
+* Constructs one cell for each leaf column in this row.
+*
+* The result follows `table.getAllLeafColumns()` order and includes hidden
+* columns; visibility-specific APIs filter this list later.
+*
+* @example
+* ```ts
+* const cells = row_getAllCells(row)
+* ```
+*/
+function row_getAllCells(row) {
+	const columns = row.table.getAllLeafColumns();
+	let cache = row._cellsCache;
+	if (!cache) cache = row._cellsCache = /* @__PURE__ */ new WeakMap();
+	const cells = new Array(columns.length);
+	for (let i = 0; i < columns.length; i++) {
+		const column = columns[i];
+		let cell = cache.get(column);
+		if (!cell) {
+			cell = constructCell(column, row, row.table);
+			cache.set(column, cell);
 		}
-		return sortFn.sort(dataValueA, dataValueB, rowA, rowB, columnId);
-	}, def);
-	return sortFn;
+		cells[i] = cell;
+	}
+	return cells;
 }
 /**
-* Sorts rows with the built-in alphanumeric strategy.
+* Builds a lookup map of this row's cells keyed by column id.
 *
-* This comparator returns ascending-order results; descending order is applied by the sorting row model.
-*/
-const sortFn_alphanumeric = constructSortFn({
-	resolveDataValue: (dataValue) => toString(dataValue).toLowerCase(),
-	sort: (dataValueA, dataValueB) => compareAlphanumeric(dataValueA, dataValueB)
-});
-constructSortFn({
-	resolveDataValue: (dataValue) => toString(dataValue),
-	sort: (dataValueA, dataValueB) => compareAlphanumeric(dataValueA, dataValueB)
-});
-/**
-* Sorts rows with the built-in text strategy.
+* This is the static implementation behind `row.getAllCellsByColumnId()`.
 *
-* This comparator returns ascending-order results; descending order is applied by the sorting row model.
+* @example
+* ```ts
+* const cellsById = row_getAllCellsByColumnId(row)
+* ```
 */
-const sortFn_text = constructSortFn({
-	resolveDataValue: (dataValue) => toString(dataValue).toLowerCase(),
-	sort: (dataValueA, dataValueB) => compareBasic(dataValueA, dataValueB)
-});
-constructSortFn({
-	resolveDataValue: (dataValue) => toString(dataValue),
-	sort: (dataValueA, dataValueB) => compareBasic(dataValueA, dataValueB)
-});
-/**
-* Sorts rows with the built-in datetime strategy.
-*
-* This comparator returns ascending-order results; descending order is applied by the sorting row model.
-*/
-const sortFn_datetime = constructSortFn({
-	resolveDataValue: (dataValue) => toDateSortValue(dataValue),
-	sort: (dataValueA, dataValueB) => dataValueA > dataValueB ? 1 : dataValueA < dataValueB ? -1 : 0
-});
-/**
-* Sorts rows with the built-in basic strategy.
-*
-* This comparator returns ascending-order results; descending order is applied by the sorting row model.
-*/
-const sortFn_basic = constructSortFn({ sort: (dataValueA, dataValueB) => compareBasic(dataValueA, dataValueB) });
-function compareBasic(a, b) {
-	return a === b ? 0 : a > b ? 1 : -1;
-}
-function toDateSortValue(value) {
-	return value instanceof Date ? value.getTime() : value;
-}
-function toString(a) {
-	if (typeof a === "number") {
-		if (isNaN(a) || a === Infinity || a === -Infinity) return "";
-		return String(a);
+function row_getAllCellsByColumnId(row) {
+	const result = makeObjectMap();
+	const cells = row.getAllCells();
+	for (let i = 0; i < cells.length; i++) {
+		const cell = cells[i];
+		result[cell.column.id] = cell;
 	}
-	if (typeof a === "string") return a;
-	return "";
-}
-function compareAlphanumeric(aStr, bStr) {
-	let ai = 0;
-	let bi = 0;
-	const aLen = aStr.length;
-	const bLen = bStr.length;
-	while (ai < aLen && bi < bLen) {
-		const aIsNumeric = isDigit(aStr.charCodeAt(ai));
-		const bIsNumeric = isDigit(bStr.charCodeAt(bi));
-		const aEnd = findChunkEnd(aStr, ai, aIsNumeric);
-		const bEnd = findChunkEnd(bStr, bi, bIsNumeric);
-		if (!aIsNumeric && !bIsNumeric) {
-			const stringComparison = compareStringChunks(aStr, ai, aEnd, bStr, bi, bEnd);
-			if (stringComparison) return stringComparison;
-			ai = aEnd;
-			bi = bEnd;
-			continue;
-		}
-		if (aIsNumeric !== bIsNumeric) return aIsNumeric ? 1 : -1;
-		const numericComparison = compareNumericChunks(aStr, ai, aEnd, bStr, bi, bEnd);
-		if (numericComparison) return numericComparison;
-		ai = aEnd;
-		bi = bEnd;
-	}
-	return countRemainingChunks(aStr, ai) - countRemainingChunks(bStr, bi);
-}
-function isDigit(charCode) {
-	return charCode >= 48 && charCode <= 57;
-}
-function findChunkEnd(str, start, isNumeric) {
-	let end = start + 1;
-	while (end < str.length && isDigit(str.charCodeAt(end)) === isNumeric) end++;
-	return end;
-}
-function compareStringChunks(aStr, aStart, aEnd, bStr, bStart, bEnd) {
-	const aLength = aEnd - aStart;
-	const bLength = bEnd - bStart;
-	const minLength = aLength < bLength ? aLength : bLength;
-	for (let i = 0; i < minLength; i++) {
-		const aCode = aStr.charCodeAt(aStart + i);
-		const bCode = bStr.charCodeAt(bStart + i);
-		if (aCode > bCode) return 1;
-		if (bCode > aCode) return -1;
-	}
-	if (aLength > bLength) return 1;
-	if (bLength > aLength) return -1;
-	return 0;
-}
-function compareNumericChunks(aStr, aStart, aEnd, bStr, bStart, bEnd) {
-	let aSignificantStart = aStart;
-	while (aSignificantStart < aEnd && aStr.charCodeAt(aSignificantStart) === 48) aSignificantStart++;
-	let bSignificantStart = bStart;
-	while (bSignificantStart < bEnd && bStr.charCodeAt(bSignificantStart) === 48) bSignificantStart++;
-	const aSignificantLength = aEnd - aSignificantStart;
-	const bSignificantLength = bEnd - bSignificantStart;
-	if (aSignificantLength === 0 && bSignificantLength === 0) return 0;
-	if (aSignificantLength <= 15 && bSignificantLength <= 15) {
-		const an = parseSmallInt(aStr, aSignificantStart, aEnd);
-		const bn = parseSmallInt(bStr, bSignificantStart, bEnd);
-		if (an > bn) return 1;
-		if (bn > an) return -1;
-		return 0;
-	}
-	const an = parseInt(aStr.slice(aStart, aEnd), 10);
-	const bn = parseInt(bStr.slice(bStart, bEnd), 10);
-	if (an > bn) return 1;
-	if (bn > an) return -1;
-	return 0;
-}
-function parseSmallInt(str, start, end) {
-	let result = 0;
-	for (let i = start; i < end; i++) result = result * 10 + str.charCodeAt(i) - 48;
 	return result;
 }
-function countRemainingChunks(str, start) {
-	let count = 0;
-	let index = start;
-	while (index < str.length) {
-		count++;
-		index = findChunkEnd(str, index, isDigit(str.charCodeAt(index)));
-	}
-	return count;
+/**
+* Resolves the stable id for a row.
+*
+* `options.getRowId` wins when provided. Otherwise root rows use their index
+* and child rows append their index to the parent id, such as `0.2`.
+*
+* @example
+* ```ts
+* const id = table_getRowId(originalRow, table, index, parentRow)
+* ```
+*/
+function table_getRowId(originalRow, table, index, parent) {
+	return table.options.getRowId?.(originalRow, index, parent) ?? (parent ? `${parent.id}.${index}` : String(index));
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/cell-selection/cellSelectionGeometry.js
+/**
+* Looks up a row by id from the current or full row model.
+*
+* By default this searches `table.getRowModel()`. Passing `searchAll` searches
+* the pre-pagination model first, then falls back to the core model.
+*
+* @example
+* ```ts
+* const row = table_getRow(table, rowId, true)
+* ```
+*/
+function table_getRow(table, rowId, searchAll) {
+	let row = (searchAll ? table.getPrePaginatedRowModel() : table.getRowModel()).rowsById[rowId];
+	if (!row) {
+		row = table.getCoreRowModel().rowsById[rowId];
+		if (!row) throw new Error();
+	}
+	return row;
+}
+// ../../node_modules/@tanstack/table-core/dist/core/rows/coreRowsFeature.js
+/**
+* Core feature that creates row APIs for values, cells, and tree traversal.
+*/
+const coreRowsFeature = {
+	assignRowPrototype: (prototype, table) => {
+		assignPrototypeAPIs("coreRowsFeature", prototype, table, {
+			row_getDisplayIndex: { fn: (row) => row_getDisplayIndex(row) },
+			row_getAllCellsByColumnId: {
+				fn: (row) => row_getAllCellsByColumnId(row),
+				memoDeps: (row) => [row.getAllCells()]
+			},
+			row_getAllCells: {
+				fn: (row) => row_getAllCells(row),
+				memoDeps: (row) => [row.table.getAllLeafColumns()]
+			},
+			row_getLeafRows: {
+				fn: (row) => row_getLeafRows(row),
+				memoDeps: (row) => [row.subRows]
+			},
+			row_getParentRow: { fn: (row) => row_getParentRow(row) },
+			row_getParentRows: { fn: (row) => row_getParentRows(row) },
+			row_getUniqueValues: { fn: (row, columnId) => row_getUniqueValues(row, columnId) },
+			row_getValue: { fn: (row, columnId) => row_getValue(row, columnId) },
+			row_renderValue: { fn: (row, columnId) => row_renderValue(row, columnId) }
+		});
+	},
+	constructTableAPIs: (table) => {
+		assignTableAPIs("coreRowsFeature", table, {
+			table_getRowsInDisplayOrder: {
+				fn: () => table_getRowsInDisplayOrder(table),
+				memoDeps: () => [
+					table.getPrePaginatedRowModel().rows,
+					table.options.paginateExpandedRows,
+					table.options.paginateExpandedRows === false ? table.atoms.expanded?.get() : void 0
+				]
+			},
+			table_getRowId: { fn: (originalRow, index, parent) => table_getRowId(originalRow, table, index, parent) },
+			table_getRow: { fn: (id, searchAll) => table_getRow(table, id, searchAll) },
+			table_getMaxSubRowDepth: {
+				fn: () => table_getMaxSubRowDepth(table),
+				memoDeps: () => [table.getCoreRowModel()]
+			}
+		});
+	}
+};
+// ../../node_modules/@tanstack/table-core/dist/core/table/coreTablesFeature.utils.js
+/**
+* Synchronizes externally controlled state slices into the table's base atoms.
+*
+* This keeps `options.state` values mirrored in the atom graph so derived
+* atoms, stores, and table APIs read a consistent snapshot.
+*
+* Adapters that update options during their host's render phase pass the
+* state snapshot captured by the committed render as `capturedState` — the
+* shared options object may already hold values from a newer render that
+* never commits. Pass `null` to publish nothing (a captured "no controlled
+* state"); omitting the argument reads the current `table.options.state`
+* instead. An optional `compare` suppresses semantically unchanged slice
+* writes; the default remains reference equality.
+*
+* @example
+* ```ts
+* table_syncExternalStateToBaseAtoms(table)
+* table_syncExternalStateToBaseAtoms(table, capturedState ?? null, shallow)
+* ```
+*/
+function table_syncExternalStateToBaseAtoms(table, capturedState, compare = (currentState, externalState) => currentState === externalState) {
+	const state = capturedState === void 0 ? table.options.state : capturedState;
+	table._reactivity.batch(() => {
+		if (state) for (const key in state) {
+			const baseAtom = table.baseAtoms[key];
+			if (!baseAtom) continue;
+			const rawExternalState = state[key];
+			const externalState = rawExternalState === void 0 ? table.initialState[key] : rawExternalState;
+			if (!compare(table._reactivity.untrack(() => baseAtom.get()), externalState)) baseAtom.set(() => externalState);
+		}
+	});
+}
+/**
+* Publishes captured controlled state after a host framework commits.
+*
+* Render-phase adapters stage options without synchronizing base atoms, then
+* pass the state captured by the committed render here. The commit signal also
+* invalidates ownership changes when no base atom was written.
+*/
+function table_publishExternalState(table, state, compare = (currentState, externalState) => currentState === externalState) {
+	table._reactivity.batch(() => {
+		table_syncExternalStateToBaseAtoms(table, state, compare);
+		table._reactivity.commit?.();
+	});
+}
+/**
+* Resets all internal table base atoms to `table.initialState`, then clears
+* transient instance data through registered feature reset hooks.
+*
+* This resets internally owned state slices in a single reactivity batch. Use
+* feature-specific reset APIs when a slice may be externally owned.
+*
+* @example
+* ```ts
+* table_reset(table)
+* ```
+*/
+function table_reset(table) {
+	const snap = cloneState(table.initialState);
+	table._reactivity.batch(() => {
+		const keys = Object.keys(snap);
+		for (let i = 0; i < keys.length; i++) {
+			const key = keys[i];
+			table.baseAtoms[key].set(snap[key]);
+		}
+	});
+	const features = Object.values(table._features);
+	for (let i = 0; i < features.length; i++) features[i].resetTableInstanceData?.(table);
+}
+/**
+* Merges new table options with the current resolved options.
+*
+* If `options.mergeOptions` is provided, it owns the merge behavior; otherwise
+* options are shallow-merged. Static options that should never change after
+* initialization are restored on a fresh object so framework merge helpers may
+* return readonly getter/proxy objects.
+*
+* @example
+* ```ts
+* const options = table_mergeOptions(table, nextOptions)
+* ```
+*/
+function table_mergeOptions(table, newOptions) {
+	const { features, atoms, initialState } = table.options;
+	if (!table.options.mergeOptions) return {
+		...table.options,
+		...newOptions,
+		features,
+		atoms,
+		initialState
+	};
+	const mergedOptions = table.options.mergeOptions(table.options, newOptions);
+	const descriptors = { ...Object.getOwnPropertyDescriptors(mergedOptions) };
+	return Object.defineProperties(Object.create(Object.getPrototypeOf(mergedOptions)), {
+		...descriptors,
+		features: {
+			value: features,
+			enumerable: true,
+			configurable: true,
+			writable: true
+		},
+		atoms: {
+			value: atoms,
+			enumerable: true,
+			configurable: true,
+			writable: true
+		},
+		initialState: {
+			value: initialState,
+			enumerable: true,
+			configurable: true,
+			writable: true
+		}
+	});
+}
+/**
+* Updates the table options object.
+*
+* The updater receives the current resolved options and the merged result is
+* immediately assigned to the table instance.
+*
+* @example
+* ```ts
+* table_setOptions(table, (old) => old)
+* table_setOptions(table, (old) => old, { syncExternalState: false })
+* ```
+*/
+function table_setOptions(table, updater, options) {
+	const mergedOptions = table_mergeOptions(table, functionalUpdate(updater, table.options));
+	if (table.optionsStore) table.optionsStore.set(() => mergedOptions);
+	else table.options = mergedOptions;
+	if (options?.syncExternalState !== false) table_publishExternalState(table, mergedOptions.state ?? null);
+}
+// ../../node_modules/@tanstack/table-core/dist/core/coreFeatures.js
+/**
+* The built-in core feature set required by every table.
+*
+* These features provide table, column, row, header, cell, and core row-model behavior before optional feature plugins are added.
+*/
+const coreFeatures = {
+	coreCellsFeature,
+	coreColumnsFeature,
+	coreHeadersFeature,
+	coreRowModelsFeature,
+	coreRowsFeature,
+	coreTablesFeature: { constructTableAPIs: (table) => {
+		assignTableAPIs("coreTablesFeature", table, {
+			table_reset: { fn: () => table_reset(table) },
+			table_setOptions: { fn: (updater) => table_setOptions(table, updater) }
+		});
+	} }
+};
+// ../../node_modules/@tanstack/table-core/dist/helpers/tableFeatures.js
+/**
+* A helper function to help define the features that are to be imported and applied to a table instance.
+* Use this utility to make it easier to have the correct type inference for the features that are being imported.
+* **Note:** It is recommended to use this utility statically outside of a component.
+*
+* Alongside feature modules, this object carries everything else that is
+* statically stitched into the table:
+*
+* - Row model factories (`sortedRowModel`, `filteredRowModel`, etc.)
+* - Row model function registries (`sortFns`, `filterFns`, `aggregationFns`),
+*   whose keys become the valid string values for `sortFn`, `filterFn`,
+*   `globalFilterFn`, and `aggregationFn` with full inference
+* - Type-only `tableMeta`/`columnMeta` slots for declaring per-table meta types
+*   instead of using global declaration merging. The values are phantom
+*   (ignored and stripped at runtime); only their types are used.
+* @example
+* ```
+* import {
+*   columnFilteringFeature,
+*   createFilteredRowModel,
+*   createSortedRowModel,
+*   filterFn_includesString,
+*   rowSortingFeature,
+*   sortFn_alphanumeric,
+*   sortFn_text,
+*   tableFeatures,
+* } from '@tanstack/react-table'
+* const features = tableFeatures({
+*   columnFilteringFeature,
+*   rowSortingFeature,
+*   filteredRowModel: createFilteredRowModel(),
+*   sortedRowModel: createSortedRowModel(),
+*   filterFns: { includesString: filterFn_includesString, myCustomFilterFn },
+*   sortFns: { alphanumeric: sortFn_alphanumeric, text: sortFn_text },
+*   tableMeta: {} as { updateData: (rowIndex: number, columnId: string, value: unknown) => void },
+*   columnMeta: {} as { align?: 'left' | 'right' },
+* });
+* const table = useTable({ features, columns, data });
+* ```
+*/
+function tableFeatures(features) {
+	return features;
+}
+// ../../node_modules/@tanstack/table-core/dist/core/reactivity/coreReactivityFeature.utils.js
+/**
+* Bridges atom instances to the `Store`/`ReadonlyStore` API by exposing
+* a `state` getter backed by `atom.get()`, and wiring `setState` for
+* writable atoms.
+*
+* @example
+* ```ts
+* const store = atomToStore(atom)
+* ```
+*/
+function atomToStore(atom) {
+	const store = atom;
+	Object.defineProperty(atom, "state", { get() {
+		return atom.get();
+	} });
+	if ("set" in atom) store.setState = atom.set.bind(atom);
+	return store;
+}
+// ../../node_modules/@tanstack/table-core/dist/core/table/constructTable.js
+/**
+* Builds the initial table state from registered features and user initial state.
+*
+* Each feature contributes its default state before user-provided `initialState` values are merged in.
+*/
+function getInitialTableState(features, initialState = {}) {
+	Object.values(features).forEach((feature) => {
+		initialState = feature.getInitialState?.(initialState) ?? initialState;
+	});
+	return cloneState(initialState);
+}
+/**
+* Constructs a table instance from normalized table internals.
+*
+* This wires core properties, feature prototype APIs, and instance data used by table rendering and row-model operations.
+*/
+function constructTable(tableOptions) {
+	const _reactivity = tableOptions.features.coreReactivityFeature;
+	const { aggregationFns, columnMeta: _columnMeta, coreRowModel, expandedRowModel, facetedMinMaxValues, facetedRowModel, facetedUniqueValues, filterFns, filterMeta: _filterMeta, filteredRowModel, groupedRowModel, paginatedRowModel, sortFns, sortedRowModel, tableMeta: _tableMeta, ...features } = tableOptions.features;
+	const table = {
+		_cellInstanceInitFns: [],
+		_columnInstanceInitFns: [],
+		_features: {
+			...coreFeatures,
+			...features
+		},
+		_headerGroupInstanceInitFns: [],
+		_headerInstanceInitFns: [],
+		_reactivity,
+		_rowInstanceInitFns: [],
+		_rowModelFns: {
+			aggregationFns,
+			filterFns,
+			sortFns
+		},
+		_rowModels: {},
+		atoms: {},
+		baseAtoms: {}
+	};
+	const featuresList = Object.values(table._features);
+	const mergedOptions = {
+		...featuresList.reduce((obj, feature) => {
+			return Object.assign(obj, feature.getDefaultTableOptions?.(table));
+		}, {}),
+		...tableOptions
+	};
+	if (_reactivity.wrapExternalAtoms && mergedOptions.atoms) for (const [atomKey, _atom] of Object.entries(mergedOptions.atoms)) {
+		const atom = _atom;
+		const wrappedAtom = _reactivity.createWritableAtom(atom.get(), { debugName: `externalAtom/${atomKey}` });
+		mergedOptions.atoms[atomKey] = wrappedAtom;
+		let syncExternal = false;
+		const syncAtomToWrappedSub = atom.subscribe((value) => {
+			if (syncExternal) return;
+			wrappedAtom.set(value);
+		});
+		const syncWrappedToAtomSub = wrappedAtom.subscribe((value) => {
+			syncExternal = true;
+			atom.set(value);
+			syncExternal = false;
+		});
+		_reactivity.addSubscription(syncAtomToWrappedSub);
+		_reactivity.addSubscription(syncWrappedToAtomSub);
+	}
+	if (_reactivity.createOptionsStore) {
+		table.optionsStore = _reactivity.createWritableAtom(mergedOptions, { debugName: "table/optionsStore" });
+		Object.defineProperty(table, "options", {
+			configurable: true,
+			enumerable: true,
+			get() {
+				return table.optionsStore.get();
+			},
+			set(value) {
+				table.optionsStore.set(() => value);
+			}
+		});
+	} else table.options = mergedOptions;
+	table.initialState = getInitialTableState(table._features, table.options.initialState);
+	const stateKeys = Object.keys(table.initialState);
+	for (let i = 0; i < stateKeys.length; i++) {
+		const key = stateKeys[i];
+		table.baseAtoms[key] = _reactivity.createWritableAtom(table.initialState[key], { debugName: `table/baseAtoms/${key}` });
+		table.atoms[key] = _reactivity.createReadonlyAtom(() => {
+			const options = table.options;
+			const externalAtom = options.atoms?.[key];
+			const reactiveState = externalAtom ? externalAtom.get() : table.baseAtoms[key].get();
+			if (externalAtom) return reactiveState;
+			const controlledState = options.state;
+			if (controlledState && hasOwn(controlledState, key)) {
+				const controlledValue = controlledState[key];
+				return controlledValue === void 0 ? table.initialState[key] : controlledValue;
+			}
+			return reactiveState;
+		}, { debugName: `table/atoms/${key}` });
+	}
+	table_syncExternalStateToBaseAtoms(table);
+	table.store = atomToStore(_reactivity.createReadonlyAtom(() => {
+		const snapshot = {};
+		for (let i = 0; i < stateKeys.length; i++) {
+			const key = stateKeys[i];
+			snapshot[key] = table.atoms[key].get();
+		}
+		return snapshot;
+	}, {
+		compare: shallow,
+		debugName: "table/store"
+	}));
+	for (let i = 0; i < featuresList.length; i++) {
+		const feature = featuresList[i];
+		feature.initTableInstanceData?.(table);
+		if (feature.initCellInstanceData) table._cellInstanceInitFns.push(feature.initCellInstanceData.bind(feature));
+		if (feature.initColumnInstanceData) table._columnInstanceInitFns.push(feature.initColumnInstanceData.bind(feature));
+		if (feature.initHeaderGroupInstanceData) table._headerGroupInstanceInitFns.push(feature.initHeaderGroupInstanceData.bind(feature));
+		if (feature.initHeaderInstanceData) table._headerInstanceInitFns.push(feature.initHeaderInstanceData.bind(feature));
+		if (feature.initRowInstanceData) table._rowInstanceInitFns.push(feature.initRowInstanceData.bind(feature));
+		feature.constructTableAPIs?.(table);
+	}
+	return table;
+}
+// ../../node_modules/@tanstack/table-core/dist/features/cell-selection/cellSelectionGeometry.js
 function compareBounds(a, b) {
 	return a.minRowIndex - b.minRowIndex || a.minColumnIndex - b.minColumnIndex || a.maxRowIndex - b.maxRowIndex || a.maxColumnIndex - b.maxColumnIndex;
 }
@@ -3821,8 +3659,7 @@ function applyCellSelectionBoundsOperations(operations) {
 	}
 	return selected.sort(compareBounds);
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/cell-selection/cellSelectionFeature.utils.js
+// ../../node_modules/@tanstack/table-core/dist/features/cell-selection/cellSelectionFeature.utils.js
 /**
 * Creates the default cell selection state.
 *
@@ -3860,7 +3697,7 @@ function table_setCellSelection(table, updater) {
 * ```
 */
 function table_resetCellSelection(table, defaultState) {
-	table_setCellSelection(table, defaultState ? getDefaultCellSelectionState() : cloneState(table.initialState.cellSelection) ?? getDefaultCellSelectionState());
+	setStateSlice(table, "cellSelection", defaultState ? getDefaultCellSelectionState() : cloneState(table.initialState.cellSelection) ?? getDefaultCellSelectionState());
 }
 /**
 * Schedules a cell selection reset after `data` changes.
@@ -3897,31 +3734,7 @@ function table_autoResetCellSelection(table) {
 * provably matches `row_getVisibleCells`.
 */
 function getDisplayOrderedColumns(table) {
-	const columns = callMemoOrStaticFn(table, "getVisibleLeafColumns", table_getVisibleLeafColumns);
-	const pinning = table.atoms.columnPinning?.get();
-	if (!pinning || !pinning.start.length && !pinning.end.length) return columns;
-	const byId = makeObjectMap();
-	for (let i = 0; i < columns.length; i++) byId[columns[i].id] = columns[i];
-	const start = [];
-	for (let i = 0; i < pinning.start.length; i++) {
-		const column = byId[pinning.start[i]];
-		if (column) start.push(column);
-	}
-	const end = [];
-	for (let i = 0; i < pinning.end.length; i++) {
-		const column = byId[pinning.end[i]];
-		if (column) end.push(column);
-	}
-	const center = [];
-	for (let i = 0; i < columns.length; i++) {
-		const column = columns[i];
-		if (!pinning.start.includes(column.id) && !pinning.end.includes(column.id)) center.push(column);
-	}
-	return [
-		...start,
-		...center,
-		...end
-	];
+	return orderByColumnPinning$1(table, getVisibleLeafColumns(table), (column) => column.id);
 }
 /**
 * Builds a column id to render-order index map.
@@ -4694,1567 +4507,7 @@ function cell_getSelectionExtendHandler(cell) {
 		});
 	};
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/row-expanding/rowExpandingFeature.utils.js
-/**
-* Schedules an expanded-state reset after row-structure changes.
-*
-* The reset runs when `autoResetAll`, `autoResetExpanded`, or the default
-* client-side expanding behavior allows it. Manual expanding opts out unless
-* the reset options explicitly opt back in.
-*
-* @example
-* ```ts
-* table_autoResetExpanded(table)
-* ```
-*/
-function table_autoResetExpanded(table) {
-	if (!table.atoms.expanded) return;
-	if (table.options.autoResetAll ?? table.options.autoResetExpanded ?? !table.options.manualExpanding) table._reactivity.schedule(() => table_resetExpanded(table));
-}
-/**
-* Routes an expanded-state updater through the table's expanded change handler.
-*
-* The updater may be `true`, a row-id map, or a function of the previous
-* expanded state, matching the instance `table.setExpanded` behavior.
-*
-* @example
-* ```ts
-* table_setExpanded(table, (old) => ({ ...old, [rowId]: true }))
-* ```
-*/
-function table_setExpanded(table, updater) {
-	table.options.onExpandedChange?.(updater);
-}
-/**
-* Resets `expanded` to the configured initial state or feature default.
-*
-* With no argument, the reset clones `table.initialState.expanded` when it
-* exists. Passing `true` ignores initial state and resets to `{}`.
-*
-* @example
-* ```ts
-* table_resetExpanded(table)
-* table_resetExpanded(table, true)
-* ```
-*/
-function table_resetExpanded(table, defaultState) {
-	const initialExpanded = table.initialState.expanded;
-	table_setExpanded(table, defaultState ? makeObjectMap() : initialExpanded === true ? true : Object.assign(makeObjectMap(), cloneState(initialExpanded ?? {})));
-}
-/**
-* Checks whether this row is expanded.
-*
-* `options.getIsRowExpanded` can override state-derived behavior. Otherwise
-* the row is expanded when expanded state is `true` or contains this row id.
-*
-* @example
-* ```ts
-* const expanded = row_getIsExpanded(row)
-* ```
-*/
-function row_getIsExpanded(row) {
-	const expanded = row.table.atoms.expanded?.get() ?? {};
-	return !!(row.table.options.getIsRowExpanded?.(row) ?? (expanded === true || isExpandedRowId(expanded, row.id)));
-}
-function isExpandedRowId(expanded, rowId) {
-	return !!(expanded && expanded !== true && hasOwn(expanded, rowId) && expanded[rowId]);
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/row-pagination/rowPaginationFeature.utils.js
-const defaultPageIndex = 0;
-const defaultPageSize = 10;
-/**
-* Creates the default pagination state used by the pagination feature.
-*
-* The feature default starts at the first page with a page size of 10. Reset
-* APIs use this value when `defaultState` is `true`.
-*
-* @example
-* ```ts
-* const pagination = getDefaultPaginationState()
-* ```
-*/
-function getDefaultPaginationState() {
-	return {
-		pageIndex: defaultPageIndex,
-		pageSize: defaultPageSize
-	};
-}
-/**
-* Resets the page index when a page-altering change should return to page 0.
-*
-* The reset runs when `autoResetAll`, `autoResetPageIndex`, or the default
-* client-side pagination behavior allows it. Manual pagination opts out unless
-* the reset options explicitly opt back in.
-*
-* @example
-* ```ts
-* table_autoResetPageIndex(table)
-* ```
-*/
-function table_autoResetPageIndex(table) {
-	if (table.options.autoResetAll ?? table.options.autoResetPageIndex ?? !table.options.manualPagination) table_resetPageIndex(table, true);
-}
-/**
-* Routes a pagination updater through the table's pagination change handler.
-*
-* The updater may be a next state object or a function of the previous
-* `PaginationState`; controlled state and external atoms observe the same
-* updater path as the instance API.
-*
-* @example
-* ```ts
-* table_setPagination(table, (old) => old)
-* ```
-*/
-function table_setPagination(table, updater) {
-	const safeUpdater = (old) => {
-		return functionalUpdate(updater, old);
-	};
-	return table.options.onPaginationChange?.(safeUpdater);
-}
-/**
-* Resets `pagination` to the configured initial state or feature default.
-*
-* With no argument, the reset clones `table.initialState.pagination` when it
-* exists. Passing `true` ignores initial state and resets to
-* `{ pageIndex: 0, pageSize: 10 }`.
-*
-* @example
-* ```ts
-* table_resetPagination(table)
-* table_resetPagination(table, true)
-* ```
-*/
-function table_resetPagination(table, defaultState) {
-	table_setPagination(table, defaultState ? getDefaultPaginationState() : cloneState(table.initialState.pagination ?? getDefaultPaginationState()));
-}
-/**
-* Updates `pagination.pageIndex` and clamps it to the known page range.
-*
-* Unknown page counts (`undefined` or `-1`) allow any non-negative page index.
-* Known page counts clamp the index between `0` and `pageCount - 1`.
-*
-* @example
-* ```ts
-* table_setPageIndex(table, (old) => old)
-* ```
-*/
-function table_setPageIndex(table, updater) {
-	table_setPagination(table, (old) => {
-		let pageIndex = functionalUpdate(updater, old.pageIndex);
-		const maxPageIndex = typeof table.options.pageCount === "undefined" || table.options.pageCount === -1 ? Number.MAX_SAFE_INTEGER : table.options.pageCount - 1;
-		pageIndex = Math.max(0, Math.min(pageIndex, maxPageIndex));
-		return {
-			...old,
-			pageIndex
-		};
-	});
-}
-/**
-* Resets only `pagination.pageIndex`.
-*
-* With no argument, the reset uses `table.initialState.pagination?.pageIndex`
-* or `0`. Passing `true` always resets the page index to `0`.
-*
-* @example
-* ```ts
-* table_resetPageIndex(table)
-* table_resetPageIndex(table, true)
-* ```
-*/
-function table_resetPageIndex(table, defaultState) {
-	const currentPageIndex = table.atoms.pagination?.get()?.pageIndex ?? defaultPageIndex;
-	const newPageIndex = defaultState ? defaultPageIndex : table.initialState.pagination?.pageIndex ?? defaultPageIndex;
-	if (newPageIndex === currentPageIndex) return;
-	table_setPageIndex(table, newPageIndex);
-}
-/**
-* Resets only `pagination.pageSize`.
-*
-* With no argument, the reset uses `table.initialState.pagination?.pageSize`
-* or `10`. Passing `true` always resets the page size to `10`.
-*
-* @example
-* ```ts
-* table_resetPageSize(table)
-* table_resetPageSize(table, true)
-* ```
-*/
-function table_resetPageSize(table, defaultState) {
-	const currentPageSize = table.atoms.pagination?.get()?.pageSize ?? defaultPageSize;
-	const newPageSize = defaultState ? defaultPageSize : table.initialState.pagination?.pageSize ?? defaultPageSize;
-	if (newPageSize === currentPageSize) return;
-	table_setPageSize(table, newPageSize);
-}
-/**
-* Updates `pagination.pageSize` while preserving the current top row.
-*
-* The new size is clamped to at least `1`, and `pageIndex` is recalculated so
-* the row that was previously at the top of the page remains in view.
-*
-* @example
-* ```ts
-* table_setPageSize(table, (old) => old)
-* ```
-*/
-function table_setPageSize(table, updater) {
-	table_setPagination(table, (old) => {
-		const pageSize = Math.max(1, functionalUpdate(updater, old.pageSize));
-		const topRowIndex = old.pageSize * old.pageIndex;
-		const pageIndex = Math.floor(topRowIndex / pageSize);
-		return {
-			...old,
-			pageIndex,
-			pageSize
-		};
-	});
-}
-/**
-* Builds the zero-based page indexes available for the current page count.
-*
-* Unknown or empty page counts return an empty array; otherwise the result is
-* `[0, 1, ...pageCount - 1]`.
-*
-* @example
-* ```ts
-* const pageIndexes = table_getPageOptions(table)
-* ```
-*/
-function table_getPageOptions(table) {
-	const pageCount = table_getPageCount(table);
-	let pageOptions = [];
-	if (pageCount && pageCount > 0) pageOptions = [...new Array(pageCount)].fill(null).map((_, i) => i);
-	return pageOptions;
-}
-/**
-* Checks whether the current page index can move backward.
-*
-* The first page is page index `0`, so only positive page indexes can navigate
-* to a previous page.
-*
-* @example
-* ```ts
-* const canGoBack = table_getCanPreviousPage(table)
-* ```
-*/
-function table_getCanPreviousPage(table) {
-	return (table.atoms.pagination?.get()?.pageIndex ?? 0) > 0;
-}
-/**
-* Checks whether the current page index can move forward.
-*
-* A `pageCount` of `-1` means the caller does not know the total page count, so
-* this returns `true`. A page count of `0` returns `false`.
-*
-* @example
-* ```ts
-* const canGoForward = table_getCanNextPage(table)
-* ```
-*/
-function table_getCanNextPage(table) {
-	const pageIndex = table.atoms.pagination?.get()?.pageIndex ?? defaultPageIndex;
-	const pageCount = table_getPageCount(table);
-	if (pageCount === -1) return true;
-	if (pageCount === 0) return false;
-	return pageIndex < pageCount - 1;
-}
-/**
-* Moves the table to the previous page.
-*
-* This delegates to `table_setPageIndex` so pagination state ownership and
-* updater semantics remain consistent.
-*
-* @example
-* ```ts
-* table_previousPage(table)
-* ```
-*/
-function table_previousPage(table) {
-	return table_setPageIndex(table, (old) => old - 1);
-}
-/**
-* Moves the table to the next page.
-*
-* This delegates to `table_setPageIndex` so pagination state ownership and
-* updater semantics remain consistent.
-*
-* @example
-* ```ts
-* table_nextPage(table)
-* ```
-*/
-function table_nextPage(table) {
-	return table_setPageIndex(table, (old) => {
-		return old + 1;
-	});
-}
-/**
-* Moves the table to the first page.
-*
-* This is a convenience wrapper around `table_setPageIndex(table, 0)`.
-*
-* @example
-* ```ts
-* table_firstPage(table)
-* ```
-*/
-function table_firstPage(table) {
-	return table_setPageIndex(table, 0);
-}
-/**
-* Moves the table to the last known page.
-*
-* The target page is derived from `table_getPageCount(table) - 1`.
-*
-* @example
-* ```ts
-* table_lastPage(table)
-* ```
-*/
-function table_lastPage(table) {
-	return table_setPageIndex(table, table_getPageCount(table) - 1);
-}
-/**
-* Resolves the number of pages for the current pagination state.
-*
-* `options.pageCount` wins for manual pagination. Otherwise the value is
-* calculated from `table_getRowCount(table)` and the current `pageSize`.
-*
-* @example
-* ```ts
-* const pages = table_getPageCount(table)
-* ```
-*/
-function table_getPageCount(table) {
-	return table.options.pageCount ?? Math.ceil(table_getRowCount(table) / (table.atoms.pagination?.get()?.pageSize ?? defaultPageSize));
-}
-/**
-* Resolves the total row count used for pagination math.
-*
-* `options.rowCount` wins for manual pagination. Otherwise the count comes
-* from the pre-paginated row model so filtering, grouping, sorting, and
-* expansion are reflected before the page slice is applied.
-*
-* @example
-* ```ts
-* const rows = table_getRowCount(table)
-* ```
-*/
-function table_getRowCount(table) {
-	return table.options.rowCount ?? table.getPrePaginatedRowModel().rows.length;
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/row-sorting/rowSortingFeature.utils.js
-/**
-* Creates the default sorting state.
-*
-* The feature default is an empty array, meaning no columns are sorted. Reset
-* APIs use this value when `defaultState` is `true`.
-*
-* @example
-* ```ts
-* const sorting = getDefaultSortingState()
-* ```
-*/
-function getDefaultSortingState() {
-	return [];
-}
-/**
-* Routes a sorting updater through the table's sorting change handler.
-*
-* The updater may be a next `SortingState` array or a function of the previous
-* sorting state, matching the instance `table.setSorting` behavior.
-*
-* @example
-* ```ts
-* table_setSorting(table, (old) => [...old, { id: 'age', desc: true }])
-* ```
-*/
-function table_setSorting(table, updater) {
-	table.options.onSortingChange?.(updater);
-}
-/**
-* Resets `sorting` to the configured initial state or feature default.
-*
-* With no argument, the reset clones `table.initialState.sorting` when it
-* exists. Passing `true` ignores initial state and resets to `[]`.
-*
-* @example
-* ```ts
-* table_resetSorting(table)
-* table_resetSorting(table, true)
-* ```
-*/
-function table_resetSorting(table, defaultState) {
-	table_setSorting(table, defaultState ? [] : cloneState(table.initialState.sorting ?? []));
-}
-/**
-* Resets sorting after the table data changes when explicitly enabled.
-*
-* Unlike other auto-reset behaviors, sorting is preserved by default. An
-* explicit `autoResetAll` value takes precedence over `autoResetSorting`.
-*
-* @example
-* ```ts
-* table_autoResetSorting(table)
-* ```
-*/
-function table_autoResetSorting(table) {
-	if (!table.atoms.sorting) return;
-	if (table.options.autoResetAll ?? table.options.autoResetSorting ?? false) table_resetSorting(table);
-}
-/**
-* Chooses a built-in sorting function from sampled filtered row values.
-*
-* Date-like values use `datetime`, mixed text/numeric strings use
-* `alphanumeric`, plain strings use `text`, and unknown values fall back to
-* `basic`.
-*
-* @example
-* ```ts
-* const sortFn = column_getAutoSortFn(column)
-* ```
-*/
-function column_getAutoSortFn(column) {
-	const sortFns = column.table._rowModelFns.sortFns;
-	const firstRows = column.table.getFilteredRowModel().flatRows.slice(0, 10);
-	let sortFnName;
-	let isString = false;
-	for (let i = 0; i < firstRows.length; i++) {
-		const value = firstRows[i].getValue(column.id);
-		if (Object.prototype.toString.call(value) === "[object Date]") {
-			sortFnName = "datetime";
-			break;
-		}
-		if (typeof value === "string") {
-			isString = true;
-			if (value.split(reSplitAlphaNumeric).length > 1) {
-				sortFnName = "alphanumeric";
-				break;
-			}
-		}
-	}
-	if (!sortFnName && isString) sortFnName = "text";
-	if (sortFnName) {
-		let sortFn = sortFns?.[sortFnName];
-		if (!sortFn) {
-			if (sortFnName === "alphanumeric") sortFn = sortFns?.text;
-		}
-		if (sortFn) return sortFn;
-	}
-	return sortFn_basic;
-}
-/**
-* Chooses the default first sort direction from sampled filtered row values.
-*
-* The first non-nullish value among the sampled rows decides: string columns
-* start ascending so alphabetical order is natural; other value types (or
-* columns with no non-nullish sample) start descending. Sampling past leading
-* nullish values keeps the toggle cycle stable when sorting or a data swap
-* moves an empty value into the first row.
-*
-* @example
-* ```ts
-* const direction = column_getAutoSortDir(column)
-* ```
-*/
-function column_getAutoSortDir(column) {
-	const firstRows = column.table.getFilteredRowModel().flatRows.slice(0, 10);
-	for (let i = 0; i < firstRows.length; i++) {
-		const value = firstRows[i].getValue(column.id);
-		if (value == null) continue;
-		return typeof value === "string" ? "asc" : "desc";
-	}
-	return "desc";
-}
-/**
-* Resolves the sorting function configured for a column.
-*
-* Function-valued `columnDef.sortFn` is returned directly, `'auto'` delegates
-* to `column_getAutoSortFn`, and string values are looked up in the table's
-* sorting function registry before falling back to `basic`.
-*
-* @example
-* ```ts
-* const sortFn = column_getSortFn(column)
-* ```
-*/
-function column_getSortFn(column) {
-	const sortFns = column.table._rowModelFns.sortFns;
-	if (isFunction(column.columnDef.sortFn)) return column.columnDef.sortFn;
-	if (column.columnDef.sortFn === "auto") return column_getAutoSortFn(column);
-	return sortFns?.[column.columnDef.sortFn] ?? sortFn_basic;
-}
-/**
-* Applies the next sorting state for this column.
-*
-* The toggle can add, replace, flip, or remove this column's sort entry. Multi
-* sorting respects `enableMultiSort`, `enableMultiRemove`,
-* `maxMultiSortColCount`, and the `multi` argument.
-*
-* @example
-* ```ts
-* column_toggleSorting(column, undefined, true)
-* ```
-*/
-function column_toggleSorting(column, desc, multi) {
-	const nextSortingOrder = column_getNextSortingOrder(column, multi && column_getCanMultiSort(column));
-	const hasManualValue = typeof desc !== "undefined";
-	table_setSorting(column.table, (old) => {
-		const existingIndex = old.findIndex((d) => d.id === column.id);
-		const existingSorting = existingIndex === -1 ? void 0 : old[existingIndex];
-		let newSorting = [];
-		let sortAction;
-		const nextDesc = hasManualValue ? desc : nextSortingOrder === "desc";
-		const isMultiMode = !!(old.length && column_getCanMultiSort(column) && multi);
-		if (isMultiMode) if (existingSorting) sortAction = "toggle";
-		else sortAction = "add";
-		else if (existingSorting) sortAction = "toggle";
-		else sortAction = "replace";
-		if (sortAction === "toggle") {
-			if (!hasManualValue) {
-				if (!nextSortingOrder) sortAction = "remove";
-			}
-		}
-		if (sortAction === "add") {
-			newSorting = [...old, {
-				id: column.id,
-				desc: nextDesc
-			}];
-			newSorting.splice(0, newSorting.length - (column.table.options.maxMultiSortColCount ?? Number.MAX_SAFE_INTEGER));
-		} else if (sortAction === "toggle") newSorting = isMultiMode ? old.map((d) => {
-			if (d.id === column.id) return {
-				...d,
-				desc: nextDesc
-			};
-			return d;
-		}) : [{
-			id: column.id,
-			desc: nextDesc
-		}];
-		else if (sortAction === "remove") newSorting = isMultiMode ? old.filter((d) => d.id !== column.id) : [];
-		else newSorting = [{
-			id: column.id,
-			desc: nextDesc
-		}];
-		return newSorting;
-	});
-}
-/**
-* Resolves the first direction used when this column begins sorting.
-*
-* Column-level `sortDescFirst` wins, then table-level `sortDescFirst`, then the
-* auto direction inferred from sampled values.
-*
-* @example
-* ```ts
-* const firstDirection = column_getFirstSortDir(column)
-* ```
-*/
-function column_getFirstSortDir(column) {
-	return column.columnDef.sortDescFirst ?? column.table.options.sortDescFirst ?? column_getAutoSortDir(column) === "desc" ? "desc" : "asc";
-}
-/**
-* Resolves the next sort order for this column's toggle cycle.
-*
-* The cycle starts with the first sort direction, flips between `asc` and
-* `desc`, and can return `false` when sorting removal is enabled.
-*
-* @example
-* ```ts
-* const nextOrder = column_getNextSortingOrder(column)
-* ```
-*/
-function column_getNextSortingOrder(column, multi) {
-	const firstSortDirection = column_getFirstSortDir(column);
-	const isSorted = column_getIsSorted(column);
-	if (!isSorted) return firstSortDirection;
-	if (isSorted !== firstSortDirection && (column.table.options.enableSortingRemoval ?? true) && (multi ? column.table.options.enableMultiRemove ?? true : true)) return false;
-	return isSorted === "desc" ? "asc" : "desc";
-}
-/**
-* Checks whether this accessor column can participate in sorting.
-*
-* The column must have an accessor and sorting must be enabled by both the
-* column definition and table options.
-*
-* @example
-* ```ts
-* const canSort = column_getCanSort(column)
-* ```
-*/
-function column_getCanSort(column) {
-	return (column.columnDef.enableSorting ?? true) && (column.table.options.enableSorting ?? true) && !!column.accessorFn;
-}
-/**
-* Checks whether this column can be added to a multi-sort state.
-*
-* Column-level `enableMultiSort` wins over table-level `enableMultiSort`; if
-* neither is set, accessor columns can multi-sort by default.
-*
-* @example
-* ```ts
-* const canMultiSort = column_getCanMultiSort(column)
-* ```
-*/
-function column_getCanMultiSort(column) {
-	return column.columnDef.enableMultiSort ?? column.table.options.enableMultiSort ?? !!column.accessorFn;
-}
-/**
-* Reads this column's current sort direction.
-*
-* The result is `false` when the column is not sorted, otherwise `'asc'` or
-* `'desc'` based on the column's entry in `state.sorting`.
-*
-* @example
-* ```ts
-* const direction = column_getIsSorted(column)
-* ```
-*/
-function column_getIsSorted(column) {
-	const columnSort = column.table.atoms.sorting?.get()?.find((d) => d.id === column.id);
-	return !columnSort ? false : columnSort.desc ? "desc" : "asc";
-}
-/**
-* Finds this column's position in the ordered `state.sorting` array.
-*
-* The result is `-1` when the column is not sorted.
-*
-* @example
-* ```ts
-* const index = column_getSortIndex(column)
-* ```
-*/
-function column_getSortIndex(column) {
-	return column.table.atoms.sorting?.get()?.findIndex((d) => d.id === column.id) ?? -1;
-}
-/**
-* Removes this column from the sorting state.
-*
-* Other sorted columns are preserved, including their relative order.
-*
-* @example
-* ```ts
-* column_clearSorting(column)
-* ```
-*/
-function column_clearSorting(column) {
-	table_setSorting(column.table, (old) => old.length ? old.filter((d) => d.id !== column.id) : []);
-}
-/**
-* Creates a header event handler that toggles this column's sorting.
-*
-* The handler ignores events when the column cannot sort, and asks
-* `options.isMultiSortEvent` whether the event should add to a multi-sort.
-*
-* @example
-* ```ts
-* const onClick = column_getToggleSortingHandler(column)
-* ```
-*/
-function column_getToggleSortingHandler(column) {
-	const canSort = column_getCanSort(column);
-	return (e) => {
-		if (!canSort) return;
-		column_toggleSorting(column, void 0, column_getCanMultiSort(column) ? column.table.options.isMultiSortEvent?.(e) : false);
-	};
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/row-models/createCoreRowModel.js
-/**
-* Creates a memoized core row model factory.
-*
-* The factory reads the relevant table state atoms and options, then returns a row model function used by the table row-model pipeline.
-*/
-function createCoreRowModel() {
-	return (table) => {
-		return tableMemo({
-			feature: "coreRowModelsFeature",
-			table,
-			fnName: "table.getCoreRowModel",
-			memoDeps: () => [table.options.data],
-			fn: () => _createCoreRowModel(table, table.options.data),
-			onAfterUpdate: skipFirstRun(() => {
-				table_autoResetExpanded(table);
-				table_autoResetPageIndex(table);
-				table_autoResetSorting(table);
-				table_autoResetCellSelection(table);
-			})
-		});
-	};
-}
-function accessRows(table, rowModel, originalRows, depth = 0, parentRow) {
-	const rows = [];
-	for (let i = 0; i < originalRows.length; i++) {
-		const originalRow = originalRows[i];
-		const row = constructRow(table, table.getRowId(originalRow, i, parentRow), originalRow, i, depth, void 0, parentRow?.id);
-		rowModel.flatRows.push(row);
-		rowModel.rowsById[row.id] = row;
-		rows.push(row);
-		if (table.options.getSubRows) {
-			row.originalSubRows = table.options.getSubRows(originalRow, i);
-			if (row.originalSubRows?.length) row.subRows = accessRows(table, rowModel, row.originalSubRows, depth + 1, row);
-		}
-	}
-	return rows;
-}
-function _createCoreRowModel(table, data) {
-	const rowModel = {
-		rows: [],
-		flatRows: [],
-		rowsById: makeObjectMap()
-	};
-	rowModel.rows = accessRows(table, rowModel, data);
-	return rowModel;
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/row-models/coreRowModelsFeature.utils.js
-/**
-* Resolves the table's unmodified core row model.
-*
-* The factory is created once per table, either from the `coreRowModel` slot on the `features` option
-* or the built-in `createCoreRowModel()`, then reused for later calls.
-*
-* @example
-* ```ts
-* const coreRows = table_getCoreRowModel(table)
-* ```
-*/
-function table_getCoreRowModel(table) {
-	if (!table._rowModels.coreRowModel) table._rowModels.coreRowModel = table.options.features.coreRowModel?.(table) ?? createCoreRowModel()(table);
-	return table._rowModels.coreRowModel();
-}
-/**
-* Reads the row model immediately before column/global filtering.
-*
-* Filtering is the first derived row-model stage, so this currently aliases
-* `table.getCoreRowModel()`.
-*
-* @example
-* ```ts
-* const rowsBeforeFiltering = table_getPreFilteredRowModel(table)
-* ```
-*/
-function table_getPreFilteredRowModel(table) {
-	return table.getCoreRowModel();
-}
-/**
-* Resolves the row model after column and global filtering.
-*
-* When `manualFiltering` is enabled, or no filtered row-model factory was
-* registered, this returns the pre-filtered row model because filtering is
-* expected to happen outside the table.
-*
-* @example
-* ```ts
-* const filteredRows = table_getFilteredRowModel(table)
-* ```
-*/
-function table_getFilteredRowModel(table) {
-	if (!table._rowModels.filteredRowModel) table._rowModels.filteredRowModel = table.options.features.filteredRowModel?.(table);
-	if (table.options.manualFiltering || !table._rowModels.filteredRowModel) return table.getPreFilteredRowModel();
-	return table._rowModels.filteredRowModel();
-}
-/**
-* Reads the row model immediately before grouping.
-*
-* Grouping runs after filtering, so this aliases `table.getFilteredRowModel()`.
-*
-* @example
-* ```ts
-* const rowsBeforeGrouping = table_getPreGroupedRowModel(table)
-* ```
-*/
-function table_getPreGroupedRowModel(table) {
-	return table.getFilteredRowModel();
-}
-/**
-* Resolves the row model after grouping has produced grouped rows.
-*
-* When `manualGrouping` is enabled, or no grouped row-model factory was
-* registered, this returns the pre-grouped row model unchanged.
-*
-* @example
-* ```ts
-* const groupedRows = table_getGroupedRowModel(table)
-* ```
-*/
-function table_getGroupedRowModel(table) {
-	if (!table._rowModels.groupedRowModel) table._rowModels.groupedRowModel = table.options.features.groupedRowModel?.(table);
-	if (table.options.manualGrouping || !table._rowModels.groupedRowModel) return table.getPreGroupedRowModel();
-	return table._rowModels.groupedRowModel();
-}
-/**
-* Reads the row model immediately before sorting.
-*
-* Sorting runs after grouping, so this aliases `table.getGroupedRowModel()`.
-*
-* @example
-* ```ts
-* const rowsBeforeSorting = table_getPreSortedRowModel(table)
-* ```
-*/
-function table_getPreSortedRowModel(table) {
-	return table.getGroupedRowModel();
-}
-/**
-* Resolves the row model after sorting has been applied.
-*
-* When `manualSorting` is enabled, or no sorted row-model factory was
-* registered, this returns the pre-sorted row model because sorted data is
-* expected to be supplied by the caller.
-*
-* @example
-* ```ts
-* const sortedRows = table_getSortedRowModel(table)
-* ```
-*/
-function table_getSortedRowModel(table) {
-	if (!table._rowModels.sortedRowModel) table._rowModels.sortedRowModel = table.options.features.sortedRowModel?.(table);
-	if (table.options.manualSorting || !table._rowModels.sortedRowModel) return table.getPreSortedRowModel();
-	return table._rowModels.sortedRowModel();
-}
-/**
-* Reads the row model immediately before row expansion.
-*
-* Expansion runs after sorting, so this aliases `table.getSortedRowModel()`.
-*
-* @example
-* ```ts
-* const rowsBeforeExpansion = table_getPreExpandedRowModel(table)
-* ```
-*/
-function table_getPreExpandedRowModel(table) {
-	return table.getSortedRowModel();
-}
-/**
-* Resolves the row model after expanded rows have been flattened into view.
-*
-* When `manualExpanding` is enabled, or no expanded row-model factory was
-* registered, this returns the pre-expanded row model unchanged.
-*
-* @example
-* ```ts
-* const expandedRows = table_getExpandedRowModel(table)
-* ```
-*/
-function table_getExpandedRowModel(table) {
-	if (!table._rowModels.expandedRowModel) table._rowModels.expandedRowModel = table.options.features.expandedRowModel?.(table);
-	if (table.options.manualExpanding || !table._rowModels.expandedRowModel) return table.getPreExpandedRowModel();
-	return table._rowModels.expandedRowModel();
-}
-/**
-* Reads the row model immediately before pagination.
-*
-* Pagination is the final built-in row-model stage, so this aliases
-* `table.getExpandedRowModel()`.
-*
-* @example
-* ```ts
-* const rowsBeforePagination = table_getPrePaginatedRowModel(table)
-* ```
-*/
-function table_getPrePaginatedRowModel(table) {
-	return table.getExpandedRowModel();
-}
-/**
-* Resolves the row model after pagination has sliced rows for the current page.
-*
-* When `manualPagination` is enabled, or no paginated row-model factory was
-* registered, this returns the pre-paginated row model because pagination is
-* expected to happen before data reaches the table.
-*
-* @example
-* ```ts
-* const pageRows = table_getPaginatedRowModel(table)
-* ```
-*/
-function table_getPaginatedRowModel(table) {
-	if (!table._rowModels.paginatedRowModel) table._rowModels.paginatedRowModel = table.options.features.paginatedRowModel?.(table);
-	if (table.options.manualPagination || !table._rowModels.paginatedRowModel) return table.getPrePaginatedRowModel();
-	return table._rowModels.paginatedRowModel();
-}
-/**
-* Resolves the final row model consumed by renderers.
-*
-* This is the end of the built-in row-model pipeline: core -> filtering ->
-* grouping -> sorting -> expanding -> pagination.
-*
-* @example
-* ```ts
-* const visibleRows = table_getRowModel(table)
-* ```
-*/
-function table_getRowModel(table) {
-	return table.getPaginatedRowModel();
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/row-models/coreRowModelsFeature.js
-/**
-* Core feature that wires table row-model accessors and row-model caches.
-*/
-const coreRowModelsFeature = { constructTableAPIs: (table) => {
-	assignTableAPIs("coreRowModelsFeature", table, {
-		table_getCoreRowModel: { fn: () => table_getCoreRowModel(table) },
-		table_getPreFilteredRowModel: { fn: () => table_getPreFilteredRowModel(table) },
-		table_getFilteredRowModel: { fn: () => table_getFilteredRowModel(table) },
-		table_getPreGroupedRowModel: { fn: () => table_getPreGroupedRowModel(table) },
-		table_getGroupedRowModel: { fn: () => table_getGroupedRowModel(table) },
-		table_getPreSortedRowModel: { fn: () => table_getPreSortedRowModel(table) },
-		table_getSortedRowModel: { fn: () => table_getSortedRowModel(table) },
-		table_getPreExpandedRowModel: { fn: () => table_getPreExpandedRowModel(table) },
-		table_getExpandedRowModel: { fn: () => table_getExpandedRowModel(table) },
-		table_getPrePaginatedRowModel: { fn: () => table_getPrePaginatedRowModel(table) },
-		table_getPaginatedRowModel: { fn: () => table_getPaginatedRowModel(table) },
-		table_getRowModel: { fn: () => table_getRowModel(table) }
-	});
-} };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/cells/constructCell.js
-/**
-* Creates or retrieves the cell prototype for a table.
-* The prototype is cached on the table and shared by all cell instances.
-*/
-function getCellPrototype(table) {
-	if (!table._cellPrototype) {
-		table._cellPrototype = { table };
-		const features = Object.values(table._features);
-		for (let i = 0; i < features.length; i++) features[i].assignCellPrototype?.(table._cellPrototype, table);
-	}
-	return table._cellPrototype;
-}
-/**
-* Constructs a cell instance from normalized table internals.
-*
-* This wires core properties, feature prototype APIs, and instance data used by table rendering and row-model operations.
-*/
-function constructCell(column, row, table) {
-	const cellPrototype = getCellPrototype(table);
-	const cell = Object.create(cellPrototype);
-	cell.column = column;
-	cell.id = `${row.id}_${column.id}`;
-	cell.row = row;
-	const initFns = table._cellInstanceInitFns;
-	for (let i = 0; i < initFns.length; i++) initFns[i](cell);
-	return cell;
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/rows/coreRowsFeature.utils.js
-/**
-* Returns this row's zero-based position in the current pre-pagination row
-* model. Rows outside that model return `-1`.
-*/
-function row_getDisplayIndex(row) {
-	const rows = row.table.getRowsInDisplayOrder();
-	const displayIndex = row._displayIndexCache;
-	return rows[displayIndex] === row ? displayIndex : -1;
-}
-/**
-* Returns the rows in the current display order after assigning their
-* zero-based display indexes.
-*
-* When expanded rows bypass pagination, expanded descendants are inserted into
-* the returned order even though they are absent from the pre-pagination row
-* model.
-*/
-function table_getRowsInDisplayOrder(table) {
-	const rows = table.getPrePaginatedRowModel().rows;
-	if (table.options.paginateExpandedRows === false) {
-		const displayRows = [];
-		const handleRow = (row) => {
-			row._displayIndexCache = displayRows.length;
-			displayRows.push(row);
-			if (row.subRows.length && row.getIsExpanded?.()) row.subRows.forEach(handleRow);
-		};
-		rows.forEach(handleRow);
-		return displayRows;
-	}
-	for (let i = 0; i < rows.length; i++) rows[i]._displayIndexCache = i;
-	return rows;
-}
-/**
-* Reads and caches this row's value for a column.
-*
-* The value is produced by the column accessor. Missing columns or display
-* columns without an accessor return `undefined`.
-*
-* @example
-* ```ts
-* const firstName = row_getValue(row, 'firstName')
-* ```
-*/
-function row_getValue(row, columnId) {
-	if (hasOwn(row._valuesCache, columnId)) return row._valuesCache[columnId];
-	const column = row.table.getColumn(columnId);
-	if (!column?.accessorFn) return;
-	row._valuesCache[columnId] = column.accessorFn(row.original, row.index);
-	return row._valuesCache[columnId];
-}
-/**
-* Reads and caches the values used by faceting/grouping for a column.
-*
-* If the column defines `getUniqueValues`, that result is used. Otherwise the
-* row's accessor value is wrapped in a single-item array.
-*
-* @example
-* ```ts
-* const values = row_getUniqueValues(row, 'tags')
-* ```
-*/
-function row_getUniqueValues(row, columnId) {
-	if (hasOwn(row._uniqueValuesCache, columnId)) return row._uniqueValuesCache[columnId];
-	const column = row.table.getColumn(columnId);
-	if (!column?.accessorFn) return;
-	if (!column.columnDef.getUniqueValues) {
-		row._uniqueValuesCache[columnId] = [row.getValue(columnId)];
-		return row._uniqueValuesCache[columnId];
-	}
-	row._uniqueValuesCache[columnId] = column.columnDef.getUniqueValues(row.original, row.index);
-	return row._uniqueValuesCache[columnId];
-}
-/**
-* Returns a renderable row value for a column.
-*
-* If the accessor value is nullish, the table's `renderFallbackValue` is used
-* instead.
-*
-* @example
-* ```ts
-* const value = row_renderValue(row, 'firstName')
-* ```
-*/
-function row_renderValue(row, columnId) {
-	return row.getValue(columnId) ?? row.table.options.renderFallbackValue;
-}
-/**
-* Flattens this row's descendant tree into leaf rows.
-*
-* The row itself is not included; only nested `subRows` are walked.
-*
-* @example
-* ```ts
-* const descendants = row_getLeafRows(row)
-* ```
-*/
-function row_getLeafRows(row) {
-	return flattenBy(row.subRows, (d) => d.subRows);
-}
-/**
-* Returns the deepest structural row depth in the core row model.
-* Root rows are depth `0`, their direct sub-rows are depth `1`, and so on.
-*/
-function table_getMaxSubRowDepth(table) {
-	const rows = table.getCoreRowModel().flatRows;
-	let maxDepth = 0;
-	for (let i = 0; i < rows.length; i++) maxDepth = Math.max(maxDepth, rows[i].depth);
-	return maxDepth;
-}
-/**
-* Looks up this row's direct parent, if it has one.
-*
-* Parent lookup prefers the core row model for structural parents, then falls
-* back to the pre-pagination row model for generated parent rows.
-*
-* @example
-* ```ts
-* const parent = row_getParentRow(row)
-* ```
-*/
-function row_getParentRow(row) {
-	if (!row.parentId) return;
-	return row.table.getCoreRowModel().rowsById[row.parentId] ?? row.table.getRow(row.parentId, true);
-}
-/**
-* Collects this row's ancestor chain from root to direct parent.
-*
-* The current row is not included. Rows without a parent return an empty array.
-*
-* @example
-* ```ts
-* const ancestors = row_getParentRows(row)
-* ```
-*/
-function row_getParentRows(row) {
-	const parentRows = [];
-	let currentRow = row;
-	while (true) {
-		const parentRow = currentRow.getParentRow();
-		if (!parentRow) break;
-		parentRows.push(parentRow);
-		currentRow = parentRow;
-	}
-	return parentRows.reverse();
-}
-/**
-* Constructs one cell for each leaf column in this row.
-*
-* The result follows `table.getAllLeafColumns()` order and includes hidden
-* columns; visibility-specific APIs filter this list later.
-*
-* @example
-* ```ts
-* const cells = row_getAllCells(row)
-* ```
-*/
-function row_getAllCells(row) {
-	const columns = row.table.getAllLeafColumns();
-	let cache = row._cellsCache;
-	if (!cache) cache = row._cellsCache = /* @__PURE__ */ new WeakMap();
-	const cells = new Array(columns.length);
-	for (let i = 0; i < columns.length; i++) {
-		const column = columns[i];
-		let cell = cache.get(column);
-		if (!cell) {
-			cell = constructCell(column, row, row.table);
-			cache.set(column, cell);
-		}
-		cells[i] = cell;
-	}
-	return cells;
-}
-/**
-* Builds a lookup map of this row's cells keyed by column id.
-*
-* This is the static implementation behind `row.getAllCellsByColumnId()`.
-*
-* @example
-* ```ts
-* const cellsById = row_getAllCellsByColumnId(row)
-* ```
-*/
-function row_getAllCellsByColumnId(row) {
-	const result = makeObjectMap();
-	const cells = row.getAllCells();
-	for (let i = 0; i < cells.length; i++) {
-		const cell = cells[i];
-		result[cell.column.id] = cell;
-	}
-	return result;
-}
-/**
-* Resolves the stable id for a row.
-*
-* `options.getRowId` wins when provided. Otherwise root rows use their index
-* and child rows append their index to the parent id, such as `0.2`.
-*
-* @example
-* ```ts
-* const id = table_getRowId(originalRow, table, index, parentRow)
-* ```
-*/
-function table_getRowId(originalRow, table, index, parent) {
-	return table.options.getRowId?.(originalRow, index, parent) ?? (parent ? `${parent.id}.${index}` : String(index));
-}
-/**
-* Looks up a row by id from the current or full row model.
-*
-* By default this searches `table.getRowModel()`. Passing `searchAll` searches
-* the pre-pagination model first, then falls back to the core model.
-*
-* @example
-* ```ts
-* const row = table_getRow(table, rowId, true)
-* ```
-*/
-function table_getRow(table, rowId, searchAll) {
-	let row = (searchAll ? table.getPrePaginatedRowModel() : table.getRowModel()).rowsById[rowId];
-	if (!row) {
-		row = table.getCoreRowModel().rowsById[rowId];
-		if (!row) throw new Error();
-	}
-	return row;
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/rows/coreRowsFeature.js
-/**
-* Core feature that creates row APIs for values, cells, and tree traversal.
-*/
-const coreRowsFeature = {
-	assignRowPrototype: (prototype, table) => {
-		assignPrototypeAPIs("coreRowsFeature", prototype, table, {
-			row_getDisplayIndex: { fn: (row) => row_getDisplayIndex(row) },
-			row_getAllCellsByColumnId: {
-				fn: (row) => row_getAllCellsByColumnId(row),
-				memoDeps: (row) => [row.getAllCells()]
-			},
-			row_getAllCells: {
-				fn: (row) => row_getAllCells(row),
-				memoDeps: (row) => [row.table.getAllLeafColumns()]
-			},
-			row_getLeafRows: {
-				fn: (row) => row_getLeafRows(row),
-				memoDeps: (row) => [row.subRows]
-			},
-			row_getParentRow: { fn: (row) => row_getParentRow(row) },
-			row_getParentRows: { fn: (row) => row_getParentRows(row) },
-			row_getUniqueValues: { fn: (row, columnId) => row_getUniqueValues(row, columnId) },
-			row_getValue: { fn: (row, columnId) => row_getValue(row, columnId) },
-			row_renderValue: { fn: (row, columnId) => row_renderValue(row, columnId) }
-		});
-	},
-	constructTableAPIs: (table) => {
-		assignTableAPIs("coreRowsFeature", table, {
-			table_getRowsInDisplayOrder: {
-				fn: () => table_getRowsInDisplayOrder(table),
-				memoDeps: () => [
-					table.getPrePaginatedRowModel().rows,
-					table.options.paginateExpandedRows,
-					table.options.paginateExpandedRows === false ? table.atoms.expanded?.get() : void 0
-				]
-			},
-			table_getRowId: { fn: (originalRow, index, parent) => table_getRowId(originalRow, table, index, parent) },
-			table_getRow: { fn: (id, searchAll) => table_getRow(table, id, searchAll) },
-			table_getMaxSubRowDepth: {
-				fn: () => table_getMaxSubRowDepth(table),
-				memoDeps: () => [table.getCoreRowModel()]
-			}
-		});
-	}
-};
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/table/coreTablesFeature.utils.js
-/**
-* Synchronizes externally controlled state slices into the table's base atoms.
-*
-* This keeps `options.state` values mirrored in the atom graph so derived
-* atoms, stores, and table APIs read a consistent snapshot.
-*
-* Adapters that update options during their host's render phase pass the
-* state snapshot captured by the committed render as `capturedState` — the
-* shared options object may already hold values from a newer render that
-* never commits. Pass `null` to publish nothing (a captured "no controlled
-* state"); omitting the argument reads the current `table.options.state`
-* instead. An optional `compare` suppresses semantically unchanged slice
-* writes; the default remains reference equality.
-*
-* @example
-* ```ts
-* table_syncExternalStateToBaseAtoms(table)
-* table_syncExternalStateToBaseAtoms(table, capturedState ?? null, shallow)
-* ```
-*/
-function table_syncExternalStateToBaseAtoms(table, capturedState, compare = (currentState, externalState) => currentState === externalState) {
-	const state = capturedState === void 0 ? table.options.state : capturedState;
-	table._reactivity.batch(() => {
-		if (state) for (const key in state) {
-			const baseAtom = table.baseAtoms[key];
-			if (!baseAtom) continue;
-			const rawExternalState = state[key];
-			const externalState = rawExternalState === void 0 ? table.initialState[key] : rawExternalState;
-			if (!compare(table._reactivity.untrack(() => baseAtom.get()), externalState)) baseAtom.set(() => externalState);
-		}
-	});
-}
-/**
-* Publishes captured controlled state after a host framework commits.
-*
-* Render-phase adapters stage options without synchronizing base atoms, then
-* pass the state captured by the committed render here. The commit signal also
-* invalidates ownership changes when no base atom was written.
-*/
-function table_publishExternalState(table, state, compare = (currentState, externalState) => currentState === externalState) {
-	table._reactivity.batch(() => {
-		table_syncExternalStateToBaseAtoms(table, state, compare);
-		table._reactivity.commit?.();
-	});
-}
-/**
-* Resets all internal table base atoms to `table.initialState`, then clears
-* transient instance data through registered feature reset hooks.
-*
-* This resets internally owned state slices in a single reactivity batch. Use
-* feature-specific reset APIs when a slice may be externally owned.
-*
-* @example
-* ```ts
-* table_reset(table)
-* ```
-*/
-function table_reset(table) {
-	const snap = cloneState(table.initialState);
-	table._reactivity.batch(() => {
-		const keys = Object.keys(snap);
-		for (let i = 0; i < keys.length; i++) {
-			const key = keys[i];
-			table.baseAtoms[key].set(snap[key]);
-		}
-	});
-	const features = Object.values(table._features);
-	for (let i = 0; i < features.length; i++) features[i].resetTableInstanceData?.(table);
-}
-/**
-* Merges new table options with the current resolved options.
-*
-* If `options.mergeOptions` is provided, it owns the merge behavior; otherwise
-* options are shallow-merged. Static options that should never change after
-* initialization are restored on a fresh object so framework merge helpers may
-* return readonly getter/proxy objects.
-*
-* @example
-* ```ts
-* const options = table_mergeOptions(table, nextOptions)
-* ```
-*/
-function table_mergeOptions(table, newOptions) {
-	const { features, atoms, initialState } = table.options;
-	if (!table.options.mergeOptions) return {
-		...table.options,
-		...newOptions,
-		features,
-		atoms,
-		initialState
-	};
-	const mergedOptions = table.options.mergeOptions(table.options, newOptions);
-	const descriptors = { ...Object.getOwnPropertyDescriptors(mergedOptions) };
-	return Object.defineProperties(Object.create(Object.getPrototypeOf(mergedOptions)), {
-		...descriptors,
-		features: {
-			value: features,
-			enumerable: true,
-			configurable: true,
-			writable: true
-		},
-		atoms: {
-			value: atoms,
-			enumerable: true,
-			configurable: true,
-			writable: true
-		},
-		initialState: {
-			value: initialState,
-			enumerable: true,
-			configurable: true,
-			writable: true
-		}
-	});
-}
-/**
-* Updates the table options object.
-*
-* The updater receives the current resolved options and the merged result is
-* immediately assigned to the table instance.
-*
-* @example
-* ```ts
-* table_setOptions(table, (old) => old)
-* table_setOptions(table, (old) => old, { syncExternalState: false })
-* ```
-*/
-function table_setOptions(table, updater, options) {
-	const mergedOptions = table_mergeOptions(table, functionalUpdate(updater, table.options));
-	if (table.optionsStore) table.optionsStore.set(() => mergedOptions);
-	else table.options = mergedOptions;
-	if (options?.syncExternalState !== false) table_publishExternalState(table, mergedOptions.state ?? null);
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/coreFeatures.js
-/**
-* The built-in core feature set required by every table.
-*
-* These features provide table, column, row, header, cell, and core row-model behavior before optional feature plugins are added.
-*/
-const coreFeatures = {
-	coreCellsFeature,
-	coreColumnsFeature,
-	coreHeadersFeature,
-	coreRowModelsFeature,
-	coreRowsFeature,
-	coreTablesFeature: { constructTableAPIs: (table) => {
-		assignTableAPIs("coreTablesFeature", table, {
-			table_reset: { fn: () => table_reset(table) },
-			table_setOptions: { fn: (updater) => table_setOptions(table, updater) }
-		});
-	} }
-};
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/helpers/tableFeatures.js
-/**
-* A helper function to help define the features that are to be imported and applied to a table instance.
-* Use this utility to make it easier to have the correct type inference for the features that are being imported.
-* **Note:** It is recommended to use this utility statically outside of a component.
-*
-* Alongside feature modules, this object carries everything else that is
-* statically stitched into the table:
-*
-* - Row model factories (`sortedRowModel`, `filteredRowModel`, etc.)
-* - Row model function registries (`sortFns`, `filterFns`, `aggregationFns`),
-*   whose keys become the valid string values for `sortFn`, `filterFn`,
-*   `globalFilterFn`, and `aggregationFn` with full inference
-* - Type-only `tableMeta`/`columnMeta` slots for declaring per-table meta types
-*   instead of using global declaration merging. The values are phantom
-*   (ignored and stripped at runtime); only their types are used.
-* @example
-* ```
-* import {
-*   columnFilteringFeature,
-*   createFilteredRowModel,
-*   createSortedRowModel,
-*   filterFn_includesString,
-*   rowSortingFeature,
-*   sortFn_alphanumeric,
-*   sortFn_text,
-*   tableFeatures,
-* } from '@tanstack/react-table'
-* const features = tableFeatures({
-*   columnFilteringFeature,
-*   rowSortingFeature,
-*   filteredRowModel: createFilteredRowModel(),
-*   sortedRowModel: createSortedRowModel(),
-*   filterFns: { includesString: filterFn_includesString, myCustomFilterFn },
-*   sortFns: { alphanumeric: sortFn_alphanumeric, text: sortFn_text },
-*   tableMeta: {} as { updateData: (rowIndex: number, columnId: string, value: unknown) => void },
-*   columnMeta: {} as { align?: 'left' | 'right' },
-* });
-* const table = useTable({ features, columns, data });
-* ```
-*/
-function tableFeatures(features) {
-	return features;
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/reactivity/coreReactivityFeature.utils.js
-/**
-* Bridges atom instances to the `Store`/`ReadonlyStore` API by exposing
-* a `state` getter backed by `atom.get()`, and wiring `setState` for
-* writable atoms.
-*
-* @example
-* ```ts
-* const store = atomToStore(atom)
-* ```
-*/
-function atomToStore(atom) {
-	const store = atom;
-	Object.defineProperty(atom, "state", { get() {
-		return atom.get();
-	} });
-	if ("set" in atom) store.setState = atom.set.bind(atom);
-	return store;
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/core/table/constructTable.js
-/**
-* Builds the initial table state from registered features and user initial state.
-*
-* Each feature contributes its default state before user-provided `initialState` values are merged in.
-*/
-function getInitialTableState(features, initialState = {}) {
-	Object.values(features).forEach((feature) => {
-		initialState = feature.getInitialState?.(initialState) ?? initialState;
-	});
-	return cloneState(initialState);
-}
-/**
-* Constructs a table instance from normalized table internals.
-*
-* This wires core properties, feature prototype APIs, and instance data used by table rendering and row-model operations.
-*/
-function constructTable(tableOptions) {
-	const _reactivity = tableOptions.features.coreReactivityFeature;
-	const { aggregationFns, columnMeta: _columnMeta, coreRowModel, expandedRowModel, facetedMinMaxValues, facetedRowModel, facetedUniqueValues, filterFns, filterMeta: _filterMeta, filteredRowModel, groupedRowModel, paginatedRowModel, sortFns, sortedRowModel, tableMeta: _tableMeta, ...features } = tableOptions.features;
-	const table = {
-		_cellInstanceInitFns: [],
-		_columnInstanceInitFns: [],
-		_features: {
-			...coreFeatures,
-			...features
-		},
-		_headerGroupInstanceInitFns: [],
-		_headerInstanceInitFns: [],
-		_reactivity,
-		_rowInstanceInitFns: [],
-		_rowModelFns: {
-			aggregationFns,
-			filterFns,
-			sortFns
-		},
-		_rowModels: {},
-		atoms: {},
-		baseAtoms: {}
-	};
-	const featuresList = Object.values(table._features);
-	const mergedOptions = {
-		...featuresList.reduce((obj, feature) => {
-			return Object.assign(obj, feature.getDefaultTableOptions?.(table));
-		}, {}),
-		...tableOptions
-	};
-	if (_reactivity.wrapExternalAtoms && mergedOptions.atoms) for (const [atomKey, _atom] of Object.entries(mergedOptions.atoms)) {
-		const atom = _atom;
-		const wrappedAtom = _reactivity.createWritableAtom(atom.get(), { debugName: `externalAtom/${atomKey}` });
-		mergedOptions.atoms[atomKey] = wrappedAtom;
-		let syncExternal = false;
-		const syncAtomToWrappedSub = atom.subscribe((value) => {
-			if (syncExternal) return;
-			wrappedAtom.set(value);
-		});
-		const syncWrappedToAtomSub = wrappedAtom.subscribe((value) => {
-			syncExternal = true;
-			atom.set(value);
-			syncExternal = false;
-		});
-		_reactivity.addSubscription(syncAtomToWrappedSub);
-		_reactivity.addSubscription(syncWrappedToAtomSub);
-	}
-	if (_reactivity.createOptionsStore) {
-		table.optionsStore = _reactivity.createWritableAtom(mergedOptions, { debugName: "table/optionsStore" });
-		Object.defineProperty(table, "options", {
-			configurable: true,
-			enumerable: true,
-			get() {
-				return table.optionsStore.get();
-			},
-			set(value) {
-				table.optionsStore.set(() => value);
-			}
-		});
-	} else table.options = mergedOptions;
-	table.initialState = getInitialTableState(table._features, table.options.initialState);
-	const stateKeys = Object.keys(table.initialState);
-	for (let i = 0; i < stateKeys.length; i++) {
-		const key = stateKeys[i];
-		table.baseAtoms[key] = _reactivity.createWritableAtom(table.initialState[key], { debugName: `table/baseAtoms/${key}` });
-		table.atoms[key] = _reactivity.createReadonlyAtom(() => {
-			const options = table.options;
-			const externalAtom = options.atoms?.[key];
-			const reactiveState = externalAtom ? externalAtom.get() : table.baseAtoms[key].get();
-			if (externalAtom) return reactiveState;
-			const controlledState = options.state;
-			if (controlledState && hasOwn(controlledState, key)) {
-				const controlledValue = controlledState[key];
-				return controlledValue === void 0 ? table.initialState[key] : controlledValue;
-			}
-			return reactiveState;
-		}, { debugName: `table/atoms/${key}` });
-	}
-	table_syncExternalStateToBaseAtoms(table);
-	table.store = atomToStore(_reactivity.createReadonlyAtom(() => {
-		const snapshot = {};
-		for (let i = 0; i < stateKeys.length; i++) {
-			const key = stateKeys[i];
-			snapshot[key] = table.atoms[key].get();
-		}
-		return snapshot;
-	}, {
-		compare: shallow,
-		debugName: "table/store"
-	}));
-	for (let i = 0; i < featuresList.length; i++) {
-		const feature = featuresList[i];
-		feature.initTableInstanceData?.(table);
-		if (feature.initCellInstanceData) table._cellInstanceInitFns.push(feature.initCellInstanceData.bind(feature));
-		if (feature.initColumnInstanceData) table._columnInstanceInitFns.push(feature.initColumnInstanceData.bind(feature));
-		if (feature.initHeaderGroupInstanceData) table._headerGroupInstanceInitFns.push(feature.initHeaderGroupInstanceData.bind(feature));
-		if (feature.initHeaderInstanceData) table._headerInstanceInitFns.push(feature.initHeaderInstanceData.bind(feature));
-		if (feature.initRowInstanceData) table._rowInstanceInitFns.push(feature.initRowInstanceData.bind(feature));
-		feature.constructTableAPIs?.(table);
-	}
-	return table;
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/cell-selection/cellSelectionFeature.js
+// ../../node_modules/@tanstack/table-core/dist/features/cell-selection/cellSelectionFeature.js
 /**
 * Feature that adds spreadsheet-style cell range selection state and APIs.
 */
@@ -6376,8 +4629,7 @@ const cellSelectionFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-faceting/columnFacetingFeature.utils.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-faceting/columnFacetingFeature.utils.js
 /**
 * Computes min and max numeric facet values for one column.
 *
@@ -6484,8 +4736,7 @@ function table_getGlobalFacetedUniqueValues(table) {
 	const facetedUniqueValuesFn = table._rowModels.globalFacetedUniqueValues;
 	return facetedUniqueValuesFn();
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-faceting/columnFacetingFeature.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-faceting/columnFacetingFeature.js
 /**
 * Feature that derives faceted row models, unique values, and min/max values for filters.
 *
@@ -6511,8 +4762,7 @@ const columnFacetingFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-filtering/columnFilteringFeature.utils.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-filtering/columnFilteringFeature.utils.js
 /**
 * Creates the default column filter state.
 *
@@ -6688,7 +4938,7 @@ function table_setColumnFilters(table, updater) {
 			return true;
 		});
 	};
-	table.options.onColumnFiltersChange?.(updateFn);
+	setStateSlice(table, "columnFilters", updateFn);
 }
 /**
 * Resets `columnFilters` to the configured initial state or feature default.
@@ -6725,8 +4975,7 @@ function shouldAutoRemoveFilter(filterFn, value, column) {
 	if (filterFn?.autoRemove) return !!filterFn.autoRemove(value, column);
 	return typeof value === "string" && !value;
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-filtering/columnFilteringFeature.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-filtering/columnFilteringFeature.js
 /**
 * Feature that adds per-column filtering state, options, and column/table filter APIs.
 */
@@ -6769,8 +5018,184 @@ const columnFilteringFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-ordering/columnOrderingFeature.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-ordering/columnOrderingFeature.utils.js
+/**
+* Creates the default column order state.
+*
+* The feature default is an empty array, meaning leaf columns keep their natural
+* definition order. Reset APIs use this value when `defaultState` is `true`.
+*
+* @example
+* ```ts
+* const order = getDefaultColumnOrderState()
+* ```
+*/
+function getDefaultColumnOrderState() {
+	return [];
+}
+/**
+* Builds column-id to index records for each visible pinning region.
+*
+* All four regions are built in one pass so a single memo entry serves every
+* `column_getIndex` lookup without per-column scans.
+*
+* @example
+* ```ts
+* const indexes = table_getColumnIndexes(table)
+* ```
+*/
+function table_getColumnIndexes(table) {
+	const buildIndexes = (columns) => {
+		const indexes = makeObjectMap();
+		for (let i = 0; i < columns.length; i++) indexes[columns[i].id] = i;
+		return indexes;
+	};
+	return {
+		all: buildIndexes(getPinnedVisibleLeafColumns(table)),
+		center: buildIndexes(getPinnedVisibleLeafColumns(table, "center")),
+		start: buildIndexes(getPinnedVisibleLeafColumns(table, "start")),
+		end: buildIndexes(getPinnedVisibleLeafColumns(table, "end"))
+	};
+}
+/**
+* Finds this column's index within a visible pinning region.
+*
+* Pass `'start'`, `'center'`, or `'end'` to search that region; omit the
+* position to search the full visible leaf column list.
+*
+* @example
+* ```ts
+* const index = column_getIndex(column, 'center')
+* ```
+*/
+function column_getIndex(column, position) {
+	return callMemoOrStaticFn(column.table, "getColumnIndexes", table_getColumnIndexes)[position === "start" ? "start" : position === "end" ? "end" : position === "center" ? "center" : "all"][column.id] ?? -1;
+}
+/**
+* Checks whether this column is the first visible column in a pinning region.
+*
+* The same `position` semantics as `column_getIndex` apply.
+*
+* @example
+* ```ts
+* const isFirst = column_getIsFirstColumn(column, 'start')
+* ```
+*/
+function column_getIsFirstColumn(column, position) {
+	return getPinnedVisibleLeafColumns(column.table, position)[0]?.id === column.id;
+}
+/**
+* Checks whether this column is the last visible column in a pinning region.
+*
+* The same `position` semantics as `column_getIndex` apply.
+*
+* @example
+* ```ts
+* const isLast = column_getIsLastColumn(column, 'end')
+* ```
+*/
+function column_getIsLastColumn(column, position) {
+	const columns = getPinnedVisibleLeafColumns(column.table, position);
+	return columns[columns.length - 1]?.id === column.id;
+}
+/**
+* Routes a column order updater through the table's column-order change handler.
+*
+* The updater may be a next ordered id array or a function of the previous
+* array, matching the instance `table.setColumnOrder` behavior.
+*
+* @example
+* ```ts
+* table_setColumnOrder(table, ['firstName', 'lastName', 'age'])
+* ```
+*/
+function table_setColumnOrder(table, updater) {
+	setStateSlice(table, "columnOrder", updater);
+}
+/**
+* Resets `columnOrder` to the configured initial state or feature default.
+*
+* With no argument, the reset clones `table.initialState.columnOrder` when it
+* exists. Passing `true` ignores initial state and resets to `[]`.
+*
+* @example
+* ```ts
+* table_resetColumnOrder(table)
+* table_resetColumnOrder(table, true)
+* ```
+*/
+function table_resetColumnOrder(table, defaultState) {
+	table_setColumnOrder(table, defaultState ? [] : cloneState(table.initialState.columnOrder ?? []));
+}
+/**
+* Creates the ordering function used to arrange leaf columns.
+*
+* The returned function applies `state.columnOrder`, preserves unspecified
+* columns in their original order, then delegates to grouping rules.
+*
+* @example
+* ```ts
+* const orderColumnsForTable = table_getOrderColumnsFn(table)
+* ```
+*/
+function table_getOrderColumnsFn(table) {
+	const columnOrder = table.atoms.columnOrder?.get();
+	return (columns) => {
+		let orderedColumns = [];
+		if (!columnOrder?.length) orderedColumns = columns;
+		else {
+			const remaining = /* @__PURE__ */ new Map();
+			for (let i = 0; i < columns.length; i++) {
+				const column = columns[i];
+				remaining.set(column.id, column);
+			}
+			for (let i = 0; i < columnOrder.length; i++) {
+				const id = columnOrder[i];
+				const column = remaining.get(id);
+				if (column) {
+					orderedColumns.push(column);
+					remaining.delete(id);
+				}
+			}
+			for (let i = 0; i < columns.length; i++) {
+				const column = columns[i];
+				if (remaining.has(column.id)) orderedColumns.push(column);
+			}
+		}
+		return orderColumns(table, orderedColumns);
+	};
+}
+/**
+* Applies grouped-column placement rules to an already ordered leaf-column list.
+*
+* `groupedColumnMode: 'remove'` drops grouped columns from the list.
+* `groupedColumnMode: 'reorder'` moves grouped columns to the front in grouping
+* state order.
+*
+* @example
+* ```ts
+* const orderedColumns = orderColumns(table, leafColumns)
+* ```
+*/
+function orderColumns(table, leafColumns) {
+	const grouping = table.atoms.grouping?.get() ?? [];
+	const { groupedColumnMode } = table.options;
+	if (!grouping.length || !groupedColumnMode) return leafColumns;
+	const nonGroupingColumns = leafColumns.filter((col) => !grouping.includes(col.id));
+	if (groupedColumnMode === "remove") return nonGroupingColumns;
+	const leafColumnsById = /* @__PURE__ */ new Map();
+	for (let i = 0; i < leafColumns.length; i++) {
+		const col = leafColumns[i];
+		leafColumnsById.set(col.id, col);
+	}
+	const groupingColumns = [];
+	for (let i = 0; i < grouping.length; i++) {
+		const col = leafColumnsById.get(grouping[i]);
+		if (col) groupingColumns.push(col);
+	}
+	return [...groupingColumns, ...nonGroupingColumns];
+}
+// ../../node_modules/@tanstack/table-core/dist/features/column-ordering/columnOrderingFeature.js
 /**
 * Feature that adds column ordering state and APIs for ordering leaf columns.
 */
@@ -6817,8 +5242,594 @@ const columnOrderingFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-pinning/columnPinningFeature.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-pinning/columnPinningFeature.utils.js
+/**
+* Creates the default column pinning state.
+*
+* Both pinning regions start empty. Reset APIs use this value when
+* `defaultState` is `true`.
+*
+* @example
+* ```ts
+* const pinning = getDefaultColumnPinningState()
+* ```
+*/
+function getDefaultColumnPinningState() {
+	return {
+		start: [],
+		end: []
+	};
+}
+/**
+* Moves this column's leaf column ids into a pinning region.
+*
+* Pinning a group column pins all of its leaves. The leaf ids are first removed
+* from both regions, then appended to the requested `'start'` or `'end'`
+* region. Passing `false` unpins them back to the center.
+*
+* `start` and `end` are logical positions. In LTR languages/layouts, `start`
+* usually corresponds to left and `end` to right. In RTL languages/layouts,
+* `start` usually corresponds to right and `end` to left.
+*
+* @example
+* ```ts
+* column_pin(column, 'start')
+* ```
+*/
+function column_pin(column, position) {
+	const leafColumns = column.getLeafColumns();
+	const columnIds = [];
+	for (let i = 0; i < leafColumns.length; i++) {
+		const id = leafColumns[i].id;
+		if (id) columnIds.push(id);
+	}
+	table_setColumnPinning(column.table, (old) => {
+		if (position === "end") return {
+			start: old.start.filter((d) => !columnIds.includes(d)),
+			end: [...old.end.filter((d) => !columnIds.includes(d)), ...columnIds]
+		};
+		if (position === "start") return {
+			start: [...old.start.filter((d) => !columnIds.includes(d)), ...columnIds],
+			end: old.end.filter((d) => !columnIds.includes(d))
+		};
+		return {
+			start: old.start.filter((d) => !columnIds.includes(d)),
+			end: old.end.filter((d) => !columnIds.includes(d))
+		};
+	});
+}
+/**
+* Checks whether this column or any of its leaf columns can be pinned.
+*
+* Column-level `enablePinning` and table `enableColumnPinning` both default to
+* `true`; at least one leaf column must allow pinning.
+*
+* @example
+* ```ts
+* const canPin = column_getCanPin(column)
+* ```
+*/
+function column_getCanPin(column) {
+	return column.getLeafColumns().some((leafColumn) => (leafColumn.columnDef.enablePinning ?? true) && (column.table.options.enableColumnPinning ?? true));
+}
+/**
+* Reads this column's current pinning region.
+*
+* Group columns report `'start'` or `'end'` when any leaf column is pinned in
+* that region. Unpinned columns return `false`.
+*
+* `start` and `end` are logical positions. In LTR languages/layouts, `start`
+* usually corresponds to left and `end` to right. In RTL languages/layouts,
+* `start` usually corresponds to right and `end` to left.
+*
+* @example
+* ```ts
+* const position = column_getIsPinned(column)
+* ```
+*/
+function column_getIsPinned(column) {
+	const leafColumns = column.getLeafColumns();
+	const { start, end } = column.table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
+	for (let i = 0; i < leafColumns.length; i++) if (start.includes(leafColumns[i].id)) return "start";
+	for (let i = 0; i < leafColumns.length; i++) if (end.includes(leafColumns[i].id)) return "end";
+	return false;
+}
+/**
+* Finds this column's index within its pinned region.
+*
+* Unpinned columns return `0`; pinned columns return their position in
+* `state.columnPinning.start` or `state.columnPinning.end`.
+*
+* @example
+* ```ts
+* const index = column_getPinnedIndex(column)
+* ```
+*/
+function column_getPinnedIndex(column) {
+	const position = column_getIsPinned(column);
+	return position ? column.table.atoms.columnPinning?.get()?.[position].indexOf(column.id) ?? -1 : 0;
+}
+/**
+* Collects visible cells whose columns are not pinned start or end.
+*
+* The result preserves the row's visible-cell order for center columns.
+*
+* @example
+* ```ts
+* const centerCells = row_getCenterVisibleCells(row)
+* ```
+*/
+function row_getCenterVisibleCells(row) {
+	const allCells = getVisibleCells(row);
+	const { start, end } = row.table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
+	if (!start.length && !end.length) return allCells;
+	const startAndEnd = [...start, ...end];
+	return allCells.filter((d) => !startAndEnd.includes(d.column.id));
+}
+/**
+* Collects visible cells for columns pinned to the start region.
+*
+* Cells are returned in `state.columnPinning.start` order and are marked with
+* `cell.position = 'start'`.
+*
+* @example
+* ```ts
+* const startCells = row_getStartVisibleCells(row)
+* ```
+*/
+function row_getStartVisibleCells(row) {
+	const { start } = row.table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
+	if (!start.length) return [];
+	const allVisibleCells = getVisibleCellsByColumnId(row);
+	const cells = [];
+	for (let i = 0; i < start.length; i++) {
+		const cell = allVisibleCells[start[i]];
+		if (cell) {
+			cell.position = "start";
+			cells.push(cell);
+		}
+	}
+	return cells;
+}
+/**
+* Collects visible cells for columns pinned to the end region.
+*
+* Cells are returned in `state.columnPinning.end` order and are marked with
+* `cell.position = 'end'`.
+*
+* @example
+* ```ts
+* const endCells = row_getEndVisibleCells(row)
+* ```
+*/
+function row_getEndVisibleCells(row) {
+	const { end } = row.table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
+	if (!end.length) return [];
+	const allVisibleCells = getVisibleCellsByColumnId(row);
+	const cells = [];
+	for (let i = 0; i < end.length; i++) {
+		const cell = allVisibleCells[end[i]];
+		if (cell) {
+			cell.position = "end";
+			cells.push(cell);
+		}
+	}
+	return cells;
+}
+/**
+* Routes a column pinning updater through the table's pinning change handler.
+*
+* The updater may be a next `{ start, end }` state or a function of the
+* previous state, matching the instance `table.setColumnPinning` behavior.
+*
+* @example
+* ```ts
+* table_setColumnPinning(table, (old) => ({ ...old, start: ['select'] }))
+* ```
+*/
+function table_setColumnPinning(table, updater) {
+	setStateSlice(table, "columnPinning", updater);
+}
+/**
+* Resets `columnPinning` to the configured initial state or feature default.
+*
+* With no argument, the reset clones `table.initialState.columnPinning` when it
+* exists. Passing `true` ignores initial state and resets to empty start/end
+* arrays.
+*
+* @example
+* ```ts
+* table_resetColumnPinning(table)
+* table_resetColumnPinning(table, true)
+* ```
+*/
+function table_resetColumnPinning(table, defaultState) {
+	table_setColumnPinning(table, defaultState ? getDefaultColumnPinningState() : cloneState(table.initialState.columnPinning ?? getDefaultColumnPinningState()));
+}
+/**
+* Checks whether any columns are pinned.
+*
+* Omit `position` to check both sides, or pass `'start'`/`'end'` to inspect a
+* single pinning region.
+*
+* @example
+* ```ts
+* const hasPinnedColumns = table_getIsSomeColumnsPinned(table)
+* ```
+*/
+function table_getIsSomeColumnsPinned(table, position) {
+	const pinningState = table.atoms.columnPinning?.get();
+	if (!position) return Boolean(pinningState?.start.length || pinningState?.end.length);
+	return Boolean(pinningState?.[position].length);
+}
+/**
+* Builds header groups for visible columns pinned to the start region.
+*
+* The leaf columns are read in `state.columnPinning.start` order and then passed
+* through the same header-group builder as the unpinned table.
+*
+* @example
+* ```ts
+* const headerGroups = table_getStartHeaderGroups(table)
+* ```
+*/
+function table_getStartHeaderGroups(table) {
+	const allColumns = table.getAllColumns();
+	const leafColumnsById = table.getAllLeafColumnsById();
+	const { start } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
+	const orderedLeafColumns = [];
+	for (let i = 0; i < start.length; i++) {
+		const column = leafColumnsById[start[i]];
+		if (column && getIsColumnVisible(column)) orderedLeafColumns.push(column);
+	}
+	return buildHeaderGroups(allColumns, orderedLeafColumns, table, "start");
+}
+/**
+* Builds header groups for visible columns pinned to the end region.
+*
+* The leaf columns are read in `state.columnPinning.end` order and then
+* passed through the same header-group builder as the unpinned table.
+*
+* @example
+* ```ts
+* const headerGroups = table_getEndHeaderGroups(table)
+* ```
+*/
+function table_getEndHeaderGroups(table) {
+	const allColumns = table.getAllColumns();
+	const leafColumnsById = table.getAllLeafColumnsById();
+	const { end } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
+	const orderedLeafColumns = [];
+	for (let i = 0; i < end.length; i++) {
+		const column = leafColumnsById[end[i]];
+		if (column && getIsColumnVisible(column)) orderedLeafColumns.push(column);
+	}
+	return buildHeaderGroups(allColumns, orderedLeafColumns, table, "end");
+}
+/**
+* Builds header groups for visible columns that are not pinned.
+*
+* Start- and end-pinned column ids are removed from the visible leaf column
+* list before header groups are built for the center region.
+*
+* @example
+* ```ts
+* const headerGroups = table_getCenterHeaderGroups(table)
+* ```
+*/
+function table_getCenterHeaderGroups(table) {
+	const allColumns = table.getAllColumns();
+	let leafColumns = getVisibleLeafColumns(table);
+	const { start, end } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
+	if (start.length || end.length) {
+		const startAndEnd = [...start, ...end];
+		leafColumns = leafColumns.filter((column) => !startAndEnd.includes(column.id));
+	}
+	return buildHeaderGroups(allColumns, leafColumns, table, "center");
+}
+/**
+* Builds footer groups for the start pinned region.
+*
+* Footer groups reuse the start header groups in reverse order.
+*
+* @example
+* ```ts
+* const footerGroups = table_getStartFooterGroups(table)
+* ```
+*/
+function table_getStartFooterGroups(table) {
+	return [...callMemoOrStaticFn(table, "getStartHeaderGroups", table_getStartHeaderGroups)].reverse();
+}
+/**
+* Builds footer groups for the end pinned region.
+*
+* Footer groups reuse the end header groups in reverse order.
+*
+* @example
+* ```ts
+* const footerGroups = table_getEndFooterGroups(table)
+* ```
+*/
+function table_getEndFooterGroups(table) {
+	return [...callMemoOrStaticFn(table, "getEndHeaderGroups", table_getEndHeaderGroups)].reverse();
+}
+/**
+* Builds footer groups for the center, unpinned region.
+*
+* Footer groups reuse the center header groups in reverse order.
+*
+* @example
+* ```ts
+* const footerGroups = table_getCenterFooterGroups(table)
+* ```
+*/
+function table_getCenterFooterGroups(table) {
+	return [...callMemoOrStaticFn(table, "getCenterHeaderGroups", table_getCenterHeaderGroups)].reverse();
+}
+/**
+* Flattens every header from the start pinned header groups.
+*
+* Parent headers and placeholder headers are included.
+*
+* @example
+* ```ts
+* const headers = table_getStartFlatHeaders(table)
+* ```
+*/
+function table_getStartFlatHeaders(table) {
+	const leftHeaderGroups = callMemoOrStaticFn(table, "getStartHeaderGroups", table_getStartHeaderGroups);
+	const result = [];
+	for (let i = 0; i < leftHeaderGroups.length; i++) {
+		const headers = leftHeaderGroups[i].headers;
+		for (let j = 0; j < headers.length; j++) result.push(headers[j]);
+	}
+	return result;
+}
+/**
+* Flattens every header from the end pinned header groups.
+*
+* Parent headers and placeholder headers are included.
+*
+* @example
+* ```ts
+* const headers = table_getEndFlatHeaders(table)
+* ```
+*/
+function table_getEndFlatHeaders(table) {
+	const rightHeaderGroups = callMemoOrStaticFn(table, "getEndHeaderGroups", table_getEndHeaderGroups);
+	const result = [];
+	for (let i = 0; i < rightHeaderGroups.length; i++) {
+		const headers = rightHeaderGroups[i].headers;
+		for (let j = 0; j < headers.length; j++) result.push(headers[j]);
+	}
+	return result;
+}
+/**
+* Flattens every header from the center header groups.
+*
+* Parent headers and placeholder headers are included.
+*
+* @example
+* ```ts
+* const headers = table_getCenterFlatHeaders(table)
+* ```
+*/
+function table_getCenterFlatHeaders(table) {
+	const centerHeaderGroups = callMemoOrStaticFn(table, "getCenterHeaderGroups", table_getCenterHeaderGroups);
+	const result = [];
+	for (let i = 0; i < centerHeaderGroups.length; i++) {
+		const headers = centerHeaderGroups[i].headers;
+		for (let j = 0; j < headers.length; j++) result.push(headers[j]);
+	}
+	return result;
+}
+/**
+* Collects leaf headers for the start pinned region.
+*
+* Parent headers are filtered out from the start flat header list.
+*
+* @example
+* ```ts
+* const headers = table_getStartLeafHeaders(table)
+* ```
+*/
+function table_getStartLeafHeaders(table) {
+	return callMemoOrStaticFn(table, "getStartFlatHeaders", table_getStartFlatHeaders).filter((header) => !header.subHeaders.length);
+}
+/**
+* Collects leaf headers for the end pinned region.
+*
+* Parent headers are filtered out from the end flat header list.
+*
+* @example
+* ```ts
+* const headers = table_getEndLeafHeaders(table)
+* ```
+*/
+function table_getEndLeafHeaders(table) {
+	return callMemoOrStaticFn(table, "getEndFlatHeaders", table_getEndFlatHeaders).filter((header) => !header.subHeaders.length);
+}
+/**
+* Collects leaf headers for the center, unpinned region.
+*
+* Parent headers are filtered out from the center flat header list.
+*
+* @example
+* ```ts
+* const headers = table_getCenterLeafHeaders(table)
+* ```
+*/
+function table_getCenterLeafHeaders(table) {
+	return callMemoOrStaticFn(table, "getCenterFlatHeaders", table_getCenterFlatHeaders).filter((header) => !header.subHeaders.length);
+}
+/**
+* Resolves leaf columns pinned to the start region.
+*
+* The result follows `state.columnPinning.start` order and skips stale ids that
+* no longer correspond to a leaf column.
+*
+* @example
+* ```ts
+* const columns = table_getStartLeafColumns(table)
+* ```
+*/
+function table_getStartLeafColumns(table) {
+	const { start } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
+	const leafColumnsById = table.getAllLeafColumnsById();
+	const result = [];
+	for (let i = 0; i < start.length; i++) {
+		const column = leafColumnsById[start[i]];
+		if (column) result.push(column);
+	}
+	return result;
+}
+/**
+* Resolves leaf columns pinned to the end region.
+*
+* The result follows `state.columnPinning.end` order and skips stale ids that
+* no longer correspond to a leaf column.
+*
+* @example
+* ```ts
+* const columns = table_getEndLeafColumns(table)
+* ```
+*/
+function table_getEndLeafColumns(table) {
+	const { end } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
+	const leafColumnsById = table.getAllLeafColumnsById();
+	const result = [];
+	for (let i = 0; i < end.length; i++) {
+		const column = leafColumnsById[end[i]];
+		if (column) result.push(column);
+	}
+	return result;
+}
+/**
+* Resolves leaf columns that are not pinned to either logical side.
+*
+* Start- and end-pinned ids are removed from `table.getAllLeafColumns()`.
+*
+* @example
+* ```ts
+* const columns = table_getCenterLeafColumns(table)
+* ```
+*/
+function table_getCenterLeafColumns(table) {
+	const { start, end } = table.atoms.columnPinning?.get() ?? getDefaultColumnPinningState();
+	if (!start.length && !end.length) return table.getAllLeafColumns();
+	const startAndEnd = [...start, ...end];
+	return table.getAllLeafColumns().filter((d) => !startAndEnd.includes(d.id));
+}
+/**
+* Resolves leaf columns for a requested pinning region.
+*
+* Pass `'start'`, `'center'`, or `'end'` for a partition, or pass `false` to
+* read all leaf columns without partitioning.
+*
+* @example
+* ```ts
+* const columns = table_getPinnedLeafColumns(table, 'center')
+* ```
+*/
+function table_getPinnedLeafColumns(table, position) {
+	return !position ? table.getAllLeafColumns() : position === "start" ? callMemoOrStaticFn(table, "getStartLeafColumns", table_getStartLeafColumns) : position === "end" ? callMemoOrStaticFn(table, "getEndLeafColumns", table_getEndLeafColumns) : callMemoOrStaticFn(table, "getCenterLeafColumns", table_getCenterLeafColumns);
+}
+/**
+* Resolves visible leaf columns pinned to the start region.
+*
+* Hidden pinned columns are filtered out after the start pin order is applied.
+*
+* @example
+* ```ts
+* const columns = table_getStartVisibleLeafColumns(table)
+* ```
+*/
+function table_getStartVisibleLeafColumns(table) {
+	return callMemoOrStaticFn(table, "getStartLeafColumns", table_getStartLeafColumns).filter((column) => getIsColumnVisible(column));
+}
+/**
+* Resolves visible leaf columns pinned to the end region.
+*
+* Hidden pinned columns are filtered out after the end pin order is applied.
+*
+* @example
+* ```ts
+* const columns = table_getEndVisibleLeafColumns(table)
+* ```
+*/
+function table_getEndVisibleLeafColumns(table) {
+	return callMemoOrStaticFn(table, "getEndLeafColumns", table_getEndLeafColumns).filter((column) => getIsColumnVisible(column));
+}
+/**
+* Resolves visible leaf columns that are not pinned.
+*
+* This is the center partition used by layouts that render pinned columns
+* separately from the scrollable middle region.
+*
+* @example
+* ```ts
+* const columns = table_getCenterVisibleLeafColumns(table)
+* ```
+*/
+function table_getCenterVisibleLeafColumns(table) {
+	return callMemoOrStaticFn(table, "getCenterLeafColumns", table_getCenterLeafColumns).filter((column) => getIsColumnVisible(column));
+}
+/**
+* Resolves visible leaf columns for a requested pinning region.
+*
+* Omit `position` to get all visible leaf columns, or pass `'start'`, `'center'`,
+* or `'end'` to get one partition.
+*
+* @example
+* ```ts
+* const columns = table_getPinnedVisibleLeafColumns(table, 'start')
+* ```
+*/
+function table_getPinnedVisibleLeafColumns(table, position) {
+	return !position ? getVisibleLeafColumns(table) : position === "start" ? callMemoOrStaticFn(table, "getStartVisibleLeafColumns", table_getStartVisibleLeafColumns) : position === "end" ? callMemoOrStaticFn(table, "getEndVisibleLeafColumns", table_getEndVisibleLeafColumns) : callMemoOrStaticFn(table, "getCenterVisibleLeafColumns", table_getCenterVisibleLeafColumns);
+}
+// ../../node_modules/@tanstack/table-core/dist/features/column-pinning/orderByColumnPinning.js
+/**
+* Display order for column pinning, shared through the `orderByColumnPinning`
+* feature stub so that the core headers, row visible cells, and cell selection
+* don't bundle it when the column pinning feature is not registered.
+*
+* Internal: not exported from any package entry point.
+*/
+/**
+* Orders items that each belong to a leaf column, such as visible leaf
+* columns or a row's visible cells: start-pinned items in pinning order, then
+* unpinned items in their given order, then end-pinned items in pinning order.
+* Pinned ids that match no item are skipped.
+*
+* `getItemsByColumnId` can return an existing lookup of the same items, which
+* is only read when something is pinned.
+*/
+function orderByColumnPinning(table, items, getColumnId, getItemsByColumnId) {
+	const columnPinning = table.atoms.columnPinning?.get();
+	if (!columnPinning || !columnPinning.start.length && !columnPinning.end.length) return items;
+	const { start, end } = columnPinning;
+	let itemsByColumnId = getItemsByColumnId?.();
+	if (!itemsByColumnId) {
+		itemsByColumnId = makeObjectMap();
+		for (let i = 0; i < items.length; i++) itemsByColumnId[getColumnId(items[i])] = items[i];
+	}
+	const ordered = [];
+	for (let i = 0; i < start.length; i++) {
+		const item = itemsByColumnId[start[i]];
+		if (item) ordered.push(item);
+	}
+	for (let i = 0; i < items.length; i++) {
+		const columnId = getColumnId(items[i]);
+		if (!start.includes(columnId) && !end.includes(columnId)) ordered.push(items[i]);
+	}
+	for (let i = 0; i < end.length; i++) {
+		const item = itemsByColumnId[end[i]];
+		if (item) ordered.push(item);
+	}
+	return ordered;
+}
+// ../../node_modules/@tanstack/table-core/dist/features/column-pinning/columnPinningFeature.js
 /**
 * Feature that adds column pinning state and APIs for logical start, center,
 * and end regions.
@@ -6881,11 +5892,12 @@ const columnPinningFeature = {
 			table_setColumnPinning: { fn: (updater) => table_setColumnPinning(table, updater) },
 			table_resetColumnPinning: { fn: (defaultState) => table_resetColumnPinning(table, defaultState) },
 			table_getIsSomeColumnsPinned: { fn: (position) => table_getIsSomeColumnsPinned(table, position) },
+			table__orderByColumnPinning: { fn: (items, getColumnId, getItemsByColumnId) => orderByColumnPinning(table, items, getColumnId, getItemsByColumnId) },
 			table_getStartHeaderGroups: {
 				fn: () => table_getStartHeaderGroups(table),
 				memoDeps: () => [
 					table.getAllColumns(),
-					callMemoOrStaticFn(table, "getVisibleLeafColumns", table_getVisibleLeafColumns),
+					getVisibleLeafColumns(table),
 					table.atoms.columnPinning?.get()?.start,
 					table.atoms.columnOrder?.get()
 				]
@@ -6894,7 +5906,7 @@ const columnPinningFeature = {
 				fn: () => table_getCenterHeaderGroups(table),
 				memoDeps: () => [
 					table.getAllColumns(),
-					callMemoOrStaticFn(table, "getVisibleLeafColumns", table_getVisibleLeafColumns),
+					getVisibleLeafColumns(table),
 					table.atoms.columnPinning?.get(),
 					table.atoms.columnOrder?.get()
 				]
@@ -6903,7 +5915,7 @@ const columnPinningFeature = {
 				fn: () => table_getEndHeaderGroups(table),
 				memoDeps: () => [
 					table.getAllColumns(),
-					callMemoOrStaticFn(table, "getVisibleLeafColumns", table_getVisibleLeafColumns),
+					getVisibleLeafColumns(table),
 					table.atoms.columnPinning?.get()?.end,
 					table.atoms.columnOrder?.get()
 				]
@@ -7012,8 +6024,7 @@ const columnPinningFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-sizing/columnSizingFeature.utils.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-sizing/columnSizingFeature.utils.js
 /**
 * Creates the default committed column sizing state.
 *
@@ -7101,10 +6112,10 @@ function buildColumnOffsets(columns) {
 */
 function table_getColumnOffsets(table) {
 	return {
-		all: buildColumnOffsets(table_getPinnedVisibleLeafColumns(table)),
-		center: buildColumnOffsets(table_getPinnedVisibleLeafColumns(table, "center")),
-		start: buildColumnOffsets(table_getPinnedVisibleLeafColumns(table, "start")),
-		end: buildColumnOffsets(table_getPinnedVisibleLeafColumns(table, "end"))
+		all: buildColumnOffsets(getPinnedVisibleLeafColumns(table)),
+		center: buildColumnOffsets(getPinnedVisibleLeafColumns(table, "center")),
+		start: buildColumnOffsets(getPinnedVisibleLeafColumns(table, "start")),
+		end: buildColumnOffsets(getPinnedVisibleLeafColumns(table, "end"))
 	};
 }
 function toOffsetsKey(position) {
@@ -7231,6 +6242,11 @@ function table_setColumnSizing(table, updater) {
 function table_resetColumnSizing(table, defaultState) {
 	table_setColumnSizing(table, defaultState ? makeObjectMap() : Object.assign(makeObjectMap(), cloneState(table.initialState.columnSizing ?? {})));
 }
+function sumColumnSizes(columns) {
+	let sum = 0;
+	for (let i = 0; i < columns.length; i++) sum += callMemoOrStaticFn(columns[i], "getSize", column_getSize);
+	return sum;
+}
 /**
 * Sums the rendered size of the full table header row.
 *
@@ -7247,7 +6263,8 @@ function table_getTotalSize(table) {
 	}, 0) ?? 0;
 }
 /**
-* Sums the rendered size of the logical start pinned header region.
+* Sums the sizes of the visible leaf columns pinned to the logical start
+* region.
 *
 * An empty start pinning region returns `0`.
 *
@@ -7257,12 +6274,10 @@ function table_getTotalSize(table) {
 * ```
 */
 function table_getStartTotalSize(table) {
-	return callMemoOrStaticFn(table, "getStartHeaderGroups", table_getStartHeaderGroups)[0]?.headers.reduce((sum, header) => {
-		return sum + header_getSize(header);
-	}, 0) ?? 0;
+	return sumColumnSizes(getPinnedVisibleLeafColumns(table, "start"));
 }
 /**
-* Sums the rendered size of the center, unpinned header region.
+* Sums the sizes of the visible leaf columns that are not pinned.
 *
 * An empty center region returns `0`.
 *
@@ -7272,12 +6287,10 @@ function table_getStartTotalSize(table) {
 * ```
 */
 function table_getCenterTotalSize(table) {
-	return callMemoOrStaticFn(table, "getCenterHeaderGroups", table_getCenterHeaderGroups)[0]?.headers.reduce((sum, header) => {
-		return sum + header_getSize(header);
-	}, 0) ?? 0;
+	return sumColumnSizes(getPinnedVisibleLeafColumns(table, "center"));
 }
 /**
-* Sums the rendered size of the logical end pinned header region.
+* Sums the sizes of the visible leaf columns pinned to the logical end region.
 *
 * An empty end pinning region returns `0`.
 *
@@ -7287,12 +6300,9 @@ function table_getCenterTotalSize(table) {
 * ```
 */
 function table_getEndTotalSize(table) {
-	return callMemoOrStaticFn(table, "getEndHeaderGroups", table_getEndHeaderGroups)[0]?.headers.reduce((sum, header) => {
-		return sum + header_getSize(header);
-	}, 0) ?? 0;
+	return sumColumnSizes(getPinnedVisibleLeafColumns(table, "end"));
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-resizing/columnResizingFeature.utils.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-resizing/columnResizingFeature.utils.js
 /**
 * Creates the default transient column resizing state.
 *
@@ -7563,8 +6573,7 @@ function passiveEventSupported() {
 function isTouchStartEvent(e) {
 	return e.type === "touchstart";
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-resizing/columnResizingFeature.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-resizing/columnResizingFeature.js
 /**
 * Feature that adds column resizing state, options, and resize handlers.
 */
@@ -7598,8 +6607,7 @@ const columnResizingFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-sizing/columnSizingFeature.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-sizing/columnSizingFeature.js
 /**
 * Feature that adds column sizing state, defaults, and size measurement APIs.
 */
@@ -7682,8 +6690,254 @@ const columnSizingFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-visibility/columnVisibilityFeature.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-visibility/columnVisibilityFeature.utils.js
+/**
+* Creates the default column visibility state.
+*
+* The feature default is an empty object, where missing column ids are treated
+* as visible. Reset APIs use this value when `defaultState` is `true`.
+*
+* @example
+* ```ts
+* const visibility = getDefaultColumnVisibilityState()
+* ```
+*/
+function getDefaultColumnVisibilityState() {
+	return makeObjectMap();
+}
+/**
+* Updates this column's visibility when hiding is allowed.
+*
+* Passing `visible` stores that value. Omitting it flips the column's current
+* visibility state. Group columns update their hideable leaf columns because
+* visibility state is keyed by leaf column ids. Columns that cannot hide stay
+* unchanged.
+*
+* @example
+* ```ts
+* column_toggleVisibility(column)
+* ```
+*/
+function column_toggleVisibility(column, visible) {
+	if (column_getCanHide(column)) table_setColumnVisibility(column.table, (old) => {
+		const next = Object.assign(makeObjectMap(), old);
+		const nextVisible = visible ?? !callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible);
+		const leafColumns = column.getLeafColumns();
+		for (let i = 0; i < leafColumns.length; i++) {
+			const leafColumn = leafColumns[i];
+			if (column_getCanHide(leafColumn)) next[leafColumn.id] = nextVisible;
+		}
+		return next;
+	});
+}
+/**
+* Checks whether this column is visible.
+*
+* Leaf columns read `state.columnVisibility[column.id]`, where missing entries
+* default to visible. Parent columns are visible when at least one child column
+* is visible.
+*
+* @example
+* ```ts
+* const visible = column_getIsVisible(column)
+* ```
+*/
+function column_getIsVisible(column) {
+	const columnVisibility = column.table.atoms.columnVisibility?.get();
+	if (!columnVisibility) return true;
+	const childColumns = column.columns;
+	if (childColumns.length) return childColumns.some((childColumn) => callMemoOrStaticFn(childColumn, "getIsVisible", column_getIsVisible));
+	return (hasOwn(columnVisibility, column.id) ? columnVisibility[column.id] : void 0) ?? true;
+}
+/**
+* Checks whether this column is allowed to be hidden.
+*
+* Both `columnDef.enableHiding` and table `enableHiding` default to `true`.
+*
+* @example
+* ```ts
+* const canHide = column_getCanHide(column)
+* ```
+*/
+function column_getCanHide(column) {
+	return (column.columnDef.enableHiding ?? true) && (column.table.options.enableHiding ?? true);
+}
+/**
+* Creates a checkbox-style handler that writes this column's visibility.
+*
+* The handler reads `event.target.checked`, so it is intended for visibility
+* controls whose checked state means "visible".
+*
+* @example
+* ```ts
+* const onChange = column_getToggleVisibilityHandler(column)
+* ```
+*/
+function column_getToggleVisibilityHandler(column) {
+	return (e) => {
+		column_toggleVisibility(column, e.target.checked);
+	};
+}
+/**
+* Collects the cells from this row whose columns are visible.
+*
+* When column pinning is active, the result is ordered as start-pinned cells,
+* center cells, then end-pinned cells.
+*
+* @example
+* ```ts
+* const visibleCells = row_getVisibleCells(row)
+* ```
+*/
+function row_getVisibleCells(row) {
+	const allCells = row.getAllCells();
+	const visibleCells = [];
+	for (let i = 0; i < allCells.length; i++) {
+		const cell = allCells[i];
+		if (callMemoOrStaticFn(cell.column, "getIsVisible", column_getIsVisible)) visibleCells.push(cell);
+	}
+	return orderByColumnPinning$1(row.table, visibleCells, (cell) => cell.column.id, () => callMemoOrStaticFn(row, "getVisibleCellsByColumnId", row_getVisibleCellsByColumnId));
+}
+/**
+* Builds a lookup map of this row's visible cells keyed by column id.
+*
+* Hidden columns are omitted from the map.
+*
+* @example
+* ```ts
+* const visibleCellsById = row_getVisibleCellsByColumnId(row)
+* ```
+*/
+function row_getVisibleCellsByColumnId(row) {
+	const result = makeObjectMap();
+	const allCells = row.getAllCells();
+	for (let i = 0; i < allCells.length; i++) {
+		const cell = allCells[i];
+		if (callMemoOrStaticFn(cell.column, "getIsVisible", column_getIsVisible)) result[cell.column.id] = cell;
+	}
+	return result;
+}
+/**
+* Filters the flat column list down to visible columns.
+*
+* Parent/group columns are included when `column_getIsVisible` considers them
+* visible.
+*
+* @example
+* ```ts
+* const columns = table_getVisibleFlatColumns(table)
+* ```
+*/
+function table_getVisibleFlatColumns(table) {
+	return table.getAllFlatColumns().filter((column) => callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible));
+}
+/**
+* Filters leaf columns down to those currently visible.
+*
+* This is the column list most row rendering code uses before pinning-specific
+* partitioning.
+*
+* @example
+* ```ts
+* const columns = table_getVisibleLeafColumns(table)
+* ```
+*/
+function table_getVisibleLeafColumns(table) {
+	return table.getAllLeafColumns().filter((column) => callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible));
+}
+/**
+* Routes a column visibility updater through the table's visibility change handler.
+*
+* The updater may be a next visibility map or a function of the previous map,
+* matching the instance `table.setColumnVisibility` behavior.
+*
+* @example
+* ```ts
+* table_setColumnVisibility(table, (old) => ({ ...old, age: false }))
+* ```
+*/
+function table_setColumnVisibility(table, updater) {
+	setStateSlice(table, "columnVisibility", updater);
+}
+/**
+* Resets `columnVisibility` to the configured initial state or feature default.
+*
+* With no argument, the reset clones `table.initialState.columnVisibility` when
+* it exists. Passing `true` ignores initial state and resets to `{}`.
+*
+* @example
+* ```ts
+* table_resetColumnVisibility(table)
+* table_resetColumnVisibility(table, true)
+* ```
+*/
+function table_resetColumnVisibility(table, defaultState) {
+	table_setColumnVisibility(table, defaultState ? makeObjectMap() : Object.assign(makeObjectMap(), cloneState(table.initialState.columnVisibility ?? {})));
+}
+/**
+* Shows or hides every hideable leaf column.
+*
+* Columns that cannot hide stay visible when toggling all columns off.
+*
+* @example
+* ```ts
+* table_toggleAllColumnsVisible(table)
+* ```
+*/
+function table_toggleAllColumnsVisible(table, value) {
+	value = value ?? !table_getIsAllColumnsVisible(table);
+	const visibility = makeObjectMap();
+	const leafColumns = table.getAllLeafColumns();
+	for (let i = 0; i < leafColumns.length; i++) {
+		const column = leafColumns[i];
+		visibility[column.id] = !value ? !column_getCanHide(column) : value;
+	}
+	table_setColumnVisibility(table, visibility);
+}
+/**
+* Checks whether every leaf column is currently visible.
+*
+* Non-hideable columns are naturally visible because missing visibility entries
+* default to `true`.
+*
+* @example
+* ```ts
+* const allVisible = table_getIsAllColumnsVisible(table)
+* ```
+*/
+function table_getIsAllColumnsVisible(table) {
+	return !table.getAllLeafColumns().some((column) => !callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible));
+}
+/**
+* Checks whether at least one leaf column is currently visible.
+*
+* This is useful for tri-state "show all columns" controls.
+*
+* @example
+* ```ts
+* const someVisible = table_getIsSomeColumnsVisible(table)
+* ```
+*/
+function table_getIsSomeColumnsVisible(table) {
+	return table.getAllLeafColumns().some((column) => callMemoOrStaticFn(column, "getIsVisible", column_getIsVisible));
+}
+/**
+* Creates a checkbox-style handler that shows or hides all columns.
+*
+* The handler reads `event.target.checked`, so it is intended for controls whose
+* checked state means "all columns visible".
+*
+* @example
+* ```ts
+* const onChange = table_getToggleAllColumnsVisibilityHandler(table)
+* ```
+*/
+function table_getToggleAllColumnsVisibilityHandler(table) {
+	return (e) => {
+		table_toggleAllColumnsVisible(table, e.target.checked);
+	};
+}
+// ../../node_modules/@tanstack/table-core/dist/features/column-visibility/columnVisibilityFeature.js
 /**
 * Feature that adds column visibility state and APIs for hiding and showing columns.
 */
@@ -7759,8 +7013,7 @@ const columnVisibilityFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-filtering/filterFns.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-filtering/filterFns.js
 /**
 * Builds a `FilterFn` from a value-level comparator plus optional resolvers.
 *
@@ -7791,6 +7044,7 @@ const columnVisibilityFeature = {
 * are tested. When calling a filter function directly (outside of a table),
 * apply it yourself: `fn(row, columnId, fn.resolveFilterValue?.(value) ?? value)`.
 */
+/* @__NO_SIDE_EFFECTS__ */
 function constructFilterFn(def) {
 	const filterFn = Object.assign((row, columnId, filterValue, addMeta) => {
 		const rawValue = row.getValue(columnId);
@@ -7799,199 +7053,22 @@ function constructFilterFn(def) {
 	}, def);
 	return filterFn;
 }
-constructFilterFn({
-	filter: (dataValue, filterValue) => dataValue === filterValue,
-	autoRemove: (val) => testFalsy(val)
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => dataValue == filterValue,
-	autoRemove: (val) => testFalsy(val)
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => Boolean(dataValue?.includes(filterValue)),
-	autoRemove: (val) => testFalsy(val),
-	resolveFilterValue: (val) => String(val),
-	resolveDataValue: (val) => val == null ? void 0 : String(val)
-});
 /**
 * Keeps rows whose stringified column value includes the filter text.
 *
 * Both values are lowercased before comparison, and empty filter values are
 * auto-removed.
 */
-const filterFn_includesString = constructFilterFn({
+const filterFn_includesString = /* @__PURE__ */ constructFilterFn({
 	filter: (dataValue, filterValue) => Boolean(dataValue?.includes(filterValue)),
 	autoRemove: (val) => testFalsy(val),
 	resolveFilterValue: (val) => String(val).toLowerCase(),
 	resolveDataValue: (val) => val == null ? void 0 : String(val).toLowerCase()
 });
-constructFilterFn({
-	filter: (dataValue, filterValue) => dataValue === filterValue,
-	autoRemove: (val) => testFalsy(val),
-	resolveFilterValue: (val) => String(val).toLowerCase(),
-	resolveDataValue: (val) => val == null ? void 0 : String(val).toLowerCase()
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => dataValue === filterValue,
-	autoRemove: (val) => testFalsy(val),
-	resolveFilterValue: (val) => String(val),
-	resolveDataValue: (val) => val == null ? void 0 : String(val)
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => Boolean(dataValue?.startsWith(filterValue)),
-	autoRemove: (val) => testFalsy(val),
-	resolveFilterValue: (val) => String(val).toLowerCase(),
-	resolveDataValue: (val) => val == null ? void 0 : String(val).toLowerCase()
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => Boolean(dataValue?.endsWith(filterValue)),
-	autoRemove: (val) => testFalsy(val),
-	resolveFilterValue: (val) => String(val).toLowerCase(),
-	resolveDataValue: (val) => val == null ? void 0 : String(val).toLowerCase()
-});
-constructFilterFn({
-	filter: (dataValue) => testValueEmpty(dataValue),
-	autoRemove: (val) => testFalsy(val) || val === false
-});
-constructFilterFn({
-	filter: (dataValue) => !testValueEmpty(dataValue),
-	autoRemove: (val) => testFalsy(val) || val === false
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => compareGreaterThan(dataValue, filterValue),
-	autoRemove: (val) => testFalsy(val)
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => compareGreaterThanOrEqualTo(dataValue, filterValue),
-	autoRemove: (val) => testFalsy(val)
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => !compareGreaterThanOrEqualTo(dataValue, filterValue),
-	autoRemove: (val) => testFalsy(val)
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => !compareGreaterThan(dataValue, filterValue),
-	autoRemove: (val) => testFalsy(val)
-});
-constructFilterFn({
-	filter: (dataValue, filterValues) => compareBetween(dataValue, filterValues, false),
-	autoRemove: (val) => testFalsy(val) || Array.isArray(val) && testFalsy(val[0]) && testFalsy(val[1])
-});
-constructFilterFn({
-	filter: (dataValue, filterValues) => compareBetween(dataValue, filterValues, true),
-	autoRemove: (val) => testFalsy(val) || Array.isArray(val) && testFalsy(val[0]) && testFalsy(val[1])
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => {
-		if (typeof dataValue !== "number" || Number.isNaN(dataValue)) return false;
-		const [min, max] = filterValue;
-		return dataValue >= min && dataValue <= max;
-	},
-	resolveFilterValue: (val) => {
-		const [unsafeMin, unsafeMax] = val;
-		const parsedMin = typeof unsafeMin !== "number" ? parseFloat(unsafeMin) : unsafeMin;
-		const parsedMax = typeof unsafeMax !== "number" ? parseFloat(unsafeMax) : unsafeMax;
-		let min = unsafeMin === null || Number.isNaN(parsedMin) ? -Infinity : parsedMin;
-		let max = unsafeMax === null || Number.isNaN(parsedMax) ? Infinity : parsedMax;
-		if (min > max) {
-			const temp = min;
-			min = max;
-			max = temp;
-		}
-		return [min, max];
-	},
-	autoRemove: (val) => testFalsy(val) || Array.isArray(val) && testFalsy(val[0]) && testFalsy(val[1])
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => {
-		const [min, max] = filterValue;
-		return dataValue >= min && dataValue <= max;
-	},
-	resolveFilterValue: (val) => {
-		const [unsafeMin, unsafeMax] = val;
-		const parsedMin = toDateTimestamp(unsafeMin);
-		const parsedMax = toDateTimestamp(unsafeMax);
-		let min = Number.isNaN(parsedMin) ? -Infinity : parsedMin;
-		let max = Number.isNaN(parsedMax) ? Infinity : parsedMax;
-		if (min > max) {
-			const temp = min;
-			min = max;
-			max = temp;
-		}
-		return [min, max];
-	},
-	resolveDataValue: (val) => toDateTimestamp(val),
-	autoRemove: (val) => testFalsy(val) || Array.isArray(val) && testFalsy(val[0]) && testFalsy(val[1])
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => {
-		for (let i = 0; i < filterValue.length; i++) if (dataValue === filterValue[i]) return true;
-		return false;
-	},
-	autoRemove: (val) => testFalsy(val) || !val?.length
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => {
-		if (typeof dataValue !== "string" && !Array.isArray(dataValue)) return false;
-		for (let i = 0; i < filterValue.length; i++) if (dataValue.includes(filterValue[i])) return true;
-		return false;
-	},
-	autoRemove: (val) => testFalsy(val) || !val?.length
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => {
-		if (!Array.isArray(dataValue)) return false;
-		for (let i = 0; i < filterValue.length; i++) if (!dataValue.includes(filterValue[i])) return false;
-		return true;
-	},
-	autoRemove: (val) => testFalsy(val) || !val?.length
-});
-constructFilterFn({
-	filter: (dataValue, filterValue) => {
-		if (!Array.isArray(dataValue)) return false;
-		for (let i = 0; i < filterValue.length; i++) if (dataValue.includes(filterValue[i])) return true;
-		return false;
-	},
-	autoRemove: (val) => testFalsy(val) || !val?.length
-});
 function testFalsy(val) {
 	return val === void 0 || val === null || val === "";
 }
-function testValueEmpty(dataValue) {
-	return dataValue == null || String(dataValue).trim() === "";
-}
-function toDateTimestamp(value) {
-	if (value instanceof Date) return value.getTime();
-	if (typeof value === "number") return value;
-	if (value == null || value === "") return NaN;
-	return new Date(value).getTime();
-}
-function compareGreaterThan(dataValue, filterValue) {
-	const numericDataValue = dataValue == null ? 0 : +dataValue;
-	const numericFilterValue = Number(filterValue);
-	if (!isNaN(numericFilterValue) && !isNaN(numericDataValue)) return numericDataValue > numericFilterValue;
-	return String(dataValue ?? "").toLowerCase().trim() > String(filterValue).toLowerCase().trim();
-}
-function compareGreaterThanOrEqualTo(dataValue, filterValue) {
-	return dataValue === filterValue || compareGreaterThan(dataValue, filterValue);
-}
-function compareBetween(dataValue, filterValues, inclusive) {
-	const min = filterValues[0];
-	const hasMin = min !== "" && min !== void 0;
-	if (hasMin) {
-		if (!(inclusive ? compareGreaterThanOrEqualTo(dataValue, min) : compareGreaterThan(dataValue, min))) return false;
-	}
-	const max = filterValues[1];
-	if (max === "" || max === void 0) return true;
-	if (hasMin) {
-		const numericMin = Number(min);
-		const numericMax = Number(max);
-		if (!isNaN(numericMin) && !isNaN(numericMax) && numericMin > numericMax) return true;
-	}
-	return inclusive ? !compareGreaterThan(dataValue, max) : !compareGreaterThanOrEqualTo(dataValue, max);
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/global-filtering/globalFilteringFeature.utils.js
+// ../../node_modules/@tanstack/table-core/dist/features/global-filtering/globalFilteringFeature.utils.js
 /**
 * Checks whether this accessor column participates in global filtering.
 *
@@ -8066,8 +7143,7 @@ function table_setGlobalFilter(table, updater) {
 function table_resetGlobalFilter(table, defaultState) {
 	table_setGlobalFilter(table, defaultState ? void 0 : cloneState(table.initialState.globalFilter));
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/global-filtering/globalFilteringFeature.js
+// ../../node_modules/@tanstack/table-core/dist/features/global-filtering/globalFilteringFeature.js
 /**
 * Feature that adds global filtering state, defaults, and global filter APIs.
 */
@@ -8101,8 +7177,309 @@ const globalFilteringFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/row-pagination/rowPaginationFeature.js
+// ../../node_modules/@tanstack/table-core/dist/features/row-pagination/rowPaginationFeature.utils.js
+const defaultPageIndex = 0;
+const defaultPageSize = 10;
+/**
+* Creates the default pagination state used by the pagination feature.
+*
+* The feature default starts at the first page with a page size of 10. Reset
+* APIs use this value when `defaultState` is `true`.
+*
+* @example
+* ```ts
+* const pagination = getDefaultPaginationState()
+* ```
+*/
+function getDefaultPaginationState() {
+	return {
+		pageIndex: defaultPageIndex,
+		pageSize: defaultPageSize
+	};
+}
+/**
+* Resets the page index when a page-altering change should return to page 0.
+*
+* The reset runs when `autoResetAll`, `autoResetPageIndex`, or the default
+* client-side pagination behavior allows it. Manual pagination opts out unless
+* the reset options explicitly opt back in.
+*
+* @example
+* ```ts
+* table_autoResetPageIndex(table)
+* ```
+*/
+function table_autoResetPageIndex(table) {
+	if (table.options.autoResetAll ?? table.options.autoResetPageIndex ?? !table.options.manualPagination) {
+		if ((table.atoms.pagination?.get()?.pageIndex ?? defaultPageIndex) === defaultPageIndex) return;
+		table_resetPageIndex(table, true);
+	}
+}
+/**
+* Routes a pagination updater through the table's pagination change handler.
+*
+* The updater may be a next state object or a function of the previous
+* `PaginationState`; controlled state and external atoms observe the same
+* updater path as the instance API.
+*
+* @example
+* ```ts
+* table_setPagination(table, (old) => old)
+* ```
+*/
+function table_setPagination(table, updater) {
+	setStateSlice(table, "pagination", updater);
+}
+/**
+* Resets `pagination` to the configured initial state or feature default.
+*
+* With no argument, the reset clones `table.initialState.pagination` when it
+* exists. Passing `true` ignores initial state and resets to
+* `{ pageIndex: 0, pageSize: 10 }`.
+*
+* @example
+* ```ts
+* table_resetPagination(table)
+* table_resetPagination(table, true)
+* ```
+*/
+function table_resetPagination(table, defaultState) {
+	table_setPagination(table, defaultState ? getDefaultPaginationState() : cloneState(table.initialState.pagination ?? getDefaultPaginationState()));
+}
+/**
+* Updates `pagination.pageIndex` and clamps it to the known page range.
+*
+* Unknown page counts (`undefined` or `-1`) allow any non-negative page index.
+* Known page counts clamp the index between `0` and `pageCount - 1`.
+*
+* @example
+* ```ts
+* table_setPageIndex(table, (old) => old)
+* ```
+*/
+function table_setPageIndex(table, updater) {
+	table_setPagination(table, (old) => {
+		let pageIndex = functionalUpdate(updater, old.pageIndex);
+		const maxPageIndex = typeof table.options.pageCount === "undefined" || table.options.pageCount === -1 ? Number.MAX_SAFE_INTEGER : table.options.pageCount - 1;
+		pageIndex = Math.max(0, Math.min(pageIndex, maxPageIndex));
+		return {
+			...old,
+			pageIndex
+		};
+	});
+}
+/**
+* Resets only `pagination.pageIndex`.
+*
+* With no argument, the reset uses `table.initialState.pagination?.pageIndex`
+* or `0`. Passing `true` always resets the page index to `0`.
+*
+* @example
+* ```ts
+* table_resetPageIndex(table)
+* table_resetPageIndex(table, true)
+* ```
+*/
+function table_resetPageIndex(table, defaultState) {
+	table_setPageIndex(table, defaultState ? defaultPageIndex : table.initialState.pagination?.pageIndex ?? defaultPageIndex);
+}
+/**
+* Resets only `pagination.pageSize`.
+*
+* With no argument, the reset uses `table.initialState.pagination?.pageSize`
+* or `10`. Passing `true` always resets the page size to `10`.
+*
+* @example
+* ```ts
+* table_resetPageSize(table)
+* table_resetPageSize(table, true)
+* ```
+*/
+function table_resetPageSize(table, defaultState) {
+	table_setPageSize(table, defaultState ? defaultPageSize : table.initialState.pagination?.pageSize ?? defaultPageSize);
+}
+/**
+* Updates `pagination.pageSize` while preserving the current top row.
+*
+* The new size is clamped to at least `1`, and `pageIndex` is recalculated so
+* the row that was previously at the top of the page remains in view.
+*
+* @example
+* ```ts
+* table_setPageSize(table, (old) => old)
+* ```
+*/
+function table_setPageSize(table, updater) {
+	table_setPagination(table, (old) => {
+		const pageSize = Math.max(1, functionalUpdate(updater, old.pageSize));
+		const topRowIndex = old.pageSize === Infinity ? 0 : old.pageSize * old.pageIndex;
+		const pageIndex = pageSize === Infinity ? 0 : Math.floor(topRowIndex / pageSize);
+		return {
+			...old,
+			pageIndex,
+			pageSize
+		};
+	});
+}
+/**
+* Builds the zero-based page indexes available for the current page count.
+*
+* Unknown or empty page counts return an empty array; otherwise the result is
+* `[0, 1, ...pageCount - 1]`.
+*
+* @example
+* ```ts
+* const pageIndexes = table_getPageOptions(table)
+* ```
+*/
+function table_getPageOptions(table) {
+	const pageCount = table_getPageCount(table);
+	let pageOptions = [];
+	if (pageCount && pageCount > 0) pageOptions = [...new Array(pageCount)].fill(null).map((_, i) => i);
+	return pageOptions;
+}
+/**
+* Checks whether the current page index can move backward.
+*
+* The first page is page index `0`, so only positive page indexes can navigate
+* to a previous page.
+*
+* @example
+* ```ts
+* const canGoBack = table_getCanPreviousPage(table)
+* ```
+*/
+function table_getCanPreviousPage(table) {
+	return (table.atoms.pagination?.get()?.pageIndex ?? 0) > 0;
+}
+/**
+* Checks whether the current page index can move forward.
+*
+* A `pageCount` of `-1` means the caller does not know the total page count, so
+* this returns `true`. A page count of `0` returns `false`.
+*
+* @example
+* ```ts
+* const canGoForward = table_getCanNextPage(table)
+* ```
+*/
+function table_getCanNextPage(table) {
+	const pageIndex = table.atoms.pagination?.get()?.pageIndex ?? defaultPageIndex;
+	const pageCount = table_getPageCount(table);
+	if (pageCount === -1) return true;
+	if (pageCount === 0) return false;
+	return pageIndex < pageCount - 1;
+}
+/**
+* Checks whether a known, finite last page exists after the current page.
+*
+* Unknown (`-1`), empty, and non-finite page counts do not have a navigable
+* last page.
+*
+* @example
+* ```ts
+* const canGoToLastPage = table_getCanLastPage(table)
+* ```
+*/
+function table_getCanLastPage(table) {
+	const pageIndex = table.atoms.pagination?.get()?.pageIndex ?? defaultPageIndex;
+	const pageCount = table_getPageCount(table);
+	return Number.isFinite(pageCount) && pageCount > 0 && pageIndex < pageCount - 1;
+}
+/**
+* Moves the table to the previous page.
+*
+* This delegates to `table_setPageIndex` so pagination state ownership and
+* updater semantics remain consistent.
+*
+* @example
+* ```ts
+* table_previousPage(table)
+* ```
+*/
+function table_previousPage(table) {
+	return table_setPageIndex(table, (old) => old - 1);
+}
+/**
+* Moves the table to the next page.
+*
+* This delegates to `table_setPageIndex` so pagination state ownership and
+* updater semantics remain consistent.
+*
+* @example
+* ```ts
+* table_nextPage(table)
+* ```
+*/
+function table_nextPage(table) {
+	return table_setPageIndex(table, (old) => {
+		return old + 1;
+	});
+}
+/**
+* Moves the table to the first page.
+*
+* This is a convenience wrapper around `table_setPageIndex(table, 0)`.
+*
+* @example
+* ```ts
+* table_firstPage(table)
+* ```
+*/
+function table_firstPage(table) {
+	return table_setPageIndex(table, 0);
+}
+/**
+* Moves the table to the last known page.
+*
+* Unknown, empty, and non-finite page counts do not have a navigable last
+* page, so this does nothing for those states.
+*
+* @example
+* ```ts
+* table_lastPage(table)
+* ```
+*/
+function table_lastPage(table) {
+	const pageCount = table_getPageCount(table);
+	if (!Number.isFinite(pageCount) || pageCount <= 0) return;
+	return table_setPageIndex(table, pageCount - 1);
+}
+/**
+* Resolves the number of pages for the current pagination state.
+*
+* `options.pageCount` wins for manual pagination. Otherwise the value is
+* calculated from `table_getRowCount(table)` and the current `pageSize`.
+*
+* @example
+* ```ts
+* const pages = table_getPageCount(table)
+* ```
+*/
+function table_getPageCount(table) {
+	const configuredPageCount = table.options.pageCount;
+	if (configuredPageCount != null) return configuredPageCount;
+	const rowCount = table_getRowCount(table);
+	const pageSize = table.atoms.pagination?.get()?.pageSize ?? defaultPageSize;
+	if (pageSize === Infinity && Number.isFinite(rowCount) && rowCount > 0) return 1;
+	return Math.ceil(rowCount / pageSize);
+}
+/**
+* Resolves the total row count used for pagination math.
+*
+* `options.rowCount` wins for manual pagination. Otherwise the count comes
+* from the pre-paginated row model so filtering, grouping, sorting, and
+* expansion are reflected before the page slice is applied.
+*
+* @example
+* ```ts
+* const rows = table_getRowCount(table)
+* ```
+*/
+function table_getRowCount(table) {
+	return table.options.rowCount ?? table.getPrePaginatedRowModel().rows.length;
+}
+// ../../node_modules/@tanstack/table-core/dist/features/row-pagination/rowPaginationFeature.js
 /**
 * Feature that adds pagination state and table APIs for page navigation.
 */
@@ -8132,6 +7509,7 @@ const rowPaginationFeature = {
 			table_getPageOptions: { fn: () => table_getPageOptions(table) },
 			table_getCanPreviousPage: { fn: () => table_getCanPreviousPage(table) },
 			table_getCanNextPage: { fn: () => table_getCanNextPage(table) },
+			table_getCanLastPage: { fn: () => table_getCanLastPage(table) },
 			table_previousPage: { fn: () => table_previousPage(table) },
 			table_nextPage: { fn: () => table_nextPage(table) },
 			table_firstPage: { fn: () => table_firstPage(table) },
@@ -8140,8 +7518,7 @@ const rowPaginationFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/row-selection/rowSelectionFeature.utils.js
+// ../../node_modules/@tanstack/table-core/dist/features/row-selection/rowSelectionFeature.utils.js
 /**
 * Creates the default row selection state.
 *
@@ -8750,8 +8127,7 @@ function isSubRowSelected(row) {
 	if (!someSelectable) return false;
 	return allChildrenSelected ? "all" : someSelected ? "some" : false;
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/row-selection/rowSelectionFeature.js
+// ../../node_modules/@tanstack/table-core/dist/features/row-selection/rowSelectionFeature.js
 /**
 * Feature that adds row selection state and APIs for row and page selection.
 */
@@ -8865,8 +8241,500 @@ const rowSelectionFeature = {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/row-sorting/rowSortingFeature.js
+// ../../node_modules/@tanstack/table-core/dist/features/row-sorting/sortFns.js
+/**
+* Regular expression used to split mixed text and numeric chunks.
+*
+* The alphanumeric sort functions use these chunks for natural sorting of
+* strings like `item2` before `item10`.
+*/
+const reSplitAlphaNumeric = /([0-9]+)/gm;
+/**
+* Builds a `SortFn` from a value-level comparator plus an optional
+* `resolveDataValue` normalizer.
+*
+* The `sort` comparator receives both rows' data values, each already passed
+* through `resolveDataValue` when one is defined. Keeping normalization in the
+* resolver means a variant of an existing sorting function only has to swap
+* the resolver, not re-implement the comparison.
+*
+* The definition is attached to the returned function, so a variant can be
+* created by spreading a built-in sorting function and overriding what
+* differs:
+*
+* ```ts
+* const stripDiacritics = (value: string) =>
+*   value.normalize('NFD').replace(/\p{Diacritic}/gu, '')
+*
+* const alphanumericIgnoreDiacritics = constructSortFn({
+*   ...sortFn_alphanumeric,
+*   resolveDataValue: (value) =>
+*     stripDiacritics(sortFn_alphanumeric.resolveDataValue!(value)),
+* })
+* ```
+*/
+/* @__NO_SIDE_EFFECTS__ */
+function constructSortFn(def) {
+	const sortFn = Object.assign((rowA, rowB, columnId) => {
+		let dataValueA = rowA.getValue(columnId);
+		let dataValueB = rowB.getValue(columnId);
+		const resolveDataValue = sortFn.resolveDataValue;
+		if (resolveDataValue) {
+			dataValueA = resolveDataValue(dataValueA);
+			dataValueB = resolveDataValue(dataValueB);
+		}
+		return sortFn.sort(dataValueA, dataValueB, rowA, rowB, columnId);
+	}, def);
+	return sortFn;
+}
+/**
+* Sorts rows with the built-in alphanumeric strategy.
+*
+* This comparator returns ascending-order results; descending order is applied by the sorting row model.
+*/
+const sortFn_alphanumeric = /* @__PURE__ */ constructSortFn({
+	resolveDataValue: (dataValue) => toString(dataValue).toLowerCase(),
+	sort: (dataValueA, dataValueB) => compareAlphanumeric(dataValueA, dataValueB)
+});
+/**
+* Sorts rows with the built-in text strategy.
+*
+* This comparator returns ascending-order results; descending order is applied by the sorting row model.
+*/
+const sortFn_text = /* @__PURE__ */ constructSortFn({
+	resolveDataValue: (dataValue) => toString(dataValue).toLowerCase(),
+	sort: (dataValueA, dataValueB) => compareBasic(dataValueA, dataValueB)
+});
+/**
+* Sorts rows with the built-in datetime strategy.
+*
+* This comparator returns ascending-order results; descending order is applied by the sorting row model.
+*/
+const sortFn_datetime = /* @__PURE__ */ constructSortFn({
+	resolveDataValue: (dataValue) => toDateSortValue(dataValue),
+	sort: (dataValueA, dataValueB) => dataValueA > dataValueB ? 1 : dataValueA < dataValueB ? -1 : 0
+});
+/**
+* Sorts rows with the built-in basic strategy.
+*
+* This comparator returns ascending-order results; descending order is applied by the sorting row model.
+*/
+const sortFn_basic = /* @__PURE__ */ constructSortFn({ sort: (dataValueA, dataValueB) => compareBasic(dataValueA, dataValueB) });
+function compareBasic(a, b) {
+	return a === b ? 0 : a > b ? 1 : -1;
+}
+function toDateSortValue(value) {
+	return value instanceof Date ? value.getTime() : value;
+}
+function toString(a) {
+	if (typeof a === "number") {
+		if (isNaN(a) || a === Infinity || a === -Infinity) return "";
+		return String(a);
+	}
+	if (typeof a === "string") return a;
+	return "";
+}
+function compareAlphanumeric(aStr, bStr) {
+	let ai = 0;
+	let bi = 0;
+	const aLen = aStr.length;
+	const bLen = bStr.length;
+	while (ai < aLen && bi < bLen) {
+		const aIsNumeric = isDigit(aStr.charCodeAt(ai));
+		const bIsNumeric = isDigit(bStr.charCodeAt(bi));
+		const aEnd = findChunkEnd(aStr, ai, aIsNumeric);
+		const bEnd = findChunkEnd(bStr, bi, bIsNumeric);
+		if (!aIsNumeric && !bIsNumeric) {
+			const stringComparison = compareStringChunks(aStr, ai, aEnd, bStr, bi, bEnd);
+			if (stringComparison) return stringComparison;
+			ai = aEnd;
+			bi = bEnd;
+			continue;
+		}
+		if (aIsNumeric !== bIsNumeric) return aIsNumeric ? 1 : -1;
+		const numericComparison = compareNumericChunks(aStr, ai, aEnd, bStr, bi, bEnd);
+		if (numericComparison) return numericComparison;
+		ai = aEnd;
+		bi = bEnd;
+	}
+	return countRemainingChunks(aStr, ai) - countRemainingChunks(bStr, bi);
+}
+function isDigit(charCode) {
+	return charCode >= 48 && charCode <= 57;
+}
+function findChunkEnd(str, start, isNumeric) {
+	let end = start + 1;
+	while (end < str.length && isDigit(str.charCodeAt(end)) === isNumeric) end++;
+	return end;
+}
+function compareStringChunks(aStr, aStart, aEnd, bStr, bStart, bEnd) {
+	const aLength = aEnd - aStart;
+	const bLength = bEnd - bStart;
+	const minLength = aLength < bLength ? aLength : bLength;
+	for (let i = 0; i < minLength; i++) {
+		const aCode = aStr.charCodeAt(aStart + i);
+		const bCode = bStr.charCodeAt(bStart + i);
+		if (aCode > bCode) return 1;
+		if (bCode > aCode) return -1;
+	}
+	if (aLength > bLength) return 1;
+	if (bLength > aLength) return -1;
+	return 0;
+}
+function compareNumericChunks(aStr, aStart, aEnd, bStr, bStart, bEnd) {
+	let aSignificantStart = aStart;
+	while (aSignificantStart < aEnd && aStr.charCodeAt(aSignificantStart) === 48) aSignificantStart++;
+	let bSignificantStart = bStart;
+	while (bSignificantStart < bEnd && bStr.charCodeAt(bSignificantStart) === 48) bSignificantStart++;
+	const aSignificantLength = aEnd - aSignificantStart;
+	const bSignificantLength = bEnd - bSignificantStart;
+	if (aSignificantLength === 0 && bSignificantLength === 0) return 0;
+	if (aSignificantLength <= 15 && bSignificantLength <= 15) {
+		const an = parseSmallInt(aStr, aSignificantStart, aEnd);
+		const bn = parseSmallInt(bStr, bSignificantStart, bEnd);
+		if (an > bn) return 1;
+		if (bn > an) return -1;
+		return 0;
+	}
+	const an = parseInt(aStr.slice(aStart, aEnd), 10);
+	const bn = parseInt(bStr.slice(bStart, bEnd), 10);
+	if (an > bn) return 1;
+	if (bn > an) return -1;
+	return 0;
+}
+function parseSmallInt(str, start, end) {
+	let result = 0;
+	for (let i = start; i < end; i++) result = result * 10 + str.charCodeAt(i) - 48;
+	return result;
+}
+function countRemainingChunks(str, start) {
+	let count = 0;
+	let index = start;
+	while (index < str.length) {
+		count++;
+		index = findChunkEnd(str, index, isDigit(str.charCodeAt(index)));
+	}
+	return count;
+}
+// ../../node_modules/@tanstack/table-core/dist/features/row-sorting/rowSortingFeature.utils.js
+/**
+* Creates the default sorting state.
+*
+* The feature default is an empty array, meaning no columns are sorted. Reset
+* APIs use this value when `defaultState` is `true`.
+*
+* @example
+* ```ts
+* const sorting = getDefaultSortingState()
+* ```
+*/
+function getDefaultSortingState() {
+	return [];
+}
+/**
+* Routes a sorting updater through the table's sorting change handler.
+*
+* The updater may be a next `SortingState` array or a function of the previous
+* sorting state, matching the instance `table.setSorting` behavior. State
+* owners receive an equality-guarded updater so structurally equal sorting
+* values preserve the owner's existing reference.
+*
+* @example
+* ```ts
+* table_setSorting(table, (old) => [...old, { id: 'age', desc: true }])
+* ```
+*/
+function table_setSorting(table, updater) {
+	setStateSlice(table, "sorting", updater);
+}
+/**
+* Resets `sorting` to the configured initial state or feature default.
+*
+* With no argument, the reset clones `table.initialState.sorting` when it
+* exists. Passing `true` ignores initial state and resets to `[]`.
+*
+* @example
+* ```ts
+* table_resetSorting(table)
+* table_resetSorting(table, true)
+* ```
+*/
+function table_resetSorting(table, defaultState) {
+	table_setSorting(table, defaultState ? [] : cloneState(table.initialState.sorting ?? []));
+}
+/**
+* Resets sorting after the table data changes when explicitly enabled.
+*
+* Unlike other auto-reset behaviors, sorting is preserved by default. An
+* explicit `autoResetAll` value takes precedence over `autoResetSorting`.
+*
+* @example
+* ```ts
+* table_autoResetSorting(table)
+* ```
+*/
+function table_autoResetSorting(table) {
+	if (!table.atoms.sorting) return;
+	if (table.options.autoResetAll ?? table.options.autoResetSorting ?? false) table_resetSorting(table);
+}
+/**
+* Chooses a built-in sorting function from sampled filtered row values.
+*
+* Date-like values use `datetime`, mixed text/numeric strings use
+* `alphanumeric`, plain strings use `text`, and unknown values fall back to
+* `basic`.
+*
+* @example
+* ```ts
+* const sortFn = column_getAutoSortFn(column)
+* ```
+*/
+function column_getAutoSortFn(column) {
+	const sortFns = column.table._rowModelFns.sortFns;
+	const firstRows = column.table.getFilteredRowModel().flatRows.slice(0, 10);
+	let sortFnName;
+	let isString = false;
+	for (let i = 0; i < firstRows.length; i++) {
+		const value = firstRows[i].getValue(column.id);
+		if (Object.prototype.toString.call(value) === "[object Date]") {
+			sortFnName = "datetime";
+			break;
+		}
+		if (typeof value === "string") {
+			isString = true;
+			if (value.split(reSplitAlphaNumeric).length > 1) {
+				sortFnName = "alphanumeric";
+				break;
+			}
+		}
+	}
+	if (!sortFnName && isString) sortFnName = "text";
+	if (sortFnName) {
+		let sortFn = sortFns?.[sortFnName];
+		if (!sortFn) {
+			if (sortFnName === "alphanumeric") sortFn = sortFns?.text;
+		}
+		if (sortFn) return sortFn;
+	}
+	return sortFn_basic;
+}
+/**
+* Chooses the default first sort direction from sampled filtered row values.
+*
+* The first non-nullish value among the sampled rows decides: string columns
+* start ascending so alphabetical order is natural; other value types (or
+* columns with no non-nullish sample) start descending. Sampling past leading
+* nullish values keeps the toggle cycle stable when sorting or a data swap
+* moves an empty value into the first row.
+*
+* @example
+* ```ts
+* const direction = column_getAutoSortDir(column)
+* ```
+*/
+function column_getAutoSortDir(column) {
+	const firstRows = column.table.getFilteredRowModel().flatRows.slice(0, 10);
+	for (let i = 0; i < firstRows.length; i++) {
+		const value = firstRows[i].getValue(column.id);
+		if (value == null) continue;
+		return typeof value === "string" ? "asc" : "desc";
+	}
+	return "desc";
+}
+/**
+* Resolves the sorting function configured for a column.
+*
+* Function-valued `columnDef.sortFn` is returned directly, `'auto'` delegates
+* to `column_getAutoSortFn`, and string values are looked up in the table's
+* sorting function registry before falling back to `basic`.
+*
+* @example
+* ```ts
+* const sortFn = column_getSortFn(column)
+* ```
+*/
+function column_getSortFn(column) {
+	const sortFns = column.table._rowModelFns.sortFns;
+	if (isFunction(column.columnDef.sortFn)) return column.columnDef.sortFn;
+	if (column.columnDef.sortFn === "auto") return column_getAutoSortFn(column);
+	return sortFns?.[column.columnDef.sortFn] ?? sortFn_basic;
+}
+/**
+* Applies the next sorting state for this column.
+*
+* The toggle can add, replace, flip, or remove this column's sort entry. Multi
+* sorting respects `enableMultiSort`, `enableMultiRemove`,
+* `maxMultiSortColCount`, and the `multi` argument.
+*
+* @example
+* ```ts
+* column_toggleSorting(column, undefined, true)
+* ```
+*/
+function column_toggleSorting(column, desc, multi) {
+	const nextSortingOrder = column_getNextSortingOrder(column, multi && column_getCanMultiSort(column));
+	const hasManualValue = typeof desc !== "undefined";
+	table_setSorting(column.table, (old) => {
+		const existingIndex = old.findIndex((d) => d.id === column.id);
+		const existingSorting = existingIndex === -1 ? void 0 : old[existingIndex];
+		let newSorting = [];
+		let sortAction;
+		const nextDesc = hasManualValue ? desc : nextSortingOrder === "desc";
+		const isMultiMode = !!(old.length && column_getCanMultiSort(column) && multi);
+		if (isMultiMode) {
+			if (existingSorting) sortAction = "toggle";
+			else sortAction = "add";
+		} else if (existingSorting) sortAction = "toggle";
+		else sortAction = "replace";
+		if (sortAction === "toggle") {
+			if (!hasManualValue) {
+				if (!nextSortingOrder) sortAction = "remove";
+			}
+		}
+		if (sortAction === "add") {
+			newSorting = [...old, {
+				id: column.id,
+				desc: nextDesc
+			}];
+			newSorting.splice(0, newSorting.length - (column.table.options.maxMultiSortColCount ?? Number.MAX_SAFE_INTEGER));
+		} else if (sortAction === "toggle") newSorting = isMultiMode ? old.map((d) => {
+			if (d.id === column.id) return {
+				...d,
+				desc: nextDesc
+			};
+			return d;
+		}) : [{
+			id: column.id,
+			desc: nextDesc
+		}];
+		else if (sortAction === "remove") newSorting = isMultiMode ? old.filter((d) => d.id !== column.id) : [];
+		else newSorting = [{
+			id: column.id,
+			desc: nextDesc
+		}];
+		return newSorting;
+	});
+}
+/**
+* Resolves the first direction used when this column begins sorting.
+*
+* Column-level `sortDescFirst` wins, then table-level `sortDescFirst`, then the
+* auto direction inferred from sampled values.
+*
+* @example
+* ```ts
+* const firstDirection = column_getFirstSortDir(column)
+* ```
+*/
+function column_getFirstSortDir(column) {
+	return column.columnDef.sortDescFirst ?? column.table.options.sortDescFirst ?? column_getAutoSortDir(column) === "desc" ? "desc" : "asc";
+}
+/**
+* Resolves the next sort order for this column's toggle cycle.
+*
+* The cycle starts with the first sort direction, flips between `asc` and
+* `desc`, and can return `false` when sorting removal is enabled.
+*
+* @example
+* ```ts
+* const nextOrder = column_getNextSortingOrder(column)
+* ```
+*/
+function column_getNextSortingOrder(column, multi) {
+	const firstSortDirection = column_getFirstSortDir(column);
+	const isSorted = column_getIsSorted(column);
+	if (!isSorted) return firstSortDirection;
+	if (isSorted !== firstSortDirection && (column.table.options.enableSortingRemoval ?? true) && (multi ? column.table.options.enableMultiRemove ?? true : true)) return false;
+	return isSorted === "desc" ? "asc" : "desc";
+}
+/**
+* Checks whether this accessor column can participate in sorting.
+*
+* The column must have an accessor and sorting must be enabled by both the
+* column definition and table options.
+*
+* @example
+* ```ts
+* const canSort = column_getCanSort(column)
+* ```
+*/
+function column_getCanSort(column) {
+	return (column.columnDef.enableSorting ?? true) && (column.table.options.enableSorting ?? true) && !!column.accessorFn;
+}
+/**
+* Checks whether this column can be added to a multi-sort state.
+*
+* Column-level `enableMultiSort` wins over table-level `enableMultiSort`; if
+* neither is set, accessor columns can multi-sort by default.
+*
+* @example
+* ```ts
+* const canMultiSort = column_getCanMultiSort(column)
+* ```
+*/
+function column_getCanMultiSort(column) {
+	return column.columnDef.enableMultiSort ?? column.table.options.enableMultiSort ?? !!column.accessorFn;
+}
+/**
+* Reads this column's current sort direction.
+*
+* The result is `false` when the column is not sorted, otherwise `'asc'` or
+* `'desc'` based on the column's entry in `state.sorting`.
+*
+* @example
+* ```ts
+* const direction = column_getIsSorted(column)
+* ```
+*/
+function column_getIsSorted(column) {
+	const columnSort = column.table.atoms.sorting?.get()?.find((d) => d.id === column.id);
+	return !columnSort ? false : columnSort.desc ? "desc" : "asc";
+}
+/**
+* Finds this column's position in the ordered `state.sorting` array.
+*
+* The result is `-1` when the column is not sorted.
+*
+* @example
+* ```ts
+* const index = column_getSortIndex(column)
+* ```
+*/
+function column_getSortIndex(column) {
+	return column.table.atoms.sorting?.get()?.findIndex((d) => d.id === column.id) ?? -1;
+}
+/**
+* Removes this column from the sorting state.
+*
+* Other sorted columns are preserved, including their relative order.
+*
+* @example
+* ```ts
+* column_clearSorting(column)
+* ```
+*/
+function column_clearSorting(column) {
+	table_setSorting(column.table, (old) => old.length ? old.filter((d) => d.id !== column.id) : []);
+}
+/**
+* Creates a header event handler that toggles this column's sorting.
+*
+* The handler ignores events when the column cannot sort, and asks
+* `options.isMultiSortEvent` whether the event should add to a multi-sort.
+*
+* @example
+* ```ts
+* const onClick = column_getToggleSortingHandler(column)
+* ```
+*/
+function column_getToggleSortingHandler(column) {
+	const canSort = column_getCanSort(column);
+	return (e) => {
+		if (!canSort) return;
+		column_toggleSorting(column, void 0, column_getCanMultiSort(column) ? column.table.options.isMultiSortEvent?.(e) : false);
+	};
+}
+// ../../node_modules/@tanstack/table-core/dist/features/row-sorting/rowSortingFeature.js
 /**
 * Feature that adds row sorting state, defaults, and column/table sorting APIs.
 */
@@ -8910,13 +8778,13 @@ const rowSortingFeature = {
 	},
 	constructTableAPIs(table) {
 		assignTableAPIs("rowSortingFeature", table, {
+			table_autoResetSorting: { fn: () => table_autoResetSorting(table) },
 			table_setSorting: { fn: (updater) => table_setSorting(table, updater) },
 			table_resetSorting: { fn: (defaultState) => table_resetSorting(table, defaultState) }
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-filtering/filterRowsUtils.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-filtering/filterRowsUtils.js
 /**
 * Filters a row model with the supplied row predicate.
 *
@@ -8932,37 +8800,24 @@ function filterRowModelFromLeafs(rowsToFilter, filterRow, table) {
 	const maxDepth = table.options.maxLeafRowFilterDepth ?? 100;
 	const recurseFilterRows = (rowsToFilter, depth = 0) => {
 		const filteredRows = [];
-		for (let row of rowsToFilter) {
+		for (const row of rowsToFilter) {
 			const newRow = constructRow(table, row.id, row.original, row.index, row.depth, void 0, row.parentId);
 			newRow.columnFilters = row.columnFilters;
+			newRow.columnFiltersMeta = row.columnFiltersMeta;
 			if (row.subRows.length && depth < maxDepth) {
 				newRow.subRows = recurseFilterRows(row.subRows, depth + 1);
-				row = newRow;
-				if (filterRow(row) && !newRow.subRows.length) {
-					filteredRows.push(row);
-					newFilteredRowsById[row.id] = row;
-					newFilteredFlatRows.push(row);
-					continue;
-				}
-				if (filterRow(row) || newRow.subRows.length) {
-					filteredRows.push(row);
-					newFilteredRowsById[row.id] = row;
-					newFilteredFlatRows.push(row);
-					continue;
-				}
-			} else {
-				row = newRow;
-				if (filterRow(row)) {
-					filteredRows.push(row);
-					newFilteredRowsById[row.id] = row;
-					newFilteredFlatRows.push(row);
-				}
+				if (newRow.subRows.length || filterRow(newRow)) filteredRows.push(newRow);
+			} else if (filterRow(newRow)) {
+				newRow.subRows = row.subRows;
+				filteredRows.push(newRow);
 			}
 		}
 		return filteredRows;
 	};
+	const rows = recurseFilterRows(rowsToFilter);
+	addSubRowsToFlatArrays(rows, newFilteredFlatRows, newFilteredRowsById);
 	return {
-		rows: recurseFilterRows(rowsToFilter),
+		rows,
 		flatRows: newFilteredFlatRows,
 		rowsById: newFilteredRowsById
 	};
@@ -8973,16 +8828,22 @@ function filterRowModelFromRoot(rowsToFilter, filterRow, table) {
 	const maxDepth = table.options.maxLeafRowFilterDepth ?? 100;
 	const recurseFilterRows = (rowsToFilter, depth = 0) => {
 		const filteredRows = [];
-		for (let row of rowsToFilter) if (filterRow(row)) {
+		for (const row of rowsToFilter) if (filterRow(row)) {
 			if (row.subRows.length && depth < maxDepth) {
 				const newRow = constructRow(table, row.id, row.original, row.index, row.depth, void 0, row.parentId);
+				const filterData = row;
+				newRow.columnFilters = filterData.columnFilters;
+				newRow.columnFiltersMeta = filterData.columnFiltersMeta;
+				filteredRows.push(newRow);
+				newFilteredFlatRows.push(newRow);
+				newFilteredRowsById[newRow.id] = newRow;
 				newRow.subRows = recurseFilterRows(row.subRows, depth + 1);
-				row = newRow;
+			} else {
+				filteredRows.push(row);
+				newFilteredFlatRows.push(row);
+				newFilteredRowsById[row.id] = row;
+				if (row.subRows.length && depth >= maxDepth) addSubRowsToFlatArrays(row.subRows, newFilteredFlatRows, newFilteredRowsById);
 			}
-			filteredRows.push(row);
-			newFilteredFlatRows.push(row);
-			newFilteredRowsById[row.id] = row;
-			if (row.subRows.length && depth >= maxDepth) addSubRowsToFlatArrays(row.subRows, newFilteredFlatRows, newFilteredRowsById);
 		}
 		return filteredRows;
 	};
@@ -8999,8 +8860,7 @@ function addSubRowsToFlatArrays(subRows, flatRows, rowsById) {
 		if (subRow.subRows.length) addSubRowsToFlatArrays(subRow.subRows, flatRows, rowsById);
 	}
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-faceting/createFacetedRowModel.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-faceting/createFacetedRowModel.js
 /**
 * Creates a memoized faceted row model factory.
 *
@@ -9039,8 +8899,7 @@ function _createFacetedRowModel(table, columnId, preRowModel, columnFilters, glo
 	};
 	return filterRows(preRowModel.rows, filterRowsImpl, table);
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-faceting/createFacetedUniqueValues.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-faceting/createFacetedUniqueValues.js
 /**
 * Creates a memoized faceted unique values helper for faceted filtering.
 *
@@ -9064,7 +8923,7 @@ function createFacetedUniqueValues() {
 	};
 }
 function _createFacetedUniqueValues(table, columnId, flatRows) {
-	const columnIds = columnId === "__global__" ? table.getAllLeafColumns().filter((column) => column_getCanGlobalFilter(column)).map((column) => column.id) : [columnId];
+	const columnIds = columnId === "__global__" ? table.getAllLeafColumns().filter((column) => getCanGlobalFilter(column)).map((column) => column.id) : [columnId];
 	const facetedUniqueValues = /* @__PURE__ */ new Map();
 	for (let i = 0; i < flatRows.length; i++) for (let c = 0; c < columnIds.length; c++) {
 		const values = flatRows[i].getUniqueValues(columnIds[c]);
@@ -9077,8 +8936,7 @@ function _createFacetedUniqueValues(table, columnId, flatRows) {
 	}
 	return facetedUniqueValues;
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/column-filtering/createFilteredRowModel.js
+// ../../node_modules/@tanstack/table-core/dist/features/column-filtering/createFilteredRowModel.js
 /**
 * Creates a memoized filtered row model factory.
 *
@@ -9104,7 +8962,7 @@ function createFilteredRowModel() {
 				table.atoms.globalFilter?.get()
 			],
 			fn: () => _createFilteredRowModel(table),
-			onAfterUpdate: skipFirstRun(() => table_autoResetPageIndex(table))
+			onAfterUpdate: skipFirstRun(() => autoResetPageIndex(table))
 		});
 	};
 }
@@ -9136,17 +8994,19 @@ function _createFilteredRowModel(table) {
 		});
 	});
 	const filterableIds = columnFilters?.map((d) => d.id) ?? [];
-	const globalFilterFn = table_getGlobalFilterFn(table);
-	const globallyFilterableColumns = table.getAllLeafColumns().filter((column) => column_getCanGlobalFilter(column));
-	if (hasGlobalFilter && globalFilterFn && globallyFilterableColumns.length) {
-		filterableIds.push("__global__");
-		globallyFilterableColumns.forEach((column) => {
-			resolvedGlobalFilters.push({
-				id: column.id,
-				filterFn: globalFilterFn,
-				resolvedValue: globalFilterFn.resolveFilterValue?.(globalFilter) ?? globalFilter
+	if (hasGlobalFilter) {
+		const globalFilterFn = getGlobalFilterFn(table);
+		const globallyFilterableColumns = globalFilterFn ? table.getAllLeafColumns().filter(getCanGlobalFilter) : [];
+		if (globalFilterFn && globallyFilterableColumns.length) {
+			filterableIds.push("__global__");
+			globallyFilterableColumns.forEach((column) => {
+				resolvedGlobalFilters.push({
+					id: column.id,
+					filterFn: globalFilterFn,
+					resolvedValue: globalFilterFn.resolveFilterValue?.(globalFilter) ?? globalFilter
+				});
 			});
-		});
+		}
 	}
 	const flatRows = rowModel.flatRows;
 	for (let i = 0; i < flatRows.length; i++) {
@@ -9182,28 +9042,7 @@ function _createFilteredRowModel(table) {
 	};
 	return filterRows(rowModel.rows, filterRowsImpl, table);
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/row-expanding/createExpandedRowModel.js
-/**
-* Expands a row model according to the current expanded row state.
-*
-* Expanded sub-rows are inserted into the flattened row order while preserving the original row hierarchy.
-*/
-function expandRows(rowModel) {
-	const expandedRows = [];
-	const handleRow = (row) => {
-		expandedRows.push(row);
-		if (row.subRows.length && row_getIsExpanded(row)) row.subRows.forEach(handleRow);
-	};
-	rowModel.rows.forEach(handleRow);
-	return {
-		rows: expandedRows,
-		flatRows: rowModel.flatRows,
-		rowsById: rowModel.rowsById
-	};
-}
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/row-pagination/createPaginatedRowModel.js
+// ../../node_modules/@tanstack/table-core/dist/features/row-pagination/createPaginatedRowModel.js
 /**
 * Creates a memoized paginated row model factory.
 *
@@ -9231,11 +9070,14 @@ function _createPaginatedRowModel(table) {
 	if (!prePaginatedRowModel.rows.length) return prePaginatedRowModel;
 	const { pageSize, pageIndex } = pagination ?? getDefaultPaginationState();
 	const { rows, flatRows, rowsById } = prePaginatedRowModel;
-	const pageStart = pageSize * pageIndex;
-	const pageEnd = pageStart + pageSize;
-	const paginatedRows = rows.slice(pageStart, pageEnd);
+	let paginatedRows = rows;
+	if (pageSize !== Infinity || pageIndex !== 0) {
+		const pageStart = pageSize * pageIndex;
+		const pageEnd = pageStart + pageSize;
+		paginatedRows = rows.slice(pageStart, pageEnd);
+	}
 	let paginatedRowModel;
-	if (!table.options.paginateExpandedRows) paginatedRowModel = expandRows({
+	if (!table.options.paginateExpandedRows) paginatedRowModel = expandRowModel(table, {
 		rows: paginatedRows,
 		flatRows,
 		rowsById
@@ -9256,8 +9098,7 @@ function _createPaginatedRowModel(table) {
 	paginatedRowModel.rows.forEach(handleRow);
 	return paginatedRowModel;
 }
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/features/row-sorting/createSortedRowModel.js
+// ../../node_modules/@tanstack/table-core/dist/features/row-sorting/createSortedRowModel.js
 /**
 * Creates a memoized sorted row model factory.
 *
@@ -9279,7 +9120,7 @@ function createSortedRowModel() {
 			fnName: "table.getSortedRowModel",
 			memoDeps: () => [table.atoms.sorting?.get(), table.getPreSortedRowModel()],
 			fn: () => _createSortedRowModel(table),
-			onAfterUpdate: skipFirstRun(() => table_autoResetPageIndex(table))
+			onAfterUpdate: skipFirstRun(() => autoResetPageIndex(table))
 		});
 	};
 }
@@ -9340,6 +9181,8 @@ function _createSortedRowModel(table) {
 		for (let i = 0; i < sortedData.length; i++) {
 			const row = sortedData[i];
 			if (row !== rows[i]) changed = true;
+			const flatIndex = sortedFlatRows.length;
+			sortedFlatRows.push(row);
 			if (row.subRows.length) {
 				const sortedSubRows = sortData(row.subRows);
 				if (sortedSubRows.changed) {
@@ -9347,10 +9190,10 @@ function _createSortedRowModel(table) {
 					copyInstancePropertiesWithoutMemos(cloned, row);
 					cloned.subRows = sortedSubRows.rows;
 					sortedData[i] = cloned;
-					sortedFlatRows.push(cloned);
+					sortedFlatRows[flatIndex] = cloned;
 					changed = true;
-				} else sortedFlatRows.push(row);
-			} else sortedFlatRows.push(row);
+				}
+			}
 		}
 		return {
 			rows: sortedData,
@@ -9363,8 +9206,7 @@ function _createSortedRowModel(table) {
 		rowsById: preSortedRowModel.rowsById
 	};
 }
-//#endregion
-//#region src/filters.ts
+// src/filters.ts
 const FILTER_OPERATORS = {
 	text: [
 		"contains",
@@ -9452,15 +9294,14 @@ const evaluateColumnFilter = (cellValue, filterValue, filterType = "text") => {
 	}
 	return filterValue.value.some((candidate) => String(candidate) === String(cellValue));
 };
-//#endregion
-//#region src/util/direction.ts
+// src/util/direction.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid util/direction.ts
 * License (https://coreui.io/pro/license/)
 * --------------------------------------------------------------------------
 */
-const isElementRTL = (element) => typeof getComputedStyle === "function" && element ? getComputedStyle(element).direction === "rtl" : false;
+const isElementRTL = (element) => typeof getComputedStyle === "function" && element !== null && element !== void 0 && getComputedStyle(element).direction === "rtl";
 const syncResizeDirection = (table, element) => {
 	const direction = isElementRTL(element) ? "rtl" : "ltr";
 	if (table.options.columnResizeDirection !== direction) table.setOptions((previous) => ({
@@ -9468,8 +9309,7 @@ const syncResizeDirection = (table, element) => {
 		columnResizeDirection: direction
 	}));
 };
-//#endregion
-//#region src/ui/toolbar.ts
+// src/ui/toolbar.ts
 const CLASS_NAME_TOOLBAR = "data-grid-toolbar";
 const CLASS_NAME_ACTIONS = "data-grid-toolbar-actions";
 const CLASS_NAME_SEARCH = "data-grid-toolbar-search";
@@ -9550,8 +9390,7 @@ const createToolbar = (context) => {
 	}
 	return { element };
 };
-//#endregion
-//#region src/engine/validate.ts
+// src/engine/validate.ts
 const FLAG_FEATURES = [
 	["cellSelection", ["cellSelectionFeature"]],
 	["columnFilters", ["columnFilteringFeature", "filteredRowModel"]],
@@ -9584,8 +9423,7 @@ const assertFeatureCoverage = (componentName, features, flags) => {
 		for (const key of requiredKeys) if (!(key in features)) throw new TypeError(`${componentName.toUpperCase()}: Option "${label}" requires feature "${key}" in "features".`);
 	}
 };
-//#endregion
-//#region src/engine/table.ts
+// src/engine/table.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid engine/table.ts
@@ -9696,10 +9534,12 @@ const subscribeToTableState = (table, listener) => {
 	});
 	return () => subscription.unsubscribe();
 };
-//#endregion
-//#region ../../node_modules/@tanstack/virtual-core/dist/esm/lazy-measurements.js
-function createLazyMeasurementsView(count, flat, getItemKey) {
-	const cache = new Array(count);
+// ../../node_modules/@tanstack/virtual-core/dist/esm/lazy-measurements.js
+function getMeasurementKey(item) {
+	return typeof item === "object" ? item.key : item;
+}
+function createLazyMeasurementsView(cache, flat) {
+	const count = cache.length;
 	return new Proxy(cache, { get(target, prop, receiver) {
 		if (typeof prop === "string") {
 			const c = prop.charCodeAt(0);
@@ -9707,11 +9547,11 @@ function createLazyMeasurementsView(count, flat, getItemKey) {
 				const i = +prop;
 				if (Number.isInteger(i) && i >= 0 && i < count) {
 					let v = target[i];
-					if (!v) {
+					if (typeof v !== "object") {
 						const s = flat[i * 2];
 						v = target[i] = {
 							index: i,
-							key: getItemKey(i),
+							key: v,
 							start: s,
 							size: flat[i * 2 + 1],
 							end: s + flat[i * 2 + 1],
@@ -9726,8 +9566,7 @@ function createLazyMeasurementsView(count, flat, getItemKey) {
 		return Reflect.get(target, prop, receiver);
 	} });
 }
-//#endregion
-//#region ../../node_modules/@tanstack/virtual-core/dist/esm/utils.js
+// ../../node_modules/@tanstack/virtual-core/dist/esm/utils.js
 function memo(getDeps, fn, opts) {
 	let deps = opts.initialDeps ?? [];
 	let result;
@@ -9753,13 +9592,53 @@ function notUndefined(value, msg) {
 const approxEqual = (a, b) => Math.abs(a - b) < 1.01;
 const debounce$1 = (targetWindow, fn, ms) => {
 	let timeoutId;
-	return function(...args) {
+	return Object.assign(function(...args) {
 		targetWindow.clearTimeout(timeoutId);
 		timeoutId = targetWindow.setTimeout(() => fn.apply(this, args), ms);
-	};
+	}, { cancel: () => {
+		targetWindow.clearTimeout(timeoutId);
+	} });
 };
-//#endregion
-//#region ../../node_modules/@tanstack/virtual-core/dist/esm/index.js
+// ../../node_modules/@tanstack/virtual-core/dist/esm/scroll-classifier.js
+function classifyScrollEvent({ offset, isScrolling, elementMax, holdOffset, scrollOffset, pendingWrite, clampedMaxAtWrite }) {
+	var _a;
+	if (isScrolling && pendingWrite === null && offset === scrollOffset) return "spurious";
+	if (pendingWrite !== null && Math.abs(offset - pendingWrite.target) < 1.5) return "readBack";
+	if (pendingWrite !== null && !pendingWrite.smooth && elementMax !== null && pendingWrite.target > elementMax + holdOffset + .5 && Math.abs(offset - (elementMax + holdOffset)) < 1.5) return "clampedReadBack";
+	if (pendingWrite !== null && !pendingWrite.smooth && ((_a = pendingWrite.lowMaxes) == null ? void 0 : _a.some((max) => Math.abs(offset - max) < 1.5))) return "clampedReadBack";
+	if (clampedMaxAtWrite !== null && Math.abs(offset - clampedMaxAtWrite) < 1.5) return "clampedEcho";
+	return "external";
+}
+const isAnimating = (phase) => phase === "smooth" || phase === "smoothFinishing";
+function externalRetiresCommand({ kind, offset, command, target }) {
+	return kind !== "spurious" && kind !== "readBack" && kind !== "clampedReadBack" && (command == null ? void 0 : command.index) != null && command.phase !== "queued" && !isAnimating(command.phase) && !approxEqual(offset, command.lastTargetOffset) && !approxEqual(offset, target()) && kind !== "clampedEcho";
+}
+const FLING_WINDOW_MS = 40;
+function flingSpedUp(samples) {
+	const last = samples[samples.length - 1];
+	if (last === void 0) return false;
+	let j = samples.length - 2;
+	while (j >= 0 && last.t - samples[j].t < FLING_WINDOW_MS) j--;
+	if (j < 0) return false;
+	const mid = samples[j];
+	let k = j - 1;
+	while (k >= 0 && mid.t - samples[k].t < FLING_WINDOW_MS) k--;
+	if (k < 0) return false;
+	const first = samples[k];
+	const recent = (last.offset - mid.offset) / (last.t - mid.t);
+	const before = (mid.offset - first.offset) / (mid.t - first.t);
+	return recent * before >= 0 && Math.abs(recent) >= 2 * Math.abs(before) && Math.abs(recent) - Math.abs(before) >= .8;
+}
+function flingCaught(samples) {
+	const last = samples[samples.length - 1];
+	if (last === void 0) return false;
+	let j = samples.length - 2;
+	while (j >= 0 && last.t - samples[j].t < FLING_WINDOW_MS) j--;
+	if (j < 0) return false;
+	const from = samples[j];
+	return Math.abs(last.offset - from.offset) / (last.t - from.t) >= .05;
+}
+// ../../node_modules/@tanstack/virtual-core/dist/esm/ios-gesture.js
 let _isIOSResult;
 const isIOSWebKit = () => {
 	if (_isIOSResult !== void 0) return _isIOSResult;
@@ -9768,17 +9647,129 @@ const isIOSWebKit = () => {
 	const mtp = navigator.maxTouchPoints;
 	return _isIOSResult = navigator.platform === "MacIntel" && mtp !== void 0 && mtp > 0;
 };
+let _iosMomentumOverridesWritesResult;
+const iosMomentumOverridesWrites = () => {
+	if (_iosMomentumOverridesWritesResult !== void 0) return _iosMomentumOverridesWritesResult;
+	return _iosMomentumOverridesWritesResult = isIOSWebKit() && typeof CSS !== "undefined" && typeof CSS.supports === "function" && CSS.supports("overflow-anchor: auto");
+};
+const touchListenerOptions = {
+	capture: true,
+	passive: true
+};
+var IosGesture = class {
+	constructor(host) {
+		this.host = host;
+		this._touch = null;
+		this.inMotion = () => this._touch !== null && this._touch.phase !== "lateFling";
+		this.dragging = () => {
+			var _a;
+			return ((_a = this._touch) == null ? void 0 : _a.phase) === "down" && this._touch.moved;
+		};
+		this.tail = () => {
+			var _a;
+			return ((_a = this._touch) == null ? void 0 : _a.phase) === "tail" ? this._touch.moved ? "fling" : "tap" : null;
+		};
+		this.onScroll = ({ isScrolling, ownReadBack, moved, external }) => {
+			var _a, _b, _c;
+			if (isScrolling && ((_a = this._touch) == null ? void 0 : _a.phase) === "tail") this._openTail(this._touch.moved || !ownReadBack, false);
+			else if (((_b = this._touch) == null ? void 0 : _b.phase) === "lateFling") {
+				if (this.host.now() > this._touch.until) this._touch = null;
+				else if (external && isScrolling && moved) this._openTail(true, false);
+			}
+			if (!ownReadBack && isScrolling && moved && ((_c = this._touch) == null ? void 0 : _c.phase) === "down") {
+				this._touch.moved = true;
+				return true;
+			}
+			return false;
+		};
+		this.touchStart = () => {
+			this.end();
+			this._touch = {
+				phase: "down",
+				moved: false
+			};
+		};
+		this.touchEnd = () => {
+			var _a;
+			const moved = ((_a = this._touch) == null ? void 0 : _a.phase) === "down" && this._touch.moved;
+			this.end();
+			this._openTail(moved, moved);
+		};
+		this.end = () => {
+			var _a;
+			const win = this.host.getWindow();
+			if (((_a = this._touch) == null ? void 0 : _a.phase) === "tail" && win != null) win.clearTimeout(this._touch.timerId);
+			this._touch = null;
+		};
+		this.listen = (target) => {
+			const onTouchStart = () => this.touchStart();
+			const onTouchEnd = () => this.touchEnd();
+			target.addEventListener("touchstart", onTouchStart, touchListenerOptions);
+			target.addEventListener("touchend", onTouchEnd, touchListenerOptions);
+			target.addEventListener("touchcancel", onTouchEnd, touchListenerOptions);
+			return () => {
+				target.removeEventListener("touchstart", onTouchStart, touchListenerOptions);
+				target.removeEventListener("touchend", onTouchEnd, touchListenerOptions);
+				target.removeEventListener("touchcancel", onTouchEnd, touchListenerOptions);
+				this.end();
+			};
+		};
+		this._openTail = (moved, awaitingFling) => {
+			const win = this.host.getWindow();
+			if (!isIOSWebKit() || win == null) return;
+			this.end();
+			const tail = {
+				phase: "tail",
+				moved,
+				awaitingFling,
+				timerId: win.setTimeout(() => {
+					if (this.host.tailStillMoving()) {
+						this._openTail(tail.moved, tail.awaitingFling);
+						return;
+					}
+					this._touch = tail.awaitingFling ? {
+						phase: "lateFling",
+						until: this.host.now() + 1e3
+					} : null;
+					this.host.onTailClosed();
+				}, 150)
+			};
+			this._touch = tail;
+		};
+	}
+	get touch() {
+		return this._touch;
+	}
+};
+// ../../node_modules/@tanstack/virtual-core/dist/esm/index.js
 const getRect = (element) => {
-	const { offsetWidth, offsetHeight } = element;
+	const { clientWidth, clientHeight } = element;
 	return {
-		width: offsetWidth,
-		height: offsetHeight
+		width: clientWidth,
+		height: clientHeight
+	};
+};
+const createFrameQueue = (targetWindow) => {
+	const ids = /* @__PURE__ */ new Set();
+	return {
+		schedule: (fn) => {
+			const id = targetWindow.requestAnimationFrame(() => {
+				ids.delete(id);
+				fn();
+			});
+			ids.add(id);
+		},
+		cancel: () => {
+			ids.forEach((id) => targetWindow.cancelAnimationFrame(id));
+			ids.clear();
+		}
 	};
 };
 const defaultKeyExtractor = (index) => index;
 const defaultRangeExtractor = (range) => {
-	const start = Math.max(range.startIndex - range.overscan, 0);
-	const len = Math.min(range.endIndex + range.overscan, range.count - 1) - start + 1;
+	const overscan = range.overscan * Math.max(range.lanes ?? 1, 1);
+	const start = Math.max(range.startIndex - overscan, 0);
+	const len = Math.min(range.endIndex + overscan, range.count - 1) - start + 1;
 	const arr = new Array(len);
 	for (let i = 0; i < len; i++) arr[i] = start + i;
 	return arr;
@@ -9797,26 +9788,17 @@ const observeElementRect = (instance, cb) => {
 	};
 	handler(getRect(element));
 	if (!targetWindow.ResizeObserver) return () => {};
-	const observer = new targetWindow.ResizeObserver((entries) => {
+	const frames = createFrameQueue(targetWindow);
+	const observer = new targetWindow.ResizeObserver(() => {
 		const run = () => {
-			const entry = entries[0];
-			if (entry == null ? void 0 : entry.borderBoxSize) {
-				const box = entry.borderBoxSize[0];
-				if (box) {
-					handler({
-						width: box.inlineSize,
-						height: box.blockSize
-					});
-					return;
-				}
-			}
 			handler(getRect(element));
 		};
-		instance.options.useAnimationFrameWithResizeObserver ? requestAnimationFrame(run) : run();
+		instance.options.useAnimationFrameWithResizeObserver ? frames.schedule(run) : run();
 	});
-	observer.observe(element, { box: "border-box" });
+	observer.observe(element, { box: "content-box" });
 	return () => {
 		observer.unobserve(element);
+		frames.cancel();
 	};
 };
 const addEventListenerOptions = { passive: true };
@@ -9828,7 +9810,7 @@ const observeOffset = (instance, cb, readOffset) => {
 	if (!targetWindow) return;
 	const registerScrollendEvent = instance.options.useScrollendEvent && supportsScrollend;
 	let offset = 0;
-	const fallback = registerScrollendEvent ? null : debounce$1(targetWindow, () => cb(offset, false), instance.options.isScrollingResetDelay);
+	const fallback = registerScrollendEvent ? null : debounce$1(targetWindow, () => cb(readOffset(element), false), instance.options.isScrollingResetDelay);
 	const createHandler = (isScrolling) => () => {
 		offset = readOffset(element);
 		fallback?.();
@@ -9841,6 +9823,7 @@ const observeOffset = (instance, cb, readOffset) => {
 	return () => {
 		element.removeEventListener("scroll", handler);
 		if (registerScrollendEvent) element.removeEventListener("scrollend", endHandler);
+		fallback?.cancel();
 	};
 };
 const observeElementOffset = (instance, cb) => observeOffset(instance, cb, (el) => {
@@ -9873,6 +9856,25 @@ const scrollWithAdjustments = (offset, { adjustments = 0, behavior }, instance) 
 	});
 };
 const elementScroll = scrollWithAdjustments;
+const initialScrollPhase = (behavior, atTarget) => behavior === "smooth" ? atTarget ? "smoothLanded" : "smooth" : "instant";
+const isSmoothScroll = (state) => (state == null ? void 0 : state.phase) === "smooth" || (state == null ? void 0 : state.phase) === "smoothLanded";
+function isAppendWithTrim(prevCount, nextCount, getPreviousKey, getNextKey) {
+	if (nextCount === 0) return false;
+	const firstKey = getNextKey(0);
+	const removedKeys = /* @__PURE__ */ new Set();
+	let removedCount = 0;
+	while (removedCount < prevCount) {
+		const key = getPreviousKey(removedCount);
+		if (key === firstKey) break;
+		removedKeys.add(key);
+		removedCount++;
+	}
+	const retainedCount = prevCount - removedCount;
+	if (retainedCount === 0 || retainedCount >= nextCount) return false;
+	for (let i = 0; i < retainedCount; i++) if (getNextKey(i) !== getPreviousKey(removedCount + i)) return false;
+	for (let i = retainedCount; i < nextCount; i++) if (removedKeys.has(getNextKey(i))) return false;
+	return true;
+}
 var Virtualizer = class {
 	constructor(opts) {
 		this.unsubs = [];
@@ -9881,7 +9883,7 @@ var Virtualizer = class {
 		this.isScrolling = false;
 		this.scrollState = null;
 		this.measurementsCache = [];
-		this._flatMeasurements = null;
+		this._singleLaneMeasurements = null;
 		this.itemSizeCache = /* @__PURE__ */ new Map();
 		this.itemSizeCacheVersion = 0;
 		this.laneAssignments = /* @__PURE__ */ new Map();
@@ -9893,46 +9895,87 @@ var Virtualizer = class {
 		this.scrollRect = null;
 		this.scrollOffset = null;
 		this.scrollDirection = null;
-		this.scrollAdjustments = 0;
-		this._iosDeferredAdjustment = 0;
-		this._iosTouching = false;
-		this._iosJustTouchEnded = false;
-		this._iosTouchEndTimerId = null;
-		this._intendedScrollOffset = null;
+		this._holdOffset = 0;
+		this._reportedOverscroll = false;
+		this._iosGesture = new IosGesture({
+			getWindow: () => this.targetWindow,
+			now: () => this.now(),
+			tailStillMoving: () => {
+				const state = this.scrollState;
+				if ((state == null ? void 0 : state.phase) !== "queued" || this.pendingWrite !== null) return false;
+				const now = this._readElementOffset();
+				if (now === null || this._lastElementOffset === null || Math.abs(now - this._lastElementOffset) < 1) return false;
+				this._lastElementOffset = now;
+				state.samples = [...state.samples ?? [], {
+					t: this.now(),
+					offset: now
+				}];
+				return true;
+			},
+			onTailClosed: () => {
+				const state = this.scrollState;
+				if ((state == null ? void 0 : state.phase) === "queued" && flingCaught(state.samples ?? [])) this.scrollState = null;
+				this._flushHoldIfReady(true);
+				this._writeAwaitingCommand();
+			}
+		});
+		this._lastElementOffset = null;
+		this.pendingWrite = null;
+		this._clampedAdjustment = null;
 		this.elementsCache = /* @__PURE__ */ new Map();
+		this._resizeBatch = null;
 		this.now = () => {
 			var _a, _b, _c;
 			return ((_c = (_b = (_a = this.targetWindow) == null ? void 0 : _a.performance) == null ? void 0 : _b.now) == null ? void 0 : _c.call(_b)) ?? Date.now();
 		};
 		this.observer = /* @__PURE__ */ (() => {
 			let _ro = null;
+			let _frames = null;
 			const get = () => {
 				if (_ro) return _ro;
-				if (!this.targetWindow || !this.targetWindow.ResizeObserver) return null;
-				return _ro = new this.targetWindow.ResizeObserver((entries) => {
-					entries.forEach((entry) => {
-						const run = () => {
-							const node = entry.target;
-							const index = this.indexFromElement(node);
-							if (!node.isConnected) {
-								this.observer.unobserve(node);
-								for (const [cacheKey, cachedNode] of this.elementsCache) if (cachedNode === node) {
-									this.elementsCache.delete(cacheKey);
-									break;
-								}
-								return;
+				const targetWindow = this.targetWindow;
+				if (!targetWindow || !targetWindow.ResizeObserver) return null;
+				const frames = _frames = createFrameQueue(targetWindow);
+				return _ro = new targetWindow.ResizeObserver((entries) => {
+					const run = () => {
+						const batch = { sync: false };
+						this._resizeBatch = batch;
+						try {
+							entries.forEach(measureEntry);
+						} finally {
+							this._resizeBatch = null;
+							if (batch.notify) {
+								this.notify(batch.sync);
+								this._noteClampMax();
+								this._flushHoldIfReady(true);
+								this._retryClampedAdjustment();
 							}
-							if (this.shouldMeasureDuringScroll(index)) this.resizeItem(index, this.options.measureElement(node, entry, this));
-						};
-						this.options.useAnimationFrameWithResizeObserver ? requestAnimationFrame(run) : run();
-					});
+						}
+					};
+					this.options.useAnimationFrameWithResizeObserver ? frames.schedule(run) : run();
 				});
+			};
+			const measureEntry = (entry) => {
+				const node = entry.target;
+				const index = this.indexFromElement(node);
+				if (!node.isConnected) {
+					this.observer.unobserve(node);
+					for (const [cacheKey, cachedNode] of this.elementsCache) if (cachedNode === node) {
+						this.elementsCache.delete(cacheKey);
+						break;
+					}
+					return;
+				}
+				if (!this.isIndexInRange(index)) return;
+				if (this.shouldMeasureDuringScroll(index)) this.resizeItem(index, this.options.measureElement(node, entry, this));
 			};
 			return {
 				disconnect: () => {
 					var _a;
 					(_a = get()) == null || _a.disconnect();
+					_frames?.cancel();
 					_ro = null;
+					_frames = null;
 				},
 				observe: (target) => {
 					var _a;
@@ -9946,7 +9989,7 @@ var Virtualizer = class {
 		})();
 		this.range = null;
 		this.setOptions = (opts2) => {
-			var _a, _b;
+			var _a;
 			const merged = {
 				debug: false,
 				initialOffset: 0,
@@ -9992,14 +10035,18 @@ var Virtualizer = class {
 				const prevCount = prevOptions.count;
 				const nextCount = merged.count;
 				const measurements = this.getMeasurements();
-				const prevFirstKey = prevCount > 0 ? ((_a = measurements[0]) == null ? void 0 : _a.key) ?? prevOptions.getItemKey(0) : null;
-				const prevLastKey = prevCount > 0 ? ((_b = measurements[prevCount - 1]) == null ? void 0 : _b.key) ?? prevOptions.getItemKey(prevCount - 1) : null;
+				const previousItems = ((_a = this._singleLaneMeasurements) == null ? void 0 : _a.items) ?? measurements;
+				const getPreviousKey = (index) => getMeasurementKey(previousItems[index]);
+				const prevFirstKey = prevCount > 0 ? getPreviousKey(0) : null;
+				const prevLastKey = prevCount > 0 ? getPreviousKey(prevCount - 1) : null;
 				if (nextCount !== prevCount || prevCount > 0 && nextCount > 0 && (merged.getItemKey(0) !== prevFirstKey || merged.getItemKey(nextCount - 1) !== prevLastKey)) {
 					edgeKeysChanged = true;
 					const item = prevCount > 0 ? this.getVirtualItemForOffset(this.getScrollOffset()) ?? measurements[0] : null;
 					if (item) anchor = [item.key, this.getScrollOffset() - item.start];
 					const behavior = merged.followOnAppend === true ? "auto" : merged.followOnAppend || null;
-					if (behavior && nextCount > prevCount && this.isAtEnd(prevOptions.scrollEndThreshold) && (prevCount === 0 || merged.getItemKey(nextCount - 1) !== prevLastKey)) followOnAppend = behavior;
+					if (behavior && nextCount > 0 && this.isAtEnd(prevOptions.scrollEndThreshold) && (prevCount === 0 || merged.getItemKey(nextCount - 1) !== prevLastKey)) {
+						if (nextCount > prevCount || isAppendWithTrim(prevCount, nextCount, getPreviousKey, merged.getItemKey)) followOnAppend = behavior;
+					}
 				}
 			}
 			this.options = merged;
@@ -10007,9 +10054,8 @@ var Virtualizer = class {
 				this.pendingMin = 0;
 				this.itemSizeCacheVersion++;
 			}
-			let anchorResolved = false;
-			let anchorDelta = 0;
-			if (anchor && this.scrollOffset !== null) {
+			let anchorDelta = null;
+			if (anchor && this.scrollOffset !== null && !this._awaitingCommandReadBack()) {
 				const [anchorKey, anchorOffset] = anchor;
 				const newMeasurements = this.getMeasurements();
 				const { count, getItemKey } = this.options;
@@ -10018,21 +10064,28 @@ var Virtualizer = class {
 				if (idx < count) {
 					const anchorItem = newMeasurements[idx];
 					if (anchorItem) {
-						const newOffset = anchorItem.start + anchorOffset;
-						if (newOffset !== this.scrollOffset) {
+						const newOffset = Math.max(0, anchorItem.start + anchorOffset);
+						if (!followOnAppend && newOffset !== this.scrollOffset) {
 							anchorDelta = newOffset - this.scrollOffset;
 							this.scrollOffset = newOffset;
-							anchorResolved = true;
 						}
 					}
 				}
 			}
-			if (anchorResolved || followOnAppend) this.pendingScrollAnchor = [
-				anchorResolved ? anchor[0] : null,
-				anchorResolved ? anchor[1] : 0,
-				followOnAppend,
-				anchorDelta
-			];
+			if (followOnAppend) this.pendingScrollAnchor = {
+				kind: "follow",
+				behavior: followOnAppend
+			};
+			else if (anchorDelta !== null) {
+				if (this._canWriteScroll()) this.pendingScrollAnchor = {
+					kind: "anchor",
+					delta: anchorDelta
+				};
+				else {
+					this._holdOffset += anchorDelta;
+					this._followOffsetTarget(anchorDelta);
+				}
+			}
 		};
 		this.notify = (sync) => {
 			var _a, _b;
@@ -10057,6 +10110,7 @@ var Virtualizer = class {
 			]
 		});
 		this.cleanup = () => {
+			var _a;
 			this.unsubs.filter(Boolean).forEach((d) => d());
 			this.unsubs = [];
 			this.observer.disconnect();
@@ -10065,9 +10119,14 @@ var Virtualizer = class {
 				this.rafId = null;
 			}
 			this.scrollState = null;
-			this._iosDeferredAdjustment = 0;
-			this._iosTouching = false;
-			this._iosJustTouchEnded = false;
+			(_a = this._momentumStop) == null || _a.restore();
+			this._momentumStop = null;
+			this.isScrolling = false;
+			this.scrollDirection = null;
+			this._holdOffset = 0;
+			this._reportedOverscroll = false;
+			this._clampedAdjustment = null;
+			this.pendingWrite = null;
 			this.scrollElement = null;
 			this.targetWindow = null;
 		};
@@ -10096,83 +10155,131 @@ var Virtualizer = class {
 					this.maybeNotify();
 				}));
 				this.unsubs.push(this.options.observeElementOffset(this, (offset, isScrolling) => {
-					if (isScrolling && this._intendedScrollOffset === null && offset === this.scrollOffset) return;
-					if (this._intendedScrollOffset !== null && Math.abs(offset - this._intendedScrollOffset) < 1.5) offset = this._intendedScrollOffset;
-					this._intendedScrollOffset = null;
-					this.scrollAdjustments = 0;
+					var _a2, _b, _c, _d;
+					const elementMax = isScrolling ? this._elementMaxScrollOffset() : null;
+					const wasOverscrolled = this._reportedOverscroll;
+					this._reportedOverscroll = offset < 0 || elementMax !== null && offset > elementMax + 1;
+					const elementOffset = offset;
+					this._lastElementOffset = elementOffset;
+					offset = this._toLayoutOffset(offset);
+					const kind = this._classifyScrollEvent(offset, isScrolling, elementMax);
+					if (kind === "spurious") return;
+					if (kind === "readBack") offset = this.pendingWrite.target;
+					else if (kind === "clampedReadBack" && ((_a2 = this.scrollState) == null ? void 0 : _a2.index) != null && offset < this.getMaxScrollOffset() - 1.5) this.scrollState.lastTargetOffset = offset;
+					else if (externalRetiresCommand({
+						kind,
+						offset,
+						command: this.scrollState,
+						target: () => this.getScrollStateTarget(this.scrollState)
+					})) this.scrollState = null;
+					this.pendingWrite = null;
+					if (this._clampedAdjustment !== null && Math.abs(offset - this._clampedAdjustment.maxAtWrite) >= 1.5) this._clampedAdjustment = null;
 					const prevOffset = this.getScrollOffset();
+					const prevDirection = this.scrollDirection;
 					this.scrollDirection = isScrolling ? prevOffset === offset ? this.scrollDirection : prevOffset < offset ? "forward" : "backward" : null;
 					this.scrollOffset = offset;
 					this.isScrolling = isScrolling;
-					this._flushIosDeferredIfReady();
+					const queued = this.scrollState;
+					if ((queued == null ? void 0 : queued.phase) === "queued" && kind === "external" && isScrolling) {
+						if (wasOverscrolled || this._reportedOverscroll) queued.samples = [];
+						else {
+							const t = this.now();
+							queued.samples = [...(queued.samples ?? []).filter((sample) => t - sample.t <= 200), {
+								t,
+								offset: elementOffset
+							}];
+							if (prevDirection !== null && this.scrollDirection !== prevDirection || flingSpedUp(queued.samples)) this.scrollState = null;
+						}
+					}
+					if (this._iosGesture.onScroll({
+						isScrolling,
+						ownReadBack: kind === "readBack",
+						moved: offset !== prevOffset,
+						external: kind === "external" && ((_b = this.scrollState) == null ? void 0 : _b.phase) !== "smooth" && ((_c = this.scrollState) == null ? void 0 : _c.phase) !== "smoothFinishing"
+					}) && ((_d = this.scrollState) == null ? void 0 : _d.phase) === "queued") this.scrollState = null;
+					this._flushHoldIfReady(true);
 					if (this.scrollState) this.scheduleScrollReconcile();
 					this.maybeNotify();
 				}));
-				if ("addEventListener" in this.scrollElement) {
-					const scrollEl = this.scrollElement;
-					const onTouchStart = () => {
-						this._iosTouching = true;
-						this._iosJustTouchEnded = false;
-						if (this._iosTouchEndTimerId !== null && this.targetWindow != null) {
-							this.targetWindow.clearTimeout(this._iosTouchEndTimerId);
-							this._iosTouchEndTimerId = null;
-						}
-					};
-					const onTouchEnd = () => {
-						this._iosTouching = false;
-						if (!isIOSWebKit() || this.targetWindow == null) return;
-						this._iosJustTouchEnded = true;
-						this._iosTouchEndTimerId = this.targetWindow.setTimeout(() => {
-							this._iosJustTouchEnded = false;
-							this._iosTouchEndTimerId = null;
-							this._flushIosDeferredIfReady();
-						}, 150);
-					};
-					scrollEl.addEventListener("touchstart", onTouchStart, addEventListenerOptions);
-					scrollEl.addEventListener("touchend", onTouchEnd, addEventListenerOptions);
-					this.unsubs.push(() => {
-						scrollEl.removeEventListener("touchstart", onTouchStart);
-						scrollEl.removeEventListener("touchend", onTouchEnd);
-						if (this._iosTouchEndTimerId !== null && this.targetWindow != null) {
-							this.targetWindow.clearTimeout(this._iosTouchEndTimerId);
-							this._iosTouchEndTimerId = null;
-						}
-					});
-				}
-				this._scrollToOffset(this.getScrollOffset(), {
-					adjustments: void 0,
-					behavior: void 0
-				});
+				if ("addEventListener" in this.scrollElement) this.unsubs.push(this._iosGesture.listen(this.scrollElement));
+				this._scrollToOffset(this.getScrollOffset());
 			}
+			this._noteClampMax();
 			const anchor = this.pendingScrollAnchor;
 			this.pendingScrollAnchor = null;
 			if (anchor && this.scrollElement && this.options.enabled) {
-				const [key, _offset, followOnAppend, anchorDelta] = anchor;
-				if (key !== null && !followOnAppend) {
-					if (isIOSWebKit() && (this.isScrolling || this._iosTouching || this._iosJustTouchEnded)) {
-						if (anchorDelta !== 0) this._iosDeferredAdjustment += anchorDelta;
-					} else this._scrollToOffset(this.getScrollOffset(), {
-						adjustments: void 0,
-						behavior: void 0
-					});
-				}
-				if (followOnAppend) this.scrollToEnd({ behavior: followOnAppend });
+				if (anchor.kind === "anchor") {
+					if (!this._canWriteScroll()) {
+						this._holdOffset += anchor.delta;
+						this._followOffsetTarget(anchor.delta);
+						this.notify(false);
+					} else if (isSmoothScroll(this.scrollState) && !approxEqual(this.getScrollOffset() - anchor.delta, this.scrollState.lastTargetOffset));
+					else {
+						this._followOffsetTarget(anchor.delta);
+						this._scrollToOffset(this.getScrollOffset());
+					}
+				} else this.scrollToEnd({ behavior: anchor.behavior });
+			}
+			this._flushHoldIfReady(false);
+			this._retryClampedAdjustment();
+		};
+		this._classifyScrollEvent = (offset, isScrolling, elementMax) => {
+			var _a;
+			return classifyScrollEvent({
+				offset,
+				isScrolling,
+				elementMax,
+				holdOffset: this._holdOffset,
+				scrollOffset: this.scrollOffset,
+				pendingWrite: this.pendingWrite,
+				clampedMaxAtWrite: ((_a = this._clampedAdjustment) == null ? void 0 : _a.maxAtWrite) ?? null
+			});
+		};
+		this._retryClampedAdjustment = () => {
+			if (this._clampedAdjustment === null || !this.scrollElement || !this.options.enabled) return;
+			const { target, maxAtWrite } = this._clampedAdjustment;
+			const max = this.getMaxScrollOffset();
+			if (max > maxAtWrite + .5) {
+				this._clampedAdjustment = target > max + .5 ? {
+					target,
+					maxAtWrite: max
+				} : null;
+				this._scrollToOffset(target);
 			}
 		};
-		this._flushIosDeferredIfReady = () => {
-			if (this._iosDeferredAdjustment === 0) return;
-			if (this.isScrolling) return;
-			if (this._iosTouching) return;
-			if (this._iosJustTouchEnded) return;
-			const cur = this.getScrollOffset();
-			const max = this.getMaxScrollOffset();
-			if (cur < 0 || cur > max) return;
-			const delta = this._iosDeferredAdjustment;
-			this._iosDeferredAdjustment = 0;
-			this._scrollToOffset(cur, {
-				adjustments: this.scrollAdjustments += delta,
-				behavior: void 0
-			});
+		this._writeAwaitingCommand = () => {
+			const state = this.scrollState;
+			if (state === null || state.phase !== "queued") return;
+			const { behavior } = state;
+			this.getMeasurements();
+			const offset = this.getScrollStateTarget(state);
+			state.lastTargetOffset = offset;
+			this._clampedAdjustment = null;
+			state.phase = initialScrollPhase(behavior, state.index != null && approxEqual(offset, this.getScrollOffset()));
+			this._scrollToOffset(offset, { behavior });
+			this.scheduleScrollReconcile();
+		};
+		this._readElementOffset = () => {
+			const el = this.scrollElement;
+			if (el == null) return null;
+			const { horizontal, isRtl } = this.options;
+			if (typeof el.scrollTop === "number") return horizontal ? el.scrollLeft * (isRtl && -1 || 1) : el.scrollTop;
+			if (typeof el.scrollY === "number") return horizontal ? el.scrollX : el.scrollY;
+			return null;
+		};
+		this._canWriteScroll = () => !(isIOSWebKit() && this._iosGesture.inMotion()) && !this._reportedOverscroll;
+		this._flushHoldIfReady = (sync) => {
+			var _a;
+			if (this._holdOffset === 0) return;
+			if (!this.scrollElement || !this.options.enabled) return;
+			if (!this._canWriteScroll()) return;
+			if (((_a = this.scrollState) == null ? void 0 : _a.phase) === "smooth") return;
+			this._holdOffset = 0;
+			if (this.scrollOffset !== null && this.scrollOffset < 0) this.scrollOffset = 0;
+			this.notify(sync);
+			const target = this.getCommandWrittenOffset() ?? this.getScrollOffset();
+			this._clampedAdjustment = this._clampedBy(target);
+			this._scrollToOffset(target);
 		};
 		this.rafId = null;
 		this.getSize = () => {
@@ -10215,10 +10322,13 @@ var Virtualizer = class {
 				gap
 			};
 		}, { key: false });
+		this.isIndexInRange = (index) => index >= 0 && index < this.options.count;
 		this.getMeasurements = memo(() => [this.getMeasurementOptions(), this.itemSizeCacheVersion], ({ count, paddingStart, scrollMargin, getItemKey, enabled, lanes, laneAssignmentMode, gap }, _itemSizeCacheVersion) => {
+			var _a;
 			const itemSizeCache = this.itemSizeCache;
 			if (!enabled) {
 				this.measurementsCache = [];
+				this._singleLaneMeasurements = null;
 				this.itemSizeCache.clear();
 				this.laneAssignments.clear();
 				return [];
@@ -10230,6 +10340,7 @@ var Virtualizer = class {
 				this.lanesChangedFlag = false;
 				this.lanesSettling = true;
 				this.measurementsCache = [];
+				this._singleLaneMeasurements = null;
 				this.itemSizeCache.clear();
 				this.laneAssignments.clear();
 				this.pendingMin = null;
@@ -10245,13 +10356,13 @@ var Virtualizer = class {
 			if (this.lanesSettling && this.measurementsCache.length === count) this.lanesSettling = false;
 			if (lanes === 1) {
 				const need = count * 2;
-				let flat = this._flatMeasurements;
+				let flat = (_a = this._singleLaneMeasurements) == null ? void 0 : _a.flat;
 				if (!flat || flat.length < need) {
 					const next = new Float64Array(need);
 					if (flat && min > 0) next.set(flat.subarray(0, min * 2));
 					flat = next;
-					this._flatMeasurements = flat;
 				}
+				const items = min === 0 ? new Array(count) : this._singleLaneMeasurements.items.slice();
 				let runningStart;
 				if (min === 0) runningStart = paddingStart + scrollMargin;
 				else {
@@ -10260,13 +10371,18 @@ var Virtualizer = class {
 				}
 				for (let i = min; i < count; i++) {
 					const key = getItemKey(i);
+					items[i] = key;
 					const measuredSize = itemSizeCache.get(key);
 					const size = typeof measuredSize === "number" ? measuredSize : this.options.estimateSize(i);
 					flat[i * 2] = runningStart;
 					flat[i * 2 + 1] = size;
 					runningStart += size + gap;
 				}
-				const view = createLazyMeasurementsView(count, flat, getItemKey);
+				this._singleLaneMeasurements = {
+					flat,
+					items
+				};
+				const view = createLazyMeasurementsView(items, flat);
 				this.measurementsCache = view;
 				return view;
 			}
@@ -10344,7 +10460,7 @@ var Virtualizer = class {
 				this.range = null;
 				return null;
 			}
-			this.range = calculateRangeImpl(measurements, outerSize, scrollOffset, lanes, lanes === 1 && this._flatMeasurements != null ? this._flatMeasurements : null);
+			this.range = calculateRangeImpl(measurements, outerSize, scrollOffset, lanes, lanes === 1 && this._singleLaneMeasurements !== null ? this._singleLaneMeasurements.flat : null);
 			return this.range;
 		}, {
 			key: false,
@@ -10368,14 +10484,16 @@ var Virtualizer = class {
 				this.options.overscan,
 				this.options.count,
 				startIndex,
-				endIndex
+				endIndex,
+				this.options.lanes
 			];
-		}, (rangeExtractor, overscan, count, startIndex, endIndex) => {
+		}, (rangeExtractor, overscan, count, startIndex, endIndex, lanes) => {
 			return startIndex === null || endIndex === null ? [] : rangeExtractor({
 				startIndex,
 				endIndex,
 				overscan,
-				count
+				count,
+				lanes
 			});
 		}, {
 			key: false,
@@ -10392,7 +10510,7 @@ var Virtualizer = class {
 		};
 		this.shouldMeasureDuringScroll = (index) => {
 			var _a;
-			if (!this.scrollState || this.scrollState.behavior !== "smooth") return true;
+			if (!isSmoothScroll(this.scrollState)) return true;
 			const scrollIndex = this.scrollState.index ?? ((_a = this.getVirtualItemForOffset(this.scrollState.lastTargetOffset)) == null ? void 0 : _a.index);
 			if (scrollIndex !== void 0 && this.range) {
 				const bufferSize = Math.max(this.options.overscan, Math.ceil((this.range.endIndex - this.range.startIndex) / 2));
@@ -10413,6 +10531,7 @@ var Virtualizer = class {
 				return;
 			}
 			const index = this.indexFromElement(node);
+			if (!this.isIndexInRange(index)) return;
 			const key = this.options.getItemKey(index);
 			const prevNode = this.elementsCache.get(key);
 			if (prevNode !== node) {
@@ -10420,16 +10539,17 @@ var Virtualizer = class {
 				this.observer.observe(node);
 				this.elementsCache.set(key, node);
 			}
-			if ((!this.isScrolling || this.scrollState) && this.shouldMeasureDuringScroll(index)) this.resizeItem(index, this.options.measureElement(node, void 0, this));
+			if (node.isConnected && (!this.isScrolling || this.scrollState) && this.shouldMeasureDuringScroll(index)) this.resizeItem(index, this.options.measureElement(node, void 0, this));
 		};
 		this.resizeItem = (index, size) => {
-			var _a, _b;
-			if (index < 0 || index >= this.options.count) return;
+			var _a, _b, _c;
+			if (!this.isIndexInRange(index)) return;
+			if ((_a = this._resizeBatch) == null ? void 0 : _a.sync) this.getMeasurements();
 			let cachedSize;
 			let itemStart;
 			let key;
-			const flat = this._flatMeasurements;
-			if (this.options.lanes === 1 && flat !== null) {
+			const flat = (_b = this._singleLaneMeasurements) == null ? void 0 : _b.flat;
+			if (this.options.lanes === 1 && flat != null) {
 				key = this.options.getItemKey(index);
 				itemStart = flat[index * 2];
 				cachedSize = flat[index * 2 + 1];
@@ -10440,31 +10560,53 @@ var Virtualizer = class {
 				itemStart = item.start;
 				cachedSize = item.size;
 			}
-			const delta = size - (this.itemSizeCache.get(key) ?? cachedSize);
+			const itemSize = this.itemSizeCache.get(key) ?? cachedSize;
+			const delta = size - itemSize;
 			if (delta !== 0) {
-				const wasAtEnd = this.options.anchorTo === "end" && ((_a = this.scrollState) == null ? void 0 : _a.behavior) !== "smooth" && this.getVirtualDistanceFromEnd() <= this.options.scrollEndThreshold;
-				const prevTotalSize = wasAtEnd ? this.getTotalSize() : 0;
-				const shouldAdjustScroll = ((_b = this.scrollState) == null ? void 0 : _b.behavior) !== "smooth" && (this.shouldAdjustScrollPositionOnItemSizeChange !== void 0 ? this.shouldAdjustScrollPositionOnItemSizeChange(this.measurementsCache[index] ?? {
+				const wasAtEnd = this.options.anchorTo === "end" && !isSmoothScroll(this.scrollState) && this.getVirtualDistanceFromEnd() <= this.options.scrollEndThreshold;
+				const prevTotalSize = wasAtEnd ? this._getLayoutTotalSize() : 0;
+				const scrollOffset = this.getScrollOffset();
+				const defaultShouldAdjust = !this.itemSizeCache.has(key) ? itemStart < scrollOffset : itemStart + itemSize <= scrollOffset && this.scrollDirection !== "backward";
+				const shouldAdjustScroll = !isSmoothScroll(this.scrollState) && (this.shouldAdjustScrollPositionOnItemSizeChange !== void 0 ? this.shouldAdjustScrollPositionOnItemSizeChange(this.measurementsCache[index] ?? {
 					index,
 					key,
 					start: itemStart,
 					size: cachedSize,
 					end: itemStart + cachedSize,
 					lane: 0
-				}, delta, this) : itemStart < this.getScrollOffset() + this.scrollAdjustments && (!this.itemSizeCache.has(key) || this.scrollDirection !== "backward"));
+				}, delta, this) : defaultShouldAdjust);
 				if (this.pendingMin === null || index < this.pendingMin) this.pendingMin = index;
 				this.itemSizeCache.set(key, size);
 				this.itemSizeCacheVersion++;
-				if (wasAtEnd) this.applyScrollAdjustment(this.getTotalSize() - prevTotalSize);
-				else if (shouldAdjustScroll) this.applyScrollAdjustment(delta);
-				this.notify(false);
+				let adjustedSync = false;
+				if (!this._awaitingCommandReadBack()) {
+					if (wasAtEnd) adjustedSync = this.applyScrollAdjustment(this._getLayoutTotalSize() - prevTotalSize);
+					else if (shouldAdjustScroll) adjustedSync = this.applyScrollAdjustment(delta);
+				}
+				if (this._resizeBatch) {
+					this._resizeBatch.notify = true;
+					(_c = this._resizeBatch).sync || (_c.sync = adjustedSync);
+					return;
+				}
+				this.notify(adjustedSync);
+				this._noteClampMax();
+				this._flushHoldIfReady(true);
+				this._retryClampedAdjustment();
 			}
 		};
-		this.getVirtualItems = memo(() => [this.getVirtualIndexes(), this.getMeasurements()], (indexes, measurements) => {
+		this.getVirtualItems = memo(() => [
+			this.getVirtualIndexes(),
+			this.getMeasurements(),
+			this._holdOffset
+		], (indexes, measurements, hold) => {
 			const virtualItems = [];
 			for (let k = 0, len = indexes.length; k < len; k++) {
 				const measurement = measurements[indexes[k]];
-				virtualItems.push(measurement);
+				virtualItems.push(hold === 0 ? measurement : {
+					...measurement,
+					start: measurement.start - hold,
+					end: measurement.end - hold
+				});
 			}
 			return virtualItems;
 		}, {
@@ -10472,22 +10614,82 @@ var Virtualizer = class {
 			debug: () => this.options.debug
 		});
 		this.getVirtualItemForOffset = (offset) => {
+			var _a;
 			const measurements = this.getMeasurements();
 			if (measurements.length === 0) return;
-			const flat = this._flatMeasurements;
+			const flat = (_a = this._singleLaneMeasurements) == null ? void 0 : _a.flat;
 			const useFlat = this.options.lanes === 1 && flat != null;
 			return notUndefined(measurements[findNearestBinarySearch(0, measurements.length - 1, useFlat ? (i) => flat[i * 2] : (i) => notUndefined(measurements[i]).start, offset)]);
 		};
-		this.getMaxScrollOffset = () => {
-			if (!this.scrollElement) return 0;
-			if ("scrollHeight" in this.scrollElement) return this.options.horizontal ? this.scrollElement.scrollWidth - this.scrollElement.clientWidth : this.scrollElement.scrollHeight - this.scrollElement.clientHeight;
-			else {
-				const doc = this.scrollElement.document.documentElement;
-				return this.options.horizontal ? doc.scrollWidth - this.scrollElement.innerWidth : doc.scrollHeight - this.scrollElement.innerHeight;
+		this._noteClampMax = () => {
+			if (!this._awaitingCommandReadBack()) return;
+			const elementMax = this._elementMaxScrollOffset();
+			if (elementMax === null) return;
+			const write = this.pendingWrite;
+			const max = Math.max(elementMax, 0) + this._holdOffset;
+			if (max >= write.target) return;
+			const lowMaxes = write.lowMaxes ?? (write.lowMaxes = []);
+			if (lowMaxes[lowMaxes.length - 1] !== max) lowMaxes.push(max);
+		};
+		this.getMaxScrollOffset = () => (this._elementMaxScrollOffset() ?? 0) + this._holdOffset;
+		this._toLayoutOffset = (elementOffset) => {
+			var _a;
+			let offset = elementOffset + this._holdOffset;
+			if (((_a = this.pendingScrollAnchor) == null ? void 0 : _a.kind) === "anchor") offset += this.pendingScrollAnchor.delta;
+			return offset;
+		};
+		this._elementMaxScrollOffset = () => {
+			const el = this.scrollElement;
+			if (el === null) return null;
+			if ("scrollHeight" in el) return this.options.horizontal ? el.scrollWidth - el.clientWidth : el.scrollHeight - el.clientHeight;
+			if ("document" in el) {
+				const doc = el.document.documentElement;
+				return this.options.horizontal ? doc.scrollWidth - el.innerWidth : doc.scrollHeight - el.innerHeight;
 			}
+			return null;
+		};
+		this._momentumStop = null;
+		this._stopMomentum = (done) => {
+			const el = this.scrollElement;
+			const win = this.targetWindow;
+			if (el === null || win === null) return;
+			const scroller = "document" in el ? el.document.scrollingElement : el;
+			if (!(scroller == null ? void 0 : scroller.style)) return;
+			if (this._momentumStop) {
+				this._momentumStop.done = done;
+				return;
+			}
+			const { style } = scroller;
+			const property = this.options.horizontal ? "overflow-x" : "overflow-y";
+			const value = style.getPropertyValue(property);
+			const priority = style.getPropertyPriority(property);
+			style.setProperty(property, "hidden", "important");
+			const stop = {
+				restore: () => {
+					if (style.getPropertyValue(property) !== "hidden" || style.getPropertyPriority(property) !== "important") return false;
+					style.setProperty(property, value, priority);
+					return true;
+				},
+				done
+			};
+			this._momentumStop = stop;
+			win.requestAnimationFrame(() => win.requestAnimationFrame(() => {
+				if (this._momentumStop !== stop) return;
+				this._momentumStop = null;
+				if (stop.restore()) stop.done();
+			}));
+		};
+		this._clampedBy = (target) => {
+			const elementMax = this._elementMaxScrollOffset();
+			if (elementMax === null) return null;
+			const maxAtWrite = elementMax + this._holdOffset;
+			return target > maxAtWrite + .5 ? {
+				target,
+				maxAtWrite
+			} : null;
 		};
 		this.getVirtualDistanceFromEnd = () => {
-			return Math.max(this.getTotalSize() - this.getSize() - this.getScrollOffset(), 0);
+			return Math.max(this._getLayoutTotalSize() - this.getSize() - this.getScrollOffset(), 0);
 		};
 		this.getDistanceFromEnd = () => {
 			return Math.max(this.getMaxScrollOffset() - this.getScrollOffset(), 0);
@@ -10516,84 +10718,66 @@ var Virtualizer = class {
 				else if (item.start <= scrollOffset + this.options.scrollPaddingStart) align = "start";
 				else return [scrollOffset, align];
 			}
-			if (align === "end" && index === this.options.count - 1) return [this.getMaxScrollOffset(), align];
+			if (align === "end" && index === this.options.count - 1) {
+				const maxOffset = this.getMaxScrollOffset();
+				const toOffset2 = maxOffset - this.options.paddingEnd + this.options.scrollPaddingEnd;
+				return [Math.max(Math.min(toOffset2, maxOffset), 0), align];
+			}
 			const toOffset = align === "end" ? item.end + this.options.scrollPaddingEnd : item.start - this.options.scrollPaddingStart;
 			return [this.getOffsetForAlignment(toOffset, align, item.size), align];
 		};
 		this.scrollToOffset = (toOffset, { align = "start", behavior = "auto" } = {}) => {
-			const offset = this.getOffsetForAlignment(toOffset, align);
-			const now = this.now();
-			this.scrollState = {
+			this._startScroll({
 				index: null,
-				align,
-				behavior,
-				startedAt: now,
-				lastTargetOffset: offset,
-				stableFrames: 0
-			};
-			this._scrollToOffset(offset, {
-				adjustments: void 0,
-				behavior
-			});
-			this.scheduleScrollReconcile();
+				align
+			}, this.getOffsetForAlignment(toOffset, align), behavior, "absolute");
 		};
 		this.scrollToIndex = (index, { align: initialAlign = "auto", behavior = "auto" } = {}) => {
 			index = Math.max(0, Math.min(index, this.options.count - 1));
 			const offsetInfo = this.getOffsetForIndex(index, initialAlign);
 			if (!offsetInfo) return;
 			const [offset, align] = offsetInfo;
-			const now = this.now();
-			this.scrollState = {
+			this._startScroll({
 				index,
-				align,
-				behavior,
-				startedAt: now,
-				lastTargetOffset: offset,
-				stableFrames: 0
-			};
-			this._scrollToOffset(offset, {
-				adjustments: void 0,
-				behavior
-			});
-			this.scheduleScrollReconcile();
+				align
+			}, offset, behavior, "absolute");
 		};
 		this.scrollBy = (delta, { behavior = "auto" } = {}) => {
-			const offset = this.getScrollOffset() + delta;
-			const now = this.now();
-			this.scrollState = {
+			const offset = this.getOffsetForAlignment((this.getCommandWrittenOffset() ?? this.getScrollOffset()) + delta, "start");
+			this._startScroll({
 				index: null,
-				align: "start",
-				behavior,
-				startedAt: now,
-				lastTargetOffset: offset,
-				stableFrames: 0
-			};
-			this._scrollToOffset(offset, {
-				adjustments: void 0,
-				behavior
-			});
-			this.scheduleScrollReconcile();
+				align: "start"
+			}, offset, behavior, "relative");
 		};
 		this.scrollToEnd = ({ behavior = "auto" } = {}) => {
 			if (this.options.count > 0) {
-				this.scrollToIndex(this.options.count - 1, {
+				this._startScroll({
+					index: this.options.count - 1,
 					align: "end",
-					behavior
-				});
+					toEnd: true
+				}, Math.max(this.getMaxScrollOffset(), 0), behavior, "absolute");
 				return;
 			}
 			this.scrollToOffset(Math.max(this.getTotalSize() - this.getSize(), 0), { behavior });
 		};
-		this.getTotalSize = () => {
-			var _a;
+		this.cancelScroll = () => {
+			if (this.rafId != null && this.targetWindow) {
+				this.targetWindow.cancelAnimationFrame(this.rafId);
+				this.rafId = null;
+			}
+			this.scrollState = null;
+		};
+		this.getTotalSize = () => Math.max(this._getLayoutTotalSize() - this._holdOffset, 0);
+		this._getLayoutTotalSize = () => {
+			var _a, _b;
 			const measurements = this.getMeasurements();
 			let end;
 			if (measurements.length === 0) end = this.options.paddingStart;
 			else if (this.options.lanes === 1) {
 				const lastIdx = measurements.length - 1;
-				const flat = this._flatMeasurements;
+				const flat = (_a = this._singleLaneMeasurements) == null ? void 0 : _a.flat;
 				if (flat != null) end = flat[lastIdx * 2] + flat[lastIdx * 2 + 1];
-				else end = ((_a = measurements[lastIdx]) == null ? void 0 : _a.end) ?? 0;
+				else end = ((_b = measurements[lastIdx]) == null ? void 0 : _b.end) ?? 0;
 			} else {
 				const endByLane = Array(this.options.lanes).fill(null);
 				let endIndex = measurements.length - 1;
@@ -10620,12 +10804,25 @@ var Virtualizer = class {
 			});
 			return snapshot;
 		};
-		this._scrollToOffset = (offset, { adjustments, behavior }) => {
-			this._intendedScrollOffset = offset + (adjustments ?? 0);
-			this.options.scrollToFn(offset, {
+		this._scrollToOffset = (offset, { adjustments, behavior } = {}) => {
+			const write = {
+				target: offset + (adjustments ?? 0),
+				smooth: behavior === "smooth"
+			};
+			this.pendingWrite = write;
+			this.options.scrollToFn(offset - this._holdOffset, {
 				behavior,
 				adjustments
 			}, this);
+			return write;
+		};
+		this.getCommandWrittenOffset = () => this.scrollState !== null && this.pendingWrite !== null && !this.pendingWrite.smooth ? this.pendingWrite.target : null;
+		this._awaitingCommandReadBack = () => {
+			const writtenOffset = this.getCommandWrittenOffset();
+			return !(isIOSWebKit() && this._iosGesture.dragging()) && writtenOffset !== null && !approxEqual(writtenOffset, this.getScrollOffset());
+		};
+		this._followOffsetTarget = (delta) => {
+			if (this.scrollState !== null && this.scrollState.index == null) this.scrollState.lastTargetOffset += delta;
 		};
 		this.measure = () => {
 			this.pendingMin = null;
@@ -10636,18 +10833,33 @@ var Virtualizer = class {
 		};
 		this.setOptions(opts);
 	}
+	/**
+	* @deprecated Always 0: a scroll correction is folded into `scrollOffset`
+	* at once, so there is never an outstanding adjustment to add to it. Read
+	* `scrollOffset` alone.
+	*/
+	get scrollAdjustments() {
+		return 0;
+	}
 	applyScrollAdjustment(delta, behavior) {
-		if (delta === 0) return;
-		if (isIOSWebKit() && (this.isScrolling || this._iosTouching || this._iosJustTouchEnded)) this._iosDeferredAdjustment += delta;
-		else {
-			this._scrollToOffset(this.getScrollOffset(), {
-				adjustments: this.scrollAdjustments += delta,
+		if (delta === 0) return false;
+		this._followOffsetTarget(delta);
+		if (!this._canWriteScroll()) {
+			this._holdOffset += delta;
+			if (this.scrollOffset !== null) this.scrollOffset += delta;
+			return true;
+		} else {
+			const offset = this.getScrollOffset();
+			this._clampedAdjustment = this._clampedBy(offset + delta);
+			const write = this._scrollToOffset(offset, {
+				adjustments: delta,
 				behavior
 			});
 			if (this.scrollOffset !== null) {
-				this.scrollOffset += this.scrollAdjustments;
-				this.scrollAdjustments = 0;
+				if (this.pendingWrite === write) this.scrollOffset += delta;
+				if (this.scrollOffset < 0) this.scrollOffset = 0;
 			}
+			return true;
 		}
 	}
 	scheduleScrollReconcile() {
@@ -10661,6 +10873,10 @@ var Virtualizer = class {
 			this.reconcileScroll();
 		});
 	}
+	getScrollStateTarget(state) {
+		const offsetInfo = state.toEnd ? [Math.max(this.getMaxScrollOffset(), 0)] : state.index != null ? this.getOffsetForIndex(state.index, state.align) : void 0;
+		return offsetInfo ? offsetInfo[0] : state.lastTargetOffset;
+	}
 	reconcileScroll() {
 		if (!this.scrollState) return;
 		if (!this.scrollElement) return;
@@ -10668,17 +10884,20 @@ var Virtualizer = class {
 			this.scrollState = null;
 			return;
 		}
-		const offsetInfo = this.scrollState.index != null ? this.getOffsetForIndex(this.scrollState.index, this.scrollState.align) : void 0;
-		const targetOffset = offsetInfo ? offsetInfo[0] : this.scrollState.lastTargetOffset;
-		const STABLE_FRAMES = 1;
+		if (this.scrollState.phase === "queued") {
+			this.scheduleScrollReconcile();
+			return;
+		}
+		this.getMeasurements();
+		const targetOffset = this.getScrollStateTarget(this.scrollState);
+		const STABLE_FRAMES = this.scrollState.index == null ? 1 : this.options.useAnimationFrameWithResizeObserver ? 3 : 2;
 		const targetChanged = targetOffset !== this.scrollState.lastTargetOffset;
 		if (!targetChanged && approxEqual(targetOffset, this.getScrollOffset())) {
+			if (this.scrollState.phase === "smooth") this.scrollState.phase = "smoothLanded";
+			else if (this.scrollState.phase === "smoothFinishing") this.scrollState.phase = "instant";
 			this.scrollState.stableFrames++;
 			if (this.scrollState.stableFrames >= STABLE_FRAMES) {
-				if (this.getScrollOffset() !== targetOffset) this._scrollToOffset(targetOffset, {
-					adjustments: void 0,
-					behavior: "auto"
-				});
+				if (this.getScrollOffset() !== targetOffset) this._scrollToOffset(targetOffset, { behavior: "auto" });
 				this.scrollState = null;
 				return;
 			}
@@ -10687,15 +10906,50 @@ var Virtualizer = class {
 			if (targetChanged) {
 				const viewport = this.getSize() || 600;
 				const distance = Math.abs(targetOffset - this.getScrollOffset());
-				const keepSmooth = this.scrollState.behavior === "smooth" && distance > viewport;
+				const keepSmooth = isSmoothScroll(this.scrollState) && distance > viewport;
 				this.scrollState.lastTargetOffset = targetOffset;
-				if (!keepSmooth) this.scrollState.behavior = "auto";
-				this._scrollToOffset(targetOffset, {
-					adjustments: void 0,
-					behavior: keepSmooth ? "smooth" : "auto"
-				});
+				if (keepSmooth) this.scrollState.phase = "smooth";
+				else if (this.scrollState.phase === "smooth") this.scrollState.phase = "smoothFinishing";
+				else if (this.scrollState.phase === "smoothLanded") this.scrollState.phase = "instant";
+				this._scrollToOffset(targetOffset, { behavior: keepSmooth ? "smooth" : "auto" });
 			}
 		}
+		this.scheduleScrollReconcile();
+	}
+	_startScroll(target, offset, behavior, kind) {
+		const tail = this._iosGesture.tail();
+		if (kind === "absolute" && tail !== null) {
+			if (tail === "fling" && iosMomentumOverridesWrites()) {
+				this._stopMomentum(() => {
+					const state = this.scrollState;
+					if ((state == null ? void 0 : state.phase) !== "queued" || this._iosGesture.tail() !== "fling" || this._reportedOverscroll) return;
+					this._iosGesture.end();
+					this._flushHoldIfReady(true);
+					this._writeAwaitingCommand();
+				});
+				this.scrollState = {
+					...target,
+					startedAt: this.now(),
+					lastTargetOffset: offset,
+					stableFrames: 0,
+					phase: "queued",
+					behavior,
+					samples: []
+				};
+				this.scheduleScrollReconcile();
+				return;
+			}
+			this._iosGesture.end();
+		}
+		this.scrollState = {
+			...target,
+			startedAt: this.now(),
+			lastTargetOffset: offset,
+			stableFrames: 0,
+			behavior,
+			phase: initialScrollPhase(behavior, target.index != null && approxEqual(offset, this.getScrollOffset()))
+		};
+		this._scrollToOffset(offset, { behavior });
 		this.scheduleScrollReconcile();
 	}
 };
@@ -10762,8 +11016,7 @@ function calculateRangeImpl(measurements, outerSize, scrollOffset, lanes, flat) 
 		endIndex
 	};
 }
-//#endregion
-//#region src/engine/virtualizer.ts
+// src/engine/virtualizer.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid engine/virtualizer.ts
@@ -10800,8 +11053,7 @@ const createGridVirtualizer = (options) => {
 		}
 	};
 };
-//#endregion
-//#region src/icons.ts
+// src/icons.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid icons.ts
@@ -10827,8 +11079,7 @@ const DEFAULT_UNPIN_ICON = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16
 const DEFAULT_MOVE_START_ICON = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 512 512\" aria-hidden=\"true\" focusable=\"false\"><path fill=\"currentColor\" d=\"M254.625 56h-38.632L16 256.2 216 456h38.623V336h144V176h-144Zm112 152v96h-144v113.384l-161.37-161.21 161.37-161.535V208Zm96-152h32v400h-32z\"/></svg>";
 const DEFAULT_MOVE_END_ICON = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 512 512\" aria-hidden=\"true\" focusable=\"false\"><path fill=\"currentColor\" d=\"M296.007 56h-38.632v120h-144v160h144v120H296l200-199.8Zm-6.632 361.384V304h-144v-96h144V94.639l161.37 161.535ZM17.375 56h32v400h-32z\"/></svg>";
 const DEFAULT_HIDE_COLUMN_ICON = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 512 512\" aria-hidden=\"true\" focusable=\"false\"><path fill=\"currentColor\" d=\"m397.222 131.1-.218-.223c-63.173-63.17-158.534-75.015-233.776-35.531l23.938 23.939c61.571-27.691 136.573-16.327 187.105 34.115L464 246.683v3.107l-71.744 74.585 22.63 22.63L496 262.683V233.79Z\"/><path fill=\"currentColor\" d=\"M352.8 284.33a103.307 103.307 0 0 0-132.893-132.892L246.1 177.63a71.228 71.228 0 0 1 80.507 80.508Zm17.1 62.938-33.831-33.831c.088-.108.179-.212.266-.32l-22.805-22.806q-.126.168-.253.334l-99.681-99.681.334-.253-22.81-22.805c-.108.087-.213.179-.321.266L38.627 16H16v22.627l95.689 95.689L16 233.79v28.893l98.778 102.689.218.222A199.73 199.73 0 0 0 367.372 390l106 106H496v-22.627L392.537 369.911Zm-177.157-131.9 96.128 96.132a71.28 71.28 0 0 1-96.133-96.133Zm-55.014 127.705L48 249.79v-3.107l86.319-89.737 35.065 35.064a103.248 103.248 0 0 0 142.842 142.843l32.007 32.007c-64.51 40.015-150.522 32.095-206.504-23.787\"/></svg>";
-//#endregion
-//#region src/labels.ts
+// src/labels.ts
 const DEFAULT_LABELS = {
 	addCondition: "Add condition",
 	applyFilter: "Apply",
@@ -10888,8 +11139,7 @@ const DEFAULT_LABELS = {
 	unpin: "Unpin"
 };
 const interpolate = (template, tokens) => template.replace(/\{(\w+)\}/g, (match, token) => token in tokens ? String(tokens[token]) : match);
-//#endregion
-//#region src/ui/pinning.ts
+// src/ui/pinning.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid ui/pinning.ts
@@ -10915,8 +11165,7 @@ const applyPinnedCell = (cell, info) => {
 		cell.style.insetInlineEnd = `${info.offset}px`;
 	}
 };
-//#endregion
-//#region src/ui/body.ts
+// src/ui/body.ts
 const CLASS_NAME_EMPTY = "data-grid-empty";
 const FOCUSABLE_SELECTOR$1 = "a[href], button, input, select, textarea, [tabindex]";
 const CLASS_NAME_ROW_ODD = "data-grid-row-odd";
@@ -11170,8 +11419,7 @@ const createBody = (context) => {
 		}
 	};
 };
-//#endregion
-//#region src/ui/editor.ts
+// src/ui/editor.ts
 const CLASS_NAME_EDITOR = "data-grid-cell-editor";
 const createTextEditor = (context) => {
 	const input = document.createElement("input");
@@ -11228,8 +11476,7 @@ const createBuiltInEditor = (options, context) => {
 	if (options.type === "select") return createSelectEditor(context, options);
 	return createTextEditor(context);
 };
-//#endregion
-//#region src/ui/header.ts
+// src/ui/header.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid ui/header.ts
@@ -11502,8 +11749,7 @@ const createHeader = (context) => {
 		}
 	};
 };
-//#endregion
-//#region src/ui/loading.ts
+// src/ui/loading.ts
 const CLASS_NAME_LOADING = "data-grid-loading";
 const createLoading = (labels, className = CLASS_NAME_LOADING) => {
 	const element = document.createElement("div");
@@ -11524,8 +11770,7 @@ const createLoading = (labels, className = CLASS_NAME_LOADING) => {
 		}
 	};
 };
-//#endregion
-//#region src/ui/filter-menu.ts
+// src/ui/filter-menu.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid ui/filter-menu.ts
@@ -11569,8 +11814,8 @@ const createFilterMenu = (context) => {
 		if (refocus) trigger.focus();
 		trigger = null;
 		element.remove();
-		document.removeEventListener("pointerdown", onOutsidePointerDown, true);
-		window.removeEventListener("scroll", onWindowChange, true);
+		document.removeEventListener("pointerdown", onOutsidePointerDown, { capture: true });
+		window.removeEventListener("scroll", onWindowChange, { capture: true });
 		window.removeEventListener("resize", onWindowChange);
 	};
 	const onOutsidePointerDown = (event) => {
@@ -11624,9 +11869,9 @@ const createFilterMenu = (context) => {
 	const readCondition = (row) => {
 		const operator = row.querySelector("select").value;
 		const { value } = row.querySelector("[data-coreui-filter-value]");
-		const value2 = row.querySelector("[data-coreui-filter-value2]").value;
 		if (VALUELESS_OPERATORS.has(operator)) return { operator };
 		if (value.trim() === "") return null;
+		const value2 = row.querySelector("[data-coreui-filter-value2]").value;
 		return {
 			operator,
 			value,
@@ -11776,8 +12021,8 @@ const createFilterMenu = (context) => {
 		const buttonRect = button.getBoundingClientRect();
 		element.style.top = `${buttonRect.bottom - rootRect.top}px`;
 		element.style.left = `${Math.max(buttonRect.right - rootRect.left - element.offsetWidth, 0)}px`;
-		document.addEventListener("pointerdown", onOutsidePointerDown, true);
-		window.addEventListener("scroll", onWindowChange, true);
+		document.addEventListener("pointerdown", onOutsidePointerDown, { capture: true });
+		window.addEventListener("scroll", onWindowChange, { capture: true });
 		window.addEventListener("resize", onWindowChange);
 		element.querySelector("select, input")?.focus();
 	};
@@ -11799,8 +12044,7 @@ const createFilterMenu = (context) => {
 		}
 	};
 };
-//#endregion
-//#region src/ui/menu.ts
+// src/ui/menu.ts
 const CLASS_NAME_MENU = "data-grid-menu";
 const CLASS_NAME_MENU_ITEM = "data-grid-menu-item";
 const CLASS_NAME_MENU_ITEM_ICON = "data-grid-menu-item-icon";
@@ -11820,8 +12064,8 @@ const createMenu = (context) => {
 		if (refocus) trigger.focus();
 		trigger = null;
 		element.remove();
-		document.removeEventListener("pointerdown", onOutsidePointerDown, true);
-		window.removeEventListener("scroll", onWindowChange, true);
+		document.removeEventListener("pointerdown", onOutsidePointerDown, { capture: true });
+		window.removeEventListener("scroll", onWindowChange, { capture: true });
 		window.removeEventListener("resize", onWindowChange);
 	};
 	const onOutsidePointerDown = (event) => {
@@ -11908,8 +12152,8 @@ const createMenu = (context) => {
 		const buttonRect = button.getBoundingClientRect();
 		element.style.top = `${buttonRect.bottom - rootRect.top}px`;
 		element.style.left = `${Math.max(buttonRect.right - rootRect.left - element.offsetWidth, 0)}px`;
-		document.addEventListener("pointerdown", onOutsidePointerDown, true);
-		window.addEventListener("scroll", onWindowChange, true);
+		document.addEventListener("pointerdown", onOutsidePointerDown, { capture: true });
+		window.addEventListener("scroll", onWindowChange, { capture: true });
 		window.addEventListener("resize", onWindowChange);
 		items()[0]?.focus();
 	};
@@ -11931,8 +12175,7 @@ const createMenu = (context) => {
 		}
 	};
 };
-//#endregion
-//#region src/ui/pagination.ts
+// src/ui/pagination.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid ui/pagination.ts
@@ -12015,7 +12258,7 @@ const createPagination = (context) => {
 					});
 				}
 			}
-			if (![...select.options].some((option) => option.value === String(state.pageSize))) {
+			if ([...select.options].every((option) => option.value !== String(state.pageSize))) {
 				const option = document.createElement("option");
 				option.value = String(state.pageSize);
 				option.textContent = String(state.pageSize);
@@ -12025,8 +12268,7 @@ const createPagination = (context) => {
 		}
 	};
 };
-//#endregion
-//#region src/ui/column-chooser.ts
+// src/ui/column-chooser.ts
 const CLASS_NAME_COLUMN_CHOOSER = "data-grid-column-chooser";
 const CLASS_NAME_OPTION = "data-grid-column-chooser-option";
 const CLASS_NAME_FOOTER = "data-grid-column-chooser-footer";
@@ -12045,8 +12287,8 @@ const createColumnChooser = (context) => {
 		if (refocus) trigger.focus();
 		trigger = null;
 		element.remove();
-		document.removeEventListener("pointerdown", onOutsidePointerDown, true);
-		window.removeEventListener("scroll", onWindowChange, true);
+		document.removeEventListener("pointerdown", onOutsidePointerDown, { capture: true });
+		window.removeEventListener("scroll", onWindowChange, { capture: true });
 		window.removeEventListener("resize", onWindowChange);
 	};
 	const onOutsidePointerDown = (event) => {
@@ -12123,8 +12365,8 @@ const createColumnChooser = (context) => {
 		const buttonRect = button.getBoundingClientRect();
 		element.style.top = `${buttonRect.bottom - rootRect.top}px`;
 		element.style.left = `${Math.max(buttonRect.left - rootRect.left, 0)}px`;
-		document.addEventListener("pointerdown", onOutsidePointerDown, true);
-		window.addEventListener("scroll", onWindowChange, true);
+		document.addEventListener("pointerdown", onOutsidePointerDown, { capture: true });
+		window.addEventListener("scroll", onWindowChange, { capture: true });
 		window.addEventListener("resize", onWindowChange);
 		element.querySelector("input:not(:disabled)")?.focus();
 	};
@@ -12146,8 +12388,7 @@ const createColumnChooser = (context) => {
 		}
 	};
 };
-//#endregion
-//#region src/ui/tooltip.ts
+// src/ui/tooltip.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid ui/tooltip.ts
@@ -12216,7 +12457,7 @@ const createTooltip = (root) => {
 	root.addEventListener("pointerdown", hide);
 	root.addEventListener("focusin", onFocusIn);
 	root.addEventListener("focusout", hide);
-	window.addEventListener("scroll", hide, true);
+	window.addEventListener("scroll", hide, { capture: true });
 	return { dispose() {
 		clearTimeout(showTimer);
 		root.removeEventListener("pointerover", onPointerOver);
@@ -12224,12 +12465,11 @@ const createTooltip = (root) => {
 		root.removeEventListener("pointerdown", hide);
 		root.removeEventListener("focusin", onFocusIn);
 		root.removeEventListener("focusout", hide);
-		window.removeEventListener("scroll", hide, true);
+		window.removeEventListener("scroll", hide, { capture: true });
 		element.remove();
 	} };
 };
-//#endregion
-//#region src/util/export-table.ts
+// src/util/export-table.ts
 const rowsFor = (table, scope) => {
 	if (scope === "all") return table.getCoreRowModel().rows;
 	if (scope === "selected") return table.getSelectedRowModel?.().rows ?? [];
@@ -12245,8 +12485,7 @@ const columnsFor = (table) => {
 };
 const headerFor = (column) => String(column.columnDef.meta?.label ?? column.id);
 const formatterFor = (column) => column.columnDef.meta?.formatter;
-//#endregion
-//#region src/util/csv.ts
+// src/util/csv.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid util/csv.ts
@@ -12263,9 +12502,9 @@ const exportCsv = (table, options = {}) => {
 	const csv = [line(columns.map((column) => headerFor(column))), ...rowsFor(table, options.scope).map((row) => line(columns.map((column) => {
 		const value = row.getValue(column.id);
 		const formatter = formatterFor(column);
-		return formatter ? String(formatter(value, row.original) ?? "") : String(value ?? "");
+		return String(formatter ? formatter(value, row.original) ?? "" : value ?? "");
 	})))].join("\r\n");
-	return options.bom ? `\uFEFF${csv}` : csv;
+	return options.bom ? `\u{FEFF}${csv}` : csv;
 };
 const downloadCsv = (table, options = {}) => {
 	const blob = new Blob([exportCsv(table, options)], { type: "text/csv;charset=utf-8;" });
@@ -12279,8 +12518,7 @@ const downloadCsv = (table, options = {}) => {
 	anchor.remove();
 	setTimeout(() => URL.revokeObjectURL(url));
 };
-//#endregion
-//#region src/util/debounce.ts
+// src/util/debounce.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid util/debounce.ts
@@ -12630,8 +12868,7 @@ function sanitizeHtml(unsafeHtml, allowList, sanitizeFunction) {
 	}
 	return createdDocument.body.innerHTML;
 }
-//#endregion
-//#region src/data-grid.ts
+// src/data-grid.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid.ts
@@ -13770,8 +14007,8 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 		};
 	}
 	_cellElementFor(cell) {
-		if (cell.rowIndex === -1) return this._header.element.querySelector(`tr:first-child th[data-coreui-column="${cell.columnId}"]`);
-		return this._body.element.querySelector(`tr[data-coreui-index="${cell.rowIndex}"]`)?.querySelector(`td[data-coreui-column="${cell.columnId}"]`) ?? null;
+		if (cell.rowIndex === -1) return this._header.element.querySelector(`tr:first-child th[data-coreui-column="${escapeAttributeValue(cell.columnId)}"]`);
+		return this._body.element.querySelector(`tr[data-coreui-index="${escapeAttributeValue(cell.rowIndex)}"]`)?.querySelector(`td[data-coreui-column="${escapeAttributeValue(cell.columnId)}"]`) ?? null;
 	}
 	_applyCellNavigation() {
 		if (!this._activeCell) return;
@@ -14276,8 +14513,7 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 		});
 	}
 };
-//#endregion
-//#region ../../node_modules/@tanstack/table-core/dist/store-reactivity-bindings.js
+// ../../node_modules/@tanstack/table-core/dist/store-reactivity-bindings.js
 /**
 * TanStack Store–based reactivity for vanilla / non-framework use of `constructTable`,
 * with `createOptionsStore: true` so `table.optionsStore` is available for subscriptions.
@@ -14314,8 +14550,7 @@ function storeReactivityBindings() {
 		}
 	};
 }
-//#endregion
-//#region src/engine/features.ts
+// src/engine/features.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid engine/features.ts
@@ -14348,8 +14583,7 @@ const dataGridFeatures = tableFeatures({
 		text: sortFn_text
 	}
 });
-//#endregion
-//#region src/engine/features-lite.ts
+// src/engine/features-lite.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid engine/features-lite.ts
@@ -14372,8 +14606,7 @@ const dataGridLiteFeatures = tableFeatures({
 		text: sortFn_text
 	}
 });
-//#endregion
-//#region src/index.ts
+// src/index.ts
 /**
 * --------------------------------------------------------------------------
 * CoreUI PRO data-grid index.ts
@@ -14383,13 +14616,12 @@ const dataGridLiteFeatures = tableFeatures({
 var DataGrid = class extends DataGrid$1 {
 	static get Default() {
 		return {
-			...DataGrid$1.Default,
+			...super.Default,
 			features: dataGridFeatures
 		};
 	}
 };
 defineJQueryPlugin(DataGrid);
-//#endregion
 export { DEFAULT_LABELS, DataGrid, FILTER_OPERATORS, VALUELESS_OPERATORS, dataGridFeatures, dataGridLiteFeatures, downloadCsv, evaluateColumnFilter, exportCsv, interpolate };
 
 //# sourceMappingURL=data-grid.esm.js.map

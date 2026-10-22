@@ -1,6 +1,6 @@
 # CoreUI Data Grid
 
-> High-performance data grid — 100,000 rows with sorting, filtering, selection, pagination, server-side data, column resizing, pinning, ordering and full theming, around 63 KB gzipped.
+> High-performance data grid — 100,000 rows with sorting, filtering, selection, pagination, server-side data, column resizing, pinning, ordering and full theming, around 66 KB gzipped.
 
 CoreUI Data Grid is a high-performance grid for displaying and interacting with
 large tabular datasets. It renders 100,000 rows in the browser with sorting,
@@ -23,7 +23,7 @@ outgrows the browser's memory.
 - **Themeable.** Every knob is a `--cui-data-grid-*` CSS variable resolving
   through CoreUI semantic tokens, so light/dark theming works with no extra CSS.
   See [Styling & theming](https://coreui.io/data-grid/docs/customization/styling/).
-- **Small.** Around 63 KB gzipped for the vanilla build — 52 KB with the [lite build](https://coreui.io/data-grid/docs/customization/feature-sets/) when sorting, filtering and pagination are all you need.
+- **Small.** Around 66 KB gzipped for the vanilla build — 55 KB with the [lite build](https://coreui.io/data-grid/docs/customization/feature-sets/) when sorting, filtering and pagination are all you need.
 
 ## How it's built
 

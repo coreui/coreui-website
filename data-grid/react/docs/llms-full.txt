@@ -30,7 +30,7 @@ outgrows the browser's memory.
 - **Themeable.** Every knob is a `--cui-data-grid-*` CSS variable resolving
   through CoreUI semantic tokens, so light/dark theming works with no extra CSS.
   See [Styling & theming](https://coreui.io/data-grid/react/docs/customization/styling/).
-- **Small.** Around 63 KB gzipped for the underlying grid core — 52 KB with a [lite feature set](https://coreui.io/data-grid/react/docs/customization/feature-sets/).
+- **Small.** Around 66 KB gzipped for the underlying grid core — 55 KB with a [lite feature set](https://coreui.io/data-grid/react/docs/customization/feature-sets/).
 
 ## How it's built
 
@@ -912,7 +912,7 @@ export const DataGridSortingMultiExample = () => {
         {sorting.length ?
           `Sorted by: ${sorting
               .map((sort, index) => `${index + 1}. ${labels[sort.id]} ${sort.desc ? '↓' : '↑'}`)
-              .join('   ')}` :
+              .join(' '.repeat(3))}` :
           'Click a header, then shift+click another to sort by multiple columns.'}
       </p>
     </>
@@ -1040,7 +1040,7 @@ const RoleFilter = ({ column }: CDataGridColumnFilterProps) => (
     onChange={event => column.setFilterValue(event.target.value === '' ? undefined : event.target.value)}
   >
     <option value="">All</option>
-    {[...column.getFacetedUniqueValues().keys()].map(String).toSorted().map(value => (
+    {[...column.getFacetedUniqueValues().keys()].map(String).toSorted((a, b) => a.localeCompare(b)).map(value => (
       <option key={value} value={value}>
         {value}
       </option>

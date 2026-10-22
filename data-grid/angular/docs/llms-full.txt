@@ -32,7 +32,7 @@ outgrows the browser's memory.
   See [Styling & theming](https://coreui.io/data-grid/angular/docs/customization/styling/).
 - **Angular-native.** A standalone component with signal-based inputs and
   outputs, `OnPush` change detection and `ng-template` customization.
-- **Small.** Around 63 KB gzipped for the underlying grid core — 52 KB with a [lite feature set](https://coreui.io/data-grid/angular/docs/customization/feature-sets/).
+- **Small.** Around 66 KB gzipped for the underlying grid core — 55 KB with a [lite feature set](https://coreui.io/data-grid/angular/docs/customization/feature-sets/).
 
 ## How it's built
 
@@ -964,7 +964,7 @@ private readonly sorting = signal<SortingState>([])
     return sorting.length ?
       `Sorted by: ${sorting
           .map((sort, index) => `${index + 1}. ${labels[sort.id]} ${sort.desc ? '↓' : '↑'}`)
-          .join('   ')}` :
+          .join(' '.repeat(3))}` :
       'Click a header, then shift+click another to sort by multiple columns.'
   })
 
@@ -1143,7 +1143,7 @@ readonly items: DataGridItem[] = Array.from({ length: 1000 }, (_, i) => {
 readonly itemKey = (item: DataGridItem) => String(item.id)
 
   roleOptions(column: Column<DataGridItem, unknown>): string[] {
-    return [...column.getFacetedUniqueValues().keys()].map(String).toSorted()
+    return [...column.getFacetedUniqueValues().keys()].map(String).toSorted((a, b) => a.localeCompare(b))
   }
 
   onRoleFilterChange(column: Column<DataGridItem, unknown>, event: Event) {

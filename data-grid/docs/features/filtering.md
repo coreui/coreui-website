@@ -104,7 +104,7 @@ new coreui.DataGrid(document.getElementById('dataGridCustomFilters'), {
       filter({ column }) {
         const select = document.createElement('select')
         select.className = 'form-select form-select-sm'
-        for (const value of ['', ...[...column.getFacetedUniqueValues().keys()].toSorted()]) {
+        for (const value of ['', ...[...column.getFacetedUniqueValues().keys()].map(String).toSorted((a, b) => a.localeCompare(b))]) {
           const option = document.createElement('option')
           option.value = value
           option.textContent = value === '' ? 'All' : value

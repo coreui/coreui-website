@@ -144,7 +144,7 @@ private readonly sorting = signal<SortingState>([])
     return sorting.length ?
       `Sorted by: ${sorting
           .map((sort, index) => `${index + 1}. ${labels[sort.id]} ${sort.desc ? '↓' : '↑'}`)
-          .join('   ')}` :
+          .join(' '.repeat(3))}` :
       'Click a header, then shift+click another to sort by multiple columns.'
   })
 
