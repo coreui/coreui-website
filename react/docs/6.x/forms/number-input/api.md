@@ -24,6 +24,8 @@ import { CNumberInput } from '@coreui/react-pro'
 | `floatingLabelAlways` | `boolean` | - | Keeps the floating label floated and the placeholder visible while the field is empty. |
 | `incrementIcon` | `ReactNode` | - | The artwork of the button that increases the value. Defaults to a plus drawn on `currentColor`. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
+| `onChange` | `ChangeEventHandler<HTMLInputElement, HTMLInputElement>` | - | Method called on the native `change` event of the input. A form reset or a controlled `value` does not call it. |
+| `onInput` | `InputEventHandler<HTMLInputElement>` | - | Method called on every `input` event of the field. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the value, or the form is reset, while `validationState` is set. A given state is a verdict on the value it was given for; clear it here to let the browser's own validation show again. |
 | `repeat` | `boolean` | `true` | Repeats the step while a button is held. Set to `false` to require a click per step. |
 | `size` | `"sm" \| "lg"` | - | Sizes the control, the way `.form-control-sm` and `.form-control-lg` size a form control. |

@@ -20,6 +20,7 @@ import { CContextMenu } from '@coreui/react-pro'
 | `dark` | `boolean` | - | Renders the panel in the dark theme. |
 | `disabled` | `boolean` | - | Keeps the menu closed and lets the browser's own menu through. |
 | `offset` | `[number, number]` | `[0, 2]` | The distance of the panel from the pointer, as `[skidding, distance]`. |
+| `onContextMenu` | `MouseEventHandler<HTMLDivElement>` | - | Callback fired on a right-click in the trigger area, also while `disabled` is set; a right-click inside the open menu does not reach it. Calling `event.preventDefault()` keeps both this menu and the browser menu closed for that click; the ContextMenu key and Shift+F10 open the menu without calling it. |
 | `onHide` | `(() => void)` | - | Callback fired when the menu is hidden. |
 | `onShow` | `(() => void)` | - | Callback fired when the menu is shown. |
 | `placement` | `'top' \| 'top-start' \| 'top-end' \| 'bottom' \| 'bottom-start' \| 'bottom-end' \| 'left' \| 'left-start' \| 'left-end' \| 'right' \| 'right-start' \| 'right-end' \| string` | `bottom-start` | Where the panel opens relative to the pointer. It flips when that side of the viewport is short, and a logical `start` or `end` side resolves to the side the writing direction puts it on. |

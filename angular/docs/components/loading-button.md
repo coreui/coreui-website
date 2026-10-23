@@ -2,6 +2,8 @@
 
 > Angular Buttons with built-in loading indicators. Indicate the loading state of the button bridging the gap between action and feedback.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Examples
 
 Cancellable on click by default.

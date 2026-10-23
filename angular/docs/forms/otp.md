@@ -2,6 +2,8 @@
 
 > Develop secure and user-friendly Angular one-time password input fields with automatic navigation, paste support, validation, and customizable options for modern authentication flows.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 _Added in 5.5.23._
 
 ## Example

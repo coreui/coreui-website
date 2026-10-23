@@ -1,5 +1,7 @@
 # Documentation
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 _Added in 5.4.12._
 
 The `cFormPassword` is a fully featured Angular password input field built with Bootstrap and CoreUI. It includes built-in password visibility toggling, sm / lg sizing options, and support for disabled, readOnly, and form validation states. Ideal for login forms, signup screens, and any secure input in your Angular app.

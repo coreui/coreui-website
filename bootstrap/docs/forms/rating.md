@@ -2,6 +2,8 @@
 
 > The Rating component allows users to provide feedback on content or services by selecting a rating value. It is customizable, supports various sizes and icons, and can be made interactive or read-only.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=bootstrap&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## How to use Rating Component.
 
 Embed the Rating component in your HTML by using a `div` with `data-coreui-toggle="rating"`. Set the initial value with `data-coreui-value`.

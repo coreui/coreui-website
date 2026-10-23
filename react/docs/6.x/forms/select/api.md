@@ -23,6 +23,7 @@ import { CFormSelect } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Mark the control invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `onChange` | `ChangeEventHandler<HTMLSelectElement>` | - | Method called immediately after the `value` prop changes. |
+| `onInput` | `InputEventHandler<HTMLSelectElement>` | - | Method called on every `input` event of the field. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the value, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the value it was given for; clear it here to let the browser's own validation show again. |
 | `options` | `Option[] \| string[]` | - | Options list of the select component. Available keys: `label`, `value`, `disabled`. Examples: - `options={[{ value: 'js', label: 'JavaScript' }, { value: 'html', label: 'HTML', disabled: true }]}` - `options={['js', 'html']}` |
 | `size` | `"sm" \| "lg"` | - | Size the component small or large. |

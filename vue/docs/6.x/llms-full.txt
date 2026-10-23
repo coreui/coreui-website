@@ -7430,9 +7430,26 @@ Create button-like checkboxes and radio buttons by using `button` boolean proper
 
 ```html
 <template>
-  <CFormCheck id="inlineCheckbox1" inline value="option1" label="1" />
-  <CFormCheck id="inlineCheckbox2" inline value="option2" label="2" />
-  <CFormCheck id="inlineCheckbox3" inline value="option3" label="3 (disabled)" disabled />
+  <CFormCheck
+    id="btn-check"
+    :button="{ color: 'primary' }"
+    autocomplete="off"
+    label="Single toggle"
+  />
+  <CFormCheck
+    id="btn-check-2"
+    :button="{ color: 'primary' }"
+    autocomplete="off"
+    label="Checked"
+    checked
+  />
+  <CFormCheck
+    id="btn-check-3"
+    :button="{ color: 'primary' }"
+    autocomplete="off"
+    label="Disabled"
+    disabled
+  />
 </template>
 
 <script setup>
@@ -7446,13 +7463,25 @@ Different variants of button, such at the various outlined styles, are supported
 
 ```html
 <template>
-  <CFormCheck id="reverseCheckbox1" reverse value="option1" label="Reverse checkbox" />
   <CFormCheck
-    id="reverseCheckbox2"
-    reverse
-    value="option2"
-    label="Disabled reverse checkbox"
-    disabled
+    id="btn-check-outlined"
+    :button="{ color: 'primary', variant: 'outline' }"
+    autocomplete="off"
+    label="Single toggle"
+  />
+  <CFormCheck
+    id="btn-check-2-outlined"
+    :button="{ color: 'secondary', variant: 'outline' }"
+    autocomplete="off"
+    label="Checked"
+    checked
+  />
+  <CFormCheck
+    id="btn-check-3-outlined"
+    :button="{ color: 'success', variant: 'outline' }"
+    autocomplete="off"
+    label="Checked success"
+    checked
   />
 </template>
 
@@ -7795,9 +7824,26 @@ Transform checkboxes into Bootstrap-style toggle buttons using the `button` prop
 
 ```html
 <template>
-  <CFormCheck id="inlineCheckbox1" inline value="option1" label="1" />
-  <CFormCheck id="inlineCheckbox2" inline value="option2" label="2" />
-  <CFormCheck id="inlineCheckbox3" inline value="option3" label="3 (disabled)" disabled />
+  <CFormCheck
+    id="btn-check"
+    :button="{ color: 'primary' }"
+    autocomplete="off"
+    label="Single toggle"
+  />
+  <CFormCheck
+    id="btn-check-2"
+    :button="{ color: 'primary' }"
+    autocomplete="off"
+    label="Checked"
+    checked
+  />
+  <CFormCheck
+    id="btn-check-3"
+    :button="{ color: 'primary' }"
+    autocomplete="off"
+    label="Disabled"
+    disabled
+  />
 </template>
 
 <script setup>
@@ -7811,13 +7857,25 @@ Use outlined button variants for a lighter, bordered appearance.
 
 ```html
 <template>
-  <CFormCheck id="reverseCheckbox1" reverse value="option1" label="Reverse checkbox" />
   <CFormCheck
-    id="reverseCheckbox2"
-    reverse
-    value="option2"
-    label="Disabled reverse checkbox"
-    disabled
+    id="btn-check-outlined"
+    :button="{ color: 'primary', variant: 'outline' }"
+    autocomplete="off"
+    label="Single toggle"
+  />
+  <CFormCheck
+    id="btn-check-2-outlined"
+    :button="{ color: 'secondary', variant: 'outline' }"
+    autocomplete="off"
+    label="Checked"
+    checked
+  />
+  <CFormCheck
+    id="btn-check-3-outlined"
+    :button="{ color: 'success', variant: 'outline' }"
+    autocomplete="off"
+    label="Checked success"
+    checked
   />
 </template>
 
@@ -19337,20 +19395,6 @@ Create button-like radio buttons by using `button` boolean property on the `<CFo
 
 ```html
 <template>
-  <CFormCheck id="radioNoLabel" type="radio" name="radioNoLabel" value="" aria-label="..." />
-</template>
-
-<script setup>
-import { CFormCheck } from '@coreui/vue'
-</script>
-```
-
-### Outlined styles
-
-Different variants of button, such at the various outlined styles, are supported.
-
-```html
-<template>
   <CFormCheck
     id="option1"
     :button="{ color: 'secondary' }"
@@ -19382,6 +19426,36 @@ Different variants of button, such at the various outlined styles, are supported
     :button="{ color: 'secondary' }"
     type="radio"
     name="options"
+    autocomplete="off"
+    label="Radio"
+  />
+</template>
+
+<script setup>
+import { CFormCheck } from '@coreui/vue'
+</script>
+```
+
+### Outlined styles
+
+Different variants of button, such at the various outlined styles, are supported.
+
+```html
+<template>
+  <CFormCheck
+    id="success-outlined"
+    :button="{ color: 'success', variant: 'outline' }"
+    type="radio"
+    name="options-outlined"
+    autocomplete="off"
+    label="Radio"
+    checked
+  />
+  <CFormCheck
+    id="danger-outlined"
+    :button="{ color: 'danger', variant: 'outline' }"
+    type="radio"
+    name="options-outlined"
     autocomplete="off"
     label="Radio"
   />
@@ -19715,20 +19789,6 @@ Turn your radios into button-like toggles using the `button` prop. These can als
 
 ```html
 <template>
-  <CFormCheck id="radioNoLabel" type="radio" name="radioNoLabel" value="" aria-label="..." />
-</template>
-
-<script setup>
-import { CFormCheck } from '@coreui/vue'
-</script>
-```
-
-#### Outlined toggle styles
-
-You can apply outlined styles to toggle radios using Bootstrap's button variant system.
-
-```html
-<template>
   <CFormCheck
     id="option1"
     :button="{ color: 'secondary' }"
@@ -19760,6 +19820,36 @@ You can apply outlined styles to toggle radios using Bootstrap's button variant 
     :button="{ color: 'secondary' }"
     type="radio"
     name="options"
+    autocomplete="off"
+    label="Radio"
+  />
+</template>
+
+<script setup>
+import { CFormCheck } from '@coreui/vue'
+</script>
+```
+
+#### Outlined toggle styles
+
+You can apply outlined styles to toggle radios using Bootstrap's button variant system.
+
+```html
+<template>
+  <CFormCheck
+    id="success-outlined"
+    :button="{ color: 'success', variant: 'outline' }"
+    type="radio"
+    name="options-outlined"
+    autocomplete="off"
+    label="Radio"
+    checked
+  />
+  <CFormCheck
+    id="danger-outlined"
+    :button="{ color: 'danger', variant: 'outline' }"
+    type="radio"
+    name="options-outlined"
     autocomplete="off"
     label="Radio"
   />
@@ -67149,6 +67239,8 @@ import { CTooltip, CButton } from '@coreui/vue'
 
 > Two lists side by side and four buttons that move options between them — the selection or everything at once: a select-all header with a counter, an optional per-list search, a one-way mode and an announcement of every move.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 _Added in 6.0.0._
@@ -67441,6 +67533,8 @@ Check out the documentation below for a comprehensive guide to all the props you
 # Vue Transfer Component API
 
 > Explore the API reference for the Vue Transfer component and discover how to effectively utilize its props for customization.
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## CTransfer
 

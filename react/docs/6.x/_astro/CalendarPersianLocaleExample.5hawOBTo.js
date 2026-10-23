@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.B54jxNxs.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{n}from"./CCalendar.BBGqodVa.js";e();var r=t(),i=()=>(0,r.jsx)(`div`,{className:`d-flex justify-content-center`,dir:`rtl`,children:(0,r.jsx)(n,{className:`border rounded`,locale:`fa-IR`})});export{i as CalendarPersianLocaleExample};

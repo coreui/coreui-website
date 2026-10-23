@@ -2,6 +2,8 @@
 
 > Angular Stepper Component – Multi-Step Form Wizard for Angular
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 _Added in 5.5.2._
 
 Build multi-step forms and wizards easily with the Angular Stepper component. Create advanced form flows with custom indicators, validation, and flexible layouts for your Angular applications.

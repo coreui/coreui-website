@@ -122,7 +122,7 @@ Place any freeform text within a dropdown menu with text. Note that you'll likel
 
 ### Forms
 
-Put a form within a dropdown menu, or make it into a dropdown menu.
+Put a form within a dropdown menu, or make it into a dropdown menu. A click on an `input`, `select` or `textarea` in the menu, or anywhere in a form in the menu or used as the menu, leaves it open; `cDropdownClose` closes it from there, and so does a `cDropdownItem` unless its `autoClose` is `false`.
 
 ## API reference
 
@@ -149,8 +149,8 @@ import { DropdownComponent } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `alignment` | `DropdownAlignment` | - | Set alignment of dropdown menu. A `placement` set on the dropdown takes precedence for the menu position. |
-| `autoClose` | `boolean \| 'inside' \| 'outside'` | `true` | Configure the auto close behavior: - `true` closes the dropdown on a click inside or outside the menu, - `false` only on the toggle button or an explicit hide/toggle call and not on the `Esc` key, - `inside` only on a click inside the menu, - `outside` only on a click outside it. |
-| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
+| `autoClose` | `boolean \| 'inside' \| 'outside'` | `true` | Configure the auto close behavior: - `true` closes the dropdown on a click inside or outside the menu, - `false` only on the toggle button or an explicit hide/toggle call and not on the `Esc` key, - `inside` only on a click inside the menu, - `outside` only on a click outside it. A click on a form field or inside a form in the menu does not close it; `cDropdownClose` and `cDropdownItem` close it from there, but not on a click on a field that takes typing or a choice inside the item. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme. On `cTheme` it takes precedence over `colorScheme`. |
 | `direction` | `'center' \| 'dropup' \| 'dropup-center' \| 'dropend' \| 'dropstart'` | - | Sets a specified  direction and location of the dropdown menu. A `placement` set on the dropdown takes precedence for the menu position. |
 | `placement` | `Placement` | `undefined` | Placement of the menu positioned by Popper, used as given. Without it the placement follows `direction` and the alignment of the menu (its own, else this one), mirrored in a right-to-left context: `bottom-start`, or `bottom-end` right to left. |
 | `popper` | `boolean` | `true` | If you want to disable dynamic positioning set this property to `false`. |
@@ -205,7 +205,7 @@ import { DropdownItemDirective } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `active` | `boolean` | `undefined` | Set active state to a dropdown-item. |
-| `autoClose` | `boolean` | `true` | Configure dropdown-item close dropdown behavior. |
+| `autoClose` | `boolean` | `true` | Configure dropdown-item close dropdown behavior. The item does not close the dropdown on a click on a field inside it that takes typing or a choice (input other than a button, select, textarea, contenteditable). |
 | `disabled` | `boolean` | `false` | Disables a dropdown-item. |
 | `role` | `string` | `undefined` | Role for dropdown-item. |
 | `tabIndex` | `string \| number \| null` | `'0'` | Tab index of the dropdown-item. |
@@ -229,7 +229,7 @@ import { DropdownMenuDirective } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `alignment` | `DropdownAlignment` | - | Set alignment of dropdown menu. |
-| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme. On `cTheme` it takes precedence over `colorScheme`. |
 | `visible` | `boolean` | `false` | Toggle the visibility of dropdown menu component. |
 
 ### cDropdownToggle

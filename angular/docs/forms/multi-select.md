@@ -2,6 +2,8 @@
 
 > Customize the native select with a powerful CoreUI Multi-Select component that changes initial element appearance and brings some new functionalities.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Examples
 
 ## Modes

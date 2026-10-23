@@ -2,6 +2,8 @@
 
 > Explore the API reference for the React Transfer component to control its lists, the search, the one-way mode and the accessible names of its move buttons.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## CTransfer
 
 ```jsx

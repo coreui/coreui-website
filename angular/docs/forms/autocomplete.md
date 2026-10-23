@@ -2,6 +2,8 @@
 
 > Develop robust Angular Autocomplete components that enable dynamic search, dropdown suggestions, and seamless integration with external data sources. The pinnacle Angular Autocomplete solution for contemporary web applications.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 _Added in 5.5.20._
 
 ## Overview

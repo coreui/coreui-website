@@ -26,6 +26,7 @@ import { CLoadingButton } from '@coreui/react-pro'
 | `iconOnly` | `boolean` | - | Square the button for a lone icon - remember to give it an `aria-label`. |
 | `link` | `boolean` | - | Render the button as a link. It behaves like a button but takes its color from the link color rather than from a theme, so `theme` and `variant` do not apply to it. |
 | `loading` | `boolean` | - | The controlled loading state — while set, the spinner follows the prop and the component never stops it itself (`timeout` is ignored). For the uncontrolled mode use `timeout` instead. |
+| `onClickCapture` | `MouseEventHandler<HTMLButtonElement \| HTMLAnchorElement>` | - | Method called in the capture phase of a click. It is not called while `disabledOnLoading` blocks the button. |
 | `role` | `string` | - | The role attribute describes the role of an element in programs that can make use of it, such as screen readers or magnifiers. |
 | `shape` | `'rounded' \| 'rounded-top' \| 'rounded-end' \| 'rounded-bottom' \| 'rounded-start' \| 'rounded-circle' \| 'rounded-pill' \| 'rounded-0' \| 'rounded-1' \| 'rounded-2' \| 'rounded-3' \| string` | - | Select the shape of the component. |
 | `size` | `"xs" \| "sm" \| "lg"` | - | Size the component extra small, small or large. |

@@ -104,7 +104,7 @@ import { ModalComponent } from '@coreui/angular'
 | `backdrop` | `boolean \| 'static'` | `true` | Apply a backdrop on the body while the modal is open. |
 | `container` | `Element \| object \| null` | `document.body` | Appends the angular modal to a specific element. You can pass an HTML element or function that returns a single element. By default, `document.body`. |
 | `fullscreen` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl'` | `undefined` | Set modal to cover the entire user viewport. |
-| `id` | `string` | `undefined` | HTML id attribute, required for programmatic visibility change. |
+| `id` | `string` | `undefined` | HTML id attribute, used to toggle the modal by id. Without it, the `id` property holds a generated id that is not rendered. |
 | `keyboard` | `boolean` | `true` | Closes the modal when the escape key is pressed, unless another handler already prevented its default. |
 | `portal` | `boolean` | `false` | Generates modal using a portal |
 | `role` | `string` | `'dialog'` | Default role for modal |

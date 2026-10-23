@@ -15,6 +15,7 @@ import { CCheckbox } from '@coreui/react-pro'
 | `className` | `string` | - | A string of all className you want applied to the input. |
 | `indeterminate` | `boolean` | - | Display the checkbox in an indeterminate state - there is no HTML attribute for it, only this property. |
 | `label` | `ReactNode` | - | The label rendered after the input, already wired to it with `htmlFor`. |
+| `onChange` | `ChangeEventHandler<HTMLInputElement, HTMLInputElement>` | - | Method called on the native `change` event, when the user checks or unchecks the input. A radio unchecked by another one in its group and a form reset do not call it. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the checked state, or the form is reset, while `validationState` is set. A given state is a verdict on the choice it was given for; clear it here to let the browser's own validation show again. |
 | `size` | `"sm" \| "lg"` | - | Size the checkbox small or large. |
 | `theme` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'inverse' \| string` | - | Sets the color context of the checked state to one of CoreUI’s themed colors. |
@@ -41,6 +42,7 @@ import { CFormCheck } from '@coreui/react-pro'
 | `inline` | `boolean` | - | Group checkboxes or radios on the same horizontal row. |
 | `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | The element represents a caption for a component. |
+| `onChange` | `ChangeEventHandler<HTMLInputElement, HTMLInputElement>` | - | Method called on the native `change` event, when the user checks or unchecks the input. A radio unchecked by another one in its group and a form reset do not call it. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the checked state, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the choice it was given for; clear it here to let the browser's own validation show again. |
 | `reverse` | `boolean` | - | Put checkboxes or radios on the opposite side. |
 | `theme` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'inverse' \| string` | - | Sets the color context of the component to one of CoreUI’s themed colors. |

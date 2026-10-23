@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.B54jxNxs.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CFormInput.6IMBwCYs.js";import{t as r}from"./esm.DyhVQEIy.js";e();var i=t(),a=r(({inputRef:e,...t})=>(0,i.jsx)(n,{...t,ref:e})),o=()=>(0,i.jsx)(a,{mask:`0000 0000 0000 0000`});export{o as InputMaskCreditCardExample};

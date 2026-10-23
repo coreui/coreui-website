@@ -7641,6 +7641,7 @@ import { CCheckbox } from '@coreui/react-pro'
 | `className` | `string` | - | A string of all className you want applied to the input. |
 | `indeterminate` | `boolean` | - | Display the checkbox in an indeterminate state - there is no HTML attribute for it, only this property. |
 | `label` | `ReactNode` | - | The label rendered after the input, already wired to it with `htmlFor`. |
+| `onChange` | `ChangeEventHandler<HTMLInputElement, HTMLInputElement>` | - | Method called on the native `change` event, when the user checks or unchecks the input. A radio unchecked by another one in its group and a form reset do not call it. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the checked state, or the form is reset, while `validationState` is set. A given state is a verdict on the choice it was given for; clear it here to let the browser's own validation show again. |
 | `size` | `"sm" \| "lg"` | - | Size the checkbox small or large. |
 | `theme` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'inverse' \| string` | - | Sets the color context of the checked state to one of CoreUI’s themed colors. |
@@ -7667,6 +7668,7 @@ import { CFormCheck } from '@coreui/react-pro'
 | `inline` | `boolean` | - | Group checkboxes or radios on the same horizontal row. |
 | `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | The element represents a caption for a component. |
+| `onChange` | `ChangeEventHandler<HTMLInputElement, HTMLInputElement>` | - | Method called on the native `change` event, when the user checks or unchecks the input. A radio unchecked by another one in its group and a form reset do not call it. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the checked state, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the choice it was given for; clear it here to let the browser's own validation show again. |
 | `reverse` | `boolean` | - | Put checkboxes or radios on the opposite side. |
 | `theme` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'inverse' \| string` | - | Sets the color context of the component to one of CoreUI’s themed colors. |
@@ -14855,6 +14857,7 @@ import { CFormInput } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Mark the control invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `onChange` | `ChangeEventHandler<HTMLInputElement>` | - | Method called immediately after the `value` prop changes. |
+| `onInput` | `InputEventHandler<HTMLInputElement>` | - | Method called on every `input` event of the field. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the value, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the value it was given for; clear it here to let the browser's own validation show again. |
 | `plainText` | `boolean` | - | Render the component styled as plain text. Removes the default form field styling and preserve the correct margin and padding. Recommend to use only along side `readonly`. |
 | `readOnly` | `boolean` | - | Toggle the readonly state for the component. |
@@ -22658,6 +22661,8 @@ import { CNumberInput } from '@coreui/react-pro'
 | `floatingLabelAlways` | `boolean` | - | Keeps the floating label floated and the placeholder visible while the field is empty. |
 | `incrementIcon` | `ReactNode` | - | The artwork of the button that increases the value. Defaults to a plus drawn on `currentColor`. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
+| `onChange` | `ChangeEventHandler<HTMLInputElement, HTMLInputElement>` | - | Method called on the native `change` event of the input. A form reset or a controlled `value` does not call it. |
+| `onInput` | `InputEventHandler<HTMLInputElement>` | - | Method called on every `input` event of the field. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the value, or the form is reset, while `validationState` is set. A given state is a verdict on the value it was given for; clear it here to let the browser's own validation show again. |
 | `repeat` | `boolean` | `true` | Repeats the step while a button is held. Set to `false` to require a click per step. |
 | `size` | `"sm" \| "lg"` | - | Sizes the control, the way `.form-control-sm` and `.form-control-lg` size a form control. |
@@ -23677,6 +23682,7 @@ import { CPasswordInput } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Mark the control invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `onChange` | `ChangeEventHandler<HTMLInputElement>` | - | Callback triggered when the value of the password input changes. If `delay` is set, the callback is called after the specified timeout. |
+| `onInput` | `InputEventHandler<HTMLInputElement>` | - | Method called on every `input` event of the field. |
 | `onShowPasswordChange` | `((showPassword: boolean) => void)` | - | Callback fired when the visibility toggle requests a new state, receiving the requested visibility. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the value, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the value it was given for; clear it here to let the browser's own validation show again. |
 | `readOnly` | `boolean` | - | Makes the React password input read-only. Prevents user input but allows text selection. |
@@ -24419,6 +24425,7 @@ import { CRadio } from '@coreui/react-pro'
 | --- | --- | --- | --- |
 | `className` | `string` | - | A string of all className you want applied to the input. |
 | `label` | `ReactNode` | - | The label rendered after the input, already wired to it with `htmlFor`. |
+| `onChange` | `ChangeEventHandler<HTMLInputElement, HTMLInputElement>` | - | Method called on the native `change` event, when the user checks or unchecks the input. A radio unchecked by another one in its group and a form reset do not call it. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the checked state, or the form is reset, while `validationState` is set. A given state is a verdict on the choice it was given for; clear it here to let the browser's own validation show again. |
 | `size` | `"sm" \| "lg"` | - | Size the radio small or large. |
 | `theme` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'inverse' \| string` | - | Sets the color context of the checked state to one of CoreUI’s themed colors. |
@@ -24445,6 +24452,7 @@ import { CFormCheck } from '@coreui/react-pro'
 | `inline` | `boolean` | - | Group checkboxes or radios on the same horizontal row. |
 | `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | The element represents a caption for a component. |
+| `onChange` | `ChangeEventHandler<HTMLInputElement, HTMLInputElement>` | - | Method called on the native `change` event, when the user checks or unchecks the input. A radio unchecked by another one in its group and a form reset do not call it. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the checked state, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the choice it was given for; clear it here to let the browser's own validation show again. |
 | `reverse` | `boolean` | - | Put checkboxes or radios on the opposite side. |
 | `theme` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'inverse' \| string` | - | Sets the color context of the component to one of CoreUI’s themed colors. |
@@ -24939,6 +24947,7 @@ import { CFormRange } from '@coreui/react-pro'
 | `className` | `string` | - | A string of all className you want applied to the component. |
 | `defaultValue` | `string \| number` | - | The initial value of an uncontrolled range — read once on mount. |
 | `disabled` | `boolean` | - | Toggle the disabled state for the component. |
+| `hidden` | `boolean` | - | Hides the range. The attribute goes on the `.form-range` wrapper, so a `label` rendered before it stays visible. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `max` | `number` | `100` | Specifies the maximum value for the component. |
 | `min` | `number` | `0` | Specifies the minimum value for the component. |
@@ -25715,15 +25724,18 @@ import { CRangeSlider } from '@coreui/react-pro'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `ariaLabel` | `string[] \| ((index: number, total: number) => string)` | - | Accessible names of the handles, so a screen reader can tell them apart: an array with one name per handle, or a function that returns the name of the handle at `index` out of `total`. Without it, two handles are named `"Minimum value"` and `"Maximum value"`, more handles `"Value {n}"`, and a single handle has no name of its own. `aria-label` or `aria-labelledby` names the slider, which is a `group`; a single handle takes that name, followed by its own when it has one, or a `<label>` for its `id`. |
+| `autoFocus` | `boolean` | - | Focuses the first thumb when the component mounts. |
 | `className` | `string` | - | A string of all className you want applied to the `.form-range` wrapper of the slider. |
 | `clickableTicks` | `boolean` | `true` | Pressing a tick moves the nearest handle to its value, and the handle follows the pointer until it is released. Set `false` to disable. |
 | `defaultValue` | `number \| number[]` | - | The initial value(s) of an uncontrolled slider — read once on mount. |
 | `disabled` | `boolean` | `false` | Disables every handle. |
 | `distance` | `number` | `0` | Keeps neighbouring handles at least this many units apart. |
+| `hidden` | `boolean` | - | Hides the component. The attribute goes on the wrapper of the thumbs and the track. |
 | `max` | `number` | `100` | Specifies the maximum value of the slider. |
 | `min` | `number` | `0` | Specifies the minimum value of the slider. |
 | `name` | `string \| string[]` | - | Name of each slider input, in order. An array maps one to one, and a shorter array leaves the remaining handles unnamed. A string is suffixed with the handle index, so `"price"` submits `price-0` and `price-1`. Without a name the handles are not submitted with the form. |
 | `onChange` | `((value: number[]) => void)` | - | Called with the values of every handle when one of them changes. |
+| `onInput` | `InputEventHandler<HTMLInputElement>` | - | Method called on every `input` event of a thumb. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user moves a handle, or the form is reset, while `validationState` is set. A given state is a verdict on the value it was given for; clear it here, so the slider shows only the validity you set on a handle, if any. |
 | `step` | `number` | `1` | Specifies the interval between legal numbers in the slider. |
 | `theme` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'inverse' \| string` | - | Sets the color context of the component to one of CoreUI’s themed colors. |
@@ -26551,6 +26563,7 @@ import { CFormSelect } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Mark the control invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `onChange` | `ChangeEventHandler<HTMLSelectElement>` | - | Method called immediately after the `value` prop changes. |
+| `onInput` | `InputEventHandler<HTMLSelectElement>` | - | Method called on every `input` event of the field. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the value, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the value it was given for; clear it here to let the browser's own validation show again. |
 | `options` | `Option[] \| string[]` | - | Options list of the select component. Available keys: `label`, `value`, `disabled`. Examples: - `options={[{ value: 'js', label: 'JavaScript' }, { value: 'html', label: 'HTML', disabled: true }]}` - `options={['js', 'html']}` |
 | `size` | `"sm" \| "lg"` | - | Size the component small or large. |
@@ -27971,6 +27984,7 @@ import { CSwitch } from '@coreui/react-pro'
 | --- | --- | --- | --- |
 | `className` | `string` | - | A string of all className you want applied to the input. |
 | `label` | `ReactNode` | - | The label rendered after the input, already wired to it with `htmlFor`. |
+| `onChange` | `ChangeEventHandler<HTMLInputElement, HTMLInputElement>` | - | Method called on the native `change` event, when the user checks or unchecks the input. A radio unchecked by another one in its group and a form reset do not call it. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the checked state, or the form is reset, while `validationState` is set. A given state is a verdict on the choice it was given for; clear it here to let the browser's own validation show again. |
 | `size` | `"sm" \| "lg" \| "xl"` | - | Size the switch small, large or extra large. |
 | `theme` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'inverse' \| string` | - | Sets the color context of the checked state to one of CoreUI’s themed colors. |
@@ -27990,6 +28004,7 @@ import { CFormSwitch } from '@coreui/react-pro'
 | `id` | `string` | - | The id global attribute defines an identifier (ID) that must be unique in the whole document. |
 | `invalid` | `boolean` | - | Set component validation state to invalid. |
 | `label` | `ReactNode` | - | The element represents a caption for a component. |
+| `onChange` | `ChangeEventHandler<HTMLInputElement, HTMLInputElement>` | - | Method called on the native `change` event, when the user checks or unchecks the input. A radio unchecked by another one in its group and a form reset do not call it. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the checked state, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the choice it was given for; clear it here to let the browser's own validation show again. |
 | `reverse` | `boolean` | - | Put switch on the opposite side. |
 | `size` | `"lg" \| "xl"` | - | Size the component large or extra large. Works only with `switch`. |
@@ -28337,6 +28352,7 @@ import { CFormTextarea } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Mark the control invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `onChange` | `ChangeEventHandler<HTMLTextAreaElement>` | - | Method called immediately after the `value` prop changes. |
+| `onInput` | `InputEventHandler<HTMLTextAreaElement>` | - | Method called on every `input` event of the field. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the value, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the value it was given for; clear it here to let the browser's own validation show again. |
 | `plainText` | `boolean` | - | Render the component styled as plain text. Removes the default form field styling and preserve the correct margin and padding. Recommend to use only along side `readonly`. |
 | `readOnly` | `boolean` | - | Toggle the readonly state for the component. |
@@ -46740,6 +46756,7 @@ import { CContextMenu } from '@coreui/react-pro'
 | `dark` | `boolean` | - | Renders the panel in the dark theme. |
 | `disabled` | `boolean` | - | Keeps the menu closed and lets the browser's own menu through. |
 | `offset` | `[number, number]` | `[0, 2]` | The distance of the panel from the pointer, as `[skidding, distance]`. |
+| `onContextMenu` | `MouseEventHandler<HTMLDivElement>` | - | Callback fired on a right-click in the trigger area, also while `disabled` is set; a right-click inside the open menu does not reach it. Calling `event.preventDefault()` keeps both this menu and the browser menu closed for that click; the ContextMenu key and Shift+F10 open the menu without calling it. |
 | `onHide` | `(() => void)` | - | Callback fired when the menu is hidden. |
 | `onShow` | `(() => void)` | - | Callback fired when the menu is shown. |
 | `placement` | `'top' \| 'top-start' \| 'top-end' \| 'bottom' \| 'bottom-start' \| 'bottom-end' \| 'left' \| 'left-start' \| 'left-end' \| 'right' \| 'right-start' \| 'right-end' \| string` | `bottom-start` | Where the panel opens relative to the pointer. It flips when that side of the viewport is short, and a logical `start` or `end` side resolves to the side the writing direction puts it on. |
@@ -52600,6 +52617,7 @@ import { CLoadingButton } from '@coreui/react-pro'
 | `iconOnly` | `boolean` | - | Square the button for a lone icon - remember to give it an `aria-label`. |
 | `link` | `boolean` | - | Render the button as a link. It behaves like a button but takes its color from the link color rather than from a theme, so `theme` and `variant` do not apply to it. |
 | `loading` | `boolean` | - | The controlled loading state — while set, the spinner follows the prop and the component never stops it itself (`timeout` is ignored). For the uncontrolled mode use `timeout` instead. |
+| `onClickCapture` | `MouseEventHandler<HTMLButtonElement \| HTMLAnchorElement>` | - | Method called in the capture phase of a click. It is not called while `disabledOnLoading` blocks the button. |
 | `role` | `string` | - | The role attribute describes the role of an element in programs that can make use of it, such as screen readers or magnifiers. |
 | `shape` | `'rounded' \| 'rounded-top' \| 'rounded-end' \| 'rounded-bottom' \| 'rounded-start' \| 'rounded-circle' \| 'rounded-pill' \| 'rounded-0' \| 'rounded-1' \| 'rounded-2' \| 'rounded-3' \| string` | - | Select the shape of the component. |
 | `size` | `"xs" \| "sm" \| "lg"` | - | Size the component extra small, small or large. |
@@ -63280,6 +63298,7 @@ import { CSearchButton } from '@coreui/react-pro'
 | --- | --- | --- | --- |
 | `children` | `ReactNode` | - | Content to customize the full button body. |
 | `className` | `string` | - | A string of all className you want applied to the base component. |
+| `disabled` | `boolean` | - | Toggle the disabled state for the component. A disabled button also ignores its keyboard shortcut. |
 | `icon` | `ReactNode` | - | Custom icon displayed before the placeholder text. |
 | `onTrigger` | `(() => void)` | - | Callback fired when the component is activated by click or keyboard shortcut. |
 | `placeholder` | `ReactNode` | `Search` | Placeholder content rendered inside `.search-button-placeholder`. |
@@ -73525,6 +73544,8 @@ Refer to the API documentation for detailed descriptions of all available props 
 
 > Two lists side by side and four buttons that move values between them — the selection or everything at once: a select-all header with a counter, an optional per-list search, a one-way mode and an announcement of every move.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 _Added in 6.0.0._
@@ -73816,6 +73837,8 @@ Check out the documentation below for a comprehensive guide to all the props you
 # React Transfer Component API
 
 > Explore the API reference for the React Transfer component to control its lists, the search, the one-way mode and the accessible names of its move buttons.
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=react&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## CTransfer
 
@@ -84665,6 +84688,7 @@ import { CFormInput } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Mark the control invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `onChange` | `ChangeEventHandler<HTMLInputElement>` | - | Method called immediately after the `value` prop changes. |
+| `onInput` | `InputEventHandler<HTMLInputElement>` | - | Method called on every `input` event of the field. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the value, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the value it was given for; clear it here to let the browser's own validation show again. |
 | `plainText` | `boolean` | - | Render the component styled as plain text. Removes the default form field styling and preserve the correct margin and padding. Recommend to use only along side `readonly`. |
 | `readOnly` | `boolean` | - | Toggle the readonly state for the component. |
@@ -84697,6 +84721,7 @@ import { CFormTextarea } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Mark the control invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `onChange` | `ChangeEventHandler<HTMLTextAreaElement>` | - | Method called immediately after the `value` prop changes. |
+| `onInput` | `InputEventHandler<HTMLTextAreaElement>` | - | Method called on every `input` event of the field. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the value, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the value it was given for; clear it here to let the browser's own validation show again. |
 | `plainText` | `boolean` | - | Render the component styled as plain text. Removes the default form field styling and preserve the correct margin and padding. Recommend to use only along side `readonly`. |
 | `readOnly` | `boolean` | - | Toggle the readonly state for the component. |

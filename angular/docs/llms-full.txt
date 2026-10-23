@@ -2,6 +2,8 @@
 
 > CoreUI for Angular is a UI component library written in TypeScript and ready for your next Angular project.
 
+Licensing: pages marked (PRO) document CoreUI PRO components, which require a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add a PRO component to a project on someone else's behalf, tell them it requires a license.
+
 
 ---
 
@@ -1776,6 +1778,8 @@ import { FormTextDirective } from '@coreui/angular'
 
 > Develop robust Angular Autocomplete components that enable dynamic search, dropdown suggestions, and seamless integration with external data sources. The pinnacle Angular Autocomplete solution for contemporary web applications.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 _Added in 5.5.20._
 
 ## Overview
@@ -2208,9 +2212,29 @@ import { AutocompleteDirective } from '@coreui/angular-pro'
 
 > Create consistent cross-browser and cross-device Angular date picker.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
+## About
+
+The Angular Date Picker lets users pick a date from a calendar or type it into the input, and works with Angular reactive and template-driven forms. It shows dates in any locale supported by the JavaScript Internationalization API and supports right-to-left layouts, and its look can be adjusted with CSS variables and Sass.
+
+Its inputs control the value, the visible month, which dates can be picked, and whether a day, a week, a month or a year is picked. The date picker can be used with the keyboard alone, and its calendar and clear buttons can be named in the language of your page, see [Keyboard behavior](#keyboard-behavior).
+
 ## Examples
 
 ### With footer
+
+### Weeks
+
+Set `selectionType` to `week` to pick a whole week, and add `showWeekNumber` to show the week numbers in the calendar. Since 5.7.38 the input shows a week as `2025W07`, numbered as its row in the week number column, and reads that text back.
+
+### Months
+
+Set `selectionType` to `month` to pick a whole month. Since 5.7.38 the input shows a month as `2022-08` and reads that text back.
+
+### Years
+
+Set `selectionType` to `year` to pick a whole year. Since 5.7.38 the input shows a year as `2022` and reads that text back.
 
 ### Sizing
 Set heights using `size` property like `size="lg"` and `size="sm"`.
@@ -2221,12 +2245,22 @@ Add the `disabled` boolean attribute on an input to give it a grayed out appeara
 ### Readonly
 Add the `inputReadOnly` boolean attribute to prevent modification of the input value.
 
+### Preview date on hover
+
+_Added in 5.7.38._
+
+By default, while no date is picked, the date picker shows the hovered or focused calendar date in the input. To disable this feature, set `[previewDateOnHover]="false"`.
+
 ### Format
 Control the format of the date displayed in the input using the `format` property according to `locale` rules.
-Makes the date input read-only.
+Makes the date input read-only. `format` is applied only when `locale` is set and its Angular locale data is registered with `registerLocaleData`, as in the example below; with the default locale the input shows the date in the browser format. To write your own format and keep the input editable, use `inputDateFormat` with `inputDateParse`. See [Custom formats](#custom-formats).
 
 ### Disabled dates
 Add dates user cannot select using the `disabledDates` property.
+
+#### Disabling weekends
+
+Pass a function to `dateFilter` to decide which dates can be picked: it receives a date and returns `true` when the date is selectable. To disable weekends, return `false` for Sunday (`0`) and Saturday (`6`).
 
 ## Non-english locale
 ### Auto
@@ -2243,6 +2277,35 @@ RTL support is built-in and can be explicitly controlled through the `$enable-rt
 ### Hebrew
 
 ### Persian
+
+## Custom formats
+
+Use `inputDateFormat` to write the date into the input in a format of your choice, and `inputDateParse` to read the typed text back into a `Date`. Unlike `format`, these keep the input editable. The examples below use the `format` and `parse` functions from `date-fns`, with the English and Spanish patterns `'MMMM dd, yyyy'` and `'yyyy MMMM dd'`.
+
+```ts
+import { format, parse } from 'date-fns';
+import { es } from 'date-fns/locale';
+```
+
+### Weeks
+
+Set `selectionType` to `week` and give `inputDateFormat` and `inputDateParse` a week-based pattern, such as `'Io RRRR'` (the ISO week number and its year). Add `showWeekNumber` to show the week numbers in the calendar.
+
+### Months
+
+Set `selectionType` to `month` and give `inputDateFormat` and `inputDateParse` a month pattern, such as `'MMM yyyy'`.
+
+### Years
+
+Set `selectionType` to `year` and give `inputDateFormat` and `inputDateParse` a year pattern, such as `'yy'`.
+
+## Keyboard behavior
+
+_Added in 5.7.38._
+
+`Tab` moves from the input to the clear button, which a date picker with a value shows while the focus is in the field, and then to the calendar button. `Enter` or `Space` on the calendar button opens and closes the calendar, and `Alt` + `ArrowDown` (`Option` + `ArrowDown` on macOS) in an input opens it and moves the focus into the calendar, to the selected date when there is one. In the open calendar the keys work as described for the [calendar](https://coreui.io/angular/docs/components/calendar/#keyboard-behavior), and `Escape` closes it. `Enter` or `Space` on the clear button clears the date and moves the focus to the input. Use `ariaPickerLabel` and `ariaCleanerLabel` to name the two buttons in the language of your page.
+
+Once a date is picked, the clear button keeps its place while it is hidden, so nothing moves when it shows up. In a narrow layout, where that place cuts the date short, set `[cleaner]="false"` to give the room back to the input; unless the input is read-only, the date can still be cleared by editing it.
 
 ## Forms
 
@@ -2285,6 +2348,8 @@ import { DatePickerComponent } from '@coreui/angular-pro'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
+| `ariaCleanerLabel` | `string` | `'Clear date'` | Accessible name of the button that clears the date. |
+| `ariaPickerLabel` | `string` | `'Toggle calendar'` | Accessible name of the button that opens and closes the calendar. |
 | `calendarDate` | `Date` | `new Date()` | Default date month of the component. |
 | `calendars` | `number` | `2` | The number of calendars that render on desktop devices. |
 | `cleaner` | `boolean` | `true` | Toggle visibility or set the content of the cleaner button. |
@@ -2293,28 +2358,30 @@ import { DatePickerComponent } from '@coreui/angular-pro'
 | `dateFilter` | `DateFilterType` | - | Custom function to determine selectable dates. |
 | `dayFormat` | `DayFormatType` | `'numeric'` | Set the format of day number. |
 | `disabled` | `boolean` | `false` | Toggle the disabled state for the component. |
-| `disabledDates` | `Date \| Date[][]` | `[]` | Specify the list of dates that cannot be selected. |
+| `disabledDates` | `(Date \| Date[])[]` | `[]` | Specify the list of dates that cannot be selected. |
 | `endDate` | `Date \| null` | `null` | Initial selected end date. |
 | `firstDayOfWeek` | `DaysOfWeek` | `1 (Monday)` | Set the first day of the week. |
 | `format` | `string` | - | Set date format. We use Angular formatDate() function, see: - https://angular.io/api/common/formatDate - https://angular.io/api/common/DatePipe#pre-defined-format-options |
 | `indicator` | `boolean` | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputDateFormat` | `object` | - | Custom function to format the selected date into a string according to a custom format. |
-| `inputDateParse` | `object` | - | Custom function to parse the input value into a valid Date object. |
+| `inputDateParse` | `object` | - | Custom function to parse the input value into a valid Date object. With a week, month or year `selectionType`, the date is moved to the first day of its period, or to the last second of the period when it ends a range. |
 | `inputReadOnly` | `boolean` | `false` | Toggle the readonly state for the component. |
 | `locale` | `string` | `'default'` | Sets the default locale for components. If not set, it is inherited from the browser. |
 | `maxDate` | `Date \| null` | `null` | Max selectable date. |
 | `minDate` | `Date \| null` | `null` | Min selectable date. |
+| `monthFormat` | `MonthFormatType` | `'short'` | Sets the format of month names in the months view: 'long', 'narrow', 'short', 'numeric' or '2-digit'. |
 | `navigation` | `boolean` | `true` | Show calendar navigation. |
 | `navYearFirst` | `boolean` | `false` | Reorder year-month navigation, and render year first. |
 | `placeholder` | `string \| string[]` | `['Start date', 'End date']` | Specifies short hints that are visible in start date and end date inputs. |
 | `popperOptions` | `Partial<Options>` | `{ strategy: 'absolute' }` | Optional popper Options object |
+| `previewDateOnHover` | `boolean` | `true` | Shows a live preview of the hovered or focused calendar date in the input fields. |
 | `range` | `boolean` | `true` | Allow range selection. |
 | `ranges` | `ICalendarRanges` | - | Predefined date ranges the user can select from. |
 | `rangesButtonsColor` | `string` | `'secondary'` | Sets the color context of the cancel button to one of CoreUI’s themed colors. |
 | `rangesButtonsSize` | `'' \| 'sm' \| 'lg'` | `''` | Size the ranges button small or large. |
 | `rangesButtonsVariant` | `'outline' \| 'ghost'` | `'ghost'` | Set the ranges button variant to an outlined button or a ghost button. |
 | `selectAdjacentDays` | `boolean` | `false` | Set whether days in adjacent months shown before or after the current month are selectable. This only applies if the `showAdjacentDays` option is set to true. |
-| `selectionType` | `SelectionType` | `'day'` | Specify the type of date selection as day, week, month, or year. |
+| `selectionType` | `SelectionType` | `'day'` | Specify the type of date selection as day, week, month, or year. For a week, month or year the input shows `2025W07`, `2025-02` or `2025` and reads that text back (a week also as `2025-W07`), but not a date typed as a day. `inputDateFormat` with `inputDateParse`, or `format` with a `locale`, change what the input shows; when reading, `inputDateParse` is tried first. |
 | `separator` | `boolean` | `true` | Default icon or character that separates two dates. |
 | `showAdjacentDays` | `boolean` | `true` | Set whether to display dates in adjacent months (non-selectable) at the start and end of the current month. |
 | `showWeekNumber` | `boolean` | `false` | Set whether to display week numbers in the calendar. |
@@ -2326,6 +2393,7 @@ import { DatePickerComponent } from '@coreui/angular-pro'
 | `weekdayFormat` | `WeekdayFormatType` | `'short'` | Set the length or format of the day name. |
 | `weekNumbersLabel` | `string` | `undefined` | Label displayed over week numbers in the calendar. |
 | `withTime` | `boolean` | `false` | Keep track of the time with the date value. |
+| `yearFormat` | `YearFormatType` | `'numeric'` | Sets the format of years in the years view: 'numeric' or '2-digit'. |
 
 ### Events
 
@@ -2344,9 +2412,23 @@ import { DatePickerComponent } from '@coreui/angular-pro'
 
 > Create consistent cross-browser and cross-device Angular date range picker.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Examples
 
 ### With footer
+
+### Weeks
+
+Set `selectionType` to `week` to select a range of whole weeks, and add `showWeekNumber` to show the week numbers in the calendar. Since 5.7.38 the input shows a week as `2025W07`, numbered as its row in the week number column, and reads that text back.
+
+### Months
+
+Set `selectionType` to `month` to select a range of whole months. Since 5.7.38 the input shows a month as `2022-08` and reads that text back.
+
+### Years
+
+Set `selectionType` to `year` to select a range of whole years. Since 5.7.38 the input shows a year as `2022` and reads that text back.
 
 ### Sizing
 Set heights using `size` property like `size="lg"` and `size="sm"`.
@@ -2357,7 +2439,17 @@ Add the `disabled` boolean attribute on an input to give it a grayed out appeara
 ### Readonly
 Add the `inputReadOnly` boolean attribute to prevent modification of the input value.
 
+### Preview date on hover
+
+_Added in 5.7.38._
+
+By default, the date range picker shows the hovered or focused calendar date in the start input until a start date is picked, and then in the end input. To disable this feature, set `[previewDateOnHover]="false"`.
+
 ### Disabled dates
+
+#### Disabling weekends
+
+Pass a function to `dateFilter` to decide which dates can be picked: it receives a date and returns `true` when the date is selectable. To disable weekends, return `false` for Sunday (`0`) and Saturday (`6`). A range cannot include a date that `dateFilter` rules out, so here a range stays within the working days of one week.
 
 ### Custom ranges
 
@@ -2376,6 +2468,35 @@ RTL support is built-in and can be explicitly controlled through the `$enable-rt
 ### Hebrew
 
 ### Persian
+
+## Custom formats
+
+Use `inputDateFormat` to write the date into the input in a format of your choice, and `inputDateParse` to read the typed text back into a `Date`. Unlike `format`, which needs a `locale` with its Angular locale data registered (`registerLocaleData`) and makes the input read-only, these keep the input editable. The examples below use the `format` and `parse` functions from `date-fns`, with the English and Spanish patterns `'MMMM dd, yyyy'` and `'yyyy MMMM dd'`.
+
+```ts
+import { format, parse } from 'date-fns';
+import { es } from 'date-fns/locale';
+```
+
+### Weeks
+
+Set `selectionType` to `week` and give `inputDateFormat` and `inputDateParse` a week-based pattern, such as `'Io RRRR'` (the ISO week number and its year). Add `showWeekNumber` to show the week numbers in the calendar.
+
+### Months
+
+Set `selectionType` to `month` and give `inputDateFormat` and `inputDateParse` a month pattern, such as `'MMM yyyy'`.
+
+### Years
+
+Set `selectionType` to `year` and give `inputDateFormat` and `inputDateParse` a year pattern, such as `'yy'`.
+
+## Keyboard behavior
+
+_Added in 5.7.38._
+
+`Tab` moves from the inputs to the clear button, which a date range picker with a value shows while the focus is in the field, and then to the calendar button. `Enter` or `Space` on the calendar button opens and closes the calendar, and `Alt` + `ArrowDown` (`Option` + `ArrowDown` on macOS) in an input opens it and moves the focus into the calendar, to the selected date when there is one. In the open calendar the keys work as described for the [calendar](https://coreui.io/angular/docs/components/calendar/#keyboard-behavior), and `Escape` closes it. `Enter` or `Space` on the clear button clears the dates and moves the focus to the start input. Use `ariaPickerLabel` and `ariaCleanerLabel` to name the two buttons in the language of your page.
+
+Once a date is picked, the clear button keeps its place while it is hidden, so nothing moves when it shows up. In a narrow layout, where that place cuts the dates short, set `[cleaner]="false"` to give the room back to the inputs; unless the inputs are read-only, the dates can still be cleared by editing them.
 
 ## Forms
 
@@ -2418,6 +2539,8 @@ import { DateRangePickerComponent } from '@coreui/angular-pro'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
+| `ariaCleanerLabel` | `string` | `'Clear date range'` | Accessible name of the button that clears the dates. |
+| `ariaPickerLabel` | `string` | `'Toggle calendar'` | Accessible name of the button that opens and closes the calendar. |
 | `calendarDate` | `Date` | `new Date()` | Default date month of the component. |
 | `calendars` | `number` | `2` | The number of calendars that render on desktop devices. |
 | `cleaner` | `boolean` | `true` | Toggle visibility or set the content of the cleaner button. |
@@ -2425,28 +2548,30 @@ import { DateRangePickerComponent } from '@coreui/angular-pro'
 | `dateFilter` | `DateFilterType` | - | Custom function to determine selectable dates. |
 | `dayFormat` | `DayFormatType` | `'numeric'` | Set the format of day number. |
 | `disabled` | `boolean` | `false` | Toggle the disabled state for the component. |
-| `disabledDates` | `Date \| Date[][]` | `[]` | Specify the list of dates that cannot be selected. |
+| `disabledDates` | `(Date \| Date[])[]` | `[]` | Specify the list of dates that cannot be selected. |
 | `endDate` | `Date \| null` | `null` | Initial selected end date. |
 | `firstDayOfWeek` | `DaysOfWeek` | `1 (Monday)` | Set the first day of the week. |
 | `format` | `string` | - | Set date format. We use Angular formatDate() function, see: - https://angular.io/api/common/formatDate - https://angular.io/api/common/DatePipe#pre-defined-format-options |
 | `indicator` | `boolean` | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputDateFormat` | `object` | - | Custom function to format the selected date into a string according to a custom format. |
-| `inputDateParse` | `object` | - | Custom function to parse the input value into a valid Date object. |
+| `inputDateParse` | `object` | - | Custom function to parse the input value into a valid Date object. With a week, month or year `selectionType`, the date is moved to the first day of its period, or to the last second of the period when it ends a range. |
 | `inputReadOnly` | `boolean` | `false` | Toggle the readonly state for the component. |
 | `locale` | `string` | `'default'` | Sets the default locale for components. If not set, it is inherited from the browser. |
 | `maxDate` | `Date \| null` | `null` | Max selectable date. |
 | `minDate` | `Date \| null` | `null` | Min selectable date. |
+| `monthFormat` | `MonthFormatType` | `'short'` | Sets the format of month names in the months view: 'long', 'narrow', 'short', 'numeric' or '2-digit'. |
 | `navigation` | `boolean` | `true` | Show calendar navigation. |
 | `navYearFirst` | `boolean` | `false` | Reorder year-month navigation, and render year first. |
 | `placeholder` | `string \| string[]` | `['Start date', 'End date']` | Specifies short hints that are visible in start date and end date inputs. |
 | `popperOptions` | `Partial<Options>` | `{ strategy: 'absolute' }` | Optional popper Options object |
+| `previewDateOnHover` | `boolean` | `true` | Shows a live preview of the hovered or focused calendar date in the input fields. |
 | `range` | `boolean` | `true` | Allow range selection. |
 | `ranges` | `ICalendarRanges` | - | Predefined date ranges the user can select from. |
 | `rangesButtonsColor` | `string` | `'secondary'` | Sets the color context of the cancel button to one of CoreUI’s themed colors. |
 | `rangesButtonsSize` | `'' \| 'sm' \| 'lg'` | `''` | Size the ranges button small or large. |
 | `rangesButtonsVariant` | `'outline' \| 'ghost'` | `'ghost'` | Set the ranges button variant to an outlined button or a ghost button. |
 | `selectAdjacentDays` | `boolean` | `false` | Set whether days in adjacent months shown before or after the current month are selectable. This only applies if the `showAdjacentDays` option is set to true. |
-| `selectionType` | `SelectionType` | `'day'` | Specify the type of date selection as day, week, month, or year. |
+| `selectionType` | `SelectionType` | `'day'` | Specify the type of date selection as day, week, month, or year. For a week, month or year the input shows `2025W07`, `2025-02` or `2025` and reads that text back (a week also as `2025-W07`), but not a date typed as a day. `inputDateFormat` with `inputDateParse`, or `format` with a `locale`, change what the input shows; when reading, `inputDateParse` is tried first. |
 | `separator` | `boolean` | `true` | Default icon or character that separates two dates. |
 | `showAdjacentDays` | `boolean` | `true` | Set whether to display dates in adjacent months (non-selectable) at the start and end of the current month. |
 | `showWeekNumber` | `boolean` | `false` | Set whether to display week numbers in the calendar. |
@@ -2459,6 +2584,7 @@ import { DateRangePickerComponent } from '@coreui/angular-pro'
 | `weekdayFormat` | `WeekdayFormatType` | `'short'` | Set the length or format of the day name. |
 | `weekNumbersLabel` | `string` | `undefined` | Label displayed over week numbers in the calendar. |
 | `withTime` | `boolean` | `false` | Keep track of the time with the date value. |
+| `yearFormat` | `YearFormatType` | `'numeric'` | Sets the format of years in the years view: 'numeric' or '2-digit'. |
 
 ### Events
 
@@ -2575,6 +2701,8 @@ import { FormSelectDirective } from '@coreui/angular'
 # Angular Multi Select Component
 
 > Customize the native select with a powerful CoreUI Multi-Select component that changes initial element appearance and brings some new functionalities.
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Examples
 
@@ -3442,6 +3570,8 @@ import { ChipInputComponent } from '@coreui/angular'
 
 > Develop secure and user-friendly Angular one-time password input fields with automatic navigation, paste support, validation, and customizable options for modern authentication flows.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 _Added in 5.5.23._
 
 ## Example
@@ -3673,6 +3803,8 @@ import { OtpDirective } from '@coreui/angular-pro'
 
 # Documentation
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 _Added in 5.4.12._
 
 The `cFormPassword` is a fully featured Angular password input field built with Bootstrap and CoreUI. It includes built-in password visibility toggling, sm / lg sizing options, and support for disabled, readOnly, and form validation states. Ideal for login forms, signup screens, and any secure input in your Angular app.
@@ -3880,6 +4012,8 @@ import { FormControlDirective } from '@coreui/angular'
 # Angular Range Slider
 
 > Enhance your forms with our customizable Angular Range Slider component for advanced range selection.
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 _Added in 5.3.5._
 
@@ -4152,6 +4286,8 @@ export type Label =
 
 > Angular star rating component allows users to rate and provide feedback on content or products by selecting a specified number of stars, typically ranging from one to five, representing their level of satisfaction or preference.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 _Added in 5.1.0._
 
 ## Examples
@@ -4315,6 +4451,8 @@ import { RatingComponent } from '@coreui/angular-pro'
 # Angular Stepper
 
 > Angular Stepper Component – Multi-Step Form Wizard for Angular
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 _Added in 5.5.2._
 
@@ -4826,6 +4964,8 @@ horizontal and vertical directions. The `.align-items-center` aligns the form el
 # Angular Time Picker Component
 
 > Create consistent cross-browser and cross-device Angular time picker.
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Examples
 
@@ -5657,6 +5797,8 @@ import { ButtonToolbarComponent } from '@coreui/angular'
 
 > The Angular Calendar Component is a versatile, customizable tool for creating responsive calendars in Angular, supporting day, month, and year selection, with global locales.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 Explore the Angular Calendar basic usage through sample code snippets demonstrating its core functionality.
@@ -5690,6 +5832,14 @@ Enable `range` selection to allow users to pick a start and end date. This examp
 The Calendar component includes functionality to disable specific dates, such as weekends or holidays, using the `disabledDates` prop. This prop takes an array of dates to determine which dates should be disabled.
 Other useful props include `minDate` and `maxDate` to set the minimum and maximum selectable dates. The `dateFilter` prop can be used to apply custom logic to determine which dates are selectable.
 
+### Disabling weekends
+
+Pass a function to `dateFilter` to decide which dates can be selected: it receives a date and returns `true` when the date is selectable. To disable weekends, return `false` for Sunday (`0`) and Saturday (`6`).
+
+### Combining functions and specific dates
+
+Use `dateFilter` together with `disabledDates` to disable a rule-based set of dates and a list of specific dates at once. Here weekends and three specific dates cannot be selected.
+
 ## Non-english locale
 
 The CoreUI Angular Calendar allows users to display dates in non-English locales, making it suitable for international applications.
@@ -5718,6 +5868,42 @@ Example of the Angular Calendar component with RTL support, using the Hebrew loc
 
 ### Persian
 Example of the Angular Calendar component with Persian locale settings.
+
+## Format options
+
+`monthFormat` and `yearFormat` are available since 5.7.38. You can control the display format of calendar elements using format inputs:
+
+- `dayFormat` - Controls how day numbers are displayed (`'numeric'`, `'2-digit'`, or a function that returns the text)
+- `monthFormat` - Controls how month names are displayed in the months view (`'long'`, `'narrow'`, `'short'`, `'numeric'`, or `'2-digit'`)
+- `yearFormat` - Controls how years are displayed in the years view (`'numeric'` or `'2-digit'`)
+- `weekdayFormat` - Controls how weekday names are displayed (number for character length, `'long'`, `'narrow'`, `'short'`, or a function that returns the text)
+
+These format options use the JavaScript `Intl.DateTimeFormat` API and respect the `locale` input. The navigation keeps the full month name and the numeric year, and screen readers announce each month and year cell by its full name whatever the format.
+
+## Keyboard behavior
+
+Each month of the calendar is a `grid` with one tab stop when it has a date that can take the focus: `Tab` enters it once and leaves it, and the keys below move inside it. The tab stop sits on the date you focused last while the page shows it, else on the selected date, else on the cell of `calendarDate` (the first day of its month in the days view, its month or year in the other views) or the closest cell that can take the focus. A selection set from outside, such as a date typed in the picker, takes the place of the date you focused last. A date inside `minDate` / `maxDate` that cannot be picked, such as one in `disabledDates`, still takes the focus and is announced as unavailable (`aria-disabled="true"`); `Enter` and `Space` do nothing there. Dates outside `minDate` / `maxDate`, and days of adjacent months without `selectAdjacentDays`, cannot take the focus. When nothing on the shown page can take the focus, the grid itself takes the tab stop and the arrows move to the limit they point toward.
+
+| Key | Action |
+| --- | --- |
+| `ArrowRight` | Move to the next day (the previous one in right-to-left layouts) |
+| `ArrowLeft` | Move to the previous day (the next one in right-to-left layouts) |
+| `ArrowDown` | Move to the same day of the next week |
+| `ArrowUp` | Move to the same day of the previous week |
+| `Home` | Move to the first day of the week |
+| `End` | Move to the last day of the week |
+| `PageDown` | Move to the same day of the next month |
+| `PageUp` | Move to the same day of the previous month |
+| `Shift` + `PageDown` | Move to the same day of the next year |
+| `Shift` + `PageUp` | Move to the same day of the previous year |
+| `Enter` / `Space` | Pick the focused date, as a click does: with `range` the first pick sets the start and the next one the end (or the start again, when it is earlier), and a pick on a complete range clears it |
+| `Tab` | Leave the grid |
+
+Past the edge of the shown months, the arrow keys turn the calendar by one month, and so do `Home` / `End` on a week that reaches into the next or previous month; all of them stop at `minDate` / `maxDate`. A series of `PageDown` / `PageUp` presses keeps the day it started from (January 31, February 28, March 31); any other key or a click in the calendar starts a new series, except a key that cannot move the focus any further, such as an arrow at `minDate` / `maxDate`, and `Shift`, `Ctrl`, `Alt` or `Cmd` alone.
+
+In the months and years views the arrows move by cell and by row of three, `Home` / `End` move to the first / last cell of the row, `PageDown` / `PageUp` turn by a year or by the twelve years of a page, and `Enter` / `Space` open the month or year, unless `selectionType` picks it. With `selectionType="week"` the week row is the tab stop, named by the days it spans, all four arrows move by a week, and `Home` / `End` move to the first / last week of the month. Keys pressed with `Alt`, `Ctrl` or `Cmd` are left to the browser and assistive technology. No key moves the focus outside `minDate` / `maxDate`.
+
+The month and year buttons of the navigation open the months and years views, and when the focus is in the calendar it moves to the month or year they show. When the focused date or navigation button goes away, because `calendarDate`, `calendars`, `navigation`, `minDate` or `maxDate` changed, the focus stays in the calendar: on the nearest date that can take it when the limits took the focused one, else on the tab stop of the month it was in, else on the first tab stop.
 
 ## Customizing
 
@@ -5857,12 +6043,13 @@ import { CalendarComponent } from '@coreui/angular-pro'
 | `calendars` | `number` | `1` | The number of calendars that render on desktop devices. |
 | `dateFilter` | `DateFilterType` | - | Custom function to determine selectable dates. |
 | `dayFormat` | `DayFormatType` | `'numeric'` | Set the format of day number. |
-| `disabledDates` | `Date \| Date[][]` | `[]` | Specify the list of dates that cannot be selected. |
+| `disabledDates` | `(Date \| Date[])[]` | `[]` | Specify the list of dates that cannot be selected. |
 | `endDate` | `string \| number \| Date \| null` | `null` | Initial selected to date (range). |
 | `firstDayOfWeek` | `DaysOfWeek` | `1` | Sets the first day of the week. - `0` - Sunday - `1` - Monday - `2` - Tuesday - `3` - Wednesday - `4` - Thursday - `5` - Friday - `6` - Saturday |
 | `locale` | `string` | `'default'` | Sets the default locale for components. If not set, it is inherited from the browser. |
 | `maxDate` | `string \| number \| Date \| null` | `null` | Max selectable date. |
 | `minDate` | `string \| number \| Date \| null` | `null` | Min selectable date. |
+| `monthFormat` | `MonthFormatType` | `'short'` | Sets the format of month names in the months view: 'long', 'narrow', 'short', 'numeric' or '2-digit'. |
 | `navigation` | `boolean` | `true` | Show navigation. |
 | `navYearFirst` | `boolean` | `false` | Reorder year-month navigation, and render year first. |
 | `range` | `boolean` | `false` | Allow range selection. |
@@ -5871,9 +6058,10 @@ import { CalendarComponent } from '@coreui/angular-pro'
 | `showAdjacentDays` | `boolean` | `true` | Set whether to display dates in adjacent months (non-selectable) at the start and end of the current month. |
 | `showWeekNumber` | `boolean` | `false` | Set whether to display ISO week numbers in the calendar. |
 | `startDate` | `string \| number \| Date \| null` | `null` | Initial selected date. |
-| `view` | `'days' \| 'months' \| 'years'` | `'days'` | Set calendar view. |
+| `view` | `CalendarView` | `'days'` | Set calendar view: 'days', 'months' or 'years'. |
 | `weekdayFormat` | `WeekdayFormatType` | `'short'` | Set length or format of day name. |
 | `weekNumbersLabel` | `string` | `undefined` | Label displayed over week numbers in the calendar. |
+| `yearFormat` | `YearFormatType` | `'numeric'` | Sets the format of years in the years view: 'numeric' or '2-digit'. |
 
 ### Events
 
@@ -6265,7 +6453,7 @@ import { CarouselComponent } from '@coreui/angular'
 | --- | --- | --- | --- |
 | `activeIndex` | `number` | `0` | Index of the active item. |
 | `animate` | `boolean` | `true` | Carousel automatically starts cycle items. |
-| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme. On `cTheme` it takes precedence over `colorScheme`. |
 | `direction` | `'next' \| 'prev'` | `'next'` | Carousel direction |
 | `interval` | `number` | `-1` | The amount of time to delay between automatically cycling an item. If -1, carousel will not automatically cycle. |
 | `pause` | `false \| Triggers \| Triggers[]` | `'hover'` | Sets which event handlers you’d like provided to your pause prop. You can specify one trigger or an array of them. |
@@ -6778,7 +6966,7 @@ import { ButtonCloseDirective } from '@coreui/angular'
 | --- | --- | --- | --- |
 | `active` | `boolean` | `false` | Toggle the active state for the component |
 | `color` | `string` | `'primary'` | Sets the color context of the component to one of CoreUI’s themed colors |
-| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme. On `cTheme` it takes precedence over `colorScheme`. |
 | `disabled` | `boolean` | `false` | Toggle the disabled state for the component. |
 | `shape` | `string` | - | Select the shape of the component. |
 | `size` | `'' \| 'sm' \| 'lg'` | `''` | Size the component small or large. |
@@ -6971,7 +7159,7 @@ Place any freeform text within a dropdown menu with text. Note that you'll likel
 
 ### Forms
 
-Put a form within a dropdown menu, or make it into a dropdown menu.
+Put a form within a dropdown menu, or make it into a dropdown menu. A click on an `input`, `select` or `textarea` in the menu, or anywhere in a form in the menu or used as the menu, leaves it open; `cDropdownClose` closes it from there, and so does a `cDropdownItem` unless its `autoClose` is `false`.
 
 ## API reference
 
@@ -6998,8 +7186,8 @@ import { DropdownComponent } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `alignment` | `DropdownAlignment` | - | Set alignment of dropdown menu. A `placement` set on the dropdown takes precedence for the menu position. |
-| `autoClose` | `boolean \| 'inside' \| 'outside'` | `true` | Configure the auto close behavior: - `true` closes the dropdown on a click inside or outside the menu, - `false` only on the toggle button or an explicit hide/toggle call and not on the `Esc` key, - `inside` only on a click inside the menu, - `outside` only on a click outside it. |
-| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
+| `autoClose` | `boolean \| 'inside' \| 'outside'` | `true` | Configure the auto close behavior: - `true` closes the dropdown on a click inside or outside the menu, - `false` only on the toggle button or an explicit hide/toggle call and not on the `Esc` key, - `inside` only on a click inside the menu, - `outside` only on a click outside it. A click on a form field or inside a form in the menu does not close it; `cDropdownClose` and `cDropdownItem` close it from there, but not on a click on a field that takes typing or a choice inside the item. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme. On `cTheme` it takes precedence over `colorScheme`. |
 | `direction` | `'center' \| 'dropup' \| 'dropup-center' \| 'dropend' \| 'dropstart'` | - | Sets a specified  direction and location of the dropdown menu. A `placement` set on the dropdown takes precedence for the menu position. |
 | `placement` | `Placement` | `undefined` | Placement of the menu positioned by Popper, used as given. Without it the placement follows `direction` and the alignment of the menu (its own, else this one), mirrored in a right-to-left context: `bottom-start`, or `bottom-end` right to left. |
 | `popper` | `boolean` | `true` | If you want to disable dynamic positioning set this property to `false`. |
@@ -7054,7 +7242,7 @@ import { DropdownItemDirective } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `active` | `boolean` | `undefined` | Set active state to a dropdown-item. |
-| `autoClose` | `boolean` | `true` | Configure dropdown-item close dropdown behavior. |
+| `autoClose` | `boolean` | `true` | Configure dropdown-item close dropdown behavior. The item does not close the dropdown on a click on a field inside it that takes typing or a choice (input other than a button, select, textarea, contenteditable). |
 | `disabled` | `boolean` | `false` | Disables a dropdown-item. |
 | `role` | `string` | `undefined` | Role for dropdown-item. |
 | `tabIndex` | `string \| number \| null` | `'0'` | Tab index of the dropdown-item. |
@@ -7078,7 +7266,7 @@ import { DropdownMenuDirective } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `alignment` | `DropdownAlignment` | - | Set alignment of dropdown menu. |
-| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme. On `cTheme` it takes precedence over `colorScheme`. |
 | `visible` | `boolean` | `false` | Toggle the visibility of dropdown menu component. |
 
 ### cDropdownToggle
@@ -7387,6 +7575,8 @@ import { ListGroupItemDirective } from '@coreui/angular'
 
 > Angular Buttons with built-in loading indicators. Indicate the loading state of the button bridging the gap between action and feedback.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Examples
 
 Cancellable on click by default.
@@ -7550,7 +7740,7 @@ import { ModalComponent } from '@coreui/angular'
 | `backdrop` | `boolean \| 'static'` | `true` | Apply a backdrop on the body while the modal is open. |
 | `container` | `Element \| object \| null` | `document.body` | Appends the angular modal to a specific element. You can pass an HTML element or function that returns a single element. By default, `document.body`. |
 | `fullscreen` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl'` | `undefined` | Set modal to cover the entire user viewport. |
-| `id` | `string` | `undefined` | HTML id attribute, required for programmatic visibility change. |
+| `id` | `string` | `undefined` | HTML id attribute, used to toggle the modal by id. Without it, the `id` property holds a generated id that is not rendered. |
 | `keyboard` | `boolean` | `true` | Closes the modal when the escape key is pressed, unless another handler already prevented its default. |
 | `portal` | `boolean` | `false` | Generates modal using a portal |
 | `role` | `string` | `'dialog'` | Default role for modal |
@@ -8038,7 +8228,7 @@ import { NavbarComponent } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `color` | `string` | - | Sets the color context of the component to one of CoreUI’s themed colors. |
-| `colorScheme` | `'dark' \| 'light'` | - | Sets the `data-coreui-theme` attribute on the host element. Overridden by `dark`. |
+| `colorScheme` | `'dark' \| 'light'` | - | Sets the `data-coreui-theme` attribute on the host element. |
 | `container` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl' \| 'fluid'` | - | Defines optional container wrapping children elements. |
 | `expand` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl'` | - | Defines the responsive breakpoint to determine when content collapses. |
 | `placement` | `'fixed-top' \| 'fixed-bottom' \| 'sticky-top'` | - | Place component in non-static positions. |
@@ -8117,7 +8307,7 @@ There's no default placement for offcanvas components, so you must add one of th
 
 ### Backdrop and Scroll
 
-Scrolling the `body` element is disabled when an offcanvas and its backdrop are visible. Use the `scroll` property to toggle body scrolling and `backdrop` to toggle the backdrop.
+Scrolling the `body` element is disabled while an offcanvas is open, with or without its backdrop, and enabled again once its closing transition ends. Use the `scroll` property to allow body scrolling, also while the offcanvas is open, and `backdrop` to toggle the backdrop.
 
 ### Static Backdrop
 
@@ -8170,14 +8360,14 @@ import { OffcanvasComponent } from '@coreui/angular'
 | `ariaModal` | `boolean` | `true` | aria-modal attribute rendered while the offcanvas is open |
 | `backdrop` | `boolean \| 'static'` | `true` | Apply a backdrop on the body while offcanvas is open. |
 | `container` | `Element \| object \| null` | `document.body` | Appends the offcanvas to a specific element. You can pass an HTML element or function that returns a single element. By default, `document.body`. |
-| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme. On `cTheme` it takes precedence over `colorScheme`. |
 | `id` | `string` | ``offcanvas-${this.placement()}-${nextId++}`` | Html id attribute, required for programmatic visibility change. |
 | `keyboard` | `boolean` | `true` | Closes the offcanvas when the escape key is pressed, unless another handler already prevented its default. |
 | `placement` | `string` | `'start'` | Offcanvas placement |
 | `portal` | `boolean` | `false` | Generates offcanvas using a portal |
 | `responsive` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl'` | `true` | Responsive offcanvas property hides content outside the viewport from a specified breakpoint and down. |
 | `role` | `string` | `'dialog'` | Role attribute rendered while the offcanvas is open |
-| `scroll` | `boolean` | `false` | Allow body scrolling while offcanvas is visible. |
+| `scroll` | `boolean` | `false` | Allow body scrolling while the offcanvas is open. Changes apply while it is open. |
 | `visible` | `boolean` | `false` | Toggle the visibility of offcanvas component. |
 
 ### Events
@@ -8799,6 +8989,8 @@ import { SearchButtonComponent } from '@coreui/angular'
 
 > Documentation and examples for showing Angular smart pagination to indicate a series of related content exists across multiple pages.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 Angular smart pagination component consists of button-like styled links, that are arranged side by side in a
@@ -8882,6 +9074,8 @@ import { SmartPaginationComponent } from '@coreui/angular-pro'
 # Angular Smart Table Component (DataTable)
 
 > Angular Smart Table provides a full set of features for displaying and manipulating tabular data. It allows you to easily create dynamic and interactive tables with features such as sorting, filtering, pagination, and searching. Angular Smart Table Component (DataTable) makes it easy to work with large datasets, and it is widely used in a variety of applications, including web-based applications, e-commerce sites, and more.
+
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
 
 ## Features
 

@@ -2,6 +2,8 @@
 
 > The Angular Calendar Component is a versatile, customizable tool for creating responsive calendars in Angular, supporting day, month, and year selection, with global locales.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Example
 
 Explore the Angular Calendar basic usage through sample code snippets demonstrating its core functionality.
@@ -35,6 +37,14 @@ Enable `range` selection to allow users to pick a start and end date. This examp
 The Calendar component includes functionality to disable specific dates, such as weekends or holidays, using the `disabledDates` prop. This prop takes an array of dates to determine which dates should be disabled.
 Other useful props include `minDate` and `maxDate` to set the minimum and maximum selectable dates. The `dateFilter` prop can be used to apply custom logic to determine which dates are selectable.
 
+### Disabling weekends
+
+Pass a function to `dateFilter` to decide which dates can be selected: it receives a date and returns `true` when the date is selectable. To disable weekends, return `false` for Sunday (`0`) and Saturday (`6`).
+
+### Combining functions and specific dates
+
+Use `dateFilter` together with `disabledDates` to disable a rule-based set of dates and a list of specific dates at once. Here weekends and three specific dates cannot be selected.
+
 ## Non-english locale
 
 The CoreUI Angular Calendar allows users to display dates in non-English locales, making it suitable for international applications.
@@ -63,6 +73,42 @@ Example of the Angular Calendar component with RTL support, using the Hebrew loc
 
 ### Persian
 Example of the Angular Calendar component with Persian locale settings.
+
+## Format options
+
+`monthFormat` and `yearFormat` are available since 5.7.38. You can control the display format of calendar elements using format inputs:
+
+- `dayFormat` - Controls how day numbers are displayed (`'numeric'`, `'2-digit'`, or a function that returns the text)
+- `monthFormat` - Controls how month names are displayed in the months view (`'long'`, `'narrow'`, `'short'`, `'numeric'`, or `'2-digit'`)
+- `yearFormat` - Controls how years are displayed in the years view (`'numeric'` or `'2-digit'`)
+- `weekdayFormat` - Controls how weekday names are displayed (number for character length, `'long'`, `'narrow'`, `'short'`, or a function that returns the text)
+
+These format options use the JavaScript `Intl.DateTimeFormat` API and respect the `locale` input. The navigation keeps the full month name and the numeric year, and screen readers announce each month and year cell by its full name whatever the format.
+
+## Keyboard behavior
+
+Each month of the calendar is a `grid` with one tab stop when it has a date that can take the focus: `Tab` enters it once and leaves it, and the keys below move inside it. The tab stop sits on the date you focused last while the page shows it, else on the selected date, else on the cell of `calendarDate` (the first day of its month in the days view, its month or year in the other views) or the closest cell that can take the focus. A selection set from outside, such as a date typed in the picker, takes the place of the date you focused last. A date inside `minDate` / `maxDate` that cannot be picked, such as one in `disabledDates`, still takes the focus and is announced as unavailable (`aria-disabled="true"`); `Enter` and `Space` do nothing there. Dates outside `minDate` / `maxDate`, and days of adjacent months without `selectAdjacentDays`, cannot take the focus. When nothing on the shown page can take the focus, the grid itself takes the tab stop and the arrows move to the limit they point toward.
+
+| Key | Action |
+| --- | --- |
+| `ArrowRight` | Move to the next day (the previous one in right-to-left layouts) |
+| `ArrowLeft` | Move to the previous day (the next one in right-to-left layouts) |
+| `ArrowDown` | Move to the same day of the next week |
+| `ArrowUp` | Move to the same day of the previous week |
+| `Home` | Move to the first day of the week |
+| `End` | Move to the last day of the week |
+| `PageDown` | Move to the same day of the next month |
+| `PageUp` | Move to the same day of the previous month |
+| `Shift` + `PageDown` | Move to the same day of the next year |
+| `Shift` + `PageUp` | Move to the same day of the previous year |
+| `Enter` / `Space` | Pick the focused date, as a click does: with `range` the first pick sets the start and the next one the end (or the start again, when it is earlier), and a pick on a complete range clears it |
+| `Tab` | Leave the grid |
+
+Past the edge of the shown months, the arrow keys turn the calendar by one month, and so do `Home` / `End` on a week that reaches into the next or previous month; all of them stop at `minDate` / `maxDate`. A series of `PageDown` / `PageUp` presses keeps the day it started from (January 31, February 28, March 31); any other key or a click in the calendar starts a new series, except a key that cannot move the focus any further, such as an arrow at `minDate` / `maxDate`, and `Shift`, `Ctrl`, `Alt` or `Cmd` alone.
+
+In the months and years views the arrows move by cell and by row of three, `Home` / `End` move to the first / last cell of the row, `PageDown` / `PageUp` turn by a year or by the twelve years of a page, and `Enter` / `Space` open the month or year, unless `selectionType` picks it. With `selectionType="week"` the week row is the tab stop, named by the days it spans, all four arrows move by a week, and `Home` / `End` move to the first / last week of the month. Keys pressed with `Alt`, `Ctrl` or `Cmd` are left to the browser and assistive technology. No key moves the focus outside `minDate` / `maxDate`.
+
+The month and year buttons of the navigation open the months and years views, and when the focus is in the calendar it moves to the month or year they show. When the focused date or navigation button goes away, because `calendarDate`, `calendars`, `navigation`, `minDate` or `maxDate` changed, the focus stays in the calendar: on the nearest date that can take it when the limits took the focused one, else on the tab stop of the month it was in, else on the first tab stop.
 
 ## Customizing
 
@@ -202,12 +248,13 @@ import { CalendarComponent } from '@coreui/angular-pro'
 | `calendars` | `number` | `1` | The number of calendars that render on desktop devices. |
 | `dateFilter` | `DateFilterType` | - | Custom function to determine selectable dates. |
 | `dayFormat` | `DayFormatType` | `'numeric'` | Set the format of day number. |
-| `disabledDates` | `Date \| Date[][]` | `[]` | Specify the list of dates that cannot be selected. |
+| `disabledDates` | `(Date \| Date[])[]` | `[]` | Specify the list of dates that cannot be selected. |
 | `endDate` | `string \| number \| Date \| null` | `null` | Initial selected to date (range). |
 | `firstDayOfWeek` | `DaysOfWeek` | `1` | Sets the first day of the week. - `0` - Sunday - `1` - Monday - `2` - Tuesday - `3` - Wednesday - `4` - Thursday - `5` - Friday - `6` - Saturday |
 | `locale` | `string` | `'default'` | Sets the default locale for components. If not set, it is inherited from the browser. |
 | `maxDate` | `string \| number \| Date \| null` | `null` | Max selectable date. |
 | `minDate` | `string \| number \| Date \| null` | `null` | Min selectable date. |
+| `monthFormat` | `MonthFormatType` | `'short'` | Sets the format of month names in the months view: 'long', 'narrow', 'short', 'numeric' or '2-digit'. |
 | `navigation` | `boolean` | `true` | Show navigation. |
 | `navYearFirst` | `boolean` | `false` | Reorder year-month navigation, and render year first. |
 | `range` | `boolean` | `false` | Allow range selection. |
@@ -216,9 +263,10 @@ import { CalendarComponent } from '@coreui/angular-pro'
 | `showAdjacentDays` | `boolean` | `true` | Set whether to display dates in adjacent months (non-selectable) at the start and end of the current month. |
 | `showWeekNumber` | `boolean` | `false` | Set whether to display ISO week numbers in the calendar. |
 | `startDate` | `string \| number \| Date \| null` | `null` | Initial selected date. |
-| `view` | `'days' \| 'months' \| 'years'` | `'days'` | Set calendar view. |
+| `view` | `CalendarView` | `'days'` | Set calendar view: 'days', 'months' or 'years'. |
 | `weekdayFormat` | `WeekdayFormatType` | `'short'` | Set length or format of day name. |
 | `weekNumbersLabel` | `string` | `undefined` | Label displayed over week numbers in the calendar. |
+| `yearFormat` | `YearFormatType` | `'numeric'` | Sets the format of years in the years view: 'numeric' or '2-digit'. |
 
 ### Events
 

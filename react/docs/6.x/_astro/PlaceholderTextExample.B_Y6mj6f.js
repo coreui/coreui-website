@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.B54jxNxs.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CPlaceholder.C-2YwiLB.js";e();var r=t(),i=()=>(0,r.jsx)(n,{animation:`wave`,className:`fg-3`,children:`Working on it…`});export{i as PlaceholderTextExample};

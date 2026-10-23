@@ -2,6 +2,8 @@
 
 > Documentation and examples for showing Angular smart pagination to indicate a series of related content exists across multiple pages.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 Angular smart pagination component consists of button-like styled links, that are arranged side by side in a

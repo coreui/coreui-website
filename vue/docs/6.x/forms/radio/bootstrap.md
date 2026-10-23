@@ -122,20 +122,6 @@ Turn your radios into button-like toggles using the `button` prop. These can als
 
 ```html
 <template>
-  <CFormCheck id="radioNoLabel" type="radio" name="radioNoLabel" value="" aria-label="..." />
-</template>
-
-<script setup>
-import { CFormCheck } from '@coreui/vue'
-</script>
-```
-
-#### Outlined toggle styles
-
-You can apply outlined styles to toggle radios using Bootstrap's button variant system.
-
-```html
-<template>
   <CFormCheck
     id="option1"
     :button="{ color: 'secondary' }"
@@ -167,6 +153,36 @@ You can apply outlined styles to toggle radios using Bootstrap's button variant 
     :button="{ color: 'secondary' }"
     type="radio"
     name="options"
+    autocomplete="off"
+    label="Radio"
+  />
+</template>
+
+<script setup>
+import { CFormCheck } from '@coreui/vue'
+</script>
+```
+
+#### Outlined toggle styles
+
+You can apply outlined styles to toggle radios using Bootstrap's button variant system.
+
+```html
+<template>
+  <CFormCheck
+    id="success-outlined"
+    :button="{ color: 'success', variant: 'outline' }"
+    type="radio"
+    name="options-outlined"
+    autocomplete="off"
+    label="Radio"
+    checked
+  />
+  <CFormCheck
+    id="danger-outlined"
+    :button="{ color: 'danger', variant: 'outline' }"
+    type="radio"
+    name="options-outlined"
     autocomplete="off"
     label="Radio"
   />

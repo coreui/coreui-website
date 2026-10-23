@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime.CpoXNhZb.js";import{t}from"./CHeader.CfdCKVgn.js";import{t as n}from"./CHeaderBrand.CB9195vZ.js";var r=e(),i=()=>(0,r.jsx)(t,{position:`sticky`,children:(0,r.jsx)(n,{href:`#`,children:`Sticky top`})});export{i as HeaderPlacementExample};

@@ -15,15 +15,18 @@ import { CRangeSlider } from '@coreui/react-pro'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `ariaLabel` | `string[] \| ((index: number, total: number) => string)` | - | Accessible names of the handles, so a screen reader can tell them apart: an array with one name per handle, or a function that returns the name of the handle at `index` out of `total`. Without it, two handles are named `"Minimum value"` and `"Maximum value"`, more handles `"Value {n}"`, and a single handle has no name of its own. `aria-label` or `aria-labelledby` names the slider, which is a `group`; a single handle takes that name, followed by its own when it has one, or a `<label>` for its `id`. |
+| `autoFocus` | `boolean` | - | Focuses the first thumb when the component mounts. |
 | `className` | `string` | - | A string of all className you want applied to the `.form-range` wrapper of the slider. |
 | `clickableTicks` | `boolean` | `true` | Pressing a tick moves the nearest handle to its value, and the handle follows the pointer until it is released. Set `false` to disable. |
 | `defaultValue` | `number \| number[]` | - | The initial value(s) of an uncontrolled slider — read once on mount. |
 | `disabled` | `boolean` | `false` | Disables every handle. |
 | `distance` | `number` | `0` | Keeps neighbouring handles at least this many units apart. |
+| `hidden` | `boolean` | - | Hides the component. The attribute goes on the wrapper of the thumbs and the track. |
 | `max` | `number` | `100` | Specifies the maximum value of the slider. |
 | `min` | `number` | `0` | Specifies the minimum value of the slider. |
 | `name` | `string \| string[]` | - | Name of each slider input, in order. An array maps one to one, and a shorter array leaves the remaining handles unnamed. A string is suffixed with the handle index, so `"price"` submits `price-0` and `price-1`. Without a name the handles are not submitted with the form. |
 | `onChange` | `((value: number[]) => void)` | - | Called with the values of every handle when one of them changes. |
+| `onInput` | `InputEventHandler<HTMLInputElement>` | - | Method called on every `input` event of a thumb. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user moves a handle, or the form is reset, while `validationState` is set. A given state is a verdict on the value it was given for; clear it here, so the slider shows only the validity you set on a handle, if any. |
 | `step` | `number` | `1` | Specifies the interval between legal numbers in the slider. |
 | `theme` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'inverse' \| string` | - | Sets the color context of the component to one of CoreUI’s themed colors. |

@@ -23,6 +23,7 @@ import { CFormTextarea } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Mark the control invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `onChange` | `ChangeEventHandler<HTMLTextAreaElement>` | - | Method called immediately after the `value` prop changes. |
+| `onInput` | `InputEventHandler<HTMLTextAreaElement>` | - | Method called on every `input` event of the field. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the value, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the value it was given for; clear it here to let the browser's own validation show again. |
 | `plainText` | `boolean` | - | Render the component styled as plain text. Removes the default form field styling and preserve the correct margin and padding. Recommend to use only along side `readonly`. |
 | `readOnly` | `boolean` | - | Toggle the readonly state for the component. |

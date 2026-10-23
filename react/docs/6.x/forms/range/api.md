@@ -15,6 +15,7 @@ import { CFormRange } from '@coreui/react-pro'
 | `className` | `string` | - | A string of all className you want applied to the component. |
 | `defaultValue` | `string \| number` | - | The initial value of an uncontrolled range — read once on mount. |
 | `disabled` | `boolean` | - | Toggle the disabled state for the component. |
+| `hidden` | `boolean` | - | Hides the range. The attribute goes on the `.form-range` wrapper, so a `label` rendered before it stays visible. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `max` | `number` | `100` | Specifies the maximum value for the component. |
 | `min` | `number` | `0` | Specifies the minimum value for the component. |

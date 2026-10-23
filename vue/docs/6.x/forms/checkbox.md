@@ -172,9 +172,26 @@ Create button-like checkboxes and radio buttons by using `button` boolean proper
 
 ```html
 <template>
-  <CFormCheck id="inlineCheckbox1" inline value="option1" label="1" />
-  <CFormCheck id="inlineCheckbox2" inline value="option2" label="2" />
-  <CFormCheck id="inlineCheckbox3" inline value="option3" label="3 (disabled)" disabled />
+  <CFormCheck
+    id="btn-check"
+    :button="{ color: 'primary' }"
+    autocomplete="off"
+    label="Single toggle"
+  />
+  <CFormCheck
+    id="btn-check-2"
+    :button="{ color: 'primary' }"
+    autocomplete="off"
+    label="Checked"
+    checked
+  />
+  <CFormCheck
+    id="btn-check-3"
+    :button="{ color: 'primary' }"
+    autocomplete="off"
+    label="Disabled"
+    disabled
+  />
 </template>
 
 <script setup>
@@ -188,13 +205,25 @@ Different variants of button, such at the various outlined styles, are supported
 
 ```html
 <template>
-  <CFormCheck id="reverseCheckbox1" reverse value="option1" label="Reverse checkbox" />
   <CFormCheck
-    id="reverseCheckbox2"
-    reverse
-    value="option2"
-    label="Disabled reverse checkbox"
-    disabled
+    id="btn-check-outlined"
+    :button="{ color: 'primary', variant: 'outline' }"
+    autocomplete="off"
+    label="Single toggle"
+  />
+  <CFormCheck
+    id="btn-check-2-outlined"
+    :button="{ color: 'secondary', variant: 'outline' }"
+    autocomplete="off"
+    label="Checked"
+    checked
+  />
+  <CFormCheck
+    id="btn-check-3-outlined"
+    :button="{ color: 'success', variant: 'outline' }"
+    autocomplete="off"
+    label="Checked success"
+    checked
   />
 </template>
 

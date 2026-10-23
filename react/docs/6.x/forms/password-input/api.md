@@ -27,6 +27,7 @@ import { CPasswordInput } from '@coreui/react-pro'
 | `invalid` | `boolean` | - | Mark the control invalid. |
 | `label` | `ReactNode` | - | Add a caption for a component. |
 | `onChange` | `ChangeEventHandler<HTMLInputElement>` | - | Callback triggered when the value of the password input changes. If `delay` is set, the callback is called after the specified timeout. |
+| `onInput` | `InputEventHandler<HTMLInputElement>` | - | Method called on every `input` event of the field. |
 | `onShowPasswordChange` | `((showPassword: boolean) => void)` | - | Callback fired when the visibility toggle requests a new state, receiving the requested visibility. |
 | `onValidationStateChange` | `((validationState: ValidationState \| undefined) => void)` | - | Callback fired with `undefined` when the user changes the value, or the form is reset, while `validationState` (or the deprecated `invalid`) is set. A given state is a verdict on the value it was given for; clear it here to let the browser's own validation show again. |
 | `readOnly` | `boolean` | - | Makes the React password input read-only. Prevents user input but allows text selection. |

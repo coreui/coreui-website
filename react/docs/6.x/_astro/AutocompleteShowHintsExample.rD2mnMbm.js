@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.B54jxNxs.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CAutocomplete.cKXLPjQ_.js";e();var r=t(),i=()=>(0,r.jsx)(n,{options:[`Angular`,`Bootstrap`,`Next.js`,`React.js`,`Vue.js`],placeholder:`Type to see hints...`,showHints:!0});export{i as AutocompleteShowHintsExample};

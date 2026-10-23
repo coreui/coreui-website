@@ -190,20 +190,6 @@ Create button-like radio buttons by using `button` boolean property on the `<CFo
 
 ```html
 <template>
-  <CFormCheck id="radioNoLabel" type="radio" name="radioNoLabel" value="" aria-label="..." />
-</template>
-
-<script setup>
-import { CFormCheck } from '@coreui/vue'
-</script>
-```
-
-### Outlined styles
-
-Different variants of button, such at the various outlined styles, are supported.
-
-```html
-<template>
   <CFormCheck
     id="option1"
     :button="{ color: 'secondary' }"
@@ -235,6 +221,36 @@ Different variants of button, such at the various outlined styles, are supported
     :button="{ color: 'secondary' }"
     type="radio"
     name="options"
+    autocomplete="off"
+    label="Radio"
+  />
+</template>
+
+<script setup>
+import { CFormCheck } from '@coreui/vue'
+</script>
+```
+
+### Outlined styles
+
+Different variants of button, such at the various outlined styles, are supported.
+
+```html
+<template>
+  <CFormCheck
+    id="success-outlined"
+    :button="{ color: 'success', variant: 'outline' }"
+    type="radio"
+    name="options-outlined"
+    autocomplete="off"
+    label="Radio"
+    checked
+  />
+  <CFormCheck
+    id="danger-outlined"
+    :button="{ color: 'danger', variant: 'outline' }"
+    type="radio"
+    name="options-outlined"
     autocomplete="off"
     label="Radio"
   />

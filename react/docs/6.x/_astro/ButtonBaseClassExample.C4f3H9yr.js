@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.B54jxNxs.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CButton.C41NulDS.js";e();var r=t(),i=()=>(0,r.jsx)(n,{children:`Base class`});export{i as ButtonBaseClassExample};

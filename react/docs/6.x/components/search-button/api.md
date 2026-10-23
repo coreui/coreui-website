@@ -14,6 +14,7 @@ import { CSearchButton } from '@coreui/react-pro'
 | --- | --- | --- | --- |
 | `children` | `ReactNode` | - | Content to customize the full button body. |
 | `className` | `string` | - | A string of all className you want applied to the base component. |
+| `disabled` | `boolean` | - | Toggle the disabled state for the component. A disabled button also ignores its keyboard shortcut. |
 | `icon` | `ReactNode` | - | Custom icon displayed before the placeholder text. |
 | `onTrigger` | `(() => void)` | - | Callback fired when the component is activated by click or keyboard shortcut. |
 | `placeholder` | `ReactNode` | `Search` | Placeholder content rendered inside `.search-button-placeholder`. |

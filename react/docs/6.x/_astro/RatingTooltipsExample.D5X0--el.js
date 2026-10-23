@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.B54jxNxs.js";import{t}from"./jsx-runtime.CpoXNhZb.js";import{t as n}from"./CRating.BwtyZM2y.js";e();var r=t(),i=()=>(0,r.jsx)(n,{tooltips:!0,defaultValue:3});export{i as RatingTooltipsExample};

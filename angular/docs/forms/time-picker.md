@@ -2,6 +2,8 @@
 
 > Create consistent cross-browser and cross-device Angular time picker.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Examples
 
 ### Sizing

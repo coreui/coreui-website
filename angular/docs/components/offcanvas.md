@@ -18,7 +18,7 @@ There's no default placement for offcanvas components, so you must add one of th
 
 ### Backdrop and Scroll
 
-Scrolling the `body` element is disabled when an offcanvas and its backdrop are visible. Use the `scroll` property to toggle body scrolling and `backdrop` to toggle the backdrop.
+Scrolling the `body` element is disabled while an offcanvas is open, with or without its backdrop, and enabled again once its closing transition ends. Use the `scroll` property to allow body scrolling, also while the offcanvas is open, and `backdrop` to toggle the backdrop.
 
 ### Static Backdrop
 
@@ -71,14 +71,14 @@ import { OffcanvasComponent } from '@coreui/angular'
 | `ariaModal` | `boolean` | `true` | aria-modal attribute rendered while the offcanvas is open |
 | `backdrop` | `boolean \| 'static'` | `true` | Apply a backdrop on the body while offcanvas is open. |
 | `container` | `Element \| object \| null` | `document.body` | Appends the offcanvas to a specific element. You can pass an HTML element or function that returns a single element. By default, `document.body`. |
-| `dark` | `boolean` | `false` | Applies the dark color scheme, regardless of `colorScheme`. |
+| `dark` | `boolean` | `false` | Applies the dark color scheme. On `cTheme` it takes precedence over `colorScheme`. |
 | `id` | `string` | ``offcanvas-${this.placement()}-${nextId++}`` | Html id attribute, required for programmatic visibility change. |
 | `keyboard` | `boolean` | `true` | Closes the offcanvas when the escape key is pressed, unless another handler already prevented its default. |
 | `placement` | `string` | `'start'` | Offcanvas placement |
 | `portal` | `boolean` | `false` | Generates offcanvas using a portal |
 | `responsive` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl'` | `true` | Responsive offcanvas property hides content outside the viewport from a specified breakpoint and down. |
 | `role` | `string` | `'dialog'` | Role attribute rendered while the offcanvas is open |
-| `scroll` | `boolean` | `false` | Allow body scrolling while offcanvas is visible. |
+| `scroll` | `boolean` | `false` | Allow body scrolling while the offcanvas is open. Changes apply while it is open. |
 | `visible` | `boolean` | `false` | Toggle the visibility of offcanvas component. |
 
 ### Events

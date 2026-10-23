@@ -2,6 +2,8 @@
 
 > Two lists side by side and four buttons that move options between them — the selection or everything at once: a select-all header with a counter, an optional per-list search, a one-way mode and an announcement of every move.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=vue&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 ## Overview
 
 _Added in 6.0.0._

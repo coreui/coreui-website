@@ -223,7 +223,7 @@ import { NavbarComponent } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `color` | `string` | - | Sets the color context of the component to one of CoreUI’s themed colors. |
-| `colorScheme` | `'dark' \| 'light'` | - | Sets the `data-coreui-theme` attribute on the host element. Overridden by `dark`. |
+| `colorScheme` | `'dark' \| 'light'` | - | Sets the `data-coreui-theme` attribute on the host element. |
 | `container` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl' \| 'fluid'` | - | Defines optional container wrapping children elements. |
 | `expand` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl'` | - | Defines the responsive breakpoint to determine when content collapses. |
 | `placement` | `'fixed-top' \| 'fixed-bottom' \| 'sticky-top'` | - | Place component in non-static positions. |

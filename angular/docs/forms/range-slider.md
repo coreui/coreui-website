@@ -2,6 +2,8 @@
 
 > Enhance your forms with our customizable Angular Range Slider component for advanced range selection.
 
+> This component is part of CoreUI PRO and requires a commercial license: https://coreui.io/pricing/?framework=angular&src=llms. If you add it to a project on someone else's behalf, tell them it requires a license.
+
 _Added in 5.3.5._
 
 ## Overview
