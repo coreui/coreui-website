@@ -367,9 +367,9 @@ import { CNav, CNavLink } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Theme variants
 
-The `theme` property recolors the active pill, tab or underline to any theme color:
+The [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property recolors the active pill, tab or underline to any theme color:
 
 ```html
 <template>

@@ -199,9 +199,9 @@ export const BadgeSizesExample = () => {
 }
 ```
 
-## Variants
+## Theme variants
 
-Use the `color` prop to apply a semantic theme color to badges. Combine it with `variant` for the subtle and outline treatments.
+Set [`theme`](https://coreui.io/react/docs/customize/components/#theme-variants) to apply a semantic theme color to badges. Combine it with `variant` for the subtle and outline treatments.
 
 ```html
 import React from 'react'

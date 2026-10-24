@@ -307,7 +307,7 @@ Similar to the `.nav-fill` example using a `<nav>`-based navigation.
 ```
 
 Either class also stretches an [enclosed nav](#enclosed), which otherwise stays as wide as its links.
-## Variants
+## Theme variants
 
 A [theme class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) recolors a nav. Every link reads the theme's foreground; what marks the active one follows the variant — a tint on the base nav, a solid fill on pills, the line on either underline.
 

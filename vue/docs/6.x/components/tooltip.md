@@ -157,7 +157,7 @@ const customTooltipStyle = {
 
 ### Theme variants
 
-A tooltip reads the `.theme-{color}` slots, so a theme class on the tip colours its surface and picks the contrasting text. Pass it through `class`; without one the tip keeps its default look, the page's foreground colour.
+A tooltip reads the `.theme-{color}` slots, so a [theme class](https://coreui.io/vue/docs/customize/components/#theme-variants) on the tip colors its surface and picks the contrasting text. Pass it through `class`; without one the tip keeps its default look, the page's foreground color.
 
 ```html
 <template>

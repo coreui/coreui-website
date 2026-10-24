@@ -186,7 +186,7 @@ By default, a press on a tick moves the nearest handle to its value, and the han
 
 ## Tooltips
 
-The value tooltip is the [Tooltip](https://coreui.io/bootstrap/docs/components/tooltips/) component's markup: the plugin renders `<div class="form-range-tooltip tooltip bs-tooltip-top">` (`bs-tooltip-start` when vertical, `bs-tooltip-end` when vertical in a right-to-left page) with `.tooltip-arrow` and `.tooltip-inner`, so it takes the tooltip's look and its `--cui-tooltip-*` tokens. It does not inherit the slider's theme class; give it its own through `tooltipClass`.
+The value tooltip is the [Tooltip](https://coreui.io/bootstrap/docs/components/tooltip/) component's markup: the plugin renders `<div class="form-range-tooltip tooltip bs-tooltip-top">` (`bs-tooltip-start` when vertical, `bs-tooltip-end` when vertical in a right-to-left page) with `.tooltip-arrow` and `.tooltip-inner`, so it takes the tooltip's look and its `--cui-tooltip-*` tokens. It does not inherit the slider's theme class; give it its own through `tooltipClass`.
 
 By default, tooltips show the current value of a handle while the pointer is over it, while it is held, and while it has a visible focus. Set `tooltips` to `"always"` to keep them visible at all times, or to `false` to turn them off.
 

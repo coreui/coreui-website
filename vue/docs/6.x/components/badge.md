@@ -142,9 +142,9 @@ import { CBadge } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Theme variants
 
-Use the `theme` prop to apply a semantic theme color to badges. Combine it with `variant` for the subtle and outline treatments.
+Set [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) to apply a semantic theme color to badges. Combine it with `variant` for the subtle and outline treatments.
 
 ```html
 <template>

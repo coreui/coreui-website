@@ -35,7 +35,7 @@ The fill is a single custom property, so a static fill needs no plugin at all: s
 
 ## Tooltip
 
-Add `data-coreui-tooltips` to the wrapper to show a tooltip with the value that follows the thumb. It appears while the pointer is over the input, while the thumb is held, and while the input has focus. The plugin renders `<div class="form-range-tooltip tooltip bs-tooltip-top">` with `.tooltip-arrow` and `.tooltip-inner`, so it takes the look and the `--cui-tooltip-*` tokens of the [tooltip](https://coreui.io/bootstrap/docs/components/tooltips/) component; `tooltipClass` adds classes to it, for example a `theme-{color}`. `tooltipsFormat` may return HTML, which is sanitized, and its text becomes the input's `aria-valuetext`.
+Add `data-coreui-tooltips` to the wrapper to show a tooltip with the value that follows the thumb. It appears while the pointer is over the input, while the thumb is held, and while the input has focus. The plugin renders `<div class="form-range-tooltip tooltip bs-tooltip-top">` with `.tooltip-arrow` and `.tooltip-inner`, so it takes the look and the `--cui-tooltip-*` tokens of the [tooltip](https://coreui.io/bootstrap/docs/components/tooltip/) component; `tooltipClass` adds classes to it, for example a `theme-{color}`. `tooltipsFormat` may return HTML, which is sanitized, and its text becomes the input's `aria-valuetext`.
 
 ```html
 <label for="rangeTooltip" class="form-label">Brightness</label>

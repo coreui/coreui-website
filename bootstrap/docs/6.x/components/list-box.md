@@ -450,7 +450,7 @@ An option that is an `<a>` with an `href` navigates on click and on <kbd>Enter</
   <div class="list-box-options" role="listbox" aria-label="Documentation">
     <a class="list-box-option" href="/components/menu/" data-coreui-value="menu">Menu</a>
     <a class="list-box-option" href="/components/list-group/" data-coreui-value="list-group">List group</a>
-    <a class="list-box-option" href="/components/dropdowns/" data-coreui-value="dropdown">Dropdown</a>
+    <a class="list-box-option" href="/components/dropdown/" data-coreui-value="dropdown">Dropdown</a>
   </div>
 </div>
 ```

@@ -142,6 +142,27 @@ import { CFormRange } from '@coreui/vue'
 
 Inside a `<form>`, a native reset puts the thumb back on the value the range started with and emits `update:modelValue` when that moves it; a bound range only asks for its first value there.
 
+## Theme variants
+
+Color the thumb and the fill with the [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property.
+
+```html
+<template>
+  <div class="d-flex flex-column gap-3">
+    <CFormRange id="rangeThemePrimary" theme="primary" label="Primary range" :value="50" />
+    <CFormRange id="rangeThemeSecondary" theme="secondary" label="Secondary range" :value="50" />
+    <CFormRange id="rangeThemeSuccess" theme="success" label="Success range" :value="50" />
+    <CFormRange id="rangeThemeDanger" theme="danger" label="Danger range" :value="50" />
+    <CFormRange id="rangeThemeWarning" theme="warning" label="Warning range" :value="50" />
+    <CFormRange id="rangeThemeInfo" theme="info" label="Info range" :value="50" />
+  </div>
+</template>
+
+<script setup>
+import { CFormRange } from '@coreui/vue'
+</script>
+```
+
 ## API
 
 Check out the documentation below for a comprehensive guide to all the props you can use with the components mentioned here.

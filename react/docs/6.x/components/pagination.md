@@ -77,9 +77,9 @@ export const PaginationDisabledAndActiveExample = () => {
 }
 ```
 
-## Variants
+## Theme variants
 
-The `theme` property recolors the active page and the link accents:
+The [`theme`](https://coreui.io/react/docs/customize/components/#theme-variants) property recolors the active page and the link accents:
 
 ```html
 import React from 'react'

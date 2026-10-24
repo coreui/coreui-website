@@ -4,7 +4,7 @@
 
 ## Base class
 
-A `<CButton>` without a `color` sets up the shape of a button — size, spacing, radius, the focus ring — and paints it in the neutral surface colour, so it is a usable button on its own.
+A `<CButton>` without a `theme` sets up the shape of a button — size, spacing, radius, the focus ring — and paints it in the neutral surface color, so it is a usable button on its own.
 
 ```html
 <template>
@@ -16,35 +16,18 @@ import { CButton } from '@coreui/vue'
 </script>
 ```
 
-## Variants
-
-CoreUI includes a bunch of predefined buttons components, each serving its own semantic purpose. Buttons show what action will happen when the user clicks or touches it. CoreUI buttons are used to initialize operations, both in the background or foreground of an experience.
-
-```html
-<template>
-  <CButton theme="primary">Primary</CButton>
-  <CButton theme="secondary">Secondary</CButton>
-  <CButton theme="success">Success</CButton>
-  <CButton theme="danger">Danger</CButton>
-  <CButton theme="warning">Warning</CButton>
-  <CButton theme="info">Info</CButton>
-  <CButton theme="secondary">Light</CButton>
-  <CButton theme="inverse">Dark</CButton>
-  <CButton link>Link</CButton>
-</template>
-
-<script setup>
-import { CButton } from '@coreui/vue'
-</script>
-```
-
-> Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the .visually-hidden class.
-
 ## Theme variants
 
 _Added in 6.0.0._
 
-A button is a shape plus a colour: `variant` picks the shape — how much ink the button uses — and `theme` picks the colour. A button given a `theme` and no `variant` is solid.
+A button is a **shape plus a color**. `variant` picks the shape — how much ink the button uses — and [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) picks the color. A button given a `theme` and no `variant` is solid.
+
+| `variant` | Shape |
+| --- | --- |
+| `solid` | Filled with the theme color. The default weight for the primary action on a screen. |
+| `outline` | Border and text in the theme color, no fill until hover. |
+| `subtle` | Filled with the theme's tinted background, text in the theme's foreground. |
+| `ghost` | Text only; the fill appears on hover. |
 
 ```html
 <template>
@@ -75,9 +58,28 @@ import { CButton, CButtonGroup } from '@coreui/vue'
 </script>
 ```
 
-The deprecated `color` property renders the same classes as `theme`; `theme` wins when both are set.
+Pair the variant with any theme color. `.btn-link` is the exception — set the `link` property for a link that behaves like a button; it takes its color from the link color, so `theme` and `variant` do not apply to it.
 
-`.btn-link` is the exception. Set the `link` property for a link that behaves like a button — it takes its colour from the link colour, so `theme` and `variant` do not apply to it.
+```html
+<template>
+  <CButton theme="primary">Primary</CButton>
+  <CButton theme="secondary">Secondary</CButton>
+  <CButton theme="success">Success</CButton>
+  <CButton theme="info">Info</CButton>
+  <CButton theme="warning">Warning</CButton>
+  <CButton theme="danger">Danger</CButton>
+  <CButton theme="inverse">Inverse</CButton>
+  <CButton link>Link</CButton>
+</template>
+
+<script setup>
+import { CButton } from '@coreui/vue'
+</script>
+```
+
+`color` still works and is removed in v7. It renders the same `.btn-{variant}` and `.theme-{color}` classes as `theme`, and loses to `theme` when both are set.
+
+> Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the .visually-hidden class.
 
 ## Icon only
 
@@ -180,20 +182,19 @@ import { CButton } from '@coreui/vue'
 
 These Vue buttons use a transparent background, subtle border, and inherit text color from the parent context. They’re best suited for minimalist UI elements like modals, toolbars, or secondary actions.
 
-### Themed outline variants
+### Themed outline buttons
 
-If you need a button, but without the strong background colors, set `color` and `variant=" outline"` props to remove all background colors.
+If you need a button, but without the strong background colors, set `theme` and `variant="outline"` to remove all background colors.
 
 ```html
 <template>
   <CButton theme="primary" variant="outline">Primary</CButton>
   <CButton theme="secondary" variant="outline">Secondary</CButton>
   <CButton theme="success" variant="outline">Success</CButton>
-  <CButton theme="danger" variant="outline">Danger</CButton>
-  <CButton theme="warning" variant="outline">Warning</CButton>
   <CButton theme="info" variant="outline">Info</CButton>
-  <CButton theme="secondary" variant="outline">Light</CButton>
-  <CButton theme="inverse" variant="outline">Dark</CButton>
+  <CButton theme="warning" variant="outline">Warning</CButton>
+  <CButton theme="danger" variant="outline">Danger</CButton>
+  <CButton theme="inverse" variant="outline">Inverse</CButton>
 </template>
 
 <script setup>
@@ -225,18 +226,19 @@ import { CButton } from '@coreui/vue'
 </script>
 ```
 
-To apply theme colors to Vue ghost buttons, use the `color` and `variant="ghost"` properties. By default, these variants color only the text. On hover or focus, they add a background that corresponds to the theme color.
+### Themed ghost buttons
+
+To apply theme colors to Vue ghost buttons, use the `theme` and `variant="ghost"` properties. By default, these variants color only the text. On hover or focus, they add a background that corresponds to the theme color.
 
 ```html
 <template>
   <CButton theme="primary" variant="ghost">Primary</CButton>
   <CButton theme="secondary" variant="ghost">Secondary</CButton>
   <CButton theme="success" variant="ghost">Success</CButton>
-  <CButton theme="danger" variant="ghost">Danger</CButton>
-  <CButton theme="warning" variant="ghost">Warning</CButton>
   <CButton theme="info" variant="ghost">Info</CButton>
-  <CButton theme="secondary" variant="ghost">Light</CButton>
-  <CButton theme="inverse" variant="ghost">Dark</CButton>
+  <CButton theme="warning" variant="ghost">Warning</CButton>
+  <CButton theme="danger" variant="ghost">Danger</CButton>
+  <CButton theme="inverse" variant="ghost">Inverse</CButton>
 </template>
 
 <script setup>

@@ -35,7 +35,7 @@ Due to the widespread use of `<table>` elements across third-party widgets like 
 
 Using the most basic table markup, here's how `.table`-based tables look in CoreUI.
 
-## Variants
+## Theme variants
 
 Use contextual classes to color tables, table rows or individual cells.
 
@@ -206,7 +206,7 @@ Put it on the [responsive wrapper](#responsive-tables) itself when the table can
 
 > ##### Clipping
 > 
-> `.table-card` clips everything at its rounded edge: a dropdown menu opened from a cell, the focus ring of a control in an edge cell, and columns wider than the frame. Append menus outside the table with the dropdown's [`container` option](https://coreui.io/bootstrap/docs/components/dropdowns/#options), and add `.table-responsive` to the wrapper when the table can be wider than it.
+> `.table-card` clips everything at its rounded edge: a dropdown menu opened from a cell, the focus ring of a control in an edge cell, and columns wider than the frame. Append menus outside the table with the dropdown's [`container` option](https://coreui.io/bootstrap/docs/components/dropdown/#options), and add `.table-responsive` to the wrapper when the table can be wider than it.
 
 ## Small tables
 

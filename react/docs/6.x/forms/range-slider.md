@@ -432,7 +432,7 @@ export const RangeSliderTrackExample = () => {
 
 ## Theme variants
 
-Color the filled track and the handles with the `theme` property.
+Color the filled track and the handles with the [`theme`](https://coreui.io/react/docs/customize/components/#theme-variants) property.
 
 ```html
 import React from 'react'
@@ -476,7 +476,7 @@ export const RangeSliderThemeColorsExample = () => {
 }
 ```
 
-The `theme` colours the track and the handles; the tooltip keeps its default look. To theme the tooltip, pass a class through `tooltipClassName` — it lands on the tooltip only. `theme-secondary` gives a grey tooltip on the default slider; `theme-danger` makes the tooltip match a danger slider.
+The `theme` colors the track and the handles; the tooltip keeps its default look. To theme the tooltip, pass a class through `tooltipClassName` — it lands on the tooltip only. `theme-secondary` gives a grey tooltip on the default slider; `theme-danger` makes the tooltip match a danger slider.
 
 ```html
 import React from 'react'

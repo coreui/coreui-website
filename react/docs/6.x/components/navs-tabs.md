@@ -438,9 +438,9 @@ export const NavWorkingWithFlexUtilitiesExample = () => {
 }
 ```
 
-## Variants
+## Theme variants
 
-The `theme` property recolors the active pill, tab or underline to any theme color:
+The [`theme`](https://coreui.io/react/docs/customize/components/#theme-variants) property recolors the active pill, tab or underline to any theme color:
 
 ```html
 import React from 'react'

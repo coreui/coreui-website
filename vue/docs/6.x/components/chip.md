@@ -137,9 +137,9 @@ import { CAvatar, CChip } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Theme variants
 
-Use `color` to apply theme color variants to your chips. Chips are subtle by default as this allows for a clear, themed active state.
+Set [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) to color a chip. Chips are subtle by default as this allows for a clear, themed active state.
 
 ```html
 <template>
@@ -159,7 +159,7 @@ const label = (color) => color.charAt(0).toUpperCase() + color.slice(1)
 </script>
 ```
 
-Combine `variant="outline"` with a `color` for outline color variants.
+Combine `variant="outline"` with a `theme` for outline theme variants.
 
 ```html
 <template>

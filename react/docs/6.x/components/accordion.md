@@ -61,11 +61,11 @@ export const AccordionExample = () => {
 }
 ```
 
-## Variants
+## Theme variants
 
 _Added in 6.0.0._
 
-An open item is a neutral surface on its own. Add `theme` to tint it — closed items are untouched either way, so the theme marks what is currently expanded rather than recoloring the whole control.
+An open item is a neutral surface on its own. Set [`theme`](https://coreui.io/react/docs/customize/components/#theme-variants) to tint it — closed items are untouched either way, so the theme marks what is currently expanded rather than recoloring the whole control.
 
 ```html
 import React from 'react'

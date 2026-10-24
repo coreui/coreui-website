@@ -242,7 +242,7 @@ import { CRating } from '@coreui/vue-pro'
 
 ## Theme variants
 
-Colour the active items with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the rating.
+Color the active items with a [`.theme-*` class](https://coreui.io/vue/docs/customize/components/#theme-variants) on the rating.
 
 ```html
 <template>

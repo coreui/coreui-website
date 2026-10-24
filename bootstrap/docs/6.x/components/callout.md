@@ -12,7 +12,7 @@ Callouts accommodate text of any length, along with optional elements like icons
 </div>
 ```
 
-## Variants
+## Theme variants
 
 The color comes from a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants), which may sit on the callout or on any element above it. It colors the leading edge and tints the border.
 

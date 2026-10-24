@@ -196,9 +196,9 @@ export const ListGroupHorizontalExample = () => {
 }
 ```
 
-## Variants
+## Theme variants
 
-Set `theme` on an item to color it. The same theme class works on the `<CListGroup>` above it — pass it as `className` — so one setting colors the whole list, and an item's own `theme` wins over the one it inherits.
+Set [`theme`](https://coreui.io/react/docs/customize/components/#theme-variants) on an item to color it. The same theme class works on the `<CListGroup>` above it — pass it as `className` — so one setting colors the whole list, and an item's own `theme` wins over the one it inherits.
 
 ```html
 import React from 'react'

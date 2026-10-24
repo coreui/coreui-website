@@ -39,9 +39,9 @@ Click the accordions below to expand/collapse the accordion content.
 </div>
 ```
 
-## Variants
+## Theme variants
 
-An open item is a neutral surface on its own. Add a contextual `.theme-{color}` class to the `.accordion` to tint it — closed items are untouched either way, so the theme marks what is currently expanded rather than recolouring the whole control.
+An open item is a neutral surface on its own. Add a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) to the `.accordion` to tint it — closed items are untouched either way, so the theme marks what is currently expanded rather than recoloring the whole control.
 
 ```html
 <div class="accordion theme-success">

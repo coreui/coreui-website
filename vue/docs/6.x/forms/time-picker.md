@@ -139,7 +139,7 @@ import { CTimePicker } from '@coreui/vue-pro'
 
 ## Theme variants
 
-A [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the picker colours the selected cell of every roll.
+A [`.theme-*` class](https://coreui.io/vue/docs/customize/components/#theme-variants) on the picker colors the selected cell of every roll.
 
 ```html
 <template>

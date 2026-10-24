@@ -19,9 +19,9 @@ import { CCallout } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Theme variants
 
-`theme` sets the color context. It colors the leading edge and tints the border, and it renders a `.theme-*` class — so a theme class on any element above the callout colors it just the same.
+[`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) sets the color context. It colors the leading edge and tints the border, and it renders a `.theme-*` class — so a theme class on any element above the callout colors it just the same.
 
 ```html
 <template>

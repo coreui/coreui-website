@@ -38,6 +38,50 @@ const tags = ref(['Vue.js', 'TypeScript', 'CoreUI'])
 </script>
 ```
 
+## Theme variants
+
+Color the chips with [theme classes](https://coreui.io/vue/docs/customize/components/#theme-variants) to represent categories, status, or priority.
+
+```html
+<template>
+  <CChipInput
+    v-model="labels"
+    :chip-class-name="(value) => variants[value.trim().toLowerCase()] || ''"
+    name="issues"
+    placeholder="Add label..."
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { CChipInput } from '@coreui/vue'
+
+const variants = {
+  feature: 'theme-primary',
+  approved: 'theme-success',
+  'needs review': 'theme-warning',
+  blocking: 'theme-danger',
+}
+
+const labels = ref(['Feature', 'Approved', 'Needs review', 'Blocking'])
+</script>
+```
+
+The example above assigns the class from the chip text with a `chipClassName` callback. Pass a string instead to give every chip the same class:
+
+```html
+<template>
+  <CChipInput v-model="tags" chip-class-name="theme-info" placeholder="Add tagged items..." />
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { CChipInput } from '@coreui/vue'
+
+const tags = ref(['Tagged', 'Items'])
+</script>
+```
+
 ## With form field
 
 Wrap the control in [`<CFormField>`](https://coreui.io/vue/docs/forms/field/) to lay it out with its label and description, and to get validation feedback in the right place.
@@ -123,49 +167,6 @@ import { CChipInput } from '@coreui/vue'
 const smallTags = ref(['Small chip'])
 const defaultTags = ref(['Default chip'])
 const largeTags = ref(['Large chip'])
-</script>
-```
-
-## Color variants
-
-Use `chipClassName` to apply contextual chip colors based on chip text.
-
-```html
-<template>
-  <div>
-    <CChipInput
-      v-model="colorTags"
-      :chip-class-name="(value) => `chip-${value}`"
-      placeholder="Add color name (primary, secondary, etc.)"
-    />
-    <p class="mt-3 fg-2">
-      <small>Try adding: primary, secondary, success, danger, warning, info</small>
-    </p>
-  </div>
-</template>
-
-<script setup>
-import { ref } from 'vue'
-import { CChipInput } from '@coreui/vue'
-
-const colorTags = ref(['primary', 'secondary', 'success', 'danger'])
-</script>
-```
-
-### Static chip class
-
-Apply a single class to all chips.
-
-```html
-<template>
-  <CChipInput v-model="tags" chip-class-name="theme-info" placeholder="Add tagged items..." />
-</template>
-
-<script setup>
-import { ref } from 'vue'
-import { CChipInput } from '@coreui/vue'
-
-const tags = ref(['Tagged', 'Items'])
 </script>
 ```
 

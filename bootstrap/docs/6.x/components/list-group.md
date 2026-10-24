@@ -140,9 +140,9 @@ The responsive variants measure the nearest [query container](https://coreui.io/
 
 **ProTip:** Want equal-width list group items when horizontal? Add `.flex-fill` to each list group item.
 
-## Variants
+## Theme variants
 
-Colour a list item with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants). It works on the item, on the `.list-group` above it, or on both — an item's own theme wins over the one it inherits.
+Color a list item with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants). It works on the item, on the `.list-group` above it, or on both — an item's own theme wins over the one it inherits.
 
 ```html
 <ul class="list-group">

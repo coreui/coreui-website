@@ -16,11 +16,10 @@ export const ButtonExample = () => {
       <CButton theme="primary">Primary</CButton>
       <CButton theme="secondary">Secondary</CButton>
       <CButton theme="success">Success</CButton>
-      <CButton theme="danger">Danger</CButton>
-      <CButton theme="warning">Warning</CButton>
       <CButton theme="info">Info</CButton>
-      <CButton theme="secondary">Light</CButton>
-      <CButton theme="inverse">Dark</CButton>
+      <CButton theme="warning">Warning</CButton>
+      <CButton theme="danger">Danger</CButton>
+      <CButton theme="inverse">Inverse</CButton>
       <CButton link>Link</CButton>
     </>
   )
@@ -76,20 +75,17 @@ export const ButtonOutlineExample = () => {
       <CButton theme="success" variant="outline">
         Success
       </CButton>
-      <CButton theme="danger" variant="outline">
-        Danger
+      <CButton theme="info" variant="outline">
+        Info
       </CButton>
       <CButton theme="warning" variant="outline">
         Warning
       </CButton>
-      <CButton theme="info" variant="outline">
-        Info
-      </CButton>
-      <CButton theme="secondary" variant="outline">
-        Light
+      <CButton theme="danger" variant="outline">
+        Danger
       </CButton>
       <CButton theme="inverse" variant="outline">
-        Dark
+        Inverse
       </CButton>
     </>
   )
@@ -116,20 +112,17 @@ export const ButtonGhostExample = () => {
       <CButton theme="success" variant="ghost">
         Success
       </CButton>
-      <CButton theme="danger" variant="ghost">
-        Danger
+      <CButton theme="info" variant="ghost">
+        Info
       </CButton>
       <CButton theme="warning" variant="ghost">
         Warning
       </CButton>
-      <CButton theme="info" variant="ghost">
-        Info
-      </CButton>
-      <CButton theme="secondary" variant="ghost">
-        Light
+      <CButton theme="danger" variant="ghost">
+        Danger
       </CButton>
       <CButton theme="inverse" variant="ghost">
-        Dark
+        Inverse
       </CButton>
     </>
   )

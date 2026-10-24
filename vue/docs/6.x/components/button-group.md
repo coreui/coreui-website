@@ -106,7 +106,7 @@ import { CButton, CButtonGroup } from '@coreui/vue'
 
 ## Theme variants
 
-Set `theme` on each button to give a whole group one color.
+Set [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) on each button to give a whole group one color.
 
 ```html
 <template>

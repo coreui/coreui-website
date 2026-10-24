@@ -690,6 +690,22 @@ const steps = ['Step 1', 'Step 2', 'Step 3']
 </template>
 ```
 
+## Theme variants
+
+The [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property colors the active and completed step indicators and the connectors:
+
+```html
+<template>
+  <CStepper theme="success" :active-step-number="3" :steps="steps" />
+</template>
+
+<script setup>
+import { CStepper } from '@coreui/vue-pro'
+
+const steps = ['Account', 'Profile', 'Confirmation']
+</script>
+```
+
 ## Usage with v-model
 
 Bind `v-model` and the active step follows your state — the step buttons and the built-in navigation only emit `@update:modelValue` (and `@step-change` with the 1-based number), so the binding feeds it back. Without a binding the stepper manages itself; `active-step-number` seeds the starting step.

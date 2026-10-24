@@ -11,11 +11,10 @@ CoreUI includes a bunch of predefined buttons components, each serving its own s
   <CButton theme="primary">Primary</CButton>
   <CButton theme="secondary">Secondary</CButton>
   <CButton theme="success">Success</CButton>
-  <CButton theme="danger">Danger</CButton>
-  <CButton theme="warning">Warning</CButton>
   <CButton theme="info">Info</CButton>
-  <CButton theme="secondary">Light</CButton>
-  <CButton theme="inverse">Dark</CButton>
+  <CButton theme="warning">Warning</CButton>
+  <CButton theme="danger">Danger</CButton>
+  <CButton theme="inverse">Inverse</CButton>
   <CButton link>Link</CButton>
 </template>
 
@@ -79,11 +78,10 @@ If you need a button, but without the strong background colors, set `color` and 
   <CButton theme="primary" variant="outline">Primary</CButton>
   <CButton theme="secondary" variant="outline">Secondary</CButton>
   <CButton theme="success" variant="outline">Success</CButton>
-  <CButton theme="danger" variant="outline">Danger</CButton>
-  <CButton theme="warning" variant="outline">Warning</CButton>
   <CButton theme="info" variant="outline">Info</CButton>
-  <CButton theme="secondary" variant="outline">Light</CButton>
-  <CButton theme="inverse" variant="outline">Dark</CButton>
+  <CButton theme="warning" variant="outline">Warning</CButton>
+  <CButton theme="danger" variant="outline">Danger</CButton>
+  <CButton theme="inverse" variant="outline">Inverse</CButton>
 </template>
 
 <script setup>
@@ -122,11 +120,10 @@ To apply theme colors to Vue ghost buttons, use the `color` and `variant="ghost"
   <CButton theme="primary" variant="ghost">Primary</CButton>
   <CButton theme="secondary" variant="ghost">Secondary</CButton>
   <CButton theme="success" variant="ghost">Success</CButton>
-  <CButton theme="danger" variant="ghost">Danger</CButton>
-  <CButton theme="warning" variant="ghost">Warning</CButton>
   <CButton theme="info" variant="ghost">Info</CButton>
-  <CButton theme="secondary" variant="ghost">Light</CButton>
-  <CButton theme="inverse" variant="ghost">Dark</CButton>
+  <CButton theme="warning" variant="ghost">Warning</CButton>
+  <CButton theme="danger" variant="ghost">Danger</CButton>
+  <CButton theme="inverse" variant="ghost">Inverse</CButton>
 </template>
 
 <script setup>

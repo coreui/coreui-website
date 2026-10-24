@@ -56,9 +56,9 @@ export const SpinnerGrowColorsExample = () => {
 }
 ```
 
-## Variants
+## Colors
 
-Both spinners take their appearance from `currentColor`, so the `color` property — which renders one of our [text color utilities](https://coreui.io/react/docs/utilities/colors/) — recolors either of them.
+Both spinners take their appearance from `currentColor`, so the `color` property — which renders one of our [text color utilities](https://coreui.io/react/docs/utilities/colors/) — recolors either of them. Without it a spinner takes the text color around it — inside a themed button, the color of its label. A `.theme-*` class does not recolor a spinner; set `color` for a theme color.
 
 ```html
 import React from 'react'

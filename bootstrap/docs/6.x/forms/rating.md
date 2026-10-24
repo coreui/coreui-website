@@ -133,7 +133,7 @@ Larger or smaller rating component? Add `data-coreui-size="lg"` or `data-coreui-
 
 ## Theme variants
 
-Colour the active items with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the rating.
+Color the active items with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the rating.
 
 ```html
 <div class="theme-danger" data-coreui-rating data-coreui-value="3"></div>

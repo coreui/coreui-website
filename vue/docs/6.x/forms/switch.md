@@ -120,7 +120,7 @@ import { CFormField, CFormText, CSwitch } from '@coreui/vue'
 
 ## Theme variants
 
-Modify the appearance of checked switches with the `theme` property — it sets the checked background and border color to the theme color.
+Modify the appearance of checked switches with the [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property — it sets the checked background and border color to the theme color.
 
 ```html
 <template>

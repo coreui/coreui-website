@@ -395,7 +395,7 @@ import { CRangeSlider } from '@coreui/vue-pro'
 
 ## Theme variants
 
-Color the filled track and the handles with the `theme` property.
+Color the filled track and the handles with the [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property.
 
 ```html
 <template>
@@ -428,7 +428,7 @@ import { CRangeSlider } from '@coreui/vue-pro'
 </script>
 ```
 
-The `theme` colours the track and the handles; the tooltip keeps its default look. To theme the tooltip, pass a class through `tooltip-class-name` — it lands on the tooltip only. `theme-secondary` gives a grey tooltip on the default slider; `theme-danger` makes the tooltip match a danger slider.
+The `theme` colors the track and the handles; the tooltip keeps its default look. To theme the tooltip, pass a class through `tooltip-class-name` — it lands on the tooltip only. `theme-secondary` gives a grey tooltip on the default slider; `theme-danger` makes the tooltip match a danger slider.
 
 ```html
 <template>

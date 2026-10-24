@@ -128,6 +128,35 @@ import { CToaster, CToast, CToastHeader, CToastBody } from '@coreui/vue'
 </script>
 ```
 
+### Theme variants
+
+A [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) tints the toast's border and header; the body keeps the toast surface.
+
+```html
+<template>
+  <div class="d-flex flex-column gap-4">
+    <CToast :autohide="false" theme="success" visible>
+      <CToastHeader close-button>
+        <strong class="me-auto">Deployment</strong>
+        <small>11 mins ago</small>
+      </CToastHeader>
+      <CToastBody>Build finished and deployed to production.</CToastBody>
+    </CToast>
+    <CToast :autohide="false" theme="danger" visible>
+      <CToastHeader close-button>
+        <strong class="me-auto">Deployment</strong>
+        <small>2 seconds ago</small>
+      </CToastHeader>
+      <CToastBody>Build failed on step 4 of 9.</CToastBody>
+    </CToast>
+  </div>
+</template>
+
+<script setup>
+import { CToast, CToastBody, CToastHeader } from '@coreui/vue'
+</script>
+```
+
 ### Custom content
 
 Customize your toasts by removing sub-components, tweaking them with [utilities](https://coreui.io/vue/docs/utilities/api/), or by adding your own markup. Here we've created a simpler toast by removing the default `<CToastHeader>`, adding a custom hide icon from [CoreUI Icons](https://coreui.io/icons/), and using some [flexbox utilities](https://coreui.io/vue/docs/utilities/flex/) to adjust the layout.
@@ -164,25 +193,6 @@ Alternatively, you can also add additional controls and components to toasts.
 
 <script setup>
 import { CToast, CToastBody, CButton, CToastClose } from '@coreui/vue'
-</script>
-```
-
-### Color schemes
-
-Building on the above example, you can create different toast color schemes with our [color](https://coreui.io/vue/docs/utilities/colors/) and [background](https://coreui.io/vue/docs/utilities/background/) utilities. Here we've set `color="primary"` and added `.fg-white` class to the `<Ctoast>`, and then set `white` property to our close button. For a crisp edge, we remove the default border with `.border-0`.
-
-```html
-<template>
-  <CToast :autohide="false" theme="primary" class="fg-white align-items-center" visible>
-    <div class="d-flex">
-      <CToastBody>Hello, world! This is a toast message.</CToastBody>
-      <CToastClose class="me-3 m-auto" white />
-    </div>
-  </CToast>
-</template>
-
-<script setup>
-import { CToast, CToastBody, CToastClose } from '@coreui/vue'
 </script>
 ```
 

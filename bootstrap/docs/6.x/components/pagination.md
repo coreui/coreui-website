@@ -90,7 +90,7 @@ You can optionally swap out active or disabled anchors for `<span>`, or omit the
 </nav>
 ```
 
-## Variants
+## Theme variants
 
 A [theme class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) recolors the whole pagination: links read the theme's foreground, the hover state its subtle surface, and the active page its solid color.
 

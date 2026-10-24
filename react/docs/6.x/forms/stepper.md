@@ -742,7 +742,7 @@ export const StepperSkipValidationExample = () => {
 
 ## Theme variants
 
-The `theme` property colors the active and completed step indicators and the connectors:
+The [`theme`](https://coreui.io/react/docs/customize/components/#theme-variants) property colors the active and completed step indicators and the connectors:
 
 ```html
 import React from 'react'

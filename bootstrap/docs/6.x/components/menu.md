@@ -232,9 +232,9 @@ Add `.disabled` to items in the menu to style them as disabled.
 </div>
 ```
 
-### Variants
+### Theme variants
 
-Colour an individual item with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants). The item reads the theme's foreground while at rest and swaps to the theme's fill with a contrasting label once it is `.active`, so one class covers both states.
+Color an individual item with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants). The item reads the theme's foreground while at rest and swaps to the theme's fill with a contrasting label once it is `.active`, so one class covers both states.
 
 ```html
 <div class="menu show position-static">

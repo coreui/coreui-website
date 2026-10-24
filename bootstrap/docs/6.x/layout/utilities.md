@@ -8,7 +8,7 @@ Use our [display utilities](https://coreui.io/bootstrap/docs/utilities/display/)
 
 ## Flexbox options
 
-CoreUI for Bootstrap is built with flexbox, but not every element's `display` has been changed to `display: flex` as this would add many unnecessary overrides and unexpectedly change key browser behaviors. Most of [our components](https://coreui.io/bootstrap/docs/components/alerts/) are built with flexbox enabled.
+CoreUI for Bootstrap is built with flexbox, but not every element's `display` has been changed to `display: flex` as this would add many unnecessary overrides and unexpectedly change key browser behaviors. Most of [our components](https://coreui.io/bootstrap/docs/components/alert/) are built with flexbox enabled.
 
 Should you need to add `display: flex` to an element, do so with `.d-flex` or one of the responsive variants (e.g., `.d-sm-flex`). You'll need this class or `display` value to allow the use of our extra [flexbox utilities](https://coreui.io/bootstrap/docs/utilities/flex/) for sizing, alignment, spacing, and more.
 

@@ -80,7 +80,7 @@ export const TooltipCustomExample = () => {
 
 ### Theme variants
 
-A tooltip reads the `.theme-{color}` slots, so a theme class on the tip colours its surface and picks the contrasting text. Pass it through `className`; without one the tip keeps its default look, the page's foreground colour.
+A tooltip reads the `.theme-{color}` slots, so a [theme class](https://coreui.io/react/docs/customize/components/#theme-variants) on the tip colors its surface and picks the contrasting text. Pass it through `className`; without one the tip keeps its default look, the page's foreground color.
 
 ```html
 import React from 'react'

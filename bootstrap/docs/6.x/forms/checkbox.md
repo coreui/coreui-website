@@ -178,7 +178,7 @@ Create button-like checkboxes by putting `.btn-check` on a `<label>` with the bu
 </label>
 ```
 
-> Visually, these checkbox toggle buttons are identical to the [button plugin toggle buttons](https://coreui.io/bootstrap/docs/components/buttons/#button-plugin). However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as "checked"/"not checked" (since, despite their appearance, they are fundamentally still checkboxes), whereas the button plugin toggle buttons will be announced as "button"/"button pressed". The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button.
+> Visually, these checkbox toggle buttons are identical to the [button plugin toggle buttons](https://coreui.io/bootstrap/docs/components/button/#button-plugin). However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as "checked"/"not checked" (since, despite their appearance, they are fundamentally still checkboxes), whereas the button plugin toggle buttons will be announced as "button"/"button pressed". The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button.
 
 ## Deprecated markup
 

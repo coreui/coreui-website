@@ -37,7 +37,7 @@ your-project/
 
 Every Sass variable in CoreUI for Bootstrap includes the `!default` flag allowing you to override the variable's default value in your own Sass without modifying CoreUI's source code. Copy and paste variables as needed, modify their values, and remove the `!default` flag. If a variable has already been assigned, then it won't be re-assigned by the default values in CoreUI.
 
-You will find CoreUI's variables in `node_modules/@coreui/coreui/scss/` (or `node_modules/@coreui/coreui-pro/scss/` if you use CoreUI PRO): the global settings in `_config.scss`, the palette in `_colors.scss`, and the theme colours in `_theme.scss`. Some variables are set to `null`, these variables don't output the property unless they are overridden in your configuration. You can also find a specific component variables list in **Customizing** section ex. [Alerts - Customizing](https://coreui.io/bootstrap/docs/components/alerts/#customizing)
+You will find CoreUI's variables in `node_modules/@coreui/coreui/scss/` (or `node_modules/@coreui/coreui-pro/scss/` if you use CoreUI PRO): the global settings in `_config.scss`, the palette in `_colors.scss`, and the theme colours in `_theme.scss`. Some variables are set to `null`, these variables don't output the property unless they are overridden in your configuration. You can also find a specific component variables list in **Customizing** section ex. [Alerts - Customizing](https://coreui.io/bootstrap/docs/components/alert/#customizing)
 
 Here's an example that changes the `background-color` and `color` for the `<body>` when importing and compiling CoreUI for Bootstrap via npm:
 

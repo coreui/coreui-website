@@ -7502,7 +7502,7 @@ Use our [display utilities](https://coreui.io/bootstrap/docs/utilities/display/)
 
 ## Flexbox options
 
-CoreUI for Bootstrap is built with flexbox, but not every element's `display` has been changed to `display: flex` as this would add many unnecessary overrides and unexpectedly change key browser behaviors. Most of [our components](https://coreui.io/bootstrap/docs/components/alerts/) are built with flexbox enabled.
+CoreUI for Bootstrap is built with flexbox, but not every element's `display` has been changed to `display: flex` as this would add many unnecessary overrides and unexpectedly change key browser behaviors. Most of [our components](https://coreui.io/bootstrap/docs/components/alert/) are built with flexbox enabled.
 
 Should you need to add `display: flex` to an element, do so with `.d-flex` or one of the responsive variants (e.g., `.d-sm-flex`). You'll need this class or `display` value to allow the use of our extra [flexbox utilities](https://coreui.io/bootstrap/docs/utilities/flex/) for sizing, alignment, spacing, and more.
 
@@ -8650,7 +8650,7 @@ Due to the widespread use of `<table>` elements across third-party widgets like 
 
 Using the most basic table markup, here's how `.table`-based tables look in CoreUI.
 
-## Variants
+## Theme variants
 
 Use contextual classes to color tables, table rows or individual cells.
 
@@ -8821,7 +8821,7 @@ Put it on the [responsive wrapper](#responsive-tables) itself when the table can
 
 > ##### Clipping
 > 
-> `.table-card` clips everything at its rounded edge: a dropdown menu opened from a cell, the focus ring of a control in an edge cell, and columns wider than the frame. Append menus outside the table with the dropdown's [`container` option](https://coreui.io/bootstrap/docs/components/dropdowns/#options), and add `.table-responsive` to the wrapper when the table can be wider than it.
+> `.table-card` clips everything at its rounded edge: a dropdown menu opened from a cell, the focus ring of a control in an edge cell, and columns wider than the frame. Append menus outside the table with the dropdown's [`container` option](https://coreui.io/bootstrap/docs/components/dropdown/#options), and add `.table-responsive` to the wrapper when the table can be wider than it.
 
 ## Small tables
 
@@ -10254,7 +10254,7 @@ Create button-like checkboxes by putting `.btn-check` on a `<label>` with the bu
 </label>
 ```
 
-> Visually, these checkbox toggle buttons are identical to the [button plugin toggle buttons](https://coreui.io/bootstrap/docs/components/buttons/#button-plugin). However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as "checked"/"not checked" (since, despite their appearance, they are fundamentally still checkboxes), whereas the button plugin toggle buttons will be announced as "button"/"button pressed". The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button.
+> Visually, these checkbox toggle buttons are identical to the [button plugin toggle buttons](https://coreui.io/bootstrap/docs/components/button/#button-plugin). However, they are conveyed differently by assistive technologies: the checkbox toggles will be announced by screen readers as "checked"/"not checked" (since, despite their appearance, they are fundamentally still checkboxes), whereas the button plugin toggle buttons will be announced as "button"/"button pressed". The choice between these two approaches will depend on the type of toggle you are creating, and whether or not the toggle will make sense to users when announced as a checkbox or as an actual button.
 
 ## Deprecated markup
 
@@ -10407,9 +10407,9 @@ Wrap chips and add `data-coreui-chip-input` to enable behavior.
 </div>
 ```
 
-## Variants
+## Theme variants
 
-Use contextual chip classes inside Bootstrap 6 Chip Input to represent categories, status, or priority.
+Color a chip with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) to represent categories, status, or priority.
 
 ```html
 <div class="chip-input" data-coreui-chip-input data-coreui-name="issues" data-coreui-placeholder="Add label...">
@@ -10420,7 +10420,7 @@ Use contextual chip classes inside Bootstrap 6 Chip Input to represent categorie
 </div>
 ```
 
-In the example below, the chip color is assigned dynamically based on the chip text using the `chipClassName` callback. Each value (e.g., `Feature` or `Blocking`) maps to a contextual class, so chips remain visually consistent even when added programmatically.
+In the example below, the chip color is assigned dynamically based on the chip text using the `chipClassName` callback. Each value (e.g., `Feature` or `Blocking`) maps to a theme class, so chips remain visually consistent even when added programmatically.
 
 ```html
 <div id="chipVariants" class="chip-input"></div>
@@ -17911,7 +17911,7 @@ The fill is a single custom property, so a static fill needs no plugin at all: s
 
 ## Tooltip
 
-Add `data-coreui-tooltips` to the wrapper to show a tooltip with the value that follows the thumb. It appears while the pointer is over the input, while the thumb is held, and while the input has focus. The plugin renders `<div class="form-range-tooltip tooltip bs-tooltip-top">` with `.tooltip-arrow` and `.tooltip-inner`, so it takes the look and the `--cui-tooltip-*` tokens of the [tooltip](https://coreui.io/bootstrap/docs/components/tooltips/) component; `tooltipClass` adds classes to it, for example a `theme-{color}`. `tooltipsFormat` may return HTML, which is sanitized, and its text becomes the input's `aria-valuetext`.
+Add `data-coreui-tooltips` to the wrapper to show a tooltip with the value that follows the thumb. It appears while the pointer is over the input, while the thumb is held, and while the input has focus. The plugin renders `<div class="form-range-tooltip tooltip bs-tooltip-top">` with `.tooltip-arrow` and `.tooltip-inner`, so it takes the look and the `--cui-tooltip-*` tokens of the [tooltip](https://coreui.io/bootstrap/docs/components/tooltip/) component; `tooltipClass` adds classes to it, for example a `theme-{color}`. `tooltipsFormat` may return HTML, which is sanitized, and its text becomes the input's `aria-valuetext`.
 
 ```html
 <label for="rangeTooltip" class="form-label">Brightness</label>
@@ -18364,7 +18364,7 @@ By default, a press on a tick moves the nearest handle to its value, and the han
 
 ## Tooltips
 
-The value tooltip is the [Tooltip](https://coreui.io/bootstrap/docs/components/tooltips/) component's markup: the plugin renders `<div class="form-range-tooltip tooltip bs-tooltip-top">` (`bs-tooltip-start` when vertical, `bs-tooltip-end` when vertical in a right-to-left page) with `.tooltip-arrow` and `.tooltip-inner`, so it takes the tooltip's look and its `--cui-tooltip-*` tokens. It does not inherit the slider's theme class; give it its own through `tooltipClass`.
+The value tooltip is the [Tooltip](https://coreui.io/bootstrap/docs/components/tooltip/) component's markup: the plugin renders `<div class="form-range-tooltip tooltip bs-tooltip-top">` (`bs-tooltip-start` when vertical, `bs-tooltip-end` when vertical in a right-to-left page) with `.tooltip-arrow` and `.tooltip-inner`, so it takes the tooltip's look and its `--cui-tooltip-*` tokens. It does not inherit the slider's theme class; give it its own through `tooltipClass`.
 
 By default, tooltips show the current value of a handle while the pointer is over it, while it is held, and while it has a visible focus. Set `tooltips` to `"always"` to keep them visible at all times, or to `false` to turn them off.
 
@@ -18763,7 +18763,7 @@ Larger or smaller rating component? Add `data-coreui-size="lg"` or `data-coreui-
 
 ## Theme variants
 
-Colour the active items with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the rating.
+Color the active items with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the rating.
 
 ```html
 <div class="theme-danger" data-coreui-rating data-coreui-value="3"></div>
@@ -19732,6 +19732,37 @@ To skip form validation, so users can move on with an invalid step, add `data-co
 
 Validation is fully automatic, no extra JavaScript is needed.
 
+## Theme variants
+
+A [theme class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) colors the active and completed step indicators and the connectors:
+
+```html
+<div class="stepper theme-success" data-coreui-stepper>
+  <ol class="stepper-steps">
+    <li class="stepper-step complete">
+      <button type="button" class="stepper-step-button" data-coreui-step="1">
+        <span class="stepper-step-indicator">1</span>
+        Account
+      </button>
+      <span class="stepper-step-connector"><span></span></span>
+    </li>
+    <li class="stepper-step active">
+      <button type="button" class="stepper-step-button" data-coreui-step="2">
+        <span class="stepper-step-indicator">2</span>
+        Profile
+      </button>
+      <span class="stepper-step-connector"><span></span></span>
+    </li>
+    <li class="stepper-step">
+      <button type="button" class="stepper-step-button" data-coreui-step="3">
+        <span class="stepper-step-indicator">3</span>
+        Review
+      </button>
+    </li>
+  </ol>
+</div>
+```
+
 ## Accessibility (A11Y)
 
 The CoreUI Stepper Component is built with accessibility in mind:
@@ -19820,37 +19851,6 @@ const myStepper = document.getElementById('myStepper')
 myStepper.addEventListener('stepChange.coreui.stepper', event => {
   // console.log('Step changed to:', event.detail.index)
 })
-```
-
-## Theme variants
-
-A [theme class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) colors the active and completed step indicators and the connectors:
-
-```html
-<div class="stepper theme-success" data-coreui-stepper>
-  <ol class="stepper-steps">
-    <li class="stepper-step complete">
-      <button type="button" class="stepper-step-button" data-coreui-step="1">
-        <span class="stepper-step-indicator">1</span>
-        Account
-      </button>
-      <span class="stepper-step-connector"><span></span></span>
-    </li>
-    <li class="stepper-step active">
-      <button type="button" class="stepper-step-button" data-coreui-step="2">
-        <span class="stepper-step-indicator">2</span>
-        Profile
-      </button>
-      <span class="stepper-step-connector"><span></span></span>
-    </li>
-    <li class="stepper-step">
-      <button type="button" class="stepper-step-button" data-coreui-step="3">
-        <span class="stepper-step-indicator">3</span>
-        Review
-      </button>
-    </li>
-  </ol>
-</div>
 ```
 
 ## Customizing
@@ -20501,7 +20501,7 @@ value, so typing and picking stay in sync.
 
 ### Theme variants
 
-A [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the picker colours the selected cell of every roll.
+A [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the picker colors the selected cell of every roll.
 
 ```html
 <div class="row">
@@ -22128,9 +22128,9 @@ Click the accordions below to expand/collapse the accordion content.
 </div>
 ```
 
-## Variants
+## Theme variants
 
-An open item is a neutral surface on its own. Add a contextual `.theme-{color}` class to the `.accordion` to tint it — closed items are untouched either way, so the theme marks what is currently expanded rather than recolouring the whole control.
+An open item is a neutral surface on its own. Add a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) to the `.accordion` to tint it — closed items are untouched either way, so the theme marks what is currently expanded rather than recoloring the whole control.
 
 ```html
 <div class="accordion theme-success">
@@ -22581,7 +22581,7 @@ Bootstrap alerts can accommodate text of any length and feature an optional clos
 </div>
 ```
 
-## Variants
+## Theme variants
 
 The color comes from a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants), which may sit on the alert or on any element above it.
 
@@ -23249,9 +23249,9 @@ Without a count, a `.badge-position-*` on any element makes a generic indicator 
 </button>
 ```
 
-## Variants
+## Theme variants
 
-Use the contextual `.theme-{color}` classes to apply a semantic theme color to badges. Combine them with `.badge-subtle` or `.badge-outline` for the other two variants.
+Color a badge with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants). Combine it with `.badge-subtle` or `.badge-outline` for the other two variants.
 
 > ##### Conveying meaning to assistive technologies
 > 
@@ -23590,14 +23590,14 @@ The `.btn` class sets up the shape of a button — size, spacing, radius, the fo
 <button type="button" class="btn">Base class</button>
 ```
 
-## Variants
+## Theme variants
 
-A button is a **shape plus a colour**. The shape is the variant — how much ink the button uses — and the colour comes from a theme:
+A button is a **shape plus a color**. The shape is the variant — how much ink the button uses — and the color comes from a theme:
 
 | Variant | Shape |
 | --- | --- |
-| `.btn-solid` | Filled with the theme colour. The default weight for the primary action on a screen. |
-| `.btn-outline` | Border and text in the theme colour, no fill until hover. |
+| `.btn-solid` | Filled with the theme color. The default weight for the primary action on a screen. |
+| `.btn-outline` | Border and text in the theme color, no fill until hover. |
 | `.btn-subtle` | Filled with the theme's tinted background, text in the theme's foreground. |
 | `.btn-ghost` | Text only; the fill appears on hover. |
 
@@ -23608,7 +23608,7 @@ A button is a **shape plus a colour**. The shape is the variant — how much ink
 <button type="button" class="btn-ghost theme-primary">Ghost</button>
 ```
 
-The colour is a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants), which may sit on the button or on any element above it — theme a toolbar and every button inside follows. Without one, the variant renders in the neutral surface colours.
+The color is a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants), which may sit on the button or on any element above it — theme a toolbar and every button inside follows. Without one, the variant renders in the neutral surface colors.
 
 ```html
 <button type="button" class="btn-solid">Solid</button>
@@ -23617,7 +23617,7 @@ The colour is a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/co
 <button type="button" class="btn-ghost">Ghost</button>
 ```
 
-Pair the variant with any theme colour. `.btn-link` is the exception — it is a link that behaves like a button, so it takes its colour from the link colour rather than from a theme.
+Pair the variant with any theme color. `.btn-link` is the exception — it is a link that behaves like a button, so it takes its color from the link color rather than from a theme.
 
 ```html
 <button type="button" class="btn-solid theme-${c.name}">${c.title}</button>
@@ -24678,7 +24678,7 @@ Enable range selection by adding `data-coreui-range="true"` to allow users to pi
 
 ## Theme variants
 
-Colour the selection with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the calendar: the selected day, the range tint, the range-hover outline and the date hover in the header all follow it.
+Color the selection with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the calendar: the selected day, the range tint, the range-hover outline and the date hover in the header all follow it.
 
 ```html
 <div class="d-flex justify-content-center">
@@ -25306,7 +25306,7 @@ Callouts accommodate text of any length, along with optional elements like icons
 </div>
 ```
 
-## Variants
+## Theme variants
 
 The color comes from a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants), which may sit on the callout or on any element above it. It colors the leading edge and tints the border.
 
@@ -26774,9 +26774,9 @@ Add `.chip-img` for an image like an avatar or use our avatar component.
 </div>
 ```
 
-## Variants
+## Theme variants
 
-Colour a chip with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants), on the chip itself or on any element above it. Chips are subtle by default as this allows for a clear, themed active state.
+Color a chip with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants), on the chip itself or on any element above it. Chips are subtle by default as this allows for a clear, themed active state.
 
 ```html
 <div class="d-flex flex-wrap gap-1">
@@ -28597,7 +28597,7 @@ Add `.drawer-no-backdrop` to hide the backdrop while keeping the drawer modal �
 
 ### Instant
 
-Add `.drawer-instant` to a drawer that should appear and disappear at once, with no slide and no backdrop fade. It is the same opt-out that [`.alert-instant`](https://coreui.io/bootstrap/docs/components/alerts/#dismissing) provides, and it applies to both directions.
+Add `.drawer-instant` to a drawer that should appear and disappear at once, with no slide and no backdrop fade. It is the same opt-out that [`.alert-instant`](https://coreui.io/bootstrap/docs/components/alert/#dismissing) provides, and it applies to both directions.
 
 ### Dark
 
@@ -30671,7 +30671,7 @@ An option that is an `<a>` with an `href` navigates on click and on <kbd>Enter</
   <div class="list-box-options" role="listbox" aria-label="Documentation">
     <a class="list-box-option" href="/components/menu/" data-coreui-value="menu">Menu</a>
     <a class="list-box-option" href="/components/list-group/" data-coreui-value="list-group">List group</a>
-    <a class="list-box-option" href="/components/dropdowns/" data-coreui-value="dropdown">Dropdown</a>
+    <a class="list-box-option" href="/components/dropdown/" data-coreui-value="dropdown">Dropdown</a>
   </div>
 </div>
 ```
@@ -31058,9 +31058,9 @@ The responsive variants measure the nearest [query container](https://coreui.io/
 
 **ProTip:** Want equal-width list group items when horizontal? Add `.flex-fill` to each list group item.
 
-## Variants
+## Theme variants
 
-Colour a list item with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants). It works on the item, on the `.list-group` above it, or on both — an item's own theme wins over the one it inherits.
+Color a list item with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants). It works on the item, on the `.list-group` above it, or on both — an item's own theme wins over the one it inherits.
 
 ```html
 <ul class="list-group">
@@ -31761,9 +31761,9 @@ Add `.disabled` to items in the menu to style them as disabled.
 </div>
 ```
 
-### Variants
+### Theme variants
 
-Colour an individual item with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants). The item reads the theme's foreground while at rest and swaps to the theme's fill with a contrasting label once it is `.active`, so one class covers both states.
+Color an individual item with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants). The item reads the theme's foreground while at rest and swaps to the theme's fill with a contrasting label once it is `.active`, so one class covers both states.
 
 ```html
 <div class="menu show position-static">
@@ -32458,7 +32458,7 @@ Modals are vertically and horizontally centered by the browser — the v5 `.moda
 
 ### Tooltips and popovers
 
-[Tooltips](https://coreui.io/bootstrap/docs/components/tooltips/) and [popovers](https://coreui.io/bootstrap/docs/components/popovers/) can be placed within modals as needed. Point their `container` option at the modal so they render inside the top layer; when modals are closed, any tooltips and popovers within are also automatically dismissed.
+[Tooltips](https://coreui.io/bootstrap/docs/components/tooltip/) and [popovers](https://coreui.io/bootstrap/docs/components/popover/) can be placed within modals as needed. Point their `container` option at the modal so they render inside the top layer; when modals are closed, any tooltips and popovers within are also automatically dismissed.
 
 <dialog class="modal" id="exampleModalPopovers" aria-labelledby="exampleModalPopoversLabel">
   <div class="modal-header">
@@ -33331,7 +33331,7 @@ Similar to the `.nav-fill` example using a `<nav>`-based navigation.
 ```
 
 Either class also stretches an [enclosed nav](#enclosed), which otherwise stays as wide as its links.
-## Variants
+## Theme variants
 
 A [theme class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) recolors a nav. Every link reads the theme's foreground; what marks the active one follows the variant — a tint on the base nav, a solid fill on pills, the line on either underline.
 
@@ -34974,7 +34974,7 @@ You can optionally swap out active or disabled anchors for `<span>`, or omit the
 </nav>
 ```
 
-## Variants
+## Theme variants
 
 A [theme class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) recolors the whole pagination: links read the theme's foreground, the hover state its subtle surface, and the active page its solid color.
 
@@ -35262,7 +35262,7 @@ The pulse reads `--cui-placeholder-opacity-max` and `-min` on each `.placeholder
 Things to know when using the popover plugin:
 
 - Popovers rely on the 3rd party library [Floating UI](https://floating-ui.com/) for positioning. You must include [floating-ui.core.umd.min.js](https://cdn.jsdelivr.net/npm/@floating-ui/core@1.8.0/dist/floating-ui.core.umd.min.js) and [floating-ui.dom.umd.min.js](https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.8.0/dist/floating-ui.dom.umd.min.js) (in this order) before coreui.js or use `coreui.bundle.min.js` / `coreui.bundle.js` which contains Floating UI in order for popovers to work!
-- Popovers require the [tooltip plugin](https://coreui.io/bootstrap/docs/components/tooltips/) as a dependency.
+- Popovers require the [tooltip plugin](https://coreui.io/bootstrap/docs/components/tooltip/) as a dependency.
 - Popovers are opt-in for performance reasons, so **you must initialize them yourself**.
 - Zero-length `title` and `content` values will never show a popover.
 - Specify `container: 'body'` to avoid rendering problems in more complex components (like our input groups, button groups, etc).
@@ -35325,7 +35325,7 @@ Four options are available: `top`, `end`, `bottom` and `start`.
 </button>
 ```
 
-`start` and `end` are logical: they follow the reading direction, so `end` is the right side in LTR and the left side in RTL. The same names place a [menu](https://coreui.io/bootstrap/docs/components/menu/) and a [dropdown](https://coreui.io/bootstrap/docs/components/dropdowns/).
+`start` and `end` are logical: they follow the reading direction, so `end` is the right side in LTR and the left side in RTL. The same names place a [menu](https://coreui.io/bootstrap/docs/components/menu/) and a [dropdown](https://coreui.io/bootstrap/docs/components/dropdown/).
 
 #### Deprecated physical names
 
@@ -37135,7 +37135,7 @@ A sidebar follows the page's color scheme. `.sidebar-dark` and `.sidebar-light` 
 
 ## Theme variants
 
-Add a [`.theme-{color}` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) to the sidebar and it paints its surface, text, icons and the hover and active links from that colour's slots — the background from `--cui-theme-bg`, the text from `--cui-theme-contrast`, the hovered and active links from `--cui-theme-hover` and `--cui-theme-active`. Combine it with a scheme class when the colour needs a fixed scheme.
+Add a [`.theme-{color}` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) to the sidebar and it paints its surface, text, icons and the hover and active links from that color's slots — the background from `--cui-theme-bg`, the text from `--cui-theme-contrast`, the hovered and active links from `--cui-theme-hover` and `--cui-theme-active`. Combine it with a scheme class when the color needs a fixed scheme.
 
 ## Placement
 
@@ -37420,9 +37420,9 @@ If you don't fancy a border spinner, switch to the grow spinner. While it doesn'
 </div>
 ```
 
-## Variants
+## Colors
 
-Both spinners use `currentColor` for their appearance, so any [text color utility][color] recolors them.
+Both spinners use `currentColor` for their appearance, so any [text color utility][color] recolors them. Without one a spinner takes the text color around it — inside a themed button, the color of its label. A `.theme-*` class does not recolor a spinner; use `.fg-{color}` for a theme color.
 
 > **Why not use `border-color` utilities?** Each border spinner specifies a `transparent` border for at least one side, so `.border-{color}` utilities would override that.
 
@@ -38029,7 +38029,7 @@ Set `data-coreui-theme="dark"` on a toast to render it dark whatever [color mode
 </div>
 ```
 
-### Variants
+### Theme variants
 
 A [theme class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) tints the toast's border and header. Add it to the toast to recolor the whole notification:
 
@@ -38235,7 +38235,7 @@ Toasts you create at runtime — from a form submission, a request that settled,
 
 ## Accessibility
 
-Toasts are meant to be brief interruptions for your visitors or users. To assist those using screen readers and similar assistive technologies, you should wrap your toasts in an [`aria-live` region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Changes to live regions, such as injecting or updating a toast component, are automatically announced by screen readers without moving the user's focus or interrupting the user. Additionally, include `aria-atomic="true"` to ensure the entire toast is announced as a single, unfragmented unit, rather than just announcing what changed—this prevents issues if only part of the toast is updated or if the same toast appears again later. If the information is critical to the process, such as a list of form errors, use the [alert component](https://coreui.io/bootstrap/docs/components/alerts/) instead of a toast.
+Toasts are meant to be brief interruptions for your visitors or users. To assist those using screen readers and similar assistive technologies, you should wrap your toasts in an [`aria-live` region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Changes to live regions, such as injecting or updating a toast component, are automatically announced by screen readers without moving the user's focus or interrupting the user. Additionally, include `aria-atomic="true"` to ensure the entire toast is announced as a single, unfragmented unit, rather than just announcing what changed—this prevents issues if only part of the toast is updated or if the same toast appears again later. If the information is critical to the process, such as a list of form errors, use the [alert component](https://coreui.io/bootstrap/docs/components/alert/) instead of a toast.
 
 Note that the live region must exist in the markup *before* the toast is generated or updated. If you generate both dynamically and inject them simultaneously, assistive technologies generally will not announce them.
 
@@ -38980,7 +38980,7 @@ Feel free to personalize the look of your tooltips with [CSS variables](#css-var
 
 ### Theme variants
 
-A tooltip reads the `.theme-{color}` slots, so a theme class on the tip colours its surface and picks the contrasting text. The class lands on the tip through `data-coreui-custom-class`; without one the tip keeps its default look, the page's foreground colour.
+A tooltip reads the `.theme-{color}` slots, so a [theme class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the tip colors its surface and picks the contrasting text. The class lands on the tip through `data-coreui-custom-class`; without one the tip keeps its default look, the page's foreground color.
 
 ```html
 <button type="button" class="btn-outline" data-coreui-toggle="tooltip" data-coreui-custom-class="theme-primary" data-coreui-title="Primary tooltip">Primary</button>
@@ -39000,7 +39000,7 @@ Tooltips support four placements: `top`, `end`, `bottom` and `start`. The defaul
 <button type="button" class="btn-outline" data-coreui-toggle="tooltip" data-coreui-placement="start" title="Tooltip at the start">Tooltip at the start</button>
 ```
 
-`start` and `end` are logical: they follow the reading direction, so `end` is the right side in LTR and the left side in RTL. The same names place a [menu](https://coreui.io/bootstrap/docs/components/menu/) and a [dropdown](https://coreui.io/bootstrap/docs/components/dropdowns/).
+`start` and `end` are logical: they follow the reading direction, so `end` is the right side in LTR and the left side in RTL. The same names place a [menu](https://coreui.io/bootstrap/docs/components/menu/) and a [dropdown](https://coreui.io/bootstrap/docs/components/dropdown/).
 
 #### Deprecated physical names
 
@@ -47476,7 +47476,7 @@ your-project/
 
 Every Sass variable in CoreUI for Bootstrap includes the `!default` flag allowing you to override the variable's default value in your own Sass without modifying CoreUI's source code. Copy and paste variables as needed, modify their values, and remove the `!default` flag. If a variable has already been assigned, then it won't be re-assigned by the default values in CoreUI.
 
-You will find CoreUI's variables in `node_modules/@coreui/coreui/scss/` (or `node_modules/@coreui/coreui-pro/scss/` if you use CoreUI PRO): the global settings in `_config.scss`, the palette in `_colors.scss`, and the theme colours in `_theme.scss`. Some variables are set to `null`, these variables don't output the property unless they are overridden in your configuration. You can also find a specific component variables list in **Customizing** section ex. [Alerts - Customizing](https://coreui.io/bootstrap/docs/components/alerts/#customizing)
+You will find CoreUI's variables in `node_modules/@coreui/coreui/scss/` (or `node_modules/@coreui/coreui-pro/scss/` if you use CoreUI PRO): the global settings in `_config.scss`, the palette in `_colors.scss`, and the theme colours in `_theme.scss`. Some variables are set to `null`, these variables don't output the property unless they are overridden in your configuration. You can also find a specific component variables list in **Customizing** section ex. [Alerts - Customizing](https://coreui.io/bootstrap/docs/components/alert/#customizing)
 
 Here's an example that changes the `background-color` and `color` for the `<body>` when importing and compiling CoreUI for Bootstrap via npm:
 
@@ -47722,7 +47722,7 @@ This is the most basic form of CoreUI Admin Templates. The `scss/` and `js/` are
 
 ### Alerts
 
-- Alerts now have [examples with icons](https://coreui.io/bootstrap/docs/components/alerts/#icons).
+- Alerts now have [examples with icons](https://coreui.io/bootstrap/docs/components/alert/#icons).
 
 - Removed custom styles for `<hr />`s in each alert since they already use `currentColor`.
 
@@ -47746,7 +47746,7 @@ This is the most basic form of CoreUI Admin Templates. The `scss/` and `js/` are
 
 - <span class="badge bg-danger">Breaking</span> **[Toggle buttons](https://coreui.io/bootstrap/docs/forms/checkbox/#toggle-buttons), with checkboxes or radios, no longer require JavaScript and have new markup.** We no long require a wrapping element, add `.btn-check` to the `<input />`, and pair it with any `.btn` classes on the `<label>`. _The docs for this has moved from our Buttons page to the new Forms section._
 
-- <span class="badge bg-danger">Breaking</span> **Dropped `.btn-block` for utilities.** Instead of using `.btn-block` on the `.btn`, wrap your buttons with `.d-grid` and a `.gap-*` utility to space them as needed. Switch to responsive classes for even more control over them. [Read the docs for some examples.](https://coreui.io/bootstrap/docs/components/buttons/#block-buttons)
+- <span class="badge bg-danger">Breaking</span> **Dropped `.btn-block` for utilities.** Instead of using `.btn-block` on the `.btn`, wrap your buttons with `.d-grid` and a `.gap-*` utility to space them as needed. Switch to responsive classes for even more control over them. [Read the docs for some examples.](https://coreui.io/bootstrap/docs/components/button/#block-buttons)
 
 - Updated our `button-variant()` and `button-outline-variant()` mixins to support additional parameters.
 
@@ -47794,7 +47794,7 @@ This is the most basic form of CoreUI Admin Templates. The `scss/` and `js/` are
 
 - <span class="badge bg-danger">Breaking</span> Dropped `flip` option for dropdown plugin in favor of native Popper configuration. You can now disable the flipping behavior by passing an empty array for [`fallbackPlacements`](https://popper.js.org/docs/v2/modifiers/flip/#fallbackplacements) option in [flip](https://popper.js.org/docs/v2/modifiers/flip/) modifier.
 
-- Dropdown menus can now be clickable with a new `autoClose` option to handle the [auto close behavior](https://coreui.io/bootstrap/docs/components/dropdowns/#auto-close-behavior). You can use this option to accept the click inside or outside the dropdown menu to make it interactive.
+- Dropdown menus can now be clickable with a new `autoClose` option to handle the [auto close behavior](https://coreui.io/bootstrap/docs/components/dropdown/#auto-close-behavior). You can use this option to accept the click inside or outside the dropdown menu to make it interactive.
 
 - Dropdowns now support `.dropdown-item`s wrapped in `<li>`s.
 
@@ -48026,7 +48026,7 @@ Learn more by reading the new [color modes documentation](https://coreui.io/boot
 
 - <span class="badge bg-danger">Breaking</span> Alert variants are now built from the theme color variables. Each `.alert-{color}` reads `--cui-{color}-text-emphasis`, `--cui-{color}-bg-subtle` and `--cui-{color}-border-subtle`, and the `$alert-variants` map is removed.
 
-- <span class="badge fg-emphasis-warning bg-subtle-warning">Deprecated</span> The `.alert-variant()` mixin is still deprecated and will be removed in v6.0.0. We [use a Sass loop](https://coreui.io/bootstrap/docs/components/alerts/#sass-loops) directly to modify the component's default CSS variables for each variant.
+- <span class="badge fg-emphasis-warning bg-subtle-warning">Deprecated</span> The `.alert-variant()` mixin is still deprecated and will be removed in v6.0.0. We [use a Sass loop](https://coreui.io/bootstrap/docs/components/alert/#sass-loops) directly to modify the component's default CSS variables for each variant.
 
 #### Calendar
 

@@ -131,6 +131,36 @@ export const ToastStackingExample = () => {
 }
 ```
 
+### Theme variants
+
+A [`theme`](https://coreui.io/react/docs/customize/components/#theme-variants) tints the toast's border and header; the body keeps the toast surface.
+
+```html
+import React from 'react'
+import { CToast, CToastBody, CToastHeader } from '@coreui/react'
+
+export const ToastThemeExample = () => {
+  return (
+    <div className="d-flex flex-column gap-4">
+      <CToast animation={false} autohide={false} defaultShow theme="success">
+        <CToastHeader closeButton>
+          <strong className="me-auto">Deployment</strong>
+          <small>11 mins ago</small>
+        </CToastHeader>
+        <CToastBody>Build finished and deployed to production.</CToastBody>
+      </CToast>
+      <CToast animation={false} autohide={false} defaultShow theme="danger">
+        <CToastHeader closeButton>
+          <strong className="me-auto">Deployment</strong>
+          <small>2 seconds ago</small>
+        </CToastHeader>
+        <CToastBody>Build failed on step 4 of 9.</CToastBody>
+      </CToast>
+    </div>
+  )
+}
+```
+
 ### Custom content
 
 Customize your toasts by removing sub-components, tweaking them with [utilities](https://coreui.io/react/docs/utilities/api/), or by adding your own markup. Here we've created a simpler toast by removing the default `<CToastHeader>`, adding a custom hide icon from [CoreUI Icons](https://coreui.io/icons/), and using some [flexbox utilities](https://coreui.io/react/docs/utilities/flex/) to adjust the layout.
@@ -176,26 +206,6 @@ export const ToastCustomContent2Example = () => {
         <small>7 min ago</small>
       </CToastHeader>
       <CToastBody>Hello, world! This is a toast message.</CToastBody>
-    </CToast>
-  )
-}
-```
-
-### Color schemes
-
-Building on the above example, you can recolor the whole notification with the `theme` property — it tints the toast's border and header while the body keeps the toast surface.
-
-```html
-import React from 'react'
-import { CToast, CToastBody, CToastClose } from '@coreui/react'
-
-export const ToastColorSchemesExample = () => {
-  return (
-    <CToast autohide={false} defaultShow theme="primary" className="align-items-center">
-      <div className="d-flex">
-        <CToastBody>Hello, world! This is a toast message.</CToastBody>
-        <CToastClose className="me-3 m-auto" />
-      </div>
     </CToast>
   )
 }

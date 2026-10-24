@@ -555,6 +555,37 @@ To skip form validation, so users can move on with an invalid step, add `data-co
 
 Validation is fully automatic, no extra JavaScript is needed.
 
+## Theme variants
+
+A [theme class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) colors the active and completed step indicators and the connectors:
+
+```html
+<div class="stepper theme-success" data-coreui-stepper>
+  <ol class="stepper-steps">
+    <li class="stepper-step complete">
+      <button type="button" class="stepper-step-button" data-coreui-step="1">
+        <span class="stepper-step-indicator">1</span>
+        Account
+      </button>
+      <span class="stepper-step-connector"><span></span></span>
+    </li>
+    <li class="stepper-step active">
+      <button type="button" class="stepper-step-button" data-coreui-step="2">
+        <span class="stepper-step-indicator">2</span>
+        Profile
+      </button>
+      <span class="stepper-step-connector"><span></span></span>
+    </li>
+    <li class="stepper-step">
+      <button type="button" class="stepper-step-button" data-coreui-step="3">
+        <span class="stepper-step-indicator">3</span>
+        Review
+      </button>
+    </li>
+  </ol>
+</div>
+```
+
 ## Accessibility (A11Y)
 
 The CoreUI Stepper Component is built with accessibility in mind:
@@ -643,37 +674,6 @@ const myStepper = document.getElementById('myStepper')
 myStepper.addEventListener('stepChange.coreui.stepper', event => {
   // console.log('Step changed to:', event.detail.index)
 })
-```
-
-## Theme variants
-
-A [theme class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) colors the active and completed step indicators and the connectors:
-
-```html
-<div class="stepper theme-success" data-coreui-stepper>
-  <ol class="stepper-steps">
-    <li class="stepper-step complete">
-      <button type="button" class="stepper-step-button" data-coreui-step="1">
-        <span class="stepper-step-indicator">1</span>
-        Account
-      </button>
-      <span class="stepper-step-connector"><span></span></span>
-    </li>
-    <li class="stepper-step active">
-      <button type="button" class="stepper-step-button" data-coreui-step="2">
-        <span class="stepper-step-indicator">2</span>
-        Profile
-      </button>
-      <span class="stepper-step-connector"><span></span></span>
-    </li>
-    <li class="stepper-step">
-      <button type="button" class="stepper-step-button" data-coreui-step="3">
-        <span class="stepper-step-indicator">3</span>
-        Review
-      </button>
-    </li>
-  </ol>
-</div>
 ```
 
 ## Customizing

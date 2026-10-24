@@ -109,23 +109,26 @@ Use `chipClassName` to apply contextual chip colors based on chip text.
 
 ```html
 <template>
-  <div>
-    <CChipInput
-      v-model="colorTags"
-      :chip-class-name="(value) => `chip-${value}`"
-      placeholder="Add color name (primary, secondary, etc.)"
-    />
-    <p class="mt-3 fg-2">
-      <small>Try adding: primary, secondary, success, danger, warning, info</small>
-    </p>
-  </div>
+  <CChipInput
+    v-model="labels"
+    :chip-class-name="(value) => variants[value.trim().toLowerCase()] || ''"
+    name="issues"
+    placeholder="Add label..."
+  />
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { CChipInput } from '@coreui/vue'
 
-const colorTags = ref(['primary', 'secondary', 'success', 'danger'])
+const variants = {
+  feature: 'theme-primary',
+  approved: 'theme-success',
+  'needs review': 'theme-warning',
+  blocking: 'theme-danger',
+}
+
+const labels = ref(['Feature', 'Approved', 'Needs review', 'Blocking'])
 </script>
 ```
 

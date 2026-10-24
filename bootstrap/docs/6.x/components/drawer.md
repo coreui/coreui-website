@@ -154,7 +154,7 @@ Add `.drawer-no-backdrop` to hide the backdrop while keeping the drawer modal â€
 
 ### Instant
 
-Add `.drawer-instant` to a drawer that should appear and disappear at once, with no slide and no backdrop fade. It is the same opt-out that [`.alert-instant`](https://coreui.io/bootstrap/docs/components/alerts/#dismissing) provides, and it applies to both directions.
+Add `.drawer-instant` to a drawer that should appear and disappear at once, with no slide and no backdrop fade. It is the same opt-out that [`.alert-instant`](https://coreui.io/bootstrap/docs/components/alert/#dismissing) provides, and it applies to both directions.
 
 ### Dark
 

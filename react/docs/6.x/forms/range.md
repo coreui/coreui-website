@@ -144,7 +144,7 @@ Inside a `<form>`, a native reset puts the thumb back on the value the range sta
 
 ## Theme variants
 
-Color the thumb and the fill with the `theme` property.
+Color the thumb and the fill with the [`theme`](https://coreui.io/react/docs/customize/components/#theme-variants) property.
 
 ```html
 import React from 'react'

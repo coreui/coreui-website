@@ -780,7 +780,7 @@ import { cilCloudDownload, cilLayers, cilPuzzle, cilSpeedometer } from '@coreui/
 
 ## Theme variants
 
-Add a [`.theme-{color}` class](https://coreui.io/vue/docs/customize/components/#theme-variants) to the sidebar and it paints its surface, text, icons and the hover and active links from that colour's slots — the background from `--cui-theme-bg`, the text from `--cui-theme-contrast`, the hovered and active links from `--cui-theme-hover` and `--cui-theme-active`. Combine it with `color-scheme` when the colour needs a fixed scheme.
+Add a [`.theme-{color}` class](https://coreui.io/vue/docs/customize/components/#theme-variants) to the sidebar and it paints its surface, text, icons and the hover and active links from that color's slots — the background from `--cui-theme-bg`, the text from `--cui-theme-contrast`, the hovered and active links from `--cui-theme-hover` and `--cui-theme-active`. Combine it with `color-scheme` when the color needs a fixed scheme.
 
 ```html
 <template>

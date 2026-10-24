@@ -103,9 +103,9 @@ Add `.chip-img` for an image like an avatar or use our avatar component.
 </div>
 ```
 
-## Variants
+## Theme variants
 
-Colour a chip with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants), on the chip itself or on any element above it. Chips are subtle by default as this allows for a clear, themed active state.
+Color a chip with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants), on the chip itself or on any element above it. Chips are subtle by default as this allows for a clear, themed active state.
 
 ```html
 <div class="d-flex flex-wrap gap-1">

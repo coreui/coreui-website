@@ -1074,7 +1074,7 @@ import {
 
 _Added in 6.0.0._
 
-The `theme` property paints the card's frame and caps with the theme color, with contrast text in the header and footer. The body keeps the card background.
+The [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property paints the card's frame and caps with the theme color, with contrast text in the header and footer. The body keeps the card background.
 
 ```html
 <template>

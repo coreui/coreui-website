@@ -102,7 +102,7 @@ You can also put all table components together manually as hitherto.
 </CTable>
 ```
 
-## Variants
+## Theme variants
 
 Use contextual classes to color tables, table rows or individual cells.
 

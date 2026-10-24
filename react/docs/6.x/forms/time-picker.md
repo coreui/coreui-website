@@ -144,7 +144,7 @@ export const TimePickerSizingExample = () => {
 
 ## Theme variants
 
-A [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the picker colours the selected cell of every roll.
+A [`.theme-*` class](https://coreui.io/react/docs/customize/components/#theme-variants) on the picker colors the selected cell of every roll.
 
 ```html
 import React from 'react'

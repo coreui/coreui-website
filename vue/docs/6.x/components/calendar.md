@@ -139,7 +139,7 @@ import { CCalendar } from '@coreui/vue-pro'
 
 ## Theme variants
 
-Colour the selection with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the calendar: the selected day, the range tint, the range-hover outline and the date hover in the header all follow it.
+Color the selection with a [`.theme-*` class](https://coreui.io/vue/docs/customize/components/#theme-variants) on the calendar: the selected day, the range tint, the range-hover outline and the date hover in the header all follow it.
 
 ```html
 <template>

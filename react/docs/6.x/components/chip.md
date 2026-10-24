@@ -127,9 +127,9 @@ export const ChipAvatarExample = () => {
 }
 ```
 
-## Variants
+## Theme variants
 
-Apply color variants to your chips. Chips are subtle by default as this allows for a clear themed active state.
+Set [`theme`](https://coreui.io/react/docs/customize/components/#theme-variants) to color a chip. Chips are subtle by default as this allows for a clear themed active state.
 
 ```html
 import React from 'react'

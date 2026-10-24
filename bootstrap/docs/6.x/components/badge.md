@@ -69,9 +69,9 @@ Without a count, a `.badge-position-*` on any element makes a generic indicator 
 </button>
 ```
 
-## Variants
+## Theme variants
 
-Use the contextual `.theme-{color}` classes to apply a semantic theme color to badges. Combine them with `.badge-subtle` or `.badge-outline` for the other two variants.
+Color a badge with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants). Combine it with `.badge-subtle` or `.badge-outline` for the other two variants.
 
 > ##### Conveying meaning to assistive technologies
 > 

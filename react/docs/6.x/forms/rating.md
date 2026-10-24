@@ -228,7 +228,7 @@ export const RatingNumberOfItemsExample = () => {
 
 ## Theme variants
 
-Colour the active items with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the rating.
+Color the active items with a [`.theme-*` class](https://coreui.io/react/docs/customize/components/#theme-variants) on the rating.
 
 ```html
 import React from 'react'

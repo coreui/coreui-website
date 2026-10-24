@@ -15,9 +15,9 @@ export const AlertDefaultExample = () => {
 }
 ```
 
-## Variants
+## Theme variants
 
-For a styling, use one of the optional contextual `theme` props (e.g., `primary`).
+Set [`theme`](https://coreui.io/react/docs/customize/components/#theme-variants) to color the alert. It renders a `.theme-*` class, so a theme class on any element above the alert colors it just the same.
 
 ```html
 import React from 'react'

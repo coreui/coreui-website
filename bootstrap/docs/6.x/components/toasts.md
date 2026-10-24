@@ -134,7 +134,7 @@ Set `data-coreui-theme="dark"` on a toast to render it dark whatever [color mode
 </div>
 ```
 
-### Variants
+### Theme variants
 
 A [theme class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) tints the toast's border and header. Add it to the toast to recolor the whole notification:
 
@@ -340,7 +340,7 @@ Toasts you create at runtime — from a form submission, a request that settled,
 
 ## Accessibility
 
-Toasts are meant to be brief interruptions for your visitors or users. To assist those using screen readers and similar assistive technologies, you should wrap your toasts in an [`aria-live` region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Changes to live regions, such as injecting or updating a toast component, are automatically announced by screen readers without moving the user's focus or interrupting the user. Additionally, include `aria-atomic="true"` to ensure the entire toast is announced as a single, unfragmented unit, rather than just announcing what changed—this prevents issues if only part of the toast is updated or if the same toast appears again later. If the information is critical to the process, such as a list of form errors, use the [alert component](https://coreui.io/bootstrap/docs/components/alerts/) instead of a toast.
+Toasts are meant to be brief interruptions for your visitors or users. To assist those using screen readers and similar assistive technologies, you should wrap your toasts in an [`aria-live` region](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions). Changes to live regions, such as injecting or updating a toast component, are automatically announced by screen readers without moving the user's focus or interrupting the user. Additionally, include `aria-atomic="true"` to ensure the entire toast is announced as a single, unfragmented unit, rather than just announcing what changed—this prevents issues if only part of the toast is updated or if the same toast appears again later. If the information is critical to the process, such as a list of form errors, use the [alert component](https://coreui.io/bootstrap/docs/components/alert/) instead of a toast.
 
 Note that the live region must exist in the markup *before* the toast is generated or updated. If you generate both dynamically and inject them simultaneously, assistive technologies generally will not announce them.
 

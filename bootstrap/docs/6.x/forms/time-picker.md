@@ -22,7 +22,7 @@ value, so typing and picking stay in sync.
 
 ### Theme variants
 
-A [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the picker colours the selected cell of every roll.
+A [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the picker colors the selected cell of every roll.
 
 ```html
 <div class="row">

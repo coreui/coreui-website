@@ -166,7 +166,7 @@ Modals are vertically and horizontally centered by the browser — the v5 `.moda
 
 ### Tooltips and popovers
 
-[Tooltips](https://coreui.io/bootstrap/docs/components/tooltips/) and [popovers](https://coreui.io/bootstrap/docs/components/popovers/) can be placed within modals as needed. Point their `container` option at the modal so they render inside the top layer; when modals are closed, any tooltips and popovers within are also automatically dismissed.
+[Tooltips](https://coreui.io/bootstrap/docs/components/tooltip/) and [popovers](https://coreui.io/bootstrap/docs/components/popover/) can be placed within modals as needed. Point their `container` option at the modal so they render inside the top layer; when modals are closed, any tooltips and popovers within are also automatically dismissed.
 
 <dialog class="modal" id="exampleModalPopovers" aria-labelledby="exampleModalPopoversLabel">
   <div class="modal-header">

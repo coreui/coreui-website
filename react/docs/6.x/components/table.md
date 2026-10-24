@@ -144,7 +144,7 @@ You can also put all table components together manually as hitherto.
 
 Both methods produce the same html code.
 
-## Variants
+## Theme variants
 
 Use contextual classes to color React tables, table rows or individual cells.
 

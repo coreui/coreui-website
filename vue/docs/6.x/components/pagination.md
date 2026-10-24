@@ -74,9 +74,9 @@ import { CPagination, CPaginationItem } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Theme variants
 
-The `theme` property recolors the active page and the link accents:
+The [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property recolors the active page and the link accents:
 
 ```html
 <template>

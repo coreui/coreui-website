@@ -47,9 +47,9 @@ Wrap chips and add `data-coreui-chip-input` to enable behavior.
 </div>
 ```
 
-## Variants
+## Theme variants
 
-Use contextual chip classes inside Bootstrap 6 Chip Input to represent categories, status, or priority.
+Color a chip with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) to represent categories, status, or priority.
 
 ```html
 <div class="chip-input" data-coreui-chip-input data-coreui-name="issues" data-coreui-placeholder="Add label...">
@@ -60,7 +60,7 @@ Use contextual chip classes inside Bootstrap 6 Chip Input to represent categorie
 </div>
 ```
 
-In the example below, the chip color is assigned dynamically based on the chip text using the `chipClassName` callback. Each value (e.g., `Feature` or `Blocking`) maps to a contextual class, so chips remain visually consistent even when added programmatically.
+In the example below, the chip color is assigned dynamically based on the chip text using the `chipClassName` callback. Each value (e.g., `Feature` or `Blocking`) maps to a theme class, so chips remain visually consistent even when added programmatically.
 
 ```html
 <div id="chipVariants" class="chip-input"></div>

@@ -7492,7 +7492,7 @@ import { CFormCheck } from '@coreui/vue'
 
 ## Theme variants
 
-Modify the appearance of checked checkboxes with the `theme` property — it sets the checked background and border color to the theme color.
+Modify the appearance of checked checkboxes with the [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property — it sets the checked background and border color to the theme color.
 
 ```html
 <template>
@@ -7934,6 +7934,50 @@ const tags = ref(['Vue.js', 'TypeScript', 'CoreUI'])
 </script>
 ```
 
+## Theme variants
+
+Color the chips with [theme classes](https://coreui.io/vue/docs/customize/components/#theme-variants) to represent categories, status, or priority.
+
+```html
+<template>
+  <CChipInput
+    v-model="labels"
+    :chip-class-name="(value) => variants[value.trim().toLowerCase()] || ''"
+    name="issues"
+    placeholder="Add label..."
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { CChipInput } from '@coreui/vue'
+
+const variants = {
+  feature: 'theme-primary',
+  approved: 'theme-success',
+  'needs review': 'theme-warning',
+  blocking: 'theme-danger',
+}
+
+const labels = ref(['Feature', 'Approved', 'Needs review', 'Blocking'])
+</script>
+```
+
+The example above assigns the class from the chip text with a `chipClassName` callback. Pass a string instead to give every chip the same class:
+
+```html
+<template>
+  <CChipInput v-model="tags" chip-class-name="theme-info" placeholder="Add tagged items..." />
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { CChipInput } from '@coreui/vue'
+
+const tags = ref(['Tagged', 'Items'])
+</script>
+```
+
 ## With form field
 
 Wrap the control in [`<CFormField>`](https://coreui.io/vue/docs/forms/field/) to lay it out with its label and description, and to get validation feedback in the right place.
@@ -8019,49 +8063,6 @@ import { CChipInput } from '@coreui/vue'
 const smallTags = ref(['Small chip'])
 const defaultTags = ref(['Default chip'])
 const largeTags = ref(['Large chip'])
-</script>
-```
-
-## Color variants
-
-Use `chipClassName` to apply contextual chip colors based on chip text.
-
-```html
-<template>
-  <div>
-    <CChipInput
-      v-model="colorTags"
-      :chip-class-name="(value) => `chip-${value}`"
-      placeholder="Add color name (primary, secondary, etc.)"
-    />
-    <p class="mt-3 fg-2">
-      <small>Try adding: primary, secondary, success, danger, warning, info</small>
-    </p>
-  </div>
-</template>
-
-<script setup>
-import { ref } from 'vue'
-import { CChipInput } from '@coreui/vue'
-
-const colorTags = ref(['primary', 'secondary', 'success', 'danger'])
-</script>
-```
-
-### Static chip class
-
-Apply a single class to all chips.
-
-```html
-<template>
-  <CChipInput v-model="tags" chip-class-name="theme-info" placeholder="Add tagged items..." />
-</template>
-
-<script setup>
-import { ref } from 'vue'
-import { CChipInput } from '@coreui/vue'
-
-const tags = ref(['Tagged', 'Items'])
 </script>
 ```
 
@@ -8748,23 +8749,26 @@ Use `chipClassName` to apply contextual chip colors based on chip text.
 
 ```html
 <template>
-  <div>
-    <CChipInput
-      v-model="colorTags"
-      :chip-class-name="(value) => `chip-${value}`"
-      placeholder="Add color name (primary, secondary, etc.)"
-    />
-    <p class="mt-3 fg-2">
-      <small>Try adding: primary, secondary, success, danger, warning, info</small>
-    </p>
-  </div>
+  <CChipInput
+    v-model="labels"
+    :chip-class-name="(value) => variants[value.trim().toLowerCase()] || ''"
+    name="issues"
+    placeholder="Add label..."
+  />
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { CChipInput } from '@coreui/vue'
 
-const colorTags = ref(['primary', 'secondary', 'success', 'danger'])
+const variants = {
+  feature: 'theme-primary',
+  approved: 'theme-success',
+  'needs review': 'theme-warning',
+  blocking: 'theme-danger',
+}
+
+const labels = ref(['Feature', 'Approved', 'Needs review', 'Blocking'])
 </script>
 ```
 
@@ -19468,7 +19472,7 @@ import { CFormCheck } from '@coreui/vue'
 
 ## Theme variants
 
-Modify the appearance of checked radios with the `theme` property — it sets the checked background and border color to the theme color.
+Modify the appearance of checked radios with the [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property — it sets the checked background and border color to the theme color.
 
 ```html
 <template>
@@ -20013,6 +20017,27 @@ import { CFormRange } from '@coreui/vue'
 ```
 
 Inside a `<form>`, a native reset puts the thumb back on the value the range started with and emits `update:modelValue` when that moves it; a bound range only asks for its first value there.
+
+## Theme variants
+
+Color the thumb and the fill with the [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property.
+
+```html
+<template>
+  <div class="d-flex flex-column gap-3">
+    <CFormRange id="rangeThemePrimary" theme="primary" label="Primary range" :value="50" />
+    <CFormRange id="rangeThemeSecondary" theme="secondary" label="Secondary range" :value="50" />
+    <CFormRange id="rangeThemeSuccess" theme="success" label="Success range" :value="50" />
+    <CFormRange id="rangeThemeDanger" theme="danger" label="Danger range" :value="50" />
+    <CFormRange id="rangeThemeWarning" theme="warning" label="Warning range" :value="50" />
+    <CFormRange id="rangeThemeInfo" theme="info" label="Info range" :value="50" />
+  </div>
+</template>
+
+<script setup>
+import { CFormRange } from '@coreui/vue'
+</script>
+```
 
 ## API
 
@@ -20578,7 +20603,7 @@ import { CRangeSlider } from '@coreui/vue-pro'
 
 ## Theme variants
 
-Color the filled track and the handles with the `theme` property.
+Color the filled track and the handles with the [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property.
 
 ```html
 <template>
@@ -20611,7 +20636,7 @@ import { CRangeSlider } from '@coreui/vue-pro'
 </script>
 ```
 
-The `theme` colours the track and the handles; the tooltip keeps its default look. To theme the tooltip, pass a class through `tooltip-class-name` — it lands on the tooltip only. `theme-secondary` gives a grey tooltip on the default slider; `theme-danger` makes the tooltip match a danger slider.
+The `theme` colors the track and the handles; the tooltip keeps its default look. To theme the tooltip, pass a class through `tooltip-class-name` — it lands on the tooltip only. `theme-secondary` gives a grey tooltip on the default slider; `theme-danger` makes the tooltip match a danger slider.
 
 ```html
 <template>
@@ -21110,7 +21135,7 @@ import { CRating } from '@coreui/vue-pro'
 
 ## Theme variants
 
-Colour the active items with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the rating.
+Color the active items with a [`.theme-*` class](https://coreui.io/vue/docs/customize/components/#theme-variants) on the rating.
 
 ```html
 <template>
@@ -22440,6 +22465,22 @@ const steps = ['Step 1', 'Step 2', 'Step 3']
 </template>
 ```
 
+## Theme variants
+
+The [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property colors the active and completed step indicators and the connectors:
+
+```html
+<template>
+  <CStepper theme="success" :active-step-number="3" :steps="steps" />
+</template>
+
+<script setup>
+import { CStepper } from '@coreui/vue-pro'
+
+const steps = ['Account', 'Profile', 'Confirmation']
+</script>
+```
+
 ## Usage with v-model
 
 Bind `v-model` and the active step follows your state — the step buttons and the built-in navigation only emit `@update:modelValue` (and `@step-change` with the 1-based number), so the binding feeds it back. Without a binding the stepper manages itself; `active-step-number` seeds the starting step.
@@ -22773,7 +22814,7 @@ import { CFormField, CFormText, CSwitch } from '@coreui/vue'
 
 ## Theme variants
 
-Modify the appearance of checked switches with the `theme` property — it sets the checked background and border color to the theme color.
+Modify the appearance of checked switches with the [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property — it sets the checked background and border color to the theme color.
 
 ```html
 <template>
@@ -23798,7 +23839,7 @@ import { CTimePicker } from '@coreui/vue-pro'
 
 ## Theme variants
 
-A [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the picker colours the selected cell of every roll.
+A [`.theme-*` class](https://coreui.io/vue/docs/customize/components/#theme-variants) on the picker colors the selected cell of every roll.
 
 ```html
 <template>
@@ -26678,11 +26719,11 @@ import { CAccordion, CAccordionBody, CAccordionHeader, CAccordionItem } from '@c
 </script>
 ```
 
-## Variants
+## Theme variants
 
 _Added in 6.0.0._
 
-An open item is a neutral surface on its own. Add `theme` to tint it — closed items are untouched either way, so the theme marks what is currently expanded rather than recoloring the whole control.
+An open item is a neutral surface on its own. Set [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) to tint it — closed items are untouched either way, so the theme marks what is currently expanded rather than recoloring the whole control.
 
 ```html
 <template>
@@ -27467,9 +27508,9 @@ import { CAlert } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Theme variants
 
-For a styling, use one of the optional contextual `theme` props (e.g., `primary`).
+Set [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) to color the alert. It renders a `.theme-*` class, so a theme class on any element above the alert colors it just the same.
 
 ```html
 <template>
@@ -28771,9 +28812,9 @@ import { CBadge } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Theme variants
 
-Use the `theme` prop to apply a semantic theme color to badges. Combine it with `variant` for the subtle and outline treatments.
+Set [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) to apply a semantic theme color to badges. Combine it with `variant` for the subtle and outline treatments.
 
 ```html
 <template>
@@ -29589,7 +29630,7 @@ $breadcrumb-divider: none;
 
 ## Base class
 
-A `<CButton>` without a `color` sets up the shape of a button — size, spacing, radius, the focus ring — and paints it in the neutral surface colour, so it is a usable button on its own.
+A `<CButton>` without a `theme` sets up the shape of a button — size, spacing, radius, the focus ring — and paints it in the neutral surface color, so it is a usable button on its own.
 
 ```html
 <template>
@@ -29601,35 +29642,18 @@ import { CButton } from '@coreui/vue'
 </script>
 ```
 
-## Variants
-
-CoreUI includes a bunch of predefined buttons components, each serving its own semantic purpose. Buttons show what action will happen when the user clicks or touches it. CoreUI buttons are used to initialize operations, both in the background or foreground of an experience.
-
-```html
-<template>
-  <CButton theme="primary">Primary</CButton>
-  <CButton theme="secondary">Secondary</CButton>
-  <CButton theme="success">Success</CButton>
-  <CButton theme="danger">Danger</CButton>
-  <CButton theme="warning">Warning</CButton>
-  <CButton theme="info">Info</CButton>
-  <CButton theme="secondary">Light</CButton>
-  <CButton theme="inverse">Dark</CButton>
-  <CButton link>Link</CButton>
-</template>
-
-<script setup>
-import { CButton } from '@coreui/vue'
-</script>
-```
-
-> Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the .visually-hidden class.
-
 ## Theme variants
 
 _Added in 6.0.0._
 
-A button is a shape plus a colour: `variant` picks the shape — how much ink the button uses — and `theme` picks the colour. A button given a `theme` and no `variant` is solid.
+A button is a **shape plus a color**. `variant` picks the shape — how much ink the button uses — and [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) picks the color. A button given a `theme` and no `variant` is solid.
+
+| `variant` | Shape |
+| --- | --- |
+| `solid` | Filled with the theme color. The default weight for the primary action on a screen. |
+| `outline` | Border and text in the theme color, no fill until hover. |
+| `subtle` | Filled with the theme's tinted background, text in the theme's foreground. |
+| `ghost` | Text only; the fill appears on hover. |
 
 ```html
 <template>
@@ -29660,9 +29684,28 @@ import { CButton, CButtonGroup } from '@coreui/vue'
 </script>
 ```
 
-The deprecated `color` property renders the same classes as `theme`; `theme` wins when both are set.
+Pair the variant with any theme color. `.btn-link` is the exception — set the `link` property for a link that behaves like a button; it takes its color from the link color, so `theme` and `variant` do not apply to it.
 
-`.btn-link` is the exception. Set the `link` property for a link that behaves like a button — it takes its colour from the link colour, so `theme` and `variant` do not apply to it.
+```html
+<template>
+  <CButton theme="primary">Primary</CButton>
+  <CButton theme="secondary">Secondary</CButton>
+  <CButton theme="success">Success</CButton>
+  <CButton theme="info">Info</CButton>
+  <CButton theme="warning">Warning</CButton>
+  <CButton theme="danger">Danger</CButton>
+  <CButton theme="inverse">Inverse</CButton>
+  <CButton link>Link</CButton>
+</template>
+
+<script setup>
+import { CButton } from '@coreui/vue'
+</script>
+```
+
+`color` still works and is removed in v7. It renders the same `.btn-{variant}` and `.theme-{color}` classes as `theme`, and loses to `theme` when both are set.
+
+> Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the .visually-hidden class.
 
 ## Icon only
 
@@ -29765,20 +29808,19 @@ import { CButton } from '@coreui/vue'
 
 These Vue buttons use a transparent background, subtle border, and inherit text color from the parent context. They’re best suited for minimalist UI elements like modals, toolbars, or secondary actions.
 
-### Themed outline variants
+### Themed outline buttons
 
-If you need a button, but without the strong background colors, set `color` and `variant=" outline"` props to remove all background colors.
+If you need a button, but without the strong background colors, set `theme` and `variant="outline"` to remove all background colors.
 
 ```html
 <template>
   <CButton theme="primary" variant="outline">Primary</CButton>
   <CButton theme="secondary" variant="outline">Secondary</CButton>
   <CButton theme="success" variant="outline">Success</CButton>
-  <CButton theme="danger" variant="outline">Danger</CButton>
-  <CButton theme="warning" variant="outline">Warning</CButton>
   <CButton theme="info" variant="outline">Info</CButton>
-  <CButton theme="secondary" variant="outline">Light</CButton>
-  <CButton theme="inverse" variant="outline">Dark</CButton>
+  <CButton theme="warning" variant="outline">Warning</CButton>
+  <CButton theme="danger" variant="outline">Danger</CButton>
+  <CButton theme="inverse" variant="outline">Inverse</CButton>
 </template>
 
 <script setup>
@@ -29810,18 +29852,19 @@ import { CButton } from '@coreui/vue'
 </script>
 ```
 
-To apply theme colors to Vue ghost buttons, use the `color` and `variant="ghost"` properties. By default, these variants color only the text. On hover or focus, they add a background that corresponds to the theme color.
+### Themed ghost buttons
+
+To apply theme colors to Vue ghost buttons, use the `theme` and `variant="ghost"` properties. By default, these variants color only the text. On hover or focus, they add a background that corresponds to the theme color.
 
 ```html
 <template>
   <CButton theme="primary" variant="ghost">Primary</CButton>
   <CButton theme="secondary" variant="ghost">Secondary</CButton>
   <CButton theme="success" variant="ghost">Success</CButton>
-  <CButton theme="danger" variant="ghost">Danger</CButton>
-  <CButton theme="warning" variant="ghost">Warning</CButton>
   <CButton theme="info" variant="ghost">Info</CButton>
-  <CButton theme="secondary" variant="ghost">Light</CButton>
-  <CButton theme="inverse" variant="ghost">Dark</CButton>
+  <CButton theme="warning" variant="ghost">Warning</CButton>
+  <CButton theme="danger" variant="ghost">Danger</CButton>
+  <CButton theme="inverse" variant="ghost">Inverse</CButton>
 </template>
 
 <script setup>
@@ -30418,11 +30461,10 @@ CoreUI includes a bunch of predefined buttons components, each serving its own s
   <CButton theme="primary">Primary</CButton>
   <CButton theme="secondary">Secondary</CButton>
   <CButton theme="success">Success</CButton>
-  <CButton theme="danger">Danger</CButton>
-  <CButton theme="warning">Warning</CButton>
   <CButton theme="info">Info</CButton>
-  <CButton theme="secondary">Light</CButton>
-  <CButton theme="inverse">Dark</CButton>
+  <CButton theme="warning">Warning</CButton>
+  <CButton theme="danger">Danger</CButton>
+  <CButton theme="inverse">Inverse</CButton>
   <CButton link>Link</CButton>
 </template>
 
@@ -30486,11 +30528,10 @@ If you need a button, but without the strong background colors, set `color` and 
   <CButton theme="primary" variant="outline">Primary</CButton>
   <CButton theme="secondary" variant="outline">Secondary</CButton>
   <CButton theme="success" variant="outline">Success</CButton>
-  <CButton theme="danger" variant="outline">Danger</CButton>
-  <CButton theme="warning" variant="outline">Warning</CButton>
   <CButton theme="info" variant="outline">Info</CButton>
-  <CButton theme="secondary" variant="outline">Light</CButton>
-  <CButton theme="inverse" variant="outline">Dark</CButton>
+  <CButton theme="warning" variant="outline">Warning</CButton>
+  <CButton theme="danger" variant="outline">Danger</CButton>
+  <CButton theme="inverse" variant="outline">Inverse</CButton>
 </template>
 
 <script setup>
@@ -30529,11 +30570,10 @@ To apply theme colors to Vue ghost buttons, use the `color` and `variant="ghost"
   <CButton theme="primary" variant="ghost">Primary</CButton>
   <CButton theme="secondary" variant="ghost">Secondary</CButton>
   <CButton theme="success" variant="ghost">Success</CButton>
-  <CButton theme="danger" variant="ghost">Danger</CButton>
-  <CButton theme="warning" variant="ghost">Warning</CButton>
   <CButton theme="info" variant="ghost">Info</CButton>
-  <CButton theme="secondary" variant="ghost">Light</CButton>
-  <CButton theme="inverse" variant="ghost">Dark</CButton>
+  <CButton theme="warning" variant="ghost">Warning</CButton>
+  <CButton theme="danger" variant="ghost">Danger</CButton>
+  <CButton theme="inverse" variant="ghost">Inverse</CButton>
 </template>
 
 <script setup>
@@ -30805,7 +30845,7 @@ import { CButton, CButtonGroup } from '@coreui/vue'
 
 ## Theme variants
 
-Set `theme` on each button to give a whole group one color.
+Set [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) on each button to give a whole group one color.
 
 ```html
 <template>
@@ -31824,7 +31864,7 @@ import { CCalendar } from '@coreui/vue-pro'
 
 ## Theme variants
 
-Colour the selection with a [`.theme-*` class](https://coreui.io/bootstrap/docs/customize/components/#theme-variants) on the calendar: the selected day, the range tint, the range-hover outline and the date hover in the header all follow it.
+Color the selection with a [`.theme-*` class](https://coreui.io/vue/docs/customize/components/#theme-variants) on the calendar: the selected day, the range tint, the range-hover outline and the date hover in the header all follow it.
 
 ```html
 <template>
@@ -32471,9 +32511,9 @@ import { CCallout } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Theme variants
 
-`theme` sets the color context. It colors the leading edge and tints the border, and it renders a `.theme-*` class — so a theme class on any element above the callout colors it just the same.
+[`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) sets the color context. It colors the leading edge and tints the border, and it renders a `.theme-*` class — so a theme class on any element above the callout colors it just the same.
 
 ```html
 <template>
@@ -33714,7 +33754,7 @@ import {
 
 _Added in 6.0.0._
 
-The `theme` property paints the card's frame and caps with the theme color, with contrast text in the header and footer. The body keeps the card background.
+The [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property paints the card's frame and caps with the theme color, with contrast text in the header and footer. The body keeps the card background.
 
 ```html
 <template>
@@ -36965,9 +37005,9 @@ import { CAvatar, CChip } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Theme variants
 
-Use `color` to apply theme color variants to your chips. Chips are subtle by default as this allows for a clear, themed active state.
+Set [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) to color a chip. Chips are subtle by default as this allows for a clear, themed active state.
 
 ```html
 <template>
@@ -36987,7 +37027,7 @@ const label = (color) => color.charAt(0).toUpperCase() + color.slice(1)
 </script>
 ```
 
-Combine `variant="outline"` with a `color` for outline color variants.
+Combine `variant="outline"` with a `theme` for outline theme variants.
 
 ```html
 <template>
@@ -44638,9 +44678,9 @@ import { CListGroup, CListGroupItem } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Theme variants
 
-Set `theme` on an item to color it. The same theme class works on the `<CListGroup>` above it — pass it as `className` — so one setting colors the whole list, and an item's own `theme` wins over the one it inherits.
+Set [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) on an item to color it. The same theme class works on the `<CListGroup>` above it — pass it as `class` — so one setting colors the whole list, and an item's own `theme` wins over the one it inherits.
 
 ```html
 <template>
@@ -45602,9 +45642,9 @@ import { CMenu, CMenuContent, CMenuItem, CMenuToggle } from '@coreui/vue-pro'
 </script>
 ```
 
-### Variants
+### Theme variants
 
-Colour an individual item with a [`.theme-*` class](https://coreui.io/vue/docs/customize/components/#theme-variants). The item reads the theme's foreground while at rest and swaps to the theme's fill with a contrasting label once it is `active`, so one class covers both states.
+Color an individual item with a [`.theme-*` class](https://coreui.io/vue/docs/customize/components/#theme-variants). The item reads the theme's foreground while at rest and swaps to the theme's fill with a contrasting label once it is `active`, so one class covers both states.
 
 ```html
 <template>
@@ -47889,9 +47929,9 @@ import { CNav, CNavLink } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Theme variants
 
-The `theme` property recolors the active pill, tab or underline to any theme color:
+The [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property recolors the active pill, tab or underline to any theme color:
 
 ```html
 <template>
@@ -52394,9 +52434,9 @@ import { CPagination, CPaginationItem } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Theme variants
 
-The `theme` property recolors the active page and the link accents:
+The [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) property recolors the active page and the link accents:
 
 ```html
 <template>
@@ -56161,7 +56201,7 @@ import { cilCloudDownload, cilLayers, cilPuzzle, cilSpeedometer } from '@coreui/
 
 ## Theme variants
 
-Add a [`.theme-{color}` class](https://coreui.io/vue/docs/customize/components/#theme-variants) to the sidebar and it paints its surface, text, icons and the hover and active links from that colour's slots — the background from `--cui-theme-bg`, the text from `--cui-theme-contrast`, the hovered and active links from `--cui-theme-hover` and `--cui-theme-active`. Combine it with `color-scheme` when the colour needs a fixed scheme.
+Add a [`.theme-{color}` class](https://coreui.io/vue/docs/customize/components/#theme-variants) to the sidebar and it paints its surface, text, icons and the hover and active links from that color's slots — the background from `--cui-theme-bg`, the text from `--cui-theme-contrast`, the hovered and active links from `--cui-theme-hover` and `--cui-theme-active`. Combine it with `color-scheme` when the color needs a fixed scheme.
 
 ```html
 <template>
@@ -59448,9 +59488,9 @@ import { CSpinner } from '@coreui/vue'
 </script>
 ```
 
-## Variants
+## Colors
 
-Both spinners take their appearance from `currentColor`, so the `color` property — which renders one of our [text color utilities](https://coreui.io/vue/docs/utilities/colors/) — recolors either of them.
+Both spinners take their appearance from `currentColor`, so the `color` property — which renders one of our [text color utilities](https://coreui.io/vue/docs/utilities/colors/) — recolors either of them. Without it a spinner takes the text color around it — inside a themed button, the color of its label. A `.theme-*` class does not recolor a spinner; set `color` for a theme color.
 
 ```html
 <template>
@@ -60976,7 +61016,7 @@ You can also put all table components together manually as hitherto.
 </CTable>
 ```
 
-## Variants
+## Theme variants
 
 Use contextual classes to color tables, table rows or individual cells.
 
@@ -65489,6 +65529,35 @@ import { CToaster, CToast, CToastHeader, CToastBody } from '@coreui/vue'
 </script>
 ```
 
+### Theme variants
+
+A [`theme`](https://coreui.io/vue/docs/customize/components/#theme-variants) tints the toast's border and header; the body keeps the toast surface.
+
+```html
+<template>
+  <div class="d-flex flex-column gap-4">
+    <CToast :autohide="false" theme="success" visible>
+      <CToastHeader close-button>
+        <strong class="me-auto">Deployment</strong>
+        <small>11 mins ago</small>
+      </CToastHeader>
+      <CToastBody>Build finished and deployed to production.</CToastBody>
+    </CToast>
+    <CToast :autohide="false" theme="danger" visible>
+      <CToastHeader close-button>
+        <strong class="me-auto">Deployment</strong>
+        <small>2 seconds ago</small>
+      </CToastHeader>
+      <CToastBody>Build failed on step 4 of 9.</CToastBody>
+    </CToast>
+  </div>
+</template>
+
+<script setup>
+import { CToast, CToastBody, CToastHeader } from '@coreui/vue'
+</script>
+```
+
 ### Custom content
 
 Customize your toasts by removing sub-components, tweaking them with [utilities](https://coreui.io/vue/docs/utilities/api/), or by adding your own markup. Here we've created a simpler toast by removing the default `<CToastHeader>`, adding a custom hide icon from [CoreUI Icons](https://coreui.io/icons/), and using some [flexbox utilities](https://coreui.io/vue/docs/utilities/flex/) to adjust the layout.
@@ -65525,25 +65594,6 @@ Alternatively, you can also add additional controls and components to toasts.
 
 <script setup>
 import { CToast, CToastBody, CButton, CToastClose } from '@coreui/vue'
-</script>
-```
-
-### Color schemes
-
-Building on the above example, you can create different toast color schemes with our [color](https://coreui.io/vue/docs/utilities/colors/) and [background](https://coreui.io/vue/docs/utilities/background/) utilities. Here we've set `color="primary"` and added `.fg-white` class to the `<Ctoast>`, and then set `white` property to our close button. For a crisp edge, we remove the default border with `.border-0`.
-
-```html
-<template>
-  <CToast :autohide="false" theme="primary" class="fg-white align-items-center" visible>
-    <div class="d-flex">
-      <CToastBody>Hello, world! This is a toast message.</CToastBody>
-      <CToastClose class="me-3 m-auto" white />
-    </div>
-  </CToast>
-</template>
-
-<script setup>
-import { CToast, CToastBody, CToastClose } from '@coreui/vue'
 </script>
 ```
 
@@ -66852,7 +66902,7 @@ const customTooltipStyle = {
 
 ### Theme variants
 
-A tooltip reads the `.theme-{color}` slots, so a theme class on the tip colours its surface and picks the contrasting text. Pass it through `class`; without one the tip keeps its default look, the page's foreground colour.
+A tooltip reads the `.theme-{color}` slots, so a [theme class](https://coreui.io/vue/docs/customize/components/#theme-variants) on the tip colors its surface and picks the contrasting text. Pass it through `class`; without one the tip keeps its default look, the page's foreground color.
 
 ```html
 <template>

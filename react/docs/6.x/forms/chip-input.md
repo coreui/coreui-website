@@ -43,9 +43,9 @@ export const ChipInputExample = () => {
 
 > Note: `CChipInput` renders the inline text input automatically, and a hidden `<textarea>` that carries the chip values separated by commas. When `name` is provided, that field takes part in standard form submission.
 
-## Variants
+## Theme variants
 
-Use contextual chip classes inside React Chip Input to represent categories, status, or priority.
+Color the chips with [theme classes](https://coreui.io/react/docs/customize/components/#theme-variants) to represent categories, status, or priority.
 
 ```html
 import React from 'react'
