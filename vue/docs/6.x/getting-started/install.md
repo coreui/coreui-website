@@ -109,7 +109,7 @@ Or compile the styles from the Sass source to [customize](https://coreui.io/vue/
 
 ## Other delivery channels
 
-CDN links, Composer, and downloadable compiled or source archives apply to the vanilla library — see [the CoreUI for Bootstrap install page](https://coreui.io/bootstrap/docs/getting-started/install/) if you need them.
+CDN links, Composer, and downloadable compiled or source archives apply to the vanilla library — see [the CoreUI for Bootstrap install page](https://coreui.io/bootstrap/docs/6.x/getting-started/install/) if you need them.
 
 ## For AI tools & LLMs
 

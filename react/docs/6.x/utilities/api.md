@@ -422,7 +422,7 @@ Output:
 Utilities carry no `!important`. They do not need it: the API emits them into the
 `utilities` cascade layer, which is declared last, so every utility already wins
 against every component and modifier class regardless of selector specificity.
-See [cascade layers](https://coreui.io/bootstrap/docs/migration/v6/#cascade-layers) for the full order.
+See [cascade layers](https://coreui.io/bootstrap/docs/6.x/migration/v6/#cascade-layers) for the full order.
 
 One case the suffix did cover is CSS of your own written **outside** any layer:
 unlayered styles beat every layer, so a plain `.card-title { text-align: left }`
