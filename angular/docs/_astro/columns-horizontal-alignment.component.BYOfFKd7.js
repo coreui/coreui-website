@@ -1,0 +1,9 @@
+import{Jt as e,mn as t,pn as n,rr as r}from"./common.CnOZ5clG.js";import{G as i,H as a,fn as o}from"./coreui-angular-pro.JaAlFgzy.js";import{i as s}from"./_router_module-chunk.BqvWwtI_.js";var c=class s{static{this.ɵfac=function(e){return new(e||s)}}static{this.ɵcmp=e({type:s,selectors:[[`docs-columns-horizontal-alignment`]],decls:31,vars:0,consts:[[1,`justify-content-start`],[`xs`,`4`],[1,`justify-content-center`],[1,`justify-content-end`],[1,`justify-content-around`],[1,`justify-content-between`],[1,`justify-content-evenly`]],template:function(e,i){e&1&&(t(0,`c-container`)(1,`c-row`,0)(2,`c-col`,1),r(3,` One of two columns `),n(),t(4,`c-col`,1),r(5,` One of two columns `),n()(),t(6,`c-row`,2)(7,`c-col`,1),r(8,` One of two columns `),n(),t(9,`c-col`,1),r(10,` One of two columns `),n()(),t(11,`c-row`,3)(12,`c-col`,1),r(13,` One of two columns `),n(),t(14,`c-col`,1),r(15,` One of two columns `),n()(),t(16,`c-row`,4)(17,`c-col`,1),r(18,` One of two columns `),n(),t(19,`c-col`,1),r(20,` One of two columns `),n()(),t(21,`c-row`,5)(22,`c-col`,1),r(23,` One of two columns `),n(),t(24,`c-col`,1),r(25,` One of two columns `),n()(),t(26,`c-row`,6)(27,`c-col`,1),r(28,` One of two columns `),n(),t(29,`c-col`,1),r(30,` One of two columns `),n()()())},dependencies:[i,o,a],styles:[`[_nghost-%COMP%]   .row[_ngcontent-%COMP%]    + .row[_ngcontent-%COMP%] {
+  margin-top: 1rem;
+}
+[_nghost-%COMP%]   .row[_ngcontent-%COMP%]    > .col[_ngcontent-%COMP%], [_nghost-%COMP%]   .row[_ngcontent-%COMP%]    > [class^=col-][_ngcontent-%COMP%] {
+  background-color: rgba(39, 41, 43, 0.03);
+  border: 1px solid rgba(39, 41, 43, 0.1);
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
+}`]})}};c.clientProviders=[s([])];export{c as ColumnsHorizontalAlignmentComponent};
