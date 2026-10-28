@@ -21,7 +21,9 @@ worse than the native table semantics the grid keeps by default.
 The [column menu](https://coreui.io/data-grid/docs/columns/menu/) follows the ARIA menu pattern:
 
 - **Arrow keys** move between items; **Home/End** jump to the first/last item.
-- **Escape** closes the menu and restores focus to the ⋮ trigger.
+- **Escape** closes the menu and restores focus to the ⋮ trigger; **Tab**
+  closes it and moves on from the trigger.
+- A scroll or a window resize keeps the menu under its trigger.
 - **Move to start / Move to end** give a keyboard-accessible alternative to
   drag-and-drop [column reordering](https://coreui.io/data-grid/docs/columns/ordering-visibility/).
 

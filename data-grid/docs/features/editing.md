@@ -86,6 +86,34 @@ element.addEventListener('editCommit.coreui.data-grid', (event) => {
 
 `editStart` and `editCancel` fire around it with `{ item, columnId }`.
 
+## Tracking edits
+
+`editTracking` keeps the value each cell had before its first commit, keyed by
+`itemKey`. A cell whose value in `items` differs from it gets
+`data-grid-cell-edited`: a marker in its corner, and the description "Edited"
+for screen readers (`labels.editedCell`). The grid compares with the data you
+pass, so a commit you refuse or apply later, an undo, and an edit back to the
+old value all show the right state. Edit a name or a role below, then save.
+
+```html
+<div class="mb-3"><button class="btn btn-primary" type="button" id="dataGridEditTrackingSave">Save changes (0)</button> <span class="ms-2" id="dataGridEditTrackingStatus" role="status"></span></div><div id="dataGridEditTracking"></div>
+```
+
+`grid.isDirty()` says whether anything changed, `grid.getEditedCells()` returns
+`{ rowId, columnId, item, value, originalValue }` for each edited cell, and
+`grid.clearEdited()` forgets the original values once you have saved. The
+`editedChange` event carries `editedCells` whenever their set changes.
+
+Without `itemKey` a row's id is its position in `items`, so an insert or a
+removal would move a mark to another row; tracking stays off and logs an
+error. `editEquals(value, originalValue)` on a column decides what counts as
+a change, for values a new object replaces on every commit such as dates or
+arrays; the default is `Object.is`. The same comparison runs when an editor
+closes: a commit that keeps the value fires the cancel event instead of the
+commit, before `editValidate`, and adds nothing to the undo history, with or
+without tracking. To tint whole rows as well, return a class from `rowClass`
+for the rows listed in the edited cells.
+
 ## Validation
 
 `editValidate` gates the commit. Return `true` to accept, or a message to block
@@ -97,6 +125,41 @@ it — the editor gets `aria-invalid`, the `is-invalid` class and an
 ```
 
 An invalid value keeps the editor open; <kbd>Escape</kbd> still cancels.
+
+### Validating the data
+
+`validate` checks the data itself, not only the cell being edited. It receives a row
+and returns messages keyed by column: a string is an error, and
+`{ message, level: 'warning' }` is a warning. Every rendered cell with an issue is
+marked, data loaded from the server included: an error gets
+`data-grid-cell-invalid` (a solid outline), and `aria-invalid` when cell
+navigation is on, a warning gets
+`data-grid-cell-warning` (a dashed outline), and both carry the message as a
+tooltip and as their description for screen readers. Because the function sees
+the whole row, one rule can compare fields, and fixing either field clears the
+mark.
+
+```html
+<p class="mb-3" id="dataGridValidationStatus" role="status"></p><div id="dataGridValidation"></div>
+```
+
+When an edit commits, the grid validates the row as it will be after the change,
+after `editValidate` and only when the value changed, so a cell loaded with an
+error can still be left with Enter. An error on the edited column blocks the
+commit and shows the message in the editor, like `editValidate`. An error the
+commit causes on another column lets it through, marks that cell and is announced
+to screen readers; warnings never block.
+
+`grid.isValid()` and `grid.getInvalidCells(level?)` check every row the grid holds,
+not only the rendered ones, for example to disable a save button. With `dataProvider` they see the rows the grid holds: the current page, or every
+page loaded so far with `infiniteScroll`, never the rest of the server's data.
+The grid keeps no state for this: errors your server returns can live in your own
+state and be read by `validate`. Key them to the value the server rejected
+(`serverErrors[item.id]?.email === item.email ? 'Email is taken' : undefined`),
+otherwise the old message blocks every new value the user types into that cell.
+When that state changes, call `grid.setItems(items)` to repaint the marks. With
+`dataProvider`, return the server's errors with the rows instead, as fields
+`validate` reads, so they arrive with the next load.
 
 ## Custom editors
 

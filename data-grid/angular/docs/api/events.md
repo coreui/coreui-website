@@ -13,8 +13,9 @@ event binding — `(sortingChange)="onSortingChange($event)"`. Every payload int
 | `selectionChange` | `{ rowSelection: RowSelectionState, selectedItems: DataGridItem[] }` |
 | `paginationChange` | `{ pagination: PaginationState }` |
 | `editStart` | `{ item: object, columnId: string }` |
-| `editCommit` | `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change yourself. [Undo/redo](https://coreui.io/data-grid/angular/docs/features/history/) re-emits it with the values swapped |
+| `editCommit` | `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change yourself. [Undo/redo](https://coreui.io/data-grid/angular/docs/features/history/) re-emits it with the values swapped. A commit that keeps the value emits `editCancel` instead |
 | `editCancel` | `{ item: object, columnId: string }` |
+| `editedChange` | `{ editedCells: object[] }` — the edited cells whenever their set changes, see [Edit tracking](https://coreui.io/data-grid/angular/docs/features/editing/#tracking-edits) |
 | `sizingChange` | `{ columnSizing: ColumnSizingState }` |
 | `pinningChange` | `{ columnPinning: ColumnPinningState }` |
 | `orderChange` | `{ columnOrder: ColumnOrderState }` |

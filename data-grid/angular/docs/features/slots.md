@@ -86,8 +86,9 @@ readonly itemKey = (item: DataGridItem) => String(item.id)
 ```
 
 With `pagination.position: 'both'` the same template renders once per position.
-A custom toolbar that hosts its own global search still needs
-`[globalFilter]="true"` for the query to reach the grid. The `empty` slot also
+A custom toolbar composes the parts the built-in toolbar is made of next to
+its own content — see [Custom toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/#custom-toolbar). Its
+search part needs `[globalFilter]="true"` for the query to reach the grid. The `empty` slot also
 renders when a server load fails; use the `dataError` output to tell the two
 apart.
 

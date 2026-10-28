@@ -36,6 +36,7 @@ announcement).
 | `clearFilter` | `Clear filter` | [Filter menu](https://coreui.io/data-grid/react/docs/features/filtering/) + quick-input clear |
 | `clearSort` | `Unsort` | [Column menu](https://coreui.io/data-grid/react/docs/columns/menu/) sort actions |
 | `columnMenu` | `Column options for {column}` | [Column menu](https://coreui.io/data-grid/react/docs/columns/menu/) button |
+| `editedCell` | `Edited` | [Edit tracking](https://coreui.io/data-grid/react/docs/features/editing/#tracking-edits) description on an edited cell |
 | `filterAction` | `Filter…` | [Column menu](https://coreui.io/data-grid/react/docs/columns/menu/) action |
 | `filterColumn` | `Filter {column}` | [Filter](https://coreui.io/data-grid/react/docs/features/filtering/) input |
 | `filterSummaryConditions` | `{count} conditions` | Quick-input summary |
@@ -44,6 +45,8 @@ announcement).
 | `globalFilterLabel` | `Search` | Global search accessible label |
 | `globalFilterPlaceholder` | `Search` | Global search placeholder |
 | `hideColumn` | `Hide column` | Column menu |
+| `historyEntryUnavailable` | `The change is no longer available: its row was removed` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) announcement when the edited row is gone |
+| `invalidAnnouncement` | `{column}: {message}` | [Validating the data](https://coreui.io/data-grid/react/docs/features/editing/#validating-the-data) announcement, one per cell, when a commit causes an error on another column |
 | `itemsInfo` | `{first}–{last} of {total}` | Pagination range summary |
 | `joinAnd` | `AND` | [Filter menu](https://coreui.io/data-grid/react/docs/features/filtering/) |
 | `joinOr` | `OR` | [Filter menu](https://coreui.io/data-grid/react/docs/features/filtering/) |
@@ -72,6 +75,7 @@ announcement).
 | `pinStart` | `Pin to start` | Column menu |
 | `previousPage` | `Previous page` | Pagination |
 | `redoneAnnouncement` | `Change redone` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) ARIA live announcement |
+| `redoneLastAnnouncement` | `Change redone. Nothing left to redo` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) announcement when redo empties its stack |
 | `reorderRow` | `Reorder row` | [Row reordering](https://coreui.io/data-grid/react/docs/features/row-reordering/) drag-handle label |
 | `resetColumns` | `Reset` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) column chooser |
 | `resultsAnnouncement` | `{count} results` | ARIA live announcement |
@@ -88,6 +92,7 @@ announcement).
 | `toolbarRedo` | `Redo` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) redo button |
 | `toolbarUndo` | `Undo` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) undo button |
 | `undoneAnnouncement` | `Change undone` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) ARIA live announcement |
+| `undoneLastAnnouncement` | `Change undone. Nothing left to undo` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) announcement when undo empties its stack |
 | `unpin` | `Unpin` | Column menu |
 
 The defaults are exported as `DEFAULT_LABELS` from `@coreui/react-data-grid` if

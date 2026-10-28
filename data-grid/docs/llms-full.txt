@@ -7,7 +7,7 @@
 
 # CoreUI Data Grid
 
-> High-performance data grid — 100,000 rows with sorting, filtering, selection, pagination, server-side data, column resizing, pinning, ordering and full theming, around 66 KB gzipped.
+> High-performance data grid — 100,000 rows with sorting, filtering, selection, pagination, server-side data, column resizing, pinning, ordering and full theming, around 71 KB gzipped.
 
 CoreUI Data Grid is a high-performance grid for displaying and interacting with
 large tabular datasets. It renders 100,000 rows in the browser with sorting,
@@ -30,7 +30,7 @@ outgrows the browser's memory.
 - **Themeable.** Every knob is a `--cui-data-grid-*` CSS variable resolving
   through CoreUI semantic tokens, so light/dark theming works with no extra CSS.
   See [Styling & theming](https://coreui.io/data-grid/docs/customization/styling/).
-- **Small.** Around 66 KB gzipped for the vanilla build — 55 KB with the [lite build](https://coreui.io/data-grid/docs/customization/feature-sets/) when sorting, filtering and pagination are all you need.
+- **Small.** Around 71 KB gzipped for the vanilla build — 60 KB with the [lite build](https://coreui.io/data-grid/docs/customization/feature-sets/) when sorting, filtering and pagination are all you need.
 
 ## How it's built
 
@@ -1520,6 +1520,34 @@ element.addEventListener('editCommit.coreui.data-grid', (event) => {
 
 `editStart` and `editCancel` fire around it with `{ item, columnId }`.
 
+## Tracking edits
+
+`editTracking` keeps the value each cell had before its first commit, keyed by
+`itemKey`. A cell whose value in `items` differs from it gets
+`data-grid-cell-edited`: a marker in its corner, and the description "Edited"
+for screen readers (`labels.editedCell`). The grid compares with the data you
+pass, so a commit you refuse or apply later, an undo, and an edit back to the
+old value all show the right state. Edit a name or a role below, then save.
+
+```html
+<div class="mb-3"><button class="btn btn-primary" type="button" id="dataGridEditTrackingSave">Save changes (0)</button> <span class="ms-2" id="dataGridEditTrackingStatus" role="status"></span></div><div id="dataGridEditTracking"></div>
+```
+
+`grid.isDirty()` says whether anything changed, `grid.getEditedCells()` returns
+`{ rowId, columnId, item, value, originalValue }` for each edited cell, and
+`grid.clearEdited()` forgets the original values once you have saved. The
+`editedChange` event carries `editedCells` whenever their set changes.
+
+Without `itemKey` a row's id is its position in `items`, so an insert or a
+removal would move a mark to another row; tracking stays off and logs an
+error. `editEquals(value, originalValue)` on a column decides what counts as
+a change, for values a new object replaces on every commit such as dates or
+arrays; the default is `Object.is`. The same comparison runs when an editor
+closes: a commit that keeps the value fires the cancel event instead of the
+commit, before `editValidate`, and adds nothing to the undo history, with or
+without tracking. To tint whole rows as well, return a class from `rowClass`
+for the rows listed in the edited cells.
+
 ## Validation
 
 `editValidate` gates the commit. Return `true` to accept, or a message to block
@@ -1531,6 +1559,41 @@ it — the editor gets `aria-invalid`, the `is-invalid` class and an
 ```
 
 An invalid value keeps the editor open; <kbd>Escape</kbd> still cancels.
+
+### Validating the data
+
+`validate` checks the data itself, not only the cell being edited. It receives a row
+and returns messages keyed by column: a string is an error, and
+`{ message, level: 'warning' }` is a warning. Every rendered cell with an issue is
+marked, data loaded from the server included: an error gets
+`data-grid-cell-invalid` (a solid outline), and `aria-invalid` when cell
+navigation is on, a warning gets
+`data-grid-cell-warning` (a dashed outline), and both carry the message as a
+tooltip and as their description for screen readers. Because the function sees
+the whole row, one rule can compare fields, and fixing either field clears the
+mark.
+
+```html
+<p class="mb-3" id="dataGridValidationStatus" role="status"></p><div id="dataGridValidation"></div>
+```
+
+When an edit commits, the grid validates the row as it will be after the change,
+after `editValidate` and only when the value changed, so a cell loaded with an
+error can still be left with Enter. An error on the edited column blocks the
+commit and shows the message in the editor, like `editValidate`. An error the
+commit causes on another column lets it through, marks that cell and is announced
+to screen readers; warnings never block.
+
+`grid.isValid()` and `grid.getInvalidCells(level?)` check every row the grid holds,
+not only the rendered ones, for example to disable a save button. With `dataProvider` they see the rows the grid holds: the current page, or every
+page loaded so far with `infiniteScroll`, never the rest of the server's data.
+The grid keeps no state for this: errors your server returns can live in your own
+state and be read by `validate`. Key them to the value the server rejected
+(`serverErrors[item.id]?.email === item.email ? 'Email is taken' : undefined`),
+otherwise the old message blocks every new value the user types into that cell.
+When that state changes, call `grid.setItems(items)` to repaint the marks. With
+`dataProvider`, return the server's errors with the rows instead, as fields
+`validate` reads, so they arrive with the next load.
 
 ## Custom editors
 
@@ -2095,8 +2158,9 @@ scrolled so far rather than a single page, so it grows as the user goes.
 
 The `toolbar` option adds a built-in chrome row above the grid with a
 **column chooser**, a **CSV export** button, **Undo/Redo** buttons (with
-[`history`](https://coreui.io/data-grid/docs/features/history/)) and a **global search** input. Each action drives an existing feature, so the toolbar is the ready-made
-UI you would otherwise build with the [`toolbar` slot](https://coreui.io/data-grid/docs/features/slots/).
+[`history`](https://coreui.io/data-grid/docs/features/history/)) and a **global search** input. Each action drives an existing feature. The built-in toolbar is the
+default composition of public parts; a [custom toolbar](#custom-toolbar)
+composes the same parts next to your own actions.
 
 ```js
 new coreui.DataGrid(element, {
@@ -2166,11 +2230,13 @@ new coreui.DataGrid(document.getElementById('dataGridToolbar'), {
 
 ## Column chooser
 
-With `toolbar.columns` enabled the columns button opens a popup listing every
-leaf column in visual order with a checkbox. Toggling a checkbox calls
-`column.toggleVisibility()` live — there is no Apply step. Columns marked
-`hideable: false` stay checked and disabled. The footer offers **Show all** and
-**Reset** (Reset restores the initial `columnVisibility` object). Visibility
+With `toolbar.columns` enabled the columns button opens a menu listing every
+leaf column in visual order as a checkable item. A click or Space on an item
+calls `column.toggleVisibility()` live and keeps the menu open, Enter does the
+same and closes it — there is no Apply step. Columns marked `hideable: false`
+stay checked and disabled. **Show all**
+and **Reset** (Reset restores the initial `columnVisibility` object) apply and
+close the menu. Visibility
 changes emit `visibilityChange.coreui.data-grid` just like the
 [column menu](https://coreui.io/data-grid/docs/columns/menu/).
 
@@ -2190,12 +2256,165 @@ icon).
 
 ## Custom toolbar
 
-The `toolbar` slot still **replaces** the whole toolbar; the built-in buttons are
-not composable into a custom slot. For a fully custom toolbar — including a
-hand-built column chooser — use the [`toolbar` slot](https://coreui.io/data-grid/docs/features/slots/) with the
-headless `table` and public helpers (`downloadCsv`, `column.toggleVisibility`).
-See the [column ordering & visibility](https://coreui.io/data-grid/docs/columns/ordering-visibility/) page for a
-slot-based chooser.
+The `toolbar` slot replaces the default composition. Its context carries
+`toolbar.parts`, the same parts the built-in toolbar is made of, so a custom
+toolbar keeps the built-in actions and adds its own next to them. This demo
+puts a **Save changes** action that is enabled only while there are unsaved
+edits in front of Undo, Redo, Columns and Export:
+
+```html
+<div id="dataGridToolbarParts"></div>
+```
+
+```js
+const roles = ['admin', 'editor', 'viewer']
+const keys = ['name', 'role']
+
+let items = Array.from({ length: 200 }, (_, i) => ({
+  id: i + 1,
+  name: `User ${i + 1}`,
+  role: roles[i % roles.length]
+}))
+let saved = items
+
+const isDirty = () => items.some((row, index) => keys.some(key => row[key] !== saved[index][key]))
+
+const element = document.getElementById('dataGridToolbarParts')
+let save
+
+const grid = new coreui.DataGrid(element, {
+  columns: [
+    {
+      key: 'id', label: '#', width: 90, hideable: false
+    },
+    { key: 'name', label: 'Name', editable: true },
+    {
+      key: 'role', label: 'Role', width: 130, editable: { type: 'select', options: roles }
+    }
+  ],
+  items,
+  itemKey: item => String(item.id),
+  columnVisibility: true,
+  editing: true,
+  globalFilter: true,
+  history: true,
+  pagination: { pageSize: 10 },
+  slots: {
+    toolbar({ toolbar }) {
+      save = toolbar.parts.button({
+        label: 'Save changes',
+        disabled: !isDirty(),
+        onAction() {
+          saved = items
+          save.update({ disabled: true })
+        }
+      })
+
+      return {
+        element: toolbar.parts.toolbar(
+          toolbar.parts.actions(
+            save.element,
+            toolbar.parts.undo().element,
+            toolbar.parts.redo().element,
+            toolbar.parts.columns().element,
+            toolbar.parts.export({ options: { filename: 'users.csv' } }).element
+          ),
+          toolbar.parts.search().element
+        )
+      }
+    }
+  }
+})
+
+element.addEventListener('editCommit.coreui.data-grid', event => {
+  items = items.map(row => (row === event.item ? { ...row, [event.columnId]: event.value } : row))
+  grid.setItems(items)
+  save.update({ disabled: !isDirty() })
+})
+```
+
+Each button part and the search part return a binding
+`{ element, update(options), dispose() }`; `toolbar()` and `actions()` return
+the element. Place `element` anywhere in the slot's markup and call
+`update()` when your own state changes, as the demo does with `disabled`.
+
+| Part | Renders | Needs |
+| --- | --- | --- |
+| `toolbar.parts.toolbar(...children)` | the `.data-grid-toolbar` row | — |
+| `toolbar.parts.actions(...children)` | a `.data-grid-toolbar-actions` group | — |
+| `toolbar.parts.columns(options)` | the column chooser button and its menu | `columnVisibility` |
+| `toolbar.parts.export(options)` | the export button | — |
+| `toolbar.parts.print(options)` | the [print](https://coreui.io/data-grid/docs/features/print/) button | — |
+| `toolbar.parts.undo(options)`, `redo(options)` | the history buttons | `history` |
+| `toolbar.parts.search(options)` | the global search field | `globalFilter` |
+| `toolbar.parts.button(options)` | an own action with the built-in look | — |
+
+Every button part takes `icon` (SVG markup, sanitized like every other icon),
+`label` (the accessible name and tooltip) and `className`. `export` also takes
+`options`, merged over `toolbar.export`; `search` takes `label` and
+`placeholder`. `button` requires `label` and takes `onAction`, `disabled` and
+`pressed` (rendered as `aria-pressed` once set). Without an icon its label is
+visible text; with one the label becomes the tooltip.
+
+A part whose feature is off still renders, disabled, and logs
+`DATA-GRID: Toolbar part "undo" requires option "history".` once per kind and
+grid. Keep Undo and Redo in the toolbar instead of adding them only while
+`canUndo()` is true: a button that disappears while focused takes the focus
+with it.
+
+## Own elements with a part's behaviour
+
+`toolbar.bind(element, kind, options)` gives your own `<button>` (or
+`<input>` for `search`) the behaviour of a part: availability, activation,
+the focus rule below, and for `columns` the menu. It writes the state
+attributes and `type`, never the accessible name, so the text and the
+`aria-label` stay yours.
+
+```js
+slots: {
+  toolbar: ({ toolbar }) => {
+    const undo = document.createElement('button')
+    undo.className = 'btn btn-outline-secondary btn-sm'
+    undo.textContent = 'Undo last change'
+    toolbar.bind(undo, 'undo')
+    return { element: toolbar.parts.toolbar(undo) }
+  }
+}
+```
+
+Give an own action to `bind(element, 'button', { onAction })` rather than to
+your own click listener, so a held button (below) does not run it. Binding
+the same element and kind again updates the existing binding.
+
+## Toolbar without parts
+
+The slot context also carries `toolbar.canUndo()`, `toolbar.canRedo()`,
+`toolbar.undo()`, `toolbar.redo()` and `toolbar.print()` for markup that
+uses no part at all. Read them in the slot's `update()`, which runs on every
+grid render.
+
+## Accessibility
+
+- **Focus stays on a button that becomes unavailable.** After the last undo
+  the focused Undo button gets `aria-disabled="true"` and ignores activation
+  until focus moves to another element; only then does it become natively
+  `disabled`. The same applies to `button` parts switched to `disabled`.
+  Disabled toolbar buttons keep their tooltip.
+- **The column chooser is a menu** inside the grid, named by its trigger, with
+  a checkable item per column. Arrow keys, Home and End move between the
+  items, Space toggles a column and keeps the menu open, Enter toggles it and
+  closes the menu. Escape on the menu or on the trigger closes it and returns
+  focus to the trigger, Tab closes it and moves on from the trigger, and focus
+  moving to an element outside closes it. A scroll or a window resize keeps it
+  under its trigger, no taller than the room left below it.
+- **Focus leaves the column chooser for another part** when the chooser goes
+  away with its part or its feature while focus is inside it. `update()`
+  returns focus to the same part when the new toolbar has one.
+- **Announcements** — results counts and undo/redo — go to one page-level
+  live region (`[data-coreui-live-announcer]`) shared with CoreUI components
+  on the same page. Undo or redo that empties its stack says so in the same
+  message, and undo of an edit whose row is gone announces that the change is
+  no longer available.
 
 
 ---
@@ -2279,8 +2498,11 @@ new coreui.DataGrid(document.getElementById('dataGridSlots'), {
 ```
 
 Return a fresh `element` on every factory call — with `pagination.position: 'both'`
-the factory runs once per position. A custom toolbar that hosts its own global
-search still needs `globalFilter: true` for the query to reach the grid. The
+the factory runs once per position. The `toolbar` factory also receives
+`toolbar`, with the parts the built-in toolbar is made of, so a custom toolbar
+keeps the built-in actions next to its own — see
+[Custom toolbar](https://coreui.io/data-grid/docs/features/toolbar/#custom-toolbar). Its search part needs
+`globalFilter: true` for the query to reach the grid. The
 `empty` slot also renders when a server load fails; use the `dataError` event to
 tell the two apart.
 
@@ -2288,7 +2510,7 @@ tell the two apart.
 
 | Slot | Replaces | Signature |
 | --- | --- | --- |
-| `toolbar` | The toolbar above the grid | `({ table, labels }) => ({ element, update?, dispose? })` |
+| `toolbar` | The toolbar above the grid | `({ table, labels, toolbar }) => ({ element, update?, dispose? })` |
 | `pagination` | The pagination bar | same |
 | `empty` | The no-rows / load-error state | same |
 
@@ -2539,7 +2761,7 @@ is added to the grid bundle unless you import it.
 
 # Data Grid Columns Overview
 
-> Define CoreUI Data Grid columns — keys, labels, cheap value formatting with formatter, and rich cell content with render.
+> Define CoreUI Data Grid columns — keys, labels, cheap value formatting with formatter, rich cell content with render, plus row and cell classes with rowClass and cellClass.
 
 Columns are defined by the [`columns`](https://coreui.io/data-grid/docs/api/options/) array. Each entry maps a
 `key` in your data to a header and a cell. This page covers the essentials;
@@ -2601,6 +2823,39 @@ Use `render` for full custom cell content — action buttons, badges, links.
 Use `formatter` **or** `render` per column — `formatter` for values on the hot
 path, `render` for interactive content. See the [column API](https://coreui.io/data-grid/docs/api/columns/) for
 every key.
+
+## Row and cell classes
+
+`rowClass` (an option) and `cellClass` (a column key) return classes the grid adds next to its
+own on data rows and cells: colour a row by status, flag a value, mark edited
+rows. Both run on every render of the row, so the classes follow sorting,
+selection and new `items` on their own:
+
+```js
+new coreui.DataGrid(element, {
+  columns: [
+    { key: 'name', label: 'Name' },
+    { key: 'status', label: 'Status' },
+    { key: 'stock', label: 'Stock', cellClass: ({ value }) => (value === 0 ? 'text-danger-emphasis fw-semibold' : undefined) },
+  ],
+  items,
+  rowClass: ({ item }) => (item.status === 'blocked' ? 'table-danger' : undefined),
+})
+```
+
+`rowClass` receives `{ item, row, rowIndex }` and `cellClass`
+`{ value, item, row, cell, column }`; `row` and `cell` are the TanStack
+objects, so state such as `row.getIsSelected()` is there too. Return a string
+with one or more classes, or `undefined`. The grid's own classes
+(`data-grid-row-odd`, `table-active`, `data-grid-cell-selected`) reflect its
+state, and returning one of them is not supported: it does not change that
+state, and whether the row or cell shows it differs by edition. Only data rows and
+cells get the classes, not the header, the filter row or the empty state. To
+mark edited cells, see [Tracking edits](https://coreui.io/data-grid/docs/features/editing/#tracking-edits).
+
+A class only paints the row or the cell. Keep the meaning in text as well, as
+the `status` column does above, so it does not rest on colour alone, screen
+readers announce it, and it survives forced colours, which drop backgrounds.
 
 
 ---
@@ -3077,6 +3332,11 @@ Set any variable on the grid element (or an ancestor) to retheme it:
 | `--cui-data-grid-cell-selected-bg` | `rgba(var(--cui-primary-rgb, 50, 31, 219), .12)` | Fill of a selected cell. |
 | `--cui-data-grid-cell-selected-border-color` | `var(--cui-primary, #321fdb)` | Outline drawn on the edges of a selected range. |
 | `--cui-data-grid-cell-selected-border-width` | `1px` | Width of that outline. |
+| `--cui-data-grid-cell-edited-marker-color` | `currentcolor` | Colour of the corner marker on a cell changed with [edit tracking](https://coreui.io/data-grid/docs/features/editing/#tracking-edits); `CanvasText` in forced colors. |
+| `--cui-data-grid-cell-edited-marker-size` | `.375rem` | Side of that marker. |
+| `--cui-data-grid-cell-invalid-color` | `var(--cui-danger)` | Outline of a cell with an error from [Validating the data](https://coreui.io/data-grid/docs/features/editing/#validating-the-data). |
+| `--cui-data-grid-cell-warning-color` | `color-mix(in srgb, var(--cui-warning), var(--cui-body-color))` | Dashed outline of a cell with a warning, the warning colour mixed with the text colour so it keeps its contrast in both themes. |
+| `--cui-data-grid-cell-invalid-width` | `2px` | Width of both outlines. |
 | `--cui-data-grid-row-handle-width` | `2rem` | Width of the row-reorder handle column. |
 | `--cui-data-grid-select-cell-width` | `2.5rem` | Width of the selection checkbox column. |
 | `--cui-data-grid-sorter-margin` | `.25rem` | Gap before the sort indicator. |
@@ -3216,6 +3476,7 @@ announcement).
 | `clearFilter` | `Clear filter` | [Filter menu](https://coreui.io/data-grid/docs/features/filtering/) + quick-input clear |
 | `clearSort` | `Unsort` | [Column menu](https://coreui.io/data-grid/docs/columns/menu/) sort actions |
 | `columnMenu` | `Column options for {column}` | [Column menu](https://coreui.io/data-grid/docs/columns/menu/) button |
+| `editedCell` | `Edited` | [Edit tracking](https://coreui.io/data-grid/docs/features/editing/#tracking-edits) description on an edited cell |
 | `filterAction` | `Filter…` | [Column menu](https://coreui.io/data-grid/docs/columns/menu/) action |
 | `filterColumn` | `Filter {column}` | [Filter](https://coreui.io/data-grid/docs/features/filtering/) input |
 | `filterSummaryConditions` | `{count} conditions` | Quick-input summary |
@@ -3224,6 +3485,8 @@ announcement).
 | `globalFilterLabel` | `Search` | Global search accessible label |
 | `globalFilterPlaceholder` | `Search` | Global search placeholder |
 | `hideColumn` | `Hide column` | Column menu |
+| `historyEntryUnavailable` | `The change is no longer available: its row was removed` | [Undo & redo](https://coreui.io/data-grid/docs/features/history/) announcement when the edited row is gone |
+| `invalidAnnouncement` | `{column}: {message}` | [Validating the data](https://coreui.io/data-grid/docs/features/editing/#validating-the-data) announcement, one per cell, when a commit causes an error on another column |
 | `itemsInfo` | `{first}–{last} of {total}` | Pagination range summary |
 | `joinAnd` | `AND` | [Filter menu](https://coreui.io/data-grid/docs/features/filtering/) |
 | `joinOr` | `OR` | [Filter menu](https://coreui.io/data-grid/docs/features/filtering/) |
@@ -3252,6 +3515,7 @@ announcement).
 | `pinStart` | `Pin to start` | Column menu |
 | `previousPage` | `Previous page` | Pagination |
 | `redoneAnnouncement` | `Change redone` | [Undo & redo](https://coreui.io/data-grid/docs/features/history/) ARIA live announcement |
+| `redoneLastAnnouncement` | `Change redone. Nothing left to redo` | [Undo & redo](https://coreui.io/data-grid/docs/features/history/) announcement when redo empties its stack |
 | `reorderRow` | `Reorder row` | [Row reordering](https://coreui.io/data-grid/docs/features/row-reordering/) drag-handle label |
 | `resetColumns` | `Reset` | [Toolbar](https://coreui.io/data-grid/docs/features/toolbar/) column chooser |
 | `resultsAnnouncement` | `{count} results` | ARIA live announcement |
@@ -3268,6 +3532,7 @@ announcement).
 | `toolbarRedo` | `Redo` | [Toolbar](https://coreui.io/data-grid/docs/features/toolbar/) redo button |
 | `toolbarUndo` | `Undo` | [Toolbar](https://coreui.io/data-grid/docs/features/toolbar/) undo button |
 | `undoneAnnouncement` | `Change undone` | [Undo & redo](https://coreui.io/data-grid/docs/features/history/) ARIA live announcement |
+| `undoneLastAnnouncement` | `Change undone. Nothing left to undo` | [Undo & redo](https://coreui.io/data-grid/docs/features/history/) announcement when undo empties its stack |
 | `unpin` | `Unpin` | Column menu |
 
 The defaults are exported as `DEFAULT_LABELS` from `@coreui/data-grid` if you
@@ -3278,7 +3543,7 @@ want to extend rather than replace them.
 
 # Data Grid Feature Sets & Bundle Size
 
-> Pick the TanStack feature set your grid actually uses — the lite build covers sorting, filtering and pagination at 55 KB gzipped, the full build everything at 66 KB.
+> Pick the TanStack feature set your grid actually uses — the lite build covers sorting, filtering and pagination at 60 KB gzipped, the full build everything at 71 KB.
 
 The grid registers a set of TanStack Table features at construction. Options
 gate *behavior*; the feature set gates *registration* — an API only exists on
@@ -3287,8 +3552,8 @@ nothing at runtime. Two presets ship with the package:
 
 | Preset | Covers | Bundle |
 | --- | --- | --- |
-| `dataGridFeatures` (default) | everything: sorting, filtering, faceted set filters, global search, pagination, selection, visibility, ordering, pinning, sizing/resizing | `data-grid.min.js` — 61,758 B gzip |
-| `dataGridLiteFeatures` | sorting, filtering (incl. the toolbar search) and pagination | `data-grid.lite.min.js` — 51,794 B gzip |
+| `dataGridFeatures` (default) | everything: sorting, filtering, faceted set filters, global search, pagination, selection, visibility, ordering, pinning, sizing/resizing | `data-grid.esm.min.js` — 73,160 B gzip |
+| `dataGridLiteFeatures` | sorting, filtering (incl. the toolbar search) and pagination | `data-grid.lite.esm.min.js` — 61,791 B gzip |
 
 A grid that only sorts, filters and pages does not need the default build.
 The lite bundle pairs the same `DataGrid` with `dataGridLiteFeatures` as its
@@ -3366,7 +3631,9 @@ worse than the native table semantics the grid keeps by default.
 The [column menu](https://coreui.io/data-grid/docs/columns/menu/) follows the ARIA menu pattern:
 
 - **Arrow keys** move between items; **Home/End** jump to the first/last item.
-- **Escape** closes the menu and restores focus to the ⋮ trigger.
+- **Escape** closes the menu and restores focus to the ⋮ trigger; **Tab**
+  closes it and moves on from the trigger.
+- A scroll or a window resize keeps the menu under its trigger.
 - **Move to start / Move to end** give a keyboard-accessible alternative to
   drag-and-drop [column reordering](https://coreui.io/data-grid/docs/columns/ordering-visibility/).
 
@@ -3524,6 +3791,8 @@ later with `grid.update(options)`.
 | `columnSizing` | `boolean \| { mode?: 'onChange' \| 'onEnd' }` | `false` | Enables column resize handles. `mode` controls whether widths update while dragging (`'onChange'`, the default) or on release (`'onEnd'`). See [Column sizing](https://coreui.io/data-grid/docs/columns/sizing/). |
 | `dataProvider` | `(request) => Promise<{ items, totalRows }>` | `null` | Server-side mode: the grid requests data on every sorting/filter/page change. The request carries `{ sorting, columnFilters, globalFilter, pagination }`. Implies pagination. See [Server-side data](https://coreui.io/data-grid/docs/features/server-side-data/). |
 | `editing` | `boolean` | `false` | Inline cell editing on Enter/F2/double-click for columns opting in via `editable`/`editor`; implies `cellNavigation`. See [Inline editing](https://coreui.io/data-grid/docs/features/editing/). |
+| `validate` | `(item) => { [column]: string \| { message, level? } } \| null` | `null` | Marks the cells of each row with errors and warnings, and blocks a commit with an error on the edited column. See [Validating the data](https://coreui.io/data-grid/docs/features/editing/#validating-the-data). |
+| `editTracking` | `boolean` | `false` | Tracks committed edits by `itemKey` and marks every cell whose value differs from its value before the first commit. See [Edit tracking](https://coreui.io/data-grid/docs/features/editing/#tracking-edits). |
 | `empty` | `string \| () => Node \| string` | `'No items found'` | Content shown when no rows match. |
 | `features` | `TableFeatures \| null` | `null` | The registered TanStack feature set; `null` means the entry's default — the full `dataGridFeatures` in the main build, `dataGridLiteFeatures` in `@coreui/data-grid/lite`. An option whose feature is missing from the set throws at construction. See [Feature sets](https://coreui.io/data-grid/docs/customization/feature-sets/). |
 | `globalFilter` | `boolean` | `false` | Renders a search input above the grid that filters across all columns. Shorthand for `toolbar: { search: true }`. |
@@ -3536,12 +3805,13 @@ later with `grid.update(options)`.
 | `pagination` | `boolean \| { pageSize?, pageSizeOptions?, position?, info? }` | `false` | Pagination mode — mutually exclusive with virtualization. See [Pagination](https://coreui.io/data-grid/docs/features/pagination/). |
 | `rowHeight` | `number` | `44` | Estimated row height in px used by the virtualizer. |
 | `printTitle` | `string \| null` | `null` | Heading printed above the table when `print()` runs. See [Print](https://coreui.io/data-grid/docs/features/print/). |
+| `rowClass` | `(({ item, row, rowIndex }) => string \| undefined) \| null` | `null` | Classes added to each data row next to the grid's own; runs on every render of the row. See [Columns](https://coreui.io/data-grid/docs/columns/overview/#row-and-cell-classes). |
 | `rowHandleIcon` | `string` | grip icon | Custom row drag-handle icon (SVG string). |
 | `rowOrder` | `boolean` | `false` | Adds a drag handle per row for reordering; emits `rowOrderChange` with the reordered array. See [Row reordering](https://coreui.io/data-grid/docs/features/row-reordering/). |
 | `rowSelection` | `boolean \| { selectAll? }` | `false` | Checkbox selection with select-all and shift+click ranges. See [Row selection](https://coreui.io/data-grid/docs/features/row-selection/). |
 | `sanitize` | `boolean` | `true` | Sanitize icon markup against the SVG allow list before inserting it. |
 | `sanitizeFn` | `(html) => string \| null` | `null` | Custom sanitizer used in place of the built-in one. |
-| `slots` | `{ toolbar?, pagination?, empty? }` | `{}` | Replaces built-in chrome. Each slot is a factory `({ table, labels }) => ({ element, update?, dispose? })`. See [Slots](https://coreui.io/data-grid/docs/features/slots/). |
+| `slots` | `{ toolbar?, pagination?, empty? }` | `{}` | Replaces built-in chrome. Each slot is a factory `({ table, labels }) => ({ element, update?, dispose? })`; the toolbar factory also receives `toolbar`. See [Slots](https://coreui.io/data-grid/docs/features/slots/). |
 | `stateKey` | `string \| null` | `null` | Autosaves the grid state to localStorage under this key (debounced) and restores it on init. See [Save & restore state](https://coreui.io/data-grid/docs/features/state/). |
 | `sorting` | `boolean \| { multiple?, resetable? }` | `true` | Column sorting; shift+click adds columns to the sort. See [Sorting](https://coreui.io/data-grid/docs/features/sorting/). |
 | `toolbar` | `boolean \| { columns?, export?, history?, search? }` | `false` | Built-in toolbar above the grid. `true` enables every action whose feature is on; a granular object picks each. `columns` needs `columnVisibility`; `export` accepts a `CsvDownloadOptions` object; `print` adds the [print](https://coreui.io/data-grid/docs/features/print/) button; `history` needs the `history` option; `search` is the same input as `globalFilter`. See [Toolbar](https://coreui.io/data-grid/docs/features/toolbar/). |
@@ -3571,6 +3841,7 @@ tour.
 | `label` | `string` | Header label; falls back to `key`. |
 | `editable` | `boolean \| { type?, min?, max?, step?, options? }` | Opts the column into [inline editing](https://coreui.io/data-grid/docs/features/editing/) with a built-in `text`, `number` or `select` editor. |
 | `editor` | `(context) => DataGridEditor` | Custom editor factory — receives `{ item, column, value, commit, cancel, labels }`, returns `{ element, getValue?, focus?, contains?, dispose?, popup? }`. Its presence opts the column in. |
+| `editEquals` | `(value, originalValue) => boolean` | Decides whether a commit changes the value (an equal one cancels) and when a cell counts as edited with [Edit tracking](https://coreui.io/data-grid/docs/features/editing/#tracking-edits); defaults to `Object.is`. It runs before `editValidate`, so it also receives values the column would reject. Use it for values a new object replaces on every commit, such as dates or arrays. |
 | `editValidate` | `(value, item) => true \| string` | Gates the commit — a returned message blocks it and marks the editor invalid. |
 | `sortable` | `boolean` | Set `false` to disable sorting for this column. |
 | `filterable` | `boolean` | Set `false` to remove the column's filter button. |
@@ -3581,6 +3852,7 @@ tour.
 | `movable` | `boolean` | Set `false` to exclude the column from drag-and-drop reordering. |
 | `hideable` | `boolean` | Set `false` to prevent hiding the column. |
 | `formatter` | `(value, item) => string` | Formats the cell value — cheap, stays on the scroll hot path. |
+| `cellClass` | `({ value, item, row, cell, column }) => string \| undefined` | Classes added to the column's data cells next to the grid's own; runs on every render of the row. See [Columns](https://coreui.io/data-grid/docs/columns/overview/#row-and-cell-classes). |
 | `render` | `(item, index) => Node \| string` | Full custom cell content (e.g. action buttons). |
 | `width` | `number` | Initial column width in pixels - seeds `columnSizing` and drives the layout. |
 | `style` | `object` | Inline styles for the header cell (cosmetic; e.g. percentage widths are visual-only). |
@@ -3611,8 +3883,9 @@ Listen with `element.addEventListener('sortingChange.coreui.data-grid', handler)
 | `visibilityChange` | `{ columnVisibility: ColumnVisibilityState }` |
 | `rowOrderChange` | `{ items: object[], item: object, oldIndex: number, newIndex: number }` — the grid never mutates `items`; apply the reordered array yourself. See [Row reordering](https://coreui.io/data-grid/docs/features/row-reordering/) |
 | `editStart` | `{ item: object, columnId: string }` |
-| `editCommit` | `{ item: object, columnId: string, value: unknown, previousValue: unknown }` — the grid never mutates `items`; apply the change yourself. [Undo/redo](https://coreui.io/data-grid/docs/features/history/) re-emits it with the values swapped |
+| `editCommit` | `{ item: object, columnId: string, value: unknown, previousValue: unknown }` — the grid never mutates `items`; apply the change yourself. [Undo/redo](https://coreui.io/data-grid/docs/features/history/) re-emits it with the values swapped. A commit that keeps the value emits `editCancel` instead |
 | `editCancel` | `{ item: object, columnId: string }` |
+| `editedChange` | `{ editedCells: object[] }` — the edited cells whenever their set changes, see [Edit tracking](https://coreui.io/data-grid/docs/features/editing/#tracking-edits) |
 | `cellCopy` | `{ text: string }` — fires after Ctrl/Cmd+C copies a [cell selection](https://coreui.io/data-grid/docs/features/cell-selection/), with the text written to the clipboard |
 | `dataLoad` | `{ items: object[], totalRows: number }` (server-side mode) |
 | `dataError` | `{ error: unknown }` (server-side mode) |
@@ -3629,6 +3902,8 @@ Call these on the `DataGrid` instance returned by the constructor.
 | Method | Description |
 | --- | --- |
 | `getSelectedItems()` | Returns the selected item objects. |
+| `getRowElement(id)` | Returns the rendered row with the given id (`itemKey`), or `null`. See [Rows and cells in the DOM](https://coreui.io/data-grid/docs/api/headless/#rows-and-cells-in-the-dom). |
+| `getCellElement(id, columnId)` | Returns the rendered data cell of that row and column, or `null`. |
 | `getCsv(options?)` | Returns the rows as an RFC-4180 CSV string. Options: `scope`, `delimiter`, `bom`, `sanitize`. See [CSV export](https://coreui.io/data-grid/docs/features/csv-export/). |
 | `downloadCsv(options?)` | Downloads the CSV as a file. Same options plus `filename`. |
 | `print()` | Prints every sorted and filtered row through a plain generated table, past virtualization and pagination. See [Print](https://coreui.io/data-grid/docs/features/print/). |
@@ -3636,6 +3911,11 @@ Call these on the `DataGrid` instance returned by the constructor.
 | `restoreState(state)` | Applies a (partial) snapshot back onto the grid. |
 | `undo()` | Reverts the most recent [edit commit](https://coreui.io/data-grid/docs/features/history/) by re-emitting `editCommit` with the values swapped. Requires `history: true`. |
 | `redo()` | Re-applies the most recently undone edit commit. |
+| `isDirty()` | Returns whether any cell differs from its value before its first commit. Requires `editTracking: true`; see [Edit tracking](https://coreui.io/data-grid/docs/features/editing/#tracking-edits). |
+| `getEditedCells()` | Returns the edited cells as `{ rowId, columnId, item, value, originalValue }[]`. |
+| `isValid()` | Returns whether no row has an error from `validate`. See [Validating the data](https://coreui.io/data-grid/docs/features/editing/#validating-the-data). |
+| `getInvalidCells(level?)` | Returns `{ rowId, columnId, item, message, level }[]` for every row, optionally only `'error'` or `'warning'`. |
+| `clearEdited()` | Forgets the original values, so no cell counts as edited. Call it after saving. |
 | `setItems(items)` | Replaces the data in place, preserving sorting, filters, selection and scroll. Pair with `itemKey` so selection follows items rather than row indexes. Ignored in [server-side mode](https://coreui.io/data-grid/docs/features/server-side-data/), where the `dataProvider` owns the data. |
 | `update(options)` | Merges options and performs a full rebuild — sorting, filters, selection and scroll are reset. Use `setItems()` to swap data while keeping user state. |
 | `dispose()` | Destroys the instance and removes the rendered UI. |
@@ -3675,6 +3955,24 @@ grid.table.store.state.sorting
   selection, pagination, pinning, order and visibility as structured state.
 - **Imperative actions.** Set the page, toggle a column, change pinning or apply
   a filter without waiting for user interaction.
+
+## Rows and cells in the DOM
+
+Every data cell carries its column key in `data-coreui-column`, and with
+`itemKey` set every data row carries its id in `data-coreui-row-id`, so
+`closest('[data-coreui-row-id]')` in your own handlers and selectors in tests
+reach a row without the grid. `grid.getRowElement(id)` and `grid.getCellElement(id, columnId)` return the rendered row and cell of this
+grid, never of a grid nested in one of its cells. They return `null` when the
+row is not rendered (outside the virtualized window, on another page,
+filtered out, or not loaded yet with `dataProvider`, where the previous page
+stays rendered until the next one arrives), when the column is hidden, and
+without `itemKey`, whose absence makes row ids plain indexes.
+
+An element is valid until the next render: sorting, filtering, paging and
+scrolling can give the same element to another row or remove it, so ask again
+instead of keeping it. A cell takes focus only with `cellNavigation`, where the
+grid follows the focus with its own tab stop; do not add `tabindex` to cells
+yourself, or every cell becomes a stop of its own.
 
 ## Notes
 

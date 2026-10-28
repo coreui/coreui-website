@@ -32,7 +32,7 @@ outgrows the browser's memory.
   See [Styling & theming](https://coreui.io/data-grid/vue/docs/customization/styling/).
 - **Vue-native.** Reactive props, emits and scoped slots — no wrappers around a
   DOM widget.
-- **Small.** Around 66 KB gzipped for the underlying grid core — 55 KB with a [lite feature set](https://coreui.io/data-grid/vue/docs/customization/feature-sets/).
+- **Small.** Around 71 KB gzipped for the underlying grid core — 60 KB with a [lite feature set](https://coreui.io/data-grid/vue/docs/customization/feature-sets/).
 
 ## How it's built
 
@@ -367,7 +367,7 @@ Autoprefixer dropped every prefix but `-webkit-user-select`.
 
 ## Vue
 
-`@coreui/vue-data-grid` needs **Vue 3.4 or newer** on top of the browser range
+`@coreui/vue-data-grid` needs **Vue 3.5 or newer** on top of the browser range
 above. See [installation](https://coreui.io/data-grid/vue/docs/getting-started/installation/).
 
 
@@ -1580,6 +1580,102 @@ the grid re-renders (server-side, PATCH and refetch):
 
 `editStart` and `editCancel` fire around it with `(item, columnId)`.
 
+## Tracking edits
+
+`edit-tracking` keeps the value each cell had before its first commit, keyed by
+`itemKey`. A cell whose value in `items` differs from it gets
+`data-grid-cell-edited`: a marker in its corner, and the description "Edited"
+for screen readers (`labels.editedCell`). The grid compares with the data you
+pass, so a commit you refuse or apply later, an undo, and an edit back to the
+old value all show the right state. Edit a name or a role below, then save.
+
+```html
+<script setup lang="ts">
+import {
+  CDataGrid,
+  type CDataGridApi,
+  type DataGridEditCommitEvent,
+  type DataGridEditedCell
+} from '@coreui/vue-data-grid'
+import { ref } from 'vue'
+
+const roles = ['admin', 'editor', 'viewer']
+
+const items = ref(
+  Array.from({ length: 20 }, (_, i) => ({
+    id: i + 1,
+    name: `User ${i + 1}`,
+    role: roles[i % roles.length]
+  }))
+)
+
+const grid = ref<CDataGridApi | null>(null)
+const editedCells = ref<DataGridEditedCell[]>([])
+const status = ref('')
+
+const columns = [
+  { key: 'id', label: '#', width: 90 },
+  { key: 'name', label: 'Name', editable: true },
+  { key: 'role', label: 'Role', width: 130, editable: { type: 'select' as const, options: roles } }
+]
+
+const onEditCommit = ({ item, columnId, value }: DataGridEditCommitEvent) => {
+  items.value = items.value.map(row =>
+    row.id === (item as { id: number }).id ? { ...row, [columnId]: value } : row
+  )
+}
+
+const save = () => {
+  if (editedCells.value.length > 0) {
+    grid.value?.clearEdited()
+    status.value = 'Changes saved'
+  }
+}
+
+const onEditedChange = (cells: DataGridEditedCell[]) => {
+  editedCells.value = cells
+  if (cells.length > 0) {
+    status.value = ''
+  }
+}
+</script>
+
+<template>
+  <div class="mb-3">
+    <button type="button" class="btn btn-primary" @click="save">
+      Save changes ({{ editedCells.length }})
+    </button>
+    <span class="ms-2" role="status">{{ status }}</span>
+  </div>
+  <CDataGrid
+    ref="grid"
+    :columns="columns"
+    editing
+    edit-tracking
+    :item-key="(item) => String(item.id)"
+    :items="items"
+    @edit-commit="onEditCommit"
+    @edited-change="onEditedChange"
+  />
+</template>
+```
+
+The template ref exposes the grid API: `isDirty()` says whether anything
+changed, `getEditedCells()` returns
+`{ rowId, columnId, item, value, originalValue }` for each edited cell, and
+`clearEdited()` forgets the original values once you have saved. The
+`edited-change` event carries the edited cells whenever their set changes.
+
+Without `itemKey` a row's id is its position in `items`, so an insert or a
+removal would move a mark to another row; tracking stays off and logs an
+error. `editEquals(value, originalValue)` on a column decides what counts as
+a change, for values a new object replaces on every commit such as dates or
+arrays; the default is `Object.is`. The same comparison runs when an editor
+closes: a commit that keeps the value fires the cancel event instead of the
+commit, before `editValidate`, and adds nothing to the undo history, with or
+without tracking. To tint whole rows as well, return a class from `row-class`
+for the rows listed in the edited cells.
+
 ## Validation
 
 `editValidate` gates the commit. Return `true` to accept, or a message to block
@@ -1591,6 +1687,101 @@ it — the editor gets `aria-invalid`, the `is-invalid` class and an
 ```
 
 An invalid value keeps the editor open; <kbd>Escape</kbd> still cancels.
+
+### Validating the data
+
+`validate` checks the data itself, not only the cell being edited. It receives a row
+and returns messages keyed by column: a string is an error, and
+`{ message, level: 'warning' }` is a warning. Every rendered cell with an issue is
+marked, data loaded from the server included: an error gets
+`data-grid-cell-invalid` (a solid outline), and `aria-invalid` when cell
+navigation is on, a warning gets
+`data-grid-cell-warning` (a dashed outline), and both carry the message as a
+tooltip and as their description for screen readers. Because the function sees
+the whole row, one rule can compare fields, and fixing either field clears the
+mark.
+
+```html
+<script setup lang="ts">
+import {
+  CDataGrid,
+  type CDataGridApi,
+  type DataGridEditCommitEvent,
+  type DataGridItem
+} from '@coreui/vue-data-grid'
+import { onMounted, ref, watch } from 'vue'
+
+const items = ref<DataGridItem[]>([
+  {
+    id: 1, task: 'Plan the release', start: '2026-01-10', end: '2026-01-20'
+  },
+  {
+    id: 2, task: '', start: '2026-02-10', end: '2026-02-01'
+  },
+  {
+    id: 3, task: 'Ship', start: '2026-03-01', end: '2026-03-05'
+  }
+])
+
+const columns = [
+  { key: 'task', label: 'Task', editable: true },
+  { key: 'start', label: 'Start', width: 150, editable: true },
+  { key: 'end', label: 'End', width: 150, editable: true }
+]
+
+const validate = (item: DataGridItem) => ({
+  task: item.task === '' ? 'Task is required' : undefined,
+  start: String(item.start) > String(item.end) ? 'Start is after the end' : undefined,
+  end: String(item.end).startsWith('2026-03') ? { message: 'Release month, check the freeze', level: 'warning' as const } : undefined
+})
+
+const grid = ref<CDataGridApi | null>(null)
+const errors = ref(0)
+
+const countErrors = () => {
+  errors.value = grid.value?.getInvalidCells('error').length ?? 0
+}
+
+onMounted(countErrors)
+watch(items, countErrors, { flush: 'post' })
+
+const onEditCommit = ({ item, columnId, value }: DataGridEditCommitEvent) => {
+  items.value = items.value.map(row => (row.id === item.id ? { ...row, [columnId]: value } : row))
+}
+</script>
+
+<template>
+  <p class="mb-3" role="status">{{ errors === 0 ? 'Ready to save' : `${errors} ${errors === 1 ? 'error' : 'errors'} to fix` }}</p>
+  <CDataGrid
+    ref="grid"
+    :columns="columns"
+    editing
+    :item-key="(item) => String(item.id)"
+    :items="items"
+    :validate="validate"
+    :virtualization="false"
+    @edit-commit="onEditCommit"
+  />
+</template>
+```
+
+When an edit commits, the grid validates the row as it will be after the change,
+after `editValidate` and only when the value changed, so a cell loaded with an
+error can still be left with Enter. An error on the edited column blocks the
+commit and shows the message in the editor, like `editValidate`. An error the
+commit causes on another column lets it through, marks that cell and is announced
+to screen readers; warnings never block.
+
+`isValid()` and `getInvalidCells(level?)` on the template ref check every row the
+grid holds, not only the rendered ones, for example to disable a save button. Read
+them in a watcher with `flush: 'post'`, as the example does, so the grid has
+rendered the new `items`. With `dataProvider` they see the rows the grid holds: the current page, or every
+page loaded so far with `infiniteScroll`, never the rest of the server's data.
+The grid keeps no state for this: errors your server returns can live in your own
+state and be read by `validate`. Key them to the value the server rejected
+(`serverErrors[item.id]?.email === item.email ? 'Email is taken' : undefined`),
+otherwise the old message blocks every new value the user types into that cell.
+Keep that state reactive (a `ref`) so the grid renders again when it changes.
 
 ## Custom editors
 
@@ -2183,8 +2374,9 @@ scrolled so far rather than a single page, so it grows as the user goes.
 
 The `toolbar` prop adds a built-in chrome row above the grid with a
 **column chooser**, a **CSV export** button, **Undo/Redo** buttons (with
-[`history`](https://coreui.io/data-grid/vue/docs/features/history/)) and a **global search** input. Each action drives an existing feature, so the toolbar is the ready-made
-UI you would otherwise build with the [`toolbar` slot](https://coreui.io/data-grid/vue/docs/features/slots/).
+[`history`](https://coreui.io/data-grid/vue/docs/features/history/)) and a **global search** input. Each action drives an existing feature. The built-in toolbar is the
+default composition of public parts; a [custom toolbar](#custom-toolbar)
+composes the same parts next to your own actions.
 
 ```vue
 <template>
@@ -2259,11 +2451,13 @@ const columns = [
 
 ## Column chooser
 
-With `toolbar.columns` enabled the columns button opens a popup listing every
-leaf column in visual order with a checkbox. Toggling a checkbox calls
-`column.toggleVisibility()` live — there is no Apply step. Columns marked
-`hideable: false` stay checked and disabled. The footer offers **Show all** and
-**Reset** (Reset restores the initial `columnVisibility` object). Visibility
+With `toolbar.columns` enabled the columns button opens a menu listing every
+leaf column in visual order as a checkable item. A click or Space on an item
+calls `column.toggleVisibility()` live and keeps the menu open, Enter does the
+same and closes it — there is no Apply step. Columns marked `hideable: false`
+stay checked and disabled. **Show all**
+and **Reset** (Reset restores the initial `columnVisibility` object) apply and
+close the menu. Visibility
 changes emit `visibility-change` just like the [column menu](https://coreui.io/data-grid/vue/docs/columns/menu/).
 
 ## Export
@@ -2282,12 +2476,180 @@ like every other icon prop).
 
 ## Custom toolbar
 
-The `toolbar` slot still **replaces** the whole toolbar; the built-in buttons are
-not composable into a custom slot. For a fully custom toolbar — including a
-hand-built column chooser — use the [`toolbar` slot](https://coreui.io/data-grid/vue/docs/features/slots/) with the
-headless `table` and public helpers (`downloadCsv`, `column.toggleVisibility`).
-See the [column ordering & visibility](https://coreui.io/data-grid/vue/docs/columns/ordering-visibility/) page for a
-slot-based chooser.
+The `#toolbar` slot replaces the default composition. The parts the built-in
+toolbar is made of are exported, so a custom toolbar keeps the built-in
+actions and adds its own next to them. This demo puts a **Save changes**
+action that is enabled only while there are unsaved edits in front of Undo,
+Redo, Columns and Export:
+
+```html
+<script setup lang="ts">
+import {
+  CDataGrid,
+  CDataGridToolbar,
+  CDataGridToolbarActions,
+  CDataGridToolbarButton,
+  CDataGridToolbarColumns,
+  CDataGridToolbarExport,
+  CDataGridToolbarRedo,
+  CDataGridToolbarSearch,
+  CDataGridToolbarUndo,
+  type DataGridEditCommitEvent
+} from '@coreui/vue-data-grid'
+import { computed, ref } from 'vue'
+
+const roles = ['admin', 'editor', 'viewer']
+
+const initialItems = Array.from({ length: 200 }, (_, i) => ({
+  id: i + 1,
+  name: `User ${i + 1}`,
+  role: roles[i % roles.length]
+}))
+
+const items = ref(initialItems)
+const saved = ref(initialItems)
+
+const dirty = computed(() =>
+  items.value.some((row, index) => row.name !== saved.value[index].name || row.role !== saved.value[index].role)
+)
+
+const columns = [
+  { key: 'id', label: '#', width: 90, hideable: false },
+  { key: 'name', label: 'Name', editable: true },
+  { key: 'role', label: 'Role', width: 130, editable: { type: 'select' as const, options: roles } }
+]
+
+const onEditCommit = ({ item, columnId, value }: DataGridEditCommitEvent) => {
+  items.value = items.value.map(row =>
+    row.id === (item as { id: number }).id ? { ...row, [columnId]: value } : row
+  )
+}
+
+const save = () => {
+  saved.value = items.value
+}
+</script>
+
+<template>
+  <CDataGrid
+    :columns="columns"
+    column-visibility
+    editing
+    global-filter
+    history
+    :items="items"
+    :item-key="(item) => String(item.id)"
+    :pagination="{ pageSize: 10 }"
+    @edit-commit="onEditCommit"
+  >
+    <template #toolbar>
+      <CDataGridToolbar>
+        <CDataGridToolbarActions>
+          <CDataGridToolbarButton label="Save changes" :disabled="!dirty" @action="save" />
+          <CDataGridToolbarUndo />
+          <CDataGridToolbarRedo />
+          <CDataGridToolbarColumns />
+          <CDataGridToolbarExport :options="{ filename: 'users.csv' }" />
+        </CDataGridToolbarActions>
+        <CDataGridToolbarSearch />
+      </CDataGridToolbar>
+    </template>
+  </CDataGrid>
+</template>
+```
+
+The slot is part of your template, so it reads your component's state
+directly, like `dirty` in the demo.
+
+| Part | Renders | Needs |
+| --- | --- | --- |
+| `CDataGridToolbar` | the `.data-grid-toolbar` row | — |
+| `CDataGridToolbarActions` | a `.data-grid-toolbar-actions` group | — |
+| `CDataGridToolbarColumns` | the column chooser button and its menu | `columnVisibility` |
+| `CDataGridToolbarExport` | the export button | — |
+| `CDataGridToolbarPrint` | the [print](https://coreui.io/data-grid/vue/docs/features/print/) button | — |
+| `CDataGridToolbarUndo`, `CDataGridToolbarRedo` | the history buttons | `history` |
+| `CDataGridToolbarSearch` | the global search field | `globalFilter` |
+| `CDataGridToolbarButton` | an own action with the built-in look | — |
+
+Every button part takes `icon` (a VNode or a render function) and `label`
+(the accessible name and tooltip); other attributes, such as `class`, go to
+the button. `CDataGridToolbarExport` also takes `options`, merged over
+`toolbar.export`; `CDataGridToolbarSearch` takes `label` and `placeholder`,
+and its attributes go to the field's wrapper. `CDataGridToolbarButton`
+requires `label`, takes `disabled` and `pressed` (rendered as `aria-pressed`
+once set) and emits `action`. Without an icon its label is visible text; with
+one the label becomes the tooltip.
+
+A part whose feature is off still renders, disabled, and logs
+`DATA-GRID: Toolbar part "undo" requires option "history".` once per kind and
+grid. Keep Undo and Redo in the toolbar instead of rendering them only while
+`canUndo` is true: a button that disappears while focused takes the focus
+with it.
+
+## Own elements with a part's behaviour
+
+Every part has a default scoped slot `{ props }`: bind `props` to your own
+`<button>` (or `<input>` for search) and it gets the part's behaviour —
+availability, activation, the focus rule below, and for columns the menu,
+which the part still renders. The props carry the state attributes and
+`type`, never the accessible name, so the text and the `aria-label` stay
+yours.
+
+```vue
+<template #toolbar>
+  <CDataGridToolbar>
+    <CDataGridToolbarUndo v-slot="{ props }">
+      <button v-bind="props" class="btn btn-outline-secondary btn-sm">Undo last change</button>
+    </CDataGridToolbarUndo>
+    <CDataGridToolbarColumns v-slot="{ props }">
+      <button v-bind="props" class="btn btn-outline-secondary btn-sm">Fields</button>
+    </CDataGridToolbarColumns>
+  </CDataGridToolbar>
+</template>
+```
+
+The `useDataGridToolbarExport`, `useDataGridToolbarPrint`,
+`useDataGridToolbarUndo`, `useDataGridToolbarRedo` and
+`useDataGridToolbarButton` composables do the same inside your own component
+rendered in the slot. They take a getter of the options and return a computed
+ref of the props, whose value is `null` outside a grid;
+`useDataGridToolbarSearch()` takes no options and returns the same ref for an
+`<input>`. `useDataGridToolbarColumns` returns `{ props, chooser }`:
+bind `props.value` to the button and render `chooser()` next to it. Give an
+own action to `CDataGridToolbarButton`'s `action` event or to
+`useDataGridToolbarButton(() => ({ label, onAction }))` rather than to your
+own click listener, so a held button (below) does not run it.
+
+## Toolbar without parts
+
+The `#toolbar` slot props carry `toolbar` — `canUndo`, `canRedo`, `undo`,
+`redo` and `print` — next to `table` and `labels`, for a toolbar that uses no
+part at all. Inside a component rendered in the slot, `useDataGridToolbar()`
+returns `canUndo` and `canRedo` as computed refs, the same actions and
+`table`, or `null` outside a grid.
+
+## Accessibility
+
+- **Focus stays on a button that becomes unavailable.** After the last undo
+  the focused Undo button gets `aria-disabled="true"` and ignores activation
+  until focus moves to another element; only then does it become natively
+  `disabled`. The same applies to `CDataGridToolbarButton` switched to
+  `disabled`. Disabled toolbar buttons keep their tooltip.
+- **The column chooser is a menu** inside the grid, named by its trigger, with
+  a checkable item per column. Arrow keys, Home and End move between the
+  items, Space toggles a column and keeps the menu open, Enter toggles it and
+  closes the menu. Escape on the menu or on the trigger closes it and returns
+  focus to the trigger, Tab closes it and moves on from the trigger, and focus
+  moving to an element outside closes it. A scroll or a window resize keeps it
+  under its trigger, no taller than the room left below it.
+- **Focus leaves the column chooser for another part** when the chooser goes
+  away with its part or its feature while focus is inside it.
+- **Announcements** — results counts and undo/redo — go to one page-level
+  live region (`[data-coreui-live-announcer]`) shared with CoreUI components
+  on the same page. Undo or redo that empties its stack says so in the same
+  message, and undo of an edit whose row is gone announces that the change is
+  no longer available.
 
 
 ---
@@ -2373,21 +2735,24 @@ const columns = [
 ```
 
 With `pagination.position: 'both'` the slot renders once per position. A custom
-toolbar that hosts its own global search still needs `global-filter` for the
-query to reach the grid. The `empty` slot also renders when a server load fails;
+toolbar composes the parts the built-in toolbar is made of next to its own
+content — see [Custom toolbar](https://coreui.io/data-grid/vue/docs/features/toolbar/#custom-toolbar). Its search
+part needs `global-filter` for the query to reach the grid. The `empty` slot also renders when a server load fails;
 use the `data-error` event to tell the two apart.
 
 ## Slot contract
 
 | Slot | Replaces | Slot props |
 | --- | --- | --- |
-| `toolbar` | The toolbar above the grid | `{ table, labels }` |
+| `toolbar` | The toolbar above the grid | `{ table, labels, toolbar }` |
 | `pagination` | The pagination bar | same |
 | `empty` | The no-rows / load-error state | same |
 
 - `table` — the [headless table](https://coreui.io/data-grid/vue/docs/api/headless/) instance; read current state
   and call its setters to drive the grid.
 - `labels` — the merged [localization](https://coreui.io/data-grid/vue/docs/customization/localization/) strings.
+- `toolbar` — `canUndo`, `canRedo`, `undo`, `redo` and `print` (toolbar slot
+  only), typed as `CDataGridToolbarSlotProps`.
 
 Slot content re-renders reactively with the grid, so there's no manual update
 or teardown to manage.
@@ -2728,7 +3093,7 @@ it.
 
 # Vue Data Grid Columns Overview
 
-> Define CoreUI Data Grid columns — keys, labels, cheap value formatting with formatter, and rich cell content with cell slots.
+> Define CoreUI Data Grid columns — keys, labels, cheap value formatting with formatter, rich cell content with cell slots, plus row and cell classes with rowClass and cellClass.
 
 Columns are defined by the [`columns`](https://coreui.io/data-grid/vue/docs/api/options/) array. Each entry maps a
 `key` in your data to a header and a cell. This page covers the essentials;
@@ -2791,6 +3156,42 @@ CSV export:
 Use `formatter` **or** a `cell-{key}` slot per column — `formatter` for values
 on the hot path, the slot for interactive content. See the
 [column API](https://coreui.io/data-grid/vue/docs/api/columns/) for every key.
+
+## Row and cell classes
+
+`row-class` (a prop) and `cellClass` (a column key) return classes the grid adds next to its
+own on data rows and cells: colour a row by status, flag a value, mark edited
+rows. Both run on every render of the row, so the classes follow sorting,
+selection and new `items` on their own:
+
+```vue
+<script setup lang="ts">
+const columns = [
+  { key: 'name', label: 'Name' },
+  { key: 'status', label: 'Status' },
+  { key: 'stock', label: 'Stock', cellClass: ({ value }) => (value === 0 ? 'text-danger-emphasis fw-semibold' : undefined) },
+]
+const rowClass = ({ item }) => (item.status === 'blocked' ? 'table-danger' : undefined)
+</script>
+
+<template>
+  <CDataGrid :columns="columns" :items="items" :row-class="rowClass" />
+</template>
+```
+
+`rowClass` receives `{ item, row, rowIndex }` and `cellClass`
+`{ value, item, row, cell, column }`; `row` and `cell` are the TanStack
+objects, so state such as `row.getIsSelected()` is there too. Return a string
+with one or more classes, or `undefined`. The grid's own classes
+(`data-grid-row-odd`, `table-active`, `data-grid-cell-selected`) reflect its
+state, and returning one of them is not supported: it does not change that
+state, and whether the row or cell shows it differs by edition. Only data rows and
+cells get the classes, not the header, the filter row or the empty state. To
+mark edited cells, see [Tracking edits](https://coreui.io/data-grid/vue/docs/features/editing/#tracking-edits).
+
+A class only paints the row or the cell. Keep the meaning in text as well, as
+the `status` column does above, so it does not rest on colour alone, screen
+readers announce it, and it survives forced colours, which drop backgrounds.
 
 
 ---
@@ -3322,6 +3723,11 @@ passed to the component lands on the grid's root element:
 | `--cui-data-grid-cell-selected-bg` | `rgba(var(--cui-primary-rgb, 50, 31, 219), .12)` | Fill of a selected cell. |
 | `--cui-data-grid-cell-selected-border-color` | `var(--cui-primary, #321fdb)` | Outline drawn on the edges of a selected range. |
 | `--cui-data-grid-cell-selected-border-width` | `1px` | Width of that outline. |
+| `--cui-data-grid-cell-edited-marker-color` | `currentcolor` | Colour of the corner marker on a cell changed with [edit tracking](https://coreui.io/data-grid/vue/docs/features/editing/#tracking-edits); `CanvasText` in forced colors. |
+| `--cui-data-grid-cell-edited-marker-size` | `.375rem` | Side of that marker. |
+| `--cui-data-grid-cell-invalid-color` | `var(--cui-danger)` | Outline of a cell with an error from [Validating the data](https://coreui.io/data-grid/vue/docs/features/editing/#validating-the-data). |
+| `--cui-data-grid-cell-warning-color` | `color-mix(in srgb, var(--cui-warning), var(--cui-body-color))` | Dashed outline of a cell with a warning, the warning colour mixed with the text colour so it keeps its contrast in both themes. |
+| `--cui-data-grid-cell-invalid-width` | `2px` | Width of both outlines. |
 | `--cui-data-grid-row-handle-width` | `2rem` | Width of the row-reorder handle column. |
 | `--cui-data-grid-select-cell-width` | `2.5rem` | Width of the selection checkbox column. |
 | `--cui-data-grid-sorter-margin` | `.25rem` | Gap before the sort indicator. |
@@ -3463,6 +3869,7 @@ announcement).
 | `clearFilter` | `Clear filter` | [Filter menu](https://coreui.io/data-grid/vue/docs/features/filtering/) + quick-input clear |
 | `clearSort` | `Unsort` | [Column menu](https://coreui.io/data-grid/vue/docs/columns/menu/) sort actions |
 | `columnMenu` | `Column options for {column}` | [Column menu](https://coreui.io/data-grid/vue/docs/columns/menu/) button |
+| `editedCell` | `Edited` | [Edit tracking](https://coreui.io/data-grid/vue/docs/features/editing/#tracking-edits) description on an edited cell |
 | `filterAction` | `Filter…` | [Column menu](https://coreui.io/data-grid/vue/docs/columns/menu/) action |
 | `filterColumn` | `Filter {column}` | [Filter](https://coreui.io/data-grid/vue/docs/features/filtering/) input |
 | `filterSummaryConditions` | `{count} conditions` | Quick-input summary |
@@ -3471,6 +3878,8 @@ announcement).
 | `globalFilterLabel` | `Search` | Global search accessible label |
 | `globalFilterPlaceholder` | `Search` | Global search placeholder |
 | `hideColumn` | `Hide column` | Column menu |
+| `historyEntryUnavailable` | `The change is no longer available: its row was removed` | [Undo & redo](https://coreui.io/data-grid/vue/docs/features/history/) announcement when the edited row is gone |
+| `invalidAnnouncement` | `{column}: {message}` | [Validating the data](https://coreui.io/data-grid/vue/docs/features/editing/#validating-the-data) announcement, one per cell, when a commit causes an error on another column |
 | `itemsInfo` | `{first}–{last} of {total}` | Pagination range summary |
 | `joinAnd` | `AND` | [Filter menu](https://coreui.io/data-grid/vue/docs/features/filtering/) |
 | `joinOr` | `OR` | [Filter menu](https://coreui.io/data-grid/vue/docs/features/filtering/) |
@@ -3499,6 +3908,7 @@ announcement).
 | `pinStart` | `Pin to start` | Column menu |
 | `previousPage` | `Previous page` | Pagination |
 | `redoneAnnouncement` | `Change redone` | [Undo & redo](https://coreui.io/data-grid/vue/docs/features/history/) ARIA live announcement |
+| `redoneLastAnnouncement` | `Change redone. Nothing left to redo` | [Undo & redo](https://coreui.io/data-grid/vue/docs/features/history/) announcement when redo empties its stack |
 | `reorderRow` | `Reorder row` | [Row reordering](https://coreui.io/data-grid/vue/docs/features/row-reordering/) drag-handle label |
 | `resetColumns` | `Reset` | [Toolbar](https://coreui.io/data-grid/vue/docs/features/toolbar/) column chooser |
 | `resultsAnnouncement` | `{count} results` | ARIA live announcement |
@@ -3515,6 +3925,7 @@ announcement).
 | `toolbarRedo` | `Redo` | [Toolbar](https://coreui.io/data-grid/vue/docs/features/toolbar/) redo button |
 | `toolbarUndo` | `Undo` | [Toolbar](https://coreui.io/data-grid/vue/docs/features/toolbar/) undo button |
 | `undoneAnnouncement` | `Change undone` | [Undo & redo](https://coreui.io/data-grid/vue/docs/features/history/) ARIA live announcement |
+| `undoneLastAnnouncement` | `Change undone. Nothing left to undo` | [Undo & redo](https://coreui.io/data-grid/vue/docs/features/history/) announcement when undo empties its stack |
 | `unpin` | `Unpin` | Column menu |
 
 The defaults are exported as `DEFAULT_LABELS` from `@coreui/vue-data-grid` if
@@ -3609,7 +4020,9 @@ worse than the native table semantics the grid keeps by default.
 The [column menu](https://coreui.io/data-grid/vue/docs/columns/menu/) follows the ARIA menu pattern:
 
 - **Arrow keys** move between items; **Home/End** jump to the first/last item.
-- **Escape** closes the menu and restores focus to the ⋮ trigger.
+- **Escape** closes the menu and restores focus to the ⋮ trigger; **Tab**
+  closes it and moves on from the trigger.
+- A scroll or a window resize keeps the menu under its trigger.
 - **Move to start / Move to end** give a keyboard-accessible alternative to
   drag-and-drop [column reordering](https://coreui.io/data-grid/vue/docs/columns/ordering-visibility/).
 
@@ -3787,6 +4200,7 @@ import { CDataGrid } from '@coreui/vue-data-grid'
 | `columnVisibility` | `boolean \| ColumnVisibilityState` | `false` | Enables hiding/showing columns via `column.toggleVisibility()`; an object sets the initial visibility. |
 | `dataProvider` | `(request: DataGridDataRequest) => Promise<DataGridDataResponse>` | `undefined` | Server-side mode: the grid requests data on every sorting/filter/page change; implies pagination. |
 | `editing` | `boolean` | - | Inline cell editing on Enter/F2/double-click for columns opting in via `editable` or an `editor-{key}` slot; implies `cellNavigation`. |
+| `editTracking` | `boolean` | - | Tracks committed edits by `itemKey`: a cell whose value in `items` differs from its value before the first commit gets `data-grid-cell-edited`, and the exposed `isDirty()` and `getEditedCells()` report it. |
 | `empty` | `string` | `'No items found'` | Content shown when no rows match. |
 | `features` | `TableFeatures` | `() => dataGridFeatures` | The registered TanStack feature set — pass `dataGridLiteFeatures` (or a custom `tableFeatures({...})` set) so the app bundle only carries the features it uses; defaults to the full `dataGridFeatures`. Static per table instance — changing it after mount has no effect. |
 | `filterIcon` | `CDataGridIcon` | `DEFAULT_FILTER_ICON` |  |
@@ -3804,6 +4218,7 @@ import { CDataGrid } from '@coreui/vue-data-grid'
 | `pinEndIcon` | `CDataGridIcon` | `DEFAULT_PIN_END_ICON` | Custom pin-right menu action icon (VNode or render function) replacing the default one. |
 | `pinStartIcon` | `CDataGridIcon` | `DEFAULT_PIN_START_ICON` | Custom pin-left menu action icon (VNode or render function) replacing the default one. |
 | `printTitle` | `string` | `undefined` | Heading printed above the table when the print action runs; omitted when unset. |
+| `rowClass` | `(context: CDataGridRowClassContext) => string \| undefined` | `undefined` | Returns classes added to a data row next to the grid's own; called on every render of the row. |
 | `rowHandleIcon` | `CDataGridIcon` | `DEFAULT_ROW_HANDLE_ICON` | Custom row drag-handle icon (VNode or render function) replacing the default grip. |
 | `rowHeight` | `number` | `44` | Estimated row height in px used by the virtualizer. |
 | `rowOrder` | `boolean` | - | Adds a drag handle per row for reordering; the grid emits `rowOrderChange` with the reordered array instead of mutating `items`. |
@@ -3821,6 +4236,7 @@ import { CDataGrid } from '@coreui/vue-data-grid'
 | `toolbarRedoIcon` | `CDataGridIcon` | `DEFAULT_TOOLBAR_REDO_ICON` | Custom toolbar redo button icon (VNode or render function) replacing the default one. |
 | `toolbarUndoIcon` | `CDataGridIcon` | `DEFAULT_TOOLBAR_UNDO_ICON` | Custom toolbar undo button icon (VNode or render function) replacing the default one. |
 | `unpinIcon` | `CDataGridIcon` | `DEFAULT_UNPIN_ICON` | Custom unpin menu action icon (VNode or render function) replacing the default one. |
+| `validate` | `(item: DataGridItem) => DataGridValidationResult \| undefined` | `undefined` | Validates each row: return messages keyed by column (`{ message, level: 'warning' }` for warnings). Errors on the edited column block the commit; the rest mark their cells. |
 | `virtualization` | `boolean` | `true` | Windowed rendering for large datasets. |
 
 ### Events
@@ -3833,6 +4249,7 @@ import { CDataGrid } from '@coreui/vue-data-grid'
 | `editCancel` | Fires when an edit is cancelled, with the item and column key. |
 | `editCommit` | Fires when an edit commits, with `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change and re-render. |
 | `editStart` | Fires when a cell enters edit mode, with the item and column key. |
+| `editedChange` | Fires with the edited cells whenever the set of edited cells changes (`editTracking`). |
 | `filterChange` | Fires when column filters or the global filter change, with both filter states. |
 | `orderChange` | Fires when columns are reordered, with the TanStack columnOrder state. |
 | `paginationChange` | Fires when the page or page size changes, with the TanStack pagination state. |
@@ -3873,6 +4290,7 @@ tour.
 | `label` | `string` | Header label; falls back to `key`. |
 | `editable` | `boolean \| { type?, min?, max?, step?, options? }` | Opts the column into [inline editing](https://coreui.io/data-grid/vue/docs/features/editing/) with a built-in `text`, `number` or `select` editor. |
 | `editorPopup` | `boolean` | Renders the `editor-{key}` slot in an overlay anchored to the cell instead of inline — for rich editors whose UI extends beyond the cell. |
+| `editEquals` | `(value, originalValue) => boolean` | Decides whether a commit changes the value (an equal one cancels) and when a cell counts as edited with [Edit tracking](https://coreui.io/data-grid/vue/docs/features/editing/#tracking-edits); defaults to `Object.is`. It runs before `editValidate`, so it also receives values the column would reject. Use it for values a new object replaces on every commit, such as dates or arrays. |
 | `editValidate` | `(value, item) => true \| string` | Gates the commit — a returned message blocks it and marks the editor invalid. |
 | `sortable` | `boolean` | Set `false` to disable sorting for this column. |
 | `filterable` | `boolean` | Set `false` to remove the column's filter button. |
@@ -3882,6 +4300,7 @@ tour.
 | `movable` | `boolean` | Set `false` to exclude the column from drag-and-drop reordering. |
 | `hideable` | `boolean` | Set `false` to prevent hiding the column. |
 | `formatter` | `(value, item) => string` | Formats the cell value — cheap, stays on the scroll hot path. |
+| `cellClass` | `({ value, item, row, cell, column }) => string \| undefined` | Classes added to the column's data cells next to the grid's own; runs on every render of the row. See [Columns](https://coreui.io/data-grid/vue/docs/columns/overview/#row-and-cell-classes). |
 | `width` | `number` | Initial column width in pixels - seeds `columnSizing` and drives the layout. |
 | `style` | `CSSProperties` | Inline styles for the header cell (cosmetic; e.g. percentage widths are visual-only). |
 
@@ -3913,8 +4332,9 @@ arguments. Listen in the template with the kebab-case form —
 | `selection-change` | `rowSelection: RowSelectionState, selectedItems: object[]` |
 | `pagination-change` | `pagination: PaginationState` |
 | `edit-start` | `item: object, columnId: string` |
-| `edit-commit` | `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change yourself. [Undo/redo](https://coreui.io/data-grid/vue/docs/features/history/) re-emits it with the values swapped |
+| `edit-commit` | `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change yourself. [Undo/redo](https://coreui.io/data-grid/vue/docs/features/history/) re-emits it with the values swapped. A commit that keeps the value emits `edit-cancel` instead |
 | `edit-cancel` | `item: object, columnId: string` |
+| `edited-change` | `editedCells: object[]` — the edited cells whenever their set changes, see [Edit tracking](https://coreui.io/data-grid/vue/docs/features/editing/#tracking-edits) |
 | `sizing-change` | `columnSizing: ColumnSizingState` |
 | `pinning-change` | `columnPinning: ColumnPinningState` |
 | `order-change` | `columnOrder: ColumnOrderState` |
@@ -3954,6 +4374,14 @@ const grid = ref(null)
 | API | Description |
 | --- | --- |
 | `table` | The underlying headless table instance — the [headless escape hatch](https://coreui.io/data-grid/vue/docs/api/headless/) for building custom UI, e.g. `grid.value?.table.setPageIndex(3)`. |
+| `isDirty()` | Returns whether any cell differs from its value before its first commit (`edit-tracking`); see [Edit tracking](https://coreui.io/data-grid/vue/docs/features/editing/#tracking-edits). |
+| `getEditedCells()` | Returns the edited cells as `{ rowId, columnId, item, value, originalValue }[]`. |
+| `isValid()` | Returns whether no row has an error from `validate`; see [Validating the data](https://coreui.io/data-grid/vue/docs/features/editing/#validating-the-data). |
+| `getInvalidCells(level?)` | Returns `{ rowId, columnId, item, message, level }[]` for every row. |
+| `clearEdited()` | Forgets the original values, so no cell counts as edited. Call it after saving. |
+| `getRowElement(id)` | Returns the rendered row with the given id (`itemKey`), or `null`. See [Rows and cells in the DOM](https://coreui.io/data-grid/vue/docs/api/headless/#rows-and-cells-in-the-dom). |
+| `getCellElement(id, columnId)` | Returns the rendered data cell of that row and column, or `null`. |
+| `undo()` / `redo()` | Steps through the [edit history](https://coreui.io/data-grid/vue/docs/features/history/), like the toolbar buttons. |
 
 Read the current selection with `grid.value?.table.getSelectedRowModel()`, or
 listen for the [`selection-change`](https://coreui.io/data-grid/vue/docs/api/events/) event.
@@ -4016,6 +4444,24 @@ const jumpToPage = () => {
   pagination, pinning, order and visibility as structured state.
 - **Imperative actions.** Set the page, toggle a column, change pinning or apply
   a filter without waiting for user interaction.
+
+## Rows and cells in the DOM
+
+Every data cell carries its column key in `data-coreui-column`, and with
+`itemKey` set every data row carries its id in `data-coreui-row-id`, so
+`closest('[data-coreui-row-id]')` in your own handlers and selectors in tests
+reach a row without the grid. `getRowElement(id)` and `getCellElement(id, columnId)` on the template ref return the rendered row and cell of this
+grid, never of a grid nested in one of its cells. They return `null` when the
+row is not rendered (outside the virtualized window, on another page,
+filtered out, or not loaded yet with `dataProvider`, where the previous page
+stays rendered until the next one arrives), when the column is hidden, and
+without `itemKey`, whose absence makes row ids plain indexes.
+
+An element is valid until the next render: sorting, filtering, paging and
+scrolling can give the same element to another row or remove it, so ask again
+instead of keeping it. A cell takes focus only with `cellNavigation`, where the
+grid follows the focus with its own tab stop; do not add `tabindex` to cells
+yourself, or every cell becomes a stop of its own.
 
 ## Notes
 

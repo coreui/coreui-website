@@ -1,6 +1,6 @@
 # Data Grid Feature Sets & Bundle Size
 
-> Pick the TanStack feature set your grid actually uses — the lite build covers sorting, filtering and pagination at 55 KB gzipped, the full build everything at 66 KB.
+> Pick the TanStack feature set your grid actually uses — the lite build covers sorting, filtering and pagination at 60 KB gzipped, the full build everything at 71 KB.
 
 The grid registers a set of TanStack Table features at construction. Options
 gate *behavior*; the feature set gates *registration* — an API only exists on
@@ -9,8 +9,8 @@ nothing at runtime. Two presets ship with the package:
 
 | Preset | Covers | Bundle |
 | --- | --- | --- |
-| `dataGridFeatures` (default) | everything: sorting, filtering, faceted set filters, global search, pagination, selection, visibility, ordering, pinning, sizing/resizing | `data-grid.min.js` — 61,758 B gzip |
-| `dataGridLiteFeatures` | sorting, filtering (incl. the toolbar search) and pagination | `data-grid.lite.min.js` — 51,794 B gzip |
+| `dataGridFeatures` (default) | everything: sorting, filtering, faceted set filters, global search, pagination, selection, visibility, ordering, pinning, sizing/resizing | `data-grid.esm.min.js` — 73,160 B gzip |
+| `dataGridLiteFeatures` | sorting, filtering (incl. the toolbar search) and pagination | `data-grid.lite.esm.min.js` — 61,791 B gzip |
 
 A grid that only sorts, filters and pages does not need the default build.
 The lite bundle pairs the same `DataGrid` with `dataGridLiteFeatures` as its

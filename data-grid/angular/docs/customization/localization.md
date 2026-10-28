@@ -38,6 +38,7 @@ announcement).
 | `clearFilter` | `Clear filter` | [Filter menu](https://coreui.io/data-grid/angular/docs/features/filtering/) + quick-input clear |
 | `clearSort` | `Unsort` | [Column menu](https://coreui.io/data-grid/angular/docs/columns/menu/) sort actions |
 | `columnMenu` | `Column options for {column}` | [Column menu](https://coreui.io/data-grid/angular/docs/columns/menu/) button |
+| `editedCell` | `Edited` | [Edit tracking](https://coreui.io/data-grid/angular/docs/features/editing/#tracking-edits) description on an edited cell |
 | `filterAction` | `Filter…` | [Column menu](https://coreui.io/data-grid/angular/docs/columns/menu/) action |
 | `filterColumn` | `Filter {column}` | [Filter](https://coreui.io/data-grid/angular/docs/features/filtering/) input |
 | `filterSummaryConditions` | `{count} conditions` | Quick-input summary |
@@ -46,6 +47,8 @@ announcement).
 | `globalFilterLabel` | `Search` | Global search accessible label |
 | `globalFilterPlaceholder` | `Search` | Global search placeholder |
 | `hideColumn` | `Hide column` | Column menu |
+| `historyEntryUnavailable` | `The change is no longer available: its row was removed` | [Undo & redo](https://coreui.io/data-grid/angular/docs/features/history/) announcement when the edited row is gone |
+| `invalidAnnouncement` | `{column}: {message}` | [Validating the data](https://coreui.io/data-grid/angular/docs/features/editing/#validating-the-data) announcement, one per cell, when a commit causes an error on another column |
 | `itemsInfo` | `{first}–{last} of {total}` | Pagination range summary |
 | `joinAnd` | `AND` | [Filter menu](https://coreui.io/data-grid/angular/docs/features/filtering/) |
 | `joinOr` | `OR` | [Filter menu](https://coreui.io/data-grid/angular/docs/features/filtering/) |
@@ -74,15 +77,15 @@ announcement).
 | `pinStart` | `Pin to start` | Column menu |
 | `previousPage` | `Previous page` | Pagination |
 | `reorderRow` | `Reorder row` | [Row reordering](https://coreui.io/data-grid/angular/docs/features/row-reordering/) drag-handle label |
-| `resetColumns` | `Reset` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) column chooser footer |
 | `redoneAnnouncement` | `Change redone` | [Undo & redo](https://coreui.io/data-grid/angular/docs/features/history/) ARIA live announcement |
+| `redoneLastAnnouncement` | `Change redone. Nothing left to redo` | [Undo & redo](https://coreui.io/data-grid/angular/docs/features/history/) announcement when redo empties its stack |
 | `resetColumns` | `Reset` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) column chooser |
 | `resultsAnnouncement` | `{count} results` | ARIA live announcement |
 | `searchValues` | `Search values` | Set filter search box |
 | `selectAllRows` | `Select all rows` | [Selection](https://coreui.io/data-grid/angular/docs/features/row-selection/) header checkbox |
 | `selectAllValues` | `Select all` | Set filter |
 | `selectRow` | `Select row` | Selection row checkbox |
-| `showAllColumns` | `Show all` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) column chooser footer |
+| `showAllColumns` | `Show all` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) column chooser |
 | `sortAscending` | `Sort ascending` | [Column menu](https://coreui.io/data-grid/angular/docs/columns/menu/) sort actions |
 | `sortDescending` | `Sort descending` | [Column menu](https://coreui.io/data-grid/angular/docs/columns/menu/) sort actions |
 | `toolbarColumns` | `Columns` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) column chooser button |
@@ -91,6 +94,7 @@ announcement).
 | `toolbarRedo` | `Redo` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) redo button |
 | `toolbarUndo` | `Undo` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) undo button |
 | `undoneAnnouncement` | `Change undone` | [Undo & redo](https://coreui.io/data-grid/angular/docs/features/history/) ARIA live announcement |
+| `undoneLastAnnouncement` | `Change undone. Nothing left to undo` | [Undo & redo](https://coreui.io/data-grid/angular/docs/features/history/) announcement when undo empties its stack |
 | `unpin` | `Unpin` | Column menu |
 
 The defaults are exported as `DEFAULT_LABELS` from `@coreui/angular-data-grid`

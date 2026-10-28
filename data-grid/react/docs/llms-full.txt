@@ -30,7 +30,7 @@ outgrows the browser's memory.
 - **Themeable.** Every knob is a `--cui-data-grid-*` CSS variable resolving
   through CoreUI semantic tokens, so light/dark theming works with no extra CSS.
   See [Styling & theming](https://coreui.io/data-grid/react/docs/customization/styling/).
-- **Small.** Around 66 KB gzipped for the underlying grid core — 55 KB with a [lite feature set](https://coreui.io/data-grid/react/docs/customization/feature-sets/).
+- **Small.** Around 71 KB gzipped for the underlying grid core — 60 KB with a [lite feature set](https://coreui.io/data-grid/react/docs/customization/feature-sets/).
 
 ## How it's built
 
@@ -1594,6 +1594,96 @@ the grid re-renders (server-side, PATCH and refetch):
 
 `onEditStart` and `onEditCancel` fire around it with `(item, columnId)`.
 
+## Tracking edits
+
+`editTracking` keeps the value each cell had before its first commit, keyed by
+`itemKey`. A cell whose value in `items` differs from it gets
+`data-grid-cell-edited`: a marker in its corner, and the description "Edited"
+for screen readers (`labels.editedCell`). The grid compares with the data you
+pass, so a commit you refuse or apply later, an undo, and an edit back to the
+old value all show the right state. Edit a name or a role below, then save.
+
+```html
+import { CDataGrid, type CDataGridApi, type DataGridEditedCell } from '@coreui/react-data-grid'
+import { useRef, useState } from 'react'
+
+const roles = ['admin', 'editor', 'viewer']
+
+const initialItems = Array.from({ length: 20 }, (_, i) => ({
+  id: i + 1,
+  name: `User ${i + 1}`,
+  role: roles[i % roles.length]
+}))
+
+export const DataGridEditTrackingExample = () => {
+  const gridRef = useRef<CDataGridApi>(null)
+  const [items, setItems] = useState(initialItems)
+  const [editedCells, setEditedCells] = useState<DataGridEditedCell[]>([])
+  const [status, setStatus] = useState('')
+
+  const save = () => {
+    if (editedCells.length > 0) {
+      gridRef.current?.clearEdited()
+      setStatus('Changes saved')
+    }
+  }
+
+  const onEditedChange = (cells: DataGridEditedCell[]) => {
+    setEditedCells(cells)
+    if (cells.length > 0) {
+      setStatus('')
+    }
+  }
+
+  return (
+    <>
+      <div className="mb-3">
+        <button type="button" className="btn btn-primary" onClick={save}>
+          Save changes ({editedCells.length})
+        </button>
+        <span className="ms-2" role="status">{status}</span>
+      </div>
+      <CDataGrid
+        columns={[
+          { key: 'id', label: '#', width: 90 },
+          { key: 'name', label: 'Name', editable: true },
+          {
+            key: 'role', label: 'Role', width: 130, editable: { type: 'select', options: roles }
+          }
+        ]}
+        editing
+        editTracking
+        gridRef={gridRef}
+        itemKey={item => String(item.id)}
+        items={items}
+        onEditCommit={({ item, columnId, value }) =>
+          setItems(current =>
+            current.map(row => (row.id === item.id ? { ...row, [columnId]: value } : row))
+          )
+        }
+        onEditedChange={onEditedChange}
+      />
+    </>
+  )
+}
+```
+
+Pass a ref as `gridRef` to reach the grid API: `isDirty()` says whether
+anything changed, `getEditedCells()` returns
+`{ rowId, columnId, item, value, originalValue }` for each edited cell, and
+`clearEdited()` forgets the original values once you have saved.
+`onEditedChange` receives the edited cells whenever their set changes.
+
+Without `itemKey` a row's id is its position in `items`, so an insert or a
+removal would move a mark to another row; tracking stays off and logs an
+error. `editEquals(value, originalValue)` on a column decides what counts as
+a change, for values a new object replaces on every commit such as dates or
+arrays; the default is `Object.is`. The same comparison runs when an editor
+closes: a commit that keeps the value fires the cancel event instead of the
+commit, before `editValidate`, and adds nothing to the undo history, with or
+without tracking. To tint whole rows as well, return a class from `rowClass`
+for the rows listed in the edited cells.
+
 ## Validation
 
 `editValidate` gates the commit. Return `true` to accept, or a message to block
@@ -1605,6 +1695,96 @@ it — the editor gets `aria-invalid`, the `is-invalid` class and an
 ```
 
 An invalid value keeps the editor open; <kbd>Escape</kbd> still cancels.
+
+### Validating the data
+
+`validate` checks the data itself, not only the cell being edited. It receives a row
+and returns messages keyed by column: a string is an error, and
+`{ message, level: 'warning' }` is a warning. Every rendered cell with an issue is
+marked, data loaded from the server included: an error gets
+`data-grid-cell-invalid` (a solid outline), and `aria-invalid` when cell
+navigation is on, a warning gets
+`data-grid-cell-warning` (a dashed outline), and both carry the message as a
+tooltip and as their description for screen readers. Because the function sees
+the whole row, one rule can compare fields, and fixing either field clears the
+mark.
+
+```html
+import { CDataGrid, type CDataGridApi, type DataGridItem } from '@coreui/react-data-grid'
+import { useEffect, useRef, useState } from 'react'
+
+const initialItems: DataGridItem[] = [
+  {
+    id: 1, task: 'Plan the release', start: '2026-01-10', end: '2026-01-20'
+  },
+  {
+    id: 2, task: '', start: '2026-02-10', end: '2026-02-01'
+  },
+  {
+    id: 3, task: 'Ship', start: '2026-03-01', end: '2026-03-05'
+  }
+]
+
+const validate = (item: DataGridItem) => ({
+  task: item.task === '' ? 'Task is required' : undefined,
+  start: String(item.start) > String(item.end) ? 'Start is after the end' : undefined,
+  end: String(item.end).startsWith('2026-03') ? { message: 'Release month, check the freeze', level: 'warning' as const } : undefined
+})
+
+export const DataGridValidationExample = () => {
+  const gridRef = useRef<CDataGridApi>(null)
+  const [items, setItems] = useState(initialItems)
+  const [errors, setErrors] = useState(0)
+
+  useEffect(() => {
+    setErrors(gridRef.current?.getInvalidCells('error').length ?? 0)
+  }, [items])
+
+  return (
+    <>
+      <p className="mb-3" role="status">{errors === 0 ? 'Ready to save' : `${errors} ${errors === 1 ? 'error' : 'errors'} to fix`}</p>
+      <CDataGrid
+        columns={[
+          { key: 'task', label: 'Task', editable: true },
+          {
+ key: 'start', label: 'Start', width: 150, editable: true
+},
+          {
+ key: 'end', label: 'End', width: 150, editable: true
+}
+        ]}
+        editing
+        gridRef={gridRef}
+        itemKey={item => String(item.id)}
+        items={items}
+        onEditCommit={({ item, columnId, value }) =>
+          setItems(current => current.map(row => (row.id === item.id ? { ...row, [columnId]: value } : row)))
+        }
+        validate={validate}
+        virtualization={false}
+      />
+    </>
+  )
+}
+```
+
+When an edit commits, the grid validates the row as it will be after the change,
+after `editValidate` and only when the value changed, so a cell loaded with an
+error can still be left with Enter. An error on the edited column blocks the
+commit and shows the message in the editor, like `editValidate`. An error the
+commit causes on another column lets it through, marks that cell and is announced
+to screen readers; warnings never block.
+
+`isValid()` and `getInvalidCells(level?)` on `gridRef` check every row the grid
+holds, not only the rendered ones, for example to disable a save button. Read them
+in an effect, as the example does: during your own render the grid has not seen
+the new `items` yet. With `dataProvider` they see the rows the grid holds: the current page, or every
+page loaded so far with `infiniteScroll`, never the rest of the server's data.
+The grid keeps no state for this: errors your server returns can live in your own
+state and be read by `validate`. Key them to the value the server rejected
+(`serverErrors[item.id]?.email === item.email ? 'Email is taken' : undefined`),
+otherwise the old message blocks every new value the user types into that cell.
+When that state changes, pass a new `validate` function so the grid renders again.
 
 ## Custom editors
 
@@ -2219,8 +2399,9 @@ scrolled so far rather than a single page, so it grows as the user goes.
 
 The `toolbar` prop adds a built-in chrome row above the grid with a
 **column chooser**, a **CSV export** button, **Undo/Redo** buttons (with
-[`history`](https://coreui.io/data-grid/react/docs/features/history/)) and a **global search** input. Each action drives an existing feature, so the toolbar is the ready-made
-UI you would otherwise build with the [`toolbar` slot](https://coreui.io/data-grid/react/docs/features/slots/).
+[`history`](https://coreui.io/data-grid/react/docs/features/history/)) and a **global search** input. Each action drives an existing feature. The built-in toolbar is the
+default composition of public parts; a [custom toolbar](#custom-toolbar)
+composes the same parts next to your own actions.
 
 ```tsx
 <CDataGrid
@@ -2296,11 +2477,13 @@ export const DataGridToolbarExample = () => {
 
 ## Column chooser
 
-With `toolbar.columns` enabled the columns button opens a popup listing every
-leaf column in visual order with a checkbox. Toggling a checkbox calls
-`column.toggleVisibility()` live — there is no Apply step. Columns marked
-`hideable: false` stay checked and disabled. The footer offers **Show all** and
-**Reset** (Reset restores the initial `columnVisibility` object). Visibility
+With `toolbar.columns` enabled the columns button opens a menu listing every
+leaf column in visual order as a checkable item. A click or Space on an item
+calls `column.toggleVisibility()` live and keeps the menu open, Enter does the
+same and closes it — there is no Apply step. Columns marked `hideable: false`
+stay checked and disabled. **Show all**
+and **Reset** (Reset restores the initial `columnVisibility` object) apply and
+close the menu. Visibility
 changes call `onVisibilityChange` just like the [column menu](https://coreui.io/data-grid/react/docs/columns/menu/).
 
 ## Export
@@ -2319,12 +2502,181 @@ other icon prop).
 
 ## Custom toolbar
 
-The `toolbar` slot still **replaces** the whole toolbar; the built-in buttons are
-not composable into a custom slot. For a fully custom toolbar — including a
-hand-built column chooser — use the [`toolbar` slot](https://coreui.io/data-grid/react/docs/features/slots/) with the
-headless `table` and public helpers (`downloadCsv`, `column.toggleVisibility`).
-See the [column ordering & visibility](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/) page for a
-slot-based chooser.
+The `toolbar` slot replaces the default composition with your component. The
+parts the built-in toolbar is made of are exported, so a custom toolbar keeps
+the built-in actions and adds its own next to them. This demo puts a **Save
+changes** action that is enabled only while there are unsaved edits in front
+of Undo, Redo, Columns and Export:
+
+```html
+import {
+  CDataGrid,
+  CDataGridToolbar,
+  CDataGridToolbarActions,
+  CDataGridToolbarButton,
+  CDataGridToolbarColumns,
+  CDataGridToolbarExport,
+  CDataGridToolbarRedo,
+  CDataGridToolbarSearch,
+  CDataGridToolbarUndo,
+  type CDataGridSlotProps
+} from '@coreui/react-data-grid'
+import { useState } from 'react'
+
+declare module '@coreui/react-data-grid' {
+  interface CDataGridToolbarSlotProps {
+    dirty?: boolean
+    onSave?: () => void
+  }
+}
+
+const roles = ['admin', 'editor', 'viewer']
+
+const initialItems = Array.from({ length: 200 }, (_, i) => ({
+  id: i + 1,
+  name: `User ${i + 1}`,
+  role: roles[i % roles.length]
+}))
+
+type User = (typeof initialItems)[number]
+
+const isDirty = (items: User[], saved: User[]) =>
+  items.some((row, index) => row.name !== saved[index].name || row.role !== saved[index].role)
+
+const Toolbar = ({ dirty, onSave }: CDataGridSlotProps & { dirty?: boolean; onSave?: () => void }) => (
+  <CDataGridToolbar>
+    <CDataGridToolbarActions>
+      <CDataGridToolbarButton label="Save changes" disabled={!dirty} onAction={onSave} />
+      <CDataGridToolbarUndo />
+      <CDataGridToolbarRedo />
+      <CDataGridToolbarColumns />
+      <CDataGridToolbarExport options={{ filename: 'users.csv' }} />
+    </CDataGridToolbarActions>
+    <CDataGridToolbarSearch />
+  </CDataGridToolbar>
+)
+
+export const DataGridToolbarPartsExample = () => {
+  const [items, setItems] = useState(initialItems)
+  const [saved, setSaved] = useState(initialItems)
+
+  return (
+    <CDataGrid
+      columns={[
+        {
+ key: 'id', label: '#', width: 90, hideable: false
+},
+        { key: 'name', label: 'Name', editable: true },
+        {
+ key: 'role', label: 'Role', width: 130, editable: { type: 'select', options: roles }
+}
+      ]}
+      columnVisibility
+      editing
+      globalFilter
+      history
+      items={items}
+      itemKey={item => String(item.id)}
+      pagination={{ pageSize: 10 }}
+      slots={{ toolbar: Toolbar }}
+      slotProps={{ toolbar: { dirty: isDirty(items, saved), onSave: () => setSaved(items) } }}
+      onEditCommit={({ item, columnId, value }) =>
+        setItems(current => current.map(row => (row.id === item.id ? { ...row, [columnId]: value } : row)))
+      }
+    />
+  )
+}
+```
+
+Define the slot component outside the component that renders the grid, so it
+is not a new component on every render (a new component remounts the toolbar
+and drops the search text being typed). Pass your own state through
+`slotProps.toolbar`; the props reach the slot next to `table` and `labels`.
+Type them by augmenting `CDataGridToolbarSlotProps`, as the demo does.
+
+| Part | Renders | Needs |
+| --- | --- | --- |
+| `CDataGridToolbar` | the `.data-grid-toolbar` row | — |
+| `CDataGridToolbarActions` | a `.data-grid-toolbar-actions` group | — |
+| `CDataGridToolbarColumns` | the column chooser button and its menu | `columnVisibility` |
+| `CDataGridToolbarExport` | the export button | — |
+| `CDataGridToolbarPrint` | the [print](https://coreui.io/data-grid/react/docs/features/print/) button | — |
+| `CDataGridToolbarUndo`, `CDataGridToolbarRedo` | the history buttons | `history` |
+| `CDataGridToolbarSearch` | the global search field | `globalFilter` |
+| `CDataGridToolbarButton` | an own action with the built-in look | — |
+
+Every button part takes `icon` (any `ReactNode`), `label` (the accessible
+name and tooltip) and `className`. `CDataGridToolbarExport` also takes
+`options`, merged over `toolbar.export`; `CDataGridToolbarSearch` takes
+`label`, `placeholder` and `className`. `CDataGridToolbarButton` requires
+`label` and takes `onAction`, `disabled` and `pressed` (rendered as
+`aria-pressed` once set). Without an icon its label is visible text; with one
+the label becomes the tooltip.
+
+A part whose feature is off still renders, disabled, and logs
+`DATA-GRID: Toolbar part "undo" requires option "history".` once per kind and
+grid. Keep Undo and Redo in the toolbar instead of rendering them only while
+`canUndo` is true: a button that disappears while focused takes the focus
+with it.
+
+## Own elements with a part's behaviour
+
+The `useDataGridToolbarColumns`, `useDataGridToolbarExport`,
+`useDataGridToolbarPrint`, `useDataGridToolbarUndo`,
+`useDataGridToolbarRedo`, `useDataGridToolbarButton` and
+`useDataGridToolbarSearch` hooks give your own `<button>` (or `<input>` for
+search) the behaviour of a part: availability, activation, the focus rule
+below, and for columns the menu. The props they return carry the state
+attributes and `type`, never the accessible name, so the text and the
+`aria-label` stay yours. Call them in a component rendered inside the
+toolbar slot; outside a grid they return `null`.
+
+```tsx
+const UndoButton = () => {
+  const props = useDataGridToolbarUndo()
+  return props && <button {...props} className="btn btn-outline-secondary btn-sm">Undo last change</button>
+}
+
+const ColumnsButton = () => {
+  const columns = useDataGridToolbarColumns()
+  return columns && (
+    <>
+      <button {...columns.props} className="btn btn-outline-secondary btn-sm">Fields</button>
+      {columns.chooser}
+    </>
+  )
+}
+```
+
+Give an own action to `useDataGridToolbarButton({ label, onAction })` rather
+than to your own `onClick`, so a held button (below) does not run it.
+
+## Toolbar without parts
+
+`useDataGridToolbar()` returns `canUndo`, `canRedo`, `undo`, `redo`, `print`
+and `table` for a slot component that uses no part at all.
+
+## Accessibility
+
+- **Focus stays on a button that becomes unavailable.** After the last undo
+  the focused Undo button gets `aria-disabled="true"` and ignores activation
+  until focus moves to another element; only then does it become natively
+  `disabled`. The same applies to `CDataGridToolbarButton` switched to
+  `disabled`. Disabled toolbar buttons keep their tooltip.
+- **The column chooser is a menu** inside the grid, named by its trigger, with
+  a checkable item per column. Arrow keys, Home and End move between the
+  items, Space toggles a column and keeps the menu open, Enter toggles it and
+  closes the menu. Escape on the menu or on the trigger closes it and returns
+  focus to the trigger, Tab closes it and moves on from the trigger, and focus
+  moving to an element outside closes it. A scroll or a window resize keeps it
+  under its trigger, no taller than the room left below it.
+- **Focus leaves the column chooser for another part** when the chooser goes
+  away with its part or its feature while focus is inside it.
+- **Announcements** — results counts and undo/redo — go to one page-level
+  live region (`[data-coreui-live-announcer]`) shared with CoreUI components
+  on the same page. Undo or redo that empties its stack says so in the same
+  message, and undo of an edit whose row is gone announces that the change is
+  no longer available.
 
 
 ---
@@ -2417,21 +2769,25 @@ export const DataGridSlotsExample = () => {
 ```
 
 With `pagination={{ position: 'both' }}` the slot component renders once per
-position. A custom toolbar that hosts its own global search still needs
-`globalFilter` for the query to reach the grid. The `empty` slot also renders
+position. A custom toolbar composes the parts the built-in toolbar is made of
+next to its own content — see [Custom toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/#custom-toolbar).
+Its search part needs `globalFilter` for the query to reach the grid. The `empty` slot also renders
 when a server load fails; use the `onDataError` callback to tell the two apart.
 
 ## Slot contract
 
 | Slot | Replaces | Signature |
 | --- | --- | --- |
-| `toolbar` | The toolbar above the grid | `ComponentType<{ table, labels }>` |
+| `toolbar` | The toolbar above the grid | `ComponentType<{ table, labels } & CDataGridToolbarSlotProps>` |
 | `pagination` | The pagination bar | same |
 | `empty` | The no-rows / load-error state | same |
 
 - `table` — the headless [`table`](https://coreui.io/data-grid/react/docs/api/headless/) instance; read current state
   and call its methods to drive the grid.
 - `labels` — the resolved [localization](https://coreui.io/data-grid/react/docs/customization/localization/) strings.
+- `slotProps.toolbar` — your own props for the toolbar component, typed by
+  augmenting `CDataGridToolbarSlotProps`. Define the component outside the
+  component that renders the grid and pass state through these props.
 - The component re-renders on every grid render, so it always reflects current
   state — no manual update or teardown hooks needed.
 
@@ -2772,7 +3128,7 @@ it.
 
 # React Data Grid Columns Overview
 
-> Define React Data Grid columns — keys, labels, cheap value formatting with formatter, and rich cell content with render.
+> Define React Data Grid columns — keys, labels, cheap value formatting with formatter, rich cell content with render, plus row and cell classes with rowClass and cellClass.
 
 Columns are defined by the [`columns`](https://coreui.io/data-grid/react/docs/api/options/) prop. Each entry maps a
 `key` in your data to a header and a cell. This page covers the essentials;
@@ -2832,6 +3188,39 @@ Use `render` for full custom cell content — action buttons, badges, links.
 Use `formatter` **or** `render` per column — `formatter` for values on the hot
 path, `render` for interactive content. See the [column API](https://coreui.io/data-grid/react/docs/api/columns/) for
 every key.
+
+## Row and cell classes
+
+`rowClass` (a prop) and `cellClass` (a column key) return classes the grid adds next to its
+own on data rows and cells: colour a row by status, flag a value, mark edited
+rows. Both run on every render of the row, so the classes follow sorting,
+selection and new `items` on their own:
+
+```tsx
+<CDataGrid
+  columns={[
+    { key: 'name', label: 'Name' },
+    { key: 'status', label: 'Status' },
+    { key: 'stock', label: 'Stock', cellClass: ({ value }) => (value === 0 ? 'text-danger-emphasis fw-semibold' : undefined) },
+  ]}
+  items={items}
+  rowClass={({ item }) => (item.status === 'blocked' ? 'table-danger' : undefined)}
+/>
+```
+
+`rowClass` receives `{ item, row, rowIndex }` and `cellClass`
+`{ value, item, row, cell, column }`; `row` and `cell` are the TanStack
+objects, so state such as `row.getIsSelected()` is there too. Return a string
+with one or more classes, or `undefined`. The grid's own classes
+(`data-grid-row-odd`, `table-active`, `data-grid-cell-selected`) reflect its
+state, and returning one of them is not supported: it does not change that
+state, and whether the row or cell shows it differs by edition. Only data rows and
+cells get the classes, not the header, the filter row or the empty state. To
+mark edited cells, see [Tracking edits](https://coreui.io/data-grid/react/docs/features/editing/#tracking-edits).
+
+A class only paints the row or the cell. Keep the meaning in text as well, as
+the `status` column does above, so it does not rest on colour alone, screen
+readers announce it, and it survives forced colours, which drop backgrounds.
 
 
 ---
@@ -3371,6 +3760,11 @@ Set any variable on the grid element (or an ancestor) to retheme it:
 | `--cui-data-grid-cell-selected-bg` | `rgba(var(--cui-primary-rgb, 50, 31, 219), .12)` | Fill of a selected cell. |
 | `--cui-data-grid-cell-selected-border-color` | `var(--cui-primary, #321fdb)` | Outline drawn on the edges of a selected range. |
 | `--cui-data-grid-cell-selected-border-width` | `1px` | Width of that outline. |
+| `--cui-data-grid-cell-edited-marker-color` | `currentcolor` | Colour of the corner marker on a cell changed with [edit tracking](https://coreui.io/data-grid/react/docs/features/editing/#tracking-edits); `CanvasText` in forced colors. |
+| `--cui-data-grid-cell-edited-marker-size` | `.375rem` | Side of that marker. |
+| `--cui-data-grid-cell-invalid-color` | `var(--cui-danger)` | Outline of a cell with an error from [Validating the data](https://coreui.io/data-grid/react/docs/features/editing/#validating-the-data). |
+| `--cui-data-grid-cell-warning-color` | `color-mix(in srgb, var(--cui-warning), var(--cui-body-color))` | Dashed outline of a cell with a warning, the warning colour mixed with the text colour so it keeps its contrast in both themes. |
+| `--cui-data-grid-cell-invalid-width` | `2px` | Width of both outlines. |
 | `--cui-data-grid-row-handle-width` | `2rem` | Width of the row-reorder handle column. |
 | `--cui-data-grid-select-cell-width` | `2.5rem` | Width of the selection checkbox column. |
 | `--cui-data-grid-sorter-margin` | `.25rem` | Gap before the sort indicator. |
@@ -3510,6 +3904,7 @@ announcement).
 | `clearFilter` | `Clear filter` | [Filter menu](https://coreui.io/data-grid/react/docs/features/filtering/) + quick-input clear |
 | `clearSort` | `Unsort` | [Column menu](https://coreui.io/data-grid/react/docs/columns/menu/) sort actions |
 | `columnMenu` | `Column options for {column}` | [Column menu](https://coreui.io/data-grid/react/docs/columns/menu/) button |
+| `editedCell` | `Edited` | [Edit tracking](https://coreui.io/data-grid/react/docs/features/editing/#tracking-edits) description on an edited cell |
 | `filterAction` | `Filter…` | [Column menu](https://coreui.io/data-grid/react/docs/columns/menu/) action |
 | `filterColumn` | `Filter {column}` | [Filter](https://coreui.io/data-grid/react/docs/features/filtering/) input |
 | `filterSummaryConditions` | `{count} conditions` | Quick-input summary |
@@ -3518,6 +3913,8 @@ announcement).
 | `globalFilterLabel` | `Search` | Global search accessible label |
 | `globalFilterPlaceholder` | `Search` | Global search placeholder |
 | `hideColumn` | `Hide column` | Column menu |
+| `historyEntryUnavailable` | `The change is no longer available: its row was removed` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) announcement when the edited row is gone |
+| `invalidAnnouncement` | `{column}: {message}` | [Validating the data](https://coreui.io/data-grid/react/docs/features/editing/#validating-the-data) announcement, one per cell, when a commit causes an error on another column |
 | `itemsInfo` | `{first}–{last} of {total}` | Pagination range summary |
 | `joinAnd` | `AND` | [Filter menu](https://coreui.io/data-grid/react/docs/features/filtering/) |
 | `joinOr` | `OR` | [Filter menu](https://coreui.io/data-grid/react/docs/features/filtering/) |
@@ -3546,6 +3943,7 @@ announcement).
 | `pinStart` | `Pin to start` | Column menu |
 | `previousPage` | `Previous page` | Pagination |
 | `redoneAnnouncement` | `Change redone` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) ARIA live announcement |
+| `redoneLastAnnouncement` | `Change redone. Nothing left to redo` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) announcement when redo empties its stack |
 | `reorderRow` | `Reorder row` | [Row reordering](https://coreui.io/data-grid/react/docs/features/row-reordering/) drag-handle label |
 | `resetColumns` | `Reset` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) column chooser |
 | `resultsAnnouncement` | `{count} results` | ARIA live announcement |
@@ -3562,6 +3960,7 @@ announcement).
 | `toolbarRedo` | `Redo` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) redo button |
 | `toolbarUndo` | `Undo` | [Toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/) undo button |
 | `undoneAnnouncement` | `Change undone` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) ARIA live announcement |
+| `undoneLastAnnouncement` | `Change undone. Nothing left to undo` | [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/) announcement when undo empties its stack |
 | `unpin` | `Unpin` | Column menu |
 
 The defaults are exported as `DEFAULT_LABELS` from `@coreui/react-data-grid` if
@@ -3652,7 +4051,9 @@ worse than the native table semantics the grid keeps by default.
 The [column menu](https://coreui.io/data-grid/react/docs/columns/menu/) follows the ARIA menu pattern:
 
 - **Arrow keys** move between items; **Home/End** jump to the first/last item.
-- **Escape** closes the menu and restores focus to the ⋮ trigger.
+- **Escape** closes the menu and restores focus to the ⋮ trigger; **Tab**
+  closes it and moves on from the trigger.
+- A scroll or a window resize keeps the menu under its trigger.
 - **Move to start / Move to end** give a keyboard-accessible alternative to
   drag-and-drop [column reordering](https://coreui.io/data-grid/react/docs/columns/ordering-visibility/).
 
@@ -3820,10 +4221,12 @@ import { CDataGrid } from '@coreui/react-data-grid'
 | `columnVisibility` | `boolean \| ColumnVisibilityState` | - | Enables hiding/showing columns via `column.toggleVisibility()`; an object sets the initial visibility. |
 | `dataProvider` | `((request: DataGridDataRequest) => Promise<DataGridDataResponse>)` | - | Server-side mode: the grid requests data on every sorting/filter/page change; implies pagination. |
 | `editing` | `boolean` | - | Inline cell editing on Enter/F2/double-click for columns opting in via `editable`/`editor`; implies `cellNavigation`. |
+| `editTracking` | `boolean` | - | Tracks committed edits by `itemKey`: a cell whose value in `items` differs from its value before the first commit gets `data-grid-cell-edited`, and `gridRef` reports it through `isDirty()` and `getEditedCells()`. |
 | `empty` | `ReactNode` | - | Content (ReactNode) shown when no rows match. |
 | `features` | `TableFeatures` | - | The registered TanStack feature set — pass `dataGridLiteFeatures` (or a custom `tableFeatures({...})` set) so the app bundle only carries the features it uses; defaults to the full `dataGridFeatures`. |
 | `filterIcon` | `ReactNode` | - | Icon for the per-column filter button. |
 | `globalFilter` | `boolean` | - | Renders a search input above the grid that filters across all columns. |
+| `gridRef` | `Ref<CDataGridApi>` | - | Ref that receives the grid API: `isDirty()`, `getEditedCells()`, `clearEdited()`, `isValid()`, `getInvalidCells()`, `getRowElement()`, `getCellElement()`, `undo()` and `redo()`. |
 | `hideColumnIcon` | `ReactNode` | - | Custom hide-column menu action icon (ReactNode) replacing the default one. |
 | `history` | `boolean` | - | Undo/redo history of edit commits — Ctrl/Cmd+Z and Ctrl+Shift+Z/Ctrl+Y plus toolbar buttons; requires `editing`. |
 | `infiniteScroll` | `boolean \| DataGridInfiniteScrollOptions` | - | Appends each loaded page to the rows already in view instead of replacing them; requires `dataProvider` and `virtualization`, cannot be combined with `pagination`. |
@@ -3837,6 +4240,7 @@ import { CDataGrid } from '@coreui/react-data-grid'
 | `onDataLoad` | `((response: DataGridDataResponse) => void)` | - | Fires when the data provider resolves, with the `{ items, totalRows }` response (server-side mode). |
 | `onEditCancel` | `((item: DataGridItem, columnId: string) => void)` | - | Fires when an edit is cancelled, with the item and column key. |
 | `onEditCommit` | `((event: DataGridEditCommitEvent) => void)` | - | Fires when an edit commits, with `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change and re-render. |
+| `onEditedChange` | `((editedCells: DataGridEditedCell[]) => void)` | - | Fires with the edited cells whenever the set of edited cells changes (`editTracking`). |
 | `onEditStart` | `((item: DataGridItem, columnId: string) => void)` | - | Fires when a cell enters edit mode, with the item and column key. |
 | `onFilterChange` | `((columnFilters: ColumnFiltersState, globalFilter: string) => void)` | - | Fires when column filters or the global filter change, with both filter states. |
 | `onOrderChange` | `((columnOrder: ColumnOrderState) => void)` | - | Fires when columns are reordered, with the TanStack columnOrder state. |
@@ -3853,10 +4257,12 @@ import { CDataGrid } from '@coreui/react-data-grid'
 | `pinStartIcon` | `ReactNode` | - | Custom pin-left menu action icon (ReactNode) replacing the default one. |
 | `printTitle` | `string` | - | Heading printed above the table when the print action runs; omitted when unset. |
 | `ref` | `Ref<HTMLDivElement>` | - |  |
+| `rowClass` | `((context: CDataGridRowClassContext<TFeatures>) => string \| undefined)` | - | Returns classes added to a data row next to the grid's own; called on every render of the row. |
 | `rowHandleIcon` | `ReactNode` | - | Custom row drag-handle icon (ReactNode) replacing the default grip. |
 | `rowHeight` | `number` | - | Estimated row height in px used by the virtualizer. |
 | `rowOrder` | `boolean` | - | Adds a drag handle per row for reordering; the grid emits `onRowOrderChange` with the reordered array instead of mutating `items`. |
 | `rowSelection` | `boolean \| DataGridRowSelectionOptions` | - | Checkbox selection with select-all and shift+click ranges. |
+| `slotProps` | `{ toolbar?: CDataGridToolbarSlotProps \| undefined; }` | - | Props passed to the slot components; `toolbar` reaches the toolbar slot next to `table` and `labels`. |
 | `slots` | `Partial<CDataGridSlots<TFeatures>>` | - | Replaces built-in chrome — each slot is a component rendered with `{ table, labels }`. |
 | `sortAscendingIcon` | `ReactNode` | - | Custom ascending sort indicator icon (ReactNode) replacing the default one. |
 | `sortDescendingIcon` | `ReactNode` | - | Custom descending sort indicator icon (ReactNode) replacing the default one. |
@@ -3872,6 +4278,7 @@ import { CDataGrid } from '@coreui/react-data-grid'
 | `toolbarRedoIcon` | `ReactNode` | - | Custom toolbar redo button icon (ReactNode) replacing the default one. |
 | `toolbarUndoIcon` | `ReactNode` | - | Custom toolbar undo button icon (ReactNode) replacing the default one. |
 | `unpinIcon` | `ReactNode` | - | Custom unpin menu action icon (ReactNode) replacing the default one. |
+| `validate` | `((item: DataGridItem) => DataGridValidationResult \| undefined)` | - | Validates each row: return messages keyed by column (`{ message, level: 'warning' }` for warnings). Errors on the edited column block the commit; the rest mark their cells. |
 | `virtualization` | `boolean` | - | Windowed rendering for large datasets. |
 
 
@@ -3892,6 +4299,7 @@ tour.
 | `editable` | `boolean \| { type?, min?, max?, step?, options? }` | Opts the column into [inline editing](https://coreui.io/data-grid/react/docs/features/editing/) with a built-in `text`, `number` or `select` editor. |
 | `editor` | `ComponentType<CDataGridEditorProps>` | Custom editor component — renders with `{ item, column, value, invalid, labels, commit, cancel, handleRef }`. Its presence opts the column in. |
 | `editorPopup` | `boolean` | Renders the editor in an overlay anchored to the cell instead of inline — for rich editors whose UI extends beyond the cell. |
+| `editEquals` | `(value, originalValue) => boolean` | Decides whether a commit changes the value (an equal one cancels) and when a cell counts as edited with [Edit tracking](https://coreui.io/data-grid/react/docs/features/editing/#tracking-edits); defaults to `Object.is`. It runs before `editValidate`, so it also receives values the column would reject. Use it for values a new object replaces on every commit, such as dates or arrays. |
 | `editValidate` | `(value, item) => true \| string` | Gates the commit — a returned message blocks it and marks the editor invalid. |
 | `sortable` | `boolean` | Set `false` to disable sorting for this column. |
 | `filterable` | `boolean` | Set `false` to remove the column's filter button. |
@@ -3902,6 +4310,7 @@ tour.
 | `movable` | `boolean` | Set `false` to exclude the column from drag-and-drop reordering. |
 | `hideable` | `boolean` | Set `false` to prevent hiding the column. |
 | `formatter` | `(value, item) => string` | Formats the cell value — cheap, stays on the scroll hot path. |
+| `cellClass` | `({ value, item, row, cell, column }) => string \| undefined` | Classes added to the column's data cells next to the grid's own; runs on every render of the row. See [Columns](https://coreui.io/data-grid/react/docs/columns/overview/#row-and-cell-classes). |
 | `render` | `(item, index) => ReactNode` | Full custom cell content (e.g. action buttons) — returns JSX. |
 | `width` | `number` | Initial column width in pixels - seeds `columnSizing` and drives the layout. |
 | `style` | `CSSProperties` | Inline styles for the header cell (cosmetic; e.g. percentage widths are visual-only). |
@@ -3935,8 +4344,9 @@ plain arguments:
 | `onSelectionChange` | `rowSelection: RowSelectionState, selectedItems: object[]` |
 | `onPaginationChange` | `pagination: PaginationState` |
 | `onEditStart` | `item: object, columnId: string` |
-| `onEditCommit` | `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change yourself. [Undo/redo](https://coreui.io/data-grid/react/docs/features/history/) re-calls it with the values swapped |
+| `onEditCommit` | `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change yourself. [Undo/redo](https://coreui.io/data-grid/react/docs/features/history/) re-calls it with the values swapped. A commit that keeps the value calls `onEditCancel` instead |
 | `onEditCancel` | `item: object, columnId: string` |
+| `onEditedChange` | `editedCells: object[]` — the edited cells whenever their set changes, see [Edit tracking](https://coreui.io/data-grid/react/docs/features/editing/#tracking-edits) |
 | `onSizingChange` | `columnSizing: ColumnSizingState` |
 | `onPinningChange` | `columnPinning: ColumnPinningState` |
 | `onOrderChange` | `columnOrder: ColumnOrderState` |
@@ -3955,9 +4365,10 @@ The state types (`SortingState`, `ColumnFiltersState`, …) are exported from
 
 > React Data Grid helpers — CSV export functions, the default labels export and the tableRef escape hatch.
 
-`<CDataGrid>` has no imperative instance methods — React re-renders the grid
-when a prop changes, and unmounting cleans it up. What the vanilla grid exposes
-as methods maps to exports and props instead:
+`<CDataGrid>` is driven by props — React re-renders the grid when a prop
+changes, and unmounting cleans it up. The few imperative calls (edit tracking,
+undo and redo) go through the `gridRef` prop; the rest of what the vanilla grid
+exposes as methods maps to exports and props:
 
 | Export / prop | Description |
 | --- | --- |
@@ -3965,6 +4376,7 @@ as methods maps to exports and props instead:
 | `downloadCsv(table, options?)` | Downloads the CSV as a file. Same options plus `filename`. |
 | `DEFAULT_LABELS` | The default UI strings — extend rather than replace them. See [Localization](https://coreui.io/data-grid/react/docs/customization/localization/). |
 | `tableRef` (prop) | A ref to the underlying headless table instance — the [headless escape hatch](https://coreui.io/data-grid/react/docs/api/headless/) for building custom UI. |
+| `gridRef` (prop) | A ref to the grid API: `isDirty()`, `getEditedCells()` and `clearEdited()` for [Edit tracking](https://coreui.io/data-grid/react/docs/features/editing/#tracking-edits), `isValid()` and `getInvalidCells(level?)` for [Validating the data](https://coreui.io/data-grid/react/docs/features/editing/#validating-the-data), `getRowElement(id)` and `getCellElement(id, columnId)` for [Rows and cells in the DOM](https://coreui.io/data-grid/react/docs/api/headless/#rows-and-cells-in-the-dom), and `undo()` / `redo()` for [Undo & redo](https://coreui.io/data-grid/react/docs/features/history/). |
 
 ```tsx
 import { CDataGrid, downloadCsv } from '@coreui/react-data-grid'
@@ -4022,6 +4434,24 @@ tableRef.current?.state.sorting
   selection, pagination, pinning, order and visibility as structured state.
 - **Imperative actions.** Set the page, toggle a column, change pinning or apply
   a filter without waiting for user interaction.
+
+## Rows and cells in the DOM
+
+Every data cell carries its column key in `data-coreui-column`, and with
+`itemKey` set every data row carries its id in `data-coreui-row-id`, so
+`closest('[data-coreui-row-id]')` in your own handlers and selectors in tests
+reach a row without the grid. `getRowElement(id)` and `getCellElement(id, columnId)` on `gridRef` return the rendered row and cell of this
+grid, never of a grid nested in one of its cells. They return `null` when the
+row is not rendered (outside the virtualized window, on another page,
+filtered out, or not loaded yet with `dataProvider`, where the previous page
+stays rendered until the next one arrives), when the column is hidden, and
+without `itemKey`, whose absence makes row ids plain indexes.
+
+An element is valid until the next render: sorting, filtering, paging and
+scrolling can give the same element to another row or remove it, so ask again
+instead of keeping it. A cell takes focus only with `cellNavigation`, where the
+grid follows the focus with its own tab stop; do not add `tabindex` to cells
+yourself, or every cell becomes a stop of its own.
 
 ## Notes
 

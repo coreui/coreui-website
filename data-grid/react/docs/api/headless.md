@@ -37,6 +37,24 @@ tableRef.current?.state.sorting
 - **Imperative actions.** Set the page, toggle a column, change pinning or apply
   a filter without waiting for user interaction.
 
+## Rows and cells in the DOM
+
+Every data cell carries its column key in `data-coreui-column`, and with
+`itemKey` set every data row carries its id in `data-coreui-row-id`, so
+`closest('[data-coreui-row-id]')` in your own handlers and selectors in tests
+reach a row without the grid. `getRowElement(id)` and `getCellElement(id, columnId)` on `gridRef` return the rendered row and cell of this
+grid, never of a grid nested in one of its cells. They return `null` when the
+row is not rendered (outside the virtualized window, on another page,
+filtered out, or not loaded yet with `dataProvider`, where the previous page
+stays rendered until the next one arrives), when the column is hidden, and
+without `itemKey`, whose absence makes row ids plain indexes.
+
+An element is valid until the next render: sorting, filtering, paging and
+scrolling can give the same element to another row or remove it, so ask again
+instead of keeping it. A cell takes focus only with `cellNavigation`, where the
+grid follows the focus with its own tab stop; do not add `tabindex` to cells
+yourself, or every cell becomes a stop of its own.
+
 ## Notes
 
 Everything the built-in UI does routes through this same table, so your

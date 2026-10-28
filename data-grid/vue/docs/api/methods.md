@@ -24,6 +24,14 @@ const grid = ref(null)
 | API | Description |
 | --- | --- |
 | `table` | The underlying headless table instance — the [headless escape hatch](https://coreui.io/data-grid/vue/docs/api/headless/) for building custom UI, e.g. `grid.value?.table.setPageIndex(3)`. |
+| `isDirty()` | Returns whether any cell differs from its value before its first commit (`edit-tracking`); see [Edit tracking](https://coreui.io/data-grid/vue/docs/features/editing/#tracking-edits). |
+| `getEditedCells()` | Returns the edited cells as `{ rowId, columnId, item, value, originalValue }[]`. |
+| `isValid()` | Returns whether no row has an error from `validate`; see [Validating the data](https://coreui.io/data-grid/vue/docs/features/editing/#validating-the-data). |
+| `getInvalidCells(level?)` | Returns `{ rowId, columnId, item, message, level }[]` for every row. |
+| `clearEdited()` | Forgets the original values, so no cell counts as edited. Call it after saving. |
+| `getRowElement(id)` | Returns the rendered row with the given id (`itemKey`), or `null`. See [Rows and cells in the DOM](https://coreui.io/data-grid/vue/docs/api/headless/#rows-and-cells-in-the-dom). |
+| `getCellElement(id, columnId)` | Returns the rendered data cell of that row and column, or `null`. |
+| `undo()` / `redo()` | Steps through the [edit history](https://coreui.io/data-grid/vue/docs/features/history/), like the toolbar buttons. |
 
 Read the current selection with `grid.value?.table.getSelectedRowModel()`, or
 listen for the [`selection-change`](https://coreui.io/data-grid/vue/docs/api/events/) event.

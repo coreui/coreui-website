@@ -38,6 +38,7 @@ import { CDataGrid } from '@coreui/vue-data-grid'
 | `columnVisibility` | `boolean \| ColumnVisibilityState` | `false` | Enables hiding/showing columns via `column.toggleVisibility()`; an object sets the initial visibility. |
 | `dataProvider` | `(request: DataGridDataRequest) => Promise<DataGridDataResponse>` | `undefined` | Server-side mode: the grid requests data on every sorting/filter/page change; implies pagination. |
 | `editing` | `boolean` | - | Inline cell editing on Enter/F2/double-click for columns opting in via `editable` or an `editor-{key}` slot; implies `cellNavigation`. |
+| `editTracking` | `boolean` | - | Tracks committed edits by `itemKey`: a cell whose value in `items` differs from its value before the first commit gets `data-grid-cell-edited`, and the exposed `isDirty()` and `getEditedCells()` report it. |
 | `empty` | `string` | `'No items found'` | Content shown when no rows match. |
 | `features` | `TableFeatures` | `() => dataGridFeatures` | The registered TanStack feature set — pass `dataGridLiteFeatures` (or a custom `tableFeatures({...})` set) so the app bundle only carries the features it uses; defaults to the full `dataGridFeatures`. Static per table instance — changing it after mount has no effect. |
 | `filterIcon` | `CDataGridIcon` | `DEFAULT_FILTER_ICON` |  |
@@ -55,6 +56,7 @@ import { CDataGrid } from '@coreui/vue-data-grid'
 | `pinEndIcon` | `CDataGridIcon` | `DEFAULT_PIN_END_ICON` | Custom pin-right menu action icon (VNode or render function) replacing the default one. |
 | `pinStartIcon` | `CDataGridIcon` | `DEFAULT_PIN_START_ICON` | Custom pin-left menu action icon (VNode or render function) replacing the default one. |
 | `printTitle` | `string` | `undefined` | Heading printed above the table when the print action runs; omitted when unset. |
+| `rowClass` | `(context: CDataGridRowClassContext) => string \| undefined` | `undefined` | Returns classes added to a data row next to the grid's own; called on every render of the row. |
 | `rowHandleIcon` | `CDataGridIcon` | `DEFAULT_ROW_HANDLE_ICON` | Custom row drag-handle icon (VNode or render function) replacing the default grip. |
 | `rowHeight` | `number` | `44` | Estimated row height in px used by the virtualizer. |
 | `rowOrder` | `boolean` | - | Adds a drag handle per row for reordering; the grid emits `rowOrderChange` with the reordered array instead of mutating `items`. |
@@ -72,6 +74,7 @@ import { CDataGrid } from '@coreui/vue-data-grid'
 | `toolbarRedoIcon` | `CDataGridIcon` | `DEFAULT_TOOLBAR_REDO_ICON` | Custom toolbar redo button icon (VNode or render function) replacing the default one. |
 | `toolbarUndoIcon` | `CDataGridIcon` | `DEFAULT_TOOLBAR_UNDO_ICON` | Custom toolbar undo button icon (VNode or render function) replacing the default one. |
 | `unpinIcon` | `CDataGridIcon` | `DEFAULT_UNPIN_ICON` | Custom unpin menu action icon (VNode or render function) replacing the default one. |
+| `validate` | `(item: DataGridItem) => DataGridValidationResult \| undefined` | `undefined` | Validates each row: return messages keyed by column (`{ message, level: 'warning' }` for warnings). Errors on the edited column block the commit; the rest mark their cells. |
 | `virtualization` | `boolean` | `true` | Windowed rendering for large datasets. |
 
 ### Events
@@ -84,6 +87,7 @@ import { CDataGrid } from '@coreui/vue-data-grid'
 | `editCancel` | Fires when an edit is cancelled, with the item and column key. |
 | `editCommit` | Fires when an edit commits, with `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change and re-render. |
 | `editStart` | Fires when a cell enters edit mode, with the item and column key. |
+| `editedChange` | Fires with the edited cells whenever the set of edited cells changes (`editTracking`). |
 | `filterChange` | Fires when column filters or the global filter change, with both filter states. |
 | `orderChange` | Fires when columns are reordered, with the TanStack columnOrder state. |
 | `paginationChange` | Fires when the page or page size changes, with the TanStack pagination state. |

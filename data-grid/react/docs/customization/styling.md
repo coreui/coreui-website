@@ -47,6 +47,11 @@ Set any variable on the grid element (or an ancestor) to retheme it:
 | `--cui-data-grid-cell-selected-bg` | `rgba(var(--cui-primary-rgb, 50, 31, 219), .12)` | Fill of a selected cell. |
 | `--cui-data-grid-cell-selected-border-color` | `var(--cui-primary, #321fdb)` | Outline drawn on the edges of a selected range. |
 | `--cui-data-grid-cell-selected-border-width` | `1px` | Width of that outline. |
+| `--cui-data-grid-cell-edited-marker-color` | `currentcolor` | Colour of the corner marker on a cell changed with [edit tracking](https://coreui.io/data-grid/react/docs/features/editing/#tracking-edits); `CanvasText` in forced colors. |
+| `--cui-data-grid-cell-edited-marker-size` | `.375rem` | Side of that marker. |
+| `--cui-data-grid-cell-invalid-color` | `var(--cui-danger)` | Outline of a cell with an error from [Validating the data](https://coreui.io/data-grid/react/docs/features/editing/#validating-the-data). |
+| `--cui-data-grid-cell-warning-color` | `color-mix(in srgb, var(--cui-warning), var(--cui-body-color))` | Dashed outline of a cell with a warning, the warning colour mixed with the text colour so it keeps its contrast in both themes. |
+| `--cui-data-grid-cell-invalid-width` | `2px` | Width of both outlines. |
 | `--cui-data-grid-row-handle-width` | `2rem` | Width of the row-reorder handle column. |
 | `--cui-data-grid-select-cell-width` | `2.5rem` | Width of the selection checkbox column. |
 | `--cui-data-grid-sorter-margin` | `.25rem` | Gap before the sort indicator. |

@@ -86,20 +86,24 @@ export const DataGridSlotsExample = () => {
 ```
 
 With `pagination={{ position: 'both' }}` the slot component renders once per
-position. A custom toolbar that hosts its own global search still needs
-`globalFilter` for the query to reach the grid. The `empty` slot also renders
+position. A custom toolbar composes the parts the built-in toolbar is made of
+next to its own content — see [Custom toolbar](https://coreui.io/data-grid/react/docs/features/toolbar/#custom-toolbar).
+Its search part needs `globalFilter` for the query to reach the grid. The `empty` slot also renders
 when a server load fails; use the `onDataError` callback to tell the two apart.
 
 ## Slot contract
 
 | Slot | Replaces | Signature |
 | --- | --- | --- |
-| `toolbar` | The toolbar above the grid | `ComponentType<{ table, labels }>` |
+| `toolbar` | The toolbar above the grid | `ComponentType<{ table, labels } & CDataGridToolbarSlotProps>` |
 | `pagination` | The pagination bar | same |
 | `empty` | The no-rows / load-error state | same |
 
 - `table` — the headless [`table`](https://coreui.io/data-grid/react/docs/api/headless/) instance; read current state
   and call its methods to drive the grid.
 - `labels` — the resolved [localization](https://coreui.io/data-grid/react/docs/customization/localization/) strings.
+- `slotProps.toolbar` — your own props for the toolbar component, typed by
+  augmenting `CDataGridToolbarSlotProps`. Define the component outside the
+  component that renders the grid and pass state through these props.
 - The component re-renders on every grid render, so it always reflects current
   state — no manual update or teardown hooks needed.

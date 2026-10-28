@@ -32,7 +32,7 @@ outgrows the browser's memory.
   See [Styling & theming](https://coreui.io/data-grid/angular/docs/customization/styling/).
 - **Angular-native.** A standalone component with signal-based inputs and
   outputs, `OnPush` change detection and `ng-template` customization.
-- **Small.** Around 66 KB gzipped for the underlying grid core — 55 KB with a [lite feature set](https://coreui.io/data-grid/angular/docs/customization/feature-sets/).
+- **Small.** Around 71 KB gzipped for the underlying grid core — 60 KB with a [lite feature set](https://coreui.io/data-grid/angular/docs/customization/feature-sets/).
 
 ## How it's built
 
@@ -1701,6 +1701,106 @@ onEditCommit({ item, columnId, value }: DataGridEditCommitEvent) {
 
 `editStart` and `editCancel` fire around it with `{ item, columnId }`.
 
+## Tracking edits
+
+`editTracking` keeps the value each cell had before its first commit, keyed by
+`itemKey`. A cell whose value in `items` differs from it gets
+`data-grid-cell-edited`: a marker in its corner, and the description "Edited"
+for screen readers (`labels.editedCell`). The grid compares with the data you
+pass, so a commit you refuse or apply later, an undo, and an edit back to the
+old value all show the right state. Edit a name or a role below, then save.
+
+```ts
+import { Component, signal, viewChild } from '@angular/core'
+import { DataGridComponent } from '@coreui/angular-data-grid'
+import type {
+  DataGridColumn,
+  DataGridEditCommitEvent,
+  DataGridEditedCell,
+  DataGridItem
+} from '@coreui/angular-data-grid'
+
+const roles = ['admin', 'editor', 'viewer']
+
+@Component({
+  selector: 'docs-data-grid-edit-tracking-example',
+  imports: [DataGridComponent],
+  template: `
+    <div class="mb-3">
+      <button type="button" class="btn btn-primary" (click)="save()">
+        Save changes ({{ editedCells().length }})
+      </button>
+      <span class="ms-2" role="status">{{ status() }}</span>
+    </div>
+    <c-data-grid
+      [columns]="columns"
+      [editing]="true"
+      [editTracking]="true"
+      [itemKey]="itemKey"
+      [items]="items()"
+      (editCommit)="onEditCommit($event)"
+      (editedChange)="onEditedChange($event.editedCells)"
+    />
+  `
+})
+export class DataGridEditTrackingExample {
+  readonly grid = viewChild.required(DataGridComponent)
+  readonly editedCells = signal<DataGridEditedCell[]>([])
+  readonly status = signal('')
+  readonly columns: DataGridColumn[] = [
+    { key: 'id', label: '#', width: 90 },
+    { key: 'name', label: 'Name', editable: true },
+    {
+      key: 'role', label: 'Role', width: 130, editable: { type: 'select', options: roles }
+    }
+  ]
+readonly items = signal<DataGridItem[]>(
+    Array.from({ length: 20 }, (_, i) => ({
+      id: i + 1,
+      name: `User ${i + 1}`,
+      role: roles[i % roles.length]
+    }))
+  )
+readonly itemKey = (item: DataGridItem) => String(item.id)
+
+  onEditCommit({ item, columnId, value }: DataGridEditCommitEvent) {
+    this.items.update(current =>
+      current.map(row => (row.id === item.id ? { ...row, [columnId]: value } : row))
+    )
+  }
+
+  onEditedChange(cells: DataGridEditedCell[]) {
+    this.editedCells.set(cells)
+    if (cells.length > 0) {
+      this.status.set('')
+    }
+  }
+
+  save() {
+    if (this.editedCells().length > 0) {
+      this.grid().clearEdited()
+      this.status.set('Changes saved')
+    }
+  }
+}
+```
+
+The component exposes the grid API (`viewChild(DataGridComponent)`):
+`isDirty()` says whether anything changed, `getEditedCells()` returns
+`{ rowId, columnId, item, value, originalValue }` for each edited cell, and
+`clearEdited()` forgets the original values once you have saved. The
+`editedChange` output carries `{ editedCells }` whenever their set changes.
+
+Without `itemKey` a row's id is its position in `items`, so an insert or a
+removal would move a mark to another row; tracking stays off and logs an
+error. `editEquals(value, originalValue)` on a column decides what counts as
+a change, for values a new object replaces on every commit such as dates or
+arrays; the default is `Object.is`. The same comparison runs when an editor
+closes: a commit that keeps the value fires the cancel event instead of the
+commit, before `editValidate`, and adds nothing to the undo history, with or
+without tracking. To tint whole rows as well, return a class from `rowClass`
+for the rows listed in the edited cells.
+
 ## Validation
 
 `editValidate` gates the commit. Return `true` to accept, or a message to block
@@ -1712,6 +1812,108 @@ it — the editor gets `aria-invalid`, the `is-invalid` class and an
 ```
 
 An invalid value keeps the editor open; <kbd>Escape</kbd> still cancels.
+
+### Validating the data
+
+`validate` checks the data itself, not only the cell being edited. It receives a row
+and returns messages keyed by column: a string is an error, and
+`{ message, level: 'warning' }` is a warning. Every rendered cell with an issue is
+marked, data loaded from the server included: an error gets
+`data-grid-cell-invalid` (a solid outline), and `aria-invalid` when cell
+navigation is on, a warning gets
+`data-grid-cell-warning` (a dashed outline), and both carry the message as a
+tooltip and as their description for screen readers. Because the function sees
+the whole row, one rule can compare fields, and fixing either field clears the
+mark.
+
+```ts
+import {
+ Component, afterRenderEffect, signal, untracked, viewChild
+} from '@angular/core'
+import { DataGridComponent } from '@coreui/angular-data-grid'
+import type { DataGridColumn, DataGridEditCommitEvent, DataGridItem } from '@coreui/angular-data-grid'
+
+const validate = (item: DataGridItem) => ({
+  task: item.task === '' ? 'Task is required' : undefined,
+  start: String(item.start) > String(item.end) ? 'Start is after the end' : undefined,
+  end: String(item.end).startsWith('2026-03') ? { message: 'Release month, check the freeze', level: 'warning' as const } : undefined
+})
+
+@Component({
+  selector: 'docs-data-grid-validation-example',
+  imports: [DataGridComponent],
+  template: `
+    <p class="mb-3" role="status">{{ errors() === 0 ? 'Ready to save' : errors() + (errors() === 1 ? ' error' : ' errors') + ' to fix' }}</p>
+    <c-data-grid
+      [columns]="columns"
+      [editing]="true"
+      [itemKey]="itemKey"
+      [items]="items()"
+      [validate]="validate"
+      [virtualization]="false"
+      (editCommit)="onEditCommit($event)"
+    />
+  `
+})
+export class DataGridValidationExample {
+  readonly grid = viewChild.required(DataGridComponent)
+  readonly errors = signal(0)
+  readonly validate = validate
+  readonly columns: DataGridColumn[] = [
+    { key: 'task', label: 'Task', editable: true },
+    {
+ key: 'start', label: 'Start', width: 150, editable: true
+},
+    {
+ key: 'end', label: 'End', width: 150, editable: true
+}
+  ]
+readonly items = signal<DataGridItem[]>([
+    {
+      id: 1, task: 'Plan the release', start: '2026-01-10', end: '2026-01-20'
+    },
+    {
+      id: 2, task: '', start: '2026-02-10', end: '2026-02-01'
+    },
+    {
+      id: 3, task: 'Ship', start: '2026-03-01', end: '2026-03-05'
+    }
+  ])
+readonly itemKey = (item: DataGridItem) => String(item.id)
+
+  constructor() {
+    afterRenderEffect(() => {
+      this.items()
+      untracked(() => this.errors.set(this.grid().getInvalidCells('error').length))
+    })
+  }
+
+  onEditCommit({ item, columnId, value }: DataGridEditCommitEvent) {
+    this.items.update(current =>
+      current.map(row => (row.id === item.id ? { ...row, [columnId]: value } : row))
+    )
+  }
+}
+```
+
+When an edit commits, the grid validates the row as it will be after the change,
+after `editValidate` and only when the value changed, so a cell loaded with an
+error can still be left with Enter. An error on the edited column blocks the
+commit and shows the message in the editor, like `editValidate`. An error the
+commit causes on another column lets it through, marks that cell and is announced
+to screen readers; warnings never block.
+
+`isValid()` and `getInvalidCells(level?)` on the component check every row the
+grid holds, not only the rendered ones, for example to disable a save button. Read
+them in `afterRenderEffect`, as the example does, so the grid has rendered the new
+`items`. With `dataProvider` they see the rows the grid holds: the current page, or every
+page loaded so far with `infiniteScroll`, never the rest of the server's data.
+The grid keeps no state for this: errors your server returns can live in your own
+state and be read by `validate`. Key them to the value the server rejected
+(`serverErrors[item.id]?.email === item.email ? 'Email is taken' : undefined`),
+otherwise the old message blocks every new value the user types into that cell.
+Keep that state in a signal and read it inside `validate`, so the grid renders
+again when it changes.
 
 ## Custom editors
 
@@ -2325,8 +2527,9 @@ scrolled so far rather than a single page, so it grows as the user goes.
 
 The `toolbar` input adds a built-in chrome row above the grid with a
 **column chooser**, a **CSV export** button, **Undo/Redo** buttons (with
-[`history`](https://coreui.io/data-grid/angular/docs/features/history/)) and a **global search** input. Each action drives an existing feature, so the toolbar is the ready-made
-UI you would otherwise build with the [`toolbar` slot](https://coreui.io/data-grid/angular/docs/features/slots/).
+[`history`](https://coreui.io/data-grid/angular/docs/features/history/)) and a **global search** input. Each action drives an existing feature. The built-in toolbar is the
+default composition of public parts; a [custom toolbar](#custom-toolbar)
+composes the same parts next to your own actions.
 
 ```html
 <c-data-grid
@@ -2401,11 +2604,13 @@ export class DataGridToolbarExample {
 
 ## Column chooser
 
-With `toolbar.columns` enabled the columns button opens a popup listing every
-leaf column in visual order with a checkbox. Toggling a checkbox calls
-`column.toggleVisibility()` live — there is no Apply step. Columns marked
-`hideable: false` stay checked and disabled. The footer offers **Show all** and
-**Reset** (Reset restores the initial `columnVisibility` object). Visibility
+With `toolbar.columns` enabled the columns button opens a menu listing every
+leaf column in visual order as a checkable item. A click or Space on an item
+calls `column.toggleVisibility()` live and keeps the menu open, Enter does the
+same and closes it — there is no Apply step. Columns marked `hideable: false`
+stay checked and disabled. **Show all**
+and **Reset** (Reset restores the initial `columnVisibility` object) apply and
+close the menu. Visibility
 changes emit the `visibilityChange` output just like the
 [column menu](https://coreui.io/data-grid/angular/docs/columns/menu/).
 
@@ -2425,12 +2630,189 @@ every other icon override).
 
 ## Custom toolbar
 
-The `toolbar` slot still **replaces** the whole toolbar; the built-in buttons are
-not composable into a custom slot. For a fully custom toolbar — including a
-hand-built column chooser — use the [`toolbar` slot](https://coreui.io/data-grid/angular/docs/features/slots/) with the
-headless `table` and public helpers (`downloadCsv`, `column.toggleVisibility`).
-See the [column ordering & visibility](https://coreui.io/data-grid/angular/docs/columns/ordering-visibility/) page for a
-slot-based chooser.
+The `toolbar` slot template replaces the default composition. The parts the
+built-in toolbar is made of are exported, so a custom toolbar keeps the
+built-in actions and adds its own next to them. This demo puts a **Save
+changes** action that is enabled only while there are unsaved edits in front
+of Undo, Redo, Columns and Export:
+
+```ts
+import { Component, computed, signal } from '@angular/core'
+import {
+  DataGridComponent,
+  DataGridSlotDirective,
+  DataGridToolbarActionsDirective,
+  DataGridToolbarButtonComponent,
+  DataGridToolbarColumnsComponent,
+  DataGridToolbarDirective,
+  DataGridToolbarExportComponent,
+  DataGridToolbarRedoComponent,
+  DataGridToolbarSearchComponent,
+  DataGridToolbarUndoComponent
+} from '@coreui/angular-data-grid'
+import type { DataGridColumn, DataGridEditCommitEvent, DataGridItem } from '@coreui/angular-data-grid'
+
+const roles = ['admin', 'editor', 'viewer']
+
+const initialItems: DataGridItem[] = Array.from({ length: 200 }, (_, i) => ({
+  id: i + 1,
+  name: `User ${i + 1}`,
+  role: roles[i % roles.length]
+}))
+
+@Component({
+  selector: 'docs-data-grid-toolbar-parts-example',
+  imports: [
+    DataGridComponent,
+    DataGridSlotDirective,
+    DataGridToolbarActionsDirective,
+    DataGridToolbarButtonComponent,
+    DataGridToolbarColumnsComponent,
+    DataGridToolbarDirective,
+    DataGridToolbarExportComponent,
+    DataGridToolbarRedoComponent,
+    DataGridToolbarSearchComponent,
+    DataGridToolbarUndoComponent
+  ],
+  template: `
+    <c-data-grid
+      [columns]="columns"
+      [columnVisibility]="true"
+      [editing]="true"
+      [globalFilter]="true"
+      [history]="true"
+      [items]="items()"
+      [itemKey]="itemKey"
+      [pagination]="{ pageSize: 10 }"
+      (editCommit)="onEditCommit($event)"
+    >
+      <ng-template cDataGridSlot="toolbar">
+        <div cDataGridToolbar>
+          <div cDataGridToolbarActions>
+            <c-data-grid-toolbar-button label="Save changes" [disabled]="!dirty()" (action)="save()" />
+            <c-data-grid-toolbar-undo />
+            <c-data-grid-toolbar-redo />
+            <c-data-grid-toolbar-columns />
+            <c-data-grid-toolbar-export [options]="{ filename: 'users.csv' }" />
+          </div>
+          <c-data-grid-toolbar-search />
+        </div>
+      </ng-template>
+    </c-data-grid>
+  `
+})
+export class DataGridToolbarPartsExample {
+  readonly columns: DataGridColumn[] = [
+    {
+ key: 'id', label: '#', width: 90, hideable: false
+},
+    { key: 'name', label: 'Name', editable: true },
+    {
+ key: 'role', label: 'Role', width: 130, editable: { type: 'select', options: roles }
+}
+  ]
+  readonly items = signal(initialItems)
+  readonly saved = signal(initialItems)
+  readonly dirty = computed(() => {
+    const saved = this.saved()
+    return this.items().some((row, index) => row.name !== saved[index].name || row.role !== saved[index].role)
+  })
+  readonly itemKey = (item: DataGridItem) => String(item.id)
+
+  onEditCommit({ item, columnId, value }: DataGridEditCommitEvent) {
+    this.items.update(current => current.map(row => (row.id === item.id ? { ...row, [columnId]: value } : row)))
+  }
+
+  save() {
+    this.saved.set(this.items())
+  }
+}
+```
+
+The slot template is part of your component's template, so it reads your
+component's state directly, like `dirty()` in the demo. Import each part you
+use, plus `DataGridSlotDirective`.
+
+| Part | Renders | Needs |
+| --- | --- | --- |
+| `div[cDataGridToolbar]` | the `.data-grid-toolbar` row | — |
+| `div[cDataGridToolbarActions]` | a `.data-grid-toolbar-actions` group | — |
+| `c-data-grid-toolbar-columns` | the column chooser button and its menu | `columnVisibility` |
+| `c-data-grid-toolbar-export` | the export button | — |
+| `c-data-grid-toolbar-print` | the [print](https://coreui.io/data-grid/angular/docs/features/print/) button | — |
+| `c-data-grid-toolbar-undo`, `c-data-grid-toolbar-redo` | the history buttons | `history` |
+| `c-data-grid-toolbar-search` | the global search field | `globalFilter` |
+| `c-data-grid-toolbar-button` | an own action with the built-in look | — |
+
+The part components render no box of their own (`display: contents`), so
+their buttons sit in the toolbar's layout. Every button part takes `icon` (an
+`<ng-template>`) and `label` (the accessible name and tooltip).
+`c-data-grid-toolbar-export` also takes `options`, merged over
+`toolbar.export`; `c-data-grid-toolbar-search` takes `label` and
+`placeholder`. `c-data-grid-toolbar-button` requires `label`, takes
+`disabled` and `pressed` (rendered as `aria-pressed` once set) and emits
+`(action)`. Without an icon its label is visible text; with one the label
+becomes the tooltip.
+
+A part whose feature is off still renders, disabled, and logs
+`DATA-GRID: Toolbar part "undo" requires option "history".` once per kind and
+grid. Keep Undo and Redo in the toolbar instead of rendering them only while
+`canUndo()` is true: a button that disappears while focused takes the focus
+with it.
+
+## Own elements with a part's behaviour
+
+The attribute directives `button[cDataGridToolbarColumns]`,
+`button[cDataGridToolbarExport]`, `button[cDataGridToolbarPrint]`,
+`button[cDataGridToolbarUndo]`, `button[cDataGridToolbarRedo]`,
+`button[cDataGridToolbarButton]` and `input[cDataGridToolbarSearch]` give
+your own element the behaviour of a part: availability, activation, the focus
+rule below, and for columns the menu. They write the state attributes and
+`type`, never the accessible name, so the text and the `aria-label` stay
+yours. Each button directive takes an optional `tooltip`; Export also takes
+`options`, and `cDataGridToolbarButton` takes `disabled`, `pressed` and emits
+`(action)`.
+
+```html
+<ng-template cDataGridSlot="toolbar">
+  <div cDataGridToolbar>
+    <button cDataGridToolbarUndo class="btn btn-outline-secondary btn-sm">Undo last change</button>
+    <button cDataGridToolbarColumns class="btn btn-outline-secondary btn-sm">Fields</button>
+  </div>
+</ng-template>
+```
+
+Give an own action to `(action)` rather than to `(click)`, so a held button
+(below) does not run it.
+
+## Toolbar without parts
+
+`c-data-grid` keeps `undo()`, `redo()`, `print()`, `exportCsv()`, `canUndo`
+and `canRedo` for a template reference to the grid. Inside the grid, a
+component of your own can inject `DATA_GRID_TOOLBAR` for the same state and
+actions.
+
+## Accessibility
+
+- **Focus stays on a button that becomes unavailable.** After the last undo
+  the focused Undo button gets `aria-disabled="true"` and ignores activation
+  until focus moves to another element; only then does it become natively
+  `disabled`. The same applies to `c-data-grid-toolbar-button` switched to
+  `disabled`. Disabled toolbar buttons keep their tooltip.
+- **The column chooser is a menu** inside the grid, named by its trigger, with
+  a checkable item per column. Arrow keys, Home and End move between the
+  items, Space toggles a column and keeps the menu open, Enter toggles it and
+  closes the menu. Escape on the menu or on the trigger closes it and returns
+  focus to the trigger, Tab closes it and moves on from the trigger, and focus
+  moving to an element outside closes it. A scroll or a window resize keeps it
+  under its trigger, no taller than the room left below it.
+- **Focus leaves the column chooser for another part** when the chooser goes
+  away with its part or its feature while focus is inside it.
+- **Announcements** — results counts and undo/redo — go to one page-level
+  live region (`[data-coreui-live-announcer]`) shared with CoreUI components
+  on the same page. Undo or redo that empties its stack says so in the same
+  message, and undo of an edit whose row is gone announces that the change is
+  no longer available.
 
 
 ---
@@ -2523,8 +2905,9 @@ readonly itemKey = (item: DataGridItem) => String(item.id)
 ```
 
 With `pagination.position: 'both'` the same template renders once per position.
-A custom toolbar that hosts its own global search still needs
-`[globalFilter]="true"` for the query to reach the grid. The `empty` slot also
+A custom toolbar composes the parts the built-in toolbar is made of next to
+its own content — see [Custom toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/#custom-toolbar). Its
+search part needs `[globalFilter]="true"` for the query to reach the grid. The `empty` slot also
 renders when a server load fails; use the `dataError` output to tell the two
 apart.
 
@@ -2884,7 +3267,7 @@ it.
 
 # Angular Data Grid Columns Overview
 
-> Define CoreUI Data Grid for Angular columns — keys, labels, cheap value formatting with formatter, and rich cell content with cDataGridCell templates.
+> Define CoreUI Data Grid for Angular columns — keys, labels, cheap value formatting with formatter, rich cell content with cDataGridCell templates, plus row and cell classes with rowClass and cellClass.
 
 Columns are defined by the [`columns`](https://coreui.io/data-grid/angular/docs/api/options/) array. Each entry maps a
 `key` in your data to a header and a cell. This page covers the essentials;
@@ -2943,6 +3326,40 @@ Import `DataGridCellDirective` alongside `DataGridComponent` to use the
 template. Use `formatter` **or** a cell template per column — `formatter` for
 values on the hot path, the template for interactive content. See the
 [column API](https://coreui.io/data-grid/angular/docs/api/columns/) for every key.
+
+## Row and cell classes
+
+`rowClass` (an input) and `cellClass` (a column key) return classes the grid adds next to its
+own on data rows and cells: colour a row by status, flag a value, mark edited
+rows. Both run on every render of the row, so the classes follow sorting,
+selection and new `items` on their own:
+
+```html
+<c-data-grid [columns]="columns" [items]="items" [rowClass]="rowClass" />
+```
+
+```ts
+readonly columns: DataGridColumn[] = [
+  { key: 'name', label: 'Name' },
+  { key: 'status', label: 'Status' },
+  { key: 'stock', label: 'Stock', cellClass: ({ value }) => (value === 0 ? 'text-danger-emphasis fw-semibold' : undefined) },
+]
+readonly rowClass = ({ item }: DataGridRowClassContext) => (item['status'] === 'blocked' ? 'table-danger' : undefined)
+```
+
+`rowClass` receives `{ item, row, rowIndex }` and `cellClass`
+`{ value, item, row, cell, column }`; `row` and `cell` are the TanStack
+objects, so state such as `row.getIsSelected()` is there too. Return a string
+with one or more classes, or `undefined`. The grid's own classes
+(`data-grid-row-odd`, `table-active`, `data-grid-cell-selected`) reflect its
+state, and returning one of them is not supported: it does not change that
+state, and whether the row or cell shows it differs by edition. Only data rows and
+cells get the classes, not the header, the filter row or the empty state. To
+mark edited cells, see [Tracking edits](https://coreui.io/data-grid/angular/docs/features/editing/#tracking-edits).
+
+A class only paints the row or the cell. Keep the meaning in text as well, as
+the `status` column does above, so it does not rest on colour alone, screen
+readers announce it, and it survives forced colours, which drop backgrounds.
 
 
 ---
@@ -3489,6 +3906,11 @@ c-data-grid {
 | `--cui-data-grid-cell-selected-bg` | `rgba(var(--cui-primary-rgb, 50, 31, 219), .12)` | Fill of a selected cell. |
 | `--cui-data-grid-cell-selected-border-color` | `var(--cui-primary, #321fdb)` | Outline drawn on the edges of a selected range. |
 | `--cui-data-grid-cell-selected-border-width` | `1px` | Width of that outline. |
+| `--cui-data-grid-cell-edited-marker-color` | `currentcolor` | Colour of the corner marker on a cell changed with [edit tracking](https://coreui.io/data-grid/angular/docs/features/editing/#tracking-edits); `CanvasText` in forced colors. |
+| `--cui-data-grid-cell-edited-marker-size` | `.375rem` | Side of that marker. |
+| `--cui-data-grid-cell-invalid-color` | `var(--cui-danger)` | Outline of a cell with an error from [Validating the data](https://coreui.io/data-grid/angular/docs/features/editing/#validating-the-data). |
+| `--cui-data-grid-cell-warning-color` | `color-mix(in srgb, var(--cui-warning), var(--cui-body-color))` | Dashed outline of a cell with a warning, the warning colour mixed with the text colour so it keeps its contrast in both themes. |
+| `--cui-data-grid-cell-invalid-width` | `2px` | Width of both outlines. |
 | `--cui-data-grid-row-handle-width` | `2rem` | Width of the row-reorder handle column. |
 | `--cui-data-grid-select-cell-width` | `2.5rem` | Width of the selection checkbox column. |
 | `--cui-data-grid-sorter-margin` | `.25rem` | Gap before the sort indicator. |
@@ -3630,6 +4052,7 @@ announcement).
 | `clearFilter` | `Clear filter` | [Filter menu](https://coreui.io/data-grid/angular/docs/features/filtering/) + quick-input clear |
 | `clearSort` | `Unsort` | [Column menu](https://coreui.io/data-grid/angular/docs/columns/menu/) sort actions |
 | `columnMenu` | `Column options for {column}` | [Column menu](https://coreui.io/data-grid/angular/docs/columns/menu/) button |
+| `editedCell` | `Edited` | [Edit tracking](https://coreui.io/data-grid/angular/docs/features/editing/#tracking-edits) description on an edited cell |
 | `filterAction` | `Filter…` | [Column menu](https://coreui.io/data-grid/angular/docs/columns/menu/) action |
 | `filterColumn` | `Filter {column}` | [Filter](https://coreui.io/data-grid/angular/docs/features/filtering/) input |
 | `filterSummaryConditions` | `{count} conditions` | Quick-input summary |
@@ -3638,6 +4061,8 @@ announcement).
 | `globalFilterLabel` | `Search` | Global search accessible label |
 | `globalFilterPlaceholder` | `Search` | Global search placeholder |
 | `hideColumn` | `Hide column` | Column menu |
+| `historyEntryUnavailable` | `The change is no longer available: its row was removed` | [Undo & redo](https://coreui.io/data-grid/angular/docs/features/history/) announcement when the edited row is gone |
+| `invalidAnnouncement` | `{column}: {message}` | [Validating the data](https://coreui.io/data-grid/angular/docs/features/editing/#validating-the-data) announcement, one per cell, when a commit causes an error on another column |
 | `itemsInfo` | `{first}–{last} of {total}` | Pagination range summary |
 | `joinAnd` | `AND` | [Filter menu](https://coreui.io/data-grid/angular/docs/features/filtering/) |
 | `joinOr` | `OR` | [Filter menu](https://coreui.io/data-grid/angular/docs/features/filtering/) |
@@ -3666,15 +4091,15 @@ announcement).
 | `pinStart` | `Pin to start` | Column menu |
 | `previousPage` | `Previous page` | Pagination |
 | `reorderRow` | `Reorder row` | [Row reordering](https://coreui.io/data-grid/angular/docs/features/row-reordering/) drag-handle label |
-| `resetColumns` | `Reset` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) column chooser footer |
 | `redoneAnnouncement` | `Change redone` | [Undo & redo](https://coreui.io/data-grid/angular/docs/features/history/) ARIA live announcement |
+| `redoneLastAnnouncement` | `Change redone. Nothing left to redo` | [Undo & redo](https://coreui.io/data-grid/angular/docs/features/history/) announcement when redo empties its stack |
 | `resetColumns` | `Reset` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) column chooser |
 | `resultsAnnouncement` | `{count} results` | ARIA live announcement |
 | `searchValues` | `Search values` | Set filter search box |
 | `selectAllRows` | `Select all rows` | [Selection](https://coreui.io/data-grid/angular/docs/features/row-selection/) header checkbox |
 | `selectAllValues` | `Select all` | Set filter |
 | `selectRow` | `Select row` | Selection row checkbox |
-| `showAllColumns` | `Show all` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) column chooser footer |
+| `showAllColumns` | `Show all` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) column chooser |
 | `sortAscending` | `Sort ascending` | [Column menu](https://coreui.io/data-grid/angular/docs/columns/menu/) sort actions |
 | `sortDescending` | `Sort descending` | [Column menu](https://coreui.io/data-grid/angular/docs/columns/menu/) sort actions |
 | `toolbarColumns` | `Columns` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) column chooser button |
@@ -3683,6 +4108,7 @@ announcement).
 | `toolbarRedo` | `Redo` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) redo button |
 | `toolbarUndo` | `Undo` | [Toolbar](https://coreui.io/data-grid/angular/docs/features/toolbar/) undo button |
 | `undoneAnnouncement` | `Change undone` | [Undo & redo](https://coreui.io/data-grid/angular/docs/features/history/) ARIA live announcement |
+| `undoneLastAnnouncement` | `Change undone. Nothing left to undo` | [Undo & redo](https://coreui.io/data-grid/angular/docs/features/history/) announcement when undo empties its stack |
 | `unpin` | `Unpin` | Column menu |
 
 The defaults are exported as `DEFAULT_LABELS` from `@coreui/angular-data-grid`
@@ -3784,7 +4210,9 @@ worse than the native table semantics the grid keeps by default.
 The [column menu](https://coreui.io/data-grid/angular/docs/columns/menu/) follows the ARIA menu pattern:
 
 - **Arrow keys** move between items; **Home/End** jump to the first/last item.
-- **Escape** closes the menu and restores focus to the ⋮ trigger.
+- **Escape** closes the menu and restores focus to the ⋮ trigger; **Tab**
+  closes it and moves on from the trigger.
+- A scroll or a window resize keeps the menu under its trigger.
 - **Move to start / Move to end** give a keyboard-accessible alternative to
   drag-and-drop [column reordering](https://coreui.io/data-grid/angular/docs/columns/ordering-visibility/).
 
@@ -3970,6 +4398,7 @@ tour.
 | `label` | `string` | Header label; falls back to `key`. |
 | `editable` | `boolean \| { type?, min?, max?, step?, options? }` | Opts the column into [inline editing](https://coreui.io/data-grid/angular/docs/features/editing/) with a built-in `text`, `number` or `select` editor. |
 | `editorPopup` | `boolean` | Renders the `cDataGridCellEditor` template in an overlay anchored to the cell instead of inline — for rich editors whose UI extends beyond the cell. |
+| `editEquals` | `(value, originalValue) => boolean` | Decides whether a commit changes the value (an equal one cancels) and when a cell counts as edited with [Edit tracking](https://coreui.io/data-grid/angular/docs/features/editing/#tracking-edits); defaults to `Object.is`. It runs before `editValidate`, so it also receives values the column would reject. Use it for values a new object replaces on every commit, such as dates or arrays. |
 | `editValidate` | `(value, item) => true \| string` | Gates the commit — a returned message blocks it and marks the editor invalid. |
 | `sortable` | `boolean` | Set `false` to disable sorting for this column. |
 | `filterable` | `boolean` | Set `false` to remove the column's filter button. |
@@ -3979,6 +4408,7 @@ tour.
 | `movable` | `boolean` | Set `false` to exclude the column from drag-and-drop reordering. |
 | `hideable` | `boolean` | Set `false` to prevent hiding the column. |
 | `formatter` | `(value, item) => string` | Formats the cell value — cheap, stays on the scroll hot path. |
+| `cellClass` | `({ value, item, row, cell, column }) => string \| undefined` | Classes added to the column's data cells next to the grid's own; runs on every render of the row. See [Columns](https://coreui.io/data-grid/angular/docs/columns/overview/#row-and-cell-classes). |
 | `width` | `number` | Initial column width in pixels - seeds `columnSizing` and drives the layout. |
 | `style` | `object` | Inline styles for the header cell (cosmetic; e.g. percentage widths are visual-only). |
 
@@ -4011,8 +4441,9 @@ event binding — `(sortingChange)="onSortingChange($event)"`. Every payload int
 | `selectionChange` | `{ rowSelection: RowSelectionState, selectedItems: DataGridItem[] }` |
 | `paginationChange` | `{ pagination: PaginationState }` |
 | `editStart` | `{ item: object, columnId: string }` |
-| `editCommit` | `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change yourself. [Undo/redo](https://coreui.io/data-grid/angular/docs/features/history/) re-emits it with the values swapped |
+| `editCommit` | `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change yourself. [Undo/redo](https://coreui.io/data-grid/angular/docs/features/history/) re-emits it with the values swapped. A commit that keeps the value emits `editCancel` instead |
 | `editCancel` | `{ item: object, columnId: string }` |
+| `editedChange` | `{ editedCells: object[] }` — the edited cells whenever their set changes, see [Edit tracking](https://coreui.io/data-grid/angular/docs/features/editing/#tracking-edits) |
 | `sizingChange` | `{ columnSizing: ColumnSizingState }` |
 | `pinningChange` | `{ columnPinning: ColumnPinningState }` |
 | `orderChange` | `{ columnOrder: ColumnOrderState }` |
@@ -4033,6 +4464,13 @@ variable) to reach its members; the CSV helpers are standalone functions.
 | Member | Description |
 | --- | --- |
 | `table` (component property) | The underlying headless table instance — the [headless escape hatch](https://coreui.io/data-grid/angular/docs/api/headless/) for building custom UI. |
+| `isDirty()` | Returns whether any cell differs from its value before its first commit (`editTracking`); see [Edit tracking](https://coreui.io/data-grid/angular/docs/features/editing/#tracking-edits). |
+| `getEditedCells()` | Returns the edited cells as `{ rowId, columnId, item, value, originalValue }[]`. |
+| `isValid()` | Returns whether no row has an error from `validate`; see [Validating the data](https://coreui.io/data-grid/angular/docs/features/editing/#validating-the-data). |
+| `getInvalidCells(level?)` | Returns `{ rowId, columnId, item, message, level }[]` for every row. |
+| `clearEdited()` | Forgets the original values, so no cell counts as edited. Call it after saving. |
+| `getRowElement(id)` | Returns the rendered row with the given id (`itemKey`), or `null`. See [Rows and cells in the DOM](https://coreui.io/data-grid/angular/docs/api/headless/#rows-and-cells-in-the-dom). |
+| `getCellElement(id, columnId)` | Returns the rendered data cell of that row and column, or `null`. |
 | `exportCsv(table, options?)` | Returns the rows as an RFC-4180 CSV string. Options: `scope`, `delimiter`, `bom`, `sanitize`. See [CSV export](https://coreui.io/data-grid/angular/docs/features/csv-export/). |
 | `downloadCsv(table, options?)` | Downloads the CSV as a file. Same options plus `filename`. |
 | `DEFAULT_LABELS` | The default UI strings, for extending rather than replacing. See [Localization](https://coreui.io/data-grid/angular/docs/customization/localization/). |
@@ -4108,6 +4546,24 @@ export class UsersComponent {
   selection, pagination, pinning, order and visibility as structured state.
 - **Imperative actions.** Set the page, toggle a column, change pinning or apply
   a filter without waiting for user interaction.
+
+## Rows and cells in the DOM
+
+Every data cell carries its column key in `data-coreui-column`, and with
+`itemKey` set every data row carries its id in `data-coreui-row-id`, so
+`closest('[data-coreui-row-id]')` in your own handlers and selectors in tests
+reach a row without the grid. `getRowElement(id)` and `getCellElement(id, columnId)` on the component return the rendered row and cell of this
+grid, never of a grid nested in one of its cells. They return `null` when the
+row is not rendered (outside the virtualized window, on another page,
+filtered out, or not loaded yet with `dataProvider`, where the previous page
+stays rendered until the next one arrives), when the column is hidden, and
+without `itemKey`, whose absence makes row ids plain indexes.
+
+An element is valid until the next render: sorting, filtering, paging and
+scrolling can give the same element to another row or remove it, so ask again
+instead of keeping it. A cell takes focus only with `cellNavigation`, where the
+grid follows the focus with its own tab stop; do not add `tabindex` to cells
+yourself, or every cell becomes a stop of its own.
 
 ## Notes
 

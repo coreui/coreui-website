@@ -77,8 +77,11 @@ new coreui.DataGrid(document.getElementById('dataGridSlots'), {
 ```
 
 Return a fresh `element` on every factory call — with `pagination.position: 'both'`
-the factory runs once per position. A custom toolbar that hosts its own global
-search still needs `globalFilter: true` for the query to reach the grid. The
+the factory runs once per position. The `toolbar` factory also receives
+`toolbar`, with the parts the built-in toolbar is made of, so a custom toolbar
+keeps the built-in actions next to its own — see
+[Custom toolbar](https://coreui.io/data-grid/docs/features/toolbar/#custom-toolbar). Its search part needs
+`globalFilter: true` for the query to reach the grid. The
 `empty` slot also renders when a server load fails; use the `dataError` event to
 tell the two apart.
 
@@ -86,7 +89,7 @@ tell the two apart.
 
 | Slot | Replaces | Signature |
 | --- | --- | --- |
-| `toolbar` | The toolbar above the grid | `({ table, labels }) => ({ element, update?, dispose? })` |
+| `toolbar` | The toolbar above the grid | `({ table, labels, toolbar }) => ({ element, update?, dispose? })` |
 | `pagination` | The pagination bar | same |
 | `empty` | The no-rows / load-error state | same |
 

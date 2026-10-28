@@ -1,5 +1,5 @@
 /*!
-* CoreUI PRO data-grid v0.4.0 (https://coreui.io)
+* CoreUI PRO data-grid v0.5.0 (https://coreui.io)
 * Copyright 2026 The CoreUI Team (https://github.com/orgs/coreui/people)
 * License (https://coreui.io/pro/license/)
 * Bundles @tanstack/table-core and @tanstack/virtual-core, MIT (https://github.com/TanStack/table/blob/main/LICENSE)
@@ -211,7 +211,7 @@ function batch(fn) {
 		++batchDepth;
 		fn();
 	} finally {
-		if (!--batchDepth) flush();
+		if (!--batchDepth) flush$1();
 	}
 }
 function purgeDeps(sub) {
@@ -219,7 +219,7 @@ function purgeDeps(sub) {
 	let dep = depsTail !== void 0 ? depsTail.nextDep : sub.deps;
 	while (dep !== void 0) dep = unlink(dep, sub);
 }
-function flush() {
+function flush$1() {
 	if (batchDepth > 0) return;
 	while (notifyIndex < queuedEffectsLength) {
 		const effect = queuedEffects[notifyIndex];
@@ -301,7 +301,7 @@ function createAtom(valueOrFn, options) {
 			if (subs !== void 0) {
 				propagate(subs);
 				shallowPropagate(subs);
-				flush();
+				flush$1();
 			}
 		}
 	};
@@ -1104,11 +1104,34 @@ const printGrid = (table, columns, options = {}) => {
 * --------------------------------------------------------------------------
 */
 /**
-* Escapes a column key or row index for a double-quoted CSS attribute selector value.
-* @param value The key or index interpolated into `[data-…="…"]`.
+* Escapes a column key, row id or row index for a double-quoted CSS attribute selector value.
+* @param value The key, id or index interpolated into `[data-…="…"]`.
 * @returns The value as a string, with `"` and `\` backslash-escaped and line breaks as hex escapes.
 */
 const escapeAttributeValue = (value) => String(value).replace(/["\\]/g, "\\$&").replace(/[\n\r\f]/g, (character) => `\\${character.codePointAt(0).toString(16)} `);
+/**
+* Finds a rendered row of a grid by its id, ignoring grids nested in its cells.
+* @param viewport The grid's viewport element, the parent of its table.
+* @param id The row id (`itemKey`), written to the row as `data-coreui-row-id`.
+* @returns The row element, or `null` when the row is not rendered.
+*/
+const findRowElement = (viewport, id) => viewport?.querySelector(`:scope > table > tbody > tr[data-coreui-row-id="${escapeAttributeValue(id)}"]`) ?? null;
+/**
+* Finds a rendered data cell of a grid by row id and column key.
+* @param viewport The grid's viewport element, the parent of its table.
+* @param id The row id (`itemKey`).
+* @param columnId The column key, written to the cell as `data-coreui-column`.
+* @returns The cell element, or `null` when the row is not rendered or the column is hidden.
+*/
+const findCellElement = (viewport, id, columnId) => findRowElement(viewport, id)?.querySelector(`:scope > td[data-coreui-column="${escapeAttributeValue(columnId)}"]`) ?? null;
+/**
+* Finds a rendered data cell of a grid by its position in the current view, ignoring grids nested in its cells.
+* @param viewport The grid's viewport element, the parent of its table.
+* @param rowIndex The row position in the current view, written to the row as `data-coreui-index`.
+* @param columnId The column key.
+* @returns The cell element, or `null` when no rendered row has that position.
+*/
+const findCellAt = (viewport, rowIndex, columnId) => viewport?.querySelector(`:scope > table > tbody > tr[data-coreui-index="${escapeAttributeValue(rowIndex)}"] > td[data-coreui-column="${escapeAttributeValue(columnId)}"]`) ?? null;
 // src/util/drag.ts
 /**
 * --------------------------------------------------------------------------
@@ -9309,18 +9332,76 @@ const syncResizeDirection = (table, element) => {
 		columnResizeDirection: direction
 	}));
 };
-// src/ui/toolbar.ts
-const CLASS_NAME_TOOLBAR = "data-grid-toolbar";
-const CLASS_NAME_ACTIONS = "data-grid-toolbar-actions";
-const CLASS_NAME_SEARCH = "data-grid-toolbar-search";
-const resolveToolbar = (options) => {
-	const { toolbar } = options;
-	const columnVisibility = Boolean(options.columnVisibility);
+// src/util/export-table.ts
+const rowsFor = (table, scope) => {
+	if (scope === "all") return table.getCoreRowModel().rows;
+	if (scope === "selected") return table.getSelectedRowModel?.().rows ?? [];
+	return (table.getSortedRowModel ?? table.getFilteredRowModel ?? table.getCoreRowModel)().rows;
+};
+const columnsFor = (table) => {
+	if (table.getCenterVisibleLeafColumns) return [
+		...table.getStartVisibleLeafColumns?.() ?? [],
+		...table.getCenterVisibleLeafColumns(),
+		...table.getEndVisibleLeafColumns?.() ?? []
+	];
+	return table.getVisibleLeafColumns?.() ?? table.getAllLeafColumns();
+};
+const headerFor = (column) => String(column.columnDef.meta?.label ?? column.id);
+const formatterFor = (column) => column.columnDef.meta?.formatter;
+// src/util/csv.ts
+/**
+* --------------------------------------------------------------------------
+* CoreUI PRO data-grid util/csv.ts
+* License (https://coreui.io/pro/license/)
+* --------------------------------------------------------------------------
+*/
+const escapeField = (value, delimiter) => /["\r\n]/.test(value) || value.includes(delimiter) ? `"${value.replace(/"/g, "\"\"")}"` : value;
+const sanitizeField = (value) => /^[=+\-@\t\r]/.test(value) ? `'${value}` : value;
+const exportCsv = (table, options = {}) => {
+	const delimiter = options.delimiter ?? ",";
+	const columns = columnsFor(table);
+	const process = (field) => escapeField(options.sanitize ? sanitizeField(field) : field, delimiter);
+	const line = (fields) => fields.map(process).join(delimiter);
+	const csv = [line(columns.map((column) => headerFor(column))), ...rowsFor(table, options.scope).map((row) => line(columns.map((column) => {
+		const value = row.getValue(column.id);
+		const formatter = formatterFor(column);
+		return String(formatter ? formatter(value, row.original) ?? "" : value ?? "");
+	})))].join("\r\n");
+	return options.bom ? `\u{FEFF}${csv}` : csv;
+};
+const downloadCsv = (table, options = {}) => {
+	const blob = new Blob([exportCsv(table, options)], { type: "text/csv;charset=utf-8;" });
+	const url = URL.createObjectURL(blob);
+	const anchor = document.createElement("a");
+	anchor.href = url;
+	anchor.download = options.filename ?? "export.csv";
+	anchor.style.display = "none";
+	document.body.append(anchor);
+	anchor.click();
+	anchor.remove();
+	setTimeout(() => URL.revokeObjectURL(url));
+};
+// src/util/toolbar.ts
+const TABBABLE_SELECTOR = "a[href],button:not([disabled]),input:not([disabled]):not([type=\"hidden\"]),select:not([disabled]),textarea:not([disabled]),[tabindex]";
+const MENU_ITEM_SELECTOR = "[role=\"menuitem\"],[role=\"menuitemcheckbox\"]";
+const PART_SELECTOR = "[data-coreui-toolbar-export],[data-coreui-toolbar-print],[data-coreui-toolbar-undo],[data-coreui-toolbar-redo],[data-coreui-global-filter],.data-grid-toolbar button,.data-grid-toolbar input";
+const PART_FEATURE = {
+	columns: "columnVisibility",
+	redo: "history",
+	search: "globalFilter",
+	undo: "history"
+};
+/**
+* Normalizes the `toolbar`, `globalFilter`, `history` and `columnVisibility` options into the parts of the default toolbar.
+* @param input The four options as the grid received them.
+* @returns The parts the default composition renders; `search` is also the switch of the engine's global filter.
+*/
+const resolveToolbar$1 = ({ columnVisibility, globalFilter, history, toolbar }) => {
 	if (toolbar === true) return {
 		columns: columnVisibility,
 		export: true,
 		exportOptions: {},
-		history: options.history,
+		history,
 		print: true,
 		search: true
 	};
@@ -9330,9 +9411,9 @@ const resolveToolbar = (options) => {
 			columns: (toolbar.columns ?? false) && columnVisibility,
 			export: Boolean(exportOption),
 			exportOptions: typeof exportOption === "object" ? exportOption : {},
-			history: (toolbar.history ?? false) && options.history,
+			history: (toolbar.history ?? false) && history,
 			print: toolbar.print ?? false,
-			search: (toolbar.search ?? false) || Boolean(options.globalFilter)
+			search: (toolbar.search ?? false) || globalFilter
 		};
 	}
 	return {
@@ -9341,54 +9422,800 @@ const resolveToolbar = (options) => {
 		exportOptions: {},
 		history: false,
 		print: false,
-		search: Boolean(options.globalFilter)
+		search: globalFilter
 	};
 };
-const isGlobalFilterEnabled = (options) => resolveToolbar(options).search;
-const createActionButton = (icon, label, dataAttribute) => {
-	const button = document.createElement("button");
-	button.type = "button";
-	button.classList.add("btn", "btn-ghost", "btn-sm");
-	button.innerHTML = icon;
-	button.setAttribute(dataAttribute, "");
-	button.setAttribute("data-coreui-tooltip", label);
-	const text = document.createElement("span");
-	text.classList.add("visually-hidden");
-	text.textContent = label;
-	button.append(text);
-	return button;
+/**
+* Tells whether the resolved default toolbar renders anything.
+* @param toolbar The result of `resolveToolbar`.
+* @returns `true` when at least one part is on.
+*/
+const hasToolbarParts = (toolbar) => toolbar.columns || toolbar.export || toolbar.print || toolbar.history || toolbar.search;
+/**
+* Checks that the grid has the feature a toolbar part needs.
+* @param kind The part kind.
+* @param features Which of the grid's toolbar features are on.
+* @returns The error to report once per kind and grid, or `null` when the part can work.
+*/
+const toolbarPartError = (kind, features) => {
+	const feature = PART_FEATURE[kind];
+	if (!feature || features[feature]) return null;
+	return `DATA-GRID: Toolbar part "${kind}" requires option "${feature}".`;
 };
-const createToolbar = (context) => {
-	const element = document.createElement("div");
-	element.classList.add(CLASS_NAME_TOOLBAR);
-	if (context.columns || context.export || context.print || context.history) {
-		const actions = document.createElement("div");
-		actions.classList.add(CLASS_NAME_ACTIONS);
-		if (context.columns) actions.append(createActionButton(context.icons.columns, context.labels.toolbarColumns, "data-coreui-toolbar-columns"));
-		if (context.export) actions.append(createActionButton(context.icons.export, context.labels.toolbarExport, "data-coreui-toolbar-export"));
-		if (context.print) actions.append(createActionButton(context.icons.print, context.labels.toolbarPrint, "data-coreui-toolbar-print"));
-		if (context.history) {
-			const undoButton = createActionButton(context.icons.undo, context.labels.toolbarUndo, "data-coreui-toolbar-undo");
-			const redoButton = createActionButton(context.icons.redo, context.labels.toolbarRedo, "data-coreui-toolbar-redo");
-			undoButton.disabled = true;
-			redoButton.disabled = true;
-			actions.append(undoButton, redoButton);
+/**
+* Creates the state of a search field that starts in sync with the filter.
+* @param value The current global filter value.
+* @returns A state with no draft pending.
+*/
+const searchFieldStart = (value) => ({
+	draft: value,
+	known: value,
+	pending: false
+});
+/**
+* Applies a keystroke: the text becomes the draft and waits for its commit.
+* @param state The field state.
+* @param text The text in the input.
+* @returns The new state.
+*/
+const searchFieldType = (state, text) => ({
+	...state,
+	draft: text,
+	pending: true
+});
+/**
+* Commits the draft: the field now knows it as the filter value.
+* @param state The field state.
+* @returns The new state and the value to write, `undefined` for an empty draft.
+*/
+const searchFieldCommit = (state) => [{
+	...state,
+	known: state.draft,
+	pending: false
+}, state.draft === "" ? void 0 : state.draft];
+/**
+* Applies a change of the filter value in the table. A value the field already knows (the echo of its own
+* commit, or the same value written again) changes nothing, so a newer draft survives; any other value
+* replaces the draft and cancels the pending commit.
+* @param state The field state.
+* @param value The new global filter value.
+* @returns The new state.
+*/
+const searchFieldReceive = (state, value) => value === state.known ? state : {
+	draft: value,
+	known: value,
+	pending: false
+};
+/**
+* Decides whether a button that cannot act keeps its focus.
+* @param available Whether its action can run.
+* @param focused Whether it has focus, as tracked with `focusMovedAway`.
+* @returns `true` while the button must stay focusable with `aria-disabled`; `false` means native `disabled`
+* when the action cannot run.
+*/
+const resolveHold = (available, focused) => !available && focused;
+/**
+* Tells whether a `focusout` means focus went elsewhere in the document, not to another window.
+* @param relatedTarget The event's `relatedTarget`.
+* @param ownerDocument The document of the element losing focus.
+* @returns `true` when focus moved to another element or to the document body.
+*/
+const focusMovedAway = (relatedTarget, ownerDocument) => relatedTarget !== null || ownerDocument.hasFocus();
+/**
+* Tells whether a `focusout` from a popup or its trigger closes the popup.
+* @param relatedTarget The event's `relatedTarget`.
+* @param popup The popup element.
+* @param trigger The element that opened it.
+* @returns `true` only when focus moved to an element outside both; a `null` target never closes.
+*/
+const focusLeavesPopup = (relatedTarget, popup, trigger) => {
+	if (relatedTarget === null) return false;
+	const node = relatedTarget;
+	return !popup.contains(node) && !(trigger?.contains(node) ?? false);
+};
+const activeElementOf = (node) => node.getRootNode().activeElement;
+/**
+* Tells whether focus is inside an element, read from the element's own root node so it works in a shadow root.
+* @param element The element, typically a popup.
+* @returns `true` when the focused element is the element or one of its descendants.
+*/
+const containsFocus = (element) => element.contains(activeElementOf(element));
+/**
+* Moves focus to another toolbar part when the part holding it goes away: a column chooser trigger first, then
+* any other part in document order, and the toolbar row itself when no part takes focus.
+* @param root The grid root.
+* @param removed The element that goes away, skipped while it is still connected.
+*/
+const focusAnotherPart = (root, removed) => {
+	const own = (element) => element.parentElement?.closest(".data-grid") === root;
+	const candidates = [...root.querySelectorAll("[data-coreui-toolbar-columns]"), ...root.querySelectorAll(PART_SELECTOR)];
+	for (const candidate of candidates) if (candidate !== removed && own(candidate)) {
+		candidate.focus();
+		if (activeElementOf(candidate) === candidate) return;
+	}
+	const toolbar = [...root.querySelectorAll(".data-grid-toolbar")].find(own);
+	if (toolbar) {
+		toolbar.tabIndex = -1;
+		toolbar.focus();
+		toolbar.addEventListener("blur", () => toolbar.removeAttribute("tabindex"), { once: true });
+	}
+};
+/**
+* Lists the elements of a container that Tab reaches, in document order.
+* @param container The popup.
+* @returns The enabled elements with a non-negative tab order outside `hidden` and `inert` subtrees.
+*/
+const tabbableElements = (container) => [...container.querySelectorAll(TABBABLE_SELECTOR)].filter((element) => element.tabIndex >= 0 && !element.closest("[hidden], [inert]"));
+/**
+* Wraps Tab inside a popup: Tab from the last element goes to the first, Shift+Tab from the first to the last.
+* @param key The pressed key.
+* @param shiftKey Whether Shift is held.
+* @param tabbables The popup's tabbable elements.
+* @param active The focused element.
+* @returns The element to focus instead of the browser's default, or `null` to let Tab through.
+*/
+const trapTabTarget = (key, shiftKey, tabbables, active) => {
+	if (key !== "Tab" || tabbables.length === 0) return null;
+	const first = tabbables[0];
+	const last = tabbables[tabbables.length - 1];
+	if (shiftKey) return active === first ? last : null;
+	return active === last ? first : null;
+};
+/**
+* Picks the menu item an arrow key, Home or End moves focus to. The arrows wrap around; from outside the items
+* ArrowDown starts at the first and ArrowUp at the last.
+* @param key The pressed key.
+* @param items The menu's items in document order.
+* @param active The focused element.
+* @returns The item to focus, or `null` for any other key or an empty menu.
+*/
+const menuItemTarget = (key, items, active) => {
+	if (items.length === 0) return null;
+	const index = items.indexOf(active);
+	switch (key) {
+		case "ArrowDown": return items[index === -1 ? 0 : (index + 1) % items.length];
+		case "ArrowUp": return items[(index <= 0 ? items.length : index) - 1];
+		case "Home": return items[0];
+		case "End": return items[items.length - 1];
+		default: return null;
+	}
+};
+/**
+* Wires the rules every grid popup shares: Escape on the popup or its trigger closes it with focus back on the
+* trigger, focus moving to an element outside both closes it, a press that starts outside closes it, and a scroll or
+* a resize of the window places it under the trigger again and writes the room left below the trigger to
+* `--cui-data-grid-popup-space`, which caps its height. A dialog keeps Tab inside. A menu moves focus between its
+* items with the arrow keys, Home and End, and closes on Tab with focus on the trigger so the key moves on from there.
+* Space and Enter activate a menu item when the key is released, so a held key acts once; Enter on a
+* `menuitemcheckbox` also closes the menu.
+* @param binding The popup, its kind, the element that opened it, how to place it and how to close it.
+* @returns A function that removes the listeners.
+*/
+const bindPopup = ({ close, kind, popup, position, trigger }) => {
+	let pressedInside = false;
+	let pressedItem = null;
+	const inside = (event) => {
+		const path = event.composedPath();
+		return path.includes(popup) || path.includes(trigger);
+	};
+	const onPointerDown = (event) => {
+		pressedInside = inside(event);
+		if (!pressedInside) close(false);
+	};
+	const onClick = (event) => {
+		const started = pressedInside && event.detail > 0;
+		pressedInside = false;
+		if (!started && !inside(event)) close(false);
+	};
+	const onFocusOut = (event) => {
+		if (focusLeavesPopup(event.relatedTarget, popup, trigger)) close(false);
+	};
+	const onTriggerKeydown = (event) => {
+		if (event.key === "Escape") {
+			event.preventDefault();
+			event.stopPropagation();
+			close(true);
 		}
-		element.append(actions);
-	}
-	if (context.search) {
-		const search = document.createElement("div");
-		search.classList.add(CLASS_NAME_SEARCH);
-		const input = document.createElement("input");
-		input.type = "search";
-		input.classList.add("form-control", "form-control-sm");
-		input.placeholder = context.labels.globalFilterPlaceholder;
-		input.setAttribute("aria-label", context.labels.globalFilterLabel);
-		input.dataset.coreuiGlobalFilter = "";
-		search.append(input);
-		element.append(search);
-	}
-	return { element };
+	};
+	const onMenuKeydown = (event) => {
+		if (event.key === "Tab") {
+			close(true);
+			return;
+		}
+		const target = menuItemTarget(event.key, [...popup.querySelectorAll(MENU_ITEM_SELECTOR)], activeElementOf(popup));
+		if (target) {
+			event.preventDefault();
+			target.focus();
+			return;
+		}
+		const item = event.target.closest(MENU_ITEM_SELECTOR);
+		if (item && (event.key === " " || event.key === "Enter")) {
+			event.preventDefault();
+			pressedItem = item;
+		}
+	};
+	const onKeyup = (event) => {
+		const item = pressedItem;
+		pressedItem = null;
+		if (!item || event.key !== " " && event.key !== "Enter" || !item.contains(event.target)) return;
+		event.preventDefault();
+		if (item.getAttribute("aria-disabled") === "true") return;
+		item.click();
+		if (event.key === "Enter" && item.getAttribute("role") === "menuitemcheckbox") close(true);
+	};
+	const onKeydown = (event) => {
+		if (event.key === "Escape") {
+			event.preventDefault();
+			event.stopPropagation();
+			close(true);
+			return;
+		}
+		if (kind === "menu") {
+			onMenuKeydown(event);
+			return;
+		}
+		const target = trapTabTarget(event.key, event.shiftKey, tabbableElements(popup), activeElementOf(popup));
+		if (target) {
+			event.preventDefault();
+			target.focus();
+		}
+	};
+	const { ownerDocument } = popup;
+	const view = ownerDocument.defaultView ?? window;
+	const place = () => {
+		position();
+		const space = view.innerHeight - trigger.getBoundingClientRect().bottom;
+		popup.style.setProperty("--cui-data-grid-popup-space", `${Math.round(space)}px`);
+	};
+	place();
+	popup.addEventListener("keydown", onKeydown);
+	if (kind === "menu") popup.addEventListener("keyup", onKeyup);
+	popup.addEventListener("focusout", onFocusOut);
+	trigger.addEventListener("keydown", onTriggerKeydown);
+	trigger.addEventListener("focusout", onFocusOut);
+	ownerDocument.addEventListener("pointerdown", onPointerDown, { capture: true });
+	ownerDocument.addEventListener("click", onClick, { capture: true });
+	view.addEventListener("scroll", place, { capture: true });
+	view.addEventListener("resize", place);
+	return () => {
+		popup.removeEventListener("keydown", onKeydown);
+		popup.removeEventListener("keyup", onKeyup);
+		popup.removeEventListener("focusout", onFocusOut);
+		trigger.removeEventListener("keydown", onTriggerKeydown);
+		trigger.removeEventListener("focusout", onFocusOut);
+		ownerDocument.removeEventListener("pointerdown", onPointerDown, { capture: true });
+		ownerDocument.removeEventListener("click", onClick, { capture: true });
+		view.removeEventListener("scroll", place, { capture: true });
+		view.removeEventListener("resize", place);
+	};
+};
+/**
+* Places a popup under its trigger, inside the grid root. The popup starts where the trigger starts on the
+* inline axis and moves back so it does not cross the root's end; when it is wider than the root, the start
+* edge wins.
+* @param root The root's box.
+* @param trigger The trigger's box.
+* @param width The popup's width.
+* @param rtl Whether the root is right-to-left.
+* @returns `left` and `top` relative to the root.
+*/
+const popupPosition = (root, trigger, width, rtl) => {
+	const space = Math.max(root.width - width, 0);
+	const start = rtl ? root.right - trigger.right : trigger.left - root.left;
+	const offset = Math.min(Math.max(start, 0), space);
+	return {
+		left: rtl ? root.width - width - offset : offset,
+		top: trigger.bottom - root.top
+	};
+};
+/**
+* Names a popup after its trigger. The trigger's own `aria-labelledby` ids are reused, because an accessible
+* name computation does not follow a second `aria-labelledby` hop.
+* @param trigger The trigger element; it must have an id.
+* @returns The value for the popup's `aria-labelledby`.
+*/
+const popupLabelledBy = (trigger) => trigger.getAttribute("aria-labelledby") ?? trigger.id;
+/**
+* The marker attribute every built-in toolbar button carries.
+* @param kind The button kind.
+* @returns The attribute name, e.g. `data-coreui-toolbar-undo`.
+*/
+const toolbarMarker = (kind) => `data-coreui-toolbar-${kind}`;
+// src/ui/popup.ts
+/**
+* --------------------------------------------------------------------------
+* CoreUI PRO data-grid ui/popup.ts
+* License (https://coreui.io/pro/license/)
+* --------------------------------------------------------------------------
+*/
+const createPopup = ({ root, element, kind, position }) => {
+	let trigger = null;
+	let unbind = null;
+	const close = (refocus = false) => {
+		if (!trigger) return;
+		const previous = trigger;
+		trigger = null;
+		previous.setAttribute("aria-expanded", "false");
+		previous.removeAttribute("aria-controls");
+		unbind?.();
+		unbind = null;
+		if (refocus) previous.focus();
+		element.remove();
+	};
+	const open = (next) => {
+		close();
+		trigger = next;
+		next.setAttribute("aria-expanded", "true");
+		next.setAttribute("aria-controls", element.id);
+		root.append(element);
+		unbind = bindPopup({
+			close,
+			kind,
+			popup: element,
+			position: () => position(next),
+			trigger: next
+		});
+	};
+	return {
+		get trigger() {
+			return trigger;
+		},
+		open,
+		close,
+		dispose() {
+			close();
+		}
+	};
+};
+// src/ui/column-chooser.ts
+const CLASS_NAME_MENU$1 = "data-grid-menu";
+const CLASS_NAME_MENU_ITEM$1 = "data-grid-menu-item";
+const CLASS_NAME_MENU_ITEM_CHECK = "data-grid-menu-item-check";
+const CLASS_NAME_MENU_DIVIDER$1 = "data-grid-menu-divider";
+const CLASS_NAME_COLUMN_CHOOSER = "data-grid-column-chooser";
+let columnChooserCount = 0;
+const createColumnChooser = (context) => {
+	const element = document.createElement("div");
+	element.classList.add(CLASS_NAME_MENU$1, CLASS_NAME_COLUMN_CHOOSER);
+	element.setAttribute("role", "menu");
+	element.id = `data-grid-column-chooser-${++columnChooserCount}`;
+	const createItem = (role, text) => {
+		const item = document.createElement("button");
+		item.type = "button";
+		item.tabIndex = -1;
+		item.classList.add(CLASS_NAME_MENU_ITEM$1);
+		item.setAttribute("role", role);
+		item.append(text);
+		return item;
+	};
+	const action = (text, dataAttribute, run) => {
+		const item = createItem("menuitem", text);
+		item.setAttribute(dataAttribute, "");
+		item.addEventListener("click", () => {
+			run();
+			popup.close(true);
+		});
+		return item;
+	};
+	const items = /* @__PURE__ */ new Map();
+	const refresh = () => {
+		for (const column of context.getColumns()) items.get(column.id)?.setAttribute("aria-checked", String(column.visible));
+	};
+	const render = () => {
+		items.clear();
+		const options = context.getColumns().map((column) => {
+			const item = createItem("menuitemcheckbox", column.label);
+			const check = document.createElement("span");
+			check.classList.add(CLASS_NAME_MENU_ITEM_CHECK);
+			check.setAttribute("aria-hidden", "true");
+			item.prepend(check);
+			item.dataset.coreuiColumnChooserOption = column.id;
+			item.setAttribute("aria-checked", String(column.visible));
+			items.set(column.id, item);
+			if (!column.canHide) item.setAttribute("aria-disabled", "true");
+			item.addEventListener("click", () => {
+				context.toggleVisibility(column.id);
+				refresh();
+			});
+			return item;
+		});
+		const divider = document.createElement("div");
+		divider.classList.add(CLASS_NAME_MENU_DIVIDER$1);
+		divider.setAttribute("role", "separator");
+		element.replaceChildren(...options, divider, action(context.labels.showAllColumns, "data-coreui-column-chooser-show-all", context.showAll), action(context.labels.resetColumns, "data-coreui-column-chooser-reset", context.reset));
+	};
+	const popup = createPopup({
+		root: context.root,
+		element,
+		kind: "menu",
+		position(trigger) {
+			const { left, top } = popupPosition(context.root.getBoundingClientRect(), trigger.getBoundingClientRect(), element.offsetWidth, isElementRTL(context.root));
+			element.style.left = `${left}px`;
+			element.style.top = `${top}px`;
+		}
+	});
+	return {
+		element,
+		get trigger() {
+			return popup.trigger;
+		},
+		toggle(button) {
+			if (popup.trigger === button) {
+				popup.close(true);
+				return;
+			}
+			render();
+			if (!button.id) button.id = `${element.id}-trigger`;
+			element.setAttribute("aria-labelledby", popupLabelledBy(button));
+			popup.open(button);
+			element.querySelector("[role=\"menuitemcheckbox\"]:not([aria-disabled=\"true\"]), [data-coreui-column-chooser-show-all]")?.focus();
+		},
+		close() {
+			popup.close();
+		},
+		dispose() {
+			popup.dispose();
+		}
+	};
+};
+// src/ui/toolbar.ts
+const CLASS_NAME_TOOLBAR = "data-grid-toolbar";
+const CLASS_NAME_ACTIONS = "data-grid-toolbar-actions";
+const CLASS_NAME_SEARCH = "data-grid-toolbar-search";
+const BUTTON_CLASSES = [
+	"btn",
+	"btn-ghost",
+	"btn-sm"
+];
+const LABEL_OF = {
+	columns: "toolbarColumns",
+	export: "toolbarExport",
+	print: "toolbarPrint",
+	redo: "toolbarRedo",
+	undo: "toolbarUndo"
+};
+const resolveToolbar = (options) => resolveToolbar$1({
+	columnVisibility: Boolean(options.columnVisibility),
+	globalFilter: Boolean(options.globalFilter),
+	history: options.history,
+	toolbar: options.toolbar
+});
+const isGlobalFilterEnabled = (options) => resolveToolbar(options).search;
+const createContainer = (className, children) => {
+	const element = document.createElement("div");
+	element.classList.add(className);
+	element.append(...children);
+	return element;
+};
+const createButton = (className) => {
+	const element = document.createElement("button");
+	element.classList.add(...BUTTON_CLASSES);
+	if (className) element.classList.add(...className.split(" ").filter(Boolean));
+	return element;
+};
+const createToolbarController = (host) => {
+	const records = [];
+	const featureOn = (kind) => {
+		const error = toolbarPartError(kind, host.features);
+		if (error && !host.reported.has(kind)) {
+			host.reported.add(kind);
+			console.error(error);
+		}
+		return error === null;
+	};
+	const current = () => host.table.store.state.globalFilter ?? "";
+	const activeElement = () => host.root.getRootNode().activeElement;
+	const removeRecord = (record) => {
+		const index = records.indexOf(record);
+		if (index !== -1) records.splice(index, 1);
+	};
+	const fillButton = (element, icon, label) => {
+		if (icon) {
+			const iconElement = document.createElement("span");
+			iconElement.setAttribute("aria-hidden", "true");
+			iconElement.innerHTML = host.sanitizeIcon(icon);
+			const text = document.createElement("span");
+			text.classList.add("visually-hidden");
+			text.textContent = label;
+			element.replaceChildren(iconElement, text);
+			element.setAttribute("data-coreui-tooltip", label);
+			return;
+		}
+		element.textContent = label;
+		element.removeAttribute("data-coreui-tooltip");
+	};
+	const bindButton = (element, kind, initial, styled) => {
+		let options = initial;
+		let focused = false;
+		let chooser = null;
+		const enabled = featureOn(kind);
+		if (element instanceof HTMLButtonElement) element.type = "button";
+		if (kind !== "button") element.setAttribute(toolbarMarker(kind), "");
+		if (styled && kind === "button" && !options.label) console.error("DATA-GRID: Toolbar part \"button\" requires a label.");
+		if (kind === "columns") {
+			element.setAttribute("aria-haspopup", "menu");
+			element.setAttribute("aria-expanded", "false");
+		}
+		const label = () => {
+			if (options.label) return options.label;
+			return kind === "button" ? "" : host.labels[LABEL_OF[kind]];
+		};
+		const render = () => {
+			if (styled) fillButton(element, options.icon ?? (kind === "button" ? void 0 : host.icons[kind]), label());
+			else if (options.tooltip) element.setAttribute("data-coreui-tooltip", label());
+			else element.removeAttribute("data-coreui-tooltip");
+		};
+		const available = () => {
+			if (!enabled) return false;
+			switch (kind) {
+				case "undo": return host.canUndo();
+				case "redo": return host.canRedo();
+				case "button": return !options.disabled;
+				default: return true;
+			}
+		};
+		const refresh = () => {
+			if (record.connected && !element.isConnected) {
+				record.dispose(false);
+				return;
+			}
+			record.connected ||= element.isConnected;
+			const canAct = available();
+			const held = resolveHold(canAct, focused);
+			if (element instanceof HTMLButtonElement) element.disabled = !canAct && !held;
+			if (held) element.setAttribute("aria-disabled", "true");
+			else element.removeAttribute("aria-disabled");
+			if (kind === "button" && options.pressed !== void 0) element.setAttribute("aria-pressed", String(options.pressed));
+			else element.removeAttribute("aria-pressed");
+		};
+		const activate = (event) => {
+			if (!available()) return;
+			switch (kind) {
+				case "columns":
+					chooser ??= createColumnChooser({
+						root: host.root,
+						labels: host.labels,
+						...host.chooser
+					});
+					chooser.toggle(element);
+					break;
+				case "export": {
+					const { exporter = downloadCsv, ...exportOptions } = {
+						...host.exportOptions,
+						...options.options
+					};
+					exporter(host.table, {
+						scope: "filtered",
+						...exportOptions
+					});
+					break;
+				}
+				case "print":
+					host.print();
+					break;
+				case "undo":
+					host.undo();
+					break;
+				case "redo":
+					host.redo();
+					break;
+				default: options.onAction?.(event);
+			}
+		};
+		const onFocusIn = () => {
+			focused = true;
+		};
+		const onFocusOut = (event) => {
+			if (focusMovedAway(event.relatedTarget, element.ownerDocument)) {
+				focused = false;
+				refresh();
+			}
+		};
+		element.addEventListener("click", activate);
+		element.addEventListener("focusin", onFocusIn);
+		element.addEventListener("focusout", onFocusOut);
+		const binding = {
+			element,
+			update(next) {
+				options = {
+					...options,
+					...next
+				};
+				render();
+				refresh();
+			},
+			dispose() {
+				record.dispose(false);
+			}
+		};
+		const record = {
+			kind,
+			element,
+			binding,
+			connected: element.isConnected,
+			owns: (node) => node !== null && (element.contains(node) || Boolean(chooser?.element.contains(node))),
+			focus(hold) {
+				if (hold) {
+					focused = true;
+					refresh();
+				}
+				element.focus();
+				if (focused && !record.owns(activeElement())) {
+					focused = false;
+					refresh();
+				}
+			},
+			refresh,
+			dispose(teardown) {
+				removeRecord(record);
+				element.removeEventListener("click", activate);
+				element.removeEventListener("focusin", onFocusIn);
+				element.removeEventListener("focusout", onFocusOut);
+				if (!chooser) return;
+				const focusWasInside = chooser.trigger === element && containsFocus(chooser.element);
+				chooser.dispose();
+				if (focusWasInside && !teardown) focusAnotherPart(host.root, element);
+			}
+		};
+		records.push(record);
+		render();
+		refresh();
+		return binding;
+	};
+	const bindSearch = (input, root, options, styled) => {
+		const enabled = featureOn("search");
+		let tableValue = current();
+		let state = searchFieldStart(tableValue);
+		let timer;
+		input.setAttribute("data-coreui-global-filter", "");
+		input.disabled = !enabled;
+		const write = () => {
+			input.value = state.draft;
+			input.defaultValue = state.draft;
+		};
+		const render = (next) => {
+			if (!styled) return;
+			input.setAttribute("aria-label", next.label ?? host.labels.globalFilterLabel);
+			input.placeholder = next.placeholder ?? next.label ?? host.labels.globalFilterPlaceholder;
+		};
+		const onInput = () => {
+			state = searchFieldType(state, input.value);
+			input.defaultValue = state.draft;
+			clearTimeout(timer);
+			timer = setTimeout(() => {
+				const [next, value] = searchFieldCommit(state);
+				state = next;
+				host.table.setGlobalFilter(value);
+			}, 250);
+		};
+		input.addEventListener("input", onInput);
+		const refresh = () => {
+			if (record.connected && !root.isConnected) {
+				record.dispose(false);
+				return;
+			}
+			record.connected ||= root.isConnected;
+			const value = current();
+			if (value === tableValue) return;
+			tableValue = value;
+			const next = searchFieldReceive(state, value);
+			if (next !== state) {
+				state = next;
+				clearTimeout(timer);
+				write();
+			}
+		};
+		const binding = {
+			element: root,
+			update(next) {
+				options = {
+					...options,
+					...next
+				};
+				render(options);
+			},
+			dispose() {
+				record.dispose(false);
+			}
+		};
+		const record = {
+			kind: "search",
+			element: root,
+			binding,
+			connected: root.isConnected,
+			owns: (node) => node !== null && root.contains(node),
+			focus() {
+				input.focus();
+			},
+			refresh,
+			dispose() {
+				removeRecord(record);
+				clearTimeout(timer);
+				input.removeEventListener("input", onInput);
+			}
+		};
+		records.push(record);
+		render(options);
+		write();
+		return binding;
+	};
+	const bind = (element, kind, options = {}) => {
+		const existing = records.find((record) => record.element === element && record.kind === kind);
+		if (existing) {
+			existing.connected = existing.element.isConnected;
+			existing.binding.update(options);
+			return existing.binding;
+		}
+		if (kind === "search") {
+			if (!(element instanceof HTMLInputElement)) console.error("DATA-GRID: Toolbar part \"search\" binds to an <input>.");
+			return bindSearch(element, element, options, false);
+		}
+		if (!(element instanceof HTMLButtonElement)) console.error(`DATA-GRID: Toolbar part "${kind}" binds to a <button>.`);
+		return bindButton(element, kind, options, false);
+	};
+	const styledButton = (kind) => (options = {}) => bindButton(createButton(options.className), kind, options, true);
+	return {
+		api: {
+			parts: {
+				toolbar: (...children) => createContainer(CLASS_NAME_TOOLBAR, children),
+				actions: (...children) => createContainer(CLASS_NAME_ACTIONS, children),
+				button: styledButton("button"),
+				columns: styledButton("columns"),
+				export: styledButton("export"),
+				print: styledButton("print"),
+				redo: styledButton("redo"),
+				search(options = {}) {
+					const root = createContainer(CLASS_NAME_SEARCH, []);
+					if (options.className) root.classList.add(...options.className.split(" ").filter(Boolean));
+					const input = document.createElement("input");
+					input.type = "search";
+					input.classList.add("form-control", "form-control-sm");
+					root.append(input);
+					return bindSearch(input, root, options, true);
+				},
+				undo: styledButton("undo")
+			},
+			bind,
+			canRedo: host.canRedo,
+			canUndo: host.canUndo,
+			print: host.print,
+			redo: host.redo,
+			undo: host.undo
+		},
+		refresh() {
+			for (let index = records.length - 1; index >= 0; index--) records[index].refresh();
+		},
+		focusedPart() {
+			const active = activeElement();
+			const record = records.find((item) => item.owns(active));
+			if (!record) return null;
+			return {
+				kind: record.kind,
+				index: records.filter((item) => item.kind === record.kind).indexOf(record),
+				onPart: record.element.contains(active)
+			};
+		},
+		focusPart(part) {
+			if (!part) return;
+			const target = records.filter((record) => record.kind === part.kind)[part.index];
+			target?.focus(part.onPart);
+			if (!part.onPart && !target?.owns(activeElement())) focusAnotherPart(host.root, null);
+		},
+		dispose() {
+			while (records.length > 0) records[records.length - 1].dispose(true);
+		}
+	};
+};
+const createDefaultToolbar = (api, toolbar) => {
+	const actions = [];
+	if (toolbar.columns) actions.push(api.parts.columns().element);
+	if (toolbar.export) actions.push(api.parts.export().element);
+	if (toolbar.print) actions.push(api.parts.print().element);
+	if (toolbar.history) actions.push(api.parts.undo().element, api.parts.redo().element);
+	const children = [];
+	if (actions.length > 0) children.push(api.parts.actions(...actions));
+	if (toolbar.search) children.push(api.parts.search().element);
+	return api.parts.toolbar(...children);
 };
 // src/engine/validate.ts
 const FLAG_FEATURES = [
@@ -9422,6 +10249,62 @@ const assertFeatureCoverage = (componentName, features, flags) => {
 		const label = flag === "selectFilters" ? "columnFilters (filterType \"select\")" : flag;
 		for (const key of requiredKeys) if (!(key in features)) throw new TypeError(`${componentName.toUpperCase()}: Option "${label}" requires feature "${key}" in "features".`);
 	}
+};
+/**
+* Normalizes what `validate` returns for one row: a string is an error, a level other than `'warning'` is an error, an empty message is no issue.
+* @param validate the grid's `validate` option
+* @param item the row
+* @returns the row's issues as `[columnId, { message, level }]`
+*/
+const getRowIssues = (validate, item) => {
+	const issues = [];
+	for (const [columnId, issue] of Object.entries(validate?.(item) ?? {})) {
+		const { message, level } = typeof issue === "string" ? {
+			message: issue,
+			level: "error"
+		} : issue ?? { message: "" };
+		if (message) issues.push([columnId, {
+			message,
+			level: level === "warning" ? level : "error"
+		}]);
+	}
+	return issues;
+};
+/**
+* Lists the issues of every given row.
+* @param validate the grid's `validate` option
+* @param rows the rows to check, usually the core row model
+* @param level only issues of this level
+* @returns one entry per cell with an issue
+*/
+const collectInvalidCells = (validate, rows, level) => {
+	const cells = [];
+	for (const row of rows) for (const [columnId, issue] of getRowIssues(validate, row.original)) if (!level || issue.level === level) cells.push({
+		rowId: row.id,
+		columnId,
+		item: row.original,
+		...issue
+	});
+	return cells;
+};
+/**
+* Checks a commit against the row as it will be after it.
+* @param validate the grid's `validate` option
+* @param item the row before the commit
+* @param columnId the edited column
+* @param value the committed value
+* @returns the error that blocks the commit, and the errors on other columns the commit introduces
+*/
+const getCommitErrors = (validate, item, columnId, value) => {
+	const before = getRowIssues(validate, item);
+	const errors = getRowIssues(validate, {
+		...item,
+		[columnId]: value
+	}).filter(([, issue]) => issue.level === "error");
+	return {
+		blocking: errors.find(([id]) => id === columnId)?.[1].message,
+		introduced: errors.filter(([id, issue]) => id !== columnId && before.every(([previousId, previous]) => previousId !== id || previous.level !== "error" || previous.message !== issue.message))
+	};
 };
 // src/engine/table.ts
 /**
@@ -9917,6 +10800,7 @@ var Virtualizer = class {
 				if ((state == null ? void 0 : state.phase) === "queued" && flingCaught(state.samples ?? [])) this.scrollState = null;
 				this._flushHoldIfReady(true);
 				this._writeAwaitingCommand();
+				this._retryClampedAdjustment();
 			}
 		});
 		this._lastElementOffset = null;
@@ -10236,7 +11120,7 @@ var Virtualizer = class {
 			});
 		};
 		this._retryClampedAdjustment = () => {
-			if (this._clampedAdjustment === null || !this.scrollElement || !this.options.enabled) return;
+			if (this._clampedAdjustment === null || !this.scrollElement || !this.options.enabled || !this._canWriteScroll()) return;
 			const { target, maxAtWrite } = this._clampedAdjustment;
 			const max = this.getMaxScrollOffset();
 			if (max > maxAtWrite + .5) {
@@ -10689,7 +11573,7 @@ var Virtualizer = class {
 			} : null;
 		};
 		this.getVirtualDistanceFromEnd = () => {
-			return Math.max(this._getLayoutTotalSize() - this.getSize() - this.getScrollOffset(), 0);
+			return Math.max(this._getLayoutTotalSize() + this.options.scrollMargin - this.getSize() - this.getScrollOffset(), 0);
 		};
 		this.getDistanceFromEnd = () => {
 			return Math.max(this.getMaxScrollOffset() - this.getScrollOffset(), 0);
@@ -10917,6 +11801,8 @@ var Virtualizer = class {
 		this.scheduleScrollReconcile();
 	}
 	_startScroll(target, offset, behavior, kind) {
+		this.pendingScrollAnchor = null;
+		this._clampedAdjustment = null;
 		const tail = this._iosGesture.tail();
 		if (kind === "absolute" && tail !== null) {
 			if (tail === "fling" && iosMomentumOverridesWrites()) {
@@ -11086,12 +11972,15 @@ const DEFAULT_LABELS = {
 	clearFilter: "Clear filter",
 	clearSort: "Unsort",
 	columnMenu: "Column options for {column}",
+	editedCell: "Edited",
 	filterAction: "Filter…",
 	filterColumn: "Filter {column}",
 	firstPage: "First page",
 	globalFilterLabel: "Search",
 	globalFilterPlaceholder: "Search",
 	hideColumn: "Hide column",
+	historyEntryUnavailable: "The change is no longer available: its row was removed",
+	invalidAnnouncement: "{column}: {message}",
 	itemsInfo: "{first}–{last} of {total}",
 	joinAnd: "AND",
 	joinOr: "OR",
@@ -11120,6 +12009,7 @@ const DEFAULT_LABELS = {
 	pinStart: "Pin to start",
 	previousPage: "Previous page",
 	redoneAnnouncement: "Change redone",
+	redoneLastAnnouncement: "Change redone. Nothing left to redo",
 	reorderRow: "Reorder row",
 	resetColumns: "Reset",
 	resultsAnnouncement: "{count} results",
@@ -11136,6 +12026,7 @@ const DEFAULT_LABELS = {
 	toolbarRedo: "Redo",
 	toolbarUndo: "Undo",
 	undoneAnnouncement: "Change undone",
+	undoneLastAnnouncement: "Change undone. Nothing left to undo",
 	unpin: "Unpin"
 };
 const interpolate = (template, tokens) => template.replace(/\{(\w+)\}/g, (match, token) => token in tokens ? String(tokens[token]) : match);
@@ -11171,6 +12062,9 @@ const FOCUSABLE_SELECTOR$1 = "a[href], button, input, select, textarea, [tabinde
 const CLASS_NAME_ROW_ODD = "data-grid-row-odd";
 const CLASS_NAME_ROW_SELECTED = "table-active";
 const CLASS_NAME_CELL_SELECTED = "data-grid-cell-selected";
+const CLASS_NAME_CELL_EDITED = "data-grid-cell-edited";
+const CLASS_NAME_CELL_INVALID = "data-grid-cell-invalid";
+const CLASS_NAME_CELL_WARNING = "data-grid-cell-warning";
 const CLASS_NAME_HANDLE_CELL$1 = "data-grid-row-handle-cell";
 const EDGE_CLASS_NAMES = [
 	"top",
@@ -11190,6 +12084,19 @@ const setCellContent = (cellElement, content, sanitizeContent) => {
 };
 const createBody = (context) => {
 	const element = document.createElement("tbody");
+	const appliedClasses = /* @__PURE__ */ new WeakMap();
+	const setAttribute = (target, name, value) => {
+		if (value === null) target.removeAttribute(name);
+		else target.setAttribute(name, value);
+	};
+	const applyClasses = (target, value) => {
+		const previous = appliedClasses.get(target);
+		const next = typeof value === "string" ? value.split(/\s+/).filter(Boolean) : [];
+		if (previous) target.classList.remove(...previous.filter((token) => !next.includes(token)));
+		target.classList.add(...next);
+		if (next.length > 0) appliedClasses.set(target, next);
+		else appliedClasses.delete(target);
+	};
 	let currentColumns = context.getVisibleColumns();
 	let layoutSignature = currentColumns.map((column) => column.key).join("|");
 	const leadingCount = (context.rowOrder ? 1 : 0) + (context.selection ? 1 : 0);
@@ -11231,10 +12138,10 @@ const createBody = (context) => {
 		}
 		for (const [index, column] of currentColumns.entries()) {
 			const cellElement = document.createElement("td");
+			cellElement.dataset.coreuiColumn = column.key;
 			if (context.cellNavigation) {
 				cellElement.setAttribute("role", "gridcell");
 				cellElement.setAttribute("aria-colindex", String(offset + index + 1));
-				cellElement.dataset.coreuiColumn = column.key;
 				cellElement.tabIndex = -1;
 			}
 			rowElement.append(cellElement);
@@ -11272,6 +12179,43 @@ const createBody = (context) => {
 			buildRowCells(rowElement);
 			delete rowElement.dataset.coreuiRow;
 		}
+		let cells = null;
+		const cellOf = (key) => {
+			cells ??= new Map(row.getAllCells().map((cell) => [cell.column.id, cell]));
+			return cells.get(key);
+		};
+		applyClasses(rowElement, context.getRowClass()?.({
+			item: row.original,
+			row,
+			rowIndex: index
+		}));
+		const isEdited = context.getEditedCell;
+		const issues = context.getRowIssues?.(row);
+		const editingCell = context.getEditingCell();
+		for (const [cellIndex, column] of currentColumns.entries()) {
+			const cellElement = rowElement.children[cellIndex + leadingCount];
+			if (column.cellClass) {
+				const cell = cellOf(column.key);
+				applyClasses(cellElement, cell && column.cellClass({
+					cell,
+					column,
+					item: row.original,
+					row,
+					value: row.getValue(column.key)
+				}));
+			}
+			if (isEdited || issues) {
+				const edited = isEdited?.(row, column.key) ?? false;
+				const issue = issues?.get(column.key);
+				const description = [edited && context.labels.editedCell, issue?.message].filter(Boolean).join(". ");
+				cellElement.classList.toggle(CLASS_NAME_CELL_EDITED, edited);
+				cellElement.classList.toggle(CLASS_NAME_CELL_INVALID, issue?.level === "error");
+				cellElement.classList.toggle(CLASS_NAME_CELL_WARNING, issue?.level === "warning");
+				setAttribute(cellElement, "aria-invalid", context.cellNavigation && issue?.level === "error" ? "true" : null);
+				setAttribute(cellElement, "data-coreui-tooltip", editingCell?.rowId === row.id && editingCell.columnId === column.key ? null : issue?.message ?? null);
+				setAttribute(cellElement, "aria-description", description || null);
+			}
+		}
 		if (context.selection) {
 			const input = rowElement.children[leadingCount - 1].firstElementChild;
 			const selected = row.getIsSelected();
@@ -11284,18 +12228,16 @@ const createBody = (context) => {
 			updateRowCells(rowElement, row, index);
 			rowElement.dataset.coreuiRow = rowKey;
 		}
-		if (context.cellSelection) {
-			const cells = new Map(row.getAllCells().map((cell) => [cell.column.id, cell]));
-			for (const [cellIndex, column] of currentColumns.entries()) {
-				const cellElement = rowElement.children[cellIndex + leadingCount];
-				const cell = cells.get(column.key);
-				const selected = cell?.getIsSelected() ?? false;
-				cellElement.classList.toggle(CLASS_NAME_CELL_SELECTED, selected);
-				const edges = selected && cell ? cell.getSelectionEdges() : null;
-				for (const edge of EDGE_CLASS_NAMES) cellElement.classList.toggle(`${CLASS_NAME_CELL_SELECTED}-${edge}`, Boolean(edges?.[edge]));
-			}
+		if (context.cellSelection) for (const [cellIndex, column] of currentColumns.entries()) {
+			const cellElement = rowElement.children[cellIndex + leadingCount];
+			const cell = cellOf(column.key);
+			const selected = cell?.getIsSelected() ?? false;
+			cellElement.classList.toggle(CLASS_NAME_CELL_SELECTED, selected);
+			const edges = selected && cell ? cell.getSelectionEdges() : null;
+			for (const edge of EDGE_CLASS_NAMES) cellElement.classList.toggle(`${CLASS_NAME_CELL_SELECTED}-${edge}`, Boolean(edges?.[edge]));
 		}
 		rowElement.dataset.coreuiIndex = String(index);
+		setAttribute(rowElement, "data-coreui-row-id", context.rowIds ? row.id : null);
 		rowElement.setAttribute("aria-rowindex", String(context.headerRowCount + context.getRowIndexOffset() + index + 1));
 		rowElement.classList.toggle(CLASS_NAME_ROW_ODD, index % 2 === 1);
 		if (currentPinning) {
@@ -11426,13 +12368,18 @@ const createTextEditor = (context) => {
 	input.type = "text";
 	input.classList.add("form-control", "form-control-sm", CLASS_NAME_EDITOR);
 	input.value = String(context.value ?? "");
+	const initial = input.value;
+	let touched = false;
+	input.addEventListener("input", () => {
+		touched = true;
+	});
 	return {
 		element: input,
 		focus() {
 			input.focus();
 			input.select();
 		},
-		getValue: () => input.value
+		getValue: () => touched || input.value !== initial ? input.value : context.value
 	};
 };
 const createNumberEditor = (context, options) => {
@@ -11443,13 +12390,21 @@ const createNumberEditor = (context, options) => {
 	if (options.max !== void 0) input.max = String(options.max);
 	if (options.step !== void 0) input.step = String(options.step);
 	input.value = context.value === void 0 || context.value === null ? "" : String(context.value);
+	const initial = input.value;
+	let touched = false;
+	input.addEventListener("input", () => {
+		touched = true;
+	});
 	return {
 		element: input,
 		focus() {
 			input.focus();
 			input.select();
 		},
-		getValue: () => input.value === "" ? void 0 : Number(input.value)
+		getValue() {
+			if (!touched && input.value === initial) return context.value;
+			return input.value === "" ? void 0 : Number(input.value);
+		}
 	};
 };
 const createSelectEditor = (context, options) => {
@@ -11780,7 +12735,7 @@ const createLoading = (labels, className = CLASS_NAME_LOADING) => {
 const CLASS_NAME_FILTER_MENU = "data-grid-filter-menu";
 const CLASS_NAME_CONDITION = "data-grid-filter-menu-condition";
 const CLASS_NAME_JOIN = "data-grid-filter-menu-join";
-const CLASS_NAME_FOOTER$1 = "data-grid-filter-menu-footer";
+const CLASS_NAME_FOOTER = "data-grid-filter-menu-footer";
 const CLASS_NAME_VALUES = "data-grid-filter-menu-values";
 const SEARCH_THRESHOLD = 10;
 const MAX_CONDITIONS = 2;
@@ -11801,38 +12756,37 @@ const OPERATOR_LABEL_KEYS = {
 };
 let filterMenuCount = 0;
 const inputTypeFor = (filterType) => filterType === "number" ? "number" : filterType === "date" ? "date" : "text";
+const readCondition = (row) => {
+	const operator = row.querySelector("select").value;
+	const { value } = row.querySelector("[data-coreui-filter-value]");
+	if (VALUELESS_OPERATORS.has(operator)) return { operator };
+	if (value.trim() === "") return null;
+	const value2 = row.querySelector("[data-coreui-filter-value2]").value;
+	return {
+		operator,
+		value,
+		...operator === "between" && value2.trim() !== "" && { value2 }
+	};
+};
 const createFilterMenu = (context) => {
 	const element = document.createElement("div");
 	element.classList.add(CLASS_NAME_FILTER_MENU);
 	element.setAttribute("role", "dialog");
 	element.id = `data-grid-filter-menu-${++filterMenuCount}`;
-	let trigger = null;
-	const close = (refocus = false) => {
-		if (!trigger) return;
-		trigger.setAttribute("aria-expanded", "false");
-		trigger.removeAttribute("aria-controls");
-		if (refocus) trigger.focus();
-		trigger = null;
-		element.remove();
-		document.removeEventListener("pointerdown", onOutsidePointerDown, { capture: true });
-		window.removeEventListener("scroll", onWindowChange, { capture: true });
-		window.removeEventListener("resize", onWindowChange);
-	};
-	const onOutsidePointerDown = (event) => {
-		const target = event.target;
-		if (!element.contains(target) && !trigger?.contains(target)) close();
-	};
-	const onWindowChange = (event) => {
-		if (event?.target instanceof Node && element.contains(event.target)) return;
-		close();
-	};
-	const onKeydown = (event) => {
-		if (event.key === "Escape") {
-			event.stopPropagation();
-			close(true);
+	const popup = createPopup({
+		root: context.root,
+		element,
+		kind: "dialog",
+		position(trigger) {
+			const rootRect = context.root.getBoundingClientRect();
+			const buttonRect = trigger.getBoundingClientRect();
+			element.style.top = `${buttonRect.bottom - rootRect.top}px`;
+			element.style.left = `${Math.max(buttonRect.right - rootRect.left - element.offsetWidth, 0)}px`;
 		}
+	});
+	const close = (refocus = false) => {
+		popup.close(refocus);
 	};
-	element.addEventListener("keydown", onKeydown);
 	const buildConditionRow = (filterType, condition) => {
 		const row = document.createElement("div");
 		row.classList.add(CLASS_NAME_CONDITION);
@@ -11866,21 +12820,9 @@ const createFilterMenu = (context) => {
 		syncVisibility();
 		return row;
 	};
-	const readCondition = (row) => {
-		const operator = row.querySelector("select").value;
-		const { value } = row.querySelector("[data-coreui-filter-value]");
-		if (VALUELESS_OPERATORS.has(operator)) return { operator };
-		if (value.trim() === "") return null;
-		const value2 = row.querySelector("[data-coreui-filter-value2]").value;
-		return {
-			operator,
-			value,
-			...operator === "between" && value2.trim() !== "" && { value2 }
-		};
-	};
 	const buildFooter = (onApply, columnKey) => {
 		const footer = document.createElement("div");
-		footer.classList.add(CLASS_NAME_FOOTER$1);
+		footer.classList.add(CLASS_NAME_FOOTER);
 		const apply = document.createElement("button");
 		apply.type = "button";
 		apply.classList.add("btn", "btn-primary", "btn-sm");
@@ -12013,34 +12955,22 @@ const createFilterMenu = (context) => {
 		element.setAttribute("aria-label", interpolate(context.labels.filterColumn, { column: column.label ?? column.key }));
 		const filterType = column.filterType ?? "text";
 		element.replaceChildren(filterType === "select" ? buildSelectContent(columnKey) : buildConditionsContent(columnKey, filterType));
-		trigger = button;
-		button.setAttribute("aria-expanded", "true");
-		button.setAttribute("aria-controls", element.id);
-		context.root.append(element);
-		const rootRect = context.root.getBoundingClientRect();
-		const buttonRect = button.getBoundingClientRect();
-		element.style.top = `${buttonRect.bottom - rootRect.top}px`;
-		element.style.left = `${Math.max(buttonRect.right - rootRect.left - element.offsetWidth, 0)}px`;
-		document.addEventListener("pointerdown", onOutsidePointerDown, { capture: true });
-		window.addEventListener("scroll", onWindowChange, { capture: true });
-		window.addEventListener("resize", onWindowChange);
+		popup.open(button);
 		element.querySelector("select, input")?.focus();
 	};
 	return {
 		toggle(button, columnKey) {
-			if (trigger === button) {
+			if (popup.trigger === button) {
 				close(true);
 				return;
 			}
-			close();
 			open(button, columnKey);
 		},
 		close() {
 			close();
 		},
 		dispose() {
-			close();
-			element.removeEventListener("keydown", onKeydown);
+			popup.dispose();
 		}
 	};
 };
@@ -12055,56 +12985,17 @@ const createMenu = (context) => {
 	element.classList.add(CLASS_NAME_MENU);
 	element.setAttribute("role", "menu");
 	element.id = `data-grid-menu-${++menuCount}`;
-	let trigger = null;
-	const items = () => [...element.querySelectorAll(`.${CLASS_NAME_MENU_ITEM}`)];
-	const close = (refocus = false) => {
-		if (!trigger) return;
-		trigger.setAttribute("aria-expanded", "false");
-		trigger.removeAttribute("aria-controls");
-		if (refocus) trigger.focus();
-		trigger = null;
-		element.remove();
-		document.removeEventListener("pointerdown", onOutsidePointerDown, { capture: true });
-		window.removeEventListener("scroll", onWindowChange, { capture: true });
-		window.removeEventListener("resize", onWindowChange);
-	};
-	const onOutsidePointerDown = (event) => {
-		const target = event.target;
-		if (!element.contains(target) && !trigger?.contains(target)) close();
-	};
-	const onWindowChange = (event) => {
-		if (event?.target instanceof Node && element.contains(event.target)) return;
-		close();
-	};
-	const onMenuKeydown = (event) => {
-		const enabled = items();
-		const activeIndex = enabled.indexOf(document.activeElement);
-		switch (event.key) {
-			case "Escape":
-				event.stopPropagation();
-				close(true);
-				break;
-			case "Tab":
-				close();
-				break;
-			case "ArrowDown":
-				event.preventDefault();
-				enabled[(activeIndex + 1) % enabled.length]?.focus();
-				break;
-			case "ArrowUp":
-				event.preventDefault();
-				enabled[(activeIndex - 1 + enabled.length) % enabled.length]?.focus();
-				break;
-			case "Home":
-				event.preventDefault();
-				enabled[0]?.focus();
-				break;
-			case "End":
-				event.preventDefault();
-				enabled[enabled.length - 1]?.focus();
+	const popup = createPopup({
+		root: context.root,
+		element,
+		kind: "menu",
+		position(trigger) {
+			const rootRect = context.root.getBoundingClientRect();
+			const buttonRect = trigger.getBoundingClientRect();
+			element.style.top = `${buttonRect.bottom - rootRect.top}px`;
+			element.style.left = `${Math.max(buttonRect.right - rootRect.left - element.offsetWidth, 0)}px`;
 		}
-	};
-	element.addEventListener("keydown", onMenuKeydown);
+	});
 	const open = (button, columnKey) => {
 		const actions = context.getActions(columnKey);
 		if (actions.length === 0) return;
@@ -12118,6 +13009,7 @@ const createMenu = (context) => {
 			}
 			const item = document.createElement("button");
 			item.type = "button";
+			item.tabIndex = -1;
 			item.classList.add(CLASS_NAME_MENU_ITEM);
 			item.setAttribute("role", "menuitem");
 			if (action.icon) {
@@ -12131,8 +13023,8 @@ const createMenu = (context) => {
 			if (action.disabled) item.setAttribute("aria-disabled", "true");
 			item.addEventListener("click", () => {
 				if (action.disabled) return;
-				const previousTrigger = trigger;
-				close();
+				const previousTrigger = popup.trigger;
+				popup.close();
 				action.run();
 				requestAnimationFrame(() => {
 					const active = document.activeElement;
@@ -12144,34 +13036,23 @@ const createMenu = (context) => {
 			nodes.push(item);
 		}
 		element.replaceChildren(...nodes);
-		trigger = button;
-		button.setAttribute("aria-expanded", "true");
-		button.setAttribute("aria-controls", element.id);
-		context.root.append(element);
-		const rootRect = context.root.getBoundingClientRect();
-		const buttonRect = button.getBoundingClientRect();
-		element.style.top = `${buttonRect.bottom - rootRect.top}px`;
-		element.style.left = `${Math.max(buttonRect.right - rootRect.left - element.offsetWidth, 0)}px`;
-		document.addEventListener("pointerdown", onOutsidePointerDown, { capture: true });
-		window.addEventListener("scroll", onWindowChange, { capture: true });
-		window.addEventListener("resize", onWindowChange);
-		items()[0]?.focus();
+		popup.open(button);
+		element.querySelector(`.${CLASS_NAME_MENU_ITEM}`)?.focus();
 	};
 	return {
 		toggle(button, columnKey) {
-			if (trigger === button) {
-				close(true);
+			if (popup.trigger === button) {
+				popup.close(true);
 				return;
 			}
-			close();
+			popup.close();
 			open(button, columnKey);
 		},
 		close() {
-			close();
+			popup.close();
 		},
 		dispose() {
-			close();
-			element.removeEventListener("keydown", onMenuKeydown);
+			popup.dispose();
 		}
 	};
 };
@@ -12268,126 +13149,6 @@ const createPagination = (context) => {
 		}
 	};
 };
-// src/ui/column-chooser.ts
-const CLASS_NAME_COLUMN_CHOOSER = "data-grid-column-chooser";
-const CLASS_NAME_OPTION = "data-grid-column-chooser-option";
-const CLASS_NAME_FOOTER = "data-grid-column-chooser-footer";
-let columnChooserCount = 0;
-const createColumnChooser = (context) => {
-	const element = document.createElement("div");
-	element.classList.add(CLASS_NAME_COLUMN_CHOOSER);
-	element.setAttribute("role", "dialog");
-	element.setAttribute("aria-label", context.labels.toolbarColumns);
-	element.id = `data-grid-column-chooser-${++columnChooserCount}`;
-	let trigger = null;
-	const close = (refocus = false) => {
-		if (!trigger) return;
-		trigger.setAttribute("aria-expanded", "false");
-		trigger.removeAttribute("aria-controls");
-		if (refocus) trigger.focus();
-		trigger = null;
-		element.remove();
-		document.removeEventListener("pointerdown", onOutsidePointerDown, { capture: true });
-		window.removeEventListener("scroll", onWindowChange, { capture: true });
-		window.removeEventListener("resize", onWindowChange);
-	};
-	const onOutsidePointerDown = (event) => {
-		const target = event.target;
-		if (!element.contains(target) && !trigger?.contains(target)) close();
-	};
-	const onWindowChange = (event) => {
-		if (event?.target instanceof Node && element.contains(event.target)) return;
-		close();
-	};
-	const onKeydown = (event) => {
-		if (event.key === "Escape") {
-			event.stopPropagation();
-			close(true);
-		}
-	};
-	element.addEventListener("keydown", onKeydown);
-	const buildContent = () => {
-		const list = document.createElement("div");
-		for (const column of context.getColumns()) {
-			const label = document.createElement("label");
-			label.classList.add("form-check", CLASS_NAME_OPTION);
-			const input = document.createElement("input");
-			input.type = "checkbox";
-			input.classList.add("form-check-input");
-			input.checked = column.visible;
-			input.dataset.coreuiColumnChooserOption = column.id;
-			if (!column.canHide) {
-				input.disabled = true;
-				input.setAttribute("aria-disabled", "true");
-			}
-			input.addEventListener("change", () => {
-				context.toggleVisibility(column.id, input.checked);
-			});
-			const text = document.createElement("span");
-			text.classList.add("form-check-label");
-			text.textContent = column.label;
-			label.append(input, text);
-			list.append(label);
-		}
-		const footer = document.createElement("div");
-		footer.classList.add(CLASS_NAME_FOOTER);
-		const showAll = document.createElement("button");
-		showAll.type = "button";
-		showAll.classList.add("btn", "btn-link", "btn-sm");
-		showAll.textContent = context.labels.showAllColumns;
-		showAll.dataset.coreuiColumnChooserShowAll = "";
-		showAll.addEventListener("click", () => {
-			context.showAll();
-			element.replaceChildren(buildContent());
-		});
-		const reset = document.createElement("button");
-		reset.type = "button";
-		reset.classList.add("btn", "btn-link", "btn-sm");
-		reset.textContent = context.labels.resetColumns;
-		reset.dataset.coreuiColumnChooserReset = "";
-		reset.addEventListener("click", () => {
-			context.reset();
-			element.replaceChildren(buildContent());
-		});
-		footer.append(showAll, reset);
-		const content = document.createDocumentFragment();
-		content.append(list, footer);
-		return content;
-	};
-	const open = (button) => {
-		close();
-		element.replaceChildren(buildContent());
-		trigger = button;
-		button.setAttribute("aria-expanded", "true");
-		button.setAttribute("aria-controls", element.id);
-		context.root.append(element);
-		const rootRect = context.root.getBoundingClientRect();
-		const buttonRect = button.getBoundingClientRect();
-		element.style.top = `${buttonRect.bottom - rootRect.top}px`;
-		element.style.left = `${Math.max(buttonRect.left - rootRect.left, 0)}px`;
-		document.addEventListener("pointerdown", onOutsidePointerDown, { capture: true });
-		window.addEventListener("scroll", onWindowChange, { capture: true });
-		window.addEventListener("resize", onWindowChange);
-		element.querySelector("input:not(:disabled)")?.focus();
-	};
-	return {
-		toggle(button) {
-			if (trigger === button) {
-				close(true);
-				return;
-			}
-			close();
-			open(button);
-		},
-		close() {
-			close();
-		},
-		dispose() {
-			close();
-			element.removeEventListener("keydown", onKeydown);
-		}
-	};
-};
 // src/ui/tooltip.ts
 /**
 * --------------------------------------------------------------------------
@@ -12396,8 +13157,8 @@ const createColumnChooser = (context) => {
 * --------------------------------------------------------------------------
 */
 const CLASS_NAME_TOOLTIP = "data-grid-tooltip";
-const ATTRIBUTE = "data-coreui-tooltip";
-const SELECTOR = `[${ATTRIBUTE}]`;
+const ATTRIBUTE$1 = "data-coreui-tooltip";
+const SELECTOR = `[${ATTRIBUTE$1}]`;
 const SHOW_DELAY = 200;
 const GAP = 6;
 const EDGE = 4;
@@ -12409,10 +13170,11 @@ const createTooltip = (root) => {
 	element.hidden = true;
 	root.append(element);
 	let anchor = null;
+	let dismissed = null;
 	let showTimer;
 	const anchorFrom = (target) => {
 		const element_ = target instanceof Element ? target.closest(SELECTOR) : null;
-		return element_ instanceof HTMLElement && element_.getAttribute(ATTRIBUTE) ? element_ : null;
+		return element_ instanceof HTMLElement && element_ !== dismissed && element_.getAttribute(ATTRIBUTE$1) ? element_ : null;
 	};
 	const position = () => {
 		if (!anchor) return;
@@ -12428,7 +13190,8 @@ const createTooltip = (root) => {
 	};
 	const show = (target) => {
 		anchor = target;
-		element.textContent = target.getAttribute(ATTRIBUTE);
+		dismissed = null;
+		element.textContent = target.getAttribute(ATTRIBUTE$1);
 		element.style.visibility = "hidden";
 		element.hidden = false;
 		position();
@@ -12448,6 +13211,12 @@ const createTooltip = (root) => {
 		if (anchor && event.relatedTarget instanceof Node && anchor.contains(event.relatedTarget)) return;
 		hide();
 	};
+	const onKeyDown = (event) => {
+		if (event.key === "Escape") {
+			dismissed = anchor ?? (event.target instanceof Element ? event.target.closest(SELECTOR) : null);
+			hide();
+		}
+	};
 	const onFocusIn = (event) => {
 		const target = anchorFrom(event.target);
 		if (target) show(target);
@@ -12457,66 +13226,222 @@ const createTooltip = (root) => {
 	root.addEventListener("pointerdown", hide);
 	root.addEventListener("focusin", onFocusIn);
 	root.addEventListener("focusout", hide);
+	root.addEventListener("keydown", onKeyDown);
 	window.addEventListener("scroll", hide, { capture: true });
-	return { dispose() {
-		clearTimeout(showTimer);
-		root.removeEventListener("pointerover", onPointerOver);
-		root.removeEventListener("pointerout", onPointerOut);
-		root.removeEventListener("pointerdown", hide);
-		root.removeEventListener("focusin", onFocusIn);
-		root.removeEventListener("focusout", hide);
-		window.removeEventListener("scroll", hide, { capture: true });
-		element.remove();
-	} };
+	return {
+		dispose() {
+			clearTimeout(showTimer);
+			root.removeEventListener("pointerover", onPointerOver);
+			root.removeEventListener("pointerout", onPointerOut);
+			root.removeEventListener("pointerdown", hide);
+			root.removeEventListener("focusin", onFocusIn);
+			root.removeEventListener("focusout", hide);
+			root.removeEventListener("keydown", onKeyDown);
+			window.removeEventListener("scroll", hide, { capture: true });
+			element.remove();
+		},
+		sync() {
+			const text = anchor?.isConnected ? anchor.getAttribute(ATTRIBUTE$1) : null;
+			if (text) {
+				element.textContent = text;
+				position();
+			} else if (anchor) hide();
+		}
+	};
 };
-// src/util/export-table.ts
-const rowsFor = (table, scope) => {
-	if (scope === "all") return table.getCoreRowModel().rows;
-	if (scope === "selected") return table.getSelectedRowModel?.().rows ?? [];
-	return (table.getSortedRowModel ?? table.getFilteredRowModel ?? table.getCoreRowModel)().rows;
+// src/util/announce.ts
+const ATTRIBUTE = "data-coreui-live-announcer";
+const CLASS_NAME_HIDING = "hiding";
+const CLOSE_DELAY = 500;
+const FIRST_MESSAGE_DELAY = 100;
+const VISUALLY_HIDDEN = {
+	border: "0",
+	clip: "rect(0 0 0 0)",
+	clipPath: "inset(50%)",
+	height: "1px",
+	margin: "-1px",
+	overflow: "hidden",
+	padding: "0",
+	position: "absolute",
+	whiteSpace: "nowrap",
+	width: "1px"
 };
-const columnsFor = (table) => {
-	if (table.getCenterVisibleLeafColumns) return [
-		...table.getStartVisibleLeafColumns?.() ?? [],
-		...table.getCenterVisibleLeafColumns(),
-		...table.getEndVisibleLeafColumns?.() ?? []
-	];
-	return table.getVisibleLeafColumns?.() ?? table.getAllLeafColumns();
-};
-const headerFor = (column) => String(column.columnDef.meta?.label ?? column.id);
-const formatterFor = (column) => column.columnDef.meta?.formatter;
-// src/util/csv.ts
+const holds = /* @__PURE__ */ new WeakMap();
+const readyAt = /* @__PURE__ */ new WeakMap();
+const pending = [];
 /**
-* --------------------------------------------------------------------------
-* CoreUI PRO data-grid util/csv.ts
-* License (https://coreui.io/pro/license/)
-* --------------------------------------------------------------------------
+* Tells whether an element is an open modal dialog: a native dialog opened with `showModal()`, or
+* a shown element with `aria-modal="true"`, such as a picker panel that traps focus.
+*
+* @param element - The element to check
+* @returns `true` when the rest of the page is inert or hidden behind the element
 */
-const escapeField = (value, delimiter) => /["\r\n]/.test(value) || value.includes(delimiter) ? `"${value.replace(/"/g, "\"\"")}"` : value;
-const sanitizeField = (value) => /^[=+\-@\t\r]/.test(value) ? `'${value}` : value;
-const exportCsv = (table, options = {}) => {
-	const delimiter = options.delimiter ?? ",";
-	const columns = columnsFor(table);
-	const process = (field) => escapeField(options.sanitize ? sanitizeField(field) : field, delimiter);
-	const line = (fields) => fields.map(process).join(delimiter);
-	const csv = [line(columns.map((column) => headerFor(column))), ...rowsFor(table, options.scope).map((row) => line(columns.map((column) => {
-		const value = row.getValue(column.id);
-		const formatter = formatterFor(column);
-		return String(formatter ? formatter(value, row.original) ?? "" : value ?? "");
-	})))].join("\r\n");
-	return options.bom ? `\u{FEFF}${csv}` : csv;
+const isModal = (element) => {
+	if (element.matches("dialog[open]")) return element.matches(":modal");
+	return element.matches("[aria-modal=\"true\"]") && element.isConnected && (typeof element.checkVisibility !== "function" || element.checkVisibility());
 };
-const downloadCsv = (table, options = {}) => {
-	const blob = new Blob([exportCsv(table, options)], { type: "text/csv;charset=utf-8;" });
-	const url = URL.createObjectURL(blob);
-	const anchor = document.createElement("a");
-	anchor.href = url;
-	anchor.download = options.filename ?? "export.csv";
-	anchor.style.display = "none";
-	document.body.append(anchor);
-	anchor.click();
-	anchor.remove();
-	setTimeout(() => URL.revokeObjectURL(url));
+/**
+* Finds the open modal dialog around an element, through the slots it is assigned to and the
+* shadow roots it sits in.
+*
+* @param element - The element to start from
+* @returns The closest open modal dialog, or `null` when there is none
+*/
+const getDialogAround = (element) => {
+	let node = element;
+	while (node) {
+		if (isModal(node)) return node;
+		node = node.assignedSlot ?? node.parentElement ?? node.getRootNode().host ?? null;
+	}
+	return null;
+};
+/**
+* Finds the modal dialog the rest of the page is inert behind: the one holding focus, then the
+* one around `context`, then the last one open in the document.
+*
+* @param context - The element the message comes from, if any
+* @returns The modal dialog to announce in, or `null` when none is open
+*/
+const getModal = (context) => {
+	let focused = document.activeElement;
+	while (focused?.shadowRoot?.activeElement) focused = focused.shadowRoot.activeElement;
+	const modals = [...document.querySelectorAll("dialog[open], [aria-modal=\"true\"]")].filter(isModal);
+	return getDialogAround(focused) ?? getDialogAround(context) ?? modals[modals.length - 1] ?? null;
+};
+/**
+* Reads a stored time when it was taken on the clock in use now. A time from another clock, such
+* as a test's fake timers, counts as long past.
+*
+* @param times - The ready times of regions or the holds of hosts
+* @param element - The element the time belongs to
+* @returns The time on the `performance.now()` clock, `0` when there is none
+*/
+const readTime = (times, element) => {
+	const [time, clock] = times.get(element) ?? [0, null];
+	return clock === performance.now ? time : 0;
+};
+/**
+* Tells when a moment some milliseconds from now comes, on the clock in use now.
+*
+* @param delay - The time (ms) from now
+* @returns The time with the clock it was read from
+*/
+const getMoment = (delay) => [performance.now() + delay, performance.now];
+/**
+* Returns the live regions a host carries, creating them when it has none. Regions this copy of
+* the util has not seen yet count as new, and regions in a dialog leave with it when it closes.
+*
+* @param host - `document.body` or an open modal dialog
+* @returns The element holding the assertive and the polite region
+*/
+const getAnnouncer = (host) => {
+	const existing = host.querySelector(`:scope > [${ATTRIBUTE}]`);
+	if (existing) {
+		if (!readyAt.has(existing)) readyAt.set(existing, getMoment(FIRST_MESSAGE_DELAY));
+		return existing;
+	}
+	const announcer = document.createElement("div");
+	announcer.setAttribute(ATTRIBUTE, "");
+	Object.assign(announcer.style, VISUALLY_HIDDEN);
+	for (const live of ["assertive", "polite"]) {
+		const region = document.createElement("div");
+		region.setAttribute("role", "log");
+		region.setAttribute("aria-live", live);
+		region.setAttribute("aria-relevant", "additions");
+		announcer.append(region);
+	}
+	if (host === document.body) host.prepend(announcer);
+	else {
+		const onClose = (event) => {
+			if (event.target === host && !host.open) {
+				announcer.remove();
+				host.removeEventListener("close", onClose);
+			}
+		};
+		host.append(announcer);
+		host.addEventListener("close", onClose);
+	}
+	readyAt.set(announcer, getMoment(FIRST_MESSAGE_DELAY));
+	return announcer;
+};
+/**
+* Adds the waiting messages to the regions of the page or of the modal dialog open at that moment,
+* those with priority `'high'` first and the rest in the order they came in. When one of them is
+* `'high'`, all the messages for that page or dialog go to its assertive region, since VoiceOver in
+* Safari read only one of two regions changed together. The queue holds while that dialog, or the
+* dialog holding focus, plays its closing transition, for 500 ms after a dialog component closes its dialog, and while a region is younger
+* than 100 ms. A message that waited for page regions removed since is dropped with them, and the
+* whole queue once there is no document, as when a test environment tears down.
+*/
+const flush = () => {
+	if (typeof document === "undefined") {
+		pending.length = 0;
+		return;
+	}
+	const sent = [];
+	while (pending.length > 0) {
+		const [{ context, page }] = pending;
+		if (page && !page.isConnected) {
+			pending.shift();
+			continue;
+		}
+		const modal = getModal(context);
+		if (modal?.classList.contains(CLASS_NAME_HIDING) || document.activeElement?.closest(`dialog.${CLASS_NAME_HIDING}`)) {
+			setTimeout(flush, CLOSE_DELAY);
+			break;
+		}
+		const host = modal ?? document.body;
+		const announcer = getAnnouncer(host);
+		const wait = Math.max(readTime(holds, host), readTime(readyAt, announcer)) - performance.now();
+		if (wait > 0) {
+			setTimeout(flush, wait);
+			break;
+		}
+		sent.push([pending.shift(), announcer]);
+	}
+	const loud = new Set(sent.filter(([{ priority }]) => priority === "high").map(([, announcer]) => announcer));
+	sent.sort(([first], [second]) => Number(second.priority === "high") - Number(first.priority === "high"));
+	for (const [{ node, timeout }, announcer] of sent) {
+		announcer.querySelector(`[aria-live="${loud.has(announcer) ? "assertive" : "polite"}"]`).append(node);
+		if (timeout > 0 && Number.isFinite(timeout)) setTimeout(() => node.remove(), timeout);
+	}
+};
+/**
+* Reads a message to screen reader users. The message goes to a visually hidden live region at
+* the start of the page or, while a modal dialog leaves the rest of the page inert, to one inside
+* that dialog, native or marked with `aria-modal="true"`. The region is picked when the message is
+* added: one task after the call, once a new region is 100 ms old, and 500 ms after a dialog
+* component has closed its dialog. Messages are added in the order of the calls, those with
+* priority `'high'` first among the ones the queue adds together, which then all go to the
+* assertive region, and each call adds a new one, so the same text is read again.
+*
+* @param message - The text to read
+* @param options - `priority` is `'normal'` (default, the polite region) or `'high'` (the
+*   assertive one), as in `ariaNotify()`; `timeout` how long (ms) the message stays once added,
+*   7000 by default and `0` to keep it; `context` the element the message comes from, which tells
+*   a modal dialog it sits in
+* @returns A function that removes the message, or cancels it before it is added
+*/
+const announce = (message, { context = null, priority = "normal", timeout = 7e3 } = {}) => {
+	if (typeof document === "undefined" || !document.body || !message) return () => {};
+	const node = document.createElement("div");
+	node.textContent = message;
+	const modal = getModal(context);
+	const host = modal && !modal.classList.contains(CLASS_NAME_HIDING) ? modal : document.body;
+	const announcer = getAnnouncer(host);
+	pending.push({
+		context,
+		node,
+		page: host === document.body ? announcer : null,
+		priority,
+		timeout
+	});
+	setTimeout(flush, Math.max(0, readTime(readyAt, announcer) - performance.now()));
+	return () => {
+		const index = pending.findIndex((message) => message.node === node);
+		if (index !== -1) pending.splice(index, 1);
+		node.remove();
+	};
 };
 // src/util/debounce.ts
 /**
@@ -12888,6 +13813,7 @@ const EVENT_DBLCLICK = `dblclick${EVENT_KEY}`;
 const EVENT_EDIT_CANCEL = `editCancel${EVENT_KEY}`;
 const EVENT_EDIT_COMMIT = `editCommit${EVENT_KEY}`;
 const EVENT_EDIT_START = `editStart${EVENT_KEY}`;
+const EVENT_EDITED_CHANGE = `editedChange${EVENT_KEY}`;
 const EVENT_FILTER_CHANGE = `filterChange${EVENT_KEY}`;
 const EVENT_INPUT = `input${EVENT_KEY}`;
 const EVENT_CELL_COPY = `cellCopy${EVENT_KEY}`;
@@ -12915,22 +13841,16 @@ const CLASS_NAME_PINNED = "data-grid-pinned";
 const CLASS_NAME_RESIZABLE = "data-grid-resizable";
 const CLASS_NAME_TABLE = "table";
 const CLASS_NAME_VIEWPORT = "data-grid-viewport";
-const SELECTOR_BODY_CELL = "tbody td[data-coreui-column]";
+const SELECTOR_BODY_CELL = "tbody td[role=\"gridcell\"]";
 const SELECTOR_COLUMN_FILTER = "input[data-coreui-column-filter]";
 const SELECTOR_MENU_BUTTON = "button[data-coreui-menu]";
 const SELECTOR_FILTER_BUTTON = "button[data-coreui-filter]";
-const SELECTOR_GLOBAL_FILTER = "input[data-coreui-global-filter]";
 const SELECTOR_PAGE = "button[data-coreui-page]";
 const SELECTOR_PAGE_SIZE = "select[data-coreui-page-size]";
 const SELECTOR_RESIZER = "[data-coreui-resizer]";
 const SELECTOR_ROW_SELECT = "input[data-coreui-row-select]";
 const SELECTOR_SELECT_ALL = "input[data-coreui-select-all]";
 const SELECTOR_SORT_BUTTON = ".data-grid-sort-button";
-const SELECTOR_TOOLBAR_COLUMNS = "button[data-coreui-toolbar-columns]";
-const SELECTOR_TOOLBAR_EXPORT = "button[data-coreui-toolbar-export]";
-const SELECTOR_TOOLBAR_PRINT = "button[data-coreui-toolbar-print]";
-const SELECTOR_TOOLBAR_REDO = "button[data-coreui-toolbar-redo]";
-const SELECTOR_TOOLBAR_UNDO = "button[data-coreui-toolbar-undo]";
 const FILTER_DEBOUNCE_MS = 250;
 const DEFAULT_PAGE_SIZE_OPTIONS = [
 	5,
@@ -12971,6 +13891,7 @@ const Default = {
 	columns: [],
 	dataProvider: null,
 	editing: false,
+	editTracking: false,
 	empty: "No items found",
 	features: null,
 	filterIcon: DEFAULT_FILTER_ICON,
@@ -12988,6 +13909,7 @@ const Default = {
 	pinEndIcon: DEFAULT_PIN_END_ICON,
 	pinStartIcon: DEFAULT_PIN_START_ICON,
 	printTitle: null,
+	rowClass: null,
 	rowHandleIcon: DEFAULT_ROW_HANDLE_ICON,
 	rowHeight: 44,
 	rowOrder: false,
@@ -13008,6 +13930,7 @@ const Default = {
 	toolbarRedoIcon: DEFAULT_TOOLBAR_REDO_ICON,
 	toolbarUndoIcon: DEFAULT_TOOLBAR_UNDO_ICON,
 	unpinIcon: DEFAULT_UNPIN_ICON,
+	validate: null,
 	virtualization: true
 };
 const DefaultType = {
@@ -13024,6 +13947,7 @@ const DefaultType = {
 	columns: "array",
 	dataProvider: "(function|null)",
 	editing: "boolean",
+	editTracking: "boolean",
 	empty: "(string|function)",
 	features: "(object|null)",
 	filterIcon: "string",
@@ -13041,6 +13965,7 @@ const DefaultType = {
 	pinEndIcon: "string",
 	pinStartIcon: "string",
 	printTitle: "(string|null)",
+	rowClass: "(function|null)",
 	rowHandleIcon: "string",
 	rowHeight: "number",
 	rowOrder: "boolean",
@@ -13061,6 +13986,7 @@ const DefaultType = {
 	toolbarRedoIcon: "string",
 	toolbarUndoIcon: "string",
 	unpinIcon: "string",
+	validate: "(function|null)",
 	virtualization: "boolean"
 };
 /**
@@ -13082,13 +14008,15 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 		this._loadMorePending = false;
 		this._pageResetPending = false;
 		this._dataVersion = 0;
-		this._liveRegion = null;
 		this._selectionAnchorIndex = null;
 		this._activeCell = null;
 		this._containsFocus = false;
 		this._editingCell = null;
+		this._edited = /* @__PURE__ */ new Map();
+		this._editedSignature = "[]";
 		this._undoStack = [];
 		this._redoStack = [];
+		this._resultsAnnouncement = "";
 		this._persistState = null;
 		this._editor = null;
 		this._editorPointerdownHandler = null;
@@ -13101,8 +14029,8 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 		this._menu = null;
 		this._tooltip = null;
 		this._filterMenu = null;
-		this._columnChooser = null;
-		this._toolbarConfig = null;
+		this._toolbarController = null;
+		this._reportedToolbarParts = /* @__PURE__ */ new Set();
 		if (!this._element) return;
 		this._labels = {
 			...DEFAULT_LABELS,
@@ -13110,14 +14038,11 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 		};
 		this._scheduler = createScheduler(() => this._update());
 		this._table = this._createTable();
-		this._liveRegion = document.createElement("div");
-		this._liveRegion.classList.add("visually-hidden");
-		this._liveRegion.setAttribute("aria-live", "polite");
-		this._element.append(this._liveRegion);
 		this._render();
 		this._addEventListeners();
 		this._tooltip = createTooltip(this._element);
 		this._restorePersistedState();
+		this._toolbarController?.refresh();
 		this._initDataSource();
 	}
 	get table() {
@@ -13135,6 +14060,12 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 	getSelectedItems() {
 		if (typeof this._table.getSelectedRowModel !== "function") return [];
 		return this._table.getSelectedRowModel().rows.map((row) => row.original);
+	}
+	getRowElement(id) {
+		return findRowElement(this._viewportElement, id);
+	}
+	getCellElement(id, columnId) {
+		return findCellElement(this._viewportElement, id, columnId);
 	}
 	print() {
 		printGrid(this._table, this._printColumns(), { title: this._config.printTitle ?? void 0 });
@@ -13177,10 +14108,6 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 			if (state.rowSelection !== void 0 && typeof this._table.setRowSelection === "function") this._table.setRowSelection(state.rowSelection);
 			if (state.sorting !== void 0 && typeof this._table.setSorting === "function") this._table.setSorting(state.sorting);
 		});
-		if (state.globalFilter !== void 0) {
-			const input = this._element.querySelector(SELECTOR_GLOBAL_FILTER);
-			if (input) input.value = state.globalFilter;
-		}
 		this._scheduler.schedule();
 	}
 	undo() {
@@ -13189,23 +14116,46 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 	redo() {
 		this._applyHistoryEntry(this._redoStack, this._undoStack, false);
 	}
+	isValid() {
+		return this.getInvalidCells("error").length === 0;
+	}
+	getInvalidCells(level) {
+		return collectInvalidCells(this._config.validate, this._table.getCoreRowModel().rows, level);
+	}
+	isDirty() {
+		return this.getEditedCells().length > 0;
+	}
+	getEditedCells() {
+		const rows = this._table.getCoreRowModel().rowsById;
+		const cells = [];
+		for (const entry of this._trackingEdits() ? this._edited.values() : []) {
+			const row = rows[entry.rowId];
+			if (row) {
+				entry.item = row.original;
+				entry.value = row.getValue(entry.columnId);
+			}
+			if ((row || this._config.dataProvider) && !this._editEquals(entry.columnId, entry.value, entry.originalValue)) cells.push({ ...entry });
+		}
+		return cells;
+	}
+	clearEdited() {
+		this._edited.clear();
+		this._scheduler.schedule();
+	}
 	_applyHistoryEntry(from, to, inverted) {
 		const entry = from.pop();
 		if (!entry) return;
 		const row = this._table.getCoreRowModel().rowsById[entry.rowId];
 		if (!row) {
-			this._updateHistoryButtons();
+			this._announce(this._labels.historyEntryUnavailable);
+			this._toolbarController?.refresh();
 			return;
 		}
 		to.push(entry);
-		EventHandler.trigger(this._element, EVENT_EDIT_COMMIT, {
-			item: row.original,
-			columnId: entry.columnId,
-			value: inverted ? entry.previousValue : entry.value,
-			previousValue: inverted ? entry.value : entry.previousValue
-		});
-		this._announce(inverted ? this._labels.undoneAnnouncement : this._labels.redoneAnnouncement);
-		this._updateHistoryButtons();
+		this._emitEditCommit(entry.rowId, row.original, entry.columnId, inverted ? entry.previousValue : entry.value, inverted ? entry.value : entry.previousValue);
+		const announcements = inverted ? [this._labels.undoneAnnouncement, this._labels.undoneLastAnnouncement] : [this._labels.redoneAnnouncement, this._labels.redoneLastAnnouncement];
+		this._announce(announcements[from.length === 0 ? 1 : 0]);
+		this._toolbarController?.refresh();
 	}
 	setItems(items) {
 		if (this._config.dataProvider) return;
@@ -13228,6 +14178,7 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 			...DEFAULT_LABELS,
 			...this._config.labels
 		};
+		const focusedPart = this._toolbarController?.focusedPart() ?? null;
 		this._teardownUi();
 		this._selectionAnchorIndex = null;
 		this._loadFailed = false;
@@ -13237,6 +14188,7 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 		this._dataVersion++;
 		this._table = this._createTable();
 		this._render();
+		this._toolbarController?.focusPart(focusedPart);
 		this._initDataSource();
 	}
 	dispose() {
@@ -13246,7 +14198,6 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 		this._scheduler.dispose();
 		this._tooltip?.dispose();
 		this._tooltip = null;
-		if (this._liveRegion) this._liveRegion.remove();
 		this._element.classList.remove(CLASS_NAME_DATA_GRID);
 		this._element.removeAttribute("data-coreui-sorter-visibility");
 		super.dispose();
@@ -13279,10 +14230,6 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 			this._filterMenu.dispose();
 			this._filterMenu = null;
 		}
-		if (this._columnChooser) {
-			this._columnChooser.dispose();
-			this._columnChooser = null;
-		}
 		if (this._loading) {
 			this._loading.element.remove();
 			this._loading = null;
@@ -13308,6 +14255,8 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 			this._toolbar.element.remove();
 			this._toolbar = null;
 		}
+		this._toolbarController?.dispose();
+		this._toolbarController = null;
 		for (const pagination of this._paginations) {
 			pagination.dispose?.();
 			pagination.element.remove();
@@ -13344,42 +14293,52 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 	}
 	_renderToolbar() {
 		const toolbarConfig = resolveToolbar(this._config);
-		this._toolbarConfig = toolbarConfig;
-		if (this._config.slots.toolbar) {
-			this._toolbar = this._config.slots.toolbar(this._slotContext());
-			this._element.append(this._toolbar.element);
-			return;
-		}
-		if (!toolbarConfig.columns && !toolbarConfig.export && !toolbarConfig.print && !toolbarConfig.search && !toolbarConfig.history) return;
-		this._toolbar = createToolbar({
-			columns: toolbarConfig.columns,
-			export: toolbarConfig.export,
-			icons: {
-				columns: this._sanitizeIcon(this._config.toolbarColumnsIcon),
-				export: this._sanitizeIcon(this._config.toolbarExportIcon),
-				print: this._sanitizeIcon(this._config.toolbarPrintIcon),
-				redo: this._sanitizeIcon(this._config.toolbarRedoIcon),
-				undo: this._sanitizeIcon(this._config.toolbarUndoIcon)
-			},
-			history: toolbarConfig.history,
-			labels: this._labels,
-			print: toolbarConfig.print,
-			search: toolbarConfig.search
-		});
-		this._element.append(this._toolbar.element);
-		if (toolbarConfig.columns) this._columnChooser = createColumnChooser({
+		const slot = this._config.slots.toolbar;
+		if (!slot && !hasToolbarParts(toolbarConfig)) return;
+		this._toolbarController = createToolbarController({
 			root: this._element,
+			table: this._table,
 			labels: this._labels,
-			getColumns: () => this._chooserColumns(),
-			toggleVisibility: (columnId, visible) => {
-				this._table.getColumn(columnId)?.toggleVisibility(visible);
+			icons: {
+				columns: this._config.toolbarColumnsIcon,
+				export: this._config.toolbarExportIcon,
+				print: this._config.toolbarPrintIcon,
+				redo: this._config.toolbarRedoIcon,
+				undo: this._config.toolbarUndoIcon
 			},
-			showAll: () => this._table.toggleAllColumnsVisible(true),
-			reset: () => this._table.setColumnVisibility(this._table.initialState.columnVisibility ?? {})
+			reported: this._reportedToolbarParts,
+			features: {
+				columnVisibility: Boolean(this._config.columnVisibility),
+				globalFilter: toolbarConfig.search,
+				history: this._config.history
+			},
+			exportOptions: toolbarConfig.exportOptions,
+			chooser: {
+				getColumns: () => this._chooserColumns(),
+				toggleVisibility: (columnId) => {
+					this._table.getColumn(columnId)?.toggleVisibility();
+				},
+				showAll: () => this._table.toggleAllColumnsVisible(true),
+				reset: () => this._table.setColumnVisibility(this._table.initialState.columnVisibility ?? {})
+			},
+			canRedo: () => this._redoStack.length > 0,
+			canUndo: () => this._undoStack.length > 0,
+			print: () => this.print(),
+			redo: () => this.redo(),
+			sanitizeIcon: (icon) => this._sanitizeIcon(icon),
+			undo: () => this.undo()
 		});
+		const { api } = this._toolbarController;
+		this._toolbar = slot ? slot({
+			...this._slotContext(),
+			toolbar: api
+		}) : { element: createDefaultToolbar(api, toolbarConfig) };
+		this._element.append(this._toolbar.element);
+		this._toolbarController.refresh();
 	}
 	_render() {
 		this._columnsByKey = new Map(this._config.columns.map((column) => [column.key, column]));
+		if (this._config.editTracking && !this._config.itemKey) console.error("DATA-GRID: editTracking requires itemKey.");
 		this._activeCell = this._config.cellNavigation ? createActiveCellManager(() => this._scheduler.schedule()) : null;
 		this._element.classList.add(CLASS_NAME_DATA_GRID);
 		this._element.classList.toggle(CLASS_NAME_AUTO_ROW_HEIGHT, Boolean(this._config.autoRowHeight));
@@ -13440,12 +14399,15 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 			cellNavigation: this._config.cellNavigation,
 			cellSelection: this._config.cellSelection,
 			getDataVersion: () => this._dataVersion,
+			getEditedCell: this._trackingEdits() ? (row, columnId) => this._isCellEdited(row, columnId) : null,
+			getRowIssues: this._config.validate ? (row) => new Map(getRowIssues(this._config.validate, row.original)) : null,
 			getEditingCell: () => this._editingCell ? {
 				rowId: this._editingCell.rowId,
 				columnId: this._editingCell.columnId
 			} : null,
 			getEditorElement: () => this._editor && !this._editor.popup ? this._editor.element : null,
 			getPinning: () => this._config.columnPinning ? this._getPinning() : null,
+			getRowClass: () => this._config.rowClass,
 			getRowIndexOffset: () => this._rowIndexOffset(),
 			getRows: () => this._table.getRowModel().rows,
 			getVisibleColumns: () => this._visibleColumns(),
@@ -13458,6 +14420,7 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 				return typeof this._config.empty === "function" ? this._config.empty() : this._config.empty;
 			},
 			rowHandleIcon: this._sanitizeIcon(this._config.rowHandleIcon),
+			rowIds: Boolean(this._config.itemKey),
 			rowOrder: this._config.rowOrder,
 			sanitizeContent: (html) => this._config.sanitize ? sanitizeHtml(html, DefaultAllowlist, this._config.sanitizeFn) : html,
 			selection: selectionEnabled
@@ -13561,13 +14524,6 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 			const input = event.delegateTarget ?? event.target;
 			applyColumnFilter(input.dataset.coreuiColumnFilter, input.value);
 		});
-		const applyGlobalFilter = debounce((value) => {
-			if (this._table) this._table.setGlobalFilter(value === "" ? void 0 : value);
-		}, FILTER_DEBOUNCE_MS);
-		EventHandler.on(this._element, EVENT_INPUT, SELECTOR_GLOBAL_FILTER, (event) => {
-			const input = event.delegateTarget ?? event.target;
-			applyGlobalFilter(input.value);
-		});
 		EventHandler.on(this._element, EVENT_CLICK, SELECTOR_MENU_BUTTON, (event) => {
 			const button = event.delegateTarget ?? event.target;
 			this._menu?.toggle(button, button.dataset.coreuiMenu);
@@ -13575,26 +14531,6 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 		EventHandler.on(this._element, EVENT_CLICK, SELECTOR_FILTER_BUTTON, (event) => {
 			const button = event.delegateTarget ?? event.target;
 			this._filterMenu?.toggle(button, button.dataset.coreuiFilter);
-		});
-		EventHandler.on(this._element, EVENT_CLICK, SELECTOR_TOOLBAR_COLUMNS, (event) => {
-			const button = event.delegateTarget ?? event.target;
-			this._columnChooser?.toggle(button);
-		});
-		EventHandler.on(this._element, EVENT_CLICK, SELECTOR_TOOLBAR_EXPORT, () => {
-			const { exporter, ...exportOptions } = this._toolbarConfig?.exportOptions ?? {};
-			(exporter ?? downloadCsv)(this._table, {
-				scope: "filtered",
-				...exportOptions
-			});
-		});
-		EventHandler.on(this._element, EVENT_CLICK, SELECTOR_TOOLBAR_PRINT, () => {
-			this.print();
-		});
-		EventHandler.on(this._element, EVENT_CLICK, SELECTOR_TOOLBAR_UNDO, () => {
-			this.undo();
-		});
-		EventHandler.on(this._element, EVENT_CLICK, SELECTOR_TOOLBAR_REDO, () => {
-			this.redo();
 		});
 		EventHandler.on(this._element, EVENT_MOUSEDOWN, SELECTOR_RESIZER, (event) => {
 			this._startColumnResize(event);
@@ -13775,7 +14711,7 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 		const element = event.delegateTarget ?? event.target;
 		const columnId = element.dataset.coreuiColumn;
 		const rowIndex = Number(element.closest("tr")?.dataset.coreuiIndex ?? -1);
-		if (!columnId || rowIndex < 0) return null;
+		if (!columnId || rowIndex < 0 || element.parentElement?.parentElement !== this._body.element) return null;
 		return this._table.getRowModel().rows[rowIndex]?.getAllCells().find((cell) => cell.column.id === columnId) ?? null;
 	}
 	_descendIntoCell(cellElement) {
@@ -13856,6 +14792,10 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 	_commitEdit(value) {
 		const editing = this._editingCell;
 		if (!editing) return;
+		if (this._editEquals(editing.columnId, value, editing.previousValue)) {
+			this._cancelEdit();
+			return;
+		}
 		const validate = this._columnsByKey.get(editing.columnId)?.editValidate;
 		if (validate) {
 			const result = validate(value, editing.item);
@@ -13863,6 +14803,11 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 				this._showEditorInvalid(typeof result === "string" ? result : "");
 				return;
 			}
+		}
+		const { blocking, introduced } = getCommitErrors(this._config.validate, editing.item, editing.columnId, value);
+		if (blocking) {
+			this._showEditorInvalid(blocking);
+			return;
 		}
 		this._teardownEditor();
 		if (this._config.history) {
@@ -13874,18 +14819,51 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 			});
 			if (this._undoStack.length > HISTORY_LIMIT) this._undoStack.shift();
 			this._redoStack = [];
-			this._updateHistoryButtons();
+			this._toolbarController?.refresh();
 		}
-		EventHandler.trigger(this._element, EVENT_EDIT_COMMIT, {
-			item: editing.item,
-			columnId: editing.columnId,
-			value,
-			previousValue: editing.previousValue
-		});
+		this._emitEditCommit(editing.rowId, editing.item, editing.columnId, value, editing.previousValue);
+		for (const [columnId, issue] of introduced) this._announce(interpolate(this._labels.invalidAnnouncement, {
+			column: this._columnsByKey.get(columnId)?.label ?? columnId,
+			message: issue.message
+		}));
 		this._activeCell?.set({
 			rowIndex: editing.rowIndex,
 			columnId: editing.columnId
 		}, { focus: true });
+	}
+	_emitEditCommit(rowId, item, columnId, value, previousValue) {
+		const key = JSON.stringify([rowId, columnId]);
+		if (this._trackingEdits() && !this._edited.has(key)) this._edited.set(key, {
+			rowId,
+			columnId,
+			item,
+			value: previousValue,
+			originalValue: previousValue
+		});
+		EventHandler.trigger(this._element, EVENT_EDIT_COMMIT, {
+			item,
+			columnId,
+			value,
+			previousValue
+		});
+	}
+	_editEquals(columnId, value, originalValue) {
+		return (this._columnsByKey.get(columnId)?.editEquals ?? Object.is)(value, originalValue);
+	}
+	_trackingEdits() {
+		return this._config.editTracking && Boolean(this._config.itemKey);
+	}
+	_isCellEdited(row, columnId) {
+		const entry = this._edited.size > 0 ? this._edited.get(JSON.stringify([row.id, columnId])) : void 0;
+		return entry !== void 0 && !this._editEquals(columnId, row.getValue(columnId), entry.originalValue);
+	}
+	_syncEdited() {
+		const editedCells = this.getEditedCells();
+		const signature = JSON.stringify(editedCells.map((cell) => [cell.rowId, cell.columnId]));
+		if (signature !== this._editedSignature) {
+			this._editedSignature = signature;
+			EventHandler.trigger(this._element, EVENT_EDITED_CHANGE, { editedCells });
+		}
 	}
 	_cancelEdit() {
 		const editing = this._editingCell;
@@ -14008,7 +14986,7 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 	}
 	_cellElementFor(cell) {
 		if (cell.rowIndex === -1) return this._header.element.querySelector(`tr:first-child th[data-coreui-column="${escapeAttributeValue(cell.columnId)}"]`);
-		return this._body.element.querySelector(`tr[data-coreui-index="${escapeAttributeValue(cell.rowIndex)}"]`)?.querySelector(`td[data-coreui-column="${escapeAttributeValue(cell.columnId)}"]`) ?? null;
+		return findCellAt(this._viewportElement, cell.rowIndex, cell.columnId);
 	}
 	_applyCellNavigation() {
 		if (!this._activeCell) return;
@@ -14021,9 +14999,9 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 			columnId: context.columnIds[0]
 		} : null);
 		for (const cellElement of this._header.element.querySelectorAll("tr:first-child th[data-coreui-column]")) applyTabIndex(cellElement, tabbable !== null && tabbable.rowIndex === -1 && cellElement.dataset.coreuiColumn === tabbable.columnId);
-		for (const rowElement of this._body.element.querySelectorAll("tr[data-coreui-index]")) {
+		for (const rowElement of this._body.element.querySelectorAll(":scope > tr[data-coreui-index]")) {
 			const isActiveRow = tabbable !== null && rowElement.dataset.coreuiIndex === String(tabbable.rowIndex);
-			for (const cellElement of rowElement.querySelectorAll("td[data-coreui-column]")) applyTabIndex(cellElement, isActiveRow && cellElement.dataset.coreuiColumn === tabbable.columnId);
+			for (const cellElement of rowElement.querySelectorAll(":scope > td[data-coreui-column]")) applyTabIndex(cellElement, isActiveRow && cellElement.dataset.coreuiColumn === tabbable.columnId);
 		}
 		if (!active) return;
 		const activeElement = this._cellElementFor(active);
@@ -14385,17 +15363,15 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 		if (!state) return;
 		this.restoreState(state);
 	}
-	_updateHistoryButtons() {
-		const undoButton = this._element.querySelector(SELECTOR_TOOLBAR_UNDO);
-		if (undoButton) undoButton.disabled = this._undoStack.length === 0;
-		const redoButton = this._element.querySelector(SELECTOR_TOOLBAR_REDO);
-		if (redoButton) redoButton.disabled = this._redoStack.length === 0;
-	}
 	_announceResults(count) {
-		this._announce(interpolate(this._labels.resultsAnnouncement, { count }));
+		const message = interpolate(this._labels.resultsAnnouncement, { count });
+		if (message !== this._resultsAnnouncement) {
+			this._resultsAnnouncement = message;
+			this._announce(message);
+		}
 	}
 	_announce(message) {
-		if (this._liveRegion) this._liveRegion.textContent = message;
+		announce(message, { context: this._element });
 	}
 	_getTotalRows() {
 		if (this._config.dataProvider) return this._table.options.rowCount ?? 0;
@@ -14458,6 +15434,8 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 		}
 	}
 	_update() {
+		this._syncEdited();
+		if (!this._table) return;
 		if (this._virtualizer) {
 			this._virtualizer.setCount(this._table.getRowModel().rows.length);
 			this._virtualizer.instance._willUpdate();
@@ -14490,8 +15468,10 @@ var DataGrid$1 = class DataGrid$1 extends BaseComponent {
 			else (this._editor.element.querySelector(FOCUSABLE_SELECTOR) ?? this._editor.element).focus({ preventScroll: true });
 		}
 		this._toolbar?.update?.();
+		this._toolbarController?.refresh();
 		this._emptySlot?.update?.();
 		for (const instance of this._paginations) instance.refresh();
+		this._tooltip?.sync();
 		this._maybeLoadMore();
 	}
 	_paginationState() {

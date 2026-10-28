@@ -28,10 +28,12 @@ import { CDataGrid } from '@coreui/react-data-grid'
 | `columnVisibility` | `boolean \| ColumnVisibilityState` | - | Enables hiding/showing columns via `column.toggleVisibility()`; an object sets the initial visibility. |
 | `dataProvider` | `((request: DataGridDataRequest) => Promise<DataGridDataResponse>)` | - | Server-side mode: the grid requests data on every sorting/filter/page change; implies pagination. |
 | `editing` | `boolean` | - | Inline cell editing on Enter/F2/double-click for columns opting in via `editable`/`editor`; implies `cellNavigation`. |
+| `editTracking` | `boolean` | - | Tracks committed edits by `itemKey`: a cell whose value in `items` differs from its value before the first commit gets `data-grid-cell-edited`, and `gridRef` reports it through `isDirty()` and `getEditedCells()`. |
 | `empty` | `ReactNode` | - | Content (ReactNode) shown when no rows match. |
 | `features` | `TableFeatures` | - | The registered TanStack feature set — pass `dataGridLiteFeatures` (or a custom `tableFeatures({...})` set) so the app bundle only carries the features it uses; defaults to the full `dataGridFeatures`. |
 | `filterIcon` | `ReactNode` | - | Icon for the per-column filter button. |
 | `globalFilter` | `boolean` | - | Renders a search input above the grid that filters across all columns. |
+| `gridRef` | `Ref<CDataGridApi>` | - | Ref that receives the grid API: `isDirty()`, `getEditedCells()`, `clearEdited()`, `isValid()`, `getInvalidCells()`, `getRowElement()`, `getCellElement()`, `undo()` and `redo()`. |
 | `hideColumnIcon` | `ReactNode` | - | Custom hide-column menu action icon (ReactNode) replacing the default one. |
 | `history` | `boolean` | - | Undo/redo history of edit commits — Ctrl/Cmd+Z and Ctrl+Shift+Z/Ctrl+Y plus toolbar buttons; requires `editing`. |
 | `infiniteScroll` | `boolean \| DataGridInfiniteScrollOptions` | - | Appends each loaded page to the rows already in view instead of replacing them; requires `dataProvider` and `virtualization`, cannot be combined with `pagination`. |
@@ -45,6 +47,7 @@ import { CDataGrid } from '@coreui/react-data-grid'
 | `onDataLoad` | `((response: DataGridDataResponse) => void)` | - | Fires when the data provider resolves, with the `{ items, totalRows }` response (server-side mode). |
 | `onEditCancel` | `((item: DataGridItem, columnId: string) => void)` | - | Fires when an edit is cancelled, with the item and column key. |
 | `onEditCommit` | `((event: DataGridEditCommitEvent) => void)` | - | Fires when an edit commits, with `{ item, columnId, value, previousValue }` — the grid never mutates `items`; apply the change and re-render. |
+| `onEditedChange` | `((editedCells: DataGridEditedCell[]) => void)` | - | Fires with the edited cells whenever the set of edited cells changes (`editTracking`). |
 | `onEditStart` | `((item: DataGridItem, columnId: string) => void)` | - | Fires when a cell enters edit mode, with the item and column key. |
 | `onFilterChange` | `((columnFilters: ColumnFiltersState, globalFilter: string) => void)` | - | Fires when column filters or the global filter change, with both filter states. |
 | `onOrderChange` | `((columnOrder: ColumnOrderState) => void)` | - | Fires when columns are reordered, with the TanStack columnOrder state. |
@@ -61,10 +64,12 @@ import { CDataGrid } from '@coreui/react-data-grid'
 | `pinStartIcon` | `ReactNode` | - | Custom pin-left menu action icon (ReactNode) replacing the default one. |
 | `printTitle` | `string` | - | Heading printed above the table when the print action runs; omitted when unset. |
 | `ref` | `Ref<HTMLDivElement>` | - |  |
+| `rowClass` | `((context: CDataGridRowClassContext<TFeatures>) => string \| undefined)` | - | Returns classes added to a data row next to the grid's own; called on every render of the row. |
 | `rowHandleIcon` | `ReactNode` | - | Custom row drag-handle icon (ReactNode) replacing the default grip. |
 | `rowHeight` | `number` | - | Estimated row height in px used by the virtualizer. |
 | `rowOrder` | `boolean` | - | Adds a drag handle per row for reordering; the grid emits `onRowOrderChange` with the reordered array instead of mutating `items`. |
 | `rowSelection` | `boolean \| DataGridRowSelectionOptions` | - | Checkbox selection with select-all and shift+click ranges. |
+| `slotProps` | `{ toolbar?: CDataGridToolbarSlotProps \| undefined; }` | - | Props passed to the slot components; `toolbar` reaches the toolbar slot next to `table` and `labels`. |
 | `slots` | `Partial<CDataGridSlots<TFeatures>>` | - | Replaces built-in chrome — each slot is a component rendered with `{ table, labels }`. |
 | `sortAscendingIcon` | `ReactNode` | - | Custom ascending sort indicator icon (ReactNode) replacing the default one. |
 | `sortDescendingIcon` | `ReactNode` | - | Custom descending sort indicator icon (ReactNode) replacing the default one. |
@@ -80,4 +85,5 @@ import { CDataGrid } from '@coreui/react-data-grid'
 | `toolbarRedoIcon` | `ReactNode` | - | Custom toolbar redo button icon (ReactNode) replacing the default one. |
 | `toolbarUndoIcon` | `ReactNode` | - | Custom toolbar undo button icon (ReactNode) replacing the default one. |
 | `unpinIcon` | `ReactNode` | - | Custom unpin menu action icon (ReactNode) replacing the default one. |
+| `validate` | `((item: DataGridItem) => DataGridValidationResult \| undefined)` | - | Validates each row: return messages keyed by column (`{ message, level: 'warning' }` for warnings). Errors on the edited column block the commit; the rest mark their cells. |
 | `virtualization` | `boolean` | - | Windowed rendering for large datasets. |

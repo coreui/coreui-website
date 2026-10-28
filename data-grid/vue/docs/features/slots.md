@@ -79,21 +79,24 @@ const columns = [
 ```
 
 With `pagination.position: 'both'` the slot renders once per position. A custom
-toolbar that hosts its own global search still needs `global-filter` for the
-query to reach the grid. The `empty` slot also renders when a server load fails;
+toolbar composes the parts the built-in toolbar is made of next to its own
+content — see [Custom toolbar](https://coreui.io/data-grid/vue/docs/features/toolbar/#custom-toolbar). Its search
+part needs `global-filter` for the query to reach the grid. The `empty` slot also renders when a server load fails;
 use the `data-error` event to tell the two apart.
 
 ## Slot contract
 
 | Slot | Replaces | Slot props |
 | --- | --- | --- |
-| `toolbar` | The toolbar above the grid | `{ table, labels }` |
+| `toolbar` | The toolbar above the grid | `{ table, labels, toolbar }` |
 | `pagination` | The pagination bar | same |
 | `empty` | The no-rows / load-error state | same |
 
 - `table` — the [headless table](https://coreui.io/data-grid/vue/docs/api/headless/) instance; read current state
   and call its setters to drive the grid.
 - `labels` — the merged [localization](https://coreui.io/data-grid/vue/docs/customization/localization/) strings.
+- `toolbar` — `canUndo`, `canRedo`, `undo`, `redo` and `print` (toolbar slot
+  only), typed as `CDataGridToolbarSlotProps`.
 
 Slot content re-renders reactively with the grid, so there's no manual update
 or teardown to manage.

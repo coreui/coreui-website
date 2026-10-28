@@ -75,5 +75,5 @@ Autoprefixer dropped every prefix but `-webkit-user-select`.
 
 ## Vue
 
-`@coreui/vue-data-grid` needs **Vue 3.4 or newer** on top of the browser range
+`@coreui/vue-data-grid` needs **Vue 3.5 or newer** on top of the browser range
 above. See [installation](https://coreui.io/data-grid/vue/docs/getting-started/installation/).

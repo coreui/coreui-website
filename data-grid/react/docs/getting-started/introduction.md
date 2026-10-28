@@ -23,7 +23,7 @@ outgrows the browser's memory.
 - **Themeable.** Every knob is a `--cui-data-grid-*` CSS variable resolving
   through CoreUI semantic tokens, so light/dark theming works with no extra CSS.
   See [Styling & theming](https://coreui.io/data-grid/react/docs/customization/styling/).
-- **Small.** Around 66 KB gzipped for the underlying grid core — 55 KB with a [lite feature set](https://coreui.io/data-grid/react/docs/customization/feature-sets/).
+- **Small.** Around 71 KB gzipped for the underlying grid core — 60 KB with a [lite feature set](https://coreui.io/data-grid/react/docs/customization/feature-sets/).
 
 ## How it's built
 

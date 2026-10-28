@@ -12,6 +12,7 @@ tour.
 | `label` | `string` | Header label; falls back to `key`. |
 | `editable` | `boolean \| { type?, min?, max?, step?, options? }` | Opts the column into [inline editing](https://coreui.io/data-grid/vue/docs/features/editing/) with a built-in `text`, `number` or `select` editor. |
 | `editorPopup` | `boolean` | Renders the `editor-{key}` slot in an overlay anchored to the cell instead of inline — for rich editors whose UI extends beyond the cell. |
+| `editEquals` | `(value, originalValue) => boolean` | Decides whether a commit changes the value (an equal one cancels) and when a cell counts as edited with [Edit tracking](https://coreui.io/data-grid/vue/docs/features/editing/#tracking-edits); defaults to `Object.is`. It runs before `editValidate`, so it also receives values the column would reject. Use it for values a new object replaces on every commit, such as dates or arrays. |
 | `editValidate` | `(value, item) => true \| string` | Gates the commit — a returned message blocks it and marks the editor invalid. |
 | `sortable` | `boolean` | Set `false` to disable sorting for this column. |
 | `filterable` | `boolean` | Set `false` to remove the column's filter button. |
@@ -21,6 +22,7 @@ tour.
 | `movable` | `boolean` | Set `false` to exclude the column from drag-and-drop reordering. |
 | `hideable` | `boolean` | Set `false` to prevent hiding the column. |
 | `formatter` | `(value, item) => string` | Formats the cell value — cheap, stays on the scroll hot path. |
+| `cellClass` | `({ value, item, row, cell, column }) => string \| undefined` | Classes added to the column's data cells next to the grid's own; runs on every render of the row. See [Columns](https://coreui.io/data-grid/vue/docs/columns/overview/#row-and-cell-classes). |
 | `width` | `number` | Initial column width in pixels - seeds `columnSizing` and drives the layout. |
 | `style` | `CSSProperties` | Inline styles for the header cell (cosmetic; e.g. percentage widths are visual-only). |
 
