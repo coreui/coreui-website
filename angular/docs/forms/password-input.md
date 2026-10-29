@@ -25,6 +25,7 @@ Use the `floatingLabel` prop to add a floating label to the password input. This
 
 ### Validation status
 Use the `valid` prop to indicate the validation status of the input. Set it to `true` for valid, `false` for invalid, or leave it `undefined` for default styling.
+`[valid]="false"` also sets `aria-invalid="true"` on the input.
 
 ## Forms
 Angular handles password input through reactive forms and template-driven forms. CoreUI Password Input directive supports both.
@@ -147,4 +148,4 @@ import { FormPasswordDirective } from '@coreui/angular-pro'
 | `readOnly` | `boolean` | `false` | Disables the password input field. When `true`, the user cannot interact with the field. |
 | `showPassword` | `boolean` | `false` | Controls the initial visibility of the password. When `true`, the input type is set to `"text"` instead of `"password"`. This allows **toggling password visibility** in Angular forms. |
 | `sizing` | `'' \| 'sm' \| 'lg'` | `undefined` | Size the component small or large. |
-| `valid` | `boolean` | `undefined` | Set component validation state to valid. |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"`, `undefined` none. Do not bind `aria-invalid` on the same element as well. |

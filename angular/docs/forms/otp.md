@@ -48,7 +48,7 @@ Use the `readOnly` prop to make the one-time password input non-editable but sti
 
 ## Validation state
 
-Use the `valid` prop to indicate input validity.
+Use the `valid` prop to indicate input validity. `[valid]="false"` also sets `aria-invalid="true"` on every `cOtp` input.
 
 ## Forms
 
@@ -199,7 +199,7 @@ import { OneTimePasswordComponent } from '@coreui/angular-pro'
 | `readOnly` | `boolean` | `false` | Make the Angular OTP input component read-only. |
 | `sizing` | `'' \| 'sm' \| 'lg'` | `undefined` | Sets the visual size of the Angular one-time password (OTP) input. Use 'sm' for small or 'lg' for large input fields. |
 | `type` | `'number' \| 'text'` | `'number'` | Input validation type: 'number' for digits only, or 'text' for free text. |
-| `valid` | `boolean` | `undefined` | Set form input validation state to valid. |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"` on every input, `undefined` none. Do not bind `aria-invalid` on the inputs as well. |
 | `value` | `string \| number` | `undefined` | Current value for OTP input. |
 
 ### Events

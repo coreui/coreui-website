@@ -20,6 +20,7 @@ However, CoreUI for Angular does add built-in support for most standard keyboard
 - <kbd>Enter</kbd>, <kbd>Space</kbd> or a click on the toggle opens and closes the menu. <kbd>ArrowDown</kbd> opens it and moves focus to the first item, <kbd>ArrowUp</kbd> to the last one.
 - <kbd>ArrowDown</kbd> and <kbd>ArrowUp</kbd> move between `cDropdownItem` elements and wrap at the ends; <kbd>Home</kbd> and <kbd>End</kbd> jump to the first and last item. <kbd>Tab</kbd> moves through the menu natively.
 - <kbd>Esc</kbd> closes the menu and returns focus to the toggle, leaving an enclosing modal or offcanvas open; an <kbd>Esc</kbd> a control in the menu already handled with `preventDefault()` is left to it. <kbd>Tab</kbd> leaving the menu closes it. With `autoClose` set to `false` neither does.
+- Choosing an item, `cDropdownClose` or any other close after the menu was used returns focus to the toggle too, without scrolling the page. Focus that has already moved elsewhere, such as to a field next to the dropdown or to the next element on <kbd>Tab</kbd>, stays there. After a touch in the menu, a toggle that is a text field does not get focus back, so the on-screen keyboard stays closed.
 - Keys other than <kbd>Esc</kbd> pressed inside an input other than a button, a select, a textarea or a contenteditable in the menu are left to that control.
 
 An `a` element used as the toggle gets `role="button"`. Give it an `href` so it is focusable and reachable with <kbd>Tab</kbd>, and keep its content non-interactive: a button exposes its children as plain text.

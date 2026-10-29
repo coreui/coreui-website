@@ -1844,7 +1844,7 @@ Highlight the parts of option labels that match the search with `highlightOption
 
 ## Validation states
 
-Apply validation styling to indicate input validity.
+Apply validation styling to indicate input validity. `[valid]="false"` also sets `aria-invalid="true"` on the input.
 
 ## Disabled state
 Disable the component to prevent user interaction:
@@ -2189,7 +2189,7 @@ import { AutocompleteDirective } from '@coreui/angular-pro'
 | `searchNoResultsLabel` | `string \| boolean \| TemplateRef<any>` | `false` | Sets the label for no results when filtering. - `false`: Don't show any message when no results found - `true`: Show default "No results found" message - `string`: Show custom text message - `TemplateRef`: Show custom component/element |
 | `showHints` | `boolean` | `false` | Show hint options based on the current input value. When `true`, displays a preview/hint of the first matching option as semi-transparent text in the input field, similar to browser autocomplete. |
 | `sizing` | `'' \| 'sm' \| 'lg'` | - | Size the component small or large. - `'sm'`: Small size variant - `'lg'`: Large size variant - `undefined`: Default/medium size |
-| `valid` | `boolean` | `undefined` | Validation state of the field: `true` valid, `false` invalid, `undefined` none. Not derived from a bound form control; bind it, e.g. `[valid]="control.touched ? !control.invalid : undefined"`. |
+| `valid` | `boolean` | `undefined` | Validation state of the field: `true` valid, `false` invalid, which also sets `aria-invalid="true"` on the input, `undefined` none. Not derived from a bound form control; bind it, e.g. `[valid]="control.touched ? !control.invalid : undefined"`. Do not bind `aria-invalid` on the same element as well. |
 | `value` | `string \| number \| null` | `undefined` | Sets the selected value for the Angular autocomplete component, two-way bindable with `[(value)]`. Matched against option values first, then against option labels. Selecting an option writes its `value`, or its label when it has none; typed text that matches no option is written as is, unless `allowOnlyDefinedOptions` is set. |
 | `virtualScroller` | `boolean` | `false` | Enable virtual scroller for the options list. When `true`, only visible options are rendered in the DOM for better performance with large option lists. Works in conjunction with `visibleItems` and `itemSize`. |
 | `visible` | `boolean` | `false` | Whether the dropdown should be open, two-way bindable with `[(visible)]`. The list is shown while the control is enabled, editable and there is something to show. A request through this input or the exported signal waits until then. A request from the user (keys, a click, the indicator) is accepted only when the list can show, or with external search before the options arrive, so `visibleChange` can trigger loading them. Leaving the field, disabling it, or a typed search that matches nothing (without `searchNoResultsLabel`) cancels the request. |
@@ -2216,9 +2216,9 @@ import { AutocompleteDirective } from '@coreui/angular-pro'
 
 ## About
 
-The Angular Date Picker lets users pick a date from a calendar or type it into the input, and works with Angular reactive and template-driven forms. It shows dates in any locale supported by the JavaScript Internationalization API and supports right-to-left layouts, and its look can be adjusted with CSS variables and Sass.
+The Angular Date Picker lets users pick a date from a calendar or type it into the input, and works with Angular reactive, template-driven and signal forms. It shows dates in any locale supported by the JavaScript Internationalization API and supports right-to-left layouts, and its look can be adjusted with CSS variables and Sass.
 
-Its inputs control the value, the visible month, which dates can be picked, and whether a day, a week, a month or a year is picked. The date picker can be used with the keyboard alone, and its calendar and clear buttons can be named in the language of your page, see [Keyboard behavior](#keyboard-behavior).
+Its inputs control the value, the visible month, which dates can be picked, and whether a day, a week, a month or a year is picked. The date picker can be used with the keyboard alone, and its calendar and clear buttons can be named in the language of your page, see [Accessibility](#accessibility).
 
 ## Examples
 
@@ -2263,6 +2263,9 @@ Add dates user cannot select using the `disabledDates` property.
 Pass a function to `dateFilter` to decide which dates can be picked: it receives a date and returns `true` when the date is selectable. To disable weekends, return `false` for Sunday (`0`) and Saturday (`6`).
 
 ## Non-english locale
+
+The input reads a typed date in the numeric format it shows for the locale, with `.`, `/`, `-` or a space between the parts. Since 5.7.40 it also reads the digits of the locale and, in `th-TH`, the Buddhist year, and the spaces and the closing mark of the format may be left out. In other calendars, such as Persian (`fa-IR`) or the Japanese eras (`ja-JP-u-ca-japanese`), and in a format that shows an era, typed text is reported as `datePickerParse`: give `inputDateFormat` with `inputDateParse` to read it, or set `inputReadOnly`.
+
 ### Auto
 
 ### Chinese
@@ -2299,22 +2302,55 @@ Set `selectionType` to `month` and give `inputDateFormat` and `inputDateParse` a
 
 Set `selectionType` to `year` and give `inputDateFormat` and `inputDateParse` a year pattern, such as `'yy'`.
 
-## Keyboard behavior
+## Accessibility
 
 _Added in 5.7.38._
 
-`Tab` moves from the input to the clear button, which a date picker with a value shows while the focus is in the field, and then to the calendar button. `Enter` or `Space` on the calendar button opens and closes the calendar, and `Alt` + `ArrowDown` (`Option` + `ArrowDown` on macOS) in an input opens it and moves the focus into the calendar, to the selected date when there is one. In the open calendar the keys work as described for the [calendar](https://coreui.io/angular/docs/components/calendar/#keyboard-behavior), and `Escape` closes it. `Enter` or `Space` on the clear button clears the date and moves the focus to the input. Use `ariaPickerLabel` and `ariaCleanerLabel` to name the two buttons in the language of your page.
+- The calendar button is named by `ariaPickerLabel` and the picked date (`Toggle calendar, Friday, August 14, 2026`), so a screen reader reads the pick when focus comes back to it. The date follows `locale`: set it to the language of the label.
+- The clear button is named by `ariaCleanerLabel`. With a value, it shows while focus is in the field and keeps its place while hidden; `[cleaner]="false"` gives that place back to the input in a narrow layout.
+- Closing the calendar from inside (`Escape`, a pick with `closeOnSelect`, a close button in the footer) returns focus to the input, or to the calendar button that opened it. After a touch an editable input does not get it back, so the on-screen keyboard stays closed; the calendar button takes it when there is one.
 
-Once a date is picked, the clear button keeps its place while it is hidden, so nothing moves when it shows up. In a narrow layout, where that place cuts the date short, set `[cleaner]="false"` to give the room back to the input; unless the input is read-only, the date can still be cleared by editing it.
+### Keyboard behavior
+
+| Key | Action |
+| --- | --- |
+| `Tab` | Input, clear button, calendar button |
+| `Enter` / `Space` on the calendar button | Open or close the calendar |
+| `Alt` + `ArrowDown` (`Option` on macOS) in the input | Open the calendar and move focus into it |
+| `Enter` / `Space` on a date | Pick it; with `closeOnSelect` the calendar closes |
+| `Escape` | Close the calendar |
+| `Enter` / `Space` on the clear button | Clear the date, focus the input |
+| Other keys in the calendar | See [Calendar](https://coreui.io/angular/docs/components/calendar/#keyboard-behavior) |
 
 ## Forms
 
-Angular handles user input through reactive and template-driven forms.
-CoreUI Date Picker supports both options.
+Angular handles user input through reactive, template-driven and signal forms.
+CoreUI Date Picker supports all three.
+
+The control is marked touched when the user leaves the date picker (the focus moves to another element or a click lands outside it) or the date is set while its calendar is open; with `updateOn: 'blur'` that also commits the value.
+
+### Validation
+
+_Added in 5.7.40._
+
+Text the picker cannot turn into an allowed date stays in the input with `aria-invalid="true"`, the value becomes `null` and the control reports:
+
+```ts
+{ datePickerParse: { part: 'start', reason: 'parse' | 'disabled', text: string } }
+```
+
+- `parse`: not a date (an invalid date from the page gives an empty `text`)
+- `disabled`: outside `minDate`/`maxDate`, in `disabledDates` or rejected by `dateFilter`
+
+Set the value and `disabled` through the form or through the inputs, not both.
+
+`[valid]="false"` also sets `aria-invalid="true"` on the input. `aria-describedby` on `c-date-picker`, as a static attribute or bound with `[aria-describedby]`, moves to the input, so the feedback is read with it; `[attr.aria-describedby]` does not reach the input.
 
 ### Reactive
 
 ### Template-driven
+
+### Signal forms
 
 ## API reference
 
@@ -2348,23 +2384,24 @@ import { DatePickerComponent } from '@coreui/angular-pro'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
+| `aria-describedby` | `string \| null` | `undefined` | Ids of the elements that describe the dates, e.g. a hint or the validation message; set on every date input. A validation message hidden by CSS is still read, so bind its id only while the dates are invalid: `[aria-describedby]="invalid ? 'feedback' : null"`. Set it as a static attribute, which is removed from the host, or bind `[aria-describedby]`; `[attr.aria-describedby]` does not reach the inputs. |
 | `ariaCleanerLabel` | `string` | `'Clear date'` | Accessible name of the button that clears the date. |
-| `ariaPickerLabel` | `string` | `'Toggle calendar'` | Accessible name of the button that opens and closes the calendar. |
+| `ariaPickerLabel` | `string` | `'Toggle calendar'` | Accessible name of the button that opens and closes the calendar. The picked date (in DateRangePicker the range, once both ends are set) follows it, written in `locale`. |
 | `calendarDate` | `Date` | `new Date()` | Default date month of the component. |
 | `calendars` | `number` | `2` | The number of calendars that render on desktop devices. |
 | `cleaner` | `boolean` | `true` | Toggle visibility or set the content of the cleaner button. |
 | `closeOnSelect` | `boolean` | `false` | Determine if the dropdown should be closed after value setting. |
-| `date` | `Date \| null` | `null` | Initial selected start date. |
+| `date` | `Date \| null` | `null` | Selected date. A change from the page writes it without `dateChange`, `valueChange` or a form update. |
 | `dateFilter` | `DateFilterType` | - | Custom function to determine selectable dates. |
 | `dayFormat` | `DayFormatType` | `'numeric'` | Set the format of day number. |
 | `disabled` | `boolean` | `false` | Toggle the disabled state for the component. |
 | `disabledDates` | `(Date \| Date[])[]` | `[]` | Specify the list of dates that cannot be selected. |
-| `endDate` | `Date \| null` | `null` | Initial selected end date. |
+| `endDate` | `Date \| null` | `null` | Selected end date. A change from the page writes it without the `(endDateChange)` output, `valueChange` or a form update. |
 | `firstDayOfWeek` | `DaysOfWeek` | `1 (Monday)` | Set the first day of the week. |
 | `format` | `string` | - | Set date format. We use Angular formatDate() function, see: - https://angular.io/api/common/formatDate - https://angular.io/api/common/DatePipe#pre-defined-format-options |
 | `indicator` | `boolean` | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputDateFormat` | `object` | - | Custom function to format the selected date into a string according to a custom format. |
-| `inputDateParse` | `object` | - | Custom function to parse the input value into a valid Date object. With a week, month or year `selectionType`, the date is moved to the first day of its period, or to the last second of the period when it ends a range. |
+| `inputDateParse` | `object` | - | Custom function to parse the input value into a valid Date object. It is the only reader of typed text: text it rejects with an invalid date is reported as `datePickerParse`, without the built-in reader; empty or whitespace-only text clears the date without calling it. Give it with `inputDateFormat`, so the picker can read back what it shows. With a week, month or year `selectionType`, the date is moved to the first day of its period. A date that ends a range is moved to the last second of its day or period; with `withTime` it then takes the time of the end it replaces. |
 | `inputReadOnly` | `boolean` | `false` | Toggle the readonly state for the component. |
 | `locale` | `string` | `'default'` | Sets the default locale for components. If not set, it is inherited from the browser. |
 | `maxDate` | `Date \| null` | `null` | Max selectable date. |
@@ -2381,18 +2418,18 @@ import { DatePickerComponent } from '@coreui/angular-pro'
 | `rangesButtonsSize` | `'' \| 'sm' \| 'lg'` | `''` | Size the ranges button small or large. |
 | `rangesButtonsVariant` | `'outline' \| 'ghost'` | `'ghost'` | Set the ranges button variant to an outlined button or a ghost button. |
 | `selectAdjacentDays` | `boolean` | `false` | Set whether days in adjacent months shown before or after the current month are selectable. This only applies if the `showAdjacentDays` option is set to true. |
-| `selectionType` | `SelectionType` | `'day'` | Specify the type of date selection as day, week, month, or year. For a week, month or year the input shows `2025W07`, `2025-02` or `2025` and reads that text back (a week also as `2025-W07`), but not a date typed as a day. `inputDateFormat` with `inputDateParse`, or `format` with a `locale`, change what the input shows; when reading, `inputDateParse` is tried first. |
+| `selectionType` | `SelectionType` | `'day'` | Specify the type of date selection as day, week, month, or year. For a week, month or year the input shows `2025W07`, `2025-02` or `2025` and reads that text back (a week also as `2025-W07`), but not a date typed as a day. `inputDateFormat` with `inputDateParse`, or `format` with a `locale`, change what the input shows; when reading, `inputDateParse`, if given, replaces the built-in reader. |
 | `separator` | `boolean` | `true` | Default icon or character that separates two dates. |
 | `showAdjacentDays` | `boolean` | `true` | Set whether to display dates in adjacent months (non-selectable) at the start and end of the current month. |
 | `showWeekNumber` | `boolean` | `false` | Set whether to display week numbers in the calendar. |
 | `size` | `'' \| 'sm' \| 'lg'` | `undefined` | Size the component small or large. |
 | `timepicker` | `boolean` | `false` | Provide an additional time selection by adding select boxes to choose time. |
-| `valid` | `boolean` | `undefined` | Toggle visual validation feedback. |
-| `value` | `Date \| object \| null` | `null` |  |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"` on the inputs, `undefined` none. |
+| `value` | `Date \| object \| null` | `null` | The dates as `{ startDate, endDate }`, or a date for the start date alone. Written without `valueChange`, like a form value. |
 | `visible` | `boolean` | `false` | Toggle the visibility of the dropdown date-picker component. |
 | `weekdayFormat` | `WeekdayFormatType` | `'short'` | Set the length or format of the day name. |
 | `weekNumbersLabel` | `string` | `undefined` | Label displayed over week numbers in the calendar. |
-| `withTime` | `boolean` | `false` | Keep track of the time with the date value. |
+| `withTime` | `boolean` | `false` | Keep track of the time with the date value: a picked or typed date keeps the local time of the date it replaces. |
 | `yearFormat` | `YearFormatType` | `'numeric'` | Sets the format of years in the years view: 'numeric' or '2-digit'. |
 
 ### Events
@@ -2401,9 +2438,9 @@ import { DatePickerComponent } from '@coreui/angular-pro'
 | --- | --- |
 | `calendarCellHover` | Event emitted on calendar cell hover. |
 | `calendarDateChange` | Event emitted on calendar month change. |
-| `dateChange` | Emitted when `date` changes. |
-| `endDateChange` | Emitted when `endDate` changes. |
-| `valueChange` | Event emitted on `value` change. |
+| `dateChange` | Event emitted when the user or `startDateModel.set()` changes the date. |
+| `endDateChange` | Event emitted when the user or `endDateModel.set()` changes the end date. |
+| `valueChange` | Event emitted when the user, `startDateModel.set()` or `endDateModel.set()` changes the value. |
 
 
 ---
@@ -2454,6 +2491,9 @@ Pass a function to `dateFilter` to decide which dates can be picked: it receives
 ### Custom ranges
 
 ## Non-english locale
+
+The inputs read typed dates in the numeric format they show for the locale, with `.`, `/`, `-` or a space between the parts. Since 5.7.40 they also read the digits of the locale and, in `th-TH`, the Buddhist year, and the spaces and the closing mark of the format may be left out. In other calendars, such as Persian (`fa-IR`) or the Japanese eras (`ja-JP-u-ca-japanese`), and in a format that shows an era, typed text is reported as `datePickerParse`: give `inputDateFormat` with `inputDateParse` to read it, or set `inputReadOnly`.
+
 ### Auto
 
 ### Chinese
@@ -2490,22 +2530,56 @@ Set `selectionType` to `month` and give `inputDateFormat` and `inputDateParse` a
 
 Set `selectionType` to `year` and give `inputDateFormat` and `inputDateParse` a year pattern, such as `'yy'`.
 
-## Keyboard behavior
+## Accessibility
 
 _Added in 5.7.38._
 
-`Tab` moves from the inputs to the clear button, which a date range picker with a value shows while the focus is in the field, and then to the calendar button. `Enter` or `Space` on the calendar button opens and closes the calendar, and `Alt` + `ArrowDown` (`Option` + `ArrowDown` on macOS) in an input opens it and moves the focus into the calendar, to the selected date when there is one. In the open calendar the keys work as described for the [calendar](https://coreui.io/angular/docs/components/calendar/#keyboard-behavior), and `Escape` closes it. `Enter` or `Space` on the clear button clears the dates and moves the focus to the start input. Use `ariaPickerLabel` and `ariaCleanerLabel` to name the two buttons in the language of your page.
+- The calendar button is named by `ariaPickerLabel` and, once both ends are set, the picked range (`Toggle calendar, Monday, January 5 – Friday, January 9, 2026`), so a screen reader reads the pick when focus comes back to it. The dates follow `locale`: set it to the language of the label.
+- The clear button is named by `ariaCleanerLabel`. With a value, it shows while focus is in the field and keeps its place while hidden; `[cleaner]="false"` gives that place back to the inputs in a narrow layout.
+- Closing the calendar from inside (`Escape`, a pick with `closeOnSelect`, a close button in the footer) returns focus to the input it was opened from, or to the calendar button that opened it. After a touch an editable input does not get it back, so the on-screen keyboard stays closed; the calendar button takes it when there is one.
 
-Once a date is picked, the clear button keeps its place while it is hidden, so nothing moves when it shows up. In a narrow layout, where that place cuts the dates short, set `[cleaner]="false"` to give the room back to the inputs; unless the inputs are read-only, the dates can still be cleared by editing them.
+### Keyboard behavior
+
+| Key | Action |
+| --- | --- |
+| `Tab` | Start input, end input, clear button, calendar button |
+| `Enter` / `Space` on the calendar button | Open or close the calendar |
+| `Alt` + `ArrowDown` (`Option` on macOS) in an input | Open the calendar and move focus into it |
+| `Enter` / `Space` on a date | Pick it; with `closeOnSelect` the calendar closes once the range is complete |
+| `Escape` | Close the calendar |
+| `Enter` / `Space` on the clear button | Clear the dates, focus the start input |
+| Other keys in the calendar | See [Calendar](https://coreui.io/angular/docs/components/calendar/#keyboard-behavior) |
 
 ## Forms
 
-Angular handles user input through reactive and template-driven forms.
-CoreUI Date Range Picker supports both possibilities.
+Angular handles user input through reactive, template-driven and signal forms.
+CoreUI Date Range Picker supports all three.
+
+The control is marked touched when the user leaves the date range picker (the focus moves to another element or a click lands outside it) or both ends are set while its calendar is open; with `updateOn: 'blur'` that also commits the value.
+
+### Validation
+
+_Added in 5.7.40._
+
+Text the picker cannot turn into an allowed date stays in its input with `aria-invalid="true"`, that end becomes `null` and the control reports (the start first when both fail):
+
+```ts
+{ datePickerParse: { part: 'start' | 'end', reason: 'parse' | 'disabled' | 'order', text: string } }
+```
+
+- `parse`: not a date (an invalid date from the page gives an empty `text`)
+- `disabled`: outside `minDate`/`maxDate`, in `disabledDates` or rejected by `dateFilter`
+- `order`: an end before the start or without one
+
+A start without a date clears the end, a typed start after the end begins a new range. Set the value and `disabled` through the form or through the inputs, not both, and give an end from the page its start.
+
+`[valid]="false"` sets `aria-invalid="true"` on both inputs and shows the invalid icon on the end input only. `aria-describedby` on `c-date-range-picker`, as a static attribute or bound with `[aria-describedby]`, moves to both inputs, so the feedback is read with them; `[attr.aria-describedby]` does not reach the inputs.
 
 ### Reactive
 
 ### Template-driven
+
+### Signal forms
 
 ## API reference
 
@@ -2539,8 +2613,9 @@ import { DateRangePickerComponent } from '@coreui/angular-pro'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
+| `aria-describedby` | `string \| null` | `undefined` | Ids of the elements that describe the dates, e.g. a hint or the validation message; set on every date input. A validation message hidden by CSS is still read, so bind its id only while the dates are invalid: `[aria-describedby]="invalid ? 'feedback' : null"`. Set it as a static attribute, which is removed from the host, or bind `[aria-describedby]`; `[attr.aria-describedby]` does not reach the inputs. |
 | `ariaCleanerLabel` | `string` | `'Clear date range'` | Accessible name of the button that clears the dates. |
-| `ariaPickerLabel` | `string` | `'Toggle calendar'` | Accessible name of the button that opens and closes the calendar. |
+| `ariaPickerLabel` | `string` | `'Toggle calendar'` | Accessible name of the button that opens and closes the calendar. The picked date (in DateRangePicker the range, once both ends are set) follows it, written in `locale`. |
 | `calendarDate` | `Date` | `new Date()` | Default date month of the component. |
 | `calendars` | `number` | `2` | The number of calendars that render on desktop devices. |
 | `cleaner` | `boolean` | `true` | Toggle visibility or set the content of the cleaner button. |
@@ -2549,12 +2624,12 @@ import { DateRangePickerComponent } from '@coreui/angular-pro'
 | `dayFormat` | `DayFormatType` | `'numeric'` | Set the format of day number. |
 | `disabled` | `boolean` | `false` | Toggle the disabled state for the component. |
 | `disabledDates` | `(Date \| Date[])[]` | `[]` | Specify the list of dates that cannot be selected. |
-| `endDate` | `Date \| null` | `null` | Initial selected end date. |
+| `endDate` | `Date \| null` | `null` | Selected end date. A change from the page writes it without the `(endDateChange)` output, `valueChange` or a form update. |
 | `firstDayOfWeek` | `DaysOfWeek` | `1 (Monday)` | Set the first day of the week. |
 | `format` | `string` | - | Set date format. We use Angular formatDate() function, see: - https://angular.io/api/common/formatDate - https://angular.io/api/common/DatePipe#pre-defined-format-options |
 | `indicator` | `boolean` | `true` | Toggle visibility or set the content of the input indicator. |
 | `inputDateFormat` | `object` | - | Custom function to format the selected date into a string according to a custom format. |
-| `inputDateParse` | `object` | - | Custom function to parse the input value into a valid Date object. With a week, month or year `selectionType`, the date is moved to the first day of its period, or to the last second of the period when it ends a range. |
+| `inputDateParse` | `object` | - | Custom function to parse the input value into a valid Date object. It is the only reader of typed text: text it rejects with an invalid date is reported as `datePickerParse`, without the built-in reader; empty or whitespace-only text clears the date without calling it. Give it with `inputDateFormat`, so the picker can read back what it shows. With a week, month or year `selectionType`, the date is moved to the first day of its period. A date that ends a range is moved to the last second of its day or period; with `withTime` it then takes the time of the end it replaces. |
 | `inputReadOnly` | `boolean` | `false` | Toggle the readonly state for the component. |
 | `locale` | `string` | `'default'` | Sets the default locale for components. If not set, it is inherited from the browser. |
 | `maxDate` | `Date \| null` | `null` | Max selectable date. |
@@ -2571,19 +2646,19 @@ import { DateRangePickerComponent } from '@coreui/angular-pro'
 | `rangesButtonsSize` | `'' \| 'sm' \| 'lg'` | `''` | Size the ranges button small or large. |
 | `rangesButtonsVariant` | `'outline' \| 'ghost'` | `'ghost'` | Set the ranges button variant to an outlined button or a ghost button. |
 | `selectAdjacentDays` | `boolean` | `false` | Set whether days in adjacent months shown before or after the current month are selectable. This only applies if the `showAdjacentDays` option is set to true. |
-| `selectionType` | `SelectionType` | `'day'` | Specify the type of date selection as day, week, month, or year. For a week, month or year the input shows `2025W07`, `2025-02` or `2025` and reads that text back (a week also as `2025-W07`), but not a date typed as a day. `inputDateFormat` with `inputDateParse`, or `format` with a `locale`, change what the input shows; when reading, `inputDateParse` is tried first. |
+| `selectionType` | `SelectionType` | `'day'` | Specify the type of date selection as day, week, month, or year. For a week, month or year the input shows `2025W07`, `2025-02` or `2025` and reads that text back (a week also as `2025-W07`), but not a date typed as a day. `inputDateFormat` with `inputDateParse`, or `format` with a `locale`, change what the input shows; when reading, `inputDateParse`, if given, replaces the built-in reader. |
 | `separator` | `boolean` | `true` | Default icon or character that separates two dates. |
 | `showAdjacentDays` | `boolean` | `true` | Set whether to display dates in adjacent months (non-selectable) at the start and end of the current month. |
 | `showWeekNumber` | `boolean` | `false` | Set whether to display week numbers in the calendar. |
 | `size` | `'' \| 'sm' \| 'lg'` | `undefined` | Size the component small or large. |
-| `startDate` | `Date \| null` | `null` | Initial selected start date. |
+| `startDate` | `Date \| null` | `null` | Selected start date. A change from the page writes it without the `(startDateChange)` output, `valueChange` or a form update. |
 | `timepicker` | `boolean` | `false` | Provide an additional time selection by adding select boxes to choose time. |
-| `valid` | `boolean` | `undefined` | Toggle visual validation feedback. |
-| `value` | `Date \| object \| null` | `null` |  |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"` on the inputs, `undefined` none. |
+| `value` | `Date \| object \| null` | `null` | The dates as `{ startDate, endDate }`, or a date for the start date alone. Written without `valueChange`, like a form value. |
 | `visible` | `boolean` | `false` | Toggle the visibility of the dropdown date-picker component. |
 | `weekdayFormat` | `WeekdayFormatType` | `'short'` | Set the length or format of the day name. |
 | `weekNumbersLabel` | `string` | `undefined` | Label displayed over week numbers in the calendar. |
-| `withTime` | `boolean` | `false` | Keep track of the time with the date value. |
+| `withTime` | `boolean` | `false` | Keep track of the time with the date value: a picked or typed date keeps the local time of the date it replaces. |
 | `yearFormat` | `YearFormatType` | `'numeric'` | Sets the format of years in the years view: 'numeric' or '2-digit'. |
 
 ### Events
@@ -2592,9 +2667,9 @@ import { DateRangePickerComponent } from '@coreui/angular-pro'
 | --- | --- |
 | `calendarCellHover` | Event emitted on calendar cell hover. |
 | `calendarDateChange` | Event emitted on calendar month change. |
-| `endDateChange` | Emitted when `endDate` changes. |
-| `startDateChange` | Emitted when `startDate` changes. |
-| `valueChange` | Event emitted on `value` change. |
+| `endDateChange` | Event emitted when the user or `endDateModel.set()` changes the end date. |
+| `startDateChange` | Event emitted when the user or `startDateModel.set()` changes the start date. |
+| `valueChange` | Event emitted when the user, `startDateModel.set()` or `endDateModel.set()` changes the value. |
 
 
 ---
@@ -2641,7 +2716,7 @@ import { FormControlDirective } from '@coreui/angular'
 | `plaintext` | `boolean` | `false` | Render the component styled as plain text. Removes the default form field styling and preserve the correct margin and padding. Recommend to use alongside `readonly` |
 | `sizing` | `'' \| 'sm' \| 'lg'` | `undefined` | Size the component small or large. |
 | `type` | `Omit<InputType, 'checkbox' \| 'radio'>` | `'text'` | Specifies the type of input element. |
-| `valid` | `boolean` | `undefined` | Set component validation state to valid. |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"` (not on button-like, `color` and `hidden` inputs, where `aria-invalid` is left to the page), `undefined` none. Do not bind `aria-invalid` on the same element as well. |
 
 ### cLabel
 _directive_
@@ -2693,7 +2768,7 @@ import { FormSelectDirective } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `sizing` | `'' \| 'sm' \| 'lg'` | `undefined` | Size the component small or large. |
-| `valid` | `boolean` | `undefined` | Set component validation state to valid. |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"`, `undefined` none. Do not bind `aria-invalid` on the same element as well. |
 
 
 ---
@@ -2805,6 +2880,10 @@ Set the `multiple` boolean property to `false` and allow select only one element
 ## Coordinated selection
 
 The selection of Angular select components can be coordinated by dynamically updating city options based on the selected country. To ensure synchronized selections, use the `resetSelectionOnOptionsChange` prop on the city select component to reset the selected city whenever the country changes.
+
+## Validation
+
+Set `valid` to show the validation state. With `search` on, the default, `[valid]="false"` also sets `aria-invalid="true"` on the search input, and `aria-describedby` on `c-multi-select`, as a static attribute or bound with `[aria-describedby]`, is copied to it; `[attr.aria-describedby]` stays on the host. Without `search` no field takes `aria-invalid`; a static or `[attr.aria-describedby]` on `c-multi-select` still ties the feedback to it.
 
 ## Disabled
 
@@ -3141,6 +3220,7 @@ import { MultiSelectComponent } from '@coreui/angular-pro'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `allowCreateOptions` | `boolean` | `false` | Allow users to create options if they are not in the list of options. |
+| `aria-describedby` | `string \| null` | `undefined` | Ids of the elements that describe the field, e.g. its validation message; copied to the search input when `search` is on. Set it as a static attribute or bind `[aria-describedby]`; `[attr.aria-describedby]` stays on the host and does not reach the search input. Without `search` the host has the focus: a static attribute or `[attr.aria-describedby]` stays on it, `[aria-describedby]` does not. |
 | `ariaCleanerLabel` | `string` | `'Clear all selections'` | Sets the accessible label (`aria-label`) for the button that clears the current selection. This label is read by screen readers. |
 | `ariaIndicatorLabel` | `string` | `'Toggle visibility of options menu'` | Sets the accessible label (`aria-label`) for the indicator button that toggles the options menu. This label is read by screen readers. |
 | `ariaSearchLabel` | `string` | `'Search options'` | Sets the accessible label (`aria-label`) for the search input. This label is read by screen readers. |
@@ -3176,7 +3256,7 @@ import { MultiSelectComponent } from '@coreui/angular-pro'
 | `selectionTypeCounterText` | `string` | `'item(s) selected'` | Counter selection label value |
 | `selectionTypeCounterTextPluralMap` | `IPluralMap` | `{ '=1': 'item selected', 'other': 'items selected' }` | Counter selection label plural map for I18nPluralPipe |
 | `size` | `'' \| 'sm' \| 'lg'` | - | Size the component small or large. |
-| `valid` | `boolean` | `undefined` | Toggle visual validation feedback. |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"` on the search input when `search` is on, `undefined` none. |
 | `value` | `TValue \| TValue[]` | `== true,` | Initial value of multi-select |
 | `virtualScroller` | `boolean` | `false` | Enable virtual scroller for options list. |
 | `visible` | `boolean` | `false` | Toggle the visibility of the dropdown select component. |
@@ -3319,7 +3399,7 @@ import { FormCheckInputDirective } from '@coreui/angular'
 | --- | --- | --- | --- |
 | `indeterminate` | `boolean` | `false` | Set component indeterminate state. |
 | `type` | `'checkbox' \| 'radio'` | `'checkbox'` | Specifies the type of component. |
-| `valid` | `boolean` | `undefined` | Set component validation state to valid. |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"`, `undefined` none. Do not bind `aria-invalid` on the same element as well. |
 
 ### cFormCheckLabel
 _directive_
@@ -3616,7 +3696,7 @@ Use the `readOnly` prop to make the one-time password input non-editable but sti
 
 ## Validation state
 
-Use the `valid` prop to indicate input validity.
+Use the `valid` prop to indicate input validity. `[valid]="false"` also sets `aria-invalid="true"` on every `cOtp` input.
 
 ## Forms
 
@@ -3767,7 +3847,7 @@ import { OneTimePasswordComponent } from '@coreui/angular-pro'
 | `readOnly` | `boolean` | `false` | Make the Angular OTP input component read-only. |
 | `sizing` | `'' \| 'sm' \| 'lg'` | `undefined` | Sets the visual size of the Angular one-time password (OTP) input. Use 'sm' for small or 'lg' for large input fields. |
 | `type` | `'number' \| 'text'` | `'number'` | Input validation type: 'number' for digits only, or 'text' for free text. |
-| `valid` | `boolean` | `undefined` | Set form input validation state to valid. |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"` on every input, `undefined` none. Do not bind `aria-invalid` on the inputs as well. |
 | `value` | `string \| number` | `undefined` | Current value for OTP input. |
 
 ### Events
@@ -3828,6 +3908,7 @@ Use the `floatingLabel` prop to add a floating label to the password input. This
 
 ### Validation status
 Use the `valid` prop to indicate the validation status of the input. Set it to `true` for valid, `false` for invalid, or leave it `undefined` for default styling.
+`[valid]="false"` also sets `aria-invalid="true"` on the input.
 
 ## Forms
 Angular handles password input through reactive forms and template-driven forms. CoreUI Password Input directive supports both.
@@ -3950,7 +4031,7 @@ import { FormPasswordDirective } from '@coreui/angular-pro'
 | `readOnly` | `boolean` | `false` | Disables the password input field. When `true`, the user cannot interact with the field. |
 | `showPassword` | `boolean` | `false` | Controls the initial visibility of the password. When `true`, the input type is set to `"text"` instead of `"password"`. This allows **toggling password visibility** in Angular forms. |
 | `sizing` | `'' \| 'sm' \| 'lg'` | `undefined` | Size the component small or large. |
-| `valid` | `boolean` | `undefined` | Set component validation state to valid. |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"`, `undefined` none. Do not bind `aria-invalid` on the same element as well. |
 
 
 ---
@@ -3993,7 +4074,7 @@ import { FormControlDirective } from '@coreui/angular'
 | `plaintext` | `boolean` | `false` | Render the component styled as plain text. Removes the default form field styling and preserve the correct margin and padding. Recommend to use alongside `readonly` |
 | `sizing` | `'' \| 'sm' \| 'lg'` | `undefined` | Size the component small or large. |
 | `type` | `Omit<InputType, 'checkbox' \| 'radio'>` | `'text'` | Specifies the type of input element. |
-| `valid` | `boolean` | `undefined` | Set component validation state to valid. | */}
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"` (not on button-like, `color` and `hidden` inputs, where `aria-invalid` is left to the page), `undefined` none. Do not bind `aria-invalid` on the same element as well. | */}
 
 #### Inputs
 
@@ -4975,8 +5056,18 @@ Set heights using `size` property like `size="lg"` and `size="sm"`.
 ### Disabled
 Add the `disabled` boolean attribute on an input to give it a grayed out appearance and remove pointer events.
 
+### Typing a time
+The input reads a time typed the way the picker shows it in its `locale`, with the locale's digits and day periods (`9:05 PM`, `오후 9:05`, `۲۱:۰۵`), as well as 24-hour time (`21:05`), a dot as the separator (`21.05`) and `AM`/`PM` in any letter case. A time without a day period is read as 24-hour time. The time is read when the input changes (<kbd>Enter</kbd> or leaving the input), each part snaps to the nearest value allowed by its filter, and seconds are kept only with `seconds`. Text that is not a time clears the picker.
+
+A string bound to `time` or written by a form control is read the same way, along with ISO times and date-times (`15:30:00`, `2026-01-05T15:30:00`, `2026-01-05 15:30:00`). A string in the locale's own format is read with the picker's `locale`, also when the locale arrives later; a time already read, picked or cleared stays when only `locale` changes.
+
+The picker reports a `Date`. A time without a date, from a time string or picked or typed into an empty picker, is set on 1 January 1970; a time string with a UTC offset (`15:30Z`, `15:30+02:00`) is that moment on 1 January 1970, so its local date can be a day earlier or later. A picked or typed time keeps the date of the time it replaces. A `Date` bound to `time` or written by a form control keeps its moment, also when it comes from another window or frame, and so does a date-time string (`2026-01-05T15:30:00`). To store or send a time without a date, use its hours, minutes and, with `seconds`, seconds rather than `toISOString()`: the UTC offset of 1 January 1970 can differ from today's.
+
 ### Readonly
 Add the `inputReadOnly` boolean attribute to prevent modification of the input value.
+
+### Validation
+Set `valid` to show the validation state. `[valid]="false"` also sets `aria-invalid="true"` on the input or, in the `select` variant, on every select. `aria-describedby` on `c-time-picker`, as a static attribute or bound with `[aria-describedby]`, moves to the same fields, so the feedback is read with them; `[attr.aria-describedby]` does not reach the fields.
 
 ### Filtered
 Add filter callback functions to limit selectable values.
@@ -4998,6 +5089,10 @@ Add filter callback functions to limit selectable values.
 ### Hebrew
 
 ### Persian
+
+## Accessibility
+
+- Closing the menu after using it (`Escape`, a button in the footer, a click outside) returns focus to the input. After a tap or a pen press in the menu an editable input does not get it back; a read-only input (`inputReadOnly`) does.
 
 ## Forms
 
@@ -5040,6 +5135,7 @@ import { TimePickerComponent } from '@coreui/angular-pro'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
+| `aria-describedby` | `string \| null` | `undefined` | Ids of the elements that describe the field, e.g. a hint or the validation message; set on the input or, in the `select` variant, on every select. A validation message hidden by CSS is still read, so bind its id only while the field is invalid: `[aria-describedby]="invalid ? 'feedback' : null"`. Set it as a static attribute, which is removed from the host, or bind `[aria-describedby]`; `[attr.aria-describedby]` does not reach the field. |
 | `cleaner` | `boolean` | `true` | Toggle visibility or set the content of the cleaner button. |
 | `dateTimeFormatOptions` | `DateTimeFormatOptions` | `{}` | Sets DateTime format options including timeZone |
 | `disabled` | `boolean` | `false` | Toggle the disabled state for the component. |
@@ -5052,8 +5148,8 @@ import { TimePickerComponent } from '@coreui/angular-pro'
 | `placeholder` | `string` | `'Select time'` | Specifies a short hint visible in time input. |
 | `seconds` | `boolean` | `false` | Toggle seconds visibility. |
 | `size` | `'' \| 'sm' \| 'lg'` | `undefined` | Size the component small or large. |
-| `time` | `Date` | `undefined` | Initially selected time. |
-| `valid` | `boolean` | `undefined` | Toggle visual validation feedback. |
+| `time` | `string \| Date` | `undefined` | Initially selected time. |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"` on the input or, in the `select` variant, on every select, `undefined` none. |
 | `variant` | `'roll' \| 'select'` | `'roll'` | Set the time picker variant to a roll or select. |
 | `visible` | `boolean` | `false` | Toggle the visibility of dropdown timepicker menu component. |
 
@@ -5061,7 +5157,7 @@ import { TimePickerComponent } from '@coreui/angular-pro'
 
 | Name | Description |
 | --- | --- |
-| `timeChange` | Event emitted on `time` change. |
+| `timeChange` | Event emitted on `time` change by the user or the `time` input; form writes do not emit. |
 
 
 ---
@@ -5080,6 +5176,9 @@ attempting to submit, you'll see the `:invalid` and `:valid` styles applied to y
 Custom feedback styles apply custom colors, borders, focus styles, and background icons to better communicate
 feedback.
 
+Screen readers do not get these styles: an empty required field shown in red is not announced as invalid. To announce
+errors, set `valid` on the fields, as in the server side example.
+
 ## Browser defaults
 
 Not interested in custom validation feedback messages or writing JavaScript to change form behaviors? All good, you
@@ -5097,6 +5196,16 @@ and valid form fields with `valid` boolean property.
 For invalid fields, ensure that the invalid feedback/error message is associated with the relevant form field using
 `aria-describedby` (noting that this attribute allows more than one id to be referenced, in case the field already
 points to additional form text).
+
+`cFormControl`, `cSelect` and `cFormCheckInput` with `[valid]="false"` also get `aria-invalid="true"`, so screen
+readers announce the field as invalid; button-like, `color` and `hidden` inputs are left to the page. Do not bind
+`aria-invalid` on the same field as well. When the state changes, as in the enhanced example below, point
+`aria-describedby` at the feedback only while the field is invalid: feedback hidden with CSS is still read when a field
+references it.
+
+Password input, Autocomplete, One-time password, Date picker, Date range picker, Time picker and Multi select set
+`aria-invalid="true"` on their fields the same way; Date picker, Date range picker, Time picker and Multi select take
+`aria-describedby` on the component and pass it to their own fields, see their Validation sections.
 
 Input group needs an extra `.has-validation` class to fix border radius issues with `c-form-feedback` element.
 
@@ -5880,30 +5989,29 @@ Example of the Angular Calendar component with Persian locale settings.
 
 These format options use the JavaScript `Intl.DateTimeFormat` API and respect the `locale` input. The navigation keeps the full month name and the numeric year, and screen readers announce each month and year cell by its full name whatever the format.
 
-## Keyboard behavior
+## Accessibility
 
-Each month of the calendar is a `grid` with one tab stop when it has a date that can take the focus: `Tab` enters it once and leaves it, and the keys below move inside it. The tab stop sits on the date you focused last while the page shows it, else on the selected date, else on the cell of `calendarDate` (the first day of its month in the days view, its month or year in the other views) or the closest cell that can take the focus. A selection set from outside, such as a date typed in the picker, takes the place of the date you focused last. A date inside `minDate` / `maxDate` that cannot be picked, such as one in `disabledDates`, still takes the focus and is announced as unavailable (`aria-disabled="true"`); `Enter` and `Space` do nothing there. Dates outside `minDate` / `maxDate`, and days of adjacent months without `selectAdjacentDays`, cannot take the focus. When nothing on the shown page can take the focus, the grid itself takes the tab stop and the arrows move to the limit they point toward.
+- Each month with a date that can take focus is a `grid` with one tab stop: the date focused last, else the selected date, else the first day of the month (the month or year of `calendarDate` in the other views), else the nearest date that can take focus. A new selection replaces the date focused last. When no shown month has such a date, the grid takes the tab stop.
+- A date within `minDate` / `maxDate` that cannot be picked, such as one in `disabledDates`, takes focus and is announced as unavailable (`aria-disabled="true"`). Dates outside `minDate` / `maxDate` and days of adjacent months without `selectAdjacentDays` cannot take focus.
+- With `selectionType="week"` the week row is the tab stop, named by the days it spans.
+- When the focused date or navigation button goes away (`calendarDate`, `calendars`, `navigation`, `minDate` or `maxDate` changed), focus stays in the calendar.
+- Keys pressed with `Alt`, `Ctrl` or `Cmd` are left to the browser and assistive technology.
+
+### Keyboard behavior
 
 | Key | Action |
 | --- | --- |
-| `ArrowRight` | Move to the next day (the previous one in right-to-left layouts) |
-| `ArrowLeft` | Move to the previous day (the next one in right-to-left layouts) |
-| `ArrowDown` | Move to the same day of the next week |
-| `ArrowUp` | Move to the same day of the previous week |
-| `Home` | Move to the first day of the week |
-| `End` | Move to the last day of the week |
-| `PageDown` | Move to the same day of the next month |
-| `PageUp` | Move to the same day of the previous month |
-| `Shift` + `PageDown` | Move to the same day of the next year |
-| `Shift` + `PageUp` | Move to the same day of the previous year |
-| `Enter` / `Space` | Pick the focused date, as a click does: with `range` the first pick sets the start and the next one the end (or the start again, when it is earlier), and a pick on a complete range clears it |
+| `ArrowRight` / `ArrowLeft` | Next / previous day (reversed in right-to-left layouts) |
+| `ArrowDown` / `ArrowUp` | Same day of the next / previous week |
+| `Home` / `End` | First / last day of the week |
+| `PageDown` / `PageUp` | Same day of the next / previous month; a series keeps its first day (January 31, February 28, March 31) |
+| `Shift` + `PageDown` / `PageUp` | Same day of the next / previous year |
+| `Enter` / `Space` | Pick the focused date; with `range` the first pick sets the start, the next the end (or the start again, if earlier), and a pick on a complete range clears it |
 | `Tab` | Leave the grid |
 
-Past the edge of the shown months, the arrow keys turn the calendar by one month, and so do `Home` / `End` on a week that reaches into the next or previous month; all of them stop at `minDate` / `maxDate`. A series of `PageDown` / `PageUp` presses keeps the day it started from (January 31, February 28, March 31); any other key or a click in the calendar starts a new series, except a key that cannot move the focus any further, such as an arrow at `minDate` / `maxDate`, and `Shift`, `Ctrl`, `Alt` or `Cmd` alone.
-
-In the months and years views the arrows move by cell and by row of three, `Home` / `End` move to the first / last cell of the row, `PageDown` / `PageUp` turn by a year or by the twelve years of a page, and `Enter` / `Space` open the month or year, unless `selectionType` picks it. With `selectionType="week"` the week row is the tab stop, named by the days it spans, all four arrows move by a week, and `Home` / `End` move to the first / last week of the month. Keys pressed with `Alt`, `Ctrl` or `Cmd` are left to the browser and assistive technology. No key moves the focus outside `minDate` / `maxDate`.
-
-The month and year buttons of the navigation open the months and years views, and when the focus is in the calendar it moves to the month or year they show. When the focused date or navigation button goes away, because `calendarDate`, `calendars`, `navigation`, `minDate` or `maxDate` changed, the focus stays in the calendar: on the nearest date that can take it when the limits took the focused one, else on the tab stop of the month it was in, else on the first tab stop.
+- Past the shown months the keys turn the calendar, and stop at `minDate` / `maxDate`.
+- Months and years views: arrows move by cell and by row of three, `Home` / `End` to the ends of the row, `PageDown` / `PageUp` by a year or by twelve years, `Enter` / `Space` open the month or year, or pick it with the matching `selectionType`.
+- Week selection: all four arrows move by a week, `Home` / `End` to the first / last week of the month.
 
 ## Customizing
 
@@ -6068,9 +6176,9 @@ import { CalendarComponent } from '@coreui/angular-pro'
 | Name | Description |
 | --- | --- |
 | `calendarCellHover` | Event emitted on calendar cell hover. |
-| `calendarDateChange` | Event emitted on calendar month change. |
-| `endDateChange` | Event emitted on `endDate` change. |
-| `startDateChange` | Event emitted on `startDate` change. |
+| `calendarDateChange` | Event emitted when the user moves the calendar to another month or year. |
+| `endDateChange` | Event emitted when the user selects a date or `clearDates()` clears the selection. |
+| `startDateChange` | Event emitted when the user selects a date or `clearDates()` clears the selection. |
 | `viewChange` | Emitted when `view` changes. |
 
 
@@ -7057,6 +7165,7 @@ However, CoreUI for Angular does add built-in support for most standard keyboard
 - <kbd>Enter</kbd>, <kbd>Space</kbd> or a click on the toggle opens and closes the menu. <kbd>ArrowDown</kbd> opens it and moves focus to the first item, <kbd>ArrowUp</kbd> to the last one.
 - <kbd>ArrowDown</kbd> and <kbd>ArrowUp</kbd> move between `cDropdownItem` elements and wrap at the ends; <kbd>Home</kbd> and <kbd>End</kbd> jump to the first and last item. <kbd>Tab</kbd> moves through the menu natively.
 - <kbd>Esc</kbd> closes the menu and returns focus to the toggle, leaving an enclosing modal or offcanvas open; an <kbd>Esc</kbd> a control in the menu already handled with `preventDefault()` is left to it. <kbd>Tab</kbd> leaving the menu closes it. With `autoClose` set to `false` neither does.
+- Choosing an item, `cDropdownClose` or any other close after the menu was used returns focus to the toggle too, without scrolling the page. Focus that has already moved elsewhere, such as to a field next to the dropdown or to the next element on <kbd>Tab</kbd>, stays there. After a touch in the menu, a toggle that is a text field does not get focus back, so the on-screen keyboard stays closed.
 - Keys other than <kbd>Esc</kbd> pressed inside an input other than a button, a select, a textarea or a contenteditable in the menu are left to that control.
 
 An `a` element used as the toggle gets `role="button"`. Give it an `href` so it is focusable and reachable with <kbd>Tab</kbd>, and keep its content non-interactive: a button exposes its children as plain text.

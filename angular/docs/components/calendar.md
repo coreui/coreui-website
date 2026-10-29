@@ -85,30 +85,29 @@ Example of the Angular Calendar component with Persian locale settings.
 
 These format options use the JavaScript `Intl.DateTimeFormat` API and respect the `locale` input. The navigation keeps the full month name and the numeric year, and screen readers announce each month and year cell by its full name whatever the format.
 
-## Keyboard behavior
+## Accessibility
 
-Each month of the calendar is a `grid` with one tab stop when it has a date that can take the focus: `Tab` enters it once and leaves it, and the keys below move inside it. The tab stop sits on the date you focused last while the page shows it, else on the selected date, else on the cell of `calendarDate` (the first day of its month in the days view, its month or year in the other views) or the closest cell that can take the focus. A selection set from outside, such as a date typed in the picker, takes the place of the date you focused last. A date inside `minDate` / `maxDate` that cannot be picked, such as one in `disabledDates`, still takes the focus and is announced as unavailable (`aria-disabled="true"`); `Enter` and `Space` do nothing there. Dates outside `minDate` / `maxDate`, and days of adjacent months without `selectAdjacentDays`, cannot take the focus. When nothing on the shown page can take the focus, the grid itself takes the tab stop and the arrows move to the limit they point toward.
+- Each month with a date that can take focus is a `grid` with one tab stop: the date focused last, else the selected date, else the first day of the month (the month or year of `calendarDate` in the other views), else the nearest date that can take focus. A new selection replaces the date focused last. When no shown month has such a date, the grid takes the tab stop.
+- A date within `minDate` / `maxDate` that cannot be picked, such as one in `disabledDates`, takes focus and is announced as unavailable (`aria-disabled="true"`). Dates outside `minDate` / `maxDate` and days of adjacent months without `selectAdjacentDays` cannot take focus.
+- With `selectionType="week"` the week row is the tab stop, named by the days it spans.
+- When the focused date or navigation button goes away (`calendarDate`, `calendars`, `navigation`, `minDate` or `maxDate` changed), focus stays in the calendar.
+- Keys pressed with `Alt`, `Ctrl` or `Cmd` are left to the browser and assistive technology.
+
+### Keyboard behavior
 
 | Key | Action |
 | --- | --- |
-| `ArrowRight` | Move to the next day (the previous one in right-to-left layouts) |
-| `ArrowLeft` | Move to the previous day (the next one in right-to-left layouts) |
-| `ArrowDown` | Move to the same day of the next week |
-| `ArrowUp` | Move to the same day of the previous week |
-| `Home` | Move to the first day of the week |
-| `End` | Move to the last day of the week |
-| `PageDown` | Move to the same day of the next month |
-| `PageUp` | Move to the same day of the previous month |
-| `Shift` + `PageDown` | Move to the same day of the next year |
-| `Shift` + `PageUp` | Move to the same day of the previous year |
-| `Enter` / `Space` | Pick the focused date, as a click does: with `range` the first pick sets the start and the next one the end (or the start again, when it is earlier), and a pick on a complete range clears it |
+| `ArrowRight` / `ArrowLeft` | Next / previous day (reversed in right-to-left layouts) |
+| `ArrowDown` / `ArrowUp` | Same day of the next / previous week |
+| `Home` / `End` | First / last day of the week |
+| `PageDown` / `PageUp` | Same day of the next / previous month; a series keeps its first day (January 31, February 28, March 31) |
+| `Shift` + `PageDown` / `PageUp` | Same day of the next / previous year |
+| `Enter` / `Space` | Pick the focused date; with `range` the first pick sets the start, the next the end (or the start again, if earlier), and a pick on a complete range clears it |
 | `Tab` | Leave the grid |
 
-Past the edge of the shown months, the arrow keys turn the calendar by one month, and so do `Home` / `End` on a week that reaches into the next or previous month; all of them stop at `minDate` / `maxDate`. A series of `PageDown` / `PageUp` presses keeps the day it started from (January 31, February 28, March 31); any other key or a click in the calendar starts a new series, except a key that cannot move the focus any further, such as an arrow at `minDate` / `maxDate`, and `Shift`, `Ctrl`, `Alt` or `Cmd` alone.
-
-In the months and years views the arrows move by cell and by row of three, `Home` / `End` move to the first / last cell of the row, `PageDown` / `PageUp` turn by a year or by the twelve years of a page, and `Enter` / `Space` open the month or year, unless `selectionType` picks it. With `selectionType="week"` the week row is the tab stop, named by the days it spans, all four arrows move by a week, and `Home` / `End` move to the first / last week of the month. Keys pressed with `Alt`, `Ctrl` or `Cmd` are left to the browser and assistive technology. No key moves the focus outside `minDate` / `maxDate`.
-
-The month and year buttons of the navigation open the months and years views, and when the focus is in the calendar it moves to the month or year they show. When the focused date or navigation button goes away, because `calendarDate`, `calendars`, `navigation`, `minDate` or `maxDate` changed, the focus stays in the calendar: on the nearest date that can take it when the limits took the focused one, else on the tab stop of the month it was in, else on the first tab stop.
+- Past the shown months the keys turn the calendar, and stop at `minDate` / `maxDate`.
+- Months and years views: arrows move by cell and by row of three, `Home` / `End` to the ends of the row, `PageDown` / `PageUp` by a year or by twelve years, `Enter` / `Space` open the month or year, or pick it with the matching `selectionType`.
+- Week selection: all four arrows move by a week, `Home` / `End` to the first / last week of the month.
 
 ## Customizing
 
@@ -273,7 +272,7 @@ import { CalendarComponent } from '@coreui/angular-pro'
 | Name | Description |
 | --- | --- |
 | `calendarCellHover` | Event emitted on calendar cell hover. |
-| `calendarDateChange` | Event emitted on calendar month change. |
-| `endDateChange` | Event emitted on `endDate` change. |
-| `startDateChange` | Event emitted on `startDate` change. |
+| `calendarDateChange` | Event emitted when the user moves the calendar to another month or year. |
+| `endDateChange` | Event emitted when the user selects a date or `clearDates()` clears the selection. |
+| `startDateChange` | Event emitted when the user selects a date or `clearDates()` clears the selection. |
 | `viewChange` | Emitted when `view` changes. |

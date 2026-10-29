@@ -36,7 +36,7 @@ import { FormControlDirective } from '@coreui/angular'
 | `plaintext` | `boolean` | `false` | Render the component styled as plain text. Removes the default form field styling and preserve the correct margin and padding. Recommend to use alongside `readonly` |
 | `sizing` | `'' \| 'sm' \| 'lg'` | `undefined` | Size the component small or large. |
 | `type` | `Omit<InputType, 'checkbox' \| 'radio'>` | `'text'` | Specifies the type of input element. |
-| `valid` | `boolean` | `undefined` | Set component validation state to valid. | */}
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"` (not on button-like, `color` and `hidden` inputs, where `aria-invalid` is left to the page), `undefined` none. Do not bind `aria-invalid` on the same element as well. | */}
 
 #### Inputs
 

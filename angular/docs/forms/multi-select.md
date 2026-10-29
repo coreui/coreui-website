@@ -106,6 +106,10 @@ Set the `multiple` boolean property to `false` and allow select only one element
 
 The selection of Angular select components can be coordinated by dynamically updating city options based on the selected country. To ensure synchronized selections, use the `resetSelectionOnOptionsChange` prop on the city select component to reset the selected city whenever the country changes.
 
+## Validation
+
+Set `valid` to show the validation state. With `search` on, the default, `[valid]="false"` also sets `aria-invalid="true"` on the search input, and `aria-describedby` on `c-multi-select`, as a static attribute or bound with `[aria-describedby]`, is copied to it; `[attr.aria-describedby]` stays on the host. Without `search` no field takes `aria-invalid`; a static or `[attr.aria-describedby]` on `c-multi-select` still ties the feedback to it.
+
 ## Disabled
 
 Add the `disabled` boolean property to give it a grayed out appearance, remove pointer events, and prevent focusing.
@@ -441,6 +445,7 @@ import { MultiSelectComponent } from '@coreui/angular-pro'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `allowCreateOptions` | `boolean` | `false` | Allow users to create options if they are not in the list of options. |
+| `aria-describedby` | `string \| null` | `undefined` | Ids of the elements that describe the field, e.g. its validation message; copied to the search input when `search` is on. Set it as a static attribute or bind `[aria-describedby]`; `[attr.aria-describedby]` stays on the host and does not reach the search input. Without `search` the host has the focus: a static attribute or `[attr.aria-describedby]` stays on it, `[aria-describedby]` does not. |
 | `ariaCleanerLabel` | `string` | `'Clear all selections'` | Sets the accessible label (`aria-label`) for the button that clears the current selection. This label is read by screen readers. |
 | `ariaIndicatorLabel` | `string` | `'Toggle visibility of options menu'` | Sets the accessible label (`aria-label`) for the indicator button that toggles the options menu. This label is read by screen readers. |
 | `ariaSearchLabel` | `string` | `'Search options'` | Sets the accessible label (`aria-label`) for the search input. This label is read by screen readers. |
@@ -476,7 +481,7 @@ import { MultiSelectComponent } from '@coreui/angular-pro'
 | `selectionTypeCounterText` | `string` | `'item(s) selected'` | Counter selection label value |
 | `selectionTypeCounterTextPluralMap` | `IPluralMap` | `{ '=1': 'item selected', 'other': 'items selected' }` | Counter selection label plural map for I18nPluralPipe |
 | `size` | `'' \| 'sm' \| 'lg'` | - | Size the component small or large. |
-| `valid` | `boolean` | `undefined` | Toggle visual validation feedback. |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"` on the search input when `search` is on, `undefined` none. |
 | `value` | `TValue \| TValue[]` | `== true,` | Initial value of multi-select |
 | `virtualScroller` | `boolean` | `false` | Enable virtual scroller for options list. |
 | `visible` | `boolean` | `false` | Toggle the visibility of the dropdown select component. |

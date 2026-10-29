@@ -83,7 +83,7 @@ import { FormCheckInputDirective } from '@coreui/angular'
 | --- | --- | --- | --- |
 | `indeterminate` | `boolean` | `false` | Set component indeterminate state. |
 | `type` | `'checkbox' \| 'radio'` | `'checkbox'` | Specifies the type of component. |
-| `valid` | `boolean` | `undefined` | Set component validation state to valid. |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"`, `undefined` none. Do not bind `aria-invalid` on the same element as well. |
 
 ### cFormCheckLabel
 _directive_

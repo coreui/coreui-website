@@ -12,6 +12,9 @@ attempting to submit, you'll see the `:invalid` and `:valid` styles applied to y
 Custom feedback styles apply custom colors, borders, focus styles, and background icons to better communicate
 feedback.
 
+Screen readers do not get these styles: an empty required field shown in red is not announced as invalid. To announce
+errors, set `valid` on the fields, as in the server side example.
+
 ## Browser defaults
 
 Not interested in custom validation feedback messages or writing JavaScript to change form behaviors? All good, you
@@ -29,6 +32,16 @@ and valid form fields with `valid` boolean property.
 For invalid fields, ensure that the invalid feedback/error message is associated with the relevant form field using
 `aria-describedby` (noting that this attribute allows more than one id to be referenced, in case the field already
 points to additional form text).
+
+`cFormControl`, `cSelect` and `cFormCheckInput` with `[valid]="false"` also get `aria-invalid="true"`, so screen
+readers announce the field as invalid; button-like, `color` and `hidden` inputs are left to the page. Do not bind
+`aria-invalid` on the same field as well. When the state changes, as in the enhanced example below, point
+`aria-describedby` at the feedback only while the field is invalid: feedback hidden with CSS is still read when a field
+references it.
+
+Password input, Autocomplete, One-time password, Date picker, Date range picker, Time picker and Multi select set
+`aria-invalid="true"` on their fields the same way; Date picker, Date range picker, Time picker and Multi select take
+`aria-describedby` on the component and pass it to their own fields, see their Validation sections.
 
 Input group needs an extra `.has-validation` class to fix border radius issues with `c-form-feedback` element.
 

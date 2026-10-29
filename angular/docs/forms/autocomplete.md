@@ -68,7 +68,7 @@ Highlight the parts of option labels that match the search with `highlightOption
 
 ## Validation states
 
-Apply validation styling to indicate input validity.
+Apply validation styling to indicate input validity. `[valid]="false"` also sets `aria-invalid="true"` on the input.
 
 ## Disabled state
 Disable the component to prevent user interaction:
@@ -413,7 +413,7 @@ import { AutocompleteDirective } from '@coreui/angular-pro'
 | `searchNoResultsLabel` | `string \| boolean \| TemplateRef<any>` | `false` | Sets the label for no results when filtering. - `false`: Don't show any message when no results found - `true`: Show default "No results found" message - `string`: Show custom text message - `TemplateRef`: Show custom component/element |
 | `showHints` | `boolean` | `false` | Show hint options based on the current input value. When `true`, displays a preview/hint of the first matching option as semi-transparent text in the input field, similar to browser autocomplete. |
 | `sizing` | `'' \| 'sm' \| 'lg'` | - | Size the component small or large. - `'sm'`: Small size variant - `'lg'`: Large size variant - `undefined`: Default/medium size |
-| `valid` | `boolean` | `undefined` | Validation state of the field: `true` valid, `false` invalid, `undefined` none. Not derived from a bound form control; bind it, e.g. `[valid]="control.touched ? !control.invalid : undefined"`. |
+| `valid` | `boolean` | `undefined` | Validation state of the field: `true` valid, `false` invalid, which also sets `aria-invalid="true"` on the input, `undefined` none. Not derived from a bound form control; bind it, e.g. `[valid]="control.touched ? !control.invalid : undefined"`. Do not bind `aria-invalid` on the same element as well. |
 | `value` | `string \| number \| null` | `undefined` | Sets the selected value for the Angular autocomplete component, two-way bindable with `[(value)]`. Matched against option values first, then against option labels. Selecting an option writes its `value`, or its label when it has none; typed text that matches no option is written as is, unless `allowOnlyDefinedOptions` is set. |
 | `virtualScroller` | `boolean` | `false` | Enable virtual scroller for the options list. When `true`, only visible options are rendered in the DOM for better performance with large option lists. Works in conjunction with `visibleItems` and `itemSize`. |
 | `visible` | `boolean` | `false` | Whether the dropdown should be open, two-way bindable with `[(visible)]`. The list is shown while the control is enabled, editable and there is something to show. A request through this input or the exported signal waits until then. A request from the user (keys, a click, the indicator) is accepted only when the list can show, or with external search before the options arrive, so `visibleChange` can trigger loading them. Leaving the field, disabling it, or a typed search that matches nothing (without `searchNoResultsLabel`) cancels the request. |

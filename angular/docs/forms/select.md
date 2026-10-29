@@ -31,4 +31,4 @@ import { FormSelectDirective } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `sizing` | `'' \| 'sm' \| 'lg'` | `undefined` | Size the component small or large. |
-| `valid` | `boolean` | `undefined` | Set component validation state to valid. |
+| `valid` | `boolean` | `undefined` | Validation state: `true` valid, `false` invalid, which also sets `aria-invalid="true"`, `undefined` none. Do not bind `aria-invalid` on the same element as well. |
