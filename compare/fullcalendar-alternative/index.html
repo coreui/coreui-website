@@ -72,7 +72,7 @@
     "url": "https://coreui.io"
   },
   "datePublished": "2026-10-24",
-  "dateModified": "2026-10-24"
+  "dateModified": "2026-11-02"
 }
 </script>
 
@@ -493,10 +493,10 @@
       <tr>
           <td><strong>Bryntum Calendar</strong></td>
           <td>JS, React, Vue, Angular</td>
-          <td>Commercial only; $680/dev, minimum 3 ($2,040)</td>
+          <td>Commercial only; $680/dev from 3 developers, $850/dev for one or two</td>
           <td>✅ Included</td>
           <td>Separate product (Bryntum Scheduler, from $680/dev)</td>
-          <td>✅ RFC 5545-based object model</td>
+          <td>✅ RFC 5545 RRULE string, exception dates</td>
           <td>Undo/redo, copy/paste, ICS and Excel export, print</td>
       </tr>
       <tr>
@@ -535,7 +535,7 @@
 <p><a href="https://javascript.daypilot.org">DayPilot</a> sells five components (Scheduler, Event Calendar, Monthly Calendar, Gantt, Kanban) with a free Lite edition (Apache-2.0) and a perpetual Pro edition from $649. The paywall sits much higher than FullCalendar&rsquo;s: Lite has no all-day events, no resource columns, no year view, no keyboard navigation and no export; the $649 Web Mini covers one application and one developer without source code, and Web Team at $1,449 is the realistic entry. The decisive fact: the JavaScript edition has no built-in recurring events. The docs say &ldquo;No built-in support for recurring events. You need to pass the expanded event occurrences in the events list&rdquo;, and we confirmed it in the public Pro demo (2026.3.6993): 504 configuration properties, none for recurrence.</p>
 <p><strong>Choose it over FullCalendar if:</strong> you want a perpetual Gantt-plus-scheduler family with distinct SaaS and OEM licenses. <strong>Stay on FullCalendar if:</strong> your events repeat.</p>
 <h3 id="bryntum-calendar">Bryntum Calendar</h3>
-<p><a href="https://bryntum.com/products/calendar/">Bryntum Calendar</a> is the top of the market, part of a planning suite (Scheduler, Scheduler Pro, Gantt, Task Board, Grid). Commercial only: $680 per developer with a three-license minimum ($2,040), perpetual with source code, an annual Support &amp; Updates subscription, named licenses reassignable once per six months, and an OEM agreement for SaaS products redistributed for a fee. In return: twelve view types, 45 locales with RTL, RFC 5545-based recurrence with a built-in editor, ICS and Excel export and print, plus undo/redo, copy/paste, travel time and workload rendering nobody else here has. The horizontal timeline is a separate product (Bryntum Scheduler, from $680 per developer). DST behavior is not documented.</p>
+<p><a href="https://bryntum.com/products/calendar/">Bryntum Calendar</a> is the top of the market, part of a planning suite (Scheduler, Scheduler Pro, Gantt, Task Board, Grid). Commercial only: $680 per developer from three licenses and $850 per developer for one or two, perpetual with source code, an annual Support &amp; Updates subscription, named licenses reassignable once per six months, and an OEM agreement for SaaS products redistributed for a fee. In return: twelve view types, 45 locales with RTL, RFC 5545-based recurrence with a built-in editor, ICS and Excel export and print, plus undo/redo, copy/paste, travel time and workload rendering nobody else here has. The horizontal timeline is a separate product (Bryntum Scheduler, from $680 per developer). DST is supported with IANA time zones.</p>
 <p><strong>Choose it over FullCalendar if:</strong> you are building a planning product on one data model. <strong>Stay on FullCalendar if:</strong> you need one calendar; the entry price and the SaaS clause decide it.</p>
 <h3 id="syncfusion-scheduler">Syncfusion Scheduler</h3>
 <p>Syncfusion&rsquo;s Scheduler is one line in a catalog of 1,600+ components and has the widest coverage in the category: seven calendar views plus five timeline views, four resource grouping modes, RFC 5545 recurrence, per-event time zones, iCal both ways, Excel export, print, Google and Outlook sync, and a WCAG 2.2 and Section 508 statement. Prices are no longer published (paid tiers are a quote on a minimum one-year subscription), and the free Community license requires all three thresholds at once: under $1M revenue, up to five developers, no more than ten employees.</p>
@@ -601,7 +601,7 @@
 <p>The pattern: FullCalendar Premium is priced per team, not per developer, so for a small team wanting only the timeline it stays competitive. The gap opens with per-developer subscriptions (MUI X) and per-business-model licensing (DayPilot&rsquo;s SaaS tiers, Bryntum&rsquo;s OEM clause). If you are also buying a data grid, <a href="/pricing/?src=compare-fullcalendar">CoreUI ONE</a> at <span data-product-price="coreui-one" data-product-quantity="1">$347</span> per developer bundles the Scheduler with the Data Grid, the PRO component libraries for all four frameworks, Icons PRO and the Boilerplate; compare that against a Bryntum or Syncfusion suite rather than against FullCalendar alone.</p>
 <h2 id="migrating-away-from-fullcalendar">Migrating away from FullCalendar</h2>
 <ul>
-<li><strong>Event objects translate; the recurrence model may not.</strong> FullCalendar&rsquo;s simple recurrence (<code>daysOfWeek</code>, <code>startTime</code>, <code>startRecur</code>) has no direct equivalent anywhere. If you used the <code>rrule</code> plugin, <code>rrule</code> and <code>exdate</code> map almost one-to-one to CoreUI Scheduler&rsquo;s RRULE string and <code>exdates</code>, to Syncfusion&rsquo;s <code>RecurrenceRule</code>, and with field mapping to Bryntum&rsquo;s object model. Moving to react-big-calendar or DayPilot JS means writing the expansion yourself, DST included.</li>
+<li><strong>Event objects translate; the recurrence model may not.</strong> FullCalendar&rsquo;s simple recurrence (<code>daysOfWeek</code>, <code>startTime</code>, <code>startRecur</code>) has no direct equivalent anywhere. If you used the <code>rrule</code> plugin, <code>rrule</code> and <code>exdate</code> map almost one-to-one to CoreUI Scheduler&rsquo;s RRULE string and <code>exdates</code>, to Syncfusion&rsquo;s <code>RecurrenceRule</code>, and to Bryntum&rsquo;s <code>recurrenceRule</code> and <code>exceptionDates</code>. Moving to react-big-calendar or DayPilot JS means writing the expansion yourself, DST included.</li>
 <li><strong>Resources become a data concept.</strong> CoreUI, Bryntum, Syncfusion and DayPilot Pro have a first-class resource model; react-big-calendar uses accessor props; MUI X has the model but not yet the views.</li>
 <li><strong>View names differ.</strong> <code>timeGridWeek</code> becomes <code>week</code>, <code>resourceTimeGridDay</code> becomes a resource view, and custom-view durations have no universal equivalent.</li>
 <li><strong>Editors are yours or the vendor&rsquo;s.</strong> FullCalendar has no built-in editor, so you own one; keep it where the target has none, or delete it for a bundled editor (CoreUI, Bryntum, Syncfusion).</li>
