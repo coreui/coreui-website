@@ -192,9 +192,9 @@ import { ChipInputComponent } from '@coreui/angular'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `aria-describedby` | `string` | `undefined` | Id of the element that describes the text field, e.g. a hint or a `c-form-feedback`. |
-| `aria-label` | `string` | `undefined` | Accessible name of the text field when there is no visible label. |
-| `aria-labelledby` | `string` | `undefined` | Id of the element that names the text field. |
+| `aria-describedby` | `string \| null` | `undefined` | Id of the element that describes the text field, e.g. a hint or a `c-form-feedback`. |
+| `aria-label` | `string \| null` | `undefined` | Accessible name of the text field when there is no visible label. |
+| `aria-labelledby` | `string \| null` | `undefined` | Id of the element that names the text field. |
 | `ariaAddedAnnouncement` | `string` | `'added'` | Wording announced to screen readers after a chip is added; the chip value is prepended. |
 | `ariaRemovedAnnouncement` | `string` | `'removed'` | Wording announced to screen readers after a chip is removed; the chip value is prepended. |
 | `ariaRemoveLabel` | `string` | `'Remove'` | Label of the remove buttons; each chip appends its value, e.g. `'Remove Angular'`. |

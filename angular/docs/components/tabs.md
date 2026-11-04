@@ -57,22 +57,25 @@ Dynamic tabbed interfaces, as described in the <a href="https://www.w3.org/TR/wa
 - The active tab element has the state `aria-selected` set to `true`, and all other tab elements have it set to `false`.
 - Each element with the role `tabpanel` has the property `aria-labelledby` referring to its associated `tab` element.
 
-CoreUI Angular  Tabs component automatically manages all `role="..."` and `aria-` attributes for accessibility. It also handles the selected state by adding `aria-selected="true"` to the active tab. Additionally, you have the flexibility to manually set these attributes, as shown in the example below.
-This example demonstrates how to manually set `aria-controls`, and `aria-labelledby` attributes on your tabs and tab panels.
+CoreUI Angular  Tabs component automatically manages all `role="..."` and `aria-` attributes for accessibility. It also handles the selected state by adding `aria-selected="true"` to the active tab.
+A tab and a tab panel with the same `itemKey` refer to each other: the tab's `aria-controls` takes the panel's `id`, and the panel's `aria-labelledby` takes the tab's `id`, including an `id` you set yourself. Without a matching panel or tab they use the default ids `{c-tabs id}-panel-{itemKey}` and `{c-tabs id}-tab-{itemKey}`. An `aria-controls` or `aria-labelledby` you set yourself takes precedence.
 
 ### Keyboard Interaction
 
 **When focus enters the tabs list:**
 
-- <kbd>Tab</kbd>: It places focus on the active tab element.
+- <kbd>Tab</kbd>: It places focus on the active tab element, or on the first enabled tab when no tab is active. When no tab is active and every tab is disabled, the tab list is skipped.
 
 **When focus is on a tab element:**
 
 - <kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, typically the tabpanel unless the first focusable element inside the tabpanel is found earlier.
-- <kbd>Left Arrow</kbd>: Moves focus to the previous tab. If on the first tab, it wraps around to the last tab.
-- <kbd>Right Arrow</kbd>: Moves focus to the next tab. If on the last tab, it wraps around to the first tab.
-- <kbd>Home</kbd>: Moves focus to the first tab.
-- <kbd>End</kbd>: Moves focus to the last tab.
+- <kbd>Left Arrow</kbd>: Moves focus to the previous enabled tab and activates it. If on the first enabled tab, it wraps around to the last enabled tab.
+- <kbd>Right Arrow</kbd>: Moves focus to the next enabled tab and activates it. If on the last enabled tab, it wraps around to the first enabled tab.
+- <kbd>Home</kbd>: Moves focus to the first enabled tab and activates it.
+- <kbd>End</kbd>: Moves focus to the last enabled tab and activates it.
+- <kbd>Enter</kbd> or <kbd>Space</kbd>: Activates the focused tab.
+
+Focus alone does not activate a tab. The arrow keys skip disabled tabs and are mirrored in a right-to-left layout. A disabled active tab keeps `aria-selected="true"` and stays in the tab sequence with `aria-disabled="true"` instead of `disabled`, so the tab list keeps its place.
 
 ## Customizing
 ### CSS variables
@@ -217,7 +220,7 @@ import { TabsComponent } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `activeItemKey` | `string \| number` | - | The active item key. |
-| `id` | `string` | `tabs-{n}` | HTML id attribute. |
+| `id` | `string \| null` | `tabs-{n}` | HTML id attribute. |
 
 ### Events
 
@@ -253,9 +256,9 @@ import { TabDirective } from '@coreui/angular'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `aria-controls` | `string` | `undefined` | aria-controls attribute |
-| `disabled` | `boolean` | `false` | Disabled attribute |
-| `id` | `string` | `undefined` | Element id attribute |
+| `aria-controls` | `string \| null` | `{c-tabs id}-panel-{itemKey}` | aria-controls attribute. Follows the `id` of the `c-tab-panel` with the same `itemKey`, a custom one included. |
+| `disabled` | `boolean` | `false` | Disables the tab. A disabled tab that is selected or has focus stays focusable with `aria-disabled`. |
+| `id` | `string \| null` | `{c-tabs id}-tab-{itemKey}` | Element id attribute |
 | `itemKey` | `string \| number` | - | Item key. |
 
 ### c-tabs-content
@@ -280,8 +283,8 @@ import { TabPanelComponent } from '@coreui/angular'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `aria-labelledby` | `string` | `undefined` | aria-labelledby attribute |
-| `id` | `string` | `undefined` | Element id attribute |
+| `aria-labelledby` | `string \| null` | `{c-tabs id}-tab-{itemKey}` | aria-labelledby attribute. Follows the `id` of the `cTab` with the same `itemKey`, a custom one included. |
+| `id` | `string \| null` | `{c-tabs id}-panel-{itemKey}` | Element id attribute |
 | `itemKey` | `string \| number` | - | Item key. |
 | `role` | `string` | `'tabpanel'` | Element role. |
 | `tabindex` | `number` | `0` | tabindex attribute. |

@@ -51,7 +51,7 @@ import { AlertComponent } from '@coreui/angular'
 | --- | --- | --- | --- |
 | `color` | `string` | `'primary'` | Sets the color context of the component to one of CoreUI’s themed colors. |
 | `dismissible` | `boolean` | `false` | Optionally adds a close button to the alert and allow it to self-dismiss. |
-| `fade` | `boolean` | `false` | Adds animation for dismissible alert. |
+| `fade` | `boolean` | `false` | Fades the alert in when shown and out when dismissed. |
 | `role` | `string` | `'alert'` | Default role for alert |
 | `variant` | `'solid'` | `undefined` | Set the alert variant to a solid. |
 | `visible` | `boolean` | `true` | Toggle the visibility of the alert component. |

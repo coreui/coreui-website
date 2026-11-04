@@ -1,0 +1,3 @@
+import{i as e}from"./_router_module-chunk.BNwvBnZk.js";import{Jt as t,ln as n}from"./common.CGY7PYyH.js";import{dn as r}from"./coreui-angular-pro.B1ZStURC.js";var i=class e{static{this.ɵfac=function(t){return new(t||e)}}static{this.ɵcmp=t({type:e,selectors:[[`docs-rating-sizes`]],decls:3,vars:0,consts:[[`size`,`sm`,`value`,`3`],[`value`,`3`],[`size`,`lg`,`value`,`3`]],template:function(e,t){e&1&&n(0,`c-rating`,0)(1,`c-rating`,1)(2,`c-rating`,2)},dependencies:[r],styles:[`[_nghost-%COMP%]   .rating[_ngcontent-%COMP%] {
+  display: flex;
+}`]})}};i.clientProviders=[e([])];export{i as RatingSizesComponent};

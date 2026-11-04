@@ -25,6 +25,8 @@ However, CoreUI for Angular does add built-in support for most standard keyboard
 
 An `a` element used as the toggle gets `role="button"`. Give it an `href` so it is focusable and reachable with <kbd>Tab</kbd>, and keep its content non-interactive: a button exposes its children as plain text.
 
+The toggle sets `aria-expanded` to the open state, except on a `div` or `span` without a `role`, where the attribute is not allowed. Use a `button` or an `a` as the toggle, and give a text field used as the toggle `role="combobox"`. When the toggle wraps a field, put the state on a control inside it: the field as a combobox, or a button next to it.
+
 ## Examples
 Bind the dropdown toggle and the dropdown menu inside `c-dropdown`, or different element that declares `position: relative;`. Dropdowns can be triggered from `a` or `button` elements to better fit your possible requirements.
 

@@ -124,15 +124,20 @@ Instead of declaring the navigation, hand `c-sidebar-nav` an `INavData` array th
 titles, links, badges and groups for you. Both ways can be combined: projected content is rendered after the items
 built from the array.
 
+A group matches the active route when the route falls under the group's `url` (a root `url` only on the root route),
+or when a link inside it is active the way its `routerLinkActive` marks it; disabled and external links do not count.
 `dropdownMode` decides how much the router drives these groups:
 
-- `path` (default) opens the group whose item matches the active route and closes it when the route no longer matches.
+- `path` (default) opens a matching group and closes it when the route no longer matches.
 - `close` does the same, and additionally closes a group when another one is clicked.
 - `none` leaves the group alone — it neither opens under a matching route nor closes on navigation, so the user's
   clicks are the only thing that moves it.
 
 > Until 5.7.28 a group matching the active route was expanded on load under every `dropdownMode`, `none` included.
 > Set `dropdownMode="none"` if you relied on that and want no route-driven expansion at all.
+> 
+> Until 5.7.41 a group matched only by its own `url`, compared as text, and a group without `url` was expanded on every
+> navigation. Give such a group a `url`, or rely on the links inside it, to keep it open on its routes.
 
 ## Dark sidebar
 
@@ -410,7 +415,7 @@ import { SidebarNavComponent } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `compact` | `boolean` | `undefined` | Renders the nav in compact mode. |
-| `dropdownMode` | `'path' \| 'none' \| 'close'` | `'path'` | Determines when an inactive `c-sidebar-nav-group` closes. - `path`: on an active route change only - `close`: when another group is clicked - `none`: never, the group stays open — it stops reacting to the route altogether, so a matching route neither opens it on init nor on a later navigation |
+| `dropdownMode` | `'path' \| 'none' \| 'close'` | `'path'` | Determines when an inactive `c-sidebar-nav-group` closes. - `path`: on an active route change only - `close`: when another group is clicked - `none`: never, the group stays open — it stops reacting to the route altogether, so a matching route neither opens it on init nor on a later navigation. A route matches a group when it falls under the `url` of the group (a root `url` only on the root route), or when a link inside the group is active by its own `routerLinkActiveOptions`; disabled and external links do not count. |
 | `groupItems` | `boolean` | `undefined` | Renders `c-sidebar-nav` as a nested group's item list rather than the top-level sidebar nav. |
 | `navItems` | `INavData[]` | `[]` | Configuration object for sidebar-nav. |
 | `role` | `string` | `'navigation'` | Default role for sidebar nav. |
