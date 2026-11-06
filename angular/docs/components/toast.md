@@ -20,7 +20,8 @@ To encourage extensible and predictable toasts, we recommend a header and body. 
 allowing easy alignment of content thanks to our margin and flexbox utilities.
 
 Toasts are as flexible as you need and have very little required markup. At a minimum, we require a single element to
-contain your "toasted" content and strongly encourage a dismiss button.
+contain your "toasted" content and strongly encourage a dismiss button. The close button of `c-toast-header` is named
+`Close`; set `ariaCloseLabel` to name it in the language of the page.
 
 ### Translucent
 
@@ -120,6 +121,7 @@ import { ToastHeaderComponent } from '@coreui/angular'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
+| `ariaCloseLabel` | `string` | `'Close'` | Accessible name of the close button. |
 | `closeButton` | `boolean` | `true` | Add close button to a toast header |
 
 ### c-toaster

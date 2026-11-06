@@ -4582,6 +4582,7 @@ In non-linear mode, all steps are accessible unless explicitly disabled.
 
 The Angular Stepper component natively supports step-by-step form validation. Use this feature to ensure required fields are filled and basic data integrity is maintained throughout the multi-step process without needing any additional code.
 The following example demonstrates how to use the Angular Stepper with HTML5 validation and template-driven form. Each step contains a form, and when the `validation` prop is enabled, users must complete each form before proceeding to the next step. If a form is invalid, the stepper prevents navigation until the form is valid.
+For a step whose `valid` is `true` or `false`, `stepValidationComplete` emits `{ stepNumber, isValid }`, where `stepNumber` counts from 1: when the user moves forward from the step or calls `next()`, and on `finish()` for the active step. A move or a finish refused because of another invalid step still reports only that one step, and a move through `activeStepIndex` reports nothing.
 
 ### Browser Validation
 
@@ -4783,7 +4784,7 @@ import { StepperComponent } from '@coreui/angular-pro'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `activeStepIndex` | `number` | `undefined` | Currently active step index. When not set, falls back to `defaultActiveStepIndex` (`0`). |
-| `defaultActiveStepIndex` | `number` | `0` | Initial active step index |
+| `defaultActiveStepIndex` | `number` | `0` | Initial active step index, also the step `reset()` returns to. When that step is disabled or out of range, the first enabled step is used. |
 | `id` | `string` | `'stepper-<nextId>'` | Unique identifier for the Stepper component. If not provided, a default ID will be generated. |
 | `layout` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout orientation - `'horizontal'`: Step indicators and content are placed horizontally (default). - `'vertical'`: Step indicators and content are stacked vertically. Choose `'vertical'` layout for mobile or narrow designs. |
 | `linear` | `boolean` | `true` | Enforces linear progression (cannot skip steps). - `true`: Users must complete steps sequentially. - `false`: Users can jump freely between steps. |
@@ -4797,16 +4798,16 @@ import { StepperComponent } from '@coreui/angular-pro'
 | `activeStepIndexChange` | Event fired when the active step changes in the Angular Stepper component. |
 | `finished` | Event fired when the user completes the last step of the Form Wizard. Use this to trigger a submit action or redirect after the final step. |
 | `onReset` | Event fired when the user triggers the reset() action. Use this to reset or clear related form data. |
+| `stepValidationComplete` | Event fired after a validation check of a step, when the user moves forward from it or finishes on it. Receives the step number (from 1) and the validation result (`true` or `false`). Fired only with `validation`, for a step that binds `valid`. |
 
 ##### Methods
   
 | name | description | type |
 | ---- | ----------- | ---- |
 | `finish` | Triggers the finish action, marking the stepper as completed. | `void` |
-| `reset` | Resets the stepper to its initial state, clearing all steps and active index. | `void` |
+| `reset` | Emits `onReset`, then returns to `defaultActiveStepIndex` (the first enabled step when it is disabled). | `void` |
 | `next` | Moves to the next step, if available and valid. | `void` |
 | `prev` | Moves to the previous step, if available. | `void` |
-{/*    | `stepValidationComplete` | Emits when the validation of the current step is complete | `boolean` |*/}
 
 <br />
 
@@ -5378,6 +5379,7 @@ Alert can also incorporate supplementary HTML elements like heading with `cAlert
 
 ### Dismissing
 Alerts can also be easily dismissed. Just add the `dismissible` prop and `fade` for animation.
+The close button is named `Close`; set `ariaCloseLabel` to name it in the language of the page.
 To remove an alert from the DOM, you can use `*ngIf` directive.
 
 ### Custom template
@@ -5412,6 +5414,7 @@ import { AlertComponent } from '@coreui/angular'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
+| `ariaCloseLabel` | `string` | `'Close'` | Accessible name of the default close button. |
 | `color` | `string` | `'primary'` | Sets the color context of the component to one of CoreUI’s themed colors. |
 | `dismissible` | `boolean` | `false` | Optionally adds a close button to the alert and allow it to self-dismiss. |
 | `fade` | `boolean` | `false` | Fades the alert in when shown and out when dismissed. |
@@ -7784,6 +7787,7 @@ Toggle a working modal demo by clicking the button below. It will slide down and
 ### Static backdrop
 
 If you set a `backdrop` to `static`, your modal will behave as though the backdrop is static, meaning it will not close when clicking outside it. Click the button below to try it.
+Each click outside it, and each <kbd>Escape</kbd> while `keyboard` is on, emits `closePrevented` instead of closing the modal.
 
 ### Portal
 
@@ -7842,6 +7846,8 @@ Be sure to add `aria-labelledby="..."`, referencing the modal title, to `c-modal
 
 When the modal opens, focus moves to the element marked with `cdkFocusInitial`, otherwise to the first tabbable element in the modal, or to the modal itself when it has none. When it closes, focus returns to the `cModalToggle` that opened it. Without such a toggle, or when it is hidden or disabled, focus returns to the element that had it when the modal opened. When a modal opens from a toggle inside another modal, which closes, focus returns through that chain: closing the second modal, or switching back to the first one and closing it, returns focus to the element that opened the first modal. Focus moved to another element outside the modal before it closes stays there.
 
+With `[focus]="false"` the modal neither moves focus into itself when it opens nor keeps it inside. The modal is still `aria-modal`, so move focus into it yourself once it is shown. Focus that the user takes into the modal still returns on close.
+
 An <kbd>Escape</kbd> that another component already handled with `preventDefault()`, such as an open dropdown inside the modal, is ignored by the modal.
 
 ## API reference
@@ -7872,6 +7878,7 @@ import { ModalComponent } from '@coreui/angular'
 | `ariaModal` | `boolean` | `false` | Set aria-modal html attr for modal |
 | `backdrop` | `boolean \| 'static'` | `true` | Apply a backdrop on the body while the modal is open. |
 | `container` | `Element \| object \| null` | `document.body` | Appends the angular modal to a specific element. You can pass an HTML element or function that returns a single element. By default, `document.body`. |
+| `focus` | `boolean` | `true` | Moves focus into the modal when shown and keeps it there while open. |
 | `fullscreen` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl'` | `undefined` | Set modal to cover the entire user viewport. |
 | `id` | `string` | `undefined` | HTML id attribute, used to toggle the modal by id. Without it, the `id` property holds a generated id that is not rendered. |
 | `keyboard` | `boolean` | `true` | Closes the modal when the escape key is pressed, unless another handler already prevented its default. |
@@ -7886,6 +7893,7 @@ import { ModalComponent } from '@coreui/angular'
 
 | Name | Description |
 | --- | --- |
+| `closePrevented` | Event triggered when a modal with `backdrop="static"` stays open after a click on the backdrop, or after the escape key with `keyboard` on. |
 | `visibleChange` | Event triggered on visible change |
 
 ### c-modal-body
@@ -8994,6 +9002,7 @@ Accessibility is an important part of the Search Button design. The component in
 
 - Choose shortcuts carefully and avoid overriding common browser or system shortcuts unless that behavior is intentional and clearly communicated.
 - Make sure the visible button label clearly describes the action, for example `Search`, `Open search`, or `Command palette`.
+- When the visible label is not enough, set `aria-label` or `aria-labelledby` on `c-search-button`, as an attribute or an input binding (`[aria-label]`). The component moves them to its inner `<button>`; an attribute binding (`[attr.aria-label]`) does not reach the button.
 - Provide a custom icon template via `<ng-template cTemplateId="icon">` marked `aria-hidden="true"` when the default icon isn't suitable.
 
 ## Customizing
@@ -9104,6 +9113,8 @@ import { SearchButtonComponent } from '@coreui/angular'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
+| `aria-label` | `string \| null` | `undefined` | Accessible name of the button, in place of its visible placeholder. |
+| `aria-labelledby` | `string \| null` | `undefined` | Id of the element that names the button. |
 | `disabled` | `boolean` | `false` | Toggle the disabled state for the component. |
 | `placeholder` | `string` | `'Search'` | Placeholder content rendered inside `.search-button-placeholder`. |
 | `preventDefault` | `boolean` | `true` | Prevent the browser's default behavior when the configured shortcut matches. |
@@ -9258,6 +9269,15 @@ To filter a column with a *`columnName`* :
 
 <div class="badge bg-info badge-sm">~5.2.19</div>
 
+### No items label
+
+- Starting from <div class="badge bg-info badge-sm">~5.7.42</div> `noItemsLabel` takes an `ng-template` as well as a string, rendered when no row is left to show.
+
+### External items per page
+
+- Starting from <div class="badge bg-info badge-sm">~5.7.42</div> `[itemsPerPageSelect]="{ external: true }"` leaves the choice to the page: the selection is only emitted by `itemsPerPageChange`.
+- To apply it, bind the value back to `itemsPerPage` right away and set a two-way bound `[(activePage)]` to 1, then load data. A value the page does not bind back is refused, and the selector keeps showing the bound `itemsPerPage`.
+
 ### Summary row
 
 - Starting from <div class="badge bg-info badge-sm">~4.5.26</div> you can pass an ng-template with `cTemplateId="tableSummaryRow"` as a c-smart-table content.
@@ -9310,7 +9330,7 @@ import { SmartTableComponent } from '@coreui/angular-pro'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `activePage` | `number` | `1` | Sets active page. If 'pagination' prop is enabled, activePage is set only initially. |
+| `activePage` | `number` | `1` | Sets active page. Bind it two-way, `[(activePage)]`, to follow the page the user moves to. |
 | `cleaner` | `boolean` | `false` | When set, displays table cleaner above table, next to the table filter (or in place of table filter if `tableFilter` prop is not set) Cleaner resets `tableFilterValue`, `columnFilterValue`, `sorterValue`. If clean is possible it is clickable (`tabIndex="0"` `role="button"`, `color="danger"`), otherwise it is not clickable and transparent. Cleaner can be customized through the `cleaner` slot. |
 | `clickableRows` | `boolean` | `false` | Style table items as clickable. |
 | `columnFilter` | `boolean \| IColumnFilter` | - | When set, displays additional filter row between table header and items, allowing filtering by specific column. Column filter can be customized, by passing prop as object with additional options as keys. Available options: - external (Boolean) - Disables automatic filtering inside component. - lazy (Boolean) - Set to true to trigger filter updates only on change event. |
@@ -9323,9 +9343,9 @@ import { SmartTableComponent } from '@coreui/angular-pro'
 | `itemsPerPage` | `number` | `10` | Number of items per site, when pagination is enabled. |
 | `itemsPerPageLabel` | `string` | `'Items per page:'` | Label for items per page selector. |
 | `itemsPerPageOptions` | `number[]` | `[5, 10, 20, 50]` | Items per page selector options. |
-| `itemsPerPageSelect` | `boolean \| ItemsPerPageSelect` | - | Adds select element over table, which is used for control items per page in pagination. If you want to customize this element, pass an object with optional values: - external (Boolean) - disables automatic 'itemsPerPage' change (use to change pages externally by 'pagination-change' event). |
+| `itemsPerPageSelect` | `boolean \| ItemsPerPageSelect` | - | Adds select element over table, which is used for control items per page in pagination. If you want to customize this element, pass an object with optional values: - external (Boolean) - disables automatic 'itemsPerPage' change: the pick is only emitted by `itemsPerPageChange`. To apply it, bind it back to `itemsPerPage` right away and set a two-way bound `[(activePage)]` to 1, then load data; a value not bound back is refused and the selector keeps showing the bound `itemsPerPage`. |
 | `loading` | `boolean` | - | When set, table will have loading style: loading spinner and reduced opacity. When 'small' prop is enabled spinner will be also smaller. |
-| `noItemsLabel` | `string \| TemplateRef<any>` | `'No items found'` | ReactNode or string for passing custom noItemsLabel texts. |
+| `noItemsLabel` | `string \| TemplateRef<any>` | `'No items found'` | String or TemplateRef for passing custom noItemsLabel content. |
 | `pagination` | `boolean` | `false` | Enables default pagination. Set to true for default setup or pass an object with additional CPagination props. Default pagination will always have the computed number of pages that cannot be changed. The number of pages is generated based on the number of passed items and 'itemsPerPage' prop. If this restriction is an obstacle, you can make external CPagination instead. |
 | `selectable` | `boolean` | - | Add checkboxes to make table rows selectable. |
 | `selectAll` | `boolean` | `true` | Enables select all checkbox displayed in the header of the table. |
@@ -9347,7 +9367,7 @@ import { SmartTableComponent } from '@coreui/angular-pro'
 | `cleanerClick` | Event emitted on cleaner click. |
 | `columnFilterValueChange` | Event emitted on `columnFilterValue` change. |
 | `filteredItemsChange` | Event emitted on `filteredItems` change. |
-| `itemsPerPageChange` | Event emitted on `itemsPerPage` change. |
+| `itemsPerPageChange` | Event emitted on `itemsPerPage` change. With `itemsPerPageSelect.external`, emitted on the selector pick, which is not applied. |
 | `rowClick` | Event emitted on row click. |
 | `selectedItemsChange` | Event emitted on `selectedItems` change. |
 | `sorterValueChange` | Event emitted on `sorterValue` change. |
@@ -10439,7 +10459,8 @@ To encourage extensible and predictable toasts, we recommend a header and body. 
 allowing easy alignment of content thanks to our margin and flexbox utilities.
 
 Toasts are as flexible as you need and have very little required markup. At a minimum, we require a single element to
-contain your "toasted" content and strongly encourage a dismiss button.
+contain your "toasted" content and strongly encourage a dismiss button. The close button of `c-toast-header` is named
+`Close`; set `ariaCloseLabel` to name it in the language of the page.
 
 ### Translucent
 
@@ -10539,6 +10560,7 @@ import { ToastHeaderComponent } from '@coreui/angular'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
+| `ariaCloseLabel` | `string` | `'Close'` | Accessible name of the close button. |
 | `closeButton` | `boolean` | `true` | Add close button to a toast header |
 
 ### c-toaster

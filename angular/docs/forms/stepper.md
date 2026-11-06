@@ -51,6 +51,7 @@ In non-linear mode, all steps are accessible unless explicitly disabled.
 
 The Angular Stepper component natively supports step-by-step form validation. Use this feature to ensure required fields are filled and basic data integrity is maintained throughout the multi-step process without needing any additional code.
 The following example demonstrates how to use the Angular Stepper with HTML5 validation and template-driven form. Each step contains a form, and when the `validation` prop is enabled, users must complete each form before proceeding to the next step. If a form is invalid, the stepper prevents navigation until the form is valid.
+For a step whose `valid` is `true` or `false`, `stepValidationComplete` emits `{ stepNumber, isValid }`, where `stepNumber` counts from 1: when the user moves forward from the step or calls `next()`, and on `finish()` for the active step. A move or a finish refused because of another invalid step still reports only that one step, and a move through `activeStepIndex` reports nothing.
 
 ### Browser Validation
 
@@ -252,7 +253,7 @@ import { StepperComponent } from '@coreui/angular-pro'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `activeStepIndex` | `number` | `undefined` | Currently active step index. When not set, falls back to `defaultActiveStepIndex` (`0`). |
-| `defaultActiveStepIndex` | `number` | `0` | Initial active step index |
+| `defaultActiveStepIndex` | `number` | `0` | Initial active step index, also the step `reset()` returns to. When that step is disabled or out of range, the first enabled step is used. |
 | `id` | `string` | `'stepper-<nextId>'` | Unique identifier for the Stepper component. If not provided, a default ID will be generated. |
 | `layout` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout orientation - `'horizontal'`: Step indicators and content are placed horizontally (default). - `'vertical'`: Step indicators and content are stacked vertically. Choose `'vertical'` layout for mobile or narrow designs. |
 | `linear` | `boolean` | `true` | Enforces linear progression (cannot skip steps). - `true`: Users must complete steps sequentially. - `false`: Users can jump freely between steps. |
@@ -266,16 +267,16 @@ import { StepperComponent } from '@coreui/angular-pro'
 | `activeStepIndexChange` | Event fired when the active step changes in the Angular Stepper component. |
 | `finished` | Event fired when the user completes the last step of the Form Wizard. Use this to trigger a submit action or redirect after the final step. |
 | `onReset` | Event fired when the user triggers the reset() action. Use this to reset or clear related form data. |
+| `stepValidationComplete` | Event fired after a validation check of a step, when the user moves forward from it or finishes on it. Receives the step number (from 1) and the validation result (`true` or `false`). Fired only with `validation`, for a step that binds `valid`. |
 
 ##### Methods
   
 | name | description | type |
 | ---- | ----------- | ---- |
 | `finish` | Triggers the finish action, marking the stepper as completed. | `void` |
-| `reset` | Resets the stepper to its initial state, clearing all steps and active index. | `void` |
+| `reset` | Emits `onReset`, then returns to `defaultActiveStepIndex` (the first enabled step when it is disabled). | `void` |
 | `next` | Moves to the next step, if available and valid. | `void` |
 | `prev` | Moves to the previous step, if available. | `void` |
-{/*    | `stepValidationComplete` | Emits when the validation of the current step is complete | `boolean` |*/}
 
 <br />
 

@@ -52,6 +52,15 @@ To filter a column with a *`columnName`* :
 
 <div class="badge bg-info badge-sm">~5.2.19</div>
 
+### No items label
+
+- Starting from <div class="badge bg-info badge-sm">~5.7.42</div> `noItemsLabel` takes an `ng-template` as well as a string, rendered when no row is left to show.
+
+### External items per page
+
+- Starting from <div class="badge bg-info badge-sm">~5.7.42</div> `[itemsPerPageSelect]="{ external: true }"` leaves the choice to the page: the selection is only emitted by `itemsPerPageChange`.
+- To apply it, bind the value back to `itemsPerPage` right away and set a two-way bound `[(activePage)]` to 1, then load data. A value the page does not bind back is refused, and the selector keeps showing the bound `itemsPerPage`.
+
 ### Summary row
 
 - Starting from <div class="badge bg-info badge-sm">~4.5.26</div> you can pass an ng-template with `cTemplateId="tableSummaryRow"` as a c-smart-table content.
@@ -104,7 +113,7 @@ import { SmartTableComponent } from '@coreui/angular-pro'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
-| `activePage` | `number` | `1` | Sets active page. If 'pagination' prop is enabled, activePage is set only initially. |
+| `activePage` | `number` | `1` | Sets active page. Bind it two-way, `[(activePage)]`, to follow the page the user moves to. |
 | `cleaner` | `boolean` | `false` | When set, displays table cleaner above table, next to the table filter (or in place of table filter if `tableFilter` prop is not set) Cleaner resets `tableFilterValue`, `columnFilterValue`, `sorterValue`. If clean is possible it is clickable (`tabIndex="0"` `role="button"`, `color="danger"`), otherwise it is not clickable and transparent. Cleaner can be customized through the `cleaner` slot. |
 | `clickableRows` | `boolean` | `false` | Style table items as clickable. |
 | `columnFilter` | `boolean \| IColumnFilter` | - | When set, displays additional filter row between table header and items, allowing filtering by specific column. Column filter can be customized, by passing prop as object with additional options as keys. Available options: - external (Boolean) - Disables automatic filtering inside component. - lazy (Boolean) - Set to true to trigger filter updates only on change event. |
@@ -117,9 +126,9 @@ import { SmartTableComponent } from '@coreui/angular-pro'
 | `itemsPerPage` | `number` | `10` | Number of items per site, when pagination is enabled. |
 | `itemsPerPageLabel` | `string` | `'Items per page:'` | Label for items per page selector. |
 | `itemsPerPageOptions` | `number[]` | `[5, 10, 20, 50]` | Items per page selector options. |
-| `itemsPerPageSelect` | `boolean \| ItemsPerPageSelect` | - | Adds select element over table, which is used for control items per page in pagination. If you want to customize this element, pass an object with optional values: - external (Boolean) - disables automatic 'itemsPerPage' change (use to change pages externally by 'pagination-change' event). |
+| `itemsPerPageSelect` | `boolean \| ItemsPerPageSelect` | - | Adds select element over table, which is used for control items per page in pagination. If you want to customize this element, pass an object with optional values: - external (Boolean) - disables automatic 'itemsPerPage' change: the pick is only emitted by `itemsPerPageChange`. To apply it, bind it back to `itemsPerPage` right away and set a two-way bound `[(activePage)]` to 1, then load data; a value not bound back is refused and the selector keeps showing the bound `itemsPerPage`. |
 | `loading` | `boolean` | - | When set, table will have loading style: loading spinner and reduced opacity. When 'small' prop is enabled spinner will be also smaller. |
-| `noItemsLabel` | `string \| TemplateRef<any>` | `'No items found'` | ReactNode or string for passing custom noItemsLabel texts. |
+| `noItemsLabel` | `string \| TemplateRef<any>` | `'No items found'` | String or TemplateRef for passing custom noItemsLabel content. |
 | `pagination` | `boolean` | `false` | Enables default pagination. Set to true for default setup or pass an object with additional CPagination props. Default pagination will always have the computed number of pages that cannot be changed. The number of pages is generated based on the number of passed items and 'itemsPerPage' prop. If this restriction is an obstacle, you can make external CPagination instead. |
 | `selectable` | `boolean` | - | Add checkboxes to make table rows selectable. |
 | `selectAll` | `boolean` | `true` | Enables select all checkbox displayed in the header of the table. |
@@ -141,7 +150,7 @@ import { SmartTableComponent } from '@coreui/angular-pro'
 | `cleanerClick` | Event emitted on cleaner click. |
 | `columnFilterValueChange` | Event emitted on `columnFilterValue` change. |
 | `filteredItemsChange` | Event emitted on `filteredItems` change. |
-| `itemsPerPageChange` | Event emitted on `itemsPerPage` change. |
+| `itemsPerPageChange` | Event emitted on `itemsPerPage` change. With `itemsPerPageSelect.external`, emitted on the selector pick, which is not applied. |
 | `rowClick` | Event emitted on row click. |
 | `selectedItemsChange` | Event emitted on `selectedItems` change. |
 | `sorterValueChange` | Event emitted on `sorterValue` change. |

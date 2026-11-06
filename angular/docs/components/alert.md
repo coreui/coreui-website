@@ -15,6 +15,7 @@ Alert can also incorporate supplementary HTML elements like heading with `cAlert
 
 ### Dismissing
 Alerts can also be easily dismissed. Just add the `dismissible` prop and `fade` for animation.
+The close button is named `Close`; set `ariaCloseLabel` to name it in the language of the page.
 To remove an alert from the DOM, you can use `*ngIf` directive.
 
 ### Custom template
@@ -49,6 +50,7 @@ import { AlertComponent } from '@coreui/angular'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
+| `ariaCloseLabel` | `string` | `'Close'` | Accessible name of the default close button. |
 | `color` | `string` | `'primary'` | Sets the color context of the component to one of CoreUI’s themed colors. |
 | `dismissible` | `boolean` | `false` | Optionally adds a close button to the alert and allow it to self-dismiss. |
 | `fade` | `boolean` | `false` | Fades the alert in when shown and out when dismissed. |

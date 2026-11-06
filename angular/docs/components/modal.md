@@ -15,6 +15,7 @@ Toggle a working modal demo by clicking the button below. It will slide down and
 ### Static backdrop
 
 If you set a `backdrop` to `static`, your modal will behave as though the backdrop is static, meaning it will not close when clicking outside it. Click the button below to try it.
+Each click outside it, and each <kbd>Escape</kbd> while `keyboard` is on, emits `closePrevented` instead of closing the modal.
 
 ### Portal
 
@@ -73,6 +74,8 @@ Be sure to add `aria-labelledby="..."`, referencing the modal title, to `c-modal
 
 When the modal opens, focus moves to the element marked with `cdkFocusInitial`, otherwise to the first tabbable element in the modal, or to the modal itself when it has none. When it closes, focus returns to the `cModalToggle` that opened it. Without such a toggle, or when it is hidden or disabled, focus returns to the element that had it when the modal opened. When a modal opens from a toggle inside another modal, which closes, focus returns through that chain: closing the second modal, or switching back to the first one and closing it, returns focus to the element that opened the first modal. Focus moved to another element outside the modal before it closes stays there.
 
+With `[focus]="false"` the modal neither moves focus into itself when it opens nor keeps it inside. The modal is still `aria-modal`, so move focus into it yourself once it is shown. Focus that the user takes into the modal still returns on close.
+
 An <kbd>Escape</kbd> that another component already handled with `preventDefault()`, such as an open dropdown inside the modal, is ignored by the modal.
 
 ## API reference
@@ -103,6 +106,7 @@ import { ModalComponent } from '@coreui/angular'
 | `ariaModal` | `boolean` | `false` | Set aria-modal html attr for modal |
 | `backdrop` | `boolean \| 'static'` | `true` | Apply a backdrop on the body while the modal is open. |
 | `container` | `Element \| object \| null` | `document.body` | Appends the angular modal to a specific element. You can pass an HTML element or function that returns a single element. By default, `document.body`. |
+| `focus` | `boolean` | `true` | Moves focus into the modal when shown and keeps it there while open. |
 | `fullscreen` | `boolean \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'xxl'` | `undefined` | Set modal to cover the entire user viewport. |
 | `id` | `string` | `undefined` | HTML id attribute, used to toggle the modal by id. Without it, the `id` property holds a generated id that is not rendered. |
 | `keyboard` | `boolean` | `true` | Closes the modal when the escape key is pressed, unless another handler already prevented its default. |
@@ -117,6 +121,7 @@ import { ModalComponent } from '@coreui/angular'
 
 | Name | Description |
 | --- | --- |
+| `closePrevented` | Event triggered when a modal with `backdrop="static"` stays open after a click on the backdrop, or after the escape key with `keyboard` on. |
 | `visibleChange` | Event triggered on visible change |
 
 ### c-modal-body

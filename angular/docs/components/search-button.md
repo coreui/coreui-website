@@ -69,6 +69,7 @@ Accessibility is an important part of the Search Button design. The component in
 
 - Choose shortcuts carefully and avoid overriding common browser or system shortcuts unless that behavior is intentional and clearly communicated.
 - Make sure the visible button label clearly describes the action, for example `Search`, `Open search`, or `Command palette`.
+- When the visible label is not enough, set `aria-label` or `aria-labelledby` on `c-search-button`, as an attribute or an input binding (`[aria-label]`). The component moves them to its inner `<button>`; an attribute binding (`[attr.aria-label]`) does not reach the button.
 - Provide a custom icon template via `<ng-template cTemplateId="icon">` marked `aria-hidden="true"` when the default icon isn't suitable.
 
 ## Customizing
@@ -179,6 +180,8 @@ import { SearchButtonComponent } from '@coreui/angular'
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
+| `aria-label` | `string \| null` | `undefined` | Accessible name of the button, in place of its visible placeholder. |
+| `aria-labelledby` | `string \| null` | `undefined` | Id of the element that names the button. |
 | `disabled` | `boolean` | `false` | Toggle the disabled state for the component. |
 | `placeholder` | `string` | `'Search'` | Placeholder content rendered inside `.search-button-placeholder`. |
 | `preventDefault` | `boolean` | `true` | Prevent the browser's default behavior when the configured shortcut matches. |
