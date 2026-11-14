@@ -9291,6 +9291,14 @@ Use the <a href="https://angular.io/guide/http" target="_blank">`HttpClient`</a>
 
 Here is an example of how you might use CoreUI Angular Smart Table with external data (**10.000+ records**):
 
+## Bound state
+
+- <span class="badge bg-info badge-sm">~5.7.43</span> Setting `columnFilterValue`, `tableFilterValue`, `sorterValue` or `activePage` does not emit the matching `*Change` event. The events report what the user did in the table, so a two-way binding gets no echo. The one exception is `activePageChange` for the table's own page resets, described next.
+- A `columnFilterValue` or `tableFilterValue` binding that changes the filter to a non-empty one moves the table to page 1. <span class="badge bg-info badge-sm">~5.7.43</span> `tableFilter.value` does the same, an `activePage` changed in the same pass wins, and with `pagination` a page past the last one also goes back to 1 once the table has rows. These resets emit `activePageChange` after change detection.
+- <span class="badge bg-info badge-sm">~5.7.43</span> `tableFilterValue` takes `null` and `undefined` as no filter, and so does the value of a single column in `columnFilterValue`. A column `filter` function is not called with an empty value.
+- <span class="badge bg-info badge-sm">~5.7.43</span> Without `pagination` the table renders all items. An `itemsPerPage` that is not a positive integer uses 10.
+- <span class="badge bg-info badge-sm">~5.7.43</span> A row is kept while its object stays in `items` and the row stays on the page: select all and changes to other rows do not recreate it. A new object for the same record gives a new row.
+
 ## API
 
 ### SmartTable Module
@@ -9334,27 +9342,27 @@ import { SmartTableComponent } from '@coreui/angular-pro'
 | `cleaner` | `boolean` | `false` | When set, displays table cleaner above table, next to the table filter (or in place of table filter if `tableFilter` prop is not set) Cleaner resets `tableFilterValue`, `columnFilterValue`, `sorterValue`. If clean is possible it is clickable (`tabIndex="0"` `role="button"`, `color="danger"`), otherwise it is not clickable and transparent. Cleaner can be customized through the `cleaner` slot. |
 | `clickableRows` | `boolean` | `false` | Style table items as clickable. |
 | `columnFilter` | `boolean \| IColumnFilter` | - | When set, displays additional filter row between table header and items, allowing filtering by specific column. Column filter can be customized, by passing prop as object with additional options as keys. Available options: - external (Boolean) - Disables automatic filtering inside component. - lazy (Boolean) - Set to true to trigger filter updates only on change event. |
-| `columnFilterValue` | `IColumnFilterValue` | - | Value of table filter. To set pass object where keys are column names and values are filter strings e.g.: { user: 'John', age: 12 } |
+| `columnFilterValue` | `IColumnFilterValue` | - | Value of table filter. To set pass object where keys are column names and values are filter strings e.g.: { user: 'John', age: 12 } An empty value (`''`, `null`, `undefined`) does not filter its column; a column `filter` function is not called with it. Bind it two-way, `[(columnFilterValue)]`, to follow what the user types; setting it does not emit. |
 | `columns` | `IColumn[]` | - | Prop for table columns configuration. If prop is not defined, table will display columns based on the first item keys, omitting keys that begin with underscore (e.g. '_classes') In columns prop each array item represents one column. Item might be specified in two ways: String: each item define column name equal to item value. Object: item is object with following keys available as column configuration: - key (required)(String) - define column name equal to item key. - label (String) - define visible label of column. If not defined, label will be generated automatically based on column name, by converting kebab-case and snake_case to individual words and capitalization of each word. - _classes (String/Array/Object) - adds classes to all cells in a column - _style (String/Array/Object) - adds styles to the column header (useful for defining widths) - sorter (Boolean) - disables sorting of the column when set to false - filter (Boolean) - removes filter from column when set to false. |
 | `columnSorter` | `boolean \| ISorter` | `false` | Enables table sorting by column value. Sorting will be performed correctly if values in column are one of type: string (case-insensitive) or number. Sorter can be customized, by passing prop as object with additional options as keys. Available options: - external (Boolean) - Disables automatic sorting inside component. - resettable (Boolean) - If set to true clicking on sorter have three states: ascending, descending and null. That means that third click on sorter will reset sorting, and restore table to original order. |
 | `footer` | `boolean` | `false` | Displays table footer, which mirrors table header. (without column filter). |
-| `header` | `boolean` | `true` | Set false to remove table header. |
-| `items` | `IItem[]` | `items.filter((item: { [x: string]: any }) => {` | Array of objects, where each object represents one item - row in table. Additionally, you can add style classes to each row by passing them by '_classes' key and to single cell by '_cellClasses'. Example item: { name: 'John' , age: 12, _props: { color: 'success' }, _cellProps: { age: { class: 'fw-bold'}}} For column generation description see columns prop. |
-| `itemsPerPage` | `number` | `10` | Number of items per site, when pagination is enabled. |
+| `header` | `boolean` | `false` | Displays table header. |
+| `items` | `IItem[]` | - | Array of objects, where each object represents one item - row in table. Additionally, you can add style classes to each row by passing them by '_classes' key and to single cell by '_cellClasses'. Example item: { name: 'John' , age: 12, _props: { color: 'success' }, _cellProps: { age: { class: 'fw-bold'}}} For column generation description see columns prop. A row is kept while its object stays in the array and the row stays on the page: select all, sorting and changes to other rows do not recreate it. A new object for the same record gives a new row, and so does coming back from another page or from a filter that hid the row; an object listed twice keeps only its first row. |
+| `itemsPerPage` | `number` | `10` | Number of items per site, when pagination is enabled. A value that is not a positive integer (`null`, `undefined`, `NaN`, `0`, a fraction) uses 10. |
 | `itemsPerPageLabel` | `string` | `'Items per page:'` | Label for items per page selector. |
 | `itemsPerPageOptions` | `number[]` | `[5, 10, 20, 50]` | Items per page selector options. |
 | `itemsPerPageSelect` | `boolean \| ItemsPerPageSelect` | - | Adds select element over table, which is used for control items per page in pagination. If you want to customize this element, pass an object with optional values: - external (Boolean) - disables automatic 'itemsPerPage' change: the pick is only emitted by `itemsPerPageChange`. To apply it, bind it back to `itemsPerPage` right away and set a two-way bound `[(activePage)]` to 1, then load data; a value not bound back is refused and the selector keeps showing the bound `itemsPerPage`. |
 | `loading` | `boolean` | - | When set, table will have loading style: loading spinner and reduced opacity. When 'small' prop is enabled spinner will be also smaller. |
 | `noItemsLabel` | `string \| TemplateRef<any>` | `'No items found'` | String or TemplateRef for passing custom noItemsLabel content. |
-| `pagination` | `boolean` | `false` | Enables default pagination. Set to true for default setup or pass an object with additional CPagination props. Default pagination will always have the computed number of pages that cannot be changed. The number of pages is generated based on the number of passed items and 'itemsPerPage' prop. If this restriction is an obstacle, you can make external CPagination instead. |
+| `pagination` | `boolean` | `false` | Enables default pagination. Set to true for default setup or pass an object with additional CPagination props. Default pagination will always have the computed number of pages that cannot be changed. The number of pages is generated based on the number of passed items and 'itemsPerPage' prop. If this restriction is an obstacle, you can make external CPagination instead. Without pagination, all items are rendered. |
 | `selectable` | `boolean` | - | Add checkboxes to make table rows selectable. |
 | `selectAll` | `boolean` | `true` | Enables select all checkbox displayed in the header of the table. |
 | `sorterValue` | `ISorterValue` | - | State of the sorter. Name key is column name, direction can be 'asc' or 'desc'. |
 | `tableBodyProps` | `ITableSectionProps` | `{}` | Properties to `TableBody` component. |
-| `tableFilter` | `boolean \| ITableFilter` | - | When set, displays table filter above table, allowing filtering by specific column. Column filter can be customized, by passing prop as object with additional options as keys. Available options: - placeholder (String) - Sets custom table filter placeholder. - label (String) - Sets custom table filter label. - external (Boolean) - Disables automatic filtering inside component. - lazy (Boolean) - Set to true to trigger filter updates only on change event. |
-| `tableFilterLabel` | `string` | `'Filter:' todo or remove?` | The element represents a caption for a component. |
-| `tableFilterPlaceholder` | `string` | `'type string...' todo or remove?` | Specifies a short hint that is visible in the search input. |
-| `tableFilterValue` | `string` | - | Value of table filter. Set .sync modifier to track changes. |
+| `tableFilter` | `boolean \| ITableFilter` | - | When set, displays table filter above table, allowing filtering by specific column. Column filter can be customized, by passing prop as object with additional options as keys. Available options: - placeholder (String) - Sets custom table filter placeholder. - label (String) - Sets custom table filter label. - external (Boolean) - Disables automatic filtering inside component. - lazy (Boolean) - Set to true to trigger filter updates only on change event. - value (String) - Sets the filter text when it differs from the last bound `value`; any bound `value` but `undefined` counts (`null` releases it, only a string is applied). A rebuilt, hidden or re-shown filter with the same value keeps what the user typed. |
+| `tableFilterLabel` | `string` | `'Filter:'` | The element represents a caption for a component. |
+| `tableFilterPlaceholder` | `string` | `'type string...'` | Specifies a short hint that is visible in the search input. |
+| `tableFilterValue` | `string` | - | Value of table filter. Bind it two-way, `[(tableFilterValue)]`, to follow what the user types; setting it does not emit. |
 | `tableFootProps` | `ITableSectionProps` | `{}` | Properties to `TableFoot` component. |
 | `tableHeadProps` | `ITableSectionProps` | `{}` | Properties to `CTableHead` component. |
 | `tableProps` | `ITable` | `{}` | Properties to `CTable` component. |
@@ -9363,15 +9371,15 @@ import { SmartTableComponent } from '@coreui/angular-pro'
 
 | Name | Description |
 | --- | --- |
-| `activePageChange` | Event emitted on `activePage` change. |
+| `activePageChange` | Event emitted when the table moves to another page: pagination, filters, the items per page pick (not with `itemsPerPageSelect.external`), the cleaner. Setting `activePage` does not emit, except that with `pagination` and rows the page stays in range: a page past the last one after an `activePage`, `items`, `columns`, `itemsPerPage`, `pagination` or filter binding goes to 1. A `columnFilterValue`, `tableFilterValue` or `tableFilter.value` binding that changes the filter to a non-empty one also resets the page to 1, unless a changed `activePage` is bound in the same pass. The reset emits after change detection. |
 | `cleanerClick` | Event emitted on cleaner click. |
-| `columnFilterValueChange` | Event emitted on `columnFilterValue` change. |
+| `columnFilterValueChange` | Event emitted when the user filters a column or cleans the table (`{}`). Setting `columnFilterValue` does not emit. |
 | `filteredItemsChange` | Event emitted on `filteredItems` change. |
 | `itemsPerPageChange` | Event emitted on `itemsPerPage` change. With `itemsPerPageSelect.external`, emitted on the selector pick, which is not applied. |
 | `rowClick` | Event emitted on row click. |
 | `selectedItemsChange` | Event emitted on `selectedItems` change. |
-| `sorterValueChange` | Event emitted on `sorterValue` change. |
-| `tableFilterValueChange` | Event emitted on `tableFilterValue` change. |
+| `sorterValueChange` | Event emitted when the user sorts or cleans the table. Setting `sorterValue` does not emit. |
+| `tableFilterValueChange` | Event emitted when the user filters or cleans the table. Setting `tableFilterValue` does not emit. |
 
 ## Templates
 
@@ -9380,7 +9388,7 @@ You can pass an ng-template with cTemplateId as a c-smart-table content.
 Available templates with [cTemplateId] names:
 - `tableCustomHeader` ( <div class="badge bg-info badge-sm">~4.4.5</div> goes to the header row with table filter/cleaner)
 - `tableData` (goes to `td` html element for specified `columnName`)
-- `tableDetails` (goes to separate row as row details, for every `tr`)
+- `tableDetails` (goes to separate row as row details, for every `tr`; the context carries `item` and `index`, and starting from <div class="badge bg-info badge-sm">~5.7.43</div> `index` is the index in the filtered and sorted list, the same one `rowClick` emits)
 - `tableSummaryRow` ( <div class="badge bg-info badge-sm">~4.5.26</div> goes to the table footer)
 - `columnFilter_*` <small>(see: [Custom Filters](https://coreui.io/angular/docs/components/smart-table/#custom-filters))</small>
 - `columnLabel_*` <small>(<div class="badge bg-info badge-sm">~4.7.7</div> see: [Custom Headers](https://coreui.io/angular/docs/components/smart-table/#custom-headers))</small>
