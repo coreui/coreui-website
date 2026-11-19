@@ -23,7 +23,7 @@ See:
 
 |`@coreui/angular`|note|Angular|app update
 |:---|:---|:---|:---|
-|`~5.7.x`|| `^22.x`| `ng update @angular/core@22 @angular/cli@22 @angular/cdk@22 @coreui/angular@~5.7 @coreui/icons-angular@~5.7 @coreui/angular-chartjs@~5.7 @coreui/coreui@^5.9`
+|`~5.7.x`|| `^22.3`| `ng update @angular/core@22.3 @angular/cli@22.3 @angular/cdk@22.3 @coreui/angular@~5.7 @coreui/icons-angular@~5.7 @coreui/angular-chartjs@~5.7 @coreui/coreui@^5.9`
 |`~5.6.x`|| `^21.x`| `ng update @angular/core@21 @angular/cli@21 @angular/cdk@21 @coreui/angular@~5.6 @coreui/icons-angular@~5.6 @coreui/angular-chartjs@~5.6 @coreui/coreui@~5.4`
 |`~5.5.x`|| `^20.x`| `ng update @angular/core@20 @angular/cli@20 @angular/cdk@20 @coreui/angular@~5.5 @coreui/icons-angular@~5.5 @coreui/angular-chartjs@~5.5 @coreui/coreui@~5.4`
 |~~`~5.4.x`~~|_deprecated_| `^19.x`| `ng update @angular/core@19 @angular/cli@19 @angular/cdk@19 @coreui/angular@~5.4 @coreui/icons-angular@~5.4 @coreui/angular-chartjs@~5.4 @coreui/coreui@~5.4`
@@ -46,6 +46,7 @@ See:
 
 |`@coreui/angular`|Angular|note|
 |:---|:---|:---|
+|`~2.21.x`| `^21.2`|_standalone components_ |
 |`~2.20.x`| `^20.x`|_standalone components_ |
 |~~`~2.19.x`~~| `^19.x`|_deprecated_|
 |~~`~2.18.x`~~| `^18.x`|_deprecated_|

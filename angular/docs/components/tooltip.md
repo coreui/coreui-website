@@ -54,7 +54,7 @@ import { TooltipDirective } from '@coreui/angular'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | `cTooltip` | `string \| TemplateRef<any>` | `undefined` | Content of tooltip |
-| `cTooltipOptions` | `Partial<Options>` | `{}` | Optional popper Options object, takes precedence over cPopoverPlacement prop |
+| `cTooltipOptions` | `Partial<Options>` | `{}` | Optional popper Options object, takes precedence over cTooltipPlacement prop |
 | `cTooltipPlacement` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Describes the placement of your component after Popper.js has applied all the modifiers that may have flipped or altered the originally provided placement property. |
 | `cTooltipRef` | `ElementRefDirective` | `undefined` | ElementRefDirective for positioning the tooltip on reference element |
 | `cTooltipTrigger` | `Triggers \| Triggers[]` | `'hover'` | Sets which event handlers you’d like provided to your toggle prop. You can specify one trigger or an array of them. |

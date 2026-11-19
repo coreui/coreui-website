@@ -45,7 +45,7 @@ import { PopoverDirective } from '@coreui/angular'
 | `cPopover` | `string \| TemplateRef<any>` | `undefined` | Content of popover |
 | `cPopoverOptions` | `Partial<Options>` | `{}` | Optional popper Options object, takes precedence over cPopoverPlacement prop |
 | `cPopoverPlacement` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Describes the placement of your component after Popper.js has applied all the modifiers that may have flipped or altered the originally provided placement property. |
-| `cPopoverRef` | `ElementRefDirective` | `undefined` | ElementRefDirective for positioning the tooltip on reference element |
+| `cPopoverRef` | `ElementRefDirective` | `undefined` | ElementRefDirective for positioning the popover on reference element |
 | `cPopoverTrigger` | `Triggers \| Triggers[]` | `'hover'` | Sets which event handlers you’d like provided to your toggle prop. You can specify one trigger or an array of them. |
 | `cPopoverVisible` | `boolean` | `false` | Toggle the visibility of popover component. |
 
