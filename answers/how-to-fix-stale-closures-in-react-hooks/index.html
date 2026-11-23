@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Fix stale closure bugs in React hooks where useEffect and callbacks capture outdated state - solutions from the creator of CoreUI."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to fix stale closures in React hooks</title><link rel="canonical" href="https://coreui.io/answers/how-to-fix-stale-closures-in-react-hooks/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to fix stale closures in React hooks</title><link rel="canonical" href="https://coreui.io/answers/how-to-fix-stale-closures-in-react-hooks/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -499,42 +499,42 @@ Understanding when to add dependencies to arrays and when to use a ref solves th
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// ❌ Stale closure - always logs 0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">Counter</span><span class="p">()</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Counter</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="c1">// Always 0! Closure captured count=0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="p">[])</span> <span class="c1">// Missing dependency
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="nx">setCount</span><span class="p">(</span><span class="nx">c</span> <span class="p">=&gt;</span> <span class="nx">c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">count</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// ✅ Fixed - add count to dependency array
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span> <span class="c1">// Logs current count
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="p">[</span><span class="nx">count</span><span class="p">])</span> <span class="c1">// Re-creates interval when count changes
 </span></span></span></code></pre></div><p>Adding <code>count</code> to the dependency array re-creates the effect (and the interval) whenever <code>count</code> changes. The new closure captures the updated value.</p>
 <h2 id="use-the-functional-update-pattern">Use the Functional Update Pattern</h2>
 <p>Avoid reading state entirely when you only need to update it.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// ❌ Stale closure - count might be outdated
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// reads stale count
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="p">[])</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// ✅ Functional update - never reads count, always correct
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">setCount</span><span class="p">(</span><span class="nx">c</span> <span class="p">=&gt;</span> <span class="nx">c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// receives current value from React
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="p">[])</span> <span class="c1">// Empty array is fine now - we don&#39;t read count
 </span></span></span></code></pre></div><p>The functional form of <code>setState</code> receives the latest state value from React directly, bypassing the closure entirely. This is the cleanest fix when you only need the previous value to compute the next one.</p>
@@ -547,15 +547,15 @@ Understanding when to add dependencies to arrays and when to use a ref solves th
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">queryRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Keep ref in sync with latest prop
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">queryRef</span><span class="p">.</span><span class="nx">current</span> <span class="o">=</span> <span class="nx">query</span>
 </span></span><span class="line"><span class="cl">  <span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Stable callback that always reads the latest query
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="nx">useCallback</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="nx">useCallback</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Current query:&#39;</span><span class="p">,</span> <span class="nx">queryRef</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span> <span class="c1">// Always fresh
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span> <span class="p">[])</span> <span class="c1">// Empty array - handler never re-creates
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="p">[])</span> <span class="c1">// Empty array - handler never re-creates
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">handleClick</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Log</span> <span class="nx">Query</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>A ref&rsquo;s <code>.current</code> is always the latest value — refs don&rsquo;t cause re-renders and don&rsquo;t get captured by closures. This pattern is useful for event handlers and callbacks that should remain stable (not re-created) but need to read the latest state.</p>
@@ -577,8 +577,8 @@ Understanding when to add dependencies to arrays and when to use a ref solves th
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -609,8 +609,8 @@ Understanding when to add dependencies to arrays and when to use a ref solves th
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -650,8 +650,8 @@ Understanding when to add dependencies to arrays and when to use a ref solves th
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -685,8 +685,8 @@ Understanding when to add dependencies to arrays and when to use a ref solves th
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -779,8 +779,8 @@ Understanding when to add dependencies to arrays and when to use a ref solves th
   loading="lazy"
   class="post-image" 
   alt="Migration from Bootstrap 3 to Bootstrap 4" 
-    srcset="/images/blog/migration-to-bootstrap-4_hu_41c5661a38977ff8.webp 480w, /images/blog/migration-to-bootstrap-4_hu_e38579441d286ae9.webp 768w, /images/blog/migration-to-bootstrap-4_hu_36106d5ef1608191.webp 1024w, /images/blog/migration-to-bootstrap-4_hu_97a72aaf782384ae.webp 1366w" 
-  src="/images/blog/migration-to-bootstrap-4_hu_901acd724dc4dc45.webp"
+    srcset="/images/blog/migration-to-bootstrap-4_hu_9cac6ff059b3223f.webp 480w, /images/blog/migration-to-bootstrap-4_hu_dc785569b0d2a44e.webp 768w, /images/blog/migration-to-bootstrap-4_hu_c8a523ecb6ae5db7.webp 1024w, /images/blog/migration-to-bootstrap-4_hu_ee2b5faf7d056936.webp 1366w" 
+  src="/images/blog/migration-to-bootstrap-4_hu_4a2317a80da50e62.webp"
    width="460px"
 />
       </a>
@@ -819,8 +819,8 @@ Wednesday, January 31, 2018
   loading="lazy"
   class="post-image" 
   alt="How to upgrade Bootstrap 4 alpha 6 to Bootstrap 4 beta" 
-    srcset="/images/blog/bootstrap-4-beta_hu_8bcfef3cc3e9216e.webp 480w, /images/blog/bootstrap-4-beta_hu_b6e0001ea34b522.webp 768w, /images/blog/bootstrap-4-beta_hu_53e18365ba35412a.webp 1024w, /images/blog/bootstrap-4-beta_hu_bc6fcf19088a445f.webp 1366w" 
-  src="/images/blog/bootstrap-4-beta_hu_51ee7f4110acb513.webp"
+    srcset="/images/blog/bootstrap-4-beta_hu_e7da093c724f1d1a.webp 480w, /images/blog/bootstrap-4-beta_hu_a90b99569035f88e.webp 768w, /images/blog/bootstrap-4-beta_hu_bf76438026c6bac2.webp 1024w, /images/blog/bootstrap-4-beta_hu_2371f780c1992408.webp 1366w" 
+  src="/images/blog/bootstrap-4-beta_hu_546e67f83cda5699.webp"
    width="460px"
 />
       </a>
@@ -859,8 +859,8 @@ Saturday, August 12, 2017
   loading="lazy"
   class="post-image" 
   alt="How to migrate from Bootstrap 3 to Bootstrap 4 Beta" 
-    srcset="/images/blog/migration-to-bootstrap-4_hu_41c5661a38977ff8.webp 480w, /images/blog/migration-to-bootstrap-4_hu_e38579441d286ae9.webp 768w, /images/blog/migration-to-bootstrap-4_hu_36106d5ef1608191.webp 1024w, /images/blog/migration-to-bootstrap-4_hu_97a72aaf782384ae.webp 1366w" 
-  src="/images/blog/migration-to-bootstrap-4_hu_901acd724dc4dc45.webp"
+    srcset="/images/blog/migration-to-bootstrap-4_hu_9cac6ff059b3223f.webp 480w, /images/blog/migration-to-bootstrap-4_hu_dc785569b0d2a44e.webp 768w, /images/blog/migration-to-bootstrap-4_hu_c8a523ecb6ae5db7.webp 1024w, /images/blog/migration-to-bootstrap-4_hu_ee2b5faf7d056936.webp 1366w" 
+  src="/images/blog/migration-to-bootstrap-4_hu_4a2317a80da50e62.webp"
    width="460px"
 />
       </a>
@@ -899,8 +899,8 @@ Monday, July 10, 2017
   loading="lazy"
   class="post-image" 
   alt="What&#39;s new in Bootstrap 4 ?" 
-    srcset="/images/blog/new-in-bootstrap-4_hu_c63755f282267452.webp 480w, /images/blog/new-in-bootstrap-4_hu_ca0e9bbd0f489b86.webp 768w, /images/blog/new-in-bootstrap-4_hu_8347c865d6ec53d0.webp 1024w, /images/blog/new-in-bootstrap-4_hu_52f50f12a11cb7c8.webp 1366w" 
-  src="/images/blog/new-in-bootstrap-4_hu_7fb62d08a48231c7.webp"
+    srcset="/images/blog/new-in-bootstrap-4_hu_f6069eeadc677692.webp 480w, /images/blog/new-in-bootstrap-4_hu_de87fbb12d2db244.webp 768w, /images/blog/new-in-bootstrap-4_hu_85226e8a27a0ba29.webp 1024w, /images/blog/new-in-bootstrap-4_hu_6c6f6ae9882b956b.webp 1366w" 
+  src="/images/blog/new-in-bootstrap-4_hu_8a2d695f7b1b86a1.webp"
    width="460px"
 />
       </a>
@@ -1003,7 +1003,7 @@ Tuesday, July 4, 2017
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

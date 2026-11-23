@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Use GraphQL in Angular with HTTP client for flexible API queries, mutations, and subscriptions with precise data fetching."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to use GraphQL in Angular</title><link rel="canonical" href="https://coreui.io/answers/how-to-use-graphql-in-angular/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to use GraphQL in Angular</title><link rel="canonical" href="https://coreui.io/answers/how-to-use-graphql-in-angular/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -554,7 +554,7 @@ This method enables precise data requirements, type-safe responses with TypeScri
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Query: Fetch single user with posts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">getUser</span><span class="p">(</span><span class="nx">id</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">user</span>: <span class="kt">User</span> <span class="p">}</span><span class="o">&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">getUser</span><span class="p">(</span><span class="nx">id</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">user</span>: <span class="kt">User</span> <span class="p">}</span><span class="o">&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="sb">`
 </span></span></span><span class="line"><span class="cl"><span class="sb">      query GetUser($id: ID!) {
 </span></span></span><span class="line"><span class="cl"><span class="sb">        user(id: $id) {
@@ -574,7 +574,7 @@ This method enables precise data requirements, type-safe responses with TypeScri
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Query: Fetch multiple users with pagination
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">getUsers</span><span class="p">(</span><span class="nx">limit</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="nx">offset</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">users</span>: <span class="kt">User</span><span class="p">[]</span> <span class="p">}</span><span class="o">&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">getUsers</span><span class="p">(</span><span class="nx">limit</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="nx">offset</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">users</span>: <span class="kt">User</span><span class="p">[]</span> <span class="p">}</span><span class="o">&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="sb">`
 </span></span></span><span class="line"><span class="cl"><span class="sb">      query GetUsers($limit: Int!, $offset: Int!) {
 </span></span></span><span class="line"><span class="cl"><span class="sb">        users(limit: $limit, offset: $offset) {
@@ -588,7 +588,7 @@ This method enables precise data requirements, type-safe responses with TypeScri
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Mutation: Create new post
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">createPost</span><span class="p">(</span><span class="nx">title</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">content</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">createPost</span>: <span class="kt">Post</span> <span class="p">}</span><span class="o">&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">createPost</span><span class="p">(</span><span class="nx">title</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">content</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">createPost</span>: <span class="kt">Post</span> <span class="p">}</span><span class="o">&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">mutation</span> <span class="o">=</span> <span class="sb">`
 </span></span></span><span class="line"><span class="cl"><span class="sb">      mutation CreatePost($title: String!, $content: String!) {
 </span></span></span><span class="line"><span class="cl"><span class="sb">        createPost(title: $title, content: $content) {
@@ -603,7 +603,7 @@ This method enables precise data requirements, type-safe responses with TypeScri
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Mutation: Update user profile
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">updateUser</span><span class="p">(</span><span class="nx">id</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">email</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">updateUser</span>: <span class="kt">User</span> <span class="p">}</span><span class="o">&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">updateUser</span><span class="p">(</span><span class="nx">id</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">email</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">updateUser</span>: <span class="kt">User</span> <span class="p">}</span><span class="o">&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">mutation</span> <span class="o">=</span> <span class="sb">`
 </span></span></span><span class="line"><span class="cl"><span class="sb">      mutation UpdateUser($id: ID!, $name: String!, $email: String!) {
 </span></span></span><span class="line"><span class="cl"><span class="sb">        updateUser(id: $id, name: $name, email: $email) {
@@ -617,7 +617,7 @@ This method enables precise data requirements, type-safe responses with TypeScri
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Mutation: Delete post
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">deletePost</span><span class="p">(</span><span class="nx">id</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">deletePost</span>: <span class="kt">boolean</span> <span class="p">}</span><span class="o">&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">deletePost</span><span class="p">(</span><span class="nx">id</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">deletePost</span>: <span class="kt">boolean</span> <span class="p">}</span><span class="o">&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">mutation</span> <span class="o">=</span> <span class="sb">`
 </span></span></span><span class="line"><span class="cl"><span class="sb">      mutation DeletePost($id: ID!) {
 </span></span></span><span class="line"><span class="cl"><span class="sb">        deletePost(id: $id)
@@ -756,8 +756,8 @@ Fragment queries for reusable field selections across multiple queries, implemen
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -788,8 +788,8 @@ Fragment queries for reusable field selections across multiple queries, implemen
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -829,8 +829,8 @@ Fragment queries for reusable field selections across multiple queries, implemen
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -864,8 +864,8 @@ Fragment queries for reusable field selections across multiple queries, implemen
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -958,8 +958,8 @@ Fragment queries for reusable field selections across multiple queries, implemen
   loading="lazy"
   class="post-image" 
   alt="Understanding and Resolving the “React Must Be in Scope When Using JSX" 
-    srcset="/images/blog/how-to-fix-react-must-be-in-scope-when-using-jsx_hu_c68c412ea9b7e27f.webp 480w, /images/blog/how-to-fix-react-must-be-in-scope-when-using-jsx_hu_c807d07521abb79b.webp 768w, /images/blog/how-to-fix-react-must-be-in-scope-when-using-jsx_hu_c055b8821484561e.webp 1024w, /images/blog/how-to-fix-react-must-be-in-scope-when-using-jsx_hu_1da1f49ec83aaaf8.webp 1366w" 
-  src="/images/blog/how-to-fix-react-must-be-in-scope-when-using-jsx_hu_2b977024c06ed9e3.webp"
+    srcset="/images/blog/how-to-fix-react-must-be-in-scope-when-using-jsx_hu_3f5a1ccce73141b2.webp 480w, /images/blog/how-to-fix-react-must-be-in-scope-when-using-jsx_hu_64a476c428949413.webp 768w, /images/blog/how-to-fix-react-must-be-in-scope-when-using-jsx_hu_c275cfc5871777d2.webp 1024w, /images/blog/how-to-fix-react-must-be-in-scope-when-using-jsx_hu_5c5b0e04149b27d7.webp 1366w" 
+  src="/images/blog/how-to-fix-react-must-be-in-scope-when-using-jsx_hu_1cbaec1c25fb8d98.webp"
    width="460px"
 />
       </a>
@@ -998,8 +998,8 @@ Tuesday, June 11, 2024
   loading="lazy"
   class="post-image" 
   alt="What Does javascript:void(0) Mean?" 
-    srcset="/images/blog/what-does-javascript-void-0-mean_hu_c8aaf630c51f3e92.webp 480w, /images/blog/what-does-javascript-void-0-mean_hu_2fb05782518ae523.webp 768w, /images/blog/what-does-javascript-void-0-mean_hu_8d7c608d9a8192eb.webp 1024w, /images/blog/what-does-javascript-void-0-mean_hu_704b758c72ed297b.webp 1366w" 
-  src="/images/blog/what-does-javascript-void-0-mean_hu_48d8ac0ec359c357.webp"
+    srcset="/images/blog/what-does-javascript-void-0-mean_hu_6cec4a84a26c9541.webp 480w, /images/blog/what-does-javascript-void-0-mean_hu_1446d981a2f794e4.webp 768w, /images/blog/what-does-javascript-void-0-mean_hu_527f9253ef67deb8.webp 1024w, /images/blog/what-does-javascript-void-0-mean_hu_a80f5694384032d.webp 1366w" 
+  src="/images/blog/what-does-javascript-void-0-mean_hu_91a9016e26c64cb1.webp"
    width="460px"
 />
       </a>
@@ -1038,8 +1038,8 @@ Tuesday, June 4, 2024
   loading="lazy"
   class="post-image" 
   alt="How to Detect a Click Outside of a React Component" 
-    srcset="/images/blog/how-to-detect-a-click-outside-of-a-react-component_hu_f5055515966ecbcb.webp 480w, /images/blog/how-to-detect-a-click-outside-of-a-react-component_hu_e77637bda0da1045.webp 768w, /images/blog/how-to-detect-a-click-outside-of-a-react-component_hu_1f1bc78cc86ef1ba.webp 1024w, /images/blog/how-to-detect-a-click-outside-of-a-react-component_hu_bca3760fd78625f8.webp 1366w" 
-  src="/images/blog/how-to-detect-a-click-outside-of-a-react-component_hu_d67175a77de568d3.webp"
+    srcset="/images/blog/how-to-detect-a-click-outside-of-a-react-component_hu_454cc90983b9657b.webp 480w, /images/blog/how-to-detect-a-click-outside-of-a-react-component_hu_c4ecd8fb22af74e5.webp 768w, /images/blog/how-to-detect-a-click-outside-of-a-react-component_hu_73605306b462e2a9.webp 1024w, /images/blog/how-to-detect-a-click-outside-of-a-react-component_hu_7a6da3d9bebe66e1.webp 1366w" 
+  src="/images/blog/how-to-detect-a-click-outside-of-a-react-component_hu_7180687922f986d1.webp"
    width="460px"
 />
       </a>
@@ -1078,8 +1078,8 @@ Friday, May 31, 2024
   loading="lazy"
   class="post-image" 
   alt="CSS Selector for Parent Element" 
-    srcset="/images/blog/css-selector-for-parent-element_hu_f4b4e457682cfa91.webp 480w, /images/blog/css-selector-for-parent-element_hu_a71884e63243fa72.webp 768w, /images/blog/css-selector-for-parent-element_hu_a61d08ca27a522e9.webp 1024w, /images/blog/css-selector-for-parent-element_hu_550acf756ac6b02b.webp 1366w" 
-  src="/images/blog/css-selector-for-parent-element_hu_bd18f645748616e3.webp"
+    srcset="/images/blog/css-selector-for-parent-element_hu_5543c2303f8eca44.webp 480w, /images/blog/css-selector-for-parent-element_hu_bcb69fefac16fa63.webp 768w, /images/blog/css-selector-for-parent-element_hu_e5772dce7c9f5acc.webp 1024w, /images/blog/css-selector-for-parent-element_hu_d00ac2b2028ce79b.webp 1366w" 
+  src="/images/blog/css-selector-for-parent-element_hu_7ca3e791748b7296.webp"
    width="460px"
 />
       </a>
@@ -1182,7 +1182,7 @@ Tuesday, May 28, 2024
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

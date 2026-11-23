@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Use Vue DevTools browser extension to inspect components, debug reactivity, profile performance, and trace events in Vue applications."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to debug Vue with DevTools</title><link rel="canonical" href="https://coreui.io/answers/how-to-debug-vue-with-devtools/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to debug Vue with DevTools</title><link rel="canonical" href="https://coreui.io/answers/how-to-debug-vue-with-devtools/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -509,13 +509,13 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span><span class="line"><span class="cl">vue-devtools
 </span></span></code></pre></div><p><strong>Enable in development:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// main.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App.vue&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Enable DevTools in development
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="kr">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MODE</span> <span class="o">===</span> <span class="s1">&#39;development&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="kr">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MODE</span> <span class="o">===</span> <span class="s1">&#39;development&#39;</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">performance</span> <span class="o">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">devtools</span> <span class="o">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -526,7 +526,7 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">computed</span><span class="p">,</span> <span class="nx">watch</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// All these are visible in DevTools
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">doubled</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">count</span><span class="p">.</span><span class="nx">value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
@@ -540,7 +540,7 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Component name for DevTools (useful for production builds)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">defineOptions</span><span class="p">({</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">defineOptions</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;CounterComponent&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -558,9 +558,9 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 1. Component Tree - View component hierarchy
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Click components to inspect props, data, computed
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 2. Component State - Inspect reactive state
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">state</span> <span class="o">=</span> <span class="nx">reactive</span><span class="p">({</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">state</span> <span class="o">=</span> <span class="nx">reactive</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">user</span><span class="o">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">email</span><span class="o">:</span> <span class="s1">&#39;john@example.com&#39;</span>
@@ -572,25 +572,25 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 3. Props inspection
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="nx">defineProps</span><span class="p">({</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">props</span> <span class="o">=</span> <span class="nx">defineProps</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">title</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">count</span><span class="o">:</span> <span class="nb">Number</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 4. Computed properties - See cached values
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">fullName</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">fullName</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="sb">`</span><span class="si">${</span><span class="nx">state</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb"> (</span><span class="si">${</span><span class="nx">state</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">email</span><span class="si">}</span><span class="sb">)`</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 5. Provide/Inject - Track dependency injection
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;theme&#39;</span><span class="p">,</span> <span class="nx">state</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">theme</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;theme&#39;</span><span class="p">,</span> <span class="nx">state</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">theme</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">theme</span> <span class="o">=</span> <span class="nx">inject</span><span class="p">(</span><span class="s1">&#39;theme&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 6. Edit state in DevTools - Modify values live
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">editable</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;Edit me in DevTools&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">editable</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;Edit me in DevTools&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 7. Timeline - Track events, mutations, component updates
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">emit</span> <span class="o">=</span> <span class="nx">defineEmits</span><span class="p">([</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">])</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">emit</span> <span class="o">=</span> <span class="nx">defineEmits</span><span class="p">([</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">handleUpdate</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Updated&#39;</span> <span class="p">})</span>
@@ -601,7 +601,7 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">onMounted</span><span class="p">,</span> <span class="nx">onUpdated</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Enable performance tracking
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">onMounted</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">onMounted</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Component mounted&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
@@ -614,14 +614,14 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span></span><span class="line"><span class="cl"><span class="c1">// - Lifecycle hook timing
 </span></span></span><span class="line"><span class="cl"><span class="c1">// - Update frequency
 </span></span></span><span class="line"><span class="cl"><span class="c1">// - Memory usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">items</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">({</span> <span class="nx">length</span><span class="o">:</span> <span class="mi">1000</span> <span class="p">},</span> <span class="p">(</span><span class="nx">_</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">({</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">id</span><span class="o">:</span> <span class="nx">i</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="sb">`Item </span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb">`</span>
 </span></span><span class="line"><span class="cl"><span class="p">})))</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Use DevTools to profile this expensive operation
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">sortItems</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sortItems</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">performance</span><span class="p">.</span><span class="nx">mark</span><span class="p">(</span><span class="s1">&#39;sort-start&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">items</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">items</span><span class="p">.</span><span class="nx">value</span><span class="p">].</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">localeCompare</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
@@ -632,7 +632,7 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p><strong>Routing inspection:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// router/index.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createRouter</span><span class="p">,</span> <span class="nx">createWebHistory</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue-router&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createRouter</span><span class="p">,</span> <span class="nx">createWebHistory</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue-router&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">createRouter</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">history</span><span class="o">:</span> <span class="nx">createWebHistory</span><span class="p">(),</span>
@@ -657,11 +657,11 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span></span><span class="line"><span class="cl"><span class="c1">// - Route meta
 </span></span></span><span class="line"><span class="cl"><span class="c1">// - Navigation history
 </span></span></span><span class="line"><span class="cl"><span class="c1">// - Route guards execution
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">router</span>
 </span></span></code></pre></div><p><strong>Vuex/Pinia store inspection:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// stores/user.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">defineStore</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;pinia&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">defineStore</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;pinia&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">useUserStore</span> <span class="o">=</span> <span class="nx">defineStore</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">state</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">({</span>
@@ -684,7 +684,7 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">user</span>
 </span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">isAuthenticated</span> <span class="o">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// DevTools shows this mutation in timeline
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">},</span>
+</span></span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="nx">updatePreferences</span><span class="p">(</span><span class="nx">preferences</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">preferences</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="k">this</span><span class="p">.</span><span class="nx">preferences</span><span class="p">,</span> <span class="p">...</span><span class="nx">preferences</span> <span class="p">}</span>
@@ -700,13 +700,13 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span></span><span class="line"><span class="cl"><span class="c1">// - Time-travel debugging
 </span></span></span></code></pre></div><p><strong>Custom DevTools plugin:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// devtools-plugin.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kd">function</span> <span class="nx">setupDevTools</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kd">function</span> <span class="nx">setupDevTools</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="kr">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MODE</span> <span class="o">===</span> <span class="s1">&#39;development&#39;</span> <span class="o">&amp;&amp;</span> <span class="nb">window</span><span class="p">.</span><span class="nx">__VUE_DEVTOOLS_GLOBAL_HOOK__</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">globalProperties</span><span class="p">.</span><span class="nx">$devtools</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">log</span><span class="o">:</span> <span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;[DevTools]&#39;</span><span class="p">,</span> <span class="nx">message</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// Send custom data to DevTools
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">window</span><span class="p">.</span><span class="nx">__VUE_DEVTOOLS_GLOBAL_HOOK__</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;custom-log&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">        <span class="nb">window</span><span class="p">.</span><span class="nx">__VUE_DEVTOOLS_GLOBAL_HOOK__</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;custom-log&#39;</span><span class="p">,</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">          <span class="nx">message</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nx">data</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nx">timestamp</span><span class="o">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span>
@@ -717,7 +717,7 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage in component
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">devtools</span> <span class="o">=</span> <span class="nx">inject</span><span class="p">(</span><span class="s1">&#39;$devtools&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">devtools</span> <span class="o">=</span> <span class="nx">inject</span><span class="p">(</span><span class="s1">&#39;$devtools&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">devtools</span><span class="o">?</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;User action&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">action</span><span class="o">:</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;button&#39;</span> <span class="p">})</span>
 </span></span></code></pre></div><p><strong>Debugging tips:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
@@ -727,28 +727,28 @@ This approach makes debugging Vue applications significantly faster with visual 
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 1. Use DevTools breakpoints
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Click &#34;Bug&#34; icon in DevTools to pause on component updates
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 2. Inspect reactive dependencies
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">watchEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">watchEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Count changed:&#39;</span><span class="p">,</span> <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// DevTools shows what triggered this watcher
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 3. Edit state live
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Change values in DevTools to test different states
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 4. Time-travel debugging
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Use timeline to replay component state changes
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 5. Export state
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Right-click component in DevTools &gt; &#34;Export state to console&#34;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 6. Force update
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Right-click component &gt; &#34;Force update&#34; to trigger re-render
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">debugHelper</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// DevTools can intercept and inspect this
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Current state:&#39;</span><span class="p">,</span> <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Current state:&#39;</span><span class="p">,</span> <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span></code></pre></div><h2 id="best-practice-note">Best Practice Note</h2>
@@ -769,8 +769,8 @@ This approach makes debugging Vue applications significantly faster with visual 
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -801,8 +801,8 @@ This approach makes debugging Vue applications significantly faster with visual 
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -842,8 +842,8 @@ This approach makes debugging Vue applications significantly faster with visual 
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -877,8 +877,8 @@ This approach makes debugging Vue applications significantly faster with visual 
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -971,8 +971,8 @@ This approach makes debugging Vue applications significantly faster with visual 
   loading="lazy"
   class="post-image" 
   alt="How to round a number to two decimal places in JavaScript" 
-    srcset="/images/blog/how-to-round-a-number-to-two-decimal-places-in-javascript_hu_29e22dfbc9eee280.webp 480w, /images/blog/how-to-round-a-number-to-two-decimal-places-in-javascript_hu_d770ffe6b2aa981b.webp 768w, /images/blog/how-to-round-a-number-to-two-decimal-places-in-javascript_hu_23db01bac0802bde.webp 1024w, /images/blog/how-to-round-a-number-to-two-decimal-places-in-javascript_hu_befe16ce4449a9dd.webp 1366w" 
-  src="/images/blog/how-to-round-a-number-to-two-decimal-places-in-javascript_hu_4f1d1f0cd4abafa5.webp"
+    srcset="/images/blog/how-to-round-a-number-to-two-decimal-places-in-javascript_hu_a2c2a3d34f52f3b0.webp 480w, /images/blog/how-to-round-a-number-to-two-decimal-places-in-javascript_hu_e4ec21f97ddeb4c1.webp 768w, /images/blog/how-to-round-a-number-to-two-decimal-places-in-javascript_hu_ccfa6459c6c2bfa4.webp 1024w, /images/blog/how-to-round-a-number-to-two-decimal-places-in-javascript_hu_dc315a29238fc750.webp 1366w" 
+  src="/images/blog/how-to-round-a-number-to-two-decimal-places-in-javascript_hu_4a2f6c3c5a0b2425.webp"
    width="460px"
 />
       </a>
@@ -1011,8 +1011,8 @@ Wednesday, February 21, 2024
   loading="lazy"
   class="post-image" 
   alt="How to check if a string is a number in JavaScript" 
-    srcset="/images/blog/how-to-check-if-string-is-number-in-javascript_hu_d24ec3bcf3accd01.webp 480w, /images/blog/how-to-check-if-string-is-number-in-javascript_hu_afa7f0559e21dc91.webp 768w, /images/blog/how-to-check-if-string-is-number-in-javascript_hu_d771a7b4469013fd.webp 1024w, /images/blog/how-to-check-if-string-is-number-in-javascript_hu_721f3e179424f133.webp 1366w" 
-  src="/images/blog/how-to-check-if-string-is-number-in-javascript_hu_b6ff8279b86d67a1.webp"
+    srcset="/images/blog/how-to-check-if-string-is-number-in-javascript_hu_1aad38abbbe51ea7.webp 480w, /images/blog/how-to-check-if-string-is-number-in-javascript_hu_2e0edc0288bb16.webp 768w, /images/blog/how-to-check-if-string-is-number-in-javascript_hu_33985611ed8bd55a.webp 1024w, /images/blog/how-to-check-if-string-is-number-in-javascript_hu_d982d7a0e47c3d79.webp 1366w" 
+  src="/images/blog/how-to-check-if-string-is-number-in-javascript_hu_793cde7642df0840.webp"
    width="460px"
 />
       </a>
@@ -1051,8 +1051,8 @@ Sunday, February 11, 2024
   loading="lazy"
   class="post-image" 
   alt="How to check if an array is empty in JavaScript?" 
-    srcset="/images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_361498ac552cfac.webp 480w, /images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_67d536eaf1dd0f78.webp 768w, /images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_9257ce0f2dab10fb.webp 1024w, /images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_c7f08a43b6f41698.webp 1366w" 
-  src="/images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_2a805e1c3bb9e916.webp"
+    srcset="/images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_278a8774999e2f3f.webp 480w, /images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_121b19820973a375.webp 768w, /images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_1021f83b0fd60b3.webp 1024w, /images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_dc7b87560f20854e.webp 1366w" 
+  src="/images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_d45f83edfcbe8d1b.webp"
    width="460px"
 />
       </a>
@@ -1091,8 +1091,8 @@ Wednesday, February 7, 2024
   loading="lazy"
   class="post-image" 
   alt="Mastering JavaScript List Comprehension: The Ultimate Guide" 
-    srcset="/images/blog/how-to-javascript-list-comprehension_hu_6661d048509d9052.webp 480w, /images/blog/how-to-javascript-list-comprehension_hu_78ccced44bf37360.webp 768w, /images/blog/how-to-javascript-list-comprehension_hu_d8a0660ae3615566.webp 1024w, /images/blog/how-to-javascript-list-comprehension_hu_cef84c431cbb952d.webp 1366w" 
-  src="/images/blog/how-to-javascript-list-comprehension_hu_ee9e952f9139b79a.webp"
+    srcset="/images/blog/how-to-javascript-list-comprehension_hu_dc6d7d04fa5b52b9.webp 480w, /images/blog/how-to-javascript-list-comprehension_hu_486e11e6e6bf2bff.webp 768w, /images/blog/how-to-javascript-list-comprehension_hu_8a5ef17accfb6993.webp 1024w, /images/blog/how-to-javascript-list-comprehension_hu_f47f1ac75cdf0699.webp 1366w" 
+  src="/images/blog/how-to-javascript-list-comprehension_hu_b203a0029fc3dd8c.webp"
    width="460px"
 />
       </a>
@@ -1195,7 +1195,7 @@ Friday, February 2, 2024
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

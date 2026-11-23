@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Learn how to listen for and handle events in Node.js using EventEmitter and the on() method for asynchronous event-driven programming."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to listen for events in Node.js</title><link rel="canonical" href="https://coreui.io/answers/how-to-listen-for-events-in-nodejs/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to listen for events in Node.js</title><link rel="canonical" href="https://coreui.io/answers/how-to-listen-for-events-in-nodejs/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -500,18 +500,18 @@ This method provides clean separation of concerns and enables scalable, loosely-
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">emitter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventEmitter</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Listen for &#39;userLogin&#39; events
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">emitter</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;userLogin&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">userData</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">emitter</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;userLogin&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">userData</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User </span><span class="si">${</span><span class="nx">userData</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb"> logged in at </span><span class="si">${</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Handle login logic here
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Listen for &#39;error&#39; events
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">emitter</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">emitter</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;An error occurred:&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Emit events to trigger listeners
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">emitter</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;userLogin&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="mi">123</span> <span class="p">})</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">emitter</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;userLogin&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="o">:</span> <span class="mi">123</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="nx">emitter</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Something went wrong&#39;</span><span class="p">))</span>
 </span></span></code></pre></div><p>The <code>on()</code> method registers an event listener that executes whenever the specified event is emitted. The first parameter is the event name (string), and the second is the callback function that receives any data passed with the event. Event listeners run asynchronously and can access event data through callback parameters. Multiple listeners can be attached to the same event, and they&rsquo;ll execute in the order they were registered, making this pattern perfect for modular, event-driven applications.</p>
 <h2 id="best-practice-note">Best Practice Note:</h2>
@@ -533,8 +533,8 @@ Always handle &rsquo;error&rsquo; events to prevent uncaught exceptions, and con
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -565,8 +565,8 @@ Always handle &rsquo;error&rsquo; events to prevent uncaught exceptions, and con
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -606,8 +606,8 @@ Always handle &rsquo;error&rsquo; events to prevent uncaught exceptions, and con
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -641,8 +641,8 @@ Always handle &rsquo;error&rsquo; events to prevent uncaught exceptions, and con
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -735,8 +735,8 @@ Always handle &rsquo;error&rsquo; events to prevent uncaught exceptions, and con
   loading="lazy"
   class="post-image" 
   alt="Dealing with Sass Deprecation Warnings in Angular 19" 
-    srcset="/images/blog/angular_hu_bc744b25808c7b25.webp 480w, /images/blog/angular_hu_ec00dac6d8034a35.webp 768w, /images/blog/angular_hu_a41f1e4c6cf92139.webp 1024w, /images/blog/angular_hu_fb8df872c6f9a052.webp 1366w" 
-  src="/images/blog/angular_hu_db03f3dd0309440d.webp"
+    srcset="/images/blog/angular_hu_5093c5b5d1073191.webp 480w, /images/blog/angular_hu_e3dc2c6ab8d4cba1.webp 768w, /images/blog/angular_hu_c6603177def8353.webp 1024w, /images/blog/angular_hu_4f25cd3715137c2.webp 1366w" 
+  src="/images/blog/angular_hu_3ded5d0ef31f3cbf.webp"
    width="460px"
 />
       </a>
@@ -775,8 +775,8 @@ Friday, December 6, 2024
   loading="lazy"
   class="post-image" 
   alt="Understanding the difference between `for...in` and `for...of` statements in JavaScript" 
-    srcset="/images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_b07bd41239a498cc.webp 480w, /images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_c4d4d79607291d57.webp 768w, /images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_42010626a37f98f0.webp 1024w, /images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_15eb12721785d861.webp 1366w" 
-  src="/images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_d169d41fde178f3f.webp"
+    srcset="/images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_68c6de610bc279ce.webp 480w, /images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_be91a3956cf600d1.webp 768w, /images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_346f895ca3ac9754.webp 1024w, /images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_aee3ea51a970f6ed.webp 1366w" 
+  src="/images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_6fa522c4d2bf0b29.webp"
    width="460px"
 />
       </a>
@@ -815,8 +815,8 @@ Friday, December 6, 2024
   loading="lazy"
   class="post-image" 
   alt="How to convert a string to boolean in JavaScript" 
-    srcset="/images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_7ad6b0dfa4269518.webp 480w, /images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_d4d93e0778196d1f.webp 768w, /images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_6611b118993c1025.webp 1024w, /images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_3b5421a05d03e5e5.webp 1366w" 
-  src="/images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_565c84ac3b15cfcd.webp"
+    srcset="/images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_9d046d1aa5d9fe92.webp 480w, /images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_7379a655ae76d206.webp 768w, /images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_7bfa2dfdb31ae05e.webp 1024w, /images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_fb25f12d40d5ce03.webp 1366w" 
+  src="/images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_9d0e32dce072c304.webp"
    width="460px"
 />
       </a>
@@ -855,8 +855,8 @@ Wednesday, November 13, 2024
   loading="lazy"
   class="post-image" 
   alt="How to show or hide elements in React? A Step-by-Step Guide." 
-    srcset="/images/blog/how-to-show-or-hide-element-in-react_hu_d8518633c2d7492f.webp 480w, /images/blog/how-to-show-or-hide-element-in-react_hu_3442f32807a2be84.webp 768w, /images/blog/how-to-show-or-hide-element-in-react_hu_bcdf3ca964a8c37b.webp 1024w, /images/blog/how-to-show-or-hide-element-in-react_hu_f5f36ceae0c56483.webp 1366w" 
-  src="/images/blog/how-to-show-or-hide-element-in-react_hu_fbdedb404980edde.webp"
+    srcset="/images/blog/how-to-show-or-hide-element-in-react_hu_1273330bc4b4a4fa.webp 480w, /images/blog/how-to-show-or-hide-element-in-react_hu_1c297b819fed76ea.webp 768w, /images/blog/how-to-show-or-hide-element-in-react_hu_fdc8ed13e398e12c.webp 1024w, /images/blog/how-to-show-or-hide-element-in-react_hu_875b0ca712065194.webp 1366w" 
+  src="/images/blog/how-to-show-or-hide-element-in-react_hu_9f1a970fceec1211.webp"
    width="460px"
 />
       </a>
@@ -959,7 +959,7 @@ Thursday, November 7, 2024
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

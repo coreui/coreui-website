@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Use Number.isNaN() to reliably check if a value is NaN (Not a Number) in JavaScript with proper type safety."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to check if a value is NaN in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-check-if-a-value-is-nan-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to check if a value is NaN in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-check-if-a-value-is-nan-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -500,21 +500,21 @@ This method is precise, avoids the common pitfalls of the older <code>isNaN()</c
         <p>Use <code>Number.isNaN()</code> to check if a value is specifically NaN without type coercion.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">/</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span>   <span class="c1">// false — string is not NaN, just not a number
 </span></span></span></code></pre></div><p><code>Number.isNaN()</code> returns <code>true</code> only when the value is the actual NaN primitive. This strict behavior prevents the false positives that plague the global <code>isNaN()</code>, which coerces its argument first.</p>
 <h2 id="1-numberisnan-vs-global-isnan">1. Number.isNaN() vs global isNaN()</h2>
 <p>The global <code>isNaN()</code> converts the argument to a number before testing. This means non-numeric strings and other types incorrectly return <code>true</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Global isNaN — coerces before checking
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>     <span class="c1">// true  ← false positive: &#39;hello&#39; is not NaN
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">undefined</span><span class="p">)</span>   <span class="c1">// true  ← false positive
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>          <span class="c1">// false ← empty string coerces to 0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl"><span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>     <span class="c1">// true  ← false positive: &#39;hello&#39; is not NaN
+</span></span></span><span class="line"><span class="cl"><span class="nb">isNaN</span><span class="p">(</span><span class="kc">undefined</span><span class="p">)</span>   <span class="c1">// true  ← false positive
+</span></span></span><span class="line"><span class="cl"><span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>          <span class="c1">// false ← empty string coerces to 0
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Number.isNaN — no coercion
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>     <span class="c1">// false ✓
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">undefined</span><span class="p">)</span>   <span class="c1">// false ✓
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">NaN</span><span class="p">)</span>         <span class="c1">// true  ✓
+</span></span></span><span class="line"><span class="cl"><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>     <span class="c1">// false ✓
+</span></span></span><span class="line"><span class="cl"><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">undefined</span><span class="p">)</span>   <span class="c1">// false ✓
+</span></span></span><span class="line"><span class="cl"><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="kc">NaN</span><span class="p">)</span>         <span class="c1">// true  ✓
 </span></span></span></code></pre></div><p>Always prefer <code>Number.isNaN()</code> in modern code. The global <code>isNaN()</code> exists mainly for legacy compatibility.</p>
 <h2 id="2-detecting-invalid-math-results">2. Detecting Invalid Math Results</h2>
 <p>Division by zero and operations on non-numeric values produce NaN. Checking the result before using it prevents downstream errors.</p>
@@ -522,13 +522,13 @@ This method is precise, avoids the common pitfalls of the older <code>isNaN()</c
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">/</span> <span class="nx">b</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span> <span class="c1">// or throw, or return null depending on context
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">result</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">safeDivide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1">// 5
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">safeDivide</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>   <span class="c1">// 0 (guarded)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">safeDivide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1">// Infinity — note: not NaN, a separate case
+</span></span></span><span class="line"><span class="cl"><span class="nx">safeDivide</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>   <span class="c1">// 0 (guarded)
+</span></span></span><span class="line"><span class="cl"><span class="nx">safeDivide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1">// Infinity — note: not NaN, a separate case
 </span></span></span></code></pre></div><p>Other sources of NaN from math: <code>Math.sqrt(-1)</code>, <code>parseInt('abc')</code>, <code>parseFloat('xyz')</code>, and <code>Number('not a number')</code>.</p>
 <h2 id="3-validating-numeric-form-inputs">3. Validating Numeric Form Inputs</h2>
 <p>When reading a value from a text input and converting it to a number, the result is NaN if the user typed non-numeric content. Always guard before using the value.</p>
@@ -542,7 +542,7 @@ This method is precise, avoids the common pitfalls of the older <code>isNaN()</c
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">qty</span> <span class="o">=</span> <span class="nx">getNumericInput</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;quantity&#39;</span><span class="p">))</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">qty</span> <span class="o">=</span> <span class="nx">getNumericInput</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;quantity&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">qty</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">updateCart</span><span class="p">(</span><span class="nx">qty</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -558,9 +558,9 @@ This method is precise, avoids the common pitfalls of the older <code>isNaN()</c
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">parseApiPrice</span><span class="p">(</span><span class="s1">&#39;12.99&#39;</span><span class="p">)</span>   <span class="c1">// 12.99
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">parseApiPrice</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>      <span class="c1">// 0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">parseApiPrice</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>        <span class="c1">// 0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">parseApiPrice</span><span class="p">(</span><span class="s1">&#39;N/A&#39;</span><span class="p">)</span>     <span class="c1">// 0
+</span></span></span><span class="line"><span class="cl"><span class="nx">parseApiPrice</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>      <span class="c1">// 0
+</span></span></span><span class="line"><span class="cl"><span class="nx">parseApiPrice</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>        <span class="c1">// 0
+</span></span></span><span class="line"><span class="cl"><span class="nx">parseApiPrice</span><span class="p">(</span><span class="s1">&#39;N/A&#39;</span><span class="p">)</span>     <span class="c1">// 0
 </span></span></span></code></pre></div><p><code>Number(null)</code> is <code>0</code> and <code>Number('')</code> is <code>0</code>, so those cases pass through cleanly. Only truly non-numeric strings like <code>'N/A'</code> or <code>'undefined'</code> produce NaN.</p>
 <h2 id="5-checking-whether-a-value-can-convert-to-a-valid-number">5. Checking Whether a Value Can Convert to a Valid Number</h2>
 <p>Sometimes you want to know if a value is &ldquo;usable as a number&rdquo;, even if it is currently a string. In that case combine <code>Number()</code> with <code>isNaN()</code> (global is fine here, since you are explicitly converting first).</p>
@@ -569,10 +569,10 @@ This method is precise, avoids the common pitfalls of the older <code>isNaN()</c
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">isNumeric</span><span class="p">(</span><span class="s1">&#39;42&#39;</span><span class="p">)</span>      <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">isNumeric</span><span class="p">(</span><span class="s1">&#39;3.14&#39;</span><span class="p">)</span>    <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">isNumeric</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>        <span class="c1">// true  ← empty string → 0; adjust if unwanted
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">isNumeric</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>   <span class="c1">// false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">isNumeric</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>      <span class="c1">// true  ← null → 0; adjust if unwanted
+</span></span></span><span class="line"><span class="cl"><span class="nx">isNumeric</span><span class="p">(</span><span class="s1">&#39;3.14&#39;</span><span class="p">)</span>    <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="nx">isNumeric</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>        <span class="c1">// true  ← empty string → 0; adjust if unwanted
+</span></span></span><span class="line"><span class="cl"><span class="nx">isNumeric</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>   <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="nx">isNumeric</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>      <span class="c1">// true  ← null → 0; adjust if unwanted
 </span></span></span></code></pre></div><p>For stricter intent, trim the string and reject empty values explicitly:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">isStrictlyNumeric</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span>
@@ -581,11 +581,11 @@ This method is precise, avoids the common pitfalls of the older <code>isNaN()</c
 </span></span></code></pre></div><h2 id="6-using-objectis-as-an-alternative">6. Using Object.is() as an Alternative</h2>
 <p><code>Object.is(value, NaN)</code> is another strict option. Unlike <code>===</code>, it correctly handles the fact that <code>NaN !== NaN</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">Object</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="kc">NaN</span><span class="p">,</span> <span class="kc">NaN</span><span class="p">)</span>      <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="mi">0</span> <span class="o">/</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">NaN</span><span class="p">)</span>    <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="kc">NaN</span><span class="p">)</span>  <span class="c1">// false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl"><span class="nb">Object</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="mi">0</span> <span class="o">/</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">NaN</span><span class="p">)</span>    <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="nb">Object</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="kc">NaN</span><span class="p">)</span>  <span class="c1">// false
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// For comparison: NaN === NaN is always false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kc">NaN</span> <span class="o">===</span> <span class="kc">NaN</span>              <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="kc">NaN</span> <span class="o">===</span> <span class="kc">NaN</span>              <span class="c1">// false
 </span></span></span></code></pre></div><p><code>Object.is()</code> is useful when you need to distinguish <code>+0</code> from <code>-0</code> in the same check, but for typical NaN detection <code>Number.isNaN()</code> is clearer in intent.</p>
 <h2 id="7-filtering-nan-values-from-arrays">7. Filtering NaN Values from Arrays</h2>
 <p>When processing datasets, you often need to strip out NaN entries before aggregating.</p>
@@ -593,7 +593,7 @@ This method is precise, avoids the common pitfalls of the older <code>isNaN()</c
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">valid</span> <span class="o">=</span> <span class="nx">readings</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">v</span> <span class="p">=&gt;</span> <span class="o">!</span><span class="nb">Number</span><span class="p">.</span><span class="nb">isNaN</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// [12, 7, 3]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">total</span> <span class="o">=</span> <span class="nx">valid</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 22
 </span></span></span></code></pre></div><p>Alternatively, replace NaN with a default before filtering:</p>
@@ -619,8 +619,8 @@ We apply these patterns throughout CoreUI&rsquo;s JavaScript utilities to ensure
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -651,8 +651,8 @@ We apply these patterns throughout CoreUI&rsquo;s JavaScript utilities to ensure
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -692,8 +692,8 @@ We apply these patterns throughout CoreUI&rsquo;s JavaScript utilities to ensure
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -727,8 +727,8 @@ We apply these patterns throughout CoreUI&rsquo;s JavaScript utilities to ensure
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -821,8 +821,8 @@ We apply these patterns throughout CoreUI&rsquo;s JavaScript utilities to ensure
   loading="lazy"
   class="post-image" 
   alt="Understanding Operator Precedence in JavaScript: Why Parentheses Matter with `??` and `?:`" 
-    srcset="/images/blog/understanding-operator-precedence-in-javascript_hu_cc0eb218c3c27983.webp 480w, /images/blog/understanding-operator-precedence-in-javascript_hu_1ffb913c24c0ff33.webp 768w, /images/blog/understanding-operator-precedence-in-javascript_hu_c905e079305653ba.webp 1024w, /images/blog/understanding-operator-precedence-in-javascript_hu_773ceb144862f830.webp 1366w" 
-  src="/images/blog/understanding-operator-precedence-in-javascript_hu_5f2fa206bfc15b09.webp"
+    srcset="/images/blog/understanding-operator-precedence-in-javascript_hu_7108d3a0ddd47e0e.webp 480w, /images/blog/understanding-operator-precedence-in-javascript_hu_8f843beb4665aac1.webp 768w, /images/blog/understanding-operator-precedence-in-javascript_hu_3acefb2894c8c83d.webp 1024w, /images/blog/understanding-operator-precedence-in-javascript_hu_58738a51a941cd60.webp 1366w" 
+  src="/images/blog/understanding-operator-precedence-in-javascript_hu_95adc351bae01d9.webp"
    width="460px"
 />
       </a>
@@ -861,8 +861,8 @@ Sunday, July 27, 2025
   loading="lazy"
   class="post-image" 
   alt="What is CoreUI and Why Should You Use It for Your Next Admin Dashboard?" 
-    srcset="/images/blog/coreui-logo-components_hu_7b65c716e8baee25.webp 480w, /images/blog/coreui-logo-components_hu_13da449ab85e0e7.webp 768w, /images/blog/coreui-logo-components_hu_391d9c1f11f54da0.webp 1024w, /images/blog/coreui-logo-components_hu_fde46d4866547940.webp 1366w" 
-  src="/images/blog/coreui-logo-components_hu_a8df34ab2b4e89e6.webp"
+    srcset="/images/blog/coreui-logo-components_hu_c00dbf73b70be189.webp 480w, /images/blog/coreui-logo-components_hu_12d6d5629dd50c8e.webp 768w, /images/blog/coreui-logo-components_hu_36805556af3b4c9d.webp 1024w, /images/blog/coreui-logo-components_hu_100cabab64e42c5a.webp 1366w" 
+  src="/images/blog/coreui-logo-components_hu_222418d3413d1f9c.webp"
    width="460px"
 />
       </a>
@@ -901,8 +901,8 @@ Thursday, July 10, 2025
   loading="lazy"
   class="post-image" 
   alt="How to Use Bootstrap Dropdown in Angular – CoreUI Integration Guide" 
-    srcset="/images/blog/how-to-use-bootstrap-dropdown-in-angular_hu_9f4c2f44b117343c.webp 480w, /images/blog/how-to-use-bootstrap-dropdown-in-angular_hu_d7d03812395ac3f1.webp 768w, /images/blog/how-to-use-bootstrap-dropdown-in-angular_hu_20354bf2150fce83.webp 1024w, /images/blog/how-to-use-bootstrap-dropdown-in-angular_hu_e264edf33ce81eec.webp 1366w" 
-  src="/images/blog/how-to-use-bootstrap-dropdown-in-angular_hu_cb65c37282c0a47e.webp"
+    srcset="/images/blog/how-to-use-bootstrap-dropdown-in-angular_hu_6220426052fe79ef.webp 480w, /images/blog/how-to-use-bootstrap-dropdown-in-angular_hu_1b282ccc241775bd.webp 768w, /images/blog/how-to-use-bootstrap-dropdown-in-angular_hu_270826ae96aa4b9d.webp 1024w, /images/blog/how-to-use-bootstrap-dropdown-in-angular_hu_16b99cb9c1f1bd42.webp 1366w" 
+  src="/images/blog/how-to-use-bootstrap-dropdown-in-angular_hu_244e2b4f0645edae.webp"
    width="460px"
 />
       </a>
@@ -941,8 +941,8 @@ Wednesday, July 9, 2025
   loading="lazy"
   class="post-image" 
   alt="The Best Bootstrap Alternative for Developers in 2025" 
-    srcset="/images/blog/bootstrap_hu_39cf588cc3355249.webp 480w, /images/blog/bootstrap_hu_efd90fb0c9fd0bf7.webp 768w, /images/blog/bootstrap_hu_8cfed3312939a64f.webp 1024w, /images/blog/bootstrap_hu_b5692fb9b2b7528d.webp 1366w" 
-  src="/images/blog/bootstrap_hu_f59f880f3973dc07.webp"
+    srcset="/images/blog/bootstrap_hu_d5beb33ac05dda0f.webp 480w, /images/blog/bootstrap_hu_ce0e8c6340313fec.webp 768w, /images/blog/bootstrap_hu_13408eb9149af1e0.webp 1024w, /images/blog/bootstrap_hu_4c1f33012bbc3a7.webp 1366w" 
+  src="/images/blog/bootstrap_hu_29fe9193416f848e.webp"
    width="460px"
 />
       </a>
@@ -1045,7 +1045,7 @@ Tuesday, July 8, 2025
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

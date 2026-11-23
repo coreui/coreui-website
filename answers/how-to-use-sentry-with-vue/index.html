@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Integrate Sentry error tracking into Vue applications for real-time error monitoring, debugging, and performance tracking."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to use Sentry with Vue</title><link rel="canonical" href="https://coreui.io/answers/how-to-use-sentry-with-vue/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to use Sentry with Vue</title><link rel="canonical" href="https://coreui.io/answers/how-to-use-sentry-with-vue/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -499,7 +499,7 @@ This approach helps identify and fix production bugs quickly with comprehensive 
         <p>Install @sentry/vue and initialize in main.js to capture errors with context and source maps for production debugging.</p>
 <p><strong>Basic Sentry setup:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// main.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App.vue&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">Sentry</span> <span class="nx">from</span> <span class="s1">&#39;@sentry/vue&#39;</span>
 </span></span><span class="line"><span class="cl">
@@ -513,9 +513,9 @@ This approach helps identify and fix production bugs quickly with comprehensive 
 </span></span><span class="line"><span class="cl">    <span class="nx">Sentry</span><span class="p">.</span><span class="nx">replayIntegration</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">  <span class="p">],</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Performance Monitoring
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">tracesSampleRate</span><span class="o">:</span> <span class="mf">1.0</span><span class="p">,</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">tracesSampleRate</span><span class="o">:</span> <span class="mf">1.0</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Session Replay
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">replaysSessionSampleRate</span><span class="o">:</span> <span class="mf">0.1</span><span class="p">,</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">replaysSessionSampleRate</span><span class="o">:</span> <span class="mf">0.1</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">replaysOnErrorSampleRate</span><span class="o">:</span> <span class="mf">1.0</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">environment</span><span class="o">:</span> <span class="kr">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MODE</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">enabled</span><span class="o">:</span> <span class="kr">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MODE</span> <span class="o">===</span> <span class="s1">&#39;production&#39;</span>
@@ -524,7 +524,7 @@ This approach helps identify and fix production bugs quickly with comprehensive 
 </span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="s1">&#39;#app&#39;</span><span class="p">)</span>
 </span></span></code></pre></div><p><strong>Advanced configuration:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// sentry.config.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">Sentry</span> <span class="nx">from</span> <span class="s1">&#39;@sentry/vue&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">Sentry</span> <span class="nx">from</span> <span class="s1">&#39;@sentry/vue&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">router</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./router&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kd">function</span> <span class="nx">initSentry</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="p">{</span>
@@ -546,7 +546,7 @@ This approach helps identify and fix production bugs quickly with comprehensive 
 </span></span><span class="line"><span class="cl">    <span class="nx">enabled</span><span class="o">:</span> <span class="kr">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">MODE</span> <span class="o">!==</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">beforeSend</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">hint</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// Filter out specific errors
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">exception</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">exception</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">error</span> <span class="o">=</span> <span class="nx">hint</span><span class="p">.</span><span class="nx">originalException</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span> <span class="o">&amp;&amp;</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;ResizeObserver&#39;</span><span class="p">))</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="kc">null</span>
@@ -562,7 +562,7 @@ This approach helps identify and fix production bugs quickly with comprehensive 
 </span></span><span class="line"><span class="cl">  <span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Set user context
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">getUserFromStorage</span><span class="p">()</span>
+</span></span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">getUserFromStorage</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">Sentry</span><span class="p">.</span><span class="nx">setUser</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">id</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
@@ -584,7 +584,7 @@ This approach helps identify and fix production bugs quickly with comprehensive 
 </span></span><span class="line"><span class="cl">  <span class="nx">errorMessage</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Send to Sentry with context
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">Sentry</span><span class="p">.</span><span class="nx">captureException</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">Sentry</span><span class="p">.</span><span class="nx">captureException</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">contexts</span><span class="o">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">vue</span><span class="o">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">componentName</span><span class="o">:</span> <span class="nx">instance</span><span class="o">?</span><span class="p">.</span><span class="nx">$options</span><span class="o">?</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
@@ -595,7 +595,7 @@ This approach helps identify and fix production bugs quickly with comprehensive 
 </span></span><span class="line"><span class="cl">  <span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Prevent error from propagating
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="kc">false</span>
+</span></span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">
@@ -609,7 +609,7 @@ This approach helps identify and fix production bugs quickly with comprehensive 
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p><strong>Manual error reporting:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// api.service.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">Sentry</span> <span class="nx">from</span> <span class="s1">&#39;@sentry/vue&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">Sentry</span> <span class="nx">from</span> <span class="s1">&#39;@sentry/vue&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">async</span> <span class="kd">function</span> <span class="nx">fetchUserData</span><span class="p">(</span><span class="nx">userId</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">try</span> <span class="p">{</span>
@@ -622,7 +622,7 @@ This approach helps identify and fix production bugs quickly with comprehensive 
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kr">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// Add breadcrumb
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">Sentry</span><span class="p">.</span><span class="nx">addBreadcrumb</span><span class="p">({</span>
+</span></span></span><span class="line"><span class="cl">    <span class="nx">Sentry</span><span class="p">.</span><span class="nx">addBreadcrumb</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">category</span><span class="o">:</span> <span class="s1">&#39;api&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Failed to fetch user data&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">level</span><span class="o">:</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span>
@@ -630,7 +630,7 @@ This approach helps identify and fix production bugs quickly with comprehensive 
 </span></span><span class="line"><span class="cl">    <span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Capture exception with context
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">Sentry</span><span class="p">.</span><span class="nx">captureException</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="nx">Sentry</span><span class="p">.</span><span class="nx">captureException</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">tags</span><span class="o">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">api_endpoint</span><span class="o">:</span> <span class="s1">&#39;/api/users&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">user_id</span><span class="o">:</span> <span class="nx">userId</span>
@@ -648,19 +648,19 @@ This approach helps identify and fix production bugs quickly with comprehensive 
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Performance monitoring:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// router/index.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">createRouter</span><span class="p">,</span> <span class="nx">createWebHistory</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue-router&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createRouter</span><span class="p">,</span> <span class="nx">createWebHistory</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue-router&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">Sentry</span> <span class="nx">from</span> <span class="s1">&#39;@sentry/vue&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">createRouter</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">history</span><span class="o">:</span> <span class="nx">createWebHistory</span><span class="p">(),</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">routes</span><span class="o">:</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// routes
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">]</span>
+</span></span></span><span class="line"><span class="cl">  <span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="nx">beforeEach</span><span class="p">((</span><span class="nx">to</span><span class="p">,</span> <span class="nx">from</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Start performance transaction
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">transaction</span> <span class="o">=</span> <span class="nx">Sentry</span><span class="p">.</span><span class="nx">startTransaction</span><span class="p">({</span>
+</span></span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">transaction</span> <span class="o">=</span> <span class="nx">Sentry</span><span class="p">.</span><span class="nx">startTransaction</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="nx">to</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">op</span><span class="o">:</span> <span class="s1">&#39;navigation&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">tags</span><span class="o">:</span> <span class="p">{</span>
@@ -670,14 +670,14 @@ This approach helps identify and fix production bugs quickly with comprehensive 
 </span></span><span class="line"><span class="cl">  <span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Attach transaction to route meta
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">to</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">sentryTransaction</span> <span class="o">=</span> <span class="nx">transaction</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">to</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">sentryTransaction</span> <span class="o">=</span> <span class="nx">transaction</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="nx">next</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="nx">afterEach</span><span class="p">((</span><span class="nx">to</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Finish transaction
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">transaction</span> <span class="o">=</span> <span class="nx">to</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">sentryTransaction</span>
+</span></span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">transaction</span> <span class="o">=</span> <span class="nx">to</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">sentryTransaction</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">transaction</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">transaction</span><span class="p">.</span><span class="nx">finish</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
@@ -712,11 +712,11 @@ This approach helps identify and fix production bugs quickly with comprehensive 
 </span></span><span class="line"><span class="cl">  <span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Perform action
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p><strong>Source maps for production:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// vite.config.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vite&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vite&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">sentryVitePlugin</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@sentry/vite-plugin&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">defineConfig</span><span class="p">({</span>
@@ -753,8 +753,8 @@ This approach helps identify and fix production bugs quickly with comprehensive 
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -785,8 +785,8 @@ This approach helps identify and fix production bugs quickly with comprehensive 
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -826,8 +826,8 @@ This approach helps identify and fix production bugs quickly with comprehensive 
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -861,8 +861,8 @@ This approach helps identify and fix production bugs quickly with comprehensive 
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -955,8 +955,8 @@ This approach helps identify and fix production bugs quickly with comprehensive 
   loading="lazy"
   class="post-image" 
   alt="How to check if a string is a number in JavaScript" 
-    srcset="/images/blog/how-to-check-if-string-is-number-in-javascript_hu_d24ec3bcf3accd01.webp 480w, /images/blog/how-to-check-if-string-is-number-in-javascript_hu_afa7f0559e21dc91.webp 768w, /images/blog/how-to-check-if-string-is-number-in-javascript_hu_d771a7b4469013fd.webp 1024w, /images/blog/how-to-check-if-string-is-number-in-javascript_hu_721f3e179424f133.webp 1366w" 
-  src="/images/blog/how-to-check-if-string-is-number-in-javascript_hu_b6ff8279b86d67a1.webp"
+    srcset="/images/blog/how-to-check-if-string-is-number-in-javascript_hu_1aad38abbbe51ea7.webp 480w, /images/blog/how-to-check-if-string-is-number-in-javascript_hu_2e0edc0288bb16.webp 768w, /images/blog/how-to-check-if-string-is-number-in-javascript_hu_33985611ed8bd55a.webp 1024w, /images/blog/how-to-check-if-string-is-number-in-javascript_hu_d982d7a0e47c3d79.webp 1366w" 
+  src="/images/blog/how-to-check-if-string-is-number-in-javascript_hu_793cde7642df0840.webp"
    width="460px"
 />
       </a>
@@ -995,8 +995,8 @@ Sunday, February 11, 2024
   loading="lazy"
   class="post-image" 
   alt="How to check if an array is empty in JavaScript?" 
-    srcset="/images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_361498ac552cfac.webp 480w, /images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_67d536eaf1dd0f78.webp 768w, /images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_9257ce0f2dab10fb.webp 1024w, /images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_c7f08a43b6f41698.webp 1366w" 
-  src="/images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_2a805e1c3bb9e916.webp"
+    srcset="/images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_278a8774999e2f3f.webp 480w, /images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_121b19820973a375.webp 768w, /images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_1021f83b0fd60b3.webp 1024w, /images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_dc7b87560f20854e.webp 1366w" 
+  src="/images/blog/how-to-check-if-an-array-is-empty-in-javascript_hu_d45f83edfcbe8d1b.webp"
    width="460px"
 />
       </a>
@@ -1035,8 +1035,8 @@ Wednesday, February 7, 2024
   loading="lazy"
   class="post-image" 
   alt="Mastering JavaScript List Comprehension: The Ultimate Guide" 
-    srcset="/images/blog/how-to-javascript-list-comprehension_hu_6661d048509d9052.webp 480w, /images/blog/how-to-javascript-list-comprehension_hu_78ccced44bf37360.webp 768w, /images/blog/how-to-javascript-list-comprehension_hu_d8a0660ae3615566.webp 1024w, /images/blog/how-to-javascript-list-comprehension_hu_cef84c431cbb952d.webp 1366w" 
-  src="/images/blog/how-to-javascript-list-comprehension_hu_ee9e952f9139b79a.webp"
+    srcset="/images/blog/how-to-javascript-list-comprehension_hu_dc6d7d04fa5b52b9.webp 480w, /images/blog/how-to-javascript-list-comprehension_hu_486e11e6e6bf2bff.webp 768w, /images/blog/how-to-javascript-list-comprehension_hu_8a5ef17accfb6993.webp 1024w, /images/blog/how-to-javascript-list-comprehension_hu_f47f1ac75cdf0699.webp 1366w" 
+  src="/images/blog/how-to-javascript-list-comprehension_hu_b203a0029fc3dd8c.webp"
    width="460px"
 />
       </a>
@@ -1075,8 +1075,8 @@ Friday, February 2, 2024
   loading="lazy"
   class="post-image" 
   alt="Mastering Inline Styles in React.js: Enhancing Your Components with Style" 
-    srcset="/images/blog/how-to-use-inline-styles-in-react_hu_9ce954a185d7d3c8.webp 480w, /images/blog/how-to-use-inline-styles-in-react_hu_5c93314ea71cd095.webp 768w, /images/blog/how-to-use-inline-styles-in-react_hu_732b5b91e98e27dc.webp 1024w, /images/blog/how-to-use-inline-styles-in-react_hu_4c0139d875b1a50b.webp 1366w" 
-  src="/images/blog/how-to-use-inline-styles-in-react_hu_8dc94b858b890c11.webp"
+    srcset="/images/blog/how-to-use-inline-styles-in-react_hu_e83e1ea3853f25cd.webp 480w, /images/blog/how-to-use-inline-styles-in-react_hu_f11670ba02838c39.webp 768w, /images/blog/how-to-use-inline-styles-in-react_hu_7535395d382c24b2.webp 1024w, /images/blog/how-to-use-inline-styles-in-react_hu_745c8e12588da259.webp 1366w" 
+  src="/images/blog/how-to-use-inline-styles-in-react_hu_196be932d2c6bee3.webp"
    width="460px"
 />
       </a>
@@ -1179,7 +1179,7 @@ Tuesday, January 30, 2024
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

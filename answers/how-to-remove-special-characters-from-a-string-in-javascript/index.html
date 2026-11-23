@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Use replace() with regular expressions to efficiently remove special characters from strings in JavaScript."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to remove special characters from a string in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-remove-special-characters-from-a-string-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to remove special characters from a string in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-remove-special-characters-from-a-string-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -512,27 +512,27 @@ This approach provides precise control over which characters to remove and handl
 <h2 id="1-keeping-specific-special-characters">1. Keeping Specific Special Characters</h2>
 <p>Often you need to remove most special characters but keep certain ones like hyphens, underscores, or periods. Customize the character class to whitelist exactly what you need.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Keep hyphens and underscores
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">username</span> <span class="o">=</span> <span class="s1">&#39;john_doe-123!@#&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">username</span> <span class="o">=</span> <span class="s1">&#39;john_doe-123!@#&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cleanUsername</span> <span class="o">=</span> <span class="nx">username</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^a-zA-Z0-9_-]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;john_doe-123&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Keep periods (for email-like strings)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">email</span> <span class="o">=</span> <span class="s1">&#39;user.name+tag@example.com!!!&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">email</span> <span class="o">=</span> <span class="s1">&#39;user.name+tag@example.com!!!&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cleanEmail</span> <span class="o">=</span> <span class="nx">email</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^a-zA-Z0-9.@_-]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;user.name+tag@example.com&#39; — oops, + was removed
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Be explicit about which characters to allow
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">cleanEmailFull</span> <span class="o">=</span> <span class="nx">email</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^a-zA-Z0-9.@+_-]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cleanEmailFull</span> <span class="o">=</span> <span class="nx">email</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^a-zA-Z0-9.@+_-]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;user.name+tag@example.com!!!&#39; — wait, need to exclude !
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Actually: &#39;user.name+tag@example.com&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Keep only digits and decimal point (for price inputs)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">priceInput</span> <span class="o">=</span> <span class="s1">&#39;$1,234.56 USD&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">priceInput</span> <span class="o">=</span> <span class="s1">&#39;$1,234.56 USD&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">numericPrice</span> <span class="o">=</span> <span class="nx">priceInput</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^0-9.]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;1234.56&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Keep only digits (for phone numbers)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">phone</span> <span class="o">=</span> <span class="s1">&#39;+1 (555) 123-4567&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">phone</span> <span class="o">=</span> <span class="s1">&#39;+1 (555) 123-4567&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">digitsOnly</span> <span class="o">=</span> <span class="nx">phone</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\D/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;15551234567&#39;
 </span></span></span></code></pre></div><p>Place hyphens at the start or end of the character class (<code>[-a-z]</code> or <code>[a-z-]</code>) to avoid ambiguity — a hyphen between characters like <code>[a-z]</code> defines a range, while <code>[-az]</code> matches a literal hyphen, <code>a</code>, or <code>z</code>. This is the approach we use in <a href="https://coreui.io/react/docs/forms/validation/">CoreUI form validation</a> to sanitize user input before processing.</p>
@@ -541,47 +541,47 @@ This approach provides precise control over which characters to remove and handl
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">internationalText</span> <span class="o">=</span> <span class="s1">&#39;Café résumé naïve über Straße&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// ASCII-only regex — REMOVES accented characters
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">asciiOnly</span> <span class="o">=</span> <span class="nx">internationalText</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^a-zA-Z0-9\s]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">asciiOnly</span> <span class="o">=</span> <span class="nx">internationalText</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^a-zA-Z0-9\s]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Caf rsum nave ber Strae&#39; (broken!)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Unicode property escape — keeps all letters from any language
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">unicodeSafe</span> <span class="o">=</span> <span class="nx">internationalText</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^\p{L}\p{N}\s]/gu</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">unicodeSafe</span> <span class="o">=</span> <span class="nx">internationalText</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^\p{L}\p{N}\s]/gu</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Café résumé naïve über Straße&#39; (correct)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// \p{L} matches any Unicode letter (Latin, Cyrillic, CJK, etc.)
 </span></span></span><span class="line"><span class="cl"><span class="c1">// \p{N} matches any Unicode number
 </span></span></span><span class="line"><span class="cl"><span class="c1">// The &#39;u&#39; flag enables Unicode mode
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Works with non-Latin scripts too
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">mixed</span> <span class="o">=</span> <span class="s1">&#39;Hello 你好 مرحبا 🎉 #trending!&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">mixed</span> <span class="o">=</span> <span class="s1">&#39;Hello 你好 مرحبا 🎉 #trending!&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cleanMixed</span> <span class="o">=</span> <span class="nx">mixed</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^\p{L}\p{N}\s]/gu</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Hello 你好 مرحبا  trending&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Keep letters, numbers, and common punctuation
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">keepPunctuation</span> <span class="o">=</span> <span class="nx">mixed</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^\p{L}\p{N}\p{P}\s]/gu</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">keepPunctuation</span> <span class="o">=</span> <span class="nx">mixed</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^\p{L}\p{N}\p{P}\s]/gu</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Hello 你好 مرحبا  #trending!&#39;
 </span></span></span></code></pre></div><p>Unicode property escapes (<code>\p{L}</code>, <code>\p{N}</code>) require the <code>u</code> flag and are supported in all modern browsers and Node.js 10+. Always use this approach instead of <code>\w</code> when handling international text — the <code>\w</code> shorthand is equivalent to <code>[A-Za-z0-9_]</code> and does not include accented or non-Latin characters.</p>
 <h2 id="3-generating-url-friendly-slugs">3. Generating URL-Friendly Slugs</h2>
 <p>Slug generation is one of the most common use cases for removing special characters. The goal is a lowercase, hyphen-separated string with only ASCII characters.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Basic slug generator
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">slugify</span> <span class="o">=</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">slugify</span> <span class="o">=</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">text</span>
 </span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">trim</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^\w\s-]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>    <span class="c1">// remove non-word chars (except hyphens)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>         <span class="c1">// replace spaces with hyphens
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/-+/g</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>          <span class="c1">// collapse consecutive hyphens
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^-|-$/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>        <span class="c1">// trim leading/trailing hyphens
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>         <span class="c1">// replace spaces with hyphens
+</span></span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/-+/g</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>          <span class="c1">// collapse consecutive hyphens
+</span></span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^-|-$/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>        <span class="c1">// trim leading/trailing hyphens
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">slugify</span><span class="p">(</span><span class="s1">&#39;How to Remove Special Characters!!!&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;how-to-remove-special-characters&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">slugify</span><span class="p">(</span><span class="s1">&#39;  Hello,   World!  &#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;hello-world&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Advanced slug with transliteration for accented characters
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">translitMap</span> <span class="o">=</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">translitMap</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="s1">&#39;à&#39;</span><span class="o">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;á&#39;</span><span class="o">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;â&#39;</span><span class="o">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;ã&#39;</span><span class="o">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;ä&#39;</span><span class="o">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;å&#39;</span><span class="o">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="s1">&#39;è&#39;</span><span class="o">:</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;é&#39;</span><span class="o">:</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;ê&#39;</span><span class="o">:</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;ë&#39;</span><span class="o">:</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="s1">&#39;ì&#39;</span><span class="o">:</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;í&#39;</span><span class="o">:</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;î&#39;</span><span class="o">:</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;ï&#39;</span><span class="o">:</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span>
@@ -604,7 +604,7 @@ This approach provides precise control over which characters to remove and handl
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">advancedSlugify</span><span class="p">(</span><span class="s1">&#39;Crème Brûlée Recipe&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;creme-brulee-recipe&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">advancedSlugify</span><span class="p">(</span><span class="s1">&#39;Straße nach München&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;strasse-nach-muenchen&#39; — wait, ü→u not ue
 </span></span></span><span class="line"><span class="cl"><span class="c1">// For German: add &#39;ü&#39;: &#39;ue&#39; to the map if needed
@@ -612,22 +612,22 @@ This approach provides precise control over which characters to remove and handl
 <h2 id="4-sanitizing-filenames">4. Sanitizing Filenames</h2>
 <p>File systems have strict rules about allowed characters. Sanitizing filenames prevents errors and security issues when saving user-provided names.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Remove characters not allowed in most file systems
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">sanitizeFilename</span> <span class="o">=</span> <span class="p">(</span><span class="nx">filename</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sanitizeFilename</span> <span class="o">=</span> <span class="p">(</span><span class="nx">filename</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">filename</span>
 </span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[&lt;&gt;:&#34;/\\|?*\x00-\x1F]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1">// forbidden chars
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>                      <span class="c1">// spaces to underscores
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\.+/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>                        <span class="c1">// no leading dots (hidden files)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>                              <span class="c1">// max filename length
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>                      <span class="c1">// spaces to underscores
+</span></span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\.+/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>                        <span class="c1">// no leading dots (hidden files)
+</span></span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>                              <span class="c1">// max filename length
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sanitizeFilename</span><span class="p">(</span><span class="s1">&#39;my&lt;file&gt;:name?.txt&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;myfilename.txt&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sanitizeFilename</span><span class="p">(</span><span class="s1">&#39;...hidden file   v2.pdf&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;hidden_file___v2.pdf&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Preserve the extension while cleaning the name
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">sanitizeWithExtension</span> <span class="o">=</span> <span class="p">(</span><span class="nx">filename</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sanitizeWithExtension</span> <span class="o">=</span> <span class="p">(</span><span class="nx">filename</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">lastDot</span> <span class="o">=</span> <span class="nx">filename</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">lastDot</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nx">sanitizeFilename</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
@@ -648,20 +648,20 @@ This approach provides precise control over which characters to remove and handl
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sanitizeWithExtension</span><span class="p">(</span><span class="s1">&#39;My Report (Final!!).PDF&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;My_Report_(Final).pdf&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sanitizeWithExtension</span><span class="p">(</span><span class="s1">&#39;&lt;script&gt;.js&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;script.js&#39;
 </span></span></span></code></pre></div><p>Always sanitize user-provided filenames on the server side as well — client-side sanitization is for convenience, not security. The <code>\x00-\x1F</code> range removes control characters that could cause issues.</p>
 <h2 id="5-cleaning-html-and-preventing-xss">5. Cleaning HTML and Preventing XSS</h2>
 <p>Removing HTML tags and special characters from user input is essential for preventing cross-site scripting (XSS) attacks. While dedicated sanitization libraries are recommended for production, understanding the regex approach is fundamental.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Strip HTML tags
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">stripTags</span> <span class="o">=</span> <span class="p">(</span><span class="nx">html</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">html</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;[^&gt;]*&gt;/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">stripTags</span> <span class="o">=</span> <span class="p">(</span><span class="nx">html</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">html</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;[^&gt;]*&gt;/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stripTags</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;Hello &lt;b&gt;World&lt;/b&gt;&lt;/p&gt;&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Hello World&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Escape HTML entities instead of removing
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">escapeHtml</span> <span class="o">=</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">escapeHtml</span> <span class="o">=</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;&amp;&#39;</span><span class="o">:</span> <span class="s1">&#39;&amp;amp;&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;&lt;&#39;</span><span class="o">:</span> <span class="s1">&#39;&amp;lt;&#39;</span><span class="p">,</span>
@@ -674,21 +674,21 @@ This approach provides precise control over which characters to remove and handl
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">escapeHtml</span><span class="p">(</span><span class="s1">&#39;&lt;script&gt;alert(&#34;XSS&#34;)&lt;/script&gt;&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;&amp;lt;script&amp;gt;alert(&amp;quot;XSS&amp;quot;)&amp;lt;/script&amp;gt;&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Remove all non-printable characters
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">removeNonPrintable</span> <span class="o">=</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">removeNonPrintable</span> <span class="o">=</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^\x20-\x7E\t\n\r]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Comprehensive input sanitizer
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">sanitizeInput</span> <span class="o">=</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sanitizeInput</span> <span class="o">=</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">input</span> <span class="o">!==</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="s1">&#39;&#39;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">input</span>
 </span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">trim</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;[^&gt;]*&gt;/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>            <span class="c1">// strip HTML tags
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^\p{L}\p{N}\p{P}\s]/gu</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1">// keep letters, numbers, punctuation
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>               <span class="c1">// normalize whitespace
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^\p{L}\p{N}\p{P}\s]/gu</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1">// keep letters, numbers, punctuation
+</span></span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>               <span class="c1">// normalize whitespace
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sanitizeInput</span><span class="p">(</span><span class="s1">&#39;  &lt;b&gt;Hello&lt;/b&gt;   World  \n\n  &#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Hello World&#39;
@@ -696,34 +696,34 @@ This approach provides precise control over which characters to remove and handl
 <h2 id="6-using-replaceall-for-simple-patterns">6. Using replaceAll() for Simple Patterns</h2>
 <p>For removing specific known characters (not patterns), <code>replaceAll()</code> provides a cleaner syntax than regex.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Remove specific characters without regex
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;Hello... World!!!&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;Hello... World!!!&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">noExclamation</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="s1">&#39;!&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Hello... World&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">noDots</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Hello World!!!&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Chain replaceAll for multiple characters
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">cleaned</span> <span class="o">=</span> <span class="nx">text</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cleaned</span> <span class="o">=</span> <span class="nx">text</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="s1">&#39;!&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Hello World&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// replaceAll with regex — same as replace with /g flag
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">noSpecial</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="sr">/[^a-zA-Z0-9\s]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">noSpecial</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="sr">/[^a-zA-Z0-9\s]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Hello World&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Practical example: clean currency string for parsing
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">price</span> <span class="o">=</span> <span class="s1">&#39;$1,234,567.89&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">price</span> <span class="o">=</span> <span class="s1">&#39;$1,234,567.89&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">numericString</span> <span class="o">=</span> <span class="nx">price</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;1234567.89&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">numericValue</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">numericString</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">numericValue</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">numericString</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: 1234567.89
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Remove emoji from text
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">withEmoji</span> <span class="o">=</span> <span class="s1">&#39;Hello 👋 World 🌍!&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">withEmoji</span> <span class="o">=</span> <span class="s1">&#39;Hello 👋 World 🌍!&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">noEmoji</span> <span class="o">=</span> <span class="nx">withEmoji</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Hello  World !&#39;
 </span></span></span></code></pre></div><p><code>replaceAll()</code> is available in all modern browsers and Node.js 15+. For older environments, use <code>replace()</code> with the <code>g</code> flag. When removing a fixed set of known characters, chaining <code>replaceAll()</code> can be more readable than a complex regex. For the inverse operation of splitting strings, see <a href="/answers/how-to-split-a-string-by-spaces-in-javascript/">how to split a string by spaces in JavaScript</a>.</p>
@@ -746,8 +746,8 @@ Choose the right regex for your context: use <code>/[^a-zA-Z0-9\s]/g</code> for 
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -778,8 +778,8 @@ Choose the right regex for your context: use <code>/[^a-zA-Z0-9\s]/g</code> for 
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -819,8 +819,8 @@ Choose the right regex for your context: use <code>/[^a-zA-Z0-9\s]/g</code> for 
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -854,8 +854,8 @@ Choose the right regex for your context: use <code>/[^a-zA-Z0-9\s]/g</code> for 
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -948,8 +948,8 @@ Choose the right regex for your context: use <code>/[^a-zA-Z0-9\s]/g</code> for 
   loading="lazy"
   class="post-image" 
   alt="How to Fix “Sass @import Rules Are Deprecated and Will Be Removed in Dart Sass 3.0.0.”" 
-    srcset="/images/blog/how-to-fix-sass-import-rules-are-deprecated-and-will-be-removed-in-dart-sass-3-0-0_hu_d603cb763e236c6b.webp 480w, /images/blog/how-to-fix-sass-import-rules-are-deprecated-and-will-be-removed-in-dart-sass-3-0-0_hu_3dab869e01a3db36.webp 768w, /images/blog/how-to-fix-sass-import-rules-are-deprecated-and-will-be-removed-in-dart-sass-3-0-0_hu_1e9f2a68da8fe01c.webp 1024w, /images/blog/how-to-fix-sass-import-rules-are-deprecated-and-will-be-removed-in-dart-sass-3-0-0_hu_6250f6497ed88f5f.webp 1366w" 
-  src="/images/blog/how-to-fix-sass-import-rules-are-deprecated-and-will-be-removed-in-dart-sass-3-0-0_hu_6ffb6c0125714b71.webp"
+    srcset="/images/blog/how-to-fix-sass-import-rules-are-deprecated-and-will-be-removed-in-dart-sass-3-0-0_hu_f2ed3b254d72a2e1.webp 480w, /images/blog/how-to-fix-sass-import-rules-are-deprecated-and-will-be-removed-in-dart-sass-3-0-0_hu_986ee13d789a6e1f.webp 768w, /images/blog/how-to-fix-sass-import-rules-are-deprecated-and-will-be-removed-in-dart-sass-3-0-0_hu_1832972a6019948b.webp 1024w, /images/blog/how-to-fix-sass-import-rules-are-deprecated-and-will-be-removed-in-dart-sass-3-0-0_hu_ea16e50e0faeb314.webp 1366w" 
+  src="/images/blog/how-to-fix-sass-import-rules-are-deprecated-and-will-be-removed-in-dart-sass-3-0-0_hu_18870472e3355b04.webp"
    width="460px"
 />
       </a>
@@ -988,8 +988,8 @@ Monday, February 17, 2025
   loading="lazy"
   class="post-image" 
   alt="How to Remove Elements from a JavaScript Array" 
-    srcset="/images/blog/how-to-remove-element-from-javascript-array_hu_29e3a7c5e1323134.webp 480w, /images/blog/how-to-remove-element-from-javascript-array_hu_b0ed53c81fb8f8ba.webp 768w, /images/blog/how-to-remove-element-from-javascript-array_hu_fe9a08771ddd9396.webp 1024w, /images/blog/how-to-remove-element-from-javascript-array_hu_7d2524346aecfb04.webp 1366w" 
-  src="/images/blog/how-to-remove-element-from-javascript-array_hu_11a91e3402f1d2cf.webp"
+    srcset="/images/blog/how-to-remove-element-from-javascript-array_hu_3354cb35fbf45794.webp 480w, /images/blog/how-to-remove-element-from-javascript-array_hu_ebb8d0d173d15e09.webp 768w, /images/blog/how-to-remove-element-from-javascript-array_hu_c59c8ba1f0e9da27.webp 1024w, /images/blog/how-to-remove-element-from-javascript-array_hu_a635055b421b2a58.webp 1366w" 
+  src="/images/blog/how-to-remove-element-from-javascript-array_hu_d3d7180a1d48a6ae.webp"
    width="460px"
 />
       </a>
@@ -1028,8 +1028,8 @@ Thursday, February 13, 2025
   loading="lazy"
   class="post-image" 
   alt="What is the Difference Between Null and Undefined in JavaScript" 
-    srcset="/images/blog/what-is-the-difference-between-null-and-undefined-in-javascript_hu_15986adbff9a154b.webp 480w, /images/blog/what-is-the-difference-between-null-and-undefined-in-javascript_hu_a837066498153436.webp 768w, /images/blog/what-is-the-difference-between-null-and-undefined-in-javascript_hu_9911f8340e91b044.webp 1024w, /images/blog/what-is-the-difference-between-null-and-undefined-in-javascript_hu_c29582c94fbf0f0c.webp 1366w" 
-  src="/images/blog/what-is-the-difference-between-null-and-undefined-in-javascript_hu_6a595be9f392cc50.webp"
+    srcset="/images/blog/what-is-the-difference-between-null-and-undefined-in-javascript_hu_a809077e04287bbf.webp 480w, /images/blog/what-is-the-difference-between-null-and-undefined-in-javascript_hu_7d8986800d0d6534.webp 768w, /images/blog/what-is-the-difference-between-null-and-undefined-in-javascript_hu_c19b27d881304bd6.webp 1024w, /images/blog/what-is-the-difference-between-null-and-undefined-in-javascript_hu_ac32b870662289ee.webp 1366w" 
+  src="/images/blog/what-is-the-difference-between-null-and-undefined-in-javascript_hu_4d8baae2b848dc26.webp"
    width="460px"
 />
       </a>
@@ -1068,8 +1068,8 @@ Sunday, February 9, 2025
   loading="lazy"
   class="post-image" 
   alt="How to Manage Date and Time in Specific Timezones Using JavaScript" 
-    srcset="/images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_9e1992d3f85518c7.webp 480w, /images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_fed986b86f7ebbb.webp 768w, /images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_82a56df26d5c2eb4.webp 1024w, /images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_9951654680179180.webp 1366w" 
-  src="/images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_740f820ce467a03b.webp"
+    srcset="/images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_e5e7390948f8ad03.webp 480w, /images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_7b654ca01f65ea11.webp 768w, /images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_7d5629a9dfbc2261.webp 1024w, /images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_c196dedb86837701.webp 1366w" 
+  src="/images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_26e0c2a442d2ed.webp"
    width="460px"
 />
       </a>
@@ -1172,7 +1172,7 @@ Wednesday, January 22, 2025
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

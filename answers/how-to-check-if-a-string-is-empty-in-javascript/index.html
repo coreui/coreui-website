@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Use length property or strict equality to efficiently check if a string is empty in JavaScript with reliable methods."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to check if a string is empty in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-check-if-a-string-is-empty-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to check if a string is empty in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-check-if-a-string-is-empty-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -514,14 +514,14 @@ This approach is direct, efficient, and handles the specific case of empty strin
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="nx">text</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Works correctly with non-empty strings
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">greeting</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">greeting</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">isGreetingEmpty</span> <span class="o">=</span> <span class="nx">greeting</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Strict equality prevents type coercion surprises
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">zero</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">zero</span> <span class="o">=</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">isZeroEmpty</span> <span class="o">=</span> <span class="nx">zero</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: false (correct — loose == would return true)
 </span></span></span></code></pre></div><p>Using <code>===</code> instead of <code>==</code> is critical here. The loose equality operator <code>==</code> considers <code>0 == ''</code> to be <code>true</code> due to type coercion, which can lead to subtle bugs. Always use strict equality when checking for empty strings to avoid these pitfalls.</p>
@@ -530,12 +530,12 @@ This approach is direct, efficient, and handles the specific case of empty strin
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Falsy check — short and common
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;String is empty&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// However, falsy checks also catch null, undefined, 0, and false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">]</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">values</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">val</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Falsy: </span><span class="si">${</span><span class="nx">val</span><span class="si">}</span><span class="sb"> (</span><span class="si">${</span><span class="k">typeof</span> <span class="nx">val</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
@@ -552,68 +552,68 @@ This approach is direct, efficient, and handles the specific case of empty strin
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">userInput</span> <span class="o">=</span> <span class="s1">&#39;   &#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// length check fails — whitespace has length
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">isEmptyByLength</span> <span class="o">=</span> <span class="nx">userInput</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">isEmptyByLength</span> <span class="o">=</span> <span class="nx">userInput</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: false (incorrect for most use cases)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Trim first, then check
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">isActuallyEmpty</span> <span class="o">=</span> <span class="nx">userInput</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">isActuallyEmpty</span> <span class="o">=</span> <span class="nx">userInput</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: true (correct)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Practical helper function
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">isBlank</span> <span class="o">=</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="o">!</span><span class="nx">str</span> <span class="o">||</span> <span class="nx">str</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">isBlank</span> <span class="o">=</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="o">!</span><span class="nx">str</span> <span class="o">||</span> <span class="nx">str</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isBlank</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span>        <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isBlank</span><span class="p">(</span><span class="s1">&#39;   &#39;</span><span class="p">))</span>     <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isBlank</span><span class="p">(</span><span class="s1">&#39;\t\n&#39;</span><span class="p">))</span>    <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isBlank</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">))</span>   <span class="c1">// false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isBlank</span><span class="p">(</span><span class="kc">null</span><span class="p">))</span>      <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isBlank</span><span class="p">(</span><span class="kc">undefined</span><span class="p">))</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isBlank</span><span class="p">(</span><span class="s1">&#39;   &#39;</span><span class="p">))</span>     <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isBlank</span><span class="p">(</span><span class="s1">&#39;\t\n&#39;</span><span class="p">))</span>    <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isBlank</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">))</span>   <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isBlank</span><span class="p">(</span><span class="kc">null</span><span class="p">))</span>      <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isBlank</span><span class="p">(</span><span class="kc">undefined</span><span class="p">))</span> <span class="c1">// true
 </span></span></span></code></pre></div><p>The <code>isBlank</code> helper combines a falsy check with <code>trim()</code> to handle all edge cases: empty strings, whitespace-only strings, <code>null</code>, and <code>undefined</code>. This is the pattern we use in <a href="https://coreui.io/react/docs/forms/validation/">CoreUI React form components</a> for required field validation. For more on trimming, see <a href="/answers/how-to-trim-whitespace-from-a-string-in-javascript/">how to trim whitespace from a string in JavaScript</a>.</p>
 <h2 id="4-handling-nullish-values-from-apis">4. Handling Nullish Values from APIs</h2>
 <p>Data from external APIs or databases often returns <code>null</code> or <code>undefined</code> instead of an empty string. You need to guard against these before checking length to avoid <code>TypeError</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// This will throw: Cannot read properties of null
 </span></span></span><span class="line"><span class="cl"><span class="c1">// const len = null.length
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Safe approach with optional chaining
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">apiResponse</span> <span class="o">=</span> <span class="kc">null</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">apiResponse</span> <span class="o">=</span> <span class="kc">null</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">isEmpty</span> <span class="o">=</span> <span class="o">!</span><span class="nx">apiResponse</span><span class="o">?</span><span class="p">.</span><span class="nx">length</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: true (no error)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Nullish coalescing for default values
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">apiResponse</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">apiResponse</span> <span class="o">??</span> <span class="s1">&#39;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">isNameEmpty</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Practical validation for API data
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">validateField</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">validateField</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span>    <span class="c1">// catches null and undefined
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">!==</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span>
+</span></span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">!==</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validateField</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">))</span>     <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validateField</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span>          <span class="c1">// false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validateField</span><span class="p">(</span><span class="kc">null</span><span class="p">))</span>        <span class="c1">// false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validateField</span><span class="p">(</span><span class="kc">undefined</span><span class="p">))</span>   <span class="c1">// false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validateField</span><span class="p">(</span><span class="mi">42</span><span class="p">))</span>          <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validateField</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span>          <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validateField</span><span class="p">(</span><span class="kc">null</span><span class="p">))</span>        <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validateField</span><span class="p">(</span><span class="kc">undefined</span><span class="p">))</span>   <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validateField</span><span class="p">(</span><span class="mi">42</span><span class="p">))</span>          <span class="c1">// false
 </span></span></span></code></pre></div><p>Optional chaining (<code>?.</code>) and nullish coalescing (<code>??</code>) are modern JavaScript features that make null-safe string checks concise and readable. The <code>validateField</code> function demonstrates a robust pattern for validating string data from untrusted sources.</p>
 <h2 id="5-conditional-rendering-based-on-string-content">5. Conditional Rendering Based on String Content</h2>
 <p>A common use case is showing or hiding UI elements based on whether a string has content. This pattern appears constantly in form validation and dynamic content display.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Conditional message display
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">errorMessage</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">errorMessage</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">successMessage</span> <span class="o">=</span> <span class="s1">&#39;Order placed successfully&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">showError</span> <span class="o">=</span> <span class="nx">errorMessage</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">showSuccess</span> <span class="o">=</span> <span class="nx">successMessage</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// showError: false, showSuccess: true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Array filtering — remove empty entries
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;react&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;javascript&#39;</span><span class="p">,</span> <span class="s1">&#39;  &#39;</span><span class="p">,</span> <span class="s1">&#39;css&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;react&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;javascript&#39;</span><span class="p">,</span> <span class="s1">&#39;  &#39;</span><span class="p">,</span> <span class="s1">&#39;css&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">validTags</span> <span class="o">=</span> <span class="nx">tags</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">tag</span> <span class="p">=&gt;</span> <span class="nx">tag</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: [&#39;react&#39;, &#39;javascript&#39;, &#39;css&#39;]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Form data cleanup before submission
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">formData</span> <span class="o">=</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">formData</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">nickname</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">bio</span><span class="o">:</span> <span class="s1">&#39;   &#39;</span><span class="p">,</span>
@@ -632,19 +632,19 @@ This approach is direct, efficient, and handles the specific case of empty strin
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Method 1: length property (fastest)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">str</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Method 2: strict equality (equally fast)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">str</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">str</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Method 3: falsy check (fast, but imprecise)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">!</span><span class="nx">str</span>
+</span></span></span><span class="line"><span class="cl"><span class="o">!</span><span class="nx">str</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Method 4: trim + length (slower — creates a new string)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">str</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">str</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Method 5: regex (slowest — avoid for simple checks)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="sr">/^\s*$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="sr">/^\s*$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
 </span></span></code></pre></div><p>For simple empty checks, <code>length === 0</code> and <code>=== ''</code> are virtually identical in performance. The <code>trim().length</code> approach is slower because <code>trim()</code> creates a new string, but the difference is negligible for individual checks. Only consider performance when processing thousands of strings in a loop.</p>
 <h2 id="best-practice-note">Best Practice Note:</h2>
 <p>This is the same approach we use in <a href="https://coreui.io/react/docs/forms/form-control/">CoreUI React components</a> for form validation, conditional rendering, and data processing across our component ecosystem.
@@ -665,8 +665,8 @@ Choose the right method for your context: use <code>text.length === 0</code> for
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -697,8 +697,8 @@ Choose the right method for your context: use <code>text.length === 0</code> for
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -738,8 +738,8 @@ Choose the right method for your context: use <code>text.length === 0</code> for
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -773,8 +773,8 @@ Choose the right method for your context: use <code>text.length === 0</code> for
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -867,8 +867,8 @@ Choose the right method for your context: use <code>text.length === 0</code> for
   loading="lazy"
   class="post-image" 
   alt="How to Manage Date and Time in Specific Timezones Using JavaScript" 
-    srcset="/images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_9e1992d3f85518c7.webp 480w, /images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_fed986b86f7ebbb.webp 768w, /images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_82a56df26d5c2eb4.webp 1024w, /images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_9951654680179180.webp 1366w" 
-  src="/images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_740f820ce467a03b.webp"
+    srcset="/images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_e5e7390948f8ad03.webp 480w, /images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_7b654ca01f65ea11.webp 768w, /images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_7d5629a9dfbc2261.webp 1024w, /images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_c196dedb86837701.webp 1366w" 
+  src="/images/blog/how-to-manage-date-and-time-in-specific-timezones-using-javascript_hu_26e0c2a442d2ed.webp"
    width="460px"
 />
       </a>
@@ -907,8 +907,8 @@ Wednesday, January 22, 2025
   loading="lazy"
   class="post-image" 
   alt="How to sort an array of objects by string property value in JavaScript" 
-    srcset="/images/blog/how-to-sort-an-array-of-objects-by-string-property-value-in-javascript_hu_d2f5bf7c0eb7421e.webp 480w, /images/blog/how-to-sort-an-array-of-objects-by-string-property-value-in-javascript_hu_81e9a457f66c8367.webp 768w, /images/blog/how-to-sort-an-array-of-objects-by-string-property-value-in-javascript_hu_8d1bd4b98e20cc09.webp 1024w, /images/blog/how-to-sort-an-array-of-objects-by-string-property-value-in-javascript_hu_40edf3523780a905.webp 1366w" 
-  src="/images/blog/how-to-sort-an-array-of-objects-by-string-property-value-in-javascript_hu_4926c92a45be051f.webp"
+    srcset="/images/blog/how-to-sort-an-array-of-objects-by-string-property-value-in-javascript_hu_983fbd80da25dcc2.webp 480w, /images/blog/how-to-sort-an-array-of-objects-by-string-property-value-in-javascript_hu_c9c8d1fdb2dac7f4.webp 768w, /images/blog/how-to-sort-an-array-of-objects-by-string-property-value-in-javascript_hu_9de664f8db2f861e.webp 1024w, /images/blog/how-to-sort-an-array-of-objects-by-string-property-value-in-javascript_hu_fae40d078f0a7b81.webp 1366w" 
+  src="/images/blog/how-to-sort-an-array-of-objects-by-string-property-value-in-javascript_hu_af53cf9265257c8a.webp"
    width="460px"
 />
       </a>
@@ -947,8 +947,8 @@ Saturday, January 18, 2025
   loading="lazy"
   class="post-image" 
   alt="How to Conditionally Add a Property to an Object in JavaScript" 
-    srcset="/images/blog/how-to-conditionally-add-a-property-to-an-object-in-javascript_hu_3aa7cec3fb197f70.webp 480w, /images/blog/how-to-conditionally-add-a-property-to-an-object-in-javascript_hu_ed80743ca989b96a.webp 768w, /images/blog/how-to-conditionally-add-a-property-to-an-object-in-javascript_hu_5719361e3d12b713.webp 1024w, /images/blog/how-to-conditionally-add-a-property-to-an-object-in-javascript_hu_56644474cd0fc148.webp 1366w" 
-  src="/images/blog/how-to-conditionally-add-a-property-to-an-object-in-javascript_hu_99deba5271d7242d.webp"
+    srcset="/images/blog/how-to-conditionally-add-a-property-to-an-object-in-javascript_hu_61e6f84dd6df43c5.webp 480w, /images/blog/how-to-conditionally-add-a-property-to-an-object-in-javascript_hu_5d169d1790a63385.webp 768w, /images/blog/how-to-conditionally-add-a-property-to-an-object-in-javascript_hu_e75410e143aa9946.webp 1024w, /images/blog/how-to-conditionally-add-a-property-to-an-object-in-javascript_hu_47e56cf78061bec7.webp 1366w" 
+  src="/images/blog/how-to-conditionally-add-a-property-to-an-object-in-javascript_hu_8066294d4396cf39.webp"
    width="460px"
 />
       </a>
@@ -987,8 +987,8 @@ Monday, January 13, 2025
   loading="lazy"
   class="post-image" 
   alt="What is globalThis in JavaScript?" 
-    srcset="/images/blog/what-is-globalthis-in-javascript_hu_e8a917e7d5bd9356.webp 480w, /images/blog/what-is-globalthis-in-javascript_hu_ae986384aeca3cc5.webp 768w, /images/blog/what-is-globalthis-in-javascript_hu_76bd0597457cefa.webp 1024w, /images/blog/what-is-globalthis-in-javascript_hu_3d09fbef7e62459a.webp 1366w" 
-  src="/images/blog/what-is-globalthis-in-javascript_hu_90c3d539f1211360.webp"
+    srcset="/images/blog/what-is-globalthis-in-javascript_hu_26485d60bf31b9e8.webp 480w, /images/blog/what-is-globalthis-in-javascript_hu_5f003190f867966e.webp 768w, /images/blog/what-is-globalthis-in-javascript_hu_7d16c20d698f3e84.webp 1024w, /images/blog/what-is-globalthis-in-javascript_hu_335ad2edd9c2df47.webp 1366w" 
+  src="/images/blog/what-is-globalthis-in-javascript_hu_bd9aebf47e1a93a.webp"
    width="460px"
 />
       </a>
@@ -1091,7 +1091,7 @@ Wednesday, January 8, 2025
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

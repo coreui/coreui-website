@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="As a JavaScript developer, you might often wonder how to correctly identify the type of a variable or determine if an object belongs to a particular class. Two operators that help with this are typeof and instanceof. While they may seem similar, they serve different purposes and work in distinct ways. This article will break down these operators, explain their differences, and guide you on when to use each."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>What is the difference between typeof and instanceof in JavaScript</title><link rel="canonical" href="https://coreui.io/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript/"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>What is the difference between typeof and instanceof in JavaScript</title><link rel="canonical" href="https://coreui.io/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript/"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -36,15 +36,15 @@
 <meta name="twitter:creator" content="@core_ui">
 <meta name="twitter:title" content="What is the difference between typeof and instanceof in JavaScript · CoreUI">
 <meta name="twitter:description" content="As a JavaScript developer, you might often wonder how to correctly identify the type of a variable or determine if an object belongs to a particular class. Two operators that help with this are typeof and instanceof. While they may seem similar, they serve different purposes and work in distinct ways. This article will break down these operators, explain their differences, and guide you on when to use each.">
-<meta name="twitter:image" content="https://coreui.io/images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_5980ee197220bfb4.webp">
+<meta name="twitter:image" content="https://coreui.io/images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_39ed3fb444bd814c.webp">
 
 <!-- Facebook -->
 <meta property="og:url" content="https://coreui.io/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript/">
 <meta property="og:title" content="What is the difference between typeof and instanceof in JavaScript · CoreUI">
 <meta property="og:description" content="As a JavaScript developer, you might often wonder how to correctly identify the type of a variable or determine if an object belongs to a particular class. Two operators that help with this are typeof and instanceof. While they may seem similar, they serve different purposes and work in distinct ways. This article will break down these operators, explain their differences, and guide you on when to use each.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="http://coreui.io/images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_5980ee197220bfb4.webp">
-<meta property="og:image:secure_url" content="https://coreui.io/images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_5980ee197220bfb4.webp">
+<meta property="og:image" content="http://coreui.io/images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_39ed3fb444bd814c.webp">
+<meta property="og:image:secure_url" content="https://coreui.io/images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_39ed3fb444bd814c.webp">
 <meta property="og:image:type" content="image/webp">
 
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -499,8 +499,8 @@ Tuesday, September 17, 2024
   loading="lazy"
   class="post-image" 
   alt="difference between typeof and instanceof" 
-    srcset="/images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_19578aa1beead93a.webp 480w, /images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_8caba71f2e4f3b2c.webp 768w, /images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_24757e7fd7f1694c.webp 1024w, /images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_bc5d2f93ca368d1f.webp 1366w" 
-  src="/images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_84e852eddc3610f4.webp"
+    srcset="/images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_3ae00fd1ac78c8b5.webp 480w, /images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_f07db3df83ec451b.webp 768w, /images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_53864a912885e4ff.webp 1024w, /images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_99755b9445087209.webp 1366w" 
+  src="/images/blog/what-is-the-difference-between-typeof-and-instanceof-in-javascript_hu_994be8a12b0ae4ed.webp"
    width="920px"
 /> 
         <p>As a JavaScript developer, you might often wonder how to correctly identify the type of a variable or determine if an object belongs to a particular class. Two operators that help with this are <code>typeof</code> and <code>instanceof</code>. While they may seem similar, they serve different purposes and work in distinct ways. This article will break down these operators, explain their differences, and guide you on when to use each.</p><div class="h3">Table of Contents</div>
@@ -545,8 +545,8 @@ Tuesday, September 17, 2024
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -577,8 +577,8 @@ Tuesday, September 17, 2024
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -618,8 +618,8 @@ Tuesday, September 17, 2024
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -653,8 +653,8 @@ Tuesday, September 17, 2024
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -687,13 +687,13 @@ Tuesday, September 17, 2024
 <h4 id="checking-primitive-types">Checking Primitive Types</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Alice&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">name</span><span class="p">)</span> <span class="c1">// &#39;string&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">25</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">age</span><span class="p">)</span> <span class="c1">// &#39;number&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">isStudent</span> <span class="o">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">isStudent</span><span class="p">)</span> <span class="c1">// &#39;boolean&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">nothing</span> <span class="o">=</span> <span class="kc">undefined</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">nothing</span><span class="p">)</span> <span class="c1">// &#39;undefined&#39;
 </span></span></span></code></pre></div><h4 id="special-case-null">Special Case: <code>null</code></h4>
@@ -703,13 +703,13 @@ Tuesday, September 17, 2024
 <h4 id="functions-and-symbols">Functions and Symbols</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">greet</span><span class="p">)</span> <span class="c1">// &#39;function&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">uniqueId</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">uniqueId</span><span class="p">)</span> <span class="c1">// &#39;symbol&#39;
 </span></span></span></code></pre></div><h4 id="arrays-and-objects">Arrays and Objects</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">list</span><span class="p">)</span> <span class="c1">// &#39;object&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">person</span><span class="p">)</span> <span class="c1">// &#39;object&#39;
 </span></span></span></code></pre></div><p><strong>Note:</strong> Both arrays and objects return <code>'object'</code> when using <code>typeof</code>. To differentiate between them, you might need additional checks.</p>
@@ -727,16 +727,16 @@ Tuesday, September 17, 2024
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span> <span class="k">instanceof</span> <span class="nx">Person</span><span class="p">)</span> <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span> <span class="c1">// true
 </span></span></span></code></pre></div><p><strong>Explanation:</strong> Since all objects inherit from <code>Object.prototype</code>, <code>person</code> is also an instance of <code>Object</code>.</p>
 <h4 id="arrays-and-built-in-objects">Arrays and Built-in Objects</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">)</span> <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span> <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span> <span class="k">instanceof</span> <span class="nb">Date</span><span class="p">)</span> <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span> <span class="c1">// true
 </span></span></span></code></pre></div><h4 id="custom-constructors">Custom Constructors</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Car</span><span class="p">(</span><span class="nx">make</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">make</span> <span class="o">=</span> <span class="nx">make</span>
@@ -744,7 +744,7 @@ Tuesday, September 17, 2024
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">myCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">&#39;Toyota&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myCar</span> <span class="k">instanceof</span> <span class="nx">Car</span><span class="p">)</span> <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myCar</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myCar</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span> <span class="c1">// true
 </span></span></span></code></pre></div><h2 id="key-differences-between-typeof-and-instanceof">Key Differences Between <code>typeof</code> and <code>instanceof</code></h2>
 <ol>
 <li>
@@ -783,13 +783,13 @@ Tuesday, September 17, 2024
 <p><strong>Checking Primitive Types</strong>: Ideal for variables that hold primitive values.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">age</span> <span class="o">===</span> <span class="s1">&#39;number&#39;</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Proceed with number-specific logic
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Verifying Undefined Variables</strong>: Useful to check if a variable is undefined without causing a ReferenceError.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">undeclaredVariable</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Variable is not declared or is undefined
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div></li>
 </ul>
 <h3 id="use-instanceof-when">Use <code>instanceof</code> When:</h3>
@@ -798,7 +798,7 @@ Tuesday, September 17, 2024
 <p><strong>Checking Object Instances</strong>: Determine if an object is created from a specific class or constructor.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">error</span> <span class="k">instanceof</span> <span class="nx">TypeError</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Handle TypeError specifically
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Working with Inheritance</strong>: Useful in class hierarchies to check if an object inherits from a parent class.</p>
@@ -807,7 +807,7 @@ Tuesday, September 17, 2024
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">pet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pet</span> <span class="k">instanceof</span> <span class="nx">Dog</span><span class="p">)</span> <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pet</span> <span class="k">instanceof</span> <span class="nx">Animal</span><span class="p">)</span> <span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pet</span> <span class="k">instanceof</span> <span class="nx">Animal</span><span class="p">)</span> <span class="c1">// true
 </span></span></span></code></pre></div></li>
 </ul>
 <h2 id="common-mistakes-and-how-to-avoid-them">Common Mistakes and How to Avoid Them</h2>
@@ -822,7 +822,7 @@ Tuesday, September 17, 2024
 <p><strong>Solution</strong>: Check for <code>null</code> explicitly.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Handle null value
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -836,13 +836,13 @@ Tuesday, September 17, 2024
 <p><strong>Solution</strong>: Use <code>Array.isArray()</code> or <code>instanceof</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">list</span><span class="p">))</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Handle array
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Or
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">list</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Handle array
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div></li>
 </ul>
 </li>
@@ -864,7 +864,7 @@ Tuesday, September 17, 2024
 <li>
 <p><strong>Issue</strong>: In browser environments, objects from different frames or windows have different constructors.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// Assuming iframe.contentWindow is a different window context
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">iframeArray</span> <span class="o">=</span> <span class="nx">iframe</span><span class="p">.</span><span class="nx">contentWindow</span><span class="p">.</span><span class="nx">arrayFromIframe</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">iframeArray</span> <span class="o">=</span> <span class="nx">iframe</span><span class="p">.</span><span class="nx">contentWindow</span><span class="p">.</span><span class="nx">arrayFromIframe</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">iframeArray</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">)</span> <span class="c1">// false
 </span></span></span></code></pre></div></li>
 <li>
@@ -958,8 +958,8 @@ Tuesday, September 17, 2024
   loading="lazy"
   class="post-image" 
   alt="How to conditionally add attributes to React components" 
-    srcset="/images/blog/how-to-conditionally-add-attributes-to-react-components_hu_9e25dc2f993cee8f.webp 480w, /images/blog/how-to-conditionally-add-attributes-to-react-components_hu_d0557b4cd0512ca4.webp 768w, /images/blog/how-to-conditionally-add-attributes-to-react-components_hu_3963aeb38ddf0a63.webp 1024w, /images/blog/how-to-conditionally-add-attributes-to-react-components_hu_47d42fb9a4145339.webp 1366w" 
-  src="/images/blog/how-to-conditionally-add-attributes-to-react-components_hu_84bf3b68ac64172c.webp"
+    srcset="/images/blog/how-to-conditionally-add-attributes-to-react-components_hu_abbc79c5911fac07.webp 480w, /images/blog/how-to-conditionally-add-attributes-to-react-components_hu_a7c2ba6d6e9ebf18.webp 768w, /images/blog/how-to-conditionally-add-attributes-to-react-components_hu_eee6c1d0f2452b59.webp 1024w, /images/blog/how-to-conditionally-add-attributes-to-react-components_hu_88c4662f74d568b3.webp 1366w" 
+  src="/images/blog/how-to-conditionally-add-attributes-to-react-components_hu_e258067d72d4dc10.webp"
    width="460px"
 />
       </a>
@@ -998,8 +998,8 @@ Thursday, September 12, 2024
   loading="lazy"
   class="post-image" 
   alt="How to force a React component to re-render" 
-    srcset="/images/blog/how-to-force-a-react-component-to-re-render_hu_671c4a858a3f9f4e.webp 480w, /images/blog/how-to-force-a-react-component-to-re-render_hu_7a85220cce4aed2d.webp 768w, /images/blog/how-to-force-a-react-component-to-re-render_hu_189a45151793428b.webp 1024w, /images/blog/how-to-force-a-react-component-to-re-render_hu_e9b07016df13f3f1.webp 1366w" 
-  src="/images/blog/how-to-force-a-react-component-to-re-render_hu_4d252eb2ac652e60.webp"
+    srcset="/images/blog/how-to-force-a-react-component-to-re-render_hu_30c0e8a2adf4683d.webp 480w, /images/blog/how-to-force-a-react-component-to-re-render_hu_26ed07aaa145809.webp 768w, /images/blog/how-to-force-a-react-component-to-re-render_hu_e3cb9a9b221e1eef.webp 1024w, /images/blog/how-to-force-a-react-component-to-re-render_hu_975acdbfd041055f.webp 1366w" 
+  src="/images/blog/how-to-force-a-react-component-to-re-render_hu_214e1f4bb745eafe.webp"
    width="460px"
 />
       </a>
@@ -1038,8 +1038,8 @@ Monday, September 9, 2024
   loading="lazy"
   class="post-image" 
   alt="What are the three dots `...` in JavaScript do?" 
-    srcset="/images/blog/what-are-the-three-dots-in-javascript-do_hu_3af50c6891993647.webp 480w, /images/blog/what-are-the-three-dots-in-javascript-do_hu_87650b7c3fdd0666.webp 768w, /images/blog/what-are-the-three-dots-in-javascript-do_hu_5eafd73689cf1b16.webp 1024w, /images/blog/what-are-the-three-dots-in-javascript-do_hu_c09c5a1c8c974827.webp 1366w" 
-  src="/images/blog/what-are-the-three-dots-in-javascript-do_hu_f800dd6433abd152.webp"
+    srcset="/images/blog/what-are-the-three-dots-in-javascript-do_hu_96c92a761f924865.webp 480w, /images/blog/what-are-the-three-dots-in-javascript-do_hu_e4f03fd429890678.webp 768w, /images/blog/what-are-the-three-dots-in-javascript-do_hu_cae6149df199c3a3.webp 1024w, /images/blog/what-are-the-three-dots-in-javascript-do_hu_105f76b9049d804a.webp 1366w" 
+  src="/images/blog/what-are-the-three-dots-in-javascript-do_hu_d19bd73b8fa85f7e.webp"
    width="460px"
 />
       </a>
@@ -1078,8 +1078,8 @@ Tuesday, September 3, 2024
   loading="lazy"
   class="post-image" 
   alt="How to replace all occurrences of a string in JavaScript?" 
-    srcset="/images/blog/how-to-replace-all-occurrences-of-a-string-in-javascript_hu_257d172bc95a72ba.webp 480w, /images/blog/how-to-replace-all-occurrences-of-a-string-in-javascript_hu_ac80c67d71175f81.webp 768w, /images/blog/how-to-replace-all-occurrences-of-a-string-in-javascript_hu_6fe546e74a481b2c.webp 1024w, /images/blog/how-to-replace-all-occurrences-of-a-string-in-javascript_hu_295098e32dfe010d.webp 1366w" 
-  src="/images/blog/how-to-replace-all-occurrences-of-a-string-in-javascript_hu_751d2099776504e9.webp"
+    srcset="/images/blog/how-to-replace-all-occurrences-of-a-string-in-javascript_hu_bffce1573ee0071a.webp 480w, /images/blog/how-to-replace-all-occurrences-of-a-string-in-javascript_hu_65ad118105e7c9c0.webp 768w, /images/blog/how-to-replace-all-occurrences-of-a-string-in-javascript_hu_d1c5d97a99735b8a.webp 1024w, /images/blog/how-to-replace-all-occurrences-of-a-string-in-javascript_hu_c3bea28c6f276de1.webp 1366w" 
+  src="/images/blog/how-to-replace-all-occurrences-of-a-string-in-javascript_hu_96ec865086210a49.webp"
    width="460px"
 />
       </a>
@@ -1182,7 +1182,7 @@ Saturday, August 31, 2024
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

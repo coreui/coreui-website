@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Upload files in Angular using HttpClient with FormData, track upload progress, and validate file types - best practices from the creator of CoreUI."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to upload files in Angular</title><link rel="canonical" href="https://coreui.io/answers/how-to-upload-files-in-angular/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to upload files in Angular</title><link rel="canonical" href="https://coreui.io/answers/how-to-upload-files-in-angular/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -497,7 +497,7 @@ The correct approach uses <code>reportProgress: true</code> with <code>HttpEvent
 Combining this with client-side validation for file type and size prevents wasted network requests.</p>
         <p>Create a service that sends files with progress tracking.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="c1">// upload.service.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Injectable</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@angular/core&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Injectable</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@angular/core&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">HttpClient</span><span class="p">,</span> <span class="nx">HttpRequest</span><span class="p">,</span> <span class="nx">HttpEventType</span><span class="p">,</span> <span class="nx">HttpResponse</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@angular/common/http&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Observable</span><span class="p">,</span> <span class="nx">filter</span><span class="p">,</span> <span class="nx">map</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;rxjs&#39;</span>
 </span></span><span class="line"><span class="cl">
@@ -533,7 +533,7 @@ Combining this with client-side validation for file type and size prevents waste
 <h2 id="file-upload-component-with-progress-bar">File Upload Component with Progress Bar</h2>
 <p>Build a component that handles file selection, validation, and progress display.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="c1">// file-upload.component.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@angular/core&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@angular/core&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">CommonModule</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@angular/common&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">UploadService</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./upload.service&#39;</span>
 </span></span><span class="line"><span class="cl">
@@ -653,8 +653,8 @@ Combining this with client-side validation for file type and size prevents waste
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -685,8 +685,8 @@ Combining this with client-side validation for file type and size prevents waste
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -726,8 +726,8 @@ Combining this with client-side validation for file type and size prevents waste
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -761,8 +761,8 @@ Combining this with client-side validation for file type and size prevents waste
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -855,8 +855,8 @@ Combining this with client-side validation for file type and size prevents waste
   loading="lazy"
   class="post-image" 
   alt="How to Use Bootstrap Dropdown in Vue 3 – CoreUI Integration Guide" 
-    srcset="/images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_f705aad51da00589.webp 480w, /images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_b0675e6a18b9e798.webp 768w, /images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_679d0a883e681f1d.webp 1024w, /images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_5b14132e68eb1951.webp 1366w" 
-  src="/images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_a7f8654cb9bcdee8.webp"
+    srcset="/images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_de336b239ac4cf09.webp 480w, /images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_6d43f454d46c0e0.webp 768w, /images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_4d75658ea06bc104.webp 1024w, /images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_ae67c63e9c30a232.webp 1366w" 
+  src="/images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_76658cd5fd81bde7.webp"
    width="460px"
 />
       </a>
@@ -895,8 +895,8 @@ Monday, June 30, 2025
   loading="lazy"
   class="post-image" 
   alt="How to Use Bootstrap Modal in Vue 3 – Clean Integration with CoreUI" 
-    srcset="/images/blog/how-to-use-bootstrap-modal-in-vue_hu_341b06904e1ad16e.webp 480w, /images/blog/how-to-use-bootstrap-modal-in-vue_hu_42382f08922e82d7.webp 768w, /images/blog/how-to-use-bootstrap-modal-in-vue_hu_6daeae1dfbdf65f7.webp 1024w, /images/blog/how-to-use-bootstrap-modal-in-vue_hu_54ca387ac30a582a.webp 1366w" 
-  src="/images/blog/how-to-use-bootstrap-modal-in-vue_hu_285f7c00b20e7e73.webp"
+    srcset="/images/blog/how-to-use-bootstrap-modal-in-vue_hu_e848dc363b00e9ef.webp 480w, /images/blog/how-to-use-bootstrap-modal-in-vue_hu_8d53660684f7080b.webp 768w, /images/blog/how-to-use-bootstrap-modal-in-vue_hu_2dbce824407fc297.webp 1024w, /images/blog/how-to-use-bootstrap-modal-in-vue_hu_5ef48cd605198c98.webp 1366w" 
+  src="/images/blog/how-to-use-bootstrap-modal-in-vue_hu_2af582ac7e8899d6.webp"
    width="460px"
 />
       </a>
@@ -935,8 +935,8 @@ Tuesday, June 24, 2025
   loading="lazy"
   class="post-image" 
   alt="How to Use Bootstrap Tooltip in Vue 3 – The Right Way with CoreUI" 
-    srcset="/images/blog/how-to-use-bootstrap-tooltip-in-vue_hu_f96cb4c1bbb92ee4.webp 480w, /images/blog/how-to-use-bootstrap-tooltip-in-vue_hu_a6363cd9c7f6dad6.webp 768w, /images/blog/how-to-use-bootstrap-tooltip-in-vue_hu_7e9b989fe032f107.webp 1024w, /images/blog/how-to-use-bootstrap-tooltip-in-vue_hu_8f05e9312c084ddc.webp 1366w" 
-  src="/images/blog/how-to-use-bootstrap-tooltip-in-vue_hu_30fb61b3dd3fef2d.webp"
+    srcset="/images/blog/how-to-use-bootstrap-tooltip-in-vue_hu_1201e7d4cad8cff0.webp 480w, /images/blog/how-to-use-bootstrap-tooltip-in-vue_hu_f500ee5911ea6503.webp 768w, /images/blog/how-to-use-bootstrap-tooltip-in-vue_hu_5cdf08159ab38ad3.webp 1024w, /images/blog/how-to-use-bootstrap-tooltip-in-vue_hu_a4ecaa1484b5ac65.webp 1366w" 
+  src="/images/blog/how-to-use-bootstrap-tooltip-in-vue_hu_41eb9992c6288f0d.webp"
    width="460px"
 />
       </a>
@@ -975,8 +975,8 @@ Monday, June 23, 2025
   loading="lazy"
   class="post-image" 
   alt="How to Use Bootstrap Dropdown in React the Right Way – with CoreUI" 
-    srcset="/images/blog/how-to-use-bootstrap-dropdown-in-react_hu_63e151c05c3e4bea.webp 480w, /images/blog/how-to-use-bootstrap-dropdown-in-react_hu_35aec66e229ff338.webp 768w, /images/blog/how-to-use-bootstrap-dropdown-in-react_hu_c8e0b67fb61b48f.webp 1024w, /images/blog/how-to-use-bootstrap-dropdown-in-react_hu_ebff06095d2a922f.webp 1366w" 
-  src="/images/blog/how-to-use-bootstrap-dropdown-in-react_hu_1e528f5c3c6ddb56.webp"
+    srcset="/images/blog/how-to-use-bootstrap-dropdown-in-react_hu_4a6935a2426c0968.webp 480w, /images/blog/how-to-use-bootstrap-dropdown-in-react_hu_309d63d58c14b877.webp 768w, /images/blog/how-to-use-bootstrap-dropdown-in-react_hu_a108a012cfbf43c9.webp 1024w, /images/blog/how-to-use-bootstrap-dropdown-in-react_hu_5df1040d1293e790.webp 1366w" 
+  src="/images/blog/how-to-use-bootstrap-dropdown-in-react_hu_d77feed0057b02d6.webp"
    width="460px"
 />
       </a>
@@ -1079,7 +1079,7 @@ Friday, June 20, 2025
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

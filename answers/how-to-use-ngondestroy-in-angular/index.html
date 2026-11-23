@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Master the ngOnDestroy lifecycle hook in Angular for proper cleanup of subscriptions, timers, and resources to prevent memory leaks."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to Use ngOnDestroy in Angular</title><link rel="canonical" href="https://coreui.io/answers/how-to-use-ngondestroy-in-angular/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to Use ngOnDestroy in Angular</title><link rel="canonical" href="https://coreui.io/answers/how-to-use-ngondestroy-in-angular/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -520,38 +520,38 @@ Sunday, November 2, 2025
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// Subscribe to data updates
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">dataSub</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">dataService</span><span class="p">.</span><span class="nx">getData</span><span class="p">().</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">dataSub</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">dataService</span><span class="p">.</span><span class="nx">getData</span><span class="p">().</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">data</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span>
 </span></span><span class="line"><span class="cl">    <span class="p">})</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">dataSub</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Set up polling
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">pollingSub</span> <span class="o">=</span> <span class="nx">interval</span><span class="p">(</span><span class="mi">5000</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">pollingSub</span> <span class="o">=</span> <span class="nx">interval</span><span class="p">(</span><span class="mi">5000</span><span class="p">).</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">updateCount</span><span class="o">++</span>
 </span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">dataService</span><span class="p">.</span><span class="nx">refreshData</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">})</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">pollingSub</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Set up timer
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">intervalId</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">setInterval</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">intervalId</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">setInterval</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Component is active&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="mi">10000</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Add global event listener
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;resize&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleResize</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">    <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;resize&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleResize</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="nx">ngOnDestroy</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// Unsubscribe from all observables
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">()</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Clear timers
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">intervalId</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">intervalId</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">intervalId</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Remove global event listeners
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nb">window</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;resize&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleResize</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">    <span class="nb">window</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;resize&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleResize</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Component cleanup completed&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
@@ -579,8 +579,8 @@ Sunday, November 2, 2025
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -611,8 +611,8 @@ Sunday, November 2, 2025
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -652,8 +652,8 @@ Sunday, November 2, 2025
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -687,8 +687,8 @@ Sunday, November 2, 2025
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -781,8 +781,8 @@ Sunday, November 2, 2025
   loading="lazy"
   class="post-image" 
   alt="How to concatenate a strings in JavaScript?" 
-    srcset="/images/blog/how-to-concatenate-a-strings-in-javascript_hu_4c274135c4f8314d.webp 480w, /images/blog/how-to-concatenate-a-strings-in-javascript_hu_b9db1adb8233fa3d.webp 768w, /images/blog/how-to-concatenate-a-strings-in-javascript_hu_f19fd682d688182a.webp 1024w, /images/blog/how-to-concatenate-a-strings-in-javascript_hu_6846f27e40e6bd73.webp 1366w" 
-  src="/images/blog/how-to-concatenate-a-strings-in-javascript_hu_27d7b482d9b85e2f.webp"
+    srcset="/images/blog/how-to-concatenate-a-strings-in-javascript_hu_2df78d2719e11baf.webp 480w, /images/blog/how-to-concatenate-a-strings-in-javascript_hu_c63399718febba01.webp 768w, /images/blog/how-to-concatenate-a-strings-in-javascript_hu_fd4e7928bd00fedf.webp 1024w, /images/blog/how-to-concatenate-a-strings-in-javascript_hu_8d0f406c5cc28ed.webp 1366w" 
+  src="/images/blog/how-to-concatenate-a-strings-in-javascript_hu_cbeff11148504ad9.webp"
    width="460px"
 />
       </a>
@@ -821,8 +821,8 @@ Thursday, April 4, 2024
   loading="lazy"
   class="post-image" 
   alt="How to sleep in Javascript" 
-    srcset="/images/blog/how-to-sleep-in-javascript_hu_d6cb920e03e4c524.webp 480w, /images/blog/how-to-sleep-in-javascript_hu_3b408e773779f406.webp 768w, /images/blog/how-to-sleep-in-javascript_hu_241303522ec2aa20.webp 1024w, /images/blog/how-to-sleep-in-javascript_hu_95bed39d309e3865.webp 1366w" 
-  src="/images/blog/how-to-sleep-in-javascript_hu_6fe4f83357f2e89d.webp"
+    srcset="/images/blog/how-to-sleep-in-javascript_hu_38bca75441f7919e.webp 480w, /images/blog/how-to-sleep-in-javascript_hu_8544d3af72771397.webp 768w, /images/blog/how-to-sleep-in-javascript_hu_7425c19649d076cd.webp 1024w, /images/blog/how-to-sleep-in-javascript_hu_1e159a9effa13cd3.webp 1366w" 
+  src="/images/blog/how-to-sleep-in-javascript_hu_c367f24f4b8fdd59.webp"
    width="460px"
 />
       </a>
@@ -861,8 +861,8 @@ Tuesday, March 26, 2024
   loading="lazy"
   class="post-image" 
   alt="How to migrate CoreUI React Templates to Vite" 
-    srcset="/images/blog/react_hu_2b5c4cc2ff36b526.webp 480w, /images/blog/react_hu_2d87117e84edd582.webp 768w, /images/blog/react_hu_8a93b9ac7bf7e6e8.webp 1024w, /images/blog/react_hu_4e1fee6f15278dad.webp 1366w" 
-  src="/images/blog/react_hu_4ecdd0ccfc078bc1.webp"
+    srcset="/images/blog/react_hu_e69f106629a45f9b.webp 480w, /images/blog/react_hu_5cdc312c5098902c.webp 768w, /images/blog/react_hu_fbfbcfebd59dbde5.webp 1024w, /images/blog/react_hu_b6d372c3f5d50af5.webp 1366w" 
+  src="/images/blog/react_hu_7bd799a838b38f40.webp"
    width="460px"
 />
       </a>
@@ -901,8 +901,8 @@ Tuesday, March 26, 2024
   loading="lazy"
   class="post-image" 
   alt="What is JavaScript Array.pop() Method?" 
-    srcset="/images/blog/what-is-javascript-array-pop-method_hu_842566a2110f9e65.webp 480w, /images/blog/what-is-javascript-array-pop-method_hu_6ad7cccbdc990512.webp 768w, /images/blog/what-is-javascript-array-pop-method_hu_704ed1417b6e231e.webp 1024w, /images/blog/what-is-javascript-array-pop-method_hu_b9c356835439e8ad.webp 1366w" 
-  src="/images/blog/what-is-javascript-array-pop-method_hu_390b2c7a890232bd.webp"
+    srcset="/images/blog/what-is-javascript-array-pop-method_hu_2acfd8b286a92837.webp 480w, /images/blog/what-is-javascript-array-pop-method_hu_e0884ff97ac1a456.webp 768w, /images/blog/what-is-javascript-array-pop-method_hu_80a0d1a17806ff30.webp 1024w, /images/blog/what-is-javascript-array-pop-method_hu_eb76ac3e6e023c0a.webp 1366w" 
+  src="/images/blog/what-is-javascript-array-pop-method_hu_6a5fff8c8561b405.webp"
    width="460px"
 />
       </a>
@@ -1005,7 +1005,7 @@ Monday, March 18, 2024
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Write unit tests for Node.js applications using Mocha testing framework with flexible test structure and assertions."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to test Node.js apps with Mocha</title><link rel="canonical" href="https://coreui.io/answers/how-to-test-nodejs-apps-with-mocha/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to test Node.js apps with Mocha</title><link rel="canonical" href="https://coreui.io/answers/how-to-test-nodejs-apps-with-mocha/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -516,7 +516,7 @@ This approach creates comprehensive test suites with clear test organization and
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Basic tests with Chai assertions:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// user.service.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">UserService</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">UserService</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">database</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">db</span> <span class="o">=</span> <span class="nx">database</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
@@ -544,7 +544,7 @@ This approach creates comprehensive test suites with clear test organization and
 </span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">UserService</span>
 </span></span></code></pre></div><p><strong>Test file:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// test/user.service.test.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">expect</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;chai&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">{</span> <span class="nx">expect</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;chai&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sinon</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;sinon&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">UserService</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../user.service&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
@@ -680,7 +680,7 @@ This approach creates comprehensive test suites with clear test organization and
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Test control&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">it</span><span class="p">.</span><span class="nx">skip</span><span class="p">(</span><span class="s1">&#39;skipped test&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// This test will not run
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">})</span>
+</span></span></span><span class="line"><span class="cl">  <span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="nx">it</span><span class="p">.</span><span class="nx">only</span><span class="p">(</span><span class="s1">&#39;only this test runs&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">expect</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="kc">true</span>
@@ -740,8 +740,8 @@ This approach creates comprehensive test suites with clear test organization and
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -772,8 +772,8 @@ This approach creates comprehensive test suites with clear test organization and
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -813,8 +813,8 @@ This approach creates comprehensive test suites with clear test organization and
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -848,8 +848,8 @@ This approach creates comprehensive test suites with clear test organization and
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -942,8 +942,8 @@ This approach creates comprehensive test suites with clear test organization and
   loading="lazy"
   class="post-image" 
   alt="Leave well alone?" 
-    srcset="/images/blog/logo-rebrand_hu_7b27283991a9a1a8.webp 480w, /images/blog/logo-rebrand_hu_64889aa54dbffa1d.webp 768w, /images/blog/logo-rebrand_hu_4fb80f9c867a3555.webp 1024w, /images/blog/logo-rebrand_hu_f3c3910c9616a446.webp 1366w" 
-  src="/images/blog/logo-rebrand_hu_69e82c656224079c.webp"
+    srcset="/images/blog/logo-rebrand_hu_2f93aa2a3372a07d.webp 480w, /images/blog/logo-rebrand_hu_97051b259383f8a9.webp 768w, /images/blog/logo-rebrand_hu_f31adfa1d32b3aa2.webp 1024w, /images/blog/logo-rebrand_hu_93a578493dfd79d3.webp 1366w" 
+  src="/images/blog/logo-rebrand_hu_74a9c73d17d6eef5.webp"
    width="460px"
 />
       </a>
@@ -982,8 +982,8 @@ Monday, September 30, 2019
   loading="lazy"
   class="post-image" 
   alt="What’s new and updated in CoreUI 3" 
-    srcset="/images/blog/full_hu_f3b18987d186dc84.webp 480w, /images/blog/full_hu_7d20af5b8cec4ed3.webp 768w, /images/blog/full_hu_1efe77f713b75be1.webp 1024w, /images/blog/full_hu_3df1f5c25e85a6c3.webp 1366w" 
-  src="/images/blog/full_hu_60bcafe21be1d3b3.webp"
+    srcset="/images/blog/full_hu_349e31a8e39cebc7.webp 480w, /images/blog/full_hu_cefe15ce04ae0.webp 768w, /images/blog/full_hu_1bf21854261ff11e.webp 1024w, /images/blog/full_hu_790ee2806d586da5.webp 1366w" 
+  src="/images/blog/full_hu_cffb73769eb7e054.webp"
    width="460px"
 />
       </a>
@@ -1022,8 +1022,8 @@ Monday, July 1, 2019
   loading="lazy"
   class="post-image" 
   alt="Bootstrap Icons" 
-    srcset="/images/blog/bootstrap-icons_hu_f7c12ab6243a050d.webp 480w, /images/blog/bootstrap-icons_hu_8aa09e8873c060ca.webp 768w, /images/blog/bootstrap-icons_hu_8c4d67b9a61aa237.webp 1024w, /images/blog/bootstrap-icons_hu_8180cbd4e59121ad.webp 1366w" 
-  src="/images/blog/bootstrap-icons_hu_99a9f92d43558949.webp"
+    srcset="/images/blog/bootstrap-icons_hu_70800b4cb33f9018.webp 480w, /images/blog/bootstrap-icons_hu_ea4fdf4041cc3fc3.webp 768w, /images/blog/bootstrap-icons_hu_48ecb7b660e3b41c.webp 1024w, /images/blog/bootstrap-icons_hu_c4526e3af499958.webp 1366w" 
+  src="/images/blog/bootstrap-icons_hu_1c7edf449fdc0766.webp"
    width="460px"
 />
       </a>
@@ -1062,8 +1062,8 @@ Tuesday, March 20, 2018
   loading="lazy"
   class="post-image" 
   alt="Migration from Bootstrap 3 to Bootstrap 4" 
-    srcset="/images/blog/migration-to-bootstrap-4_hu_41c5661a38977ff8.webp 480w, /images/blog/migration-to-bootstrap-4_hu_e38579441d286ae9.webp 768w, /images/blog/migration-to-bootstrap-4_hu_36106d5ef1608191.webp 1024w, /images/blog/migration-to-bootstrap-4_hu_97a72aaf782384ae.webp 1366w" 
-  src="/images/blog/migration-to-bootstrap-4_hu_901acd724dc4dc45.webp"
+    srcset="/images/blog/migration-to-bootstrap-4_hu_9cac6ff059b3223f.webp 480w, /images/blog/migration-to-bootstrap-4_hu_dc785569b0d2a44e.webp 768w, /images/blog/migration-to-bootstrap-4_hu_c8a523ecb6ae5db7.webp 1024w, /images/blog/migration-to-bootstrap-4_hu_ee2b5faf7d056936.webp 1366w" 
+  src="/images/blog/migration-to-bootstrap-4_hu_4a2317a80da50e62.webp"
    width="460px"
 />
       </a>
@@ -1166,7 +1166,7 @@ Wednesday, January 31, 2018
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

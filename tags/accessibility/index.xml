@@ -1,82 +1,87 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Accessibility on CoreUI</title>
-    <link>https://coreui.io/tags/accessibility/</link>
-    <description>Recent content in Accessibility on CoreUI</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 22 Nov 2026 20:19:25 +0100</lastBuildDate>
-    <atom:link href="https://coreui.io/tags/accessibility/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>How to Build a Controlled Accordion on the Details Element</title>
-      <link>https://coreui.io/blog/controlled-accordion-details/</link>
-      <pubDate>Sun, 22 Nov 2026 10:00:00 +0100</pubDate>
-      <guid>https://coreui.io/blog/controlled-accordion-details/</guid>
-      <description>&lt;p&gt;The &lt;code&gt;&amp;lt;details&amp;gt;&lt;/code&gt; element is a good base for an accordion. The browser gives it&#xA;keyboard support, exposes its expanded state to assistive technology, closes&#xA;the other open item of a group that shares a &lt;code&gt;name&lt;/code&gt;, and, in browsers that&#xA;search closed disclosures, opens an item when a find-in-page match is inside&#xA;it. None of that needs JavaScript, and if nothing in your page has to approve&#xA;or follow which items are open, a plain &lt;code&gt;&amp;lt;details name&amp;gt;&lt;/code&gt; group is all you&#xA;need.&lt;/p&gt;&#xA;&lt;p&gt;The trouble starts when the open items belong to your state: a form wizard&#xA;that refuses to open step two before step one is valid, a route that decides&#xA;which section is open, a React or Vue component with a &lt;code&gt;value&lt;/code&gt; and an&#xA;&lt;code&gt;onChange&lt;/code&gt;. A &lt;code&gt;&amp;lt;details&amp;gt;&lt;/code&gt; element toggles itself, and it does not wait for&#xA;your permission. This guide shows how to build an accordion on top of it that&#xA;does what the state says, and only that.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>What a Second Click Should Do While a Dialog Is Closing</title>
-      <link>https://coreui.io/blog/dialog-second-click-while-closing/</link>
-      <pubDate>Fri, 20 Nov 2026 10:00:00 +0100</pubDate>
-      <guid>https://coreui.io/blog/dialog-second-click-while-closing/</guid>
-      <description>&lt;p&gt;A user opens a filters panel, changes their mind and clicks the Filters button&#xA;to close it. The panel starts to slide out, and halfway through they realise&#xA;they wanted one more filter after all, so they click the button again.&lt;/p&gt;&#xA;&lt;p&gt;What should happen? The panel is still on screen, still in the DOM, still&#xA;&lt;code&gt;open&lt;/code&gt; as far as the browser is concerned. It is just on its way out. Many&#xA;dialog implementations drop that second click, so the panel finishes closing&#xA;and the user has to wait and click a third time. This guide shows how to&#xA;reopen a dialog during its closing animation instead, and the details that&#xA;make that harder than it looks.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Your Mouse Didn&#39;t Move, but the Menu Thinks It Did</title>
-      <link>https://coreui.io/blog/mouse-did-not-move/</link>
-      <pubDate>Thu, 19 Nov 2026 10:00:00 +0100</pubDate>
-      <guid>https://coreui.io/blog/mouse-did-not-move/</guid>
-      <description>&lt;p&gt;Picture a long menu with a scrollbar. A user opens it from the keyboard and&#xA;walks down the items with the arrow keys, while their mouse just lies on the&#xA;desk with the pointer somewhere over the panel. The list scrolls, a submenu&#xA;trigger slides under the resting pointer, and its submenu pops open. One more&#xA;arrow press, the trigger slides away, and the submenu closes again.&lt;/p&gt;&#xA;&lt;p&gt;Nobody touched the mouse. The browser decided that the pointer had entered a&#xA;new element, and the menu believed it. This guide shows why that happens, how&#xA;to tell a hover the user made from one the browser made up, and how to test it.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Accessible Focus Traps: Trap the Keyboard, Not the User</title>
-      <link>https://coreui.io/blog/accessible-focus-trap/</link>
-      <pubDate>Tue, 27 Oct 2026 10:00:00 +0100</pubDate>
-      <guid>https://coreui.io/blog/accessible-focus-trap/</guid>
-      <description>&lt;p&gt;Date pickers, comboboxes, menus and popovers all open a panel on top of the&#xA;page. The moment that panel opens, the keyboard has a question to answer:&#xA;where does the focus go now, where may it go next, and where does it land when&#xA;the panel closes? Get it wrong and a keyboard user walks out of an open&#xA;calendar into the page behind it, or a screen reader user is sent back to the&#xA;top of the document after picking a date.&lt;/p&gt;&#xA;&lt;p&gt;This guide covers how to answer those questions in a way that works for&#xA;keyboard users, screen reader users and everyone using a mouse or a finger.&#xA;The examples are plain JavaScript, so they apply to any framework.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Focusable Is Not Selectable: A Keyboard Focus Model for Date Grids</title>
-      <link>https://coreui.io/blog/focusable-is-not-selectable/</link>
-      <pubDate>Wed, 21 Oct 2026 10:00:00 +0200</pubDate>
-      <guid>https://coreui.io/blog/focusable-is-not-selectable/</guid>
-      <description>&lt;p&gt;Open almost any date picker, press Tab until you reach the grid, and focus&#xA;lands on a day. Which day it can land on, and which days the arrow keys can&#xA;reach, comes down to one small decision that most implementations make&#xA;without noticing: can an unavailable date receive focus?&lt;/p&gt;&#xA;&lt;p&gt;The intuitive answer is no. A disabled date is disabled, so you render it as&#xA;&lt;code&gt;&amp;lt;button disabled&amp;gt;&lt;/code&gt;, the browser skips it, and you move on. It looks right in&#xA;a demo. It stops being right as soon as a real product starts disabling&#xA;dates: weekends, public holidays, fully booked days, a minimum notice period,&#xA;a cut-off time.&lt;/p&gt;&#xA;&lt;p&gt;This post describes the model we use in the&#xA;&lt;a href=&#34;https://coreui.io/bootstrap/docs/6.x/components/calendar/&#34;&gt;CoreUI v6 Calendar&lt;/a&gt;,&#xA;and why:&#xA;&lt;strong&gt;a cell&amp;rsquo;s focusability depends only on the calendar&amp;rsquo;s limits. Everything&#xA;else decides only whether the cell can be selected.&lt;/strong&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>How to test components in React with RTL</title>
-      <link>https://coreui.io/answers/how-to-test-components-in-react-with-rtl/</link>
-      <pubDate>Wed, 14 Jan 2026 14:00:00 +0100</pubDate>
-      <guid>https://coreui.io/answers/how-to-test-components-in-react-with-rtl/</guid>
-      <description>&lt;p&gt;Testing components from a user&amp;rsquo;s perspective ensures your application is accessible and behaves as users expect.&#xA;As the creator of CoreUI, I&amp;rsquo;ve adopted React Testing Library as the standard for component testing.&#xA;React Testing Library (RTL) encourages testing components the way users interact with them, focusing on accessibility and user behavior.&#xA;This approach creates tests that are more maintainable and closely aligned with real-world usage.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>How to handle keyboard events in Vue</title>
-      <link>https://coreui.io/answers/how-to-handle-keyboard-events-in-vue/</link>
-      <pubDate>Tue, 13 Jan 2026 12:30:00 +0100</pubDate>
-      <guid>https://coreui.io/answers/how-to-handle-keyboard-events-in-vue/</guid>
-      <description>&lt;p&gt;Keyboard event handling is essential for accessibility, keyboard shortcuts, and improving user experience in web applications.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented keyboard navigation in countless enterprise applications.&#xA;Vue provides event listeners with key modifiers to easily capture specific key combinations and keyboard interactions.&#xA;This approach enables keyboard shortcuts, form navigation, and accessible interfaces without complex event handling code.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>How to create a tooltip in React</title>
-      <link>https://coreui.io/answers/how-to-create-a-tooltip-in-react/</link>
-      <pubDate>Mon, 24 Nov 2025 09:30:00 +0100</pubDate>
-      <guid>https://coreui.io/answers/how-to-create-a-tooltip-in-react/</guid>
-      <description>&lt;p&gt;Creating tooltips enhances user experience by providing contextual information on hover or focus without cluttering the interface.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented tooltip systems across numerous production applications.&#xA;The most effective approach is using React state with mouse and focus event handlers to control tooltip visibility and positioning.&#xA;This provides accessible, responsive tooltips that work with both mouse and keyboard navigation.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>How to create a dropdown menu in React</title>
-      <link>https://coreui.io/answers/how-to-create-a-dropdown-menu-in-react/</link>
-      <pubDate>Mon, 24 Nov 2025 09:15:00 +0100</pubDate>
-      <guid>https://coreui.io/answers/how-to-create-a-dropdown-menu-in-react/</guid>
-      <description>&lt;p&gt;Creating accessible dropdown menus is essential for navigation and user interactions in React applications, requiring proper state management and keyboard support.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built countless dropdown components for enterprise applications.&#xA;The most effective approach is using state to control visibility with click outside detection and keyboard event handling.&#xA;This ensures accessible, user-friendly dropdown menus that work across all devices and input methods.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>How to create a modal in React</title>
-      <link>https://coreui.io/answers/how-to-create-a-modal-in-react/</link>
-      <pubDate>Fri, 21 Nov 2025 09:30:00 +0100</pubDate>
-      <guid>https://coreui.io/answers/how-to-create-a-modal-in-react/</guid>
-      <description>&lt;p&gt;Creating accessible modal dialogs is essential for user interactions like confirmations, forms, and content overlays in React applications.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built countless modal components for enterprise applications.&#xA;The most effective approach is using React portals to render the modal outside the component tree with proper focus management.&#xA;This ensures the modal appears above other content and maintains accessibility standards.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Accessibility on CoreUI</title>
+		<link>https://coreui.io/tags/accessibility/</link>
+		<description>Recent content in Accessibility on CoreUI</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 22 Nov 2026 20:19:25 +0100</lastBuildDate>
+		
+			<atom:link href="https://coreui.io/tags/accessibility/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>How to Build a Controlled Accordion on the Details Element</title>
+				<link>https://coreui.io/blog/controlled-accordion-details/</link>
+				<pubDate>Sun, 22 Nov 2026 10:00:00 +0100</pubDate>
+				<guid>https://coreui.io/blog/controlled-accordion-details/</guid>
+				<description>&lt;p&gt;The &lt;code&gt;&amp;lt;details&amp;gt;&lt;/code&gt; element is a good base for an accordion. The browser gives it&#xA;keyboard support, exposes its expanded state to assistive technology, closes&#xA;the other open item of a group that shares a &lt;code&gt;name&lt;/code&gt;, and, in browsers that&#xA;search closed disclosures, opens an item when a find-in-page match is inside&#xA;it. None of that needs JavaScript, and if nothing in your page has to approve&#xA;or follow which items are open, a plain &lt;code&gt;&amp;lt;details name&amp;gt;&lt;/code&gt; group is all you&#xA;need.&lt;/p&gt;&#xA;&lt;p&gt;The trouble starts when the open items belong to your state: a form wizard&#xA;that refuses to open step two before step one is valid, a route that decides&#xA;which section is open, a React or Vue component with a &lt;code&gt;value&lt;/code&gt; and an&#xA;&lt;code&gt;onChange&lt;/code&gt;. A &lt;code&gt;&amp;lt;details&amp;gt;&lt;/code&gt; element toggles itself, and it does not wait for&#xA;your permission. This guide shows how to build an accordion on top of it that&#xA;does what the state says, and only that.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>What a Second Click Should Do While a Dialog Is Closing</title>
+				<link>https://coreui.io/blog/dialog-second-click-while-closing/</link>
+				<pubDate>Fri, 20 Nov 2026 10:00:00 +0100</pubDate>
+				<guid>https://coreui.io/blog/dialog-second-click-while-closing/</guid>
+				<description>&lt;p&gt;A user opens a filters panel, changes their mind and clicks the Filters button&#xA;to close it. The panel starts to slide out, and halfway through they realise&#xA;they wanted one more filter after all, so they click the button again.&lt;/p&gt;&#xA;&lt;p&gt;What should happen? The panel is still on screen, still in the DOM, still&#xA;&lt;code&gt;open&lt;/code&gt; as far as the browser is concerned. It is just on its way out. Many&#xA;dialog implementations drop that second click, so the panel finishes closing&#xA;and the user has to wait and click a third time. This guide shows how to&#xA;reopen a dialog during its closing animation instead, and the details that&#xA;make that harder than it looks.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Your Mouse Didn&#39;t Move, but the Menu Thinks It Did</title>
+				<link>https://coreui.io/blog/mouse-did-not-move/</link>
+				<pubDate>Thu, 19 Nov 2026 10:00:00 +0100</pubDate>
+				<guid>https://coreui.io/blog/mouse-did-not-move/</guid>
+				<description>&lt;p&gt;Picture a long menu with a scrollbar. A user opens it from the keyboard and&#xA;walks down the items with the arrow keys, while their mouse just lies on the&#xA;desk with the pointer somewhere over the panel. The list scrolls, a submenu&#xA;trigger slides under the resting pointer, and its submenu pops open. One more&#xA;arrow press, the trigger slides away, and the submenu closes again.&lt;/p&gt;&#xA;&lt;p&gt;Nobody touched the mouse. The browser decided that the pointer had entered a&#xA;new element, and the menu believed it. This guide shows why that happens, how&#xA;to tell a hover the user made from one the browser made up, and how to test it.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Accessible Focus Traps: Trap the Keyboard, Not the User</title>
+				<link>https://coreui.io/blog/accessible-focus-trap/</link>
+				<pubDate>Tue, 27 Oct 2026 10:00:00 +0100</pubDate>
+				<guid>https://coreui.io/blog/accessible-focus-trap/</guid>
+				<description>&lt;p&gt;Date pickers, comboboxes, menus and popovers all open a panel on top of the&#xA;page. The moment that panel opens, the keyboard has a question to answer:&#xA;where does the focus go now, where may it go next, and where does it land when&#xA;the panel closes? Get it wrong and a keyboard user walks out of an open&#xA;calendar into the page behind it, or a screen reader user is sent back to the&#xA;top of the document after picking a date.&lt;/p&gt;&#xA;&lt;p&gt;This guide covers how to answer those questions in a way that works for&#xA;keyboard users, screen reader users and everyone using a mouse or a finger.&#xA;The examples are plain JavaScript, so they apply to any framework.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Focusable Is Not Selectable: A Keyboard Focus Model for Date Grids</title>
+				<link>https://coreui.io/blog/focusable-is-not-selectable/</link>
+				<pubDate>Wed, 21 Oct 2026 10:00:00 +0200</pubDate>
+				<guid>https://coreui.io/blog/focusable-is-not-selectable/</guid>
+				<description>&lt;p&gt;Open almost any date picker, press Tab until you reach the grid, and focus&#xA;lands on a day. Which day it can land on, and which days the arrow keys can&#xA;reach, comes down to one small decision that most implementations make&#xA;without noticing: can an unavailable date receive focus?&lt;/p&gt;&#xA;&lt;p&gt;The intuitive answer is no. A disabled date is disabled, so you render it as&#xA;&lt;code&gt;&amp;lt;button disabled&amp;gt;&lt;/code&gt;, the browser skips it, and you move on. It looks right in&#xA;a demo. It stops being right as soon as a real product starts disabling&#xA;dates: weekends, public holidays, fully booked days, a minimum notice period,&#xA;a cut-off time.&lt;/p&gt;&#xA;&lt;p&gt;This post describes the model we use in the&#xA;&lt;a href=&#34;https://coreui.io/bootstrap/docs/6.x/components/calendar/&#34;&gt;CoreUI v6 Calendar&lt;/a&gt;,&#xA;and why:&#xA;&lt;strong&gt;a cell&amp;rsquo;s focusability depends only on the calendar&amp;rsquo;s limits. Everything&#xA;else decides only whether the cell can be selected.&lt;/strong&gt;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>How to test components in React with RTL</title>
+				<link>https://coreui.io/answers/how-to-test-components-in-react-with-rtl/</link>
+				<pubDate>Wed, 14 Jan 2026 14:00:00 +0100</pubDate>
+				<guid>https://coreui.io/answers/how-to-test-components-in-react-with-rtl/</guid>
+				<description>&lt;p&gt;Testing components from a user&amp;rsquo;s perspective ensures your application is accessible and behaves as users expect.&#xA;As the creator of CoreUI, I&amp;rsquo;ve adopted React Testing Library as the standard for component testing.&#xA;React Testing Library (RTL) encourages testing components the way users interact with them, focusing on accessibility and user behavior.&#xA;This approach creates tests that are more maintainable and closely aligned with real-world usage.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>How to handle keyboard events in Vue</title>
+				<link>https://coreui.io/answers/how-to-handle-keyboard-events-in-vue/</link>
+				<pubDate>Tue, 13 Jan 2026 12:30:00 +0100</pubDate>
+				<guid>https://coreui.io/answers/how-to-handle-keyboard-events-in-vue/</guid>
+				<description>&lt;p&gt;Keyboard event handling is essential for accessibility, keyboard shortcuts, and improving user experience in web applications.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented keyboard navigation in countless enterprise applications.&#xA;Vue provides event listeners with key modifiers to easily capture specific key combinations and keyboard interactions.&#xA;This approach enables keyboard shortcuts, form navigation, and accessible interfaces without complex event handling code.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>How to create a tooltip in React</title>
+				<link>https://coreui.io/answers/how-to-create-a-tooltip-in-react/</link>
+				<pubDate>Mon, 24 Nov 2025 09:30:00 +0100</pubDate>
+				<guid>https://coreui.io/answers/how-to-create-a-tooltip-in-react/</guid>
+				<description>&lt;p&gt;Creating tooltips enhances user experience by providing contextual information on hover or focus without cluttering the interface.&#xA;As the creator of CoreUI, I&amp;rsquo;ve implemented tooltip systems across numerous production applications.&#xA;The most effective approach is using React state with mouse and focus event handlers to control tooltip visibility and positioning.&#xA;This provides accessible, responsive tooltips that work with both mouse and keyboard navigation.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>How to create a dropdown menu in React</title>
+				<link>https://coreui.io/answers/how-to-create-a-dropdown-menu-in-react/</link>
+				<pubDate>Mon, 24 Nov 2025 09:15:00 +0100</pubDate>
+				<guid>https://coreui.io/answers/how-to-create-a-dropdown-menu-in-react/</guid>
+				<description>&lt;p&gt;Creating accessible dropdown menus is essential for navigation and user interactions in React applications, requiring proper state management and keyboard support.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built countless dropdown components for enterprise applications.&#xA;The most effective approach is using state to control visibility with click outside detection and keyboard event handling.&#xA;This ensures accessible, user-friendly dropdown menus that work across all devices and input methods.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>How to create a modal in React</title>
+				<link>https://coreui.io/answers/how-to-create-a-modal-in-react/</link>
+				<pubDate>Fri, 21 Nov 2025 09:30:00 +0100</pubDate>
+				<guid>https://coreui.io/answers/how-to-create-a-modal-in-react/</guid>
+				<description>&lt;p&gt;Creating accessible modal dialogs is essential for user interactions like confirmations, forms, and content overlays in React applications.&#xA;As the creator of CoreUI, I&amp;rsquo;ve built countless modal components for enterprise applications.&#xA;The most effective approach is using React portals to render the modal outside the component tree with proper focus management.&#xA;This ensures the modal appears above other content and maintains accessibility standards.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

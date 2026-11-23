@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Build a CRUD todo REST API in Node.js with Express, Prisma, and input validation - a hands-on guide from the creator of CoreUI."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to build a todo API in Node.js</title><link rel="canonical" href="https://coreui.io/answers/how-to-build-a-todo-api-in-nodejs/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to build a todo API in Node.js</title><link rel="canonical" href="https://coreui.io/answers/how-to-build-a-todo-api-in-nodejs/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -514,7 +514,7 @@ model Todo {
 <h2 id="the-todo-router">The Todo Router</h2>
 <p>Define all CRUD routes in a dedicated router.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// src/todos/todos.router.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;express&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">PrismaClient</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@prisma/client&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">z</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;zod&#39;</span>
 </span></span><span class="line"><span class="cl">
@@ -531,7 +531,7 @@ model Todo {
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// GET /todos
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">try</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">todos</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">prisma</span><span class="p">.</span><span class="nx">todo</span><span class="p">.</span><span class="nx">findMany</span><span class="p">({</span> <span class="nx">orderBy</span><span class="o">:</span> <span class="p">{</span> <span class="nx">createdAt</span><span class="o">:</span> <span class="s1">&#39;desc&#39;</span> <span class="p">}</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">todos</span><span class="p">)</span>
@@ -541,7 +541,7 @@ model Todo {
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// POST /todos
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">try</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="p">{</span> <span class="nx">title</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">createSchema</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">todo</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">prisma</span><span class="p">.</span><span class="nx">todo</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="nx">title</span> <span class="p">}</span> <span class="p">})</span>
@@ -552,7 +552,7 @@ model Todo {
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// PATCH /todos/:id
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">router</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s1">&#39;/:id&#39;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="s1">&#39;/:id&#39;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">try</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">updateSchema</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
@@ -564,7 +564,7 @@ model Todo {
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// DELETE /todos/:id
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">router</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">&#39;/:id&#39;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">&#39;/:id&#39;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">try</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">await</span> <span class="nx">prisma</span><span class="p">.</span><span class="nx">todo</span><span class="p">.</span><span class="k">delete</span><span class="p">({</span> <span class="nx">where</span><span class="o">:</span> <span class="p">{</span> <span class="nx">id</span> <span class="p">}</span> <span class="p">})</span>
@@ -579,7 +579,7 @@ model Todo {
 <h2 id="the-express-app">The Express App</h2>
 <p>Wire everything together.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// src/app.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="nx">express</span> <span class="nx">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">express</span> <span class="nx">from</span> <span class="s1">&#39;express&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">todosRouter</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./todos/todos.router.js&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">errorHandler</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./middleware/error.handler.js&#39;</span>
 </span></span><span class="line"><span class="cl">
@@ -590,7 +590,7 @@ model Todo {
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="p">{</span> <span class="nx">app</span> <span class="p">}</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// src/middleware/error.handler.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">ZodError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;zod&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">ZodError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;zod&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kd">function</span> <span class="nx">errorHandler</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span> <span class="k">instanceof</span> <span class="nx">ZodError</span><span class="p">)</span> <span class="p">{</span>
@@ -620,8 +620,8 @@ model Todo {
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -652,8 +652,8 @@ model Todo {
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -693,8 +693,8 @@ model Todo {
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -728,8 +728,8 @@ model Todo {
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -822,8 +822,8 @@ model Todo {
   loading="lazy"
   class="post-image" 
   alt="The Best Bootstrap Alternative for Developers in 2025" 
-    srcset="/images/blog/bootstrap_hu_39cf588cc3355249.webp 480w, /images/blog/bootstrap_hu_efd90fb0c9fd0bf7.webp 768w, /images/blog/bootstrap_hu_8cfed3312939a64f.webp 1024w, /images/blog/bootstrap_hu_b5692fb9b2b7528d.webp 1366w" 
-  src="/images/blog/bootstrap_hu_f59f880f3973dc07.webp"
+    srcset="/images/blog/bootstrap_hu_d5beb33ac05dda0f.webp 480w, /images/blog/bootstrap_hu_ce0e8c6340313fec.webp 768w, /images/blog/bootstrap_hu_13408eb9149af1e0.webp 1024w, /images/blog/bootstrap_hu_4c1f33012bbc3a7.webp 1366w" 
+  src="/images/blog/bootstrap_hu_29fe9193416f848e.webp"
    width="460px"
 />
       </a>
@@ -862,8 +862,8 @@ Tuesday, July 8, 2025
   loading="lazy"
   class="post-image" 
   alt="How to Use Bootstrap Modal in Vue 3 – Clean Integration with CoreUI" 
-    srcset="/images/blog/how-to-use-bootstrap-modal-in-angular_hu_fce091aa71b02313.webp 480w, /images/blog/how-to-use-bootstrap-modal-in-angular_hu_a4fd4f6b5a7f0233.webp 768w, /images/blog/how-to-use-bootstrap-modal-in-angular_hu_e04c624e806826ee.webp 1024w, /images/blog/how-to-use-bootstrap-modal-in-angular_hu_341fa7df17eb7e11.webp 1366w" 
-  src="/images/blog/how-to-use-bootstrap-modal-in-angular_hu_ae69bed94fa46a39.webp"
+    srcset="/images/blog/how-to-use-bootstrap-modal-in-angular_hu_45a387134981855a.webp 480w, /images/blog/how-to-use-bootstrap-modal-in-angular_hu_2250fc7869aab8ca.webp 768w, /images/blog/how-to-use-bootstrap-modal-in-angular_hu_bea036788545726b.webp 1024w, /images/blog/how-to-use-bootstrap-modal-in-angular_hu_1344f5e542a80503.webp 1366w" 
+  src="/images/blog/how-to-use-bootstrap-modal-in-angular_hu_6e6f2a0cf7354be1.webp"
    width="460px"
 />
       </a>
@@ -902,8 +902,8 @@ Thursday, July 3, 2025
   loading="lazy"
   class="post-image" 
   alt="How to Use Bootstrap Dropdown in Vue 3 – CoreUI Integration Guide" 
-    srcset="/images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_f705aad51da00589.webp 480w, /images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_b0675e6a18b9e798.webp 768w, /images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_679d0a883e681f1d.webp 1024w, /images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_5b14132e68eb1951.webp 1366w" 
-  src="/images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_a7f8654cb9bcdee8.webp"
+    srcset="/images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_de336b239ac4cf09.webp 480w, /images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_6d43f454d46c0e0.webp 768w, /images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_4d75658ea06bc104.webp 1024w, /images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_ae67c63e9c30a232.webp 1366w" 
+  src="/images/blog/how-to-use-bootstrap-dropdown-in-vue_hu_76658cd5fd81bde7.webp"
    width="460px"
 />
       </a>
@@ -942,8 +942,8 @@ Monday, June 30, 2025
   loading="lazy"
   class="post-image" 
   alt="How to Use Bootstrap Modal in Vue 3 – Clean Integration with CoreUI" 
-    srcset="/images/blog/how-to-use-bootstrap-modal-in-vue_hu_341b06904e1ad16e.webp 480w, /images/blog/how-to-use-bootstrap-modal-in-vue_hu_42382f08922e82d7.webp 768w, /images/blog/how-to-use-bootstrap-modal-in-vue_hu_6daeae1dfbdf65f7.webp 1024w, /images/blog/how-to-use-bootstrap-modal-in-vue_hu_54ca387ac30a582a.webp 1366w" 
-  src="/images/blog/how-to-use-bootstrap-modal-in-vue_hu_285f7c00b20e7e73.webp"
+    srcset="/images/blog/how-to-use-bootstrap-modal-in-vue_hu_e848dc363b00e9ef.webp 480w, /images/blog/how-to-use-bootstrap-modal-in-vue_hu_8d53660684f7080b.webp 768w, /images/blog/how-to-use-bootstrap-modal-in-vue_hu_2dbce824407fc297.webp 1024w, /images/blog/how-to-use-bootstrap-modal-in-vue_hu_5ef48cd605198c98.webp 1366w" 
+  src="/images/blog/how-to-use-bootstrap-modal-in-vue_hu_2af582ac7e8899d6.webp"
    width="460px"
 />
       </a>
@@ -1046,7 +1046,7 @@ Tuesday, June 24, 2025
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

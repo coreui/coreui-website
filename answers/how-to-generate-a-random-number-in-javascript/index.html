@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Use Math.random() to generate random floating-point numbers between 0 and 1 in JavaScript for various applications."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to generate a random number in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-generate-a-random-number-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to generate a random number in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-generate-a-random-number-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -517,29 +517,29 @@ For integers specifically, see <a href="/answers/how-to-generate-a-random-intege
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">randomInRange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">min</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="nx">max</span> <span class="o">-</span> <span class="nx">min</span><span class="p">)</span> <span class="o">+</span> <span class="nx">min</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">randomInRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>      <span class="c1">// e.g. 7.42 — float between 0 and 10
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">randomInRange</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>   <span class="c1">// e.g. 2.18 — float between 1.5 and 3.5
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">randomInRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>      <span class="c1">// e.g. -0.34 — useful for offsets or jitter
+</span></span></span><span class="line"><span class="cl"><span class="nx">randomInRange</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>   <span class="c1">// e.g. 2.18 — float between 1.5 and 3.5
+</span></span></span><span class="line"><span class="cl"><span class="nx">randomInRange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>      <span class="c1">// e.g. -0.34 — useful for offsets or jitter
 </span></span></span></code></pre></div><p>Note: unlike the integer version, <code>max</code> is exclusive here since <code>Math.random()</code> never reaches <code>1</code>.</p>
 <h2 id="3-controlling-decimal-precision">3. Controlling Decimal Precision</h2>
 <p>Raw <code>Math.random()</code> output has many decimal places. Round to the precision you need with <code>toFixed()</code> or arithmetic.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">twoDecimals</span> <span class="o">=</span> <span class="nb">parseFloat</span><span class="p">((</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// e.g. 47.83
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">oneDecimal</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// e.g. 6.3
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Percentage display
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">percentage</span> <span class="o">=</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;%&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">percentage</span> <span class="o">=</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;%&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// e.g. &#39;73.4%&#39;
 </span></span></span></code></pre></div><p>Use <code>toFixed()</code> for display strings, and arithmetic rounding when you need a true number for calculations. See <a href="/answers/how-to-round-a-number-in-javascript/">how to round a number in JavaScript</a> for a full comparison of rounding strategies.</p>
 <h2 id="4-generating-a-random-color">4. Generating a Random Color</h2>
 <p>A common UI use case is generating random hex or RGB colors for chart datasets, avatars, or placeholder backgrounds.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Random hex color
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">randomHex</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mh">0xffffff</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">).</span><span class="nx">padStart</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">randomHex</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mh">0xffffff</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">).</span><span class="nx">padStart</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">randomHex</span><span class="p">()</span>  <span class="c1">// e.g. &#39;#a3f2c1&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Random RGB color
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">randomRgb</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">randomRgb</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">r</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">256</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">g</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">256</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">256</span><span class="p">)</span>
@@ -559,21 +559,21 @@ For integers specifically, see <a href="/answers/how-to-generate-a-random-intege
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">rand</span> <span class="o">=</span> <span class="nx">seededRandom</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">rand</span><span class="p">()</span>  <span class="c1">// always 0.17605633802816902 for seed 42
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">rand</span><span class="p">()</span>  <span class="c1">// always 0.6561124694376528
+</span></span></span><span class="line"><span class="cl"><span class="nx">rand</span><span class="p">()</span>  <span class="c1">// always 0.6561124694376528
 </span></span></span></code></pre></div><p>This is a simple linear congruential generator — good enough for deterministic test data, not for security.</p>
 <h2 id="6-cryptographically-secure-random-numbers">6. Cryptographically Secure Random Numbers</h2>
 <p><code>Math.random()</code> is a pseudorandom number generator and must not be used for security-sensitive values such as tokens, session IDs, or OTPs. Use the Web Crypto API instead.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Secure float in [0, 1)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">secureRandom</span><span class="p">()</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">secureRandom</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Uint32Array</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">crypto</span><span class="p">.</span><span class="nx">getRandomValues</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mh">0xffffffff</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">secureRandom</span><span class="p">()</span>  <span class="c1">// cryptographically secure float
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Secure UUID
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">crypto</span><span class="p">.</span><span class="nx">randomUUID</span><span class="p">()</span>  <span class="c1">// e.g. &#39;110e8400-e29b-41d4-a716-446655440000&#39;
+</span></span></span><span class="line"><span class="cl"><span class="nx">crypto</span><span class="p">.</span><span class="nx">randomUUID</span><span class="p">()</span>  <span class="c1">// e.g. &#39;110e8400-e29b-41d4-a716-446655440000&#39;
 </span></span></span></code></pre></div><p><code>crypto.getRandomValues()</code> is available in all modern browsers and Node.js 15+.</p>
 <h2 id="best-practice-note">Best Practice Note:</h2>
 <p>Use <code>Math.random()</code> freely for UI, animations, games, and demo data — it is fast and universally supported.
@@ -595,8 +595,8 @@ When you need whole numbers, combine <code>Math.random()</code> with <code>Math.
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -627,8 +627,8 @@ When you need whole numbers, combine <code>Math.random()</code> with <code>Math.
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -668,8 +668,8 @@ When you need whole numbers, combine <code>Math.random()</code> with <code>Math.
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -703,8 +703,8 @@ When you need whole numbers, combine <code>Math.random()</code> with <code>Math.
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -797,8 +797,8 @@ When you need whole numbers, combine <code>Math.random()</code> with <code>Math.
   loading="lazy"
   class="post-image" 
   alt="JavaScript Template Literals: Complete Developer Guide" 
-    srcset="/images/blog/javascript-template-literals_hu_b5938edb31d4579d.webp 480w, /images/blog/javascript-template-literals_hu_444c4c6da9a4d030.webp 768w, /images/blog/javascript-template-literals_hu_31e932ec2a05406a.webp 1024w, /images/blog/javascript-template-literals_hu_526728b5168f6b17.webp 1366w" 
-  src="/images/blog/javascript-template-literals_hu_c5ae45fa09dba94d.webp"
+    srcset="/images/blog/javascript-template-literals_hu_46b514a90dca28b4.webp 480w, /images/blog/javascript-template-literals_hu_59c70da3c96f7aca.webp 768w, /images/blog/javascript-template-literals_hu_3d5df0281391c06d.webp 1024w, /images/blog/javascript-template-literals_hu_b32576b33737211c.webp 1366w" 
+  src="/images/blog/javascript-template-literals_hu_ed6adf10c1de62f2.webp"
    width="460px"
 />
       </a>
@@ -837,8 +837,8 @@ Tuesday, August 5, 2025
   loading="lazy"
   class="post-image" 
   alt="Maintaining Accessibility with React createPortal and aria-owns: A Complete Guide" 
-    srcset="/images/blog/maintaining-accessibility-with-react-createportal-and-aria-owns_hu_7dd0bf7e0152dc4b.webp 480w, /images/blog/maintaining-accessibility-with-react-createportal-and-aria-owns_hu_501e4abf88bf3b48.webp 768w, /images/blog/maintaining-accessibility-with-react-createportal-and-aria-owns_hu_98cd33a2e92669a3.webp 1024w, /images/blog/maintaining-accessibility-with-react-createportal-and-aria-owns_hu_7ba8f9c216200ddf.webp 1366w" 
-  src="/images/blog/maintaining-accessibility-with-react-createportal-and-aria-owns_hu_14ff28f2880f23da.webp"
+    srcset="/images/blog/maintaining-accessibility-with-react-createportal-and-aria-owns_hu_289810092e522a9d.webp 480w, /images/blog/maintaining-accessibility-with-react-createportal-and-aria-owns_hu_9c73b699dee0f10f.webp 768w, /images/blog/maintaining-accessibility-with-react-createportal-and-aria-owns_hu_412704588fcfa37e.webp 1024w, /images/blog/maintaining-accessibility-with-react-createportal-and-aria-owns_hu_bc7c358fcdd9dff7.webp 1366w" 
+  src="/images/blog/maintaining-accessibility-with-react-createportal-and-aria-owns_hu_a39f0c0b0f851d64.webp"
    width="460px"
 />
       </a>
@@ -877,8 +877,8 @@ Monday, August 4, 2025
   loading="lazy"
   class="post-image" 
   alt="JavaScript Operator Precedence and Associativity: A Developer&#39;s Complete Guide" 
-    srcset="/images/blog/javascript-operator-precedence-and-associativity_hu_c3ba47fb122316a.webp 480w, /images/blog/javascript-operator-precedence-and-associativity_hu_27e40005423de270.webp 768w, /images/blog/javascript-operator-precedence-and-associativity_hu_ce0bfbdee0b2bc59.webp 1024w, /images/blog/javascript-operator-precedence-and-associativity_hu_26827f8829990bc6.webp 1366w" 
-  src="/images/blog/javascript-operator-precedence-and-associativity_hu_f70331656abfaa96.webp"
+    srcset="/images/blog/javascript-operator-precedence-and-associativity_hu_b273b2e922488d08.webp 480w, /images/blog/javascript-operator-precedence-and-associativity_hu_8f1519163732a1b7.webp 768w, /images/blog/javascript-operator-precedence-and-associativity_hu_f63fa64aa395ccef.webp 1024w, /images/blog/javascript-operator-precedence-and-associativity_hu_8fc06eab830b66c.webp 1366w" 
+  src="/images/blog/javascript-operator-precedence-and-associativity_hu_ae28ce9b4f36812e.webp"
    width="460px"
 />
       </a>
@@ -917,8 +917,8 @@ Monday, July 28, 2025
   loading="lazy"
   class="post-image" 
   alt="Understanding Operator Precedence in JavaScript: Why Parentheses Matter with `??` and `?:`" 
-    srcset="/images/blog/understanding-operator-precedence-in-javascript_hu_cc0eb218c3c27983.webp 480w, /images/blog/understanding-operator-precedence-in-javascript_hu_1ffb913c24c0ff33.webp 768w, /images/blog/understanding-operator-precedence-in-javascript_hu_c905e079305653ba.webp 1024w, /images/blog/understanding-operator-precedence-in-javascript_hu_773ceb144862f830.webp 1366w" 
-  src="/images/blog/understanding-operator-precedence-in-javascript_hu_5f2fa206bfc15b09.webp"
+    srcset="/images/blog/understanding-operator-precedence-in-javascript_hu_7108d3a0ddd47e0e.webp 480w, /images/blog/understanding-operator-precedence-in-javascript_hu_8f843beb4665aac1.webp 768w, /images/blog/understanding-operator-precedence-in-javascript_hu_3acefb2894c8c83d.webp 1024w, /images/blog/understanding-operator-precedence-in-javascript_hu_58738a51a941cd60.webp 1366w" 
+  src="/images/blog/understanding-operator-precedence-in-javascript_hu_95adc351bae01d9.webp"
    width="460px"
 />
       </a>
@@ -1021,7 +1021,7 @@ Sunday, July 27, 2025
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

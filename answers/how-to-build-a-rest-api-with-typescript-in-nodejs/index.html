@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Complete guide to building a REST API with TypeScript in Node.js using Express for type-safe endpoints and middleware.js experience."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to build a REST API with TypeScript in Node.js</title><link rel="canonical" href="https://coreui.io/answers/how-to-build-a-rest-api-with-typescript-in-nodejs/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to build a REST API with TypeScript in Node.js</title><link rel="canonical" href="https://coreui.io/answers/how-to-build-a-rest-api-with-typescript-in-nodejs/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -507,7 +507,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">npx tsc --init
 </span></span></code></pre></div><h2 id="typescript-configuration">TypeScript Configuration</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// tsconfig.json
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;compilerOptions&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;target&#34;</span><span class="p">:</span> <span class="s2">&#34;ES2020&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;module&#34;</span><span class="p">:</span> <span class="s2">&#34;commonjs&#34;</span><span class="p">,</span>
@@ -526,27 +526,27 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h2 id="basic-express-server">Basic Express Server</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/index.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="nx">express</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Application</span><span class="p">,</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span><span class="p">,</span> <span class="nx">NextFunction</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">express</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Application</span><span class="p">,</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span><span class="p">,</span> <span class="nx">NextFunction</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">app</span>: <span class="kt">Application</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">PORT</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Middleware
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="nx">extended</span>: <span class="kt">true</span> <span class="p">}))</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Routes
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Welcome to API&#39;</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Start server
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server running on port </span><span class="si">${</span><span class="nx">PORT</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span></code></pre></div><h2 id="type-safe-routes">Type-Safe Routes</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/types/user.types.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">id</span>: <span class="kt">string</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">email</span>: <span class="kt">string</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span>
@@ -564,21 +564,21 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="nx">name?</span>: <span class="kt">string</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/routes/users.routes.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">User</span><span class="p">,</span> <span class="nx">CreateUserDto</span><span class="p">,</span> <span class="nx">UpdateUserDto</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../types/user.types&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">Router</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// In-memory database
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">users</span>: <span class="kt">User</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">users</span>: <span class="kt">User</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// GET /users
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">users</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// GET /users/:id
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s1">&#39;/:id&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">id</span>: <span class="kt">string</span> <span class="p">}</span><span class="o">&gt;</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s1">&#39;/:id&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">id</span>: <span class="kt">string</span> <span class="p">}</span><span class="o">&gt;</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">u</span> <span class="o">=&gt;</span> <span class="nx">u</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
@@ -589,7 +589,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// POST /users
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="o">&lt;</span><span class="p">{},</span> <span class="p">{},</span> <span class="nx">CreateUserDto</span><span class="o">&gt;</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="o">&lt;</span><span class="p">{},</span> <span class="p">{},</span> <span class="nx">CreateUserDto</span><span class="o">&gt;</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">password</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">user</span>: <span class="kt">User</span> <span class="o">=</span> <span class="p">{</span>
@@ -604,7 +604,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// PUT /users/:id
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">router</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;/:id&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">id</span>: <span class="kt">string</span> <span class="p">},</span> <span class="p">{},</span> <span class="nx">UpdateUserDto</span><span class="o">&gt;</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">&#39;/:id&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">id</span>: <span class="kt">string</span> <span class="p">},</span> <span class="p">{},</span> <span class="nx">UpdateUserDto</span><span class="o">&gt;</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">users</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="nx">u</span> <span class="o">=&gt;</span> <span class="nx">u</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
@@ -616,7 +616,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// DELETE /users/:id
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">router</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">&#39;/:id&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">id</span>: <span class="kt">string</span> <span class="p">}</span><span class="o">&gt;</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">&#39;/:id&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">id</span>: <span class="kt">string</span> <span class="p">}</span><span class="o">&gt;</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">users</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="nx">u</span> <span class="o">=&gt;</span> <span class="nx">u</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
@@ -629,7 +629,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">router</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/index.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="nx">express</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">express</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">usersRouter</span> <span class="kr">from</span> <span class="s1">&#39;./routes/users.routes&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
@@ -643,7 +643,7 @@ Tuesday, February 24, 2026
 </span></span></code></pre></div><h2 id="validation-middleware">Validation Middleware</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install express-validator
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/middleware/validation.middleware.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span><span class="p">,</span> <span class="nx">NextFunction</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span><span class="p">,</span> <span class="nx">NextFunction</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">validationResult</span><span class="p">,</span> <span class="nx">ValidationChain</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express-validator&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">validate</span> <span class="o">=</span> <span class="p">(</span><span class="nx">validations</span>: <span class="kt">ValidationChain</span><span class="p">[])</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -665,7 +665,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/routes/users.routes.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">body</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express-validator&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">body</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express-validator&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">validate</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../middleware/validation.middleware&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
@@ -677,11 +677,11 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="p">]),</span>
 </span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="o">&lt;</span><span class="p">{},</span> <span class="p">{},</span> <span class="nx">CreateUserDto</span><span class="o">&gt;</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// Handler code
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span></code></pre></div><h2 id="error-handling">Error Handling</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/types/error.types.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">class</span> <span class="nx">ApiError</span> <span class="kr">extends</span> <span class="nb">Error</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">ApiError</span> <span class="kr">extends</span> <span class="nb">Error</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">constructor</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">public</span> <span class="nx">statusCode</span>: <span class="kt">number</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">public</span> <span class="nx">message</span>: <span class="kt">string</span><span class="p">,</span>
@@ -710,7 +710,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/middleware/error.middleware.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span><span class="p">,</span> <span class="nx">NextFunction</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span><span class="p">,</span> <span class="nx">NextFunction</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">ApiError</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../types/error.types&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">errorHandler</span> <span class="o">=</span> <span class="p">(</span>
@@ -730,7 +730,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Unhandled errors
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Unexpected error:&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Unexpected error:&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">success</span>: <span class="kt">false</span><span class="p">,</span>
@@ -740,15 +740,15 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/index.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">errorHandler</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./middleware/error.middleware&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">errorHandler</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./middleware/error.middleware&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/api/users&#39;</span><span class="p">,</span> <span class="nx">usersRouter</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Error handler must be last
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">errorHandler</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">errorHandler</span><span class="p">)</span>
 </span></span></code></pre></div><h2 id="async-error-handling">Async Error Handling</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/utils/asyncHandler.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span><span class="p">,</span> <span class="nx">NextFunction</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span><span class="p">,</span> <span class="nx">NextFunction</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">AsyncFunction</span> <span class="o">=</span> <span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">req</span>: <span class="kt">Request</span><span class="p">,</span>
@@ -762,7 +762,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/routes/users.routes.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">asyncHandler</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../utils/asyncHandler&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">asyncHandler</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../utils/asyncHandler&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">NotFoundError</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../types/error.types&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s1">&#39;/:id&#39;</span><span class="p">,</span> <span class="nx">asyncHandler</span><span class="p">(</span><span class="kr">async</span> <span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">id</span>: <span class="kt">string</span> <span class="p">}</span><span class="o">&gt;</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -778,7 +778,7 @@ Tuesday, February 24, 2026
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install typeorm pg reflect-metadata
 </span></span><span class="line"><span class="cl">npm install --save-dev @types/pg
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/entities/User.entity.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Entity</span><span class="p">,</span> <span class="nx">PrimaryGeneratedColumn</span><span class="p">,</span> <span class="nx">Column</span><span class="p">,</span> <span class="nx">CreateDateColumn</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;typeorm&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Entity</span><span class="p">,</span> <span class="nx">PrimaryGeneratedColumn</span><span class="p">,</span> <span class="nx">Column</span><span class="p">,</span> <span class="nx">CreateDateColumn</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;typeorm&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">@Entity</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">User</span> <span class="p">{</span>
@@ -798,7 +798,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="nx">createdAt</span>: <span class="kt">Date</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/config/database.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">DataSource</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;typeorm&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">DataSource</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;typeorm&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">User</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../entities/User.entity&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">AppDataSource</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataSource</span><span class="p">({</span>
@@ -813,7 +813,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="nx">entities</span><span class="o">:</span> <span class="p">[</span><span class="nx">User</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/index.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="s1">&#39;reflect-metadata&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="s1">&#39;reflect-metadata&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">AppDataSource</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;./config/database&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">AppDataSource</span><span class="p">.</span><span class="nx">initialize</span><span class="p">()</span>
@@ -827,7 +827,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Database connection failed:&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">))</span>
 </span></span></code></pre></div><h2 id="controller-pattern">Controller Pattern</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/controllers/users.controller.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">AppDataSource</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../config/database&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">User</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../entities/User.entity&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">CreateUserDto</span><span class="p">,</span> <span class="nx">UpdateUserDto</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../types/user.types&#39;</span>
@@ -880,7 +880,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// src/routes/users.routes.ts
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;express&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">UsersController</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../controllers/users.controller&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">asyncHandler</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;../utils/asyncHandler&#39;</span>
 </span></span><span class="line"><span class="cl">
@@ -924,8 +924,8 @@ Tuesday, February 24, 2026
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -956,8 +956,8 @@ Tuesday, February 24, 2026
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -997,8 +997,8 @@ Tuesday, February 24, 2026
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -1032,8 +1032,8 @@ Tuesday, February 24, 2026
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -1126,8 +1126,8 @@ Tuesday, February 24, 2026
   loading="lazy"
   class="post-image" 
   alt="Simple Black Friday" 
-    srcset="/images/blog/black-friday_hu_561b79352a4e5c5.webp 480w, /images/blog/black-friday_hu_e9f46cce32cbda83.webp 768w, /images/blog/black-friday_hu_400ea50e9a336a1.webp 1024w, /images/blog/black-friday_hu_717825857939f6e9.webp 1366w" 
-  src="/images/blog/black-friday_hu_efa06e32f758d6ca.webp"
+    srcset="/images/blog/black-friday_hu_e71f28c3eb433d1.webp 480w, /images/blog/black-friday_hu_c33dbf29aefda0e5.webp 768w, /images/blog/black-friday_hu_57f33df5b78c18ae.webp 1024w, /images/blog/black-friday_hu_8c4f1a7879ff9ae1.webp 1366w" 
+  src="/images/blog/black-friday_hu_435da42306d1233.webp"
    width="460px"
 />
       </a>
@@ -1166,8 +1166,8 @@ Friday, November 26, 2021
   loading="lazy"
   class="post-image" 
   alt="Do we need UI components?" 
-    srcset="/images/blog/sliders_hu_ca34e4903aaef2f2.webp 480w, /images/blog/sliders_hu_979b9c1b8a0fa2cc.webp 768w, /images/blog/sliders_hu_f65ee522e421d6ee.webp 1024w, /images/blog/sliders_hu_8045c6ae8877eccb.webp 1366w" 
-  src="/images/blog/sliders_hu_e4375ac365837218.webp"
+    srcset="/images/blog/sliders_hu_fe29224e81a30daf.webp 480w, /images/blog/sliders_hu_74b788691f5e155.webp 768w, /images/blog/sliders_hu_f167ab7664b9098c.webp 1024w, /images/blog/sliders_hu_d916a854a0439bac.webp 1366w" 
+  src="/images/blog/sliders_hu_f929736ac07a89be.webp"
    width="460px"
 />
       </a>
@@ -1206,8 +1206,8 @@ Wednesday, October 27, 2021
   loading="lazy"
   class="post-image" 
   alt="Can’t wait for what the future of Vue holds!" 
-    srcset="/images/blog/vue_hu_df8aa5b24d47259d.webp 480w, /images/blog/vue_hu_553478d51fb51031.webp 768w, /images/blog/vue_hu_be15580b558bb713.webp 1024w, /images/blog/vue_hu_603bd74e47170e47.webp 1366w" 
-  src="/images/blog/vue_hu_e81f321d664efc9c.webp"
+    srcset="/images/blog/vue_hu_7d452dfe0c93a57c.webp 480w, /images/blog/vue_hu_fbcdc8c328e52207.webp 768w, /images/blog/vue_hu_bd9a87859f8ba2af.webp 1024w, /images/blog/vue_hu_3fc9d52488e98159.webp 1366w" 
+  src="/images/blog/vue_hu_c27f83ad6dfb9c24.webp"
    width="460px"
 />
       </a>
@@ -1246,8 +1246,8 @@ Sunday, October 10, 2021
   loading="lazy"
   class="post-image" 
   alt="CoreUI Vue.js components helped to win a Eurostat hackathon" 
-    srcset="/images/blog/vue_hu_df8aa5b24d47259d.webp 480w, /images/blog/vue_hu_553478d51fb51031.webp 768w, /images/blog/vue_hu_be15580b558bb713.webp 1024w, /images/blog/vue_hu_603bd74e47170e47.webp 1366w" 
-  src="/images/blog/vue_hu_e81f321d664efc9c.webp"
+    srcset="/images/blog/vue_hu_7d452dfe0c93a57c.webp 480w, /images/blog/vue_hu_fbcdc8c328e52207.webp 768w, /images/blog/vue_hu_bd9a87859f8ba2af.webp 1024w, /images/blog/vue_hu_3fc9d52488e98159.webp 1366w" 
+  src="/images/blog/vue_hu_c27f83ad6dfb9c24.webp"
    width="460px"
 />
       </a>
@@ -1350,7 +1350,7 @@ Thursday, April 8, 2021
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

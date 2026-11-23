@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Deploy serverless Node.js functions to Netlify for API endpoints, webhooks, and backend logic with automatic deployment."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to deploy Node.js app to Netlify functions</title><link rel="canonical" href="https://coreui.io/answers/how-to-deploy-nodejs-app-to-netlify-functions/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to deploy Node.js app to Netlify functions</title><link rel="canonical" href="https://coreui.io/answers/how-to-deploy-nodejs-app-to-netlify-functions/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -499,7 +499,7 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
         <p>Create functions in netlify/functions directory and deploy via Git for automatic serverless Node.js deployment.</p>
 <p><strong>Basic Netlify function:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// netlify/functions/hello.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">statusCode</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">body</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
@@ -512,18 +512,18 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl"><span class="c1">// Accessible at: /.netlify/functions/hello
 </span></span></span></code></pre></div><p><strong>REST API endpoints:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// netlify/functions/users.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span> <span class="nx">httpMethod</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">body</span><span class="p">,</span> <span class="nx">queryStringParameters</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">event</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Enable CORS
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="o">:</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;Access-Control-Allow-Headers&#39;</span><span class="o">:</span> <span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;Access-Control-Allow-Methods&#39;</span><span class="o">:</span> <span class="s1">&#39;GET, POST, PUT, DELETE&#39;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Handle preflight
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">httpMethod</span> <span class="o">===</span> <span class="s1">&#39;OPTIONS&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">httpMethod</span> <span class="o">===</span> <span class="s1">&#39;OPTIONS&#39;</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span> <span class="nx">statusCode</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nx">headers</span><span class="p">,</span> <span class="nx">body</span><span class="o">:</span> <span class="s1">&#39;&#39;</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -531,7 +531,7 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="p">(</span><span class="nx">httpMethod</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="s1">&#39;GET&#39;</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// Get user by ID from query params
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kr">const</span> <span class="nx">userId</span> <span class="o">=</span> <span class="nx">queryStringParameters</span><span class="o">?</span><span class="p">.</span><span class="nx">id</span>
+</span></span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">userId</span> <span class="o">=</span> <span class="nx">queryStringParameters</span><span class="o">?</span><span class="p">.</span><span class="nx">id</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">          <span class="nx">statusCode</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nx">headers</span><span class="p">,</span>
@@ -544,7 +544,7 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="s1">&#39;POST&#39;</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// Create user
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kr">const</span> <span class="nx">userData</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">userData</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">          <span class="nx">statusCode</span><span class="o">:</span> <span class="mi">201</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nx">headers</span><span class="p">,</span>
@@ -556,7 +556,7 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="s1">&#39;PUT&#39;</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// Update user
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kr">const</span> <span class="nx">updateData</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">updateData</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">          <span class="nx">statusCode</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nx">headers</span><span class="p">,</span>
@@ -568,7 +568,7 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="s1">&#39;DELETE&#39;</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// Delete user
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">          <span class="nx">statusCode</span><span class="o">:</span> <span class="mi">204</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nx">headers</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nx">body</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
@@ -591,16 +591,16 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Environment variables:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// netlify/functions/config.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Access environment variables
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">API_KEY</span>
+</span></span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">apiKey</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">API_KEY</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">dbUrl</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_URL</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">statusCode</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">body</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">environment</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">CONTEXT</span><span class="p">,</span> <span class="c1">// production, deploy-preview, branch-deploy
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">hasApiKey</span><span class="o">:</span> <span class="o">!!</span><span class="nx">apiKey</span><span class="p">,</span>
+</span></span></span><span class="line"><span class="cl">      <span class="nx">hasApiKey</span><span class="o">:</span> <span class="o">!!</span><span class="nx">apiKey</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">hasDbUrl</span><span class="o">:</span> <span class="o">!!</span><span class="nx">dbUrl</span>
 </span></span><span class="line"><span class="cl">    <span class="p">})</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
@@ -628,7 +628,7 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl">  <span class="nx">NODE_ENV</span> <span class="p">=</span> <span class="s2">&#34;development&#34;</span>
 </span></span></code></pre></div><p><strong>Database integration:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// netlify/functions/db-users.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;pg&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;pg&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
@@ -661,21 +661,21 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// package.json
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;dependencies&#34;</span><span class="o">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;pg&#34;</span><span class="o">:</span> <span class="s2">&#34;^8.11.3&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Scheduled functions:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// netlify/functions/scheduled-task.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="nx">fetch</span> <span class="nx">from</span> <span class="s1">&#39;node-fetch&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">fetch</span> <span class="nx">from</span> <span class="s1">&#39;node-fetch&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Scheduled function executed at:&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">try</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// Perform scheduled task
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://api.example.com/sync&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://api.example.com/sync&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span>
@@ -694,20 +694,20 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// netlify.toml
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[[</span><span class="nx">functions</span><span class="p">]]</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">functions</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">path</span> <span class="o">=</span> <span class="s2">&#34;scheduled-task&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">schedule</span> <span class="o">=</span> <span class="s2">&#34;0 0 * * *&#34;</span>  <span class="err">#</span> <span class="nx">Daily</span> <span class="nx">at</span> <span class="nx">midnight</span>
 </span></span></code></pre></div><p><strong>Background functions:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// netlify/functions/background-process.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Start background task
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Background task completed&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// This runs after function returns
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Return immediately
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">statusCode</span><span class="o">:</span> <span class="mi">202</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">body</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Background task started&#39;</span>
@@ -716,13 +716,13 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// netlify.toml
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[[</span><span class="nx">functions</span><span class="p">]]</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">functions</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">path</span> <span class="o">=</span> <span class="s2">&#34;background-process&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">functions</span><span class="p">.</span><span class="nx">background</span><span class="o">-</span><span class="nx">process</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">background</span> <span class="o">=</span> <span class="kc">true</span>
 </span></span></code></pre></div><p><strong>Form handling:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// netlify/functions/contact-form.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="nx">nodemailer</span> <span class="nx">from</span> <span class="s1">&#39;nodemailer&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">nodemailer</span> <span class="nx">from</span> <span class="s1">&#39;nodemailer&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">httpMethod</span> <span class="o">!==</span> <span class="s1">&#39;POST&#39;</span><span class="p">)</span> <span class="p">{</span>
@@ -733,7 +733,7 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">message</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Validate input
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">name</span> <span class="o">||</span> <span class="o">!</span><span class="nx">email</span> <span class="o">||</span> <span class="o">!</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">name</span> <span class="o">||</span> <span class="o">!</span><span class="nx">email</span> <span class="o">||</span> <span class="o">!</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">statusCode</span><span class="o">:</span> <span class="mi">400</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">body</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">error</span><span class="o">:</span> <span class="s1">&#39;Missing required fields&#39;</span> <span class="p">})</span>
@@ -741,7 +741,7 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Send email
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">transporter</span> <span class="o">=</span> <span class="nx">nodemailer</span><span class="p">.</span><span class="nx">createTransport</span><span class="p">({</span>
+</span></span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">transporter</span> <span class="o">=</span> <span class="nx">nodemailer</span><span class="p">.</span><span class="nx">createTransport</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">host</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">SMTP_HOST</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">port</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">SMTP_PORT</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">auth</span><span class="o">:</span> <span class="p">{</span>
@@ -770,7 +770,7 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>Authentication middleware:</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// netlify/functions/utils/auth.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kd">function</span> <span class="nx">verifyToken</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kd">function</span> <span class="nx">verifyToken</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">authorization</span><span class="o">?</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;Bearer &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
@@ -779,7 +779,7 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">try</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// Verify JWT token
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">JWT_SECRET</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">JWT_SECRET</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span> <span class="nx">authorized</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">user</span><span class="o">:</span> <span class="nx">decoded</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span> <span class="nx">authorized</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">error</span><span class="o">:</span> <span class="s1">&#39;Invalid token&#39;</span> <span class="p">}</span>
@@ -787,7 +787,7 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// netlify/functions/protected.js
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">verifyToken</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./utils/auth&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">verifyToken</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./utils/auth&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">auth</span> <span class="o">=</span> <span class="nx">verifyToken</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span>
@@ -870,8 +870,8 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -902,8 +902,8 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -943,8 +943,8 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -978,8 +978,8 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -1072,8 +1072,8 @@ This approach works perfectly for API routes, form handlers, webhooks, and backe
   loading="lazy"
   class="post-image" 
   alt="How to Hide Scrollbar with CSS" 
-    srcset="/images/blog/how-to-hide-scrollbar-with-css_hu_437dc1688b0bfe85.webp 480w, /images/blog/how-to-hide-scrollbar-with-css_hu_4d7820677b6a20b4.webp 768w, /images/blog/how-to-hide-scrollbar-with-css_hu_5998174db88ee6f6.webp 1024w, /images/blog/how-to-hide-scrollbar-with-css_hu_cb4773fbbd0e13ca.webp 1366w" 
-  src="/images/blog/how-to-hide-scrollbar-with-css_hu_3e0dd2bcd5f2188c.webp"
+    srcset="/images/blog/how-to-hide-scrollbar-with-css_hu_e5b85aeb4c7838e9.webp 480w, /images/blog/how-to-hide-scrollbar-with-css_hu_1300a4aba09c3b48.webp 768w, /images/blog/how-to-hide-scrollbar-with-css_hu_6c5bafcbd452db47.webp 1024w, /images/blog/how-to-hide-scrollbar-with-css_hu_b376e2e4c14035bc.webp 1366w" 
+  src="/images/blog/how-to-hide-scrollbar-with-css_hu_f9d4e29438790f1a.webp"
    width="460px"
 />
       </a>
@@ -1112,8 +1112,8 @@ Wednesday, May 8, 2024
   loading="lazy"
   class="post-image" 
   alt="How to Use JavaScript setTimeout()" 
-    srcset="/images/blog/how-to-use-javascript-settimeout_hu_dafecf8e7eed20ee.webp 480w, /images/blog/how-to-use-javascript-settimeout_hu_7b5540d3aea3ef47.webp 768w, /images/blog/how-to-use-javascript-settimeout_hu_9623fc4b5287933d.webp 1024w, /images/blog/how-to-use-javascript-settimeout_hu_b8bb3068546e3a27.webp 1366w" 
-  src="/images/blog/how-to-use-javascript-settimeout_hu_9a029d81e82f8d44.webp"
+    srcset="/images/blog/how-to-use-javascript-settimeout_hu_e5eabc087b4dfd06.webp 480w, /images/blog/how-to-use-javascript-settimeout_hu_de8cb6a38dd98869.webp 768w, /images/blog/how-to-use-javascript-settimeout_hu_e60494318e1d4dd.webp 1024w, /images/blog/how-to-use-javascript-settimeout_hu_6df513e711b4c4ad.webp 1366w" 
+  src="/images/blog/how-to-use-javascript-settimeout_hu_c52438b221f790dc.webp"
    width="460px"
 />
       </a>
@@ -1152,8 +1152,8 @@ Monday, April 29, 2024
   loading="lazy"
   class="post-image" 
   alt="Javascript Random - How to Generate a Random Number in JavaScript?" 
-    srcset="/images/blog/how-to-generate-a-random-number-in-javascript_hu_b9cabad4d562bc6b.webp 480w, /images/blog/how-to-generate-a-random-number-in-javascript_hu_fab8be744187c485.webp 768w, /images/blog/how-to-generate-a-random-number-in-javascript_hu_62741186b8d83944.webp 1024w, /images/blog/how-to-generate-a-random-number-in-javascript_hu_f7e5a23b47c51853.webp 1366w" 
-  src="/images/blog/how-to-generate-a-random-number-in-javascript_hu_3d7bb03002c56a2a.webp"
+    srcset="/images/blog/how-to-generate-a-random-number-in-javascript_hu_641e64e99d7d9a34.webp 480w, /images/blog/how-to-generate-a-random-number-in-javascript_hu_e193743801e870ae.webp 768w, /images/blog/how-to-generate-a-random-number-in-javascript_hu_586d10dc9c934a83.webp 1024w, /images/blog/how-to-generate-a-random-number-in-javascript_hu_83e1d846f65b38d0.webp 1366w" 
+  src="/images/blog/how-to-generate-a-random-number-in-javascript_hu_8d5a98c88bc2d8dd.webp"
    width="460px"
 />
       </a>
@@ -1192,8 +1192,8 @@ Tuesday, April 16, 2024
   loading="lazy"
   class="post-image" 
   alt="How to capitalize the first letter in JavaScript?" 
-    srcset="/images/blog/how-to-capitalize-the-first-letter-in-javascript_hu_d75f8907397a0cf9.webp 480w, /images/blog/how-to-capitalize-the-first-letter-in-javascript_hu_2f58e782eb917871.webp 768w, /images/blog/how-to-capitalize-the-first-letter-in-javascript_hu_134c9e61a0105518.webp 1024w, /images/blog/how-to-capitalize-the-first-letter-in-javascript_hu_cbc5efb10826d87b.webp 1366w" 
-  src="/images/blog/how-to-capitalize-the-first-letter-in-javascript_hu_4ec385e9aa83179c.webp"
+    srcset="/images/blog/how-to-capitalize-the-first-letter-in-javascript_hu_4f65cc4a771537b0.webp 480w, /images/blog/how-to-capitalize-the-first-letter-in-javascript_hu_bc33ac1d5b262484.webp 768w, /images/blog/how-to-capitalize-the-first-letter-in-javascript_hu_874a845f3b6ad1ef.webp 1024w, /images/blog/how-to-capitalize-the-first-letter-in-javascript_hu_f85bb8ca10ed8770.webp 1366w" 
+  src="/images/blog/how-to-capitalize-the-first-letter-in-javascript_hu_38fea048725497da.webp"
    width="460px"
 />
       </a>
@@ -1296,7 +1296,7 @@ Tuesday, April 9, 2024
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

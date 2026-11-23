@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Complete guide to implementing the factory pattern in JavaScript for flexible object creation and dependency injection."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to implement factory pattern in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-implement-factory-pattern-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to implement factory pattern in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-implement-factory-pattern-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -496,7 +496,7 @@ Thursday, February 19, 2026
 <p>The most maintainable approach uses factory functions or classes that encapsulate object creation logic.</p>
         <h2 id="basic-factory-function">Basic Factory Function</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Product classes
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">Car</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Car</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">make</span><span class="p">,</span> <span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;car&#39;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">make</span> <span class="o">=</span> <span class="nx">make</span>
@@ -521,7 +521,7 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Factory function
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">vehicleFactory</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">make</span><span class="p">,</span> <span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">vehicleFactory</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">make</span><span class="p">,</span> <span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">switch</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s1">&#39;car&#39;</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="nx">make</span><span class="p">,</span> <span class="nx">model</span><span class="p">)</span>
@@ -533,11 +533,11 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">myCar</span> <span class="o">=</span> <span class="nx">vehicleFactory</span><span class="p">(</span><span class="s1">&#39;car&#39;</span><span class="p">,</span> <span class="s1">&#39;Toyota&#39;</span><span class="p">,</span> <span class="s1">&#39;Camry&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">myCar</span> <span class="o">=</span> <span class="nx">vehicleFactory</span><span class="p">(</span><span class="s1">&#39;car&#39;</span><span class="p">,</span> <span class="s1">&#39;Toyota&#39;</span><span class="p">,</span> <span class="s1">&#39;Camry&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">myTruck</span> <span class="o">=</span> <span class="nx">vehicleFactory</span><span class="p">(</span><span class="s1">&#39;truck&#39;</span><span class="p">,</span> <span class="s1">&#39;Ford&#39;</span><span class="p">,</span> <span class="s1">&#39;F-150&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">myCar</span><span class="p">.</span><span class="nx">drive</span><span class="p">()</span> <span class="c1">// Driving Toyota Camry
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">myTruck</span><span class="p">.</span><span class="nx">drive</span><span class="p">()</span> <span class="c1">// Driving Ford F-150 truck
+</span></span></span><span class="line"><span class="cl"><span class="nx">myTruck</span><span class="p">.</span><span class="nx">drive</span><span class="p">()</span> <span class="c1">// Driving Ford F-150 truck
 </span></span></span></code></pre></div><h2 id="factory-class">Factory Class</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">User</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">role</span><span class="p">)</span> <span class="p">{</span>
@@ -582,7 +582,7 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Factory class
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">UserFactory</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">UserFactory</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">static</span> <span class="nx">create</span><span class="p">(</span><span class="nx">role</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">email</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="p">(</span><span class="nx">role</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="s1">&#39;admin&#39;</span><span class="o">:</span>
@@ -598,17 +598,17 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">admin</span> <span class="o">=</span> <span class="nx">UserFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;john@example.com&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">admin</span> <span class="o">=</span> <span class="nx">UserFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="s1">&#39;john@example.com&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">editor</span> <span class="o">=</span> <span class="nx">UserFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;editor&#39;</span><span class="p">,</span> <span class="s1">&#39;Jane&#39;</span><span class="p">,</span> <span class="s1">&#39;jane@example.com&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">admin</span><span class="p">.</span><span class="nx">getPermissions</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// [&#39;read&#39;, &#39;write&#39;, &#39;delete&#39;, &#39;manage&#39;]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">editor</span><span class="p">.</span><span class="nx">getPermissions</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// [&#39;read&#39;, &#39;write&#39;]
 </span></span></span></code></pre></div><h2 id="abstract-factory">Abstract Factory</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Database adapters
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">MySQLAdapter</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">MySQLAdapter</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">connect</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s1">&#39;Connected to MySQL&#39;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
@@ -639,7 +639,7 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Abstract factory
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">DatabaseFactory</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">DatabaseFactory</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">static</span> <span class="nx">create</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">adapters</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">mysql</span><span class="o">:</span> <span class="nx">MySQLAdapter</span><span class="p">,</span>
@@ -658,14 +658,14 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">DatabaseFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;mysql&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span> <span class="p">})</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">DatabaseFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;mysql&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">connect</span><span class="p">())</span> <span class="c1">// Connected to MySQL
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM users&#39;</span><span class="p">))</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mysql</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM users&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// MySQL query: SELECT * FROM users
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">mongo</span> <span class="o">=</span> <span class="nx">DatabaseFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;mongodb&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;localhost&#39;</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mongo</span><span class="p">.</span><span class="nx">connect</span><span class="p">())</span> <span class="c1">// Connected to MongoDB
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mongo</span><span class="p">.</span><span class="nx">query</span><span class="p">({</span> <span class="nx">find</span><span class="o">:</span> <span class="s1">&#39;users&#39;</span> <span class="p">}))</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mongo</span><span class="p">.</span><span class="nx">query</span><span class="p">({</span> <span class="nx">find</span><span class="o">:</span> <span class="s1">&#39;users&#39;</span> <span class="p">}))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// MongoDB query: {&#34;find&#34;:&#34;users&#34;}
 </span></span></span></code></pre></div><h2 id="factory-with-registration">Factory with Registration</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">ComponentFactory</span> <span class="p">{</span>
@@ -689,7 +689,7 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Component classes
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">Button</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Button</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;button&#39;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">label</span> <span class="o">=</span> <span class="nx">props</span><span class="p">.</span><span class="nx">label</span>
@@ -712,7 +712,7 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ComponentFactory</span><span class="p">()</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ComponentFactory</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">factory</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="nx">Button</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">factory</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="nx">Input</span><span class="p">)</span>
@@ -721,7 +721,7 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">placeholder</span><span class="o">:</span> <span class="s1">&#39;Enter text&#39;</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">btn</span><span class="p">.</span><span class="nx">render</span><span class="p">())</span> <span class="c1">// &lt;button&gt;Click Me&lt;/button&gt;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">render</span><span class="p">())</span> <span class="c1">// &lt;input placeholder=&#34;Enter text&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">render</span><span class="p">())</span> <span class="c1">// &lt;input placeholder=&#34;Enter text&#34;&gt;
 </span></span></span></code></pre></div><h2 id="factory-with-configuration">Factory with Configuration</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Logger</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
@@ -734,7 +734,7 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`[</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="si">}</span><span class="sb">] </span><span class="si">${</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">output</span> <span class="o">===</span> <span class="s1">&#39;file&#39;</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// Write to file
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Writing to file: [</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="si">}</span><span class="sb">] </span><span class="si">${</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Writing to file: [</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="si">}</span><span class="sb">] </span><span class="si">${</span><span class="nx">message</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -763,9 +763,9 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">devLogger</span> <span class="o">=</span> <span class="nx">LoggerFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;development&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">devLogger</span> <span class="o">=</span> <span class="nx">LoggerFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;development&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">devLogger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Debug message&#39;</span><span class="p">)</span> <span class="c1">// [debug] Debug message
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">prodLogger</span> <span class="o">=</span> <span class="nx">LoggerFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;production&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">prodLogger</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error occurred&#39;</span><span class="p">)</span> <span class="c1">// Writing to file: [error] Error occurred
 </span></span></span></code></pre></div><h2 id="async-factory">Async Factory</h2>
@@ -786,14 +786,14 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">ApiClientFactory</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">static</span> <span class="kr">async</span> <span class="nx">create</span><span class="p">(</span><span class="nx">service</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// Fetch configuration from server
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="sb">`/api/config/</span><span class="si">${</span><span class="nx">service</span><span class="si">}</span><span class="sb">`</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="p">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+</span></span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="sb">`/api/config/</span><span class="si">${</span><span class="nx">service</span><span class="si">}</span><span class="sb">`</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="p">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="nx">ApiClient</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">ApiClientFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">ApiClientFactory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">users</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/users&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">users</span><span class="p">)</span>
 </span></span></code></pre></div><h2 id="factory-with-dependency-injection">Factory with Dependency Injection</h2>
@@ -829,14 +829,14 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">emailService</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EmailService</span><span class="p">()</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">emailService</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EmailService</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">smsService</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SMSService</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NotificationFactory</span><span class="p">(</span><span class="nx">emailService</span><span class="p">,</span> <span class="nx">smsService</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">email</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">email</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;user@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="s1">&#39;Welcome!&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Sending email to user@example.com
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sms</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;sms&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">sms</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;+1234567890&#39;</span><span class="p">,</span> <span class="s1">&#39;Your code is 1234&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Sending SMS to +1234567890
@@ -855,7 +855,7 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Plugin</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="kc">null</span> <span class="c1">// Gracefully handle missing plugins
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="nx">Plugin</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
@@ -870,7 +870,7 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Plugin classes
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">AnalyticsPlugin</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">AnalyticsPlugin</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">trackingId</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">trackingId</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
@@ -896,18 +896,18 @@ Thursday, February 19, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PluginFactory</span><span class="p">()</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PluginFactory</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">factory</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">&#39;analytics&#39;</span><span class="p">,</span> <span class="nx">AnalyticsPlugin</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">factory</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="nx">CachePlugin</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">analytics</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;analytics&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">trackingId</span><span class="o">:</span> <span class="s1">&#39;UA-123456&#39;</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="nx">analytics</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s1">&#39;page_view&#39;</span><span class="p">)</span> <span class="c1">// Tracking: page_view (ID: UA-123456)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cache</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">ttl</span><span class="o">:</span> <span class="mi">3600</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="nx">cache</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;user:1&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;user:1&#39;</span><span class="p">))</span> <span class="c1">// { name: &#39;John&#39; }
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">factory</span><span class="p">.</span><span class="nx">getAll</span><span class="p">())</span> <span class="c1">// [&#39;analytics&#39;, &#39;cache&#39;]
 </span></span></span></code></pre></div><h2 id="best-practice-note">Best Practice Note</h2>
 <p>This is how we implement factory patterns in CoreUI for flexible component creation. The factory pattern provides a clean abstraction for object creation, allowing runtime decisions about which class to instantiate without coupling code to specific implementations. Always use factories when you need runtime class selection, multiple implementations of an interface, or centralized object creation logic. Consider registration-based factories for plugin systems and dependency injection for testability.</p>
@@ -929,8 +929,8 @@ Thursday, February 19, 2026
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -961,8 +961,8 @@ Thursday, February 19, 2026
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -1002,8 +1002,8 @@ Thursday, February 19, 2026
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -1037,8 +1037,8 @@ Thursday, February 19, 2026
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -1131,8 +1131,8 @@ Thursday, February 19, 2026
   loading="lazy"
   class="post-image" 
   alt="Laravel rockz?" 
-    srcset="/images/blog/hex_laravel_red-2_hu_c8994ed9421196c6.webp 480w, /images/blog/hex_laravel_red-2_hu_a81babe5e62f5b56.webp 768w, /images/blog/hex_laravel_red-2_hu_420c39e52feec078.webp 1024w, /images/blog/hex_laravel_red-2_hu_32b34d03d1b4492d.webp 1366w" 
-  src="/images/blog/hex_laravel_red-2_hu_8240fbe17a958375.webp"
+    srcset="/images/blog/hex_laravel_red-2_hu_1577868b3c8c8322.webp 480w, /images/blog/hex_laravel_red-2_hu_cf0e41223dcf6b9b.webp 768w, /images/blog/hex_laravel_red-2_hu_fd8bfaa5147da043.webp 1024w, /images/blog/hex_laravel_red-2_hu_caf710ab1092ea62.webp 1366w" 
+  src="/images/blog/hex_laravel_red-2_hu_24c94cb2fad9c9cf.webp"
    width="460px"
 />
       </a>
@@ -1171,8 +1171,8 @@ Thursday, December 5, 2019
   loading="lazy"
   class="post-image" 
   alt="Are you ready for CoreUI 3.0?" 
-    srcset="/images/blog/full_hu_f3b18987d186dc84.webp 480w, /images/blog/full_hu_7d20af5b8cec4ed3.webp 768w, /images/blog/full_hu_1efe77f713b75be1.webp 1024w, /images/blog/full_hu_3df1f5c25e85a6c3.webp 1366w" 
-  src="/images/blog/full_hu_60bcafe21be1d3b3.webp"
+    srcset="/images/blog/full_hu_349e31a8e39cebc7.webp 480w, /images/blog/full_hu_cefe15ce04ae0.webp 768w, /images/blog/full_hu_1bf21854261ff11e.webp 1024w, /images/blog/full_hu_790ee2806d586da5.webp 1366w" 
+  src="/images/blog/full_hu_cffb73769eb7e054.webp"
    width="460px"
 />
       </a>
@@ -1211,8 +1211,8 @@ Wednesday, November 6, 2019
   loading="lazy"
   class="post-image" 
   alt="Leave well alone?" 
-    srcset="/images/blog/logo-rebrand_hu_7b27283991a9a1a8.webp 480w, /images/blog/logo-rebrand_hu_64889aa54dbffa1d.webp 768w, /images/blog/logo-rebrand_hu_4fb80f9c867a3555.webp 1024w, /images/blog/logo-rebrand_hu_f3c3910c9616a446.webp 1366w" 
-  src="/images/blog/logo-rebrand_hu_69e82c656224079c.webp"
+    srcset="/images/blog/logo-rebrand_hu_2f93aa2a3372a07d.webp 480w, /images/blog/logo-rebrand_hu_97051b259383f8a9.webp 768w, /images/blog/logo-rebrand_hu_f31adfa1d32b3aa2.webp 1024w, /images/blog/logo-rebrand_hu_93a578493dfd79d3.webp 1366w" 
+  src="/images/blog/logo-rebrand_hu_74a9c73d17d6eef5.webp"
    width="460px"
 />
       </a>
@@ -1251,8 +1251,8 @@ Monday, September 30, 2019
   loading="lazy"
   class="post-image" 
   alt="What’s new and updated in CoreUI 3" 
-    srcset="/images/blog/full_hu_f3b18987d186dc84.webp 480w, /images/blog/full_hu_7d20af5b8cec4ed3.webp 768w, /images/blog/full_hu_1efe77f713b75be1.webp 1024w, /images/blog/full_hu_3df1f5c25e85a6c3.webp 1366w" 
-  src="/images/blog/full_hu_60bcafe21be1d3b3.webp"
+    srcset="/images/blog/full_hu_349e31a8e39cebc7.webp 480w, /images/blog/full_hu_cefe15ce04ae0.webp 768w, /images/blog/full_hu_1bf21854261ff11e.webp 1024w, /images/blog/full_hu_790ee2806d586da5.webp 1366w" 
+  src="/images/blog/full_hu_cffb73769eb7e054.webp"
    width="460px"
 />
       </a>
@@ -1355,7 +1355,7 @@ Monday, July 1, 2019
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

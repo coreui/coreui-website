@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Use the trim() method to remove leading and trailing whitespace from strings in JavaScript efficiently."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to trim whitespace from a string in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-trim-whitespace-from-a-string-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to trim whitespace from a string in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-trim-whitespace-from-a-string-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -514,14 +514,14 @@ This approach is efficient, universally supported, and specifically designed for
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">indented</span> <span class="o">=</span> <span class="s1">&#39;   Welcome to the dashboard&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">indented</span><span class="p">.</span><span class="nx">trimStart</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Welcome to the dashboard&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Common use case: cleaning up pasted text
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">multiline</span> <span class="o">=</span> <span class="s1">&#39;\n\n  First line of content&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">multiline</span> <span class="o">=</span> <span class="s1">&#39;\n\n  First line of content&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cleaned</span> <span class="o">=</span> <span class="nx">multiline</span><span class="p">.</span><span class="nx">trimStart</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;First line of content&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// trimStart() handles all whitespace types
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">mixed</span> <span class="o">=</span> <span class="s1">&#39;\t \n  Hello&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">mixed</span> <span class="o">=</span> <span class="s1">&#39;\t \n  Hello&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">trimmed</span> <span class="o">=</span> <span class="nx">mixed</span><span class="p">.</span><span class="nx">trimStart</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Hello&#39;
 </span></span></span></code></pre></div><p>The <code>trimStart()</code> method (also available as its alias <code>trimLeft()</code>) only removes whitespace characters from the left side of the string. This is particularly useful when processing template strings or text that has been copied from formatted documents where you want to preserve intentional trailing spaces.</p>
@@ -530,45 +530,45 @@ This approach is efficient, universally supported, and specifically designed for
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">trailed</span> <span class="o">=</span> <span class="s1">&#39;Error: Connection timeout   &#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">trailed</span><span class="p">.</span><span class="nx">trimEnd</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Error: Connection timeout&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Useful for cleaning file paths
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;/var/log/app.log \n&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;/var/log/app.log \n&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cleaned</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">trimEnd</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;/var/log/app.log&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Preserves leading whitespace
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">indented</span> <span class="o">=</span> <span class="s1">&#39;  indented text  &#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">indented</span> <span class="o">=</span> <span class="s1">&#39;  indented text  &#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">trimmed</span> <span class="o">=</span> <span class="nx">indented</span><span class="p">.</span><span class="nx">trimEnd</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;  indented text&#39;
 </span></span></span></code></pre></div><p>The <code>trimEnd()</code> method (also available as <code>trimRight()</code>) is especially useful when concatenating strings where trailing whitespace would cause misalignment or unexpected spacing in the final output.</p>
 <h2 id="3-removing-all-whitespace-with-regular-expressions">3. Removing All Whitespace with Regular Expressions</h2>
 <p>Sometimes you need to remove all whitespace from a string, including spaces in the middle. The <code>trim()</code> method only handles edges, so you need a regex-based approach for complete removal.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Remove ALL whitespace (spaces, tabs, newlines)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">messy</span> <span class="o">=</span> <span class="s1">&#39;  hello   world  \n  javascript  &#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">messy</span> <span class="o">=</span> <span class="s1">&#39;  hello   world  \n  javascript  &#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">noSpaces</span> <span class="o">=</span> <span class="nx">messy</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;helloworldjavascript&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Collapse multiple spaces into a single space
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">sentence</span> <span class="o">=</span> <span class="s1">&#39;too   many    spaces   here&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sentence</span> <span class="o">=</span> <span class="s1">&#39;too   many    spaces   here&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">normalized</span> <span class="o">=</span> <span class="nx">sentence</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">).</span><span class="nx">trim</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;too many spaces here&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Remove only extra spaces (not tabs or newlines)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;keep  tabs\there  but  fix  spaces&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;keep  tabs\there  but  fix  spaces&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">fixed</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ {2,}/g</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;keep tabs\there but fix spaces&#39;
 </span></span></span></code></pre></div><p>The <code>replace(/\s+/g, ' ').trim()</code> pattern is extremely common in production code. It normalizes any sequence of whitespace characters into a single space and then removes the edges. This is the approach we use in <a href="https://coreui.io/react/docs/forms/input/">CoreUI React form components</a> for sanitizing search queries before processing them.</p>
 <h2 id="4-cleaning-form-input-data">4. Cleaning Form Input Data</h2>
 <p>One of the most practical applications of trimming is cleaning user input from forms. Users often accidentally include leading or trailing spaces when typing or pasting data into fields.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Simulating form input processing
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">formData</span> <span class="o">=</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">formData</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">username</span><span class="o">:</span> <span class="s1">&#39;  john_doe  &#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">email</span><span class="o">:</span> <span class="s1">&#39; john@example.com &#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">bio</span><span class="o">:</span> <span class="s1">&#39;  Software developer  \n&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Clean all string fields in a form object
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">cleanFormData</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">fromEntries</span><span class="p">(</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cleanFormData</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">fromEntries</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">formData</span><span class="p">).</span><span class="nx">map</span><span class="p">(([</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">])</span> <span class="p">=&gt;</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">key</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span> <span class="o">?</span> <span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span> <span class="o">:</span> <span class="nx">value</span>
@@ -579,9 +579,9 @@ This approach is efficient, universally supported, and specifically designed for
 </span></span></span><span class="line"><span class="cl"><span class="c1">//   email: &#39;john@example.com&#39;,
 </span></span></span><span class="line"><span class="cl"><span class="c1">//   bio: &#39;Software developer&#39;
 </span></span></span><span class="line"><span class="cl"><span class="c1">// }
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Validate after trimming to catch &#34;empty&#34; inputs
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">input</span> <span class="o">=</span> <span class="s1">&#39;   &#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">input</span> <span class="o">=</span> <span class="s1">&#39;   &#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">trimmed</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">trimmed</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Input is empty after trimming&#39;</span><span class="p">)</span>
@@ -590,19 +590,19 @@ This approach is efficient, universally supported, and specifically designed for
 <h2 id="5-bulk-trimming-values-in-arrays">5. Bulk Trimming Values in Arrays</h2>
 <p>When working with data from CSV files, APIs, or databases, you often receive arrays of strings with inconsistent whitespace. Using <code>map()</code> with <code>trim()</code> cleans the entire dataset efficiently.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Cleaning data from a CSV import
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">rawTags</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;  react &#39;</span><span class="p">,</span> <span class="s1">&#39; javascript&#39;</span><span class="p">,</span> <span class="s1">&#39;typescript  &#39;</span><span class="p">,</span> <span class="s1">&#39;  css  &#39;</span><span class="p">]</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">rawTags</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;  react &#39;</span><span class="p">,</span> <span class="s1">&#39; javascript&#39;</span><span class="p">,</span> <span class="s1">&#39;typescript  &#39;</span><span class="p">,</span> <span class="s1">&#39;  css  &#39;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cleanTags</span> <span class="o">=</span> <span class="nx">rawTags</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">tag</span> <span class="p">=&gt;</span> <span class="nx">tag</span><span class="p">.</span><span class="nx">trim</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: [&#39;react&#39;, &#39;javascript&#39;, &#39;typescript&#39;, &#39;css&#39;]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Filter out empty strings after trimming
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">messy</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;  hello  &#39;</span><span class="p">,</span> <span class="s1">&#39;   &#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;  js  &#39;</span><span class="p">]</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">messy</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;  hello  &#39;</span><span class="p">,</span> <span class="s1">&#39;   &#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;  js  &#39;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">valid</span> <span class="o">=</span> <span class="nx">messy</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="p">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">trim</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">item</span> <span class="p">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: [&#39;hello&#39;, &#39;world&#39;, &#39;js&#39;]
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Trim and normalize in one pass
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;  John Doe  &#39;</span><span class="p">,</span> <span class="s1">&#39; Jane   Smith &#39;</span><span class="p">,</span> <span class="s1">&#39;  Bob &#39;</span><span class="p">]</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;  John Doe  &#39;</span><span class="p">,</span> <span class="s1">&#39; Jane   Smith &#39;</span><span class="p">,</span> <span class="s1">&#39;  Bob &#39;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">normalized</span> <span class="o">=</span> <span class="nx">names</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">name</span> <span class="p">=&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
@@ -611,24 +611,24 @@ This approach is efficient, universally supported, and specifically designed for
 <h2 id="6-trimming-specific-characters">6. Trimming Specific Characters</h2>
 <p>JavaScript&rsquo;s built-in <code>trim()</code> only removes whitespace. To trim other characters like slashes, dashes, or quotes, you can create a simple helper function using regular expressions.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Custom trim function for any character
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">trimChar</span> <span class="o">=</span> <span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="kr">char</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">trimChar</span> <span class="o">=</span> <span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="kr">char</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">escaped</span> <span class="o">=</span> <span class="kr">char</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[.*+?^${}()|[\]\\]/g</span><span class="p">,</span> <span class="s1">&#39;\\$&amp;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="sb">`^</span><span class="si">${</span><span class="nx">escaped</span><span class="si">}</span><span class="sb">+|</span><span class="si">${</span><span class="nx">escaped</span><span class="si">}</span><span class="sb">+$`</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">regex</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Trim slashes from URL paths
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;///api/users///&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;///api/users///&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cleanPath</span> <span class="o">=</span> <span class="nx">trimChar</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;api/users&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Trim dashes from slugs
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">slug</span> <span class="o">=</span> <span class="s1">&#39;--my-blog-post--&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">slug</span> <span class="o">=</span> <span class="s1">&#39;--my-blog-post--&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">cleanSlug</span> <span class="o">=</span> <span class="nx">trimChar</span><span class="p">(</span><span class="nx">slug</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;my-blog-post&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Trim quotes from CSV values
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">quoted</span> <span class="o">=</span> <span class="s1">&#39;&#34;Hello World&#34;&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">quoted</span> <span class="o">=</span> <span class="s1">&#39;&#34;Hello World&#34;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">unquoted</span> <span class="o">=</span> <span class="nx">trimChar</span><span class="p">(</span><span class="nx">quoted</span><span class="p">,</span> <span class="s1">&#39;&#34;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// Result: &#39;Hello World&#39;
 </span></span></span></code></pre></div><p>This utility function escapes special regex characters in the trim target, making it safe to use with any character. This is particularly useful when processing URL paths or cleaning imported data where non-whitespace characters need to be stripped from edges.</p>
@@ -651,8 +651,8 @@ Always trim user input at the point of capture (in event handlers or form submis
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -683,8 +683,8 @@ Always trim user input at the point of capture (in event handlers or form submis
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -724,8 +724,8 @@ Always trim user input at the point of capture (in event handlers or form submis
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -759,8 +759,8 @@ Always trim user input at the point of capture (in event handlers or form submis
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -853,8 +853,8 @@ Always trim user input at the point of capture (in event handlers or form submis
   loading="lazy"
   class="post-image" 
   alt="Understanding the difference between `for...in` and `for...of` statements in JavaScript" 
-    srcset="/images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_b07bd41239a498cc.webp 480w, /images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_c4d4d79607291d57.webp 768w, /images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_42010626a37f98f0.webp 1024w, /images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_15eb12721785d861.webp 1366w" 
-  src="/images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_d169d41fde178f3f.webp"
+    srcset="/images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_68c6de610bc279ce.webp 480w, /images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_be91a3956cf600d1.webp 768w, /images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_346f895ca3ac9754.webp 1024w, /images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_aee3ea51a970f6ed.webp 1366w" 
+  src="/images/blog/what-is-the-difference-between-for-in-and-for-of-statements_hu_6fa522c4d2bf0b29.webp"
    width="460px"
 />
       </a>
@@ -893,8 +893,8 @@ Friday, December 6, 2024
   loading="lazy"
   class="post-image" 
   alt="How to convert a string to boolean in JavaScript" 
-    srcset="/images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_7ad6b0dfa4269518.webp 480w, /images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_d4d93e0778196d1f.webp 768w, /images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_6611b118993c1025.webp 1024w, /images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_3b5421a05d03e5e5.webp 1366w" 
-  src="/images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_565c84ac3b15cfcd.webp"
+    srcset="/images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_9d046d1aa5d9fe92.webp 480w, /images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_7379a655ae76d206.webp 768w, /images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_7bfa2dfdb31ae05e.webp 1024w, /images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_fb25f12d40d5ce03.webp 1366w" 
+  src="/images/blog/how-to-convert-a-string-to-boolean-in-javascript_hu_9d0e32dce072c304.webp"
    width="460px"
 />
       </a>
@@ -933,8 +933,8 @@ Wednesday, November 13, 2024
   loading="lazy"
   class="post-image" 
   alt="How to show or hide elements in React? A Step-by-Step Guide." 
-    srcset="/images/blog/how-to-show-or-hide-element-in-react_hu_d8518633c2d7492f.webp 480w, /images/blog/how-to-show-or-hide-element-in-react_hu_3442f32807a2be84.webp 768w, /images/blog/how-to-show-or-hide-element-in-react_hu_bcdf3ca964a8c37b.webp 1024w, /images/blog/how-to-show-or-hide-element-in-react_hu_f5f36ceae0c56483.webp 1366w" 
-  src="/images/blog/how-to-show-or-hide-element-in-react_hu_fbdedb404980edde.webp"
+    srcset="/images/blog/how-to-show-or-hide-element-in-react_hu_1273330bc4b4a4fa.webp 480w, /images/blog/how-to-show-or-hide-element-in-react_hu_1c297b819fed76ea.webp 768w, /images/blog/how-to-show-or-hide-element-in-react_hu_fdc8ed13e398e12c.webp 1024w, /images/blog/how-to-show-or-hide-element-in-react_hu_875b0ca712065194.webp 1366w" 
+  src="/images/blog/how-to-show-or-hide-element-in-react_hu_9f1a970fceec1211.webp"
    width="460px"
 />
       </a>
@@ -973,8 +973,8 @@ Thursday, November 7, 2024
   loading="lazy"
   class="post-image" 
   alt="How to set focus on an input field after rendering in React" 
-    srcset="/images/blog/how-to-set-focus-on-an-input-field-after-rendering-in-react_hu_9a3b5e8ed8306331.webp 480w, /images/blog/how-to-set-focus-on-an-input-field-after-rendering-in-react_hu_cab5196051774276.webp 768w, /images/blog/how-to-set-focus-on-an-input-field-after-rendering-in-react_hu_69ff9939446853a8.webp 1024w, /images/blog/how-to-set-focus-on-an-input-field-after-rendering-in-react_hu_2133e68c4e231dd2.webp 1366w" 
-  src="/images/blog/how-to-set-focus-on-an-input-field-after-rendering-in-react_hu_35df4e0cf0b3491e.webp"
+    srcset="/images/blog/how-to-set-focus-on-an-input-field-after-rendering-in-react_hu_b5030dbcb1d20db4.webp 480w, /images/blog/how-to-set-focus-on-an-input-field-after-rendering-in-react_hu_2b51fa2a999090dc.webp 768w, /images/blog/how-to-set-focus-on-an-input-field-after-rendering-in-react_hu_11e972208551e8e6.webp 1024w, /images/blog/how-to-set-focus-on-an-input-field-after-rendering-in-react_hu_7ca8454e6f0ea19e.webp 1366w" 
+  src="/images/blog/how-to-set-focus-on-an-input-field-after-rendering-in-react_hu_bff144228987932b.webp"
    width="460px"
 />
       </a>
@@ -1077,7 +1077,7 @@ Wednesday, October 16, 2024
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

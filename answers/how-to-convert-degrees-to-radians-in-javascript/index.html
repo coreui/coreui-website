@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Multiply degrees by π/180 to convert to radians, or use the formula degrees * (Math.PI / 180) in JavaScript."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to convert degrees to radians in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-convert-degrees-to-radians-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to convert degrees to radians in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-convert-degrees-to-radians-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -499,24 +499,24 @@ JavaScript&rsquo;s <code>Math.sin()</code>, <code>Math.cos()</code>, and <code>M
 For the inverse operation, see <a href="/answers/how-to-convert-radians-to-degrees-in-javascript/">how to convert radians to degrees in JavaScript</a>.</p>
         <p>Multiply degrees by <code>Math.PI / 180</code> to convert to radians.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="mi">90</span> <span class="o">*</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>   <span class="c1">// 1.5707963267948966 (π/2)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">180</span> <span class="o">*</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>  <span class="c1">// 3.141592653589793  (π)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">360</span> <span class="o">*</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>  <span class="c1">// 6.283185307179586  (2π)
+</span></span></span><span class="line"><span class="cl"><span class="mi">180</span> <span class="o">*</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>  <span class="c1">// 3.141592653589793  (π)
+</span></span></span><span class="line"><span class="cl"><span class="mi">360</span> <span class="o">*</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>  <span class="c1">// 6.283185307179586  (2π)
 </span></span></span></code></pre></div><h2 id="1-reusable-helper-function">1. Reusable Helper Function</h2>
 <p>Wrap the formula in a named function so intent is clear at every call site.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">toRadians</span> <span class="o">=</span> <span class="nx">deg</span> <span class="p">=&gt;</span> <span class="nx">deg</span> <span class="o">*</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">toRadians</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c1">// 0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>   <span class="c1">// 0.7853981633974483  (π/4)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>   <span class="c1">// 1.5707963267948966  (π/2)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>  <span class="c1">// 3.141592653589793   (π)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">270</span><span class="p">)</span>  <span class="c1">// 4.71238898038469    (3π/2)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">360</span><span class="p">)</span>  <span class="c1">// 6.283185307179586   (2π)
+</span></span></span><span class="line"><span class="cl"><span class="nx">toRadians</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>   <span class="c1">// 0.7853981633974483  (π/4)
+</span></span></span><span class="line"><span class="cl"><span class="nx">toRadians</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>   <span class="c1">// 1.5707963267948966  (π/2)
+</span></span></span><span class="line"><span class="cl"><span class="nx">toRadians</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>  <span class="c1">// 3.141592653589793   (π)
+</span></span></span><span class="line"><span class="cl"><span class="nx">toRadians</span><span class="p">(</span><span class="mi">270</span><span class="p">)</span>  <span class="c1">// 4.71238898038469    (3π/2)
+</span></span></span><span class="line"><span class="cl"><span class="nx">toRadians</span><span class="p">(</span><span class="mi">360</span><span class="p">)</span>  <span class="c1">// 6.283185307179586   (2π)
 </span></span></span></code></pre></div><h2 id="2-pre-calculated-constant-for-high-performance-code">2. Pre-Calculated Constant for High-Performance Code</h2>
 <p>In animation loops, canvas rendering, or tight loops that convert many angles, avoid recomputing <code>Math.PI / 180</code> on every call by caching it as a constant.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">DEG_TO_RAD</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// In an animation loop — no repeated division
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">rotatePoint</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">degrees</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">rotatePoint</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">degrees</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">rad</span> <span class="o">=</span> <span class="nx">degrees</span> <span class="o">*</span> <span class="nx">DEG_TO_RAD</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">x</span><span class="o">:</span> <span class="nx">x</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">rad</span><span class="p">)</span> <span class="o">-</span> <span class="nx">y</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">rad</span><span class="p">),</span>
@@ -529,11 +529,11 @@ For the inverse operation, see <a href="/answers/how-to-convert-radians-to-degre
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">toRadians</span> <span class="o">=</span> <span class="nx">deg</span> <span class="p">=&gt;</span> <span class="nx">deg</span> <span class="o">*</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>   <span class="c1">// 0.5        — sin 30° = 1/2
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">60</span><span class="p">))</span>   <span class="c1">// 0.5        — cos 60° = 1/2
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">90</span><span class="p">))</span>   <span class="c1">// 1          — sin 90° = 1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>    <span class="c1">// 1          — cos 0° = 1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">tan</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">45</span><span class="p">))</span>   <span class="c1">// 1          — tan 45° = 1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">180</span><span class="p">))</span>  <span class="c1">// -1         — cos 180° = -1
+</span></span></span><span class="line"><span class="cl"><span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">60</span><span class="p">))</span>   <span class="c1">// 0.5        — cos 60° = 1/2
+</span></span></span><span class="line"><span class="cl"><span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">90</span><span class="p">))</span>   <span class="c1">// 1          — sin 90° = 1
+</span></span></span><span class="line"><span class="cl"><span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>    <span class="c1">// 1          — cos 0° = 1
+</span></span></span><span class="line"><span class="cl"><span class="nb">Math</span><span class="p">.</span><span class="nx">tan</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">45</span><span class="p">))</span>   <span class="c1">// 1          — tan 45° = 1
+</span></span></span><span class="line"><span class="cl"><span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">180</span><span class="p">))</span>  <span class="c1">// -1         — cos 180° = -1
 </span></span></span></code></pre></div><p>Passing degrees directly (e.g. <code>Math.sin(90)</code>) gives wrong results — <code>Math.sin(90)</code> returns <code>0.8939...</code>, not <code>1</code>.</p>
 <h2 id="4-canvas-rotation">4. Canvas Rotation</h2>
 <p>The Canvas API uses radians for all angle parameters. Convert before drawing rotated shapes.</p>
@@ -544,15 +544,15 @@ For the inverse operation, see <a href="/answers/how-to-convert-radians-to-degre
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">ctx</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="nx">ctx</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>          <span class="c1">// move origin to center
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">ctx</span><span class="p">.</span><span class="nx">rotate</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">45</span><span class="p">))</span>        <span class="c1">// rotate 45 degrees
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">ctx</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>   <span class="c1">// draw centered square
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">ctx</span><span class="p">.</span><span class="nx">restore</span><span class="p">()</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">ctx</span><span class="p">.</span><span class="nx">rotate</span><span class="p">(</span><span class="nx">toRadians</span><span class="p">(</span><span class="mi">45</span><span class="p">))</span>        <span class="c1">// rotate 45 degrees
+</span></span></span><span class="line"><span class="cl"><span class="nx">ctx</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>   <span class="c1">// draw centered square
+</span></span></span><span class="line"><span class="cl"><span class="nx">ctx</span><span class="p">.</span><span class="nx">restore</span><span class="p">()</span>
 </span></span></code></pre></div><h2 id="5-svg-and-css-transforms">5. SVG and CSS Transforms</h2>
 <p>While CSS <code>rotate()</code> accepts degrees natively (<code>rotate(45deg)</code>), SVG <code>transform</code> attributes and some math utilities expect radians.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">toRadians</span> <span class="o">=</span> <span class="nx">deg</span> <span class="p">=&gt;</span> <span class="nx">deg</span> <span class="o">*</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// SVG rotation matrix
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">svgRotateMatrix</span><span class="p">(</span><span class="nx">degrees</span><span class="p">,</span> <span class="nx">cx</span><span class="p">,</span> <span class="nx">cy</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">svgRotateMatrix</span><span class="p">(</span><span class="nx">degrees</span><span class="p">,</span> <span class="nx">cx</span><span class="p">,</span> <span class="nx">cy</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">rad</span> <span class="o">=</span> <span class="nx">toRadians</span><span class="p">(</span><span class="nx">degrees</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">cos</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">rad</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">sin</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">rad</span><span class="p">)</span>
@@ -560,58 +560,58 @@ For the inverse operation, see <a href="/answers/how-to-convert-radians-to-degre
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Apply to an SVG element
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">element</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="nx">svgRotateMatrix</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">element</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="nx">svgRotateMatrix</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
 </span></span></code></pre></div><h2 id="6-common-reference-table">6. Common Reference Table</h2>
 <table>
-  <thead>
-      <tr>
-          <th>Degrees</th>
-          <th>Radians</th>
-          <th>Exact</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>0°</td>
-          <td>0</td>
-          <td>0</td>
-      </tr>
-      <tr>
-          <td>30°</td>
-          <td>0.5236</td>
-          <td>π/6</td>
-      </tr>
-      <tr>
-          <td>45°</td>
-          <td>0.7854</td>
-          <td>π/4</td>
-      </tr>
-      <tr>
-          <td>60°</td>
-          <td>1.0472</td>
-          <td>π/3</td>
-      </tr>
-      <tr>
-          <td>90°</td>
-          <td>1.5708</td>
-          <td>π/2</td>
-      </tr>
-      <tr>
-          <td>180°</td>
-          <td>3.1416</td>
-          <td>π</td>
-      </tr>
-      <tr>
-          <td>270°</td>
-          <td>4.7124</td>
-          <td>3π/2</td>
-      </tr>
-      <tr>
-          <td>360°</td>
-          <td>6.2832</td>
-          <td>2π</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Degrees</th>
+					<th>Radians</th>
+					<th>Exact</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>0°</td>
+					<td>0</td>
+					<td>0</td>
+			</tr>
+			<tr>
+					<td>30°</td>
+					<td>0.5236</td>
+					<td>π/6</td>
+			</tr>
+			<tr>
+					<td>45°</td>
+					<td>0.7854</td>
+					<td>π/4</td>
+			</tr>
+			<tr>
+					<td>60°</td>
+					<td>1.0472</td>
+					<td>π/3</td>
+			</tr>
+			<tr>
+					<td>90°</td>
+					<td>1.5708</td>
+					<td>π/2</td>
+			</tr>
+			<tr>
+					<td>180°</td>
+					<td>3.1416</td>
+					<td>π</td>
+			</tr>
+			<tr>
+					<td>270°</td>
+					<td>4.7124</td>
+					<td>3π/2</td>
+			</tr>
+			<tr>
+					<td>360°</td>
+					<td>6.2832</td>
+					<td>2π</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="best-practice-note">Best Practice Note:</h2>
 <p>Always convert with <code>deg * (Math.PI / 180)</code> — never hardcode approximate values like <code>deg * 0.01745</code>.
@@ -633,8 +633,8 @@ For the inverse, multiply radians by <code>180 / Math.PI</code> — see <a href=
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -665,8 +665,8 @@ For the inverse, multiply radians by <code>180 / Math.PI</code> — see <a href=
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -706,8 +706,8 @@ For the inverse, multiply radians by <code>180 / Math.PI</code> — see <a href=
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -741,8 +741,8 @@ For the inverse, multiply radians by <code>180 / Math.PI</code> — see <a href=
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -835,8 +835,8 @@ For the inverse, multiply radians by <code>180 / Math.PI</code> — see <a href=
   loading="lazy"
   class="post-image" 
   alt="CoreUI v6 Alpha: What Changes and Why" 
-    srcset="/images/blog/bootstrap_hu_39cf588cc3355249.webp 480w, /images/blog/bootstrap_hu_efd90fb0c9fd0bf7.webp 768w, /images/blog/bootstrap_hu_8cfed3312939a64f.webp 1024w, /images/blog/bootstrap_hu_b5692fb9b2b7528d.webp 1366w" 
-  src="/images/blog/bootstrap_hu_f59f880f3973dc07.webp"
+    srcset="/images/blog/bootstrap_hu_d5beb33ac05dda0f.webp 480w, /images/blog/bootstrap_hu_ce0e8c6340313fec.webp 768w, /images/blog/bootstrap_hu_13408eb9149af1e0.webp 1024w, /images/blog/bootstrap_hu_4c1f33012bbc3a7.webp 1366w" 
+  src="/images/blog/bootstrap_hu_29fe9193416f848e.webp"
    width="460px"
 />
       </a>
@@ -875,8 +875,8 @@ Thursday, October 22, 2026
   loading="lazy"
   class="post-image" 
   alt="Focusable Is Not Selectable: A Keyboard Focus Model for Date Grids" 
-    srcset="/images/blog/focusable-is-not-selectable_hu_ec2529e514215f89.webp 480w, /images/blog/focusable-is-not-selectable_hu_5cd7651cc85e8f34.webp 768w, /images/blog/focusable-is-not-selectable_hu_f0ab136faef1de11.webp 1024w, /images/blog/focusable-is-not-selectable_hu_83ad9d6280aebadf.webp 1366w" 
-  src="/images/blog/focusable-is-not-selectable_hu_c5cd4be0ce478820.webp"
+    srcset="/images/blog/focusable-is-not-selectable_hu_139bbe81ab0d681e.webp 480w, /images/blog/focusable-is-not-selectable_hu_b271eb92d8a515f8.webp 768w, /images/blog/focusable-is-not-selectable_hu_dcad839085186dc7.webp 1024w, /images/blog/focusable-is-not-selectable_hu_d1faad5baf8eec69.webp 1366w" 
+  src="/images/blog/focusable-is-not-selectable_hu_4aa2eb21666c8d55.webp"
    width="460px"
 />
       </a>
@@ -915,8 +915,8 @@ Wednesday, October 21, 2026
   loading="lazy"
   class="post-image" 
   alt="Fixing &#34;Error: spawn EBADF&#34; in Angular 22.2 ng serve and ng test" 
-    srcset="/images/blog/angular_hu_bc744b25808c7b25.webp 480w, /images/blog/angular_hu_ec00dac6d8034a35.webp 768w, /images/blog/angular_hu_a41f1e4c6cf92139.webp 1024w, /images/blog/angular_hu_fb8df872c6f9a052.webp 1366w" 
-  src="/images/blog/angular_hu_db03f3dd0309440d.webp"
+    srcset="/images/blog/angular_hu_5093c5b5d1073191.webp 480w, /images/blog/angular_hu_e3dc2c6ab8d4cba1.webp 768w, /images/blog/angular_hu_c6603177def8353.webp 1024w, /images/blog/angular_hu_4f25cd3715137c2.webp 1366w" 
+  src="/images/blog/angular_hu_3ded5d0ef31f3cbf.webp"
    width="460px"
 />
       </a>
@@ -955,8 +955,8 @@ Monday, September 28, 2026
   loading="lazy"
   class="post-image" 
   alt="Bootstrap Calendar: From Date Picker to Full Scheduler" 
-    srcset="/images/blog/bootstrap-calendar-scheduler_hu_1a6c3e9a99c658a8.webp 480w, /images/blog/bootstrap-calendar-scheduler_hu_a2e42da1caa1db84.webp 768w, /images/blog/bootstrap-calendar-scheduler_hu_4c4bc1babf53f09b.webp 1024w, /images/blog/bootstrap-calendar-scheduler_hu_34893f604e548e87.webp 1366w" 
-  src="/images/blog/bootstrap-calendar-scheduler_hu_e73da8f340ddefdc.webp"
+    srcset="/images/blog/bootstrap-calendar-scheduler_hu_78593634ea889a6f.webp 480w, /images/blog/bootstrap-calendar-scheduler_hu_8b060f0873eefc62.webp 768w, /images/blog/bootstrap-calendar-scheduler_hu_3c2890f1857af1e5.webp 1024w, /images/blog/bootstrap-calendar-scheduler_hu_21e53546a896393c.webp 1366w" 
+  src="/images/blog/bootstrap-calendar-scheduler_hu_29a058ec65d33f42.webp"
    width="460px"
 />
       </a>
@@ -1059,7 +1059,7 @@ Saturday, August 29, 2026
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>

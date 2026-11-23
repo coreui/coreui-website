@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Language" content="en"><meta name="description" content="Complete guide to sanitizing user input in JavaScript to prevent XSS, SQL injection, and other security vulnerabilities."><meta name="author" content="">
-<meta name="generator" content="Hugo 0.152.2"><title>How to sanitize user input in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-sanitize-user-input-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="generator" content="Hugo 0.170.1"><title>How to sanitize user input in JavaScript</title><link rel="canonical" href="https://coreui.io/answers/how-to-sanitize-user-input-in-javascript/"><meta name="robots" content="noindex"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow+Semi+Condensed:wght@200;400;500;700&family=Barlow:wght@100;400;700&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--cui-framework-25:#ccc7f6;--cui-framework-25-rgb:204, 199, 246;--cui-framework-50:#988fed;--cui-framework-base:#321fdb;--cui-framework-color:#fff;--cui-framework-gradient-start:#1f1498;--cui-framework-gradient-stop:#321fdb;--cui-framework-page-header-bg:url("/images/bgs/KV_top_01.webp") no-repeat center center/cover;--cui-framework-page-header-bg-admin:url("/images/admin_templates/coreui_alt_960px.png") no-repeat}
 </style>
-<link rel="stylesheet" href="https://coreui.io/scss/style.min.32110a6008cd0aa4b77c0521223dd6d981ee24516bee381f79fcdb13feb20a5f.css">
+<link rel="stylesheet" href="https://coreui.io/scss/style.min.5866fe75f7aebab591bc62ea8e1094528a2d9fc363a605a2a4cb6f2a639e43ae.css">
 
 
 <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-icon-57x57.png">
@@ -505,35 +505,35 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">userInput</span> <span class="o">=</span> <span class="s1">&#39;&lt;script&gt;alert(&#34;XSS&#34;)&lt;/script&gt;&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">userInput</span> <span class="o">=</span> <span class="s1">&#39;&lt;script&gt;alert(&#34;XSS&#34;)&lt;/script&gt;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">safe</span> <span class="o">=</span> <span class="nx">escapeHtml</span><span class="p">(</span><span class="nx">userInput</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">safe</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// &amp;lt;script&amp;gt;alert(&amp;quot;XSS&amp;quot;)&amp;lt;/script&amp;gt;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Display safely
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">).</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">userInput</span>
+</span></span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">).</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">userInput</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// or
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">escapeHtml</span><span class="p">(</span><span class="nx">userInput</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">escapeHtml</span><span class="p">(</span><span class="nx">userInput</span><span class="p">)</span>
 </span></span></code></pre></div><h2 id="dompurify-for-html-sanitization">DOMPurify for HTML Sanitization</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install dompurify
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">DOMPurify</span> <span class="nx">from</span> <span class="s1">&#39;dompurify&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Sanitize HTML
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">dirty</span> <span class="o">=</span> <span class="s1">&#39;&lt;img src=x onerror=alert(&#34;XSS&#34;)&gt;&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">dirty</span> <span class="o">=</span> <span class="s1">&#39;&lt;img src=x onerror=alert(&#34;XSS&#34;)&gt;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">clean</span> <span class="o">=</span> <span class="nx">DOMPurify</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">dirty</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">clean</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// &lt;img src=&#34;x&#34;&gt;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Allow specific tags
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">userHtml</span> <span class="o">=</span> <span class="s1">&#39;&lt;p&gt;Hello &lt;script&gt;alert(&#34;XSS&#34;)&lt;/script&gt; &lt;b&gt;world&lt;/b&gt;&lt;/p&gt;&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">userHtml</span> <span class="o">=</span> <span class="s1">&#39;&lt;p&gt;Hello &lt;script&gt;alert(&#34;XSS&#34;)&lt;/script&gt; &lt;b&gt;world&lt;/b&gt;&lt;/p&gt;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">sanitized</span> <span class="o">=</span> <span class="nx">DOMPurify</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">userHtml</span><span class="p">,</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">ALLOWED_TAGS</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;em&#39;</span><span class="p">,</span> <span class="s1">&#39;strong&#39;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sanitized</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// &lt;p&gt;Hello  &lt;b&gt;world&lt;/b&gt;&lt;/p&gt;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Allow specific attributes
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">withLinks</span> <span class="o">=</span> <span class="s1">&#39;&lt;a href=&#34;javascript:alert(1)&#34;&gt;Click&lt;/a&gt;&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">withLinks</span> <span class="o">=</span> <span class="s1">&#39;&lt;a href=&#34;javascript:alert(1)&#34;&gt;Click&lt;/a&gt;&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">safe</span> <span class="o">=</span> <span class="nx">DOMPurify</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span><span class="nx">withLinks</span><span class="p">,</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">ALLOWED_TAGS</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">],</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">ALLOWED_ATTR</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
@@ -545,26 +545,26 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="k">switch</span> <span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s1">&#39;email&#39;</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// Remove non-email characters
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">trim</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^a-z0-9@._-]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">trim</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^a-z0-9@._-]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s1">&#39;phone&#39;</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// Keep only digits, +, -, (, )
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^0-9+\-()]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^0-9+\-()]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s1">&#39;alphanumeric&#39;</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// Keep only letters and numbers
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^a-zA-Z0-9]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^a-zA-Z0-9]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s1">&#39;number&#39;</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// Keep only digits
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^0-9]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[^0-9]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s1">&#39;url&#39;</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// Validate URL format
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">try</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">      <span class="k">try</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URL</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// Only allow http and https
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">===</span> <span class="s1">&#39;http:&#39;</span> <span class="o">||</span> <span class="nx">url</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">===</span> <span class="s1">&#39;https:&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">===</span> <span class="s1">&#39;http:&#39;</span> <span class="o">||</span> <span class="nx">url</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">===</span> <span class="s1">&#39;https:&#39;</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="nx">url</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">      <span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
@@ -575,46 +575,46 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s1">&#39;text&#39;</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">default</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// Remove control characters
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[\x00-\x1F\x7F]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[\x00-\x1F\x7F]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sanitizeInput</span><span class="p">(</span><span class="s1">&#39;john@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">))</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sanitizeInput</span><span class="p">(</span><span class="s1">&#39;john@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// john@example.com
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sanitizeInput</span><span class="p">(</span><span class="s1">&#39;(555) 123-4567!!!&#39;</span><span class="p">,</span> <span class="s1">&#39;phone&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// (555) 123-4567
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sanitizeInput</span><span class="p">(</span><span class="s1">&#39;User123&lt;script&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;alphanumeric&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// User123
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sanitizeInput</span><span class="p">(</span><span class="s1">&#39;javascript:alert(1)&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// (empty - invalid protocol)
 </span></span></span></code></pre></div><h2 id="sql-injection-prevention">SQL Injection Prevention</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Bad - vulnerable to SQL injection
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">getUserBad</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">getUserBad</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="sb">`SELECT * FROM users WHERE username = &#39;</span><span class="si">${</span><span class="nx">username</span><span class="si">}</span><span class="sb">&#39;`</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">db</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Attack: username = &#34;admin&#39; OR &#39;1&#39;=&#39;1&#34;
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Query becomes: SELECT * FROM users WHERE username = &#39;admin&#39; OR &#39;1&#39;=&#39;1&#39;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Good - use parameterized queries
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">getUserGood</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">getUserGood</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM users WHERE username = ?&#39;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">db</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="p">[</span><span class="nx">username</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// With prepared statements
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">async</span> <span class="kd">function</span> <span class="nx">getUserSecure</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">getUserSecure</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">stmt</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">db</span><span class="p">.</span><span class="nx">prepare</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM users WHERE username = ?&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">stmt</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Or use ORM (e.g., TypeORM, Sequelize)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">User</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./models&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">User</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./models&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">getUserORM</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">User</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="nx">where</span><span class="o">:</span> <span class="p">{</span> <span class="nx">username</span> <span class="p">}</span> <span class="p">})</span>
@@ -624,34 +624,34 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">sanitizeFilename</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Remove path separators
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">let</span> <span class="nx">safe</span> <span class="o">=</span> <span class="nx">filename</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[/\\]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">safe</span> <span class="o">=</span> <span class="nx">filename</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[/\\]/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Remove null bytes
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">safe</span> <span class="o">=</span> <span class="nx">safe</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\x00/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">safe</span> <span class="o">=</span> <span class="nx">safe</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\x00/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Remove leading/trailing dots and spaces
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">safe</span> <span class="o">=</span> <span class="nx">safe</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^[.\s]+|[.\s]+$/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">safe</span> <span class="o">=</span> <span class="nx">safe</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^[.\s]+|[.\s]+$/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Replace multiple dots
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">safe</span> <span class="o">=</span> <span class="nx">safe</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\.{2,}/g</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">safe</span> <span class="o">=</span> <span class="nx">safe</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\.{2,}/g</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">safe</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">userFilename</span> <span class="o">=</span> <span class="s1">&#39;../../../etc/passwd&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">userFilename</span> <span class="o">=</span> <span class="s1">&#39;../../../etc/passwd&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">safe</span> <span class="o">=</span> <span class="nx">sanitizeFilename</span><span class="p">(</span><span class="nx">userFilename</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">safe</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// etcpasswd
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Secure file path construction
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">getSecureFilePath</span><span class="p">(</span><span class="nx">userInput</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">getSecureFilePath</span><span class="p">(</span><span class="nx">userInput</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">sanitized</span> <span class="o">=</span> <span class="nx">sanitizeFilename</span><span class="p">(</span><span class="nx">userInput</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">uploadsDir</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;uploads&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">fullPath</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">uploadsDir</span><span class="p">,</span> <span class="nx">sanitized</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Verify file is within uploads directory
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">fullPath</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="nx">uploadsDir</span><span class="p">))</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">fullPath</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="nx">uploadsDir</span><span class="p">))</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Invalid file path&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -661,23 +661,23 @@ Tuesday, February 24, 2026
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">{</span> <span class="nx">exec</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Bad - vulnerable to command injection
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">convertImageBad</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">convertImageBad</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">exec</span><span class="p">(</span><span class="sb">`convert </span><span class="si">${</span><span class="nx">filename</span><span class="si">}</span><span class="sb"> output.jpg`</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">stdout</span><span class="p">,</span> <span class="nx">stderr</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stdout</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Attack: filename = &#34;input.jpg; rm -rf /&#34;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Good - use array arguments
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">execFile</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">{</span> <span class="nx">execFile</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">convertImageGood</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Validate filename first
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">safe</span> <span class="o">=</span> <span class="nx">sanitizeFilename</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">safe</span> <span class="o">=</span> <span class="nx">sanitizeFilename</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Use execFile with array (no shell interpretation)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">execFile</span><span class="p">(</span><span class="s1">&#39;convert&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">safe</span><span class="p">,</span> <span class="s1">&#39;output.jpg&#39;</span><span class="p">],</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">stdout</span><span class="p">,</span> <span class="nx">stderr</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="nx">execFile</span><span class="p">(</span><span class="s1">&#39;convert&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">safe</span><span class="p">,</span> <span class="s1">&#39;output.jpg&#39;</span><span class="p">],</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">stdout</span><span class="p">,</span> <span class="nx">stderr</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Conversion failed:&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">      <span class="k">return</span>
@@ -689,10 +689,10 @@ Tuesday, February 24, 2026
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">sanitizeJson</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">try</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// Parse to validate JSON structure
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">parsed</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">parsed</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Remove dangerous properties
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kr">const</span> <span class="nx">dangerous</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;__proto__&#39;</span><span class="p">,</span> <span class="s1">&#39;constructor&#39;</span><span class="p">,</span> <span class="s1">&#39;prototype&#39;</span><span class="p">]</span>
+</span></span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">dangerous</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;__proto__&#39;</span><span class="p">,</span> <span class="s1">&#39;constructor&#39;</span><span class="p">,</span> <span class="s1">&#39;prototype&#39;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">cleanObject</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">obj</span> <span class="o">!==</span> <span class="s1">&#39;object&#39;</span> <span class="o">||</span> <span class="nx">obj</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
@@ -720,79 +720,79 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">malicious</span> <span class="o">=</span> <span class="s1">&#39;{&#34;__proto__&#34;: {&#34;admin&#34;: true}, &#34;name&#34;: &#34;John&#34;}&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">malicious</span> <span class="o">=</span> <span class="s1">&#39;{&#34;__proto__&#34;: {&#34;admin&#34;: true}, &#34;name&#34;: &#34;John&#34;}&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">safe</span> <span class="o">=</span> <span class="nx">sanitizeJson</span><span class="p">(</span><span class="nx">malicious</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">safe</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// {&#34;name&#34;:&#34;John&#34;}
 </span></span></span></code></pre></div><h2 id="regular-expression-sanitization">Regular Expression Sanitization</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">sanitizeRegex</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Escape special regex characters
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[.*+?^${}()|[\]\\]/g</span><span class="p">,</span> <span class="s1">&#39;\\$&amp;&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[.*+?^${}()|[\]\\]/g</span><span class="p">,</span> <span class="s1">&#39;\\$&amp;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">userInput</span> <span class="o">=</span> <span class="s1">&#39;search.for(this)&#39;</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">userInput</span> <span class="o">=</span> <span class="s1">&#39;search.for(this)&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">escaped</span> <span class="o">=</span> <span class="nx">sanitizeRegex</span><span class="p">(</span><span class="nx">userInput</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">escaped</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;search.for(this)&#39;</span><span class="p">))</span> <span class="c1">// true
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;search for this&#39;</span><span class="p">))</span> <span class="c1">// false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;search for this&#39;</span><span class="p">))</span> <span class="c1">// false
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Prevent ReDoS attacks
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">isRegexSafe</span><span class="p">(</span><span class="nx">pattern</span><span class="p">,</span> <span class="nx">maxLength</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">isRegexSafe</span><span class="p">(</span><span class="nx">pattern</span><span class="p">,</span> <span class="nx">maxLength</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Limit pattern length
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="nx">maxLength</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="nx">maxLength</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Detect potentially dangerous patterns
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">dangerous</span> <span class="o">=</span> <span class="p">[</span>
+</span></span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">dangerous</span> <span class="o">=</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">    <span class="sr">/(\w+\*)+/</span><span class="p">,</span> <span class="c1">// Repeated quantifiers
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="sr">/(\w+)+\$/</span><span class="p">,</span> <span class="c1">// Backtracking with end anchor
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="sr">/(a+)+b/</span>    <span class="c1">// Nested quantifiers
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">]</span>
+</span></span></span><span class="line"><span class="cl">    <span class="sr">/(\w+)+\$/</span><span class="p">,</span> <span class="c1">// Backtracking with end anchor
+</span></span></span><span class="line"><span class="cl">    <span class="sr">/(a+)+b/</span>    <span class="c1">// Nested quantifiers
+</span></span></span><span class="line"><span class="cl">  <span class="p">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="o">!</span><span class="nx">dangerous</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">pattern</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h2 id="client-side-validation-with-server-side-verification">Client-Side Validation with Server-Side Verification</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Client-side (can be bypassed - not security)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">validateEmailClient</span><span class="p">(</span><span class="nx">email</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">validateEmailClient</span><span class="p">(</span><span class="nx">email</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="sr">/^[^\s@]+@[^\s@]+\.[^\s@]+$/</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">email</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Server-side (mandatory for security)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">validateEmailServer</span><span class="p">(</span><span class="nx">email</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">validateEmailServer</span><span class="p">(</span><span class="nx">email</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Sanitize
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">sanitized</span> <span class="o">=</span> <span class="nx">email</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">trim</span><span class="p">()</span>
+</span></span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">sanitized</span> <span class="o">=</span> <span class="nx">email</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">trim</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Validate format
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="sr">/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/</span>
+</span></span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="sr">/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/</span>
 </span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">sanitized</span><span class="p">))</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Invalid email format&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Check length
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">sanitized</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">254</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">sanitized</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">254</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Email too long&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="c1">// Additional checks (domain exists, etc.)
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="nx">sanitized</span>
+</span></span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">sanitized</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Never trust client-side validation alone
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/api/users&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/api/users&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">try</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">email</span> <span class="o">=</span> <span class="nx">validateEmailServer</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// Proceed with validated email
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="nx">error</span><span class="o">:</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span></code></pre></div><h2 id="content-security-policy-headers">Content Security Policy Headers</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Express middleware
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">res</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;Content-Security-Policy&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;default-src &#39;self&#39;; script-src &#39;self&#39; &#39;unsafe-inline&#39;; style-src &#39;self&#39; &#39;unsafe-inline&#39;&#34;</span>
@@ -801,7 +801,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Helmet for security headers
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">helmet</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;helmet&#39;</span><span class="p">)</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">helmet</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;helmet&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">helmet</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">contentSecurityPolicy</span><span class="o">:</span> <span class="p">{</span>
@@ -820,33 +820,33 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">sanitized</span> <span class="o">=</span> <span class="nx">input</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Trim whitespace
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">trim</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">trim</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">sanitized</span> <span class="o">=</span> <span class="nx">sanitized</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Remove HTML
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">stripHtml</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">stripHtml</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">sanitized</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">stripHtml</span><span class="p">(</span><span class="nx">sanitized</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Escape HTML
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">escapeHtml</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">escapeHtml</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">sanitized</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">escapeHtml</span><span class="p">(</span><span class="nx">sanitized</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Limit length
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">sanitized</span> <span class="o">=</span> <span class="nx">sanitized</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">rules</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Allow only specific characters
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">allowedChars</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">allowedChars</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="sb">`[^</span><span class="si">${</span><span class="nx">rules</span><span class="p">.</span><span class="nx">allowedChars</span><span class="si">}</span><span class="sb">]`</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">sanitized</span> <span class="o">=</span> <span class="nx">sanitized</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">regex</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1">// Custom sanitizer function
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">custom</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">custom</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nx">sanitized</span> <span class="o">=</span> <span class="nx">rules</span><span class="p">.</span><span class="nx">custom</span><span class="p">(</span><span class="nx">sanitized</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -870,7 +870,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Usage
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">InputSanitizer</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span>
+</span></span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">InputSanitizer</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="s1">&#39;  John&lt;script&gt;alert(1)&lt;/script&gt;Doe  &#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">stripHtml</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -879,7 +879,7 @@ Tuesday, February 24, 2026
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">username</span><span class="p">)</span> <span class="c1">// JohnDoe
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">comment</span> <span class="o">=</span> <span class="nx">InputSanitizer</span><span class="p">.</span><span class="nx">sanitize</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">  <span class="s1">&#39;&lt;b&gt;Hello&lt;/b&gt; &lt;script&gt;alert(1)&lt;/script&gt;&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">escapeHtml</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
@@ -907,8 +907,8 @@ Tuesday, February 24, 2026
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Angular Admin Template" 
-    srcset="/images/templates/coreui_free_angular_bg_hu_622de9cef37cc65e.webp 480w, /images/templates/coreui_free_angular_bg_hu_fe51353d27034625.webp 768w, /images/templates/coreui_free_angular_bg_hu_43df2fe3156ccaeb.webp 1024w, /images/templates/coreui_free_angular_bg_hu_4471825fa7859252.webp 1366w" 
-  src="/images/templates/coreui_free_angular_bg_hu_fb17a207fe0f0699.webp"
+    srcset="/images/templates/coreui_free_angular_bg_hu_e81bfbe2eb770de0.webp 480w, /images/templates/coreui_free_angular_bg_hu_416c159853c2fca3.webp 768w, /images/templates/coreui_free_angular_bg_hu_54d0de60ec550f56.webp 1024w, /images/templates/coreui_free_angular_bg_hu_842906a7c569c647.webp 1366w" 
+  src="/images/templates/coreui_free_angular_bg_hu_f67602a6103a8ae1.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -939,8 +939,8 @@ Tuesday, February 24, 2026
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Bootstrap Admin Template" 
-    srcset="/images/templates/coreui_free_bootstrap_bg_hu_591b15f0d9fe3626.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_5b9c0a9f1a18030d.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_2193d9908776f20e.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_b19ea374dff071da.webp 1366w" 
-  src="/images/templates/coreui_free_bootstrap_bg_hu_93561fee657d0167.webp"
+    srcset="/images/templates/coreui_free_bootstrap_bg_hu_9459b04f5977a312.webp 480w, /images/templates/coreui_free_bootstrap_bg_hu_455231773bb78b7.webp 768w, /images/templates/coreui_free_bootstrap_bg_hu_3f7a5eb6b5837d50.webp 1024w, /images/templates/coreui_free_bootstrap_bg_hu_7d95f2cea2e67eb8.webp 1366w" 
+  src="/images/templates/coreui_free_bootstrap_bg_hu_65885ff2f43feb5a.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -980,8 +980,8 @@ Tuesday, February 24, 2026
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free React.js Admin Template" 
-    srcset="/images/templates/coreui_free_react_bg_hu_ec9cfb7b4fdd9cbe.webp 480w, /images/templates/coreui_free_react_bg_hu_a753793af0b9471.webp 768w, /images/templates/coreui_free_react_bg_hu_762e9dd070c12f4a.webp 1024w, /images/templates/coreui_free_react_bg_hu_bb327d44df281a03.webp 1366w" 
-  src="/images/templates/coreui_free_react_bg_hu_e410b329880373f.webp"
+    srcset="/images/templates/coreui_free_react_bg_hu_ea48ada2e9362f01.webp 480w, /images/templates/coreui_free_react_bg_hu_2191a6aa5ea52f7d.webp 768w, /images/templates/coreui_free_react_bg_hu_1c94141c4e35658f.webp 1024w, /images/templates/coreui_free_react_bg_hu_c3a4ec426b727df4.webp 1366w" 
+  src="/images/templates/coreui_free_react_bg_hu_540727c0c7aaaa8b.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -1015,8 +1015,8 @@ Tuesday, February 24, 2026
   loading="lazy"
   class="img-fluid box-shadow rounded-1" 
   alt="Free Vue.js Admin Template" 
-    srcset="/images/templates/coreui_free_vue_bg_hu_4d109a70a92e7c08.webp 480w, /images/templates/coreui_free_vue_bg_hu_f3fbf4db00bdc6d0.webp 768w, /images/templates/coreui_free_vue_bg_hu_b88d3d3a7f5d2a73.webp 1024w, /images/templates/coreui_free_vue_bg_hu_1bd074ced54cd9f4.webp 1366w" 
-  src="/images/templates/coreui_free_vue_bg_hu_cdb5a04b9b82950.webp"
+    srcset="/images/templates/coreui_free_vue_bg_hu_d363f30c3171bf82.webp 480w, /images/templates/coreui_free_vue_bg_hu_55390b685b314acf.webp 768w, /images/templates/coreui_free_vue_bg_hu_789da47bcbe4f3bc.webp 1024w, /images/templates/coreui_free_vue_bg_hu_a63db76696b50431.webp 1366w" 
+  src="/images/templates/coreui_free_vue_bg_hu_fecf6c08b952d200.webp"
   
 /><div class="details-bar details-bar-sm">
         <div class="dependencies">
@@ -1109,8 +1109,8 @@ Tuesday, February 24, 2026
   loading="lazy"
   class="post-image" 
   alt="Quo Vadis Vue.js" 
-    srcset="/images/blog/vuejs-nation_hu_622e9566d8f11461.webp 480w, /images/blog/vuejs-nation_hu_58324c8d1f0d6c12.webp 768w, /images/blog/vuejs-nation_hu_b8e1f669a7f967da.webp 1024w, /images/blog/vuejs-nation_hu_1584bde787f6759c.webp 1366w" 
-  src="/images/blog/vuejs-nation_hu_e649eee0763ca76e.webp"
+    srcset="/images/blog/vuejs-nation_hu_f5a3df0182afd0e6.webp 480w, /images/blog/vuejs-nation_hu_9b47388f81fd6396.webp 768w, /images/blog/vuejs-nation_hu_6d39b8f6662d60b.webp 1024w, /images/blog/vuejs-nation_hu_a82965ba30e2995b.webp 1366w" 
+  src="/images/blog/vuejs-nation_hu_eced495a10b06538.webp"
    width="460px"
 />
       </a>
@@ -1149,8 +1149,8 @@ Monday, January 17, 2022
   loading="lazy"
   class="post-image" 
   alt="Vue UI component libraries 2022" 
-    srcset="/images/blog/sliders_hu_a97606f6451e9dac.webp 480w, /images/blog/sliders_hu_aeaf86b6154ab467.webp 768w, /images/blog/sliders_hu_b198bab5f98992f5.webp 1024w, /images/blog/sliders_hu_f208b345b3a5112b.webp 1366w" 
-  src="/images/blog/sliders_hu_29b846b5cd3655f4.webp"
+    srcset="/images/blog/sliders_hu_2731067e6bbe2043.webp 480w, /images/blog/sliders_hu_70c45ddc50ac543d.webp 768w, /images/blog/sliders_hu_9f75a9b5c45a8512.webp 1024w, /images/blog/sliders_hu_ced2ab8666c74380.webp 1366w" 
+  src="/images/blog/sliders_hu_7d1ab9e8c411704e.webp"
    width="460px"
 />
       </a>
@@ -1189,8 +1189,8 @@ Friday, January 7, 2022
   loading="lazy"
   class="post-image" 
   alt="Simple Black Friday" 
-    srcset="/images/blog/black-friday_hu_561b79352a4e5c5.webp 480w, /images/blog/black-friday_hu_e9f46cce32cbda83.webp 768w, /images/blog/black-friday_hu_400ea50e9a336a1.webp 1024w, /images/blog/black-friday_hu_717825857939f6e9.webp 1366w" 
-  src="/images/blog/black-friday_hu_efa06e32f758d6ca.webp"
+    srcset="/images/blog/black-friday_hu_e71f28c3eb433d1.webp 480w, /images/blog/black-friday_hu_c33dbf29aefda0e5.webp 768w, /images/blog/black-friday_hu_57f33df5b78c18ae.webp 1024w, /images/blog/black-friday_hu_8c4f1a7879ff9ae1.webp 1366w" 
+  src="/images/blog/black-friday_hu_435da42306d1233.webp"
    width="460px"
 />
       </a>
@@ -1229,8 +1229,8 @@ Friday, November 26, 2021
   loading="lazy"
   class="post-image" 
   alt="Do we need UI components?" 
-    srcset="/images/blog/sliders_hu_ca34e4903aaef2f2.webp 480w, /images/blog/sliders_hu_979b9c1b8a0fa2cc.webp 768w, /images/blog/sliders_hu_f65ee522e421d6ee.webp 1024w, /images/blog/sliders_hu_8045c6ae8877eccb.webp 1366w" 
-  src="/images/blog/sliders_hu_e4375ac365837218.webp"
+    srcset="/images/blog/sliders_hu_fe29224e81a30daf.webp 480w, /images/blog/sliders_hu_74b788691f5e155.webp 768w, /images/blog/sliders_hu_f167ab7664b9098c.webp 1024w, /images/blog/sliders_hu_d916a854a0439bac.webp 1366w" 
+  src="/images/blog/sliders_hu_f929736ac07a89be.webp"
    width="460px"
 />
       </a>
@@ -1333,7 +1333,7 @@ Wednesday, October 27, 2021
       </div>
     </div>
   </div>
-</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.0721300a81aaa05bef1372d42a6f9fe6bb5433bfa7fad3c801966ceaa80512bc76fac441e4d5163c2023ea41975aa27aa0f0f845980821ccd93fa938cb2aafe0.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
+</footer><script type="text/javascript" src="https://coreui.io/js/scripts.min.b86ca6370b2e926e2d1b2de88db341ace8fe3a596650b02cc9e3f728a0aea2067978027e9c451c8ec3e0086ca0f29fbdb049d0120703ecd8b9fa886d7a81eb64.js"></script><script type="text/javascript" src="/js/coreui-pricing.js" defer></script>
       
     
   </body>
