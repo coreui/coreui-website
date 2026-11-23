@@ -33307,7 +33307,7 @@ Be sure to add `aria-labelledby="..."`, referencing the modal title, to `` Addit
 
 ## Optional sizes
 
-Modals have three optional sizes, available via modifier classes to be placed on a `<CModal>`. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports.
+Modals have four optional sizes, available via modifier classes to be placed on a `<CModal>`. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports.
 
 <table class="table">
   <thead>
@@ -33338,11 +33338,25 @@ Modals have three optional sizes, available via modifier classes to be placed on
       <td><code>'xl'</code></td>
       <td><code>1140px</code></td>
     </tr>
+    <tr>
+      <td>Extra extra large</td>
+      <td><code>'xxl'</code></td>
+      <td><code>1320px</code></td>
+    </tr>
   </tbody>
 </table>
 
 ```html
 <template>
+  <CButton
+    color="primary"
+    @click="
+      () => {
+        xxlDemo = true
+      }
+    "
+    >Extra extra large modal</CButton
+  >
   <CButton
     color="primary"
     @click="
@@ -33370,6 +33384,21 @@ Modals have three optional sizes, available via modifier classes to be placed on
     "
     >Small modal</CButton
   >
+  <CModal
+    size="xxl"
+    :visible="xxlDemo"
+    aria-labelledby="OptionalSizesExample4"
+    @close="
+      () => {
+        xxlDemo = false
+      }
+    "
+  >
+    <CModalHeader>
+      <CModalTitle id="OptionalSizesExample4">Extra extra large modal</CModalTitle>
+    </CModalHeader>
+    <CModalBody> ... </CModalBody>
+  </CModal>
   <CModal
     size="xl"
     :visible="xlDemo"
@@ -33420,6 +33449,7 @@ Modals have three optional sizes, available via modifier classes to be placed on
 <script setup>
 import { CButton, CModal, CModalHeader, CModalTitle, CModalBody } from '@coreui/vue'
 import { ref } from 'vue'
+const xxlDemo = ref(false)
 const xlDemo = ref(false)
 const lgDemo = ref(false)
 const smDemo = ref(false)
@@ -33660,7 +33690,7 @@ import { CModal } from '@coreui/vue'
 | `fullscreen` | `boolean\|string` | - | Set modal to covers the entire user viewport |
 | `keyboard` | `boolean` | `true` | Closes the modal when escape key is pressed. |
 | `scrollable` | `boolean` | - | Create a scrollable modal that allows scrolling the modal body. |
-| `size` | `string` | - | Size the component small, large, or extra large. |
+| `size` | `string` | - | Size the component small, large, extra large, or extra extra large. The `xxl` size is available since 5.23.0. |
 | `teleport` | `boolean` | `false` | Generates modal using Teleport. |
 | `transition` | `boolean` | `true` | Remove animation to create modal that simply appear rather than fade in to view. |
 | `unmountOnClose` | `boolean` | `true` | By default the component is unmounted after close animation, if you want to keep the component mounted set this property to false. |
@@ -33793,6 +33823,7 @@ $modal-sm:                          300px !default;
 $modal-md:                          500px !default;
 $modal-lg:                          800px !default;
 $modal-xl:                          1140px !default;
+$modal-xxl:                         1320px !default;
 
 $modal-fade-transform:              translate(0, -50px) !default;
 $modal-show-transform:              none !default;
@@ -34492,7 +34523,7 @@ Be sure to add `aria-labelledby="..."`, referencing the modal title, to `` Addit
 
 ## Optional sizes
 
-Modals have three optional sizes, available via modifier classes to be placed on a `<CModal>`. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports.
+Modals have four optional sizes, available via modifier classes to be placed on a `<CModal>`. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports.
 
 <table class="table">
   <thead>
@@ -34523,11 +34554,25 @@ Modals have three optional sizes, available via modifier classes to be placed on
       <td><code>'xl'</code></td>
       <td><code>1140px</code></td>
     </tr>
+    <tr>
+      <td>Extra extra large</td>
+      <td><code>'xxl'</code></td>
+      <td><code>1320px</code></td>
+    </tr>
   </tbody>
 </table>
 
 ```html
 <template>
+  <CButton
+    color="primary"
+    @click="
+      () => {
+        xxlDemo = true
+      }
+    "
+    >Extra extra large modal</CButton
+  >
   <CButton
     color="primary"
     @click="
@@ -34555,6 +34600,21 @@ Modals have three optional sizes, available via modifier classes to be placed on
     "
     >Small modal</CButton
   >
+  <CModal
+    size="xxl"
+    :visible="xxlDemo"
+    aria-labelledby="OptionalSizesExample4"
+    @close="
+      () => {
+        xxlDemo = false
+      }
+    "
+  >
+    <CModalHeader>
+      <CModalTitle id="OptionalSizesExample4">Extra extra large modal</CModalTitle>
+    </CModalHeader>
+    <CModalBody> ... </CModalBody>
+  </CModal>
   <CModal
     size="xl"
     :visible="xlDemo"
@@ -34605,6 +34665,7 @@ Modals have three optional sizes, available via modifier classes to be placed on
 <script setup>
 import { CButton, CModal, CModalHeader, CModalTitle, CModalBody } from '@coreui/vue'
 import { ref } from 'vue'
+const xxlDemo = ref(false)
 const xlDemo = ref(false)
 const lgDemo = ref(false)
 const smDemo = ref(false)

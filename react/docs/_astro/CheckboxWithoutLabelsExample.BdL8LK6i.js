@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./CFormCheck.BdCJYxZC.js";import{t as n}from"./jsx-runtime.CpoXNhZb.js";e();var r=n(),i=()=>(0,r.jsx)(t,{id:`checkboxNoLabel`,value:``,"aria-label":`...`});export{i as CheckboxWithoutLabelsExample};

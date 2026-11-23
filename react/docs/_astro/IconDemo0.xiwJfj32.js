@@ -1,0 +1,1 @@
+import{n as e}from"./src.3HXICH8O.js";import{t}from"./cil-list.COMcoGI_.js";import{t as n}from"./cil-shield-alt.C7_j8Bh0.js";import{t as r}from"./jsx-runtime.CpoXNhZb.js";var i=r(),a=()=>(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(e,{icon:t,size:`xl`}),(0,i.jsx)(e,{icon:n,size:`xl`})]});export{a as IconDemo0};

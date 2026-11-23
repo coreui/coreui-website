@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./CCalendar.BysOyDbY.js";import{t as n}from"./jsx-runtime.CpoXNhZb.js";e();var r=n(),i=()=>(0,r.jsx)(`div`,{className:`d-flex justify-content-center`,children:(0,r.jsx)(t,{calendars:2,className:`border rounded`,locale:`en-US`})});export{i as CalendarMultipleCalendarPanelsExample};

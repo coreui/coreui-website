@@ -1,0 +1,1 @@
+import{r as e}from"./rolldown-runtime.XKyaHtl9.js";import{t}from"./react.BBYxYG-3.js";import{t as n}from"./CDatePicker.Bna7NUV_.js";import{t as r}from"./jsx-runtime.CpoXNhZb.js";var i=e(t(),1),a=r(),o=()=>{let[e,t]=(0,i.useState)(null);return(0,a.jsx)(`div`,{ref:t,children:(0,a.jsx)(n,{container:e,locale:`en-US`})})};export{o as DatePickerCustomContainerExample};

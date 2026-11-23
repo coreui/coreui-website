@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./CFormInput.Djh4m04K.js";import{t as n}from"./esm.D7cTq6Ks.js";import{t as r}from"./jsx-runtime.CpoXNhZb.js";e();var i=r(),a=n(({inputRef:e,...n})=>(0,i.jsx)(t,{...n,ref:e})),o=()=>(0,i.jsx)(a,{mask:`+{1}(000)000-00-00`});export{o as InputMaskPhoneExample};

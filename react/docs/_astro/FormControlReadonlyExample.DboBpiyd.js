@@ -1,0 +1,1 @@
+import{t as e}from"./CFormInput.Djh4m04K.js";import{t}from"./jsx-runtime.CpoXNhZb.js";var n=t(),r=()=>(0,n.jsx)(e,{type:`text`,placeholder:`Readonly input here...`,"aria-label":`readonly input example`,readOnly:!0});export{r as FormControlReadonlyExample};

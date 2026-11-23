@@ -29,27 +29,27 @@ Should you require [build tools](https://coreui.io/bootstrap/docs/getting-starte
 Skip the download with [jsDelivr](https://www.jsdelivr.com/) to deliver cached version of CoreUI's compiled CSS and JS to your project.
 
 ```html
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hLBsN3gpx96kCbLUCbANpmr8cdCNM1sH85tJfeZT61uxTNIvelafstACefvdVnuP" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/js/coreui.bundle.min.js" integrity="sha384-yW+X2pqDqevsUW8M2p1APhb8cm2i5jneCZe2pkEvKVATzd6517WyXz6ElE46++OE" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-T2aZb1KxDvb+j1XpcTQcRpMVH184YP2qF/GrBMH/sHeq5J7tQbiceyl1t5j1/t+R" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/js/coreui.bundle.min.js" integrity="sha384-PK+bBi8l7EPDtLfLMhyYSiQxbyx0zP1Jtu7T/Q5CEHZmvyd6KofyMS7c/6pQX9nf" crossorigin="anonymous"></script>
 ```
 
 If you're using our compiled JavaScript and prefer to include Popper separately, add Popper before our JS, via a CDN preferably.
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/js/coreui.min.js" integrity="sha384-nOgOcmr6AaR5Orx9+zgs9tbEI1xyppug0IOWcpUnVqYrFDDXvIQTvl3iubQE4AhR" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/js/coreui.min.js" integrity="sha384-kTinH43BIIzDNscBYRR2T16aqs8CrQ8wxPYzTkuv1EHQMuuztwpsHF1Sf2qYvgWc" crossorigin="anonymous"></script>
 ```
 
 **If you use CoreUI PRO please use following links**
 
 ```html
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-j9VY5BIArie+zC9pDKyKQV8qOHeUFX8ewh6JDWndDBhZ2jQ48mwU5uq3m9LY0QF9" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/coreui.bundle.min.js" integrity="sha384-Buu2Jao34Smgb3KcJa7Y7R11mQC19gApQWpRQjV5ywbSf0sTd0fTPennNmTOxlxc" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hq21L11CbG3SWeE+Mgw4v+6gtez9PPwr06c2SmHShU5r6clzUimvGWIJcpUE+9z5" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/js/coreui.bundle.min.js" integrity="sha384-JZXCjDkBoWXioBg9/u0vkBAXiXmP4ugZDMl7qO6N6dzMvihuFYLFrg/P7SWBAkPE" crossorigin="anonymous"></script>
 ```
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/coreui.min.js" integrity="sha384-ZiOVNyY66TegWfTaCS1zYFSeytQr+C2YG2YeYxwj0WBvIFnv5L4zLVKI9JIjuuxe" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/js/coreui.min.js" integrity="sha384-0jqgdiR3hcQ3K8cGTIgbDWfV8IVWePdGIUxSgdfe8Tq60vyPM7ZsMHHy0GnsyZf8" crossorigin="anonymous"></script>
 ```
 
 ## Package managers

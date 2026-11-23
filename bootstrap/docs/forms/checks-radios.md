@@ -235,7 +235,7 @@ Put your checkboxes, radios, and switches on the opposite side with the `.form-c
 
 ## Without labels
 
-Omit the wrapping `.form-check` for checkboxes and radios that have no label text. Remember to still provide some form of accessible name for assistive technologies (for instance, using `aria-label`). See the [forms overview accessibility](https://coreui.io/bootstrap/docs/forms/overview/#accessibility) section for details.
+Omit the wrapping `.form-check` for checkboxes and radios that have no label text. Remember to still provide an accessible name for assistive technologies, for instance with `aria-label`. The name should say what the control does, like `aria-label="Select all rows"`, and replaces the `...` placeholder in the example below. See the [forms overview accessibility](https://coreui.io/bootstrap/docs/forms/overview/#accessibility) section for details.
 
 ```html
 <div>

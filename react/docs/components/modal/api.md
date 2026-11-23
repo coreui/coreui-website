@@ -24,7 +24,7 @@ import { CModal } from '@coreui/react'
 | `onShow` | `(() => void)` | - | Callback fired when the modal is shown, its backdrop is static and a click outside the modal or an escape key press is performed with the keyboard option set to false. |
 | `portal` | `boolean` | `true` | Generates modal using createPortal. |
 | `scrollable` | `boolean` | - | Create a scrollable modal that allows scrolling the modal body. |
-| `size` | `"sm" \| "lg" \| "xl"` | - | Size the component small, large, or extra large. |
+| `size` | `"sm" \| "lg" \| "xl" \| "xxl"` | - | Size the component small, large, extra large, or extra extra large. The `xxl` size is available since 5.30.0. |
 | `transition` | `boolean` | `true` | Remove animation to create modal that simply appear rather than fade in to view. |
 | `unmountOnClose` | `boolean` | `true` | By default the component is unmounted after close animation, if you want to keep the component mounted set this property to false. |
 | `visible` | `boolean` | - | Toggle the visibility of modal component. |

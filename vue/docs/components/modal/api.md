@@ -20,7 +20,7 @@ import { CModal } from '@coreui/vue'
 | `fullscreen` | `boolean\|string` | - | Set modal to covers the entire user viewport |
 | `keyboard` | `boolean` | `true` | Closes the modal when escape key is pressed. |
 | `scrollable` | `boolean` | - | Create a scrollable modal that allows scrolling the modal body. |
-| `size` | `string` | - | Size the component small, large, or extra large. |
+| `size` | `string` | - | Size the component small, large, extra large, or extra extra large. The `xxl` size is available since 5.23.0. |
 | `teleport` | `boolean` | `false` | Generates modal using Teleport. |
 | `transition` | `boolean` | `true` | Remove animation to create modal that simply appear rather than fade in to view. |
 | `unmountOnClose` | `boolean` | `true` | By default the component is unmounted after close animation, if you want to keep the component mounted set this property to false. |

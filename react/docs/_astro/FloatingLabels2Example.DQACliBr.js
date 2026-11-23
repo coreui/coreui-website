@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./CFormInput.Djh4m04K.js";import{t as n}from"./jsx-runtime.CpoXNhZb.js";e();var r=n(),i=()=>(0,r.jsx)(t,{type:`email`,id:`floatingInputValue`,floatingLabel:`Input with value`,placeholder:`name@example.com`,defaultValue:`test@example.com`});export{i as FloatingLabels2Example};

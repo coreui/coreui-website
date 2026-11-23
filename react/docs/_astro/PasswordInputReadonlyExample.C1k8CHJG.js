@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./CPasswordInput.Ca6ckWb_.js";import{t as n}from"./jsx-runtime.CpoXNhZb.js";e();var r=n(),i=()=>(0,r.jsx)(t,{placeholder:`Readonly password input`,"aria-label":`Readonly password input example`,defaultValue:`Readonly input here...`,readOnly:!0});export{i as PasswordInputReadonlyExample};

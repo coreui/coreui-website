@@ -1,0 +1,1 @@
+import{_ as e,y as t}from"./runtime-core.esm-bundler.DD6XTzUj.js";import{t as n}from"./runtime-dom.esm-bundler.Co0szVXp.js";var r=e({name:`CBackdrop`,props:{visible:{type:Boolean,default:!1}},setup(e){return()=>t(n,{onEnter:e=>{e.classList.add(`show`)},onLeave:e=>{e.classList.remove(`show`)}},()=>e.visible&&t(`div`,{class:`fade`}))}});export{r as t};

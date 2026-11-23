@@ -16,11 +16,11 @@ There are two strict requirements for enabling RTL in Bootstrap-powered pages.
 From there, you'll need to include an RTL version of our CSS. For example, here's the stylesheet for our compiled and minified CSS with RTL enabled:
 
 ```html tab={"label":"CoreUI"}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/css/coreui.rtl.min.css" integrity="sha384-C4caVLlVfJWhlQjURwZ3BXTeybMvADXPbfafrJsjloVCp39FRoX9p6saPvcEzup8" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/css/coreui.rtl.min.css" integrity="sha384-j0FyKFGWVNqbA4DATEGfal9X2tEqFFmsrm6DVrrqIceKLXJXzchl3NAjGxRF6hCJ" crossorigin="anonymous">
 ```
 
 ```html tab={"label":"CoreUI PRO"}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/css/coreui.rtl.min.css" integrity="sha384-y29Gm+EVieWaAKDhBu9jj04pSGC7vaTXvDyRc6lUcxofvNd/Unhj6rC/a3Aca40a" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/css/coreui.rtl.min.css" integrity="sha384-wjLkudInbRwKnFBftgyiFLSiICuVa7mvoug0bkV1kTgeTG5Qp/fOp0WJUhIWtrqS" crossorigin="anonymous">
 ```
 
 ### Starter template
@@ -36,10 +36,10 @@ You can see the above requirements reflected in this modified RTL starter templa
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Option 1: CoreUI for Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/css/coreui.rtl.min.css" integrity="sha384-C4caVLlVfJWhlQjURwZ3BXTeybMvADXPbfafrJsjloVCp39FRoX9p6saPvcEzup8" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/css/coreui.rtl.min.css" integrity="sha384-j0FyKFGWVNqbA4DATEGfal9X2tEqFFmsrm6DVrrqIceKLXJXzchl3NAjGxRF6hCJ" crossorigin="anonymous">
 
     <!-- Option 2: CoreUI PRO for Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/css/coreui.rtl.min.css" integrity="sha384-y29Gm+EVieWaAKDhBu9jj04pSGC7vaTXvDyRc6lUcxofvNd/Unhj6rC/a3Aca40a" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/css/coreui.rtl.min.css" integrity="sha384-wjLkudInbRwKnFBftgyiFLSiICuVa7mvoug0bkV1kTgeTG5Qp/fOp0WJUhIWtrqS" crossorigin="anonymous">
 
     <title>مرحبا بالعالم!</title>
   </head>
@@ -49,17 +49,17 @@ You can see the above requirements reflected in this modified RTL starter templa
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: CoreUI for Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/js/coreui.bundle.min.js" integrity="sha384-yW+X2pqDqevsUW8M2p1APhb8cm2i5jneCZe2pkEvKVATzd6517WyXz6ElE46++OE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/js/coreui.bundle.min.js" integrity="sha384-PK+bBi8l7EPDtLfLMhyYSiQxbyx0zP1Jtu7T/Q5CEHZmvyd6KofyMS7c/6pQX9nf" crossorigin="anonymous"></script>
 
     <!-- Option 2: CoreUI PRO for Bootstrap Bundle with Popper -->
     <!--
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/coreui.bundle.min.js" integrity="sha384-Buu2Jao34Smgb3KcJa7Y7R11mQC19gApQWpRQjV5ywbSf0sTd0fTPennNmTOxlxc" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/js/coreui.bundle.min.js" integrity="sha384-JZXCjDkBoWXioBg9/u0vkBAXiXmP4ugZDMl7qO6N6dzMvihuFYLFrg/P7SWBAkPE" crossorigin="anonymous"></script>
     -->
 
     <!-- Option 3: Separate Popper and CoreUI for Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/js/coreui.min.js" integrity="sha384-nOgOcmr6AaR5Orx9+zgs9tbEI1xyppug0IOWcpUnVqYrFDDXvIQTvl3iubQE4AhR" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/js/coreui.min.js" integrity="sha384-kTinH43BIIzDNscBYRR2T16aqs8CrQ8wxPYzTkuv1EHQMuuztwpsHF1Sf2qYvgWc" crossorigin="anonymous"></script>
     -->
   </body>
 </html>

@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./CFormRange.DWExEF5i.js";import{t as n}from"./jsx-runtime.CpoXNhZb.js";e();var r=n(),i=()=>(0,r.jsx)(t,{min:0,max:5,label:`Example range`,defaultValue:`3`});export{i as FormRangeMinAndMaxExample};

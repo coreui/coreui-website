@@ -1,0 +1,1 @@
+import{t as e}from"./CFormCheck.BdCJYxZC.js";import{t}from"./jsx-runtime.CpoXNhZb.js";var n=t(),r=()=>(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e,{id:`defaultCheck1`,label:`Default checkbox`}),(0,n.jsx)(e,{id:`defaultCheck2`,label:`Disabled checkbox`,disabled:!0})]});export{r as ChecksRadiosStackedExample};

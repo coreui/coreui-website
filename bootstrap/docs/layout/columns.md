@@ -160,6 +160,12 @@ Breaking columns to a new line in flexbox requires a small hack: add an element 
 </div>
 ```
 
+> If the row uses vertical gutters (`.g-*` or `.gy-*`), the break element also gets the gutter margin from `.row > *`. This adds extra space. Add `.m-0` and `.p-0` to the break element to remove it.
+> 
+> ```html
+> 
+> ```
+
 You may also apply this break at specific breakpoints with our [responsive display utilities](https://coreui.io/bootstrap/docs/utilities/display/).
 
 ```html
@@ -277,7 +283,7 @@ Move columns to the right using `.offset-md-*` classes. These classes increase t
 
 #### Margin utilities
 
-With the move to flexbox in v4, you can use margin utilities like `.me-auto` to force sibling columns away from one another.
+With the move to flexbox in v4, you can use margin utilities like `.me-auto` to force sibling columns away from one another, including with [variable-width columns](https://coreui.io/bootstrap/docs/layout/grid/#variable-width-content) such as `.col-auto`.
 
 ```html
 <div class="container text-center">

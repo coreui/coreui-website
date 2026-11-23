@@ -28,27 +28,27 @@ CoreUI was created as an extension to Bootstrap, allowing it to be used both as 
 Copy-paste the stylesheet `<link />` into your `<head>` before all other stylesheets to load our CSS.
 
 ```html tab={"label":"CoreUI"}
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hLBsN3gpx96kCbLUCbANpmr8cdCNM1sH85tJfeZT61uxTNIvelafstACefvdVnuP" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-T2aZb1KxDvb+j1XpcTQcRpMVH184YP2qF/GrBMH/sHeq5J7tQbiceyl1t5j1/t+R" crossorigin="anonymous">
 ```
 
 ```html tab={"label":"CoreUI PRO"}
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-j9VY5BIArie+zC9pDKyKQV8qOHeUFX8ewh6JDWndDBhZ2jQ48mwU5uq3m9LY0QF9" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hq21L11CbG3SWeE+Mgw4v+6gtez9PPwr06c2SmHShU5r6clzUimvGWIJcpUE+9z5" crossorigin="anonymous">
 ```
 
 ### JS
 
-Many of our components require the use of JavaScript to function. Specifically, they require our own JavaScript plugins and [Popper](https://popper.js.org/). Place **one of the following `<script>`s** near the end of your pages, right before the closing `</body>` tag, to enable them.
+Many of our components require the use of JavaScript to function. Specifically, they require our own JavaScript plugins and [Popper](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md). Place **one of the following `<script>`s** near the end of your pages, right before the closing `</body>` tag, to enable them.
 
 #### Bundle
 
-Include every CoreUI for Bootstrap JavaScript plugin and dependency with one of our two bundles. Both `coreui.bundle.js` and `coreui.bundle.min.js` include [Popper](https://popper.js.org/) for our tooltips and popovers. For more information about what's included in CoreUI, please see our [contents](https://coreui.io/bootstrap/docs/getting-started/contents/#precompiled-coreui) section.
+Include every CoreUI for Bootstrap JavaScript plugin and dependency with one of our two bundles. Both `coreui.bundle.js` and `coreui.bundle.min.js` include [Popper](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md) for our tooltips and popovers. For more information about what's included in CoreUI, please see our [contents](https://coreui.io/bootstrap/docs/getting-started/contents/#precompiled-coreui) section.
 
 ```html tab={"label":"CoreUI"}
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/js/coreui.bundle.min.js" integrity="sha384-yW+X2pqDqevsUW8M2p1APhb8cm2i5jneCZe2pkEvKVATzd6517WyXz6ElE46++OE" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/js/coreui.bundle.min.js" integrity="sha384-PK+bBi8l7EPDtLfLMhyYSiQxbyx0zP1Jtu7T/Q5CEHZmvyd6KofyMS7c/6pQX9nf" crossorigin="anonymous"></script>
 ```
 
 ```html tab={"label":"CoreUI PRO"}
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/coreui.bundle.min.js" integrity="sha384-Buu2Jao34Smgb3KcJa7Y7R11mQC19gApQWpRQjV5ywbSf0sTd0fTPennNmTOxlxc" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/js/coreui.bundle.min.js" integrity="sha384-JZXCjDkBoWXioBg9/u0vkBAXiXmP4ugZDMl7qO6N6dzMvihuFYLFrg/P7SWBAkPE" crossorigin="anonymous"></script>
 ```
 
 #### Separate
@@ -57,12 +57,12 @@ If you decide to go with the separate scripts solution, Popper must come first (
 
 ```html tab={"label":"CoreUI"}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/js/coreui.min.js" integrity="sha384-nOgOcmr6AaR5Orx9+zgs9tbEI1xyppug0IOWcpUnVqYrFDDXvIQTvl3iubQE4AhR" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/js/coreui.min.js" integrity="sha384-kTinH43BIIzDNscBYRR2T16aqs8CrQ8wxPYzTkuv1EHQMuuztwpsHF1Sf2qYvgWc" crossorigin="anonymous"></script>
 ```
 
 ```html tab={"label":"CoreUI PRO"}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/coreui.min.js" integrity="sha384-ZiOVNyY66TegWfTaCS1zYFSeytQr+C2YG2YeYxwj0WBvIFnv5L4zLVKI9JIjuuxe" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/js/coreui.min.js" integrity="sha384-0jqgdiR3hcQ3K8cGTIgbDWfV8IVWePdGIUxSgdfe8Tq60vyPM7ZsMHHy0GnsyZf8" crossorigin="anonymous"></script>
 ```
 
 #### Modules
@@ -81,12 +81,12 @@ Curious which components explicitly require our JavaScript and Popper? Click the
 - Buttons for toggling states and checkbox/radio functionality
 - Carousel for all slide behaviors, controls, and indicators
 - Collapse for toggling visibility of content
-- Dropdowns for displaying and positioning (also requires [Popper](https://popper.js.org/))
+- Dropdowns for displaying and positioning (also requires [Popper](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md))
 - Modals for displaying, positioning, and scroll behavior
 - Navbar for extending our Collapse plugin to implement responsive behavior
 - Offcanvases for displaying, positioning, and scroll behavior
 - Toasts for displaying and dismissing
-- Tooltips and popovers for displaying and positioning (also requires [Popper](https://popper.js.org/))
+- Tooltips and popovers for displaying and positioning (also requires [Popper](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md))
 - Scrollspy for scroll behavior and navigation updates
 
 </details>
@@ -102,27 +102,27 @@ If you're currently using Bootstrap in your project or want to maintain full com
 Copy-paste the stylesheet `<link />` into your `<head>` before all other stylesheets to load our CSS.
 
 ```html tab={"label":"CoreUI"}
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/css/themes/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-fvLySNDGU1YHS+mRj38K6qAAWWRa+xhhitIGWNrUfyUIXC6wbthT7nrCtnYBuhpp" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/css/themes/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-DFpCMAimR+sotyYaLI//r4uI1K3HSbGSzna6uikHuIZTqnt5sbnzF6oVhVzfjJGR" crossorigin="anonymous">
 ```
 
 ```html tab={"label":"CoreUI PRO"}
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/css/themes/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-t8yucguo98gUFMfhTPKbclEYpq8MyJ0wuUmYkgvBvF6qTz3/yBEbCgPtftvDno4e" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/css/themes/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-IXBpNLNSygYNZViym1JZRXAbVbKAU/A3gWADtxDlfO5YGM5IZNlt2ywbUcijrup1" crossorigin="anonymous">
 ```
 
 ### JS
 
-Many of our components require the use of JavaScript to function. Specifically, they require our own JavaScript plugins and [Popper](https://popper.js.org/). Place **one of the following `<script>`s** near the end of your pages, right before the closing `</body>` tag, to enable them.
+Many of our components require the use of JavaScript to function. Specifically, they require our own JavaScript plugins and [Popper](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md). Place **one of the following `<script>`s** near the end of your pages, right before the closing `</body>` tag, to enable them.
 
 #### Bundle
 
-Include every CoreUI for Bootstrap JavaScript plugin and dependency with one of our two bundles. Both `bootstrap.bundle.js` and `bootstrap.bundle.min.js` include [Popper](https://popper.js.org/) for our tooltips and popovers.
+Include every CoreUI for Bootstrap JavaScript plugin and dependency with one of our two bundles. Both `bootstrap.bundle.js` and `bootstrap.bundle.min.js` include [Popper](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md) for our tooltips and popovers.
 
 ```html tab={"label":"CoreUI"}
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-Dj3chlOpTreSEcJrQ3tzbCBEy4hu3IpxZ7Yo4GSQ3Lh74uT9FdNQIvwlNJZLmPH/" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-fcMF6pTv8wukPnJEgYoryT3UvWjLVBg1pyraNAViFU9PBYo3O3xMBqUJv2pRPWk7" crossorigin="anonymous"></script>
 ```
 
 ```html tab={"label":"CoreUI PRO"}
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-6uPblc7fi1luNZT4pLBY5ypgIVS/L6HLahEkPUlD4xIhP2TocnXg8hfW6lIikrTk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-8CfB0yxWLECSX80r55NDhYkko+ao7XmSSqew5Cy7pN+8IqXLYg6xFvUsYZDdZaah" crossorigin="anonymous"></script>
 ```
 
 #### Separate
@@ -131,12 +131,12 @@ If you decide to go with the separate scripts solution, Popper must come first (
 
 ```html tab={"label":"CoreUI"}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/js/bootstrap.min.js" integrity="sha384-RuZjm3iU5R5YfbJ2bCnUFADA4i8VUTxBpZWd8XbNw5xIrwhvfDlOAQIuusOYNCsr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/js/bootstrap.min.js" integrity="sha384-5ECqKO6LcP90XMVAXf2a+iikfse0zSl5mrPLRgThzi/4TWE2zhHymnrOqDVFdOH2" crossorigin="anonymous"></script>
 ```
 
 ```html tab={"label":"CoreUI PRO"}
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/bootstrap.min.js" integrity="sha384-KxuXwcKexNqj6m1EVM8i4Ev7xGAO88SLIQy4AKfIEbqzdshmxj4KbiYf5XIsA5TH" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/js/bootstrap.min.js" integrity="sha384-/DYi/uhfpZAaVpVMY3MXe1q4kE3+553FDRtEcsDzZEoAYrI7db2VS6yDs/zW8jDH" crossorigin="anonymous"></script>
 ```
 
 ## Starter template
@@ -152,7 +152,7 @@ Be sure to have your pages set up with the latest design and development standar
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CoreUI for Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hLBsN3gpx96kCbLUCbANpmr8cdCNM1sH85tJfeZT61uxTNIvelafstACefvdVnuP" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-T2aZb1KxDvb+j1XpcTQcRpMVH184YP2qF/GrBMH/sHeq5J7tQbiceyl1t5j1/t+R" crossorigin="anonymous">
 
     <title>Hello, world!</title>
   </head>
@@ -160,7 +160,7 @@ Be sure to have your pages set up with the latest design and development standar
     <h1>Hello, world!</h1>
 
     <!-- CoreUI for Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/js/coreui.bundle.min.js" integrity="sha384-yW+X2pqDqevsUW8M2p1APhb8cm2i5jneCZe2pkEvKVATzd6517WyXz6ElE46++OE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/js/coreui.bundle.min.js" integrity="sha384-PK+bBi8l7EPDtLfLMhyYSiQxbyx0zP1Jtu7T/Q5CEHZmvyd6KofyMS7c/6pQX9nf" crossorigin="anonymous"></script>
   </body>
 </html>
 ```
@@ -174,7 +174,7 @@ Be sure to have your pages set up with the latest design and development standar
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CoreUI PRO for Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-j9VY5BIArie+zC9pDKyKQV8qOHeUFX8ewh6JDWndDBhZ2jQ48mwU5uq3m9LY0QF9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hq21L11CbG3SWeE+Mgw4v+6gtez9PPwr06c2SmHShU5r6clzUimvGWIJcpUE+9z5" crossorigin="anonymous">
 
     <title>Hello, world!</title>
   </head>
@@ -182,7 +182,7 @@ Be sure to have your pages set up with the latest design and development standar
     <h1>Hello, world!</h1>
 
     <!-- CoreUI PRO for Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.29.2/dist/js/coreui.bundle.min.js" integrity="sha384-Buu2Jao34Smgb3KcJa7Y7R11mQC19gApQWpRQjV5ywbSf0sTd0fTPennNmTOxlxc" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.30.0/dist/js/coreui.bundle.min.js" integrity="sha384-JZXCjDkBoWXioBg9/u0vkBAXiXmP4ugZDMl7qO6N6dzMvihuFYLFrg/P7SWBAkPE" crossorigin="anonymous"></script>
   </body>
 </html>
 ```

@@ -41,6 +41,8 @@ Align images with the [helper float classes](https://coreui.io/bootstrap/docs/ut
 
 If you are using the `<picture>` element to specify multiple `<source />` elements for a specific `<img />`, make sure to add the `.img-*` classes to the `<img />` and not to the `<picture>` tag.
 
+Give the `<img>` an `alt` text that describes the image, or an empty `alt=""` when it's only decorative. The `alt="..."` in the example below is a placeholder for that text.
+
 ```html
 <picture>
   <source srcset="..." type="image/svg+xml">

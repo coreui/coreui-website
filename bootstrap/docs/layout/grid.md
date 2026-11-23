@@ -196,7 +196,7 @@ Auto-layout for flexbox grid columns also means you can set the width of one col
 
 ### Variable width content
 
-Use `col-{breakpoint}-auto` classes to size columns based on the natural width of their content.
+Use `.col-auto` and `col-{breakpoint}-auto` classes to size columns based on the natural width of their content across all viewports or at specific breakpoints.
 
 ```html
 <div class="container text-center">
@@ -215,7 +215,7 @@ Use `col-{breakpoint}-auto` classes to size columns based on the natural width o
     <div class="col">
       1 of 3
     </div>
-    <div class="col-md-auto">
+    <div class="col-auto">
       Variable width content
     </div>
     <div class="col col-lg-2">

@@ -72,11 +72,11 @@ Enable the built in dark color mode across your entire project by adding the `da
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CoreUI for Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hLBsN3gpx96kCbLUCbANpmr8cdCNM1sH85tJfeZT61uxTNIvelafstACefvdVnuP" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-T2aZb1KxDvb+j1XpcTQcRpMVH184YP2qF/GrBMH/sHeq5J7tQbiceyl1t5j1/t+R" crossorigin="anonymous">
   </head>
   <body>
     <h1>Hello, world!</h1>
-    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/js/coreui.bundle.min.js" integrity="sha384-yW+X2pqDqevsUW8M2p1APhb8cm2i5jneCZe2pkEvKVATzd6517WyXz6ElE46++OE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/js/coreui.bundle.min.js" integrity="sha384-PK+bBi8l7EPDtLfLMhyYSiQxbyx0zP1Jtu7T/Q5CEHZmvyd6KofyMS7c/6pQX9nf" crossorigin="anonymous"></script>
   </body>
 </html>
 ```

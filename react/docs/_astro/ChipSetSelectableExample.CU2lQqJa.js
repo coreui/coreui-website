@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./CChipSet.CApiv38s.js";import{t as n}from"./jsx-runtime.CpoXNhZb.js";e();var r=n(),i=()=>(0,r.jsx)(t,{selectable:!0,chips:[`Design`,`Development`,`Marketing`,`Sales`],defaultSelected:[`Development`,`Sales`]});export{i as ChipSetSelectableExample};

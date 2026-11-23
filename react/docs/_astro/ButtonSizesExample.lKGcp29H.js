@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./CButton.C_70GG0Q.js";import{t as n}from"./jsx-runtime.CpoXNhZb.js";e();var r=n(),i=()=>(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(t,{color:`primary`,size:`lg`,children:`Large button`}),(0,r.jsx)(t,{color:`secondary`,size:`lg`,children:`Large button`})]});export{i as ButtonSizesExample};

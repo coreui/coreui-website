@@ -37914,25 +37914,30 @@ Be sure to add `aria-labelledby="..."`, referencing the modal title, to `` Addit
 
 ## Optional sizes
 
-Modals have three optional sizes, available via modifier classes to be placed on a `<CModal>`. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports.
+Modals have four optional sizes, available via modifier classes to be placed on a `<CModal>`. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports.
 
-| Size        | Property size | Modal max-width |
-| ----------- | ------------- | --------------- |
-| Small       | `'sm'`        | `300px`         |
-| Default     | None          | `500px`         |
-| Large       | `'lg'`        | `800px`         |
-| Extra large | `'xl'`        | `1140px`        |
+| Size              | Property size | Modal max-width |
+| ----------------- | ------------- | --------------- |
+| Small             | `'sm'`        | `300px`         |
+| Default           | None          | `500px`         |
+| Large             | `'lg'`        | `800px`         |
+| Extra large       | `'xl'`        | `1140px`        |
+| Extra extra large | `'xxl'`       | `1320px`        |
 
 ```html
 import React, { useState } from 'react'
 import { CButton, CModal, CModalBody, CModalHeader, CModalTitle } from '@coreui/react'
 
 export const ModalOptionalSizesExample = () => {
+  const [visibleXXL, setVisibleXXL] = useState(false)
   const [visibleXL, setVisibleXL] = useState(false)
   const [visibleLg, setVisibleLg] = useState(false)
   const [visibleSm, setVisibleSm] = useState(false)
   return (
     <>
+      <CButton color="primary" onClick={() => setVisibleXXL(!visibleXXL)}>
+        Extra extra large modal
+      </CButton>
       <CButton color="primary" onClick={() => setVisibleXL(!visibleXL)}>
         Extra large modal
       </CButton>
@@ -37942,6 +37947,17 @@ export const ModalOptionalSizesExample = () => {
       <CButton color="primary" onClick={() => setVisibleSm(!visibleSm)}>
         Small modal
       </CButton>
+      <CModal
+        size="xxl"
+        visible={visibleXXL}
+        onClose={() => setVisibleXXL(false)}
+        aria-labelledby="OptionalSizesExample4"
+      >
+        <CModalHeader>
+          <CModalTitle id="OptionalSizesExample4">Extra extra large modal</CModalTitle>
+        </CModalHeader>
+        <CModalBody>...</CModalBody>
+      </CModal>
       <CModal
         size="xl"
         visible={visibleXL}
@@ -38134,7 +38150,7 @@ import { CModal } from '@coreui/react'
 | `onShow` | `(() => void)` | - | Callback fired when the modal is shown, its backdrop is static and a click outside the modal or an escape key press is performed with the keyboard option set to false. |
 | `portal` | `boolean` | `true` | Generates modal using createPortal. |
 | `scrollable` | `boolean` | - | Create a scrollable modal that allows scrolling the modal body. |
-| `size` | `"sm" \| "lg" \| "xl"` | - | Size the component small, large, or extra large. |
+| `size` | `"sm" \| "lg" \| "xl" \| "xxl"` | - | Size the component small, large, extra large, or extra extra large. The `xxl` size is available since 5.30.0. |
 | `transition` | `boolean` | `true` | Remove animation to create modal that simply appear rather than fade in to view. |
 | `unmountOnClose` | `boolean` | `true` | By default the component is unmounted after close animation, if you want to keep the component mounted set this property to false. |
 | `visible` | `boolean` | - | Toggle the visibility of modal component. |
@@ -38280,6 +38296,7 @@ $modal-sm:                          300px !default;
 $modal-md:                          500px !default;
 $modal-lg:                          800px !default;
 $modal-xl:                          1140px !default;
+$modal-xxl:                         1320px !default;
 
 $modal-fade-transform:              translate(0, -50px) !default;
 $modal-show-transform:              none !default;
@@ -38844,23 +38861,28 @@ Use `aria-labelledby` and `aria-describedby` on `<CModal>` for improved screen r
 
 Modals come in predefined sizes via the `size` prop.
 
-| Size        | Prop     | Max width |
-|-------------|----------|-----------|
-| Small       | `'sm'`   | 300px     |
-| Default     | —        | 500px     |
-| Large       | `'lg'`   | 800px     |
-| Extra large | `'xl'`   | 1140px    |
+| Size              | Prop     | Max width |
+|-------------------|----------|-----------|
+| Small             | `'sm'`   | 300px     |
+| Default           | —        | 500px     |
+| Large             | `'lg'`   | 800px     |
+| Extra large       | `'xl'`   | 1140px    |
+| Extra extra large | `'xxl'`  | 1320px    |
 
 ```html
 import React, { useState } from 'react'
 import { CButton, CModal, CModalBody, CModalHeader, CModalTitle } from '@coreui/react'
 
 export const ModalOptionalSizesExample = () => {
+  const [visibleXXL, setVisibleXXL] = useState(false)
   const [visibleXL, setVisibleXL] = useState(false)
   const [visibleLg, setVisibleLg] = useState(false)
   const [visibleSm, setVisibleSm] = useState(false)
   return (
     <>
+      <CButton color="primary" onClick={() => setVisibleXXL(!visibleXXL)}>
+        Extra extra large modal
+      </CButton>
       <CButton color="primary" onClick={() => setVisibleXL(!visibleXL)}>
         Extra large modal
       </CButton>
@@ -38870,6 +38892,17 @@ export const ModalOptionalSizesExample = () => {
       <CButton color="primary" onClick={() => setVisibleSm(!visibleSm)}>
         Small modal
       </CButton>
+      <CModal
+        size="xxl"
+        visible={visibleXXL}
+        onClose={() => setVisibleXXL(false)}
+        aria-labelledby="OptionalSizesExample4"
+      >
+        <CModalHeader>
+          <CModalTitle id="OptionalSizesExample4">Extra extra large modal</CModalTitle>
+        </CModalHeader>
+        <CModalBody>...</CModalBody>
+      </CModal>
       <CModal
         size="xl"
         visible={visibleXL}

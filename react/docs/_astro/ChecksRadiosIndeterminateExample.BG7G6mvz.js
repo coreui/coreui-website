@@ -1,0 +1,1 @@
+import{t as e}from"./CFormCheck.BdCJYxZC.js";import{t}from"./jsx-runtime.CpoXNhZb.js";var n=t(),r=()=>(0,n.jsx)(e,{id:`flexCheckIndeterminate`,label:`Indeterminate checkbox`,indeterminate:!0});export{r as ChecksRadiosIndeterminateExample};

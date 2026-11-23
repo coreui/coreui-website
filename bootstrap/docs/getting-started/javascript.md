@@ -47,7 +47,7 @@ To fix this, you can use an `importmap` to resolve the arbitrary module names to
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.9.1/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hLBsN3gpx96kCbLUCbANpmr8cdCNM1sH85tJfeZT61uxTNIvelafstACefvdVnuP" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.10.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-T2aZb1KxDvb+j1XpcTQcRpMVH184YP2qF/GrBMH/sHeq5J7tQbiceyl1t5j1/t+R" crossorigin="anonymous">
     <title>Hello, modularity!</title>
   </head>
   <body>
@@ -76,7 +76,7 @@ To fix this, you can use an `importmap` to resolve the arbitrary module names to
 
 Some plugins and CSS components depend on other plugins. If you include plugins individually, make sure to check for these dependencies in the docs.
 
-Our dropdowns, popovers and tooltips also depend on [Popper](https://popper.js.org/).
+Our dropdowns, popovers and tooltips also depend on [Popper](https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md).
 
 ## Data attributes
 
@@ -94,9 +94,9 @@ CoreUI for Bootstrap provides custom events for most plugins' unique actions. Ge
 All infinitive events provide [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) functionality. This provides the ability to stop the execution of an action before it starts. Returning false from an event handler will also automatically call `preventDefault()`.
 
 ```js
-const myModal = document.getElementById('myModal')
+const myModalEl = document.getElementById('myModal')
 
-myModal.addEventListener('show.coreui.modal', event => {
+myModalEl.addEventListener('show.coreui.modal', event => {
   return event.preventDefault() // stops modal from being shown
 })
 ```
@@ -173,10 +173,12 @@ carousel.to('2') // !! Will be ignored, as the transition to the slide 1 is not 
 While it may seem correct to use the `dispose` method immediately after `hide()`, it will lead to incorrect results. Here's an example of the problem use:
 
 ```js
-const myModal = document.querySelector('#myModal')
+const myModalEl = document.querySelector('#myModal')
+const myModal = coreui.Modal.getInstance(myModalEl)
+
 myModal.hide() // it is asynchronous
 
-myModal.addEventListener('shown.coreui.hidden', event => {
+myModalEl.addEventListener('hidden.coreui.modal', event => {
   myModal.dispose()
 })
 ```

@@ -497,7 +497,7 @@ Embedding YouTube videos in modals requires additional JavaScript not in Bootstr
 
 ## Optional sizes
 
-Modals have three optional sizes, available via modifier classes to be placed on a `.modal-dialog`. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports.
+Modals have four optional sizes, available via modifier classes to be placed on a `.modal-dialog`. These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports.
 
 | Size | Class | Modal max-width
 | --- | --- | --- |
@@ -505,14 +505,30 @@ Modals have three optional sizes, available via modifier classes to be placed on
 | Default | <span class="text-body-secondary">None</span> | `500px` |
 | Large | `.modal-lg` | `800px` |
 | Extra large | `.modal-xl` | `1140px` |
+| Extra extra large | `.modal-xxl` | `1320px` |
 
 Our default modal without modifier class constitutes the "medium" size modal.
 
 ```html
+<div class="modal-dialog modal-xxl">...</div>
 <div class="modal-dialog modal-xl">...</div>
 <div class="modal-dialog modal-lg">...</div>
 <div class="modal-dialog modal-sm">...</div>
 ```
+
+<div class="modal fade" id="exampleModalXxl" tabindex="-1" aria-labelledby="exampleModalXxlLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xxl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title h4" id="exampleModalXxlLabel">Extra extra large modal</h5>
+        <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="exampleModalXl" tabindex="-1" aria-labelledby="exampleModalXlLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
@@ -845,6 +861,7 @@ $modal-sm:                          300px !default;
 $modal-md:                          500px !default;
 $modal-lg:                          800px !default;
 $modal-xl:                          1140px !default;
+$modal-xxl:                         1320px !default;
 
 $modal-fade-transform:              translate(0, -50px) !default;
 $modal-show-transform:              none !default;

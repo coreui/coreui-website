@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./CPlaceholder.CHmNVMCY.js";import{t as n}from"./jsx-runtime.CpoXNhZb.js";e();var r=n(),i=()=>(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(t,{xs:6}),(0,r.jsx)(t,{className:`w-75`}),(0,r.jsx)(t,{style:{width:`30%`}})]});export{i as PlaceholderWidthExample};

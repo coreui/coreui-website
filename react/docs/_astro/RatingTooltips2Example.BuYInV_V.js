@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./CRating.PnjoLvAt.js";import{t as n}from"./jsx-runtime.CpoXNhZb.js";e();var r=n(),i=()=>(0,r.jsx)(t,{tooltips:[`Very bad`,`Bad`,`Meh`,`Good`,`Very good`],value:3});export{i as RatingTooltips2Example};

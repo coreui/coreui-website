@@ -1,0 +1,1 @@
+import"./rolldown-runtime.XKyaHtl9.js";import{t as e}from"./react.BBYxYG-3.js";import{t}from"./CFormTextarea.INM7uqzD.js";import{t as n}from"./jsx-runtime.CpoXNhZb.js";e();var r=n(),i=()=>(0,r.jsx)(t,{className:`mb-3`,placeholder:`Disabled textarea`,"aria-label":`Disabled textarea example`,disabled:!0});export{i as FormTextareaDisabledExample};
